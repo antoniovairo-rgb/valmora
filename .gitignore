@@ -1,0 +1,20 @@
+# Worktree delle sessioni Claude Code
+.claude/worktrees/
+
+# Segreti: mai nel repository
+*.jks
+*.keystore
+keystore.properties
+google-services*.json
+play-service-account*.json
+.env
+.env.*
+
+# Build e dipendenze
+node_modules/
+dist/
+build/
+.gradle/
+local.properties
+*.apk
+*.aab

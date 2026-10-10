@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(**/*.jks)",
+      "Read(**/*.keystore)",
+      "Read(**/keystore.properties)",
+      "Read(**/google-services*.json)",
+      "Read(**/play-service-account*.json)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)"
+    ]
+  }
+}
