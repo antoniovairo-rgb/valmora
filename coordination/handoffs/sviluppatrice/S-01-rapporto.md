@@ -58,7 +58,7 @@ Stato: **consegna completa dei punti 1-8, in attesa di collaudo/integrazione del
 
 | comando | campione | esito |
 |---|---|---|
-| `node tools/catena.mjs completa` | commit c537f73, 1 giro | VERDE, nessun passo instabile (giri successivi in STABILITA.json) |
+| `node tools/catena.mjs completa` | commit c537f73 (1 giro) e 5c6cdcd (2 giri) | 3 giri su 3 VERDI, nessun passo ritentato |
 | `node tools/foto.mjs out/foto` (dati e01 v2) | 3 larghezze × 31 scene = 93 foto | verde: 0 errori, 0 scorrimento, ripresa ok, esito = migliore |
 | `VALMORA_DATI=tests/resa/dati-prova npx vite build --outDir out/dist-prova` + `node tools/foto.mjs out/foto-prova out/dist-prova tests/resa/dati-prova` | 3 larghezze, missione di prova | verde, giocatore attento puro |
 | `npx vitest run` | 6 file, 80 test | verdi |
