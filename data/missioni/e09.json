@@ -20,14 +20,14 @@
       "fonte": "informatore_di_strada",
       "affidabilita": "bassa",
       "vera": true,
-      "settore": "parcheggi"
+      "settore": "tangenziale"
     },
     {
       "testo": "testi:e09.info_radio",
       "fonte": "centrale_radio",
       "affidabilita": "alta",
       "vera": false,
-      "settore": "parcheggi"
+      "settore": "tangenziale"
     },
     {
       "testo": "testi:e09.info_club",
@@ -47,7 +47,7 @@
   "mappa": {
     "settori": [
       {
-        "id": "parcheggi",
+        "id": "tangenziale",
         "tipo": "strada",
         "pos": {
           "x": 82,
@@ -121,13 +121,13 @@
       "titolo": "testi:e09.ondata1",
       "eventi": [
         {
-          "id": "pullman9",
+          "id": "coda9",
           "tipo": "arrivo",
-          "settore": "parcheggi",
+          "settore": "tangenziale",
           "pressione": 4
         },
         {
-          "id": "corteo9",
+          "id": "a_piedi9",
           "tipo": "corteo",
           "settore": "strada_larkspire",
           "pressione": 4
@@ -141,11 +141,11 @@
       ],
       "chiamate": [
         {
-          "id": "senza_targa",
+          "id": "furgone_coinvolto",
           "fonte": "centrale_radio",
-          "testo": "testi:e09.ch.senza_targa",
-          "commento": "testi:e09.ch.senza_targa.vice",
-          "settore": "parcheggi",
+          "testo": "testi:e09.ch.furgone_coinvolto",
+          "commento": "testi:e09.ch.furgone_coinvolto.vice",
+          "settore": "tangenziale",
           "opzioni": [
             {
               "id": "controlla_furgone",
@@ -169,7 +169,7 @@
               "costo": "testi:e09.op.osserva_furgone.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": 1
                 },
                 {
@@ -180,18 +180,18 @@
               "risposta": "testi:e09.op.osserva_furgone.r"
             },
             {
-              "id": "ignora_furgone9",
-              "testo": "testi:e09.op.ignora_furgone9",
-              "costo": "testi:e09.op.ignora_furgone9.c",
+              "id": "uno_dei_dodici",
+              "testo": "testi:e09.op.uno_dei_dodici",
+              "costo": "testi:e09.op.uno_dei_dodici.c",
               "effetti": [],
-              "risposta": "testi:e09.op.ignora_furgone9.r"
+              "risposta": "testi:e09.op.uno_dei_dodici.r"
             }
           ]
         },
         {
-          "id": "collina",
+          "id": "a_piedi",
           "fonte": "voci_in_rete",
-          "testo": "testi:e09.ch.collina",
+          "testo": "testi:e09.ch.a_piedi",
           "settore": "strada_larkspire",
           "opzioni": [
             {
@@ -211,12 +211,12 @@
               "risposta": "testi:e09.op.mediatore9.r"
             },
             {
-              "id": "devia9",
-              "testo": "testi:e09.op.devia9",
-              "costo": "testi:e09.op.devia9.c",
+              "id": "apri_rampa",
+              "testo": "testi:e09.op.apri_rampa",
+              "costo": "testi:e09.op.apri_rampa.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": -1
                 },
                 {
@@ -224,35 +224,35 @@
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e09.op.devia9.r"
+              "risposta": "testi:e09.op.apri_rampa.r"
             },
             {
-              "id": "lascia9",
-              "testo": "testi:e09.op.lascia9",
-              "costo": "testi:e09.op.lascia9.c",
+              "id": "lascia_scendere",
+              "testo": "testi:e09.op.lascia_scendere",
+              "costo": "testi:e09.op.lascia_scendere.c",
               "effetti": [
                 {
                   "pressione": "strada_larkspire",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e09.op.lascia9.r"
+              "risposta": "testi:e09.op.lascia_scendere.r"
             }
           ]
         },
         {
-          "id": "sciarpe_false",
+          "id": "pullman_fermi",
           "fonte": "club_ospite",
-          "testo": "testi:e09.ch.sciarpe_false",
-          "settore": "parcheggi",
+          "testo": "testi:e09.ch.pullman_fermi",
+          "settore": "tangenziale",
           "opzioni": [
             {
-              "id": "sgombera_vendita",
-              "testo": "testi:e09.op.sgombera_vendita",
-              "costo": "testi:e09.op.sgombera_vendita.c",
+              "id": "acqua_pullman",
+              "testo": "testi:e09.op.acqua_pullman",
+              "costo": "testi:e09.op.acqua_pullman.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": -2
                 },
                 {
@@ -260,15 +260,15 @@
                   "valore": -1
                 }
               ],
-              "risposta": "testi:e09.op.sgombera_vendita.r"
+              "risposta": "testi:e09.op.acqua_pullman.r"
             },
             {
-              "id": "sposta_pullman",
-              "testo": "testi:e09.op.sposta_pullman",
-              "costo": "testi:e09.op.sposta_pullman.c",
+              "id": "scarica_pullman",
+              "testo": "testi:e09.op.scarica_pullman",
+              "costo": "testi:e09.op.scarica_pullman.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": -2
                 },
                 {
@@ -276,12 +276,12 @@
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e09.op.sposta_pullman.r"
+              "risposta": "testi:e09.op.scarica_pullman.r"
             },
             {
-              "id": "non_nostro",
-              "testo": "testi:e09.op.non_nostro",
-              "costo": "testi:e09.op.non_nostro.c",
+              "id": "non_compito",
+              "testo": "testi:e09.op.non_compito",
+              "costo": "testi:e09.op.non_compito.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -292,16 +292,16 @@
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e09.op.non_nostro.r"
+              "risposta": "testi:e09.op.non_compito.r"
             }
           ]
         },
         {
-          "id": "autista",
+          "id": "passaggio",
           "fonte": "informatore_di_strada",
-          "testo": "testi:e09.ch.autista",
-          "commento": "testi:e09.ch.autista.vice",
-          "settore": "parcheggi",
+          "testo": "testi:e09.ch.passaggio",
+          "commento": "testi:e09.ch.passaggio.vice",
+          "settore": "tangenziale",
           "se": {
             "var": "informatore_pagato",
             "uguale": true
@@ -313,7 +313,7 @@
               "costo": "testi:e09.op.paga_ancora.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": -2
                 },
                 {
@@ -329,7 +329,7 @@
               "costo": "testi:e09.op.basta_cosi.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": 1
                 }
               ],
@@ -356,27 +356,27 @@
           "pressione": 4
         },
         {
-          "id": "rissa9",
+          "id": "lite9",
           "tipo": "rissa",
-          "settore": "parcheggi",
+          "settore": "tangenziale",
           "pressione": 3
         }
       ],
       "chiamate": [
         {
-          "id": "rissa",
+          "id": "lite_coda",
           "fonte": "centrale_radio",
-          "testo": "testi:e09.ch.rissa",
-          "commento": "testi:e09.ch.rissa.vice",
-          "settore": "parcheggi",
+          "testo": "testi:e09.ch.lite_coda",
+          "commento": "testi:e09.ch.lite_coda.vice",
+          "settore": "tangenziale",
           "opzioni": [
             {
-              "id": "squadre_rissa",
-              "testo": "testi:e09.op.squadre_rissa",
-              "costo": "testi:e09.op.squadre_rissa.c",
+              "id": "squadre_coda",
+              "testo": "testi:e09.op.squadre_coda",
+              "costo": "testi:e09.op.squadre_coda.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": -3
                 },
                 {
@@ -384,23 +384,23 @@
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e09.op.squadre_rissa.r"
+              "risposta": "testi:e09.op.squadre_coda.r"
             },
             {
-              "id": "segui_dopo",
-              "testo": "testi:e09.op.segui_dopo",
-              "costo": "testi:e09.op.segui_dopo.c",
+              "id": "cerca_conducente",
+              "testo": "testi:e09.op.cerca_conducente",
+              "costo": "testi:e09.op.cerca_conducente.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
                   "valore": 1
                 },
                 {
-                  "tensione": "parcheggi",
+                  "tensione": "tangenziale",
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e09.op.segui_dopo.r"
+              "risposta": "testi:e09.op.cerca_conducente.r"
             }
           ]
         },
@@ -445,7 +445,7 @@
           "fonte": "vice",
           "testo": "testi:e09.ch.immagini_club",
           "commento": "testi:e09.ch.immagini_club.vice",
-          "settore": "parcheggi",
+          "settore": "tangenziale",
           "se": {
             "var": "presidente_incontrato",
             "uguale": true
@@ -457,7 +457,7 @@
               "costo": "testi:e09.op.usa_immagini.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": -2
                 },
                 {
@@ -616,18 +616,18 @@
           ]
         },
         {
-          "id": "aspettano",
-          "fonte": "centrale_radio",
-          "testo": "testi:e09.ch.aspettano",
-          "settore": "parcheggi",
+          "id": "corsia_unica",
+          "fonte": "viabilita",
+          "testo": "testi:e09.ch.corsia_unica",
+          "settore": "tangenziale",
           "opzioni": [
             {
-              "id": "presidia_parcheggi",
-              "testo": "testi:e09.op.presidia_parcheggi",
-              "costo": "testi:e09.op.presidia_parcheggi.c",
+              "id": "presidia_rampa",
+              "testo": "testi:e09.op.presidia_rampa",
+              "costo": "testi:e09.op.presidia_rampa.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": -2
                 },
                 {
@@ -635,23 +635,23 @@
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e09.op.presidia_parcheggi.r"
+              "risposta": "testi:e09.op.presidia_rampa.r"
             },
             {
-              "id": "identifica",
-              "testo": "testi:e09.op.identifica",
-              "costo": "testi:e09.op.identifica.c",
+              "id": "chiudi_rampa",
+              "testo": "testi:e09.op.chiudi_rampa",
+              "costo": "testi:e09.op.chiudi_rampa.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
                   "valore": 1
                 },
                 {
-                  "tensione": "parcheggi",
+                  "tensione": "tangenziale",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e09.op.identifica.r"
+              "risposta": "testi:e09.op.chiudi_rampa.r"
             }
           ]
         }
@@ -668,9 +668,9 @@
           "pressione": 5
         },
         {
-          "id": "parcheggi9",
+          "id": "rampa9",
           "tipo": "folla",
-          "settore": "parcheggi",
+          "settore": "tangenziale",
           "pressione": 3
         },
         {
@@ -722,26 +722,26 @@
           ]
         },
         {
-          "id": "motore_acceso",
-          "fonte": "centrale_radio",
-          "testo": "testi:e09.ch.motore_acceso",
-          "settore": "parcheggi",
+          "id": "furgone_sparito",
+          "fonte": "viabilita",
+          "testo": "testi:e09.ch.furgone_sparito",
+          "settore": "tangenziale",
           "opzioni": [
             {
-              "id": "ferma_furgone",
-              "testo": "testi:e09.op.ferma_furgone",
-              "costo": "testi:e09.op.ferma_furgone.c",
+              "id": "chiudi_servizio",
+              "testo": "testi:e09.op.chiudi_servizio",
+              "costo": "testi:e09.op.chiudi_servizio.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
                   "valore": 1
                 },
                 {
-                  "tensione": "parcheggi",
+                  "tensione": "tangenziale",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e09.op.ferma_furgone.r"
+              "risposta": "testi:e09.op.chiudi_servizio.r"
             },
             {
               "id": "annota_direzione",
@@ -749,7 +749,7 @@
               "costo": "testi:e09.op.annota_direzione.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "tangenziale",
                   "valore": -1
                 },
                 {
