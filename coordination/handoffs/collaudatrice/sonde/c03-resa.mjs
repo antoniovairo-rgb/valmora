@@ -51,7 +51,7 @@ async function controlla(p, larg, nome, foto) {
     const fuori = [...document.querySelectorAll('main *')].filter(vis).filter((e) => { const b = e.getBoundingClientRect(); return b.right > innerWidth + 1 || b.left < -1; }).map((e) => e.className || e.tagName);
     const bersagli = [...document.querySelectorAll('button:not([disabled]), a')].filter(vis).map((e) => { const b = e.getBoundingClientRect(); return { n: e.getAttribute('aria-label') || e.textContent.trim().slice(0, 20) || e.className, w: Math.round(b.width), h: Math.round(b.height) }; }).filter((x) => x.w < 24 || x.h < 24);
     // cifre visibili, tolte quelle ammesse (episodio/ondata/chiamata N di M, unità, versione)
-    const testo = document.querySelector('main').innerText.replace(/Episodio \d+/g, '').replace(/[Oo]ndata \d+( di \d+)?/g, '').replace(/Chiamata \d+ di \d+/g, '').replace(/Versione [\d.]+/g, '');
+    const testo = document.querySelector('main').innerText.replace(/Episodio \d+/gi, '').replace(/ondata \d+( di \d+)?/gi, '').replace(/Chiamata \d+ di \d+/gi, '').replace(/Versione [\d.]+/g, '');
     const etichette = [...document.querySelectorAll('[data-settore] .settore-punto')].map((b) => b.getAttribute('aria-label')).join(' | ');
     return { sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, minFont, piccoli: [...new Set(piccoli)], tagliati: [...new Set(tagliati)], fuori: [...new Set(fuori)].slice(0, 5), bersagli, testo, etichette };
   });
@@ -93,7 +93,7 @@ for (const larg of larghezze) {
           if (m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) { await scena(p, 'risposta'); await passo(); await p.click('[data-azione="continua"]'); }
         }
         await scena(p, 'chiusura'); await passo(); await p.click('[data-azione="rapporto"]'); await scena(p, 'rapporto');
-        const r = await passo(); if (/\d/.test(r.testo.replace(/A riposo nella prossima ondata:[^\n]*/g, '').replace(/\n\d+\n/g, '\n'))) S.cifre.push(`rapporto ${i + 1}: «${r.testo.replace(/\n/g, ' / ').slice(0, 200)}»`);
+        const r = await passo(); if (/\d/.test(r.testo.replace(/A riposo nella prossima ondata:[^\n]*/g, '').replace(/\n\d+\n/g, '\n'))) S.cifre.push(`rapporto ${i + 1}: cifre rimaste ${JSON.stringify(r.testo.replace(/A riposo nella prossima ondata:[^\n]*/g, "").match(/[^\n]*\d[^\n]*/g))}`);
         if (/\d/.test(r.etichette.replace(/\d+ (Squadre|Steward|Mediatore)/g, ''))) S.cifre.push(`rapporto ${i + 1}, etichette mappa: ${r.etichette}`);
         await p.click('[data-azione="avanti"]');
       }
