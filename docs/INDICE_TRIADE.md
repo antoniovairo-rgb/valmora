@@ -30,7 +30,7 @@ Il protagonista indaga sulla rete di Dessì mentre gestisce partite sempre più 
 
 | ep | titolo | situazione | filo |
 |----|--------|------------|------|
-| e13 | Il nuovo campionato | ritiro estivo, amichevole che degenera | la rete dei biglietti |
+| e13 | Il concertone d'estate | concertone estivo sponsorizzato dal costruttore, amichevole serale (D-091) | la rete dei biglietti |
 | e14 | Biglietti doppi | stadio venduto due volte | biglietti falsi, chi stampa |
 | e15 | La tifoseria gemellata | arrivano «amici» della curva Cinderwick da fuori | Dessì ha alleati |
 | e16 | Il magazzino delle fonderie | sopralluogo indiretto, l'informatore porta una pista | furgone grigio (3ª volta) |
