@@ -146,3 +146,5 @@
 .rosso-c05r07 .testata-t small { --spaziatura-maiuscolo: 0.3em; }
 .rosso-c05n01 .elenco-settori li { flex-wrap: wrap; }
 .rosso-c05n01 .elenco-settori .riga-sx { flex: none; }
+main.rosso-c10s03 .scena .pulsante[data-azione], main.rosso-c10s03 .scena .azioni { position: static; }
+.rosso-c10s03 .indicatore { display: none; }

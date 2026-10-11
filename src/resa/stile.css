@@ -3,7 +3,7 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; }
 body { background: var(--colore-fondo); background-image: var(--retino); background-size: var(--retino-passo); color: var(--colore-testo); font-family: var(--font); font-size: var(--testo-base); line-height: var(--linea); }
-#app { max-width: var(--larghezza-max); margin: 0 auto; padding: var(--spazio-3) var(--spazio-4) var(--spazio-6); overflow-x: hidden; }
+#app { max-width: var(--larghezza-max); margin: 0 auto; padding: var(--spazio-3) var(--spazio-4) var(--spazio-6); overflow-x: clip; } /* clip, non hidden: hidden blocca position: sticky (C09-03) */
 h1, h2 { font-family: var(--font-titoli); font-weight: 700; text-transform: uppercase; letter-spacing: var(--spaziatura-stretta); }
 h1 { font-size: var(--testo-grande); line-height: var(--linea-stretta); margin: 0; }
 h2 { font-size: var(--testo-grande); margin: var(--spazio-5) 0 var(--spazio-3); }
@@ -151,3 +151,8 @@ p.riposo { opacity: 1; }
 .settore.vietato .settore-punto::after { background: var(--grigio-testo); opacity: var(--opaco); }
 .nota-fisse { display: block; font-size: var(--testo-piccolo); margin: var(--spazio-3) 0; }
 .nota-fisse .icona { vertical-align: text-bottom; }
+
+/* C-010 C09-03: il pulsante principale resta visibile in basso anche quando la scena è lunga */
+.scena .pulsante[data-azione="avanti"], .scena .pulsante[data-azione="prossimo"], .scena .pulsante[data-azione="inizia"],
+.scena .pulsante[data-azione="rapporto"], .scena .pulsante[data-azione="continua"], .scena .azioni { position: sticky; bottom: var(--spazio-3); z-index: 4; }
+.indicatore { position: sticky; bottom: var(--spazio-3); z-index: 4; display: flex; align-items: center; gap: var(--spazio-1); margin: 0 auto; padding: var(--spazio-2) var(--spazio-4); min-height: var(--tocco-min); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); box-shadow: var(--ombra-1); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; cursor: pointer; }
