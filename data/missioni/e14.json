@@ -1,0 +1,862 @@
+{
+  "id": "e14",
+  "stagione": 2,
+  "episodio": 14,
+  "titolo": "testi:e14.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 40,
+    "y": 15
+  },
+  "introduzione": [
+    "testi:e14.intro1",
+    "testi:e14.intro2",
+    "testi:e14.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e14.info_biglietteria",
+      "fonte": "biglietteria",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "biglietteria"
+    },
+    {
+      "testo": "testi:e14.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "tornelli"
+    },
+    {
+      "testo": "testi:e14.info_larkspire",
+      "fonte": "ufficio_sicurezza_larkspire",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "curva_larkspire"
+    },
+    {
+      "testo": "testi:e14.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_ospiti"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "biglietteria",
+        "tipo": "tornelli",
+        "pos": {
+          "x": 15,
+          "y": 25
+        }
+      },
+      {
+        "id": "tornelli",
+        "tipo": "tornelli",
+        "pos": {
+          "x": 45,
+          "y": 30
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 82,
+          "y": 40
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "quillhaven_albion",
+        "pos": {
+          "x": 20,
+          "y": 68
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 55,
+          "y": 78
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 3,
+        "efficacia": {
+          "piazzale": 2,
+          "tornelli": 1,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 7,
+        "efficacia": {
+          "tornelli": 2,
+          "curva": 2,
+          "piazzale": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "lite"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e14.ondata1",
+      "eventi": [
+        {
+          "id": "coda_cassa",
+          "tipo": "biglietti",
+          "settore": "biglietteria",
+          "pressione": 3
+        },
+        {
+          "id": "coda_tornelli",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "doppioni",
+          "fonte": "biglietteria",
+          "testo": "testi:e14.ch.doppioni",
+          "settore": "biglietteria",
+          "opzioni": [
+            {
+              "id": "chiudi_vendita",
+              "testo": "testi:e14.op.chiudi_vendita",
+              "costo": "testi:e14.op.chiudi_vendita.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e14.op.chiudi_vendita.r"
+            },
+            {
+              "id": "lascia_vendere14",
+              "testo": "testi:e14.op.lascia_vendere14",
+              "costo": "testi:e14.op.lascia_vendere14.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e14.op.lascia_vendere14.r"
+            },
+            {
+              "id": "controlla_codici",
+              "testo": "testi:e14.op.controlla_codici",
+              "costo": "testi:e14.op.controlla_codici.c",
+              "effetti": [
+                {
+                  "pressione": "biglietteria",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e14.op.controlla_codici.r"
+            }
+          ]
+        },
+        {
+          "id": "quillhaven_posti",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e14.ch.quillhaven_posti",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "cambio_biglietti",
+              "testo": "testi:e14.op.cambio_biglietti",
+              "costo": "testi:e14.op.cambio_biglietti.c",
+              "effetti": [
+                {
+                  "pressione": "biglietteria",
+                  "valore": 2
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e14.op.cambio_biglietti.r"
+            },
+            {
+              "id": "dentro_comunque",
+              "testo": "testi:e14.op.dentro_comunque",
+              "costo": "testi:e14.op.dentro_comunque.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e14.op.dentro_comunque.r"
+            }
+          ]
+        },
+        {
+          "id": "cronista",
+          "fonte": "stampa_locale",
+          "testo": "testi:e14.ch.cronista",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "conferma",
+              "testo": "testi:e14.op.conferma",
+              "costo": "testi:e14.op.conferma.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e14.op.conferma.r"
+            },
+            {
+              "id": "smentisci",
+              "testo": "testi:e14.op.smentisci",
+              "costo": "testi:e14.op.smentisci.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e14.op.smentisci.r"
+            }
+          ]
+        },
+        {
+          "id": "stessa_carta",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e14.ch.stessa_carta",
+          "commento": "testi:e14.ch.stessa_carta.vice",
+          "settore": "biglietteria",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "avvisa_club",
+              "testo": "testi:e14.op.avvisa_club",
+              "costo": "testi:e14.op.avvisa_club.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "biglietteria",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e14.op.avvisa_club.r"
+            },
+            {
+              "id": "tieni_per_te",
+              "testo": "testi:e14.op.tieni_per_te",
+              "costo": "testi:e14.op.tieni_per_te.c",
+              "effetti": [],
+              "risposta": "testi:e14.op.tieni_per_te.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e14.ondata2",
+      "eventi": [
+        {
+          "id": "doppi_casa",
+          "tipo": "lite",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "doppi_ospiti",
+          "tipo": "lite",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        },
+        {
+          "id": "fuori",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 3
+        },
+        {
+          "id": "attesa",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 1
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "seduti",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e14.ch.seduti",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "in_piedi",
+              "testo": "testi:e14.op.in_piedi",
+              "costo": "testi:e14.op.in_piedi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e14.op.in_piedi.r"
+            },
+            {
+              "id": "settore_lavori",
+              "testo": "testi:e14.op.settore_lavori",
+              "costo": "testi:e14.op.settore_lavori.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -3
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e14.op.settore_lavori.r"
+            }
+          ]
+        },
+        {
+          "id": "ospiti_sbagliati",
+          "fonte": "centrale_radio",
+          "testo": "testi:e14.ch.ospiti_sbagliati",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "estrai",
+              "testo": "testi:e14.op.estrai",
+              "costo": "testi:e14.op.estrai.c",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e14.op.estrai.r"
+            },
+            {
+              "id": "lasciali_li",
+              "testo": "testi:e14.op.lasciali_li",
+              "costo": "testi:e14.op.lasciali_li.c",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e14.op.lasciali_li.r"
+            },
+            {
+              "id": "speaker14",
+              "testo": "testi:e14.op.speaker14",
+              "costo": "testi:e14.op.speaker14.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e14.op.speaker14.r"
+            }
+          ]
+        },
+        {
+          "id": "tornelli_codice",
+          "fonte": "biglietteria",
+          "testo": "testi:e14.ch.tornelli_codice",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "sblocca",
+              "testo": "testi:e14.op.sblocca",
+              "costo": "testi:e14.op.sblocca.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e14.op.sblocca.r"
+            },
+            {
+              "id": "tienili_fuori",
+              "testo": "testi:e14.op.tienili_fuori",
+              "costo": "testi:e14.op.tienili_fuori.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e14.op.tienili_fuori.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e14.ondata3",
+      "eventi": [
+        {
+          "id": "cori_viola",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 5
+        },
+        {
+          "id": "cori_casa14",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 3
+        },
+        {
+          "id": "rimborsi",
+          "tipo": "protesta",
+          "settore": "biglietteria",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "fumo_viola",
+          "fonte": "centrale_radio",
+          "testo": "testi:e14.ch.fumo_viola",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_fumo14",
+              "testo": "testi:e14.op.steward_fumo14",
+              "costo": "testi:e14.op.steward_fumo14.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e14.op.steward_fumo14.r"
+            },
+            {
+              "id": "lascia_fumo14",
+              "testo": "testi:e14.op.lascia_fumo14",
+              "costo": "testi:e14.op.lascia_fumo14.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e14.op.lascia_fumo14.r"
+            }
+          ]
+        },
+        {
+          "id": "fila_rimborsi",
+          "fonte": "biglietteria",
+          "testo": "testi:e14.ch.fila_rimborsi",
+          "settore": "biglietteria",
+          "opzioni": [
+            {
+              "id": "rimborsa_ora",
+              "testo": "testi:e14.op.rimborsa_ora",
+              "costo": "testi:e14.op.rimborsa_ora.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "biglietteria",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e14.op.rimborsa_ora.r"
+            },
+            {
+              "id": "dopo_partita",
+              "testo": "testi:e14.op.dopo_partita",
+              "costo": "testi:e14.op.dopo_partita.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "biglietteria",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e14.op.dopo_partita.r"
+            }
+          ]
+        },
+        {
+          "id": "presidente_rimborsa",
+          "fonte": "vice",
+          "testo": "testi:e14.ch.presidente_rimborsa",
+          "commento": "testi:e14.ch.presidente_rimborsa.vice",
+          "settore": "curva_larkspire",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "accetta_pres",
+              "testo": "testi:e14.op.accetta_pres",
+              "costo": "testi:e14.op.accetta_pres.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e14.op.accetta_pres.r"
+            },
+            {
+              "id": "declina_pres",
+              "testo": "testi:e14.op.declina_pres",
+              "costo": "testi:e14.op.declina_pres.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e14.op.declina_pres.r"
+            }
+          ]
+        },
+        {
+          "id": "numero_serie",
+          "fonte": "vice",
+          "testo": "testi:e14.ch.numero_serie",
+          "commento": "testi:e14.ch.numero_serie.vice",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "chiedi_stampa",
+              "testo": "testi:e14.op.chiedi_stampa",
+              "costo": "testi:e14.op.chiedi_stampa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e14.op.chiedi_stampa.r"
+            },
+            {
+              "id": "aspetta_prove",
+              "testo": "testi:e14.op.aspetta_prove",
+              "costo": "testi:e14.op.aspetta_prove.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e14.op.aspetta_prove.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e14.ondata4",
+      "eventi": [
+        {
+          "id": "assalto_cassa",
+          "tipo": "protesta",
+          "settore": "biglietteria",
+          "pressione": 5
+        },
+        {
+          "id": "uscita14",
+          "tipo": "deflusso",
+          "settore": "piazzale",
+          "pressione": 5
+        },
+        {
+          "id": "ultimi",
+          "tipo": "folla",
+          "settore": "tornelli",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "sportelli",
+          "fonte": "biglietteria",
+          "testo": "testi:e14.ch.sportelli",
+          "settore": "biglietteria",
+          "opzioni": [
+            {
+              "id": "altri_sportelli",
+              "testo": "testi:e14.op.altri_sportelli",
+              "costo": "testi:e14.op.altri_sportelli.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "biglietteria",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e14.op.altri_sportelli.r"
+            },
+            {
+              "id": "modulo",
+              "testo": "testi:e14.op.modulo",
+              "costo": "testi:e14.op.modulo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "biglietteria",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e14.op.modulo.r"
+            }
+          ]
+        },
+        {
+          "id": "uscita_ospiti14",
+          "fonte": "centrale_radio",
+          "testo": "testi:e14.ch.uscita_ospiti14",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "trattieni14",
+              "testo": "testi:e14.op.trattieni14",
+              "costo": "testi:e14.op.trattieni14.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e14.op.trattieni14.r"
+            },
+            {
+              "id": "fuori_subito",
+              "testo": "testi:e14.op.fuori_subito",
+              "costo": "testi:e14.op.fuori_subito.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e14.op.fuori_subito.r"
+            }
+          ]
+        },
+        {
+          "id": "titolo_domani",
+          "fonte": "stampa_locale",
+          "testo": "testi:e14.ch.titolo_domani",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "tipografia_club",
+              "testo": "testi:e14.op.tipografia_club",
+              "costo": "testi:e14.op.tipografia_club.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e14.op.tipografia_club.r"
+            },
+            {
+              "id": "indagini",
+              "testo": "testi:e14.op.indagini",
+              "costo": "testi:e14.op.indagini.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e14.op.indagini.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e14.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e14.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e14.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

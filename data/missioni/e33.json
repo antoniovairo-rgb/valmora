@@ -1,0 +1,804 @@
+{
+  "id": "e33",
+  "bozza": true,
+  "stagione": 3,
+  "episodio": 33,
+  "titolo": "testi:e33.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 15,
+    "y": 70
+  },
+  "introduzione": [
+    "testi:e33.intro1",
+    "testi:e33.intro2",
+    "testi:e33.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e33.info_anonimo",
+      "fonte": "messaggio_anonimo",
+      "affidabilita": "bassa",
+      "vera": false,
+      "settore": "tornelli"
+    },
+    {
+      "testo": "testi:e33.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "stazione"
+    },
+    {
+      "testo": "testi:e33.info_mossgarth",
+      "fonte": "club_mossgarth",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e33.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "viale_stazione"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 85,
+          "y": 40
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "mossgarth_town",
+        "pos": {
+          "x": 55,
+          "y": 18
+        }
+      },
+      {
+        "id": "stazione",
+        "tipo": "stazione",
+        "pos": {
+          "x": 15,
+          "y": 70
+        }
+      },
+      {
+        "id": "viale_stazione",
+        "tipo": "strada",
+        "pos": {
+          "x": 40,
+          "y": 88
+        }
+      },
+      {
+        "id": "tornelli",
+        "tipo": "tornelli",
+        "pos": {
+          "x": 70,
+          "y": 75
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 5,
+        "efficacia": {
+          "strada": 2,
+          "stazione": 2,
+          "curva": 1,
+          "tornelli": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "tornelli": 2,
+          "strada": 1,
+          "stazione": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e33.ondata1",
+      "eventi": [
+        {
+          "id": "treno_anticipo",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "viale_nostro",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 4
+        },
+        {
+          "id": "biglietti",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "ordini_segnati",
+          "fonte": "vice",
+          "testo": "testi:e33.ch.ordini_segnati",
+          "commento": "testi:e33.ch.ordini_segnati.vice",
+          "opzioni": [
+            {
+              "id": "ordini_veri",
+              "testo": "testi:e33.op.ordini_veri",
+              "costo": "testi:e33.op.ordini_veri.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e33.op.ordini_veri.r"
+            },
+            {
+              "id": "ordini_puliti",
+              "testo": "testi:e33.op.ordini_puliti",
+              "costo": "testi:e33.op.ordini_puliti.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.ordini_puliti.r"
+            }
+          ]
+        },
+        {
+          "id": "treno_mossgarth",
+          "fonte": "centrale_radio",
+          "testo": "testi:e33.ch.treno_mossgarth",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "squadra_treno",
+              "testo": "testi:e33.op.squadra_treno",
+              "costo": "testi:e33.op.squadra_treno.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.squadra_treno.r"
+            },
+            {
+              "id": "treno_aspetta",
+              "testo": "testi:e33.op.treno_aspetta",
+              "costo": "testi:e33.op.treno_aspetta.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "tensione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.treno_aspetta.r"
+            },
+            {
+              "id": "treno_libero",
+              "testo": "testi:e33.op.treno_libero",
+              "costo": "testi:e33.op.treno_libero.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.treno_libero.r"
+            }
+          ]
+        },
+        {
+          "id": "tornelli_falsi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e33.ch.tornelli_falsi",
+          "commento": "testi:e33.ch.tornelli_falsi.vice",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "respingi_falsi",
+              "testo": "testi:e33.op.respingi_falsi",
+              "costo": "testi:e33.op.respingi_falsi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.respingi_falsi.r"
+            },
+            {
+              "id": "steward_tornelli",
+              "testo": "testi:e33.op.steward_tornelli",
+              "costo": "testi:e33.op.steward_tornelli.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e33.op.steward_tornelli.r"
+            },
+            {
+              "id": "chiudi_occhio",
+              "testo": "testi:e33.op.chiudi_occhio",
+              "costo": "testi:e33.op.chiudi_occhio.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e33.op.chiudi_occhio.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e33.ondata2",
+      "eventi": [
+        {
+          "id": "cori_larkspire",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "cori_mossgarth",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "ritardatari",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "parcheggio_vuoto",
+          "fonte": "centrale_radio",
+          "testo": "testi:e33.ch.parcheggio_vuoto",
+          "commento": "testi:e33.ch.parcheggio_vuoto.vice",
+          "settore": "viale_stazione",
+          "se": {
+            "var": "credito",
+            "almeno": 5
+          },
+          "opzioni": [
+            {
+              "id": "segui_auto",
+              "testo": "testi:e33.op.segui_auto",
+              "costo": "testi:e33.op.segui_auto.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.segui_auto.r"
+            },
+            {
+              "id": "annota_targa",
+              "testo": "testi:e33.op.annota_targa",
+              "costo": "testi:e33.op.annota_targa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.annota_targa.r"
+            }
+          ]
+        },
+        {
+          "id": "mossgarth_fumo",
+          "fonte": "centrale_radio",
+          "testo": "testi:e33.ch.mossgarth_fumo",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_fumo_ospiti",
+              "testo": "testi:e33.op.steward_fumo_ospiti",
+              "costo": "testi:e33.op.steward_fumo_ospiti.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.steward_fumo_ospiti.r"
+            },
+            {
+              "id": "lascia_fumo_ospiti",
+              "testo": "testi:e33.op.lascia_fumo_ospiti",
+              "costo": "testi:e33.op.lascia_fumo_ospiti.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e33.op.lascia_fumo_ospiti.r"
+            }
+          ]
+        },
+        {
+          "id": "frequenza",
+          "fonte": "comando",
+          "testo": "testi:e33.ch.frequenza",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "cambia_ora",
+              "testo": "testi:e33.op.cambia_ora",
+              "costo": "testi:e33.op.cambia_ora.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e33.op.cambia_ora.r"
+            },
+            {
+              "id": "cambia_dopo",
+              "testo": "testi:e33.op.cambia_dopo",
+              "costo": "testi:e33.op.cambia_dopo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.cambia_dopo.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e33.ondata3",
+      "eventi": [
+        {
+          "id": "gol_mossgarth",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "rabbia_casa",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "viale_inquieto",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "nome_talpa",
+          "fonte": "vice",
+          "testo": "testi:e33.ch.nome_talpa",
+          "commento": "testi:e33.ch.nome_talpa.vice",
+          "opzioni": [
+            {
+              "id": "rapporto_subito",
+              "testo": "testi:e33.op.rapporto_subito",
+              "costo": "testi:e33.op.rapporto_subito.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.rapporto_subito.r"
+            },
+            {
+              "id": "aspetta_fine",
+              "testo": "testi:e33.op.aspetta_fine",
+              "costo": "testi:e33.op.aspetta_fine.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.aspetta_fine.r"
+            }
+          ]
+        },
+        {
+          "id": "gol_ospiti",
+          "fonte": "centrale_radio",
+          "testo": "testi:e33.ch.gol_ospiti",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "mediatore_casa",
+              "testo": "testi:e33.op.mediatore_casa",
+              "costo": "testi:e33.op.mediatore_casa.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.mediatore_casa.r"
+            },
+            {
+              "id": "squadra_casa",
+              "testo": "testi:e33.op.squadra_casa",
+              "costo": "testi:e33.op.squadra_casa.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.squadra_casa.r"
+            },
+            {
+              "id": "niente_casa",
+              "testo": "testi:e33.op.niente_casa",
+              "costo": "testi:e33.op.niente_casa.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.niente_casa.r"
+            }
+          ]
+        },
+        {
+          "id": "ospiti_festa",
+          "fonte": "club_mossgarth",
+          "testo": "testi:e33.ch.ospiti_festa",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "festa_curva",
+              "testo": "testi:e33.op.festa_curva",
+              "costo": "testi:e33.op.festa_curva.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.festa_curva.r"
+            },
+            {
+              "id": "festa_viale",
+              "testo": "testi:e33.op.festa_viale",
+              "costo": "testi:e33.op.festa_viale.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e33.op.festa_viale.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e33.ondata4",
+      "eventi": [
+        {
+          "id": "ritorno_mossgarth",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 5
+        },
+        {
+          "id": "treno_notte",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "uscita",
+          "tipo": "folla",
+          "settore": "tornelli",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "talpa_scappa",
+          "fonte": "comando",
+          "testo": "testi:e33.ch.talpa_scappa",
+          "commento": "testi:e33.ch.talpa_scappa.vice",
+          "opzioni": [
+            {
+              "id": "nega_auto",
+              "testo": "testi:e33.op.nega_auto",
+              "costo": "testi:e33.op.nega_auto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e33.op.nega_auto.r"
+            },
+            {
+              "id": "lascia_andare",
+              "testo": "testi:e33.op.lascia_andare",
+              "costo": "testi:e33.op.lascia_andare.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.lascia_andare.r"
+            }
+          ]
+        },
+        {
+          "id": "viale_ritorno",
+          "fonte": "centrale_radio",
+          "testo": "testi:e33.ch.viale_ritorno",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "scorta_ritorno",
+              "testo": "testi:e33.op.scorta_ritorno",
+              "costo": "testi:e33.op.scorta_ritorno.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.scorta_ritorno.r"
+            },
+            {
+              "id": "chiudi_viale",
+              "testo": "testi:e33.op.chiudi_viale",
+              "costo": "testi:e33.op.chiudi_viale.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.chiudi_viale.r"
+            },
+            {
+              "id": "lascia_viale",
+              "testo": "testi:e33.op.lascia_viale",
+              "costo": "testi:e33.op.lascia_viale.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.lascia_viale.r"
+            }
+          ]
+        },
+        {
+          "id": "treno_mezzanotte",
+          "fonte": "centrale_radio",
+          "testo": "testi:e33.ch.treno_mezzanotte",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "trattieni_mezzanotte",
+              "testo": "testi:e33.op.trattieni_mezzanotte",
+              "costo": "testi:e33.op.trattieni_mezzanotte.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.trattieni_mezzanotte.r"
+            },
+            {
+              "id": "parte_mezzanotte",
+              "testo": "testi:e33.op.parte_mezzanotte",
+              "costo": "testi:e33.op.parte_mezzanotte.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.parte_mezzanotte.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e33.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e33.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e33.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

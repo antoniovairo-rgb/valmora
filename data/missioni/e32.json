@@ -1,0 +1,866 @@
+{
+  "id": "e32",
+  "bozza": true,
+  "stagione": 3,
+  "episodio": 32,
+  "titolo": "testi:e32.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 86,
+    "y": 60
+  },
+  "introduzione": [
+    "testi:e32.intro1",
+    "testi:e32.intro2",
+    "testi:e32.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e32.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "strada_larkspire"
+    },
+    {
+      "testo": "testi:e32.info_cinderwick",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "curva_cinderwick"
+    },
+    {
+      "testo": "testi:e32.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "piazzale"
+    },
+    {
+      "testo": "testi:e32.info_informatore",
+      "fonte": "informatore_di_strada",
+      "affidabilita": "bassa",
+      "vera": false,
+      "settore": "strada_cinderwick"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 15,
+          "y": 45
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 85,
+          "y": 45
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 50,
+          "y": 72
+        }
+      },
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 14,
+          "y": 88
+        }
+      },
+      {
+        "id": "strada_larkspire",
+        "tipo": "strada",
+        "pos": {
+          "x": 86,
+          "y": 88
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 5,
+        "efficacia": {
+          "strada": 2,
+          "curva": 1,
+          "piazzale": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "strada": 1,
+          "piazzale": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e32.ondata1",
+      "eventi": [
+        {
+          "id": "corteo_cinderwick",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "corteo_larkspire",
+          "tipo": "corteo",
+          "settore": "strada_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "appuntamento",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "due_cortei",
+          "fonte": "centrale_radio",
+          "testo": "testi:e32.ch.due_cortei",
+          "commento": "testi:e32.ch.due_cortei.vice",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "ferma_larkspire",
+              "testo": "testi:e32.op.ferma_larkspire",
+              "costo": "testi:e32.op.ferma_larkspire.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.ferma_larkspire.r"
+            },
+            {
+              "id": "ferma_cinderwick",
+              "testo": "testi:e32.op.ferma_cinderwick",
+              "costo": "testi:e32.op.ferma_cinderwick.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.ferma_cinderwick.r"
+            },
+            {
+              "id": "mediatore_incrocio",
+              "testo": "testi:e32.op.mediatore_incrocio",
+              "costo": "testi:e32.op.mediatore_incrocio.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.mediatore_incrocio.r"
+            }
+          ]
+        },
+        {
+          "id": "portavoce",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e32.ch.portavoce",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "accordo_portavoce",
+              "testo": "testi:e32.op.accordo_portavoce",
+              "costo": "testi:e32.op.accordo_portavoce.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.accordo_portavoce.r"
+            },
+            {
+              "id": "niente_accordo",
+              "testo": "testi:e32.op.niente_accordo",
+              "costo": "testi:e32.op.niente_accordo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e32.op.niente_accordo.r"
+            }
+          ]
+        },
+        {
+          "id": "piazzale_anonimo",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e32.ch.piazzale_anonimo",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "presidia_piazzale",
+              "testo": "testi:e32.op.presidia_piazzale",
+              "costo": "testi:e32.op.presidia_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.presidia_piazzale.r"
+            },
+            {
+              "id": "ignora_piazzale",
+              "testo": "testi:e32.op.ignora_piazzale",
+              "costo": "testi:e32.op.ignora_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.ignora_piazzale.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e32.ondata2",
+      "eventi": [
+        {
+          "id": "cori_cinderwick",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "cori_larkspire",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale_tardi",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "striscione_dessi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e32.ch.striscione_dessi",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "rimuovi_larkspire",
+              "testo": "testi:e32.op.rimuovi_larkspire",
+              "costo": "testi:e32.op.rimuovi_larkspire.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.rimuovi_larkspire.r"
+            },
+            {
+              "id": "lascialo_larkspire",
+              "testo": "testi:e32.op.lascialo_larkspire",
+              "costo": "testi:e32.op.lascialo_larkspire.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 3
+                }
+              ],
+              "risposta": "testi:e32.op.lascialo_larkspire.r"
+            },
+            {
+              "id": "speaker_rispetto",
+              "testo": "testi:e32.op.speaker_rispetto",
+              "costo": "testi:e32.op.speaker_rispetto.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.speaker_rispetto.r"
+            }
+          ]
+        },
+        {
+          "id": "fumogeni_cinderwick",
+          "fonte": "centrale_radio",
+          "testo": "testi:e32.ch.fumogeni_cinderwick",
+          "commento": "testi:e32.ch.fumogeni_cinderwick.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "steward_fumo",
+              "testo": "testi:e32.op.steward_fumo",
+              "costo": "testi:e32.op.steward_fumo.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e32.op.steward_fumo.r"
+            },
+            {
+              "id": "sospendi",
+              "testo": "testi:e32.op.sospendi",
+              "costo": "testi:e32.op.sospendi.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e32.op.sospendi.r"
+            },
+            {
+              "id": "lascia_fumo",
+              "testo": "testi:e32.op.lascia_fumo",
+              "costo": "testi:e32.op.lascia_fumo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.lascia_fumo.r"
+            }
+          ]
+        },
+        {
+          "id": "giornalisti_derby",
+          "fonte": "cronista",
+          "testo": "testi:e32.ch.giornalisti_derby",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "allontana",
+              "testo": "testi:e32.op.allontana",
+              "costo": "testi:e32.op.allontana.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e32.op.allontana.r"
+            },
+            {
+              "id": "lasciali_piazzale",
+              "testo": "testi:e32.op.lasciali_piazzale",
+              "costo": "testi:e32.op.lasciali_piazzale.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.lasciali_piazzale.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e32.ondata3",
+      "eventi": [
+        {
+          "id": "rigore",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "rabbia",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "fuori",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "rigore_larkspire",
+          "fonte": "centrale_radio",
+          "testo": "testi:e32.ch.rigore_larkspire",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "barriera",
+              "testo": "testi:e32.op.barriera",
+              "costo": "testi:e32.op.barriera.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.barriera.r"
+            },
+            {
+              "id": "cerca_portavoce",
+              "testo": "testi:e32.op.cerca_portavoce",
+              "costo": "testi:e32.op.cerca_portavoce.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.cerca_portavoce.r"
+            },
+            {
+              "id": "niente_vetrate",
+              "testo": "testi:e32.op.niente_vetrate",
+              "costo": "testi:e32.op.niente_vetrate.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.niente_vetrate.r"
+            }
+          ]
+        },
+        {
+          "id": "festa_larkspire",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e32.ch.festa_larkspire",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "trattieni_larkspire",
+              "testo": "testi:e32.op.trattieni_larkspire",
+              "costo": "testi:e32.op.trattieni_larkspire.c",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.trattieni_larkspire.r"
+            },
+            {
+              "id": "uscita_collina",
+              "testo": "testi:e32.op.uscita_collina",
+              "costo": "testi:e32.op.uscita_collina.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.uscita_collina.r"
+            }
+          ]
+        },
+        {
+          "id": "comando_derby",
+          "fonte": "comando",
+          "testo": "testi:e32.ch.comando_derby",
+          "commento": "testi:e32.ch.comando_derby.vice",
+          "opzioni": [
+            {
+              "id": "chiudi_curve",
+              "testo": "testi:e32.op.chiudi_curve",
+              "costo": "testi:e32.op.chiudi_curve.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e32.op.chiudi_curve.r"
+            },
+            {
+              "id": "apri_curve",
+              "testo": "testi:e32.op.apri_curve",
+              "costo": "testi:e32.op.apri_curve.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e32.op.apri_curve.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e32.ondata4",
+      "eventi": [
+        {
+          "id": "deflusso_cinderwick",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "deflusso_larkspire",
+          "tipo": "corteo",
+          "settore": "strada_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale_notte",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "incrocio",
+          "fonte": "centrale_radio",
+          "testo": "testi:e32.ch.incrocio",
+          "commento": "testi:e32.ch.incrocio.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "cordone_piazzale",
+              "testo": "testi:e32.op.cordone_piazzale",
+              "costo": "testi:e32.op.cordone_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -3
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e32.op.cordone_piazzale.r"
+            },
+            {
+              "id": "luci",
+              "testo": "testi:e32.op.luci",
+              "costo": "testi:e32.op.luci.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.luci.r"
+            },
+            {
+              "id": "fiducia",
+              "testo": "testi:e32.op.fiducia",
+              "costo": "testi:e32.op.fiducia.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.fiducia.r"
+            }
+          ]
+        },
+        {
+          "id": "collina",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e32.ch.collina",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "blocca_salita",
+              "testo": "testi:e32.op.blocca_salita",
+              "costo": "testi:e32.op.blocca_salita.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.blocca_salita.r"
+            },
+            {
+              "id": "steward_salita",
+              "testo": "testi:e32.op.steward_salita",
+              "costo": "testi:e32.op.steward_salita.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -1
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e32.op.steward_salita.r"
+            },
+            {
+              "id": "lascia_salire",
+              "testo": "testi:e32.op.lascia_salire",
+              "costo": "testi:e32.op.lascia_salire.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.lascia_salire.r"
+            }
+          ]
+        },
+        {
+          "id": "verbale_derby",
+          "fonte": "comando",
+          "testo": "testi:e32.ch.verbale_derby",
+          "opzioni": [
+            {
+              "id": "nome_cinderwick",
+              "testo": "testi:e32.op.nome_cinderwick",
+              "costo": "testi:e32.op.nome_cinderwick.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.nome_cinderwick.r"
+            },
+            {
+              "id": "nome_larkspire",
+              "testo": "testi:e32.op.nome_larkspire",
+              "costo": "testi:e32.op.nome_larkspire.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e32.op.nome_larkspire.r"
+            },
+            {
+              "id": "nessun_nome",
+              "testo": "testi:e32.op.nessun_nome",
+              "costo": "testi:e32.op.nessun_nome.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e32.op.nessun_nome.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e32.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e32.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e32.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

@@ -1,0 +1,872 @@
+{
+  "id": "e13",
+  "stagione": 2,
+  "episodio": 13,
+  "titolo": "testi:e13.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 15,
+    "y": 20
+  },
+  "introduzione": [
+    "testi:e13.intro1",
+    "testi:e13.intro2",
+    "testi:e13.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e13.info_organizzatori",
+      "fonte": "organizzatori_ritiro",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "parcheggi"
+    },
+    {
+      "testo": "testi:e13.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e13.info_club",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "curva_cinderwick"
+    },
+    {
+      "testo": "testi:e13.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "bancarelle"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "strada_ritiro",
+        "tipo": "strada",
+        "pos": {
+          "x": 15,
+          "y": 20
+        }
+      },
+      {
+        "id": "parcheggi",
+        "tipo": "strada",
+        "pos": {
+          "x": 40,
+          "y": 15
+        }
+      },
+      {
+        "id": "bancarelle",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 75,
+          "y": 22
+        }
+      },
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 25,
+          "y": 70
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "calderholt_rovers",
+        "pos": {
+          "x": 72,
+          "y": 70
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 5,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 2,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "rissa"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e13.ondata1",
+      "eventi": [
+        {
+          "id": "pullman",
+          "tipo": "arrivo",
+          "settore": "strada_ritiro",
+          "pressione": 4
+        },
+        {
+          "id": "prato",
+          "tipo": "sosta",
+          "settore": "parcheggi",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "navetta",
+          "fonte": "organizzatori_ritiro",
+          "testo": "testi:e13.ch.navetta",
+          "settore": "strada_ritiro",
+          "opzioni": [
+            {
+              "id": "scorta_strada",
+              "testo": "testi:e13.op.scorta_strada",
+              "costo": "testi:e13.op.scorta_strada.c",
+              "effetti": [
+                {
+                  "pressione": "strada_ritiro",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e13.op.scorta_strada.r"
+            },
+            {
+              "id": "chiudi_strada",
+              "testo": "testi:e13.op.chiudi_strada",
+              "costo": "testi:e13.op.chiudi_strada.c",
+              "effetti": [
+                {
+                  "pressione": "strada_ritiro",
+                  "valore": -2
+                },
+                {
+                  "pressione": "parcheggi",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e13.op.chiudi_strada.r"
+            },
+            {
+              "id": "aspettino",
+              "testo": "testi:e13.op.aspettino",
+              "costo": "testi:e13.op.aspettino.c",
+              "effetti": [
+                {
+                  "pressione": "strada_ritiro",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.aspettino.r"
+            }
+          ]
+        },
+        {
+          "id": "prato",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e13.ch.prato",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "multe_prato",
+              "testo": "testi:e13.op.multe_prato",
+              "costo": "testi:e13.op.multe_prato.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "parcheggi",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.multe_prato.r"
+            },
+            {
+              "id": "steward_prato",
+              "testo": "testi:e13.op.steward_prato",
+              "costo": "testi:e13.op.steward_prato.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e13.op.steward_prato.r"
+            },
+            {
+              "id": "lascia_prato",
+              "testo": "testi:e13.op.lascia_prato",
+              "costo": "testi:e13.op.lascia_prato.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "parcheggi",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.lascia_prato.r"
+            }
+          ]
+        },
+        {
+          "id": "palco",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e13.ch.palco",
+          "commento": "testi:e13.ch.palco.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "palco_si",
+              "testo": "testi:e13.op.palco_si",
+              "costo": "testi:e13.op.palco_si.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e13.op.palco_si.r"
+            },
+            {
+              "id": "palco_no",
+              "testo": "testi:e13.op.palco_no",
+              "costo": "testi:e13.op.palco_no.c",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e13.op.palco_no.r"
+            }
+          ]
+        },
+        {
+          "id": "abbonamenti_voce",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e13.ch.abbonamenti_voce",
+          "commento": "testi:e13.ch.abbonamenti_voce.vice",
+          "settore": "bancarelle",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "segna_banco",
+              "testo": "testi:e13.op.segna_banco",
+              "costo": "testi:e13.op.segna_banco.c",
+              "effetti": [
+                {
+                  "pressione": "bancarelle",
+                  "valore": -3
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e13.op.segna_banco.r"
+            },
+            {
+              "id": "dopo_banco",
+              "testo": "testi:e13.op.dopo_banco",
+              "costo": "testi:e13.op.dopo_banco.c",
+              "effetti": [],
+              "risposta": "testi:e13.op.dopo_banco.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e13.ondata2",
+      "eventi": [
+        {
+          "id": "cori_ospiti",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "cori_casa",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 3
+        },
+        {
+          "id": "abbonamenti",
+          "tipo": "biglietti",
+          "settore": "bancarelle",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "microfono",
+          "fonte": "centrale_radio",
+          "testo": "testi:e13.ch.microfono",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "stacca_micro",
+              "testo": "testi:e13.op.stacca_micro",
+              "costo": "testi:e13.op.stacca_micro.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.stacca_micro.r"
+            },
+            {
+              "id": "lascia_cori",
+              "testo": "testi:e13.op.lascia_cori",
+              "costo": "testi:e13.op.lascia_cori.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.lascia_cori.r"
+            }
+          ]
+        },
+        {
+          "id": "abbonamenti_finti",
+          "fonte": "organizzatori_ritiro",
+          "testo": "testi:e13.ch.abbonamenti_finti",
+          "settore": "bancarelle",
+          "opzioni": [
+            {
+              "id": "sequestra_abb",
+              "testo": "testi:e13.op.sequestra_abb",
+              "costo": "testi:e13.op.sequestra_abb.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "bancarelle",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e13.op.sequestra_abb.r"
+            },
+            {
+              "id": "steward_banchi",
+              "testo": "testi:e13.op.steward_banchi",
+              "costo": "testi:e13.op.steward_banchi.c",
+              "effetti": [
+                {
+                  "pressione": "bancarelle",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e13.op.steward_banchi.r"
+            },
+            {
+              "id": "foto_venditori",
+              "testo": "testi:e13.op.foto_venditori",
+              "costo": "testi:e13.op.foto_venditori.c",
+              "effetti": [
+                {
+                  "pressione": "bancarelle",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.foto_venditori.r"
+            }
+          ]
+        },
+        {
+          "id": "caldo",
+          "fonte": "vice",
+          "testo": "testi:e13.ch.caldo",
+          "commento": "testi:e13.ch.caldo.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "acqua",
+              "testo": "testi:e13.op.acqua",
+              "costo": "testi:e13.op.acqua.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e13.op.acqua.r"
+            },
+            {
+              "id": "resistano",
+              "testo": "testi:e13.op.resistano",
+              "costo": "testi:e13.op.resistano.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e13.op.resistano.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e13.ondata3",
+      "eventi": [
+        {
+          "id": "rissa_ospiti",
+          "tipo": "rissa",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "rissa_casa",
+          "tipo": "rissa",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "banchi",
+          "tipo": "biglietti",
+          "settore": "bancarelle",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "spintoni",
+          "fonte": "centrale_radio",
+          "testo": "testi:e13.ch.spintoni",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "separa",
+              "testo": "testi:e13.op.separa",
+              "costo": "testi:e13.op.separa.c",
+              "effetti": [
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e13.op.separa.r"
+            },
+            {
+              "id": "sospendi13",
+              "testo": "testi:e13.op.sospendi13",
+              "costo": "testi:e13.op.sospendi13.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -3
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e13.op.sospendi13.r"
+            },
+            {
+              "id": "si_stanchino",
+              "testo": "testi:e13.op.si_stanchino",
+              "costo": "testi:e13.op.si_stanchino.c",
+              "effetti": [
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.si_stanchino.r"
+            }
+          ]
+        },
+        {
+          "id": "video",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e13.ch.video",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "comunicato13",
+              "testo": "testi:e13.op.comunicato13",
+              "costo": "testi:e13.op.comunicato13.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.comunicato13.r"
+            },
+            {
+              "id": "silenzio",
+              "testo": "testi:e13.op.silenzio",
+              "costo": "testi:e13.op.silenzio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e13.op.silenzio.r"
+            }
+          ]
+        },
+        {
+          "id": "patto_dessi",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e13.ch.patto_dessi",
+          "commento": "testi:e13.ch.patto_dessi.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "accetta_dessi",
+              "testo": "testi:e13.op.accetta_dessi",
+              "costo": "testi:e13.op.accetta_dessi.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e13.op.accetta_dessi.r"
+            },
+            {
+              "id": "rifiuta_dessi",
+              "testo": "testi:e13.op.rifiuta_dessi",
+              "costo": "testi:e13.op.rifiuta_dessi.c",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.rifiuta_dessi.r"
+            }
+          ]
+        },
+        {
+          "id": "furgone_ritiro",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e13.ch.furgone_ritiro",
+          "settore": "bancarelle",
+          "se": {
+            "var": "furgone_visto",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "controlla_furgone",
+              "testo": "testi:e13.op.controlla_furgone",
+              "costo": "testi:e13.op.controlla_furgone.c",
+              "effetti": [
+                {
+                  "pressione": "bancarelle",
+                  "valore": -3
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e13.op.controlla_furgone.r"
+            },
+            {
+              "id": "lascia_furgone",
+              "testo": "testi:e13.op.lascia_furgone",
+              "costo": "testi:e13.op.lascia_furgone.c",
+              "effetti": [],
+              "risposta": "testi:e13.op.lascia_furgone.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e13.ondata4",
+      "eventi": [
+        {
+          "id": "uscita_prato",
+          "tipo": "deflusso",
+          "settore": "parcheggi",
+          "pressione": 5
+        },
+        {
+          "id": "ritorno_pullman",
+          "tipo": "corteo",
+          "settore": "strada_ritiro",
+          "pressione": 4
+        },
+        {
+          "id": "ultimi_banchi",
+          "tipo": "biglietti",
+          "settore": "bancarelle",
+          "pressione": 1
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "coda_auto",
+          "fonte": "organizzatori_ritiro",
+          "testo": "testi:e13.ch.coda_auto",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "senso_unico",
+              "testo": "testi:e13.op.senso_unico",
+              "costo": "testi:e13.op.senso_unico.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "pressione": "strada_ritiro",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.senso_unico.r"
+            },
+            {
+              "id": "vigili_paese",
+              "testo": "testi:e13.op.vigili_paese",
+              "costo": "testi:e13.op.vigili_paese.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e13.op.vigili_paese.r"
+            }
+          ]
+        },
+        {
+          "id": "corteo_rovers",
+          "fonte": "club_ospite",
+          "testo": "testi:e13.ch.corteo_rovers",
+          "settore": "strada_ritiro",
+          "opzioni": [
+            {
+              "id": "corteo_si",
+              "testo": "testi:e13.op.corteo_si",
+              "costo": "testi:e13.op.corteo_si.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_ritiro",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e13.op.corteo_si.r"
+            },
+            {
+              "id": "corteo_gruppi",
+              "testo": "testi:e13.op.corteo_gruppi",
+              "costo": "testi:e13.op.corteo_gruppi.c",
+              "effetti": [
+                {
+                  "pressione": "strada_ritiro",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.corteo_gruppi.r"
+            }
+          ]
+        },
+        {
+          "id": "abbonamento_vice",
+          "fonte": "vice",
+          "testo": "testi:e13.ch.abbonamento_vice",
+          "commento": "testi:e13.ch.abbonamento_vice.vice",
+          "settore": "bancarelle",
+          "opzioni": [
+            {
+              "id": "agli_atti",
+              "testo": "testi:e13.op.agli_atti",
+              "costo": "testi:e13.op.agli_atti.c",
+              "effetti": [],
+              "risposta": "testi:e13.op.agli_atti.r"
+            },
+            {
+              "id": "al_club",
+              "testo": "testi:e13.op.al_club",
+              "costo": "testi:e13.op.al_club.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "bancarelle",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e13.op.al_club.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e13.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e13.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e13.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

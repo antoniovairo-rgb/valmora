@@ -4,7 +4,8 @@ import { leggiDati } from './dati-disco.mjs';
 import { creaCaso } from '../src/logica/caso.ts';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { giocaMissione, opzioniValide } from '../src/logica/missione.ts';
-import { STRATEGIE, attenta, casuale } from '../src/logica/bot.ts';
+import { DETERMINISTICHE, STRATEGIE, attenta, casuale } from '../src/logica/bot.ts';
+import { spento } from '../src/interruttori.ts';
 import { valutaEpisodio } from '../src/logica/episodi.ts';
 
 const contesto = (dati) => {
@@ -17,13 +18,16 @@ export function giraBot(dati, semi = 1000) {
   const rapporto = [];
   for (const m of missioni) for (const [nome, strategia] of Object.entries(STRATEGIE)) {
     const esiti = {}; const blocchi = []; const tensioni = []; const stelle = { 0: 0, 1: 0, 2: 0, 3: 0 };
-    for (let seme = 1; seme <= semi; seme++) {
+    // D-089: una strategia deterministica gioca la stessa partita con ogni seme → una sola, contata «semi» volte (rosso __NO_C11D01)
+    const una = DETERMINISTICHE.has(nome) && !spento('C11D01');
+    for (let seme = 1; seme <= (una ? 1 : semi); seme++) {
+      const volte = una ? semi : 1;
       try {
         const r = giocaMissione(m, iniziali, dich, strategia(creaCaso(`${m.id}:${nome}:${seme}`), dich));
-        esiti[r.esito.id] = (esiti[r.esito.id] ?? 0) + 1;
-        stelle[valutaEpisodio(m, r).stelle] += 1;
-        tensioni.push(r.variabili.tensione_max);
-      } catch (e) { blocchi.push(`seme ${seme}: ${e.message}`); }
+        esiti[r.esito.id] = (esiti[r.esito.id] ?? 0) + volte;
+        stelle[valutaEpisodio(m, r).stelle] += volte;
+        for (let i = 0; i < volte; i++) tensioni.push(r.variabili.tensione_max);
+      } catch (e) { for (let i = 0; i < volte; i++) blocchi.push(`seme ${una ? i + 1 : seme}: ${e.message}`); }
     }
     tensioni.sort((a, b) => a - b);
     const media = tensioni.reduce((s, x) => s + x, 0) / (tensioni.length || 1);

@@ -1,0 +1,820 @@
+{
+  "id": "e15",
+  "stagione": 2,
+  "episodio": 15,
+  "titolo": "testi:e15.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 65,
+    "y": 20
+  },
+  "introduzione": [
+    "testi:e15.intro1",
+    "testi:e15.intro2",
+    "testi:e15.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e15.info_ferrovie",
+      "fonte": "ferrovie",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "stazione"
+    },
+    {
+      "testo": "testi:e15.info_cinderwick",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "settore_gemellati"
+    },
+    {
+      "testo": "testi:e15.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "viale_stazione"
+    },
+    {
+      "testo": "testi:e15.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_ospiti"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "stazione",
+        "tipo": "stazione",
+        "pos": {
+          "x": 12,
+          "y": 15
+        }
+      },
+      {
+        "id": "viale_stazione",
+        "tipo": "strada",
+        "pos": {
+          "x": 35,
+          "y": 38
+        }
+      },
+      {
+        "id": "settore_gemellati",
+        "tipo": "curva",
+        "club": "ollerbrook_town",
+        "pos": {
+          "x": 62,
+          "y": 18
+        }
+      },
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 82,
+          "y": 48
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "calderholt_rovers",
+        "pos": {
+          "x": 30,
+          "y": 78
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "stazione": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 5,
+        "efficacia": {
+          "curva": 2,
+          "stazione": 1,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e15.ondata1",
+      "eventi": [
+        {
+          "id": "treno_ollerbrook",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "accoglienza",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "treno_amici",
+          "fonte": "ferrovie",
+          "testo": "testi:e15.ch.treno_amici",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "scorta15",
+              "testo": "testi:e15.op.scorta15",
+              "costo": "testi:e15.op.scorta15.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e15.op.scorta15.r"
+            },
+            {
+              "id": "conta15",
+              "testo": "testi:e15.op.conta15",
+              "costo": "testi:e15.op.conta15.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.conta15.r"
+            },
+            {
+              "id": "lasciali15",
+              "testo": "testi:e15.op.lasciali15",
+              "costo": "testi:e15.op.lasciali15.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.lasciali15.r"
+            }
+          ]
+        },
+        {
+          "id": "fratelli",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e15.ch.fratelli",
+          "commento": "testi:e15.ch.fratelli.vice",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "striscione_si",
+              "testo": "testi:e15.op.striscione_si",
+              "costo": "testi:e15.op.striscione_si.c",
+              "effetti": [
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e15.op.striscione_si.r"
+            },
+            {
+              "id": "striscione_no",
+              "testo": "testi:e15.op.striscione_no",
+              "costo": "testi:e15.op.striscione_no.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.striscione_no.r"
+            }
+          ]
+        },
+        {
+          "id": "rovers_rete",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e15.ch.rovers_rete",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "rinforza_ospiti",
+              "testo": "testi:e15.op.rinforza_ospiti",
+              "costo": "testi:e15.op.rinforza_ospiti.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e15.op.rinforza_ospiti.r"
+            },
+            {
+              "id": "ignora15",
+              "testo": "testi:e15.op.ignora15",
+              "costo": "testi:e15.op.ignora15.c",
+              "effetti": [
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.ignora15.r"
+            }
+          ]
+        },
+        {
+          "id": "borsa",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e15.ch.borsa",
+          "settore": "settore_gemellati",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "segui_borsa",
+              "testo": "testi:e15.op.segui_borsa",
+              "costo": "testi:e15.op.segui_borsa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e15.op.segui_borsa.r"
+            },
+            {
+              "id": "lascia_borsa",
+              "testo": "testi:e15.op.lascia_borsa",
+              "costo": "testi:e15.op.lascia_borsa.c",
+              "effetti": [],
+              "risposta": "testi:e15.op.lascia_borsa.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e15.ondata2",
+      "eventi": [
+        {
+          "id": "corteo_unito",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 4
+        },
+        {
+          "id": "ingresso_gem",
+          "tipo": "folla",
+          "settore": "settore_gemellati",
+          "pressione": 2
+        },
+        {
+          "id": "arrivo_rovers",
+          "tipo": "arrivo",
+          "settore": "curva_ospiti",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "mille",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e15.ch.mille",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "corteo_scortato15",
+              "testo": "testi:e15.op.corteo_scortato15",
+              "costo": "testi:e15.op.corteo_scortato15.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e15.op.corteo_scortato15.r"
+            },
+            {
+              "id": "due_cortei",
+              "testo": "testi:e15.op.due_cortei",
+              "costo": "testi:e15.op.due_cortei.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.due_cortei.r"
+            },
+            {
+              "id": "mediatore15",
+              "testo": "testi:e15.op.mediatore15",
+              "costo": "testi:e15.op.mediatore15.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e15.op.mediatore15.r"
+            }
+          ]
+        },
+        {
+          "id": "settore_pieno",
+          "fonte": "centrale_radio",
+          "testo": "testi:e15.ch.settore_pieno",
+          "settore": "settore_gemellati",
+          "opzioni": [
+            {
+              "id": "in_curva",
+              "testo": "testi:e15.op.in_curva",
+              "costo": "testi:e15.op.in_curva.c",
+              "effetti": [
+                {
+                  "pressione": "settore_gemellati",
+                  "valore": -2
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.in_curva.r"
+            },
+            {
+              "id": "fuori15",
+              "testo": "testi:e15.op.fuori15",
+              "costo": "testi:e15.op.fuori15.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "settore_gemellati",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.fuori15.r"
+            }
+          ]
+        },
+        {
+          "id": "salutarli",
+          "fonte": "club_ospite",
+          "testo": "testi:e15.ch.salutarli",
+          "commento": "testi:e15.ch.salutarli.vice",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "chiudi_settore",
+              "testo": "testi:e15.op.chiudi_settore",
+              "costo": "testi:e15.op.chiudi_settore.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e15.op.chiudi_settore.r"
+            },
+            {
+              "id": "fidati15",
+              "testo": "testi:e15.op.fidati15",
+              "costo": "testi:e15.op.fidati15.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.fidati15.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e15.ondata3",
+      "eventi": [
+        {
+          "id": "cori_gem",
+          "tipo": "curva",
+          "settore": "settore_gemellati",
+          "pressione": 4
+        },
+        {
+          "id": "cori_cinder",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 3
+        },
+        {
+          "id": "cori_rovers",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "telone",
+          "fonte": "centrale_radio",
+          "testo": "testi:e15.ch.telone",
+          "settore": "settore_gemellati",
+          "opzioni": [
+            {
+              "id": "steward_sotto",
+              "testo": "testi:e15.op.steward_sotto",
+              "costo": "testi:e15.op.steward_sotto.c",
+              "effetti": [
+                {
+                  "pressione": "settore_gemellati",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e15.op.steward_sotto.r"
+            },
+            {
+              "id": "lascia_telone",
+              "testo": "testi:e15.op.lascia_telone",
+              "costo": "testi:e15.op.lascia_telone.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "settore_gemellati",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e15.op.lascia_telone.r"
+            }
+          ]
+        },
+        {
+          "id": "fumo_verde",
+          "fonte": "centrale_radio",
+          "testo": "testi:e15.ch.fumo_verde",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_verdi",
+              "testo": "testi:e15.op.steward_verdi",
+              "costo": "testi:e15.op.steward_verdi.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e15.op.steward_verdi.r"
+            },
+            {
+              "id": "pausa15",
+              "testo": "testi:e15.op.pausa15",
+              "costo": "testi:e15.op.pausa15.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e15.op.pausa15.r"
+            },
+            {
+              "id": "lascia_verdi",
+              "testo": "testi:e15.op.lascia_verdi",
+              "costo": "testi:e15.op.lascia_verdi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.lascia_verdi.r"
+            }
+          ]
+        },
+        {
+          "id": "binocolo",
+          "fonte": "vice",
+          "testo": "testi:e15.ch.binocolo",
+          "commento": "testi:e15.ch.binocolo.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "fotografa15",
+              "testo": "testi:e15.op.fotografa15",
+              "costo": "testi:e15.op.fotografa15.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e15.op.fotografa15.r"
+            },
+            {
+              "id": "guarda_partita",
+              "testo": "testi:e15.op.guarda_partita",
+              "costo": "testi:e15.op.guarda_partita.c",
+              "effetti": [],
+              "risposta": "testi:e15.op.guarda_partita.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e15.ondata4",
+      "eventi": [
+        {
+          "id": "corteo_ritorno15",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 5
+        },
+        {
+          "id": "treno_ritorno15",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "uscita_rovers",
+          "tipo": "folla",
+          "settore": "curva_ospiti",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "accompagnarli",
+          "fonte": "ferrovie",
+          "testo": "testi:e15.ch.accompagnarli",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "corteo_stazione",
+              "testo": "testi:e15.op.corteo_stazione",
+              "costo": "testi:e15.op.corteo_stazione.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.corteo_stazione.r"
+            },
+            {
+              "id": "navette15",
+              "testo": "testi:e15.op.navette15",
+              "costo": "testi:e15.op.navette15.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e15.op.navette15.r"
+            }
+          ]
+        },
+        {
+          "id": "fondo_viale",
+          "fonte": "centrale_radio",
+          "testo": "testi:e15.ch.fondo_viale",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "trattieni_rovers",
+              "testo": "testi:e15.op.trattieni_rovers",
+              "costo": "testi:e15.op.trattieni_rovers.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e15.op.trattieni_rovers.r"
+            },
+            {
+              "id": "niente_rovers",
+              "testo": "testi:e15.op.niente_rovers",
+              "costo": "testi:e15.op.niente_rovers.c",
+              "effetti": [
+                {
+                  "tensione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e15.op.niente_rovers.r"
+            }
+          ]
+        },
+        {
+          "id": "borsa_magazzino",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e15.ch.borsa_magazzino",
+          "commento": "testi:e15.ch.borsa_magazzino.vice",
+          "settore": "stazione",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "annota15",
+              "testo": "testi:e15.op.annota15",
+              "costo": "testi:e15.op.annota15.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e15.op.annota15.r"
+            },
+            {
+              "id": "lascia15",
+              "testo": "testi:e15.op.lascia15",
+              "costo": "testi:e15.op.lascia15.c",
+              "effetti": [],
+              "risposta": "testi:e15.op.lascia15.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e15.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e15.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e15.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
