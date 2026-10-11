@@ -1,0 +1,835 @@
+{
+  "id": "e18",
+  "stagione": 2,
+  "episodio": 18,
+  "titolo": "testi:e18.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 45,
+    "y": 40
+  },
+  "introduzione": [
+    "testi:e18.intro1",
+    "testi:e18.intro2",
+    "testi:e18.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e18.info_testimone",
+      "fonte": "testimone",
+      "affidabilita": "bassa",
+      "vera": true,
+      "settore": "retro_tribuna"
+    },
+    {
+      "testo": "testi:e18.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e18.info_larkspire",
+      "fonte": "ufficio_sicurezza_larkspire",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "strada_larkspire"
+    },
+    {
+      "testo": "testi:e18.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "piazzale"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "calderholt_rovers",
+        "pos": {
+          "x": 15,
+          "y": 25
+        }
+      },
+      {
+        "id": "retro_tribuna",
+        "tipo": "retro",
+        "pos": {
+          "x": 45,
+          "y": 40
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 80,
+          "y": 25
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 28,
+          "y": 78
+        }
+      },
+      {
+        "id": "strada_larkspire",
+        "tipo": "strada",
+        "pos": {
+          "x": 78,
+          "y": 78
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "retro": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 2,
+          "retro": 1,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e18.ondata1",
+      "eventi": [
+        {
+          "id": "corteo_collina",
+          "tipo": "corteo",
+          "settore": "strada_larkspire",
+          "pressione": 3
+        },
+        {
+          "id": "arrivo_rovers18",
+          "tipo": "arrivo",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        },
+        {
+          "id": "occhi",
+          "tipo": "minaccia",
+          "settore": "retro_tribuna",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "telefonata",
+          "fonte": "testimone",
+          "testo": "testi:e18.ch.telefonata",
+          "commento": "testi:e18.ch.telefonata.vice",
+          "settore": "retro_tribuna",
+          "opzioni": [
+            {
+              "id": "proteggi",
+              "testo": "testi:e18.op.proteggi",
+              "costo": "testi:e18.op.proteggi.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.proteggi.r"
+            },
+            {
+              "id": "aspetti",
+              "testo": "testi:e18.op.aspetti",
+              "costo": "testi:e18.op.aspetti.c",
+              "effetti": [
+                {
+                  "tensione": "retro_tribuna",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e18.op.aspetti.r"
+            },
+            {
+              "id": "al_comando18",
+              "testo": "testi:e18.op.al_comando18",
+              "costo": "testi:e18.op.al_comando18.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.al_comando18.r"
+            }
+          ]
+        },
+        {
+          "id": "biglietti_rete18",
+          "fonte": "club_ospite",
+          "testo": "testi:e18.ch.biglietti_rete18",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "verifica18",
+              "testo": "testi:e18.op.verifica18",
+              "costo": "testi:e18.op.verifica18.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.verifica18.r"
+            },
+            {
+              "id": "fidati18",
+              "testo": "testi:e18.op.fidati18",
+              "costo": "testi:e18.op.fidati18.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.fidati18.r"
+            }
+          ]
+        },
+        {
+          "id": "collina18",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e18.ch.collina18",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "percorso_largo",
+              "testo": "testi:e18.op.percorso_largo",
+              "costo": "testi:e18.op.percorso_largo.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.percorso_largo.r"
+            },
+            {
+              "id": "concedi18",
+              "testo": "testi:e18.op.concedi18",
+              "costo": "testi:e18.op.concedi18.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.concedi18.r"
+            },
+            {
+              "id": "mediatore18",
+              "testo": "testi:e18.op.mediatore18",
+              "costo": "testi:e18.op.mediatore18.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.mediatore18.r"
+            }
+          ]
+        },
+        {
+          "id": "lo_conosco",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e18.ch.lo_conosco",
+          "settore": "retro_tribuna",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "raddoppia",
+              "testo": "testi:e18.op.raddoppia",
+              "costo": "testi:e18.op.raddoppia.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.raddoppia.r"
+            },
+            {
+              "id": "grazie18",
+              "testo": "testi:e18.op.grazie18",
+              "costo": "testi:e18.op.grazie18.c",
+              "effetti": [],
+              "risposta": "testi:e18.op.grazie18.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e18.ondata2",
+      "eventi": [
+        {
+          "id": "cori_casa18",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "cori_rovers18",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "voci",
+          "tipo": "minaccia",
+          "settore": "retro_tribuna",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "chi_parla",
+          "fonte": "centrale_radio",
+          "testo": "testi:e18.ch.chi_parla",
+          "commento": "testi:e18.ch.chi_parla.vice",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "steward18",
+              "testo": "testi:e18.op.steward18",
+              "costo": "testi:e18.op.steward18.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.steward18.r"
+            },
+            {
+              "id": "speaker18",
+              "testo": "testi:e18.op.speaker18",
+              "costo": "testi:e18.op.speaker18.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.speaker18.r"
+            },
+            {
+              "id": "lascia18",
+              "testo": "testi:e18.op.lascia18",
+              "costo": "testi:e18.op.lascia18.c",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.lascia18.r"
+            }
+          ]
+        },
+        {
+          "id": "fumo18",
+          "fonte": "centrale_radio",
+          "testo": "testi:e18.ch.fumo18",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_verdi18",
+              "testo": "testi:e18.op.steward_verdi18",
+              "costo": "testi:e18.op.steward_verdi18.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.steward_verdi18.r"
+            },
+            {
+              "id": "lascia_verdi18",
+              "testo": "testi:e18.op.lascia_verdi18",
+              "costo": "testi:e18.op.lascia_verdi18.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.lascia_verdi18.r"
+            }
+          ]
+        },
+        {
+          "id": "via_fonderie",
+          "fonte": "testimone",
+          "testo": "testi:e18.ch.via_fonderie",
+          "settore": "retro_tribuna",
+          "opzioni": [
+            {
+              "id": "chiedi_chi",
+              "testo": "testi:e18.op.chiedi_chi",
+              "costo": "testi:e18.op.chiedi_chi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "retro_tribuna",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.chiedi_chi.r"
+            },
+            {
+              "id": "basta18",
+              "testo": "testi:e18.op.basta18",
+              "costo": "testi:e18.op.basta18.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.basta18.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e18.ondata3",
+      "eventi": [
+        {
+          "id": "cappucci",
+          "tipo": "minaccia",
+          "settore": "retro_tribuna",
+          "pressione": 4
+        },
+        {
+          "id": "sciarpe",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        },
+        {
+          "id": "cori_rovers18b",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "cappucci",
+          "fonte": "centrale_radio",
+          "testo": "testi:e18.ch.cappucci",
+          "settore": "retro_tribuna",
+          "opzioni": [
+            {
+              "id": "identifica18",
+              "testo": "testi:e18.op.identifica18",
+              "costo": "testi:e18.op.identifica18.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": -3
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.identifica18.r"
+            },
+            {
+              "id": "tribuna_stampa",
+              "testo": "testi:e18.op.tribuna_stampa",
+              "costo": "testi:e18.op.tribuna_stampa.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.tribuna_stampa.r"
+            },
+            {
+              "id": "aspetta18",
+              "testo": "testi:e18.op.aspetta18",
+              "costo": "testi:e18.op.aspetta18.c",
+              "effetti": [
+                {
+                  "tensione": "retro_tribuna",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.aspetta18.r"
+            }
+          ]
+        },
+        {
+          "id": "etichetta",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e18.ch.etichetta",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "sequestra18",
+              "testo": "testi:e18.op.sequestra18",
+              "costo": "testi:e18.op.sequestra18.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.sequestra18.r"
+            },
+            {
+              "id": "lascia_sciarpe",
+              "testo": "testi:e18.op.lascia_sciarpe",
+              "costo": "testi:e18.op.lascia_sciarpe.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e18.op.lascia_sciarpe.r"
+            }
+          ]
+        },
+        {
+          "id": "dessi_tribuna",
+          "fonte": "vice",
+          "testo": "testi:e18.ch.dessi_tribuna",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "fai_vedere",
+              "testo": "testi:e18.op.fai_vedere",
+              "costo": "testi:e18.op.fai_vedere.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.fai_vedere.r"
+            },
+            {
+              "id": "ignora_dessi18",
+              "testo": "testi:e18.op.ignora_dessi18",
+              "costo": "testi:e18.op.ignora_dessi18.c",
+              "effetti": [
+                {
+                  "tensione": "retro_tribuna",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e18.op.ignora_dessi18.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e18.ondata4",
+      "eventi": [
+        {
+          "id": "uscita_t",
+          "tipo": "minaccia",
+          "settore": "retro_tribuna",
+          "pressione": 3
+        },
+        {
+          "id": "deflusso_collina",
+          "tipo": "corteo",
+          "settore": "strada_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "uscita18",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "con_o_senza",
+          "fonte": "testimone",
+          "testo": "testi:e18.ch.con_o_senza",
+          "settore": "retro_tribuna",
+          "opzioni": [
+            {
+              "id": "auto_scorta",
+              "testo": "testi:e18.op.auto_scorta",
+              "costo": "testi:e18.op.auto_scorta.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": -3
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.auto_scorta.r"
+            },
+            {
+              "id": "con_folla",
+              "testo": "testi:e18.op.con_folla",
+              "costo": "testi:e18.op.con_folla.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.con_folla.r"
+            }
+          ]
+        },
+        {
+          "id": "deflusso18",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e18.ch.deflusso18",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "separa18",
+              "testo": "testi:e18.op.separa18",
+              "costo": "testi:e18.op.separa18.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.separa18.r"
+            },
+            {
+              "id": "insieme18",
+              "testo": "testi:e18.op.insieme18",
+              "costo": "testi:e18.op.insieme18.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.insieme18.r"
+            }
+          ]
+        },
+        {
+          "id": "qualcuno_ha_parlato",
+          "fonte": "stampa_locale",
+          "testo": "testi:e18.ch.qualcuno_ha_parlato",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "conferma18",
+              "testo": "testi:e18.op.conferma18",
+              "costo": "testi:e18.op.conferma18.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.conferma18.r"
+            },
+            {
+              "id": "nega18",
+              "testo": "testi:e18.op.nega18",
+              "costo": "testi:e18.op.nega18.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e18.op.nega18.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e18.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e18.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e18.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

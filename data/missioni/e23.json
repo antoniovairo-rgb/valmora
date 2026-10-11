@@ -1,0 +1,818 @@
+{
+  "id": "e23",
+  "stagione": 2,
+  "episodio": 23,
+  "titolo": "testi:e23.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 65,
+    "y": 75
+  },
+  "introduzione": [
+    "testi:e23.intro1",
+    "testi:e23.intro2",
+    "testi:e23.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e23.info_porto",
+      "fonte": "ufficio_porto",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "casello"
+    },
+    {
+      "testo": "testi:e23.info_quillhaven",
+      "fonte": "club_quillhaven",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "parcheggi"
+    },
+    {
+      "testo": "testi:e23.info_comando",
+      "fonte": "comando",
+      "affidabilita": "alta",
+      "vera": false,
+      "settore": "curva_cinderwick"
+    },
+    {
+      "testo": "testi:e23.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "casello"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 20,
+          "y": 30
+        }
+      },
+      {
+        "id": "parcheggi",
+        "tipo": "strada",
+        "pos": {
+          "x": 60,
+          "y": 35
+        }
+      },
+      {
+        "id": "casello",
+        "tipo": "strada",
+        "pos": {
+          "x": 85,
+          "y": 12
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 35,
+          "y": 75
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "quillhaven_albion",
+        "pos": {
+          "x": 82,
+          "y": 68
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 2,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e23.ondata1",
+      "eventi": [
+        {
+          "id": "pullman_casello",
+          "tipo": "arrivo",
+          "settore": "casello",
+          "pressione": 4
+        },
+        {
+          "id": "sosta23",
+          "tipo": "sosta",
+          "settore": "parcheggi",
+          "pressione": 3
+        },
+        {
+          "id": "piazzale23",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "traslochi",
+          "fonte": "vice",
+          "testo": "testi:e23.ch.traslochi",
+          "commento": "testi:e23.ch.traslochi.vice",
+          "settore": "casello",
+          "opzioni": [
+            {
+              "id": "controllo_casello",
+              "testo": "testi:e23.op.controllo_casello",
+              "costo": "testi:e23.op.controllo_casello.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "casello",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e23.op.controllo_casello.r"
+            },
+            {
+              "id": "telecamere23",
+              "testo": "testi:e23.op.telecamere23",
+              "costo": "testi:e23.op.telecamere23.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "casello",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.telecamere23.r"
+            },
+            {
+              "id": "niente23",
+              "testo": "testi:e23.op.niente23",
+              "costo": "testi:e23.op.niente23.c",
+              "effetti": [
+                {
+                  "tensione": "casello",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e23.op.niente23.r"
+            }
+          ]
+        },
+        {
+          "id": "traghetto_extra",
+          "fonte": "ufficio_porto",
+          "testo": "testi:e23.ch.traghetto_extra",
+          "settore": "casello",
+          "opzioni": [
+            {
+              "id": "ritarda_traghetto",
+              "testo": "testi:e23.op.ritarda_traghetto",
+              "costo": "testi:e23.op.ritarda_traghetto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "pressione": "casello",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e23.op.ritarda_traghetto.r"
+            },
+            {
+              "id": "annota23",
+              "testo": "testi:e23.op.annota23",
+              "costo": "testi:e23.op.annota23.c",
+              "effetti": [],
+              "risposta": "testi:e23.op.annota23.r"
+            }
+          ]
+        },
+        {
+          "id": "dieci_pullman",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e23.ch.dieci_pullman",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "parcheggio_ospiti",
+              "testo": "testi:e23.op.parcheggio_ospiti",
+              "costo": "testi:e23.op.parcheggio_ospiti.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.parcheggio_ospiti.r"
+            },
+            {
+              "id": "dove_capita23",
+              "testo": "testi:e23.op.dove_capita23",
+              "costo": "testi:e23.op.dove_capita23.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "parcheggi",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e23.op.dove_capita23.r"
+            }
+          ]
+        },
+        {
+          "id": "barca",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e23.ch.barca",
+          "commento": "testi:e23.ch.barca.vice",
+          "settore": "casello",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "comunica23",
+              "testo": "testi:e23.op.comunica23",
+              "costo": "testi:e23.op.comunica23.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e23.op.comunica23.r"
+            },
+            {
+              "id": "tienila23",
+              "testo": "testi:e23.op.tienila23",
+              "costo": "testi:e23.op.tienila23.c",
+              "effetti": [],
+              "risposta": "testi:e23.op.tienila23.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e23.ondata2",
+      "eventi": [
+        {
+          "id": "parcheggi_pieni",
+          "tipo": "sosta",
+          "settore": "parcheggi",
+          "pressione": 4
+        },
+        {
+          "id": "ingresso_quill",
+          "tipo": "arrivo",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "cinder_attesa",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "in_tondo",
+          "fonte": "centrale_radio",
+          "testo": "testi:e23.ch.in_tondo",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "piazzale_bus",
+              "testo": "testi:e23.op.piazzale_bus",
+              "costo": "testi:e23.op.piazzale_bus.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e23.op.piazzale_bus.r"
+            },
+            {
+              "id": "scorta_bus",
+              "testo": "testi:e23.op.scorta_bus",
+              "costo": "testi:e23.op.scorta_bus.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.scorta_bus.r"
+            },
+            {
+              "id": "lascia_girare",
+              "testo": "testi:e23.op.lascia_girare",
+              "costo": "testi:e23.op.lascia_girare.c",
+              "effetti": [
+                {
+                  "tensione": "parcheggi",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e23.op.lascia_girare.r"
+            }
+          ]
+        },
+        {
+          "id": "sirena",
+          "fonte": "centrale_radio",
+          "testo": "testi:e23.ch.sirena",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "sirena_via",
+              "testo": "testi:e23.op.sirena_via",
+              "costo": "testi:e23.op.sirena_via.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.sirena_via.r"
+            },
+            {
+              "id": "lascia_sirena",
+              "testo": "testi:e23.op.lascia_sirena",
+              "costo": "testi:e23.op.lascia_sirena.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e23.op.lascia_sirena.r"
+            }
+          ]
+        },
+        {
+          "id": "saluto_lontano",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e23.ch.saluto_lontano",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "perquisisci23",
+              "testo": "testi:e23.op.perquisisci23",
+              "costo": "testi:e23.op.perquisisci23.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e23.op.perquisisci23.r"
+            },
+            {
+              "id": "steward_c23",
+              "testo": "testi:e23.op.steward_c23",
+              "costo": "testi:e23.op.steward_c23.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.steward_c23.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e23.ondata3",
+      "eventi": [
+        {
+          "id": "cori_cinder23",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "cori_quill23",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "camion_coda",
+          "tipo": "arrivo",
+          "settore": "casello",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "saluti_dal_mare",
+          "fonte": "centrale_radio",
+          "testo": "testi:e23.ch.saluti_dal_mare",
+          "commento": "testi:e23.ch.saluti_dal_mare.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "rimuovi23",
+              "testo": "testi:e23.op.rimuovi23",
+              "costo": "testi:e23.op.rimuovi23.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e23.op.rimuovi23.r"
+            },
+            {
+              "id": "foto23",
+              "testo": "testi:e23.op.foto23",
+              "costo": "testi:e23.op.foto23.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.foto23.r"
+            }
+          ]
+        },
+        {
+          "id": "camion_targa",
+          "fonte": "centrale_radio",
+          "testo": "testi:e23.ch.camion_targa",
+          "settore": "casello",
+          "opzioni": [
+            {
+              "id": "fermalo",
+              "testo": "testi:e23.op.fermalo",
+              "costo": "testi:e23.op.fermalo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "casello",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e23.op.fermalo.r"
+            },
+            {
+              "id": "seguilo23",
+              "testo": "testi:e23.op.seguilo23",
+              "costo": "testi:e23.op.seguilo23.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "casello",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.seguilo23.r"
+            },
+            {
+              "id": "lascialo23",
+              "testo": "testi:e23.op.lascialo23",
+              "costo": "testi:e23.op.lascialo23.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.lascialo23.r"
+            }
+          ]
+        },
+        {
+          "id": "non_affar_suo",
+          "fonte": "qualcuno_in_comune",
+          "testo": "testi:e23.ch.non_affar_suo",
+          "commento": "testi:e23.ch.non_affar_suo.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "obbedisci",
+              "testo": "testi:e23.op.obbedisci",
+              "costo": "testi:e23.op.obbedisci.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "casello",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e23.op.obbedisci.r"
+            },
+            {
+              "id": "continua23",
+              "testo": "testi:e23.op.continua23",
+              "costo": "testi:e23.op.continua23.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "casello",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.continua23.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e23.ondata4",
+      "eventi": [
+        {
+          "id": "ritorno_casello",
+          "tipo": "arrivo",
+          "settore": "casello",
+          "pressione": 5
+        },
+        {
+          "id": "uscita_parcheggi",
+          "tipo": "sosta",
+          "settore": "parcheggi",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale23b",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "imbarco",
+          "fonte": "ufficio_porto",
+          "testo": "testi:e23.ch.imbarco",
+          "settore": "casello",
+          "opzioni": [
+            {
+              "id": "chiama_porto",
+              "testo": "testi:e23.op.chiama_porto",
+              "costo": "testi:e23.op.chiama_porto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "casello",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e23.op.chiama_porto.r"
+            },
+            {
+              "id": "lascia_partire23",
+              "testo": "testi:e23.op.lascia_partire23",
+              "costo": "testi:e23.op.lascia_partire23.c",
+              "effetti": [
+                {
+                  "pressione": "casello",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e23.op.lascia_partire23.r"
+            }
+          ]
+        },
+        {
+          "id": "ripartire",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e23.ch.ripartire",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "a_scaglioni",
+              "testo": "testi:e23.op.a_scaglioni",
+              "costo": "testi:e23.op.a_scaglioni.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e23.op.a_scaglioni.r"
+            },
+            {
+              "id": "tutti_insieme23",
+              "testo": "testi:e23.op.tutti_insieme23",
+              "costo": "testi:e23.op.tutti_insieme23.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "parcheggi",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e23.op.tutti_insieme23.r"
+            }
+          ]
+        },
+        {
+          "id": "mescolati",
+          "fonte": "centrale_radio",
+          "testo": "testi:e23.ch.mescolati",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "separa23",
+              "testo": "testi:e23.op.separa23",
+              "costo": "testi:e23.op.separa23.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e23.op.separa23.r"
+            },
+            {
+              "id": "lascia23",
+              "testo": "testi:e23.op.lascia23",
+              "costo": "testi:e23.op.lascia23.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e23.op.lascia23.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e23.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e23.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e23.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
