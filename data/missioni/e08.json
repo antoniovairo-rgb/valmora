@@ -1,6 +1,5 @@
 {
   "id": "e08",
-  "bozza": true,
   "stagione": 1,
   "episodio": 8,
   "titolo": "testi:e08.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e08.intro1",
-    "testi:e08.intro2",
-    "testi:e08.intro3"
+    "testi:e08.intro2"
   ],
   "briefing": [
     {
@@ -760,9 +758,33 @@
                 {
                   "aggiungi": "credito",
                   "valore": -2
+                },
+                {
+                  "imposta": "rapporto_dessi",
+                  "valore": "rispetto"
                 }
               ],
               "risposta": "testi:e08.op.stringi.r"
+            },
+            {
+              "id": "manda_vice8",
+              "testo": "testi:e08.op.manda_vice8",
+              "costo": "testi:e08.op.manda_vice8.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "imposta": "rapporto_dessi",
+                  "valore": "neutro"
+                }
+              ],
+              "risposta": "testi:e08.op.manda_vice8.r"
             },
             {
               "id": "non_presentarti",
@@ -776,6 +798,10 @@
                 {
                   "tensione": "piazzale",
                   "valore": 2
+                },
+                {
+                  "imposta": "rapporto_dessi",
+                  "valore": "ostile"
                 }
               ],
               "risposta": "testi:e08.op.non_presentarti.r"

@@ -1,6 +1,5 @@
 {
   "id": "e12",
-  "bozza": true,
   "stagione": 1,
   "episodio": 12,
   "titolo": "testi:e12.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e12.intro1",
-    "testi:e12.intro2",
-    "testi:e12.intro3"
+    "testi:e12.intro2"
   ],
   "briefing": [
     {
@@ -458,6 +456,100 @@
                 }
               ],
               "risposta": "testi:e12.op.no_dessi12.r"
+            }
+          ],
+          "se": {
+            "var": "rapporto_dessi",
+            "uguale": "neutro"
+          }
+        },
+        {
+          "id": "parola_fabbro",
+          "fonte": "dessi",
+          "testo": "testi:e12.ch.parola_fabbro",
+          "commento": "testi:e12.ch.parola_fabbro.vice",
+          "settore": "piazza_comune",
+          "se": {
+            "var": "rapporto_dessi",
+            "uguale": "rispetto"
+          },
+          "opzioni": [
+            {
+              "id": "fidati12",
+              "testo": "testi:e12.op.fidati12",
+              "costo": "testi:e12.op.fidati12.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.fidati12.r"
+            },
+            {
+              "id": "regole12",
+              "testo": "testi:e12.op.regole12",
+              "costo": "testi:e12.op.regole12.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e12.op.regole12.r"
+            }
+          ]
+        },
+        {
+          "id": "conto_fabbro",
+          "fonte": "dessi",
+          "testo": "testi:e12.ch.conto_fabbro",
+          "commento": "testi:e12.ch.conto_fabbro.vice",
+          "settore": "piazza_comune",
+          "se": {
+            "var": "rapporto_dessi",
+            "uguale": "ostile"
+          },
+          "opzioni": [
+            {
+              "id": "chiama12",
+              "testo": "testi:e12.op.chiama12",
+              "costo": "testi:e12.op.chiama12.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e12.op.chiama12.r"
+            },
+            {
+              "id": "niente12",
+              "testo": "testi:e12.op.niente12",
+              "costo": "testi:e12.op.niente12.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazza_comune",
+                  "valore": 3
+                }
+              ],
+              "risposta": "testi:e12.op.niente12.r"
             }
           ]
         },

@@ -1,6 +1,5 @@
 {
   "id": "e07",
-  "bozza": true,
   "stagione": 1,
   "episodio": 7,
   "titolo": "testi:e07.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e07.intro1",
-    "testi:e07.intro2",
-    "testi:e07.intro3"
+    "testi:e07.intro2"
   ],
   "briefing": [
     {
@@ -34,7 +32,7 @@
       "fonte": "voci_in_rete",
       "affidabilita": "media",
       "vera": true,
-      "settore": "curva_larkspire"
+      "settore": "strada_larkspire"
     },
     {
       "testo": "testi:e07.info_comitato",
@@ -80,12 +78,11 @@
         }
       },
       {
-        "id": "curva_larkspire",
-        "tipo": "curva",
-        "club": "larkspire_athletic",
+        "id": "strada_larkspire",
+        "tipo": "strada",
         "pos": {
-          "x": 80,
-          "y": 38
+          "x": 82,
+          "y": 30
         }
       }
     ],
@@ -209,7 +206,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "curva_larkspire",
+                  "tensione": "strada_larkspire",
                   "valore": 1
                 }
               ],
@@ -343,9 +340,9 @@
           "pressione": 5
         },
         {
-          "id": "cori7",
-          "tipo": "curva",
-          "settore": "curva_larkspire",
+          "id": "benvenuto7",
+          "tipo": "raduno",
+          "settore": "strada_larkspire",
           "pressione": 4
         },
         {
@@ -401,7 +398,7 @@
           "id": "coro_imparato",
           "fonte": "voci_in_rete",
           "testo": "testi:e07.ch.coro_imparato",
-          "settore": "curva_larkspire",
+          "settore": "strada_larkspire",
           "opzioni": [
             {
               "id": "spiega_coro",
@@ -409,7 +406,7 @@
               "costo": "testi:e07.op.spiega_coro.c",
               "effetti": [
                 {
-                  "pressione": "curva_larkspire",
+                  "pressione": "strada_larkspire",
                   "valore": -2
                 },
                 {
@@ -425,7 +422,7 @@
               "costo": "testi:e07.op.lascia_coro7.c",
               "effetti": [
                 {
-                  "tensione": "curva_larkspire",
+                  "tensione": "strada_larkspire",
                   "valore": 2
                 }
               ],
@@ -486,10 +483,10 @@
           "pressione": 5
         },
         {
-          "id": "pareggio",
-          "tipo": "curva",
-          "settore": "curva_larkspire",
-          "pressione": 4
+          "id": "pareggio7",
+          "tipo": "raduno",
+          "settore": "strada_larkspire",
+          "pressione": 3
         },
         {
           "id": "pulmini_aperti",
@@ -560,7 +557,7 @@
           "id": "pareggio_casa",
           "fonte": "centrale_radio",
           "testo": "testi:e07.ch.pareggio_casa",
-          "settore": "curva_larkspire",
+          "settore": "strada_larkspire",
           "opzioni": [
             {
               "id": "squadra_larkspire7",
@@ -568,7 +565,7 @@
               "costo": "testi:e07.op.squadra_larkspire7.c",
               "effetti": [
                 {
-                  "pressione": "curva_larkspire",
+                  "pressione": "strada_larkspire",
                   "valore": -2
                 },
                 {
@@ -584,7 +581,7 @@
               "costo": "testi:e07.op.lascia_sollievo.c",
               "effetti": [
                 {
-                  "pressione": "curva_larkspire",
+                  "pressione": "strada_larkspire",
                   "valore": 2
                 }
               ],
@@ -596,7 +593,7 @@
           "id": "immagine_club",
           "fonte": "vice",
           "testo": "testi:e07.ch.immagine_club",
-          "settore": "curva_larkspire",
+          "settore": "strada_larkspire",
           "se": {
             "var": "presidente_incontrato",
             "uguale": true

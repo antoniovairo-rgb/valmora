@@ -1,6 +1,5 @@
 {
   "id": "e09",
-  "bozza": true,
   "stagione": 1,
   "episodio": 9,
   "titolo": "testi:e09.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e09.intro1",
-    "testi:e09.intro2",
-    "testi:e09.intro3"
+    "testi:e09.intro2"
   ],
   "briefing": [
     {
@@ -113,7 +111,10 @@
           "corteo"
         ]
       }
-    }
+    },
+    "dettagli": [
+      "incidente@tangenziale"
+    ]
   },
   "ondate": [
     {

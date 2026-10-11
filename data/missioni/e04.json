@@ -1,6 +1,5 @@
 {
   "id": "e04",
-  "bozza": true,
   "stagione": 1,
   "episodio": 4,
   "titolo": "testi:e04.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e04.intro1",
-    "testi:e04.intro2",
-    "testi:e04.intro3"
+    "testi:e04.intro2"
   ],
   "briefing": [
     {
@@ -41,7 +39,7 @@
       "fonte": "club_ospite",
       "affidabilita": "media",
       "vera": false,
-      "settore": "curva_ospiti"
+      "settore": "parcheggi"
     }
   ],
   "mappa": {
@@ -50,42 +48,40 @@
         "id": "mercato",
         "tipo": "mercato",
         "pos": {
-          "x": 20,
-          "y": 75
+          "x": 30,
+          "y": 62
         }
       },
       {
         "id": "strada_cinderwick",
         "tipo": "strada",
         "pos": {
-          "x": 50,
-          "y": 90
+          "x": 12,
+          "y": 88
+        }
+      },
+      {
+        "id": "piazza_fonderie",
+        "tipo": "piazza",
+        "pos": {
+          "x": 18,
+          "y": 30
+        }
+      },
+      {
+        "id": "parcheggi",
+        "tipo": "strada",
+        "pos": {
+          "x": 70,
+          "y": 30
         }
       },
       {
         "id": "piazzale",
         "tipo": "piazzale",
         "pos": {
-          "x": 56,
-          "y": 62
-        }
-      },
-      {
-        "id": "curva_cinderwick",
-        "tipo": "curva",
-        "club": "cinderwick_united",
-        "pos": {
-          "x": 20,
-          "y": 35
-        }
-      },
-      {
-        "id": "curva_ospiti",
-        "tipo": "curva",
-        "club": "calderholt_rovers",
-        "pos": {
-          "x": 82,
-          "y": 35
+          "x": 80,
+          "y": 75
         }
       }
     ],
@@ -95,15 +91,15 @@
         "efficacia": {
           "strada": 2,
           "piazzale": 2,
-          "curva": 1,
+          "piazza": 1,
           "mercato": 1
         }
       },
       "steward": {
         "quantita": 6,
         "efficacia": {
-          "curva": 2,
           "mercato": 2,
+          "piazza": 2,
           "piazzale": 1,
           "strada": 1
         }
@@ -115,7 +111,11 @@
           "corteo"
         ]
       }
-    }
+    },
+    "dettagli": [
+      "mercato@mercato",
+      "fabbrica@piazza_fonderie"
+    ]
   },
   "ondate": [
     {
@@ -137,7 +137,7 @@
         {
           "id": "pullman",
           "tipo": "arrivo",
-          "settore": "piazzale",
+          "settore": "parcheggi",
           "pressione": 2
         }
       ],
@@ -300,7 +300,7 @@
           "id": "kebab",
           "fonte": "voci_in_rete",
           "testo": "testi:e04.ch.kebab",
-          "settore": "curva_cinderwick",
+          "settore": "piazza_fonderie",
           "opzioni": [
             {
               "id": "lascia_panino",
@@ -312,7 +312,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "curva_cinderwick",
+                  "tensione": "piazza_fonderie",
                   "valore": 1
                 }
               ],
@@ -343,15 +343,15 @@
       "titolo": "testi:e04.ondata2",
       "eventi": [
         {
-          "id": "cori_casa",
-          "tipo": "curva",
-          "settore": "curva_cinderwick",
+          "id": "bar_fonderie",
+          "tipo": "raduno",
+          "settore": "piazza_fonderie",
           "pressione": 4
         },
         {
-          "id": "cori_ospiti",
-          "tipo": "curva",
-          "settore": "curva_ospiti",
+          "id": "ritardatari",
+          "tipo": "arrivo",
+          "settore": "parcheggi",
           "pressione": 4
         },
         {
@@ -401,7 +401,7 @@
                   "valore": -2
                 },
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "piazza_fonderie",
                   "valore": 2
                 },
                 {
@@ -473,7 +473,7 @@
           "id": "fumo_arancio",
           "fonte": "centrale_radio",
           "testo": "testi:e04.ch.fumo_arancio",
-          "settore": "curva_cinderwick",
+          "settore": "piazza_fonderie",
           "opzioni": [
             {
               "id": "steward_fumo4",
@@ -481,11 +481,11 @@
               "costo": "testi:e04.op.steward_fumo4.c",
               "effetti": [
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "piazza_fonderie",
                   "valore": -2
                 },
                 {
-                  "tensione": "curva_cinderwick",
+                  "tensione": "piazza_fonderie",
                   "valore": 1
                 },
                 {
@@ -513,7 +513,7 @@
           "id": "coro_fonderie",
           "fonte": "club_ospite",
           "testo": "testi:e04.ch.coro_fonderie",
-          "settore": "curva_ospiti",
+          "settore": "parcheggi",
           "opzioni": [
             {
               "id": "permetti_coro",
@@ -525,7 +525,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "curva_cinderwick",
+                  "tensione": "piazza_fonderie",
                   "valore": 2
                 }
               ],
@@ -537,7 +537,7 @@
               "costo": "testi:e04.op.vieta_coro.c",
               "effetti": [
                 {
-                  "tensione": "curva_ospiti",
+                  "tensione": "parcheggi",
                   "valore": 1
                 }
               ],
@@ -603,7 +603,7 @@
                   "valore": -2
                 },
                 {
-                  "tensione": "curva_cinderwick",
+                  "tensione": "piazza_fonderie",
                   "valore": 2
                 }
               ],

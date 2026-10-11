@@ -1,6 +1,5 @@
 {
   "id": "e06",
-  "bozza": true,
   "stagione": 1,
   "episodio": 6,
   "titolo": "testi:e06.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e06.intro1",
-    "testi:e06.intro2",
-    "testi:e06.intro3"
+    "testi:e06.intro2"
   ],
   "briefing": [
     {

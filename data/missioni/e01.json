@@ -661,6 +661,47 @@
           ]
         },
         {
+          "id": "lavezzari",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e01.ch.lavezzari",
+          "commento": "testi:e01.ch.lavezzari.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "accetta",
+              "testo": "testi:e01.op.accetta",
+              "costo": "testi:e01.op.accetta.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.accetta.r"
+            },
+            {
+              "id": "annota",
+              "testo": "testi:e01.op.annota",
+              "costo": "testi:e01.op.annota.c",
+              "effetti": [
+                {
+                  "aggiungi": "sospetti_talpa",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.annota.r"
+            }
+          ]
+        },
+        {
           "id": "troupe",
           "fonte": "voci_in_rete",
           "testo": "testi:e01.ch.troupe",
@@ -780,8 +821,7 @@
   "fili": [],
   "introduzione": [
     "testi:e01.intro1",
-    "testi:e01.intro2",
-    "testi:e01.intro3"
+    "testi:e01.intro2"
   ],
   "stelle": {
     "due": {
