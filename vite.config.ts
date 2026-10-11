@@ -1,9 +1,13 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'node:path';
 
 // Build della resa (index.html → dist/) e test unitari (tests/**/*.test.ts) in un solo file.
 export default defineConfig({
   plugins: [react()],
   base: './', // percorsi relativi: la build gira anche dentro Capacitor e da file
+  // Dati di gioco: data/. VALMORA_DATI punta a un'altra cartella SOLO per provare la resa con dati
+  // di prova (tests/resa/dati-prova) in una build a parte; la catena usa sempre data/.
+  resolve: { alias: { '@dati': resolve(process.env.VALMORA_DATI ?? 'data') } },
   test: { include: ['tests/**/*.test.ts'], environment: 'node' },
 });

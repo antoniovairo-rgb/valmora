@@ -1,0 +1,29 @@
+{
+  "save_version": 1,
+  "game_version": "0.1.0",
+  "seme": 4282212961,
+  "caso": 4282212961,
+  "variabili": {
+    "tensione_max": 0
+  },
+  "missioni_concluse": [],
+  "in_corso": {
+    "missione": "e01",
+    "ondate": [
+      {
+        "n": 1,
+        "scoperto": {
+          "curva_cinderwick": 0,
+          "curva_larkspire": 0,
+          "piazzale": 0,
+          "strada_cinderwick": 0,
+          "strada_larkspire": 2
+        },
+        "tensione": 2
+      }
+    ],
+    "variabili": {
+      "tensione_max": 2
+    }
+  }
+}
