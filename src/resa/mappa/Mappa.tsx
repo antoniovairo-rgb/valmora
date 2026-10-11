@@ -54,11 +54,17 @@ export function Mappa(p: MappaProps) {
       {settori.map((s) => {
         const liv = p.tensione ? livello(p.tensione[s.id] ?? 0) : null;
         const lato = s.pos.x < 30 ? 'sinistra' : s.pos.x > 70 ? 'destra' : 'centro';
+        // Settori vicini (e02: stazione, curva ospiti e viale della stazione uno sopra l'altro): con un punto
+        // subito sotto il nome va sopra; con punti sopra E sotto il nome va di lato e le unità dall'altro lato;
+        // con un punto subito sopra o sotto le unità vanno di lato.
+        const vicino = (verso: 1 | -1) => settori.some((o) => o.id !== s.id && Math.abs(o.pos.x - s.pos.x) < 18 && verso * (o.pos.y - s.pos.y) > 0 && verso * (o.pos.y - s.pos.y) < 24);
+        const sotto = vicino(1), sopra = vicino(-1);
+        const posto = sotto && sopra ? ' nome-lato unita-lato' : sotto ? ' nome-sopra unita-lato' : sopra ? ' unita-lato' : '';
         const qui = Object.entries(p.presenze ?? {}).map(([r, ps]) => [r, ps[s.id] ?? 0] as const).filter(([, n]) => n > 0);
         const nome = t(`settore.${s.id}`);
         return (
           <div key={s.id} ref={posiziona(s.pos.x, s.pos.y)} data-settore={s.id}
-            className={`settore lato-${lato}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}`}>
+            className={`settore lato-${lato}${posto}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}`}>
             <button type="button" className="settore-punto" disabled={!p.onSettore} onClick={() => p.onSettore?.(s.id)}
               aria-label={`${nome}${liv !== null ? `, situazione ${PAROLE[liv]}` : ''}${qui.length ? `, ${qui.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}` : ''}`} />
             <span className="settore-nome" aria-hidden="true">{nome}</span>
