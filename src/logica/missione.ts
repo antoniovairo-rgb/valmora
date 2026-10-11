@@ -8,6 +8,8 @@
 //   (effetto «riserva») contano dall'ondata successiva; la riserva non scende sotto −quantità (C01-A04).
 // - Le unità rimaste in un settore scoperto vanno a riposo per l'ondata successiva (D-056).
 // - «tensione_max» = tensione di settore più alta vista nella missione; decide l'esito con le variabili.
+// - Risorse «fissa» (transenne, D-082): le unità piazzate restano nel settore per tutte le ondate dopo;
+//   non tornano disponibili e non vanno a riposo. Rosso: __NO_C09F01 (si comportano come unità normali).
 import { applica, valuta } from './condizioni.ts';
 import { spento } from '../interruttori.ts';
 import type { Chiamata, Dichiarazione, Disposizione, EffettoMissione, Esito, Missione, Variabili } from './tipi.ts';
@@ -31,6 +33,7 @@ export interface InCorso {
   scelte: { ondata: number; chiamata: string; opzione: string }[];
   rapporti: RapportoOndata[];
   variabili: Variabili;
+  fisse?: Disposizione;                 // unità fisse già piazzate, per risorsa e settore (D-082); assente nei salvataggi vecchi
 }
 
 const ondataDi = (m: Missione, s: InCorso) => {
@@ -52,8 +55,24 @@ export function iniziaMissione(m: Missione, iniziali: Variabili, d: Dich): InCor
 export const missioneFinita = (m: Missione, s: InCorso): boolean => s.ondata > m.ondate.length;
 
 /** Unità che si possono schierare in questa ondata. */
+const somma = (ps: Record<string, number> | undefined) => Object.values(ps ?? {}).reduce((a, b) => a + b, 0);
+const fisse = (s: InCorso): Disposizione => (spento('C09F01') ? {} : s.fisse ?? {});
+
 export function disponibili(m: Missione, s: InCorso): Record<string, number> {
-  return Object.fromEntries(Object.entries(m.mappa.risorse).map(([r, x]) => [r, Math.max(0, x.quantita + (s.riserva[r] ?? 0) - (s.riposo[r] ?? 0))]));
+  return Object.fromEntries(Object.entries(m.mappa.risorse).map(([r, x]) => [r, Math.max(0, x.quantita + (s.riserva[r] ?? 0) - (s.riposo[r] ?? 0) - somma(fisse(s)[r]))]));
+}
+
+/** Settori dove una risorsa si può mettere: le fisse solo dove servono (efficacia > 0, D-082: niente transenne sugli spalti). */
+export function settoriAmmessi(m: Missione, r: string): string[] {
+  const x = m.mappa.risorse[r];
+  return m.mappa.settori.filter((k) => spento('C09F02') || !x?.fissa || (x.efficacia[k.tipo] ?? 0) > 0).map((k) => k.id);
+}
+
+/** Schieramento che conta davvero: quello dell'ondata più le unità fisse già piazzate (D-082). */
+export function inCampo(s: InCorso, d: Disposizione): Disposizione {
+  const out = structuredClone(d);
+  for (const [r, ps] of Object.entries(fisse(s))) for (const [k, n] of Object.entries(ps)) (out[r] ??= {})[k] = (out[r]![k] ?? 0) + n;
+  return out;
 }
 
 const oggetto = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
@@ -69,6 +88,7 @@ export function controllaDisposizione(m: Missione, s: InCorso, d: Disposizione):
     let tot = 0;
     for (const [settore, n] of Object.entries(perSettore)) {
       if (!settori.has(settore)) p.push(`settore «${settore}» non è nella mappa di ${m.id}`);
+      else if (n > 0 && !settoriAmmessi(m, r).includes(settore)) p.push(`${r}: in «${settore}» non hanno effetto, non si montano`);
       if (!Number.isInteger(n) || n < 0) p.push(`${r} in ${settore}: ${n} non è un intero ≥ 0`);
       tot += n;
     }
@@ -120,7 +140,7 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
   const o = ondataDi(m, s);
   if (!s.disposizione) throw new Error(`${m.id}: ondata ${s.ondata} non schierata`);
   if (chiamateAperte(m, s).length) throw new Error(`${m.id}: ondata ${s.ondata} con chiamate senza risposta`);
-  const disp = s.disposizione;
+  const disp = inCampo(s, s.disposizione);
   const scoperto: Record<string, number> = {};
   const tensione: Record<string, number> = {};
   const aRiposo: Record<string, number> = {};
@@ -141,12 +161,13 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
     // qualunque unità presidia, anche il mediatore (C02-N05); rossi: C01O01 = sempre, C02N05 = solo con copertura
     const presidiato = spento('C01O01') || (spento('C02N05') ? copertura > 0 : unita.length > 0);
     tensione[settore.id] = lim(sc > 0 ? prima + sc : presidiato ? Math.floor(prima / 2) : prima);
-    if (sc > 0) for (const u of unita) aRiposo[u.r] = (aRiposo[u.r] ?? 0) + u.n;
+    if (sc > 0) for (const u of unita) if (spento('C09F01') || !u.ris.fissa) aRiposo[u.r] = (aRiposo[u.r] ?? 0) + u.n;
   }
   const massimo = Math.max(s.variabili[VAR_TENSIONE] as number, ...Object.values(tensione), ...Object.values(s.tensione));
   const rapporto = { n: s.ondata, scoperto, tensione, aRiposo };
   return {
-    ...s, ondata: s.ondata + 1, tensione, riposo: aRiposo, disposizione: null, modifiche: {}, risposte: {},
+    ...s, ondata: s.ondata + 1, tensione, riposo: aRiposo, disposizione: null,
+    fisse: Object.fromEntries(Object.entries(m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => [r, { ...(disp[r] ?? {}) }])), modifiche: {}, risposte: {},
     rapporti: [...s.rapporti, rapporto], variabili: applica({ imposta: VAR_TENSIONE, valore: massimo }, s.variabili, d),
   };
 }

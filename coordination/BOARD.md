@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-11 15:35 UTC – S-06 (N01 e C-008) integrata e riprodotta (sonde c06/c07); rilascio 0.2.0 su main 60ccab4 (finestra delle 17, D-079), home con versione e build (PO-032), Pages verificato; sviluppatrice: controllo versione in foto.mjs; collaudatrice ferma.
+Ultimo giro della routine: 2026-10-11 16:40 UTC – e03 «Notte di coppa» scritto dalla principale (dati, testi, transenne fisse nel motore D-082, guardiano tools/fisse.mjs), completa verde su f4668d4, solo sul ramo; sviluppatrice su S-07 (resa e03) dopo il controllo versione; collaudatrice su C-09 (giocatore nuovo sulla 0.2.0 pubblicata). Prossimo rilascio: finestra 21:00 Roma.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 

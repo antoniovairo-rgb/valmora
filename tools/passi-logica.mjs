@@ -7,6 +7,7 @@ import { leggiSchemi, leggiDati } from './dati-disco.mjs';
 import { validaDati } from '../src/dati/valida.ts';
 import { migra, SAVE_VERSION } from '../src/salvataggi/salvataggio.ts';
 import { giraBot, sceltePesano, chiamateViste, esisteStelle } from './bot.mjs';
+import { controllaFisse, posizioneConta } from './fisse.mjs';
 
 // Bot: 0 blocchi su tutti i semi, e ogni esito di ogni missione raggiunto da almeno una strategia.
 export function controllaBot(rapporto, dati) {
@@ -43,7 +44,7 @@ export const PASSI_LOGICA = {
   confini: () => controllaConfini(Object.fromEntries(tracciatiENuovi().map((p) => [p, readFileSync(p, 'utf8')]))),
   schema: () => validaDati(leggiSchemi(), leggiDati()),
   test: () => esegui('npx vitest run'),
-  bot: () => { const d = leggiDati(); return [...controllaBot(giraBot(d, 1000), d), ...controllaScelte(sceltePesano(d), d), ...controllaCampagna(chiamateViste(d))]; },
+  bot: () => { const d = leggiDati(); return [...controllaBot(giraBot(d, 1000), d), ...controllaScelte(sceltePesano(d), d), ...controllaCampagna(chiamateViste(d)), ...controllaFisse(posizioneConta(d))]; },
   'salvataggi-reali': () => controllaSalvataggiReali(SAVE_VERSION, leggiSalvataggi(), migra),
   'bracci-rossi-logica': () => {
     const ciechi = [];
@@ -66,6 +67,8 @@ export const PASSI_LOGICA = {
     if (!controllaBot(giraBot(d4, 30), d4).some((x) => x.includes('3 stelle'))) ciechi.push('bot/stelle è cieco');
     const m5 = structuredClone(d['missioni/e02.json']); m5.ondate[0].chiamate[0].se = { var: 'credito', almeno: 99 };
     if (!controllaCampagna(chiamateViste({ ...d, 'missioni/e02.json': m5 }, 20)).length) ciechi.push('bot/campagna è cieco');
+    const m6 = structuredClone(d['missioni/e03.json']); for (const o of m6.ondate) for (const e of o.eventi) if (e.settore !== 'curva_ospiti' && e.settore !== 'curva_larkspire') e.pressione = 0;
+    if (!controllaFisse(posizioneConta({ ...d, 'missioni/e03.json': m6 })).length) ciechi.push('bot/transenne fisse è cieco');
     const m3 = structuredClone(d['missioni/e01.json']);
     for (const o of m3.ondate) for (const c of o.chiamate ?? []) for (const x of c.opzioni) x.effetti = [];
     const d3 = { ...d, 'missioni/e01.json': m3 };
