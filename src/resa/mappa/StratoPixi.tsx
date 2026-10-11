@@ -13,7 +13,9 @@ export interface PuntoMappa { id: string; tipo: string; x: number; y: number; li
 
 const fermo = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function Disegno(p: { punti: PuntoMappa[]; margine: number }) {
+export interface Margine { lato: number; sotto: number }
+
+function Disegno(p: { punti: PuntoMappa[]; margine: Margine }) {
   const { app } = useApplication();
   const [dim, setDim] = useState({ w: app.screen.width, h: app.screen.height });
   useEffect(() => {
@@ -24,8 +26,8 @@ function Disegno(p: { punti: PuntoMappa[]; margine: number }) {
   }, [app]);
 
   const { w: W, h: H } = dim;
-  const m = p.margine;
-  const punti = useMemo(() => p.punti.map((q) => ({ ...q, x: m + ((W - 2 * m) * q.x) / 100, y: m + ((H - 2 * m) * q.y) / 100 })), [p.punti, W, H, m]);
+  const { lato: m, sotto } = p.margine;
+  const punti = useMemo(() => p.punti.map((q) => ({ ...q, x: m + ((W - 2 * m) * q.x) / 100, y: m + ((H - 2 * m - sotto) * q.y) / 100 })), [p.punti, W, H, m, sotto]);
   // Lo sfondo dipende solo da dimensioni e posizioni dei settori, non da tensione o settori accesi.
   const pianta = JSON.stringify(punti.map((q) => [q.tipo, Math.round(q.x), Math.round(q.y)]));
   const strato = useRef<Container | null>(null);
@@ -111,7 +113,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: number }) {
   return null;
 }
 
-export function StratoPixi(p: { contenitore: RefObject<HTMLDivElement | null>; punti: PuntoMappa[]; margine: number; pronto: () => void }) {
+export function StratoPixi(p: { contenitore: RefObject<HTMLDivElement | null>; punti: PuntoMappa[]; margine: Margine; pronto: () => void }) {
   return (
     <Application className="mappa-tela" resizeTo={p.contenitore} preference="webgl" backgroundAlpha={0} antialias autoDensity
       resolution={Math.min(2, window.devicePixelRatio || 1)} onInit={p.pronto}>

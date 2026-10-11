@@ -21,7 +21,7 @@ p { margin: var(--spazio-2) 0; }
 .testata { display: flex; align-items: stretch; gap: var(--spazio-2); margin: var(--spazio-2) 0 var(--spazio-3); }
 .testata-n { display: flex; align-items: center; background: var(--nero); color: var(--giallo); font: 700 var(--testo-numero) / 1 var(--font-titoli); padding: var(--spazio-2) var(--spazio-3); transform: skew(var(--inclinazione)); }
 .testata-t { flex: 1; min-width: 0; background: var(--bianco); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); padding: var(--spazio-1) var(--spazio-3); }
-.testata-t small { display: block; font: 700 var(--testo-mini) var(--font-titoli); letter-spacing: var(--spaziatura-maiuscolo); text-transform: uppercase; color: var(--magenta); }
+.testata-t small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font: 700 var(--testo-mini) var(--font-titoli); letter-spacing: var(--spaziatura-maiuscolo); text-transform: uppercase; color: var(--magenta); }
 
 /* Logo del titolo */
 .logo { margin: var(--spazio-5) 0 var(--spazio-4); }
@@ -39,7 +39,8 @@ p { margin: var(--spazio-2) 0; }
 /* Opzioni A/B/C */
 .opzioni { display: grid; gap: var(--spazio-3); margin: var(--spazio-4) 0; }
 .opzione { display: flex; align-items: center; gap: var(--spazio-3); width: 100%; min-height: var(--tocco-min); padding: var(--spazio-3); background: var(--bianco); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); color: var(--nero); font: 700 var(--testo-base) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; text-align: left; cursor: pointer; transition: transform 80ms, box-shadow 80ms, background 80ms; }
-.opzione:hover { background: var(--ciano); }
+.opzione:hover, .opzione.scelta { background: var(--ciano); }
+.opzione:disabled { cursor: default; }
 .tasto { display: grid; place-items: center; flex: none; width: var(--tasto-lettera); height: var(--tasto-lettera); background: var(--nero); color: var(--giallo); font: 700 var(--testo-base) var(--font-titoli); }
 
 /* Fumetti: messaggi radio, battute del vice, schede */
@@ -66,16 +67,19 @@ p { margin: var(--spazio-2) 0; }
 .mappa-tela { position: absolute; inset: 0; width: 100%; height: 100%; }
 .settore { position: absolute; width: 0; height: 0; pointer-events: none;
   left: calc(var(--settore) / 2 + (100% - var(--settore)) * var(--x) / 100);
-  top: calc(var(--settore) / 2 + (100% - var(--settore)) * var(--y) / 100); }
+  top: calc(var(--settore) / 2 + (100% - var(--settore) - var(--margine-nomi)) * var(--y) / 100); }
 .settore-punto { pointer-events: auto; position: absolute; left: calc(var(--settore) / -2); top: calc(var(--settore) / -2); width: var(--settore); height: var(--settore); padding: 0; border: 0; border-radius: var(--raggio-tondo); background: transparent; cursor: pointer; }
 .settore-punto::after { content: ""; position: absolute; inset: 22%; border-radius: var(--raggio-tondo); background: var(--bianco); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-premuto); }
 .settore-punto:disabled { cursor: default; }
 .settore.acceso .settore-punto::after { background: var(--giallo); }
 .settore-nome, .settore-unita { position: absolute; left: 0; transform: translateX(-50%); }
 .settore-nome { top: calc(var(--settore) / 2 - var(--spazio-1)); width: max-content; max-width: var(--nome-max); padding: var(--spazio-px) var(--spazio-1); background: var(--nero); color: var(--giallo); font: 700 var(--testo-mini) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; text-align: center; }
-.settore-unita { bottom: calc(var(--settore) / 2 - var(--spazio-1)); display: flex; gap: var(--spazio-1); pointer-events: auto; }
+.settore-unita { bottom: calc(var(--settore) / 2 - var(--spazio-2)); display: flex; gap: 0; pointer-events: auto; }
 .lato-sinistra .settore-nome, .lato-sinistra .settore-unita { left: calc(var(--settore) / -2); transform: none; text-align: left; }
 .lato-destra .settore-nome, .lato-destra .settore-unita { left: calc(var(--settore) / 2); transform: translateX(-100%); text-align: right; }
+.tocco-pastiglia { display: grid; place-items: end center; min-width: var(--tocco-min); min-height: var(--tocco-min); padding: 0; border: 0; background: transparent; cursor: pointer; }
+.tocco-pastiglia:disabled { cursor: default; }
+.pastiglia-rossa { padding: 0; border: 0; background: transparent; }
 .pastiglia { display: inline-flex; align-items: center; gap: var(--spazio-px); min-height: var(--pastiglia); padding: 0 var(--spazio-1); border: var(--bordo-fine) solid var(--nero); background: var(--giallo); color: var(--nero); font: 700 var(--testo-piccolo) var(--font); }
 .pastiglia .icona { width: var(--testo-piccolo); height: var(--testo-piccolo); }
 /* Tensione a colori (D-055) */

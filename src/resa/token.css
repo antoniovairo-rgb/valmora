@@ -101,7 +101,7 @@
   --punta-fumetto-lato: 9px;
   --punta-fumetto-x: 34px;
 
-  --testo-mini: 10px;
+  --testo-mini: 12px; /* minimo leggibile (C-005 R06) */
   --testo-piccolo: 13px;
   --testo-base: 16px;
   --testo-grande: 20px;
@@ -110,7 +110,7 @@
   --testo-logo: 44px;
   --linea: 1.45;
   --linea-stretta: 1.2;
-  --spaziatura-maiuscolo: 0.14em;
+  --spaziatura-maiuscolo: 0.06em;
   --spaziatura-stretta: -0.01em;
   --spaziatura-etichetta: 0.04em;
   --spazio-px: 1px;
@@ -126,9 +126,15 @@
   --avatar: 42px;
   --tasto-lettera: 34px;
   --nome-max: 7.5em;
+  --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */
   --mappa-proporzione: 1 / 1;
   --citta-proporzione: 4 / 5;
 
   --font-titoli: "Space Grotesk", system-ui, sans-serif;
   --font: Inter, system-ui, sans-serif;
 }
+
+/* Interruttori rossi della resa (globalThis.__NO_C05R06 / __NO_C05R07): rimettono i difetti del collaudo
+   C-005 per misurare il braccio rosso di tools/foto.mjs. Mai attivi nel gioco. */
+.rosso-c05r06 { --testo-mini: 10px; --margine-nomi: 0px; }
+.rosso-c05r07 .testata-t small { --spaziatura-maiuscolo: 0.3em; }

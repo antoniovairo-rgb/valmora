@@ -5,7 +5,7 @@ import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
 import { ESITO_V1, migra, SAVE_VERSION } from '../src/salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
-const buono = () => ({ save_version: SAVE_VERSION, game_version: GAME_VERSION, seme: 1, caso: 123, variabili: { a: true, b: 2, c: 'x' }, missioni_concluse: ['e01'], in_corso: null, genere: 'f' as const,
+const buono = () => ({ save_version: SAVE_VERSION, game_version: GAME_VERSION, seme: 1, caso: 123, variabili: { a: true, b: 2, c: 'x' }, missioni_concluse: ['e01'], in_corso: null, genere: 'f' as const, rapporto_aperto: null,
   episodi: { e01: { migliore: { esito: 'ok', fallita: false, stelle: 2 }, tentativi: 2, variabili_prima: { a: true }, variabili_dopo: { a: false } } } });
 
 // Missione minima di prova (nomi neutri): serve solo a produrre un InCorso vero dal motore.
@@ -34,6 +34,10 @@ describe('salvataggi', () => {
   it('registro degli episodi malformato rifiutato', () => {
     expect(() => migra({ ...buono(), episodi: { e01: { migliore: { esito: 'x', fallita: false, stelle: 4 }, tentativi: -1, variabili_prima: {}, variabili_dopo: null } } })).toThrow(/stelle|migliore malformato.*tentativi|tentativi.*migliore/);
     expect(() => migra({ ...buono(), episodi: undefined })).toThrow(/episodi non è un oggetto/);
+  });
+  it('rapporto aperto: null o numero di ondata', () => {
+    expect(migra({ ...buono(), rapporto_aperto: 2 }).rapporto_aperto).toBe(2);
+    expect(() => migra({ ...buono(), rapporto_aperto: 0 })).toThrow(/rapporto_aperto/);
   });
   it('genere sconosciuto rifiutato', () => expect(() => migra({ ...buono(), genere: 'x' })).toThrow(/genere x/));
   it('campi rotti rifiutati', () => expect(() => migra({ ...buono(), caso: -1, variabili: { a: null } })).toThrow(/caso non uint32.*variabile a/));
