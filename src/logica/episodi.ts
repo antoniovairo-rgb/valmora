@@ -1,6 +1,7 @@
 // Esito di un episodio, stelle e registro della mappa degli episodi (D-059…D-062). Puro.
 // - Fallito (esito con «fallita»): 0 stelle, l'episodio va rigiocato; la partita non cambia la storia.
-// - Superato: 1 stella; 2 se vale «stelle.due»; 3 se vale «stelle.tre» (dati della missione).
+// - Superato: 1 stella; 2 se vale «stelle.due»; 3 se vale «stelle.tre» (dati della missione), entro
+//   «stelle_min»/«stelle_max» dell'esito (D-064: «a fatica» al massimo 2, «contenuto» almeno 2).
 // - Rigioco: resta il risultato migliore (più stelle; a parità, il primo ottenuto). Le variabili della
 //   storia vengono dalla partita migliore solo se l'episodio è l'ultimo concluso (D-062).
 import { valuta } from './condizioni.ts';
@@ -13,7 +14,9 @@ export interface Risultato { esito: string; fallita: boolean; stelle: Stelle }
 
 export function valutaEpisodio(m: Missione, r: EsitoMissione): Risultato {
   const fallita = !!r.esito.fallita;
-  const stelle: Stelle = fallita ? 0 : valuta(m.stelle.tre, r.variabili) ? 3 : valuta(m.stelle.due, r.variabili) ? 2 : 1;
+  const base = fallita ? 0 : valuta(m.stelle.tre, r.variabili) ? 3 : valuta(m.stelle.due, r.variabili) ? 2 : 1;
+  // le stelle seguono l'esito (D-064): un esito può fissare un minimo e un massimo
+  const stelle = (fallita ? 0 : Math.min(r.esito.stelle_max ?? 3, Math.max(r.esito.stelle_min ?? 1, base))) as Stelle;
   return { esito: r.esito.id, fallita, stelle };
 }
 

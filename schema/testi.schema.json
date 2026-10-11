@@ -1,8 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "testi.schema.json",
-  "title": "data/testi/it/*.json: mappa piatta chiave → testo; la chiave «e01.titolo» si cita come «testi:e01.titolo»",
+  "title": "data/testi/it/*.json: mappa piatta chiave → testo; «e01.titolo» si cita come «testi:e01.titolo»; «chiave@f» = variante per la protagonista (D-063)",
   "type": "object",
-  "propertyNames": { "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$" },
-  "additionalProperties": { "type": "string", "minLength": 1 }
+  "propertyNames": {
+    "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+(@f)?$"
+  },
+  "additionalProperties": {
+    "type": "string",
+    "minLength": 1
+  }
 }
