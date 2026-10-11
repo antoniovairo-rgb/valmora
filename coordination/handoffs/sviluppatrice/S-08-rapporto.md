@@ -29,7 +29,7 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegna parziale** (solo C09-02/03/04).
 | `VALMORA_LARGHEZZE=360 VALMORA_ROSSI=C10S02 …` | 360 px | ROSSO: «viale_stazione scoperto ma colore tranquillo (liv-1)», «piazzale … (liv-1)» |
 | `… VALMORA_ROSSI=C10S03 …` | 360 px | ROSSO: «opzioni sotto la piega senza indicatore» ×8, «Prossima ondata» ×4, «Ascolta le fonti» ×3, «Conferma» ×2 |
 | `… VALMORA_ROSSI=C10S04 …` | 360 px | ROSSO: «unità finita senza avviso» |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 9617374 (con merge della principale 3f0288f), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Limite del controllo C09-04 (FATTO MISURATO): nel giro delle foto, al momento del tocco tutte le unità
 sono già schierate. Col difetto non si mette quindi nessuna unità sbagliata: il braccio rosso scatta solo
