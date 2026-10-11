@@ -39,7 +39,7 @@ Dettagli e criterio di R03 in coordination/handoffs/sviluppatrice/S-03-rapporto.
 | `node tools/foto.mjs out/foto` | 3 larghezze; e01 giocata due volte (fallita, poi «contenuto») + e02 una volta | verde: 0 errori, 0 scorrimento, controlli R01-R07, e02 «contenuto» = motore |
 | giocatore usato (stampato da foto.mjs) | e01 ed e02 | «equilibrato» per entrambe; il giocatore attento di bot.ts arriva a «contenuto_a_fatica» in tutte e due (FATTO MISURATO) |
 | `npx vitest run` | 98 test | verdi |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 7be29c6, 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 ## Foto
 
