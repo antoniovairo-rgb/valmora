@@ -1,4 +1,4 @@
-# S-12 – Dettagli delle mappe (D-095) e tocco sulla città a 360×760 · rapporto della sviluppatrice
+# Dettagli D-095 – Dettagli delle mappe (D-095) e tocco sulla città a 360×760 · rapporto della sviluppatrice
 
 Ramo `claude/valmora-resa-v2`. Stato: **consegnata**.
 

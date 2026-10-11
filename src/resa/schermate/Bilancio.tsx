@@ -8,12 +8,21 @@ import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
-import { sceltaLeggibile } from '../partita.ts';
+import { livello, sceltaLeggibile } from '../partita.ts';
+import { spento } from '../../interruttori.ts';
 
 const segno = (n: number) => (n > 0 ? `+${n}` : `−${Math.abs(n)}`);
 
-/** «−2 pressione su Strada da Cinderwick», «+1 credito», «+1 Squadre di riserva». */
+/** Nomi dei colori della scala della tensione (token --tensione-0…5): la tensione si dice SOLO così (D-055). */
+export const COLORI = ['verde', 'verde chiaro', 'giallo', 'arancione', 'rosso', 'rosso acceso'] as const;
+const ORDINE: Record<number, string> = { 2: 'seconda', 3: 'terza' };
+const il = (c: string) => (/^[aeiou]/.test(c) ? `l'${c}` : `il ${c}`);
+const al = (c: string) => (/^[aeiou]/.test(c) ? `all'${c}` : `al ${c}`);
+
+/** «−2 pressione su Strada da Cinderwick», «abbassa la tensione su Piazzale», «+1 fiducia», «+1 Squadre di riserva».
+ *  C12-01: mai cifre di tensione (rosso C12T01: come prima, «−2 tensione su …»). */
 export function impattoInParole(i: Impatto): string {
+  if (i.tipo === 'tensione' && !spento('C12T01')) return `${i.valore < 0 ? 'abbassa' : 'alza'}${Math.abs(i.valore) >= 3 ? ' molto' : ''} la tensione su ${t(`settore.${i.dove}`)}`;
   if (i.tipo === 'credito') return `${segno(i.valore)} ${t('var.credito').toLowerCase()}`; // D-097: «fiducia»
   if (i.tipo === 'riserva') return `${segno(i.valore)} ${t(`risorsa.${i.dove}`)} di riserva`;
   return `${segno(i.valore)} ${i.tipo} su ${t(`settore.${i.dove}`)}`;
@@ -21,6 +30,17 @@ export function impattoInParole(i: Impatto): string {
 
 const SIMBOLO = { almeno: '≥', al_massimo: '≤', uguale: '=', altro: '' } as const;
 const distanza = (q: Requisito) => (typeof q.soglia === 'number' && typeof q.valore === 'number' ? Math.abs(q.soglia - q.valore) : Infinity);
+
+/** Il requisito mancante in parole. Tensione in colori (C12-01, D-055): «Per la seconda stella la tensione non
+ *  deve passare il giallo: è arrivata al rosso». Le altre variabili (fiducia) restano in cifre (D-097). */
+export function requisitoInParole(q: Requisito, stelle: number): string {
+  if (q.var.includes('tensione') && typeof q.soglia === 'number' && typeof q.valore === 'number' && !spento('C12T01')) {
+    const limite = COLORI[livello(q.soglia)]!, arrivo = COLORI[livello(q.valore)]!;
+    return q.confronto === 'al_massimo' ? `Per la ${ORDINE[stelle]} stella la tensione non deve passare ${il(limite)}: è arrivata ${al(arrivo)}.`
+      : `Per la ${ORDINE[stelle]} stella la tensione deve arrivare ${al(limite)}: si è fermata ${al(arrivo)}.`;
+  }
+  return `${t(`var.${q.var}`)} ${SIMBOLO[q.confronto]} ${String(q.soglia)}: hai ${String(q.valore)}`;
+}
 
 /** Il requisito non soddisfatto più vicino della stella successiva, o null se non ne manca nessuno. */
 export function prossimoRequisito(lista: Requisito[]): Requisito | null {
@@ -62,7 +82,7 @@ export function sezioniBilancio(p: { m: Missione; esito: EsitoMissione; stelle: 
         <h3><Icona di={Star} />{t('bilancio.stelle')}</h3>
         <p data-requisito={manca ? manca.var : 'nessuno'}>
           {!lista ? 'Hai tutte e tre le stelle.'
-            : manca ? (manca.confronto === 'altro' ? 'Serve un altro esito della serata.' : `${t(`var.${manca.var}`)} ${SIMBOLO[manca.confronto]} ${String(manca.soglia)}: hai ${String(manca.valore)}`)
+            : manca ? (manca.confronto === 'altro' ? 'Serve un altro esito della serata.' : requisitoInParole(manca, p.stelle >= 2 ? 3 : 2))
             : 'I numeri ci sono: la stella in più dipende da come finisce la serata.'}
         </p>
       </section>

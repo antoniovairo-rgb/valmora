@@ -103,3 +103,12 @@ export async function avanzaFino(pagina, sel, dopo) {
   const vede = async (s) => (await pagina.locator(s).count()) > 0 && pagina.locator(s).first().isVisible();
   while (!(await vede(sel)) && (await vede('[data-azione="passo"]'))) { await pagina.click('[data-azione="passo"]'); await dopo(); }
 }
+
+/** C12-01 (D-055): la tensione mai in cifre. Ogni frase (spezzata a «·», «,», «:») che parla di tensione non ha
+ *  numeri; si leggono anche i passi nascosti del verbale. */
+export async function controllaCifreTensione(pagina, atteso, dove) {
+  const frasi = await pagina.evaluate(() => [...document.querySelectorAll('.scena *')]
+    .filter((el) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())).map((el) => el.textContent));
+  const male = frasi.flatMap((x) => x.split(/[·,:;]/)).filter((x) => /tension/i.test(x) && /\d/.test(x));
+  atteso(`${dove}: tensione in cifre «${male.slice(0, 2).join(' | ')}» (C12-01, D-055)`, male.length === 0);
+}
