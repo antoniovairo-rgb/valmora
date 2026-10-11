@@ -1,0 +1,815 @@
+{
+  "id": "e26",
+  "bozza": true,
+  "stagione": 3,
+  "episodio": 26,
+  "titolo": "testi:e26.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 40,
+    "y": 15
+  },
+  "introduzione": [
+    "testi:e26.intro1",
+    "testi:e26.intro2",
+    "testi:e26.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e26.info_cerimoniale",
+      "fonte": "cerimoniale",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "tribuna_autorita"
+    },
+    {
+      "testo": "testi:e26.info_quillhaven",
+      "fonte": "club_quillhaven",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e26.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "parcheggi"
+    },
+    {
+      "testo": "testi:e26.info_segreteria",
+      "fonte": "segreteria_comune",
+      "affidabilita": "alta",
+      "vera": false,
+      "settore": "piazzale"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "tribuna_autorita",
+        "tipo": "tribuna",
+        "pos": {
+          "x": 50,
+          "y": 14
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "quillhaven_albion",
+        "pos": {
+          "x": 14,
+          "y": 45
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 86,
+          "y": 45
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 50,
+          "y": 68
+        }
+      },
+      {
+        "id": "parcheggi",
+        "tipo": "strada",
+        "pos": {
+          "x": 22,
+          "y": 88
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "curva": 1,
+          "tribuna": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "tribuna": 2,
+          "piazzale": 1,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e26.ondata1",
+      "eventi": [
+        {
+          "id": "pullman",
+          "tipo": "arrivo",
+          "settore": "parcheggi",
+          "pressione": 4
+        },
+        {
+          "id": "auto_blu",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        },
+        {
+          "id": "autorita",
+          "tipo": "cerimonia",
+          "settore": "tribuna_autorita",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "pullman_sparsi",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e26.ch.pullman_sparsi",
+          "commento": "testi:e26.ch.pullman_sparsi.vice",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "raduna_pullman",
+              "testo": "testi:e26.op.raduna_pullman",
+              "costo": "testi:e26.op.raduna_pullman.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.raduna_pullman.r"
+            },
+            {
+              "id": "lascia_parcheggiare",
+              "testo": "testi:e26.op.lascia_parcheggiare",
+              "costo": "testi:e26.op.lascia_parcheggiare.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.lascia_parcheggiare.r"
+            }
+          ]
+        },
+        {
+          "id": "auto_autorita",
+          "fonte": "segreteria_comune",
+          "testo": "testi:e26.ch.auto_autorita",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "corridoio",
+              "testo": "testi:e26.op.corridoio",
+              "costo": "testi:e26.op.corridoio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.corridoio.r"
+            },
+            {
+              "id": "ingresso_laterale",
+              "testo": "testi:e26.op.ingresso_laterale",
+              "costo": "testi:e26.op.ingresso_laterale.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.ingresso_laterale.r"
+            }
+          ]
+        },
+        {
+          "id": "lista_ospiti",
+          "fonte": "cerimoniale",
+          "testo": "testi:e26.ch.lista_ospiti",
+          "commento": "testi:e26.ch.lista_ospiti.vice",
+          "settore": "tribuna_autorita",
+          "opzioni": [
+            {
+              "id": "fai_entrare",
+              "testo": "testi:e26.op.fai_entrare",
+              "costo": "testi:e26.op.fai_entrare.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.fai_entrare.r"
+            },
+            {
+              "id": "controlla_inviti",
+              "testo": "testi:e26.op.controlla_inviti",
+              "costo": "testi:e26.op.controlla_inviti.c",
+              "effetti": [
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.controlla_inviti.r"
+            },
+            {
+              "id": "mediatore_tribuna",
+              "testo": "testi:e26.op.mediatore_tribuna",
+              "costo": "testi:e26.op.mediatore_tribuna.c",
+              "effetti": [
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.mediatore_tribuna.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e26.ondata2",
+      "eventi": [
+        {
+          "id": "cori_ospiti",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "cori_casa",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 3
+        },
+        {
+          "id": "diretta",
+          "tipo": "cerimonia",
+          "settore": "tribuna_autorita",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "fumogeni_finale",
+          "fonte": "centrale_radio",
+          "testo": "testi:e26.ch.fumogeni_finale",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_fumogeni",
+              "testo": "testi:e26.op.steward_fumogeni",
+              "costo": "testi:e26.op.steward_fumogeni.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.steward_fumogeni.r"
+            },
+            {
+              "id": "lascia_fumo",
+              "testo": "testi:e26.op.lascia_fumo",
+              "costo": "testi:e26.op.lascia_fumo.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.lascia_fumo.r"
+            },
+            {
+              "id": "regia",
+              "testo": "testi:e26.op.regia",
+              "costo": "testi:e26.op.regia.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e26.op.regia.r"
+            }
+          ]
+        },
+        {
+          "id": "cori_tribuna",
+          "fonte": "cerimoniale",
+          "testo": "testi:e26.ch.cori_tribuna",
+          "commento": "testi:e26.ch.cori_tribuna.vice",
+          "settore": "tribuna_autorita",
+          "opzioni": [
+            {
+              "id": "zittisci_curva",
+              "testo": "testi:e26.op.zittisci_curva",
+              "costo": "testi:e26.op.zittisci_curva.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.zittisci_curva.r"
+            },
+            {
+              "id": "sposta_ospite",
+              "testo": "testi:e26.op.sposta_ospite",
+              "costo": "testi:e26.op.sposta_ospite.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.sposta_ospite.r"
+            }
+          ]
+        },
+        {
+          "id": "parcheggi_ritardatari",
+          "fonte": "centrale_radio",
+          "testo": "testi:e26.ch.parcheggi_ritardatari",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "apri_cancello",
+              "testo": "testi:e26.op.apri_cancello",
+              "costo": "testi:e26.op.apri_cancello.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.apri_cancello.r"
+            },
+            {
+              "id": "uno_alla_volta",
+              "testo": "testi:e26.op.uno_alla_volta",
+              "costo": "testi:e26.op.uno_alla_volta.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.uno_alla_volta.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e26.ondata3",
+      "eventi": [
+        {
+          "id": "supplementari_ospiti",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "supplementari_casa",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "folla_fuori",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "invasione",
+          "fonte": "centrale_radio",
+          "testo": "testi:e26.ch.invasione",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "barriera_steward",
+              "testo": "testi:e26.op.barriera_steward",
+              "costo": "testi:e26.op.barriera_steward.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e26.op.barriera_steward.r"
+            },
+            {
+              "id": "speaker",
+              "testo": "testi:e26.op.speaker",
+              "costo": "testi:e26.op.speaker.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.speaker.r"
+            },
+            {
+              "id": "niente_invasione",
+              "testo": "testi:e26.op.niente_invasione",
+              "costo": "testi:e26.op.niente_invasione.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.niente_invasione.r"
+            }
+          ]
+        },
+        {
+          "id": "premiazione",
+          "fonte": "cerimoniale",
+          "testo": "testi:e26.ch.premiazione",
+          "commento": "testi:e26.ch.premiazione.vice",
+          "settore": "tribuna_autorita",
+          "opzioni": [
+            {
+              "id": "premiazione_campo",
+              "testo": "testi:e26.op.premiazione_campo",
+              "costo": "testi:e26.op.premiazione_campo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.premiazione_campo.r"
+            },
+            {
+              "id": "premiazione_tribuna",
+              "testo": "testi:e26.op.premiazione_tribuna",
+              "costo": "testi:e26.op.premiazione_tribuna.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.premiazione_tribuna.r"
+            }
+          ]
+        },
+        {
+          "id": "piazzale_maxischermo",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e26.ch.piazzale_maxischermo",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "spegni_schermo",
+              "testo": "testi:e26.op.spegni_schermo",
+              "costo": "testi:e26.op.spegni_schermo.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.spegni_schermo.r"
+            },
+            {
+              "id": "squadra_piazzale",
+              "testo": "testi:e26.op.squadra_piazzale",
+              "costo": "testi:e26.op.squadra_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.squadra_piazzale.r"
+            },
+            {
+              "id": "lascia_schermo",
+              "testo": "testi:e26.op.lascia_schermo",
+              "costo": "testi:e26.op.lascia_schermo.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.lascia_schermo.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e26.ondata4",
+      "eventi": [
+        {
+          "id": "festa",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 4
+        },
+        {
+          "id": "pullman_ritorno",
+          "tipo": "arrivo",
+          "settore": "parcheggi",
+          "pressione": 4
+        },
+        {
+          "id": "uscita_tribuna",
+          "tipo": "cerimonia",
+          "settore": "tribuna_autorita",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "carosello",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e26.ch.carosello",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "percorso_carosello",
+              "testo": "testi:e26.op.percorso_carosello",
+              "costo": "testi:e26.op.percorso_carosello.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.percorso_carosello.r"
+            },
+            {
+              "id": "blocca_carosello",
+              "testo": "testi:e26.op.blocca_carosello",
+              "costo": "testi:e26.op.blocca_carosello.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.blocca_carosello.r"
+            }
+          ]
+        },
+        {
+          "id": "pullman_sconfitti",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e26.ch.pullman_sconfitti",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "libera_pullman",
+              "testo": "testi:e26.op.libera_pullman",
+              "costo": "testi:e26.op.libera_pullman.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e26.op.libera_pullman.r"
+            },
+            {
+              "id": "pullman_aspettano",
+              "testo": "testi:e26.op.pullman_aspettano",
+              "costo": "testi:e26.op.pullman_aspettano.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e26.op.pullman_aspettano.r"
+            }
+          ]
+        },
+        {
+          "id": "foto_coppa",
+          "fonte": "segreteria_comune",
+          "testo": "testi:e26.ch.foto_coppa",
+          "commento": "testi:e26.ch.foto_coppa.vice",
+          "settore": "tribuna_autorita",
+          "opzioni": [
+            {
+              "id": "fai_foto",
+              "testo": "testi:e26.op.fai_foto",
+              "costo": "testi:e26.op.fai_foto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 3
+                }
+              ],
+              "risposta": "testi:e26.op.fai_foto.r"
+            },
+            {
+              "id": "niente_foto",
+              "testo": "testi:e26.op.niente_foto",
+              "costo": "testi:e26.op.niente_foto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e26.op.niente_foto.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e26.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e26.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e26.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
