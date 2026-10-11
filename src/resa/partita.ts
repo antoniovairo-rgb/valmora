@@ -27,6 +27,25 @@ export function tono(m: Missione, e: Esito): 'bene' | 'medio' | 'male' {
   return i === 0 ? 'bene' : i === m.esiti.length - 1 ? 'male' : 'medio';
 }
 
+/**
+ * Peso di una scelta per il verbale (C-005 R03, PROGETTO_E01_V2 §4): somma dei valori assoluti dei suoi
+ * effetti su tensione e pressione dei settori e sul credito. Rinforzi e variabili della storia non contano.
+ */
+export function pesoScelta(m: Missione, x: InCorso['scelte'][number]): number {
+  const o = sceltaLeggibile(m, x).opzione;
+  return (o?.effetti ?? []).reduce((a, e) => {
+    if ('tensione' in e || 'pressione' in e) return a + Math.abs(e.valore);
+    if (('aggiungi' in e && e.aggiungi === 'credito') || ('imposta' in e && e.imposta === 'credito')) return a + Math.abs(Number(e.valore) || 0);
+    return a;
+  }, 0);
+}
+
+/** Le scelte che hanno pesato di più: al massimo «quante», peso > 0, a parità di peso la prima fatta. */
+export function scelteDecisive(m: Missione, scelte: InCorso['scelte'], quante = 3) {
+  return scelte.map((x, i) => ({ x, i, peso: pesoScelta(m, x) })).filter((s) => s.peso > 0)
+    .sort((a, b) => b.peso - a.peso || a.i - b.i).slice(0, quante).sort((a, b) => a.i - b.i).map((s) => s.x);
+}
+
 /** Testi della chiamata e dell'opzione scelta, per il verbale. */
 export function sceltaLeggibile(m: Missione, x: InCorso['scelte'][number]) {
   const c = m.ondate[x.ondata - 1]?.chiamate?.find((k) => k.id === x.chiamata);

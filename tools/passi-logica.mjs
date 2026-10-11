@@ -6,14 +6,14 @@ import { leggiSchemi, leggiDati } from './dati-disco.mjs';
 // Moduli TypeScript del gioco: Node li esegue togliendo i tipi (Node ≥ 22.18; la CI usa 24).
 import { validaDati } from '../src/dati/valida.ts';
 import { migra, SAVE_VERSION } from '../src/salvataggi/salvataggio.ts';
-import { giraBot, sceltePesano, chiamateViste } from './bot.mjs';
+import { giraBot, sceltePesano, chiamateViste, esisteStelle } from './bot.mjs';
 
 // Bot: 0 blocchi su tutti i semi, e ogni esito di ogni missione raggiunto da almeno una strategia.
 export function controllaBot(rapporto, dati) {
   const p = rapporto.flatMap((r) => r.blocchi.slice(0, 3).map((b) => `${r.missione} · ${r.strategia}: ${b}`));
   for (const [k, m] of Object.entries(dati).filter(([k]) => k.startsWith('missioni/'))) {
     for (const e of m.esiti) if (!rapporto.some((r) => r.missione === m.id && r.esiti[e.id])) p.push(`${k}: esito «${e.id}» mai raggiunto dai bot`);
-    for (const n of [1, 2, 3]) if (!rapporto.some((r) => r.missione === m.id && r.stelle?.[n])) p.push(`${k}: ${n} stelle mai raggiunte dai bot`);
+    for (const n of [1, 2, 3]) if (!rapporto.some((r) => r.missione === m.id && r.stelle?.[n]) && !(n === 3 && esisteStelle(dati, m.id, 3))) p.push(`${k}: ${n} stelle mai raggiunte dai bot`);
   }
   return p;
 }

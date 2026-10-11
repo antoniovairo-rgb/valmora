@@ -4,6 +4,7 @@
 // La tensione si vede SOLO come colore (D-055): classe liv-0…liv-5, mai il numero.
 import { lazy, Suspense, useMemo, useRef, useState } from 'react';
 import type { Disposizione, Missione } from '../../logica/tipi.ts';
+import { spento } from '../../interruttori.ts';
 import { t } from '../dati.ts';
 import { Icona, iconaRisorsa } from '../icone.tsx';
 import { livello } from '../partita.ts';
@@ -38,17 +39,18 @@ export function Mappa(p: MappaProps) {
   const settori = useMemo(() => p.m.mappa.settori.map((s, i, tutti) => ({ ...s, pos: s.pos ?? { x: ((i + 1) * 100) / (tutti.length + 1), y: 50 } })), [p.m]);
   const accesi = useMemo(() => new Set(p.accesi ?? []), [p.accesi]);
   const punti: PuntoMappa[] = useMemo(() => settori.map((s) => ({
-    id: s.id, x: s.pos.x, y: s.pos.y, acceso: accesi.has(s.id), livello: p.tensione ? livello(p.tensione[s.id] ?? 0) : null,
+    id: s.id, tipo: s.tipo, x: s.pos.x, y: s.pos.y, acceso: accesi.has(s.id), livello: p.tensione ? livello(p.tensione[s.id] ?? 0) : null,
   })), [settori, accesi, p.tensione]);
-  // Il campo si disegna fra le prime due curve, se la mappa ne ha (stadio); altrimenti niente campo.
-  const campo = useMemo(() => {
-    const [a, b] = settori.filter((s) => s.tipo === 'curva');
-    return a && b ? { x: (a.pos.x + b.pos.x) / 2, y: (a.pos.y + b.pos.y) / 2, larghezza: Math.abs(b.pos.x - a.pos.x) * 0.6 } : null;
-  }, [settori]);
+  // Margine interno = mezzo punto del settore, come nel CSS (.settore), così Pixi e HTML coincidono.
+  // e in basso c'è in più lo spazio per i nomi (--margine-nomi): stessi conti di .settore in stile.css.
+  const margine = useMemo(() => {
+    const v = (k: string, d: number) => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(k)) || d;
+    return { lato: v('--settore', 44) / 2, sotto: v('--margine-nomi', 34) };
+  }, []);
 
   return (
     <div className="mappa" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
-      {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} campo={campo} pronto={() => setPronta(true)} /></Suspense>}
+      {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} pronto={() => setPronta(true)} /></Suspense>}
       {settori.map((s) => {
         const liv = p.tensione ? livello(p.tensione[s.id] ?? 0) : null;
         const lato = s.pos.x < 30 ? 'sinistra' : s.pos.x > 70 ? 'destra' : 'centro';
@@ -63,9 +65,9 @@ export function Mappa(p: MappaProps) {
             {qui.length > 0 && (
               <span className="settore-unita">
                 {qui.map(([r, n]) => (
-                  <button key={r} type="button" className="pastiglia" data-presenza={`${r}@${s.id}`} disabled={!p.onTogli}
+                  <button key={r} type="button" className={spento('C05R05') ? 'pastiglia-rossa' : 'tocco-pastiglia'} data-presenza={`${r}@${s.id}`} disabled={!p.onTogli}
                     aria-label={`ritira ${t(`risorsa.${r}`)} da ${nome}`} onClick={() => p.onTogli?.(r, s.id)}>
-                    <Icona di={iconaRisorsa(r)} />{n}
+                    <span className="pastiglia"><Icona di={iconaRisorsa(r)} />{n}</span>
                   </button>
                 ))}
               </span>

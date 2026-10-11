@@ -1,38 +1,84 @@
 /* Design system: l'UNICO file della resa dove si scrivono colori, raggi, spaziature e misure.
-   Il passo «token» della catena grafica segnala ogni valore scritto a mano altrove. */
+   Il passo «token» della catena grafica segnala ogni valore scritto a mano altrove.
+   Stile C «graphic novel» (D-066): giallo con retino, nero, magenta, ciano; bordi neri spessi e
+   ombre piatte. Mappa aerea al tramonto (D-067): i suoi colori stanno qui sotto, «--mappa-*». */
 :root {
-  --colore-fondo: #12161c;
-  --colore-superficie: #1c232c;
-  --colore-superficie-2: #26303b;
-  --colore-testo: #e8ecf1;
-  --colore-testo-tenue: #9aa7b5;
-  --colore-accento: #f2b84b;
-  --colore-accento-testo: #12161c;
-  --colore-bene: #5cc28a;
-  --colore-male: #e5684f;
-  --colore-medio: #e3c25a;
-  --colore-bordo: #33404d;
+  /* Fumetto */
+  --giallo: #ffd400;
+  --nero: #111111;
+  --bianco: #ffffff;
+  --magenta: #e0115f;
+  --ciano: #00c2ff;
+  --rosa-tenue: #ffeef4;
+  --grigio-testo: #444444;
+  --retino-punto: rgba(0, 0, 0, 0.12);
+  --retino: radial-gradient(var(--retino-punto) 1.2px, transparent 1.3px);
+  --retino-passo: 9px 9px;
 
-  /* Sala operativa (D-049): mappa tattica e radio */
-  --colore-mappa: #0d1218;
-  --colore-griglia: #1d2a35;
-  --colore-traccia: #2f4a5c;
-  --colore-campo: #16302a;
-  --colore-acceso: #4fc3f7;
-  --colore-radio: #0f1a14;
-  --colore-radio-testo: #9fe8b0;
-  --colore-ombra: #000000;
+  --colore-fondo: var(--giallo);
+  --colore-testo: var(--nero);
+  --colore-testo-tenue: var(--grigio-testo);
+  --colore-superficie: var(--bianco);
+  --colore-accento: var(--ciano);
+  --colore-bene: #0f9d4f;
+  --colore-male: var(--magenta);
+  --colore-medio: #c26a00;
 
   /* Tensione per settore (D-055): solo colore, dal verde al rosso, mai il numero */
-  --tensione-0: #3fae6b;
-  --tensione-1: #8cc152;
-  --tensione-2: #e3c25a;
-  --tensione-3: #f0943a;
-  --tensione-4: #e5684f;
-  --tensione-5: #c0392b;
+  --tensione-0: #2fe07a;
+  --tensione-1: #a6e22e;
+  --tensione-2: #ffd400;
+  --tensione-3: #ff9a1f;
+  --tensione-4: #ff4b3a;
+  --tensione-5: #ff1f6b;
 
-  --raggio-1: 6px;
-  --raggio-2: 12px;
+  /* Mappa aerea al tramonto (D-067) */
+  --mappa-asfalto: #2a2d33;
+  --mappa-isolato: #4a4b4f;
+  --mappa-tetto-1: #8f5a44;
+  --mappa-tetto-2: #a0664b;
+  --mappa-tetto-3: #7a4f3e;
+  --mappa-tetto-4: #9b9a95;
+  --mappa-tetto-5: #86847f;
+  --mappa-tetto-6: #6e6c69;
+  --mappa-tetto-7: #b07252;
+  --mappa-albero-1: #2f5a26;
+  --mappa-albero-2: #3d6b2c;
+  --mappa-albero-3: #4a7a33;
+  --mappa-auto-1: #d8d4cc;
+  --mappa-auto-2: #2b4d8c;
+  --mappa-auto-3: #a02c2c;
+  --mappa-auto-4: #e2b33c;
+  --mappa-auto-5: #1c1c1c;
+  --mappa-marciapiede: #b9b4a8;
+  --mappa-viale: #33363c;
+  --mappa-piazzale: #5b5a56;
+  --mappa-siepe: #355b2e;
+  --mappa-gradinata-1: #3b3f48;
+  --mappa-gradinata-2: #444955;
+  --mappa-prato-1: #2f8f3c;
+  --mappa-prato-2: #38a046;
+  --mappa-tetto-stadio: #ebf0f5;
+  --mappa-faro: #fff8dc;
+  --mappa-velo-alto: #140a3c;
+  --mappa-velo-basso: #ff5a28;
+  --mappa-curva-a: #ff7a1a;
+  --mappa-curva-b: #2fa7ff;
+  --mappa-folla-a: #ff8a2a;
+  --mappa-folla-b: #45b4ff;
+  --mappa-folla-1: #e9e4da;
+  --mappa-folla-2: #c9c2b4;
+  --mappa-folla-3: #9a958c;
+  --mappa-corteo-1: #ff7a1a;
+  --mappa-corteo-2: #f3eee4;
+
+  /* Città degli episodi (D-061) */
+  --citta-fiume: #1f6fa8;
+  --citta-parco: #3d7a35;
+
+  --raggio-1: 4px;
+  --raggio-2: 8px;
+  --raggio-fumetto: 22px;
   --raggio-tondo: 999px;
 
   --spazio-1: 4px;
@@ -42,24 +88,53 @@
   --spazio-5: 24px;
   --spazio-6: 32px;
 
-  --testo-mini: 11px;
+  --bordo: 3px;
+  --bordo-fine: 2px;
+  --ombra-1: 5px 5px 0 var(--nero);
+  --ombra-2: 7px 7px 0 var(--nero);
+  --ombra-premuto: 2px 2px 0 var(--nero);
+  --spinta: 3px;
+  --inclinazione: -8deg;
+  --rotazione-timbro: 4deg;
+  --rotazione-avatar: -4deg;
+  --punta-fumetto: 16px;
+  --punta-fumetto-lato: 9px;
+  --punta-fumetto-x: 34px;
+
+  --testo-mini: 12px; /* minimo leggibile (C-005 R06) */
   --testo-piccolo: 13px;
   --testo-base: 16px;
   --testo-grande: 20px;
   --testo-titolo: 26px;
+  --testo-numero: 34px;
+  --testo-logo: 44px;
   --linea: 1.45;
   --linea-stretta: 1.2;
-  --bordo: 1px;
+  --spaziatura-maiuscolo: 0.06em;
+  --spaziatura-stretta: -0.01em;
+  --spaziatura-etichetta: 0.04em;
+  --spazio-px: 1px;
   --opaco: 0.4;
   --opaco-tenue: 0.55;
-  --bordo-forte: 2px;
-  --settore: 48px;
-  --pastiglia: 22px;
-  --icona: 18px;
-  --mappa-proporzione: 1 / 1;
-  --nome-max: 7em;
 
   --larghezza-max: 480px;
   --tocco-min: 44px;
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --settore: 44px;
+  --pastiglia: 24px;
+  --icona: 18px;
+  --stella: 26px;
+  --avatar: 42px;
+  --tasto-lettera: 34px;
+  --nome-max: 7.5em;
+  --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */
+  --mappa-proporzione: 1 / 1;
+  --citta-proporzione: 4 / 5;
+
+  --font-titoli: "Space Grotesk", system-ui, sans-serif;
+  --font: Inter, system-ui, sans-serif;
 }
+
+/* Interruttori rossi della resa (globalThis.__NO_C05R06 / __NO_C05R07): rimettono i difetti del collaudo
+   C-005 per misurare il braccio rosso di tools/foto.mjs. Mai attivi nel gioco. */
+.rosso-c05r06 { --testo-mini: 10px; --margine-nomi: 0px; }
+.rosso-c05r07 .testata-t small { --spaziatura-maiuscolo: 0.3em; }
