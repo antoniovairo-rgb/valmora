@@ -15,6 +15,7 @@ import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
 import { valutaEpisodio } from '../src/logica/episodi.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { URL_APK } from '../src/resa/collegamenti.ts';
+import { GAME_VERSION } from '../src/versione.ts';
 
 export const LARGHEZZE = [360, 375, 412];
 // VALMORA_LARGHEZZE=360 limita le larghezze (solo per le misure a mano, non nella catena).
@@ -166,6 +167,11 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         await scena('titolo');
         const apk = await pagina.getAttribute('[data-azione="apk"]', 'href').catch(() => null);
         atteso(`nella home manca il link all'APK (trovato «${apk}»)`, apk === URL_APK);
+        // PO-032: la home dice versione e build vera (non «sviluppo»); interruttore rosso C05S09
+        const versione = await pagina.getAttribute('[data-versione]', 'data-versione').catch(() => null);
+        const riga = (await pagina.locator('[data-versione]').textContent().catch(() => '')) ?? '';
+        atteso(`home: versione «${versione}» invece di «${GAME_VERSION}»`, versione === GAME_VERSION);
+        atteso(`home: build non valida in «${riga}»`, /build \S+/.test(riga) && !/build sviluppo/.test(riga));
         await foto();
         await premi('[data-azione="crediti"]'); await scena('crediti'); await foto();
         await pagina.getByRole('button', { name: 'Torna al titolo' }).click(); await scena('titolo');
