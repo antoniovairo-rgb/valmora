@@ -35,6 +35,12 @@ p { margin: var(--spazio-2) 0; }
 .pulsante:focus-visible, .opzione:focus-visible, .unita:focus-visible, .settore-punto:focus-visible { outline: var(--bordo) solid var(--magenta); outline-offset: var(--spazio-1); }
 .azioni { display: flex; gap: var(--spazio-3); flex-wrap: nowrap; }
 .azioni .pulsante { margin: var(--spazio-3) 0; }
+/* PO-063/PO-065: home più compatta, logo, pulsanti secondari piccoli */
+.logo-icona { width: var(--logo-icona); height: var(--logo-icona); display: block; margin-bottom: var(--spazio-2); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); }
+.secondari { display: flex; gap: var(--spazio-2); margin: var(--spazio-3) 0; }
+.pulsante.piccolo { flex: 1; margin: 0; min-height: var(--tocco-min); padding: var(--spazio-1) var(--spazio-2); background: var(--bianco); font-size: var(--testo-piccolo); gap: var(--spazio-1); }
+.avviso-finzione { text-align: center; }
+.guida-azioni .pulsante { flex: 1; }
 .stagioni { display: flex; gap: var(--spazio-2); }
 .stagioni .pulsante { flex: 1; margin: 0 0 var(--spazio-3); padding: var(--spazio-2); font-size: var(--testo-piccolo); }
 

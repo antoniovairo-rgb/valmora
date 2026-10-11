@@ -13,7 +13,6 @@ import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, mission
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
 import { valutaEpisodio } from '../src/logica/episodi.ts';
 import { creaCaso } from '../src/logica/caso.ts';
-import { URL_APK } from '../src/resa/collegamenti.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
 export const LARGHEZZE = [360, 375, 412];
@@ -175,8 +174,9 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         await pagina.evaluate(() => localStorage.clear());
         await pagina.reload();
         await scena('titolo');
-        const apk = await pagina.getAttribute('[data-azione="apk"]', 'href').catch(() => null);
-        atteso(`nella home manca il link all'APK (trovato «${apk}»)`, apk === URL_APK);
+        // PO-064: niente più APK nella home (l'app passa da Play con l'AAB); PO-065: c'è il logo
+        atteso('home: c\'è ancora il link all\'APK', (await pagina.locator('[data-azione="apk"]').count()) === 0);
+        atteso('home: manca il logo', (await pagina.locator('[data-logo]').count()) === 1);
         // PO-032: la home dice versione e build vera (non «sviluppo»); interruttore rosso C05S09
         const versione = await pagina.getAttribute('[data-versione]', 'data-versione').catch(() => null);
         const riga = (await pagina.locator('[data-versione]').textContent().catch(() => '')) ?? '';

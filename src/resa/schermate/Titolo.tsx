@@ -1,9 +1,11 @@
 import { Capacitor } from '@capacitor/core';
-import { Download, Heart, Info, Lightbulb, Play, RotateCcw, Smartphone } from 'lucide-react';
+import { BookOpen, Heart, Info, Lightbulb, Play, RotateCcw, Smartphone } from 'lucide-react';
+import { useState } from 'react';
 import { GAME_VERSION } from '../../versione.ts';
 import { spento } from '../../interruttori.ts';
 import { BUILD } from '../build.ts';
-import { mailIdee, URL_APK, URL_DONAZIONE } from '../collegamenti.ts';
+import { mailIdee, URL_DONAZIONE } from '../collegamenti.ts';
+import { Guida } from './Guida.tsx';
 import { giaInstallata, suIphone, useInstallazione } from '../installa.ts';
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
@@ -11,9 +13,12 @@ import { Icona } from '../icone.tsx';
 export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi: () => void; crediti: () => void }) {
   const [nome, sotto] = t('gioco.titolo').split(/\s+[–-]\s+/);
   const inst = useInstallazione();
+  const [guida, setGuida] = useState(false);
+  if (guida) return <Guida chiudi={() => setGuida(false)} />;
   return (
     <>
       <div className="logo">
+        <img className="logo-icona" src="./icone/icona.svg" alt="" aria-hidden="true" data-logo />
         <h1 className="logo-nome">{nome}</h1>
         {sotto && <div className="logo-sotto">{sotto}</div>}
       </div>
@@ -22,16 +27,15 @@ export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi:
       <button className={`pulsante${p.puoRiprendere ? ' secondario' : ''}`} onClick={p.nuova}><Icona di={Play} />Nuova partita</button>
       {inst.pronta && <button className="pulsante" data-azione="installa" onClick={inst.installa}><Icona di={Smartphone} />Installa sul telefono</button>}
       {!inst.pronta && !giaInstallata() && suIphone() && <p className="tenue" data-installa-iphone>Per installarla: Condividi → «Aggiungi alla schermata Home».</p>}
-      {!Capacitor.isNativePlatform() && <a className="pulsante secondario" data-azione="apk" href={URL_APK}><Icona di={Download} />Scarica l'app Android (APK di prova)</a>}
-      <button className="pulsante secondario" data-azione="crediti" onClick={p.crediti}><Icona di={Info} />Crediti</button>
-      <div className="scheda" data-sostieni>
-        <span className="etichetta">Sostieni il progetto</span>
-        <p className="tenue">Valmora è gratuito e senza pubblicità. Se ti piace, puoi aiutarci; le idee e le segnalazioni ci aiutano allo stesso modo.</p>
+      <button className="pulsante secondario" data-azione="guida" onClick={() => setGuida(true)}><Icona di={BookOpen} />{t('guida.titolo')}</button>
+      {/* PO-063: pulsanti secondari piccoli su una riga; PO-064: niente più APK (l'app passa da Play, test chiusi con l'AAB) */}
+      <div className="secondari" data-sostieni>
+        <button className="pulsante piccolo" data-azione="crediti" onClick={p.crediti}><Icona di={Info} />Crediti</button>
         {/* PO-050: la donazione solo dal browser, non nell'app Android, finché la regola Play non è verificata (REGOLE_PLAY §7) */}
-        {!Capacitor.isNativePlatform() && <a className="pulsante secondario" data-azione="dona" href={URL_DONAZIONE} target="_blank" rel="noopener noreferrer"><Icona di={Heart} />Sostieni il progetto</a>}
-        <button type="button" className="pulsante secondario" data-azione="idee" onClick={() => { location.href = mailIdee(GAME_VERSION); }}><Icona di={Lightbulb} />Idee e segnalazioni</button>
+        {!Capacitor.isNativePlatform() && <a className="pulsante piccolo" data-azione="dona" href={URL_DONAZIONE} target="_blank" rel="noopener noreferrer"><Icona di={Heart} />Sostieni</a>}
+        <button type="button" className="pulsante piccolo" data-azione="idee" onClick={() => { location.href = mailIdee(GAME_VERSION); }}><Icona di={Lightbulb} />Idee</button>
       </div>
-      <div className="scheda"><p className="tenue">{t('gioco.avviso')}</p></div>
+      <p className="tenue avviso-finzione">{t('gioco.avviso')}</p>
     </>
   );
 }
