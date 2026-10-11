@@ -118,6 +118,8 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
       e.effetti.forEach((x: Obj, j: number) => effetto(`${k}.esiti[${i}].effetti[${j}]`, x));
       testo(`${k}.esiti[${i}].verbale`, e.verbale);
     });
+    if (m.stelle) { condizione(`${k}.stelle.due`, m.stelle.due); condizione(`${k}.stelle.tre`, m.stelle.tre); }
+    if (m.esiti.every((e: Obj) => e.fallita)) p.push(`${k}: tutti gli esiti sono fallimenti (missione impossibile da superare)`);
     if (!sempreVera(m.esiti.at(-1)?.se)) p.push(`${k}: l'ultimo esito non ha condizione vuota (missione senza uscita garantita)`);
     for (const f of m.fili) if (!fili.has(f)) p.push(`${k}: filo «${f}» non esiste in data/fili/`);
   }

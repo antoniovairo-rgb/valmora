@@ -11,7 +11,7 @@ const dich = new Map<string, Dichiarazione>([
 ]);
 const v0 = variabiliIniziali(dich.values());
 const missione = (): Missione => ({
-  id: 'm', stagione: 1, episodio: 1, titolo: 'testi:m.t', disponibile_se: {}, briefing: [], fili: [],
+  id: 'm', stagione: 1, episodio: 1, titolo: 'testi:m.t', disponibile_se: {}, briefing: [], fili: [], stelle: { due: { var: 'tensione_max', al_massimo: 1 }, tre: { var: 'b', uguale: true } },
   mappa: { settori: [{ id: 'strada', tipo: 'strada' }, { id: 'curva', tipo: 'curva' }],
     risorse: { squadre: { quantita: 2, efficacia: { strada: 2, curva: 1 } }, mediatore: { quantita: 1, efficacia: {}, dimezza: ['corteo'] } } },
   ondate: [
@@ -56,9 +56,30 @@ describe('missione a scene', () => {
     expect(s.tensione.strada).toBe(5);
     expect(s.riposo).toEqual({ squadre: 1 });                            // la squadra in strada riposa
     expect(disponibili(m, s)).toEqual({ squadre: 2, mediatore: 1 });     // 2 + 1 rinforzo − 1 a riposo
-    s = chiudiOndata(m, schiera(m, s, { squadre: { curva: 2 } }), dich); // strada coperta (0 pressione): 5 → 2
-    expect(s.tensione).toEqual({ strada: 2, curva: 0 });
+    const vuota = chiudiOndata(m, schiera(m, s, { squadre: { curva: 2 } }), dich); // strada lasciata vuota: resta 5 (C01-O01)
+    expect(vuota.tensione).toEqual({ strada: 5, curva: 0 });
+    s = chiudiOndata(m, schiera(m, s, { squadre: { strada: 1, curva: 1 } }), dich); // strada presidiata e calma: 5 → 2
+    expect(s.tensione.strada).toBe(2);
     expect(s.variabili.tensione_max).toBe(5);
+  });
+  it('niente nuovo schieramento dopo le chiamate: i rinforzi contano dall\'ondata dopo (C01-A01)', () => {
+    const m = missione();
+    let s = schiera(m, iniziaMissione(m, v0, dich), { squadre: { strada: 2 } });
+    s = rispondi(m, s, 'k1', 'rinforzi', dich);
+    expect(() => schiera(m, s, { squadre: { strada: 3 } })).toThrow(/prima delle chiamate/);
+  });
+  it('la riserva non scende sotto zero unità (C01-A04)', () => {
+    const m = missione();
+    m.ondate[0]!.chiamate![0]!.opzioni[1]!.effetti = [{ riserva: 'squadre', valore: -9 }];
+    let s = schiera(m, iniziaMissione(m, v0, dich), {});
+    s = rispondi(m, s, 'k1', 'rinforzi', dich);
+    expect(s.riserva.squadre).toBe(-2);
+  });
+  it('disposizioni malformate rifiutate con un errore chiaro (C01-A05/A06)', () => {
+    const m = missione(); const s = iniziaMissione(m, v0, dich);
+    expect(controllaDisposizione(m, s, { constructor: { strada: 1 } } as never)).toEqual(['risorsa «constructor» non disponibile in m']);
+    expect(controllaDisposizione(m, s, { squadre: 3 } as never)).toEqual(['squadre: serve un elenco settore → unità']);
+    expect(controllaDisposizione(m, s, null as never)).toEqual(['la disposizione non è un elenco di risorse']);
   });
   it('disposizioni oltre le unità disponibili rifiutate', () => {
     const m = missione();

@@ -9,7 +9,7 @@ const dich = new Map<string, Dichiarazione>([
 ]);
 const v0 = variabiliIniziali(dich.values());
 const missione = (): Missione => ({
-  id: 'm', stagione: 1, episodio: 1, titolo: 'testi:m.t', disponibile_se: {}, briefing: [], fili: [],
+  id: 'm', stagione: 1, episodio: 1, titolo: 'testi:m.t', disponibile_se: {}, briefing: [], fili: [], stelle: { due: { var: 'tensione_max', al_massimo: 1 }, tre: { var: 'b', uguale: true } },
   mappa: { settori: [{ id: 'strada', tipo: 'strada' }, { id: 'curva', tipo: 'curva' }],
     risorse: { squadre: { quantita: 2, efficacia: { strada: 2, curva: 1 } }, mediatore: { quantita: 1, efficacia: {}, dimezza: ['corteo'] } } },
   ondate: [{ n: 1, eventi: [{ id: 'c', tipo: 'corteo', settore: 'strada', pressione: 7 }, { id: 'k', tipo: 'cori', settore: 'curva', pressione: 2, se: { var: 'b', uguale: true } }] }],
