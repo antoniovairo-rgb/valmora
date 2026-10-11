@@ -1,0 +1,45 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="fonts.css"><script src="comune.js"></script>
+<style>
+:root{--bg0:#060a14;--bg1:#0d1526;--vetro:rgba(255,255,255,.06);--bordo:rgba(255,255,255,.10);--testo:#eaf0ff;--tenue:#8b97b3;--ciano:#00f0ff;--ambra:#ffd000;--rosso:#ff4d6a;--verde:#3ddc97}
+*{box-sizing:border-box;margin:0}
+body{font-family:Inter,sans-serif;color:var(--testo);background:radial-gradient(90% 50% at 15% 0%,rgba(255,61,201,.35),transparent 60%),radial-gradient(90% 50% at 100% 20%,rgba(0,240,255,.25),transparent 60%),#060818;min-height:100vh;padding:14px 14px 24px}
+.hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.ep{font:500 11px 'Space Grotesk';letter-spacing:.18em;text-transform:uppercase;color:var(--ciano)}
+.pill{display:flex;gap:6px}.pill span{width:26px;height:6px;border-radius:6px;background:rgba(255,255,255,.12)}.pill span.on{background:linear-gradient(90deg,#00f0ff,#ff3dc9);box-shadow:0 0 12px rgba(77,225,255,.6)}
+.mappa{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--bordo);background:linear-gradient(180deg,#0b1730,#081022);box-shadow:0 30px 60px -20px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.06)}
+.mappa svg{display:block;width:100%}
+.etich{position:absolute;transform:translate(-50%,0);font:500 10px 'Space Grotesk';letter-spacing:.04em;color:#cfe0ff;text-shadow:0 1px 6px #000;white-space:nowrap}
+.badge{position:absolute;transform:translate(-50%,-100%);display:flex;gap:4px}
+.badge b{font:600 10px Inter;padding:3px 6px;border-radius:8px;background:rgba(10,18,36,.85);border:1px solid var(--bordo);backdrop-filter:blur(6px)}
+.radio{margin-top:14px;padding:16px;border-radius:22px;background:linear-gradient(160deg,rgba(77,225,255,.10),rgba(123,140,255,.05) 40%,var(--vetro));border:1px solid rgba(77,225,255,.25);backdrop-filter:blur(14px);box-shadow:0 20px 40px -24px rgba(77,225,255,.5)}
+.fonte{display:flex;align-items:center;gap:10px}
+.avatar{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#1d3a6b,#0f2140);border:1px solid var(--bordo);font:700 15px 'Space Grotesk'}
+.nome{font:600 14px Inter}.aff{font:500 11px Inter;color:var(--ambra)}
+.onda{margin-left:auto;display:flex;gap:2px;align-items:center;height:22px}.onda i{width:3px;border-radius:2px;background:var(--ciano);opacity:.85}
+.msg{margin-top:12px;font:500 18px/1.35 'Space Grotesk';letter-spacing:-.01em}
+.vice{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.22);font:400 13px/1.45 Inter;color:#ffd9a3}
+.vice b{color:var(--ambra);font-weight:600}
+.scelte{margin-top:14px;display:grid;gap:10px}
+.scelta{padding:14px 16px;border-radius:18px;background:var(--vetro);border:1px solid var(--bordo);display:flex;gap:12px;align-items:center}
+.scelta.prima{background:linear-gradient(135deg,#00f0ff,#ff3dc9);color:#061022;border:0;box-shadow:0 14px 30px -12px rgba(77,225,255,.7)}
+.scelta .t{font:600 15px Inter}.scelta .c{font:500 11px Inter;opacity:.75;margin-top:3px}
+.ico{width:34px;height:34px;flex:none;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.08);font-size:16px}
+.scelta.prima .ico{background:rgba(6,16,34,.15)}
+</style></head><body>
+<div class="hud"><div class="ep">Episodio 1 · Ondata 1 · Chiamata 1/5</div><div class="pill"><span class="on"></span><span></span><span></span></div></div>
+<div class="mappa" id="m"></div>
+<div class="radio">
+ <div class="fonte"><div class="avatar">IS</div><div><div class="nome">Informatore di strada</div><div class="aff">● affidabilità bassa</div></div><div class="onda" id="onda"></div></div>
+ <div class="msg">«È partito! Duecento persone dalle fonderie, cori e bandiere. Nessuno ha avvisato nessuno.»</div>
+ <div class="vice"><b>Il vice</b> · Il ragazzo delle sciarpe. Ha ragione più spesso di quanto gli si dia credito. Non dirglielo.</div>
+</div>
+<div class="scelte">
+ <div class="scelta prima"><div class="ico">🛡️</div><div><div class="t">Scortalo fino allo stadio</div><div class="c">Una squadra impegnata per tutta la giornata</div></div></div>
+ <div class="scelta"><div class="ico">✋</div><div><div class="t">Fermalo a metà strada</div><div class="c">Rischi di farlo arrivare più arrabbiato</div></div></div>
+ <div class="scelta"><div class="ico">👁️</div><div><div class="t">Lascialo passare, osserva</div><div class="c">Nessun costo, nessuna garanzia</div></div></div>
+</div>
+<script>
+mappa(document.getElementById('m'),{sfondo:'#070b1f',griglia:'rgba(140,120,255,.10)',blocchi:'rgba(140,120,255,.08)',strada:'rgba(255,61,201,.30)',stradaAttiva:'#00f0ff',stadio:['#1b1150','#0d0a2e'],bordoStadio:'#ff3dc9',anello:'rgba(255,61,201,.25)',prato:'#0e3b3a',righe:'#00f0ff',caldo:['#00ffa3','#ffd000','#ff2e63'],testo:'#f2f0ff',ombraTesto:'0 0 8px #000,0 0 2px #000',font:'600 10px Space Grotesk',badgeBg:'rgba(12,8,40,.9)',badgeTesto:'#fff',badgeBordo:'1px solid rgba(255,61,201,.6)',bordoPin:'#070b1f',ombraStadio:'rgba(255,61,201,.25)'});
+document.getElementById('onda').innerHTML=[6,12,18,10,20,14,8,16,22,12,6].map(h=>`<i style="height:${h}px"></i>`).join('');
+</script></body></html>
