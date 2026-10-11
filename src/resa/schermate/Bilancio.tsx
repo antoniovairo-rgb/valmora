@@ -2,6 +2,7 @@
 // scoperto, cosa manca per la stella successiva. I conti sono in src/logica/bilancio.ts; qui solo parole.
 // Rosso del motore: __NO_C10B01 (aiuti e pesi vuoti).
 import { ThumbsDown, ThumbsUp, ShieldAlert, Star } from 'lucide-react';
+import { Fragment, type ReactNode } from 'react';
 import { bilancio, type Impatto, type Requisito, type VoceScelta } from '../../logica/bilancio.ts';
 import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
@@ -36,27 +37,28 @@ function Voce(p: { m: Missione; v: VoceScelta }) {
   );
 }
 
-export function Bilancio(p: { m: Missione; esito: EsitoMissione; stelle: number }) {
+/** Le sezioni del bilancio, una per passo del verbale (S-10): aiuti, pesi, scoperti con la stella dopo. */
+export function sezioniBilancio(p: { m: Missione; esito: EsitoMissione; stelle: number }): ReactNode[] {
   const b = bilancio(p.m, p.esito);
   const lista = p.stelle >= 3 ? null : p.stelle === 2 ? b.stelle.tre : b.stelle.due;
   const manca = lista && prossimoRequisito(lista);
-  return (
-    <div className="bilancio" data-bilancio>
-      <section className="scheda bilancio-aiuti" data-sezione="aiuti">
-        <h3><Icona di={ThumbsUp} />{t('bilancio.aiuti')}</h3>
-        {b.aiuti.length ? <ul>{b.aiuti.map((v, i) => <Voce key={i} m={p.m} v={v} />)}</ul> : <p className="tenue">Nessuna scelta ha dato una mano.</p>}
-      </section>
-      <section className="scheda bilancio-pesi" data-sezione="pesi">
-        <h3><Icona di={ThumbsDown} />{t('bilancio.pesi')}</h3>
-        {b.pesi.length ? <ul>{b.pesi.map((v, i) => <Voce key={i} m={p.m} v={v} />)}</ul> : <p className="tenue">Nessuna scelta ti è costata.</p>}
-      </section>
-      <section className="scheda bilancio-scoperti" data-sezione="scoperti">
+  return [
+    <section key="aiuti" className="scheda bilancio bilancio-aiuti" data-sezione="aiuti">
+      <h3><Icona di={ThumbsUp} />{t('bilancio.aiuti')}</h3>
+      {b.aiuti.length ? <ul>{b.aiuti.map((v, i) => <Voce key={i} m={p.m} v={v} />)}</ul> : <p className="tenue">Nessuna scelta ha dato una mano.</p>}
+    </section>,
+    <section key="pesi" className="scheda bilancio bilancio-pesi" data-sezione="pesi">
+      <h3><Icona di={ThumbsDown} />{t('bilancio.pesi')}</h3>
+      {b.pesi.length ? <ul>{b.pesi.map((v, i) => <Voce key={i} m={p.m} v={v} />)}</ul> : <p className="tenue">Nessuna scelta ti è costata.</p>}
+    </section>,
+    <Fragment key="resto">
+      <section className="scheda bilancio bilancio-scoperti" data-sezione="scoperti">
         <h3><Icona di={ShieldAlert} />{t('bilancio.scoperti')}</h3>
         {b.scoperti.length
           ? <ul>{b.scoperti.map((s, i) => <li key={i} data-scoperto={`${s.ondata}:${s.settore}`}>Ondata {s.ondata} · {t(`settore.${s.settore}`)}</li>)}</ul>
           : <p className="tenue">Nessun settore scoperto.</p>}
       </section>
-      <section className="scheda bilancio-stelle" data-sezione="stelle">
+      <section className="scheda bilancio bilancio-stelle" data-sezione="stelle">
         <h3><Icona di={Star} />{t('bilancio.stelle')}</h3>
         <p data-requisito={manca ? manca.var : 'nessuno'}>
           {!lista ? 'Hai tutte e tre le stelle.'
@@ -64,6 +66,6 @@ export function Bilancio(p: { m: Missione; esito: EsitoMissione; stelle: number 
             : 'I numeri ci sono: la stella in più dipende da come finisce la serata.'}
         </p>
       </section>
-    </div>
-  );
+    </Fragment>,
+  ];
 }

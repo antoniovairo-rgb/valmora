@@ -114,7 +114,7 @@ export function App() {
     const ultimo = m.briefing[visti - 1];
     mappa = { accesi: ultimo?.settore ? [ultimo.settore] : [] };
     testata = { etichetta: `Briefing · ${Math.min(visti, m.briefing.length)} di ${m.briefing.length} fonti`, titolo: t(m.titolo) };
-    corpo = <Briefing m={m} visti={visti} prossimo={() => setVisti(visti + 1)} inizia={() => {
+    corpo = <Briefing m={m} visti={visti} vai={setVisti} inizia={() => {
       if (icOra()) return; // già iniziata (doppio tocco)
       setBozza({}); conIc(iniziaEpisodio(sal, m)); setSchermata('gioco');
     }} />;
@@ -202,7 +202,7 @@ export function App() {
     <MotionConfig reducedMotion="user">
       <main data-schermata={nome} data-ondata={ic?.ondata ?? 0} className={ROSSI_CSS.filter((x) => spento(x)).map((x) => `rosso-${x.toLowerCase()}`).join(' ')}>
         {mappa && m && testata && <Testata numero={due(m.episodio)} etichetta={testata.etichetta} titolo={testata.titolo} />}
-        {mappa && m && <Mappa m={m} {...mappa} />}
+        {mappa && m && <Mappa m={m} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
         <Voli voli={voli} finito={(id) => setVoli((v) => v.filter((x) => x.id !== id))} />
         <AnimatePresence mode="wait" initial={false}>
           <Scena key={chiave} nome={nome}>{corpo}</Scena>

@@ -7,7 +7,7 @@ import { readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
-import { clubDai, controllaCurve, controllaPicco, controllaSfida } from './foto-club.mjs';
+import { avanzaFino, clubDai, controllaAltezza, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -142,7 +142,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           }
           // C-010 C09-03: a scorrimento zero il pulsante principale (o l'indicatore delle opzioni) si vede
           const vista = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); return r.height > 0 && r.top >= 0 && r.bottom <= innerHeight; };
-          const principale = document.querySelector('.scena [data-azione="avanti"], .scena [data-azione="prossimo"], .scena [data-azione="inizia"], .scena [data-azione="rapporto"], .scena [data-azione="continua"], .scena [data-azione="conferma"]');
+          const principale = document.querySelector('.scena [data-azione="avanti"], .scena [data-azione="passo"], .scena [data-azione="prossimo"], .scena [data-azione="inizia"], .scena [data-azione="rapporto"], .scena [data-azione="continua"], .scena [data-azione="conferma"]');
           if (principale && !vista(principale)) p.push(`pulsante principale «${principale.textContent.trim()}» sotto la piega`);
           if (document.querySelector('.scena .opzione') && !vista(document.querySelector('.scena .opzione')) && !vista(document.querySelector('[data-indicatore]'))) p.push('opzioni sotto la piega senza indicatore');
           // C-010 C09-02: un settore scoperto ha almeno il giallo (liv-2)
@@ -154,11 +154,11 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
             return p;
           });
-          for (const x of leggibile) atteso(`${nome}: ${x}`, false);
+          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso);
         await pagina.mouse.move(0, 0); // niente :hover rimasto dal clic precedente nelle foto
         await pagina.screenshot({ path: join(cartella, `${larghezza}-${String(++k).padStart(2, '0')}-${nome}.png`), fullPage: true });
         };
-        const premi = (sel) => pagina.click(sel);
+        const premi = (sel) => avanzaFino(pagina, sel, () => fotoSe()).then(() => pagina.click(sel)); // attraversa i passi (S-10)
         const presenze = () => pagina.locator('[data-presenza]').count();
         const ricaricaERiprendi = async (attesa, perche) => {
           await pagina.reload();
@@ -210,14 +210,13 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             atteso(`genere «${genere}»: la sala non mostra «${atteso_.slice(0, 40)}…»`, (await pagina.locator('.scena').textContent()).includes(atteso_));
           }
           await premi('[data-azione="avanti"]'); await scena('briefing'); await fotoSe();
-          while (await pagina.locator('[data-azione="prossimo"]').count()) await premi('[data-azione="prossimo"]');
-          if (p.m.briefing.length > 1) { await scena('briefing'); await fotoSe(); }
+          while (await pagina.locator('[data-azione="prossimo"]').count()) { await premi('[data-azione="prossimo"]'); await fotoSe(); } // rosso C12P01: a cascata
           await premi('[data-azione="inizia"]');
           for (const [i, o] of p.ondate.entries()) {
             const n = i + 1;
             await scena('schieramento');
             atteso(`ondata ${n}: la scena è dell'ondata ${await pagina.getAttribute('main', 'data-ondata')}`, (await pagina.getAttribute('main', 'data-ondata')) === String(n));
-            if (n === 1) await controllaCurve(pagina, p.m, club, atteso);
+            await controllaCurve(pagina, p.m, n, club, atteso); await controllaFolla(pagina, p.m, n, atteso);
             // Risorse fisse (transenne, D-082): all'ondata 1 non si montano in curva (avviso, nessuna presenza);
             // dall'ondata 2 quelle montate all'ondata 1 restano sulla mappa col lucchetto e non si ritirano.
             const fisse = Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => r);

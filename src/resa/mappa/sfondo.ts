@@ -10,10 +10,10 @@ import { cartelloni, notte, parcheggi, quartiere } from './notte.ts';
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number }
 export interface Colori { primario: string; secondario: string }
-export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; viali: Pt[][]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; notte: boolean; cartelloni: boolean }
+export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; viali: Pt[][]; idViali: string[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; notte: boolean; cartelloni: boolean }
 /** Atmosfera della missione (campi facoltativi dei dati, mappa.ora e mappa.dettagli): e03 è di notte. */
 export interface Atmosfera { notte?: boolean; cartelloni?: boolean }
-export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; corteo: Pt[] | null; coloriCorteo: [string, string]; fari: Pt[] }
+export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; coloriCorteo: [string, string]; fari: Pt[] }
 
 // Il minificatore CSS può scrivere i token come «#fff» o con un nome: il canvas li riporta a «#rrggbb».
 let tavolozza: CanvasRenderingContext2D | null = null;
@@ -54,14 +54,15 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
   // Se c'è una stazione (e02) i viali partono da lì: gli ospiti arrivano in treno; altrimenti dal bordo basso.
   const st = settori.find((s) => s.tipo === 'stazione');
   const stazione = st ? { x: st.x, y: st.y } : null;
-  const viali = settori.filter((s) => s.tipo === 'strada').map((s) => {
+  const strade = settori.filter((s) => s.tipo === 'strada');
+  const viali = strade.map((s) => {
     const fine = { x: meta.x + Math.sign(s.x - meta.x) * (stadio ? stadio.rx * 0.32 : 0), y: meta.y };
     const inizio = stazione ?? { x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 };
     return [inizio, { x: s.x, y: s.y }, { x: s.x + (fine.x - s.x) * 0.55, y: fine.y + (s.y - fine.y) * 0.35 }, fine];
   });
   const quartieri = settori.filter((s) => s.tipo === 'quartiere').map((s) => ({ x: s.x, y: s.y }));
   const parch = settori.filter((s) => s.id?.includes('parcheggi')).map((s) => ({ x: s.x, y: s.y }));
-  return { W, H, club, stadio, viali, centro, stazione, quartieri, parcheggi: parch, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
+  return { W, H, club, stadio, viali, idViali: strade.map((s) => s.id ?? ''), centro, stazione, quartieri, parcheggi: parch, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
 }
 
 export const bezier = (p: Pt[], t: number): Pt => {
@@ -158,7 +159,7 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   if (d.cartelloni && d.viali[0]) cartelloni(f, d.viali[0]);
   if (d.notte) notte(f, W, H, d.viali, fari, r);
   const corteo = d.club.corteo;
-  return { folla, corteo: d.viali[0] ?? null, fari,
+  return { folla, viali: d.viali.map((punti, i) => ({ id: d.idViali[i] ?? '', punti })), fari,
     coloriCorteo: corteo ? [colore(corteo.primario)!, colore(corteo.secondario)!] : [token('--mappa-corteo-1'), token('--mappa-corteo-2')] };
 }
 

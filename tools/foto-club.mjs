@@ -39,8 +39,10 @@ async function campiona(pagina, curve) {
   }, [png, curve]);
 }
 
-/** Curve sulla mappa col primario del loro club (D-086); solo con WebGL (senza, la mappa è solo HTML). */
-export async function controllaCurve(pagina, m, club, atteso) {
+/** Curve sulla mappa col primario del loro club (D-086), nella prima ondata di partita (spalti pieni, S-11);
+ *  solo con WebGL (senza, la mappa è solo HTML). */
+export async function controllaCurve(pagina, m, n, club, atteso) {
+  if (m.ondate.findIndex((o) => o.eventi.some((e) => e.tipo === 'curva')) !== n - 1) return;
   if ((await pagina.getAttribute('.mappa', 'data-mappa')) !== 'webgl') return;
   const curve = m.mappa.settori.filter((s) => s.tipo === 'curva' && club[s.club]?.colori && s.pos)
     .map((s) => ({ id: s.id, x: s.pos.x, y: s.pos.y, colore: rgb(club[s.club].colori.primario) }));
@@ -66,4 +68,38 @@ export async function controllaPicco(pagina, m, rapporto, atteso) {
     const visto = (await pagina.locator(`[data-picco="${s.id}"]`).count()) === 1;
     atteso(`${m.id} rapporto ${rapporto.n}: «${s.id}» ${sale ? 'salita e poi calmata ma il picco non si vede' : 'picco mostrato senza salita'} (C09-01)`, sale === visto);
   }
+}
+
+/** Spalti e cortei disegnati secondo gli eventi dell'ondata (S-11, PO-046): partita = spalti pieni e strade
+ *  vuote; cortei solo dove l'ondata ha gente in strada; dopo il deflusso i cortei escono. */
+export async function controllaFolla(pagina, m, n, atteso) {
+  if ((await pagina.getAttribute('.mappa', 'data-mappa')) !== 'webgl') return;
+  const [spalti, lista = ''] = ((await pagina.getAttribute('.mappa', 'data-folla')) ?? '').split('|');
+  const cortei = lista ? lista.split(',').map((x) => x.split('>')) : [];
+  const eventi = m.ondate[n - 1].eventi; const tipi = new Set(eventi.map((e) => e.tipo));
+  const strade = new Set(m.mappa.settori.filter((s) => s.tipo === 'strada').map((s) => s.id));
+  const dove = `${m.id} ondata ${n} (spalti «${spalti}», cortei «${lista}»)`;
+  if (tipi.has('curva')) atteso(`${dove}: durante la partita servono spalti pieni e strade vuote (PO-046)`, spalti === 'pieni' && cortei.length === 0);
+  for (const [s] of cortei) atteso(`${dove}: corteo su «${s}» senza un evento in strada in questa ondata (PO-046)`, eventi.some((e) => e.settore === s));
+  for (const e of eventi) if (e.tipo === 'corteo' && strade.has(e.settore) && !tipi.has('curva')) atteso(`${dove}: evento corteo su «${e.settore}» ma nessun corteo disegnato`, cortei.some(([s]) => s === e.settore));
+  if (tipi.has('deflusso')) atteso(`${dove}: al deflusso la gente esce dallo stadio`, spalti === 'deflusso' && cortei.every(([, v]) => v === 'esce'));
+}
+
+/** Schermate a passi (S-10, PO-045): a 360 px di larghezza la pagina sta in 760 px di altezza, senza scorrere.
+ *  Con VALMORA_MISURE=1 stampa l'altezza di ogni schermata (misura prima/dopo). */
+export async function controllaAltezza(pagina, larghezza, nome, atteso) {
+  if (!['sala', 'briefing', 'verbale'].includes(nome)) return;
+  const prima = pagina.viewportSize();
+  await pagina.setViewportSize({ width: prima.width, height: 760 }); // il telefono di riferimento è 360×760
+  await pagina.waitForTimeout(50);
+  const [h, passo, passi] = await pagina.evaluate(() => [document.documentElement.scrollHeight, document.querySelector('.passi')?.dataset.passo, !!document.querySelector('.passi')]);
+  await pagina.setViewportSize(prima);
+  if (process.env.VALMORA_MISURE) console.log(`misura ${larghezza}px ${nome} ${passo ?? '-'}: ${h} px`);
+  if (larghezza === 360 && (passi || process.env.VALMORA_ROSSI?.includes('C12P01')) ) atteso(`${nome} ${passo ?? ''}: ${h} px di pagina, a 360×760 si scorre (PO-045)`, h <= 760);
+}
+
+/** Attraversa i passi della schermata («Avanti») finché il pulsante cercato non si vede; foto a ogni passo. */
+export async function avanzaFino(pagina, sel, dopo) {
+  const vede = async (s) => (await pagina.locator(s).count()) > 0 && pagina.locator(s).first().isVisible();
+  while (!(await vede(sel)) && (await vede('[data-azione="passo"]'))) { await pagina.click('[data-azione="passo"]'); await dopo(); }
 }
