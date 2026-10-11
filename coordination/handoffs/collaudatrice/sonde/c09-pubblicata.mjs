@@ -40,8 +40,10 @@ for (const larg of LARG) {
   const salvato = () => p.evaluate(() => JSON.parse(localStorage.getItem('valmora-salvataggio')));
   // Giocatore nuovo: schiera a rotazione su tutti i settori (o tutto su uno, per fallire), sceglie a caso col seme.
   async function episodio(id, caso, fallisci) {
-    const m = mis[id]; await stabile(); await controlli('citta'); await foto(`citta-prima-di-${id}`);
-    await tocca(`[data-episodio="${id}"] .settore-punto`, 'punto episodio'); await tocca('[data-azione="avvia-episodio"]', 'avvia episodio'); await controlli('sala'); await foto(`${id}-sala`);
+    const m = mis[id]; await stabile();
+    if ((await scena()) === 'citta') { await controlli('citta'); await foto(`citta-prima-di-${id}`);
+      await tocca(`[data-episodio="${id}"] .settore-punto`, 'punto episodio'); await tocca('[data-azione="avvia-episodio"]', 'avvia episodio'); }
+    await controlli('sala'); await foto(`${id}-sala`);
     await tocca('[data-azione="avanti"]', 'ascolta le fonti');
     while (await p.locator('[data-azione="prossimo"]').count()) await tocca('[data-azione="prossimo"]', 'prossimo messaggio');
     await controlli('briefing'); await foto(`${id}-briefing`); await tocca('[data-azione="inizia"]', 'alla prima ondata');
