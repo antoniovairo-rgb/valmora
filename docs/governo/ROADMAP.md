@@ -13,7 +13,8 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
 ## L1 – Fetta verticale: episodio 1
 - Stato: IN CORSO
 - Obiettivo: e01 giocabile da capo a fondo (briefing, plancia, ondate, verbale) nel browser e come APK di debug sul telefono del PO.
-- Voci: PO-009
+- Voci: PO-009, PO-010, PO-011, PO-012
+- Avanzamento: impianto Vite + TS + Vitest, schema, validatore e catena «logica» fatti (PO-010…012, sul ramo claude/valmora-l1-setup-schema-xdrbx7); bibbia in scrittura col PO (PO-009).
 - Criterio d'uscita: bibbia con indice della triade ed e01 approvati dal PO; e01 completata dal bot con 1000 semi (1…1000), 0 blocchi; catena «logica» verde 3 giri; 0 errori di console sulle schermate di e01 a 360/375/412 px; salvataggio e ripresa provati; ore reali di lavoro misurate e scritte qui.
 
 ## L2 – Strumenti e stagione 1

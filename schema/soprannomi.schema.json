@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "soprannomi.schema.json",
+  "title": "data/soprannomi.json: soprannomi del protagonista; «se» facoltativo (fisso se assente)",
+  "type": "object",
+  "required": ["soprannomi"],
+  "additionalProperties": false,
+  "properties": {
+    "soprannomi": { "type": "array",
+      "items": { "type": "object", "required": ["id", "testo"], "additionalProperties": false,
+        "properties": { "id": { "$ref": "comune.schema.json#/$defs/id" }, "testo": { "$ref": "comune.schema.json#/$defs/testo" },
+          "se": { "$ref": "comune.schema.json#/$defs/condizione" } } } }
+  }
+}

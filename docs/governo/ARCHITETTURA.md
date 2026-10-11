@@ -1,6 +1,6 @@
-# Architettura (proposta per D-006)
+# Architettura (D-006: stack A)
 
-Stack consigliato: opzione A di docs/FASE0_PROPOSTA.md (TypeScript + Vite + Capacitor). Le alternative e i costi sono lì. Questo documento vale solo se il PO sceglie A.
+Stack scelto dal PO: opzione A di docs/FASE0_PROPOSTA.md (TypeScript + Vite + Capacitor). Versioni e strumenti: D-013. Schema dei dati: `schema/`, rifiniture in D-014.
 
 ## Moduli
 | cartella | contenuto | può usare il browser? |
@@ -21,8 +21,8 @@ Regole: nessun file sopra 400 righe (guardiano in catena); `src/logica` non impo
 | nome | quando | passi |
 |---|---|---|
 | governo | documenti, regole | documenti, backlog, segreti, modello, governo.html (ESISTE) |
-| logica | `src/logica`, `src/dati`, `data/` | schema, test unitari, grafo narrativo, bot con semi, salvataggi vecchi |
+| logica | `src/logica`, `src/dati`, `src/salvataggi`, `data/`, `schema/` | tipi, confini (400 righe, import da resa, Math.random), schema, test unitari, salvataggi-reali, bracci-rossi-logica (ESISTE). Da aggiungere: grafo narrativo (L2), bot con semi (quando c'è e01) |
 | grafica | `src/resa` | foto a 360/375/412 px, errori di console, valori scritti a mano fuori dai token |
-| completa | nel dubbio e prima di ogni rilascio | governo + logica + grafica + build + copyright |
+| completa | nel dubbio e prima di ogni rilascio | governo + logica + build (ESISTE); poi grafica + copyright |
 
 Esecutore unico: `node tools/catena.mjs <nome>`, registra ogni giro in `STABILITA.json`. La CI su GitHub Actions eseguirà gli stessi comandi (dopo D-008).

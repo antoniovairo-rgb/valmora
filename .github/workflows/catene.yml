@@ -13,3 +13,13 @@ jobs:
         with:
           node-version: 24
       - run: node tools/catena.mjs governo
+  logica:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: node tools/catena.mjs logica

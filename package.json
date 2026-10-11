@@ -5,6 +5,22 @@
   "type": "module",
   "scripts": {
     "catena": "node tools/catena.mjs",
-    "governo": "node tools/governo-html.mjs"
+    "governo": "node tools/governo-html.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "tipi": "tsc --noEmit -p ."
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "7.0.2",
+    "vite": "8.3.4",
+    "vitest": "5.0.3"
+  },
+  "dependencies": {
+    "ajv": "8.20.0"
+  },
+  "engines": {
+    "node": ">=22.18"
   }
 }

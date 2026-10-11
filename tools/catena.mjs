@@ -39,14 +39,18 @@ const PASSI = {
 
 const CATENE = {
   governo: ['documenti', 'backlog', 'segreti', 'modello', 'bracci-rossi', 'governo.html'],
+  logica: ['tipi', 'confini', 'schema', 'test', 'salvataggi-reali', 'bracci-rossi-logica'],
 };
-CATENE.completa = [...CATENE.governo]; // si allunga quando nascono «logica» e «grafica»
+CATENE.completa = [...CATENE.governo, ...CATENE.logica, 'build']; // si allunga quando nasce «grafica»
 
 const nome = process.argv[2];
 if (!CATENE[nome]) {
   console.error(`Catena sconosciuta «${nome}». Disponibili: ${Object.keys(CATENE).join(', ')}`);
   process.exit(2);
 }
+// I passi «logica» usano le dipendenze npm: si caricano solo se la catena li chiede,
+// così «governo» resta eseguibile senza npm install (D-004).
+if (CATENE[nome].some((p) => !(p in PASSI))) Object.assign(PASSI, (await import('./passi-logica.mjs')).PASSI_LOGICA);
 
 const commit = git('rev-parse --short HEAD');
 // I file scritti dalla catena stessa non rendono «sporca» la build.

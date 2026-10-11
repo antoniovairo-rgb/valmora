@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "filo.schema.json",
+  "title": "data/fili/<id>.json: filo narrativo e indizi",
+  "type": "object",
+  "required": ["id", "tappe", "indizi"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "comune.schema.json#/$defs/id" },
+    "tappe": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "object", "required": ["episodio", "evento", "garantita"], "additionalProperties": false,
+        "properties": {
+          "episodio": { "type": "integer", "minimum": 1 },
+          "evento": { "$ref": "comune.schema.json#/$defs/id" },
+          "garantita": { "type": "boolean" },
+          "forme": { "type": "array", "minItems": 1,
+            "items": { "type": "object", "required": ["se", "variante"], "additionalProperties": false,
+              "properties": { "se": { "$ref": "comune.schema.json#/$defs/condizione" }, "variante": { "$ref": "comune.schema.json#/$defs/id" } } } } } }
+    },
+    "indizi": {
+      "type": "array",
+      "items": { "type": "object", "required": ["id", "compare_in"], "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "comune.schema.json#/$defs/id" },
+          "compare_in": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "$ref": "comune.schema.json#/$defs/id" } } } }
+    }
+  }
+}

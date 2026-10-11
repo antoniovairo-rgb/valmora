@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stato.schema.json",
+  "title": "data/stato.json: variabili narrative dichiarate",
+  "type": "object",
+  "required": ["variabili"],
+  "additionalProperties": false,
+  "properties": {
+    "variabili": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "object", "required": ["id", "tipo", "iniziale", "descrizione"], "additionalProperties": false,
+            "properties": { "id": { "$ref": "comune.schema.json#/$defs/id" }, "tipo": { "const": "bool" },
+              "iniziale": { "type": "boolean" }, "descrizione": { "type": "string", "minLength": 1 } } },
+          { "type": "object", "required": ["id", "tipo", "min", "max", "iniziale", "descrizione"], "additionalProperties": false,
+            "properties": { "id": { "$ref": "comune.schema.json#/$defs/id" }, "tipo": { "const": "int" },
+              "min": { "type": "integer" }, "max": { "type": "integer" }, "iniziale": { "type": "integer" },
+              "descrizione": { "type": "string", "minLength": 1 } } },
+          { "type": "object", "required": ["id", "tipo", "valori", "iniziale", "descrizione"], "additionalProperties": false,
+            "properties": { "id": { "$ref": "comune.schema.json#/$defs/id" }, "tipo": { "const": "enum" },
+              "valori": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "$ref": "comune.schema.json#/$defs/id" } },
+              "iniziale": { "$ref": "comune.schema.json#/$defs/id" }, "descrizione": { "type": "string", "minLength": 1 } } }
+        ]
+      }
+    }
+  }
+}

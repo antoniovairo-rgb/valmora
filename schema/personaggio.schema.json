@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "personaggio.schema.json",
+  "title": "minimo finché la bibbia non dice quali campi servono (D-012)",
+  "type": "object",
+  "required": ["id", "nome"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "comune.schema.json#/$defs/id" },
+    "nome": { "$ref": "comune.schema.json#/$defs/testo" }
+  }
+}
