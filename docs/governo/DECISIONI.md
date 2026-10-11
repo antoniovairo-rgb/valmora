@@ -28,3 +28,4 @@ Nessuna.
 | D-017 | 2026-10-11 | PO | Bibbia · chi è Dessì? | Capo di una curva inventata che usa la curva come copertura per affari illeciti | Massima attenzione a REGOLE_PLAY §2: niente simboli, ideologie o riferimenti reali |
 | D-018 | 2026-10-11 | PO | Bibbia · perché «ad interim»? | Predecessore rimosso in fretta dopo una gestione contestata; nessuno voleva il posto | e01 evoca il fatto senza ricalcare tragedie reali (REGOLE_PLAY §4) |
 | D-019 | 2026-10-11 | PO | Bibbia · situazione di e01 | Derby cittadino al primo giorno, con fonti in contraddizione | e01 insegna briefing, plancia e ondate; il climax delle stagioni dovrà salire oltre il derby |
+| D-020 | 2026-10-11 | PO | Portare l'impianto di L1 su main? | Sì, subito, avanzando main fino al ramo senza riscrivere nulla (fast-forward) | main = ramo claude/valmora-l1-setup-schema-xdrbx7; non è un rilascio (D-015) |
