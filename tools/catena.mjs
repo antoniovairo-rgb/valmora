@@ -42,7 +42,7 @@ const PASSI = {
 const CATENE = {
   governo: ['documenti', 'backlog', 'segreti', 'versione', 'modello', 'bracci-rossi', 'governo.html'],
   logica: ['tipi', 'confini', 'schema', 'test', 'bot', 'salvataggi-reali', 'bracci-rossi-logica'],
-  grafica: ['token', 'build', 'foto', 'bracci-rossi-grafica'],
+  grafica: ['token', 'build', 'email', 'foto', 'bracci-rossi-grafica'],
 };
 CATENE.completa = [...CATENE.governo, ...CATENE.logica, ...CATENE.grafica];
 

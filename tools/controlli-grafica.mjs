@@ -28,3 +28,10 @@ export function controllaGiro(g) {
   for (const x of g.attesi) if (!x.ok) p.push(`${g.larghezza}px: ${x.cosa}`);
   return p;
 }
+
+// PO-050: nessun indirizzo email in chiaro nel gioco pubblicato (dist/): si ricompone solo al tocco (src/resa/collegamenti.ts).
+const EMAIL = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
+export function controllaEmail(file) {
+  return Object.entries(file).filter(([, t]) => EMAIL.test(t)).map(([p, t]) => `${p}: indirizzo email in chiaro («${t.match(EMAIL)[0]}»)`);
+}
+
