@@ -7,6 +7,7 @@ import { readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
+import { apriTutte } from './foto-bozze.mjs';
 import { avanzaFino, clubDai, controllaAltezza, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
@@ -15,8 +16,7 @@ import { valutaEpisodio } from '../src/logica/episodi.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
-export const LARGHEZZE = [360, 375, 412];
-// VALMORA_LARGHEZZE=360 limita le larghezze (solo per le misure a mano, non nella catena).
+export const LARGHEZZE = [360, 375, 412]; // VALMORA_LARGHEZZE=360 le limita (misure a mano, non nella catena)
 const larghezze = () => (process.env.VALMORA_LARGHEZZE ? process.env.VALMORA_LARGHEZZE.split(',').map(Number) : LARGHEZZE);
 const TIPI = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml' };
 
@@ -379,6 +379,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso('«Nuova partita» con una partita salvata non chiede conferma (C-005 R02)', chiede);
         if (chiede) { await foto(); await premi('[data-azione="annulla-nuova"]'); await scena('titolo'); }
         atteso('«No, tieni la partita» ha cambiato il salvataggio', (await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'))) === prima);
+        if (larghezza === 360) { modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori }); } // S-09
       } catch (e) { atteso(`giro interrotto: ${e.message.split('\n')[0]}`, false); }
       await pagina.close();
       giri.push(g);

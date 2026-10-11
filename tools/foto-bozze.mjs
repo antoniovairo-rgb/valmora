@@ -1,0 +1,60 @@
+// Tutti gli episodi, abbozzi compresi (S-09, D-087), senza giocarli tutti a ogni catena:
+// - un salvataggio di prova con ogni episodio superato (1 stella, variabili iniziali) li rende tutti avviabili;
+// - ognuno si apre dalla città (stagione giusta, segno «bozza»), si attraversano sala e briefing fino al primo
+//   schieramento: nessun errore di console, nessuna chiave di testo mancante «[[…]]»;
+// - il primo episodio di ogni stagione oltre la prima si gioca per intero (partita di foto.mjs).
+import { leggiDati } from './dati-disco.mjs';
+import { variabiliIniziali } from '../src/logica/condizioni.ts';
+import { GAME_VERSION } from '../src/versione.ts';
+
+const CHIAVE = 'valmora-salvataggio';
+
+export function missioniDai(dirDati) {
+  const dati = leggiDati(dirDati);
+  const missioni = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio);
+  const v0 = variabiliIniziali(dati['stato.json'].variabili);
+  return { missioni, v0 };
+}
+
+/** Salvataggio v2 con tutti gli episodi superati: ognuno parte dalle variabili iniziali. */
+export function salvataggioTutti(missioni, v0) {
+  const episodi = Object.fromEntries(missioni.map((m) => [m.id, { migliore: { esito: m.esiti[0].id, fallita: false, stelle: 1 }, tentativi: 1, variabili_prima: v0, variabili_dopo: v0 }]));
+  return { save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: v0, missioni_concluse: missioni.map((m) => m.id), episodi, genere: 'm', rapporto_aperto: null, in_corso: null };
+}
+
+/** Dalla città: stagione dell'episodio, segno «bozza» sul punto e sulla scheda, tocco sul punto, «Rigioca». */
+export async function apriDallaCitta(pagina, m, atteso) {
+  const stagione = pagina.locator(`[data-stagione="${m.stagione}"]`);
+  if (await stagione.count()) await stagione.click();
+  const punto = pagina.locator(`[data-episodio="${m.id}"]`);
+  atteso(`${m.id}: ${m.bozza ? 'abbozzo senza' : 'episodio finito col'} segno «bozza» sulla città (S-09)`, (await punto.getAttribute('data-bozza') === 'si') === !!m.bozza);
+  await punto.locator('.settore-punto').click();
+  atteso(`${m.id}: scheda ${m.bozza ? 'senza' : 'con'} segno «bozza» (S-09)`, ((await pagina.locator('[data-bozza-scheda]').count()) === 1) === !!m.bozza);
+  await pagina.click('[data-azione="avvia-episodio"]');
+}
+
+export async function apriTutte(c) {
+  const { pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori } = c;
+  const { missioni, v0 } = missioniDai(dirDati);
+  const sal = JSON.stringify(salvataggioTutti(missioni, v0));
+  const prime = new Set([...new Set(missioni.map((m) => m.stagione))].slice(1).map((s) => missioni.find((m) => m.stagione === s)?.id));
+  for (const [i, m] of missioni.entries()) {
+    const prima = errori.length;
+    try {
+      await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, sal]);
+      await pagina.reload(); await scena('titolo');
+      await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+      await apriDallaCitta(pagina, m, atteso);
+      if (prime.has(m.id)) await partita({ ...pianoAttento(dirDati, i, v0) });
+      else {
+        const testi = [];
+        await scena('sala'); testi.push(await pagina.locator('main').textContent());
+        await premi('[data-azione="avanti"]'); await scena('briefing'); testi.push(await pagina.locator('main').textContent());
+        await premi('[data-azione="inizia"]'); await scena('schieramento'); testi.push(await pagina.locator('main').textContent());
+        const manca = [...new Set(testi.join(' ').match(/\[\[[^\]]+\]\]/g) ?? [])];
+        atteso(`${m.id}: chiavi di testo mancanti ${manca.slice(0, 3).join(', ')}`, !manca.length);
+      }
+    } catch (e) { atteso(`${m.id}: non si apre (${e.message.split('\n')[0]})`, false); }
+    atteso(`${m.id}: ${errori.length - prima} errori di console aprendolo (${errori.slice(prima, prima + 1).join('')})`, errori.length === prima);
+  }
+}

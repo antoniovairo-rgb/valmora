@@ -197,3 +197,7 @@ main[data-schermata="sala"] .mappa, main[data-schermata="briefing"] .mappa { asp
 .fonti-verbale { margin: 0; padding: var(--spazio-3); list-style: none; display: grid; gap: var(--spazio-3); }
 .fonti-verbale .tenue { margin: var(--spazio-1) 0 0; }
 .fonti-verbale .riga { flex-wrap: nowrap; align-items: flex-start; }
+
+/* Episodi abbozzati (D-087, S-09): segno discreto */
+.episodio.bozza .settore-punto { border-style: dashed; }
+.etichetta.bozza { background: var(--grigio-testo); color: var(--bianco); }

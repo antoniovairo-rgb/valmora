@@ -20,15 +20,13 @@ export const dichiarate = new Map<string, Dichiarazione>(
   ((perPercorso('stato.json')[0] as { variabili: Dichiarazione[] }).variabili).map((d) => [d.id, d]),
 );
 
-// D-090: gli abbozzi (bozza: true, D-087) restano nascosti finché la resa non ha città per stagione e segno «bozza»
-// (S-09); si vedono con «?bozze=1» nell'indirizzo. Fuori dal browser (test in node) si vedono tutti.
-const conBozze = typeof location === 'undefined' || new URLSearchParams(location.search).has('bozze');
 /** Club (D-086, D-088): colori e stemma sono dati, non token d'interfaccia. Lo stemma può mancare (club nuovi). */
 export interface Colori { primario: string; secondario: string }
 export interface Club { id: string; nome: string; colori?: Colori; stemma?: { forma: 'scudo' | 'tondo' | 'rombo'; simbolo: string } }
 export const club = new Map((perPercorso('club/') as Club[]).map((c) => [c.id, c]));
 
-export const missioni = (perPercorso('missioni/') as Missione[]).filter((m) => conBozze || !m.bozza).sort((a, b) => a.episodio - b.episodio);
+// Gli abbozzi (bozza: true, D-087) si vedono e si giocano, col segno «bozza» sulla città (S-09: tolto il filtro D-090).
+export const missioni = (perPercorso('missioni/') as Missione[]).sort((a, b) => a.episodio - b.episodio);
 export const missione = (id: string): Missione => {
   const m = missioni.find((x) => x.id === id);
   if (!m) throw new Error(`missione «${id}» non trovata`);
