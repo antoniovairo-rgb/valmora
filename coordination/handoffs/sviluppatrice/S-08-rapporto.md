@@ -1,6 +1,6 @@
 # S-08 – Rilievi di resa C-010 (C09-02, C09-03, C09-04) · rapporto della sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Stato: **consegna completa.**
+Ramo `claude/valmora-resa-v2`. Stato: **consegna parziale** (solo C09-02/03/04). Ancora da fare in S-08: bilancio nel verbale (PO-036, D-085), colori e stemmi dei club (PO-038, PO-040), C09-01 picco. I messaggi della principale con l'ambito completo mi sono arrivati alle 18:32 UTC, dopo la scadenza delle 18:30.
 
 ## Cosa ho fatto
 
