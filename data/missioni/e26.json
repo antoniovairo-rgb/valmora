@@ -1,6 +1,5 @@
 {
   "id": "e26",
-  "bozza": true,
   "stagione": 3,
   "episodio": 26,
   "titolo": "testi:e26.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e26.intro1",
-    "testi:e26.intro2",
-    "testi:e26.intro3"
+    "testi:e26.intro2"
   ],
   "briefing": [
     {

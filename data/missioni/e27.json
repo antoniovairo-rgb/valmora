@@ -1,6 +1,5 @@
 {
   "id": "e27",
-  "bozza": true,
   "stagione": 3,
   "episodio": 27,
   "titolo": "testi:e27.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e27.intro1",
-    "testi:e27.intro2",
-    "testi:e27.intro3"
+    "testi:e27.intro2"
   ],
   "briefing": [
     {
