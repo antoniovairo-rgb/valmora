@@ -75,6 +75,9 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
     condizione(`${k}.disponibile_se`, m.disponibile_se);
     m.briefing.forEach((b: Obj, i: number) => testo(`${k}.briefing[${i}]`, b.testo));
     const settori = m.mappa.settori.map((s: Obj) => s.id as string);
+    const club = new Set(voci('club/').map(([, c]) => c.id as string));
+    for (const st of m.mappa.settori) if (st.tipo === 'curva' && !st.club) p.push(`${k}: la curva «${st.id}» non dice di che club è (D-086)`);
+    for (const st of m.mappa.settori) if (st.club && !club.has(st.club)) p.push(`${k}: settore «${st.id}»: club «${st.club}» non esiste in data/club/`);
     if (new Set(settori).size !== settori.length) p.push(`${k}.mappa.settori: id di settore ripetuto`);
     // Etichette per convenzione: settore.<id>, risorsa.<id>, fonte.<id> (D-041)
     for (const id of settori) testo(`${k}.mappa.settori`, `testi:settore.${id}`);

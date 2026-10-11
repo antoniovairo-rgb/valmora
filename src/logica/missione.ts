@@ -19,7 +19,9 @@ export const TENSIONE_MAX = 10;
 const lim = (x: number) => Math.max(0, Math.min(TENSIONE_MAX, x));
 type Dich = Map<string, Dichiarazione>;
 
-export interface RapportoOndata { n: number; scoperto: Record<string, number>; tensione: Record<string, number>; aRiposo: Record<string, number> }
+// picco = tensione più alta del settore nell'ondata (prima del dimezzamento): è quella che conta per «tensione_max» e
+// per le stelle, quindi il rapporto la mostra (C09-01). Assente nei rapporti salvati prima; rosso __NO_C10P01.
+export interface RapportoOndata { n: number; scoperto: Record<string, number>; tensione: Record<string, number>; aRiposo: Record<string, number>; picco?: Record<string, number> }
 
 export interface InCorso {
   missione: string;
@@ -164,7 +166,8 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
     if (sc > 0) for (const u of unita) if (spento('C09F01') || !u.ris.fissa) aRiposo[u.r] = (aRiposo[u.r] ?? 0) + u.n;
   }
   const massimo = Math.max(s.variabili[VAR_TENSIONE] as number, ...Object.values(tensione), ...Object.values(s.tensione));
-  const rapporto = { n: s.ondata, scoperto, tensione, aRiposo };
+  const picco = Object.fromEntries(m.mappa.settori.map(({ id }) => [id, Math.max(s.tensione[id] ?? 0, tensione[id] ?? 0)]));
+  const rapporto: RapportoOndata = spento('C10P01') ? { n: s.ondata, scoperto, tensione, aRiposo } : { n: s.ondata, scoperto, tensione, aRiposo, picco };
   return {
     ...s, ondata: s.ondata + 1, tensione, riposo: aRiposo, disposizione: null,
     fisse: Object.fromEntries(Object.entries(m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => [r, { ...(disp[r] ?? {}) }])), modifiche: {}, risposte: {},

@@ -72,6 +72,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
+        "club": "quillhaven_albion",
         "pos": {
           "x": 28,
           "y": 38
@@ -80,6 +81,7 @@
       {
         "id": "curva_larkspire",
         "tipo": "curva",
+        "club": "larkspire_athletic",
         "pos": {
           "x": 78,
           "y": 38
@@ -121,7 +123,11 @@
         },
         "fissa": true
       }
-    }
+    },
+    "ora": "notte",
+    "dettagli": [
+      "cartelloni_stadio_nuovo"
+    ]
   },
   "ondate": [
     {

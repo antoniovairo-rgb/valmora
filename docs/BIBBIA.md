@@ -56,6 +56,8 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Ribilanciamento dopo il collaudo C-01 (C-002): il credito costa tensione, niente opzioni dominate, «incrocio» pesa, nel deflusso si riforma il corteo di Cinderwick. Misura nuova (node tools/bot.mjs 1000): casuale 2 / 401 / 597, stelle 0★ 597 · 1★ 393 · 2★ 10 · 3★ 0; attento 0 / 1000 / 0 (2★); equilibrato 1000 / 0 / 0 (3★); peggiore 0 / 0 / 1000. Su tutte le 62.208 combinazioni di risposte con schieramento attento: 0★ 7.432 · 1★ 39.656 · 2★ 12.886 · 3★ 2.234.
 - Testi: bozza della sessione principale, da far giudicare al PO dopo la prova della resa v2.
 
+- Giudizio del PO su e01 (2026-10-11, PO-037): «Primo episodio carino».
+
 ## e02 «Ospiti numerosi» (D-071…D-074)
 - Larkspire Athletic in casa contro i Calderholt Rovers, che arrivano in treno da fuori città. Due treni, uno in ritardo; gira una voce di biglietti falsi.
 - Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Larkspire. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 16 chiamate.

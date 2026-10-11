@@ -97,6 +97,10 @@
               "tipo": {
                 "$ref": "comune.schema.json#/$defs/id"
               },
+              "club": {
+                "$ref": "comune.schema.json#/$defs/id",
+                "description": "club della curva (D-086): ne prende i colori sulla mappa"
+              },
               "pos": {
                 "type": "object",
                 "required": [
@@ -163,6 +167,23 @@
                 "description": "unità fisse (D-082): una volta piazzate restano nel settore per tutte le ondate dopo, non tornano disponibili e non vanno a riposo"
               }
             }
+          }
+        },
+        "ora": {
+          "enum": [
+            "giorno",
+            "notte"
+          ],
+          "description": "ora della partita sulla mappa (S-07, e03): senza, giorno"
+        },
+        "dettagli": {
+          "type": "array",
+          "uniqueItems": true,
+          "description": "dettagli grafici della mappa che servono alla storia (es. cartelloni dello stadio nuovo, D-084)",
+          "items": {
+            "enum": [
+              "cartelloni_stadio_nuovo"
+            ]
           }
         }
       }
@@ -389,6 +410,10 @@
           "maximum": 100
         }
       }
+    },
+    "bozza": {
+      "type": "boolean",
+      "description": "abbozzo giocabile da rifinire col PO (D-087): meccaniche esistenti, novità prevista annotata in docs/BOZZE_EPISODI.md"
     }
   }
 }
