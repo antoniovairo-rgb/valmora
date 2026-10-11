@@ -410,6 +410,10 @@
           "maximum": 100
         }
       }
+    },
+    "bozza": {
+      "type": "boolean",
+      "description": "abbozzo giocabile da rifinire col PO (D-087): meccaniche esistenti, novità prevista annotata in docs/BOZZE_EPISODI.md"
     }
   }
 }
