@@ -34,7 +34,7 @@
       "fonte": "voci_in_rete",
       "affidabilita": "media",
       "vera": true,
-      "settore": "parcheggi"
+      "settore": "piazza_municipio"
     },
     {
       "testo": "testi:e17.info_comitato",
@@ -79,7 +79,7 @@
         }
       },
       {
-        "id": "parcheggi",
+        "id": "piazza_municipio",
         "tipo": "strada",
         "pos": {
           "x": 76,
@@ -191,26 +191,26 @@
           ]
         },
         {
-          "id": "maxischermo",
-          "fonte": "voci_in_rete",
-          "testo": "testi:e17.ch.maxischermo",
-          "settore": "parcheggi",
+          "id": "schermo_comizi",
+          "fonte": "servizio_ordine_corteo",
+          "testo": "testi:e17.ch.schermo_comizi",
+          "settore": "piazza_municipio",
           "opzioni": [
             {
-              "id": "sequestra_camion",
-              "testo": "testi:e17.op.sequestra_camion",
-              "costo": "testi:e17.op.sequestra_camion.c",
+              "id": "niente_schermo",
+              "testo": "testi:e17.op.niente_schermo",
+              "costo": "testi:e17.op.niente_schermo.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
                   "valore": 1
                 },
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "piazza_municipio",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e17.op.sequestra_camion.r"
+              "risposta": "testi:e17.op.niente_schermo.r"
             },
             {
               "id": "lascia_schermo",
@@ -218,7 +218,7 @@
               "costo": "testi:e17.op.lascia_schermo.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "piazza_municipio",
                   "valore": 2
                 },
                 {
@@ -338,9 +338,9 @@
       ],
       "chiamate": [
         {
-          "id": "odore_erba",
+          "id": "cancelli",
           "fonte": "centrale_radio",
-          "testo": "testi:e17.ch.odore_erba",
+          "testo": "testi:e17.ch.cancelli",
           "settore": "tornelli",
           "opzioni": [
             {
@@ -360,9 +360,9 @@
               "risposta": "testi:e17.op.steward_cancelli.r"
             },
             {
-              "id": "apri_settore",
-              "testo": "testi:e17.op.apri_settore",
-              "costo": "testi:e17.op.apri_settore.c",
+              "id": "apri_recinto",
+              "testo": "testi:e17.op.apri_recinto",
+              "costo": "testi:e17.op.apri_recinto.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -373,7 +373,7 @@
                   "valore": -3
                 }
               ],
-              "risposta": "testi:e17.op.apri_settore.r"
+              "risposta": "testi:e17.op.apri_recinto.r"
             },
             {
               "id": "spingano",
@@ -431,7 +431,7 @@
         },
         {
           "id": "ci_vediamo_dopo",
-          "fonte": "ufficio_sicurezza_cinderwick",
+          "fonte": "dessi",
           "testo": "testi:e17.ch.ci_vediamo_dopo",
           "commento": "testi:e17.ch.ci_vediamo_dopo.vice",
           "settore": "strada_cinderwick",
@@ -491,9 +491,9 @@
           "pressione": 2
         },
         {
-          "id": "schermo",
+          "id": "piazza17",
           "tipo": "folla",
-          "settore": "parcheggi",
+          "settore": "piazza_municipio",
           "pressione": 2
         }
       ],
@@ -653,16 +653,16 @@
           "pressione": 4
         },
         {
-          "id": "camion",
+          "id": "piazza17b",
           "tipo": "folla",
-          "settore": "parcheggi",
+          "settore": "piazza_municipio",
           "pressione": 2
         }
       ],
       "chiamate": [
         {
           "id": "me_lo_dovete",
-          "fonte": "ufficio_sicurezza_cinderwick",
+          "fonte": "dessi",
           "testo": "testi:e17.ch.me_lo_dovete",
           "commento": "testi:e17.ch.me_lo_dovete.vice",
           "settore": "strada_cinderwick",
@@ -717,7 +717,7 @@
                   "valore": -2
                 },
                 {
-                  "tensione": "parcheggi",
+                  "tensione": "piazza_municipio",
                   "valore": 1
                 }
               ],
@@ -738,34 +738,34 @@
           ]
         },
         {
-          "id": "highlights",
-          "fonte": "voci_in_rete",
-          "testo": "testi:e17.ch.highlights",
-          "settore": "parcheggi",
+          "id": "fine_corteo",
+          "fonte": "servizio_ordine_corteo",
+          "testo": "testi:e17.ch.fine_corteo",
+          "settore": "piazza_municipio",
           "opzioni": [
             {
-              "id": "via_camion",
-              "testo": "testi:e17.op.via_camion",
-              "costo": "testi:e17.op.via_camion.c",
+              "id": "sciogli_piazza",
+              "testo": "testi:e17.op.sciogli_piazza",
+              "costo": "testi:e17.op.sciogli_piazza.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
                   "valore": 1
                 },
                 {
-                  "tensione": "parcheggi",
+                  "tensione": "piazza_municipio",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e17.op.via_camion.r"
+              "risposta": "testi:e17.op.sciogli_piazza.r"
             },
             {
-              "id": "lascia_highlights",
-              "testo": "testi:e17.op.lascia_highlights",
-              "costo": "testi:e17.op.lascia_highlights.c",
+              "id": "lascia_impianto",
+              "testo": "testi:e17.op.lascia_impianto",
+              "costo": "testi:e17.op.lascia_impianto.c",
               "effetti": [
                 {
-                  "pressione": "parcheggi",
+                  "pressione": "piazza_municipio",
                   "valore": 1
                 },
                 {
@@ -773,7 +773,7 @@
                   "valore": -1
                 }
               ],
-              "risposta": "testi:e17.op.lascia_highlights.r"
+              "risposta": "testi:e17.op.lascia_impianto.r"
             }
           ]
         }

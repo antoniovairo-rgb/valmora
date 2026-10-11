@@ -1,9 +1,9 @@
 {
   "id": "e25",
-  "bozza": true,
   "stagione": 3,
   "episodio": 25,
   "titolo": "testi:e25.titolo",
+  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 15,
@@ -16,8 +16,8 @@
   ],
   "briefing": [
     {
-      "testo": "testi:e25.info_segreteria",
-      "fonte": "segreteria_comune",
+      "testo": "testi:e25.info_struttura",
+      "fonte": "struttura_vertice",
       "affidabilita": "alta",
       "vera": false,
       "settore": "curva_cinderwick"
@@ -34,14 +34,14 @@
       "fonte": "voci_in_rete",
       "affidabilita": "media",
       "vera": true,
-      "settore": "strada_cinderwick"
+      "settore": "piazza_municipio"
     },
     {
       "testo": "testi:e25.info_informatore",
       "fonte": "informatore_di_strada",
       "affidabilita": "bassa",
       "vera": false,
-      "settore": "piazzale"
+      "settore": "zona_rossa"
     }
   ],
   "mappa": {
@@ -65,27 +65,27 @@
         }
       },
       {
-        "id": "piazzale",
-        "tipo": "piazzale",
+        "id": "zona_rossa",
+        "tipo": "zona",
         "pos": {
           "x": 50,
-          "y": 75
+          "y": 16
         }
       },
       {
-        "id": "strada_cinderwick",
-        "tipo": "strada",
+        "id": "piazza_municipio",
+        "tipo": "piazza",
         "pos": {
-          "x": 18,
-          "y": 88
+          "x": 40,
+          "y": 82
         }
       },
       {
         "id": "stazione",
         "tipo": "stazione",
         "pos": {
-          "x": 82,
-          "y": 14
+          "x": 85,
+          "y": 84
         }
       }
     ],
@@ -93,9 +93,9 @@
       "squadre": {
         "quantita": 4,
         "efficacia": {
-          "strada": 2,
+          "zona": 2,
+          "piazza": 2,
           "stazione": 2,
-          "piazzale": 1,
           "curva": 1
         }
       },
@@ -103,8 +103,7 @@
         "quantita": 6,
         "efficacia": {
           "curva": 2,
-          "piazzale": 2,
-          "strada": 1,
+          "piazza": 2,
           "stazione": 1
         }
       },
@@ -129,25 +128,25 @@
           "pressione": 4
         },
         {
-          "id": "corteo_ordinanza",
+          "id": "corteo_vertice",
           "tipo": "corteo",
-          "settore": "strada_cinderwick",
+          "settore": "piazza_municipio",
           "pressione": 3
         },
         {
-          "id": "attesa",
-          "tipo": "folla",
-          "settore": "piazzale",
+          "id": "delegazioni",
+          "tipo": "movimento",
+          "settore": "zona_rossa",
           "pressione": 2
         }
       ],
       "chiamate": [
         {
-          "id": "permesso_squadre",
-          "fonte": "segreteria_comune",
-          "testo": "testi:e25.ch.permesso_squadre",
-          "commento": "testi:e25.ch.permesso_squadre.vice",
-          "settore": "strada_cinderwick",
+          "id": "nulla_osta",
+          "fonte": "struttura_vertice",
+          "testo": "testi:e25.ch.nulla_osta",
+          "commento": "testi:e25.ch.nulla_osta.vice",
+          "settore": "piazza_municipio",
           "opzioni": [
             {
               "id": "aspetta_modulo",
@@ -155,7 +154,7 @@
               "costo": "testi:e25.op.aspetta_modulo.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": 2
                 },
                 {
@@ -171,7 +170,7 @@
               "costo": "testi:e25.op.scorta_senza_modulo.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": -2
                 },
                 {
@@ -187,7 +186,7 @@
               "costo": "testi:e25.op.mediatore_corteo.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": -1
                 },
                 {
@@ -237,7 +236,7 @@
         },
         {
           "id": "club_garantisce",
-          "fonte": "ufficio_sicurezza_cinderwick",
+          "fonte": "struttura_vertice",
           "testo": "testi:e25.ch.club_garantisce",
           "settore": "curva_cinderwick",
           "opzioni": [
@@ -290,18 +289,18 @@
           "pressione": 4
         },
         {
-          "id": "piazzale_tardi",
+          "id": "varchi",
           "tipo": "folla",
-          "settore": "piazzale",
+          "settore": "zona_rossa",
           "pressione": 2
         }
       ],
       "chiamate": [
         {
-          "id": "striscione_ordinanza",
+          "id": "striscione_zona",
           "fonte": "centrale_radio",
-          "testo": "testi:e25.ch.striscione_ordinanza",
-          "commento": "testi:e25.ch.striscione_ordinanza.vice",
+          "testo": "testi:e25.ch.striscione_zona",
+          "commento": "testi:e25.ch.striscione_zona.vice",
           "settore": "curva_cinderwick",
           "opzioni": [
             {
@@ -340,7 +339,7 @@
         },
         {
           "id": "permesso_mediatore",
-          "fonte": "segreteria_comune",
+          "fonte": "struttura_vertice",
           "testo": "testi:e25.ch.permesso_mediatore",
           "settore": "curva_ospiti",
           "opzioni": [
@@ -399,15 +398,15 @@
           "fonte": "informatore_di_strada",
           "testo": "testi:e25.ch.voce_dessi",
           "commento": "testi:e25.ch.voce_dessi.vice",
-          "settore": "piazzale",
+          "settore": "zona_rossa",
           "opzioni": [
             {
-              "id": "controlla_piazzale",
-              "testo": "testi:e25.op.controlla_piazzale",
-              "costo": "testi:e25.op.controlla_piazzale.c",
+              "id": "controlla_varchi",
+              "testo": "testi:e25.op.controlla_varchi",
+              "costo": "testi:e25.op.controlla_varchi.c",
               "effetti": [
                 {
-                  "pressione": "piazzale",
+                  "pressione": "zona_rossa",
                   "valore": -2
                 },
                 {
@@ -415,7 +414,7 @@
                   "valore": -1
                 }
               ],
-              "risposta": "testi:e25.op.controlla_piazzale.r"
+              "risposta": "testi:e25.op.controlla_varchi.r"
             },
             {
               "id": "ignora_voce",
@@ -423,7 +422,7 @@
               "costo": "testi:e25.op.ignora_voce.c",
               "effetti": [
                 {
-                  "pressione": "piazzale",
+                  "pressione": "zona_rossa",
                   "valore": 2
                 }
               ],
@@ -452,7 +451,7 @@
         {
           "id": "uscite_presto",
           "tipo": "folla",
-          "settore": "strada_cinderwick",
+          "settore": "piazza_municipio",
           "pressione": 2
         }
       ],
@@ -499,7 +498,7 @@
         },
         {
           "id": "ispettore",
-          "fonte": "segreteria_comune",
+          "fonte": "struttura_vertice",
           "testo": "testi:e25.ch.ispettore",
           "commento": "testi:e25.ch.ispettore.vice",
           "settore": "curva_cinderwick",
@@ -542,7 +541,7 @@
           "id": "uscite_anticipate",
           "fonte": "voci_in_rete",
           "testo": "testi:e25.ch.uscite_anticipate",
-          "settore": "strada_cinderwick",
+          "settore": "piazza_municipio",
           "opzioni": [
             {
               "id": "chiudi_uscite",
@@ -550,7 +549,7 @@
               "costo": "testi:e25.op.chiudi_uscite.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": -2
                 },
                 {
@@ -566,7 +565,7 @@
               "costo": "testi:e25.op.lascia_uscire.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": 2
                 }
               ],
@@ -583,7 +582,7 @@
         {
           "id": "ritorno_corteo",
           "tipo": "corteo",
-          "settore": "strada_cinderwick",
+          "settore": "piazza_municipio",
           "pressione": 5
         },
         {
@@ -593,10 +592,10 @@
           "pressione": 4
         },
         {
-          "id": "piazzale_uscita",
-          "tipo": "folla",
-          "settore": "piazzale",
-          "pressione": 2
+          "id": "cena_delegazioni",
+          "tipo": "movimento",
+          "settore": "zona_rossa",
+          "pressione": 3
         }
       ],
       "chiamate": [
@@ -638,9 +637,10 @@
         },
         {
           "id": "verbale_ordinanza",
-          "fonte": "segreteria_comune",
+          "fonte": "struttura_vertice",
           "testo": "testi:e25.ch.verbale_ordinanza",
           "commento": "testi:e25.ch.verbale_ordinanza.vice",
+          "settore": "zona_rossa",
           "opzioni": [
             {
               "id": "raccogli_firme",
@@ -652,7 +652,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "piazzale",
+                  "pressione": "zona_rossa",
                   "valore": 2
                 }
               ],
@@ -676,7 +676,7 @@
           "id": "corteo_ritorno",
           "fonte": "voci_in_rete",
           "testo": "testi:e25.ch.corteo_ritorno",
-          "settore": "strada_cinderwick",
+          "settore": "piazza_municipio",
           "opzioni": [
             {
               "id": "scorta_ritorno",
@@ -684,7 +684,7 @@
               "costo": "testi:e25.op.scorta_ritorno.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": -2
                 },
                 {
@@ -704,11 +704,11 @@
               "costo": "testi:e25.op.percorso_corto.c",
               "effetti": [
                 {
-                  "tensione": "strada_cinderwick",
+                  "tensione": "piazza_municipio",
                   "valore": 1
                 },
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": -1
                 },
                 {
@@ -724,7 +724,7 @@
               "costo": "testi:e25.op.niente_scorta.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": 2
                 }
               ],
