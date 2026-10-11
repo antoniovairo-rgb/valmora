@@ -33,3 +33,7 @@ Nessuna.
 | D-022 | 2026-10-11 | PO | e01 · su cosa si contraddicono le fonti? | Il corteo: una fonte lo annuncia non autorizzato, l'altra lo smentisce | Servono almeno due settori d'arrivo; le risorse si dividono fra due ipotesi |
 | D-023 | 2026-10-11 | PO | Risorse sulla mappa (§F0-2 n.1) | Diverse per missione | Lo schema già le ammette (mappa libera nome→intero, D-014); ogni risorsa nuova va spiegata al giocatore e insegnata al bot |
 | D-024 | 2026-10-11 | PO | Il verbale rivela le informazioni false? (§F0-2 n.2) | Sì, sempre | Campo «vera» del briefing reso obbligatorio nello schema (rivede D-014 punto 4) |
+| D-025 | 2026-10-11 | PO | e01 · risorse | Tre: squadre, steward, mediatore (tratta con il corteo) | e01 più ricca; rischio di superare i 7 minuti da misurare col bot |
+| D-026 | 2026-10-11 | PO | e01 · esiti | Tre: contenuto, contenuto a fatica, degenerato fuori campo (ultimo senza condizione) | Tre verbali e tre varianti del seguito |
+| D-027 | 2026-10-11 | PO | e01 · ondate | Tre: arrivo delle tifoserie, partita, deflusso | Una pressione da bilanciare per ondata |
+| D-028 | 2026-10-11 | PO | e01 · fonti del briefing | Entrambe le coppie proposte («1 e 2»): informatore di strada (bassa), ufficio sicurezza di un club (media), voce dalla centrale radio, voci in rete | Quattro fonti; le voci in rete richiedono attenzione a tono e policy Play; affidabilità di radio e rete DA DECIDERE |

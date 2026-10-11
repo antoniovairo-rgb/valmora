@@ -24,7 +24,11 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Primo giorno del protagonista: derby cittadino, con fonti del briefing in contraddizione.
 - Il derby è fra due quartieri rivali: ogni club è il simbolo del suo quartiere (D-021). La mappa comprende stadio e strade dei quartieri.
 - Le fonti si contraddicono sul corteo: una annuncia un corteo non autorizzato, l'altra lo smentisce (D-022).
-- Nomi dei club e dei quartieri, settori della mappa, risorse, ondate, esiti: DA DECIDERE.
+- Risorse (D-025): squadre, steward, mediatore (può trattare con il corteo).
+- Ondate (D-027): 1 arrivo delle tifoserie · 2 partita · 3 deflusso.
+- Esiti (D-026): contenuto · contenuto a fatica · degenerato fuori campo (sempre raggiungibile, la storia prosegue).
+- Fonti del briefing (D-028): informatore di strada (affidabilità bassa), ufficio sicurezza di un club (media), voce dalla centrale radio, voci in rete.
+- Nomi dei club e dei quartieri, settori della mappa, quantità delle risorse, condizioni degli esiti, affidabilità di radio e rete: DA DECIDERE.
 
 ## Regole di gioco decise
 - Risorse diverse per missione (D-023).
