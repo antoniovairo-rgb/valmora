@@ -36,7 +36,7 @@ Ramo `claude/valmora-resa-v2`, con merge (non rebase) fino a cc8b92b. Stato: **c
 | `… VALMORA_ROSSI=C05N01 …` | 360 px | | ROSSO: lo stato di piazzale e delle due strade va sotto il nome (×3 rapporti) |
 | `… VALMORA_ROSSI=C05S81 …` | 360 px | | ROSSO: «1 tentativi» invece di «1 tentativo» |
 | `npx vitest run` | 100 test | verdi | |
-| `node tools/catena.mjs completa` | vedi sotto | | |
+| `node tools/catena.mjs completa` | commit 8de05f7, 3 giri | 3 su 3 VERDI, nessun passo ritentato | |
 
 ## Foto
 
