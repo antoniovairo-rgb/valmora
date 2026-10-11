@@ -1,6 +1,7 @@
 import { Capacitor } from '@capacitor/core';
 import { Download, Info, Play, RotateCcw } from 'lucide-react';
 import { GAME_VERSION } from '../../versione.ts';
+import { spento } from '../../interruttori.ts';
 import { BUILD } from '../build.ts';
 import { URL_APK } from '../collegamenti.ts';
 import { t } from '../dati.ts';
@@ -14,7 +15,7 @@ export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi:
         <h1 className="logo-nome">{nome}</h1>
         {sotto && <div className="logo-sotto">{sotto}</div>}
       </div>
-      <p className="tenue" data-versione={GAME_VERSION}>Versione {GAME_VERSION} · build {BUILD}</p>
+      <p className="tenue" data-versione={GAME_VERSION}>Versione {GAME_VERSION} · build {spento('C05S09') ? 'sviluppo' : BUILD}</p>
       {p.puoRiprendere && <button className="pulsante" onClick={p.riprendi}><Icona di={RotateCcw} />Riprendi</button>}
       <button className={`pulsante${p.puoRiprendere ? ' secondario' : ''}`} onClick={p.nuova}><Icona di={Play} />Nuova partita</button>
       {!Capacitor.isNativePlatform() && <a className="pulsante secondario" data-azione="apk" href={URL_APK}><Icona di={Download} />Scarica l'app Android (APK di prova)</a>}
