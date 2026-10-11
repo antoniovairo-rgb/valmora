@@ -27,6 +27,8 @@ export function controllaConsolidamento(dati, soli = null) {
       for (const x of e.effetti) (imposta[x.imposta ?? x.aggiungi] ??= []).push(ep); }
     if (mio) for (const r of brevi.filter(Boolean)) { const n = testo(r).length; if (n > MAX.breve) p.push(`${m.id}: «${r.replace('testi:', '')}» di ${n} caratteri (max ${MAX.breve})`); }
   }
+  // D-102: il capo curva è Tano Ferrigno «il Fabbro», mai «Dessì»
+  for (const [k, v] of Object.entries(T)) if (/Dess[iì]/.test(v) && (!soli || soli.some((e) => k.startsWith(e + '.')))) p.push(`testo «${k}» dice ancora «Dessì» (D-102)`);
   if (!soli) for (const v of dati['stato.json'].variabili) {
     if (['tensione_max', 'credito'].includes(v.id)) continue;
     const i = Math.min(...(imposta[v.id] ?? [Infinity])), l = Math.max(...(legge[v.id] ?? [-Infinity]));
