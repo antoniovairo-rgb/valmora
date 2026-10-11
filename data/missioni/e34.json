@@ -1,6 +1,5 @@
 {
   "id": "e34",
-  "bozza": true,
   "stagione": 3,
   "episodio": 34,
   "titolo": "testi:e34.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e34.intro1",
-    "testi:e34.intro2",
-    "testi:e34.intro3"
+    "testi:e34.intro2"
   ],
   "briefing": [
     {
@@ -574,6 +572,130 @@
                 }
               ],
               "risposta": "testi:e34.op.non_rispondere.r"
+            }
+          ],
+          "se": {
+            "var": "fascicolo",
+            "uguale": "nessuno"
+          }
+        },
+        {
+          "id": "commissione_procura",
+          "fonte": "comando",
+          "se": {
+            "var": "fascicolo",
+            "uguale": "procura"
+          },
+          "testo": "testi:e34.ch.commissione_procura",
+          "commento": "testi:e34.ch.commissione_procura.vice",
+          "opzioni": [
+            {
+              "id": "procura_difendi",
+              "testo": "testi:e34.op.procura_difendi",
+              "costo": "testi:e34.op.procura_difendi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e34.op.procura_difendi.r"
+            },
+            {
+              "id": "procura_glissa",
+              "testo": "testi:e34.op.procura_glissa",
+              "costo": "testi:e34.op.procura_glissa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e34.op.procura_glissa.r"
+            }
+          ]
+        },
+        {
+          "id": "commissione_stampa",
+          "fonte": "comando",
+          "se": {
+            "var": "fascicolo",
+            "uguale": "stampa"
+          },
+          "testo": "testi:e34.ch.commissione_stampa",
+          "commento": "testi:e34.ch.commissione_stampa.vice",
+          "opzioni": [
+            {
+              "id": "stampa_difendi",
+              "testo": "testi:e34.op.stampa_difendi",
+              "costo": "testi:e34.op.stampa_difendi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e34.op.stampa_difendi.r"
+            },
+            {
+              "id": "stampa_glissa",
+              "testo": "testi:e34.op.stampa_glissa",
+              "costo": "testi:e34.op.stampa_glissa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e34.op.stampa_glissa.r"
+            }
+          ]
+        },
+        {
+          "id": "commissione_comando",
+          "fonte": "comando",
+          "se": {
+            "var": "fascicolo",
+            "uguale": "comando"
+          },
+          "testo": "testi:e34.ch.commissione_comando",
+          "commento": "testi:e34.ch.commissione_comando.vice",
+          "opzioni": [
+            {
+              "id": "comando_difendi",
+              "testo": "testi:e34.op.comando_difendi",
+              "costo": "testi:e34.op.comando_difendi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e34.op.comando_difendi.r"
+            },
+            {
+              "id": "comando_glissa",
+              "testo": "testi:e34.op.comando_glissa",
+              "costo": "testi:e34.op.comando_glissa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e34.op.comando_glissa.r"
             }
           ]
         },
