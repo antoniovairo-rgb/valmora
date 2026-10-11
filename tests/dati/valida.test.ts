@@ -52,6 +52,7 @@ describe('validatore dei dati', () => {
     ['chiamata senza uscita garantita', (d) => { d[M].ondate[0].chiamate[0].opzioni[0].se = { var: 'var_bool', uguale: true }; }, /senza uscita garantita/],
     ['opzione senza accenno di costo (D-078)', (d) => { delete d[M].ondate[0].chiamate[0].opzioni[1].costo; }, /manca l'accenno di costo/],
     ['accenno di costo senza testo', (d) => { d[M].ondate[0].chiamate[0].opzioni[0].costo = 'testi:prova.zzz'; }, /prova\.zzz/],
+    ['testo che dice «credito» invece di «fiducia» (D-097)', (d) => { d['testi/it/prova.json']['prova.op_a'] = 'Ti costa credito.'; }, /si chiama «fiducia»/],
     ['dettaglio su settore inesistente (D-095)', (d) => { d[M].mappa.dettagli = ['banca@settore_z']; }, /il settore «settore_z» non è nella mappa/],
     ['dettaglio sconosciuto (D-095)', (d) => { d[M].mappa.dettagli = ['astronave']; }, /dettagli\/0: must match pattern/],
     ['club di settore inesistente (D-086)', (d) => { d[M].mappa.settori[0].club = 'club_z'; }, /club «club_z» non esiste/],

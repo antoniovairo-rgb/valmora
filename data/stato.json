@@ -33,6 +33,70 @@
       "tipo": "bool",
       "iniziale": false,
       "descrizione": "Il protagonista ha annotato il furgone grigio dei biglietti falsi (filo, e02)"
+    },
+    {
+      "id": "rapporto_dessi",
+      "tipo": "enum",
+      "valori": [
+        "ostile",
+        "neutro",
+        "rispetto"
+      ],
+      "iniziale": "neutro",
+      "descrizione": "Come ti considera Dessì dopo il primo incontro (e08); pesa su e10, e12, e20, e29 (D-100)"
+    },
+    {
+      "id": "testimone",
+      "tipo": "enum",
+      "valori": [
+        "nessuno",
+        "protetto",
+        "esposto"
+      ],
+      "iniziale": "nessuno",
+      "descrizione": "Sorte del testimone di e18; pesa su e19, e24, e31 (D-100)"
+    },
+    {
+      "id": "busta",
+      "tipo": "enum",
+      "valori": [
+        "nessuna",
+        "consegnata",
+        "tenuta"
+      ],
+      "iniziale": "nessuna",
+      "descrizione": "La busta di fine stagione 2 (e24): consegnata al comando o tenuta da te; pesa su e25, e31, e33 (D-100)"
+    },
+    {
+      "id": "pista_cattura",
+      "tipo": "enum",
+      "valori": [
+        "nessuna",
+        "porto",
+        "soffiata"
+      ],
+      "iniziale": "nessuna",
+      "descrizione": "Come si arriva a Dessì (e28); decide la forma della cattura in e29 (D-016, D-100)"
+    },
+    {
+      "id": "fascicolo",
+      "tipo": "enum",
+      "valori": [
+        "nessuno",
+        "procura",
+        "stampa",
+        "comando"
+      ],
+      "iniziale": "nessuno",
+      "descrizione": "A chi consegni il fascicolo sull'impresa Varrone (e31); decide il finale (e34, e36) (D-100)"
+    },
+    {
+      "id": "sospetti_talpa",
+      "tipo": "int",
+      "min": 0,
+      "max": 4,
+      "iniziale": 0,
+      "descrizione": "Indizi notati su Gianni Lavezzari (e01, e16, e19, e23); in e33 decide quanto presto lo smascheri (D-100)"
     }
   ]
 }

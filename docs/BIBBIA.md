@@ -7,22 +7,22 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Protagonista: responsabile dell'ordine pubblico di Valmora; soprannomi «Killjoy ad interim», «l'Eroe ad interim».
 - 13 club di calcio inventati.
 - Triadi di 3 stagioni × 12 missioni (36 per triade), missioni di circa 7 minuti.
-- Dessì: fuga all'episodio 20, cattura all'episodio 29.
+- Ferrigno: fuga all'episodio 20, cattura all'episodio 29.
 - Ogni indizio importante compare almeno due volte in episodi diversi.
 
 ## Triade 1 – arco (D-016)
 - Stagione 1 (e01–e12): i disordini in superficie.
-- Stagione 2 (e13–e24): chi li organizza; e20 fuga di Dessì.
-- Stagione 3 (e25–e36): chi li protegge; e29 cattura di Dessì; resa dei conti.
+- Stagione 2 (e13–e24): chi li organizza; e20 fuga di Ferrigno.
+- Stagione 3 (e25–e36): chi li protegge; e29 cattura di Ferrigno; resa dei conti.
 - Indice episodio per episodio: docs/INDICE_TRIADE.md, approvato come base (D-068).
-- Chi protegge Dessì (D-069): un costruttore inventato dello stadio nuovo, che usa i disordini per far chiudere lo stadio vecchio.
+- Chi protegge Ferrigno (D-069): un costruttore inventato dello stadio nuovo, che usa i disordini per far chiudere lo stadio vecchio.
 - Il vice è alleato fino in fondo (D-070).
 
 ## Personaggi
-- Dessì (D-017): capo di una curva inventata, che usa la curva come copertura per affari illeciti. Nessun simbolo, ideologia o riferimento reale (REGOLE_PLAY §2).
+- Ferrigno (D-017): capo di una curva inventata, che usa la curva come copertura per affari illeciti. Nessun simbolo, ideologia o riferimento reale (REGOLE_PLAY §2).
 - Protagonista (D-018): è «ad interim» perché il predecessore è stato rimosso in fretta dopo una gestione contestata e nessuno voleva il posto.
 
-- Il vice (D-054): consigliere del protagonista. Ha visto passare tre responsabili ad interim, è disilluso e ironico, scommette sul tuo fallimento ma ti aiuta. Nome: DA DECIDERE.
+- Il vice (D-054, D-098): Ettore Malvasi, consigliere del protagonista. Ha visto passare tre responsabili ad interim, è disilluso e ironico, scommette sul tuo fallimento ma ti aiuta. Nome deciso: Ettore Malvasi (D-098).
 
 ## Episodio 1 (D-019, D-021, D-022)
 - Primo giorno del protagonista: derby cittadino, con fonti del briefing in contraddizione.
@@ -84,3 +84,13 @@ e03 · equilibrata: blocchi 0/1000 · esiti {"contenuto":1000} · stelle {"0":0,
 e03 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000,"1":0,"2":0,"3":0}
 - Dove si montano le transenne (tools/fisse.mjs, giocatore equilibrato, prima ondata forzata): quartiere+quartiere 3★, quartiere+parcheggi 3★, quartiere+piazzale 3★, parcheggi+piazzale 3★, parcheggi+parcheggi 1★, piazzale+piazzale 1★. Con le prime tarature (4 squadre, proteste basse) le stelle erano 2★ o 3★ in ogni posizione: novità vuota, scartata.
 - Difficoltà: il casuale fallisce il 67,7% (e02: 59,7%). È più difficile di e02 di proposito, perché la trappola delle transenne esiste solo con risorse strette; si ritara dopo il collaudo del PO (D-065).
+
+
+## Decisioni del consolidamento (2026-10-11, D-098…D-101)
+- Talpa: Gianni Lavezzari, responsabile della sicurezza del Cinderwick United; in e01 è la fonte che dà l'informazione falsa sul corteo. Smascherato in e33.
+- Costruttore: impresa «Varrone & Figli»; l'erede Tullio Varrone guida il progetto dello stadio nuovo e protegge Ferrigno. Sotto inchiesta grazie al fascicolo (e31).
+- Finale agrodolce (e36): inchiesta sul costruttore; conferma o sostituzione del protagonista secondo la fiducia; il vice paga la scommessa.
+- Scelte che contano: rapporto_dessi, testimone, busta, pista_cattura, fascicolo, sospetti_talpa (data/stato.json).
+- Testi: battute entro 140 caratteri, introduzioni di 2 battute.
+
+- Capo della curva Cinderwick (D-102): Tano Ferrigno, detto «il Fabbro» (prima «Dessì»).

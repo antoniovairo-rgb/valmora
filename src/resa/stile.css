@@ -35,6 +35,12 @@ p { margin: var(--spazio-2) 0; }
 .pulsante:focus-visible, .opzione:focus-visible, .unita:focus-visible, .settore-punto:focus-visible { outline: var(--bordo) solid var(--magenta); outline-offset: var(--spazio-1); }
 .azioni { display: flex; gap: var(--spazio-3); flex-wrap: nowrap; }
 .azioni .pulsante { margin: var(--spazio-3) 0; }
+/* PO-063/PO-065: home più compatta, logo, pulsanti secondari piccoli */
+.logo-icona { width: var(--logo-icona); height: var(--logo-icona); display: block; margin-bottom: var(--spazio-2); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); }
+.secondari { display: flex; gap: var(--spazio-2); margin: var(--spazio-3) 0; }
+.pulsante.piccolo { flex: 1; margin: 0; min-height: var(--tocco-min); padding: var(--spazio-1) var(--spazio-2); background: var(--bianco); font-size: var(--testo-piccolo); gap: var(--spazio-1); }
+.avviso-finzione { text-align: center; }
+.guida-azioni .pulsante { flex: 1; }
 .stagioni { display: flex; gap: var(--spazio-2); }
 .stagioni .pulsante { flex: 1; margin: 0 0 var(--spazio-3); padding: var(--spazio-2); font-size: var(--testo-piccolo); }
 
@@ -129,6 +135,8 @@ p.riposo { opacity: 1; }
 /* Città degli episodi e stelle (D-060, D-061) */
 .mappa.citta { aspect-ratio: var(--citta-proporzione); /* PO-052: la mappa si stringe perché la scheda resti nello schermo */ width: min(100%, max(var(--citta-larghezza-min), calc((100dvh - var(--citta-riserva)) * 4 / 5))); margin-inline: auto; }
 main[data-schermata="sala"] .mappa, main[data-schermata="briefing"] .mappa { aspect-ratio: var(--mappa-proporzione-passi); }
+/* le stelline sotto un episodio sono decorative: non devono rubare il tocco al punto vicino (difetto trovato dalla sviluppatrice a 360×760) */
+.episodio .settore-unita { pointer-events: none; }
 .episodio .settore-punto { border: var(--bordo) solid var(--nero); background: var(--bianco); box-shadow: var(--ombra-1); color: var(--nero); font: 700 var(--testo-grande) var(--font-titoli); }
 .episodio .settore-punto::after { display: none; }
 .episodio.superato .settore-punto { background: var(--tensione-0); }
