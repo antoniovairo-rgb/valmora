@@ -2,7 +2,7 @@
 // Servono a provare che una missione finisce sempre, che ogni esito è raggiungibile e che le scelte
 // contano, e a tarare i numeri (D-036).
 import type { Caso } from './caso.ts';
-import { chiamateAperte, chiudiOndata, disponibili, opzioniValide, rispondi, type Giocatore, type InCorso } from './missione.ts';
+import { chiamateAperte, chiudiOndata, disponibili, opzioniValide, rispondi, settoriAmmessi, type Giocatore, type InCorso } from './missione.ts';
 import type { Chiamata, Dichiarazione, Disposizione, Missione } from './tipi.ts';
 
 type Dich = Map<string, Dichiarazione>;
@@ -36,7 +36,7 @@ export type Strategia = (caso: Caso, d: Dich) => Giocatore;
 export const casuale: Strategia = (caso) => ({
   schiera(m, s) {
     const dd = vuota(m);
-    for (const [r, n] of Object.entries(disponibili(m, s))) for (let i = 0; i < n; i++) metti(dd, r, caso.scegli(m.mappa.settori).id);
+    for (const [r, n] of Object.entries(disponibili(m, s))) for (let i = 0; i < n; i++) metti(dd, r, caso.scegli(settoriAmmessi(m, r)));
     return dd;
   },
   scegli: (_m, s, c) => caso.scegli(opzioniValide(c, s)).id,
@@ -47,8 +47,8 @@ export const attenta: Strategia = (_caso, d) => ({
   schiera(m, s) {
     const dd = vuota(m);
     for (const [r, n] of Object.entries(disponibili(m, s))) for (let i = 0; i < n; i++) {
-      let migliore = { id: m.mappa.settori[0]!.id, v: Infinity };
-      for (const { id } of m.mappa.settori) {
+      let migliore = { id: settoriAmmessi(m, r)[0]!, v: Infinity };
+      for (const id of settoriAmmessi(m, r)) {
         metti(dd, r, id);
         const v = stima(m, { ...s, disposizione: dd }, d);
         dd[r]![id]! -= 1;
@@ -67,8 +67,8 @@ export const peggiore: Strategia = (_caso, d) => ({
     const dd = vuota(m);
     const o = m.ondate[s.ondata - 1]!;
     const p = (id: string) => o.eventi.filter((e) => e.settore === id).reduce((t, e) => t + e.pressione, 0);
-    const calmo = [...m.mappa.settori].sort((a, b) => p(a.id) - p(b.id) || a.id.localeCompare(b.id))[0]!.id;
-    for (const [r, n] of Object.entries(disponibili(m, s))) if (n) dd[r]![calmo] = n;
+    const calmo = (r: string) => [...settoriAmmessi(m, r)].sort((a, b) => p(a) - p(b) || a.localeCompare(b))[0]!;
+    for (const [r, n] of Object.entries(disponibili(m, s))) if (n) dd[r]![calmo(r)] = n;
     return dd;
   },
   scegli: (m, s, c) => opzioneMigliore(m, s, c, d, -1),

@@ -157,6 +157,10 @@
                 "items": {
                   "$ref": "comune.schema.json#/$defs/id"
                 }
+              },
+              "fissa": {
+                "type": "boolean",
+                "description": "unità fisse (D-082): una volta piazzate restano nel settore per tutte le ondate dopo, non tornano disponibili e non vanno a riposo"
               }
             }
           }
