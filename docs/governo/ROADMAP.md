@@ -5,13 +5,13 @@ Ambito della prima pubblicazione: triade intera, 36 missioni.
 Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
 
 ## L0 – Impianto del governo
-- Stato: IN CORSO
+- Stato: CHIUSO (2026-10-11: catena governo verde 3/3 giri locali su 7a884b9 + CI GitHub verde su 80a3deb; D-006…D-012 chiuse)
 - Obiettivo: documenti di governo, regole, prima catena di prova funzionante, decisioni di partenza.
 - Voci: PO-001, PO-002, PO-003, PO-004, PO-005, PO-006, PO-007
 - Criterio d'uscita: catena «governo» verde per 3 giri consecutivi sullo stesso commit; D-006…D-010 chiuse; repo GitHub con CI che esegue la stessa catena.
 
 ## L1 – Fetta verticale: episodio 1
-- Stato: PROPOSTO
+- Stato: IN CORSO
 - Obiettivo: e01 giocabile da capo a fondo (briefing, plancia, ondate, verbale) nel browser e come APK di debug sul telefono del PO.
 - Voci: PO-009
 - Criterio d'uscita: bibbia con indice della triade ed e01 approvati dal PO; e01 completata dal bot con 1000 semi (1…1000), 0 blocchi; catena «logica» verde 3 giri; 0 errori di console sulle schermate di e01 a 360/375/412 px; salvataggio e ripresa provati; ore reali di lavoro misurate e scritte qui.
