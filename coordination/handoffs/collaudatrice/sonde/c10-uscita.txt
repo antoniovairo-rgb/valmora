@@ -1,0 +1,23 @@
+T1 · settori ammessi per transenne (efficacia > 0) → ["quartiere","parcheggi","piazzale"]
+T1 · transenne in quartiere → accettato
+T1 · transenne in parcheggi → accettato
+T1 · transenne in piazzale → accettato
+T1 · transenne in curva_ospiti → rifiutato: transenne: in «curva_ospiti» non hanno effetto, non si montano
+T1 · transenne in curva_larkspire → rifiutato: transenne: in «curva_larkspire» non hanno effetto, non si montano
+T2 · dopo ondata 1 con 2 transenne in quartiere; poi riserva transenne −2 → fisse {"quartiere":2}, disponibili 0; con riserva −2: disponibili 0, fisse dopo ondata 2 {"quartiere":2}, copertura quartiere nel rapporto 2 scoperto=0
+T2 · opzioni dei dati che toccano la riserva di transenne → nessuna
+T3 · riserva transenne +1 dopo 2 montate; monto la terza in parcheggi → ok: fisse {"parcheggi":1,"quartiere":2}, disponibili ora 0
+T3 · monto 2 transenne con 1 sola disponibile → rifiutato: transenne: 2 unità disposte, disponibili 1
+T4 · ondata 2 ripresa da JSON (fisse presenti) → identica
+T4 · ondata 2 ripresa senza campo fisse (salvataggio vecchio a metà) → scoperto quartiere 0 (con fisse 0); fisse dopo {}; disponibili transenne ondata 3 2 (con fisse 1)
+T4 · transenna sola in piazzale (folla 3, efficacia 1): riposo dopo ondata 1 → scoperto piazzale 4; aRiposo {}; fisse {"piazzale":1}
+T5 · e03 · casuale · 300 semi → blocchi 0, violazioni 0
+T5 · e03 · attenta · 300 semi → blocchi 0, violazioni 0
+T5 · e03 · equilibrata · 300 semi → blocchi 0, violazioni 0
+T5 · e03 · peggiore · 300 semi → blocchi 0, violazioni 0
+P1 · e01: max dei picchi = tensione_max → 1200 su 1200 (diversi 0); settori-ondata con picco > tensione di fine ondata: 3820
+P1 · e02: max dei picchi = tensione_max → 1200 su 1200 (diversi 0); settori-ondata con picco > tensione di fine ondata: 4455
+P1 · e03: max dei picchi = tensione_max → 1200 su 1200 (diversi 0); settori-ondata con picco > tensione di fine ondata: 5413
+B1 · e01: 50 partite casuali {"fallite":24,"superate":26} → nessun problema
+B1 · e02: 50 partite casuali {"fallite":36,"superate":14} → nessun problema
+B1 · e03: 50 partite casuali {"fallite":37,"superate":13} → nessun problema

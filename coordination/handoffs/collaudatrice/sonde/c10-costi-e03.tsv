@@ -1,0 +1,31 @@
+e03	auto_in_sosta.rimozione	testi:e03.op.rimozione.c	pressione quartiere -2; riserva squadre -1	Quartiere più calmo, ma ti costa una squadra.
+e03	auto_in_sosta.multe	testi:e03.op.multe.c	credito +1; pressione quartiere +1	Il comando apprezza; i residenti restano arrabbiati.
+e03	auto_in_sosta.chiudi_occhio_auto	testi:e03.op.chiudi_occhio_auto.c	tensione quartiere +2	Nessun costo subito, il quartiere si scalda.
+e03	cartelloni.ascolta_comitato	testi:e03.op.ascolta_comitato.c	pressione quartiere -2; riserva mediatore -1	Si calmano, ma il mediatore resta lì.
+e03	cartelloni.promessa	testi:e03.op.promessa.c	credito +1; pressione quartiere +2	Il comitato si fida; ora devi mantenere.
+e03	ospiti_arrivano.parcheggio_lontano	testi:e03.op.parcheggio_lontano.c	pressione parcheggi -2; pressione piazzale +2	Parcheggi più ordinati, il piazzale più affollato.
+e03	ospiti_arrivano.dove_capita	testi:e03.op.dove_capita.c	credito +1; pressione parcheggi +2	Gli ospiti apprezzano; i parcheggi si riempiono.
+e03	fari_presidente.spegni_luci	testi:e03.op.spegni_luci.c	pressione quartiere -3; credito -1	Quartiere più calmo; ora sei in debito.
+e03	fari_presidente.luci_accese	testi:e03.op.luci_accese.c	credito +1	Il comando apprezza; il quartiere resta illuminato.
+e03	laser.steward_laser	testi:e03.op.steward_laser.c	pressione curva_ospiti -2; tensione curva_ospiti +1	La curva ospiti si calma, se lo ricorda.
+e03	laser.annuncio	testi:e03.op.annuncio.c	pressione curva_ospiti -1; credito -1	Costa poco credito, funziona a metà.
+e03	laser.lascia_laser	testi:e03.op.lascia_laser.c	pressione curva_ospiti +2	Nessun costo subito, la curva ospiti si scalda.
+e03	finestre.pattuglia_vie	testi:e03.op.pattuglia_vie.c	pressione quartiere -2; pressione piazzale +1	Il quartiere si calma, il piazzale resta più scoperto.
+e03	finestre.comunicato_residenti	testi:e03.op.comunicato_residenti.c	credito +1; tensione quartiere +2	Il comando apprezza; il comitato si arrabbia.
+e03	torcia_casa.steward_torcia	testi:e03.op.steward_torcia.c	pressione curva_larkspire -2; credito -1	La curva si calma, ma costa credito.
+e03	torcia_casa.lascia_torcia	testi:e03.op.lascia_torcia.c	pressione curva_larkspire +2	Nessun costo subito, la curva Larkspire si scalda.
+e03	furgone_parcheggi.controllo_furgone	testi:e03.op.controllo_furgone.c	pressione parcheggi -2; riserva steward -2	Parcheggi più calmi, due steward impegnati.
+e03	furgone_parcheggi.annota_furgone	testi:e03.op.annota_furgone.c	furgone_visto=true	Nessun costo, un dettaglio in più nel rapporto.
+e03	supplementari.rinforzi_notte	testi:e03.op.rinforzi_notte.c	riserva squadre +2; credito -2	Due squadre in più, ma il comando non dimentica.
+e03	supplementari.tieni_duro	testi:e03.op.tieni_duro.c	(nessuno)	Nessun costo, nessun aiuto.
+e03	bottiglie.presidio_balcone	testi:e03.op.presidio_balcone.c	pressione quartiere -2; credito -1	Il quartiere si calma, costa credito.
+e03	bottiglie.devia_tifosi	testi:e03.op.devia_tifosi.c	pressione quartiere -1; pressione parcheggi +2	Il quartiere respira, i parcheggi si riempiono.
+e03	rigori_curve.cordone_curve	testi:e03.op.cordone_curve.c	pressione curva_ospiti -1; pressione curva_larkspire -1; credito -1	Curve più calme, costa credito.
+e03	rigori_curve.confida_curve	testi:e03.op.confida_curve.c	credito +1; tensione curva_ospiti +1; tensione curva_larkspire +1	Il club gradisce; tutte e due le curve si scaldano.
+e03	risultato.trattieni_ospiti3	testi:e03.op.trattieni_ospiti3.c	pressione parcheggi -2; tensione curva_ospiti +2	Parcheggi più ordinati; la curva ospiti rumoreggia.
+e03	risultato.scorta_pullman	testi:e03.op.scorta_pullman.c	pressione parcheggi -2; riserva squadre -1; pressione quartiere +1	Parcheggi più sicuri, ti costa una squadra.
+e03	silenzio.vie_chiuse	testi:e03.op.vie_chiuse.c	pressione quartiere -3; pressione piazzale +2	Il quartiere si calma, il piazzale si affolla.
+e03	silenzio.scuse	testi:e03.op.scuse.c	pressione quartiere -1; credito -1	Un po' di calma, un po' di credito in meno.
+e03	silenzio.nessuna_risposta	testi:e03.op.nessuna_risposta.c	tensione quartiere +3	Nessun costo subito, il quartiere non perdona.
+e03	troupe_notte.commento_tv	testi:e03.op.commento_tv.c	credito +1; tensione quartiere +2	Bella figura in tv; il quartiere si offende.
+e03	troupe_notte.niente_commento	testi:e03.op.niente_commento.c	credito -1	La stampa non gradisce.
