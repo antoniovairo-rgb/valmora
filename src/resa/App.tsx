@@ -114,7 +114,7 @@ export function App() {
     const ultimo = m.briefing[visti - 1];
     mappa = { accesi: ultimo?.settore ? [ultimo.settore] : [] };
     testata = { etichetta: `Briefing · ${Math.min(visti, m.briefing.length)} di ${m.briefing.length} fonti`, titolo: t(m.titolo) };
-    corpo = <Briefing m={m} visti={visti} prossimo={() => setVisti(visti + 1)} inizia={() => {
+    corpo = <Briefing m={m} visti={visti} vai={setVisti} inizia={() => {
       if (icOra()) return; // già iniziata (doppio tocco)
       setBozza({}); conIc(iniziaEpisodio(sal, m)); setSchermata('gioco');
     }} />;

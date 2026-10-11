@@ -134,6 +134,7 @@
   --nome-max: 7.5em;
   --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */
   --mappa-proporzione: 1 / 1;
+  --mappa-proporzione-passi: 4 / 3; /* sala e briefing a passi (S-10): mappa più bassa, niente scorrimento */
   --citta-proporzione: 4 / 5;
 
   --font-titoli: "Space Grotesk", system-ui, sans-serif;
