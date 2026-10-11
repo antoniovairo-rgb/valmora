@@ -49,7 +49,9 @@ if (!CATENE[nome]) {
 }
 
 const commit = git('rev-parse --short HEAD');
-const sporco = git('status --porcelain').length > 0;
+// I file scritti dalla catena stessa non rendono «sporca» la build.
+const PRODOTTI = ['STABILITA.json', 'docs/governo/governo.html'];
+const sporco = git('status --porcelain').split('\n').filter((r) => r && !PRODOTTI.includes(r.slice(3))).length > 0;
 const giro = { catena: nome, data: new Date().toISOString(), commit, modifiche_non_committate: sporco, passi: [] };
 let rosso = false;
 
