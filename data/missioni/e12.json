@@ -1,0 +1,858 @@
+{
+  "id": "e12",
+  "bozza": true,
+  "stagione": 1,
+  "episodio": 12,
+  "titolo": "testi:e12.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 62,
+    "y": 12
+  },
+  "introduzione": [
+    "testi:e12.intro1",
+    "testi:e12.intro2",
+    "testi:e12.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e12.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "piazza_comune"
+    },
+    {
+      "testo": "testi:e12.info_comune",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "piazza_comune"
+    },
+    {
+      "testo": "testi:e12.info_club",
+      "fonte": "club_saltmere",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e12.info_dessi",
+      "fonte": "dessi",
+      "affidabilita": "bassa",
+      "vera": false,
+      "settore": "strada_cinderwick"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 20,
+          "y": 35
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "saltmere_wanderers",
+        "pos": {
+          "x": 82,
+          "y": 35
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 50,
+          "y": 60
+        }
+      },
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 18,
+          "y": 85
+        }
+      },
+      {
+        "id": "piazza_comune",
+        "tipo": "piazza",
+        "pos": {
+          "x": 80,
+          "y": 85
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazza": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 1,
+          "strada": 1,
+          "piazza": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "presidio"
+        ]
+      }
+    },
+    "dettagli": [
+      "cartelloni_stadio_nuovo"
+    ]
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e12.ondata1",
+      "eventi": [
+        {
+          "id": "presidio12",
+          "tipo": "presidio",
+          "settore": "piazza_comune",
+          "pressione": 4
+        },
+        {
+          "id": "corteo12",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "arrivi12",
+          "tipo": "arrivo",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "portone",
+          "fonte": "centrale_radio",
+          "testo": "testi:e12.ch.portone",
+          "commento": "testi:e12.ch.portone.vice",
+          "settore": "piazza_comune",
+          "opzioni": [
+            {
+              "id": "mediatore12",
+              "testo": "testi:e12.op.mediatore12",
+              "costo": "testi:e12.op.mediatore12.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.mediatore12.r"
+            },
+            {
+              "id": "chiudi_portone",
+              "testo": "testi:e12.op.chiudi_portone",
+              "costo": "testi:e12.op.chiudi_portone.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.chiudi_portone.r"
+            },
+            {
+              "id": "presidio_libero",
+              "testo": "testi:e12.op.presidio_libero",
+              "costo": "testi:e12.op.presidio_libero.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_comune",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e12.op.presidio_libero.r"
+            }
+          ]
+        },
+        {
+          "id": "lavagna",
+          "fonte": "vice",
+          "testo": "testi:e12.ch.lavagna",
+          "commento": "testi:e12.ch.lavagna.vice",
+          "opzioni": [
+            {
+              "id": "tutto_rapporto",
+              "testo": "testi:e12.op.tutto_rapporto",
+              "costo": "testi:e12.op.tutto_rapporto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e12.op.tutto_rapporto.r"
+            },
+            {
+              "id": "dopo_partita",
+              "testo": "testi:e12.op.dopo_partita",
+              "costo": "testi:e12.op.dopo_partita.c",
+              "effetti": [],
+              "risposta": "testi:e12.op.dopo_partita.r"
+            }
+          ]
+        },
+        {
+          "id": "ultimo_corteo",
+          "fonte": "centrale_radio",
+          "testo": "testi:e12.ch.ultimo_corteo",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "scorta12",
+              "testo": "testi:e12.op.scorta12",
+              "costo": "testi:e12.op.scorta12.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -3
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.scorta12.r"
+            },
+            {
+              "id": "devia12",
+              "testo": "testi:e12.op.devia12",
+              "costo": "testi:e12.op.devia12.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -1
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e12.op.devia12.r"
+            }
+          ]
+        },
+        {
+          "id": "stesso_posto",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e12.ch.stesso_posto",
+          "commento": "testi:e12.ch.stesso_posto.vice",
+          "settore": "piazzale",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "chiedi_soldi",
+              "testo": "testi:e12.op.chiedi_soldi",
+              "costo": "testi:e12.op.chiedi_soldi.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.chiedi_soldi.r"
+            },
+            {
+              "id": "grazie12",
+              "testo": "testi:e12.op.grazie12",
+              "costo": "testi:e12.op.grazie12.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e12.op.grazie12.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e12.ondata2",
+      "eventi": [
+        {
+          "id": "cori12c",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "cori12o",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 5
+        },
+        {
+          "id": "presidio12b",
+          "tipo": "presidio",
+          "settore": "piazza_comune",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "coreografia12",
+          "fonte": "centrale_radio",
+          "testo": "testi:e12.ch.coreografia12",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "steward12",
+              "testo": "testi:e12.op.steward12",
+              "costo": "testi:e12.op.steward12.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.steward12.r"
+            },
+            {
+              "id": "lascia12",
+              "testo": "testi:e12.op.lascia12",
+              "costo": "testi:e12.op.lascia12.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e12.op.lascia12.r"
+            }
+          ]
+        },
+        {
+          "id": "salvezza",
+          "fonte": "club_saltmere",
+          "testo": "testi:e12.ch.salvezza",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "cordone12",
+              "testo": "testi:e12.op.cordone12",
+              "costo": "testi:e12.op.cordone12.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.cordone12.r"
+            },
+            {
+              "id": "fiducia12",
+              "testo": "testi:e12.op.fiducia12",
+              "costo": "testi:e12.op.fiducia12.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e12.op.fiducia12.r"
+            }
+          ]
+        },
+        {
+          "id": "chiudiamo_citta",
+          "fonte": "dessi",
+          "testo": "testi:e12.ch.chiudiamo_citta",
+          "commento": "testi:e12.ch.chiudiamo_citta.vice",
+          "settore": "piazza_comune",
+          "opzioni": [
+            {
+              "id": "tratta12",
+              "testo": "testi:e12.op.tratta12",
+              "costo": "testi:e12.op.tratta12.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e12.op.tratta12.r"
+            },
+            {
+              "id": "no_dessi12",
+              "testo": "testi:e12.op.no_dessi12",
+              "costo": "testi:e12.op.no_dessi12.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazza_comune",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e12.op.no_dessi12.r"
+            }
+          ]
+        },
+        {
+          "id": "voto_deciso",
+          "fonte": "vice",
+          "testo": "testi:e12.ch.voto_deciso",
+          "commento": "testi:e12.ch.voto_deciso.vice",
+          "settore": "piazza_comune",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "accetta12",
+              "testo": "testi:e12.op.accetta12",
+              "costo": "testi:e12.op.accetta12.c",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.accetta12.r"
+            },
+            {
+              "id": "declina12",
+              "testo": "testi:e12.op.declina12",
+              "costo": "testi:e12.op.declina12.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e12.op.declina12.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e12.ondata3",
+      "eventi": [
+        {
+          "id": "cori12c2",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "cori12o2",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale12",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "manifesto",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e12.ch.manifesto",
+          "settore": "piazza_comune",
+          "opzioni": [
+            {
+              "id": "togli_manifesto",
+              "testo": "testi:e12.op.togli_manifesto",
+              "costo": "testi:e12.op.togli_manifesto.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.togli_manifesto.r"
+            },
+            {
+              "id": "lascia_manifesto",
+              "testo": "testi:e12.op.lascia_manifesto",
+              "costo": "testi:e12.op.lascia_manifesto.c",
+              "effetti": [
+                {
+                  "tensione": "piazza_comune",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e12.op.lascia_manifesto.r"
+            }
+          ]
+        },
+        {
+          "id": "targa_davanti",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e12.ch.targa_davanti",
+          "commento": "testi:e12.ch.targa_davanti.vice",
+          "settore": "piazzale",
+          "se": {
+            "var": "furgone_visto",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "annota_ditta",
+              "testo": "testi:e12.op.annota_ditta",
+              "costo": "testi:e12.op.annota_ditta.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e12.op.annota_ditta.r"
+            },
+            {
+              "id": "ferma12",
+              "testo": "testi:e12.op.ferma12",
+              "costo": "testi:e12.op.ferma12.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.ferma12.r"
+            }
+          ]
+        },
+        {
+          "id": "salvi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e12.ch.salvi",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_pista",
+              "testo": "testi:e12.op.steward_pista",
+              "costo": "testi:e12.op.steward_pista.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e12.op.steward_pista.r"
+            },
+            {
+              "id": "festa_pista",
+              "testo": "testi:e12.op.festa_pista",
+              "costo": "testi:e12.op.festa_pista.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e12.op.festa_pista.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e12.ondata4",
+      "eventi": [
+        {
+          "id": "corteo12b",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "piazzale12b",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 5
+        },
+        {
+          "id": "presidio12c",
+          "tipo": "presidio",
+          "settore": "piazza_comune",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "insieme",
+          "fonte": "vice",
+          "testo": "testi:e12.ch.insieme",
+          "commento": "testi:e12.ch.insieme.vice",
+          "opzioni": [
+            {
+              "id": "accompagna_piazza",
+              "testo": "testi:e12.op.accompagna_piazza",
+              "costo": "testi:e12.op.accompagna_piazza.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazza_comune",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e12.op.accompagna_piazza.r"
+            },
+            {
+              "id": "ferma_prima",
+              "testo": "testi:e12.op.ferma_prima",
+              "costo": "testi:e12.op.ferma_prima.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -2
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e12.op.ferma_prima.r"
+            }
+          ]
+        },
+        {
+          "id": "entro_le_dieci",
+          "fonte": "centrale_radio",
+          "testo": "testi:e12.ch.entro_le_dieci",
+          "commento": "testi:e12.ch.entro_le_dieci.vice",
+          "settore": "piazza_comune",
+          "opzioni": [
+            {
+              "id": "sgombera12",
+              "testo": "testi:e12.op.sgombera12",
+              "costo": "testi:e12.op.sgombera12.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazza_comune",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e12.op.sgombera12.r"
+            },
+            {
+              "id": "ordine_scritto",
+              "testo": "testi:e12.op.ordine_scritto",
+              "costo": "testi:e12.op.ordine_scritto.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_comune",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.ordine_scritto.r"
+            }
+          ]
+        },
+        {
+          "id": "rinforzi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e12.ch.rinforzi",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "rinforzi12",
+              "testo": "testi:e12.op.rinforzi12",
+              "costo": "testi:e12.op.rinforzi12.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e12.op.rinforzi12.r"
+            },
+            {
+              "id": "chiudi_cancelli",
+              "testo": "testi:e12.op.chiudi_cancelli",
+              "costo": "testi:e12.op.chiudi_cancelli.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e12.op.chiudi_cancelli.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e12.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e12.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e12.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
