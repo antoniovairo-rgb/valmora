@@ -1,21 +1,74 @@
+/* Stile «sala operativa» (D-049). Valori SOLO da token.css (guardiano «token»). */
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--colore-fondo); color: var(--colore-testo); font-family: var(--font); font-size: var(--testo-base); line-height: var(--linea); }
-#app { max-width: var(--larghezza-max); margin: 0 auto; padding: var(--spazio-4); }
-h1 { font-size: var(--testo-titolo); margin: var(--spazio-5) 0 var(--spazio-3); }
-h2 { font-size: var(--testo-grande); margin: var(--spazio-4) 0 var(--spazio-2); }
+#app { max-width: var(--larghezza-max); margin: 0 auto; padding: var(--spazio-3) var(--spazio-4) var(--spazio-6); overflow-x: hidden; }
+h1 { font-size: var(--testo-titolo); margin: var(--spazio-2) 0 var(--spazio-3); line-height: var(--linea); }
+h2 { font-size: var(--testo-grande); margin: var(--spazio-5) 0 var(--spazio-2); }
 p { margin: var(--spazio-2) 0; }
 .tenue { color: var(--colore-testo-tenue); font-size: var(--testo-piccolo); }
+.fonte { overflow-wrap: anywhere; }
+.sopratitolo { margin: var(--spazio-3) 0 0; color: var(--colore-acceso); font-size: var(--testo-piccolo); text-transform: uppercase; letter-spacing: var(--bordo); }
 .scheda { background: var(--colore-superficie); border: var(--bordo) solid var(--colore-bordo); border-radius: var(--raggio-2); padding: var(--spazio-3); margin: var(--spazio-3) 0; }
 .riga { display: flex; align-items: center; justify-content: space-between; gap: var(--spazio-2); flex-wrap: wrap; }
-.pulsante { display: block; width: 100%; min-height: var(--tocco-min); margin: var(--spazio-3) 0; border: 0; border-radius: var(--raggio-2); background: var(--colore-accento); color: var(--colore-accento-testo); font: inherit; font-weight: 700; cursor: pointer; }
-a.pulsante { display: flex; align-items: center; justify-content: center; text-decoration: none; }
+.riga-sx { display: inline-flex; align-items: center; gap: var(--spazio-2); }
+.icona { width: var(--icona); height: var(--icona); flex: none; }
+.chi { display: inline-flex; align-items: center; gap: var(--spazio-2); font-weight: 700; }
+
+.pulsante { display: flex; align-items: center; justify-content: center; gap: var(--spazio-2); width: 100%; min-height: var(--tocco-min); margin: var(--spazio-3) 0; padding: var(--spazio-2) var(--spazio-3); border: 0; border-radius: var(--raggio-2); background: var(--colore-accento); color: var(--colore-accento-testo); font: inherit; font-weight: 700; cursor: pointer; text-align: center; }
+a.pulsante { text-decoration: none; }
 .pulsante.secondario { background: var(--colore-superficie-2); color: var(--colore-testo); }
-.passo { display: inline-flex; align-items: center; gap: var(--spazio-2); }
-.passo button { min-width: var(--tocco-min); min-height: var(--tocco-min); border: var(--bordo) solid var(--colore-bordo); border-radius: var(--raggio-1); background: var(--colore-superficie-2); color: var(--colore-testo); font: inherit; font-weight: 700; }
-.passo button:disabled { opacity: var(--opaco); }
-.passo output { min-width: var(--spazio-5); text-align: center; font-weight: 700; }
+.pulsante.opzione { justify-content: flex-start; text-align: left; background: var(--colore-superficie-2); color: var(--colore-testo); border: var(--bordo) solid var(--colore-bordo); font-weight: 400; margin: var(--spazio-2) 0; }
+.azioni { flex-wrap: nowrap; }
+.azioni .pulsante { margin: var(--spazio-2) 0; }
 .etichetta { display: inline-block; padding: 0 var(--spazio-2); border-radius: var(--raggio-tondo); background: var(--colore-superficie-2); font-size: var(--testo-piccolo); }
 .bene { color: var(--colore-bene); }
 .male { color: var(--colore-male); }
 .medio { color: var(--colore-medio); }
-.disponibili { position: sticky; top: 0; background: var(--colore-fondo); padding: var(--spazio-2) 0; z-index: 1; }
+
+/* Messaggi radio e battute del vice */
+.messaggio { margin: var(--spazio-3) 0; padding: var(--spazio-3); border-radius: var(--raggio-2); border: var(--bordo) solid var(--colore-bordo); background: var(--colore-superficie); }
+.messaggio.radio { background: var(--colore-radio); border-left: var(--spazio-1) solid var(--colore-traccia); }
+.messaggio.radio p { color: var(--colore-radio-testo); }
+.messaggio.radio.ultimo { border-left-color: var(--colore-acceso); }
+.messaggio.vice { border-left: var(--spazio-1) solid var(--colore-accento); }
+.vice-a-margine { color: var(--colore-testo-tenue); font-size: var(--testo-piccolo); font-style: italic; }
+.vice-a-margine .chi { font-style: normal; color: var(--colore-accento); }
+.messaggio.radio .vice-a-margine { color: var(--colore-testo-tenue); }
+
+/* Mappa tattica: strato Pixi sotto, settori HTML sopra; posizioni in % da --x/--y (dati, 0-100) */
+.mappa { position: relative; width: 100%; aspect-ratio: var(--mappa-proporzione); margin: var(--spazio-2) 0; border-radius: var(--raggio-2); border: var(--bordo) solid var(--colore-bordo); background: var(--colore-mappa); overflow: hidden; touch-action: manipulation; }
+.mappa-tela { position: absolute; inset: 0; width: 100%; height: 100%; }
+.settore { position: absolute; width: 0; height: 0; pointer-events: none;
+  /* il punto (x, y) è il centro del cerchio; margine interno di mezzo cerchio, come in StratoPixi */
+  left: calc(var(--settore) / 2 + (100% - var(--settore)) * var(--x) / 100);
+  top: calc(var(--settore) / 2 + (100% - var(--settore)) * var(--y) / 100); }
+.settore-punto { pointer-events: auto; position: absolute; left: calc(var(--settore) / -2); top: calc(var(--settore) / -2); width: var(--settore); height: var(--settore); border-radius: var(--raggio-tondo); border: var(--bordo-forte) solid var(--colore-traccia); background: var(--colore-superficie); cursor: pointer; padding: 0; }
+.settore-punto:disabled { cursor: default; }
+.settore.acceso .settore-punto { border-color: var(--colore-acceso); }
+.settore-nome, .settore-unita { position: absolute; left: 0; transform: translateX(-50%); }
+.settore-nome { top: calc(var(--settore) / 2 + var(--spazio-1)); width: max-content; max-width: var(--nome-max); padding: 0 var(--spazio-1); border-radius: var(--raggio-1); background: var(--colore-mappa); font-size: var(--testo-mini); line-height: var(--linea-stretta); text-align: center; }
+.settore-unita { bottom: calc(var(--settore) / 2 + var(--spazio-1)); display: flex; gap: var(--spazio-1); pointer-events: auto; }
+.lato-sinistra .settore-nome, .lato-sinistra .settore-unita { left: calc(var(--settore) / -2); transform: none; text-align: left; }
+.lato-destra .settore-nome, .lato-destra .settore-unita { left: calc(var(--settore) / 2); transform: translateX(-100%); text-align: right; }
+.pastiglia { display: inline-flex; align-items: center; gap: var(--spazio-1); min-height: var(--pastiglia); padding: 0 var(--spazio-1); border-radius: var(--raggio-tondo); border: 0; background: var(--colore-accento); color: var(--colore-accento-testo); font: inherit; font-size: var(--testo-piccolo); font-weight: 700; }
+.pastiglia .icona { width: var(--testo-piccolo); height: var(--testo-piccolo); }
+/* Tensione a colori (D-055) */
+.liv-0 .settore-punto, .campione.liv-0 { background: var(--tensione-0); }
+.liv-1 .settore-punto, .campione.liv-1 { background: var(--tensione-1); }
+.liv-2 .settore-punto, .campione.liv-2 { background: var(--tensione-2); }
+.liv-3 .settore-punto, .campione.liv-3 { background: var(--tensione-3); }
+.liv-4 .settore-punto, .campione.liv-4 { background: var(--tensione-4); }
+.liv-5 .settore-punto, .campione.liv-5 { background: var(--tensione-5); }
+.campione { display: inline-block; width: var(--spazio-4); height: var(--spazio-4); border-radius: var(--raggio-tondo); flex: none; }
+.elenco-settori { list-style: none; padding: 0; margin: var(--spazio-3) 0; }
+.elenco-settori li { padding: var(--spazio-2) 0; border-bottom: var(--bordo) solid var(--colore-bordo); }
+
+/* Vassoio delle unità da schierare */
+.vassoio { display: flex; flex-wrap: wrap; gap: var(--spazio-2); margin: var(--spazio-3) 0; }
+.vassoio-voce { display: flex; flex-direction: column; gap: var(--spazio-1); }
+.unita { display: inline-flex; align-items: center; gap: var(--spazio-2); min-height: var(--tocco-min); padding: 0 var(--spazio-3); border-radius: var(--raggio-tondo); border: var(--bordo-forte) solid var(--colore-bordo); background: var(--colore-superficie-2); color: var(--colore-testo); font: inherit; touch-action: none; cursor: grab; }
+.unita.scelta { border-color: var(--colore-accento); }
+.unita:disabled { opacity: var(--opaco); cursor: default; }
+.unita.in-volo { position: relative; z-index: 2; transform: translate(var(--dx), var(--dy)); box-shadow: 0 var(--spazio-1) var(--spazio-3) var(--colore-ombra); }
+.riposo { display: inline-flex; align-items: center; gap: var(--spazio-1); color: var(--colore-testo-tenue); font-size: var(--testo-piccolo); opacity: var(--opaco-tenue); }
+p.riposo { opacity: 1; }

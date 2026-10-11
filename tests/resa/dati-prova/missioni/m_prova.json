@@ -1,0 +1,43 @@
+{
+  "id": "m_prova", "stagione": 1, "episodio": 1, "titolo": "testi:prova.titolo", "disponibile_se": {},
+  "briefing": [
+    { "testo": "testi:prova.info_a", "fonte": "fonte_radio", "affidabilita": "alta", "vera": true, "settore": "settore_a" },
+    { "testo": "testi:prova.info_b", "fonte": "fonte_rete", "affidabilita": "bassa", "vera": false, "settore": "settore_c" }
+  ],
+  "mappa": {
+    "settori": [
+      { "id": "settore_a", "tipo": "tipo_a", "pos": { "x": 20, "y": 30 } },
+      { "id": "settore_b", "tipo": "tipo_a", "pos": { "x": 80, "y": 30 } },
+      { "id": "settore_c", "tipo": "tipo_b", "pos": { "x": 50, "y": 85 } }
+    ],
+    "risorse": {
+      "risorsa_a": { "quantita": 3, "efficacia": { "tipo_a": 2, "tipo_b": 1 } },
+      "risorsa_b": { "quantita": 1, "efficacia": {}, "dimezza": ["evento_x"] }
+    }
+  },
+  "ondate": [
+    { "n": 1, "titolo": "testi:prova.ondata1",
+      "eventi": [{ "id": "ev_1", "tipo": "evento_x", "settore": "settore_a", "pressione": 4 }, { "id": "ev_2", "tipo": "evento_y", "settore": "settore_c", "pressione": 2 }],
+      "chiamate": [
+        { "id": "ch_1", "fonte": "fonte_radio", "testo": "testi:prova.ch_1", "settore": "settore_b", "opzioni": [
+          { "id": "op_calma", "testo": "testi:prova.op_calma", "effetti": [{ "pressione": "settore_b", "valore": -1 }] },
+          { "id": "op_spingi", "testo": "testi:prova.op_spingi", "effetti": [{ "tensione": "settore_b", "valore": 4 }, { "imposta": "var_prova", "valore": true }] }] },
+        { "id": "ch_2", "fonte": "fonte_telefono", "testo": "testi:prova.ch_2", "opzioni": [
+          { "id": "op_rinforzo", "testo": "testi:prova.op_rinforzo", "effetti": [{ "riserva": "risorsa_a", "valore": 1 }] },
+          { "id": "op_niente", "testo": "testi:prova.op_niente", "effetti": [{ "pressione": "settore_c", "valore": 3 }] }] }
+      ] },
+    { "n": 2, "titolo": "testi:prova.ondata2",
+      "eventi": [{ "id": "ev_3", "tipo": "evento_y", "settore": "settore_b", "pressione": 5 }],
+      "chiamate": [
+        { "id": "ch_3", "fonte": "fonte_rete", "testo": "testi:prova.ch_3", "settore": "settore_c", "opzioni": [
+          { "id": "op_ascolta", "testo": "testi:prova.op_ascolta", "effetti": [{ "pressione": "settore_c", "valore": 2 }] },
+          { "id": "op_ignora", "testo": "testi:prova.op_ignora", "effetti": [] }] }
+      ] }
+  ],
+  "esiti": [
+    { "id": "esito_buono", "se": { "var": "tensione_max", "al_massimo": 1 }, "effetti": [], "verbale": "testi:prova.verbale_buono" },
+    { "id": "esito_medio", "se": { "var": "tensione_max", "al_massimo": 4 }, "effetti": [], "verbale": "testi:prova.verbale_medio" },
+    { "id": "esito_cattivo", "se": {}, "effetti": [], "verbale": "testi:prova.verbale_cattivo" }
+  ],
+  "fili": []
+}

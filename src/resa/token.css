@@ -13,6 +13,24 @@
   --colore-medio: #e3c25a;
   --colore-bordo: #33404d;
 
+  /* Sala operativa (D-049): mappa tattica e radio */
+  --colore-mappa: #0d1218;
+  --colore-griglia: #1d2a35;
+  --colore-traccia: #2f4a5c;
+  --colore-campo: #16302a;
+  --colore-acceso: #4fc3f7;
+  --colore-radio: #0f1a14;
+  --colore-radio-testo: #9fe8b0;
+  --colore-ombra: #000000;
+
+  /* Tensione per settore (D-055): solo colore, dal verde al rosso, mai il numero */
+  --tensione-0: #3fae6b;
+  --tensione-1: #8cc152;
+  --tensione-2: #e3c25a;
+  --tensione-3: #f0943a;
+  --tensione-4: #e5684f;
+  --tensione-5: #c0392b;
+
   --raggio-1: 6px;
   --raggio-2: 12px;
   --raggio-tondo: 999px;
@@ -24,13 +42,22 @@
   --spazio-5: 24px;
   --spazio-6: 32px;
 
+  --testo-mini: 11px;
   --testo-piccolo: 13px;
   --testo-base: 16px;
   --testo-grande: 20px;
   --testo-titolo: 26px;
   --linea: 1.45;
+  --linea-stretta: 1.2;
   --bordo: 1px;
   --opaco: 0.4;
+  --opaco-tenue: 0.55;
+  --bordo-forte: 2px;
+  --settore: 48px;
+  --pastiglia: 22px;
+  --icona: 18px;
+  --mappa-proporzione: 1 / 1;
+  --nome-max: 7em;
 
   --larghezza-max: 480px;
   --tocco-min: 44px;

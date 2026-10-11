@@ -1,0 +1,35 @@
+// Rapporto dell'ondata: la mappa sopra mostra la tensione per settore a colori (D-055), qui si dice
+// solo se il settore è rimasto coperto e quante unità vanno a riposo (D-056). Nessun numero di tensione.
+import { ChevronRight, FileText, Moon } from 'lucide-react';
+import type { RapportoOndata } from '../../logica/missione.ts';
+import type { Missione } from '../../logica/tipi.ts';
+import { t } from '../dati.ts';
+import { Icona } from '../icone.tsx';
+import { livello } from '../partita.ts';
+
+export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; avanti: () => void }) {
+  const riposo = Object.entries(p.r.aRiposo).filter(([, n]) => n > 0);
+  return (
+    <>
+      <p className="sopratitolo">Episodio {p.m.episodio} · Rapporto dell'ondata {p.r.n} di {p.m.ondate.length}</p>
+      <h1>Rapporto dell'ondata {p.r.n}</h1>
+      <ul className="elenco-settori">
+        {p.m.mappa.settori.map((s) => {
+          const scoperto = (p.r.scoperto[s.id] ?? 0) > 0;
+          return (
+            <li key={s.id} className="riga" data-esito-settore={s.id}>
+              <span className="riga-sx"><span className={`campione liv-${livello(p.r.tensione[s.id] ?? 0)}`} aria-hidden="true" />{t(`settore.${s.id}`)}</span>
+              <strong className={scoperto ? 'male' : 'bene'}>{scoperto ? 'scoperto' : 'sotto controllo'}</strong>
+            </li>
+          );
+        })}
+      </ul>
+      {riposo.length > 0 && !p.ultima && (
+        <p className="riposo"><Icona di={Moon} />A riposo nella prossima ondata: {riposo.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}</p>
+      )}
+      <button className="pulsante" data-azione="avanti" onClick={p.avanti}>
+        {p.ultima ? <><Icona di={FileText} />Leggi il verbale</> : <>Prossima ondata<Icona di={ChevronRight} /></>}
+      </button>
+    </>
+  );
+}
