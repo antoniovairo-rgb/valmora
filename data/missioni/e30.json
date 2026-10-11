@@ -1,9 +1,9 @@
 {
   "id": "e30",
-  "bozza": true,
   "stagione": 3,
   "episodio": 30,
   "titolo": "testi:e30.titolo",
+  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 45,
@@ -20,10 +20,10 @@
       "fonte": "voci_in_rete",
       "affidabilita": "media",
       "vera": true,
-      "settore": "curva_cinderwick"
+      "settore": "piazzale"
     },
     {
-      "testo": "testi:e30.info_cinderwick",
+      "testo": "testi:e30.info_club",
       "fonte": "ufficio_sicurezza_cinderwick",
       "affidabilita": "media",
       "vera": false,
@@ -37,47 +37,37 @@
       "settore": "quartiere"
     },
     {
-      "testo": "testi:e30.info_mossgarth",
-      "fonte": "club_mossgarth",
-      "affidabilita": "media",
+      "testo": "testi:e30.info_ferrovie",
+      "fonte": "ferrovie",
+      "affidabilita": "alta",
       "vera": false,
-      "settore": "curva_ospiti"
+      "settore": "viale_stazione"
     }
   ],
   "mappa": {
     "settori": [
       {
-        "id": "curva_cinderwick",
-        "tipo": "curva",
-        "club": "cinderwick_united",
+        "id": "piazzale",
+        "tipo": "piazzale",
         "pos": {
-          "x": 15,
-          "y": 38
-        }
-      },
-      {
-        "id": "curva_ospiti",
-        "tipo": "curva",
-        "club": "mossgarth_town",
-        "pos": {
-          "x": 85,
-          "y": 38
+          "x": 50,
+          "y": 30
         }
       },
       {
         "id": "strada_cinderwick",
         "tipo": "strada",
         "pos": {
-          "x": 18,
-          "y": 85
+          "x": 15,
+          "y": 50
         }
       },
       {
-        "id": "piazzale",
-        "tipo": "piazzale",
+        "id": "viale_stazione",
+        "tipo": "viale",
         "pos": {
-          "x": 50,
-          "y": 62
+          "x": 30,
+          "y": 86
         }
       },
       {
@@ -87,24 +77,34 @@
           "x": 82,
           "y": 86
         }
+      },
+      {
+        "id": "piazza_municipio",
+        "tipo": "piazza",
+        "pos": {
+          "x": 82,
+          "y": 42
+        }
       }
     ],
     "risorse": {
       "squadre": {
-        "quantita": 5,
+        "quantita": 6,
         "efficacia": {
           "strada": 2,
+          "viale": 2,
           "quartiere": 2,
-          "piazzale": 1,
-          "curva": 1
+          "piazza": 2,
+          "piazzale": 1
         }
       },
       "steward": {
         "quantita": 6,
         "efficacia": {
-          "curva": 2,
           "piazzale": 2,
+          "piazza": 2,
           "strada": 1,
+          "viale": 1,
           "quartiere": 1
         }
       },
@@ -123,9 +123,9 @@
       "titolo": "testi:e30.ondata1",
       "eventi": [
         {
-          "id": "corteo_nero",
+          "id": "raduno_nero",
           "tipo": "corteo",
-          "settore": "strada_cinderwick",
+          "settore": "piazzale",
           "pressione": 5
         },
         {
@@ -135,19 +135,19 @@
           "pressione": 3
         },
         {
-          "id": "piazzale_presto",
-          "tipo": "folla",
-          "settore": "piazzale",
+          "id": "viale_presto",
+          "tipo": "traffico",
+          "settore": "viale_stazione",
           "pressione": 2
         }
       ],
       "chiamate": [
         {
-          "id": "corteo_silenzio",
+          "id": "raduno_silenzio",
           "fonte": "centrale_radio",
-          "testo": "testi:e30.ch.corteo_silenzio",
-          "commento": "testi:e30.ch.corteo_silenzio.vice",
-          "settore": "strada_cinderwick",
+          "testo": "testi:e30.ch.raduno_silenzio",
+          "commento": "testi:e30.ch.raduno_silenzio.vice",
+          "settore": "piazzale",
           "opzioni": [
             {
               "id": "accompagna_silenzio",
@@ -155,7 +155,7 @@
               "costo": "testi:e30.op.accompagna_silenzio.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazzale",
                   "valore": -2
                 },
                 {
@@ -171,7 +171,7 @@
               "costo": "testi:e30.op.mediatore_silenzio.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "piazzale",
                   "valore": -1
                 },
                 {
@@ -191,7 +191,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "strada_cinderwick",
+                  "tensione": "piazzale",
                   "valore": 2
                 }
               ],
@@ -240,42 +240,43 @@
           ]
         },
         {
-          "id": "ospiti_pochi",
-          "fonte": "club_mossgarth",
-          "testo": "testi:e30.ch.ospiti_pochi",
-          "settore": "curva_ospiti",
+          "id": "autobus_sera",
+          "fonte": "centrale_radio",
+          "testo": "testi:e30.ch.autobus_sera",
+          "commento": "testi:e30.ch.autobus_sera.vice",
+          "settore": "viale_stazione",
           "opzioni": [
             {
-              "id": "ospiti_settore_chiuso",
-              "testo": "testi:e30.op.ospiti_settore_chiuso",
-              "costo": "testi:e30.op.ospiti_settore_chiuso.c",
+              "id": "devia_autobus",
+              "testo": "testi:e30.op.devia_autobus",
+              "costo": "testi:e30.op.devia_autobus.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.devia_autobus.r"
+            },
+            {
+              "id": "viale_aperto",
+              "testo": "testi:e30.op.viale_aperto",
+              "costo": "testi:e30.op.viale_aperto.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "viale_stazione",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e30.op.ospiti_settore_chiuso.r"
-            },
-            {
-              "id": "steward_ospiti",
-              "testo": "testi:e30.op.steward_ospiti",
-              "costo": "testi:e30.op.steward_ospiti.c",
-              "effetti": [
-                {
-                  "pressione": "curva_ospiti",
-                  "valore": -2
-                },
-                {
-                  "riserva": "steward",
-                  "valore": -2
-                }
-              ],
-              "risposta": "testi:e30.op.steward_ospiti.r"
+              "risposta": "testi:e30.op.viale_aperto.r"
             }
           ]
         }
@@ -286,21 +287,21 @@
       "titolo": "testi:e30.ondata2",
       "eventi": [
         {
-          "id": "silenzio_curva",
-          "tipo": "curva",
-          "settore": "curva_cinderwick",
+          "id": "silenzio_strada",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
           "pressione": 4
         },
         {
-          "id": "ospiti_curiosi",
-          "tipo": "curva",
-          "settore": "curva_ospiti",
+          "id": "pendolari",
+          "tipo": "traffico",
+          "settore": "viale_stazione",
           "pressione": 3
         },
         {
-          "id": "fuori_stadio",
+          "id": "troupe",
           "tipo": "folla",
-          "settore": "piazzale",
+          "settore": "piazza_municipio",
           "pressione": 4
         }
       ],
@@ -310,7 +311,7 @@
           "fonte": "centrale_radio",
           "testo": "testi:e30.ch.silenzio_totale",
           "commento": "testi:e30.ch.silenzio_totale.vice",
-          "settore": "curva_cinderwick",
+          "settore": "strada_cinderwick",
           "opzioni": [
             {
               "id": "rispetta_silenzio",
@@ -318,7 +319,7 @@
               "costo": "testi:e30.op.rispetta_silenzio.c",
               "effetti": [
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "strada_cinderwick",
                   "valore": 2
                 }
               ],
@@ -330,7 +331,7 @@
               "costo": "testi:e30.op.steward_silenzio.c",
               "effetti": [
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "strada_cinderwick",
                   "valore": -2
                 },
                 {
@@ -350,7 +351,7 @@
               "costo": "testi:e30.op.parla_club.c",
               "effetti": [
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "strada_cinderwick",
                   "valore": -1
                 },
                 {
@@ -363,18 +364,18 @@
           ]
         },
         {
-          "id": "mossgarth_canta",
+          "id": "clacson",
           "fonte": "centrale_radio",
-          "testo": "testi:e30.ch.mossgarth_canta",
-          "settore": "curva_ospiti",
+          "testo": "testi:e30.ch.clacson",
+          "settore": "viale_stazione",
           "opzioni": [
             {
-              "id": "zittisci_ospiti",
-              "testo": "testi:e30.op.zittisci_ospiti",
-              "costo": "testi:e30.op.zittisci_ospiti.c",
+              "id": "corsia_auto",
+              "testo": "testi:e30.op.corsia_auto",
+              "costo": "testi:e30.op.corsia_auto.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "viale_stazione",
                   "valore": -2
                 },
                 {
@@ -382,19 +383,19 @@
                   "valore": -1
                 }
               ],
-              "risposta": "testi:e30.op.zittisci_ospiti.r"
+              "risposta": "testi:e30.op.corsia_auto.r"
             },
             {
-              "id": "lascia_coro",
-              "testo": "testi:e30.op.lascia_coro",
-              "costo": "testi:e30.op.lascia_coro.c",
+              "id": "auto_ferme",
+              "testo": "testi:e30.op.auto_ferme",
+              "costo": "testi:e30.op.auto_ferme.c",
               "effetti": [
                 {
-                  "tensione": "curva_cinderwick",
+                  "tensione": "strada_cinderwick",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e30.op.lascia_coro.r"
+              "risposta": "testi:e30.op.auto_ferme.r"
             }
           ]
         },
@@ -402,7 +403,7 @@
           "id": "giornalisti",
           "fonte": "cronista",
           "testo": "testi:e30.ch.giornalisti",
-          "settore": "piazzale",
+          "settore": "piazza_municipio",
           "opzioni": [
             {
               "id": "niente_troupe",
@@ -410,7 +411,7 @@
               "costo": "testi:e30.op.niente_troupe.c",
               "effetti": [
                 {
-                  "pressione": "piazzale",
+                  "pressione": "piazza_municipio",
                   "valore": -2
                 },
                 {
@@ -430,7 +431,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "piazzale",
+                  "pressione": "piazza_municipio",
                   "valore": 2
                 }
               ],
@@ -445,15 +446,15 @@
       "titolo": "testi:e30.ondata3",
       "eventi": [
         {
-          "id": "cori_dessi",
-          "tipo": "curva",
-          "settore": "curva_cinderwick",
+          "id": "sotto_comune",
+          "tipo": "corteo",
+          "settore": "piazza_municipio",
           "pressione": 5
         },
         {
-          "id": "ospiti_rispondono",
-          "tipo": "curva",
-          "settore": "curva_ospiti",
+          "id": "coda_corteo",
+          "tipo": "folla",
+          "settore": "strada_cinderwick",
           "pressione": 3
         },
         {
@@ -465,11 +466,11 @@
       ],
       "chiamate": [
         {
-          "id": "novantesimo",
+          "id": "sotto_il_municipio",
           "fonte": "centrale_radio",
-          "testo": "testi:e30.ch.novantesimo",
-          "commento": "testi:e30.ch.novantesimo.vice",
-          "settore": "curva_cinderwick",
+          "testo": "testi:e30.ch.sotto_il_municipio",
+          "commento": "testi:e30.ch.sotto_il_municipio.vice",
+          "settore": "piazza_municipio",
           "opzioni": [
             {
               "id": "mediatore_cori",
@@ -477,7 +478,7 @@
               "costo": "testi:e30.op.mediatore_cori.c",
               "effetti": [
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": -2
                 },
                 {
@@ -497,7 +498,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": 2
                 }
               ],
@@ -513,7 +514,7 @@
                   "valore": -1
                 },
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "piazza_municipio",
                   "valore": -1
                 }
               ],
@@ -558,18 +559,18 @@
           ]
         },
         {
-          "id": "uscita_ospiti",
-          "fonte": "club_mossgarth",
-          "testo": "testi:e30.ch.uscita_ospiti",
-          "settore": "curva_ospiti",
+          "id": "saluto_larkspire",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e30.ch.saluto_larkspire",
+          "settore": "strada_cinderwick",
           "opzioni": [
             {
-              "id": "esci_subito",
-              "testo": "testi:e30.op.esci_subito",
-              "costo": "testi:e30.op.esci_subito.c",
+              "id": "devia_coda",
+              "testo": "testi:e30.op.devia_coda",
+              "costo": "testi:e30.op.devia_coda.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "strada_cinderwick",
                   "valore": -2
                 },
                 {
@@ -577,27 +578,27 @@
                   "valore": -1
                 },
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "quartiere",
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e30.op.esci_subito.r"
+              "risposta": "testi:e30.op.devia_coda.r"
             },
             {
-              "id": "esci_dopo",
-              "testo": "testi:e30.op.esci_dopo",
-              "costo": "testi:e30.op.esci_dopo.c",
+              "id": "percorso_fermo",
+              "testo": "testi:e30.op.percorso_fermo",
+              "costo": "testi:e30.op.percorso_fermo.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "strada_cinderwick",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e30.op.esci_dopo.r"
+              "risposta": "testi:e30.op.percorso_fermo.r"
             }
           ]
         }
@@ -699,7 +700,7 @@
                   "valore": -1
                 },
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "piazzale",
                   "valore": -1
                 },
                 {
@@ -719,7 +720,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "curva_cinderwick",
+                  "tensione": "piazzale",
                   "valore": 2
                 }
               ],
