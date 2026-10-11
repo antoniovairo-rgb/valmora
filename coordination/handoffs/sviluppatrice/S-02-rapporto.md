@@ -38,7 +38,7 @@ docs/foto/e01/2026-10-11-s02/ (città e verbali, 3 larghezze).
 | `npx vitest run` | 8 file, 90 test | verdi; nuovi: fallimento, rigioco dalle variabili di prima, resta il migliore, registro malformato, migrazione v1 |
 | `node tools/foto.mjs out/foto` (e01 v2) | 3 larghezze | verde: peggiore → fallito (0 stelle) → rigioca; equilibrato → «contenuto», stelle a schermo = motore; città con l'episodio superato |
 | build di prova + `node tools/foto.mjs out/foto-prova out/dist-prova tests/resa/dati-prova` | 3 larghezze | verde |
-| `node tools/catena.mjs completa` | vedi STABILITA.json, commit di questa consegna | 3 giri |
+| `node tools/catena.mjs completa` | commit 8602119, 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 ## Problemi aperti
 
