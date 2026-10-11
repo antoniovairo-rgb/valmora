@@ -72,7 +72,13 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
     m.briefing.forEach((b: Obj, i: number) => testo(`${k}.briefing[${i}]`, b.testo));
     const settori = m.mappa.settori.map((s: Obj) => s.id as string);
     if (new Set(settori).size !== settori.length) p.push(`${k}.mappa.settori: id di settore ripetuto`);
+    // Etichette per convenzione: settore.<id>, risorsa.<id>, fonte.<id> (D-041)
+    for (const id of settori) testo(`${k}.mappa.settori`, `testi:settore.${id}`);
+    for (const id of Object.keys(m.mappa.risorse)) testo(`${k}.mappa.risorse`, `testi:risorsa.${id}`);
+    for (const b of m.briefing) testo(`${k}.briefing`, `testi:fonte.${b.fonte}`);
+    for (const e of m.esiti) testo(`${k}.esiti`, `testi:esito.${e.id}`);
     m.ondate.forEach((o: Obj, i: number) => {
+      if (o.titolo) testo(`${k}.ondate[${i}].titolo`, o.titolo);
       if (o.n !== i + 1) p.push(`${k}.ondate[${i}]: n=${o.n}, attesa ${i + 1}`);
       o.eventi.forEach((ev: Obj, j: number) => {
         if (!settori.includes(ev.settore)) p.push(`${k}.ondate[${i}].eventi[${j}]: settore «${ev.settore}» non è nella mappa`);

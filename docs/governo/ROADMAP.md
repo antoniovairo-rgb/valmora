@@ -13,8 +13,8 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
 ## L1 – Fetta verticale: episodio 1
 - Stato: IN CORSO
 - Obiettivo: e01 giocabile da capo a fondo (briefing, plancia, ondate, verbale) nel browser e come APK di debug sul telefono del PO.
-- Voci: PO-009, PO-010, PO-011, PO-012, PO-013, PO-015, PO-016
-- Avanzamento: impianto Vite + TS + Vitest, schema, validatore e catena «logica» fatti (PO-010…012, sul ramo claude/valmora-l1-setup-schema-xdrbx7); bibbia in scrittura col PO (PO-009: e01 decisa in D-019…D-039); motore della plancia, bot e dati di e01 fatti, bot 0 blocchi su 1000 semi (PO-016). Manca: resa di e01 nel browser, salvataggio/ripresa, APK.
+- Voci: PO-009, PO-010, PO-011, PO-012, PO-013, PO-015, PO-016, PO-017
+- Avanzamento: impianto Vite + TS + Vitest, schema, validatore e catena «logica» fatti (PO-010…012, sul ramo claude/valmora-l1-setup-schema-xdrbx7); bibbia in scrittura col PO (PO-009: e01 decisa in D-019…D-039); motore della plancia, bot e dati di e01 fatti, bot 0 blocchi su 1000 semi (PO-016). Resa di e01 nel browser con salvataggio e ripresa fatta (PO-017): catena grafica verde a 360/375/412 px. Manca: approvazione dei testi di e01, APK di debug, ore di lavoro misurate.
 - Criterio d'uscita: bibbia con indice della triade ed e01 approvati dal PO; e01 completata dal bot con 1000 semi (1…1000), 0 blocchi; catena «logica» verde 3 giri; 0 errori di console sulle schermate di e01 a 360/375/412 px; salvataggio e ripresa provati; ore reali di lavoro misurate e scritte qui.
 
 ## L2 – Strumenti e stagione 1

@@ -43,6 +43,7 @@ describe('validatore dei dati', () => {
     ['settore fuori mappa', (d) => { d[M].ondate[0].eventi[0].settore = 'settore_z'; }, /non è nella mappa/],
     ['settore ripetuto', (d) => { d[M].mappa.settori[1].id = 'settore_a'; }, /id di settore ripetuto/],
     ['evento senza tipo', (d) => { delete d[M].ondate[0].eventi[0].tipo; }, /required property 'tipo'/],
+    ['etichetta di settore mancante', (d) => { delete d['testi/it/prova.json']['settore.settore_b']; }, /testi:settore\.settore_b/],
     ['ondate non numerate in ordine', (d) => { d[M].ondate[0].n = 2; }, /n=2, attesa 1/],
     ['filo inesistente', (d) => { d[M].fili = ['filo_z']; }, /filo «filo_z» non esiste/],
     ['episodio doppio', (d) => { d['missioni/m_altra.json'] = { ...structuredClone(d[M]), id: 'm_altra' }; }, /episodio 1 già usato/],

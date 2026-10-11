@@ -2,6 +2,7 @@
 // Regola: ogni campo nuovo = SAVE_VERSION + 1 e una migrazione MIGRAZIONI[v] che porta v → v+1.
 // Ogni versione vecchia deve avere almeno un salvataggio vero in tests/salvataggi-reali/
 // (passo «salvataggi-reali» della catena logica).
+import type { InCorso } from '../logica/plancia.ts';
 
 export const SAVE_VERSION = 1;
 
@@ -19,6 +20,8 @@ export interface Salvataggio {
   variabili: Record<string, ValoreVariabile>;
   /** id delle missioni concluse, in ordine */
   missioni_concluse: string[];
+  /** missione interrotta fra due ondate, o null (D-040) */
+  in_corso: InCorso | null;
 }
 
 type Grezzo = Record<string, unknown>;
@@ -38,6 +41,9 @@ export function controllaSalvataggio(s: Grezzo): string[] {
   if (typeof v !== 'object' || v === null || Array.isArray(v)) p.push('variabili non è un oggetto');
   else for (const [k, x] of Object.entries(v)) if (!['boolean', 'number', 'string'].includes(typeof x)) p.push(`variabile ${k}: tipo ${typeof x}`);
   if (!Array.isArray(s.missioni_concluse) || s.missioni_concluse.some((m) => typeof m !== 'string')) p.push('missioni_concluse non è un elenco di id');
+  const ic = s.in_corso as Grezzo | null | undefined;
+  if (ic === undefined) p.push('in_corso mancante');
+  else if (ic !== null && (typeof ic.missione !== 'string' || !Array.isArray(ic.ondate) || typeof ic.variabili !== 'object' || ic.variabili === null)) p.push('in_corso malformato');
   return p;
 }
 

@@ -1,0 +1,20 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--colore-fondo); color: var(--colore-testo); font-family: var(--font); font-size: var(--testo-base); line-height: var(--linea); }
+#app { max-width: var(--larghezza-max); margin: 0 auto; padding: var(--spazio-4); }
+h1 { font-size: var(--testo-titolo); margin: var(--spazio-5) 0 var(--spazio-3); }
+h2 { font-size: var(--testo-grande); margin: var(--spazio-4) 0 var(--spazio-2); }
+p { margin: var(--spazio-2) 0; }
+.tenue { color: var(--colore-testo-tenue); font-size: var(--testo-piccolo); }
+.scheda { background: var(--colore-superficie); border: var(--bordo) solid var(--colore-bordo); border-radius: var(--raggio-2); padding: var(--spazio-3); margin: var(--spazio-3) 0; }
+.riga { display: flex; align-items: center; justify-content: space-between; gap: var(--spazio-2); flex-wrap: wrap; }
+.pulsante { display: block; width: 100%; min-height: var(--tocco-min); margin: var(--spazio-3) 0; border: 0; border-radius: var(--raggio-2); background: var(--colore-accento); color: var(--colore-accento-testo); font: inherit; font-weight: 700; cursor: pointer; }
+.pulsante.secondario { background: var(--colore-superficie-2); color: var(--colore-testo); }
+.passo { display: inline-flex; align-items: center; gap: var(--spazio-2); }
+.passo button { min-width: var(--tocco-min); min-height: var(--tocco-min); border: var(--bordo) solid var(--colore-bordo); border-radius: var(--raggio-1); background: var(--colore-superficie-2); color: var(--colore-testo); font: inherit; font-weight: 700; }
+.passo button:disabled { opacity: var(--opaco); }
+.passo output { min-width: var(--spazio-5); text-align: center; font-weight: 700; }
+.etichetta { display: inline-block; padding: 0 var(--spazio-2); border-radius: var(--raggio-tondo); background: var(--colore-superficie-2); font-size: var(--testo-piccolo); }
+.bene { color: var(--colore-bene); }
+.male { color: var(--colore-male); }
+.medio { color: var(--colore-medio); }
+.disponibili { position: sticky; top: 0; background: var(--colore-fondo); padding: var(--spazio-2) 0; z-index: 1; }

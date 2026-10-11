@@ -152,6 +152,9 @@
             "type": "integer",
             "minimum": 1
           },
+          "titolo": {
+            "$ref": "comune.schema.json#/$defs/testo"
+          },
           "eventi": {
             "type": "array",
             "minItems": 1,

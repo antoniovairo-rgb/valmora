@@ -28,6 +28,6 @@ export function datiValidi(): Record<string, any> {
         { id: 'esito_b', se: {}, effetti: [{ imposta: 'var_bool', valore: true }, { imposta: 'var_enum', valore: 'due' }], verbale: 'testi:prova.verbale_b' },
       ],
       fili: ['filo_a'] },
-    'testi/it/prova.json': Object.fromEntries(['sop_a', 'club_a', 'pers_a', 'titolo', 'info', 'verbale_a', 'verbale_b'].map((k) => [`prova.${k}`, 'Testo di prova'])),
+    'testi/it/prova.json': Object.fromEntries([...['sop_a', 'club_a', 'pers_a', 'titolo', 'info', 'verbale_a', 'verbale_b'].map((k) => `prova.${k}`), 'settore.settore_a', 'settore.settore_b', 'risorsa.risorsa_a', 'fonte.fonte_a', 'esito.esito_a', 'esito.esito_b'].map((k) => [k, 'Testo di prova'])),
   };
 }

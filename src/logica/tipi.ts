@@ -27,7 +27,7 @@ export interface Missione {
   id: string; stagione: number; episodio: number; titolo: string; disponibile_se: Condizione;
   briefing: Informazione[];
   mappa: { settori: { id: string; tipo: string }[]; risorse: Record<string, Risorsa> };
-  ondate: { n: number; eventi: Evento[] }[];
+  ondate: { n: number; titolo?: string; eventi: Evento[] }[];
   esiti: Esito[];
   fili: string[];
 }

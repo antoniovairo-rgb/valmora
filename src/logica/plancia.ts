@@ -55,21 +55,39 @@ export function risolviOndata(m: Missione, n: number, d: Disposizione, v: Variab
 
 export interface EsitoMissione { ondate: EsitoOndata[]; esito: Esito; variabili: Variabili }
 
+/** Missione in corso: è ciò che finisce nel salvataggio fra un'ondata e l'altra. */
+export interface InCorso { missione: string; ondate: EsitoOndata[]; variabili: Variabili }
+
+export function iniziaMissione(m: Missione, iniziali: Variabili, dichiarate: Map<string, Dichiarazione>): InCorso {
+  if (!dichiarate.has(VAR_TENSIONE)) throw new Error(`stato.json deve dichiarare «${VAR_TENSIONE}»`);
+  return { missione: m.id, ondate: [], variabili: { ...iniziali, [VAR_TENSIONE]: 0 } };
+}
+
+export function giocaOndata(m: Missione, s: InCorso, d: Disposizione, dichiarate: Map<string, Dichiarazione>): InCorso {
+  if (s.missione !== m.id) throw new Error(`missione in corso «${s.missione}», non «${m.id}»`);
+  const n = s.ondate.length + 1;
+  const r = risolviOndata(m, n, d, s.variabili);
+  const v = applica({ imposta: VAR_TENSIONE, valore: Math.max(s.variabili[VAR_TENSIONE] as number, r.tensione) }, s.variabili, dichiarate);
+  return { missione: m.id, ondate: [...s.ondate, r], variabili: v };
+}
+
+export const missioneFinita = (m: Missione, s: InCorso): boolean => s.ondate.length === m.ondate.length;
+
+export function concludiMissione(m: Missione, s: InCorso, dichiarate: Map<string, Dichiarazione>): EsitoMissione {
+  if (!missioneFinita(m, s)) throw new Error(`${m.id}: giocate ${s.ondate.length} ondate su ${m.ondate.length}`);
+  const esito = m.esiti.find((e) => valuta(e.se, s.variabili));
+  if (!esito) throw new Error(`${m.id}: nessun esito vero (soft-lock)`);
+  let v = s.variabili;
+  for (const e of esito.effetti) v = applica(e, v, dichiarate);
+  return { ondate: s.ondate, esito, variabili: v };
+}
+
 /** Gioca la missione con una disposizione per ondata, scelta da chi gioca (persona o bot). */
 export function giocaMissione(
   m: Missione, iniziali: Variabili, dichiarate: Map<string, Dichiarazione>,
   scegli: (n: number, v: Variabili, precedenti: EsitoOndata[]) => Disposizione,
 ): EsitoMissione {
-  if (!dichiarate.has(VAR_TENSIONE)) throw new Error(`stato.json deve dichiarare «${VAR_TENSIONE}»`);
-  let v: Variabili = { ...iniziali, [VAR_TENSIONE]: 0 };
-  const ondate: EsitoOndata[] = [];
-  for (const o of m.ondate) {
-    const r = risolviOndata(m, o.n, scegli(o.n, v, ondate), v);
-    ondate.push(r);
-    v = applica({ imposta: VAR_TENSIONE, valore: Math.max(v[VAR_TENSIONE] as number, r.tensione) }, v, dichiarate);
-  }
-  const esito = m.esiti.find((e) => valuta(e.se, v));
-  if (!esito) throw new Error(`${m.id}: nessun esito vero (soft-lock)`);
-  for (const e of esito.effetti) v = applica(e, v, dichiarate);
-  return { ondate, esito, variabili: v };
+  let s = iniziaMissione(m, iniziali, dichiarate);
+  while (!missioneFinita(m, s)) s = giocaOndata(m, s, scegli(s.ondate.length + 1, s.variabili, s.ondate), dichiarate);
+  return concludiMissione(m, s, dichiarate);
 }

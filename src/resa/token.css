@@ -1,0 +1,38 @@
+/* Design system: l'UNICO file della resa dove si scrivono colori, raggi, spaziature e misure.
+   Il passo «token» della catena grafica segnala ogni valore scritto a mano altrove. */
+:root {
+  --colore-fondo: #12161c;
+  --colore-superficie: #1c232c;
+  --colore-superficie-2: #26303b;
+  --colore-testo: #e8ecf1;
+  --colore-testo-tenue: #9aa7b5;
+  --colore-accento: #f2b84b;
+  --colore-accento-testo: #12161c;
+  --colore-bene: #5cc28a;
+  --colore-male: #e5684f;
+  --colore-medio: #e3c25a;
+  --colore-bordo: #33404d;
+
+  --raggio-1: 6px;
+  --raggio-2: 12px;
+  --raggio-tondo: 999px;
+
+  --spazio-1: 4px;
+  --spazio-2: 8px;
+  --spazio-3: 12px;
+  --spazio-4: 16px;
+  --spazio-5: 24px;
+  --spazio-6: 32px;
+
+  --testo-piccolo: 13px;
+  --testo-base: 16px;
+  --testo-grande: 20px;
+  --testo-titolo: 26px;
+  --linea: 1.45;
+  --bordo: 1px;
+  --opaco: 0.4;
+
+  --larghezza-max: 480px;
+  --tocco-min: 44px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}

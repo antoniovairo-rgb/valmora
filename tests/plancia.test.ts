@@ -49,3 +49,25 @@ describe('plancia', () => {
     expect(() => giocaMissione(m, v0, dich, () => ({}))).toThrow(/soft-lock/);
   });
 });
+
+describe('salvataggio e ripresa a metà missione (e01 vera)', () => {
+  it('interrompere dopo ogni ondata e riprendere dal JSON dà lo stesso esito', async () => {
+    const { leggiDati } = await import('../tools/dati-disco.mjs');
+    const { attenta, casuale } = await import('../src/logica/bot.ts');
+    const { creaCaso } = await import('../src/logica/caso.ts');
+    const { iniziaMissione, giocaOndata, concludiMissione } = await import('../src/logica/plancia.ts');
+    const dati = leggiDati() as Record<string, any>;
+    const m = dati['missioni/e01.json'] as Missione;
+    const d = new Map<string, Dichiarazione>(dati['stato.json'].variabili.map((x: Dichiarazione) => [x.id, x]));
+    for (const strategia of [attenta, casuale]) for (let seme = 1; seme <= 50; seme++) {
+      const a = creaCaso(seme); const b = creaCaso(seme);
+      const filato = giocaMissione(m, variabiliIniziali(d.values()), d, (n, v) => strategia(m, n, v, a));
+      let s = iniziaMissione(m, variabiliIniziali(d.values()), d);
+      while (s.ondate.length < m.ondate.length) {
+        s = giocaOndata(m, s, strategia(m, s.ondate.length + 1, s.variabili, b), d);
+        s = JSON.parse(JSON.stringify(s)); // come se fosse passato dal salvataggio
+      }
+      expect(concludiMissione(m, s, d)).toEqual(filato);
+    }
+  });
+});

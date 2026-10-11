@@ -22,7 +22,7 @@ Regole: nessun file sopra 400 righe (guardiano in catena); `src/logica` non impo
 |---|---|---|
 | governo | documenti, regole | documenti, backlog, segreti, modello, governo.html (ESISTE) |
 | logica | `src/logica`, `src/dati`, `src/salvataggi`, `data/`, `schema/` | tipi, confini (400 righe, import da resa, Math.random), schema, test unitari, bot (3 strategie × semi 1…1000, 0 blocchi, ogni esito raggiunto), salvataggi-reali, bracci-rossi-logica (ESISTE). Da aggiungere: grafo narrativo (L2) |
-| grafica | `src/resa` | foto a 360/375/412 px, errori di console, valori scritti a mano fuori dai token |
-| completa | nel dubbio e prima di ogni rilascio | governo + logica + build (ESISTE); poi grafica + copyright |
+| grafica | `src/resa` | token (valori scritti a mano fuori da token.css), build, foto a 360/375/412 px con e01 giocata da capo a fondo (errori di console, scorrimento orizzontale, salvataggio e ripresa, esito atteso), bracci rossi (ESISTE) |
+| completa | nel dubbio e prima di ogni rilascio | governo + logica + grafica (ESISTE); poi copyright |
 
 Esecutore unico: `node tools/catena.mjs <nome>`, registra ogni giro in `STABILITA.json`. La CI su GitHub Actions eseguirà gli stessi comandi (dopo D-008).

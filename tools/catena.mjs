@@ -40,8 +40,9 @@ const PASSI = {
 const CATENE = {
   governo: ['documenti', 'backlog', 'segreti', 'modello', 'bracci-rossi', 'governo.html'],
   logica: ['tipi', 'confini', 'schema', 'test', 'bot', 'salvataggi-reali', 'bracci-rossi-logica'],
+  grafica: ['token', 'build', 'foto', 'bracci-rossi-grafica'],
 };
-CATENE.completa = [...CATENE.governo, ...CATENE.logica, 'build']; // si allunga quando nasce «grafica»
+CATENE.completa = [...CATENE.governo, ...CATENE.logica, ...CATENE.grafica];
 
 const nome = process.argv[2];
 if (!CATENE[nome]) {
@@ -51,6 +52,7 @@ if (!CATENE[nome]) {
 // I passi «logica» usano le dipendenze npm: si caricano solo se la catena li chiede,
 // così «governo» resta eseguibile senza npm install (D-004).
 if (CATENE[nome].some((p) => !(p in PASSI))) Object.assign(PASSI, (await import('./passi-logica.mjs')).PASSI_LOGICA);
+if (CATENE[nome].some((p) => !(p in PASSI))) Object.assign(PASSI, (await import('./passi-grafica.mjs')).PASSI_GRAFICA);
 
 const commit = git('rev-parse --short HEAD');
 // I file scritti dalla catena stessa non rendono «sporca» la build.
@@ -65,7 +67,7 @@ for (const passo of CATENE[nome]) {
   let problemi;
   do {
     tentativi++;
-    try { problemi = PASSI[passo](); } catch (e) { problemi = [`eccezione: ${e.message}`]; }
+    try { problemi = await PASSI[passo](); } catch (e) { problemi = [`eccezione: ${e.message}`]; }
   } while (problemi.length && tentativi < 3);
   const esito = problemi.length ? 'rosso' : tentativi > 1 ? 'instabile' : 'verde';
   giro.passi.push({ passo, esito, tentativi, problemi });
