@@ -117,8 +117,8 @@ for (const larg of larghezze) {
       const rip = await p.getByRole('button', { name: 'Riprendi' }).count(); if (rip) await p.getByRole('button', { name: 'Riprendi' }).click();
       await p.waitForTimeout(400); const dopo = await salvato(p); const sc2 = await quale(p);
       esiti.push(`${perche}: prima «${sc}», dopo «${sc2}», salvataggio ${JSON.stringify(prima) === JSON.stringify(dopo) ? 'identico' : 'CAMBIATO'}, unità sulla mappa ${await p.locator('[data-presenza]').count()}`); };
-    await scena(p, 'titolo'); await p.getByRole('button', { name: 'Nuova partita' }).click(); await scena(p, 'sala'); await p.click('[data-azione="avanti"]');
-    while (await p.locator('[data-azione="prossimo"]').count()) await p.click('[data-azione="prossimo"]');
+    await scena(p, 'titolo'); await p.getByRole('button', { name: 'Nuova partita' }).click(); await scena(p, 'sala'); await p.click('[data-azione="avanti"]'); await scena(p, 'briefing');
+    while (await p.locator('[data-azione="prossimo"]').count()) { await p.click('[data-azione="prossimo"]'); await p.waitForTimeout(50); }
     await p.click('[data-azione="inizia"]'); await scena(p, 'schieramento');
     // schieramento a metà (bozza non confermata)
     const [r0, ps0] = Object.entries(pl.ondate[0].d).find(([, ps]) => Object.keys(ps).length); const s0 = Object.keys(ps0)[0];
@@ -137,8 +137,8 @@ for (const larg of larghezze) {
   // C03-3 · doppio tocco veloce su due opzioni diverse della stessa chiamata (movimento non ridotto: la scena vecchia esce in 0,2 s)
   {
     const { p, errori } = await nuovaPagina(larg, false);
-    await scena(p, 'titolo'); await p.getByRole('button', { name: 'Nuova partita' }).click(); await scena(p, 'sala'); await p.click('[data-azione="avanti"]');
-    while (await p.locator('[data-azione="prossimo"]').count()) await p.click('[data-azione="prossimo"]');
+    await scena(p, 'titolo'); await p.getByRole('button', { name: 'Nuova partita' }).click(); await scena(p, 'sala'); await p.click('[data-azione="avanti"]'); await scena(p, 'briefing');
+    while (await p.locator('[data-azione="prossimo"]').count()) { await p.click('[data-azione="prossimo"]'); await p.waitForTimeout(50); }
     await p.click('[data-azione="inizia"]'); await scena(p, 'schieramento'); await p.click('[data-azione="conferma"]'); await scena(p, 'chiamata');
     const c = m.ondate[0].chiamate[0]; const [a, b] = c.opzioni;
     const ra = await p.locator(`[data-opzione="${a.id}"]`).boundingBox(); const rb = await p.locator(`[data-opzione="${b.id}"]`).boundingBox();
@@ -153,7 +153,7 @@ for (const larg of larghezze) {
   // C03-4 · «Nuova partita» con una partita in corso: chiede conferma?
   {
     const { p } = await nuovaPagina(larg, true); await scena(p, 'titolo'); await p.getByRole('button', { name: 'Nuova partita' }).click(); await scena(p, 'sala');
-    await p.click('[data-azione="avanti"]'); while (await p.locator('[data-azione="prossimo"]').count()) await p.click('[data-azione="prossimo"]');
+    await p.click('[data-azione="avanti"]'); await scena(p, 'briefing'); while (await p.locator('[data-azione="prossimo"]').count()) { await p.click('[data-azione="prossimo"]'); await p.waitForTimeout(50); }
     await p.click('[data-azione="inizia"]'); await scena(p, 'schieramento'); await p.click('[data-azione="conferma"]'); await scena(p, 'chiamata');
     const prima = await salvato(p); await p.reload(); await scena(p, 'titolo'); let dialogo = false; p.on('dialog', async (d) => { dialogo = true; await d.dismiss(); });
     await p.getByRole('button', { name: 'Nuova partita' }).click(); await p.waitForTimeout(400); const dopo = await salvato(p);
