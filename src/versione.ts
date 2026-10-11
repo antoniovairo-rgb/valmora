@@ -17,4 +17,12 @@
 //   causa: PO-035, PO-036, PO-038/040, PO-039.
 //   misura: catena completa 3/3 verde sulla build del rilascio; bot e03 casuale 67,7% fallite, posizione delle transenne 1★…3★.
 //   guardiano: tests/transenne.test.ts, tools/fisse.mjs, tests/picco.test.ts, tests/bilancio.test.ts, tests/bot-deterministiche.test.ts.
-export const GAME_VERSION = '0.3.0';
+//
+// 0.4.0 – rilascio di giorno su richiesta del PO (PO-051, deroga a D-093): icona del gioco (PO-048), gioco installabile e
+//   offline dal browser + APK servito dal sito (PO-049), «Sostieni il progetto» e «Idee e segnalazioni» (PO-050),
+//   città leggibile una stagione alla volta (PO-044), pulsante sempre visibile / «scoperto» / avviso unità finite (C09-02/03/04),
+//   abbozzi con i sette grandi eventi (D-091, nascosti: ?bozze=1).
+//   causa: PO-044, PO-048…PO-051. misura: completa 3/3 sulla build del rilascio; Chromium 0 errori di installabilità
+//   (oltre all'incognito della prova), ricarica offline verde; email non in chiaro nel bundle.
+//   guardiano: passo «email» della catena grafica, tests/collegamenti.test.ts, __NO_C13M01 (città).
+export const GAME_VERSION = '0.4.0';
