@@ -141,6 +141,16 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             const a = li.querySelector('.riga-sx').getBoundingClientRect(), b = li.querySelector('strong').getBoundingClientRect();
             if (b.top >= a.bottom - 2) p.push(`rapporto: lo stato di ${li.dataset.esitoSettore} va sotto il nome`);
           }
+          // C-010 C09-03: a scorrimento zero il pulsante principale (o l'indicatore delle opzioni) si vede
+          const vista = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); return r.height > 0 && r.top >= 0 && r.bottom <= innerHeight; };
+          const principale = document.querySelector('.scena [data-azione="avanti"], .scena [data-azione="prossimo"], .scena [data-azione="inizia"], .scena [data-azione="rapporto"], .scena [data-azione="continua"], .scena [data-azione="conferma"]');
+          if (principale && !vista(principale)) p.push(`pulsante principale «${principale.textContent.trim()}» sotto la piega`);
+          if (document.querySelector('.scena .opzione') && !vista(document.querySelector('.scena .opzione')) && !vista(document.querySelector('[data-indicatore]'))) p.push('opzioni sotto la piega senza indicatore');
+          // C-010 C09-02: un settore scoperto ha almeno il giallo (liv-2)
+          for (const li of document.querySelectorAll('[data-esito-settore]')) {
+            const liv = Number(li.querySelector('.campione')?.className.match(/liv-(\d)/)?.[1] ?? 0);
+            if (/scoperto/i.test(li.querySelector('strong').textContent) && liv < 2) p.push(`rapporto: ${li.dataset.esitoSettore} scoperto ma colore tranquillo (liv-${liv})`);
+          }
           const et = document.querySelector('.testata-t small');
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
             return p;
@@ -240,6 +250,16 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             for (const [r, s] of unita) { // le altre col tocco: unità, poi settore
               if ((await pagina.getAttribute(`[data-risorsa="${r}"]`, 'aria-pressed')) !== 'true') await premi(`[data-risorsa="${r}"]`);
               await premi(`[data-settore="${s}"] .settore-punto`);
+            }
+            // C-010 C09-04: con l'unità scelta finita, un tocco su un settore non mette un'altra unità
+            if (completa && n === 1) {
+              const conta = () => pagina.evaluate(() => [...document.querySelectorAll('[data-presenza] .pastiglia')].reduce((a, e) => a + Number(e.textContent.replace(/\D/g, '') || 0), 0));
+              const prima = await conta();
+              await premi(`[data-settore="${p.m.mappa.settori[0].id}"] .settore-punto`);
+              const dopo = await conta();
+              atteso(`schieramento: unità finita, il tocco ha messo un'altra unità (${prima} → ${dopo}) (C09-04)`, dopo === prima);
+              atteso('schieramento: unità finita senza avviso (C09-04)', (await pagina.locator('[data-avviso]').count()) === 1);
+              if (dopo > prima) await pagina.locator('[data-presenza]').last().click(); // rimette lo schieramento del piano (braccio rosso)
             }
             await fotoSe();
             const piccoli = await pagina.locator('[data-presenza]').evaluateAll((xs) => xs.map((x) => x.getBoundingClientRect()).filter((r) => r.width < 44 || r.height < 44).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));
