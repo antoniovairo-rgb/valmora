@@ -48,6 +48,23 @@ export function sceltePesano(dati, semi = 300) {
   });
 }
 
+/** Esiste una sequenza di scelte (schieramento attento) che arriva ad almeno n stelle? Ricerca in profondità,
+ *  si ferma al primo esempio. Serve quando nessuna strategia ci arriva da sola (C-05). */
+export function esisteStelle(dati, id, n, limite = 400000) {
+  const { dich, iniziali } = contesto(dati);
+  const m = dati[`missioni/${id}.json`];
+  const att = attenta(creaCaso(1), dich);
+  const chiamate = m.ondate.flatMap((o) => o.chiamate ?? []);
+  const lim = chiamate.map((c) => c.opzioni.length); const idx = lim.map(() => 0);
+  for (let prove = 0; prove < limite; prove++) {
+    const r = giocaMissione(m, iniziali, dich, { schiera: att.schiera, scegli: (_m, s, c) => { const v = opzioniValide(c, s); const k = chiamate.findIndex((x) => x.id === c.id); return (v[idx[k] % v.length] ?? v[0]).id; } });
+    if (valutaEpisodio(m, r).stelle >= n) return true;
+    let i = 0; while (i < idx.length && ++idx[i] === lim[i]) idx[i++] = 0;
+    if (i === idx.length) return false;
+  }
+  return false;
+}
+
 /** Campagna: episodi in fila, variabili portate da uno all'altro (giocatore casuale). Quali chiamate compaiono? */
 export function chiamateViste(dati, semi = 300) {
   const { dich, iniziali, missioni } = contesto(dati);

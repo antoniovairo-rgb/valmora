@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-11 10:31 UTC – CI verde su tutti i rami; resa-v2 6 commit indietro (merge chiesto per S-03); collaudo C-03 riprodotto (COLLAUDI C-005), rilievi passati a S-03; main fermo a cb7250e per D-066 (niente resa v2 su main finché non è in stile C).
+Ultimo giro della routine: 2026-10-11 11:32 UTC – CI verde; S-03 (stile C) integrato nella principale (d196ae6) ma NON su main finché il PO non vede le foto; R01-R07 da correggere (S-03 non li cita); C-05 su e02 riprodotto e corretto (COLLAUDI C-006); collaudatrice su C-04.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 

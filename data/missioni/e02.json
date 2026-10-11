@@ -143,6 +143,7 @@
             {
               "id": "scorta_subito",
               "testo": "testi:e02.op.scorta_subito",
+              "costo": "testi:e02.op.scorta_subito.c",
               "effetti": [
                 {
                   "pressione": "viale_stazione",
@@ -158,6 +159,7 @@
             {
               "id": "trattieni",
               "testo": "testi:e02.op.trattieni",
+              "costo": "testi:e02.op.trattieni.c",
               "effetti": [
                 {
                   "pressione": "stazione",
@@ -173,6 +175,7 @@
             {
               "id": "lasciali",
               "testo": "testi:e02.op.lasciali",
+              "costo": "testi:e02.op.lasciali.c",
               "effetti": [
                 {
                   "pressione": "viale_stazione",
@@ -192,6 +195,7 @@
             {
               "id": "fidati",
               "testo": "testi:e02.op.fidati",
+              "costo": "testi:e02.op.fidati.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -199,7 +203,7 @@
                 },
                 {
                   "pressione": "viale_stazione",
-                  "valore": 2
+                  "valore": 3
                 }
               ],
               "risposta": "testi:e02.op.fidati.r"
@@ -207,6 +211,7 @@
             {
               "id": "non_fidarti",
               "testo": "testi:e02.op.non_fidarti",
+              "costo": "testi:e02.op.non_fidarti.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -226,6 +231,7 @@
             {
               "id": "devia",
               "testo": "testi:e02.op.devia",
+              "costo": "testi:e02.op.devia.c",
               "effetti": [
                 {
                   "pressione": "viale_stazione",
@@ -241,6 +247,7 @@
             {
               "id": "ignora_rete",
               "testo": "testi:e02.op.ignora_rete",
+              "costo": "testi:e02.op.ignora_rete.c",
               "effetti": [
                 {
                   "tensione": "curva_larkspire",
@@ -265,14 +272,11 @@
             {
               "id": "sequestra",
               "testo": "testi:e02.op.sequestra",
+              "costo": "testi:e02.op.sequestra.c",
               "effetti": [
                 {
                   "pressione": "tornelli",
-                  "valore": -2
-                },
-                {
-                  "riserva": "steward",
-                  "valore": -2
+                  "valore": -3
                 }
               ],
               "risposta": "testi:e02.op.sequestra.r"
@@ -280,12 +284,8 @@
             {
               "id": "lascia_vendere",
               "testo": "testi:e02.op.lascia_vendere",
-              "effetti": [
-                {
-                  "pressione": "tornelli",
-                  "valore": 1
-                }
-              ],
+              "costo": "testi:e02.op.lascia_vendere.c",
+              "effetti": [],
               "risposta": "testi:e02.op.lascia_vendere.r"
             }
           ]
@@ -325,6 +325,7 @@
             {
               "id": "accoglienza",
               "testo": "testi:e02.op.accoglienza",
+              "costo": "testi:e02.op.accoglienza.c",
               "effetti": [
                 {
                   "pressione": "stazione",
@@ -340,6 +341,7 @@
             {
               "id": "binario_lontano",
               "testo": "testi:e02.op.binario_lontano",
+              "costo": "testi:e02.op.binario_lontano.c",
               "effetti": [
                 {
                   "pressione": "stazione",
@@ -355,6 +357,7 @@
             {
               "id": "normale",
               "testo": "testi:e02.op.normale",
+              "costo": "testi:e02.op.normale.c",
               "effetti": [
                 {
                   "pressione": "stazione",
@@ -375,10 +378,11 @@
             {
               "id": "respingi",
               "testo": "testi:e02.op.respingi",
+              "costo": "testi:e02.op.respingi.c",
               "effetti": [
                 {
                   "tensione": "tornelli",
-                  "valore": 2
+                  "valore": 3
                 },
                 {
                   "aggiungi": "credito",
@@ -390,6 +394,7 @@
             {
               "id": "settore_separato",
               "testo": "testi:e02.op.settore_separato",
+              "costo": "testi:e02.op.settore_separato.c",
               "effetti": [
                 {
                   "pressione": "tornelli",
@@ -409,6 +414,7 @@
             {
               "id": "chiudi_occhio",
               "testo": "testi:e02.op.chiudi_occhio",
+              "costo": "testi:e02.op.chiudi_occhio.c",
               "effetti": [
                 {
                   "pressione": "tornelli",
@@ -432,6 +438,7 @@
             {
               "id": "corteo_scortato",
               "testo": "testi:e02.op.corteo_scortato",
+              "costo": "testi:e02.op.corteo_scortato.c",
               "effetti": [
                 {
                   "pressione": "viale_stazione",
@@ -447,6 +454,7 @@
             {
               "id": "corteo_no",
               "testo": "testi:e02.op.corteo_no",
+              "costo": "testi:e02.op.corteo_no.c",
               "effetti": [
                 {
                   "tensione": "viale_stazione",
@@ -458,6 +466,7 @@
             {
               "id": "mediatore_corteo",
               "testo": "testi:e02.op.mediatore_corteo",
+              "costo": "testi:e02.op.mediatore_corteo.c",
               "effetti": [
                 {
                   "pressione": "viale_stazione",
@@ -466,6 +475,10 @@
                 {
                   "aggiungi": "credito",
                   "valore": 1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e02.op.mediatore_corteo.r"
@@ -473,14 +486,15 @@
           ]
         },
         {
-          "id": "sindaca_quartiere",
+          "id": "comitato_quartiere",
           "fonte": "voci_in_rete",
-          "testo": "testi:e02.ch.sindaca_quartiere",
+          "testo": "testi:e02.ch.comitato_quartiere",
           "settore": "curva_larkspire",
           "opzioni": [
             {
               "id": "presidio_quartiere",
               "testo": "testi:e02.op.presidio_quartiere",
+              "costo": "testi:e02.op.presidio_quartiere.c",
               "effetti": [
                 {
                   "pressione": "curva_larkspire",
@@ -496,6 +510,7 @@
             {
               "id": "comunicato",
               "testo": "testi:e02.op.comunicato",
+              "costo": "testi:e02.op.comunicato.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -503,10 +518,51 @@
                 },
                 {
                   "tensione": "curva_larkspire",
-                  "valore": 1
+                  "valore": 2
                 }
               ],
               "risposta": "testi:e02.op.comunicato.r"
+            }
+          ]
+        },
+        {
+          "id": "presidente_aiuta",
+          "fonte": "vice",
+          "testo": "testi:e02.ch.presidente_aiuta",
+          "settore": "tornelli",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "commento": "testi:e02.ch.presidente_aiuta.vice",
+          "opzioni": [
+            {
+              "id": "accetta_aiuto",
+              "testo": "testi:e02.op.accetta_aiuto",
+              "costo": "testi:e02.op.accetta_aiuto.c",
+              "risposta": "testi:e02.op.accetta_aiuto.r",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ]
+            },
+            {
+              "id": "declina_aiuto",
+              "testo": "testi:e02.op.declina_aiuto",
+              "costo": "testi:e02.op.declina_aiuto.c",
+              "risposta": "testi:e02.op.declina_aiuto.r",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ]
             }
           ]
         }
@@ -545,6 +601,7 @@
             {
               "id": "chiedi",
               "testo": "testi:e02.op.chiedi",
+              "costo": "testi:e02.op.chiedi.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -552,7 +609,7 @@
                 },
                 {
                   "pressione": "curva_ospiti",
-                  "valore": 1
+                  "valore": 2
                 }
               ],
               "risposta": "testi:e02.op.chiedi.r"
@@ -560,10 +617,15 @@
             {
               "id": "rimuovi_str",
               "testo": "testi:e02.op.rimuovi_str",
+              "costo": "testi:e02.op.rimuovi_str.c",
               "effetti": [
                 {
                   "tensione": "curva_ospiti",
                   "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.rimuovi_str.r"
@@ -571,6 +633,7 @@
             {
               "id": "ignora_str",
               "testo": "testi:e02.op.ignora_str",
+              "costo": "testi:e02.op.ignora_str.c",
               "effetti": [],
               "risposta": "testi:e02.op.ignora_str.r"
             }
@@ -585,6 +648,7 @@
             {
               "id": "steward_fumo",
               "testo": "testi:e02.op.steward_fumo",
+              "costo": "testi:e02.op.steward_fumo.c",
               "effetti": [
                 {
                   "pressione": "curva_ospiti",
@@ -593,6 +657,10 @@
                 {
                   "tensione": "curva_ospiti",
                   "valore": 1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e02.op.steward_fumo.r"
@@ -600,6 +668,7 @@
             {
               "id": "sospendi2",
               "testo": "testi:e02.op.sospendi2",
+              "costo": "testi:e02.op.sospendi2.c",
               "effetti": [
                 {
                   "pressione": "curva_ospiti",
@@ -615,10 +684,15 @@
             {
               "id": "lascia_fumo2",
               "testo": "testi:e02.op.lascia_fumo2",
+              "costo": "testi:e02.op.lascia_fumo2.c",
               "effetti": [
                 {
                   "pressione": "curva_ospiti",
                   "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.lascia_fumo2.r"
@@ -635,10 +709,11 @@
             {
               "id": "mediatore_casa",
               "testo": "testi:e02.op.mediatore_casa",
+              "costo": "testi:e02.op.mediatore_casa.c",
               "effetti": [
                 {
                   "pressione": "curva_larkspire",
-                  "valore": -2
+                  "valore": -1
                 },
                 {
                   "riserva": "mediatore",
@@ -650,12 +725,8 @@
             {
               "id": "niente",
               "testo": "testi:e02.op.niente",
-              "effetti": [
-                {
-                  "tensione": "curva_larkspire",
-                  "valore": 1
-                }
-              ],
+              "costo": "testi:e02.op.niente.c",
+              "effetti": [],
               "risposta": "testi:e02.op.niente.r"
             }
           ]
@@ -673,10 +744,15 @@
             {
               "id": "annota",
               "testo": "testi:e02.op.annota",
+              "costo": "testi:e02.op.annota.c",
               "effetti": [
                 {
                   "imposta": "furgone_visto",
                   "valore": true
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e02.op.annota.r"
@@ -684,6 +760,7 @@
             {
               "id": "lascia_perdere",
               "testo": "testi:e02.op.lascia_perdere",
+              "costo": "testi:e02.op.lascia_perdere.c",
               "effetti": [],
               "risposta": "testi:e02.op.lascia_perdere.r"
             }
@@ -699,7 +776,7 @@
           "id": "ritorno",
           "tipo": "corteo",
           "settore": "viale_stazione",
-          "pressione": 5
+          "pressione": 7
         },
         {
           "id": "treni_ritorno",
@@ -724,6 +801,7 @@
             {
               "id": "trattieni_ospiti",
               "testo": "testi:e02.op.trattieni_ospiti",
+              "costo": "testi:e02.op.trattieni_ospiti.c",
               "effetti": [
                 {
                   "pressione": "viale_stazione",
@@ -739,6 +817,7 @@
             {
               "id": "prima_ospiti",
               "testo": "testi:e02.op.prima_ospiti",
+              "costo": "testi:e02.op.prima_ospiti.c",
               "effetti": [
                 {
                   "pressione": "viale_stazione",
@@ -766,6 +845,7 @@
             {
               "id": "trattieni_treno",
               "testo": "testi:e02.op.trattieni_treno",
+              "costo": "testi:e02.op.trattieni_treno.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -781,6 +861,7 @@
             {
               "id": "parte",
               "testo": "testi:e02.op.parte",
+              "costo": "testi:e02.op.parte.c",
               "effetti": [
                 {
                   "pressione": "stazione",
@@ -800,6 +881,7 @@
             {
               "id": "saluta",
               "testo": "testi:e02.op.saluta",
+              "costo": "testi:e02.op.saluta.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -807,7 +889,7 @@
                 },
                 {
                   "tensione": "curva_larkspire",
-                  "valore": 1
+                  "valore": 3
                 }
               ],
               "risposta": "testi:e02.op.saluta.r"
@@ -815,6 +897,7 @@
             {
               "id": "rifiuta_saluto",
               "testo": "testi:e02.op.rifiuta_saluto",
+              "costo": "testi:e02.op.rifiuta_saluto.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -834,6 +917,7 @@
             {
               "id": "indaga",
               "testo": "testi:e02.op.indaga",
+              "costo": "testi:e02.op.indaga.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -841,7 +925,7 @@
                 },
                 {
                   "riserva": "steward",
-                  "valore": -1
+                  "valore": -2
                 }
               ],
               "risposta": "testi:e02.op.indaga.r"
@@ -849,6 +933,7 @@
             {
               "id": "chiudi_viale",
               "testo": "testi:e02.op.chiudi_viale",
+              "costo": "testi:e02.op.chiudi_viale.c",
               "effetti": [
                 {
                   "pressione": "viale_stazione",

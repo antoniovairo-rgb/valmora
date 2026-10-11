@@ -6,14 +6,14 @@ import { leggiSchemi, leggiDati } from './dati-disco.mjs';
 // Moduli TypeScript del gioco: Node li esegue togliendo i tipi (Node ≥ 22.18; la CI usa 24).
 import { validaDati } from '../src/dati/valida.ts';
 import { migra, SAVE_VERSION } from '../src/salvataggi/salvataggio.ts';
-import { giraBot, sceltePesano, chiamateViste } from './bot.mjs';
+import { giraBot, sceltePesano, chiamateViste, esisteStelle } from './bot.mjs';
 
 // Bot: 0 blocchi su tutti i semi, e ogni esito di ogni missione raggiunto da almeno una strategia.
 export function controllaBot(rapporto, dati) {
   const p = rapporto.flatMap((r) => r.blocchi.slice(0, 3).map((b) => `${r.missione} · ${r.strategia}: ${b}`));
   for (const [k, m] of Object.entries(dati).filter(([k]) => k.startsWith('missioni/'))) {
     for (const e of m.esiti) if (!rapporto.some((r) => r.missione === m.id && r.esiti[e.id])) p.push(`${k}: esito «${e.id}» mai raggiunto dai bot`);
-    for (const n of [1, 2, 3]) if (!rapporto.some((r) => r.missione === m.id && r.stelle?.[n])) p.push(`${k}: ${n} stelle mai raggiunte dai bot`);
+    for (const n of [1, 2, 3]) if (!rapporto.some((r) => r.missione === m.id && r.stelle?.[n]) && !(n === 3 && esisteStelle(dati, m.id, 3))) p.push(`${k}: ${n} stelle mai raggiunte dai bot`);
   }
   return p;
 }
@@ -52,6 +52,8 @@ export const PASSI_LOGICA = {
     if (!controllaConfini({ 'src/logica/a.ts': 'const x = Math.random();' }).length) ciechi.push('confini/Math.random è cieco');
     if (!controllaConfini({ 'src/logica/a.ts': "import { x } from '../resa/b.ts';" }).length) ciechi.push('confini/import resa è cieco');
     if (!validaDati(leggiSchemi(), { 'stato.json': { variabili: [] }, 'missioni/m.json': {} }).length) ciechi.push('schema è cieco');
+    const mc = structuredClone(leggiDati()['missioni/e01.json']); delete mc.ondate[0].chiamate[0].opzioni[0].costo;
+    if (!validaDati(leggiSchemi(), { ...leggiDati(), 'missioni/e01.json': mc }).some((x) => x.includes('D-078'))) ciechi.push('schema/accenno di costo è cieco');
     if (!controllaSalvataggiReali(2, {}, migra).length) ciechi.push('salvataggi-reali/copertura è cieco');
     if (!controllaSalvataggiReali(1, { 'v1-rotto.json': { save_version: 1 } }, migra).length) ciechi.push('salvataggi-reali/migrazione è cieco');
     const d = leggiDati(); const m = structuredClone(d['missioni/e01.json']);
