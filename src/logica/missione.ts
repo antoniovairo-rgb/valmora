@@ -36,6 +36,7 @@ export interface InCorso {
   rapporti: RapportoOndata[];
   variabili: Variabili;
   fisse?: Disposizione;                 // unità fisse già piazzate, per risorsa e settore (D-082); assente nei salvataggi vecchi
+  partenze?: Record<number, InCorso>;   // stato all'inizio di ogni ondata, per ripartire da lì (PO-060); assente nei salvataggi vecchi
 }
 
 const ondataDi = (m: Missione, s: InCorso) => {
@@ -48,10 +49,11 @@ export function iniziaMissione(m: Missione, iniziali: Variabili, d: Dich): InCor
   if (!d.has(VAR_TENSIONE)) throw new Error(`stato.json deve dichiarare «${VAR_TENSIONE}»`);
   const zero = (ids: string[]) => Object.fromEntries(ids.map((id) => [id, 0]));
   const risorse = Object.keys(m.mappa.risorse);
-  return {
+  const s: InCorso = {
     missione: m.id, ondata: 1, tensione: zero(m.mappa.settori.map((x) => x.id)), riserva: zero(risorse), riposo: zero(risorse),
     disposizione: null, modifiche: {}, risposte: {}, scelte: [], rapporti: [], variabili: { ...iniziali, [VAR_TENSIONE]: 0 },
   };
+  return { ...s, partenze: { 1: s } };
 }
 
 export const missioneFinita = (m: Missione, s: InCorso): boolean => s.ondata > m.ondate.length;
@@ -168,11 +170,30 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
   const massimo = Math.max(s.variabili[VAR_TENSIONE] as number, ...Object.values(tensione), ...Object.values(s.tensione));
   const picco = Object.fromEntries(m.mappa.settori.map(({ id }) => [id, Math.max(s.tensione[id] ?? 0, tensione[id] ?? 0)]));
   const rapporto: RapportoOndata = spento('C10P01') ? { n: s.ondata, scoperto, tensione, aRiposo } : { n: s.ondata, scoperto, tensione, aRiposo, picco };
-  return {
+  const dopo: InCorso = {
     ...s, ondata: s.ondata + 1, tensione, riposo: aRiposo, disposizione: null,
     fisse: Object.fromEntries(Object.entries(m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => [r, { ...(disp[r] ?? {}) }])), modifiche: {}, risposte: {},
     rapporti: [...s.rapporti, rapporto], variabili: applica({ imposta: VAR_TENSIONE, valore: massimo }, s.variabili, d),
   };
+  // PO-060: copia dello stato all'inizio dell'ondata dopo (senza le copie annidate), per poter ripartire da lì
+  const { partenze, ...senza } = dopo;
+  return missioneFinita(m, dopo) ? dopo : { ...dopo, partenze: { ...(partenze ?? {}), [dopo.ondata]: senza } };
+}
+
+/** Ondata da cui ripartire dopo un episodio perso (PO-060): la prima in cui la tensione ha toccato il massimo che ha
+ *  deciso l'esito. Prima di lì la partita era andata come andrà comunque. Rosso __NO_C16R01: sempre dall'inizio. */
+export function ondataDaRiprendere(r: { rapporti: RapportoOndata[]; variabili: Variabili }): number {
+  if (spento('C16R01')) return 1;
+  const max = Number(r.variabili[VAR_TENSIONE] ?? 0);
+  const k = r.rapporti.find((x) => Math.max(...Object.values(x.picco ?? x.tensione)) >= max);
+  return k ? k.n : 1;
+}
+
+/** Stato per rigiocare dall'ondata n (PO-060); null se il salvataggio non ha la copia (salvataggi vecchi: si riparte dall'inizio). */
+export function riprendiDallOndata(s: InCorso, n: number): InCorso | null {
+  const p = s.partenze?.[n];
+  if (!p) return null;
+  return { ...p, partenze: Object.fromEntries(Object.entries(s.partenze ?? {}).filter(([k]) => Number(k) <= n)) };
 }
 
 export interface EsitoMissione { esito: Esito; variabili: Variabili; rapporti: RapportoOndata[]; scelte: InCorso['scelte'] }
