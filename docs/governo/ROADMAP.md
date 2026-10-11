@@ -1,19 +1,20 @@
 # Roadmap
 
-Data di pubblicazione: DA DECIDERE (D-009). Congelamento dell'ambito: 10 giorni prima.
+Data di pubblicazione: **2026-11-30** (D-009, ferma). Congelamento dell'ambito: **2026-11-20**. Test chiuso Play, se richiesto: avvio entro il 2026-11-09 (Non posso confermarlo che sia richiesto).
+Ambito della prima pubblicazione: triade intera, 36 missioni.
 Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
 
 ## L0 – Impianto del governo
 - Stato: IN CORSO
 - Obiettivo: documenti di governo, regole, prima catena di prova funzionante, decisioni di partenza.
 - Voci: PO-001, PO-002, PO-003, PO-004, PO-005, PO-006, PO-007
-- Criterio d'uscita: catena «governo» verde per 3 giri consecutivi sullo stesso commit; D-006…D-010 chiuse; docs/BIBBIA.md non più segnaposto.
+- Criterio d'uscita: catena «governo» verde per 3 giri consecutivi sullo stesso commit; D-006…D-010 chiuse; repo GitHub con CI che esegue la stessa catena.
 
 ## L1 – Fetta verticale: episodio 1
 - Stato: PROPOSTO
 - Obiettivo: e01 giocabile da capo a fondo (briefing, plancia, ondate, verbale) nel browser e come APK di debug sul telefono del PO.
-- Voci: –
-- Criterio d'uscita: e01 completata dal bot con 1000 semi (1…1000), 0 blocchi; catena «logica» verde 3 giri; 0 errori di console sulle schermate di e01 a 360/375/412 px; salvataggio e ripresa provati; ore reali di lavoro misurate e scritte qui.
+- Voci: PO-009
+- Criterio d'uscita: bibbia con indice della triade ed e01 approvati dal PO; e01 completata dal bot con 1000 semi (1…1000), 0 blocchi; catena «logica» verde 3 giri; 0 errori di console sulle schermate di e01 a 360/375/412 px; salvataggio e ripresa provati; ore reali di lavoro misurate e scritte qui.
 
 ## L2 – Strumenti e stagione 1
 - Stato: PROPOSTO
@@ -23,7 +24,7 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
 
 ## L3 – Prima pubblicazione
 - Stato: PROPOSTO
-- Obiettivo: ambito della prima pubblicazione (stagione 1 o triade intera: D-009), test chiuso su Play, richiesta di produzione.
+- Obiettivo: triade intera (36 missioni, D-009), test chiuso su Play, richiesta di produzione.
 - Voci: –
 - Criterio d'uscita: controllo copyright a 0; build offline verificata; 0 errori di console nelle schermate principali; AAB caricato dal PO nel test chiuso; requisiti Play letti e datati in docs/RILASCIO.md.
 

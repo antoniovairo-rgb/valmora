@@ -1,35 +1,10 @@
-# Avvio della squadra Valmora
+# Avvio delle sessioni Valmora (cloud)
 
-## Prima volta
-1. Incolla la bibbia in `docs/BIBBIA.md` e committa (`git add docs/BIBBIA.md && git commit -m "Bibbia"`).
-2. Rispondi alle decisioni in `docs/FASE0_PROPOSTA.md` (tecnologia e schema).
-3. Solo dopo, apri le altre sessioni.
+Il progetto lavora in cloud (D-011) sul repository github.com/antoniovairo-rgb/valmora.
 
-## Cinque terminali, tutti in questa cartella
-```
-claude                         # Team Leader (main)
-claude --worktree dev-engine
-claude --worktree dev-contenuti
-claude --worktree test-auto
-claude --worktree test-play
-```
-In ogni sessione incolla il prompt del ruolo da `docs/PROMPT_TEAM.md` (sezione 4).
+- Sessione principale: l'unica con cui parla il PO, su claude.ai/code sul repo valmora, ramo main.
+- Sessioni parallele (collaudatrice, sviluppatrice, rilascio): le apre e le dirige la sessione principale, ognuna sul suo ramo, con un prompt autosufficiente (base, perimetro, cosa non toccare, formato del rapporto, commit e push dopo ogni consegna).
+- Coordinamento: tramite rami su GitHub, docs/governo/ e coordination/handoffs/<ruolo>/.
+- Routine oraria: controlla le sessioni e riprende quelle ferme con lavoro da fare.
 
-## Farle lavorare senza riscrivere ogni volta
-Le sessioni non si svegliano da sole quando cambia la lavagna. In ogni sessione non-Leader, dopo il prompt di ruolo:
-```
-/loop 20m aggiorna il branch con git merge main, leggi la lavagna da main e lavora sul prossimo compito assegnato al tuo ruolo; se non ce ne sono, fermati
-```
-Nel Leader:
-```
-/loop 30m leggi le consegne sui branch worktree-*, aggiorna coordination/BOARD.md, fai i merge ammessi e aggiorna coordination/REPORT.md
-```
-Le sessioni restano attive solo finché il PC è acceso e i terminali aperti.
-
-## Correzioni rispetto al pacchetto originale
-- I collaudatori non vedevano il codice da collaudare: ora fanno `git merge <branch-dev>` nel proprio branch (regola in CLAUDE.md).
-- Nessuno svegliava le sessioni: aggiunto `/loop` qui sopra.
-- Ogni ruolo fa `git merge main` all'inizio di ogni ciclo, per non lavorare su una base vecchia.
-- I segreti sono bloccati anche in `.claude/settings.json` (regole `deny`), non solo a parole.
-- Il report del PO ha un posto fisso: `coordination/REPORT.md`.
-- La sessione "revisore" ha già la sua cartella in `coordination/handoffs/revisore/`; si avvia con `claude --worktree revisore`.
+Il pacchetto iniziale (docs/PROMPT_TEAM.md) descriveva 5 terminali locali con worktree: è superato da questo file e da docs/governo/ISTRUZIONI_PO.md §9.
