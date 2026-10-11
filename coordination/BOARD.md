@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-11 12:45 UTC – C-06 verde e riprodotto (COLLAUDI C-007); main promosso a c1333cb (stile C + R01-R07 + accenni di costo nei dati, D-078), CI e Pages verdi; sviluppatrice su S-04/S-05 (accenno di costo nella resa) + N01; collaudatrice ferma.
+Ultimo giro della routine: 2026-10-11 13:15 UTC – S-04 (e02 su mappa aerea e città) integrata in 37abdc7, completa 3/3 verde, main promosso a d179b7c; sviluppatrice su S-05 (accenno di costo) poi N01; collaudatrice su C-07 (e02 mappa/città + sospetti «1 tentativi» e stelle della scheda). Aperto: colori delle curve fissi, servirebbe un dato per club.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
