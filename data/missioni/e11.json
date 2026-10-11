@@ -1,0 +1,857 @@
+{
+  "id": "e11",
+  "bozza": true,
+  "stagione": 1,
+  "episodio": 11,
+  "titolo": "testi:e11.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 22,
+    "y": 86
+  },
+  "introduzione": [
+    "testi:e11.intro1",
+    "testi:e11.intro2",
+    "testi:e11.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e11.info_ferrovie",
+      "fonte": "ferrovie",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "stazione"
+    },
+    {
+      "testo": "testi:e11.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "quartiere"
+    },
+    {
+      "testo": "testi:e11.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "piazza_fonderie"
+    },
+    {
+      "testo": "testi:e11.info_comitato",
+      "fonte": "comitato_residenti",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "strada_cinderwick"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "quartiere",
+        "tipo": "quartiere",
+        "pos": {
+          "x": 20,
+          "y": 70
+        }
+      },
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 50,
+          "y": 88
+        }
+      },
+      {
+        "id": "piazza_fonderie",
+        "tipo": "piazza",
+        "pos": {
+          "x": 22,
+          "y": 30
+        }
+      },
+      {
+        "id": "stazione",
+        "tipo": "stazione",
+        "pos": {
+          "x": 78,
+          "y": 40
+        }
+      },
+      {
+        "id": "viale_stazione",
+        "tipo": "strada",
+        "pos": {
+          "x": 78,
+          "y": 72
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 5,
+        "efficacia": {
+          "strada": 2,
+          "quartiere": 2,
+          "piazza": 2,
+          "stazione": 2
+        }
+      },
+      "steward": {
+        "quantita": 3,
+        "efficacia": {
+          "stazione": 2,
+          "piazza": 1,
+          "quartiere": 1,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "assembramento"
+        ]
+      }
+    },
+    "ora": "notte"
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e11.ondata1",
+      "eventi": [
+        {
+          "id": "treno11",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 5
+        },
+        {
+          "id": "viale11",
+          "tipo": "assembramento",
+          "settore": "viale_stazione",
+          "pressione": 4
+        },
+        {
+          "id": "fonderie11",
+          "tipo": "assembramento",
+          "settore": "piazza_fonderie",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "treno_ritorno",
+          "fonte": "ferrovie",
+          "testo": "testi:e11.ch.treno_ritorno",
+          "commento": "testi:e11.ch.treno_ritorno.vice",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "accogli_stazione",
+              "testo": "testi:e11.op.accogli_stazione",
+              "costo": "testi:e11.op.accogli_stazione.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -3
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.accogli_stazione.r"
+            },
+            {
+              "id": "binario_lontano11",
+              "testo": "testi:e11.op.binario_lontano11",
+              "costo": "testi:e11.op.binario_lontano11.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.binario_lontano11.r"
+            },
+            {
+              "id": "arrivo_normale11",
+              "testo": "testi:e11.op.arrivo_normale11",
+              "costo": "testi:e11.op.arrivo_normale11.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e11.op.arrivo_normale11.r"
+            }
+          ]
+        },
+        {
+          "id": "pattuglia",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e11.ch.pattuglia",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "pattuglia_fissa",
+              "testo": "testi:e11.op.pattuglia_fissa",
+              "costo": "testi:e11.op.pattuglia_fissa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.pattuglia_fissa.r"
+            },
+            {
+              "id": "niente_pattuglia",
+              "testo": "testi:e11.op.niente_pattuglia",
+              "costo": "testi:e11.op.niente_pattuglia.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.niente_pattuglia.r"
+            }
+          ]
+        },
+        {
+          "id": "per_la_squadra",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e11.ch.per_la_squadra",
+          "settore": "piazza_fonderie",
+          "opzioni": [
+            {
+              "id": "mediatore11",
+              "testo": "testi:e11.op.mediatore11",
+              "costo": "testi:e11.op.mediatore11.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_fonderie",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.mediatore11.r"
+            },
+            {
+              "id": "chiudi_fonderie",
+              "testo": "testi:e11.op.chiudi_fonderie",
+              "costo": "testi:e11.op.chiudi_fonderie.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_fonderie",
+                  "valore": -2
+                },
+                {
+                  "tensione": "quartiere",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.chiudi_fonderie.r"
+            },
+            {
+              "id": "aspetta11",
+              "testo": "testi:e11.op.aspetta11",
+              "costo": "testi:e11.op.aspetta11.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_fonderie",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e11.op.aspetta11.r"
+            }
+          ]
+        },
+        {
+          "id": "taniche",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e11.ch.taniche",
+          "commento": "testi:e11.ch.taniche.vice",
+          "settore": "piazza_fonderie",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "controlla_bagagliai",
+              "testo": "testi:e11.op.controlla_bagagliai",
+              "costo": "testi:e11.op.controlla_bagagliai.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_fonderie",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.controlla_bagagliai.r"
+            },
+            {
+              "id": "niente_prove",
+              "testo": "testi:e11.op.niente_prove",
+              "costo": "testi:e11.op.niente_prove.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_fonderie",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.niente_prove.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e11.ondata2",
+      "eventi": [
+        {
+          "id": "fiamme11",
+          "tipo": "incendio",
+          "settore": "quartiere",
+          "pressione": 4
+        },
+        {
+          "id": "fonderie11b",
+          "tipo": "assembramento",
+          "settore": "piazza_fonderie",
+          "pressione": 4
+        },
+        {
+          "id": "strada11",
+          "tipo": "folla",
+          "settore": "strada_cinderwick",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "primo_fuoco",
+          "fonte": "centrale_radio",
+          "testo": "testi:e11.ch.primo_fuoco",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "scorta_vigili",
+              "testo": "testi:e11.op.scorta_vigili",
+              "costo": "testi:e11.op.scorta_vigili.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.scorta_vigili.r"
+            },
+            {
+              "id": "isola_via",
+              "testo": "testi:e11.op.isola_via",
+              "costo": "testi:e11.op.isola_via.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.isola_via.r"
+            }
+          ]
+        },
+        {
+          "id": "non_centro",
+          "fonte": "dessi",
+          "testo": "testi:e11.ch.non_centro",
+          "commento": "testi:e11.ch.non_centro.vice",
+          "settore": "piazza_fonderie",
+          "opzioni": [
+            {
+              "id": "accetta_dessi11",
+              "testo": "testi:e11.op.accetta_dessi11",
+              "costo": "testi:e11.op.accetta_dessi11.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_fonderie",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e11.op.accetta_dessi11.r"
+            },
+            {
+              "id": "rifiuta_dessi11",
+              "testo": "testi:e11.op.rifiuta_dessi11",
+              "costo": "testi:e11.op.rifiuta_dessi11.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazza_fonderie",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e11.op.rifiuta_dessi11.r"
+            }
+          ]
+        },
+        {
+          "id": "dirette",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e11.ch.dirette",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "comunicato11",
+              "testo": "testi:e11.op.comunicato11",
+              "costo": "testi:e11.op.comunicato11.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e11.op.comunicato11.r"
+            },
+            {
+              "id": "allontana_curiosi",
+              "testo": "testi:e11.op.allontana_curiosi",
+              "costo": "testi:e11.op.allontana_curiosi.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.allontana_curiosi.r"
+            }
+          ]
+        },
+        {
+          "id": "fra_vicini",
+          "fonte": "vice",
+          "testo": "testi:e11.ch.fra_vicini",
+          "commento": "testi:e11.ch.fra_vicini.vice",
+          "settore": "quartiere",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "accetta11",
+              "testo": "testi:e11.op.accetta11",
+              "costo": "testi:e11.op.accetta11.c",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.accetta11.r"
+            },
+            {
+              "id": "declina11",
+              "testo": "testi:e11.op.declina11",
+              "costo": "testi:e11.op.declina11.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.declina11.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e11.ondata3",
+      "eventi": [
+        {
+          "id": "fiamme11b",
+          "tipo": "incendio",
+          "settore": "quartiere",
+          "pressione": 4
+        },
+        {
+          "id": "fiamme11c",
+          "tipo": "incendio",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "fonderie11c",
+          "tipo": "assembramento",
+          "settore": "piazza_fonderie",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "non_di_qui",
+          "fonte": "vice",
+          "testo": "testi:e11.ch.non_di_qui",
+          "commento": "testi:e11.ch.non_di_qui.vice",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "posti_blocco",
+              "testo": "testi:e11.op.posti_blocco",
+              "costo": "testi:e11.op.posti_blocco.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.posti_blocco.r"
+            },
+            {
+              "id": "solo_fiamme",
+              "testo": "testi:e11.op.solo_fiamme",
+              "costo": "testi:e11.op.solo_fiamme.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e11.op.solo_fiamme.r"
+            }
+          ]
+        },
+        {
+          "id": "autoscala",
+          "fonte": "centrale_radio",
+          "testo": "testi:e11.ch.autoscala",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "libera_strada",
+              "testo": "testi:e11.op.libera_strada",
+              "costo": "testi:e11.op.libera_strada.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.libera_strada.r"
+            },
+            {
+              "id": "strada_dopo",
+              "testo": "testi:e11.op.strada_dopo",
+              "costo": "testi:e11.op.strada_dopo.c",
+              "effetti": [
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.strada_dopo.r"
+            }
+          ]
+        },
+        {
+          "id": "contromano",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e11.ch.contromano",
+          "commento": "testi:e11.ch.contromano.vice",
+          "settore": "strada_cinderwick",
+          "se": {
+            "var": "furgone_visto",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "ferma11",
+              "testo": "testi:e11.op.ferma11",
+              "costo": "testi:e11.op.ferma11.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.ferma11.r"
+            },
+            {
+              "id": "annota11",
+              "testo": "testi:e11.op.annota11",
+              "costo": "testi:e11.op.annota11.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.annota11.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e11.ondata4",
+      "eventi": [
+        {
+          "id": "scope",
+          "tipo": "folla",
+          "settore": "quartiere",
+          "pressione": 4
+        },
+        {
+          "id": "fiamme11d",
+          "tipo": "incendio",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "viale11b",
+          "tipo": "folla",
+          "settore": "viale_stazione",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "chi_paga",
+          "fonte": "vice",
+          "testo": "testi:e11.ch.chi_paga",
+          "commento": "testi:e11.ch.chi_paga.vice",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "paga_comune",
+              "testo": "testi:e11.op.paga_comune",
+              "costo": "testi:e11.op.paga_comune.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.paga_comune.r"
+            },
+            {
+              "id": "assicurazioni",
+              "testo": "testi:e11.op.assicurazioni",
+              "costo": "testi:e11.op.assicurazioni.c",
+              "effetti": [
+                {
+                  "tensione": "quartiere",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.assicurazioni.r"
+            }
+          ]
+        },
+        {
+          "id": "ultimo_fuoco",
+          "fonte": "centrale_radio",
+          "testo": "testi:e11.ch.ultimo_fuoco",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "squadre_ultimo",
+              "testo": "testi:e11.op.squadre_ultimo",
+              "costo": "testi:e11.op.squadre_ultimo.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.squadre_ultimo.r"
+            },
+            {
+              "id": "vigili_ultimo",
+              "testo": "testi:e11.op.vigili_ultimo",
+              "costo": "testi:e11.op.vigili_ultimo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e11.op.vigili_ultimo.r"
+            }
+          ]
+        },
+        {
+          "id": "chiudete_stadio",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e11.ch.chiudete_stadio",
+          "commento": "testi:e11.ch.chiudete_stadio.vice",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "rispondi11",
+              "testo": "testi:e11.op.rispondi11",
+              "costo": "testi:e11.op.rispondi11.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e11.op.rispondi11.r"
+            },
+            {
+              "id": "taci11",
+              "testo": "testi:e11.op.taci11",
+              "costo": "testi:e11.op.taci11.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e11.op.taci11.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e11.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e11.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e11.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
