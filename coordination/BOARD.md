@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-11 19:45 UTC – principale 75030bb: integrate C09-02/03/04 (completa 3/3 su 86fc5db), città leggibile (PO-044), rilascio notturno deciso (D-093, prossimo alle 02:30 Roma); sviluppatrice su bilancio → colori/stemmi → picco → folla per ondata → wizard; collaudatrice su C-11; due sessioni di scrittura sugli episodi di città (D-092).
+Ultimo giro della routine: 2026-10-11 21:40 UTC – principale 0339002: S-08 integrata (3/3), città ridimensionata (PO-052), dettagli mappe D-095, revisione schermate PO-053; main 0.4.0 (df14f8b); sviluppatrice su S-11/S-10 (catena 3x in corso) poi S-09; collaudatrice su C-12 (resa S-08); due sessioni di scrittura sugli episodi di città (D-092). Rilascio notturno alle 02:30 Roma.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
