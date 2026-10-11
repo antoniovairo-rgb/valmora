@@ -25,7 +25,7 @@ Ramo `claude/valmora-resa-v2`, con merge (non rebase) fino a c1333cb. Stato: **c
 | `VALMORA_LARGHEZZE=360 VALMORA_ROSSI=C05S05 node tools/foto.mjs out/foto-rossa-S05` (rosso) | 360 px, 40 chiamate | ROSSO come atteso: «0 accenni di costo su 2 opzioni» ×24, «0 accenni di costo su 3 opzioni» ×16 |
 | build di prova + `node tools/foto.mjs out/foto-prova out/dist-prova tests/resa/dati-prova` | 3 larghezze | verde |
 | `npx vitest run` | 100 test | verdi |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 273c829, 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Layout a 360 px con gli accenni più lunghi («vai»: «Il presidente ti deve un favore; la curva Cinderwick
 resta senza di te.»; «chiudi»: «Ferma lo scontro, scalda la strada di Cinderwick e costa credito.»): due righe,
