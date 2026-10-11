@@ -10,7 +10,7 @@ const buono = () => ({ save_version: SAVE_VERSION, game_version: GAME_VERSION, s
 // Missione minima di prova (nomi neutri): serve solo a produrre un InCorso vero dal motore.
 const dich = new Map<string, Dichiarazione>([['tensione_max', { id: 'tensione_max', tipo: 'int', min: 0, max: 10, iniziale: 0, descrizione: 'prova' }]]);
 const prova: Missione = {
-  id: 'm', stagione: 1, episodio: 1, titolo: 'testi:m.t', disponibile_se: {}, briefing: [], fili: [],
+  id: 'm', stagione: 1, episodio: 1, titolo: 'testi:m.t', disponibile_se: {}, briefing: [], fili: [], stelle: { due: {}, tre: {} },
   mappa: { settori: [{ id: 'a', tipo: 'x' }], risorse: { r: { quantita: 2, efficacia: { x: 1 } } } },
   ondate: [{ n: 1, eventi: [] }], esiti: [{ id: 'ok', se: {}, effetti: [], verbale: 'testi:m.ok' }],
 };

@@ -18,9 +18,6 @@
   "prova.verbale_buono": "Verbale di prova: esito buono.",
   "prova.verbale_medio": "Verbale di prova: esito medio.",
   "prova.verbale_cattivo": "Verbale di prova: esito cattivo.",
-  "prova.vice.sala_1": "Battuta di prova uno del vice.",
-  "prova.vice.sala_2": "Battuta di prova due del vice.",
-  "prova.vice.briefing_1": "Commento di prova del vice alla fonte uno.",
   "settore.settore_a": "Settore A",
   "settore.settore_b": "Settore B",
   "settore.settore_c": "Settore C",
@@ -34,5 +31,9 @@
   "esito.esito_cattivo": "Esito cattivo",
   "affidabilita.bassa": "affidabilità bassa",
   "affidabilita.media": "affidabilità media",
-  "affidabilita.alta": "affidabilità alta"
+  "affidabilita.alta": "affidabilità alta",
+  "prova.intro1": "Introduzione di prova, prima battuta.",
+  "prova.intro2": "Introduzione di prova, seconda battuta.",
+  "prova.ch_1.vice": "Commento di prova del vice.",
+  "prova.op_calma.r": "Risposta di prova alla scelta."
 }

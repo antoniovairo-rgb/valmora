@@ -1,8 +1,9 @@
-// Durante l'ondata: le chiamate una alla volta (fonte, testo, opzioni), poi la chiusura col rapporto.
-// Ogni risposta si salva subito: una ricarica riporta alla stessa chiamata.
-import { FileText } from 'lucide-react';
+// Durante l'ondata: le chiamate una alla volta (fonte, testo, commento del vice, opzioni), la risposta
+// alla scelta, poi la chiusura col rapporto. Ogni scelta si salva subito: una ricarica riporta alla
+// chiamata successiva (la risposta già letta non torna).
+import { ChevronRight, FileText } from 'lucide-react';
 import { opzioniValide, type InCorso } from '../../logica/missione.ts';
-import type { Chiamata as TChiamata, Missione } from '../../logica/tipi.ts';
+import type { Chiamata as TChiamata, Missione, Opzione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import { Icona, iconaFonte } from '../icone.tsx';
 import { Messaggio } from './Scena.tsx';
@@ -18,11 +19,23 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
         <p>{t(p.c.testo)}</p>
         {p.c.settore && <p className="tenue">Settore: {t(`settore.${p.c.settore}`)}</p>}
       </Messaggio>
+      {p.c.commento && <p className="vice-a-margine"><span className="chi">Il vice:</span> {t(p.c.commento)}</p>}
       <div className="opzioni" role="group" aria-label="Che cosa rispondi?">
         {opzioniValide(p.c, p.ic).map((o) => (
           <button key={o.id} className="pulsante opzione" data-opzione={o.id} onClick={() => p.rispondi(o.id)}>{t(o.testo)}</button>
         ))}
       </div>
+    </>
+  );
+}
+
+export function Risposta(p: { m: Missione; ic: InCorso; o: Opzione; avanti: () => void }) {
+  return (
+    <>
+      <p className="sopratitolo">{testata(p.m, p.ic, 'La tua scelta')}</p>
+      <Messaggio classe="scelta" dati="scelta"><p><strong>{t(p.o.testo)}</strong></p></Messaggio>
+      {p.o.risposta && <Messaggio ritardo={0.15} classe="vice" dati="risposta"><p>{t(p.o.risposta)}</p></Messaggio>}
+      <button className="pulsante" data-azione="continua" onClick={p.avanti}>Avanti<Icona di={ChevronRight} /></button>
     </>
   );
 }

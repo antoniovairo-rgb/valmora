@@ -30,6 +30,7 @@ export function datiValidi(): Record<string, any> {
         { id: 'esito_a', se: { almeno_una: [{ var: 'var_int', al_massimo: 2 }] }, effetti: [{ aggiungi: 'var_int', valore: 1 }], verbale: 'testi:prova.verbale_a' },
         { id: 'esito_b', se: {}, effetti: [{ imposta: 'var_bool', valore: true }, { imposta: 'var_enum', valore: 'due' }], verbale: 'testi:prova.verbale_b' },
       ],
+      stelle: { due: { var: 'var_int', al_massimo: 2 }, tre: { var: 'var_bool', uguale: true } },
       fili: ['filo_a'] },
     'testi/it/prova.json': Object.fromEntries([...['sop_a', 'club_a', 'pers_a', 'titolo', 'info', 'verbale_a', 'verbale_b', 'ch_a', 'op_a', 'op_b'].map((k) => `prova.${k}`), 'settore.settore_a', 'settore.settore_b', 'risorsa.risorsa_a', 'fonte.fonte_a', 'esito.esito_a', 'esito.esito_b'].map((k) => [k, 'Testo di prova'])),
   };

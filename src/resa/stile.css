@@ -31,6 +31,7 @@ a.pulsante { text-decoration: none; }
 .messaggio.radio p { color: var(--colore-radio-testo); }
 .messaggio.radio.ultimo { border-left-color: var(--colore-acceso); }
 .messaggio.vice { border-left: var(--spazio-1) solid var(--colore-accento); }
+.messaggio.scelta { border-left: var(--spazio-1) solid var(--colore-testo-tenue); }
 .vice-a-margine { color: var(--colore-testo-tenue); font-size: var(--testo-piccolo); font-style: italic; }
 .vice-a-margine .chi { font-style: normal; color: var(--colore-accento); }
 .messaggio.radio .vice-a-margine { color: var(--colore-testo-tenue); }

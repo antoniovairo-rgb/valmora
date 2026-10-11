@@ -13,7 +13,8 @@
     "mappa",
     "ondate",
     "esiti",
-    "fili"
+    "fili",
+    "stelle"
   ],
   "additionalProperties": false,
   "properties": {
@@ -265,9 +266,17 @@
                         "items": {
                           "$ref": "comune.schema.json#/$defs/effetto_missione"
                         }
+                      },
+                      "risposta": {
+                        "$ref": "comune.schema.json#/$defs/testo",
+                        "description": "cosa succede subito dopo la scelta"
                       }
                     }
                   }
+                },
+                "commento": {
+                  "$ref": "comune.schema.json#/$defs/testo",
+                  "description": "commento del vice alla chiamata"
                 }
               }
             }
@@ -302,6 +311,10 @@
           },
           "verbale": {
             "$ref": "comune.schema.json#/$defs/testo"
+          },
+          "fallita": {
+            "type": "boolean",
+            "description": "esito di fallimento: l'episodio va rigiocato (D-059)"
           }
         }
       }
@@ -311,6 +324,51 @@
       "uniqueItems": true,
       "items": {
         "$ref": "comune.schema.json#/$defs/id"
+      }
+    },
+    "introduzione": {
+      "type": "array",
+      "items": {
+        "$ref": "comune.schema.json#/$defs/testo"
+      },
+      "description": "battute del vice in sala operativa (D-054)"
+    },
+    "stelle": {
+      "type": "object",
+      "required": [
+        "due",
+        "tre"
+      ],
+      "additionalProperties": false,
+      "description": "condizioni per 2 e 3 stelle su un episodio superato (1 stella = superato, 0 = fallito) (D-060)",
+      "properties": {
+        "due": {
+          "$ref": "comune.schema.json#/$defs/condizione"
+        },
+        "tre": {
+          "$ref": "comune.schema.json#/$defs/condizione"
+        }
+      }
+    },
+    "luogo": {
+      "type": "object",
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false,
+      "description": "posizione dell'episodio sulla mappa della città, 0-100 (D-061)",
+      "properties": {
+        "x": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "y": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
       }
     }
   }

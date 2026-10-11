@@ -6,7 +6,7 @@ import { AnimatePresence, MotionConfig } from 'motion/react';
 import { useState } from 'react';
 import { variabiliIniziali } from '../logica/condizioni.ts';
 import { chiudiOndata, concludiMissione, disponibili, iniziaMissione, missioneFinita, rispondi, schiera, type EsitoMissione, type InCorso } from '../logica/missione.ts';
-import type { Disposizione, Missione } from '../logica/tipi.ts';
+import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
 import { carica, nuovoSeme, salva } from './archivio.ts';
@@ -15,7 +15,7 @@ import { Mappa, type MappaProps } from './mappa/Mappa.tsx';
 import { faseDi } from './partita.ts';
 import { Briefing } from './schermate/Briefing.tsx';
 import { Crediti } from './schermate/Crediti.tsx';
-import { Chiamata, Chiusura } from './schermate/Ondata.tsx';
+import { Chiamata, Chiusura, Risposta } from './schermate/Ondata.tsx';
 import { Rapporto } from './schermate/Rapporto.tsx';
 import { Sala } from './schermate/Sala.tsx';
 import { Scena } from './schermate/Scena.tsx';
@@ -39,6 +39,7 @@ export function App() {
   const [bozza, setBozza] = useState<Disposizione>({});
   const [scelta, setScelta] = useState<string | null>(null);
   const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione } | null>(null);
+  const [eco, setEco] = useState<Opzione | null>(null); // risposta all'ultima scelta, solo a schermo
   const aggiorna = (s: Salvataggio) => { salva(s); setSal(s); };
   const conIc = (ic: InCorso | null) => sal && aggiorna({ ...sal, in_corso: ic });
 
@@ -49,7 +50,7 @@ export function App() {
   };
   const riprendi = () => {
     const ic = sal?.in_corso;
-    setBozza({});
+    setBozza({}); setEco(null);
     setSchermata(!ic ? 'sala' : missioneFinita(missione(ic.missione), ic) ? 'rapporto' : 'gioco');
   };
 
@@ -80,12 +81,18 @@ export function App() {
     corpo = <Rapporto m={m} r={r} ultima={fine} avanti={() => {
       if (!fine) { setBozza({}); setSchermata('gioco'); return; }
       const e = concludiMissione(m, ic, dichiarate);
-      aggiorna({ ...sal, variabili: e.variabili, missioni_concluse: [...sal.missioni_concluse, m.id], in_corso: null });
+      // Fallita (D-059): la storia non cambia e l'episodio resta da giocare.
+      if (e.esito.fallita) aggiorna({ ...sal, in_corso: null });
+      else aggiorna({ ...sal, variabili: e.variabili, missioni_concluse: [...sal.missioni_concluse, m.id], in_corso: null });
       setEsito({ m, e });
       setSchermata('verbale');
     }} />;
   } else if (!ic) { nome = 'titolo'; corpo = titolo; }
-  else {
+  else if (eco) {
+    nome = 'risposta';
+    mappa = { tensione: ic.tensione, presenze: ic.disposizione };
+    corpo = <Risposta m={m} ic={ic} o={eco} avanti={() => setEco(null)} />;
+  } else {
     const f = faseDi(m, ic);
     nome = f.tipo;
     if (f.tipo === 'schieramento') {
@@ -106,14 +113,18 @@ export function App() {
     } else if (f.tipo === 'chiamata') {
       mappa = { tensione: ic.tensione, presenze: ic.disposizione, accesi: f.chiamata.settore ? [f.chiamata.settore] : [] };
       corpo = <Chiamata key={f.chiamata.id} m={m} ic={ic} c={f.chiamata} numero={f.numero} totale={f.totale}
-        rispondi={(o) => conIc(rispondi(m, ic, f.chiamata.id, o, dichiarate))} />;
+        rispondi={(o) => {
+          conIc(rispondi(m, ic, f.chiamata.id, o, dichiarate));
+          const scelta = f.chiamata.opzioni.find((x) => x.id === o)!;
+          if (scelta.risposta) setEco(scelta);
+        }} />;
     } else if (f.tipo === 'chiusura') {
       mappa = { tensione: ic.tensione, presenze: ic.disposizione };
       corpo = <Chiusura m={m} ic={ic} chiudi={() => { conIc(chiudiOndata(m, ic, dichiarate)); setSchermata('rapporto'); }} />;
     } else { nome = 'titolo'; corpo = titolo; }
   }
 
-  const chiave = nome === 'chiamata' && ic ? `chiamata-${ic.ondata}-${Object.keys(ic.risposte).length}` : `${nome}-${ic?.ondata ?? 0}`;
+  const chiave = (nome === 'chiamata' || nome === 'risposta') && ic ? `${nome}-${ic.ondata}-${Object.keys(ic.risposte).length}` : `${nome}-${ic?.ondata ?? 0}`;
   return (
     <MotionConfig reducedMotion="user">
       <main data-schermata={nome} data-ondata={ic?.ondata ?? 0}>

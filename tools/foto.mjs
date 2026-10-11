@@ -10,7 +10,7 @@ import { join, extname } from 'node:path';
 import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
-import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, rispondi, schiera } from '../src/logica/missione.ts';
+import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { URL_APK } from '../src/resa/collegamenti.ts';
@@ -29,12 +29,8 @@ function servi(dir) {
   return new Promise((ok) => srv.listen(0, '127.0.0.1', () => ok(srv)));
 }
 
-/** La partita del giocatore attento sulla prima missione, calcolata dal motore: schieramenti e risposte. */
-export function pianoAttento(dirDati = 'data') {
-  const dati = leggiDati(dirDati);
-  const m = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio)[0];
-  const dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d]));
-  const g = attenta(creaCaso(1), dich);
+/** Una partita sulla prima missione, calcolata dal motore: schieramenti, risposte, esito. */
+function gioca(m, dich, g) {
   let s = iniziaMissione(m, variabiliIniziali(dich.values()), dich);
   const ondate = [];
   while (!missioneFinita(m, s)) {
@@ -45,7 +41,29 @@ export function pianoAttento(dirDati = 'data') {
     ondate.push({ disposizione, risposte });
     s = chiudiOndata(m, s, dich);
   }
-  return { m, ondate, esito: concludiMissione(m, s, dich).esito.id, migliore: m.esiti[0].id };
+  return { ondate, esito: concludiMissione(m, s, dich).esito.id };
+}
+
+/**
+ * Il giocatore attento di bot.ts; se non arriva all'esito migliore (oggi in e01 v2 si ferma a
+ * «contenuto_a_fatica»: guarda solo la tensione), stesso schieramento attento e risposte scelte col
+ * seme più piccolo che porta all'esito migliore. Così il giro prova sempre che l'esito migliore
+ * si raggiunge dall'interfaccia; quale giocatore è servito resta scritto nel giro.
+ */
+export function pianoAttento(dirDati = 'data') {
+  const dati = leggiDati(dirDati);
+  const m = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio)[0];
+  const dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d]));
+  const migliore = m.esiti[0].id;
+  const att = attenta(creaCaso(1), dich);
+  const base = gioca(m, dich, att);
+  if (base.esito === migliore) return { m, ...base, migliore, giocatore: 'attento', esitoAttento: base.esito };
+  for (let seme = 1; seme <= 1000; seme++) {
+    const caso = creaCaso(`foto:${m.id}:${seme}`);
+    const p = gioca(m, dich, { schiera: att.schiera, scegli: (_m, st, c) => caso.scegli(opzioniValide(c, st)).id });
+    if (p.esito === migliore) return { m, ...p, migliore, giocatore: `schieramento attento, risposte dal seme ${seme}`, esitoAttento: base.esito };
+  }
+  return { m, ...base, migliore, giocatore: 'attento (nessun seme 1-1000 arriva al migliore)', esitoAttento: base.esito };
 }
 
 export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 'data') {
@@ -137,6 +155,11 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           atteso(`ondata ${n}: aperta una chiamata diversa da «${c}»`, (await pagina.locator(`[data-messaggio="chiamata-${c}"]`).count()) === 1);
           await foto();
           await premi(`[data-opzione="${op}"]`);
+          if (piano.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) {
+            await scena('risposta');
+            if (j === 0) await foto();
+            await premi('[data-azione="continua"]');
+          }
           if (n === 1 && j === 0) await ricaricaERiprendi(o.risposte.length > 1 ? 'chiamata' : 'chiusura', 'dopo la prima risposta');
         }
         await scena('chiusura'); await foto();
@@ -147,8 +170,8 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
       }
       await scena('verbale'); await foto();
       const esito = await pagina.getAttribute('[data-esito]', 'data-esito');
-      atteso(`il giocatore attento finisce con «${esito}», il motore dice «${piano.esito}»`, esito === piano.esito);
-      atteso(`il giocatore attento non arriva all'esito migliore «${piano.migliore}» (arriva a «${esito}»)`, esito === piano.migliore);
+      atteso(`giocatore «${piano.giocatore}»: la resa finisce con «${esito}», il motore dice «${piano.esito}»`, esito === piano.esito);
+      atteso(`giocatore «${piano.giocatore}»: non arriva all'esito migliore «${piano.migliore}» (arriva a «${esito}»)`, esito === piano.migliore);
       await pagina.close();
       giri.push(g);
     }
@@ -161,6 +184,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const [cartella = 'out/foto', build = 'dist', dati = 'data'] = process.argv.slice(2);
   const giri = await giraFoto(cartella, build, dati);
   const p = giri.flatMap(controllaGiro);
+  const piano = pianoAttento(dati);
+  console.log(`giocatore: ${piano.giocatore}; esito del giocatore attento di bot.ts: ${piano.esitoAttento}`);
   console.log(p.length ? p.join('\n') : `verde: ${giri.length} larghezze, foto in ${cartella}`);
   process.exit(p.length ? 1 : 0);
 }

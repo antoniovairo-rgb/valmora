@@ -1,8 +1,10 @@
 // Verbale: esito, fonti vere e false (D-024), le scelte fatte durante le chiamate.
+// Esito «fallita» (D-059): l'episodio non è superato e si rigioca da «Riprendi»; stelle e mappa
+// degli episodi arrivano con S-02.
 import { House } from 'lucide-react';
 import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
-import { t, vice } from '../dati.ts';
+import { t } from '../dati.ts';
 import { Icona, iconaFonte } from '../icone.tsx';
 import { sceltaLeggibile, tono } from '../partita.ts';
 
@@ -12,7 +14,7 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; fine: () => void
       <p className="sopratitolo">Episodio {p.m.episodio} · Verbale</p>
       <h1 className={tono(p.m, p.esito.esito)} data-esito={p.esito.esito.id}>{t(`esito.${p.esito.esito.id}`)}</h1>
       <p>{t(p.esito.esito.verbale)}</p>
-      <p className="vice-a-margine"><span className="chi">Il vice:</span> {vice(p.m.id, `verbale_${p.esito.esito.id}`)}</p>
+      {p.esito.esito.fallita && <p className="male" data-fallita="si">Episodio fallito: va rigiocato.</p>}
       <h2>Le fonti</h2>
       {p.m.briefing.map((b, i) => (
         <div className="scheda" key={i} data-fonte={b.fonte}>

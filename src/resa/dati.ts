@@ -10,9 +10,6 @@ const testi: Record<string, string> = Object.assign({}, ...perPercorso('testi/it
 /** «testi:e01.titolo» o «e01.titolo» → testo; chiave mancante = errore visibile, mai un vuoto. */
 export const t = (chiave: string): string => testi[chiave.replace(/^testi:/, '')] ?? `[[${chiave}]]`;
 
-/** Battute del vice (D-054) per una missione, per convenzione «<missione>.vice.<momento>». */
-export const vice = (missione: string, momento: string): string => t(`${missione}.vice.${momento}`);
-
 export const dichiarate = new Map<string, Dichiarazione>(
   ((perPercorso('stato.json')[0] as { variabili: Dichiarazione[] }).variabili).map((d) => [d.id, d]),
 );

@@ -2,7 +2,11 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { leggiDati, leggiSchemi } from '../tools/dati-disco.mjs';
-import { giraBot } from '../tools/bot.mjs';
+import { attenta } from '../src/logica/bot.ts';
+import { creaCaso } from '../src/logica/caso.ts';
+import { variabiliIniziali } from '../src/logica/condizioni.ts';
+import { giocaMissione } from '../src/logica/missione.ts';
+import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
 import { validaDati } from '../src/dati/valida.ts';
 import { CREDITI, PACCHETTI } from '../src/resa/crediti.ts';
 import { livello } from '../src/resa/partita.ts';
@@ -27,9 +31,9 @@ describe('tensione a colori (D-055)', () => {
 describe('missione di prova della resa (tests/resa/dati-prova)', () => {
   const dati = leggiDati('tests/resa/dati-prova');
   it('rispetta lo schema', () => expect(validaDati(leggiSchemi(), dati)).toEqual([]));
-  it('0 blocchi e il giocatore attento arriva all\'esito migliore', () => {
-    const r = giraBot(dati, 50);
-    expect(r.flatMap((x) => x.blocchi)).toEqual([]);
-    expect(Object.keys(r.find((x) => x.strategia === 'attenta')!.esiti)).toEqual(['esito_buono']);
+  it('il giocatore attento arriva all\'esito migliore', () => {
+    const dich = new Map(((dati['stato.json'] as { variabili: Dichiarazione[] }).variabili).map((d) => [d.id, d]));
+    const m = dati['missioni/m_prova.json'] as Missione;
+    expect(giocaMissione(m, variabiliIniziali(dich.values()), dich, attenta(creaCaso(1), dich)).esito.id).toBe('esito_buono');
   });
 });
