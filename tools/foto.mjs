@@ -334,6 +334,17 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso(`giocatore «${piano.giocatore}»: non arriva all'esito migliore «${piano.migliore}» (arriva a «${esito}»)`, esito === piano.migliore);
         const stelle = await pagina.getAttribute('.stelle', 'data-stelle');
         atteso(`verbale: ${stelle} stelle a schermo, il motore dice ${piano.stelle}`, stelle === String(piano.stelle));
+        // PO-074: «Condividi» manda testo (episodio, esito, stelle) + link del gioco (rosso VALMORA_ROSSI=C20C01)
+        const bottone = pagina.locator('[data-azione="condividi"]');
+        atteso('verbale: manca «Condividi» (PO-074)', (await bottone.count()) === 1);
+        if (await bottone.count()) {
+          await pagina.evaluate(() => { navigator.share = async (d) => { window.__condiviso = d; }; });
+          await bottone.evaluate((b) => b.click()); // sta nel primo passo del verbale, anche se ora se ne vede un altro
+          const d = await pagina.waitForFunction(() => window.__condiviso, null, { timeout: 3000 }).then((h) => h.jsonValue(), () => null);
+          const ep = `Ep. ${String(piano.m.episodio).padStart(2, '0')}`;
+          atteso(`verbale: condiviso «${d?.text}» senza «${ep}» o senza ${piano.stelle} stelle piene`, !!d?.text?.includes(ep) && (d.text.match(/★/g) ?? []).length === piano.stelle);
+          atteso(`verbale: condiviso senza il link del gioco («${d?.url}»)`, d?.url === 'https://antoniovairo-rgb.github.io/valmora/');
+        }
         // PO-072: a episodio superato il verbale dice come andare avanti (rosso VALMORA_ROSSI=C18V01)
         const prossimo = pagina.locator('[data-azione="prossimo"]');
         atteso('verbale: manca «Prossimo episodio» a episodio superato (PO-072)', (await prossimo.count()) === 1 && await prossimo.isVisible());

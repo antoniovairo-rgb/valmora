@@ -1,6 +1,7 @@
 // Verbale: esito e stelle (D-060), fonti vere e false (D-024), le scelte fatte durante le chiamate.
 // Sotto l'esito il bilancio (D-085, PO-036). Esito «fallita» (D-059): l'episodio non è superato e il verbale porta a «Rigioca l'episodio».
-import { ChevronRight, Map as IconaMappa, RotateCcw } from 'lucide-react';
+import { ChevronRight, Map as IconaMappa, RotateCcw, Share2 } from 'lucide-react';
+import { condividi } from '../collegamenti.ts';
 import { Fragment, useState } from 'react';
 import type { Risultato } from '../../logica/episodi.ts';
 import type { EsitoMissione } from '../../logica/missione.ts';
@@ -17,6 +18,11 @@ import { due, Testata } from './Fumetto.tsx';
 
 export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void; prossimo?: () => void }) {
   const [passo, setPasso] = useState(0);
+  const [condivisione, setCondivisione] = useState<string | null>(null);
+  // PO-074: testo + link al gioco, dal pannello del telefono o copiato negli appunti
+  const stelle = p.risultato.stelle;
+  const testoCondiviso = `Valmora · Ep. ${due(p.m.episodio)} «${t(p.m.titolo)}»: ${t(`esito.${p.esito.esito.id}`)} ${'★'.repeat(stelle)}${'☆'.repeat(3 - stelle)}. Ce la fai meglio di me?`;
+  const condividiVerbale = () => condividi(testoCondiviso).then((r) => setCondivisione(r === 'copiato' ? 'Copiato: incollalo dove vuoi.' : r === 'errore' ? 'Condivisione non riuscita.' : null));
   const esito = (
     <>
       <div className="scheda verbale">
@@ -27,6 +33,8 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
       {p.risultato.fallita
         ? <p className="avviso" data-fallita="si">Episodio fallito: va rigiocato. Si riparte da come stavano le cose prima.</p>
         : <p className="avviso buono" data-migliore={p.migliore ? 'si' : 'no'}>{p.migliore ? 'Nuovo miglior risultato per questo episodio.' : 'Resta il risultato migliore di un tentativo precedente.'}</p>}
+      {!spento('C20C01') && <button className="pulsante piccolo condividi" data-azione="condividi" data-testo={testoCondiviso} onClick={condividiVerbale}><Icona di={Share2} />Condividi</button>}
+      {condivisione && <p className="tenue" data-condivisione role="status">{condivisione}</p>}
       {p.risultato.fallita && <button className="pulsante" data-azione="rigioca" onClick={p.rigioca}><Icona di={RotateCcw} />Rigioca l'episodio</button>}
     </>
   );
