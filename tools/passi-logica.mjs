@@ -6,7 +6,7 @@ import { leggiSchemi, leggiDati } from './dati-disco.mjs';
 // Moduli TypeScript del gioco: Node li esegue togliendo i tipi (Node ≥ 22.18; la CI usa 24).
 import { validaDati } from '../src/dati/valida.ts';
 import { migra, SAVE_VERSION } from '../src/salvataggi/salvataggio.ts';
-import { giraBot } from './bot.mjs';
+import { giraBot, sceltePesano } from './bot.mjs';
 
 // Bot: 0 blocchi su tutti i semi, e ogni esito di ogni missione raggiunto da almeno una strategia.
 export function controllaBot(rapporto, dati) {
@@ -15,6 +15,12 @@ export function controllaBot(rapporto, dati) {
     for (const e of m.esiti) if (!rapporto.some((r) => r.missione === m.id && r.esiti[e.id])) p.push(`${k}: esito «${e.id}» mai raggiunto dai bot`);
   }
   return p;
+}
+
+// Le scelte contano (D-048): a parità di schieramento (attento), risposte diverse portano ad almeno 2 esiti.
+export function controllaScelte(rapporto, dati) {
+  return rapporto.filter((r) => (dati[`missioni/${r.missione}.json`]?.ondate ?? []).some((o) => o.chiamate?.length) && Object.keys(r.esiti).length < 2)
+    .map((r) => `${r.missione}: con lo stesso schieramento le scelte portano sempre a ${JSON.stringify(r.esiti)}`);
 }
 
 const esegui = (cmd) => {
@@ -33,7 +39,7 @@ export const PASSI_LOGICA = {
   confini: () => controllaConfini(Object.fromEntries(tracciatiENuovi().map((p) => [p, readFileSync(p, 'utf8')]))),
   schema: () => validaDati(leggiSchemi(), leggiDati()),
   test: () => esegui('npx vitest run'),
-  bot: () => { const d = leggiDati(); return controllaBot(giraBot(d, 1000), d); },
+  bot: () => { const d = leggiDati(); return [...controllaBot(giraBot(d, 1000), d), ...controllaScelte(sceltePesano(d), d)]; },
   'salvataggi-reali': () => controllaSalvataggiReali(SAVE_VERSION, leggiSalvataggi(), migra),
   'bracci-rossi-logica': () => {
     const ciechi = [];
@@ -49,6 +55,10 @@ export const PASSI_LOGICA = {
     if (!controllaBot(giraBot({ ...d, 'missioni/e01.json': m }, 20), d).length) ciechi.push('bot/soft-lock è cieco');
     const m2 = structuredClone(d['missioni/e01.json']); m2.esiti.push({ ...m2.esiti[0], id: 'irraggiungibile' });
     if (!controllaBot(giraBot({ ...d, 'missioni/e01.json': m2 }, 20), { ...d, 'missioni/e01.json': m2 }).length) ciechi.push('bot/esito irraggiungibile è cieco');
+    const m3 = structuredClone(d['missioni/e01.json']);
+    for (const o of m3.ondate) for (const c of o.chiamate ?? []) for (const x of c.opzioni) x.effetti = [];
+    const d3 = { ...d, 'missioni/e01.json': m3 };
+    if (!controllaScelte(sceltePesano(d3, 50), d3).length) ciechi.push('bot/le scelte contano è cieco');
     return ciechi;
   },
   build: () => esegui('npx vite build'),

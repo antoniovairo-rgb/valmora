@@ -44,3 +44,11 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 ## Regole di gioco decise
 - Risorse diverse per missione (D-023).
 - Il verbale rivela sempre quali informazioni del briefing erano vere o false (D-024).
+
+## e01 v2 a scene (D-053…D-056, P-02)
+- Il vice apre la giornata in sala operativa (tre battute, `introduzione`): ha una scommessa aperta su quanto duri.
+- 13 chiamate in tre ondate (5 · 4 · 4), ognuna con 2-3 scelte che hanno un prezzo: tensione dei settori, unità impegnate per il resto della missione, credito politico.
+- Variabili nuove: `credito` (0-10, parte da 5: comando, club e stampa), `informatore_pagato`, `presidente_incontrato` (fili per gli episodi successivi).
+- Esiti: contenuto se tensione massima ≤ 3 e credito ≥ 3; a fatica se tensione ≤ 6; altrimenti degenerato.
+- Misura (node tools/bot.mjs 1000): casuale 16 / 693 / 291 (contenuto / a fatica / degenerato), tensione massima mediana 6; attento solo sulla tensione 0 / 1000 / 0 (spende troppo credito); peggiore 0 / 0 / 1000; schieramento attento con scelte a caso 126 / 174 / 0 su 300. 0 blocchi.
+- Testi: bozza della sessione principale, da far giudicare al PO dopo la prova della resa v2.
