@@ -34,23 +34,43 @@
     "settori": [
       {
         "id": "curva_cinderwick",
-        "tipo": "curva"
+        "tipo": "curva",
+        "pos": {
+          "x": 15,
+          "y": 50
+        }
       },
       {
         "id": "curva_larkspire",
-        "tipo": "curva"
+        "tipo": "curva",
+        "pos": {
+          "x": 85,
+          "y": 50
+        }
       },
       {
         "id": "piazzale",
-        "tipo": "piazzale"
+        "tipo": "piazzale",
+        "pos": {
+          "x": 50,
+          "y": 78
+        }
       },
       {
         "id": "strada_cinderwick",
-        "tipo": "strada"
+        "tipo": "strada",
+        "pos": {
+          "x": 12,
+          "y": 90
+        }
       },
       {
         "id": "strada_larkspire",
-        "tipo": "strada"
+        "tipo": "strada",
+        "pos": {
+          "x": 88,
+          "y": 90
+        }
       }
     ],
     "risorse": {

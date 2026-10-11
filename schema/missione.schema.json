@@ -95,6 +95,27 @@
               },
               "tipo": {
                 "$ref": "comune.schema.json#/$defs/id"
+              },
+              "pos": {
+                "type": "object",
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false,
+                "description": "posizione del settore sulla mappa tattica, 0-100 (x da sinistra, y dall'alto)",
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                }
               }
             }
           }
