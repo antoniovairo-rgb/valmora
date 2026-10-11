@@ -49,9 +49,13 @@ NON valgono per un telefono vero. Il rallentamento 4× è un'IPOTESI di telefono
 Nota: CLAUDE.md dice «le misure contano passi e minuti di gioco, mai fps». Ho misurato gli fps perché la
 principale li ha chiesti per il rischio D-006, e li tengo fuori da qualunque guardiano della catena.
 
+## Catena
+
+`node tools/catena.mjs completa` su 265cff5: 3 giri su 3 VERDI, nessun passo ritentato.
+
 ## Foto
 
-docs/foto/e01/2026-10-11-stile-c/: 105 foto, 35 scene × 360/375/412 px, a 375 px con protagonista donna.
+docs/foto/e01/2026-10-11-stile-c/: 105 foto (17 MB), 35 scene × 360/375/412 px, a 375 px con protagonista donna.
 Sono scattate con «riduci movimento»: mappa ferma, nessuna unità in volo.
 
 ## Problemi aperti
