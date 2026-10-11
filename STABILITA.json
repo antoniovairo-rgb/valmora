@@ -16178,6 +16178,23 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-11T18:46:31.279Z",
+      "commit": "a459f2e",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "src/resa/schermate/Citta.tsx:38: stile in linea fuori dai token («aria-pressed={n === stagione} style={{ width: 'auto', flex: »)"
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }

@@ -35,6 +35,8 @@ p { margin: var(--spazio-2) 0; }
 .pulsante:focus-visible, .opzione:focus-visible, .unita:focus-visible, .settore-punto:focus-visible { outline: var(--bordo) solid var(--magenta); outline-offset: var(--spazio-1); }
 .azioni { display: flex; gap: var(--spazio-3); flex-wrap: nowrap; }
 .azioni .pulsante { margin: var(--spazio-3) 0; }
+.stagioni { display: flex; gap: var(--spazio-2); }
+.stagioni .pulsante { flex: 1; margin: 0 0 var(--spazio-3); padding: var(--spazio-2); font-size: var(--testo-piccolo); }
 
 /* Opzioni A/B/C */
 .opzioni { display: grid; gap: var(--spazio-3); margin: var(--spazio-4) 0; }
