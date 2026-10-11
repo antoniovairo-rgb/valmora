@@ -13,12 +13,12 @@
     "disponibile_se": { "$ref": "comune.schema.json#/$defs/condizione" },
     "briefing": {
       "type": "array", "minItems": 1,
-      "items": { "type": "object", "required": ["testo", "fonte", "affidabilita"], "additionalProperties": false,
+      "items": { "type": "object", "required": ["testo", "fonte", "affidabilita", "vera"], "additionalProperties": false,
         "properties": {
           "testo": { "$ref": "comune.schema.json#/$defs/testo" },
           "fonte": { "$ref": "comune.schema.json#/$defs/id" },
           "affidabilita": { "enum": ["bassa", "media", "alta"] },
-          "vera": { "type": "boolean", "description": "facoltativo: se presente, il verbale può rivelare se l'informazione era vera" } } }
+          "vera": { "type": "boolean", "description": "il verbale rivela sempre se l'informazione era vera (D-024)" } } }
     },
     "mappa": {
       "type": "object", "required": ["settori", "risorse"], "additionalProperties": false,

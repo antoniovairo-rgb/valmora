@@ -18,6 +18,7 @@ describe('validatore dei dati', () => {
   // Bracci rossi: ogni controllo deve trovare il difetto che gli è stato messo davanti.
   const rossi: [string, (d: Record<string, any>) => void, RegExp][] = [
     ['campo obbligatorio mancante', (d) => { delete d[M].esiti; }, /must have required property 'esiti'/],
+    ['briefing senza «vera» (D-024)', (d) => { delete d[M].briefing[0].vera; }, /must have required property 'vera'/],
     ['campo non previsto', (d) => { d[M].extra = 1; }, /must NOT have additional properties/],
     ['condizione con operatore sconosciuto', (d) => { d[M].disponibile_se = { forse: [] }; }, /disponibile_se/],
     ['chiave di testo malformata', (d) => { d[M].titolo = 'titolo libero'; }, /titolo: must match pattern/],

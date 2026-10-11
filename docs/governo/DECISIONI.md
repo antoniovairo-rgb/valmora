@@ -29,3 +29,7 @@ Nessuna.
 | D-018 | 2026-10-11 | PO | Bibbia · perché «ad interim»? | Predecessore rimosso in fretta dopo una gestione contestata; nessuno voleva il posto | e01 evoca il fatto senza ricalcare tragedie reali (REGOLE_PLAY §4) |
 | D-019 | 2026-10-11 | PO | Bibbia · situazione di e01 | Derby cittadino al primo giorno, con fonti in contraddizione | e01 insegna briefing, plancia e ondate; il climax delle stagioni dovrà salire oltre il derby |
 | D-020 | 2026-10-11 | PO | Portare l'impianto di L1 su main? | Sì, subito, avanzando main fino al ramo senza riscrivere nulla (fast-forward) | main = ramo claude/valmora-l1-setup-schema-xdrbx7; non è un rilascio (D-015) |
+| D-021 | 2026-10-11 | PO | e01 · cosa rende teso il derby? | Quartieri rivali: ogni club è il simbolo di un quartiere inventato | La mappa di e01 include strade dei quartieri oltre allo stadio: più settori |
+| D-022 | 2026-10-11 | PO | e01 · su cosa si contraddicono le fonti? | Il corteo: una fonte lo annuncia non autorizzato, l'altra lo smentisce | Servono almeno due settori d'arrivo; le risorse si dividono fra due ipotesi |
+| D-023 | 2026-10-11 | PO | Risorse sulla mappa (§F0-2 n.1) | Diverse per missione | Lo schema già le ammette (mappa libera nome→intero, D-014); ogni risorsa nuova va spiegata al giocatore e insegnata al bot |
+| D-024 | 2026-10-11 | PO | Il verbale rivela le informazioni false? (§F0-2 n.2) | Sì, sempre | Campo «vera» del briefing reso obbligatorio nello schema (rivede D-014 punto 4) |
