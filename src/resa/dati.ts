@@ -20,7 +20,10 @@ export const dichiarate = new Map<string, Dichiarazione>(
   ((perPercorso('stato.json')[0] as { variabili: Dichiarazione[] }).variabili).map((d) => [d.id, d]),
 );
 
-export const missioni = (perPercorso('missioni/') as Missione[]).sort((a, b) => a.episodio - b.episodio);
+// D-090: gli abbozzi (bozza: true, D-087) restano nascosti finché la resa non ha città per stagione e segno «bozza»
+// (S-09); si vedono con «?bozze=1» nell'indirizzo. Fuori dal browser (test in node) si vedono tutti.
+const conBozze = typeof location === 'undefined' || new URLSearchParams(location.search).has('bozze');
+export const missioni = (perPercorso('missioni/') as Missione[]).filter((m) => conBozze || !m.bozza).sort((a, b) => a.episodio - b.episodio);
 export const missione = (id: string): Missione => {
   const m = missioni.find((x) => x.id === id);
   if (!m) throw new Error(`missione «${id}» non trovata`);
