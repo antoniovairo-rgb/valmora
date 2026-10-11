@@ -70,10 +70,12 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
     testo(`${k}.titolo`, m.titolo);
     condizione(`${k}.disponibile_se`, m.disponibile_se);
     m.briefing.forEach((b: Obj, i: number) => testo(`${k}.briefing[${i}]`, b.testo));
+    const settori = m.mappa.settori.map((s: Obj) => s.id as string);
+    if (new Set(settori).size !== settori.length) p.push(`${k}.mappa.settori: id di settore ripetuto`);
     m.ondate.forEach((o: Obj, i: number) => {
       if (o.n !== i + 1) p.push(`${k}.ondate[${i}]: n=${o.n}, attesa ${i + 1}`);
       o.eventi.forEach((ev: Obj, j: number) => {
-        if (!m.mappa.settori.includes(ev.settore)) p.push(`${k}.ondate[${i}].eventi[${j}]: settore «${ev.settore}» non è nella mappa`);
+        if (!settori.includes(ev.settore)) p.push(`${k}.ondate[${i}].eventi[${j}]: settore «${ev.settore}» non è nella mappa`);
         if (ev.se) condizione(`${k}.ondate[${i}].eventi[${j}].se`, ev.se);
       });
     });

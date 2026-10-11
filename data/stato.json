@@ -1,1 +1,5 @@
-{ "variabili": [] }
+{
+  "variabili": [
+    { "id": "tensione_max", "tipo": "int", "min": 0, "max": 99, "iniziale": 0, "descrizione": "Tensione massima della missione in corso; il motore la azzera a inizio missione (D-039)" }
+  ]
+}

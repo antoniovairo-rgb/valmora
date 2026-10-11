@@ -3,52 +3,227 @@
   "$id": "missione.schema.json",
   "title": "data/missioni/<id>.json: una missione per episodio",
   "type": "object",
-  "required": ["id", "stagione", "episodio", "titolo", "disponibile_se", "briefing", "mappa", "ondate", "esiti", "fili"],
+  "required": [
+    "id",
+    "stagione",
+    "episodio",
+    "titolo",
+    "disponibile_se",
+    "briefing",
+    "mappa",
+    "ondate",
+    "esiti",
+    "fili"
+  ],
   "additionalProperties": false,
   "properties": {
-    "id": { "$ref": "comune.schema.json#/$defs/id" },
-    "stagione": { "type": "integer", "minimum": 1 },
-    "episodio": { "type": "integer", "minimum": 1 },
-    "titolo": { "$ref": "comune.schema.json#/$defs/testo" },
-    "disponibile_se": { "$ref": "comune.schema.json#/$defs/condizione" },
+    "id": {
+      "$ref": "comune.schema.json#/$defs/id"
+    },
+    "stagione": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "episodio": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "titolo": {
+      "$ref": "comune.schema.json#/$defs/testo"
+    },
+    "disponibile_se": {
+      "$ref": "comune.schema.json#/$defs/condizione"
+    },
     "briefing": {
-      "type": "array", "minItems": 1,
-      "items": { "type": "object", "required": ["testo", "fonte", "affidabilita", "vera"], "additionalProperties": false,
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "testo",
+          "fonte",
+          "affidabilita",
+          "vera"
+        ],
+        "additionalProperties": false,
         "properties": {
-          "testo": { "$ref": "comune.schema.json#/$defs/testo" },
-          "fonte": { "$ref": "comune.schema.json#/$defs/id" },
-          "affidabilita": { "enum": ["bassa", "media", "alta"] },
-          "vera": { "type": "boolean", "description": "il verbale rivela sempre se l'informazione era vera (D-024)" } } }
+          "testo": {
+            "$ref": "comune.schema.json#/$defs/testo"
+          },
+          "fonte": {
+            "$ref": "comune.schema.json#/$defs/id"
+          },
+          "affidabilita": {
+            "enum": [
+              "bassa",
+              "media",
+              "alta"
+            ]
+          },
+          "vera": {
+            "type": "boolean",
+            "description": "il verbale rivela sempre se l'informazione era vera (D-024)"
+          }
+        }
+      }
     },
     "mappa": {
-      "type": "object", "required": ["settori", "risorse"], "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "settori",
+        "risorse"
+      ],
+      "additionalProperties": false,
       "properties": {
-        "settori": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "comune.schema.json#/$defs/id" } },
-        "risorse": { "type": "object", "minProperties": 1, "propertyNames": { "pattern": "^[a-z0-9_]+$" },
-          "additionalProperties": { "type": "integer", "minimum": 0 } } }
+        "settori": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "tipo"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "$ref": "comune.schema.json#/$defs/id"
+              },
+              "tipo": {
+                "$ref": "comune.schema.json#/$defs/id"
+              }
+            }
+          }
+        },
+        "risorse": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "quantita",
+              "efficacia"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "quantita": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "efficacia": {
+                "type": "object",
+                "description": "pressione assorbita da un'unità, per tipo di settore (assente = 0)",
+                "propertyNames": {
+                  "pattern": "^[a-z0-9_]+$"
+                },
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "dimezza": {
+                "type": "array",
+                "uniqueItems": true,
+                "description": "tipi di evento che un'unità dimezza nel suo settore (D-037)",
+                "items": {
+                  "$ref": "comune.schema.json#/$defs/id"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "ondate": {
-      "type": "array", "minItems": 1,
-      "items": { "type": "object", "required": ["n", "eventi"], "additionalProperties": false,
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "n",
+          "eventi"
+        ],
+        "additionalProperties": false,
         "properties": {
-          "n": { "type": "integer", "minimum": 1 },
-          "eventi": { "type": "array", "minItems": 1,
-            "items": { "type": "object", "required": ["id", "settore", "pressione"], "additionalProperties": false,
+          "n": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "eventi": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "tipo",
+                "settore",
+                "pressione"
+              ],
+              "additionalProperties": false,
               "properties": {
-                "id": { "$ref": "comune.schema.json#/$defs/id" },
-                "settore": { "$ref": "comune.schema.json#/$defs/id" },
-                "se": { "$ref": "comune.schema.json#/$defs/condizione" },
-                "pressione": { "type": "integer", "minimum": 0 } } } } } }
+                "id": {
+                  "$ref": "comune.schema.json#/$defs/id"
+                },
+                "tipo": {
+                  "$ref": "comune.schema.json#/$defs/id"
+                },
+                "settore": {
+                  "$ref": "comune.schema.json#/$defs/id"
+                },
+                "se": {
+                  "$ref": "comune.schema.json#/$defs/condizione"
+                },
+                "pressione": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "esiti": {
-      "type": "array", "minItems": 1,
-      "items": { "type": "object", "required": ["id", "se", "effetti", "verbale"], "additionalProperties": false,
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "se",
+          "effetti",
+          "verbale"
+        ],
+        "additionalProperties": false,
         "properties": {
-          "id": { "$ref": "comune.schema.json#/$defs/id" },
-          "se": { "$ref": "comune.schema.json#/$defs/condizione" },
-          "effetti": { "type": "array", "items": { "$ref": "comune.schema.json#/$defs/effetto" } },
-          "verbale": { "$ref": "comune.schema.json#/$defs/testo" } } }
+          "id": {
+            "$ref": "comune.schema.json#/$defs/id"
+          },
+          "se": {
+            "$ref": "comune.schema.json#/$defs/condizione"
+          },
+          "effetti": {
+            "type": "array",
+            "items": {
+              "$ref": "comune.schema.json#/$defs/effetto"
+            }
+          },
+          "verbale": {
+            "$ref": "comune.schema.json#/$defs/testo"
+          }
+        }
+      }
     },
-    "fili": { "type": "array", "uniqueItems": true, "items": { "$ref": "comune.schema.json#/$defs/id" } }
+    "fili": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "comune.schema.json#/$defs/id"
+      }
+    }
   }
 }

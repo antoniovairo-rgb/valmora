@@ -21,8 +21,8 @@ export function datiValidi(): Record<string, any> {
     'missioni/m_prova.json': {
       id: 'm_prova', stagione: 1, episodio: 1, titolo: 'testi:prova.titolo', disponibile_se: { tutte: [] },
       briefing: [{ testo: 'testi:prova.info', fonte: 'fonte_a', affidabilita: 'bassa', vera: false }],
-      mappa: { settori: ['settore_a', 'settore_b'], risorse: { risorsa_a: 3 } },
-      ondate: [{ n: 1, eventi: [{ id: 'ev_a', settore: 'settore_a', pressione: 2, se: { non: { var: 'var_enum', uguale: 'due' } } }] }],
+      mappa: { settori: [{ id: 'settore_a', tipo: 'tipo_a' }, { id: 'settore_b', tipo: 'tipo_b' }], risorse: { risorsa_a: { quantita: 3, efficacia: { tipo_a: 2 }, dimezza: ['tipo_ev'] } } },
+      ondate: [{ n: 1, eventi: [{ id: 'ev_a', tipo: 'tipo_ev', settore: 'settore_a', pressione: 2, se: { non: { var: 'var_enum', uguale: 'due' } } }] }],
       esiti: [
         { id: 'esito_a', se: { almeno_una: [{ var: 'var_int', al_massimo: 2 }] }, effetti: [{ aggiungi: 'var_int', valore: 1 }], verbale: 'testi:prova.verbale_a' },
         { id: 'esito_b', se: {}, effetti: [{ imposta: 'var_bool', valore: true }, { imposta: 'var_enum', valore: 'due' }], verbale: 'testi:prova.verbale_b' },

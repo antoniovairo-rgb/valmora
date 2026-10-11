@@ -21,7 +21,7 @@ Regole: nessun file sopra 400 righe (guardiano in catena); `src/logica` non impo
 | nome | quando | passi |
 |---|---|---|
 | governo | documenti, regole | documenti, backlog, segreti, modello, governo.html (ESISTE) |
-| logica | `src/logica`, `src/dati`, `src/salvataggi`, `data/`, `schema/` | tipi, confini (400 righe, import da resa, Math.random), schema, test unitari, salvataggi-reali, bracci-rossi-logica (ESISTE). Da aggiungere: grafo narrativo (L2), bot con semi (quando c'è e01) |
+| logica | `src/logica`, `src/dati`, `src/salvataggi`, `data/`, `schema/` | tipi, confini (400 righe, import da resa, Math.random), schema, test unitari, bot (3 strategie × semi 1…1000, 0 blocchi, ogni esito raggiunto), salvataggi-reali, bracci-rossi-logica (ESISTE). Da aggiungere: grafo narrativo (L2) |
 | grafica | `src/resa` | foto a 360/375/412 px, errori di console, valori scritti a mano fuori dai token |
 | completa | nel dubbio e prima di ogni rilascio | governo + logica + build (ESISTE); poi grafica + copyright |
 

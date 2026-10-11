@@ -6,6 +6,16 @@ import { leggiSchemi, leggiDati } from './dati-disco.mjs';
 // Moduli TypeScript del gioco: Node li esegue togliendo i tipi (Node ≥ 22.18; la CI usa 24).
 import { validaDati } from '../src/dati/valida.ts';
 import { migra, SAVE_VERSION } from '../src/salvataggi/salvataggio.ts';
+import { giraBot } from './bot.mjs';
+
+// Bot: 0 blocchi su tutti i semi, e ogni esito di ogni missione raggiunto da almeno una strategia.
+export function controllaBot(rapporto, dati) {
+  const p = rapporto.flatMap((r) => r.blocchi.slice(0, 3).map((b) => `${r.missione} · ${r.strategia}: ${b}`));
+  for (const [k, m] of Object.entries(dati).filter(([k]) => k.startsWith('missioni/'))) {
+    for (const e of m.esiti) if (!rapporto.some((r) => r.missione === m.id && r.esiti[e.id])) p.push(`${k}: esito «${e.id}» mai raggiunto dai bot`);
+  }
+  return p;
+}
 
 const esegui = (cmd) => {
   try { execSync(cmd, { encoding: 'utf8', stdio: 'pipe' }); return []; } catch (e) {
@@ -23,6 +33,7 @@ export const PASSI_LOGICA = {
   confini: () => controllaConfini(Object.fromEntries(tracciatiENuovi().map((p) => [p, readFileSync(p, 'utf8')]))),
   schema: () => validaDati(leggiSchemi(), leggiDati()),
   test: () => esegui('npx vitest run'),
+  bot: () => { const d = leggiDati(); return controllaBot(giraBot(d, 1000), d); },
   'salvataggi-reali': () => controllaSalvataggiReali(SAVE_VERSION, leggiSalvataggi(), migra),
   'bracci-rossi-logica': () => {
     const ciechi = [];
@@ -33,6 +44,11 @@ export const PASSI_LOGICA = {
     if (!validaDati(leggiSchemi(), { 'stato.json': { variabili: [] }, 'missioni/m.json': {} }).length) ciechi.push('schema è cieco');
     if (!controllaSalvataggiReali(2, {}, migra).length) ciechi.push('salvataggi-reali/copertura è cieco');
     if (!controllaSalvataggiReali(1, { 'v1-rotto.json': { save_version: 1 } }, migra).length) ciechi.push('salvataggi-reali/migrazione è cieco');
+    const d = leggiDati(); const m = structuredClone(d['missioni/e01.json']);
+    m.esiti.at(-1).se = { var: 'tensione_max', al_massimo: -1 };
+    if (!controllaBot(giraBot({ ...d, 'missioni/e01.json': m }, 20), d).length) ciechi.push('bot/soft-lock è cieco');
+    const m2 = structuredClone(d['missioni/e01.json']); m2.esiti.push({ ...m2.esiti[0], id: 'irraggiungibile' });
+    if (!controllaBot(giraBot({ ...d, 'missioni/e01.json': m2 }, 20), { ...d, 'missioni/e01.json': m2 }).length) ciechi.push('bot/esito irraggiungibile è cieco');
     return ciechi;
   },
   build: () => esegui('npx vite build'),

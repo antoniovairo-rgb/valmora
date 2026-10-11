@@ -1,0 +1,50 @@
+{
+  "id": "e01",
+  "stagione": 1,
+  "episodio": 1,
+  "titolo": "testi:e01.titolo",
+  "disponibile_se": {},
+  "briefing": [
+    { "testo": "testi:e01.info_informatore", "fonte": "informatore_di_strada", "affidabilita": "bassa", "vera": true },
+    { "testo": "testi:e01.info_ufficio", "fonte": "ufficio_sicurezza_cinderwick", "affidabilita": "media", "vera": false },
+    { "testo": "testi:e01.info_radio", "fonte": "centrale_radio", "affidabilita": "alta", "vera": true },
+    { "testo": "testi:e01.info_rete", "fonte": "voci_in_rete", "affidabilita": "media", "vera": false }
+  ],
+  "mappa": {
+    "settori": [
+      { "id": "curva_cinderwick", "tipo": "curva" },
+      { "id": "curva_larkspire", "tipo": "curva" },
+      { "id": "piazzale", "tipo": "piazzale" },
+      { "id": "strada_cinderwick", "tipo": "strada" },
+      { "id": "strada_larkspire", "tipo": "strada" }
+    ],
+    "risorse": {
+      "squadre": { "quantita": 4, "efficacia": { "strada": 2, "curva": 1, "piazzale": 1 } },
+      "steward": { "quantita": 6, "efficacia": { "curva": 2, "strada": 1, "piazzale": 1 } },
+      "mediatore": { "quantita": 1, "efficacia": {}, "dimezza": ["corteo"] }
+    }
+  },
+  "ondate": [
+    { "n": 1, "eventi": [
+      { "id": "corteo_cinderwick", "tipo": "corteo", "settore": "strada_cinderwick", "pressione": 6 },
+      { "id": "arrivo_larkspire", "tipo": "arrivo", "settore": "strada_larkspire", "pressione": 2 },
+      { "id": "folla_piazzale", "tipo": "folla", "settore": "piazzale", "pressione": 2 }
+    ] },
+    { "n": 2, "eventi": [
+      { "id": "cori_cinderwick", "tipo": "curva", "settore": "curva_cinderwick", "pressione": 5 },
+      { "id": "cori_larkspire", "tipo": "curva", "settore": "curva_larkspire", "pressione": 4 },
+      { "id": "attesa_piazzale", "tipo": "folla", "settore": "piazzale", "pressione": 1 }
+    ] },
+    { "n": 3, "eventi": [
+      { "id": "deflusso_cinderwick", "tipo": "deflusso", "settore": "strada_cinderwick", "pressione": 4 },
+      { "id": "deflusso_larkspire", "tipo": "deflusso", "settore": "strada_larkspire", "pressione": 3 },
+      { "id": "uscita_piazzale", "tipo": "folla", "settore": "piazzale", "pressione": 3 }
+    ] }
+  ],
+  "esiti": [
+    { "id": "contenuto", "se": { "var": "tensione_max", "al_massimo": 2 }, "effetti": [], "verbale": "testi:e01.verbale_contenuto" },
+    { "id": "contenuto_a_fatica", "se": { "var": "tensione_max", "al_massimo": 5 }, "effetti": [], "verbale": "testi:e01.verbale_a_fatica" },
+    { "id": "degenerato", "se": {}, "effetti": [], "verbale": "testi:e01.verbale_degenerato" }
+  ],
+  "fili": []
+}

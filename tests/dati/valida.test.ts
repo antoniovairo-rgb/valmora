@@ -41,6 +41,8 @@ describe('validatore dei dati', () => {
     ['testo inesistente', (d) => { delete d['testi/it/prova.json']['prova.info']; }, /«testi:prova\.info» non esiste/],
     ['testo definito due volte', (d) => { d['testi/it/altro.json'] = { 'prova.info': 'x' }; }, /già definita/],
     ['settore fuori mappa', (d) => { d[M].ondate[0].eventi[0].settore = 'settore_z'; }, /non è nella mappa/],
+    ['settore ripetuto', (d) => { d[M].mappa.settori[1].id = 'settore_a'; }, /id di settore ripetuto/],
+    ['evento senza tipo', (d) => { delete d[M].ondate[0].eventi[0].tipo; }, /required property 'tipo'/],
     ['ondate non numerate in ordine', (d) => { d[M].ondate[0].n = 2; }, /n=2, attesa 1/],
     ['filo inesistente', (d) => { d[M].fili = ['filo_z']; }, /filo «filo_z» non esiste/],
     ['episodio doppio', (d) => { d['missioni/m_altra.json'] = { ...structuredClone(d[M]), id: 'm_altra' }; }, /episodio 1 già usato/],
