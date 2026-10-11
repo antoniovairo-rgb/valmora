@@ -13,6 +13,8 @@ package.json compaia in entrambi.
 | `motion` | 14.1.0 | transizioni fra le scene | MIT | © 2024 Motion B.V. | https://github.com/motiondivision/motion |
 | `lucide-react` | 1.55.0 | icone dell'interfaccia | ISC (le icone derivate da Feather: MIT) | © 2026 Lucide Icons and Contributors; Feather © 2013-present Cole Bemis | https://github.com/lucide-icons/lucide |
 | `@capacitor/core`, `@capacitor/android` | 8.5.3 | app Android | MIT | © 2017-present Drifty Co. | https://github.com/ionic-team/capacitor |
+| `@fontsource/space-grotesk` | 5.3.0 | carattere dei titoli (file nel gioco, nessun CDN) | SIL Open Font License 1.1 | © 2020 The Space Grotesk Project Authors | https://github.com/floriankarsten/space-grotesk |
+| `@fontsource/inter` | 5.3.0 | carattere dei testi (file nel gioco, nessun CDN) | SIL Open Font License 1.1 | © 2016 The Inter Project Authors | https://github.com/rsms/inter |
 | `ajv` | 8.20.0 | controllo dei dati di gioco | MIT | © 2015-2021 Evgeny Poberezkin | https://github.com/ajv-validator/ajv |
 
 ## Asset grafici

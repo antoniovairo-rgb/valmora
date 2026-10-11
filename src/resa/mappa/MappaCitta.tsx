@@ -21,12 +21,13 @@ const posiziona = (x: number, y: number) => (el: HTMLElement | null) => {
 export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli: (id: string) => void }) {
   const contenitore = useRef<HTMLDivElement>(null);
   const [pronta, setPronta] = useState(!conWebgl);
+  const margine = useMemo(() => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--settore')) / 2 || 22, []);
   // Senza «luogo» nei dati gli episodi si mettono in fila, così non spariscono.
   const voci = useMemo(() => p.voci.map((v, i) => ({ ...v, pos: v.m.luogo ?? { x: ((i + 1) * 100) / (p.voci.length + 1), y: 50 } })), [p.voci]);
   const punti: PuntoCitta[] = useMemo(() => voci.map((v) => ({ id: v.m.id, x: v.pos.x, y: v.pos.y, acceso: v.stato !== 'futuro' && v.stato !== 'superato' })), [voci]);
   return (
     <div className="mappa citta" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa di Valmora">
-      {conWebgl && <Suspense fallback={null}><StratoCitta contenitore={contenitore} punti={punti} pronto={() => setPronta(true)} /></Suspense>}
+      {conWebgl && <Suspense fallback={null}><StratoCitta contenitore={contenitore} punti={punti} margine={margine} pronto={() => setPronta(true)} /></Suspense>}
       {voci.map((v) => (
         <div key={v.m.id} ref={posiziona(v.pos.x, v.pos.y)} data-episodio={v.m.id} data-stato={v.stato}
           className={`settore lato-${v.pos.x < 30 ? 'sinistra' : v.pos.x > 70 ? 'destra' : 'centro'} episodio ${v.stato}${p.scelto === v.m.id ? ' acceso' : ''}`}>
