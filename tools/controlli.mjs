@@ -70,3 +70,10 @@ export function controllaModello(testi) {
   }
   return problemi;
 }
+
+// Versione (PO-032): GAME_VERSION è a tre numeri e ha la sua riga di commento «// x.y.z – …» (causa, misura, guardiano).
+export function controllaVersione(sorgente) {
+  const v = /export const GAME_VERSION = '(\d+\.\d+\.\d+)'/.exec(sorgente ?? '')?.[1];
+  if (!v) return ['src/versione.ts: GAME_VERSION mancante o non a tre numeri'];
+  return sorgente.includes(`// ${v} – `) ? [] : [`src/versione.ts: la versione ${v} non ha la sua riga di commento (causa, misura, guardiano)`];
+}

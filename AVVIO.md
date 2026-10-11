@@ -14,7 +14,8 @@ Il pacchetto iniziale (docs/PROMPT_TEAM.md) descriveva 5 terminali locali con wo
 Ogni ora, alle :30, una Routine (trig_014gyKqgtK8rfyDmnGCjDWcZ) sveglia la sessione principale e la fa eseguire in quest'ordine:
 1. **Rami:** `git fetch origin`; per la principale, la sviluppatrice (claude/valmora-resa-v2), la collaudatrice (claude/valmora-collaudo) e main: ultimo commit, se il ramo è avanti o indietro rispetto alla principale, esito della CI «catene».
 2. **Allineamento:** un ramo parallelo indietro riceve l'ordine di fare merge (mai rebase) dalla principale; una CI rossa riceve l'ordine di riparazione, con il job rosso.
-3. **Integrazione:** una consegna dichiarata pronta dalla sviluppatrice, con CI verde, entra nella principale (merge), passa la catena completa 3 volte, va su main in fast-forward e si controlla il link GitHub Pages.
+3. **Integrazione:** una consegna dichiarata pronta dalla sviluppatrice, con CI verde, entra nella principale (merge) e passa la catena completa 3 volte.
+3b. **Rilascio (D-079):** main riceve un rilascio al massimo in tre finestre al giorno (verso le 12, le 17 e le 21 ora di Roma), solo se la principale ha novità: GAME_VERSION alzata con la sua riga di commento (src/versione.ts), catena completa 3/3 verde sulla build esatta, fast-forward su main, controllo che il link GitHub Pages mostri la nuova versione nella home. Fuori finestra si rilascia solo un difetto che blocca il collaudo del PO, dichiarandolo.
 4. **Collaudo:** ogni rilievo della collaudatrice si riproduce prima di accettarlo (COLLAUDI.md: RIPRODOTTO o NON RIPRODOTTO).
 5. **Sessioni:** una sessione ferma che ha ancora lavoro viene ripresa con il passo successivo.
 6. **Registro:** lavagna aggiornata (riga «Ultimo giro della routine»). Al PO si scrivono solo i fatti nuovi.
