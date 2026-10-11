@@ -179,11 +179,10 @@
         "dettagli": {
           "type": "array",
           "uniqueItems": true,
-          "description": "dettagli grafici della mappa che servono alla storia (es. cartelloni dello stadio nuovo, D-084)",
+          "description": "dettagli grafici della mappa disegnati dal codice (D-084, D-095): «id» al centro oppure «id@settore» vicino al settore",
           "items": {
-            "enum": [
-              "cartelloni_stadio_nuovo"
-            ]
+            "type": "string",
+            "pattern": "^(cartelloni_stadio_nuovo|banca|zona_rossa|palco_concerto|piazza_storica|fabbrica|stabile_occupato|incidente|cantiere_stadio|porto|mercato)(@[a-z0-9_]+)?$"
           }
         }
       }

@@ -127,7 +127,7 @@ p.riposo { opacity: 1; }
 .volo { position: fixed; left: 0; top: 0; z-index: 10; pointer-events: none; }
 
 /* Città degli episodi e stelle (D-060, D-061) */
-.mappa.citta { aspect-ratio: var(--citta-proporzione); }
+.mappa.citta { aspect-ratio: var(--citta-proporzione); /* PO-052: la mappa si stringe perché la scheda resti nello schermo */ width: min(100%, max(var(--citta-larghezza-min), calc((100dvh - var(--citta-riserva)) * 4 / 5))); margin-inline: auto; }
 main[data-schermata="sala"] .mappa, main[data-schermata="briefing"] .mappa { aspect-ratio: var(--mappa-proporzione-passi); }
 .episodio .settore-punto { border: var(--bordo) solid var(--nero); background: var(--bianco); box-shadow: var(--ombra-1); color: var(--nero); font: 700 var(--testo-grande) var(--font-titoli); }
 .episodio .settore-punto::after { display: none; }

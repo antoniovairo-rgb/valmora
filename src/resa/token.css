@@ -136,6 +136,8 @@
   --mappa-proporzione: 1 / 1;
   --mappa-proporzione-passi: 4 / 3; /* sala e briefing a passi (S-10): mappa più bassa, niente scorrimento */
   --citta-proporzione: 4 / 5;
+  --citta-riserva: 500px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine) */
+  --citta-larghezza-min: 208px;
 
   --font-titoli: "Space Grotesk", system-ui, sans-serif;
   --font: Inter, system-ui, sans-serif;
