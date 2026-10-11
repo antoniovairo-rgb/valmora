@@ -7,7 +7,7 @@ import { readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
-import { clubDai, controllaCurve, controllaPicco, controllaSfida } from './foto-club.mjs';
+import { clubDai, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -217,7 +217,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             const n = i + 1;
             await scena('schieramento');
             atteso(`ondata ${n}: la scena è dell'ondata ${await pagina.getAttribute('main', 'data-ondata')}`, (await pagina.getAttribute('main', 'data-ondata')) === String(n));
-            if (n === 1) await controllaCurve(pagina, p.m, club, atteso);
+            await controllaCurve(pagina, p.m, n, club, atteso); await controllaFolla(pagina, p.m, n, atteso);
             // Risorse fisse (transenne, D-082): all'ondata 1 non si montano in curva (avviso, nessuna presenza);
             // dall'ondata 2 quelle montate all'ondata 1 restano sulla mappa col lucchetto e non si ritirano.
             const fisse = Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => r);

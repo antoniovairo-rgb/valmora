@@ -15,6 +15,7 @@ import { Icona, iconaRisorsa } from '../icone.tsx';
 import { livello } from '../partita.ts';
 import type { PuntoMappa } from './StratoPixi.tsx';
 import { webglDisponibile } from './webgl.ts';
+import { follaDellOndata } from './folla.ts';
 
 // PixiJS pesa: si carica a parte, dopo il titolo, e solo se WebGL c'è.
 const StratoPixi = lazy(() => import('./StratoPixi.tsx').then((x) => ({ default: x.StratoPixi })));
@@ -24,6 +25,8 @@ const conWebgl = typeof document !== 'undefined' && webglDisponibile();
 
 export interface MappaProps {
   m: Missione;
+  /** ondata di cui si mostrano spalti e cortei (prima della prima: 1) */
+  ondata?: number;
   accesi?: string[];
   tensione?: Record<string, number> | null;
   presenze?: Disposizione | null;
@@ -61,6 +64,7 @@ export function Mappa(p: MappaProps) {
 
   // Atmosfera dai dati (campi facoltativi mappa.ora e mappa.dettagli, e03 «Notte di coppa»).
   const extra = p.m.mappa as { ora?: string; dettagli?: string[] };
+  const folla = useMemo(() => follaDellOndata(p.m, p.ondata ?? 1), [p.m, p.ondata]);
   const atmosfera = useMemo(() => ({ notte: extra.ora === 'notte', cartelloni: !!extra.dettagli?.includes('cartelloni_stadio_nuovo') }), [extra.ora, extra.dettagli]);
 
   // Nomi e unità al posto che non copre niente (C-008): a ogni disegno, quando la mappa cambia misura e
@@ -77,7 +81,7 @@ export function Mappa(p: MappaProps) {
 
   return (
     <div className={`mappa${atmosfera.notte ? ' notte' : ''}`} ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
-      {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} atmosfera={atmosfera} pronto={() => setPronta(true)} /></Suspense>}
+      {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} atmosfera={atmosfera} folla={folla} pronto={() => setPronta(true)} /></Suspense>}
       {settori.map((s) => {
         const liv = p.tensione ? livello(p.tensione[s.id] ?? 0) : null;
         const lato = s.pos.x < 30 ? 'sinistra' : s.pos.x > 70 ? 'destra' : 'centro';
