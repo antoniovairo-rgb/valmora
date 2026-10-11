@@ -15,6 +15,7 @@ import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
 import { valutaEpisodio } from '../src/logica/episodi.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { URL_APK } from '../src/resa/collegamenti.ts';
+import { GAME_VERSION } from '../src/versione.ts';
 
 export const LARGHEZZE = [360, 375, 412];
 // VALMORA_LARGHEZZE=360 limita le larghezze (solo per le misure a mano, non nella catena).
@@ -123,7 +124,23 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
               const r = n.getBoundingClientRect();
               if (r.left < mappa.left + 5 || r.right > mappa.right - 5 || r.bottom > mappa.bottom - 5 || r.top < mappa.top + 5) p.push(`nome «${n.textContent}» tocca il bordo della mappa`);
             }
-            const et = document.querySelector('.testata-t small');
+            // C-008: aree di tocco delle unità sopra i nomi (> 4 px²) e nomi sovrapposti (> 0 px²)
+          const inter = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+          const nomi = [...document.querySelectorAll('.mappa .settore-nome')].map((e) => { const s = e.closest('[data-settore],[data-episodio]'); return [s?.dataset.settore ?? s?.dataset.episodio ?? '?', e.getBoundingClientRect()]; });
+          for (const t of document.querySelectorAll('.mappa [data-presenza]')) for (const [id, r] of nomi) {
+            const a = Math.round(inter(t.getBoundingClientRect(), r));
+            if (a > 4) p.push(`area di tocco ${t.dataset.presenza} sopra il nome ${id}: ${a} px²`);
+          }
+          for (let i = 0; i < nomi.length; i++) for (let j = i + 1; j < nomi.length; j++) {
+            const a = Math.round(inter(nomi[i][1], nomi[j][1]));
+            if (a > 0) p.push(`nomi ${nomi[i][0]} e ${nomi[j][0]} sovrapposti: ${a} px²`);
+          }
+          // N01 (C-007): nel rapporto lo stato sta sulla riga del nome
+          for (const li of document.querySelectorAll('[data-esito-settore]')) {
+            const a = li.querySelector('.riga-sx').getBoundingClientRect(), b = li.querySelector('strong').getBoundingClientRect();
+            if (b.top >= a.bottom - 2) p.push(`rapporto: lo stato di ${li.dataset.esitoSettore} va sotto il nome`);
+          }
+          const et = document.querySelector('.testata-t small');
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
             return p;
           });
@@ -150,6 +167,11 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         await scena('titolo');
         const apk = await pagina.getAttribute('[data-azione="apk"]', 'href').catch(() => null);
         atteso(`nella home manca il link all'APK (trovato «${apk}»)`, apk === URL_APK);
+        // PO-032: la home dice versione e build vera (non «sviluppo»); interruttore rosso C05S09
+        const versione = await pagina.getAttribute('[data-versione]', 'data-versione').catch(() => null);
+        const riga = (await pagina.locator('[data-versione]').textContent().catch(() => '')) ?? '';
+        atteso(`home: versione «${versione}» invece di «${GAME_VERSION}»`, versione === GAME_VERSION);
+        atteso(`home: build non valida in «${riga}»`, /build \S+/.test(riga) && !/build sviluppo/.test(riga));
         await foto();
         await premi('[data-azione="crediti"]'); await scena('crediti'); await foto();
         await pagina.getByRole('button', { name: 'Torna al titolo' }).click(); await scena('titolo');
@@ -286,6 +308,9 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           atteso(`${piano2.m.id}: non arriva all'esito migliore «${piano2.migliore}»`, esito2 === piano2.migliore);
           await premi('[data-azione="citta"]'); await scena('citta'); await foto();
           atteso(`città: ${piano2.m.id} non è superato`, (await ep2.getAttribute('data-stato')) === 'superato');
+          await ep2.locator('.settore-punto').click();
+          const conta = await pagina.locator(`[data-scheda-episodio="${piano2.m.id}"] .tenue`).first().textContent();
+          atteso(`città: «${conta}» invece di «1 tentativo» (C-008.1)`, conta?.trim() === '1 tentativo');
         }
         // C-005 R02: con una partita salvata, «Nuova partita» chiede conferma e «No» non cancella nulla
         const prima = await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'));

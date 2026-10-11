@@ -5,7 +5,7 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import {
-  DOCUMENTI_OBBLIGATORI, controllaDocumenti, controllaBacklog, controllaSegreti, controllaModello,
+  DOCUMENTI_OBBLIGATORI, controllaDocumenti, controllaBacklog, controllaSegreti, controllaModello, controllaVersione,
 } from './controlli.mjs';
 import { generaGoverno } from './governo-html.mjs';
 
@@ -18,6 +18,7 @@ const PASSI = {
   documenti: () => controllaDocumenti(Object.fromEntries(Object.keys(DOCUMENTI_OBBLIGATORI).map((p) => [p, leggi(p)]))),
   backlog: () => controllaBacklog(leggi('docs/governo/BACKLOG.md') ?? ''),
   segreti: () => controllaSegreti(tracciati()),
+  versione: () => controllaVersione(leggi('src/versione.ts')),
   modello: () => {
     const testi = {};
     for (const p of tracciati()) if (/\.(md|mjs|js|ts|tsx|json|html|css|txt)$/.test(p) && existsSync(p)) testi[p] = readFileSync(p, 'utf8');
@@ -30,6 +31,7 @@ const PASSI = {
     if (!controllaDocumenti({}).length) ciechi.push('documenti è cieco');
     if (!controllaBacklog('| PO-1 | ieri | x | boh | FATTO | L0 | – | – | chat |').length) ciechi.push('backlog è cieco');
     if (!controllaSegreti(['android/app/rilascio.jks']).length) ciechi.push('segreti è cieco');
+    if (!controllaVersione("// 0.1.0 – x\nexport const GAME_VERSION = '0.2.0';").length) ciechi.push('versione è cieco');
     const firma = ['Co-Authored-By:', 'Claude'].join(' ');
     if (!controllaModello({ prova: firma }).length) ciechi.push('modello è cieco');
     return ciechi;
@@ -38,7 +40,7 @@ const PASSI = {
 };
 
 const CATENE = {
-  governo: ['documenti', 'backlog', 'segreti', 'modello', 'bracci-rossi', 'governo.html'],
+  governo: ['documenti', 'backlog', 'segreti', 'versione', 'modello', 'bracci-rossi', 'governo.html'],
   logica: ['tipi', 'confini', 'schema', 'test', 'bot', 'salvataggi-reali', 'bracci-rossi-logica'],
   grafica: ['token', 'build', 'foto', 'bracci-rossi-grafica'],
 };

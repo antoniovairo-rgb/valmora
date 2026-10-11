@@ -56,6 +56,8 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Ribilanciamento dopo il collaudo C-01 (C-002): il credito costa tensione, niente opzioni dominate, «incrocio» pesa, nel deflusso si riforma il corteo di Cinderwick. Misura nuova (node tools/bot.mjs 1000): casuale 2 / 401 / 597, stelle 0★ 597 · 1★ 393 · 2★ 10 · 3★ 0; attento 0 / 1000 / 0 (2★); equilibrato 1000 / 0 / 0 (3★); peggiore 0 / 0 / 1000. Su tutte le 62.208 combinazioni di risposte con schieramento attento: 0★ 7.432 · 1★ 39.656 · 2★ 12.886 · 3★ 2.234.
 - Testi: bozza della sessione principale, da far giudicare al PO dopo la prova della resa v2.
 
+- Giudizio del PO su e01 (2026-10-11, PO-037): «Primo episodio carino».
+
 ## e02 «Ospiti numerosi» (D-071…D-074)
 - Larkspire Athletic in casa contro i Calderholt Rovers, che arrivano in treno da fuori città. Due treni, uno in ritardo; gira una voce di biglietti falsi.
 - Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Larkspire. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 16 chiamate.
@@ -69,3 +71,16 @@ e02 · equilibrata: blocchi 0/1000 · esiti {"contenuto":1000} · stelle {"0":0,
 e02 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000,"1":0,"2":0,"3":0}
 e02 · scelte a caso con schieramento attento: {"contenuto":82,"contenuto_a_fatica":181,"degenerato":37}
 
+## e03 «Notte di coppa» (D-081…D-083)
+- Coppa, sera infrasettimanale: Larkspire Athletic in casa contro il Quillhaven Albion (club inventato, D-083), seicento ospiti in pullman. Lo stadio è a cinquanta metri dalle case: il comitato dei residenti protesta.
+- Settori: vie del quartiere, parcheggi, piazzale, curva ospiti, curva Larkspire. Quattro ondate: il tramonto, primo tempo, supplementari, l'uscita di notte. 14 chiamate.
+- Dilemma (D-081): quartiere o stadio. Novità (D-082): transenne fisse (2), che una volta montate restano fino a fine serata e si montano solo dove servono (quartiere, strade, piazzale). Trappola voluta: i parcheggi si riempiono subito, le proteste del quartiere crescono verso mezzanotte.
+- Fili: cartelloni dello stadio nuovo (prima comparsa, D-069), nel briefing (centrale radio: nessun permesso in comune) e nella chiamata del comitato, senza scelta (D-084). Premi di campagna: il presidente spegne le luci esterne se lo hai incontrato in e01; il furgone grigio torna nei parcheggi se hai pagato l'informatore e lo hai annotato in e02.
+- Testi: bozza della sessione principale, da far giudicare al PO.
+- Misura (node tools/bot.mjs 1000):
+e03 · casuale: blocchi 0/1000 · esiti {"contenuto_a_fatica":314,"degenerato":677,"contenuto":9} · stelle {"0":677,"1":297,"2":22,"3":4}
+e03 · attenta: blocchi 0/1000 · esiti {"contenuto_a_fatica":1000} · stelle {"0":0,"1":0,"2":1000,"3":0}
+e03 · equilibrata: blocchi 0/1000 · esiti {"contenuto":1000} · stelle {"0":0,"1":0,"2":0,"3":1000}
+e03 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000,"1":0,"2":0,"3":0}
+- Dove si montano le transenne (tools/fisse.mjs, giocatore equilibrato, prima ondata forzata): quartiere+quartiere 3★, quartiere+parcheggi 3★, quartiere+piazzale 3★, parcheggi+piazzale 3★, parcheggi+parcheggi 1★, piazzale+piazzale 1★. Con le prime tarature (4 squadre, proteste basse) le stelle erano 2★ o 3★ in ogni posizione: novità vuota, scartata.
+- Difficoltà: il casuale fallisce il 67,7% (e02: 59,7%). È più difficile di e02 di proposito, perché la trappola delle transenne esiste solo con risorse strette; si ritara dopo il collaudo del PO (D-065).

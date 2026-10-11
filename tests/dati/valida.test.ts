@@ -52,6 +52,8 @@ describe('validatore dei dati', () => {
     ['chiamata senza uscita garantita', (d) => { d[M].ondate[0].chiamate[0].opzioni[0].se = { var: 'var_bool', uguale: true }; }, /senza uscita garantita/],
     ['opzione senza accenno di costo (D-078)', (d) => { delete d[M].ondate[0].chiamate[0].opzioni[1].costo; }, /manca l'accenno di costo/],
     ['accenno di costo senza testo', (d) => { d[M].ondate[0].chiamate[0].opzioni[0].costo = 'testi:prova.zzz'; }, /prova\.zzz/],
+    ['club di settore inesistente (D-086)', (d) => { d[M].mappa.settori[0].club = 'club_z'; }, /club «club_z» non esiste/],
+    ['curva senza club (D-086)', (d) => { d[M].mappa.settori[0].tipo = 'curva'; }, /non dice di che club è/],
     ['opzioni con id ripetuto', (d) => { d[M].ondate[0].chiamate[0].opzioni[1].id = 'op_a'; }, /opzioni con id ripetuto/],
     ['testo della chiamata mancante', (d) => { delete d['testi/it/prova.json']['prova.ch_a']; }, /«testi:prova\.ch_a» non esiste/],
     ['briefing su settore inesistente', (d) => { d[M].briefing[0].settore = 'settore_z'; }, /briefing\[0\]: settore «settore_z»/],

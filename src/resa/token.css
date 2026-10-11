@@ -138,3 +138,5 @@
    C-005 per misurare il braccio rosso di tools/foto.mjs. Mai attivi nel gioco. */
 .rosso-c05r06 { --testo-mini: 10px; --margine-nomi: 0px; }
 .rosso-c05r07 .testata-t small { --spaziatura-maiuscolo: 0.3em; }
+.rosso-c05n01 .elenco-settori li { flex-wrap: wrap; }
+.rosso-c05n01 .elenco-settori .riga-sx { flex: none; }

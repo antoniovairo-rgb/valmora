@@ -2,7 +2,11 @@
 // - sotto, PixiJS (StratoPixi) disegna griglia, campo, aloni e impulsi; se WebGL manca non c'è e basta;
 // - sopra, HTML: un punto per settore (pulsante vero, tocco e lettori di schermo), nome e unità schierate.
 // La tensione si vede SOLO come colore (D-055): classe liv-0…liv-5, mai il numero.
-import { lazy, Suspense, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { disponiEtichette } from './etichette.ts';
+
+// Interruttore rosso C05S08: nomi e unità restano al posto fisso (difetto C-008).
+const disponi = (el: HTMLElement) => { if (!spento('C05S08')) disponiEtichette(el); };
 import type { Disposizione, Missione } from '../../logica/tipi.ts';
 import { spento } from '../../interruttori.ts';
 import { t } from '../dati.ts';
@@ -48,23 +52,29 @@ export function Mappa(p: MappaProps) {
     return { lato: v('--settore', 44) / 2, sotto: v('--margine-nomi', 34) };
   }, []);
 
+  // Nomi e unità al posto che non copre niente (C-008): a ogni disegno, quando la mappa cambia misura e
+  // quando arrivano i caratteri.
+  useLayoutEffect(() => { if (contenitore.current) disponi(contenitore.current); });
+  useLayoutEffect(() => {
+    const el = contenitore.current;
+    if (!el) return;
+    const rifai = () => disponi(el);
+    const ro = new ResizeObserver(rifai); ro.observe(el);
+    void document.fonts?.ready.then(rifai);
+    return () => ro.disconnect();
+  }, []);
+
   return (
     <div className="mappa" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
       {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} pronto={() => setPronta(true)} /></Suspense>}
       {settori.map((s) => {
         const liv = p.tensione ? livello(p.tensione[s.id] ?? 0) : null;
         const lato = s.pos.x < 30 ? 'sinistra' : s.pos.x > 70 ? 'destra' : 'centro';
-        // Settori vicini (e02: stazione, curva ospiti e viale della stazione uno sopra l'altro): con un punto
-        // subito sotto il nome va sopra; con punti sopra E sotto il nome va di lato e le unità dall'altro lato;
-        // con un punto subito sopra o sotto le unità vanno di lato.
-        const vicino = (verso: 1 | -1) => settori.some((o) => o.id !== s.id && Math.abs(o.pos.x - s.pos.x) < 18 && verso * (o.pos.y - s.pos.y) > 0 && verso * (o.pos.y - s.pos.y) < 24);
-        const sotto = vicino(1), sopra = vicino(-1);
-        const posto = sotto && sopra ? ' nome-lato unita-lato' : sotto ? ' nome-sopra unita-lato' : sopra ? ' unita-lato' : '';
         const qui = Object.entries(p.presenze ?? {}).map(([r, ps]) => [r, ps[s.id] ?? 0] as const).filter(([, n]) => n > 0);
         const nome = t(`settore.${s.id}`);
         return (
           <div key={s.id} ref={posiziona(s.pos.x, s.pos.y)} data-settore={s.id}
-            className={`settore lato-${lato}${posto}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}`}>
+            className={`settore lato-${lato}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}`}>
             <button type="button" className="settore-punto" disabled={!p.onSettore} onClick={() => p.onSettore?.(s.id)}
               aria-label={`${nome}${liv !== null ? `, situazione ${PAROLE[liv]}` : ''}${qui.length ? `, ${qui.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}` : ''}`} />
             <span className="settore-nome" aria-hidden="true">{nome}</span>

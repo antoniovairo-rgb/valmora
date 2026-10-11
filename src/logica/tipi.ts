@@ -24,7 +24,7 @@ export interface Dichiarazione {
   id: string; tipo: 'bool' | 'int' | 'enum'; iniziale: Valore; min?: number; max?: number; valori?: string[]; descrizione: string;
 }
 
-export interface Risorsa { quantita: number; efficacia: Record<string, number>; dimezza?: string[] }
+export interface Risorsa { quantita: number; efficacia: Record<string, number>; dimezza?: string[]; fissa?: boolean }
 export interface Evento { id: string; tipo: string; settore: string; pressione: number; se?: Condizione }
 export interface Esito { id: string; se: Condizione; effetti: Effetto[]; verbale: string; fallita?: boolean; stelle_min?: number; stelle_max?: number }
 export interface Informazione { testo: string; fonte: string; affidabilita: 'bassa' | 'media' | 'alta'; vera: boolean; settore?: string }
@@ -32,9 +32,9 @@ export interface Opzione { id: string; testo: string; costo?: string; risposta?:
 export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; se?: Condizione; opzioni: Opzione[] }
 
 export interface Missione {
-  id: string; stagione: number; episodio: number; titolo: string; disponibile_se: Condizione; introduzione?: string[];
+  id: string; stagione: number; episodio: number; titolo: string; bozza?: boolean; disponibile_se: Condizione; introduzione?: string[];
   briefing: Informazione[];
-  mappa: { settori: { id: string; tipo: string; pos?: { x: number; y: number } }[]; risorse: Record<string, Risorsa> };
+  mappa: { settori: { id: string; tipo: string; club?: string; pos?: { x: number; y: number } }[]; risorse: Record<string, Risorsa>; ora?: 'giorno' | 'notte'; dettagli?: string[] };
   ondate: { n: number; titolo?: string; eventi: Evento[]; chiamate?: Chiamata[] }[];
   esiti: Esito[];
   stelle: { due: Condizione; tre: Condizione };
