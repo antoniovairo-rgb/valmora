@@ -68,6 +68,7 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
     if (episodi.has(m.episodio)) p.push(`${k}: episodio ${m.episodio} già usato da ${episodi.get(m.episodio)}`);
     episodi.set(m.episodio, k);
     testo(`${k}.titolo`, m.titolo);
+    (m.introduzione ?? []).forEach((x: string, i: number) => testo(`${k}.introduzione[${i}]`, x));
     condizione(`${k}.disponibile_se`, m.disponibile_se);
     m.briefing.forEach((b: Obj, i: number) => testo(`${k}.briefing[${i}]`, b.testo));
     const settori = m.mappa.settori.map((s: Obj) => s.id as string);
@@ -93,6 +94,7 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
       if (idChiamate.has(c.id)) p.push(`${dove}: id «${c.id}» ripetuto`);
       idChiamate.add(c.id);
       testo(dove, c.testo);
+      if (c.commento) testo(dove, c.commento);
       testo(dove, `testi:fonte.${c.fonte}`);
       if (c.settore && !settori.includes(c.settore)) p.push(`${dove}: settore «${c.settore}» non è nella mappa`);
       if (c.se) condizione(`${dove}.se`, c.se);
@@ -100,6 +102,7 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
       if (c.opzioni.every((x: Obj) => x.se)) p.push(`${dove}: tutte le opzioni hanno una condizione (chiamata senza uscita garantita)`);
       c.opzioni.forEach((x: Obj, h: number) => {
         testo(`${dove}.opzioni[${h}]`, x.testo);
+        if (x.risposta) testo(`${dove}.opzioni[${h}]`, x.risposta);
         if (x.se) condizione(`${dove}.opzioni[${h}].se`, x.se);
         x.effetti.forEach((e: Obj, q: number) => {
           const w = `${dove}.opzioni[${h}].effetti[${q}]`;

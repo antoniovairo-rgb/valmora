@@ -9,25 +9,29 @@
       "testo": "testi:e01.info_informatore",
       "fonte": "informatore_di_strada",
       "affidabilita": "bassa",
-      "vera": true
+      "vera": true,
+      "settore": "strada_cinderwick"
     },
     {
       "testo": "testi:e01.info_ufficio",
       "fonte": "ufficio_sicurezza_cinderwick",
       "affidabilita": "media",
-      "vera": false
+      "vera": false,
+      "settore": "strada_cinderwick"
     },
     {
       "testo": "testi:e01.info_radio",
       "fonte": "centrale_radio",
       "affidabilita": "alta",
-      "vera": true
+      "vera": true,
+      "settore": "strada_larkspire"
     },
     {
       "testo": "testi:e01.info_rete",
       "fonte": "voci_in_rete",
       "affidabilita": "media",
-      "vera": false
+      "vera": false,
+      "settore": "curva_larkspire"
     }
   ],
   "mappa": {
@@ -122,6 +126,188 @@
           "settore": "piazzale",
           "pressione": 2
         }
+      ],
+      "chiamate": [
+        {
+          "id": "corteo_partito",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e01.ch.corteo_partito",
+          "commento": "testi:e01.ch.corteo_partito.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "scorta",
+              "testo": "testi:e01.op.scorta",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e01.op.scorta.r"
+            },
+            {
+              "id": "ferma",
+              "testo": "testi:e01.op.ferma",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.ferma.r"
+            },
+            {
+              "id": "osserva",
+              "testo": "testi:e01.op.osserva",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.osserva.r"
+            }
+          ]
+        },
+        {
+          "id": "ufficio_insiste",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e01.ch.ufficio_insiste",
+          "commento": "testi:e01.ch.ufficio_insiste.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "asseconda",
+              "testo": "testi:e01.op.asseconda",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.asseconda.r"
+            },
+            {
+              "id": "ignora",
+              "testo": "testi:e01.op.ignora",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e01.op.ignora.r"
+            }
+          ]
+        },
+        {
+          "id": "pullman",
+          "fonte": "centrale_radio",
+          "testo": "testi:e01.ch.pullman",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "conta",
+              "testo": "testi:e01.op.conta",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e01.op.conta.r"
+            },
+            {
+              "id": "aspetta",
+              "testo": "testi:e01.op.aspetta",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.aspetta.r"
+            }
+          ]
+        },
+        {
+          "id": "rinforzi",
+          "fonte": "vice",
+          "testo": "testi:e01.ch.rinforzi",
+          "commento": "testi:e01.ch.rinforzi.vice",
+          "opzioni": [
+            {
+              "id": "chiedi",
+              "testo": "testi:e01.op.chiedi",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e01.op.chiedi.r"
+            },
+            {
+              "id": "rifiuta",
+              "testo": "testi:e01.op.rifiuta",
+              "effetti": [],
+              "risposta": "testi:e01.op.rifiuta.r"
+            }
+          ]
+        },
+        {
+          "id": "striscione",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e01.ch.striscione",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "rimuovi",
+              "testo": "testi:e01.op.rimuovi",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e01.op.rimuovi.r"
+            },
+            {
+              "id": "lascia",
+              "testo": "testi:e01.op.lascia",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e01.op.lascia.r"
+            },
+            {
+              "id": "ridi",
+              "testo": "testi:e01.op.ridi",
+              "effetti": [],
+              "risposta": "testi:e01.op.ridi.r"
+            }
+          ]
+        }
       ]
     },
     {
@@ -145,6 +331,190 @@
           "tipo": "folla",
           "settore": "piazzale",
           "pressione": 1
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "fumogeni",
+          "fonte": "centrale_radio",
+          "testo": "testi:e01.ch.fumogeni",
+          "commento": "testi:e01.ch.fumogeni.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "spegni",
+              "testo": "testi:e01.op.spegni",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.spegni.r"
+            },
+            {
+              "id": "sospendi",
+              "testo": "testi:e01.op.sospendi",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e01.op.sospendi.r"
+            },
+            {
+              "id": "lascia_fumo",
+              "testo": "testi:e01.op.lascia_fumo",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e01.op.lascia_fumo.r"
+            }
+          ]
+        },
+        {
+          "id": "porta_servizio",
+          "fonte": "centrale_radio",
+          "testo": "testi:e01.ch.porta_servizio",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "presidia",
+              "testo": "testi:e01.op.presidia",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e01.op.presidia.r"
+            },
+            {
+              "id": "finta",
+              "testo": "testi:e01.op.finta",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e01.op.finta.r"
+            }
+          ]
+        },
+        {
+          "id": "presidente",
+          "fonte": "vice",
+          "testo": "testi:e01.ch.presidente",
+          "commento": "testi:e01.ch.presidente.vice",
+          "opzioni": [
+            {
+              "id": "vai",
+              "testo": "testi:e01.op.vai",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "imposta": "presidente_incontrato",
+                  "valore": true
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.vai.r"
+            },
+            {
+              "id": "manda_vice",
+              "testo": "testi:e01.op.manda_vice",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.manda_vice.r"
+            },
+            {
+              "id": "aspetti",
+              "testo": "testi:e01.op.aspetti",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e01.op.aspetti.r"
+            }
+          ]
+        },
+        {
+          "id": "capo_curva",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e01.ch.capo_curva",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "mediatore",
+              "testo": "testi:e01.op.mediatore",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e01.op.mediatore.r"
+            },
+            {
+              "id": "nessuna",
+              "testo": "testi:e01.op.nessuna",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.nessuna.r"
+            },
+            {
+              "id": "ascolta",
+              "testo": "testi:e01.op.ascolta",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e01.op.ascolta.r"
+            }
+          ]
         }
       ]
     },
@@ -170,6 +540,145 @@
           "settore": "piazzale",
           "pressione": 3
         }
+      ],
+      "chiamate": [
+        {
+          "id": "pareggio",
+          "fonte": "vice",
+          "testo": "testi:e01.ch.pareggio",
+          "commento": "testi:e01.ch.pareggio.vice",
+          "opzioni": [
+            {
+              "id": "trattieni",
+              "testo": "testi:e01.op.trattieni",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.trattieni.r"
+            },
+            {
+              "id": "insieme",
+              "testo": "testi:e01.op.insieme",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e01.op.insieme.r"
+            }
+          ]
+        },
+        {
+          "id": "incrocio",
+          "fonte": "centrale_radio",
+          "testo": "testi:e01.ch.incrocio",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "chiudi",
+              "testo": "testi:e01.op.chiudi",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.chiudi.r"
+            },
+            {
+              "id": "scorrere",
+              "testo": "testi:e01.op.scorrere",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e01.op.scorrere.r"
+            }
+          ]
+        },
+        {
+          "id": "troupe",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e01.ch.troupe",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "intervista",
+              "testo": "testi:e01.op.intervista",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e01.op.intervista.r"
+            },
+            {
+              "id": "niente",
+              "testo": "testi:e01.op.niente",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e01.op.niente.r"
+            }
+          ]
+        },
+        {
+          "id": "sciarpe",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e01.ch.sciarpe",
+          "commento": "testi:e01.ch.sciarpe.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "paga",
+              "testo": "testi:e01.op.paga",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "imposta": "informatore_pagato",
+                  "valore": true
+                }
+              ],
+              "risposta": "testi:e01.op.paga.r"
+            },
+            {
+              "id": "non_paga",
+              "testo": "testi:e01.op.non_paga",
+              "effetti": [
+                {
+                  "imposta": "informatore_pagato",
+                  "valore": false
+                }
+              ],
+              "risposta": "testi:e01.op.non_paga.r"
+            }
+          ]
+        }
       ]
     }
   ],
@@ -177,8 +686,16 @@
     {
       "id": "contenuto",
       "se": {
-        "var": "tensione_max",
-        "al_massimo": 2
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
       },
       "effetti": [],
       "verbale": "testi:e01.verbale_contenuto"
@@ -187,7 +704,7 @@
       "id": "contenuto_a_fatica",
       "se": {
         "var": "tensione_max",
-        "al_massimo": 5
+        "al_massimo": 6
       },
       "effetti": [],
       "verbale": "testi:e01.verbale_a_fatica"
@@ -199,5 +716,10 @@
       "verbale": "testi:e01.verbale_degenerato"
     }
   ],
-  "fili": []
+  "fili": [],
+  "introduzione": [
+    "testi:e01.intro1",
+    "testi:e01.intro2",
+    "testi:e01.intro3"
+  ]
 }

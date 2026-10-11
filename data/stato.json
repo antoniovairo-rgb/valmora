@@ -1,5 +1,32 @@
 {
   "variabili": [
-    { "id": "tensione_max", "tipo": "int", "min": 0, "max": 99, "iniziale": 0, "descrizione": "Tensione massima della missione in corso; il motore la azzera a inizio missione (D-039)" }
+    {
+      "id": "tensione_max",
+      "tipo": "int",
+      "min": 0,
+      "max": 10,
+      "iniziale": 0,
+      "descrizione": "Tensione massima della missione in corso; il motore la azzera a inizio missione (D-039)"
+    },
+    {
+      "id": "credito",
+      "tipo": "int",
+      "min": 0,
+      "max": 10,
+      "iniziale": 5,
+      "descrizione": "Credito politico del protagonista presso comando, club e stampa"
+    },
+    {
+      "id": "informatore_pagato",
+      "tipo": "bool",
+      "iniziale": false,
+      "descrizione": "Il protagonista ha pagato il ragazzo delle sciarpe in e01"
+    },
+    {
+      "id": "presidente_incontrato",
+      "tipo": "bool",
+      "iniziale": false,
+      "descrizione": "Il protagonista ha incontrato il presidente del Larkspire Athletic in e01"
+    }
   ]
 }

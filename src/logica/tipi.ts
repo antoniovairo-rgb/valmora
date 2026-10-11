@@ -28,11 +28,11 @@ export interface Risorsa { quantita: number; efficacia: Record<string, number>; 
 export interface Evento { id: string; tipo: string; settore: string; pressione: number; se?: Condizione }
 export interface Esito { id: string; se: Condizione; effetti: Effetto[]; verbale: string }
 export interface Informazione { testo: string; fonte: string; affidabilita: 'bassa' | 'media' | 'alta'; vera: boolean; settore?: string }
-export interface Opzione { id: string; testo: string; se?: Condizione; effetti: EffettoMissione[] }
-export interface Chiamata { id: string; fonte: string; testo: string; settore?: string; se?: Condizione; opzioni: Opzione[] }
+export interface Opzione { id: string; testo: string; risposta?: string; se?: Condizione; effetti: EffettoMissione[] }
+export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; se?: Condizione; opzioni: Opzione[] }
 
 export interface Missione {
-  id: string; stagione: number; episodio: number; titolo: string; disponibile_se: Condizione;
+  id: string; stagione: number; episodio: number; titolo: string; disponibile_se: Condizione; introduzione?: string[];
   briefing: Informazione[];
   mappa: { settori: { id: string; tipo: string; pos?: { x: number; y: number } }[]; risorse: Record<string, Risorsa> };
   ondate: { n: number; titolo?: string; eventi: Evento[]; chiamate?: Chiamata[] }[];
