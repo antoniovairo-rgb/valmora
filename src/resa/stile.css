@@ -73,3 +73,17 @@ a.pulsante { text-decoration: none; }
 .unita.in-volo { position: relative; z-index: 2; transform: translate(var(--dx), var(--dy)); box-shadow: 0 var(--spazio-1) var(--spazio-3) var(--colore-ombra); }
 .riposo { display: inline-flex; align-items: center; gap: var(--spazio-1); color: var(--colore-testo-tenue); font-size: var(--testo-piccolo); opacity: var(--opaco-tenue); }
 p.riposo { opacity: 1; }
+
+/* Mappa della città e stelle (D-060, D-061) */
+.mappa.citta { aspect-ratio: var(--citta-proporzione); }
+.episodio .settore-punto { color: var(--colore-testo); font: inherit; font-weight: 700; }
+.episodio.superato .settore-punto { background: var(--tensione-0); color: var(--colore-accento-testo); }
+.episodio.da_rigiocare .settore-punto { border-color: var(--colore-male); }
+.episodio.disponibile .settore-punto { border-color: var(--colore-acceso); }
+.episodio.futuro { opacity: var(--opaco); }
+.episodio.acceso .settore-punto { outline: var(--bordo-forte) solid var(--colore-accento); outline-offset: var(--spazio-1); }
+.stelle { display: inline-flex; gap: var(--spazio-1); }
+.stella { width: var(--stella); height: var(--stella); color: var(--colore-testo-tenue); }
+.stella.piena { color: var(--colore-accento); fill: var(--colore-accento); }
+.stelle.piccole .stella { width: var(--testo-piccolo); height: var(--testo-piccolo); }
+.stelle.piccole { padding: 0 var(--spazio-1); border-radius: var(--raggio-tondo); background: var(--colore-mappa); }

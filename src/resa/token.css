@@ -22,6 +22,8 @@
   --colore-radio: #0f1a14;
   --colore-radio-testo: #9fe8b0;
   --colore-ombra: #000000;
+  --colore-isolato: #18222c;
+  --colore-fiume: #1f4a63;
 
   /* Tensione per settore (D-055): solo colore, dal verde al rosso, mai il numero */
   --tensione-0: #3fae6b;
@@ -58,6 +60,8 @@
   --icona: 18px;
   --mappa-proporzione: 1 / 1;
   --nome-max: 7em;
+  --citta-proporzione: 4 / 5;
+  --stella: 24px;
 
   --larghezza-max: 480px;
   --tocco-min: 44px;

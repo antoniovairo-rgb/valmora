@@ -1,19 +1,22 @@
-// Flusso di una missione a scene (D-053): titolo → sala operativa → briefing → per ogni ondata
-// schieramento → chiamate → rapporto → verbale. La mappa tattica resta fissa in alto, le scene cambiano
+// Flusso: titolo → mappa della città (D-061) → episodio: sala operativa → briefing → per ogni ondata
+// schieramento → chiamate → rapporto → verbale (stelle; se fallito si rigioca, D-059) → città. La mappa tattica resta fissa in alto, le scene cambiano
 // sotto. La resa legge e mostra; i calcoli stanno in src/logica. Si salva dopo ogni passo (D-040):
 // la scena dentro l'ondata si ricava dal salvataggio (partita.ts), quindi una ricarica riprende lì.
 import { AnimatePresence, MotionConfig } from 'motion/react';
 import { useState } from 'react';
 import { variabiliIniziali } from '../logica/condizioni.ts';
-import { chiudiOndata, concludiMissione, disponibili, iniziaMissione, missioneFinita, rispondi, schiera, type EsitoMissione, type InCorso } from '../logica/missione.ts';
+import { chiudiOndata, concludiMissione, disponibili, missioneFinita, rispondi, schiera, type EsitoMissione, type InCorso } from '../logica/missione.ts';
 import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
 import { carica, nuovoSeme, salva } from './archivio.ts';
 import { dichiarate, missione, missioni } from './dati.ts';
+import { chiudiEpisodio, iniziaEpisodio, prossimoEpisodio } from './episodi.ts';
+import type { Risultato } from '../logica/episodi.ts';
 import { Mappa, type MappaProps } from './mappa/Mappa.tsx';
 import { faseDi } from './partita.ts';
 import { Briefing } from './schermate/Briefing.tsx';
+import { Citta } from './schermate/Citta.tsx';
 import { Crediti } from './schermate/Crediti.tsx';
 import { Chiamata, Chiusura, Risposta } from './schermate/Ondata.tsx';
 import { Rapporto } from './schermate/Rapporto.tsx';
@@ -23,9 +26,8 @@ import { Schieramento, usate } from './schermate/Schieramento.tsx';
 import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
 
-type Schermata = 'titolo' | 'crediti' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
+type Schermata = 'titolo' | 'crediti' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
 
-const prossimaMissione = (s: Salvataggio) => missioni.find((m) => !s.missioni_concluse.includes(m.id)) ?? null;
 const libera = (m: Missione, ic: InCorso, d: Disposizione, preferita: string | null) => {
   const disp = disponibili(m, ic);
   const ok = (r: string) => (disp[r] ?? 0) - usate(d, r) > 0;
@@ -38,31 +40,42 @@ export function App() {
   const [visti, setVisti] = useState(0);
   const [bozza, setBozza] = useState<Disposizione>({});
   const [scelta, setScelta] = useState<string | null>(null);
-  const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione } | null>(null);
+  const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione; r: Risultato; migliore: boolean } | null>(null);
+  const [scelto, setScelto] = useState<string | null>(null); // episodio scelto sulla mappa della città
   const [eco, setEco] = useState<Opzione | null>(null); // risposta all'ultima scelta, solo a schermo
   const aggiorna = (s: Salvataggio) => { salva(s); setSal(s); };
   const conIc = (ic: InCorso | null) => sal && aggiorna({ ...sal, in_corso: ic });
 
   const nuova = () => {
     const seme = nuovoSeme();
-    aggiorna({ save_version: SAVE_VERSION, game_version: GAME_VERSION, seme, caso: seme, variabili: variabiliIniziali(dichiarate.values()), missioni_concluse: [], in_corso: null });
-    setSchermata('sala');
+    const s: Salvataggio = { save_version: SAVE_VERSION, game_version: GAME_VERSION, seme, caso: seme, variabili: variabiliIniziali(dichiarate.values()), missioni_concluse: [], episodi: {}, in_corso: null };
+    aggiorna(s);
+    alla_citta(s);
   };
+  // Sulla mappa è già scelto il prossimo episodio da giocare; se sono tutti superati, l'ultimo.
+  function alla_citta(s: Salvataggio) { setScelto(prossimoEpisodio(s)?.id ?? missioni.at(-1)?.id ?? null); setSchermata('citta'); }
   const riprendi = () => {
     const ic = sal?.in_corso;
     setBozza({}); setEco(null);
-    setSchermata(!ic ? 'sala' : missioneFinita(missione(ic.missione), ic) ? 'rapporto' : 'gioco');
+    if (!ic) { if (sal) alla_citta(sal); return; }
+    setSchermata(missioneFinita(missione(ic.missione), ic) ? 'rapporto' : 'gioco');
   };
+  const giocaEpisodio = (id: string) => { setScelto(id); setSchermata('sala'); };
 
   const ic = sal?.in_corso ?? null;
-  const m = ic ? missione(ic.missione) : sal ? prossimaMissione(sal) : null;
+  const m = ic ? missione(ic.missione) : scelto ? missione(scelto) : null;
   let nome: string = schermata;
   let corpo;
   let mappa: Omit<MappaProps, 'm'> | null = null;
 
-  const titolo = <Titolo puoRiprendere={!!sal && (!!ic || !!prossimaMissione(sal))} nuova={nuova} riprendi={riprendi} crediti={() => setSchermata('crediti')} />;
+  const titolo = <Titolo puoRiprendere={!!sal} nuova={nuova} riprendi={riprendi} crediti={() => setSchermata('crediti')} />;
   if (schermata === 'crediti') corpo = <Crediti indietro={() => setSchermata('titolo')} />;
-  else if (schermata === 'verbale' && esito) corpo = <Verbale m={esito.m} esito={esito.e} fine={() => setSchermata('titolo')} />;
+  else if (schermata === 'verbale' && esito && sal) {
+    corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
+      rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} />;
+  } else if (schermata === 'citta' && sal && !ic) {
+    corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} />;
+  }
   else if (schermata === 'titolo' || !sal || !m) { nome = 'titolo'; corpo = titolo; }
   else if (schermata === 'sala') {
     nome = 'sala';
@@ -72,7 +85,7 @@ export function App() {
     const ultimo = m.briefing[visti - 1];
     mappa = { accesi: ultimo?.settore ? [ultimo.settore] : [] };
     corpo = <Briefing m={m} visti={visti} prossimo={() => setVisti(visti + 1)} inizia={() => {
-      setBozza({}); conIc(iniziaMissione(m, sal.variabili, dichiarate)); setSchermata('gioco');
+      setBozza({}); conIc(iniziaEpisodio(sal, m)); setSchermata('gioco');
     }} />;
   } else if (schermata === 'rapporto' && ic?.rapporti.length) {
     const r = ic.rapporti.at(-1)!;
@@ -81,10 +94,9 @@ export function App() {
     corpo = <Rapporto m={m} r={r} ultima={fine} prossime={fine ? {} : disponibili(m, ic)} avanti={() => {
       if (!fine) { setBozza({}); setSchermata('gioco'); return; }
       const e = concludiMissione(m, ic, dichiarate);
-      // Fallita (D-059): la storia non cambia e l'episodio resta da giocare.
-      if (e.esito.fallita) aggiorna({ ...sal, in_corso: null });
-      else aggiorna({ ...sal, variabili: e.variabili, missioni_concluse: [...sal.missioni_concluse, m.id], in_corso: null });
-      setEsito({ m, e });
+      const chiuso = chiudiEpisodio(sal, m, e); // registro, stelle, variabili (D-059…D-062)
+      aggiorna(chiuso.salvataggio);
+      setEsito({ m, e, r: chiuso.risultato, migliore: chiuso.migliore });
       setSchermata('verbale');
     }} />;
   } else if (!ic) { nome = 'titolo'; corpo = titolo; }

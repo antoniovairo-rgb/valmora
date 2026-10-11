@@ -11,7 +11,8 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
-import { attenta, equilibrata } from '../src/logica/bot.ts';
+import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
+import { valutaEpisodio } from '../src/logica/episodi.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { URL_APK } from '../src/resa/collegamenti.ts';
 
@@ -41,7 +42,8 @@ function gioca(m, dich, g) {
     ondate.push({ disposizione, risposte });
     s = chiudiOndata(m, s, dich);
   }
-  return { ondate, esito: concludiMissione(m, s, dich).esito.id };
+  const fine = concludiMissione(m, s, dich);
+  return { ondate, esito: fine.esito.id, stelle: valutaEpisodio(m, fine).stelle, fallita: !!fine.esito.fallita };
 }
 
 /**
@@ -55,17 +57,18 @@ export function pianoAttento(dirDati = 'data') {
   const m = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio)[0];
   const dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d]));
   const migliore = m.esiti[0].id;
+  const fallimento = gioca(m, dich, peggiore(creaCaso(1), dich)); // per provare «fallito → rigioca» (D-059)
   const att = attenta(creaCaso(1), dich);
   const base = gioca(m, dich, att);
-  if (base.esito === migliore) return { m, ...base, migliore, giocatore: 'attento', esitoAttento: base.esito };
+  if (base.esito === migliore) return { m, ...base, migliore, fallimento, giocatore: 'attento', esitoAttento: base.esito };
   const eq = gioca(m, dich, equilibrata(creaCaso(1), dich));
-  if (eq.esito === migliore) return { m, ...eq, migliore, giocatore: 'equilibrato', esitoAttento: base.esito };
+  if (eq.esito === migliore) return { m, ...eq, migliore, fallimento, giocatore: 'equilibrato', esitoAttento: base.esito };
   for (let seme = 1; seme <= 1000; seme++) {
     const caso = creaCaso(`foto:${m.id}:${seme}`);
     const p = gioca(m, dich, { schiera: att.schiera, scegli: (_m, st, c) => caso.scegli(opzioniValide(c, st)).id });
-    if (p.esito === migliore) return { m, ...p, migliore, giocatore: `schieramento attento, risposte dal seme ${seme}`, esitoAttento: base.esito };
+    if (p.esito === migliore) return { m, ...p, migliore, fallimento, giocatore: `schieramento attento, risposte dal seme ${seme}`, esitoAttento: base.esito };
   }
-  return { m, ...base, migliore, giocatore: 'attento (nessun seme 1-1000 arriva al migliore)', esitoAttento: base.esito };
+  return { m, ...base, migliore, fallimento, giocatore: 'attento (nessun seme 1-1000 arriva al migliore)', esitoAttento: base.esito };
 }
 
 export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 'data') {
@@ -117,63 +120,91 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
       await foto();
       await premi('[data-azione="crediti"]'); await scena('crediti'); await foto();
       await pagina.getByRole('button', { name: 'Torna al titolo' }).click(); await scena('titolo');
-      await pagina.getByRole('button', { name: 'Nuova partita' }).click(); await scena('sala'); await foto();
-      await premi('[data-azione="avanti"]'); await scena('briefing'); await foto();
-      while (await pagina.locator('[data-azione="prossimo"]').count()) await premi('[data-azione="prossimo"]');
-      if (piano.m.briefing.length > 1) { await scena('briefing'); await foto(); }
-      await premi('[data-azione="inizia"]');
+      await pagina.getByRole('button', { name: 'Nuova partita' }).click(); await scena('citta'); await foto();
 
-      for (const [i, o] of piano.ondate.entries()) {
-        const n = i + 1;
-        await scena('schieramento');
-        atteso(`ondata ${n}: la scena è dell'ondata ${await pagina.getAttribute('main', 'data-ondata')}`, (await pagina.getAttribute('main', 'data-ondata')) === String(n));
-        let unita = Object.entries(o.disposizione).flatMap(([r, ps]) => Object.entries(ps).flatMap(([s, q]) => Array(q).fill([r, s])));
-        if (n === 1 && unita.length) { // la prima unità si trascina davvero dal vassoio alla mappa
-          const [r, s] = unita[0];
-          const da = await pagina.locator(`[data-risorsa="${r}"]`).boundingBox();
-          const a = await pagina.locator(`[data-settore="${s}"] .settore-punto`).boundingBox();
-          await pagina.mouse.move(da.x + da.width / 2, da.y + da.height / 2);
-          await pagina.mouse.down();
-          await pagina.mouse.move(a.x + a.width / 2, a.y + a.height / 2, { steps: 12 });
-          await pagina.mouse.up();
-          atteso(`trascinamento: ${r} non è arrivata in ${s}`, (await pagina.locator(`[data-presenza="${r}@${s}"]`).count()) === 1);
-          unita = unita.slice(1);
-        }
-        for (const [r, s] of unita) { // le altre col tocco: unità, poi settore
-          if ((await pagina.getAttribute(`[data-risorsa="${r}"]`, 'aria-pressed')) !== 'true') await premi(`[data-risorsa="${r}"]`);
-          await premi(`[data-settore="${s}"] .settore-punto`);
-        }
-        await foto();
-        await premi('[data-azione="conferma"]');
-        const dopo = o.risposte.length ? 'chiamata' : 'chiusura';
-        await scena(dopo);
-        if (n === 1) { // a metà ondata: ricarico e riprendo
-          const prima = await presenze();
-          await ricaricaERiprendi(dopo, 'dopo lo schieramento');
-          atteso(`ripresa: unità sulla mappa ${await presenze()} invece di ${prima}`, (await presenze()) === prima);
-        }
-        for (const [j, [c, op]] of o.risposte.entries()) {
-          await scena('chiamata');
-          atteso(`ondata ${n}: aperta una chiamata diversa da «${c}»`, (await pagina.locator(`[data-messaggio="chiamata-${c}"]`).count()) === 1);
-          await foto();
-          await premi(`[data-opzione="${op}"]`);
-          if (piano.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) {
-            await scena('risposta');
-            if (j === 0) await foto();
-            await premi('[data-azione="continua"]');
+      // Una partita intera dall'interfaccia, dalla sala al verbale. «completa»: foto di ogni scena,
+      // trascinamento e ricariche a metà ondata; altrimenti solo il verbale (serve per il fallimento).
+      let completa = true;
+      const fotoSe = () => (completa ? foto() : Promise.resolve());
+      const partita = async (p) => {
+        await scena('sala'); await fotoSe();
+        await premi('[data-azione="avanti"]'); await scena('briefing'); await fotoSe();
+        while (await pagina.locator('[data-azione="prossimo"]').count()) await premi('[data-azione="prossimo"]');
+        if (p.m.briefing.length > 1) { await scena('briefing'); await fotoSe(); }
+        await premi('[data-azione="inizia"]');
+        for (const [i, o] of p.ondate.entries()) {
+          const n = i + 1;
+          await scena('schieramento');
+          atteso(`ondata ${n}: la scena è dell'ondata ${await pagina.getAttribute('main', 'data-ondata')}`, (await pagina.getAttribute('main', 'data-ondata')) === String(n));
+          let unita = Object.entries(o.disposizione).flatMap(([r, ps]) => Object.entries(ps).flatMap(([s, q]) => Array(q).fill([r, s])));
+          if (completa && n === 1 && unita.length) { // la prima unità si trascina davvero dal vassoio alla mappa
+            const [r, s] = unita[0];
+            const da = await pagina.locator(`[data-risorsa="${r}"]`).boundingBox();
+            const a = await pagina.locator(`[data-settore="${s}"] .settore-punto`).boundingBox();
+            await pagina.mouse.move(da.x + da.width / 2, da.y + da.height / 2);
+            await pagina.mouse.down();
+            await pagina.mouse.move(a.x + a.width / 2, a.y + a.height / 2, { steps: 12 });
+            await pagina.mouse.up();
+            atteso(`trascinamento: ${r} non è arrivata in ${s}`, (await pagina.locator(`[data-presenza="${r}@${s}"]`).count()) === 1);
+            unita = unita.slice(1);
           }
-          if (n === 1 && j === 0) await ricaricaERiprendi(o.risposte.length > 1 ? 'chiamata' : 'chiusura', 'dopo la prima risposta');
+          for (const [r, s] of unita) { // le altre col tocco: unità, poi settore
+            if ((await pagina.getAttribute(`[data-risorsa="${r}"]`, 'aria-pressed')) !== 'true') await premi(`[data-risorsa="${r}"]`);
+            await premi(`[data-settore="${s}"] .settore-punto`);
+          }
+          await fotoSe();
+          await premi('[data-azione="conferma"]');
+          const dopo = o.risposte.length ? 'chiamata' : 'chiusura';
+          await scena(dopo);
+          if (completa && n === 1) { // a metà ondata: ricarico e riprendo
+            const prima = await presenze();
+            await ricaricaERiprendi(dopo, 'dopo lo schieramento');
+            atteso(`ripresa: unità sulla mappa ${await presenze()} invece di ${prima}`, (await presenze()) === prima);
+          }
+          for (const [j, [c, op]] of o.risposte.entries()) {
+            await scena('chiamata');
+            atteso(`ondata ${n}: aperta una chiamata diversa da «${c}»`, (await pagina.locator(`[data-messaggio="chiamata-${c}"]`).count()) === 1);
+            await fotoSe();
+            await premi(`[data-opzione="${op}"]`);
+            if (p.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) {
+              await scena('risposta');
+              if (j === 0) await fotoSe();
+              await premi('[data-azione="continua"]');
+            }
+            if (completa && n === 1 && j === 0) await ricaricaERiprendi(o.risposte.length > 1 ? 'chiamata' : 'chiusura', 'dopo la prima risposta');
+          }
+          await scena('chiusura'); await fotoSe();
+          await premi('[data-azione="rapporto"]'); await scena('rapporto'); await fotoSe();
+          const cifre = await pagina.locator('.elenco-settori').textContent();
+          atteso(`rapporto ${n}: la tensione si vede in numeri (D-055): «${cifre}»`, !/\d/.test(cifre ?? ''));
+          await premi('[data-azione="avanti"]');
         }
-        await scena('chiusura'); await foto();
-        await premi('[data-azione="rapporto"]'); await scena('rapporto'); await foto();
-        const cifre = await pagina.locator('.elenco-settori').textContent();
-        atteso(`rapporto ${n}: la tensione si vede in numeri (D-055): «${cifre}»`, !/\d/.test(cifre ?? ''));
-        await premi('[data-azione="avanti"]');
-      }
-      await scena('verbale'); await foto();
+        await scena('verbale'); await foto();
+      };
+
+      // 1) fallimento col giocatore peggiore → «Rigioca l'episodio» (D-059)
+      const f = piano.fallimento;
+      atteso(`il giocatore peggiore non fallisce l'episodio (esito «${f.esito}»): il rigioco non si prova`, f.fallita);
+      await premi('[data-azione="avvia-episodio"]');
+      completa = false;
+      await partita({ m: piano.m, ...f });
+      completa = true;
+      atteso(`fallimento: il verbale non dice «fallito» (esito «${await pagina.getAttribute('[data-esito]', 'data-esito')}»)`, (await pagina.locator('[data-fallita="si"]').count()) === 1);
+      atteso('fallimento: stelle diverse da 0', (await pagina.getAttribute('.stelle', 'data-stelle')) === '0');
+      await premi('[data-azione="rigioca"]');
+
+      // 2) rigioco col giocatore migliore, con tutte le prove
+      await partita(piano);
       const esito = await pagina.getAttribute('[data-esito]', 'data-esito');
       atteso(`giocatore «${piano.giocatore}»: la resa finisce con «${esito}», il motore dice «${piano.esito}»`, esito === piano.esito);
       atteso(`giocatore «${piano.giocatore}»: non arriva all'esito migliore «${piano.migliore}» (arriva a «${esito}»)`, esito === piano.migliore);
+      const stelle = await pagina.getAttribute('.stelle', 'data-stelle');
+      atteso(`verbale: ${stelle} stelle a schermo, il motore dice ${piano.stelle}`, stelle === String(piano.stelle));
+      // 3) mappa della città: l'episodio è superato e mostra le sue stelle
+      await premi('[data-azione="citta"]'); await scena('citta'); await foto();
+      const ep = pagina.locator(`[data-episodio="${piano.m.id}"]`);
+      atteso(`città: ${piano.m.id} è «${await ep.getAttribute('data-stato')}», non «superato»`, (await ep.getAttribute('data-stato')) === 'superato');
+      atteso(`città: stelle di ${piano.m.id} sulla mappa diverse da ${piano.stelle}`, (await ep.locator('.stelle').getAttribute('data-stelle')) === String(piano.stelle));
       await pagina.close();
       giri.push(g);
     }
