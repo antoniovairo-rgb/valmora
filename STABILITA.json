@@ -6032,6 +6032,61 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T09:55:26.392Z",
+      "commit": "e46eba7",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "tests/missione.test.ts(74,5): error TS2322: Type 'InCorso' is not assignable to type '{ missione: string; ondata: number; riserva: Record<string, number>; riposo: Record<string, number>; disposizione: Disposizione | null; modifiche: Record<string, number>; risposte: Record<string, string>; scelte: { ondata: number; chiamata: string; opzione: string; }[]; rapporti: RapportoOndata[]; variabili: Variabi...'.",
+            "  Types of property 'tensione' are incompatible.",
+            "    Type 'Record<string, number>' is missing the following properties from type '{ strada: number; curva: number; }': strada, curva"
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }

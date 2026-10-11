@@ -2,7 +2,7 @@
 // restituisce uno nuovo, serializzabile (finisce nel salvataggio fra un passo e l'altro).
 //
 // Per ogni ondata: schiera → rispondi alle chiamate aperte → chiudiOndata.
-// - La tensione di ogni settore (0-10) passa all'ondata dopo: se il settore è presidiato (copertura > 0)
+// - La tensione di ogni settore (0-10) passa all'ondata dopo: se il settore è presidiato (almeno un'unità)
 //   e non resta scoperto si dimezza (per difetto); se è vuoto resta com'è; se è scoperto si somma (C01-O01).
 // - Lo schieramento si fa una volta per ondata, prima delle chiamate (C01-A01). Rinforzi e perdite
 //   (effetto «riserva») contano dall'ondata successiva; la riserva non scende sotto −quantità (C01-A04).
@@ -59,13 +59,13 @@ export function disponibili(m: Missione, s: InCorso): Record<string, number> {
 const oggetto = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
 
 export function controllaDisposizione(m: Missione, s: InCorso, d: Disposizione): string[] {
-  if (!oggetto(d)) return ['la disposizione non è un elenco di risorse'];
+  if (!spento('C02N04') && !oggetto(d)) return ['la disposizione non è un elenco di risorse'];
   const p: string[] = [];
   const settori = new Set(m.mappa.settori.map((x) => x.id));
   const disp = disponibili(m, s);
   for (const [r, perSettore] of Object.entries(d)) {
     if (spento('C01A05') ? !(r in disp) : !Object.hasOwn(disp, r)) { p.push(`risorsa «${r}» non disponibile in ${m.id}`); continue; }
-    if (!oggetto(perSettore)) { p.push(`${r}: serve un elenco settore → unità`); continue; }
+    if (!spento('C02N04') && !oggetto(perSettore)) { p.push(`${r}: serve un elenco settore → unità`); continue; }
     let tot = 0;
     for (const [settore, n] of Object.entries(perSettore)) {
       if (!settori.has(settore)) p.push(`settore «${settore}» non è nella mappa di ${m.id}`);
@@ -138,7 +138,8 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
     const sc = Math.max(0, pressione - copertura);
     const prima = s.tensione[settore.id] ?? 0;
     scoperto[settore.id] = sc;
-    const presidiato = copertura > 0 || spento('C01O01');
+    // qualunque unità presidia, anche il mediatore (C02-N05); rossi: C01O01 = sempre, C02N05 = solo con copertura
+    const presidiato = spento('C01O01') || (spento('C02N05') ? copertura > 0 : unita.length > 0);
     tensione[settore.id] = lim(sc > 0 ? prima + sc : presidiato ? Math.floor(prima / 2) : prima);
     if (sc > 0) for (const u of unita) aRiposo[u.r] = (aRiposo[u.r] ?? 0) + u.n;
   }

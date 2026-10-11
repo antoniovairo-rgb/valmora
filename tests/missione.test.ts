@@ -68,6 +68,12 @@ describe('missione a scene', () => {
     s = rispondi(m, s, 'k1', 'rinforzi', dich);
     expect(() => schiera(m, s, { squadre: { strada: 3 } })).toThrow(/prima delle chiamate/);
   });
+  it('anche il solo mediatore presidia il settore (C02-N05)', () => {
+    const m = missione();
+    let s = { ...iniziaMissione(m, v0, dich), tensione: { strada: 0, curva: 6 } };
+    s = chiudiOndata(m, rispondi(m, schiera(m, s, { squadre: { strada: 2 }, mediatore: { curva: 1 } }), 'k1', 'rinforzi', dich), dich);
+    expect(s.tensione.curva).toBe(3);
+  });
   it('la riserva non scende sotto zero unità (C01-A04)', () => {
     const m = missione();
     m.ondate[0]!.chiamate![0]!.opzioni[1]!.effetti = [{ riserva: 'squadre', valore: -9 }];
