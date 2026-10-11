@@ -1,0 +1,44 @@
+# Pubblica il gioco su GitHub Pages da main (D-045): link di prova per il telefono del PO.
+# Finché Pages non è attivo nelle impostazioni del repo (Source: GitHub Actions) il job
+# lo dichiara e si ferma senza fallire.
+name: pagine
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pagine
+  cancel-in-progress: true
+jobs:
+  pubblica:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: attivo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${{ github.repository }}/pages" >/dev/null 2>&1; then echo "si=1" >> "$GITHUB_OUTPUT";
+          else echo "::notice::GitHub Pages non è attivo: Settings → Pages → Source: GitHub Actions"; fi
+      - if: steps.attivo.outputs.si == '1'
+        uses: actions/checkout@v4
+      - if: steps.attivo.outputs.si == '1'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - if: steps.attivo.outputs.si == '1'
+        run: npm ci && npx vite build
+      - if: steps.attivo.outputs.si == '1'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - if: steps.attivo.outputs.si == '1'
+        id: deploy
+        uses: actions/deploy-pages@v4
