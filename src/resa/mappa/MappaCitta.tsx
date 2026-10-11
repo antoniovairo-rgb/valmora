@@ -12,6 +12,9 @@ import { spento } from '../../interruttori.ts';
 const StratoCitta = lazy(() => import('./StratoCitta.tsx').then((x) => ({ default: x.StratoCitta })));
 const conWebgl = typeof document !== 'undefined' && webglDisponibile();
 
+/** Episodio abbozzato (D-087): bordo tratteggiato sul punto, etichetta sulla scheda. Rosso C14B01: nessun segno. */
+export const bozza = (m: Missione) => !!m.bozza && !spento('C14B01');
+
 export interface VoceCitta { m: Missione; stato: StatoEpisodio; stelle: number | null }
 
 const posiziona = (x: number, y: number) => (el: HTMLElement | null) => {
@@ -30,10 +33,10 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
     <div className="mappa citta" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa di Valmora">
       {conWebgl && <Suspense fallback={null}><StratoCitta contenitore={contenitore} punti={punti} margine={margine} pronto={() => setPronta(true)} /></Suspense>}
       {voci.map((v) => (
-        <div key={v.m.id} ref={posiziona(v.pos.x, v.pos.y)} data-episodio={v.m.id} data-stato={v.stato}
-          className={`settore lato-${v.pos.x < 30 ? 'sinistra' : v.pos.x > 70 ? 'destra' : 'centro'} episodio ${v.stato}${p.scelto === v.m.id ? ' acceso' : ''}`}>
+        <div key={v.m.id} ref={posiziona(v.pos.x, v.pos.y)} data-episodio={v.m.id} data-stato={v.stato} data-bozza={bozza(v.m) ? 'si' : undefined}
+          className={`settore lato-${v.pos.x < 30 ? 'sinistra' : v.pos.x > 70 ? 'destra' : 'centro'} episodio ${v.stato}${p.scelto === v.m.id ? ' acceso' : ''}${bozza(v.m) ? ' bozza' : ''}`}>
           <button type="button" className="settore-punto" disabled={v.stato === 'futuro'} onClick={() => p.scegli(v.m.id)}
-            aria-label={`Episodio ${v.m.episodio}: ${t(v.m.titolo)}${v.stelle !== null ? `, ${v.stelle} stelle su 3` : ''}${v.stato === 'futuro' ? ', non ancora disponibile' : ''}`}>
+            aria-label={`Episodio ${v.m.episodio}: ${t(v.m.titolo)}${v.stelle !== null ? `, ${v.stelle} stelle su 3` : ''}${v.stato === 'futuro' ? ', non ancora disponibile' : ''}${bozza(v.m) ? ', bozza' : ''}`}>
             {v.m.episodio}
           </button>
           {/* PO-044: il nome solo sull'episodio scelto, gli altri punti mostrano il numero (rosso __NO_C13M01: tutti i nomi) */}

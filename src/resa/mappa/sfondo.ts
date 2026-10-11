@@ -5,12 +5,13 @@
 // Colori: solo dai token CSS «--mappa-*» (letti a runtime), mai scritti qui; curve, folla e corteo coi
 // colori del club della curva (dati, D-086), e se il club non li ha i token di prima.
 import { creaCaso } from '../../logica/caso.ts';
+import { spento } from '../../interruttori.ts';
 import { cartelloni, notte, parcheggi, quartiere } from './notte.ts';
 
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number }
 export interface Colori { primario: string; secondario: string }
-export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; viali: Pt[][]; idViali: string[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; notte: boolean; cartelloni: boolean }
+export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; viali: Pt[][]; idViali: string[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; notte: boolean; cartelloni: boolean }
 /** Atmosfera della missione (campi facoltativi dei dati, mappa.ora e mappa.dettagli): e03 è di notte. */
 export interface Atmosfera { notte?: boolean; cartelloni?: boolean }
 export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; coloriCorteo: [string, string]; fari: Pt[] }
@@ -62,7 +63,11 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
   });
   const quartieri = settori.filter((s) => s.tipo === 'quartiere').map((s) => ({ x: s.x, y: s.y }));
   const parch = settori.filter((s) => s.id?.includes('parcheggi')).map((s) => ({ x: s.x, y: s.y }));
-  return { W, H, club, stadio, viali, idViali: strade.map((s) => s.id ?? ''), centro, stazione, quartieri, parcheggi: parch, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
+  // Ripiego per i tipi senza un disegno loro (piazza, porto, mercato… degli abbozzi, S-09): una piazza
+  // lastricata sotto il settore, così il punto non cade sui tetti. Rosso C14M01: niente piazze.
+  const disegnati = new Set(['curva', 'strada', 'stazione', 'quartiere']);
+  const slarghi = spento('C14M01') ? [] : settori.filter((s) => !disegnati.has(s.tipo) && !s.id?.includes('parcheggi')).map((s) => ({ x: s.x, y: s.y }));
+  return { W, H, club, stadio, viali, idViali: strade.map((s) => s.id ?? ''), centro, stazione, quartieri, parcheggi: parch, slarghi, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
 }
 
 export const bezier = (p: Pt[], t: number): Pt => {
@@ -70,6 +75,12 @@ export const bezier = (p: Pt[], t: number): Pt => {
   const k = [u * u * u, 3 * u * u * t, 3 * u * t * t, t * t * t];
   return { x: p.reduce((a, q, i) => a + q.x * k[i]!, 0), y: p.reduce((a, q, i) => a + q.y * k[i]!, 0) };
 };
+
+/** Piazza lastricata (ripiego per i tipi di settore senza un disegno loro). */
+function piazza(f: CanvasRenderingContext2D, q: Pt) {
+  f.fillStyle = token('--mappa-marciapiede'); f.beginPath(); f.roundRect(q.x - 46, q.y - 36, 92, 72, 10); f.fill();
+  f.fillStyle = token('--mappa-piazzale'); f.beginPath(); f.roundRect(q.x - 40, q.y - 30, 80, 60, 8); f.fill();
+}
 
 export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Animati {
   const { W, H, stadio } = d;
@@ -83,10 +94,12 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   for (let i = 0; i < W * H / 12; i++) { f.fillStyle = alfa(r() < 0.5 ? chiaro : scuro, r() * 0.05); f.fillRect(r() * W, r() * H, 1, 1); }
 
   const st = d.stazione;
+  const slarghi = d.slarghi.filter((q) => !dentro(q.x, q.y, 1.6)); // dentro lo stadio c'è già il piazzale
   const RQ = Math.min(W, H) * 0.2; // raggio del quartiere di case basse (e03)
   const vicino = (ps: Pt[], x: number, y: number, rx: number, ry: number) => ps.some((p) => Math.abs(x - p.x) < rx && Math.abs(y - p.y) < ry);
   isolati(f, W, H, r, (x, y) => dentro(x, y, 1.42) || (!!st && Math.abs(y - st.y) < 34 && x < st.x + 70)
-    || vicino(d.quartieri, x, y, RQ + 20, RQ + 16) || vicino(d.parcheggi, x, y, 70, 50));
+    || vicino(d.quartieri, x, y, RQ + 20, RQ + 16) || vicino(d.parcheggi, x, y, 70, 50) || vicino(slarghi, x, y, 52, 42));
+  for (const q of slarghi) piazza(f, q);
   if (st) stazione(f, W, st);
   for (const q of d.quartieri) quartiere(f, q, r, RQ);
   for (const q of d.parcheggi) parcheggi(f, q, r, 96, 64);
