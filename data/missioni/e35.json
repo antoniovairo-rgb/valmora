@@ -3,7 +3,6 @@
   "stagione": 3,
   "episodio": 35,
   "titolo": "testi:e35.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 65,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e35.intro1",
-    "testi:e35.intro2",
-    "testi:e35.intro3"
+    "testi:e35.intro2"
   ],
   "briefing": [
     {

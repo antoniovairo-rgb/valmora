@@ -1,6 +1,5 @@
 {
   "id": "e36",
-  "bozza": true,
   "stagione": 3,
   "episodio": 36,
   "titolo": "testi:e36.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e36.intro1",
-    "testi:e36.intro2",
-    "testi:e36.intro3"
+    "testi:e36.intro2"
   ],
   "briefing": [
     {
@@ -582,6 +580,142 @@
               ],
               "risposta": "testi:e36.op.frase_neutra.r"
             }
+          ],
+          "se": {
+            "var": "fascicolo",
+            "uguale": "nessuno"
+          }
+        },
+        {
+          "id": "conti_procura",
+          "fonte": "comando",
+          "se": {
+            "var": "fascicolo",
+            "uguale": "procura"
+          },
+          "testo": "testi:e36.ch.conti_procura",
+          "commento": "testi:e36.ch.conti_procura.vice",
+          "opzioni": [
+            {
+              "id": "procura_frase_dura",
+              "testo": "testi:e36.op.frase_dura",
+              "costo": "testi:e36.op.frase_dura.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.frase_dura.r"
+            },
+            {
+              "id": "procura_frase_neutra",
+              "testo": "testi:e36.op.frase_neutra",
+              "costo": "testi:e36.op.frase_neutra.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.frase_neutra.r"
+            }
+          ]
+        },
+        {
+          "id": "conti_stampa",
+          "fonte": "comando",
+          "se": {
+            "var": "fascicolo",
+            "uguale": "stampa"
+          },
+          "testo": "testi:e36.ch.conti_stampa",
+          "commento": "testi:e36.ch.conti_stampa.vice",
+          "opzioni": [
+            {
+              "id": "stampa_frase_dura",
+              "testo": "testi:e36.op.frase_dura",
+              "costo": "testi:e36.op.frase_dura.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.frase_dura.r"
+            },
+            {
+              "id": "stampa_frase_neutra",
+              "testo": "testi:e36.op.frase_neutra",
+              "costo": "testi:e36.op.frase_neutra.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.frase_neutra.r"
+            }
+          ]
+        },
+        {
+          "id": "conti_comando",
+          "fonte": "comando",
+          "se": {
+            "var": "fascicolo",
+            "uguale": "comando"
+          },
+          "testo": "testi:e36.ch.conti_comando",
+          "commento": "testi:e36.ch.conti_comando.vice",
+          "opzioni": [
+            {
+              "id": "comando_frase_dura",
+              "testo": "testi:e36.op.frase_dura",
+              "costo": "testi:e36.op.frase_dura.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.frase_dura.r"
+            },
+            {
+              "id": "comando_frase_neutra",
+              "testo": "testi:e36.op.frase_neutra",
+              "costo": "testi:e36.op.frase_neutra.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.frase_neutra.r"
+            }
           ]
         },
         {
@@ -793,12 +927,29 @@
   ],
   "esiti": [
     {
-      "id": "contenuto",
+      "id": "confermato",
       "se": {
         "tutte": [
           {
             "var": "tensione_max",
-            "al_massimo": 3
+            "al_massimo": 6
+          },
+          {
+            "var": "credito",
+            "almeno": 6
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_confermato"
+    },
+    {
+      "id": "prorogato",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
           },
           {
             "var": "credito",
@@ -807,25 +958,24 @@
         ]
       },
       "effetti": [],
-      "verbale": "testi:e36.verbale_contenuto",
-      "stelle_min": 2
+      "verbale": "testi:e36.verbale_prorogato"
     },
     {
-      "id": "contenuto_a_fatica",
+      "id": "sostituito",
       "se": {
         "var": "tensione_max",
         "al_massimo": 6
       },
       "effetti": [],
-      "verbale": "testi:e36.verbale_a_fatica",
-      "stelle_max": 2
+      "stelle_max": 2,
+      "verbale": "testi:e36.verbale_sostituito"
     },
     {
       "id": "degenerato",
       "se": {},
       "effetti": [],
-      "verbale": "testi:e36.verbale_degenerato",
-      "fallita": true
+      "fallita": true,
+      "verbale": "testi:e36.verbale_degenerato"
     }
   ],
   "stelle": {
