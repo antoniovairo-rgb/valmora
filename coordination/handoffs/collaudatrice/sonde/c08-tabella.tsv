@@ -1,0 +1,72 @@
+e01	corteo_partito.scorta	testi:e01.op.scorta.c	pressione strada_cinderwick -2; riserva squadre -1	Calma la strada, ma ti costa una squadra.
+e01	corteo_partito.ferma	testi:e01.op.ferma.c	pressione strada_cinderwick +2; tensione curva_cinderwick +1; credito +1	Il comando apprezza; la strada e la curva si scaldano.
+e01	corteo_partito.osserva	testi:e01.op.osserva.c	pressione strada_cinderwick +1	Nessun costo subito, la strada si agita un po'.
+e01	ufficio_insiste.asseconda	testi:e01.op.asseconda.c	credito +1; pressione piazzale +2	Il club gradisce; il piazzale resta più scoperto.
+e01	ufficio_insiste.ignora	testi:e01.op.ignora.c	credito -1	Il club se la lega al dito.
+e01	pullman.conta	testi:e01.op.conta.c	pressione strada_larkspire -1	Allontana il rischio dalla strada.
+e01	pullman.aspetta	testi:e01.op.aspetta.c	pressione strada_larkspire +1; credito +1	Fai bella figura, ma la strada si carica.
+e01	rinforzi.chiedi	testi:e01.op.chiedi.c	riserva squadre +2; credito -2	Due squadre in più, ma il comando non dimentica.
+e01	rinforzi.rifiuta	testi:e01.op.rifiuta.c	(nessuno)	Nessun costo, nessun aiuto.
+e01	striscione.rimuovi	testi:e01.op.rimuovi.c	tensione curva_larkspire +2; credito +1	Il comando approva; la curva Larkspire si offende.
+e01	striscione.lascia	testi:e01.op.lascia.c	credito -1	Ci perdi la faccia.
+e01	striscione.ridi	testi:e01.op.ridi.c	tensione curva_larkspire +1	La curva lo prende come una sfida.
+e01	fumogeni.spegni	testi:e01.op.spegni.c	pressione curva_cinderwick -1; tensione curva_cinderwick +1	Fumo ridotto; la curva se lo ricorda.
+e01	fumogeni.sospendi	testi:e01.op.sospendi.c	pressione curva_cinderwick -3; credito -2	Fumo spento, ma la sospensione ti costa cara.
+e01	fumogeni.lascia_fumo	testi:e01.op.lascia_fumo.c	pressione curva_cinderwick +3	Nessun costo subito, la curva si infiamma.
+e01	porta_servizio.presidia	testi:e01.op.presidia.c	pressione piazzale -1; riserva steward -2	Porta chiusa, ma due steward restano lì.
+e01	porta_servizio.finta	testi:e01.op.finta.c	pressione curva_larkspire +2	Chi entra senza biglietto finisce in curva Larkspire.
+e01	presidente.vai	testi:e01.op.vai.c	credito +2; presidente_incontrato=true; tensione curva_cinderwick +2	Il presidente ti deve un favore; la curva Cinderwick resta senza di te.
+e01	presidente.manda_vice	testi:e01.op.manda_vice.c	credito +1; pressione piazzale +1	Mezza soddisfazione; il piazzale perde il vice.
+e01	presidente.aspetti	testi:e01.op.aspetti.c	credito -1	Il presidente non la prende bene.
+e01	capo_curva.mediatore	testi:e01.op.mediatore.c	pressione curva_cinderwick -2; riserva mediatore -1	Calma la curva, ma il mediatore resta lì.
+e01	capo_curva.nessuna	testi:e01.op.nessuna.c	tensione curva_cinderwick +1	La curva alza il volume.
+e01	capo_curva.ascolta	testi:e01.op.ascolta.c	credito -1; pressione curva_cinderwick -1	Un po' di calma, un po' di credito in meno.
+e01	pareggio.trattieni	testi:e01.op.trattieni.c	pressione strada_larkspire -2; tensione curva_larkspire +1	Strada più sicura; la curva ospite rumoreggia.
+e01	pareggio.insieme	testi:e01.op.insieme.c	pressione piazzale +3	Nessun costo subito, il piazzale si riempie.
+e01	incrocio.chiudi	testi:e01.op.chiudi.c	tensione strada_cinderwick +1; credito -1	Ferma lo scontro, scalda la strada di Cinderwick e costa credito.
+e01	incrocio.scorrere	testi:e01.op.scorrere.c	tensione strada_larkspire +3	Nessun costo subito, la strada di Larkspire rischia grosso.
+e01	troupe.intervista	testi:e01.op.intervista.c	credito +1; tensione piazzale +2	Bella figura in tv, il piazzale si agita.
+e01	troupe.niente	testi:e01.op.niente.c	credito -1	La stampa non gradisce.
+e01	sciarpe.paga	testi:e01.op.paga.c	credito -1; informatore_pagato=true; pressione strada_cinderwick -2	Costa credito, ma l'informatore ti resterà fedele.
+e01	sciarpe.non_paga	testi:e01.op.non_paga.c	informatore_pagato=false	Nessun costo; lui se ne ricorderà.
+e02	ritardo.scorta_subito	testi:e02.op.scorta_subito.c	pressione viale_stazione -2; riserva squadre -1	Il viale resta tranquillo, ma ti costa una squadra.
+e02	ritardo.trattieni	testi:e02.op.trattieni.c	pressione stazione +2; tensione stazione +1	La stazione si affolla e si scalda.
+e02	ritardo.lasciali	testi:e02.op.lasciali.c	pressione viale_stazione +2	Nessun costo subito, il viale si carica.
+e02	responsabile.fidati	testi:e02.op.fidati.c	credito +1; pressione viale_stazione +3	I Rovers apprezzano, ma il viale resta scoperto.
+e02	responsabile.non_fidarti	testi:e02.op.non_fidarti.c	credito -1	Il responsabile se la lega al dito.
+e02	selfie.devia	testi:e02.op.devia.c	pressione viale_stazione +1; tensione curva_larkspire -1	Larkspire si calma, il viale si allunga.
+e02	selfie.ignora_rete	testi:e02.op.ignora_rete.c	tensione curva_larkspire +2	Se non sono chiacchiere, Larkspire si scalda.
+e02	biglietti_voce.sequestra	testi:e02.op.sequestra.c	pressione tornelli -3	Toglie lavoro ai tornelli.
+e02	biglietti_voce.lascia_vendere	testi:e02.op.lascia_vendere.c	(nessuno)	Nessun costo, nessun aiuto.
+e02	secondo_treno.accoglienza	testi:e02.op.accoglienza.c	pressione stazione -2; credito -1	Stazione sotto controllo, ma costa credito.
+e02	secondo_treno.binario_lontano	testi:e02.op.binario_lontano.c	pressione stazione -1; pressione viale_stazione +1	Meno gente in stazione, più sul viale.
+e02	secondo_treno.normale	testi:e02.op.normale.c	pressione stazione +1	Nessun costo subito, la stazione si carica.
+e02	tornelli_falsi.respingi	testi:e02.op.respingi.c	tensione tornelli +3; credito +1	Il comando approva; la coda ai tornelli si arrabbia.
+e02	tornelli_falsi.settore_separato	testi:e02.op.settore_separato.c	pressione tornelli -2; pressione curva_ospiti +2; credito -1	Tornelli sgombri, la curva ospiti si riempie, costa credito.
+e02	tornelli_falsi.chiudi_occhio	testi:e02.op.chiudi_occhio.c	pressione tornelli -3; credito -2	Tornelli liberi, ma ti costa caro.
+e02	corteo_viale.corteo_scortato	testi:e02.op.corteo_scortato.c	pressione viale_stazione -2; riserva squadre -1	Corteo tranquillo, ma ti costa una squadra.
+e02	corteo_viale.corteo_no	testi:e02.op.corteo_no.c	tensione viale_stazione +2	I ragazzi la prendono male.
+e02	corteo_viale.mediatore_corteo	testi:e02.op.mediatore_corteo.c	pressione viale_stazione -1; credito +1; riserva mediatore -1	Percorso concordato; il mediatore resta lì.
+e02	comitato_quartiere.presidio_quartiere	testi:e02.op.presidio_quartiere.c	pressione curva_larkspire -1; tensione curva_ospiti +1	Il quartiere si calma, la curva ospiti si irrita.
+e02	comitato_quartiere.comunicato	testi:e02.op.comunicato.c	credito +1; tensione curva_larkspire +2	Bella figura; la curva Larkspire si scalda.
+e02	presidente_aiuta.accetta_aiuto	testi:e02.op.accetta_aiuto.c	riserva steward +2; credito -1	Due steward in più, ma ora sei in debito.
+e02	presidente_aiuta.declina_aiuto	testi:e02.op.declina_aiuto.c	credito +1	Il comando apprezza l'indipendenza.
+e02	striscione_ospiti.chiedi	testi:e02.op.chiedi.c	credito +1; pressione curva_ospiti +2	Il responsabile apprezza; la curva ospiti si agita.
+e02	striscione_ospiti.rimuovi_str	testi:e02.op.rimuovi_str.c	tensione curva_ospiti +2; credito +1	Il comando approva; la curva ospiti si offende.
+e02	striscione_ospiti.ignora_str	testi:e02.op.ignora_str.c	(nessuno)	Nessun costo, nessun aiuto.
+e02	fumogeni_ospiti.steward_fumo	testi:e02.op.steward_fumo.c	pressione curva_ospiti -2; tensione curva_ospiti +1; credito -1	Fumo ridotto, la curva se lo ricorda, costa credito.
+e02	fumogeni_ospiti.sospendi2	testi:e02.op.sospendi2.c	pressione curva_ospiti -3; credito -2	Fumo spento, ma la pausa ti costa cara.
+e02	fumogeni_ospiti.lascia_fumo2	testi:e02.op.lascia_fumo2.c	pressione curva_ospiti +2; credito +1	Il club gradisce; la curva ospiti si infiamma.
+e02	caldo_casa.mediatore_casa	testi:e02.op.mediatore_casa.c	pressione curva_larkspire -1; riserva mediatore -1	Calma la curva di casa, ma il mediatore resta lì.
+e02	caldo_casa.niente	testi:e02.op.niente.c	(nessuno)	Nessun costo, nessun aiuto.
+e02	biglietti_rete.annota	testi:e02.op.annota.c	furgone_visto=true; pressione tornelli -1	Un dettaglio in più nel rapporto.
+e02	biglietti_rete.lascia_perdere	testi:e02.op.lascia_perdere.c	(nessuno)	Nessun costo, nessun aiuto.
+e02	risultato.trattieni_ospiti	testi:e02.op.trattieni_ospiti.c	pressione viale_stazione -2; tensione curva_ospiti +2	Viale più sicuro; la curva ospiti rumoreggia.
+e02	risultato.prima_ospiti	testi:e02.op.prima_ospiti.c	pressione viale_stazione -1; riserva squadre -1; tensione curva_larkspire +1	Viale più sicuro, costa una squadra; Larkspire si offende.
+e02	ultimo_treno.trattieni_treno	testi:e02.op.trattieni_treno.c	credito -1; pressione stazione -2	Stazione più calma, ma le ferrovie non gradiscono.
+e02	ultimo_treno.parte	testi:e02.op.parte.c	pressione stazione +3	Nessun costo subito, chi resta a terra si arrabbia.
+e02	responsabile_saluta.saluta	testi:e02.op.saluta.c	credito +2; tensione curva_larkspire +3	Bella figura in tv; Larkspire non perdona.
+e02	responsabile_saluta.rifiuta_saluto	testi:e02.op.rifiuta_saluto.c	credito -1	I Rovers ci restano male.
+e02	vetrine.indaga	testi:e02.op.indaga.c	credito +1; riserva steward -2	Il comando apprezza; due steward davanti agli schermi.
+e02	vetrine.chiudi_viale	testi:e02.op.chiudi_viale.c	pressione viale_stazione -2; tensione stazione +1	Viale chiuso; la stazione si affolla.
+totale opzioni 71, senza accenno 0
