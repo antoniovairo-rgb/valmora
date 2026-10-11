@@ -41,7 +41,7 @@ Il codice è in `src/resa/mappa/dettagli.ts`: dieci disegni dall'alto, inventati
   - salvataggio di prova con tutti gli episodi superati, finestra 360×760, si apre ogni episodio dalla città;
   - le stelline sotto un episodio intercettano il tocco sul punto vicino. Esempio: quelle di e12 coprono e11;
   - lo si vede da quando la mappa della città si stringe per stare nello schermo (PO-052).
-- **Correzione**: `.episodio .settore-unita { pointer-events: none; }`. Le stelline sono solo decorative; il loro numero resta nell'etichetta del punto.
+- **Correzione**: `.episodio .settore-unita { pointer-events: none; }`. La principale ha messo la stessa regola in 2459e64: dopo il merge resta la sua, più il mio interruttore rosso. Le stelline sono solo decorative; il loro numero resta nell'etichetta del punto.
 - **Interruttore rosso** `__NO_C14T01` (regola CSS su `main.rosso-c14t01`).
 - **Guardiano**: `tools/foto-bozze.mjs` ora apre i 36 episodi con la finestra a 360×760, invece di 360×800.
 
@@ -53,7 +53,7 @@ Il codice è in `src/resa/mappa/dettagli.ts`: dieci disegni dall'alto, inventati
 | `… VALMORA_ROSSI=C14T01 …` | 360×760 | ROSSO: almeno 10 episodi non si aprono (e03, e04, e07, e11, e15, e16, e19, e23, e27, e28: «locator.click: Timeout»); l'elenco è troncato a 10 righe |
 | `VALMORA_LARGHEZZE=360 node tools/foto.mjs out/foto-det2 out/dist-dettagli out/dati-dettagli` | dati di prova con i 10 dettagli | verde |
 | `… VALMORA_ROSSI=C15D01 …` stessi dati di prova | 360 px | ROSSO: e11, e17, e30 senza dettagli; e35 solo con i cartelloni (che stanno in notte.ts) |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 767e7a5 (merge della principale 2459e64), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s12/2026-10-11/`: mappe di e11, e17, e30, e35 con i dettagli di prova, a 360 px.
 
