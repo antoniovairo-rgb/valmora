@@ -2,7 +2,9 @@
 
 Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo / da correggere / chiuso.
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
-Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9).
+Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
+
+Ultimo giro della routine: nessuno ancora (primo previsto 2026-10-11 10:30 UTC).
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
