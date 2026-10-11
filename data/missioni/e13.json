@@ -17,7 +17,7 @@
   "briefing": [
     {
       "testo": "testi:e13.info_organizzatori",
-      "fonte": "organizzatori_ritiro",
+      "fonte": "organizzatori_concerto",
       "affidabilita": "media",
       "vera": false,
       "settore": "parcheggi"
@@ -41,13 +41,13 @@
       "fonte": "voci_in_rete",
       "affidabilita": "media",
       "vera": false,
-      "settore": "bancarelle"
+      "settore": "piazza_concerto"
     }
   ],
   "mappa": {
     "settori": [
       {
-        "id": "strada_ritiro",
+        "id": "viale_concerto",
         "tipo": "strada",
         "pos": {
           "x": 15,
@@ -63,7 +63,7 @@
         }
       },
       {
-        "id": "bancarelle",
+        "id": "piazza_concerto",
         "tipo": "piazzale",
         "pos": {
           "x": 75,
@@ -113,7 +113,10 @@
           "rissa"
         ]
       }
-    }
+    },
+    "dettagli": [
+      "cartelloni_stadio_nuovo"
+    ]
   },
   "ondate": [
     {
@@ -121,13 +124,13 @@
       "titolo": "testi:e13.ondata1",
       "eventi": [
         {
-          "id": "pullman",
+          "id": "viale13",
           "tipo": "arrivo",
-          "settore": "strada_ritiro",
+          "settore": "viale_concerto",
           "pressione": 4
         },
         {
-          "id": "prato",
+          "id": "parcheggi13",
           "tipo": "sosta",
           "settore": "parcheggi",
           "pressione": 2
@@ -135,10 +138,10 @@
       ],
       "chiamate": [
         {
-          "id": "navetta",
-          "fonte": "organizzatori_ritiro",
-          "testo": "testi:e13.ch.navetta",
-          "settore": "strada_ritiro",
+          "id": "viale_pieno",
+          "fonte": "organizzatori_concerto",
+          "testo": "testi:e13.ch.viale_pieno",
+          "settore": "viale_concerto",
           "opzioni": [
             {
               "id": "scorta_strada",
@@ -146,7 +149,7 @@
               "costo": "testi:e13.op.scorta_strada.c",
               "effetti": [
                 {
-                  "pressione": "strada_ritiro",
+                  "pressione": "viale_concerto",
                   "valore": -2
                 },
                 {
@@ -162,7 +165,7 @@
               "costo": "testi:e13.op.chiudi_strada.c",
               "effetti": [
                 {
-                  "pressione": "strada_ritiro",
+                  "pressione": "viale_concerto",
                   "valore": -2
                 },
                 {
@@ -178,7 +181,7 @@
               "costo": "testi:e13.op.aspettino.c",
               "effetti": [
                 {
-                  "pressione": "strada_ritiro",
+                  "pressione": "viale_concerto",
                   "valore": 2
                 },
                 {
@@ -191,15 +194,15 @@
           ]
         },
         {
-          "id": "prato",
+          "id": "parcheggi_riservati",
           "fonte": "voci_in_rete",
-          "testo": "testi:e13.ch.prato",
+          "testo": "testi:e13.ch.parcheggi_riservati",
           "settore": "parcheggi",
           "opzioni": [
             {
-              "id": "multe_prato",
-              "testo": "testi:e13.op.multe_prato",
-              "costo": "testi:e13.op.multe_prato.c",
+              "id": "parcheggi_pubblici",
+              "testo": "testi:e13.op.parcheggi_pubblici",
+              "costo": "testi:e13.op.parcheggi_pubblici.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -210,7 +213,7 @@
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e13.op.multe_prato.r"
+              "risposta": "testi:e13.op.parcheggi_pubblici.r"
             },
             {
               "id": "steward_prato",
@@ -229,9 +232,9 @@
               "risposta": "testi:e13.op.steward_prato.r"
             },
             {
-              "id": "lascia_prato",
-              "testo": "testi:e13.op.lascia_prato",
-              "costo": "testi:e13.op.lascia_prato.c",
+              "id": "lascia_addetti",
+              "testo": "testi:e13.op.lascia_addetti",
+              "costo": "testi:e13.op.lascia_addetti.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -242,7 +245,7 @@
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e13.op.lascia_prato.r"
+              "risposta": "testi:e13.op.lascia_addetti.r"
             }
           ]
         },
@@ -288,7 +291,7 @@
           "fonte": "informatore_di_strada",
           "testo": "testi:e13.ch.abbonamenti_voce",
           "commento": "testi:e13.ch.abbonamenti_voce.vice",
-          "settore": "bancarelle",
+          "settore": "piazza_concerto",
           "se": {
             "var": "informatore_pagato",
             "uguale": true
@@ -300,7 +303,7 @@
               "costo": "testi:e13.op.segna_banco.c",
               "effetti": [
                 {
-                  "pressione": "bancarelle",
+                  "pressione": "piazza_concerto",
                   "valore": -3
                 },
                 {
@@ -338,9 +341,9 @@
           "pressione": 3
         },
         {
-          "id": "abbonamenti",
+          "id": "banchi13a",
           "tipo": "biglietti",
-          "settore": "bancarelle",
+          "settore": "piazza_concerto",
           "pressione": 3
         }
       ],
@@ -352,9 +355,9 @@
           "settore": "curva_ospiti",
           "opzioni": [
             {
-              "id": "stacca_micro",
-              "testo": "testi:e13.op.stacca_micro",
-              "costo": "testi:e13.op.stacca_micro.c",
+              "id": "sospendi_prove",
+              "testo": "testi:e13.op.sospendi_prove",
+              "costo": "testi:e13.op.sospendi_prove.c",
               "effetti": [
                 {
                   "pressione": "curva_ospiti",
@@ -365,7 +368,7 @@
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e13.op.stacca_micro.r"
+              "risposta": "testi:e13.op.sospendi_prove.r"
             },
             {
               "id": "lascia_cori",
@@ -387,9 +390,9 @@
         },
         {
           "id": "abbonamenti_finti",
-          "fonte": "organizzatori_ritiro",
+          "fonte": "organizzatori_concerto",
           "testo": "testi:e13.ch.abbonamenti_finti",
-          "settore": "bancarelle",
+          "settore": "piazza_concerto",
           "opzioni": [
             {
               "id": "sequestra_abb",
@@ -401,7 +404,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "bancarelle",
+                  "tensione": "piazza_concerto",
                   "valore": 2
                 }
               ],
@@ -413,7 +416,7 @@
               "costo": "testi:e13.op.steward_banchi.c",
               "effetti": [
                 {
-                  "pressione": "bancarelle",
+                  "pressione": "piazza_concerto",
                   "valore": -2
                 },
                 {
@@ -429,7 +432,7 @@
               "costo": "testi:e13.op.foto_venditori.c",
               "effetti": [
                 {
-                  "pressione": "bancarelle",
+                  "pressione": "piazza_concerto",
                   "valore": 1
                 }
               ],
@@ -493,9 +496,9 @@
           "pressione": 4
         },
         {
-          "id": "banchi",
+          "id": "banchi13b",
           "tipo": "biglietti",
-          "settore": "bancarelle",
+          "settore": "piazza_concerto",
           "pressione": 2
         }
       ],
@@ -598,7 +601,7 @@
         },
         {
           "id": "patto_dessi",
-          "fonte": "ufficio_sicurezza_cinderwick",
+          "fonte": "dessi",
           "testo": "testi:e13.ch.patto_dessi",
           "commento": "testi:e13.ch.patto_dessi.vice",
           "settore": "curva_cinderwick",
@@ -638,10 +641,10 @@
           ]
         },
         {
-          "id": "furgone_ritiro",
+          "id": "furgone_palco",
           "fonte": "informatore_di_strada",
-          "testo": "testi:e13.ch.furgone_ritiro",
-          "settore": "bancarelle",
+          "testo": "testi:e13.ch.furgone_palco",
+          "settore": "piazza_concerto",
           "se": {
             "var": "furgone_visto",
             "uguale": true
@@ -653,7 +656,7 @@
               "costo": "testi:e13.op.controlla_furgone.c",
               "effetti": [
                 {
-                  "pressione": "bancarelle",
+                  "pressione": "piazza_concerto",
                   "valore": -3
                 },
                 {
@@ -679,28 +682,28 @@
       "titolo": "testi:e13.ondata4",
       "eventi": [
         {
-          "id": "uscita_prato",
+          "id": "uscita13",
           "tipo": "deflusso",
           "settore": "parcheggi",
           "pressione": 5
         },
         {
-          "id": "ritorno_pullman",
+          "id": "viale13b",
           "tipo": "corteo",
-          "settore": "strada_ritiro",
+          "settore": "viale_concerto",
           "pressione": 4
         },
         {
-          "id": "ultimi_banchi",
+          "id": "banchi13c",
           "tipo": "biglietti",
-          "settore": "bancarelle",
+          "settore": "piazza_concerto",
           "pressione": 1
         }
       ],
       "chiamate": [
         {
           "id": "coda_auto",
-          "fonte": "organizzatori_ritiro",
+          "fonte": "organizzatori_concerto",
           "testo": "testi:e13.ch.coda_auto",
           "settore": "parcheggi",
           "opzioni": [
@@ -714,16 +717,16 @@
                   "valore": -2
                 },
                 {
-                  "pressione": "strada_ritiro",
+                  "pressione": "viale_concerto",
                   "valore": 1
                 }
               ],
               "risposta": "testi:e13.op.senso_unico.r"
             },
             {
-              "id": "vigili_paese",
-              "testo": "testi:e13.op.vigili_paese",
-              "costo": "testi:e13.op.vigili_paese.c",
+              "id": "vigili_urbani",
+              "testo": "testi:e13.op.vigili_urbani",
+              "costo": "testi:e13.op.vigili_urbani.c",
               "effetti": [
                 {
                   "pressione": "parcheggi",
@@ -734,7 +737,7 @@
                   "valore": -1
                 }
               ],
-              "risposta": "testi:e13.op.vigili_paese.r"
+              "risposta": "testi:e13.op.vigili_urbani.r"
             }
           ]
         },
@@ -742,7 +745,7 @@
           "id": "corteo_rovers",
           "fonte": "club_ospite",
           "testo": "testi:e13.ch.corteo_rovers",
-          "settore": "strada_ritiro",
+          "settore": "viale_concerto",
           "opzioni": [
             {
               "id": "corteo_si",
@@ -754,7 +757,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "strada_ritiro",
+                  "pressione": "viale_concerto",
                   "valore": 2
                 }
               ],
@@ -766,7 +769,7 @@
               "costo": "testi:e13.op.corteo_gruppi.c",
               "effetti": [
                 {
-                  "pressione": "strada_ritiro",
+                  "pressione": "viale_concerto",
                   "valore": -1
                 },
                 {
@@ -783,7 +786,7 @@
           "fonte": "vice",
           "testo": "testi:e13.ch.abbonamento_vice",
           "commento": "testi:e13.ch.abbonamento_vice.vice",
-          "settore": "bancarelle",
+          "settore": "piazza_concerto",
           "opzioni": [
             {
               "id": "agli_atti",
@@ -802,7 +805,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "bancarelle",
+                  "pressione": "piazza_concerto",
                   "valore": 1
                 }
               ],
