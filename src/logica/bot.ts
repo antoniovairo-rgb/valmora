@@ -17,10 +17,14 @@ function stima(m: Missione, s: InCorso, d: Dich): number {
   return Math.max(...t) * 100 + t.reduce((a, b) => a + b, 0);
 }
 
-const opzioneMigliore = (m: Missione, s: InCorso, c: Chiamata, d: Dich, segno: 1 | -1) => {
+/** Peso del credito per il giocatore equilibrato: un punto di credito vale quanto questa tensione stimata. */
+const PESO_CREDITO = 60; // misurato: 3 stelle stabili con pesi da 20 a 100 su e01 (120 = troppo)
+
+const opzioneMigliore = (m: Missione, s: InCorso, c: Chiamata, d: Dich, segno: 1 | -1, credito = 0) => {
   let scelta = opzioniValide(c, s)[0]!.id, voto = Infinity;
   for (const o of opzioniValide(c, s)) {
-    const v = segno * stima(m, rispondi(m, s, c.id, o.id, d), d);
+    const t = rispondi(m, s, c.id, o.id, d);
+    const v = segno * stima(m, t, d) - credito * (Number(t.variabili.credito ?? 0));
     if (v < voto) { voto = v; scelta = o.id; }
   }
   return scelta;
@@ -70,4 +74,10 @@ export const peggiore: Strategia = (_caso, d) => ({
   scegli: (m, s, c) => opzioneMigliore(m, s, c, d, -1),
 });
 
-export const STRATEGIE: Record<string, Strategia> = { casuale, attenta, peggiore };
+/** Come «attenta» nello schieramento, ma nelle risposte pesa anche il credito politico. */
+export const equilibrata: Strategia = (caso, d) => ({
+  schiera: attenta(caso, d).schiera,
+  scegli: (m, s, c) => opzioneMigliore(m, s, c, d, 1, PESO_CREDITO),
+});
+
+export const STRATEGIE: Record<string, Strategia> = { casuale, attenta, equilibrata, peggiore };

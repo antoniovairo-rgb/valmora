@@ -161,6 +161,10 @@
                 {
                   "tensione": "curva_cinderwick",
                   "valore": 1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e01.op.ferma.r"
@@ -195,7 +199,7 @@
                 },
                 {
                   "pressione": "piazzale",
-                  "valore": 1
+                  "valore": 2
                 }
               ],
               "risposta": "testi:e01.op.asseconda.r"
@@ -236,6 +240,10 @@
               "effetti": [
                 {
                   "pressione": "strada_larkspire",
+                  "valore": 1
+                },
+                {
+                  "aggiungi": "credito",
                   "valore": 1
                 }
               ],
@@ -285,6 +293,10 @@
                 {
                   "tensione": "curva_larkspire",
                   "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e01.op.rimuovi.r"
@@ -303,7 +315,12 @@
             {
               "id": "ridi",
               "testo": "testi:e01.op.ridi",
-              "effetti": [],
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e01.op.ridi.r"
             }
           ]
@@ -377,7 +394,7 @@
               "effetti": [
                 {
                   "pressione": "curva_cinderwick",
-                  "valore": 2
+                  "valore": 3
                 }
               ],
               "risposta": "testi:e01.op.lascia_fumo.r"
@@ -438,7 +455,7 @@
                 },
                 {
                   "tensione": "curva_cinderwick",
-                  "valore": 1
+                  "valore": 2
                 }
               ],
               "risposta": "testi:e01.op.vai.r"
@@ -449,6 +466,10 @@
               "effetti": [
                 {
                   "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
                   "valore": 1
                 }
               ],
@@ -524,9 +545,9 @@
       "eventi": [
         {
           "id": "deflusso_cinderwick",
-          "tipo": "deflusso",
+          "tipo": "corteo",
           "settore": "strada_cinderwick",
-          "pressione": 4
+          "pressione": 5
         },
         {
           "id": "deflusso_larkspire",
@@ -569,7 +590,7 @@
               "effetti": [
                 {
                   "pressione": "piazzale",
-                  "valore": 2
+                  "valore": 3
                 }
               ],
               "risposta": "testi:e01.op.insieme.r"
@@ -587,12 +608,12 @@
               "testo": "testi:e01.op.chiudi",
               "effetti": [
                 {
-                  "pressione": "strada_larkspire",
-                  "valore": -2
+                  "tensione": "strada_cinderwick",
+                  "valore": 1
                 },
                 {
-                  "pressione": "strada_cinderwick",
-                  "valore": 1
+                  "aggiungi": "credito",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e01.op.chiudi.r"
@@ -602,8 +623,8 @@
               "testo": "testi:e01.op.scorrere",
               "effetti": [
                 {
-                  "pressione": "strada_larkspire",
-                  "valore": 2
+                  "tensione": "strada_larkspire",
+                  "valore": 3
                 }
               ],
               "risposta": "testi:e01.op.scorrere.r"
@@ -626,7 +647,7 @@
                 },
                 {
                   "tensione": "piazzale",
-                  "valore": 1
+                  "valore": 2
                 }
               ],
               "risposta": "testi:e01.op.intervista.r"
