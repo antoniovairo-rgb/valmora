@@ -100,7 +100,8 @@ export function App() {
   else if (schermata === 'genere') corpo = <SceltaGenere scegli={nuova} indietro={() => setSchermata('titolo')} />;
   else if (schermata === 'verbale' && esito && sal) {
     corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
-      rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} />;
+      rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)}
+      prossimo={prossimoEpisodio(sal) ? () => giocaEpisodio(prossimoEpisodio(sal)!.id) : undefined} />;
   } else if (schermata === 'citta' && sal && !ic) {
     corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} />;
   }
@@ -205,7 +206,7 @@ export function App() {
         {mappa && m && <Mappa m={m} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
         <Voli voli={voli} finito={(id) => setVoli((v) => v.filter((x) => x.id !== id))} />
         <AnimatePresence mode="wait" initial={false}>
-          <Scena key={chiave} nome={nome}>{corpo}</Scena>
+          <Scena key={chiave} nome={nome} missione={m?.id}>{corpo}</Scena>
         </AnimatePresence>
       </main>
     </MotionConfig>

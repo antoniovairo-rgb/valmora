@@ -334,6 +334,10 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso(`giocatore «${piano.giocatore}»: non arriva all'esito migliore «${piano.migliore}» (arriva a «${esito}»)`, esito === piano.migliore);
         const stelle = await pagina.getAttribute('.stelle', 'data-stelle');
         atteso(`verbale: ${stelle} stelle a schermo, il motore dice ${piano.stelle}`, stelle === String(piano.stelle));
+        // PO-072: a episodio superato il verbale dice come andare avanti (rosso VALMORA_ROSSI=C18V01)
+        const prossimo = pagina.locator('[data-azione="prossimo"]');
+        atteso('verbale: manca «Prossimo episodio» a episodio superato (PO-072)', (await prossimo.count()) === 1 && await prossimo.isVisible());
+        atteso('verbale: manca la riga che spiega la mappa (PO-072)', (await pagina.locator('[data-spiega="mappa"]').count()) === 1);
         // 3) mappa della città: l'episodio è superato e mostra le sue stelle
         await premi('[data-azione="citta"]'); await scena('citta'); await foto();
         const ep = pagina.locator(`[data-episodio="${piano.m.id}"]`);
@@ -368,7 +372,15 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           completa = true; modoFoto = 'tutte';
           const esito3 = await pagina.getAttribute('[data-esito]', 'data-esito');
           atteso(`${piano3.m.id}, giocatore «${piano3.giocatore}»: la resa finisce con «${esito3}», il motore dice «${piano3.esito}»`, esito3 === piano3.esito);
-          await premi('[data-azione="citta"]'); await scena('citta'); await foto();
+          // PO-072: «Prossimo episodio» apre la sala dell'episodio dopo, senza passare dalla mappa
+          // poi si ricarica e «Riprendi» riporta alla città
+          if (await pagina.locator('[data-azione="prossimo"]').count()) {
+            await premi('[data-azione="prossimo"]'); await scena('sala');
+            const dopo = await pagina.getAttribute('.scena[data-scena="sala"]', 'data-missione');
+            atteso(`verbale: «Prossimo episodio» apre «${dopo}» invece dell'episodio dopo ${piano3.m.id}`, !!dopo && dopo > piano3.m.id);
+            await pagina.reload(); await scena('titolo');
+            await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta'); await foto();
+          } else { await premi('[data-azione="citta"]'); await scena('citta'); await foto(); }
           atteso(`città: ${piano3.m.id} non è superato`, (await ep3.getAttribute('data-stato')) === 'superato');
         }
         // C-005 R02: con una partita salvata, «Nuova partita» chiede conferma e «No» non cancella nulla
