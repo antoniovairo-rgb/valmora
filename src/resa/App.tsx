@@ -78,7 +78,7 @@ export function App() {
     const r = ic.rapporti.at(-1)!;
     const fine = missioneFinita(m, ic);
     mappa = { tensione: r.tensione };
-    corpo = <Rapporto m={m} r={r} ultima={fine} avanti={() => {
+    corpo = <Rapporto m={m} r={r} ultima={fine} prossime={fine ? {} : disponibili(m, ic)} avanti={() => {
       if (!fine) { setBozza({}); setSchermata('gioco'); return; }
       const e = concludiMissione(m, ic, dichiarate);
       // Fallita (D-059): la storia non cambia e l'episodio resta da giocare.

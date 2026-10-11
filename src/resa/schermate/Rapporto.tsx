@@ -1,5 +1,6 @@
 // Rapporto dell'ondata: la mappa sopra mostra la tensione per settore a colori (D-055), qui si dice
-// solo se il settore è rimasto coperto e quante unità vanno a riposo (D-056). Nessun numero di tensione.
+// solo se il settore è rimasto coperto, quante unità vanno a riposo (D-056) e quante ce ne sono
+// nella prossima ondata (rinforzi e perdite contano da lì, C01-A04). Nessun numero di tensione.
 import { ChevronRight, FileText, Moon } from 'lucide-react';
 import type { RapportoOndata } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
@@ -7,7 +8,7 @@ import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { livello } from '../partita.ts';
 
-export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; avanti: () => void }) {
+export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; prossime: Record<string, number>; avanti: () => void }) {
   const riposo = Object.entries(p.r.aRiposo).filter(([, n]) => n > 0);
   return (
     <>
@@ -26,6 +27,9 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; a
       </ul>
       {riposo.length > 0 && !p.ultima && (
         <p className="riposo"><Icona di={Moon} />A riposo nella prossima ondata: {riposo.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}</p>
+      )}
+      {!p.ultima && (
+        <p className="tenue" data-disponibili="prossima">Disponibili nella prossima ondata: {Object.entries(p.prossime).map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}</p>
       )}
       <button className="pulsante" data-azione="avanti" onClick={p.avanti}>
         {p.ultima ? <><Icona di={FileText} />Leggi il verbale</> : <>Prossima ondata<Icona di={ChevronRight} /></>}

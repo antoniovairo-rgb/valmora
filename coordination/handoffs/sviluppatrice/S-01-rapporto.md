@@ -67,21 +67,23 @@ Stato: **consegna completa dei punti 1-8, in attesa di collaudo/integrazione del
 
 ## Problemi aperti (servono alla principale)
 
-1. **FATTO MISURATO** – `node tools/bot.mjs 100` su e01 v2: il giocatore **attento** di bot.ts arriva a
-   `contenuto_a_fatica` 100 volte su 100, mai a `contenuto` (che chiede anche `credito ≥ 3`; il bot guarda
-   solo la tensione). Il compito chiedeva «il giocatore attento arriva all'esito migliore»: con questi dati e
-   questo bot non è vero, e src/logica e data/ non sono miei. In foto.mjs allora: (a) la resa deve riprodurre
-   esattamente l'esito che il motore prevede per la partita giocata; (b) se il bot attento non arriva al
-   migliore, si gioca con il suo schieramento e risposte prese dal seme più piccolo che ci arriva (oggi il
-   seme 2); l'esito migliore deve comparire a schermo. Quale giocatore è servito è stampato dallo strumento.
-   **Decisione per te**: correggere bot.ts (per es. che pesi anche il credito) o accettare questo giocatore.
+1. RISOLTO dopo il merge di d1623ef – il giocatore attento di bot.ts arriva a `contenuto_a_fatica`
+   (FATTO MISURATO con `node tools/foto.mjs`, che lo stampa). foto.mjs ora usa, in ordine: attento →
+   **equilibrato** (strategia nuova della principale, arriva a «contenuto») → ricerca per seme. Giro del
+   2026-10-11 dopo il merge: giocatore «equilibrato», esito a schermo = esito del motore = «contenuto», a 3 larghezze.
 2. IPOTESI – su un telefono senza WebGL la mappa resta solo HTML (non provato su un telefono vero; in
    Chromium headless WebGL c'è e la mappa usa Pixi).
 3. GAME_VERSION resta 0.1.0 anche se i salvataggi ora sono v2: aumentarla è del rilascio (della principale).
 4. Durata della missione non misurata (passi e minuti di gioco): da fare col collaudo.
 5. Le foto sono con «riduci movimento» attivo (transizioni ridotte, mappa ferma) per renderle stabili.
 
+## Dopo i merge di e46eba7 e d1623ef (collaudi C-01, C-02)
+
+- Lo schieramento era già chiuso prima delle chiamate (nessun cambio). Il rapporto ora mostra anche le unità
+  disponibili nella prossima ondata (`disponibili()`, con rinforzi e perdite). La tensione per colore viene
+  dal motore, quindi segue da sola le regole nuove del presidio.
+- Conflitti solo su STABILITA.json (giri uniti, ordinati per data) e governo.html (rigenerato dalla catena).
+
 ## Cosa mi serve
 
-- La decisione sul punto 1.
 - Il via per S-02 (mappa della città, rigioco, stelle, registro nel salvataggio): tocca ancora SAVE_VERSION.

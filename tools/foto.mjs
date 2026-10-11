@@ -11,7 +11,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
-import { attenta } from '../src/logica/bot.ts';
+import { attenta, equilibrata } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { URL_APK } from '../src/resa/collegamenti.ts';
 
@@ -45,10 +45,10 @@ function gioca(m, dich, g) {
 }
 
 /**
- * Il giocatore attento di bot.ts; se non arriva all'esito migliore (oggi in e01 v2 si ferma a
- * «contenuto_a_fatica»: guarda solo la tensione), stesso schieramento attento e risposte scelte col
- * seme più piccolo che porta all'esito migliore. Così il giro prova sempre che l'esito migliore
- * si raggiunge dall'interfaccia; quale giocatore è servito resta scritto nel giro.
+ * Il giocatore attento di bot.ts; se non arriva all'esito migliore (guarda solo la tensione), il
+ * giocatore equilibrato (pesa anche il credito; in e01 v2 arriva a 3 stelle); se nemmeno lui,
+ * schieramento attento e risposte dal seme più piccolo che porta all'esito migliore. Così il giro
+ * prova sempre che l'esito migliore si raggiunge dall'interfaccia; quale giocatore è servito è stampato.
  */
 export function pianoAttento(dirDati = 'data') {
   const dati = leggiDati(dirDati);
@@ -58,6 +58,8 @@ export function pianoAttento(dirDati = 'data') {
   const att = attenta(creaCaso(1), dich);
   const base = gioca(m, dich, att);
   if (base.esito === migliore) return { m, ...base, migliore, giocatore: 'attento', esitoAttento: base.esito };
+  const eq = gioca(m, dich, equilibrata(creaCaso(1), dich));
+  if (eq.esito === migliore) return { m, ...eq, migliore, giocatore: 'equilibrato', esitoAttento: base.esito };
   for (let seme = 1; seme <= 1000; seme++) {
     const caso = creaCaso(`foto:${m.id}:${seme}`);
     const p = gioca(m, dich, { schiera: att.schiera, scegli: (_m, st, c) => caso.scegli(opzioniValide(c, st)).id });
