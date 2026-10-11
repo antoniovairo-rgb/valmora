@@ -32,7 +32,9 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Verità (D-031): il corteo c'è davvero; lo annuncia l'informatore di strada, la fonte meno affidabile. Il verbale lo rivela.
 - Quartieri (D-032): Cinderwick, fonderie e ciminiere, contro Larkspire, la collina elegante.
 - Club (D-033): Cinderwick United contro Larkspire Athletic.
-- Settori della mappa, quantità delle risorse, condizioni degli esiti: DA DECIDERE.
+- Settori (D-034): curva Cinderwick, curva Larkspire, piazzale dello stadio, strada da Cinderwick, strada da Larkspire.
+- Esito (D-035): decide la tensione massima raggiunta (bassa → contenuto, media → contenuto a fatica, altrimenti degenerato).
+- Quantità delle risorse e soglie: tarate col bot (D-036), DA MISURARE.
 
 ## Regole di gioco decise
 - Risorse diverse per missione (D-023).
