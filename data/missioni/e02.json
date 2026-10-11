@@ -199,7 +199,7 @@
                 },
                 {
                   "pressione": "viale_stazione",
-                  "valore": 2
+                  "valore": 3
                 }
               ],
               "risposta": "testi:e02.op.fidati.r"
@@ -268,11 +268,7 @@
               "effetti": [
                 {
                   "pressione": "tornelli",
-                  "valore": -2
-                },
-                {
-                  "riserva": "steward",
-                  "valore": -2
+                  "valore": -3
                 }
               ],
               "risposta": "testi:e02.op.sequestra.r"
@@ -280,12 +276,7 @@
             {
               "id": "lascia_vendere",
               "testo": "testi:e02.op.lascia_vendere",
-              "effetti": [
-                {
-                  "pressione": "tornelli",
-                  "valore": 1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e02.op.lascia_vendere.r"
             }
           ]
@@ -378,7 +369,7 @@
               "effetti": [
                 {
                   "tensione": "tornelli",
-                  "valore": 2
+                  "valore": 3
                 },
                 {
                   "aggiungi": "credito",
@@ -466,6 +457,10 @@
                 {
                   "aggiungi": "credito",
                   "valore": 1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e02.op.mediatore_corteo.r"
@@ -473,9 +468,9 @@
           ]
         },
         {
-          "id": "sindaca_quartiere",
+          "id": "comitato_quartiere",
           "fonte": "voci_in_rete",
-          "testo": "testi:e02.ch.sindaca_quartiere",
+          "testo": "testi:e02.ch.comitato_quartiere",
           "settore": "curva_larkspire",
           "opzioni": [
             {
@@ -503,10 +498,49 @@
                 },
                 {
                   "tensione": "curva_larkspire",
-                  "valore": 1
+                  "valore": 2
                 }
               ],
               "risposta": "testi:e02.op.comunicato.r"
+            }
+          ]
+        },
+        {
+          "id": "presidente_aiuta",
+          "fonte": "vice",
+          "testo": "testi:e02.ch.presidente_aiuta",
+          "settore": "tornelli",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "commento": "testi:e02.ch.presidente_aiuta.vice",
+          "opzioni": [
+            {
+              "id": "accetta_aiuto",
+              "testo": "testi:e02.op.accetta_aiuto",
+              "risposta": "testi:e02.op.accetta_aiuto.r",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ]
+            },
+            {
+              "id": "declina_aiuto",
+              "testo": "testi:e02.op.declina_aiuto",
+              "risposta": "testi:e02.op.declina_aiuto.r",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ]
             }
           ]
         }
@@ -552,7 +586,7 @@
                 },
                 {
                   "pressione": "curva_ospiti",
-                  "valore": 1
+                  "valore": 2
                 }
               ],
               "risposta": "testi:e02.op.chiedi.r"
@@ -564,6 +598,10 @@
                 {
                   "tensione": "curva_ospiti",
                   "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.rimuovi_str.r"
@@ -593,6 +631,10 @@
                 {
                   "tensione": "curva_ospiti",
                   "valore": 1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e02.op.steward_fumo.r"
@@ -619,6 +661,10 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.lascia_fumo2.r"
@@ -638,7 +684,7 @@
               "effetti": [
                 {
                   "pressione": "curva_larkspire",
-                  "valore": -2
+                  "valore": -1
                 },
                 {
                   "riserva": "mediatore",
@@ -650,12 +696,7 @@
             {
               "id": "niente",
               "testo": "testi:e02.op.niente",
-              "effetti": [
-                {
-                  "tensione": "curva_larkspire",
-                  "valore": 1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e02.op.niente.r"
             }
           ]
@@ -677,6 +718,10 @@
                 {
                   "imposta": "furgone_visto",
                   "valore": true
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e02.op.annota.r"
@@ -699,7 +744,7 @@
           "id": "ritorno",
           "tipo": "corteo",
           "settore": "viale_stazione",
-          "pressione": 5
+          "pressione": 7
         },
         {
           "id": "treni_ritorno",
@@ -807,7 +852,7 @@
                 },
                 {
                   "tensione": "curva_larkspire",
-                  "valore": 1
+                  "valore": 3
                 }
               ],
               "risposta": "testi:e02.op.saluta.r"
@@ -841,7 +886,7 @@
                 },
                 {
                   "riserva": "steward",
-                  "valore": -1
+                  "valore": -2
                 }
               ],
               "risposta": "testi:e02.op.indaga.r"
