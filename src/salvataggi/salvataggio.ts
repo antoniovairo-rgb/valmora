@@ -2,9 +2,10 @@
 // Regola: ogni campo nuovo = SAVE_VERSION + 1 e una migrazione MIGRAZIONI[v] che porta v → v+1.
 // Ogni versione vecchia deve avere almeno un salvataggio vero in tests/salvataggi-reali/
 // (passo «salvataggi-reali» della catena logica).
-import type { InCorso } from '../logica/plancia.ts';
+import type { InCorso } from '../logica/missione.ts';
 
-export const SAVE_VERSION = 1;
+// 2 – in_corso diventa lo stato della missione a scene (missione.ts, D-053); i v1 ripartono dalla missione.
+export const SAVE_VERSION = 2;
 
 export type ValoreVariabile = boolean | number | string;
 
@@ -20,14 +21,30 @@ export interface Salvataggio {
   variabili: Record<string, ValoreVariabile>;
   /** id delle missioni concluse, in ordine */
   missioni_concluse: string[];
-  /** missione interrotta fra due ondate, o null (D-040) */
+  /** missione interrotta, salvata dopo ogni passo (schieramento, chiamata, ondata), o null (D-040) */
   in_corso: InCorso | null;
 }
 
 type Grezzo = Record<string, unknown>;
 
-/** MIGRAZIONI[v] trasforma un salvataggio v in v+1. Vuoto finché SAVE_VERSION = 1. */
-export const MIGRAZIONI: Record<number, (s: Grezzo) => Grezzo> = {};
+/** MIGRAZIONI[v] trasforma un salvataggio v in v+1. */
+export const MIGRAZIONI: Record<number, (s: Grezzo) => Grezzo> = {
+  // v1 → v2: la missione interrotta del motore 0.1.0 (ondate giocate) non ha equivalente nel motore a
+  // scene; si butta e la missione riparte dal briefing. Variabili e missioni concluse restano.
+  1: (s) => ({ ...s, in_corso: null }),
+};
+
+const oggetto = (x: unknown): x is Grezzo => typeof x === 'object' && x !== null && !Array.isArray(x);
+
+function controllaInCorso(ic: Grezzo): string[] {
+  const p: string[] = [];
+  if (typeof ic.missione !== 'string') p.push('in_corso.missione non è un id');
+  if (!Number.isInteger(ic.ondata) || (ic.ondata as number) < 1) p.push('in_corso.ondata non è un intero ≥ 1');
+  for (const k of ['tensione', 'riserva', 'riposo', 'modifiche', 'risposte', 'variabili']) if (!oggetto(ic[k])) p.push(`in_corso.${k} non è un oggetto`);
+  if (ic.disposizione !== null && !oggetto(ic.disposizione)) p.push('in_corso.disposizione non è un oggetto né null');
+  for (const k of ['scelte', 'rapporti']) if (!Array.isArray(ic[k])) p.push(`in_corso.${k} non è un elenco`);
+  return p;
+}
 
 const isUint32 = (n: unknown): n is number => Number.isInteger(n) && (n as number) >= 0 && (n as number) <= 0xffffffff;
 
@@ -43,7 +60,10 @@ export function controllaSalvataggio(s: Grezzo): string[] {
   if (!Array.isArray(s.missioni_concluse) || s.missioni_concluse.some((m) => typeof m !== 'string')) p.push('missioni_concluse non è un elenco di id');
   const ic = s.in_corso as Grezzo | null | undefined;
   if (ic === undefined) p.push('in_corso mancante');
-  else if (ic !== null && (typeof ic.missione !== 'string' || !Array.isArray(ic.ondate) || typeof ic.variabili !== 'object' || ic.variabili === null)) p.push('in_corso malformato');
+  else if (ic !== null) {
+    const q = oggetto(ic) ? controllaInCorso(ic) : ['in_corso non è un oggetto'];
+    if (q.length) p.push(`in_corso malformato (${q.join(', ')})`);
+  }
   return p;
 }
 
