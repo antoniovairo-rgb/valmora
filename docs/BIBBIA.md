@@ -14,7 +14,9 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Stagione 1 (e01–e12): i disordini in superficie.
 - Stagione 2 (e13–e24): chi li organizza; e20 fuga di Dessì.
 - Stagione 3 (e25–e36): chi li protegge; e29 cattura di Dessì; resa dei conti.
-- Indici episodio per episodio: DA DECIDERE.
+- Indice episodio per episodio: docs/INDICE_TRIADE.md, approvato come base (D-068).
+- Chi protegge Dessì (D-069): un costruttore inventato dello stadio nuovo, che usa i disordini per far chiudere lo stadio vecchio.
+- Il vice è alleato fino in fondo (D-070).
 
 ## Personaggi
 - Dessì (D-017): capo di una curva inventata, che usa la curva come copertura per affari illeciti. Nessun simbolo, ideologia o riferimento reale (REGOLE_PLAY §2).
