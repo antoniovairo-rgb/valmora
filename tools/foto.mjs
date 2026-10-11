@@ -128,7 +128,8 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             return p;
           });
           for (const x of leggibile) atteso(`${nome}: ${x}`, false);
-          await pagina.screenshot({ path: join(cartella, `${larghezza}-${String(++k).padStart(2, '0')}-${nome}.png`), fullPage: true });
+        await pagina.mouse.move(0, 0); // niente :hover rimasto dal clic precedente nelle foto
+        await pagina.screenshot({ path: join(cartella, `${larghezza}-${String(++k).padStart(2, '0')}-${nome}.png`), fullPage: true });
         };
         const premi = (sel) => pagina.click(sel);
         const presenze = () => pagina.locator('[data-presenza]').count();
@@ -214,6 +215,10 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             for (const [j, [c, op]] of o.risposte.entries()) {
               await scena('chiamata');
               atteso(`ondata ${n}: aperta una chiamata diversa da «${c}»`, (await pagina.locator(`[data-messaggio="chiamata-${c}"]`).count()) === 1);
+            // D-078 (S-05): sotto ogni opzione visibile c'è l'accenno di costo, in parole, mai numeri
+            const accenni = await pagina.evaluate(() => [...document.querySelectorAll('.opzione')].map((o) => o.querySelector('[data-costo]')?.textContent?.trim() ?? ''));
+            atteso(`chiamata «${c}»: ${accenni.filter(Boolean).length} accenni di costo su ${accenni.length} opzioni (D-078)`, accenni.length > 0 && accenni.every(Boolean));
+            atteso(`chiamata «${c}»: un accenno di costo contiene numeri («${accenni.find((x) => /\d/.test(x))}»)`, !accenni.some((x) => /\d/.test(x)));
               await fotoSe();
               const altra = p.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id !== op)?.id;
               if (completa && n === 1 && j === 0 && altra) { // C-005 R01: doppio tocco a 40 ms su due opzioni

@@ -26,7 +26,12 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
         {opzioniValide(p.c, p.ic).map((o, i) => (
           <button key={o.id} className={`opzione${scelta === o.id ? ' scelta' : ''}`} data-opzione={o.id} disabled={scelta !== null && !spento('C05R01')}
             onClick={() => { if (scelta !== null && !spento('C05R01')) return; setScelta(o.id); p.rispondi(o.id); }}>
-            <span className="tasto" aria-hidden="true">{LETTERE[i]}</span><span>{t(o.testo)}</span>
+            <span className="tasto" aria-hidden="true">{LETTERE[i]}</span>
+            <span className="opzione-testo">
+              {t(o.testo)}
+              {/* Accenno di costo in parole (D-078); interruttore rosso C05S05 lo nasconde */}
+              {o.costo && !spento('C05S05') && <small className="costo" data-costo={o.id}>{t(o.costo)}</small>}
+            </span>
           </button>
         ))}
       </div>
