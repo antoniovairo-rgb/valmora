@@ -1,0 +1,880 @@
+{
+  "id": "e08",
+  "bozza": true,
+  "stagione": 1,
+  "episodio": 8,
+  "titolo": "testi:e08.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 38,
+    "y": 40
+  },
+  "introduzione": [
+    "testi:e08.intro1",
+    "testi:e08.intro2",
+    "testi:e08.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e08.info_dessi",
+      "fonte": "dessi",
+      "affidabilita": "bassa",
+      "vera": false,
+      "settore": "strada_cinderwick"
+    },
+    {
+      "testo": "testi:e08.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "strada_cinderwick"
+    },
+    {
+      "testo": "testi:e08.info_club",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "curva_cinderwick"
+    },
+    {
+      "testo": "testi:e08.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_ospiti"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 20,
+          "y": 35
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "calderholt_rovers",
+        "pos": {
+          "x": 82,
+          "y": 35
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 55,
+          "y": 62
+        }
+      },
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 18,
+          "y": 84
+        }
+      },
+      {
+        "id": "tornelli",
+        "tipo": "tornelli",
+        "pos": {
+          "x": 56,
+          "y": 88
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "tornelli": 1,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "tornelli": 2,
+          "piazzale": 1,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e08.ondata1",
+      "eventi": [
+        {
+          "id": "corteo8",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "arrivi8",
+          "tipo": "arrivo",
+          "settore": "piazzale",
+          "pressione": 3
+        },
+        {
+          "id": "varchi8",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "dessi_chiama",
+          "fonte": "dessi",
+          "testo": "testi:e08.ch.dessi_chiama",
+          "commento": "testi:e08.ch.dessi_chiama.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "rispetto_si",
+              "testo": "testi:e08.op.rispetto_si",
+              "costo": "testi:e08.op.rispetto_si.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.rispetto_si.r"
+            },
+            {
+              "id": "rispetto_no",
+              "testo": "testi:e08.op.rispetto_no",
+              "costo": "testi:e08.op.rispetto_no.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e08.op.rispetto_no.r"
+            },
+            {
+              "id": "mediatore_dessi",
+              "testo": "testi:e08.op.mediatore_dessi",
+              "costo": "testi:e08.op.mediatore_dessi.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.mediatore_dessi.r"
+            }
+          ]
+        },
+        {
+          "id": "facce_nuove",
+          "fonte": "centrale_radio",
+          "testo": "testi:e08.ch.facce_nuove",
+          "commento": "testi:e08.ch.facce_nuove.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "scorta8",
+              "testo": "testi:e08.op.scorta8",
+              "costo": "testi:e08.op.scorta8.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.scorta8.r"
+            },
+            {
+              "id": "filma",
+              "testo": "testi:e08.op.filma",
+              "costo": "testi:e08.op.filma.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e08.op.filma.r"
+            }
+          ]
+        },
+        {
+          "id": "quello_la",
+          "fonte": "club_ospite",
+          "testo": "testi:e08.ch.quello_la",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "gruppo_si",
+              "testo": "testi:e08.op.gruppo_si",
+              "costo": "testi:e08.op.gruppo_si.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e08.op.gruppo_si.r"
+            },
+            {
+              "id": "gruppo_no",
+              "testo": "testi:e08.op.gruppo_no",
+              "costo": "testi:e08.op.gruppo_no.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e08.op.gruppo_no.r"
+            }
+          ]
+        },
+        {
+          "id": "permesso",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e08.ch.permesso",
+          "commento": "testi:e08.ch.permesso.vice",
+          "settore": "tornelli",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "cosa_sai",
+              "testo": "testi:e08.op.cosa_sai",
+              "costo": "testi:e08.op.cosa_sai.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.cosa_sai.r"
+            },
+            {
+              "id": "non_ora8",
+              "testo": "testi:e08.op.non_ora8",
+              "costo": "testi:e08.op.non_ora8.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e08.op.non_ora8.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e08.ondata2",
+      "eventi": [
+        {
+          "id": "cori8c",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "cori8o",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale8",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "coreografia",
+          "fonte": "dessi",
+          "testo": "testi:e08.ch.coreografia",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "accesso_libero",
+              "testo": "testi:e08.op.accesso_libero",
+              "costo": "testi:e08.op.accesso_libero.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e08.op.accesso_libero.r"
+            },
+            {
+              "id": "accesso_steward",
+              "testo": "testi:e08.op.accesso_steward",
+              "costo": "testi:e08.op.accesso_steward.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.accesso_steward.r"
+            },
+            {
+              "id": "accesso_no",
+              "testo": "testi:e08.op.accesso_no",
+              "costo": "testi:e08.op.accesso_no.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e08.op.accesso_no.r"
+            }
+          ]
+        },
+        {
+          "id": "striscione_nome",
+          "fonte": "centrale_radio",
+          "testo": "testi:e08.ch.striscione_nome",
+          "commento": "testi:e08.ch.striscione_nome.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "togli_nome",
+              "testo": "testi:e08.op.togli_nome",
+              "costo": "testi:e08.op.togli_nome.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e08.op.togli_nome.r"
+            },
+            {
+              "id": "lascia_nome",
+              "testo": "testi:e08.op.lascia_nome",
+              "costo": "testi:e08.op.lascia_nome.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e08.op.lascia_nome.r"
+            }
+          ]
+        },
+        {
+          "id": "coro_dessi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e08.ch.coro_dessi",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_ospiti8",
+              "testo": "testi:e08.op.steward_ospiti8",
+              "costo": "testi:e08.op.steward_ospiti8.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.steward_ospiti8.r"
+            },
+            {
+              "id": "lascia_rovers8",
+              "testo": "testi:e08.op.lascia_rovers8",
+              "costo": "testi:e08.op.lascia_rovers8.c",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e08.op.lascia_rovers8.r"
+            }
+          ]
+        },
+        {
+          "id": "consiglio_presidente",
+          "fonte": "vice",
+          "testo": "testi:e08.ch.consiglio_presidente",
+          "commento": "testi:e08.ch.consiglio_presidente.vice",
+          "settore": "curva_cinderwick",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "accetta8",
+              "testo": "testi:e08.op.accetta8",
+              "costo": "testi:e08.op.accetta8.c",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.accetta8.r"
+            },
+            {
+              "id": "declina8",
+              "testo": "testi:e08.op.declina8",
+              "costo": "testi:e08.op.declina8.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e08.op.declina8.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e08.ondata3",
+      "eventi": [
+        {
+          "id": "cori8c2",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "cori8o2",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        },
+        {
+          "id": "varchi8b",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "mano",
+          "fonte": "vice",
+          "testo": "testi:e08.ch.mano",
+          "commento": "testi:e08.ch.mano.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "ringrazia",
+              "testo": "testi:e08.op.ringrazia",
+              "costo": "testi:e08.op.ringrazia.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.ringrazia.r"
+            },
+            {
+              "id": "fai_finta",
+              "testo": "testi:e08.op.fai_finta",
+              "costo": "testi:e08.op.fai_finta.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e08.op.fai_finta.r"
+            }
+          ]
+        },
+        {
+          "id": "li_manda",
+          "fonte": "centrale_radio",
+          "testo": "testi:e08.ch.li_manda",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "respingi8",
+              "testo": "testi:e08.op.respingi8",
+              "costo": "testi:e08.op.respingi8.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e08.op.respingi8.r"
+            },
+            {
+              "id": "sono_tuoi",
+              "testo": "testi:e08.op.sono_tuoi",
+              "costo": "testi:e08.op.sono_tuoi.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.sono_tuoi.r"
+            }
+          ]
+        },
+        {
+          "id": "fumo_verde",
+          "fonte": "centrale_radio",
+          "testo": "testi:e08.ch.fumo_verde",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_verde",
+              "testo": "testi:e08.op.steward_verde",
+              "costo": "testi:e08.op.steward_verde.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e08.op.steward_verde.r"
+            },
+            {
+              "id": "lascia_verde",
+              "testo": "testi:e08.op.lascia_verde",
+              "costo": "testi:e08.op.lascia_verde.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e08.op.lascia_verde.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e08.ondata4",
+      "eventi": [
+        {
+          "id": "ritorno8",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "piazzale8b",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        },
+        {
+          "id": "uscita8",
+          "tipo": "deflusso",
+          "settore": "tornelli",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "risultato",
+          "fonte": "vice",
+          "testo": "testi:e08.ch.risultato",
+          "commento": "testi:e08.ch.risultato.vice",
+          "opzioni": [
+            {
+              "id": "ritorno_sempre",
+              "testo": "testi:e08.op.ritorno_sempre",
+              "costo": "testi:e08.op.ritorno_sempre.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e08.op.ritorno_sempre.r"
+            },
+            {
+              "id": "ritorno_deviato",
+              "testo": "testi:e08.op.ritorno_deviato",
+              "costo": "testi:e08.op.ritorno_deviato.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e08.op.ritorno_deviato.r"
+            },
+            {
+              "id": "ritorno_no",
+              "testo": "testi:e08.op.ritorno_no",
+              "costo": "testi:e08.op.ritorno_no.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e08.op.ritorno_no.r"
+            }
+          ]
+        },
+        {
+          "id": "stretta_mano",
+          "fonte": "dessi",
+          "testo": "testi:e08.ch.stretta_mano",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "stringi",
+              "testo": "testi:e08.op.stringi",
+              "costo": "testi:e08.op.stringi.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e08.op.stringi.r"
+            },
+            {
+              "id": "non_presentarti",
+              "testo": "testi:e08.op.non_presentarti",
+              "costo": "testi:e08.op.non_presentarti.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e08.op.non_presentarti.r"
+            }
+          ]
+        },
+        {
+          "id": "sedile",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e08.ch.sedile",
+          "commento": "testi:e08.ch.sedile.vice",
+          "settore": "strada_cinderwick",
+          "se": {
+            "var": "furgone_visto",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "annota8",
+              "testo": "testi:e08.op.annota8",
+              "costo": "testi:e08.op.annota8.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e08.op.annota8.r"
+            },
+            {
+              "id": "lascia8",
+              "testo": "testi:e08.op.lascia8",
+              "costo": "testi:e08.op.lascia8.c",
+              "effetti": [],
+              "risposta": "testi:e08.op.lascia8.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e08.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e08.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e08.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
