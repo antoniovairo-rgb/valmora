@@ -1,6 +1,5 @@
 {
   "id": "e28",
-  "bozza": true,
   "stagione": 3,
   "episodio": 28,
   "titolo": "testi:e28.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e28.intro1",
-    "testi:e28.intro2",
-    "testi:e28.intro3"
+    "testi:e28.intro2"
   ],
   "briefing": [
     {
@@ -34,7 +32,7 @@
       "fonte": "centrale_radio",
       "affidabilita": "alta",
       "vera": true,
-      "settore": "curva_ospiti"
+      "settore": "piazzale"
     },
     {
       "testo": "testi:e28.info_cinderwick",
@@ -56,9 +54,8 @@
         }
       },
       {
-        "id": "curva_ospiti",
-        "tipo": "curva",
-        "club": "mossgarth_town",
+        "id": "piazzale",
+        "tipo": "piazzale",
         "pos": {
           "x": 52,
           "y": 18
@@ -96,7 +93,8 @@
           "strada": 2,
           "porto": 2,
           "magazzino": 2,
-          "curva": 1
+          "curva": 1,
+          "piazzale": 1
         }
       },
       "steward": {
@@ -105,7 +103,8 @@
           "curva": 2,
           "strada": 1,
           "porto": 1,
-          "magazzino": 1
+          "magazzino": 1,
+          "piazzale": 2
         }
       },
       "mediatore": {
@@ -115,7 +114,10 @@
           "corteo"
         ]
       }
-    }
+    },
+    "dettagli": [
+      "porto@banchine"
+    ]
   },
   "ondate": [
     {
@@ -285,8 +287,8 @@
         },
         {
           "id": "cori_ospiti",
-          "tipo": "curva",
-          "settore": "curva_ospiti",
+          "tipo": "folla",
+          "settore": "piazzale",
           "pressione": 3
         },
         {
@@ -368,6 +370,10 @@
                 {
                   "pressione": "magazzino_fonderie",
                   "valore": 2
+                },
+                {
+                  "imposta": "pista_cattura",
+                  "valore": "porto"
                 }
               ],
               "risposta": "testi:e28.op.pista_porto.r"
@@ -384,6 +390,10 @@
                 {
                   "pressione": "banchine",
                   "valore": 2
+                },
+                {
+                  "imposta": "pista_cattura",
+                  "valore": "soffiata"
                 }
               ],
               "risposta": "testi:e28.op.pista_fonderie.r"
@@ -408,6 +418,10 @@
                 {
                   "aggiungi": "credito",
                   "valore": -1
+                },
+                {
+                  "imposta": "pista_cattura",
+                  "valore": "nessuna"
                 }
               ],
               "risposta": "testi:e28.op.due_piste.r"
@@ -418,7 +432,7 @@
           "id": "mossgarth_rumore",
           "fonte": "club_mossgarth",
           "testo": "testi:e28.ch.mossgarth_rumore",
-          "settore": "curva_ospiti",
+          "settore": "piazzale",
           "opzioni": [
             {
               "id": "apri_settore",
@@ -430,7 +444,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": 2
                 }
               ],
@@ -446,7 +460,7 @@
                   "valore": -1
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": -1
                 }
               ],
@@ -468,8 +482,8 @@
         },
         {
           "id": "ospiti_vincono",
-          "tipo": "curva",
-          "settore": "curva_ospiti",
+          "tipo": "folla",
+          "settore": "piazzale",
           "pressione": 3
         },
         {
@@ -617,7 +631,7 @@
                   "valore": -1
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": -1
                 },
                 {
@@ -641,7 +655,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": 1
                 }
               ],
@@ -664,7 +678,7 @@
         {
           "id": "ospiti_auto",
           "tipo": "arrivo",
-          "settore": "curva_ospiti",
+          "settore": "piazzale",
           "pressione": 1
         },
         {
@@ -775,7 +789,7 @@
           "id": "ospiti_partono",
           "fonte": "club_mossgarth",
           "testo": "testi:e28.ch.ospiti_partono",
-          "settore": "curva_ospiti",
+          "settore": "piazzale",
           "opzioni": [
             {
               "id": "ospiti_primi",
@@ -783,7 +797,7 @@
               "costo": "testi:e28.op.ospiti_primi.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": -2
                 },
                 {
@@ -803,7 +817,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": 2
                 }
               ],
