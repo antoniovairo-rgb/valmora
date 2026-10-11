@@ -80,6 +80,13 @@ p { margin: var(--spazio-2) 0; }
 .tocco-pastiglia { display: grid; place-items: end center; min-width: var(--tocco-min); min-height: var(--tocco-min); padding: 0; border: 0; background: transparent; cursor: pointer; }
 .tocco-pastiglia:disabled { cursor: default; }
 .pastiglia-rossa { padding: 0; border: 0; background: transparent; }
+.nome-sopra .settore-nome { top: auto; bottom: calc(var(--settore) / 2 - var(--spazio-1)); }
+.unita-lato .settore-unita { bottom: auto; top: calc(var(--tocco-min) / -2); left: calc(var(--settore) / 2 - var(--spazio-2)); transform: none; }
+.unita-lato.lato-destra .settore-unita { left: auto; right: calc(var(--settore) / 2 - var(--spazio-2)); }
+.nome-lato .settore-nome { top: 50%; bottom: auto; left: calc(var(--settore) / 2); transform: translateY(-50%); text-align: left; }
+.nome-lato.lato-destra .settore-nome { left: auto; right: calc(var(--settore) / 2); }
+.nome-lato .settore-unita { left: auto; right: calc(var(--settore) / 2 - var(--spazio-2)); }
+.nome-lato.lato-destra .settore-unita { right: auto; left: calc(var(--settore) / 2 - var(--spazio-2)); }
 .pastiglia { display: inline-flex; align-items: center; gap: var(--spazio-px); min-height: var(--pastiglia); padding: 0 var(--spazio-1); border: var(--bordo-fine) solid var(--nero); background: var(--giallo); color: var(--nero); font: 700 var(--testo-piccolo) var(--font); }
 .pastiglia .icona { width: var(--testo-piccolo); height: var(--testo-piccolo); }
 /* Tensione a colori (D-055) */

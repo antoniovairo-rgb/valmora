@@ -33,8 +33,8 @@ function servi(dir) {
 }
 
 /** Una partita sulla prima missione, calcolata dal motore: schieramenti, risposte, esito. */
-function gioca(m, dich, g) {
-  let s = iniziaMissione(m, variabiliIniziali(dich.values()), dich);
+function gioca(m, dich, g, iniziali = variabiliIniziali(dich.values())) {
+  let s = iniziaMissione(m, iniziali, dich);
   const ondate = [];
   while (!missioneFinita(m, s)) {
     const disposizione = g.schiera(m, s);
@@ -45,7 +45,7 @@ function gioca(m, dich, g) {
     s = chiudiOndata(m, s, dich);
   }
   const fine = concludiMissione(m, s, dich);
-  return { ondate, esito: fine.esito.id, stelle: valutaEpisodio(m, fine).stelle, fallita: !!fine.esito.fallita };
+  return { ondate, esito: fine.esito.id, stelle: valutaEpisodio(m, fine).stelle, fallita: !!fine.esito.fallita, variabili: fine.variabili };
 }
 
 /**
@@ -54,24 +54,28 @@ function gioca(m, dich, g) {
  * schieramento attento e risposte dal seme più piccolo che porta all'esito migliore. Così il giro
  * prova sempre che l'esito migliore si raggiunge dall'interfaccia; quale giocatore è servito è stampato.
  */
-export function pianoAttento(dirDati = 'data') {
+export function pianoAttento(dirDati = 'data', indice = 0, iniziali = null) {
   const dati = leggiDati(dirDati);
-  const m = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio)[0];
+  const missioni = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio);
+  const m = missioni[indice];
+  if (!m) return null;
   const dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d]));
+  const v0 = iniziali ?? variabiliIniziali(dich.values());
   const migliore = m.esiti[0].id;
   const testi = Object.assign({}, ...Object.entries(dati).filter(([k]) => k.startsWith('testi/it/')).map(([, v]) => v));
-  const fallimento = gioca(m, dich, peggiore(creaCaso(1), dich)); // per provare «fallito → rigioca» (D-059)
+  const fallimento = gioca(m, dich, peggiore(creaCaso(1), dich), v0); // per provare «fallito → rigioca» (D-059)
   const att = attenta(creaCaso(1), dich);
-  const base = gioca(m, dich, att);
-  if (base.esito === migliore) return { m, ...base, migliore, fallimento, testi, giocatore: 'attento', esitoAttento: base.esito };
-  const eq = gioca(m, dich, equilibrata(creaCaso(1), dich));
-  if (eq.esito === migliore) return { m, ...eq, migliore, fallimento, testi, giocatore: 'equilibrato', esitoAttento: base.esito };
+  const base = gioca(m, dich, att, v0);
+  const comune = { m, migliore, fallimento, testi, esitoAttento: base.esito };
+  if (base.esito === migliore) return { ...comune, ...base, giocatore: 'attento' };
+  const eq = gioca(m, dich, equilibrata(creaCaso(1), dich), v0);
+  if (eq.esito === migliore) return { ...comune, ...eq, giocatore: 'equilibrato' };
   for (let seme = 1; seme <= 1000; seme++) {
     const caso = creaCaso(`foto:${m.id}:${seme}`);
-    const p = gioca(m, dich, { schiera: att.schiera, scegli: (_m, st, c) => caso.scegli(opzioniValide(c, st)).id });
-    if (p.esito === migliore) return { m, ...p, migliore, fallimento, testi, giocatore: `schieramento attento, risposte dal seme ${seme}`, esitoAttento: base.esito };
+    const p = gioca(m, dich, { schiera: att.schiera, scegli: (_m, st, c) => caso.scegli(opzioniValide(c, st)).id }, v0);
+    if (p.esito === migliore) return { ...comune, ...p, giocatore: `schieramento attento, risposte dal seme ${seme}` };
   }
-  return { m, ...base, migliore, fallimento, testi, giocatore: 'attento (nessun seme 1-1000 arriva al migliore)', esitoAttento: base.esito };
+  return { ...comune, ...base, giocatore: 'attento (nessun seme 1-1000 arriva al migliore)' };
 }
 
 export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 'data') {
@@ -81,6 +85,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
   const percorso = process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
   const browser = await chromium.launch({ executablePath: percorso });
   const piano = pianoAttento(dirDati);
+  const piano2 = pianoAttento(dirDati, 1, piano.variabili); // null se c'è una sola missione
   const giri = [];
   try {
     for (const larghezza of larghezze()) {
@@ -153,14 +158,20 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         await premi(`[data-genere="${genere}"]`); await scena('citta'); await foto();
         const salvato = await pagina.evaluate(() => JSON.parse(localStorage.getItem('valmora-salvataggio') ?? '{}').genere);
         atteso(`genere: salvato «${salvato}» invece di «${genere}»`, salvato === genere);
-        const variante = (piano.m.introduzione ?? []).map((k) => k.replace(/^testi:/, '')).find((k) => piano.testi[`${k}@f`]);
 
         // Una partita intera dall'interfaccia, dalla sala al verbale. «completa»: foto di ogni scena,
         // trascinamento e ricariche a metà ondata; altrimenti solo il verbale (serve per il fallimento).
         let completa = true;
-        const fotoSe = () => (completa ? foto() : Promise.resolve());
+        // Foto: «tutte» (partita completa di e01), «chiave» (la prima volta che compare ogni scena), «nessuna».
+        let modoFoto = 'tutte'; const viste = new Set();
+        const fotoSe = async () => {
+          if (modoFoto === 'tutte') return foto();
+          const nome = await pagina.getAttribute('.scena', 'data-scena');
+          if (modoFoto === 'chiave' && !viste.has(nome)) { viste.add(nome); await foto(); }
+        };
         const partita = async (p) => {
           await scena('sala'); await fotoSe();
+          const variante = (p.m.introduzione ?? []).map((k) => k.replace(/^testi:/, '')).find((k) => piano.testi[`${k}@f`]);
           if (variante) {
             const atteso_ = piano.testi[genere === 'f' ? `${variante}@f` : variante];
             atteso(`genere «${genere}»: la sala non mostra «${atteso_.slice(0, 40)}…»`, (await pagina.locator('.scena').textContent()).includes(atteso_));
@@ -237,9 +248,9 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         const f = piano.fallimento;
         atteso(`il giocatore peggiore non fallisce l'episodio (esito «${f.esito}»): il rigioco non si prova`, f.fallita);
         await premi('[data-azione="avvia-episodio"]');
-        completa = false;
+        completa = false; modoFoto = 'nessuna';
         await partita({ m: piano.m, ...f });
-        completa = true;
+        completa = true; modoFoto = 'tutte';
         atteso(`fallimento: il verbale non dice «fallito» (esito «${await pagina.getAttribute('[data-esito]', 'data-esito')}»)`, (await pagina.locator('[data-fallita="si"]').count()) === 1);
         atteso('fallimento: stelle diverse da 0', (await pagina.getAttribute('.stelle', 'data-stelle')) === '0');
         await premi('[data-azione="rigioca"]');
@@ -256,6 +267,21 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         const ep = pagina.locator(`[data-episodio="${piano.m.id}"]`);
         atteso(`città: ${piano.m.id} è «${await ep.getAttribute('data-stato')}», non «superato»`, (await ep.getAttribute('data-stato')) === 'superato');
         atteso(`città: stelle di ${piano.m.id} sulla mappa diverse da ${piano.stelle}`, (await ep.locator('.stelle').getAttribute('data-stelle')) === String(piano.stelle));
+        // 4) secondo episodio scelto dalla città, dalle variabili lasciate da e01 (D-062)
+        if (piano2) {
+          const ep2 = pagina.locator(`[data-episodio="${piano2.m.id}"]`);
+          atteso(`città: ${piano2.m.id} è «${await ep2.getAttribute('data-stato')}», non «disponibile»`, (await ep2.getAttribute('data-stato')) === 'disponibile');
+          await ep2.locator('.settore-punto').click();
+          await premi('[data-azione="avvia-episodio"]');
+          completa = false; modoFoto = 'chiave';
+          await partita(piano2);
+          completa = true; modoFoto = 'tutte';
+          const esito2 = await pagina.getAttribute('[data-esito]', 'data-esito');
+          atteso(`${piano2.m.id}, giocatore «${piano2.giocatore}»: la resa finisce con «${esito2}», il motore dice «${piano2.esito}»`, esito2 === piano2.esito);
+          atteso(`${piano2.m.id}: non arriva all'esito migliore «${piano2.migliore}»`, esito2 === piano2.migliore);
+          await premi('[data-azione="citta"]'); await scena('citta'); await foto();
+          atteso(`città: ${piano2.m.id} non è superato`, (await ep2.getAttribute('data-stato')) === 'superato');
+        }
         // C-005 R02: con una partita salvata, «Nuova partita» chiede conferma e «No» non cancella nulla
         const prima = await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'));
         await pagina.reload(); await scena('titolo');
@@ -277,8 +303,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const [cartella = 'out/foto', build = 'dist', dati = 'data'] = process.argv.slice(2);
   const giri = await giraFoto(cartella, build, dati);
   const p = giri.flatMap(controllaGiro);
-  const piano = pianoAttento(dati);
-  console.log(`giocatore: ${piano.giocatore}; esito del giocatore attento di bot.ts: ${piano.esitoAttento}`);
+  const p1 = pianoAttento(dati); const p2 = pianoAttento(dati, 1, p1.variabili);
+  for (const q of [p1, p2].filter(Boolean)) console.log(`${q.m.id}: giocatore ${q.giocatore}; esito del giocatore attento di bot.ts: ${q.esitoAttento}`);
   console.log(p.length ? p.join('\n') : `verde: ${giri.length} larghezze, foto in ${cartella}`);
   process.exit(p.length ? 1 : 0);
 }
