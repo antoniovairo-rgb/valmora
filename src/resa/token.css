@@ -135,6 +135,8 @@
   --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */
   --mappa-proporzione: 1 / 1;
   --citta-proporzione: 4 / 5;
+  --citta-riserva: 500px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine) */
+  --citta-larghezza-min: 208px;
 
   --font-titoli: "Space Grotesk", system-ui, sans-serif;
   --font: Inter, system-ui, sans-serif;

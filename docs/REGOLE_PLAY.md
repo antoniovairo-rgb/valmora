@@ -33,5 +33,9 @@ Fonte: [Deceptive Behavior](https://play.google.com/about/privacy-security-decep
 - Il gioco non è destinato ai bambini: non va iscritto al programma Families ([Families Policies](https://support.google.com/googleplay/android-developer/answer/9893335?hl=en)).
 - La classificazione arriva dal questionario IARC compilato dal PO. Il "16+" è un obiettivo, non un dato: "Non posso confermarlo" finché non c'è l'esito.
 
+## 7. Donazioni (PO-050)
+- Il gioco da browser mostra «Sostieni il progetto» (link PayPal esterno, nessuna ricompensa nel gioco) e «Idee e segnalazioni» (email).
+- Nell'app Android il link di donazione è NASCOSTO finché non si verifica la regola Google Play sui pagamenti e sui link a pagamenti esterni. Non posso confermarlo oggi: la fonte va letta e citata qui (URL) prima della pubblicazione sullo store.
+
 ## Lista vietata (per il controllo automatico di test-auto)
 Da completare in Fase 2: nomi di club e leghe reali, forze di polizia reali e loro reparti, nomi di persone reali, città reali usate come ambientazione. La lista sta in un file di dati (es. `data/lista-vietata.json`), non nel codice.

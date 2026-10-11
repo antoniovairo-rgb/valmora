@@ -127,7 +127,7 @@ p.riposo { opacity: 1; }
 .volo { position: fixed; left: 0; top: 0; z-index: 10; pointer-events: none; }
 
 /* Città degli episodi e stelle (D-060, D-061) */
-.mappa.citta { aspect-ratio: var(--citta-proporzione); }
+.mappa.citta { aspect-ratio: var(--citta-proporzione); /* PO-052: la mappa si stringe perché la scheda resti nello schermo */ width: min(100%, max(var(--citta-larghezza-min), calc((100dvh - var(--citta-riserva)) * 4 / 5))); margin-inline: auto; }
 .episodio .settore-punto { border: var(--bordo) solid var(--nero); background: var(--bianco); box-shadow: var(--ombra-1); color: var(--nero); font: 700 var(--testo-grande) var(--font-titoli); }
 .episodio .settore-punto::after { display: none; }
 .episodio.superato .settore-punto { background: var(--tensione-0); }
@@ -156,3 +156,24 @@ p.riposo { opacity: 1; }
 .scena .pulsante[data-azione="avanti"], .scena .pulsante[data-azione="prossimo"], .scena .pulsante[data-azione="inizia"],
 .scena .pulsante[data-azione="rapporto"], .scena .pulsante[data-azione="continua"], .scena .azioni { position: sticky; bottom: var(--spazio-3); z-index: 4; }
 .indicatore { position: sticky; bottom: var(--spazio-3); z-index: 4; display: flex; align-items: center; gap: var(--spazio-1); margin: 0 auto; padding: var(--spazio-2) var(--spazio-4); min-height: var(--tocco-min); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); box-shadow: var(--ombra-1); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; cursor: pointer; }
+
+/* Bilancio nel verbale (D-085): verde quello che ha aiutato, magenta quello che ha pesato */
+.bilancio h3 { display: flex; align-items: center; gap: var(--spazio-2); margin: 0 0 var(--spazio-2); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; }
+.bilancio ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--spazio-2); }
+.bilancio li { display: grid; gap: var(--spazio-1); }
+.bilancio-aiuti { border-left: var(--spazio-2) solid var(--colore-bene); }
+.bilancio-aiuti h3 { color: var(--colore-bene); }
+.bilancio-pesi { border-left: var(--spazio-2) solid var(--colore-male); }
+.bilancio-pesi h3 { color: var(--colore-male); }
+.bilancio-scoperti { border-left: var(--spazio-2) solid var(--tensione-3); }
+.bilancio-stelle { border-left: var(--spazio-2) solid var(--giallo); }
+
+/* Stemmi dei club (D-088) e sfida della serata */
+.sfida { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spazio-1); margin: var(--spazio-2) 0; font: 700 var(--testo-piccolo) var(--font-titoli); text-transform: uppercase; }
+.sfida-club { display: inline-flex; align-items: center; gap: var(--spazio-2); }
+.sfida-contro { padding-left: var(--spazio-3); color: var(--colore-testo-tenue); text-transform: none; font-weight: 500; }
+.stemma { width: var(--avatar); height: var(--avatar); flex: none; }
+.stemma-forma { stroke: var(--nero); stroke-width: var(--bordo-fine); }
+.stemma-iniziali { font: 700 var(--testo-piccolo) var(--font-titoli); stroke: none; }
+.nome-picco { display: grid; gap: var(--spazio-1); }
+.picco { display: inline-flex; align-items: center; gap: var(--spazio-1); font-size: var(--testo-mini); color: var(--colore-testo-tenue); }
