@@ -30,7 +30,9 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Fonti del briefing (D-028): informatore di strada (affidabilità bassa), ufficio sicurezza di un club (media), voce dalla centrale radio, voci in rete.
 - Affidabilità (D-030): radio alta, rete media.
 - Verità (D-031): il corteo c'è davvero; lo annuncia l'informatore di strada, la fonte meno affidabile. Il verbale lo rivela.
-- Nomi dei club e dei quartieri, settori della mappa, quantità delle risorse, condizioni degli esiti: DA DECIDERE.
+- Quartieri (D-032): Cinderwick, fonderie e ciminiere, contro Larkspire, la collina elegante.
+- Club (D-033): Cinderwick United contro Larkspire Athletic.
+- Settori della mappa, quantità delle risorse, condizioni degli esiti: DA DECIDERE.
 
 ## Regole di gioco decise
 - Risorse diverse per missione (D-023).
