@@ -6,7 +6,7 @@ import { leggiSchemi, leggiDati } from './dati-disco.mjs';
 // Moduli TypeScript del gioco: Node li esegue togliendo i tipi (Node ≥ 22.18; la CI usa 24).
 import { validaDati } from '../src/dati/valida.ts';
 import { migra, SAVE_VERSION } from '../src/salvataggi/salvataggio.ts';
-import { giraBot, sceltePesano } from './bot.mjs';
+import { giraBot, sceltePesano, chiamateViste } from './bot.mjs';
 
 // Bot: 0 blocchi su tutti i semi, e ogni esito di ogni missione raggiunto da almeno una strategia.
 export function controllaBot(rapporto, dati) {
@@ -17,6 +17,9 @@ export function controllaBot(rapporto, dati) {
   }
   return p;
 }
+
+// Ogni chiamata compare in almeno una campagna (episodi in fila, variabili portate avanti): nessuna chiamata morta.
+export const controllaCampagna = (r) => r.flatMap((x) => x.mai.map((c) => `${x.missione}: la chiamata «${c}» non compare mai in campagna`));
 
 // Le scelte contano (D-048): a parità di schieramento (attento), risposte diverse portano ad almeno 2 esiti.
 export function controllaScelte(rapporto, dati) {
@@ -40,7 +43,7 @@ export const PASSI_LOGICA = {
   confini: () => controllaConfini(Object.fromEntries(tracciatiENuovi().map((p) => [p, readFileSync(p, 'utf8')]))),
   schema: () => validaDati(leggiSchemi(), leggiDati()),
   test: () => esegui('npx vitest run'),
-  bot: () => { const d = leggiDati(); return [...controllaBot(giraBot(d, 1000), d), ...controllaScelte(sceltePesano(d), d)]; },
+  bot: () => { const d = leggiDati(); return [...controllaBot(giraBot(d, 1000), d), ...controllaScelte(sceltePesano(d), d), ...controllaCampagna(chiamateViste(d))]; },
   'salvataggi-reali': () => controllaSalvataggiReali(SAVE_VERSION, leggiSalvataggi(), migra),
   'bracci-rossi-logica': () => {
     const ciechi = [];
@@ -59,6 +62,8 @@ export const PASSI_LOGICA = {
     const m4 = structuredClone(d['missioni/e01.json']); m4.stelle.tre = { var: 'tensione_max', al_massimo: -1 };
     const d4 = { ...d, 'missioni/e01.json': m4 };
     if (!controllaBot(giraBot(d4, 30), d4).some((x) => x.includes('3 stelle'))) ciechi.push('bot/stelle è cieco');
+    const m5 = structuredClone(d['missioni/e02.json']); m5.ondate[0].chiamate[0].se = { var: 'credito', almeno: 99 };
+    if (!controllaCampagna(chiamateViste({ ...d, 'missioni/e02.json': m5 }, 20)).length) ciechi.push('bot/campagna è cieco');
     const m3 = structuredClone(d['missioni/e01.json']);
     for (const o of m3.ondate) for (const c of o.chiamate ?? []) for (const x of c.opzioni) x.effetti = [];
     const d3 = { ...d, 'missioni/e01.json': m3 };
