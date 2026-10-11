@@ -85,6 +85,31 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
         if (ev.se) condizione(`${k}.ondate[${i}].eventi[${j}].se`, ev.se);
       });
     });
+    const risorse = Object.keys(m.mappa.risorse);
+    m.briefing.forEach((b: Obj, i: number) => { if (b.settore && !settori.includes(b.settore)) p.push(`${k}.briefing[${i}]: settore «${b.settore}» non è nella mappa`); });
+    const idChiamate = new Set<string>();
+    m.ondate.forEach((o: Obj, i: number) => (o.chiamate ?? []).forEach((c: Obj, j: number) => {
+      const dove = `${k}.ondate[${i}].chiamate[${j}]`;
+      if (idChiamate.has(c.id)) p.push(`${dove}: id «${c.id}» ripetuto`);
+      idChiamate.add(c.id);
+      testo(dove, c.testo);
+      testo(dove, `testi:fonte.${c.fonte}`);
+      if (c.settore && !settori.includes(c.settore)) p.push(`${dove}: settore «${c.settore}» non è nella mappa`);
+      if (c.se) condizione(`${dove}.se`, c.se);
+      if (new Set(c.opzioni.map((x: Obj) => x.id)).size !== c.opzioni.length) p.push(`${dove}: opzioni con id ripetuto`);
+      if (c.opzioni.every((x: Obj) => x.se)) p.push(`${dove}: tutte le opzioni hanno una condizione (chiamata senza uscita garantita)`);
+      c.opzioni.forEach((x: Obj, h: number) => {
+        testo(`${dove}.opzioni[${h}]`, x.testo);
+        if (x.se) condizione(`${dove}.opzioni[${h}].se`, x.se);
+        x.effetti.forEach((e: Obj, q: number) => {
+          const w = `${dove}.opzioni[${h}].effetti[${q}]`;
+          if ('tensione' in e && !settori.includes(e.tensione)) p.push(`${w}: settore «${e.tensione}» non è nella mappa`);
+          else if ('pressione' in e && !settori.includes(e.pressione)) p.push(`${w}: settore «${e.pressione}» non è nella mappa`);
+          else if ('riserva' in e && !risorse.includes(e.riserva)) p.push(`${w}: risorsa «${e.riserva}» non disponibile`);
+          else if ('imposta' in e || 'aggiungi' in e) effetto(w, e);
+        });
+      });
+    }));
     m.esiti.forEach((e: Obj, i: number) => {
       condizione(`${k}.esiti[${i}].se`, e.se);
       e.effetti.forEach((x: Obj, j: number) => effetto(`${k}.esiti[${i}].effetti[${j}]`, x));

@@ -22,12 +22,15 @@ export function datiValidi(): Record<string, any> {
       id: 'm_prova', stagione: 1, episodio: 1, titolo: 'testi:prova.titolo', disponibile_se: { tutte: [] },
       briefing: [{ testo: 'testi:prova.info', fonte: 'fonte_a', affidabilita: 'bassa', vera: false }],
       mappa: { settori: [{ id: 'settore_a', tipo: 'tipo_a' }, { id: 'settore_b', tipo: 'tipo_b' }], risorse: { risorsa_a: { quantita: 3, efficacia: { tipo_a: 2 }, dimezza: ['tipo_ev'] } } },
-      ondate: [{ n: 1, eventi: [{ id: 'ev_a', tipo: 'tipo_ev', settore: 'settore_a', pressione: 2, se: { non: { var: 'var_enum', uguale: 'due' } } }] }],
+      ondate: [{ n: 1, eventi: [{ id: 'ev_a', tipo: 'tipo_ev', settore: 'settore_a', pressione: 2, se: { non: { var: 'var_enum', uguale: 'due' } } }],
+        chiamate: [{ id: 'ch_a', fonte: 'fonte_a', testo: 'testi:prova.ch_a', settore: 'settore_a', opzioni: [
+          { id: 'op_a', testo: 'testi:prova.op_a', effetti: [{ tensione: 'settore_a', valore: 1 }, { aggiungi: 'var_int', valore: 1 }] },
+          { id: 'op_b', testo: 'testi:prova.op_b', se: { var: 'var_bool', uguale: false }, effetti: [{ pressione: 'settore_b', valore: -1 }, { riserva: 'risorsa_a', valore: 1 }] }] }] }],
       esiti: [
         { id: 'esito_a', se: { almeno_una: [{ var: 'var_int', al_massimo: 2 }] }, effetti: [{ aggiungi: 'var_int', valore: 1 }], verbale: 'testi:prova.verbale_a' },
         { id: 'esito_b', se: {}, effetti: [{ imposta: 'var_bool', valore: true }, { imposta: 'var_enum', valore: 'due' }], verbale: 'testi:prova.verbale_b' },
       ],
       fili: ['filo_a'] },
-    'testi/it/prova.json': Object.fromEntries([...['sop_a', 'club_a', 'pers_a', 'titolo', 'info', 'verbale_a', 'verbale_b'].map((k) => `prova.${k}`), 'settore.settore_a', 'settore.settore_b', 'risorsa.risorsa_a', 'fonte.fonte_a', 'esito.esito_a', 'esito.esito_b'].map((k) => [k, 'Testo di prova'])),
+    'testi/it/prova.json': Object.fromEntries([...['sop_a', 'club_a', 'pers_a', 'titolo', 'info', 'verbale_a', 'verbale_b', 'ch_a', 'op_a', 'op_b'].map((k) => `prova.${k}`), 'settore.settore_a', 'settore.settore_b', 'risorsa.risorsa_a', 'fonte.fonte_a', 'esito.esito_a', 'esito.esito_b'].map((k) => [k, 'Testo di prova'])),
   };
 }

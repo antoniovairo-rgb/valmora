@@ -3,34 +3,215 @@
   "$id": "comune.schema.json",
   "title": "Tipi comuni: id, chiave di testo, condizione, effetto",
   "$defs": {
-    "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
-    "testo": { "type": "string", "pattern": "^testi:[a-z0-9_]+(\\.[a-z0-9_]+)+$", "description": "riferimento a una chiave di data/testi/it/" },
-    "intero": { "type": "integer" },
-    "valore": { "type": ["boolean", "integer", "string"] },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "testo": {
+      "type": "string",
+      "pattern": "^testi:[a-z0-9_]+(\\.[a-z0-9_]+)+$",
+      "description": "riferimento a una chiave di data/testi/it/"
+    },
+    "intero": {
+      "type": "integer"
+    },
+    "valore": {
+      "type": [
+        "boolean",
+        "integer",
+        "string"
+      ]
+    },
     "condizione": {
       "description": "{} = sempre vera. Operatori: tutte, almeno_una, non, uguale, almeno, al_massimo",
       "oneOf": [
-        { "type": "object", "maxProperties": 0 },
-        { "type": "object", "required": ["tutte"], "additionalProperties": false,
-          "properties": { "tutte": { "type": "array", "items": { "$ref": "#/$defs/condizione" } } } },
-        { "type": "object", "required": ["almeno_una"], "additionalProperties": false,
-          "properties": { "almeno_una": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/condizione" } } } },
-        { "type": "object", "required": ["non"], "additionalProperties": false,
-          "properties": { "non": { "$ref": "#/$defs/condizione" } } },
-        { "type": "object", "required": ["var", "uguale"], "additionalProperties": false,
-          "properties": { "var": { "$ref": "#/$defs/id" }, "uguale": { "$ref": "#/$defs/valore" } } },
-        { "type": "object", "required": ["var", "almeno"], "additionalProperties": false,
-          "properties": { "var": { "$ref": "#/$defs/id" }, "almeno": { "$ref": "#/$defs/intero" } } },
-        { "type": "object", "required": ["var", "al_massimo"], "additionalProperties": false,
-          "properties": { "var": { "$ref": "#/$defs/id" }, "al_massimo": { "$ref": "#/$defs/intero" } } }
+        {
+          "type": "object",
+          "maxProperties": 0
+        },
+        {
+          "type": "object",
+          "required": [
+            "tutte"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "tutte": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/condizione"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "almeno_una"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "almeno_una": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/condizione"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "non"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "non": {
+              "$ref": "#/$defs/condizione"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "var",
+            "uguale"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "var": {
+              "$ref": "#/$defs/id"
+            },
+            "uguale": {
+              "$ref": "#/$defs/valore"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "var",
+            "almeno"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "var": {
+              "$ref": "#/$defs/id"
+            },
+            "almeno": {
+              "$ref": "#/$defs/intero"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "var",
+            "al_massimo"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "var": {
+              "$ref": "#/$defs/id"
+            },
+            "al_massimo": {
+              "$ref": "#/$defs/intero"
+            }
+          }
+        }
       ]
     },
     "effetto": {
       "oneOf": [
-        { "type": "object", "required": ["imposta", "valore"], "additionalProperties": false,
-          "properties": { "imposta": { "$ref": "#/$defs/id" }, "valore": { "$ref": "#/$defs/valore" } } },
-        { "type": "object", "required": ["aggiungi", "valore"], "additionalProperties": false,
-          "properties": { "aggiungi": { "$ref": "#/$defs/id" }, "valore": { "$ref": "#/$defs/intero" } } }
+        {
+          "type": "object",
+          "required": [
+            "imposta",
+            "valore"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "imposta": {
+              "$ref": "#/$defs/id"
+            },
+            "valore": {
+              "$ref": "#/$defs/valore"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "aggiungi",
+            "valore"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "aggiungi": {
+              "$ref": "#/$defs/id"
+            },
+            "valore": {
+              "$ref": "#/$defs/intero"
+            }
+          }
+        }
+      ]
+    },
+    "effetto_missione": {
+      "description": "effetto di una scelta durante la missione (D-048)",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/effetto"
+        },
+        {
+          "type": "object",
+          "required": [
+            "tensione",
+            "valore"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "tensione": {
+              "$ref": "#/$defs/id"
+            },
+            "valore": {
+              "$ref": "#/$defs/intero"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "pressione",
+            "valore"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "pressione": {
+              "$ref": "#/$defs/id"
+            },
+            "valore": {
+              "$ref": "#/$defs/intero"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "riserva",
+            "valore"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "riserva": {
+              "$ref": "#/$defs/id"
+            },
+            "valore": {
+              "$ref": "#/$defs/intero"
+            }
+          }
+        }
       ]
     }
   }

@@ -1,13 +1,14 @@
 # Lavagna – Valmora
 
-Scritta solo dal Team Leader. Stati: da fare / in corso / in collaudo / da correggere / chiuso.
+Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo / da correggere / chiuso.
+Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
+Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9).
 
-## Fase 0 – in attesa del PO
+## L1 – nuova e01 a scene (D-048…D-056)
 
-| ID | Titolo | Resp. | Criteri di accettazione | Dipende da | Stato |
-|----|--------|-------|-------------------------|------------|-------|
-| F0-1 | Scelta tecnologia | PO | Una delle 3 opzioni di docs/FASE0_PROPOSTA.md approvata per scritto | – | in attesa PO |
-| F0-2 | Schema dati | PO | Schema di docs/FASE0_PROPOSTA.md approvato o corretto | – | in attesa PO |
-| F0-3 | Bibbia nel repository | PO | docs/BIBBIA.md contiene la bibbia completa | – | in attesa PO |
-
-Nessun compito assegnato a dev-engine, dev-contenuti, test-auto, test-play finché F0-1 e F0-2 non sono chiusi.
+| ID | Titolo | Resp. | Ramo | Criteri di accettazione | Dipende da | Stato |
+|----|--------|-------|------|-------------------------|------------|-------|
+| P-01 | Motore a scene (missione.ts), schema delle chiamate, bot v2 | principale | claude/valmora-l1-setup-schema-xdrbx7 | 0 blocchi su 1000 semi × 3 strategie; test verdi | – | chiuso |
+| P-02 | Dati e testi di e01 v2: 3 ondate × 4-5 chiamate, il vice, briefing legato ai settori | principale | claude/valmora-l1-setup-schema-xdrbx7 | schema verde; bot: 0 blocchi, tre esiti raggiunti, le scelte cambiano l'esito | P-01 | in corso |
+| S-01 | Resa v2 «sala operativa»: mappa PixiJS, scene guidate, motion, icone, Crediti | sviluppatrice | claude/valmora-resa-v2 | vedi prompt in coordination/handoffs/sviluppatrice/S-01-prompt.md | P-01 | in corso |
+| C-01 | Collaudo del motore a scene e dei dati di e01 v2 | collaudatrice | claude/valmora-collaudo | rapporti riproducibili in coordination/handoffs/collaudatrice/ | P-01 | in corso |

@@ -63,6 +63,10 @@
           "vera": {
             "type": "boolean",
             "description": "il verbale rivela sempre se l'informazione era vera (D-024)"
+          },
+          "settore": {
+            "$ref": "comune.schema.json#/$defs/id",
+            "description": "settore che la fonte accende sulla mappa"
           }
         }
       }
@@ -183,6 +187,66 @@
                 "pressione": {
                   "type": "integer",
                   "minimum": 0
+                }
+              }
+            }
+          },
+          "chiamate": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "fonte",
+                "testo",
+                "opzioni"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "$ref": "comune.schema.json#/$defs/id"
+                },
+                "fonte": {
+                  "$ref": "comune.schema.json#/$defs/id"
+                },
+                "testo": {
+                  "$ref": "comune.schema.json#/$defs/testo"
+                },
+                "settore": {
+                  "$ref": "comune.schema.json#/$defs/id"
+                },
+                "se": {
+                  "$ref": "comune.schema.json#/$defs/condizione"
+                },
+                "opzioni": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "testo",
+                      "effetti"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "$ref": "comune.schema.json#/$defs/id"
+                      },
+                      "testo": {
+                        "$ref": "comune.schema.json#/$defs/testo"
+                      },
+                      "se": {
+                        "$ref": "comune.schema.json#/$defs/condizione"
+                      },
+                      "effetti": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "comune.schema.json#/$defs/effetto_missione"
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }

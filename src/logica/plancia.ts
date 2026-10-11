@@ -1,3 +1,4 @@
+// TEMPORANEO: motore della e01 0.1.0, sostituito da missione.ts (D-053); resta finché la resa v2 non arriva.
 // Plancia: risoluzione delle ondate e della missione (D-035, D-037, D-038). Pura e deterministica.
 //
 // Per ogni ondata il giocatore ridistribuisce tutte le risorse (D-038). In ogni settore:

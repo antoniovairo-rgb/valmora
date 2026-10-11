@@ -8,7 +8,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { iniziaMissione, giocaOndata } from '../src/logica/plancia.ts';
-import { attenta } from '../src/logica/bot.ts';
+import { attenta } from '../src/logica/bot-v1.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { URL_APK } from '../src/resa/collegamenti.ts';
 
