@@ -1,8 +1,8 @@
 // Icone dell'interfaccia: solo lucide-react (ISC, vedi CREDITI.md). Nessun simbolo di polizie, club o
 // luoghi reali (REGOLE_PLAY §3). Gli id vengono dai dati: un id sconosciuto ha l'icona generica.
-import { FileText, Globe, HardHat, Handshake, MessageSquare, Phone, Radio, UserRound, Users, type LucideIcon } from 'lucide-react';
+import { Construction, FileText, Globe, HardHat, Handshake, MessageSquare, Phone, Radio, UserRound, Users, type LucideIcon } from 'lucide-react';
 
-const RISORSE: Record<string, LucideIcon> = { squadre: Users, steward: HardHat, mediatore: Handshake };
+const RISORSE: Record<string, LucideIcon> = { squadre: Users, steward: HardHat, mediatore: Handshake, transenne: Construction };
 
 // Fonte → icona per parola contenuta nell'id (centrale_radio, voci_in_rete, …).
 const FONTI: [RegExp, LucideIcon][] = [

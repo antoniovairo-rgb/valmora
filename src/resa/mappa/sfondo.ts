@@ -4,10 +4,13 @@
 // Lo stadio sta fra le due curve dei dati, i viali partono dai settori di tipo «strada».
 // Colori: solo dai token CSS «--mappa-*» (letti a runtime), mai scritti qui.
 import { creaCaso } from '../../logica/caso.ts';
+import { cartelloni, notte, parcheggi, quartiere } from './notte.ts';
 
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number }
-export interface Disposizione { W: number; H: number; stadio: Stadio | null; viali: Pt[][]; centro: Pt; stazione: Pt | null }
+export interface Disposizione { W: number; H: number; stadio: Stadio | null; viali: Pt[][]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; notte: boolean; cartelloni: boolean }
+/** Atmosfera della missione (campi facoltativi dei dati, mappa.ora e mappa.dettagli): e03 è di notte. */
+export interface Atmosfera { notte?: boolean; cartelloni?: boolean }
 export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; corteo: Pt[] | null; fari: Pt[] }
 
 // Il minificatore CSS può scrivere i token come «#fff» o con un nome: il canvas li riporta a «#rrggbb».
@@ -25,7 +28,7 @@ export const alfa = (colore: string, a: number) => colore + Math.round(Math.max(
 const lista = (base: string, n: number) => Array.from({ length: n }, (_, i) => token(`${base}-${i + 1}`));
 
 /** Dove stanno stadio e viali, dalle posizioni (già in pixel) dei settori. */
-export function disponi(W: number, H: number, settori: { tipo: string; x: number; y: number }[]): Disposizione {
+export function disponi(W: number, H: number, settori: { id?: string; tipo: string; x: number; y: number }[], atm: Atmosfera = {}): Disposizione {
   const curve = settori.filter((s) => s.tipo === 'curva');
   const centro = settori.length ? { x: settori.reduce((a, s) => a + s.x, 0) / settori.length, y: settori.reduce((a, s) => a + s.y, 0) / settori.length } : { x: W / 2, y: H / 2 };
   let stadio: Stadio | null = null;
@@ -43,7 +46,9 @@ export function disponi(W: number, H: number, settori: { tipo: string; x: number
     const inizio = stazione ?? { x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 };
     return [inizio, { x: s.x, y: s.y }, { x: s.x + (fine.x - s.x) * 0.55, y: fine.y + (s.y - fine.y) * 0.35 }, fine];
   });
-  return { W, H, stadio, viali, centro, stazione };
+  const quartieri = settori.filter((s) => s.tipo === 'quartiere').map((s) => ({ x: s.x, y: s.y }));
+  const parch = settori.filter((s) => s.id?.includes('parcheggi')).map((s) => ({ x: s.x, y: s.y }));
+  return { W, H, stadio, viali, centro, stazione, quartieri, parcheggi: parch, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
 }
 
 export const bezier = (p: Pt[], t: number): Pt => {
@@ -64,8 +69,13 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   for (let i = 0; i < W * H / 12; i++) { f.fillStyle = alfa(r() < 0.5 ? chiaro : scuro, r() * 0.05); f.fillRect(r() * W, r() * H, 1, 1); }
 
   const st = d.stazione;
-  isolati(f, W, H, r, (x, y) => dentro(x, y, 1.42) || (!!st && Math.abs(y - st.y) < 34 && x < st.x + 70));
+  const RQ = Math.min(W, H) * 0.2; // raggio del quartiere di case basse (e03)
+  const vicino = (ps: Pt[], x: number, y: number, rx: number, ry: number) => ps.some((p) => Math.abs(x - p.x) < rx && Math.abs(y - p.y) < ry);
+  isolati(f, W, H, r, (x, y) => dentro(x, y, 1.42) || (!!st && Math.abs(y - st.y) < 34 && x < st.x + 70)
+    || vicino(d.quartieri, x, y, RQ + 20, RQ + 16) || vicino(d.parcheggi, x, y, 70, 50));
   if (st) stazione(f, W, st);
+  for (const q of d.quartieri) quartiere(f, q, r, RQ);
+  for (const q of d.parcheggi) parcheggi(f, q, r, 96, 64);
   const auto = lista('--mappa-auto', 5);
   for (let i = 0; i < 40; i++) { const x = r() * W, y = r() * H; if (dentro(x, y, 1.3)) continue; f.fillStyle = scegli(auto); f.fillRect(x, y, 6, 3); }
 
@@ -130,6 +140,8 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   const v = f.createLinearGradient(0, 0, 0, H);
   v.addColorStop(0, alfa(token('--mappa-velo-alto'), 0.28)); v.addColorStop(1, alfa(token('--mappa-velo-basso'), 0.1));
   f.fillStyle = v; f.fillRect(0, 0, W, H);
+  if (d.cartelloni && d.viali[0]) cartelloni(f, d.viali[0]);
+  if (d.notte) notte(f, W, H, d.viali, fari, r);
   return { folla, corteo: d.viali[0] ?? null, fari };
 }
 

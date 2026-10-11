@@ -10,6 +10,7 @@ const disponi = (el: HTMLElement) => { if (!spento('C05S08')) disponiEtichette(e
 import type { Disposizione, Missione } from '../../logica/tipi.ts';
 import { spento } from '../../interruttori.ts';
 import { t } from '../dati.ts';
+import { Lock } from 'lucide-react';
 import { Icona, iconaRisorsa } from '../icone.tsx';
 import { livello } from '../partita.ts';
 import type { PuntoMappa } from './StratoPixi.tsx';
@@ -26,6 +27,10 @@ export interface MappaProps {
   accesi?: string[];
   tensione?: Record<string, number> | null;
   presenze?: Disposizione | null;
+  /** unità fisse già montate nelle ondate prima (transenne, D-082): si vedono col lucchetto e non si ritirano */
+  fisse?: Disposizione | null;
+  /** settori dove la risorsa scelta non si può mettere (transenne sugli spalti): spenti */
+  vietati?: string[];
   /** schieramento: tocco su un settore, e tocco su un'unità già schierata per ritirarla */
   onSettore?: (settore: string) => void;
   onTogli?: (risorsa: string, settore: string) => void;
@@ -52,6 +57,10 @@ export function Mappa(p: MappaProps) {
     return { lato: v('--settore', 44) / 2, sotto: v('--margine-nomi', 34) };
   }, []);
 
+  // Atmosfera dai dati (campi facoltativi mappa.ora e mappa.dettagli, e03 «Notte di coppa»).
+  const extra = p.m.mappa as { ora?: string; dettagli?: string[] };
+  const atmosfera = useMemo(() => ({ notte: extra.ora === 'notte', cartelloni: !!extra.dettagli?.includes('cartelloni_stadio_nuovo') }), [extra.ora, extra.dettagli]);
+
   // Nomi e unità al posto che non copre niente (C-008): a ogni disegno, quando la mappa cambia misura e
   // quando arrivano i caratteri.
   useLayoutEffect(() => { if (contenitore.current) disponi(contenitore.current); });
@@ -65,21 +74,27 @@ export function Mappa(p: MappaProps) {
   }, []);
 
   return (
-    <div className="mappa" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
-      {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} pronto={() => setPronta(true)} /></Suspense>}
+    <div className={`mappa${atmosfera.notte ? ' notte' : ''}`} ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
+      {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} atmosfera={atmosfera} pronto={() => setPronta(true)} /></Suspense>}
       {settori.map((s) => {
         const liv = p.tensione ? livello(p.tensione[s.id] ?? 0) : null;
         const lato = s.pos.x < 30 ? 'sinistra' : s.pos.x > 70 ? 'destra' : 'centro';
         const qui = Object.entries(p.presenze ?? {}).map(([r, ps]) => [r, ps[s.id] ?? 0] as const).filter(([, n]) => n > 0);
+        const fisse = Object.entries(p.fisse ?? {}).map(([r, ps]) => [r, ps[s.id] ?? 0] as const).filter(([, n]) => n > 0);
         const nome = t(`settore.${s.id}`);
         return (
           <div key={s.id} ref={posiziona(s.pos.x, s.pos.y)} data-settore={s.id}
-            className={`settore lato-${lato}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}`}>
+            className={`settore lato-${lato}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}${p.vietati?.includes(s.id) ? ' vietato' : ''}`} data-vietato={p.vietati?.includes(s.id) ? 'si' : undefined}>
             <button type="button" className="settore-punto" disabled={!p.onSettore} onClick={() => p.onSettore?.(s.id)}
               aria-label={`${nome}${liv !== null ? `, situazione ${PAROLE[liv]}` : ''}${qui.length ? `, ${qui.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}` : ''}`} />
             <span className="settore-nome" aria-hidden="true">{nome}</span>
-            {qui.length > 0 && (
+            {(qui.length > 0 || fisse.length > 0) && (
               <span className="settore-unita">
+                {fisse.map(([r, n]) => (
+                  <span key={`f-${r}`} className="tocco-pastiglia" data-fissa={`${r}@${s.id}`} role="img" aria-label={`${n} ${t(`risorsa.${r}`)} montate, restano fino a fine serata`}>
+                    <span className="pastiglia fissa"><Icona di={Lock} /><Icona di={iconaRisorsa(r)} />{n}</span>
+                  </span>
+                ))}
                 {qui.map(([r, n]) => (
                   <button key={r} type="button" className={spento('C05R05') ? 'pastiglia-rossa' : 'tocco-pastiglia'} data-presenza={`${r}@${s.id}`} disabled={!p.onTogli}
                     aria-label={`ritira ${t(`risorsa.${r}`)} da ${nome}`} onClick={() => p.onTogli?.(r, s.id)}>

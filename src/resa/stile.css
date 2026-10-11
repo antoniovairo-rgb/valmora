@@ -78,7 +78,7 @@ p { margin: var(--spazio-2) 0; }
 .settore.acceso .settore-punto::after { background: var(--giallo); }
 .settore-nome, .settore-unita { position: absolute; left: 0; transform: translateX(-50%); }
 .settore-nome { top: calc(var(--settore) / 2 - var(--spazio-1)); width: max-content; max-width: var(--nome-max); padding: var(--spazio-px) var(--spazio-1); background: var(--nero); color: var(--giallo); font: 700 var(--testo-mini) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; text-align: center; }
-.settore-unita { bottom: calc(var(--settore) / 2 - var(--spazio-2)); display: flex; gap: 0; pointer-events: auto; }
+.settore-unita { bottom: calc(var(--settore) / 2 - var(--spazio-2)); display: flex; flex-wrap: wrap; width: max-content; max-width: calc(var(--tocco-min) * 3); gap: 0; pointer-events: auto; }
 .lato-sinistra .settore-nome, .lato-sinistra .settore-unita { left: calc(var(--settore) / -2); transform: none; text-align: left; }
 .lato-destra .settore-nome, .lato-destra .settore-unita { left: calc(var(--settore) / 2); transform: translateX(-100%); text-align: right; }
 .tocco-pastiglia { display: grid; place-items: end center; min-width: var(--tocco-min); min-height: var(--tocco-min); padding: 0; border: 0; background: transparent; cursor: pointer; }
@@ -142,3 +142,10 @@ p.riposo { opacity: 1; }
 /* Avvisi sul giallo: riquadro pieno, mai testo colorato direttamente sul retino (contrasto) */
 .avviso { padding: var(--spazio-2) var(--spazio-3); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); font-weight: 700; }
 .avviso.buono { background: var(--bianco); color: var(--nero); }
+
+/* Transenne fisse (D-082): montate restano, col lucchetto; settori vietati spenti mentre le scegli */
+.pastiglia.fissa { background: var(--nero); color: var(--giallo); border-color: var(--giallo); }
+.settore.vietato .settore-punto { cursor: not-allowed; }
+.settore.vietato .settore-punto::after { background: var(--grigio-testo); opacity: var(--opaco); }
+.nota-fisse { display: block; font-size: var(--testo-piccolo); margin: var(--spazio-3) 0; }
+.nota-fisse .icona { vertical-align: text-bottom; }
