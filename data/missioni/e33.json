@@ -1,6 +1,5 @@
 {
   "id": "e33",
-  "bozza": true,
   "stagione": 3,
   "episodio": 33,
   "titolo": "testi:e33.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e33.intro1",
-    "testi:e33.intro2",
-    "testi:e33.intro3"
+    "testi:e33.intro2"
   ],
   "briefing": [
     {
@@ -175,6 +173,22 @@
                 }
               ],
               "risposta": "testi:e33.op.ordini_puliti.r"
+            },
+            {
+              "id": "ordine_a_lavezzari",
+              "testo": "testi:e33.op.ordine_a_lavezzari",
+              "costo": "testi:e33.op.ordine_a_lavezzari.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e33.op.ordine_a_lavezzari.r",
+              "se": {
+                "var": "sospetti_talpa",
+                "almeno": 2
+              }
             }
           ]
         },
@@ -489,6 +503,22 @@
                 }
               ],
               "risposta": "testi:e33.op.aspetta_fine.r"
+            },
+            {
+              "id": "apri_busta",
+              "testo": "testi:e33.op.apri_busta",
+              "costo": "testi:e33.op.apri_busta.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.apri_busta.r",
+              "se": {
+                "var": "busta",
+                "uguale": "tenuta"
+              }
             }
           ]
         },
@@ -651,6 +681,22 @@
                 }
               ],
               "risposta": "testi:e33.op.lascia_andare.r"
+            },
+            {
+              "id": "comando_lo_ferma",
+              "testo": "testi:e33.op.comando_lo_ferma",
+              "costo": "testi:e33.op.comando_lo_ferma.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e33.op.comando_lo_ferma.r",
+              "se": {
+                "var": "busta",
+                "uguale": "consegnata"
+              }
             }
           ]
         },

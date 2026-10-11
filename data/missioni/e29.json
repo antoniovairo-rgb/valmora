@@ -1,6 +1,5 @@
 {
   "id": "e29",
-  "bozza": true,
   "stagione": 3,
   "episodio": 29,
   "titolo": "testi:e29.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e29.intro1",
-    "testi:e29.intro2",
-    "testi:e29.intro3"
+    "testi:e29.intro2"
   ],
   "briefing": [
     {
@@ -115,7 +113,10 @@
           "corteo"
         ]
       }
-    }
+    },
+    "dettagli": [
+      "porto@banchine"
+    ]
   },
   "ondate": [
     {
@@ -558,6 +559,128 @@
               ],
               "risposta": "testi:e29.op.nessuna_squadra.r"
             }
+          ],
+          "se": {
+            "var": "pista_cattura",
+            "uguale": "nessuna"
+          }
+        },
+        {
+          "id": "radio_porto",
+          "fonte": "comando",
+          "se": {
+            "var": "pista_cattura",
+            "uguale": "porto"
+          },
+          "settore": "banchine",
+          "testo": "testi:e29.ch.radio_porto",
+          "commento": "testi:e29.ch.radio_porto.vice",
+          "opzioni": [
+            {
+              "id": "una_ai_cancelli",
+              "testo": "testi:e29.op.una_ai_cancelli",
+              "costo": "testi:e29.op.una_ai_cancelli.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e29.op.una_ai_cancelli.r"
+            },
+            {
+              "id": "nessuna_ai_cancelli",
+              "testo": "testi:e29.op.nessuna_ai_cancelli",
+              "costo": "testi:e29.op.nessuna_ai_cancelli.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e29.op.nessuna_ai_cancelli.r"
+            }
+          ]
+        },
+        {
+          "id": "radio_soffiata",
+          "fonte": "comando",
+          "se": {
+            "var": "pista_cattura",
+            "uguale": "soffiata"
+          },
+          "settore": "banchine",
+          "testo": "testi:e29.ch.radio_soffiata",
+          "commento": "testi:e29.ch.radio_soffiata.vice",
+          "opzioni": [
+            {
+              "id": "due_al_porto",
+              "testo": "testi:e29.op.due_al_porto",
+              "costo": "testi:e29.op.due_al_porto.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -2
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e29.op.due_al_porto.r"
+            },
+            {
+              "id": "una_al_porto",
+              "testo": "testi:e29.op.una_al_porto",
+              "costo": "testi:e29.op.una_al_porto.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.una_al_porto.r"
+            },
+            {
+              "id": "nessuna_al_porto",
+              "testo": "testi:e29.op.nessuna_al_porto",
+              "costo": "testi:e29.op.nessuna_al_porto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": 3
+                }
+              ],
+              "risposta": "testi:e29.op.nessuna_al_porto.r"
+            }
           ]
         },
         {
@@ -679,6 +802,16 @@
           "tipo": "folla",
           "settore": "piazzale",
           "pressione": 3
+        },
+        {
+          "id": "rabbia_fabbro",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 2,
+          "se": {
+            "var": "rapporto_dessi",
+            "uguale": "ostile"
+          }
         }
       ],
       "chiamate": [
@@ -740,6 +873,22 @@
                 }
               ],
               "risposta": "testi:e29.op.lascia_scendere.r"
+            },
+            {
+              "id": "parola_fabbro",
+              "testo": "testi:e29.op.parola_fabbro",
+              "costo": "testi:e29.op.parola_fabbro.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e29.op.parola_fabbro.r",
+              "se": {
+                "var": "rapporto_dessi",
+                "uguale": "rispetto"
+              }
             }
           ]
         },
