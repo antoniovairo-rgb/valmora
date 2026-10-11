@@ -2,16 +2,18 @@
 // volta su un canvas 2D che diventa una texture Pixi. Tetti, alberi, auto, viali, piazzale, stadio con
 // le curve colorate, prato a strisce, fari e velo serale. Seme fisso (caso.ts): stessa città a ogni avvio.
 // Lo stadio sta fra le due curve dei dati, i viali partono dai settori di tipo «strada».
-// Colori: solo dai token CSS «--mappa-*» (letti a runtime), mai scritti qui.
+// Colori: solo dai token CSS «--mappa-*» (letti a runtime), mai scritti qui; curve, folla e corteo coi
+// colori del club della curva (dati, D-086), e se il club non li ha i token di prima.
 import { creaCaso } from '../../logica/caso.ts';
 import { cartelloni, notte, parcheggi, quartiere } from './notte.ts';
 
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number }
-export interface Disposizione { W: number; H: number; stadio: Stadio | null; viali: Pt[][]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; notte: boolean; cartelloni: boolean }
+export interface Colori { primario: string; secondario: string }
+export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; viali: Pt[][]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; notte: boolean; cartelloni: boolean }
 /** Atmosfera della missione (campi facoltativi dei dati, mappa.ora e mappa.dettagli): e03 è di notte. */
 export interface Atmosfera { notte?: boolean; cartelloni?: boolean }
-export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; corteo: Pt[] | null; fari: Pt[] }
+export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; corteo: Pt[] | null; coloriCorteo: [string, string]; fari: Pt[] }
 
 // Il minificatore CSS può scrivere i token come «#fff» o con un nome: il canvas li riporta a «#rrggbb».
 let tavolozza: CanvasRenderingContext2D | null = null;
@@ -22,14 +24,25 @@ export const token = (nome: string) => {
   tavolozza.fillStyle = grezzo;
   return String(tavolozza.fillStyle);
 };
+/** Colore di un dato (club) riportato a «#rrggbb» come i token; undefined resta undefined. */
+export const colore = (grezzo: string | undefined) => {
+  if (!grezzo) return undefined;
+  tavolozza ??= document.createElement('canvas').getContext('2d');
+  if (!tavolozza) return grezzo;
+  tavolozza.fillStyle = grezzo;
+  return String(tavolozza.fillStyle);
+};
 /** Colore del token con trasparenza, come «#rrggbbaa» (i token dei colori sono «#rrggbb»). */
 export const alfa = (colore: string, a: number) => colore + Math.round(Math.max(0, Math.min(1, a)) * 255).toString(16).padStart(2, '0');
 
 const lista = (base: string, n: number) => Array.from({ length: n }, (_, i) => token(`${base}-${i + 1}`));
 
 /** Dove stanno stadio e viali, dalle posizioni (già in pixel) dei settori. */
-export function disponi(W: number, H: number, settori: { id?: string; tipo: string; x: number; y: number }[], atm: Atmosfera = {}): Disposizione {
+export function disponi(W: number, H: number, settori: { id?: string; tipo: string; x: number; y: number; colori?: Colori }[], atm: Atmosfera = {}): Disposizione {
   const curve = settori.filter((s) => s.tipo === 'curva');
+  // Curva di sinistra e di destra; il corteo è degli ospiti (la curva «ospiti», altrimenti la prima dei dati).
+  const [sx, dx] = [...curve].sort((a, b) => a.x - b.x);
+  const club = { sx: sx?.colori, dx: dx?.colori, corteo: (curve.find((s) => s.id?.includes('ospiti')) ?? curve[0])?.colori };
   const centro = settori.length ? { x: settori.reduce((a, s) => a + s.x, 0) / settori.length, y: settori.reduce((a, s) => a + s.y, 0) / settori.length } : { x: W / 2, y: H / 2 };
   let stadio: Stadio | null = null;
   if (curve.length >= 2) {
@@ -48,7 +61,7 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
   });
   const quartieri = settori.filter((s) => s.tipo === 'quartiere').map((s) => ({ x: s.x, y: s.y }));
   const parch = settori.filter((s) => s.id?.includes('parcheggi')).map((s) => ({ x: s.x, y: s.y }));
-  return { W, H, stadio, viali, centro, stazione, quartieri, parcheggi: parch, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
+  return { W, H, club, stadio, viali, centro, stazione, quartieri, parcheggi: parch, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
 }
 
 export const bezier = (p: Pt[], t: number): Pt => {
@@ -110,7 +123,9 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
         f.strokeStyle = alfa(colore, 0.25 + 0.04 * i); f.lineWidth = 1.6 * k; f.stroke();
       }
     };
-    curva(Math.PI * 0.72, Math.PI * 1.28, token('--mappa-curva-a')); curva(-Math.PI * 0.28, Math.PI * 0.28, token('--mappa-curva-b'));
+    curva(Math.PI * 0.72, Math.PI * 1.28, colore(d.club.sx?.primario) ?? token('--mappa-curva-a')); curva(-Math.PI * 0.28, Math.PI * 0.28, colore(d.club.dx?.primario) ?? token('--mappa-curva-b'));
+    // Tifosi delle curve: tre su quattro col primario, uno col secondario (sciarpe e bandiere).
+    const tifoso = (c: Colori | undefined, i: number, base: string) => (c ? colore(i % 4 ? c.primario : c.secondario)! : token(base));
     const pw = 88 * k, ph = 52 * k;
     f.save(); f.beginPath(); f.rect(cx - pw / 2, cy - ph / 2, pw, ph); f.clip();
     for (let i = 0; i < 10; i++) { f.fillStyle = token(i % 2 ? '--mappa-prato-1' : '--mappa-prato-2'); f.fillRect(cx - pw / 2 + (i * pw) / 10, cy - ph / 2, pw / 10, ph); }
@@ -133,7 +148,7 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
     for (let i = 0; i < 1400; i++) {
       const a = r() * Math.PI * 2, q = r(), c = Math.cos(a);
       folla.push({ x: cx + c * (rx - q * 22 * k), y: cy + Math.sin(a) * (ry - q * 14 * k), fase: r() * 6.28,
-        colore: c < -0.55 ? token('--mappa-folla-a') : c > 0.55 ? token('--mappa-folla-b') : scegli(tinte) });
+        colore: c < -0.55 ? tifoso(d.club.sx, i, '--mappa-folla-a') : c > 0.55 ? tifoso(d.club.dx, i, '--mappa-folla-b') : scegli(tinte) });
     }
   }
   // Velo serale.
@@ -142,7 +157,9 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   f.fillStyle = v; f.fillRect(0, 0, W, H);
   if (d.cartelloni && d.viali[0]) cartelloni(f, d.viali[0]);
   if (d.notte) notte(f, W, H, d.viali, fari, r);
-  return { folla, corteo: d.viali[0] ?? null, fari };
+  const corteo = d.club.corteo;
+  return { folla, corteo: d.viali[0] ?? null, fari,
+    coloriCorteo: corteo ? [colore(corteo.primario)!, colore(corteo.secondario)!] : [token('--mappa-corteo-1'), token('--mappa-corteo-2')] };
 }
 
 /** Isolati con tetti, ombre, comignoli e alberi; «salta» lascia libero un posto (stadio, fiume). */

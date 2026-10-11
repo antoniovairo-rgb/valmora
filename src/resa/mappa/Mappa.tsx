@@ -9,7 +9,7 @@ import { disponiEtichette } from './etichette.ts';
 const disponi = (el: HTMLElement) => { if (!spento('C05S08')) disponiEtichette(el); };
 import type { Disposizione, Missione } from '../../logica/tipi.ts';
 import { spento } from '../../interruttori.ts';
-import { t } from '../dati.ts';
+import { club, t } from '../dati.ts';
 import { Lock } from 'lucide-react';
 import { Icona, iconaRisorsa } from '../icone.tsx';
 import { livello } from '../partita.ts';
@@ -49,6 +49,8 @@ export function Mappa(p: MappaProps) {
   const accesi = useMemo(() => new Set(p.accesi ?? []), [p.accesi]);
   const punti: PuntoMappa[] = useMemo(() => settori.map((s) => ({
     id: s.id, tipo: s.tipo, x: s.pos.x, y: s.pos.y, acceso: accesi.has(s.id), livello: p.tensione ? livello(p.tensione[s.id] ?? 0) : null,
+    // Curve, folla e corteo coi colori del club della curva (D-086). Rosso C10C01: colori fissi di prima.
+    colori: s.club && !spento('C10C01') ? club.get(s.club)?.colori : undefined,
   })), [settori, accesi, p.tensione]);
   // Margine interno = mezzo punto del settore, come nel CSS (.settore), così Pixi e HTML coincidono.
   // e in basso c'è in più lo spazio per i nomi (--margine-nomi): stessi conti di .settore in stile.css.

@@ -1,14 +1,13 @@
-// Gioca la prima missione nel browser a 360/375/412 px, come il giocatore attento (src/logica/bot.ts):
-// foto di ogni scena, errori di console, scorrimento orizzontale, link APK, trascinamento di un'unità,
-// ripresa dopo una ricarica a metà ondata, esito finale = il migliore della missione.
+// Gioca e01-e03 nel browser a 360/375/412 px: foto di ogni scena, errori, scorrimento, trascinamento,
+// ripresa dopo una ricarica, esito = quello del motore (giocatore di src/logica/bot.ts).
 // Uso: node tools/foto.mjs [cartella-foto] [cartella-build] [cartella-dati]
-//   predefinite: out/foto (ignorata da git), dist, data. Con dati di prova serve una build fatta con
-//   VALMORA_DATI=<cartella-dati> (vite.config.ts), per esempio in out/dist-prova.
+//   predefinite: out/foto, dist, data. Con dati di prova serve una build con VALMORA_DATI=<cartella-dati>.
 import { createServer } from 'node:http';
 import { readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
+import { clubDai, controllaCurve, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -42,8 +41,8 @@ function gioca(m, dich, g, iniziali = variabiliIniziali(dich.values())) {
     s = schiera(m, s, disposizione);
     const risposte = [];
     for (let c = chiamateAperte(m, s)[0]; c; c = chiamateAperte(m, s)[0]) { const o = g.scegli(m, s, c); risposte.push([c.id, o]); s = rispondi(m, s, c.id, o, dich); }
-    ondate.push({ disposizione, risposte });
     s = chiudiOndata(m, s, dich);
+    ondate.push({ disposizione, risposte, rapporto: s.rapporti.at(-1) });
   }
   const fine = concludiMissione(m, s, dich);
   return { ondate, esito: fine.esito.id, stelle: valutaEpisodio(m, fine).stelle, fallita: !!fine.esito.fallita, variabili: fine.variabili };
@@ -87,7 +86,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
   const browser = await chromium.launch({ executablePath: percorso });
   const piano = pianoAttento(dirDati);
   const piano2 = pianoAttento(dirDati, 1, piano.variabili); // null se c'è una sola missione
-  const piano3 = piano2 && pianoAttento(dirDati, 2, piano2.variabili);
+  const piano3 = piano2 && pianoAttento(dirDati, 2, piano2.variabili); const club = clubDai(dirDati);
   const giri = [];
   try {
     for (const larghezza of larghezze()) {
@@ -204,7 +203,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           if (modoFoto === 'chiave' && !viste.has(nome)) { viste.add(nome); await foto(); }
         };
         const partita = async (p) => {
-          await scena('sala'); await fotoSe();
+          await scena('sala'); await fotoSe(); await controllaSfida(pagina, p.m, atteso, 'sala');
           const variante = (p.m.introduzione ?? []).map((k) => k.replace(/^testi:/, '')).find((k) => piano.testi[`${k}@f`]);
           if (variante) {
             const atteso_ = piano.testi[genere === 'f' ? `${variante}@f` : variante];
@@ -218,6 +217,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             const n = i + 1;
             await scena('schieramento');
             atteso(`ondata ${n}: la scena è dell'ondata ${await pagina.getAttribute('main', 'data-ondata')}`, (await pagina.getAttribute('main', 'data-ondata')) === String(n));
+            if (n === 1) await controllaCurve(pagina, p.m, club, atteso);
             // Risorse fisse (transenne, D-082): all'ondata 1 non si montano in curva (avviso, nessuna presenza);
             // dall'ondata 2 quelle montate all'ondata 1 restano sulla mappa col lucchetto e non si ritirano.
             const fisse = Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => r);
@@ -301,12 +301,20 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             // Se la ripresa non torna al rapporto (difetto R04) si è già allo schieramento dopo: si prosegue da lì.
             if (completa && n === 1 && !(await ricaricaERiprendi('rapporto', 'ricarica sul rapporto (C-005 R04)'))) continue;
             const cifre = await pagina.locator('.elenco-settori').textContent();
-            atteso(`rapporto ${n}: la tensione si vede in numeri (D-055): «${cifre}»`, !/\d/.test(cifre ?? ''));
+            atteso(`rapporto ${n}: la tensione si vede in numeri (D-055): «${cifre}»`, !/\d/.test(cifre ?? '')); await controllaPicco(pagina, p.m, o.rapporto, atteso);
             await premi('[data-azione="avanti"]');
           }
-          await scena('verbale'); await foto();
-          const pesate = await pagina.locator('[data-scelta]').count();
-          atteso(`verbale: ${pesate} scelte mostrate, servono le 1-3 che hanno pesato (C-005 R03)`, p.ondate.every((o) => !o.risposte.length) ? pesate === 0 : pesate >= 1 && pesate <= 3);
+          await scena('verbale'); await foto(); await controllaSfida(pagina, p.m, atteso, 'verbale');
+          // Bilancio (D-085): 4 sezioni, ≤ 3 scelte per aiuti e pesi, nessuna fuori (R03), non vuoto (__NO_C10B01).
+          const sezioni = await pagina.$$eval('[data-sezione]', (xs) => xs.map((x) => x.dataset.sezione).join(','));
+          atteso(`verbale: sezioni del bilancio «${sezioni}», servono aiuti,pesi,scoperti,stelle (D-085)`, sezioni === 'aiuti,pesi,scoperti,stelle');
+          const [aiuti, pesi, fuori] = await pagina.evaluate(() => [
+            document.querySelectorAll('[data-sezione="aiuti"] [data-scelta]').length, document.querySelectorAll('[data-sezione="pesi"] [data-scelta]').length,
+            [...document.querySelectorAll('[data-scelta]')].filter((x) => !x.closest('[data-sezione]')).length]);
+          atteso(`verbale: ${fuori} scelte fuori dal bilancio, ${aiuti} aiuti e ${pesi} pesi (massimo 3 l'uno, C-005 R03)`, fuori === 0 && aiuti <= 3 && pesi <= 3);
+          if (p.ondate.some((o) => o.risposte.length)) atteso('verbale: partita con scelte ma bilancio vuoto (D-085)', aiuti + pesi >= 1);
+          const stella = await pagina.locator('[data-sezione="stelle"] p').first().textContent({ timeout: 2000 }).catch(() => '');
+          atteso(`verbale: «per la stella successiva» senza indicazione («${stella}»)`, !!stella?.trim() && !stella.includes('[['));
         };
 
         // 1) fallimento col giocatore peggiore → «Rigioca l'episodio» (D-059)
