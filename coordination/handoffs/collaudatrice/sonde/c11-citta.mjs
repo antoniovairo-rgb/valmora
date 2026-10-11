@@ -48,7 +48,7 @@ const piano = (m, v) => { const g = B.attenta(creaCaso(1), dich); let s = M.iniz
 // Azione principale visibile senza scorrere (C09-03): pulsante non secondario o indicatore delle opzioni, dentro la finestra.
 const piega = (p) => p.evaluate(() => { const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== 'hidden'; };
   const dentro = (e) => { const r = e.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight + 1; };
-  const cand = [...document.querySelectorAll('.scena .pulsante:not(.secondario), .scena [data-azione="vai-opzioni"], .scena .indicatore-opzioni, .scena .opzione')].filter(vis);
+  const cand = [...document.querySelectorAll('.scena .pulsante:not(.secondario), .scena [data-indicatore="opzioni"], .scena .opzione')].filter(vis);
   return { ok: cand.some(dentro), scrollY: scrollY, nomi: cand.slice(0, 3).map((e) => (e.textContent || e.className).trim().slice(0, 30)) }; });
 async function gioca(p, m, v, larg, misura) {
   const pl = piano(m, v); const rilievi = [];
