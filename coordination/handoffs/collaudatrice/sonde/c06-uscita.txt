@@ -1,0 +1,135 @@
+interruttori rossi: nessuno (verde)
+R01 · 375px · tocco singolo su «scorta» → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 375px · «scorta» poi «ferma» dopo 40 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 375px · «scorta» poi «ferma» dopo 150 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 375px · «scorta» poi «ferma» dopo 300 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R04 · 375px · ricarica sui rapporti intermedi, poi «Riprendi» → ondata 1 → «rapporto» · ondata 2 → «rapporto»
+R03 · 375px · schede di scelta nel verbale → 3 (esito resa «contenuto_a_fatica», motore «contenuto_a_fatica»)
+R05 · 375px · bersagli [data-presenza] w×h minimi → 44×44 su 95
+R06 · 375px · carattere minimo; distanza minima dei nomi dai bordi della mappa → 12px; 36px
+R07 · 375px · etichette della testata su più righe o tagliate → nessuna
+N01 · 375px · righe del rapporto con lo stato sotto il nome → piazzale, strada_cinderwick
+— · 375px · scorrimento orizzontale (schermate) → 0
+E02 · 375px · episodi in città ["e01:superato","e02:disponibile"] → pulsante «Avvia l'episodio» → verbale «contenuto_a_fatica», motore «contenuto_a_fatica» (variabili da e01: credito 0, informatore true)
+R02 · 375px · «Nuova partita» con partita salvata → scena «conferma»; «No» → «titolo», salvataggio invariato
+— · 375px · errori di console → nessuno
+R01 · 412px · tocco singolo su «scorta» → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 412px · «scorta» poi «ferma» dopo 40 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 412px · «scorta» poi «ferma» dopo 150 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 412px · «scorta» poi «ferma» dopo 300 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R04 · 412px · ricarica sui rapporti intermedi, poi «Riprendi» → ondata 1 → «rapporto» · ondata 2 → «rapporto»
+R03 · 412px · schede di scelta nel verbale → 3 (esito resa «contenuto_a_fatica», motore «contenuto_a_fatica»)
+R05 · 412px · bersagli [data-presenza] w×h minimi → 44×44 su 95
+R06 · 412px · carattere minimo; distanza minima dei nomi dai bordi della mappa → 12px; 40px
+R07 · 412px · etichette della testata su più righe o tagliate → nessuna
+N01 · 412px · righe del rapporto con lo stato sotto il nome → nessuna
+— · 412px · scorrimento orizzontale (schermate) → 0
+E02 · 412px · episodi in città ["e01:superato","e02:disponibile"] → pulsante «Avvia l'episodio» → verbale «contenuto_a_fatica», motore «contenuto_a_fatica» (variabili da e01: credito 0, informatore true)
+R02 · 412px · «Nuova partita» con partita salvata → scena «conferma»; «No» → «titolo», salvataggio invariato
+— · 412px · errori di console → nessuno
+interruttori rossi: C05R01
+R01 · 360px · tocco singolo su «scorta» → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 40 ms → salvato {"corteo_partito":"ferma"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 150 ms → salvato {"corteo_partito":"ferma"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 300 ms → salvato {"corteo_partito":"ferma"}, scelte 1
+R04 · 360px · ricarica sui rapporti intermedi, poi «Riprendi» → ondata 1 → «rapporto» · ondata 2 → «rapporto»
+R03 · 360px · schede di scelta nel verbale → 3 (esito resa «contenuto_a_fatica», motore «contenuto_a_fatica»)
+R05 · 360px · bersagli [data-presenza] w×h minimi → 44×44 su 95
+R06 · 360px · carattere minimo; distanza minima dei nomi dai bordi della mappa → 12px; 35px
+R07 · 360px · etichette della testata su più righe o tagliate → nessuna
+N01 · 360px · righe del rapporto con lo stato sotto il nome → piazzale, strada_cinderwick, strada_larkspire
+— · 360px · scorrimento orizzontale (schermate) → 0
+E02 · 360px · episodi in città ["e01:superato","e02:disponibile"] → pulsante «Avvia l'episodio» → verbale «contenuto_a_fatica», motore «contenuto_a_fatica» (variabili da e01: credito 0, informatore true)
+R02 · 360px · «Nuova partita» con partita salvata → scena «conferma»; «No» → «titolo», salvataggio invariato
+— · 360px · errori di console → nessuno
+interruttori rossi: C05R02
+R01 · 360px · tocco singolo su «scorta» → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 40 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 150 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 300 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R04 · 360px · ricarica sui rapporti intermedi, poi «Riprendi» → ondata 1 → «rapporto» · ondata 2 → «rapporto»
+R03 · 360px · schede di scelta nel verbale → 3 (esito resa «contenuto_a_fatica», motore «contenuto_a_fatica»)
+R05 · 360px · bersagli [data-presenza] w×h minimi → 44×44 su 95
+R06 · 360px · carattere minimo; distanza minima dei nomi dai bordi della mappa → 12px; 35px
+R07 · 360px · etichette della testata su più righe o tagliate → nessuna
+N01 · 360px · righe del rapporto con lo stato sotto il nome → piazzale, strada_cinderwick, strada_larkspire
+— · 360px · scorrimento orizzontale (schermate) → 0
+E02 · 360px · episodi in città ["e01:superato","e02:disponibile"] → pulsante «Avvia l'episodio» → verbale «contenuto_a_fatica», motore «contenuto_a_fatica» (variabili da e01: credito 0, informatore true)
+R02 · 360px · «Nuova partita» con partita salvata → scena «genere»; -
+— · 360px · errori di console → nessuno
+interruttori rossi: C05R03
+R01 · 360px · tocco singolo su «scorta» → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 40 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 150 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 300 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R04 · 360px · ricarica sui rapporti intermedi, poi «Riprendi» → ondata 1 → «rapporto» · ondata 2 → «rapporto»
+R03 · 360px · schede di scelta nel verbale → 13 (esito resa «contenuto_a_fatica», motore «contenuto_a_fatica»)
+R05 · 360px · bersagli [data-presenza] w×h minimi → 44×44 su 95
+R06 · 360px · carattere minimo; distanza minima dei nomi dai bordi della mappa → 12px; 35px
+R07 · 360px · etichette della testata su più righe o tagliate → nessuna
+N01 · 360px · righe del rapporto con lo stato sotto il nome → piazzale, strada_cinderwick, strada_larkspire
+— · 360px · scorrimento orizzontale (schermate) → 0
+E02 · 360px · episodi in città ["e01:superato","e02:disponibile"] → pulsante «Avvia l'episodio» → verbale «contenuto_a_fatica», motore «contenuto_a_fatica» (variabili da e01: credito 0, informatore true)
+R02 · 360px · «Nuova partita» con partita salvata → scena «conferma»; «No» → «titolo», salvataggio invariato
+— · 360px · errori di console → nessuno
+interruttori rossi: C05R04
+R01 · 360px · tocco singolo su «scorta» → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 40 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 150 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 300 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R04 · 360px · ricarica sui rapporti intermedi, poi «Riprendi» → ondata 1 → «schieramento» · ondata 2 → «schieramento»
+R03 · 360px · schede di scelta nel verbale → 3 (esito resa «contenuto_a_fatica», motore «contenuto_a_fatica»)
+R05 · 360px · bersagli [data-presenza] w×h minimi → 44×44 su 95
+R06 · 360px · carattere minimo; distanza minima dei nomi dai bordi della mappa → 12px; 35px
+R07 · 360px · etichette della testata su più righe o tagliate → nessuna
+N01 · 360px · righe del rapporto con lo stato sotto il nome → piazzale, strada_cinderwick, strada_larkspire
+— · 360px · scorrimento orizzontale (schermate) → 0
+E02 · 360px · episodi in città ["e01:superato","e02:disponibile"] → pulsante «Avvia l'episodio» → verbale «contenuto_a_fatica», motore «contenuto_a_fatica» (variabili da e01: credito 0, informatore true)
+R02 · 360px · «Nuova partita» con partita salvata → scena «conferma»; «No» → «titolo», salvataggio invariato
+— · 360px · errori di console → nessuno
+interruttori rossi: C05R05
+R01 · 360px · tocco singolo su «scorta» → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 40 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 150 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 300 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R04 · 360px · ricarica sui rapporti intermedi, poi «Riprendi» → ondata 1 → «rapporto» · ondata 2 → «rapporto»
+R03 · 360px · schede di scelta nel verbale → 3 (esito resa «contenuto_a_fatica», motore «contenuto_a_fatica»)
+R05 · 360px · bersagli [data-presenza] w×h minimi → 32×24 su 95
+R06 · 360px · carattere minimo; distanza minima dei nomi dai bordi della mappa → 12px; 35px
+R07 · 360px · etichette della testata su più righe o tagliate → nessuna
+N01 · 360px · righe del rapporto con lo stato sotto il nome → piazzale, strada_cinderwick, strada_larkspire
+— · 360px · scorrimento orizzontale (schermate) → 0
+E02 · 360px · episodi in città ["e01:superato","e02:disponibile"] → pulsante «Avvia l'episodio» → verbale «contenuto_a_fatica», motore «contenuto_a_fatica» (variabili da e01: credito 0, informatore true)
+R02 · 360px · «Nuova partita» con partita salvata → scena «conferma»; «No» → «titolo», salvataggio invariato
+— · 360px · errori di console → nessuno
+interruttori rossi: C05R06
+R01 · 360px · tocco singolo su «scorta» → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 40 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 150 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 300 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R04 · 360px · ricarica sui rapporti intermedi, poi «Riprendi» → ondata 1 → «rapporto» · ondata 2 → «rapporto»
+R03 · 360px · schede di scelta nel verbale → 3 (esito resa «contenuto_a_fatica», motore «contenuto_a_fatica»)
+R05 · 360px · bersagli [data-presenza] w×h minimi → 44×44 su 95
+R06 · 360px · carattere minimo; distanza minima dei nomi dai bordi della mappa → 10px; 9px
+R07 · 360px · etichette della testata su più righe o tagliate → nessuna
+N01 · 360px · righe del rapporto con lo stato sotto il nome → piazzale, strada_cinderwick, strada_larkspire
+— · 360px · scorrimento orizzontale (schermate) → 0
+E02 · 360px · episodi in città ["e01:superato","e02:disponibile"] → pulsante «Avvia l'episodio» → verbale «contenuto_a_fatica», motore «contenuto_a_fatica» (variabili da e01: credito 0, informatore true)
+R02 · 360px · «Nuova partita» con partita salvata → scena «conferma»; «No» → «titolo», salvataggio invariato
+— · 360px · errori di console → nessuno
+interruttori rossi: C05R07
+R01 · 360px · tocco singolo su «scorta» → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 40 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 150 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R01 · 360px · «scorta» poi «ferma» dopo 300 ms → salvato {"corteo_partito":"scorta"}, scelte 1
+R04 · 360px · ricarica sui rapporti intermedi, poi «Riprendi» → ondata 1 → «rapporto» · ondata 2 → «rapporto»
+R03 · 360px · schede di scelta nel verbale → 3 (esito resa «contenuto_a_fatica», motore «contenuto_a_fatica»)
+R05 · 360px · bersagli [data-presenza] w×h minimi → 44×44 su 95
+R06 · 360px · carattere minimo; distanza minima dei nomi dai bordi della mappa → 12px; 35px
+R07 · 360px · etichette della testata su più righe o tagliate → schieramento: «Ondata 1/3 · schieramento» righe 1, tagliata | chiamata: «Ondata 1/3 · chiamata 1 di 5» righe 1, tagliata | chiamata: «Ondata 1/3 · chiamata 2 di 5» righe 1, tagliata | chiamata: «Ondata 1/3 · chiamata 3 di 5» righe 1, tagliata
+N01 · 360px · righe del rapporto con lo stato sotto il nome → piazzale, strada_cinderwick, strada_larkspire
+— · 360px · scorrimento orizzontale (schermate) → 0
+E02 · 360px · episodi in città ["e01:superato","e02:disponibile"] → pulsante «Avvia l'episodio» → verbale «contenuto_a_fatica», motore «contenuto_a_fatica» (variabili da e01: credito 0, informatore true)
+R02 · 360px · «Nuova partita» con partita salvata → scena «conferma»; «No» → «titolo», salvataggio invariato
+— · 360px · errori di console → nessuno
+FINE
