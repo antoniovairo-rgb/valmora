@@ -177,6 +177,46 @@
           ]
         },
         {
+          "id": "collina_risponde",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e10.ch.collina_risponde",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "corteo_casa_no",
+              "testo": "testi:e10.op.corteo_casa_no",
+              "costo": "testi:e10.op.corteo_casa_no.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "strada_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e10.op.corteo_casa_no.r"
+            },
+            {
+              "id": "corteo_casa_scortato",
+              "testo": "testi:e10.op.corteo_casa_scortato",
+              "costo": "testi:e10.op.corteo_casa_scortato.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e10.op.corteo_casa_scortato.r"
+            }
+          ]
+        },
+        {
           "id": "ragazzo_ricorda",
           "fonte": "informatore_di_strada",
           "testo": "testi:e10.ch.ragazzo_ricorda",
@@ -635,7 +675,7 @@
           "id": "piazzale10d",
           "tipo": "folla",
           "settore": "piazzale",
-          "pressione": 4
+          "pressione": 3
         }
       ],
       "chiamate": [
