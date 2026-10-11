@@ -9,7 +9,7 @@ D-099 (finale), D-100 (scelte che contano), D-101 (lunghezze), D-091/D-092 (even
    caratteri; verbali ≤ 220. Tono: il vice Ettore Malvasi ironico e asciutto; niente spiegoni.
 3. **Nomi (D-098)**: Ettore Malvasi (il vice; «Malvasi» nei testi, «il vice» va bene), Gianni Lavezzari (sicurezza del
    Cinderwick United, cordiale e disponibile, la talpa), Tullio Varrone e l'impresa «Varrone & Figli» (stadio nuovo),
-   Dessì (capo della curva Cinderwick). Fonte `ufficio_sicurezza_cinderwick` = Lavezzari. Mai altri nomi propri di
+   Ferrigno (capo della curva Cinderwick). Fonte `ufficio_sicurezza_cinderwick` = Lavezzari. Mai altri nomi propri di
    persone chiave senza chiederli alla principale.
 4. **Scelte che contano (D-100)** — chi imposta, chi legge (condizioni «se» di chiamate/opzioni/eventi o esiti):
    - `sospetti_talpa` (int 0-4): +1 quando il giocatore nota un'incongruenza di Lavezzari in e01, e16, e19, e23

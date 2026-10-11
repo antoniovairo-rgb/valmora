@@ -18,8 +18,8 @@ Schede per episodio (situazione, dilemma, novità prevista e NON costruita, fili
 
 ## Da decidere col PO (raccolto dai tre blocchi)
 1. Chi è la talpa (e19 → e33) e chi è «qualcuno in comune».
-2. Nome del costruttore e sua sorte; legami anticipati fra i fili (presidente e impresa in e06, Dessì sul furgone in e08, furgone intestato a una ditta di cartelloni in e12, furgone già in e13).
-3. Variabili di storia che servirebbero: rapporto con Dessì (e08–e12), sorte del testimone (e18), Dessì latitante (e20), busta (e24), pista della cattura (e28–e30), a chi va il fascicolo (e31), esito della triade (e36).
+2. Nome del costruttore e sua sorte; legami anticipati fra i fili (presidente e impresa in e06, Ferrigno sul furgone in e08, furgone intestato a una ditta di cartelloni in e12, furgone già in e13).
+3. Variabili di storia che servirebbero: rapporto con Ferrigno (e08–e12), sorte del testimone (e18), Ferrigno latitante (e20), busta (e24), pista della cattura (e28–e30), a chi va il fascicolo (e31), esito della triade (e36).
 4. Chi vince la finale di e26; soglie di credito della conferma in e34; la busta del vice in e36.
 5. Nomi, colori e stemmi dei club nuovi: Saltmere Wanderers, Ollerbrook Town, Mossgarth Town.
 6. Le novità di gioco previste dall'indice e non costruite (elenco nelle schede).
