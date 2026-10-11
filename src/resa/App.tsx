@@ -6,7 +6,7 @@ import { AnimatePresence, MotionConfig } from 'motion/react';
 import { useRef, useState } from 'react';
 import { spento } from '../interruttori.ts';
 import { variabiliIniziali } from '../logica/condizioni.ts';
-import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFinita, rispondi, schiera, type EsitoMissione, type InCorso } from '../logica/missione.ts';
+import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFinita, rispondi, schiera, settoriAmmessi, type EsitoMissione, type InCorso } from '../logica/missione.ts';
 import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
@@ -36,7 +36,7 @@ type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'citta' | 'sala'
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
-const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01'];
+const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01', 'C10S03'];
 const libera = (m: Missione, ic: InCorso, d: Disposizione, preferita: string | null) => {
   const disp = disponibili(m, ic);
   const ok = (r: string) => (disp[r] ?? 0) - usate(d, r) > 0;
@@ -58,6 +58,7 @@ export function App() {
     const da = centro(`[data-risorsa="${risorsa}"]`), a = centro(`[data-settore="${settore}"] .settore-punto`);
     if (da && a) setVoli((v) => [...v, { id: ++contaVoli.current, risorsa, da, a }]);
   };
+  const [avviso, setAvviso] = useState<string | null>(null); // transenne su un settore dove non si montano (D-082)
   const [eco, setEco] = useState<Opzione | null>(null); // risposta all'ultima scelta, solo a schermo
   // Ogni azione parte dal salvataggio PIÙ RECENTE (ref), non da quello catturato quando la scena è stata
   // disegnata: un secondo tocco durante l'uscita della scena trova la chiamata già chiusa e non fa nulla (C-005 R01).
@@ -120,7 +121,9 @@ export function App() {
   } else if (schermata === 'rapporto' && ic?.rapporti.length) {
     const r = ic.rapporti.at(-1)!;
     const fine = missioneFinita(m, ic);
-    mappa = { tensione: r.tensione };
+    // C-010 C09-02: un settore scoperto non può sembrare tranquillo: almeno il giallo (livello 2).
+    // Interruttore rosso C10S02: colore dalla sola tensione.
+    mappa = { tensione: spento('C10S02') ? r.tensione : Object.fromEntries(Object.entries(r.tensione).map(([k, v]) => [k, (r.scoperto[k] ?? 0) > 0 ? Math.max(v, 3) : v])) };
     testata = { etichetta: `Rapporto · ondata ${r.n} di ${m.ondate.length}`, titolo: `Rapporto dell'ondata ${r.n}` };
     corpo = <Rapporto m={m} r={r} ultima={fine} prossime={fine ? {} : disponibili(m, ic)} avanti={() => {
       const ora = icOra();
@@ -136,7 +139,7 @@ export function App() {
   else if (eco) {
     nome = 'risposta';
     testata = { etichetta: `Ondata ${ic.ondata}/${m.ondate.length} · la tua scelta`, titolo: t(m.titolo) };
-    mappa = { tensione: ic.tensione, presenze: ic.disposizione };
+    mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse };
     corpo = <Risposta m={m} ic={ic} o={eco} avanti={() => setEco(null)} />;
   } else {
     const f = faseDi(m, ic);
@@ -145,22 +148,35 @@ export function App() {
     const cosa = f.tipo === 'chiamata' ? `chiamata ${f.numero} di ${f.totale}` : f.tipo === 'chiusura' ? 'in corso' : 'schieramento';
     testata = { etichetta: `Ondata ${ic.ondata}/${m.ondate.length} · ${cosa}`, titolo: f.tipo === 'schieramento' && ondata?.titolo ? t(ondata.titolo) : t(m.titolo) };
     if (f.tipo === 'schieramento') {
-      const sel = libera(m, ic, bozza, scelta);
+      // C-010 C09-04: l'unità scelta resta scelta anche quando è finita (prima si passava in silenzio alla
+      // successiva e un tocco metteva uno steward al posto di una squadra); se è finita, avviso.
+      // Interruttore rosso C10S04: torna il cambio automatico.
+      const sel = spento('C10S04') || !scelta ? libera(m, ic, bozza, scelta) : scelta;
       const metti = (r: string, settore: string) => {
-        if ((disponibili(m, ic)[r] ?? 0) - usate(bozza, r) <= 0) return;
+        if ((disponibili(m, ic)[r] ?? 0) - usate(bozza, r) <= 0) {
+          setAvviso(`${t(`risorsa.${r}`)}: finite. Tocca un'altra unità nel vassoio.`);
+          return;
+        }
+        // Interruttore rosso C09S01: si accetta la risorsa ovunque (difetto: transenne sugli spalti).
+        if (!spento('C09S01') && !settoriAmmessi(m, r).includes(settore)) {
+          setAvviso(`${t(`risorsa.${r}`)}: in «${t(`settore.${settore}`)}» non hanno effetto, qui non si montano.`);
+          return;
+        }
+        setAvviso(null);
         const d = structuredClone(bozza);
         d[r] = { ...(d[r] ?? {}), [settore]: (d[r]?.[settore] ?? 0) + 1 };
-        setBozza(d); setScelta(libera(m, ic, d, r)); vola(r, settore);
+        setBozza(d); setScelta(spento('C10S04') ? libera(m, ic, d, r) : r); vola(r, settore);
       };
       mappa = {
-        tensione: ic.tensione, presenze: bozza,
+        tensione: ic.tensione, presenze: bozza, fisse: spento('C09S02') ? null : ic.fisse,
+        vietati: sel && m.mappa.risorse[sel]?.fissa ? m.mappa.settori.map((x) => x.id).filter((x) => !settoriAmmessi(m, sel).includes(x)) : [],
         onSettore: (s) => sel && metti(sel, s),
         onTogli: (r, s) => setBozza((d) => ({ ...d, [r]: { ...d[r], [s]: Math.max(0, (d[r]?.[s] ?? 0) - 1) } })),
       };
-      corpo = <Schieramento m={m} ic={ic} d={bozza} scelta={sel} scegli={setScelta} metti={metti} azzera={() => setBozza({})}
-        conferma={() => { const ora = icOra(); if (ora && !ora.disposizione && ora.ondata === ic.ondata) conIc(schiera(m, ora, bozza)); }} />;
+      corpo = <Schieramento m={m} ic={ic} d={bozza} scelta={sel} avviso={avviso} scegli={(r) => { setScelta(r); setAvviso(null); }} metti={metti} azzera={() => setBozza({})}
+        conferma={() => { setAvviso(null); const ora = icOra(); if (ora && !ora.disposizione && ora.ondata === ic.ondata) conIc(schiera(m, ora, bozza)); }} />;
     } else if (f.tipo === 'chiamata') {
-      mappa = { tensione: ic.tensione, presenze: ic.disposizione, accesi: f.chiamata.settore ? [f.chiamata.settore] : [] };
+      mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, accesi: f.chiamata.settore ? [f.chiamata.settore] : [] };
       corpo = <Chiamata key={f.chiamata.id} m={m} ic={ic} c={f.chiamata} numero={f.numero} totale={f.totale}
         rispondi={(o) => {
           const ora = icOra();
@@ -171,7 +187,7 @@ export function App() {
           if (scelta.risposta) setEco(scelta);
         }} />;
     } else if (f.tipo === 'chiusura') {
-      mappa = { tensione: ic.tensione, presenze: ic.disposizione };
+      mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse };
       corpo = <Chiusura m={m} ic={ic} chiudi={() => {
         const ora = icOra();
         if (!ora || faseDi(m, ora).tipo !== 'chiusura') return; // già chiusa (doppio tocco)

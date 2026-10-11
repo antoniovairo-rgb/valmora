@@ -1,0 +1,893 @@
+{
+  "id": "e29",
+  "bozza": true,
+  "stagione": 3,
+  "episodio": 29,
+  "titolo": "testi:e29.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 20,
+    "y": 45
+  },
+  "introduzione": [
+    "testi:e29.intro1",
+    "testi:e29.intro2",
+    "testi:e29.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e29.info_comando",
+      "fonte": "comando",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "banchine"
+    },
+    {
+      "testo": "testi:e29.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e29.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "piazzale"
+    },
+    {
+      "testo": "testi:e29.info_cinderwick",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_cinderwick"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 15,
+          "y": 40
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "quillhaven_albion",
+        "pos": {
+          "x": 45,
+          "y": 15
+        }
+      },
+      {
+        "id": "banchine",
+        "tipo": "porto",
+        "pos": {
+          "x": 85,
+          "y": 25
+        }
+      },
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 20,
+          "y": 85
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 55,
+          "y": 65
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "porto": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 1,
+          "strada": 1,
+          "porto": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e29.ondata1",
+      "eventi": [
+        {
+          "id": "pullman",
+          "tipo": "arrivo",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        },
+        {
+          "id": "piazzale_attesa",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        },
+        {
+          "id": "porto_quiete",
+          "tipo": "movimento",
+          "settore": "banchine",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "foto_vecchie",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e29.ch.foto_vecchie",
+          "commento": "testi:e29.ch.foto_vecchie.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "smentita",
+              "testo": "testi:e29.op.smentita",
+              "costo": "testi:e29.op.smentita.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.smentita.r"
+            },
+            {
+              "id": "squadra_piazzale",
+              "testo": "testi:e29.op.squadra_piazzale",
+              "costo": "testi:e29.op.squadra_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.squadra_piazzale.r"
+            },
+            {
+              "id": "silenzio",
+              "testo": "testi:e29.op.silenzio",
+              "costo": "testi:e29.op.silenzio.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e29.op.silenzio.r"
+            }
+          ]
+        },
+        {
+          "id": "ordine_porto",
+          "fonte": "comando",
+          "testo": "testi:e29.ch.ordine_porto",
+          "settore": "banchine",
+          "opzioni": [
+            {
+              "id": "rispetta_ordine",
+              "testo": "testi:e29.op.rispetta_ordine",
+              "costo": "testi:e29.op.rispetta_ordine.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.rispetta_ordine.r"
+            },
+            {
+              "id": "auto_lontana",
+              "testo": "testi:e29.op.auto_lontana",
+              "costo": "testi:e29.op.auto_lontana.c",
+              "effetti": [
+                {
+                  "pressione": "banchine",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.auto_lontana.r"
+            }
+          ]
+        },
+        {
+          "id": "ospiti_tranquilli",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e29.ch.ospiti_tranquilli",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "rassicura",
+              "testo": "testi:e29.op.rassicura",
+              "costo": "testi:e29.op.rassicura.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.rassicura.r"
+            },
+            {
+              "id": "steward_ospiti",
+              "testo": "testi:e29.op.steward_ospiti",
+              "costo": "testi:e29.op.steward_ospiti.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e29.op.steward_ospiti.r"
+            },
+            {
+              "id": "niente_ospiti",
+              "testo": "testi:e29.op.niente_ospiti",
+              "costo": "testi:e29.op.niente_ospiti.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.niente_ospiti.r"
+            }
+          ]
+        },
+        {
+          "id": "dove_dorme",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e29.ch.dove_dorme",
+          "commento": "testi:e29.ch.dove_dorme.vice",
+          "settore": "banchine",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "passa_soffiata",
+              "testo": "testi:e29.op.passa_soffiata",
+              "costo": "testi:e29.op.passa_soffiata.c",
+              "effetti": [
+                {
+                  "pressione": "banchine",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e29.op.passa_soffiata.r"
+            },
+            {
+              "id": "tieni_soffiata",
+              "testo": "testi:e29.op.tieni_soffiata",
+              "costo": "testi:e29.op.tieni_soffiata.c",
+              "effetti": [],
+              "risposta": "testi:e29.op.tieni_soffiata.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e29.ondata2",
+      "eventi": [
+        {
+          "id": "cori_casa",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "cori_ospiti",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "banchine_movimento",
+          "tipo": "movimento",
+          "settore": "banchine",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "furgone_porto",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e29.ch.furgone_porto",
+          "commento": "testi:e29.ch.furgone_porto.vice",
+          "settore": "banchine",
+          "se": {
+            "var": "furgone_visto",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "segnala_furgone",
+              "testo": "testi:e29.op.segnala_furgone",
+              "costo": "testi:e29.op.segnala_furgone.c",
+              "effetti": [
+                {
+                  "pressione": "banchine",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e29.op.segnala_furgone.r"
+            },
+            {
+              "id": "lascia_furgone",
+              "testo": "testi:e29.op.lascia_furgone",
+              "costo": "testi:e29.op.lascia_furgone.c",
+              "effetti": [],
+              "risposta": "testi:e29.op.lascia_furgone.r"
+            }
+          ]
+        },
+        {
+          "id": "tamburo_curva",
+          "fonte": "centrale_radio",
+          "testo": "testi:e29.ch.tamburo_curva",
+          "commento": "testi:e29.ch.tamburo_curva.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "chiudi_uscite",
+              "testo": "testi:e29.op.chiudi_uscite",
+              "costo": "testi:e29.op.chiudi_uscite.c",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.chiudi_uscite.r"
+            },
+            {
+              "id": "mediatore_curva",
+              "testo": "testi:e29.op.mediatore_curva",
+              "costo": "testi:e29.op.mediatore_curva.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.mediatore_curva.r"
+            },
+            {
+              "id": "lascia_uscire",
+              "testo": "testi:e29.op.lascia_uscire",
+              "costo": "testi:e29.op.lascia_uscire.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.lascia_uscire.r"
+            }
+          ]
+        },
+        {
+          "id": "speaker_partita",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e29.ch.speaker_partita",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "annuncio_generico",
+              "testo": "testi:e29.op.annuncio_generico",
+              "costo": "testi:e29.op.annuncio_generico.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.annuncio_generico.r"
+            },
+            {
+              "id": "niente_annuncio",
+              "testo": "testi:e29.op.niente_annuncio",
+              "costo": "testi:e29.op.niente_annuncio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.niente_annuncio.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e29.ondata3",
+      "eventi": [
+        {
+          "id": "notizia",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "curiosi_porto",
+          "tipo": "folla",
+          "settore": "banchine",
+          "pressione": 3
+        },
+        {
+          "id": "strada_piena",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "radio_operazione",
+          "fonte": "comando",
+          "testo": "testi:e29.ch.radio_operazione",
+          "settore": "banchine",
+          "opzioni": [
+            {
+              "id": "manda_squadre",
+              "testo": "testi:e29.op.manda_squadre",
+              "costo": "testi:e29.op.manda_squadre.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -2
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e29.op.manda_squadre.r"
+            },
+            {
+              "id": "una_squadra",
+              "testo": "testi:e29.op.una_squadra",
+              "costo": "testi:e29.op.una_squadra.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.una_squadra.r"
+            },
+            {
+              "id": "nessuna_squadra",
+              "testo": "testi:e29.op.nessuna_squadra",
+              "costo": "testi:e29.op.nessuna_squadra.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.nessuna_squadra.r"
+            }
+          ]
+        },
+        {
+          "id": "notizia_in_curva",
+          "fonte": "centrale_radio",
+          "testo": "testi:e29.ch.notizia_in_curva",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "sospendi_partita",
+              "testo": "testi:e29.op.sospendi_partita",
+              "costo": "testi:e29.op.sospendi_partita.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e29.op.sospendi_partita.r"
+            },
+            {
+              "id": "steward_cordone",
+              "testo": "testi:e29.op.steward_cordone",
+              "costo": "testi:e29.op.steward_cordone.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e29.op.steward_cordone.r"
+            },
+            {
+              "id": "partita_continua",
+              "testo": "testi:e29.op.partita_continua",
+              "costo": "testi:e29.op.partita_continua.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.partita_continua.r"
+            }
+          ]
+        },
+        {
+          "id": "ospiti_spaventati",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e29.ch.ospiti_spaventati",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "ospiti_via",
+              "testo": "testi:e29.op.ospiti_via",
+              "costo": "testi:e29.op.ospiti_via.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e29.op.ospiti_via.r"
+            },
+            {
+              "id": "ospiti_restano",
+              "testo": "testi:e29.op.ospiti_restano",
+              "costo": "testi:e29.op.ospiti_restano.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.ospiti_restano.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e29.ondata4",
+      "eventi": [
+        {
+          "id": "corteo_porto",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "cancelli_porto",
+          "tipo": "folla",
+          "settore": "banchine",
+          "pressione": 3
+        },
+        {
+          "id": "piazzale_notte",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "corteo_al_porto",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e29.ch.corteo_al_porto",
+          "commento": "testi:e29.ch.corteo_al_porto.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "ferma_strada",
+              "testo": "testi:e29.op.ferma_strada",
+              "costo": "testi:e29.op.ferma_strada.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e29.op.ferma_strada.r"
+            },
+            {
+              "id": "mediatore_corteo",
+              "testo": "testi:e29.op.mediatore_corteo",
+              "costo": "testi:e29.op.mediatore_corteo.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.mediatore_corteo.r"
+            },
+            {
+              "id": "lascia_scendere",
+              "testo": "testi:e29.op.lascia_scendere",
+              "costo": "testi:e29.op.lascia_scendere.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.lascia_scendere.r"
+            }
+          ]
+        },
+        {
+          "id": "conferenza",
+          "fonte": "comando",
+          "testo": "testi:e29.ch.conferenza",
+          "commento": "testi:e29.ch.conferenza.vice",
+          "opzioni": [
+            {
+              "id": "prima_fila",
+              "testo": "testi:e29.op.prima_fila",
+              "costo": "testi:e29.op.prima_fila.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.prima_fila.r"
+            },
+            {
+              "id": "in_fondo",
+              "testo": "testi:e29.op.in_fondo",
+              "costo": "testi:e29.op.in_fondo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.in_fondo.r"
+            }
+          ]
+        },
+        {
+          "id": "piazzale_ultimi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e29.ch.piazzale_ultimi",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "luci_piazzale",
+              "testo": "testi:e29.op.luci_piazzale",
+              "costo": "testi:e29.op.luci_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.luci_piazzale.r"
+            },
+            {
+              "id": "squadra_ultimi",
+              "testo": "testi:e29.op.squadra_ultimi",
+              "costo": "testi:e29.op.squadra_ultimi.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e29.op.squadra_ultimi.r"
+            },
+            {
+              "id": "aspetta_alba",
+              "testo": "testi:e29.op.aspetta_alba",
+              "costo": "testi:e29.op.aspetta_alba.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e29.op.aspetta_alba.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e29.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e29.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e29.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

@@ -1,0 +1,874 @@
+{
+  "id": "e06",
+  "bozza": true,
+  "stagione": 1,
+  "episodio": 6,
+  "titolo": "testi:e06.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 45,
+    "y": 40
+  },
+  "introduzione": [
+    "testi:e06.intro1",
+    "testi:e06.intro2",
+    "testi:e06.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e06.info_organizzatori",
+      "fonte": "organizzatori_concerto",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "piazza_concerto"
+    },
+    {
+      "testo": "testi:e06.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "piazza_concerto"
+    },
+    {
+      "testo": "testi:e06.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "viale_concerto"
+    },
+    {
+      "testo": "testi:e06.info_club",
+      "fonte": "club_quillhaven",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_ospiti"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "piazza_concerto",
+        "tipo": "piazza",
+        "pos": {
+          "x": 18,
+          "y": 80
+        }
+      },
+      {
+        "id": "viale_concerto",
+        "tipo": "strada",
+        "pos": {
+          "x": 50,
+          "y": 90
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 56,
+          "y": 64
+        }
+      },
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 20,
+          "y": 38
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "quillhaven_albion",
+        "pos": {
+          "x": 82,
+          "y": 38
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazza": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 5,
+        "efficacia": {
+          "curva": 2,
+          "piazza": 1,
+          "piazzale": 1,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    },
+    "ora": "notte",
+    "dettagli": [
+      "cartelloni_stadio_nuovo"
+    ]
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e06.ondata1",
+      "eventi": [
+        {
+          "id": "prove",
+          "tipo": "folla",
+          "settore": "piazza_concerto",
+          "pressione": 3
+        },
+        {
+          "id": "pullman6",
+          "tipo": "arrivo",
+          "settore": "piazzale",
+          "pressione": 3
+        },
+        {
+          "id": "corteo_piazza",
+          "tipo": "corteo",
+          "settore": "viale_concerto",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "palco",
+          "fonte": "organizzatori_concerto",
+          "testo": "testi:e06.ch.palco",
+          "commento": "testi:e06.ch.palco.vice",
+          "settore": "piazza_concerto",
+          "opzioni": [
+            {
+              "id": "squadre_palco",
+              "testo": "testi:e06.op.squadre_palco",
+              "costo": "testi:e06.op.squadre_palco.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": -3
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e06.op.squadre_palco.r"
+            },
+            {
+              "id": "niente_palco",
+              "testo": "testi:e06.op.niente_palco",
+              "costo": "testi:e06.op.niente_palco.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e06.op.niente_palco.r"
+            }
+          ]
+        },
+        {
+          "id": "sponsor",
+          "fonte": "centrale_radio",
+          "testo": "testi:e06.ch.sponsor",
+          "commento": "testi:e06.ch.sponsor.vice",
+          "settore": "piazza_concerto",
+          "opzioni": [
+            {
+              "id": "chiama_impresa",
+              "testo": "testi:e06.op.chiama_impresa",
+              "costo": "testi:e06.op.chiama_impresa.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e06.op.chiama_impresa.r"
+            },
+            {
+              "id": "annota_sponsor",
+              "testo": "testi:e06.op.annota_sponsor",
+              "costo": "testi:e06.op.annota_sponsor.c",
+              "effetti": [
+                {
+                  "pressione": "viale_concerto",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.annota_sponsor.r"
+            }
+          ]
+        },
+        {
+          "id": "corteo_cinderwick",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e06.ch.corteo_cinderwick",
+          "settore": "viale_concerto",
+          "opzioni": [
+            {
+              "id": "mediatore6",
+              "testo": "testi:e06.op.mediatore6",
+              "costo": "testi:e06.op.mediatore6.c",
+              "effetti": [
+                {
+                  "pressione": "viale_concerto",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e06.op.mediatore6.r"
+            },
+            {
+              "id": "chiudi_accesso",
+              "testo": "testi:e06.op.chiudi_accesso",
+              "costo": "testi:e06.op.chiudi_accesso.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": -1
+                },
+                {
+                  "tensione": "viale_concerto",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e06.op.chiudi_accesso.r"
+            },
+            {
+              "id": "lascia_corteo6",
+              "testo": "testi:e06.op.lascia_corteo6",
+              "costo": "testi:e06.op.lascia_corteo6.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e06.op.lascia_corteo6.r"
+            }
+          ]
+        },
+        {
+          "id": "ospiti_concerto",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e06.ch.ospiti_concerto",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "dritti_stadio",
+              "testo": "testi:e06.op.dritti_stadio",
+              "costo": "testi:e06.op.dritti_stadio.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.dritti_stadio.r"
+            },
+            {
+              "id": "salto_concerto",
+              "testo": "testi:e06.op.salto_concerto",
+              "costo": "testi:e06.op.salto_concerto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e06.op.salto_concerto.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e06.ondata2",
+      "eventi": [
+        {
+          "id": "cori6c",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 3
+        },
+        {
+          "id": "cori6o",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "pubblico",
+          "tipo": "folla",
+          "settore": "piazza_concerto",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "volume",
+          "fonte": "organizzatori_concerto",
+          "testo": "testi:e06.ch.volume",
+          "settore": "piazza_concerto",
+          "opzioni": [
+            {
+              "id": "abbassa",
+              "testo": "testi:e06.op.abbassa",
+              "costo": "testi:e06.op.abbassa.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e06.op.abbassa.r"
+            },
+            {
+              "id": "gara_volume",
+              "testo": "testi:e06.op.gara_volume",
+              "costo": "testi:e06.op.gara_volume.c",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.gara_volume.r"
+            }
+          ]
+        },
+        {
+          "id": "fumo_viola",
+          "fonte": "centrale_radio",
+          "testo": "testi:e06.ch.fumo_viola",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_viola",
+              "testo": "testi:e06.op.steward_viola",
+              "costo": "testi:e06.op.steward_viola.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e06.op.steward_viola.r"
+            },
+            {
+              "id": "lascia_viola",
+              "testo": "testi:e06.op.lascia_viola",
+              "costo": "testi:e06.op.lascia_viola.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e06.op.lascia_viola.r"
+            }
+          ]
+        },
+        {
+          "id": "saluto_cantante",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e06.ch.saluto_cantante",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "saluti_tutti",
+              "testo": "testi:e06.op.saluti_tutti",
+              "costo": "testi:e06.op.saluti_tutti.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.saluti_tutti.r"
+            },
+            {
+              "id": "lascia_cantante",
+              "testo": "testi:e06.op.lascia_cantante",
+              "costo": "testi:e06.op.lascia_cantante.c",
+              "effetti": [
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.lascia_cantante.r"
+            }
+          ]
+        },
+        {
+          "id": "pass_falsi",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e06.ch.pass_falsi",
+          "commento": "testi:e06.ch.pass_falsi.vice",
+          "settore": "piazza_concerto",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "ferma_falsi6",
+              "testo": "testi:e06.op.ferma_falsi6",
+              "costo": "testi:e06.op.ferma_falsi6.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e06.op.ferma_falsi6.r"
+            },
+            {
+              "id": "segui_falsi6",
+              "testo": "testi:e06.op.segui_falsi6",
+              "costo": "testi:e06.op.segui_falsi6.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": 1
+                },
+                {
+                  "imposta": "furgone_visto",
+                  "valore": true
+                }
+              ],
+              "risposta": "testi:e06.op.segui_falsi6.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e06.ondata3",
+      "eventi": [
+        {
+          "id": "bis_piazza",
+          "tipo": "folla",
+          "settore": "piazza_concerto",
+          "pressione": 4
+        },
+        {
+          "id": "cori6c2",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 3
+        },
+        {
+          "id": "va_e_vieni",
+          "tipo": "folla",
+          "settore": "viale_concerto",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "bis",
+          "fonte": "organizzatori_concerto",
+          "testo": "testi:e06.ch.bis",
+          "settore": "piazza_concerto",
+          "opzioni": [
+            {
+              "id": "niente_bis",
+              "testo": "testi:e06.op.niente_bis",
+              "costo": "testi:e06.op.niente_bis.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e06.op.niente_bis.r"
+            },
+            {
+              "id": "bis_corto",
+              "testo": "testi:e06.op.bis_corto",
+              "costo": "testi:e06.op.bis_corto.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": -1
+                },
+                {
+                  "pressione": "viale_concerto",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.bis_corto.r"
+            },
+            {
+              "id": "bis_lungo",
+              "testo": "testi:e06.op.bis_lungo",
+              "costo": "testi:e06.op.bis_lungo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.bis_lungo.r"
+            }
+          ]
+        },
+        {
+          "id": "rigore6",
+          "fonte": "centrale_radio",
+          "testo": "testi:e06.ch.rigore6",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "squadra_sotto",
+              "testo": "testi:e06.op.squadra_sotto",
+              "costo": "testi:e06.op.squadra_sotto.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e06.op.squadra_sotto.r"
+            },
+            {
+              "id": "lascia_sfogare",
+              "testo": "testi:e06.op.lascia_sfogare",
+              "costo": "testi:e06.op.lascia_sfogare.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e06.op.lascia_sfogare.r"
+            }
+          ]
+        },
+        {
+          "id": "favore_impresa",
+          "fonte": "vice",
+          "testo": "testi:e06.ch.favore_impresa",
+          "commento": "testi:e06.ch.favore_impresa.vice",
+          "settore": "piazza_concerto",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "accetta_favore",
+              "testo": "testi:e06.op.accetta_favore",
+              "costo": "testi:e06.op.accetta_favore.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e06.op.accetta_favore.r"
+            },
+            {
+              "id": "declina_favore",
+              "testo": "testi:e06.op.declina_favore",
+              "costo": "testi:e06.op.declina_favore.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.declina_favore.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e06.ondata4",
+      "eventi": [
+        {
+          "id": "uscita6",
+          "tipo": "deflusso",
+          "settore": "viale_concerto",
+          "pressione": 5
+        },
+        {
+          "id": "piazza_fine",
+          "tipo": "folla",
+          "settore": "piazza_concerto",
+          "pressione": 3
+        },
+        {
+          "id": "navette",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "risultato",
+          "fonte": "vice",
+          "testo": "testi:e06.ch.risultato",
+          "commento": "testi:e06.ch.risultato.vice",
+          "opzioni": [
+            {
+              "id": "stadio_prima",
+              "testo": "testi:e06.op.stadio_prima",
+              "costo": "testi:e06.op.stadio_prima.c",
+              "effetti": [
+                {
+                  "pressione": "viale_concerto",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazza_concerto",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.stadio_prima.r"
+            },
+            {
+              "id": "piazza_prima",
+              "testo": "testi:e06.op.piazza_prima",
+              "costo": "testi:e06.op.piazza_prima.c",
+              "effetti": [
+                {
+                  "pressione": "viale_concerto",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.piazza_prima.r"
+            },
+            {
+              "id": "tutti_insieme",
+              "testo": "testi:e06.op.tutti_insieme",
+              "costo": "testi:e06.op.tutti_insieme.c",
+              "effetti": [
+                {
+                  "pressione": "viale_concerto",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e06.op.tutti_insieme.r"
+            }
+          ]
+        },
+        {
+          "id": "poche_navette",
+          "fonte": "centrale_radio",
+          "testo": "testi:e06.ch.poche_navette",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "navette_extra",
+              "testo": "testi:e06.op.navette_extra",
+              "costo": "testi:e06.op.navette_extra.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e06.op.navette_extra.r"
+            },
+            {
+              "id": "a_piedi",
+              "testo": "testi:e06.op.a_piedi",
+              "costo": "testi:e06.op.a_piedi.c",
+              "effetti": [
+                {
+                  "pressione": "viale_concerto",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.a_piedi.r"
+            }
+          ]
+        },
+        {
+          "id": "furgone_palco",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e06.ch.furgone_palco",
+          "commento": "testi:e06.ch.furgone_palco.vice",
+          "settore": "viale_concerto",
+          "se": {
+            "var": "furgone_visto",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "annota_palco",
+              "testo": "testi:e06.op.annota_palco",
+              "costo": "testi:e06.op.annota_palco.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "viale_concerto",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.annota_palco.r"
+            },
+            {
+              "id": "lascia_palco",
+              "testo": "testi:e06.op.lascia_palco",
+              "costo": "testi:e06.op.lascia_palco.c",
+              "effetti": [],
+              "risposta": "testi:e06.op.lascia_palco.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e06.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e06.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e06.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

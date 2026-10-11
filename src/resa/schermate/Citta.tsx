@@ -1,5 +1,6 @@
 // Mappa della città degli episodi (D-061): scegli un episodio sulla mappa e lo avvii o lo rigiochi.
 import { Play, RotateCcw } from 'lucide-react';
+import { useState } from 'react';
 import type { Missione } from '../../logica/tipi.ts';
 import type { Salvataggio } from '../../salvataggi/salvataggio.ts';
 import { missioni, t } from '../dati.ts';
@@ -21,11 +22,23 @@ const DESCRIZIONE: Record<StatoEpisodio, string> = {
 };
 
 export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (id: string) => void; avvia: (m: Missione) => void }) {
-  const voci = missioni.map((m) => ({ m, stato: statoEpisodio(p.sal, m), stelle: p.sal.episodi[m.id]?.migliore?.stelle ?? null }));
+  const tutte = missioni.map((m) => ({ m, stato: statoEpisodio(p.sal, m), stelle: p.sal.episodi[m.id]?.migliore?.stelle ?? null }));
+  // PO-044: una stagione alla volta (quella dell'episodio scelto, cambiabile); rosso __NO_C13M01 = tutte insieme
+  const stagioni = [...new Set(missioni.map((m) => m.stagione))].sort((a, b) => a - b);
+  const [stagione, setStagione] = useState(p.scelto?.stagione ?? stagioni[0] ?? 1);
+  const voci = spento('C13M01') ? tutte : tutte.filter((x) => x.m.stagione === stagione);
   const v = voci.find((x) => x.m.id === p.scelto?.id);
   return (
     <>
-      <Testata numero="S1" etichetta="Stagione 1 · mappa della città" titolo="Valmora" />
+      <Testata numero={`S${stagione}`} etichetta={`Stagione ${stagione} · mappa della città`} titolo="Valmora" />
+      {stagioni.length > 1 && (
+        <div className="stagioni" data-stagioni>
+          {stagioni.map((n) => (
+            <button key={n} type="button" className={`pulsante${n === stagione ? '' : ' secondario'}`} data-stagione={n}
+              aria-pressed={n === stagione} onClick={() => setStagione(n)}>Stagione {n}</button>
+          ))}
+        </div>
+      )}
       <MappaCitta voci={voci} scelto={p.scelto?.id ?? null} scegli={p.scegli} />
       {v ? (
         <div className="scheda" data-scheda-episodio={v.m.id}>

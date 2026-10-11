@@ -14739,6 +14739,2299 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T16:41:39.540Z",
+      "commit": "49ab36e",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T17:04:04.848Z",
+      "commit": "2cd8a7b",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T17:05:54.121Z",
+      "commit": "b878182",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "eccezione: EISDIR: illegal operation on a directory, read"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T17:06:09.830Z",
+      "commit": "b878182",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-11T17:07:15.809Z",
+      "commit": "2cd8a7b",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T17:08:26.315Z",
+      "commit": "ad31979",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T17:11:19.196Z",
+      "commit": "b3c9942",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T17:12:49.088Z",
+      "commit": "385e690",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T17:15:48.818Z",
+      "commit": "9cb2153",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T17:18:25.016Z",
+      "commit": "e347901",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-11T17:20:44.562Z",
+      "commit": "9cb2153",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T17:23:16.611Z",
+      "commit": "385e690",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-11T17:23:26.763Z",
+      "commit": "e347901",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T17:24:33.252Z",
+      "commit": "868736c",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T17:33:49.148Z",
+      "commit": "385e690",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T17:38:34.985Z",
+      "commit": "5d178e0",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T17:49:15.640Z",
+      "commit": "57b797f",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T18:00:45.708Z",
+      "commit": "57b797f",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T18:21:03.779Z",
+      "commit": "57b797f",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T18:32:54.765Z",
+      "commit": "9617374",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-11T18:33:15.610Z",
+      "commit": "7898fab",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T18:43:55.643Z",
+      "commit": "9617374",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-11T18:45:54.912Z",
+      "commit": "a886837",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-11T18:46:31.279Z",
+      "commit": "a459f2e",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "src/resa/schermate/Citta.tsx:38: stile in linea fuori dai token («aria-pressed={n === stagione} style={{ width: 'auto', flex: »)"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T18:55:25.499Z",
+      "commit": "9617374",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-11T18:55:55.939Z",
+      "commit": "e6c2d81",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-11T18:57:46.079Z",
+      "commit": "64dfdc5",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-11T19:00:42.871Z",
+      "commit": "64dfdc5",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T19:07:22.237Z",
+      "commit": "86fc5db",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T19:18:45.156Z",
+      "commit": "86fc5db",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-11T19:29:58.048Z",
+      "commit": "86fc5db",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
     }
   ]
 }

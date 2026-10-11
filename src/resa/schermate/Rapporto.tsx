@@ -6,6 +6,7 @@ import type { RapportoOndata } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
+import { spento } from '../../interruttori.ts';
 import { livello } from '../partita.ts';
 
 export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; prossime: Record<string, number>; avanti: () => void }) {
@@ -18,7 +19,7 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
           const scoperto = (p.r.scoperto[s.id] ?? 0) > 0;
           return (
             <li key={s.id} className="riga" data-esito-settore={s.id}>
-              <span className="riga-sx"><span className={`campione liv-${livello(p.r.tensione[s.id] ?? 0)}`} aria-hidden="true" />{t(`settore.${s.id}`)}</span>
+              <span className="riga-sx"><span className={`campione liv-${scoperto && !spento('C10S02') ? Math.max(2, livello(p.r.tensione[s.id] ?? 0)) : livello(p.r.tensione[s.id] ?? 0)}`} aria-hidden="true" />{t(`settore.${s.id}`)}</span>
               <strong className={scoperto ? 'male' : 'bene'}>{scoperto ? 'scoperto' : 'sotto controllo'}</strong>
             </li>
           );

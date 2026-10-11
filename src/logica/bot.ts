@@ -81,3 +81,7 @@ export const equilibrata: Strategia = (caso, d) => ({
 });
 
 export const STRATEGIE: Record<string, Strategia> = { casuale, attenta, equilibrata, peggiore };
+
+/** Strategie che non usano il caso: con qualunque seme giocano la stessa partita (guardiano in tests/bot-deterministiche.test.ts).
+ *  tools/bot.mjs le gioca una volta sola e conta il risultato per tutti i semi (D-089). */
+export const DETERMINISTICHE = new Set(['attenta', 'equilibrata', 'peggiore']);

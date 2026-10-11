@@ -1,0 +1,839 @@
+{
+  "id": "e17",
+  "stagione": 2,
+  "episodio": 17,
+  "titolo": "testi:e17.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 20,
+    "y": 45
+  },
+  "introduzione": [
+    "testi:e17.intro1",
+    "testi:e17.intro2",
+    "testi:e17.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e17.info_comando",
+      "fonte": "comando",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "piazzale"
+    },
+    {
+      "testo": "testi:e17.info_club",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "strada_cinderwick"
+    },
+    {
+      "testo": "testi:e17.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "piazza_municipio"
+    },
+    {
+      "testo": "testi:e17.info_comitato",
+      "fonte": "comitato_residenti",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "quartiere"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 15,
+          "y": 20
+        }
+      },
+      {
+        "id": "tornelli",
+        "tipo": "tornelli",
+        "pos": {
+          "x": 80,
+          "y": 28
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 50,
+          "y": 48
+        }
+      },
+      {
+        "id": "quartiere",
+        "tipo": "quartiere",
+        "pos": {
+          "x": 20,
+          "y": 78
+        }
+      },
+      {
+        "id": "piazza_municipio",
+        "tipo": "strada",
+        "pos": {
+          "x": 76,
+          "y": 80
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 5,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "quartiere": 2,
+          "tornelli": 1
+        }
+      },
+      "steward": {
+        "quantita": 3,
+        "efficacia": {
+          "tornelli": 2,
+          "piazzale": 1,
+          "quartiere": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "raduno"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e17.ondata1",
+      "eventi": [
+        {
+          "id": "raduno_strada",
+          "tipo": "raduno",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "raduno_piazzale",
+          "tipo": "raduno",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "sanzione",
+          "fonte": "comando",
+          "testo": "testi:e17.ch.sanzione",
+          "commento": "testi:e17.ch.sanzione.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "sgombera",
+              "testo": "testi:e17.op.sgombera",
+              "costo": "testi:e17.op.sgombera.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.sgombera.r"
+            },
+            {
+              "id": "presidio17",
+              "testo": "testi:e17.op.presidio17",
+              "costo": "testi:e17.op.presidio17.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.presidio17.r"
+            },
+            {
+              "id": "tollera",
+              "testo": "testi:e17.op.tollera",
+              "costo": "testi:e17.op.tollera.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.tollera.r"
+            }
+          ]
+        },
+        {
+          "id": "schermo_comizi",
+          "fonte": "servizio_ordine_corteo",
+          "testo": "testi:e17.ch.schermo_comizi",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "niente_schermo",
+              "testo": "testi:e17.op.niente_schermo",
+              "costo": "testi:e17.op.niente_schermo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.niente_schermo.r"
+            },
+            {
+              "id": "lascia_schermo",
+              "testo": "testi:e17.op.lascia_schermo",
+              "costo": "testi:e17.op.lascia_schermo.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e17.op.lascia_schermo.r"
+            }
+          ]
+        },
+        {
+          "id": "sotto_casa",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e17.ch.sotto_casa",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "squadra_quartiere17",
+              "testo": "testi:e17.op.squadra_quartiere17",
+              "costo": "testi:e17.op.squadra_quartiere17.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.squadra_quartiere17.r"
+            },
+            {
+              "id": "promessa17",
+              "testo": "testi:e17.op.promessa17",
+              "costo": "testi:e17.op.promessa17.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.promessa17.r"
+            }
+          ]
+        },
+        {
+          "id": "steward_presidente",
+          "fonte": "vice",
+          "testo": "testi:e17.ch.steward_presidente",
+          "commento": "testi:e17.ch.steward_presidente.vice",
+          "settore": "tornelli",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "accetta17",
+              "testo": "testi:e17.op.accetta17",
+              "costo": "testi:e17.op.accetta17.c",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.accetta17.r"
+            },
+            {
+              "id": "declina17",
+              "testo": "testi:e17.op.declina17",
+              "costo": "testi:e17.op.declina17.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e17.op.declina17.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e17.ondata2",
+      "eventi": [
+        {
+          "id": "piazzale_pieno",
+          "tipo": "raduno",
+          "settore": "piazzale",
+          "pressione": 4
+        },
+        {
+          "id": "cancelli_spinti",
+          "tipo": "folla",
+          "settore": "tornelli",
+          "pressione": 4
+        },
+        {
+          "id": "sotto_casa17",
+          "tipo": "raduno",
+          "settore": "quartiere",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "cancelli",
+          "fonte": "centrale_radio",
+          "testo": "testi:e17.ch.cancelli",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "steward_cancelli",
+              "testo": "testi:e17.op.steward_cancelli",
+              "costo": "testi:e17.op.steward_cancelli.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.steward_cancelli.r"
+            },
+            {
+              "id": "apri_recinto",
+              "testo": "testi:e17.op.apri_recinto",
+              "costo": "testi:e17.op.apri_recinto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e17.op.apri_recinto.r"
+            },
+            {
+              "id": "spingano",
+              "testo": "testi:e17.op.spingano",
+              "costo": "testi:e17.op.spingano.c",
+              "effetti": [
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.spingano.r"
+            }
+          ]
+        },
+        {
+          "id": "radio_bar",
+          "fonte": "stampa_locale",
+          "testo": "testi:e17.ch.radio_bar",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "volume_si",
+              "testo": "testi:e17.op.volume_si",
+              "costo": "testi:e17.op.volume_si.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.volume_si.r"
+            },
+            {
+              "id": "volume_no",
+              "testo": "testi:e17.op.volume_no",
+              "costo": "testi:e17.op.volume_no.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.volume_no.r"
+            }
+          ]
+        },
+        {
+          "id": "ci_vediamo_dopo",
+          "fonte": "dessi",
+          "testo": "testi:e17.ch.ci_vediamo_dopo",
+          "commento": "testi:e17.ch.ci_vediamo_dopo.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "pattuglia_dessi",
+              "testo": "testi:e17.op.pattuglia_dessi",
+              "costo": "testi:e17.op.pattuglia_dessi.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.pattuglia_dessi.r"
+            },
+            {
+              "id": "ignora17",
+              "testo": "testi:e17.op.ignora17",
+              "costo": "testi:e17.op.ignora17.c",
+              "effetti": [
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e17.op.ignora17.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e17.ondata3",
+      "eventi": [
+        {
+          "id": "gol_radio",
+          "tipo": "raduno",
+          "settore": "piazzale",
+          "pressione": 3
+        },
+        {
+          "id": "scavalcano",
+          "tipo": "folla",
+          "settore": "tornelli",
+          "pressione": 3
+        },
+        {
+          "id": "collina",
+          "tipo": "raduno",
+          "settore": "quartiere",
+          "pressione": 2
+        },
+        {
+          "id": "piazza17",
+          "tipo": "folla",
+          "settore": "piazza_municipio",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "gol_fuori",
+          "fonte": "centrale_radio",
+          "testo": "testi:e17.ch.gol_fuori",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "steward_fumo17",
+              "testo": "testi:e17.op.steward_fumo17",
+              "costo": "testi:e17.op.steward_fumo17.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.steward_fumo17.r"
+            },
+            {
+              "id": "festa17",
+              "testo": "testi:e17.op.festa17",
+              "costo": "testi:e17.op.festa17.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.festa17.r"
+            }
+          ]
+        },
+        {
+          "id": "dalla_collina",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e17.ch.dalla_collina",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "ferma_collina",
+              "testo": "testi:e17.op.ferma_collina",
+              "costo": "testi:e17.op.ferma_collina.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e17.op.ferma_collina.r"
+            },
+            {
+              "id": "mediatore17",
+              "testo": "testi:e17.op.mediatore17",
+              "costo": "testi:e17.op.mediatore17.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.mediatore17.r"
+            },
+            {
+              "id": "lascia_collina",
+              "testo": "testi:e17.op.lascia_collina",
+              "costo": "testi:e17.op.lascia_collina.c",
+              "effetti": [
+                {
+                  "tensione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.lascia_collina.r"
+            }
+          ]
+        },
+        {
+          "id": "bandiera",
+          "fonte": "centrale_radio",
+          "testo": "testi:e17.ch.bandiera",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "prendili",
+              "testo": "testi:e17.op.prendili",
+              "costo": "testi:e17.op.prendili.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e17.op.prendili.r"
+            },
+            {
+              "id": "lasciali_curva",
+              "testo": "testi:e17.op.lasciali_curva",
+              "costo": "testi:e17.op.lasciali_curva.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.lasciali_curva.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e17.ondata4",
+      "eventi": [
+        {
+          "id": "dopo_corteo",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "notte_quartiere",
+          "tipo": "raduno",
+          "settore": "quartiere",
+          "pressione": 4
+        },
+        {
+          "id": "piazza17b",
+          "tipo": "folla",
+          "settore": "piazza_municipio",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "me_lo_dovete",
+          "fonte": "dessi",
+          "testo": "testi:e17.ch.me_lo_dovete",
+          "commento": "testi:e17.ch.me_lo_dovete.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "corteo_dessi",
+              "testo": "testi:e17.op.corteo_dessi",
+              "costo": "testi:e17.op.corteo_dessi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e17.op.corteo_dessi.r"
+            },
+            {
+              "id": "no_dessi",
+              "testo": "testi:e17.op.no_dessi",
+              "costo": "testi:e17.op.no_dessi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.no_dessi.r"
+            }
+          ]
+        },
+        {
+          "id": "undici",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e17.ch.undici",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "circolare",
+              "testo": "testi:e17.op.circolare",
+              "costo": "testi:e17.op.circolare.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazza_municipio",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e17.op.circolare.r"
+            },
+            {
+              "id": "aspetta17",
+              "testo": "testi:e17.op.aspetta17",
+              "costo": "testi:e17.op.aspetta17.c",
+              "effetti": [
+                {
+                  "tensione": "quartiere",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e17.op.aspetta17.r"
+            }
+          ]
+        },
+        {
+          "id": "fine_corteo",
+          "fonte": "servizio_ordine_corteo",
+          "testo": "testi:e17.ch.fine_corteo",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "sciogli_piazza",
+              "testo": "testi:e17.op.sciogli_piazza",
+              "costo": "testi:e17.op.sciogli_piazza.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e17.op.sciogli_piazza.r"
+            },
+            {
+              "id": "lascia_impianto",
+              "testo": "testi:e17.op.lascia_impianto",
+              "costo": "testi:e17.op.lascia_impianto.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 1
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e17.op.lascia_impianto.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e17.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e17.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e17.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

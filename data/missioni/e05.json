@@ -1,0 +1,841 @@
+{
+  "id": "e05",
+  "bozza": true,
+  "stagione": 1,
+  "episodio": 5,
+  "titolo": "testi:e05.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 20,
+    "y": 45
+  },
+  "introduzione": [
+    "testi:e05.intro1",
+    "testi:e05.intro2",
+    "testi:e05.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e05.info_sindacato",
+      "fonte": "sindacato_steward",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "tornelli"
+    },
+    {
+      "testo": "testi:e05.info_club",
+      "fonte": "ufficio_sicurezza_larkspire",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_larkspire"
+    },
+    {
+      "testo": "testi:e05.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "piazzale"
+    },
+    {
+      "testo": "testi:e05.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "strada_larkspire"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "tornelli",
+        "tipo": "tornelli",
+        "pos": {
+          "x": 50,
+          "y": 82
+        }
+      },
+      {
+        "id": "strada_larkspire",
+        "tipo": "strada",
+        "pos": {
+          "x": 86,
+          "y": 84
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 50,
+          "y": 58
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 80,
+          "y": 32
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "quillhaven_albion",
+        "pos": {
+          "x": 20,
+          "y": 32
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "tornelli": 1,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 3,
+        "efficacia": {
+          "curva": 2,
+          "tornelli": 2,
+          "piazzale": 1,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "picchetto"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e05.ondata1",
+      "eventi": [
+        {
+          "id": "presidio",
+          "tipo": "picchetto",
+          "settore": "tornelli",
+          "pressione": 3
+        },
+        {
+          "id": "arrivi_casa",
+          "tipo": "arrivo",
+          "settore": "strada_larkspire",
+          "pressione": 3
+        },
+        {
+          "id": "pullman_q",
+          "tipo": "arrivo",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "sindacato",
+          "fonte": "sindacato_steward",
+          "testo": "testi:e05.ch.sindacato",
+          "commento": "testi:e05.ch.sindacato.vice",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "impegno_firmato",
+              "testo": "testi:e05.op.impegno_firmato",
+              "costo": "testi:e05.op.impegno_firmato.c",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e05.op.impegno_firmato.r"
+            },
+            {
+              "id": "mediatore_tavolo",
+              "testo": "testi:e05.op.mediatore_tavolo",
+              "costo": "testi:e05.op.mediatore_tavolo.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e05.op.mediatore_tavolo.r"
+            },
+            {
+              "id": "nessuna_trattativa",
+              "testo": "testi:e05.op.nessuna_trattativa",
+              "costo": "testi:e05.op.nessuna_trattativa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.nessuna_trattativa.r"
+            }
+          ]
+        },
+        {
+          "id": "volontari",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e05.ch.volontari",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "volontari_si",
+              "testo": "testi:e05.op.volontari_si",
+              "costo": "testi:e05.op.volontari_si.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.volontari_si.r"
+            },
+            {
+              "id": "volontari_no",
+              "testo": "testi:e05.op.volontari_no",
+              "costo": "testi:e05.op.volontari_no.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e05.op.volontari_no.r"
+            }
+          ]
+        },
+        {
+          "id": "pullman_varco",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e05.ch.pullman_varco",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "aspettino",
+              "testo": "testi:e05.op.aspettino",
+              "costo": "testi:e05.op.aspettino.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e05.op.aspettino.r"
+            },
+            {
+              "id": "entrino_soli",
+              "testo": "testi:e05.op.entrino_soli",
+              "costo": "testi:e05.op.entrino_soli.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e05.op.entrino_soli.r"
+            },
+            {
+              "id": "squadra_varco",
+              "testo": "testi:e05.op.squadra_varco",
+              "costo": "testi:e05.op.squadra_varco.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e05.op.squadra_varco.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e05.ondata2",
+      "eventi": [
+        {
+          "id": "cori_casa5",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 3
+        },
+        {
+          "id": "cori_ospiti5",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "presidio2",
+          "tipo": "picchetto",
+          "settore": "tornelli",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "balaustra",
+          "fonte": "centrale_radio",
+          "testo": "testi:e05.ch.balaustra",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "squadra_scale",
+              "testo": "testi:e05.op.squadra_scale",
+              "costo": "testi:e05.op.squadra_scale.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e05.op.squadra_scale.r"
+            },
+            {
+              "id": "annuncio",
+              "testo": "testi:e05.op.annuncio",
+              "costo": "testi:e05.op.annuncio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e05.op.annuncio.r"
+            }
+          ]
+        },
+        {
+          "id": "megafono",
+          "fonte": "sindacato_steward",
+          "testo": "testi:e05.ch.megafono",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "lascia_megafono",
+              "testo": "testi:e05.op.lascia_megafono",
+              "costo": "testi:e05.op.lascia_megafono.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.lascia_megafono.r"
+            },
+            {
+              "id": "togli_megafono",
+              "testo": "testi:e05.op.togli_megafono",
+              "costo": "testi:e05.op.togli_megafono.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e05.op.togli_megafono.r"
+            }
+          ]
+        },
+        {
+          "id": "laser_q",
+          "fonte": "centrale_radio",
+          "testo": "testi:e05.ch.laser_q",
+          "commento": "testi:e05.ch.laser_q.vice",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "ammonisci",
+              "testo": "testi:e05.op.ammonisci",
+              "costo": "testi:e05.op.ammonisci.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.ammonisci.r"
+            },
+            {
+              "id": "pausa5",
+              "testo": "testi:e05.op.pausa5",
+              "costo": "testi:e05.op.pausa5.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e05.op.pausa5.r"
+            },
+            {
+              "id": "ignora_laser",
+              "testo": "testi:e05.op.ignora_laser",
+              "costo": "testi:e05.op.ignora_laser.c",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e05.op.ignora_laser.r"
+            }
+          ]
+        },
+        {
+          "id": "straordinari",
+          "fonte": "vice",
+          "testo": "testi:e05.ch.straordinari",
+          "commento": "testi:e05.ch.straordinari.vice",
+          "settore": "tornelli",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "accetta_straordinari",
+              "testo": "testi:e05.op.accetta_straordinari",
+              "costo": "testi:e05.op.accetta_straordinari.c",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e05.op.accetta_straordinari.r"
+            },
+            {
+              "id": "rifiuta_straordinari",
+              "testo": "testi:e05.op.rifiuta_straordinari",
+              "costo": "testi:e05.op.rifiuta_straordinari.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e05.op.rifiuta_straordinari.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e05.ondata3",
+      "eventi": [
+        {
+          "id": "cori_casa5b",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 3
+        },
+        {
+          "id": "cori_ospiti5b",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        },
+        {
+          "id": "piazzale5",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "coro_steward",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e05.ch.coro_steward",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "risposta_rete",
+              "testo": "testi:e05.op.risposta_rete",
+              "costo": "testi:e05.op.risposta_rete.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.risposta_rete.r"
+            },
+            {
+              "id": "silenzio_rete",
+              "testo": "testi:e05.op.silenzio_rete",
+              "costo": "testi:e05.op.silenzio_rete.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.silenzio_rete.r"
+            }
+          ]
+        },
+        {
+          "id": "parola_gentile",
+          "fonte": "sindacato_steward",
+          "testo": "testi:e05.ch.parola_gentile",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "di_parola",
+              "testo": "testi:e05.op.di_parola",
+              "costo": "testi:e05.op.di_parola.c",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e05.op.di_parola.r"
+            },
+            {
+              "id": "niente_parole",
+              "testo": "testi:e05.op.niente_parole",
+              "costo": "testi:e05.op.niente_parole.c",
+              "effetti": [
+                {
+                  "tensione": "tornelli",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e05.op.niente_parole.r"
+            }
+          ]
+        },
+        {
+          "id": "torce5",
+          "fonte": "centrale_radio",
+          "testo": "testi:e05.ch.torce5",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "squadra_torce",
+              "testo": "testi:e05.op.squadra_torce",
+              "costo": "testi:e05.op.squadra_torce.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e05.op.squadra_torce.r"
+            },
+            {
+              "id": "lascia_torce",
+              "testo": "testi:e05.op.lascia_torce",
+              "costo": "testi:e05.op.lascia_torce.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.lascia_torce.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e05.ondata4",
+      "eventi": [
+        {
+          "id": "uscita5",
+          "tipo": "deflusso",
+          "settore": "strada_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale_fine",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        },
+        {
+          "id": "presidio3",
+          "tipo": "picchetto",
+          "settore": "tornelli",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "risultato",
+          "fonte": "vice",
+          "testo": "testi:e05.ch.risultato",
+          "commento": "testi:e05.ch.risultato.vice",
+          "opzioni": [
+            {
+              "id": "uscita_tornelli",
+              "testo": "testi:e05.op.uscita_tornelli",
+              "costo": "testi:e05.op.uscita_tornelli.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.uscita_tornelli.r"
+            },
+            {
+              "id": "uscita_strada",
+              "testo": "testi:e05.op.uscita_strada",
+              "costo": "testi:e05.op.uscita_strada.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.uscita_strada.r"
+            }
+          ]
+        },
+        {
+          "id": "domattina",
+          "fonte": "sindacato_steward",
+          "testo": "testi:e05.ch.domattina",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "incontro_si",
+              "testo": "testi:e05.op.incontro_si",
+              "costo": "testi:e05.op.incontro_si.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e05.op.incontro_si.r"
+            },
+            {
+              "id": "incontro_no",
+              "testo": "testi:e05.op.incontro_no",
+              "costo": "testi:e05.op.incontro_no.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e05.op.incontro_no.r"
+            }
+          ]
+        },
+        {
+          "id": "fondo_strada",
+          "fonte": "centrale_radio",
+          "testo": "testi:e05.ch.fondo_strada",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "chiudi_fondo",
+              "testo": "testi:e05.op.chiudi_fondo",
+              "costo": "testi:e05.op.chiudi_fondo.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e05.op.chiudi_fondo.r"
+            },
+            {
+              "id": "altra_uscita",
+              "testo": "testi:e05.op.altra_uscita",
+              "costo": "testi:e05.op.altra_uscita.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e05.op.altra_uscita.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e05.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e05.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e05.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

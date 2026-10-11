@@ -1,0 +1,835 @@
+{
+  "id": "e31",
+  "bozza": true,
+  "stagione": 3,
+  "episodio": 31,
+  "titolo": "testi:e31.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 70,
+    "y": 45
+  },
+  "introduzione": [
+    "testi:e31.intro1",
+    "testi:e31.intro2",
+    "testi:e31.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e31.info_comando",
+      "fonte": "comando",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "tribuna_autorita"
+    },
+    {
+      "testo": "testi:e31.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "stazione"
+    },
+    {
+      "testo": "testi:e31.info_segreteria",
+      "fonte": "segreteria_comune",
+      "affidabilita": "alta",
+      "vera": false,
+      "settore": "viale_stazione"
+    },
+    {
+      "testo": "testi:e31.info_cronista",
+      "fonte": "cronista",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_larkspire"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 85,
+          "y": 40
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "calderholt_rovers",
+        "pos": {
+          "x": 15,
+          "y": 40
+        }
+      },
+      {
+        "id": "tribuna_autorita",
+        "tipo": "tribuna",
+        "pos": {
+          "x": 50,
+          "y": 15
+        }
+      },
+      {
+        "id": "stazione",
+        "tipo": "stazione",
+        "pos": {
+          "x": 20,
+          "y": 85
+        }
+      },
+      {
+        "id": "viale_stazione",
+        "tipo": "strada",
+        "pos": {
+          "x": 55,
+          "y": 70
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 5,
+        "efficacia": {
+          "strada": 2,
+          "stazione": 2,
+          "curva": 1,
+          "tribuna": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "tribuna": 2,
+          "strada": 1,
+          "stazione": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e31.ondata1",
+      "eventi": [
+        {
+          "id": "treno1",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "viale_aperto",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 3
+        },
+        {
+          "id": "ospiti_tribuna",
+          "tipo": "cerimonia",
+          "settore": "tribuna_autorita",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "viale_lavori",
+          "fonte": "centrale_radio",
+          "testo": "testi:e31.ch.viale_lavori",
+          "commento": "testi:e31.ch.viale_lavori.vice",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "scorta_viale",
+              "testo": "testi:e31.op.scorta_viale",
+              "costo": "testi:e31.op.scorta_viale.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.scorta_viale.r"
+            },
+            {
+              "id": "mediatore_viale",
+              "testo": "testi:e31.op.mediatore_viale",
+              "costo": "testi:e31.op.mediatore_viale.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.mediatore_viale.r"
+            },
+            {
+              "id": "segnala_segreteria",
+              "testo": "testi:e31.op.segnala_segreteria",
+              "costo": "testi:e31.op.segnala_segreteria.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.segnala_segreteria.r"
+            }
+          ]
+        },
+        {
+          "id": "comando_vuole",
+          "fonte": "comando",
+          "testo": "testi:e31.ch.comando_vuole",
+          "settore": "tribuna_autorita",
+          "opzioni": [
+            {
+              "id": "consegna_comando",
+              "testo": "testi:e31.op.consegna_comando",
+              "costo": "testi:e31.op.consegna_comando.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.consegna_comando.r"
+            },
+            {
+              "id": "copia_prima",
+              "testo": "testi:e31.op.copia_prima",
+              "costo": "testi:e31.op.copia_prima.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.copia_prima.r"
+            }
+          ]
+        },
+        {
+          "id": "secondo_treno",
+          "fonte": "centrale_radio",
+          "testo": "testi:e31.ch.secondo_treno",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "trattieni_stazione",
+              "testo": "testi:e31.op.trattieni_stazione",
+              "costo": "testi:e31.op.trattieni_stazione.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "tensione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.trattieni_stazione.r"
+            },
+            {
+              "id": "scorta_stazione",
+              "testo": "testi:e31.op.scorta_stazione",
+              "costo": "testi:e31.op.scorta_stazione.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.scorta_stazione.r"
+            },
+            {
+              "id": "lascia_stazione",
+              "testo": "testi:e31.op.lascia_stazione",
+              "costo": "testi:e31.op.lascia_stazione.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e31.op.lascia_stazione.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e31.ondata2",
+      "eventi": [
+        {
+          "id": "cori_casa",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "cori_ospiti",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "tribuna_piena",
+          "tipo": "cerimonia",
+          "settore": "tribuna_autorita",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "costruttore_saluta",
+          "fonte": "segreteria_comune",
+          "testo": "testi:e31.ch.costruttore_saluta",
+          "commento": "testi:e31.ch.costruttore_saluta.vice",
+          "settore": "tribuna_autorita",
+          "opzioni": [
+            {
+              "id": "vai_tribuna",
+              "testo": "testi:e31.op.vai_tribuna",
+              "costo": "testi:e31.op.vai_tribuna.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.vai_tribuna.r"
+            },
+            {
+              "id": "manda_vice",
+              "testo": "testi:e31.op.manda_vice",
+              "costo": "testi:e31.op.manda_vice.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.manda_vice.r"
+            },
+            {
+              "id": "non_andare",
+              "testo": "testi:e31.op.non_andare",
+              "costo": "testi:e31.op.non_andare.c",
+              "effetti": [
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.non_andare.r"
+            }
+          ]
+        },
+        {
+          "id": "coreografia",
+          "fonte": "centrale_radio",
+          "testo": "testi:e31.ch.coreografia",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "steward_uscite",
+              "testo": "testi:e31.op.steward_uscite",
+              "costo": "testi:e31.op.steward_uscite.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e31.op.steward_uscite.r"
+            },
+            {
+              "id": "riduci_coreo",
+              "testo": "testi:e31.op.riduci_coreo",
+              "costo": "testi:e31.op.riduci_coreo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.riduci_coreo.r"
+            }
+          ]
+        },
+        {
+          "id": "rovers_tribuna",
+          "fonte": "centrale_radio",
+          "testo": "testi:e31.ch.rovers_tribuna",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "lascia_rovers",
+              "testo": "testi:e31.op.lascia_rovers",
+              "costo": "testi:e31.op.lascia_rovers.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.lascia_rovers.r"
+            },
+            {
+              "id": "ferma_rovers",
+              "testo": "testi:e31.op.ferma_rovers",
+              "costo": "testi:e31.op.ferma_rovers.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e31.op.ferma_rovers.r"
+            },
+            {
+              "id": "responsabile_rovers",
+              "testo": "testi:e31.op.responsabile_rovers",
+              "costo": "testi:e31.op.responsabile_rovers.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e31.op.responsabile_rovers.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e31.ondata3",
+      "eventi": [
+        {
+          "id": "secondo_tempo_ospiti",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        },
+        {
+          "id": "secondo_tempo_casa",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "stazione_ritorno",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "cronista_cartella",
+          "fonte": "cronista",
+          "testo": "testi:e31.ch.cronista_cartella",
+          "commento": "testi:e31.ch.cronista_cartella.vice",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "dai_cronista",
+              "testo": "testi:e31.op.dai_cronista",
+              "costo": "testi:e31.op.dai_cronista.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e31.op.dai_cronista.r"
+            },
+            {
+              "id": "niente_cronista",
+              "testo": "testi:e31.op.niente_cronista",
+              "costo": "testi:e31.op.niente_cronista.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.niente_cronista.r"
+            }
+          ]
+        },
+        {
+          "id": "offerta",
+          "fonte": "messaggio_anonimo",
+          "testo": "testi:e31.ch.offerta",
+          "commento": "testi:e31.ch.offerta.vice",
+          "settore": "tribuna_autorita",
+          "opzioni": [
+            {
+              "id": "ignora_offerta",
+              "testo": "testi:e31.op.ignora_offerta",
+              "costo": "testi:e31.op.ignora_offerta.c",
+              "effetti": [
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.ignora_offerta.r"
+            },
+            {
+              "id": "denuncia_offerta",
+              "testo": "testi:e31.op.denuncia_offerta",
+              "costo": "testi:e31.op.denuncia_offerta.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.denuncia_offerta.r"
+            }
+          ]
+        },
+        {
+          "id": "stazione_anticipo",
+          "fonte": "centrale_radio",
+          "testo": "testi:e31.ch.stazione_anticipo",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "squadra_stazione2",
+              "testo": "testi:e31.op.squadra_stazione2",
+              "costo": "testi:e31.op.squadra_stazione2.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.squadra_stazione2.r"
+            },
+            {
+              "id": "lascia_bar",
+              "testo": "testi:e31.op.lascia_bar",
+              "costo": "testi:e31.op.lascia_bar.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.lascia_bar.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e31.ondata4",
+      "eventi": [
+        {
+          "id": "ritorno_viale",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 4
+        },
+        {
+          "id": "treni_ritorno",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "uscita_tribuna",
+          "tipo": "cerimonia",
+          "settore": "tribuna_autorita",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "segreteria_chiede",
+          "fonte": "segreteria_comune",
+          "testo": "testi:e31.ch.segreteria_chiede",
+          "commento": "testi:e31.ch.segreteria_chiede.vice",
+          "settore": "tribuna_autorita",
+          "opzioni": [
+            {
+              "id": "rifiuta_segreteria",
+              "testo": "testi:e31.op.rifiuta_segreteria",
+              "costo": "testi:e31.op.rifiuta_segreteria.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.rifiuta_segreteria.r"
+            },
+            {
+              "id": "mostra_indice",
+              "testo": "testi:e31.op.mostra_indice",
+              "costo": "testi:e31.op.mostra_indice.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.mostra_indice.r"
+            }
+          ]
+        },
+        {
+          "id": "ritorno_rovers",
+          "fonte": "centrale_radio",
+          "testo": "testi:e31.ch.ritorno_rovers",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "scorta_ritorno",
+              "testo": "testi:e31.op.scorta_ritorno",
+              "costo": "testi:e31.op.scorta_ritorno.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.scorta_ritorno.r"
+            },
+            {
+              "id": "percorso_lungo",
+              "testo": "testi:e31.op.percorso_lungo",
+              "costo": "testi:e31.op.percorso_lungo.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.percorso_lungo.r"
+            },
+            {
+              "id": "lascia_viale",
+              "testo": "testi:e31.op.lascia_viale",
+              "costo": "testi:e31.op.lascia_viale.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.lascia_viale.r"
+            }
+          ]
+        },
+        {
+          "id": "treni_tardi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e31.ch.treni_tardi",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "trattieni_treno",
+              "testo": "testi:e31.op.trattieni_treno",
+              "costo": "testi:e31.op.trattieni_treno.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.trattieni_treno.r"
+            },
+            {
+              "id": "parte_treno",
+              "testo": "testi:e31.op.parte_treno",
+              "costo": "testi:e31.op.parte_treno.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e31.op.parte_treno.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e31.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e31.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e31.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

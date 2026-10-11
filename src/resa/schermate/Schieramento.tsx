@@ -1,7 +1,7 @@
 // Schieramento: le unità si trascinano dal vassoio sui settori della mappa. Alternativa a tocco
 // (accessibilità): tocchi un'unità, poi il settore; tocchi un'unità sulla mappa per ritirarla.
 // Le unità a riposo (D-056) si vedono a parte e non si possono schierare.
-import { Check, Moon, Undo2 } from 'lucide-react';
+import { Check, Lock, Moon, Undo2 } from 'lucide-react';
 import { useRef, type PointerEvent } from 'react';
 import { disponibili, type InCorso } from '../../logica/missione.ts';
 import type { Disposizione, Missione } from '../../logica/tipi.ts';
@@ -48,6 +48,7 @@ function useTrascina(rilascia: (risorsa: string, settore: string) => void) {
 export function Schieramento(p: {
   m: Missione; ic: InCorso; d: Disposizione; scelta: string | null;
   scegli: (r: string) => void; metti: (r: string, settore: string) => void; azzera: () => void; conferma: () => void;
+  avviso?: string | null;
 }) {
   const disp = disponibili(p.m, p.ic);
   const tr = useTrascina(p.metti);
@@ -55,10 +56,17 @@ export function Schieramento(p: {
   return (
     <>
       <p className="tenue">Trascina le unità sui settori, oppure tocca un'unità e poi il settore. Tocca un'unità sulla mappa per ritirarla.</p>
+      {Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => (
+        <p key={r} className="scheda nota-fisse" data-nota-fisse={r}>
+          <Icona di={Lock} /> <strong>{t(`risorsa.${r}`)}</strong>: una volta montate restano fino a fine serata. Si montano solo dove servono, mai sugli spalti.
+        </p>
+      ))}
+      {p.avviso && <p className="avviso" role="status" data-avviso="si">{p.avviso}</p>}
       <div className="vassoio" role="group" aria-label="Unità da schierare">
         {Object.entries(disp).map(([r, n]) => {
           const libere = n - usate(p.d, r);
           const riposo = p.ic.riposo[r] ?? 0;
+          const montate = usate(p.ic.fisse ?? {}, r);
           return (
             <div className="vassoio-voce" key={r}>
               <button type="button" className={`unita${p.scelta === r ? ' scelta' : ''}`} data-risorsa={r} disabled={libere <= 0}
@@ -67,6 +75,7 @@ export function Schieramento(p: {
                 <Icona di={iconaRisorsa(r)} /><span>{t(`risorsa.${r}`)}</span><strong>{libere}</strong>
               </button>
               {riposo > 0 && <span className="riposo" data-riposo={r}><Icona di={Moon} />{riposo} a riposo</span>}
+              {montate > 0 && <span className="riposo" data-montate={r}><Icona di={Lock} />{montate} già montate</span>}
             </div>
           );
         })}

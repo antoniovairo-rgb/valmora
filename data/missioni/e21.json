@@ -1,0 +1,845 @@
+{
+  "id": "e21",
+  "stagione": 2,
+  "episodio": 21,
+  "titolo": "testi:e21.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 15,
+    "y": 70
+  },
+  "introduzione": [
+    "testi:e21.intro1",
+    "testi:e21.intro2",
+    "testi:e21.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e21.info_club",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "anello_cinderwick"
+    },
+    {
+      "testo": "testi:e21.info_centro",
+      "fonte": "centro_sociale",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "ex_fonderia"
+    },
+    {
+      "testo": "testi:e21.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_cinderwick"
+    },
+    {
+      "testo": "testi:e21.info_comune",
+      "fonte": "qualcuno_in_comune",
+      "affidabilita": "alta",
+      "vera": false,
+      "settore": "ex_fonderia"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 15,
+          "y": 28
+        }
+      },
+      {
+        "id": "anello_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 42,
+          "y": 14
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "quillhaven_albion",
+        "pos": {
+          "x": 85,
+          "y": 30
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 55,
+          "y": 55
+        }
+      },
+      {
+        "id": "ex_fonderia",
+        "tipo": "magazzino",
+        "pos": {
+          "x": 20,
+          "y": 82
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "magazzino": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 2,
+          "magazzino": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "faida"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e21.ondata1",
+      "eventi": [
+        {
+          "id": "corteo_fonderia",
+          "tipo": "corteo",
+          "settore": "ex_fonderia",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale21",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        },
+        {
+          "id": "anello21",
+          "tipo": "faida",
+          "settore": "anello_cinderwick",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "corteo_dal_cortile",
+          "fonte": "centro_sociale",
+          "testo": "testi:e21.ch.corteo_dal_cortile",
+          "commento": "testi:e21.ch.corteo_dal_cortile.vice",
+          "settore": "ex_fonderia",
+          "opzioni": [
+            {
+              "id": "parti_dalla_strada",
+              "testo": "testi:e21.op.parti_dalla_strada",
+              "costo": "testi:e21.op.parti_dalla_strada.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "ex_fonderia",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.parti_dalla_strada.r"
+            },
+            {
+              "id": "squadra_cancello",
+              "testo": "testi:e21.op.squadra_cancello",
+              "costo": "testi:e21.op.squadra_cancello.c",
+              "effetti": [
+                {
+                  "pressione": "ex_fonderia",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.squadra_cancello.r"
+            },
+            {
+              "id": "mediatore21",
+              "testo": "testi:e21.op.mediatore21",
+              "costo": "testi:e21.op.mediatore21.c",
+              "effetti": [
+                {
+                  "pressione": "ex_fonderia",
+                  "valore": -1
+                },
+                {
+                  "pressione": "anello_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.mediatore21.r"
+            }
+          ]
+        },
+        {
+          "id": "nuovo_capo",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e21.ch.nuovo_capo",
+          "settore": "anello_cinderwick",
+          "opzioni": [
+            {
+              "id": "ignora21",
+              "testo": "testi:e21.op.ignora21",
+              "costo": "testi:e21.op.ignora21.c",
+              "effetti": [
+                {
+                  "pressione": "anello_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.ignora21.r"
+            },
+            {
+              "id": "convoca",
+              "testo": "testi:e21.op.convoca",
+              "costo": "testi:e21.op.convoca.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "anello_cinderwick",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e21.op.convoca.r"
+            }
+          ]
+        },
+        {
+          "id": "approfittarne",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e21.ch.approfittarne",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "rinforza21",
+              "testo": "testi:e21.op.rinforza21",
+              "costo": "testi:e21.op.rinforza21.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.rinforza21.r"
+            },
+            {
+              "id": "grazie21",
+              "testo": "testi:e21.op.grazie21",
+              "costo": "testi:e21.op.grazie21.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e21.op.grazie21.r"
+            }
+          ]
+        },
+        {
+          "id": "furgone_fonderia",
+          "fonte": "vice",
+          "testo": "testi:e21.ch.furgone_fonderia",
+          "settore": "ex_fonderia",
+          "se": {
+            "var": "furgone_visto",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "controlla21",
+              "testo": "testi:e21.op.controlla21",
+              "costo": "testi:e21.op.controlla21.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.controlla21.r"
+            },
+            {
+              "id": "segna21",
+              "testo": "testi:e21.op.segna21",
+              "costo": "testi:e21.op.segna21.c",
+              "effetti": [],
+              "risposta": "testi:e21.op.segna21.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e21.ondata2",
+      "eventi": [
+        {
+          "id": "faida_basso",
+          "tipo": "faida",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "faida_alto",
+          "tipo": "faida",
+          "settore": "anello_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "cori_quill21",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "bottigliette",
+          "fonte": "centrale_radio",
+          "testo": "testi:e21.ch.bottigliette",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "steward_divisione",
+              "testo": "testi:e21.op.steward_divisione",
+              "costo": "testi:e21.op.steward_divisione.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "pressione": "anello_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e21.op.steward_divisione.r"
+            },
+            {
+              "id": "speaker21",
+              "testo": "testi:e21.op.speaker21",
+              "costo": "testi:e21.op.speaker21.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.speaker21.r"
+            },
+            {
+              "id": "lascia21",
+              "testo": "testi:e21.op.lascia21",
+              "costo": "testi:e21.op.lascia21.c",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                },
+                {
+                  "tensione": "anello_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e21.op.lascia21.r"
+            }
+          ]
+        },
+        {
+          "id": "dov_e_il_capo",
+          "fonte": "centrale_radio",
+          "testo": "testi:e21.ch.dov_e_il_capo",
+          "commento": "testi:e21.ch.dov_e_il_capo.vice",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_ospiti21",
+              "testo": "testi:e21.op.steward_ospiti21",
+              "costo": "testi:e21.op.steward_ospiti21.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.steward_ospiti21.r"
+            },
+            {
+              "id": "lascia_ospiti21",
+              "testo": "testi:e21.op.lascia_ospiti21",
+              "costo": "testi:e21.op.lascia_ospiti21.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.lascia_ospiti21.r"
+            }
+          ]
+        },
+        {
+          "id": "striscione_sgombero",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e21.ch.striscione_sgombero",
+          "commento": "testi:e21.ch.striscione_sgombero.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "togli_striscione21",
+              "testo": "testi:e21.op.togli_striscione21",
+              "costo": "testi:e21.op.togli_striscione21.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "tensione": "anello_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.togli_striscione21.r"
+            },
+            {
+              "id": "niente_patti21",
+              "testo": "testi:e21.op.niente_patti21",
+              "costo": "testi:e21.op.niente_patti21.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e21.op.niente_patti21.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e21.ondata3",
+      "eventi": [
+        {
+          "id": "tira_alto",
+          "tipo": "faida",
+          "settore": "anello_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "curiosi",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        },
+        {
+          "id": "cortile_pieno",
+          "tipo": "presidio",
+          "settore": "ex_fonderia",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "stanotte_sgombero",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e21.ch.stanotte_sgombero",
+          "settore": "anello_cinderwick",
+          "opzioni": [
+            {
+              "id": "chiudi_anello",
+              "testo": "testi:e21.op.chiudi_anello",
+              "costo": "testi:e21.op.chiudi_anello.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "anello_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.chiudi_anello.r"
+            },
+            {
+              "id": "steward_scale21",
+              "testo": "testi:e21.op.steward_scale21",
+              "costo": "testi:e21.op.steward_scale21.c",
+              "effetti": [
+                {
+                  "pressione": "anello_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.steward_scale21.r"
+            },
+            {
+              "id": "lascia_uscire21",
+              "testo": "testi:e21.op.lascia_uscire21",
+              "costo": "testi:e21.op.lascia_uscire21.c",
+              "effetti": [
+                {
+                  "pressione": "anello_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "pressione": "ex_fonderia",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e21.op.lascia_uscire21.r"
+            }
+          ]
+        },
+        {
+          "id": "residenti_divisi",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e21.ch.residenti_divisi",
+          "commento": "testi:e21.ch.residenti_divisi.vice",
+          "settore": "ex_fonderia",
+          "opzioni": [
+            {
+              "id": "rassicura21",
+              "testo": "testi:e21.op.rassicura21",
+              "costo": "testi:e21.op.rassicura21.c",
+              "effetti": [
+                {
+                  "pressione": "ex_fonderia",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.rassicura21.r"
+            },
+            {
+              "id": "nessun_commento21",
+              "testo": "testi:e21.op.nessun_commento21",
+              "costo": "testi:e21.op.nessun_commento21.c",
+              "effetti": [
+                {
+                  "pressione": "ex_fonderia",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.nessun_commento21.r"
+            }
+          ]
+        },
+        {
+          "id": "curva_debole",
+          "fonte": "qualcuno_in_comune",
+          "testo": "testi:e21.ch.curva_debole",
+          "commento": "testi:e21.ch.curva_debole.vice",
+          "settore": "ex_fonderia",
+          "opzioni": [
+            {
+              "id": "ascolta21",
+              "testo": "testi:e21.op.ascolta21",
+              "costo": "testi:e21.op.ascolta21.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "ex_fonderia",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e21.op.ascolta21.r"
+            },
+            {
+              "id": "ignora_comune",
+              "testo": "testi:e21.op.ignora_comune",
+              "costo": "testi:e21.op.ignora_comune.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "ex_fonderia",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.ignora_comune.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e21.ondata4",
+      "eventi": [
+        {
+          "id": "ritorno_fonderia",
+          "tipo": "corteo",
+          "settore": "ex_fonderia",
+          "pressione": 5
+        },
+        {
+          "id": "uscita_quill",
+          "tipo": "folla",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        },
+        {
+          "id": "piazzale21b",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "chi_arriva_primo",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e21.ch.chi_arriva_primo",
+          "settore": "ex_fonderia",
+          "opzioni": [
+            {
+              "id": "in_ordine",
+              "testo": "testi:e21.op.in_ordine",
+              "costo": "testi:e21.op.in_ordine.c",
+              "effetti": [
+                {
+                  "pressione": "ex_fonderia",
+                  "valore": -2
+                },
+                {
+                  "tensione": "anello_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.in_ordine.r"
+            },
+            {
+              "id": "insieme21",
+              "testo": "testi:e21.op.insieme21",
+              "costo": "testi:e21.op.insieme21.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "ex_fonderia",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.insieme21.r"
+            }
+          ]
+        },
+        {
+          "id": "pullman21",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e21.ch.pullman21",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "subito21",
+              "testo": "testi:e21.op.subito21",
+              "costo": "testi:e21.op.subito21.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.subito21.r"
+            },
+            {
+              "id": "trattieni21",
+              "testo": "testi:e21.op.trattieni21",
+              "costo": "testi:e21.op.trattieni21.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e21.op.trattieni21.r"
+            }
+          ]
+        },
+        {
+          "id": "telefono_anello",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e21.ch.telefono_anello",
+          "commento": "testi:e21.ch.telefono_anello.vice",
+          "settore": "anello_cinderwick",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "traccia21",
+              "testo": "testi:e21.op.traccia21",
+              "costo": "testi:e21.op.traccia21.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e21.op.traccia21.r"
+            },
+            {
+              "id": "lascia21b",
+              "testo": "testi:e21.op.lascia21b",
+              "costo": "testi:e21.op.lascia21b.c",
+              "effetti": [],
+              "risposta": "testi:e21.op.lascia21b.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e21.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e21.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e21.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

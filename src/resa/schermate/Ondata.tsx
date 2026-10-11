@@ -1,8 +1,8 @@
 // Durante l'ondata: le chiamate una alla volta (fonte, testo, commento del vice, opzioni), la risposta
 // alla scelta, poi la chiusura col rapporto. Ogni scelta si salva subito: una ricarica riporta alla
 // chiamata successiva (la risposta già letta non torna).
-import { ChevronRight, Coffee, FileText, Radio } from 'lucide-react';
-import { useState } from 'react';
+import { ChevronDown, ChevronRight, Coffee, FileText, Radio } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { spento } from '../../interruttori.ts';
 import { opzioniValide, type InCorso } from '../../logica/missione.ts';
 import type { Chiamata as TChiamata, Missione, Opzione } from '../../logica/tipi.ts';
@@ -15,6 +15,16 @@ import { Messaggio } from './Scena.tsx';
 export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: number; totale: number; rispondi: (opzione: string) => void }) {
   // Al primo tocco le opzioni si bloccano: un secondo tocco non cambia la scelta (C-005 R01).
   const [scelta, setScelta] = useState<string | null>(null);
+  // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
+  const opzioni = useRef<HTMLDivElement>(null);
+  const [nascoste, setNascoste] = useState(false);
+  useEffect(() => {
+    const el = opzioni.current?.querySelector('.opzione'); // la prima opzione deve vedersi tutta
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(([e]) => setNascoste(e!.intersectionRatio < 0.99), { threshold: [0, 0.5, 0.99, 1] });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   return (
     <>
       <Messaggio key={p.c.id} classe="radio ultimo" dati={`chiamata-${p.c.id}`}>
@@ -22,7 +32,12 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
         <p className="testo-radio">{t(p.c.testo)}</p>
         {p.c.commento && <p className="vice-a-margine"><span className="chi-vice">Il vice — </span>{t(p.c.commento)}</p>}
       </Messaggio>
-      <div className="opzioni" role="group" aria-label="Che cosa rispondi?">
+      {nascoste && (
+        <button type="button" className="indicatore" data-indicatore="opzioni" onClick={() => opzioni.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>
+          Rispondi <Icona di={ChevronDown} />
+        </button>
+      )}
+      <div className="opzioni" ref={opzioni} role="group" aria-label="Che cosa rispondi?">
         {opzioniValide(p.c, p.ic).map((o, i) => (
           <button key={o.id} className={`opzione${scelta === o.id ? ' scelta' : ''}`} data-opzione={o.id} disabled={scelta !== null && !spento('C05R01')}
             onClick={() => { if (scelta !== null && !spento('C05R01')) return; setScelta(o.id); p.rispondi(o.id); }}>

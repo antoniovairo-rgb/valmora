@@ -87,6 +87,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
   const browser = await chromium.launch({ executablePath: percorso });
   const piano = pianoAttento(dirDati);
   const piano2 = pianoAttento(dirDati, 1, piano.variabili); // null se c'è una sola missione
+  const piano3 = piano2 && pianoAttento(dirDati, 2, piano2.variabili);
   const giri = [];
   try {
     for (const larghezza of larghezze()) {
@@ -139,6 +140,16 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           for (const li of document.querySelectorAll('[data-esito-settore]')) {
             const a = li.querySelector('.riga-sx').getBoundingClientRect(), b = li.querySelector('strong').getBoundingClientRect();
             if (b.top >= a.bottom - 2) p.push(`rapporto: lo stato di ${li.dataset.esitoSettore} va sotto il nome`);
+          }
+          // C-010 C09-03: a scorrimento zero il pulsante principale (o l'indicatore delle opzioni) si vede
+          const vista = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); return r.height > 0 && r.top >= 0 && r.bottom <= innerHeight; };
+          const principale = document.querySelector('.scena [data-azione="avanti"], .scena [data-azione="prossimo"], .scena [data-azione="inizia"], .scena [data-azione="rapporto"], .scena [data-azione="continua"], .scena [data-azione="conferma"]');
+          if (principale && !vista(principale)) p.push(`pulsante principale «${principale.textContent.trim()}» sotto la piega`);
+          if (document.querySelector('.scena .opzione') && !vista(document.querySelector('.scena .opzione')) && !vista(document.querySelector('[data-indicatore]'))) p.push('opzioni sotto la piega senza indicatore');
+          // C-010 C09-02: un settore scoperto ha almeno il giallo (liv-2)
+          for (const li of document.querySelectorAll('[data-esito-settore]')) {
+            const liv = Number(li.querySelector('.campione')?.className.match(/liv-(\d)/)?.[1] ?? 0);
+            if (/scoperto/i.test(li.querySelector('strong').textContent) && liv < 2) p.push(`rapporto: ${li.dataset.esitoSettore} scoperto ma colore tranquillo (liv-${liv})`);
           }
           const et = document.querySelector('.testata-t small');
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
@@ -207,6 +218,23 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             const n = i + 1;
             await scena('schieramento');
             atteso(`ondata ${n}: la scena è dell'ondata ${await pagina.getAttribute('main', 'data-ondata')}`, (await pagina.getAttribute('main', 'data-ondata')) === String(n));
+            // Risorse fisse (transenne, D-082): all'ondata 1 non si montano in curva (avviso, nessuna presenza);
+            // dall'ondata 2 quelle montate all'ondata 1 restano sulla mappa col lucchetto e non si ritirano.
+            const fisse = Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => r);
+            const curva = p.m.mappa.settori.find((x) => x.tipo === 'curva')?.id;
+            if (n === 1) for (const r of fisse) if (curva && (await pagina.locator(`[data-risorsa="${r}"]:not([disabled])`).count())) {
+              await premi(`[data-risorsa="${r}"]`); await premi(`[data-settore="${curva}"] .settore-punto`);
+              atteso(`${p.m.id}: ${r} in «${curva}» senza avviso (D-082)`, (await pagina.locator('[data-avviso]').count()) === 1);
+              atteso(`${p.m.id}: ${r} accettate in «${curva}» (D-082)`, (await pagina.locator(`[data-presenza="${r}@${curva}"]`).count()) === 0);
+              if (completa || !viste.has('avviso')) { viste.add('avviso'); await foto(); }
+            }
+            if (n === 2 && fisse.length && modoFoto !== 'nessuna') await foto(); // transenne col lucchetto
+            if (n > 1) for (const r of fisse) for (const [s, q] of Object.entries(p.ondate[0].disposizione[r] ?? {})) if (q > 0) {
+              const segno = pagina.locator(`[data-fissa="${r}@${s}"]`);
+              atteso(`${p.m.id} ondata ${n}: ${r} montate in «${s}» all'ondata 1 non si vedono`, (await segno.count()) === 1);
+              if (await segno.count()) await segno.click({ force: true });
+              atteso(`${p.m.id} ondata ${n}: ${r} in «${s}» ritirabili`, (await segno.count()) === 1 && (await pagina.locator(`[data-presenza="${r}@${s}"]`).count()) === 0);
+            }
             let unita = Object.entries(o.disposizione).flatMap(([r, ps]) => Object.entries(ps).flatMap(([s, q]) => Array(q).fill([r, s])));
             if (completa && n === 1 && unita.length) { // la prima unità si trascina davvero dal vassoio alla mappa
               const [r, s] = unita[0];
@@ -222,6 +250,16 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             for (const [r, s] of unita) { // le altre col tocco: unità, poi settore
               if ((await pagina.getAttribute(`[data-risorsa="${r}"]`, 'aria-pressed')) !== 'true') await premi(`[data-risorsa="${r}"]`);
               await premi(`[data-settore="${s}"] .settore-punto`);
+            }
+            // C-010 C09-04: con l'unità scelta finita, un tocco su un settore non mette un'altra unità
+            if (completa && n === 1) {
+              const conta = () => pagina.evaluate(() => [...document.querySelectorAll('[data-presenza] .pastiglia')].reduce((a, e) => a + Number(e.textContent.replace(/\D/g, '') || 0), 0));
+              const prima = await conta();
+              await premi(`[data-settore="${p.m.mappa.settori[0].id}"] .settore-punto`);
+              const dopo = await conta();
+              atteso(`schieramento: unità finita, il tocco ha messo un'altra unità (${prima} → ${dopo}) (C09-04)`, dopo === prima);
+              atteso('schieramento: unità finita senza avviso (C09-04)', (await pagina.locator('[data-avviso]').count()) === 1);
+              if (dopo > prima) await pagina.locator('[data-presenza]').last().click(); // rimette lo schieramento del piano (braccio rosso)
             }
             await fotoSe();
             const piccoli = await pagina.locator('[data-presenza]').evaluateAll((xs) => xs.map((x) => x.getBoundingClientRect()).filter((r) => r.width < 44 || r.height < 44).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));
@@ -312,6 +350,20 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           const conta = await pagina.locator(`[data-scheda-episodio="${piano2.m.id}"] .tenue`).first().textContent();
           atteso(`città: «${conta}» invece di «1 tentativo» (C-008.1)`, conta?.trim() === '1 tentativo');
         }
+        // 5) terzo episodio dalla città, dalle variabili lasciate da e02 (e03: transenne fisse, notte)
+        if (piano3) {
+          const ep3 = pagina.locator(`[data-episodio="${piano3.m.id}"]`);
+          atteso(`città: ${piano3.m.id} è «${await ep3.getAttribute('data-stato')}», non «disponibile»`, (await ep3.getAttribute('data-stato')) === 'disponibile');
+          await ep3.locator('.settore-punto').click();
+          await premi('[data-azione="avvia-episodio"]');
+          completa = false; modoFoto = 'chiave'; viste.clear();
+          await partita(piano3);
+          completa = true; modoFoto = 'tutte';
+          const esito3 = await pagina.getAttribute('[data-esito]', 'data-esito');
+          atteso(`${piano3.m.id}, giocatore «${piano3.giocatore}»: la resa finisce con «${esito3}», il motore dice «${piano3.esito}»`, esito3 === piano3.esito);
+          await premi('[data-azione="citta"]'); await scena('citta'); await foto();
+          atteso(`città: ${piano3.m.id} non è superato`, (await ep3.getAttribute('data-stato')) === 'superato');
+        }
         // C-005 R02: con una partita salvata, «Nuova partita» chiede conferma e «No» non cancella nulla
         const prima = await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'));
         await pagina.reload(); await scena('titolo');
@@ -333,8 +385,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const [cartella = 'out/foto', build = 'dist', dati = 'data'] = process.argv.slice(2);
   const giri = await giraFoto(cartella, build, dati);
   const p = giri.flatMap(controllaGiro);
-  const p1 = pianoAttento(dati); const p2 = pianoAttento(dati, 1, p1.variabili);
-  for (const q of [p1, p2].filter(Boolean)) console.log(`${q.m.id}: giocatore ${q.giocatore}; esito del giocatore attento di bot.ts: ${q.esitoAttento}`);
+  const p1 = pianoAttento(dati); const p2 = pianoAttento(dati, 1, p1.variabili); const p3 = p2 && pianoAttento(dati, 2, p2.variabili);
+  for (const q of [p1, p2, p3].filter(Boolean)) console.log(`${q.m.id}: giocatore ${q.giocatore}; esito del giocatore attento di bot.ts: ${q.esitoAttento}`);
   console.log(p.length ? p.join('\n') : `verde: ${giri.length} larghezze, foto in ${cartella}`);
   process.exit(p.length ? 1 : 0);
 }

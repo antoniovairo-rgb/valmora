@@ -1,0 +1,842 @@
+{
+  "id": "e30",
+  "stagione": 3,
+  "episodio": 30,
+  "titolo": "testi:e30.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 45,
+    "y": 40
+  },
+  "introduzione": [
+    "testi:e30.intro1",
+    "testi:e30.intro2",
+    "testi:e30.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e30.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "piazzale"
+    },
+    {
+      "testo": "testi:e30.info_club",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "strada_cinderwick"
+    },
+    {
+      "testo": "testi:e30.info_residenti",
+      "fonte": "comitato_residenti",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "quartiere"
+    },
+    {
+      "testo": "testi:e30.info_ferrovie",
+      "fonte": "ferrovie",
+      "affidabilita": "alta",
+      "vera": false,
+      "settore": "viale_stazione"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 50,
+          "y": 30
+        }
+      },
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 15,
+          "y": 50
+        }
+      },
+      {
+        "id": "viale_stazione",
+        "tipo": "viale",
+        "pos": {
+          "x": 30,
+          "y": 86
+        }
+      },
+      {
+        "id": "quartiere",
+        "tipo": "quartiere",
+        "pos": {
+          "x": 82,
+          "y": 86
+        }
+      },
+      {
+        "id": "piazza_municipio",
+        "tipo": "piazza",
+        "pos": {
+          "x": 82,
+          "y": 42
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 6,
+        "efficacia": {
+          "strada": 2,
+          "viale": 2,
+          "quartiere": 2,
+          "piazza": 2,
+          "piazzale": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "piazzale": 2,
+          "piazza": 2,
+          "strada": 1,
+          "viale": 1,
+          "quartiere": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e30.ondata1",
+      "eventi": [
+        {
+          "id": "raduno_nero",
+          "tipo": "corteo",
+          "settore": "piazzale",
+          "pressione": 5
+        },
+        {
+          "id": "scritte",
+          "tipo": "protesta",
+          "settore": "quartiere",
+          "pressione": 3
+        },
+        {
+          "id": "viale_presto",
+          "tipo": "traffico",
+          "settore": "viale_stazione",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "raduno_silenzio",
+          "fonte": "centrale_radio",
+          "testo": "testi:e30.ch.raduno_silenzio",
+          "commento": "testi:e30.ch.raduno_silenzio.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "accompagna_silenzio",
+              "testo": "testi:e30.op.accompagna_silenzio",
+              "costo": "testi:e30.op.accompagna_silenzio.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.accompagna_silenzio.r"
+            },
+            {
+              "id": "mediatore_silenzio",
+              "testo": "testi:e30.op.mediatore_silenzio",
+              "costo": "testi:e30.op.mediatore_silenzio.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.mediatore_silenzio.r"
+            },
+            {
+              "id": "ferma_silenzio",
+              "testo": "testi:e30.op.ferma_silenzio",
+              "costo": "testi:e30.op.ferma_silenzio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.ferma_silenzio.r"
+            }
+          ]
+        },
+        {
+          "id": "muri_quartiere",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e30.ch.muri_quartiere",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "presidio_quartiere",
+              "testo": "testi:e30.op.presidio_quartiere",
+              "costo": "testi:e30.op.presidio_quartiere.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.presidio_quartiere.r"
+            },
+            {
+              "id": "cancella_scritte",
+              "testo": "testi:e30.op.cancella_scritte",
+              "costo": "testi:e30.op.cancella_scritte.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.cancella_scritte.r"
+            }
+          ]
+        },
+        {
+          "id": "autobus_sera",
+          "fonte": "centrale_radio",
+          "testo": "testi:e30.ch.autobus_sera",
+          "commento": "testi:e30.ch.autobus_sera.vice",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "devia_autobus",
+              "testo": "testi:e30.op.devia_autobus",
+              "costo": "testi:e30.op.devia_autobus.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.devia_autobus.r"
+            },
+            {
+              "id": "viale_aperto",
+              "testo": "testi:e30.op.viale_aperto",
+              "costo": "testi:e30.op.viale_aperto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.viale_aperto.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e30.ondata2",
+      "eventi": [
+        {
+          "id": "silenzio_strada",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "pendolari",
+          "tipo": "traffico",
+          "settore": "viale_stazione",
+          "pressione": 3
+        },
+        {
+          "id": "troupe",
+          "tipo": "folla",
+          "settore": "piazza_municipio",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "silenzio_totale",
+          "fonte": "centrale_radio",
+          "testo": "testi:e30.ch.silenzio_totale",
+          "commento": "testi:e30.ch.silenzio_totale.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "rispetta_silenzio",
+              "testo": "testi:e30.op.rispetta_silenzio",
+              "costo": "testi:e30.op.rispetta_silenzio.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.rispetta_silenzio.r"
+            },
+            {
+              "id": "steward_silenzio",
+              "testo": "testi:e30.op.steward_silenzio",
+              "costo": "testi:e30.op.steward_silenzio.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.steward_silenzio.r"
+            },
+            {
+              "id": "parla_club",
+              "testo": "testi:e30.op.parla_club",
+              "costo": "testi:e30.op.parla_club.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.parla_club.r"
+            }
+          ]
+        },
+        {
+          "id": "clacson",
+          "fonte": "centrale_radio",
+          "testo": "testi:e30.ch.clacson",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "corsia_auto",
+              "testo": "testi:e30.op.corsia_auto",
+              "costo": "testi:e30.op.corsia_auto.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.corsia_auto.r"
+            },
+            {
+              "id": "auto_ferme",
+              "testo": "testi:e30.op.auto_ferme",
+              "costo": "testi:e30.op.auto_ferme.c",
+              "effetti": [
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.auto_ferme.r"
+            }
+          ]
+        },
+        {
+          "id": "giornalisti",
+          "fonte": "cronista",
+          "testo": "testi:e30.ch.giornalisti",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "niente_troupe",
+              "testo": "testi:e30.op.niente_troupe",
+              "costo": "testi:e30.op.niente_troupe.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.niente_troupe.r"
+            },
+            {
+              "id": "troupe_libere",
+              "testo": "testi:e30.op.troupe_libere",
+              "costo": "testi:e30.op.troupe_libere.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.troupe_libere.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e30.ondata3",
+      "eventi": [
+        {
+          "id": "sotto_comune",
+          "tipo": "corteo",
+          "settore": "piazza_municipio",
+          "pressione": 5
+        },
+        {
+          "id": "coda_corteo",
+          "tipo": "folla",
+          "settore": "strada_cinderwick",
+          "pressione": 3
+        },
+        {
+          "id": "quartiere_sera",
+          "tipo": "protesta",
+          "settore": "quartiere",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "sotto_il_municipio",
+          "fonte": "centrale_radio",
+          "testo": "testi:e30.ch.sotto_il_municipio",
+          "commento": "testi:e30.ch.sotto_il_municipio.vice",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "mediatore_cori",
+              "testo": "testi:e30.op.mediatore_cori",
+              "costo": "testi:e30.op.mediatore_cori.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.mediatore_cori.r"
+            },
+            {
+              "id": "sanziona",
+              "testo": "testi:e30.op.sanziona",
+              "costo": "testi:e30.op.sanziona.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.sanziona.r"
+            },
+            {
+              "id": "niente_sanzioni",
+              "testo": "testi:e30.op.niente_sanzioni",
+              "costo": "testi:e30.op.niente_sanzioni.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.niente_sanzioni.r"
+            }
+          ]
+        },
+        {
+          "id": "scritte_sera",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e30.ch.scritte_sera",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "squadra_scuola",
+              "testo": "testi:e30.op.squadra_scuola",
+              "costo": "testi:e30.op.squadra_scuola.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.squadra_scuola.r"
+            },
+            {
+              "id": "domattina",
+              "testo": "testi:e30.op.domattina",
+              "costo": "testi:e30.op.domattina.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.domattina.r"
+            }
+          ]
+        },
+        {
+          "id": "saluto_larkspire",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e30.ch.saluto_larkspire",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "devia_coda",
+              "testo": "testi:e30.op.devia_coda",
+              "costo": "testi:e30.op.devia_coda.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e30.op.devia_coda.r"
+            },
+            {
+              "id": "percorso_fermo",
+              "testo": "testi:e30.op.percorso_fermo",
+              "costo": "testi:e30.op.percorso_fermo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.percorso_fermo.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e30.ondata4",
+      "eventi": [
+        {
+          "id": "fiaccole",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "piazzale_tardi",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        },
+        {
+          "id": "quartiere_notte",
+          "tipo": "protesta",
+          "settore": "quartiere",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "fiaccolata",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e30.ch.fiaccolata",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "fiaccolata_scortata",
+              "testo": "testi:e30.op.fiaccolata_scortata",
+              "costo": "testi:e30.op.fiaccolata_scortata.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.fiaccolata_scortata.r"
+            },
+            {
+              "id": "vieta_fiaccolata",
+              "testo": "testi:e30.op.vieta_fiaccolata",
+              "costo": "testi:e30.op.vieta_fiaccolata.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.vieta_fiaccolata.r"
+            },
+            {
+              "id": "fiaccolata_libera",
+              "testo": "testi:e30.op.fiaccolata_libera",
+              "costo": "testi:e30.op.fiaccolata_libera.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e30.op.fiaccolata_libera.r"
+            }
+          ]
+        },
+        {
+          "id": "lettera_curva",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e30.ch.lettera_curva",
+          "commento": "testi:e30.ch.lettera_curva.vice",
+          "opzioni": [
+            {
+              "id": "accetta_incontro",
+              "testo": "testi:e30.op.accetta_incontro",
+              "costo": "testi:e30.op.accetta_incontro.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.accetta_incontro.r"
+            },
+            {
+              "id": "rifiuta_incontro",
+              "testo": "testi:e30.op.rifiuta_incontro",
+              "costo": "testi:e30.op.rifiuta_incontro.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.rifiuta_incontro.r"
+            }
+          ]
+        },
+        {
+          "id": "piazzale_ultimi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e30.ch.piazzale_ultimi",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "steward_piazzale",
+              "testo": "testi:e30.op.steward_piazzale",
+              "costo": "testi:e30.op.steward_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e30.op.steward_piazzale.r"
+            },
+            {
+              "id": "chiudi_bar",
+              "testo": "testi:e30.op.chiudi_bar",
+              "costo": "testi:e30.op.chiudi_bar.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e30.op.chiudi_bar.r"
+            },
+            {
+              "id": "aspetta_piazzale",
+              "testo": "testi:e30.op.aspetta_piazzale",
+              "costo": "testi:e30.op.aspetta_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e30.op.aspetta_piazzale.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e30.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e30.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e30.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

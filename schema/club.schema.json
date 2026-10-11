@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "club.schema.json",
-  "title": "club: nome e colori (D-012, D-086)",
+  "title": "club: nome, colori e stemma (D-012, D-086, D-088)",
   "type": "object",
   "required": [
     "id",
@@ -31,6 +31,27 @@
         "secondario": {
           "type": "string",
           "pattern": "^#[0-9a-f]{6}$"
+        }
+      }
+    },
+    "stemma": {
+      "type": "object",
+      "required": [
+        "forma",
+        "simbolo"
+      ],
+      "additionalProperties": false,
+      "description": "stemma disegnato dal codice (D-088)",
+      "properties": {
+        "forma": {
+          "enum": [
+            "scudo",
+            "tondo",
+            "rombo"
+          ]
+        },
+        "simbolo": {
+          "$ref": "comune.schema.json#/$defs/id"
         }
       }
     }

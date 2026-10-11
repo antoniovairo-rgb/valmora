@@ -1,0 +1,859 @@
+{
+  "id": "e09",
+  "bozza": true,
+  "stagione": 1,
+  "episodio": 9,
+  "titolo": "testi:e09.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 15,
+    "y": 70
+  },
+  "introduzione": [
+    "testi:e09.intro1",
+    "testi:e09.intro2",
+    "testi:e09.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e09.info_informatore",
+      "fonte": "informatore_di_strada",
+      "affidabilita": "bassa",
+      "vera": true,
+      "settore": "tangenziale"
+    },
+    {
+      "testo": "testi:e09.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": false,
+      "settore": "tangenziale"
+    },
+    {
+      "testo": "testi:e09.info_club",
+      "fonte": "club_ospite",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e09.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "strada_larkspire"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "tangenziale",
+        "tipo": "strada",
+        "pos": {
+          "x": 82,
+          "y": 84
+        }
+      },
+      {
+        "id": "strada_larkspire",
+        "tipo": "strada",
+        "pos": {
+          "x": 50,
+          "y": 90
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 52,
+          "y": 64
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 80,
+          "y": 36
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "calderholt_rovers",
+        "pos": {
+          "x": 20,
+          "y": 36
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 1,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e09.ondata1",
+      "eventi": [
+        {
+          "id": "coda9",
+          "tipo": "arrivo",
+          "settore": "tangenziale",
+          "pressione": 4
+        },
+        {
+          "id": "a_piedi9",
+          "tipo": "corteo",
+          "settore": "strada_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale9",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "furgone_coinvolto",
+          "fonte": "centrale_radio",
+          "testo": "testi:e09.ch.furgone_coinvolto",
+          "commento": "testi:e09.ch.furgone_coinvolto.vice",
+          "settore": "tangenziale",
+          "opzioni": [
+            {
+              "id": "controlla_furgone",
+              "testo": "testi:e09.op.controlla_furgone",
+              "costo": "testi:e09.op.controlla_furgone.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e09.op.controlla_furgone.r"
+            },
+            {
+              "id": "osserva_furgone",
+              "testo": "testi:e09.op.osserva_furgone",
+              "costo": "testi:e09.op.osserva_furgone.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": 1
+                },
+                {
+                  "imposta": "furgone_visto",
+                  "valore": true
+                }
+              ],
+              "risposta": "testi:e09.op.osserva_furgone.r"
+            },
+            {
+              "id": "uno_dei_dodici",
+              "testo": "testi:e09.op.uno_dei_dodici",
+              "costo": "testi:e09.op.uno_dei_dodici.c",
+              "effetti": [],
+              "risposta": "testi:e09.op.uno_dei_dodici.r"
+            }
+          ]
+        },
+        {
+          "id": "a_piedi",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e09.ch.a_piedi",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "mediatore9",
+              "testo": "testi:e09.op.mediatore9",
+              "costo": "testi:e09.op.mediatore9.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e09.op.mediatore9.r"
+            },
+            {
+              "id": "apri_rampa",
+              "testo": "testi:e09.op.apri_rampa",
+              "costo": "testi:e09.op.apri_rampa.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": -1
+                },
+                {
+                  "tensione": "strada_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.apri_rampa.r"
+            },
+            {
+              "id": "lascia_scendere",
+              "testo": "testi:e09.op.lascia_scendere",
+              "costo": "testi:e09.op.lascia_scendere.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e09.op.lascia_scendere.r"
+            }
+          ]
+        },
+        {
+          "id": "pullman_fermi",
+          "fonte": "club_ospite",
+          "testo": "testi:e09.ch.pullman_fermi",
+          "settore": "tangenziale",
+          "opzioni": [
+            {
+              "id": "acqua_pullman",
+              "testo": "testi:e09.op.acqua_pullman",
+              "costo": "testi:e09.op.acqua_pullman.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e09.op.acqua_pullman.r"
+            },
+            {
+              "id": "scarica_pullman",
+              "testo": "testi:e09.op.scarica_pullman",
+              "costo": "testi:e09.op.scarica_pullman.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": -2
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e09.op.scarica_pullman.r"
+            },
+            {
+              "id": "non_compito",
+              "testo": "testi:e09.op.non_compito",
+              "costo": "testi:e09.op.non_compito.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.non_compito.r"
+            }
+          ]
+        },
+        {
+          "id": "passaggio",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e09.ch.passaggio",
+          "commento": "testi:e09.ch.passaggio.vice",
+          "settore": "tangenziale",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "paga_ancora",
+              "testo": "testi:e09.op.paga_ancora",
+              "costo": "testi:e09.op.paga_ancora.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e09.op.paga_ancora.r"
+            },
+            {
+              "id": "basta_cosi",
+              "testo": "testi:e09.op.basta_cosi",
+              "costo": "testi:e09.op.basta_cosi.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.basta_cosi.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e09.ondata2",
+      "eventi": [
+        {
+          "id": "cori9l",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "cori9o",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "lite9",
+          "tipo": "rissa",
+          "settore": "tangenziale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "lite_coda",
+          "fonte": "centrale_radio",
+          "testo": "testi:e09.ch.lite_coda",
+          "commento": "testi:e09.ch.lite_coda.vice",
+          "settore": "tangenziale",
+          "opzioni": [
+            {
+              "id": "squadre_coda",
+              "testo": "testi:e09.op.squadre_coda",
+              "costo": "testi:e09.op.squadre_coda.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": -3
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.squadre_coda.r"
+            },
+            {
+              "id": "cerca_conducente",
+              "testo": "testi:e09.op.cerca_conducente",
+              "costo": "testi:e09.op.cerca_conducente.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "tangenziale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.cerca_conducente.r"
+            }
+          ]
+        },
+        {
+          "id": "contro_tutti",
+          "fonte": "centrale_radio",
+          "testo": "testi:e09.ch.contro_tutti",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward9",
+              "testo": "testi:e09.op.steward9",
+              "costo": "testi:e09.op.steward9.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e09.op.steward9.r"
+            },
+            {
+              "id": "lascia_coro9",
+              "testo": "testi:e09.op.lascia_coro9",
+              "costo": "testi:e09.op.lascia_coro9.c",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.lascia_coro9.r"
+            }
+          ]
+        },
+        {
+          "id": "immagini_club",
+          "fonte": "vice",
+          "testo": "testi:e09.ch.immagini_club",
+          "commento": "testi:e09.ch.immagini_club.vice",
+          "settore": "tangenziale",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "usa_immagini",
+              "testo": "testi:e09.op.usa_immagini",
+              "costo": "testi:e09.op.usa_immagini.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e09.op.usa_immagini.r"
+            },
+            {
+              "id": "rifiuta_immagini",
+              "testo": "testi:e09.op.rifiuta_immagini",
+              "costo": "testi:e09.op.rifiuta_immagini.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.rifiuta_immagini.r"
+            }
+          ]
+        },
+        {
+          "id": "torce9",
+          "fonte": "centrale_radio",
+          "testo": "testi:e09.ch.torce9",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "squadra_torce9",
+              "testo": "testi:e09.op.squadra_torce9",
+              "costo": "testi:e09.op.squadra_torce9.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.squadra_torce9.r"
+            },
+            {
+              "id": "lascia_torce9",
+              "testo": "testi:e09.op.lascia_torce9",
+              "costo": "testi:e09.op.lascia_torce9.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e09.op.lascia_torce9.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e09.ondata3",
+      "eventi": [
+        {
+          "id": "cori9l2",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "cori9o2",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale9b",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "due_furgoni",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e09.ch.due_furgoni",
+          "commento": "testi:e09.ch.due_furgoni.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "verifica_foto",
+              "testo": "testi:e09.op.verifica_foto",
+              "costo": "testi:e09.op.verifica_foto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e09.op.verifica_foto.r"
+            },
+            {
+              "id": "ignora_foto",
+              "testo": "testi:e09.op.ignora_foto",
+              "costo": "testi:e09.op.ignora_foto.c",
+              "effetti": [],
+              "risposta": "testi:e09.op.ignora_foto.r"
+            }
+          ]
+        },
+        {
+          "id": "rigore9",
+          "fonte": "centrale_radio",
+          "testo": "testi:e09.ch.rigore9",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_rigore9",
+              "testo": "testi:e09.op.steward_rigore9",
+              "costo": "testi:e09.op.steward_rigore9.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.steward_rigore9.r"
+            },
+            {
+              "id": "lascia_rigore9",
+              "testo": "testi:e09.op.lascia_rigore9",
+              "costo": "testi:e09.op.lascia_rigore9.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e09.op.lascia_rigore9.r"
+            }
+          ]
+        },
+        {
+          "id": "corsia_unica",
+          "fonte": "viabilita",
+          "testo": "testi:e09.ch.corsia_unica",
+          "settore": "tangenziale",
+          "opzioni": [
+            {
+              "id": "presidia_rampa",
+              "testo": "testi:e09.op.presidia_rampa",
+              "costo": "testi:e09.op.presidia_rampa.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.presidia_rampa.r"
+            },
+            {
+              "id": "chiudi_rampa",
+              "testo": "testi:e09.op.chiudi_rampa",
+              "costo": "testi:e09.op.chiudi_rampa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "tangenziale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e09.op.chiudi_rampa.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e09.ondata4",
+      "eventi": [
+        {
+          "id": "uscita9",
+          "tipo": "deflusso",
+          "settore": "strada_larkspire",
+          "pressione": 5
+        },
+        {
+          "id": "rampa9",
+          "tipo": "folla",
+          "settore": "tangenziale",
+          "pressione": 3
+        },
+        {
+          "id": "piazzale9c",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "risultato",
+          "fonte": "vice",
+          "testo": "testi:e09.ch.risultato",
+          "commento": "testi:e09.ch.risultato.vice",
+          "opzioni": [
+            {
+              "id": "ospiti_prima9",
+              "testo": "testi:e09.op.ospiti_prima9",
+              "costo": "testi:e09.op.ospiti_prima9.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e09.op.ospiti_prima9.r"
+            },
+            {
+              "id": "trattieni9",
+              "testo": "testi:e09.op.trattieni9",
+              "costo": "testi:e09.op.trattieni9.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e09.op.trattieni9.r"
+            }
+          ]
+        },
+        {
+          "id": "furgone_sparito",
+          "fonte": "viabilita",
+          "testo": "testi:e09.ch.furgone_sparito",
+          "settore": "tangenziale",
+          "opzioni": [
+            {
+              "id": "chiudi_servizio",
+              "testo": "testi:e09.op.chiudi_servizio",
+              "costo": "testi:e09.op.chiudi_servizio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "tangenziale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e09.op.chiudi_servizio.r"
+            },
+            {
+              "id": "annota_direzione",
+              "testo": "testi:e09.op.annota_direzione",
+              "costo": "testi:e09.op.annota_direzione.c",
+              "effetti": [
+                {
+                  "pressione": "tangenziale",
+                  "valore": -1
+                },
+                {
+                  "imposta": "furgone_visto",
+                  "valore": true
+                }
+              ],
+              "risposta": "testi:e09.op.annota_direzione.r"
+            }
+          ]
+        },
+        {
+          "id": "non_erano_nostri",
+          "fonte": "club_ospite",
+          "testo": "testi:e09.ch.non_erano_nostri",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "conferma",
+              "testo": "testi:e09.op.conferma",
+              "costo": "testi:e09.op.conferma.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e09.op.conferma.r"
+            },
+            {
+              "id": "nessun_commento",
+              "testo": "testi:e09.op.nessun_commento",
+              "costo": "testi:e09.op.nessun_commento.c",
+              "effetti": [
+                {
+                  "tensione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e09.op.nessun_commento.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e09.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e09.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e09.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

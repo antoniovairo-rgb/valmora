@@ -5,7 +5,7 @@
 import { Application, extend, useApplication } from '@pixi/react';
 import { Container, Graphics, Particle, ParticleContainer, Sprite, Texture, type Ticker } from 'pixi.js';
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
-import { bezier, canvasAlone, disegnaSfondo, disponi, token } from './sfondo.ts';
+import { bezier, canvasAlone, disegnaSfondo, disponi, token, type Atmosfera } from './sfondo.ts';
 
 extend({ Container });
 
@@ -15,7 +15,7 @@ const fermo = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export interface Margine { lato: number; sotto: number }
 
-function Disegno(p: { punti: PuntoMappa[]; margine: Margine }) {
+function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfera }) {
   const { app } = useApplication();
   const [dim, setDim] = useState({ w: app.screen.width, h: app.screen.height });
   useEffect(() => {
@@ -29,7 +29,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine }) {
   const { lato: m, sotto } = p.margine;
   const punti = useMemo(() => p.punti.map((q) => ({ ...q, x: m + ((W - 2 * m) * q.x) / 100, y: m + ((H - 2 * m - sotto) * q.y) / 100 })), [p.punti, W, H, m, sotto]);
   // Lo sfondo dipende solo da dimensioni e posizioni dei settori, non da tensione o settori accesi.
-  const pianta = JSON.stringify(punti.map((q) => [q.tipo, Math.round(q.x), Math.round(q.y)]));
+  const pianta = JSON.stringify([p.atmosfera, punti.map((q) => [q.id, q.tipo, Math.round(q.x), Math.round(q.y)])]);
   const strato = useRef<Container | null>(null);
   const aloni = useRef<{ s: Sprite; acceso: boolean; x: number; y: number }[]>([]);
   const texAlone = useMemo(() => Texture.from(canvasAlone(128)), []);
@@ -37,13 +37,13 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine }) {
 
   useEffect(() => {
     if (W < 10 || H < 10) return;
-    const posti = JSON.parse(pianta) as [string, number, number][];
+    const [atm, posti] = JSON.parse(pianta) as [Atmosfera, [string, string, number, number][]];
 
     // 1) sfondo: una volta sola
     const ris = Math.min(2, window.devicePixelRatio || 1);
     const tela = document.createElement('canvas'); tela.width = Math.round(W * ris); tela.height = Math.round(H * ris);
     const ctx = tela.getContext('2d')!; ctx.scale(ris, ris);
-    const animati = disegnaSfondo(ctx, disponi(W, H, posti.map(([tipo, x, y]) => ({ tipo, x, y }))));
+    const animati = disegnaSfondo(ctx, disponi(W, H, posti.map(([id, tipo, x, y]) => ({ id, tipo, x, y })), atm));
     const texSfondo = Texture.from(tela);
     const scena = new Container();
     const sfondo = new Sprite(texSfondo); sfondo.width = W; sfondo.height = H; scena.addChild(sfondo);
@@ -113,11 +113,11 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine }) {
   return null;
 }
 
-export function StratoPixi(p: { contenitore: RefObject<HTMLDivElement | null>; punti: PuntoMappa[]; margine: Margine; pronto: () => void }) {
+export function StratoPixi(p: { contenitore: RefObject<HTMLDivElement | null>; punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfera; pronto: () => void }) {
   return (
     <Application className="mappa-tela" resizeTo={p.contenitore} preference="webgl" backgroundAlpha={0} antialias autoDensity
       resolution={Math.min(2, window.devicePixelRatio || 1)} onInit={p.pronto}>
-      <Disegno punti={p.punti} margine={p.margine} />
+      <Disegno punti={p.punti} margine={p.margine} atmosfera={p.atmosfera} />
     </Application>
   );
 }

@@ -71,6 +71,12 @@
   --mappa-folla-3: #9a958c;
   --mappa-corteo-1: #ff7a1a;
   --mappa-corteo-2: #f3eee4;
+  /* e03 «Notte di coppa» */
+  --mappa-notte: #070b24;
+  --mappa-finestra: #ffd77a;
+  --mappa-lampione: #ffe9b0;
+  --mappa-parcheggio: #3d4047;
+  --mappa-cartellone: #f4f1e8;
 
   /* Città degli episodi (D-061) */
   --citta-fiume: #1f6fa8;
@@ -140,3 +146,5 @@
 .rosso-c05r07 .testata-t small { --spaziatura-maiuscolo: 0.3em; }
 .rosso-c05n01 .elenco-settori li { flex-wrap: wrap; }
 .rosso-c05n01 .elenco-settori .riga-sx { flex: none; }
+main.rosso-c10s03 .scena .pulsante[data-azione], main.rosso-c10s03 .scena .azioni { position: static; }
+.rosso-c10s03 .indicatore { display: none; }

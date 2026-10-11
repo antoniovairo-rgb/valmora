@@ -7,6 +7,7 @@ import type { StatoEpisodio } from '../episodi.ts';
 import { Stelle } from '../stelle.tsx';
 import type { PuntoCitta } from './StratoCitta.tsx';
 import { webglDisponibile } from './webgl.ts';
+import { spento } from '../../interruttori.ts';
 
 const StratoCitta = lazy(() => import('./StratoCitta.tsx').then((x) => ({ default: x.StratoCitta })));
 const conWebgl = typeof document !== 'undefined' && webglDisponibile();
@@ -35,7 +36,8 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
             aria-label={`Episodio ${v.m.episodio}: ${t(v.m.titolo)}${v.stelle !== null ? `, ${v.stelle} stelle su 3` : ''}${v.stato === 'futuro' ? ', non ancora disponibile' : ''}`}>
             {v.m.episodio}
           </button>
-          <span className="settore-nome" aria-hidden="true">{t(v.m.titolo)}</span>
+          {/* PO-044: il nome solo sull'episodio scelto, gli altri punti mostrano il numero (rosso __NO_C13M01: tutti i nomi) */}
+          {(p.scelto === v.m.id || spento('C13M01')) && <span className="settore-nome" aria-hidden="true">{t(v.m.titolo)}</span>}
           {v.stelle !== null && <span className="settore-unita"><Stelle n={v.stelle} piccole /></span>}
         </div>
       ))}

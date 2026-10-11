@@ -1,0 +1,794 @@
+{
+  "id": "e25",
+  "stagione": 3,
+  "episodio": 25,
+  "titolo": "testi:e25.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 15,
+    "y": 20
+  },
+  "introduzione": [
+    "testi:e25.intro1",
+    "testi:e25.intro2",
+    "testi:e25.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e25.info_struttura",
+      "fonte": "struttura_vertice",
+      "affidabilita": "alta",
+      "vera": false,
+      "settore": "curva_cinderwick"
+    },
+    {
+      "testo": "testi:e25.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "stazione"
+    },
+    {
+      "testo": "testi:e25.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "piazza_municipio"
+    },
+    {
+      "testo": "testi:e25.info_informatore",
+      "fonte": "informatore_di_strada",
+      "affidabilita": "bassa",
+      "vera": false,
+      "settore": "zona_rossa"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 15,
+          "y": 45
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "calderholt_rovers",
+        "pos": {
+          "x": 85,
+          "y": 45
+        }
+      },
+      {
+        "id": "zona_rossa",
+        "tipo": "zona",
+        "pos": {
+          "x": 50,
+          "y": 16
+        }
+      },
+      {
+        "id": "piazza_municipio",
+        "tipo": "piazza",
+        "pos": {
+          "x": 40,
+          "y": 82
+        }
+      },
+      {
+        "id": "stazione",
+        "tipo": "stazione",
+        "pos": {
+          "x": 85,
+          "y": 84
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "zona": 2,
+          "piazza": 2,
+          "stazione": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazza": 2,
+          "stazione": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e25.ondata1",
+      "eventi": [
+        {
+          "id": "treno",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "corteo_vertice",
+          "tipo": "corteo",
+          "settore": "piazza_municipio",
+          "pressione": 3
+        },
+        {
+          "id": "delegazioni",
+          "tipo": "movimento",
+          "settore": "zona_rossa",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "nulla_osta",
+          "fonte": "struttura_vertice",
+          "testo": "testi:e25.ch.nulla_osta",
+          "commento": "testi:e25.ch.nulla_osta.vice",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "aspetta_modulo",
+              "testo": "testi:e25.op.aspetta_modulo",
+              "costo": "testi:e25.op.aspetta_modulo.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e25.op.aspetta_modulo.r"
+            },
+            {
+              "id": "scorta_senza_modulo",
+              "testo": "testi:e25.op.scorta_senza_modulo",
+              "costo": "testi:e25.op.scorta_senza_modulo.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.scorta_senza_modulo.r"
+            },
+            {
+              "id": "mediatore_corteo",
+              "testo": "testi:e25.op.mediatore_corteo",
+              "costo": "testi:e25.op.mediatore_corteo.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.mediatore_corteo.r"
+            }
+          ]
+        },
+        {
+          "id": "treno_pieno",
+          "fonte": "centrale_radio",
+          "testo": "testi:e25.ch.treno_pieno",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "squadra_stazione",
+              "testo": "testi:e25.op.squadra_stazione",
+              "costo": "testi:e25.op.squadra_stazione.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.squadra_stazione.r"
+            },
+            {
+              "id": "falli_aspettare",
+              "testo": "testi:e25.op.falli_aspettare",
+              "costo": "testi:e25.op.falli_aspettare.c",
+              "effetti": [
+                {
+                  "tensione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.falli_aspettare.r"
+            }
+          ]
+        },
+        {
+          "id": "club_garantisce",
+          "fonte": "struttura_vertice",
+          "testo": "testi:e25.ch.club_garantisce",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "lascia_al_club",
+              "testo": "testi:e25.op.lascia_al_club",
+              "costo": "testi:e25.op.lascia_al_club.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.lascia_al_club.r"
+            },
+            {
+              "id": "tieni_steward",
+              "testo": "testi:e25.op.tieni_steward",
+              "costo": "testi:e25.op.tieni_steward.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.tieni_steward.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e25.ondata2",
+      "eventi": [
+        {
+          "id": "cori_casa",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 3
+        },
+        {
+          "id": "cori_ospiti",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "varchi",
+          "tipo": "folla",
+          "settore": "zona_rossa",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "striscione_zona",
+          "fonte": "centrale_radio",
+          "testo": "testi:e25.ch.striscione_zona",
+          "commento": "testi:e25.ch.striscione_zona.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "togli_striscione",
+              "testo": "testi:e25.op.togli_striscione",
+              "costo": "testi:e25.op.togli_striscione.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.togli_striscione.r"
+            },
+            {
+              "id": "fotografa",
+              "testo": "testi:e25.op.fotografa",
+              "costo": "testi:e25.op.fotografa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.fotografa.r"
+            }
+          ]
+        },
+        {
+          "id": "permesso_mediatore",
+          "fonte": "struttura_vertice",
+          "testo": "testi:e25.ch.permesso_mediatore",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "scrivi_richiesta",
+              "testo": "testi:e25.op.scrivi_richiesta",
+              "costo": "testi:e25.op.scrivi_richiesta.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.scrivi_richiesta.r"
+            },
+            {
+              "id": "mediatore_subito",
+              "testo": "testi:e25.op.mediatore_subito",
+              "costo": "testi:e25.op.mediatore_subito.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.mediatore_subito.r"
+            },
+            {
+              "id": "steward_ospiti",
+              "testo": "testi:e25.op.steward_ospiti",
+              "costo": "testi:e25.op.steward_ospiti.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e25.op.steward_ospiti.r"
+            }
+          ]
+        },
+        {
+          "id": "voce_dessi",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e25.ch.voce_dessi",
+          "commento": "testi:e25.ch.voce_dessi.vice",
+          "settore": "zona_rossa",
+          "opzioni": [
+            {
+              "id": "controlla_varchi",
+              "testo": "testi:e25.op.controlla_varchi",
+              "costo": "testi:e25.op.controlla_varchi.c",
+              "effetti": [
+                {
+                  "pressione": "zona_rossa",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.controlla_varchi.r"
+            },
+            {
+              "id": "ignora_voce",
+              "testo": "testi:e25.op.ignora_voce",
+              "costo": "testi:e25.op.ignora_voce.c",
+              "effetti": [
+                {
+                  "pressione": "zona_rossa",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.ignora_voce.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e25.ondata3",
+      "eventi": [
+        {
+          "id": "rigore",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "casa_sotto",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "uscite_presto",
+          "tipo": "folla",
+          "settore": "piazza_municipio",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "rigore_ospiti",
+          "fonte": "centrale_radio",
+          "testo": "testi:e25.ch.rigore_ospiti",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_sedie",
+              "testo": "testi:e25.op.steward_sedie",
+              "costo": "testi:e25.op.steward_sedie.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.steward_sedie.r"
+            },
+            {
+              "id": "lascia_festeggiare",
+              "testo": "testi:e25.op.lascia_festeggiare",
+              "costo": "testi:e25.op.lascia_festeggiare.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e25.op.lascia_festeggiare.r"
+            }
+          ]
+        },
+        {
+          "id": "ispettore",
+          "fonte": "struttura_vertice",
+          "testo": "testi:e25.ch.ispettore",
+          "commento": "testi:e25.ch.ispettore.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "mostra_regole",
+              "testo": "testi:e25.op.mostra_regole",
+              "costo": "testi:e25.op.mostra_regole.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.mostra_regole.r"
+            },
+            {
+              "id": "spiega_ispettore",
+              "testo": "testi:e25.op.spiega_ispettore",
+              "costo": "testi:e25.op.spiega_ispettore.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.spiega_ispettore.r"
+            }
+          ]
+        },
+        {
+          "id": "uscite_anticipate",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e25.ch.uscite_anticipate",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "chiudi_uscite",
+              "testo": "testi:e25.op.chiudi_uscite",
+              "costo": "testi:e25.op.chiudi_uscite.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e25.op.chiudi_uscite.r"
+            },
+            {
+              "id": "lascia_uscire",
+              "testo": "testi:e25.op.lascia_uscire",
+              "costo": "testi:e25.op.lascia_uscire.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.lascia_uscire.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e25.ondata4",
+      "eventi": [
+        {
+          "id": "ritorno_corteo",
+          "tipo": "corteo",
+          "settore": "piazza_municipio",
+          "pressione": 5
+        },
+        {
+          "id": "treno_ritorno",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "cena_delegazioni",
+          "tipo": "movimento",
+          "settore": "zona_rossa",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "treno_orario",
+          "fonte": "centrale_radio",
+          "testo": "testi:e25.ch.treno_orario",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "trattieni_treno",
+              "testo": "testi:e25.op.trattieni_treno",
+              "costo": "testi:e25.op.trattieni_treno.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.trattieni_treno.r"
+            },
+            {
+              "id": "treno_parte",
+              "testo": "testi:e25.op.treno_parte",
+              "costo": "testi:e25.op.treno_parte.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.treno_parte.r"
+            }
+          ]
+        },
+        {
+          "id": "verbale_ordinanza",
+          "fonte": "struttura_vertice",
+          "testo": "testi:e25.ch.verbale_ordinanza",
+          "commento": "testi:e25.ch.verbale_ordinanza.vice",
+          "settore": "zona_rossa",
+          "opzioni": [
+            {
+              "id": "raccogli_firme",
+              "testo": "testi:e25.op.raccogli_firme",
+              "costo": "testi:e25.op.raccogli_firme.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "zona_rossa",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.raccogli_firme.r"
+            },
+            {
+              "id": "firme_domani",
+              "testo": "testi:e25.op.firme_domani",
+              "costo": "testi:e25.op.firme_domani.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.firme_domani.r"
+            }
+          ]
+        },
+        {
+          "id": "corteo_ritorno",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e25.ch.corteo_ritorno",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "scorta_ritorno",
+              "testo": "testi:e25.op.scorta_ritorno",
+              "costo": "testi:e25.op.scorta_ritorno.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e25.op.scorta_ritorno.r"
+            },
+            {
+              "id": "percorso_corto",
+              "testo": "testi:e25.op.percorso_corto",
+              "costo": "testi:e25.op.percorso_corto.c",
+              "effetti": [
+                {
+                  "tensione": "piazza_municipio",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e25.op.percorso_corto.r"
+            },
+            {
+              "id": "niente_scorta",
+              "testo": "testi:e25.op.niente_scorta",
+              "costo": "testi:e25.op.niente_scorta.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e25.op.niente_scorta.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e25.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e25.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e25.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

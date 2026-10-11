@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-11 16:40 UTC (18:40 Roma, fuori finestra) – principale afe87d3 (bilancio D-085, colori club D-086, picco C09-01, campo bozza D-087); tre sessioni di scrittura sugli abbozzi e04–e36 in corso; sviluppatrice: S-08 → S-07 (e03) → S-09 (stagioni e bozze); collaudatrice: C-10 (logica e testi di e03, transenne, picco, bilancio). Main 0.2.0; prossima finestra 21:00 Roma.
+Ultimo giro della routine: 2026-10-11 18:45 UTC – RILASCIO 0.3.0 su main 3f0288f (e03 notte + transenne; bilancio/picco/colori nella logica; abbozzi nascosti, ?bozze=1), Pages verificato (0.3.0 · 3f0288f), push al PO; dopo il rilascio integrati sul ramo i sette eventi D-091 (7898fab, logica verde). Sviluppatrice: C09-02/03/04, poi S-08 (bilancio, colori/stemmi), S-09 (stagioni, bozze). Prossima finestra: domani 12:00 Roma.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
