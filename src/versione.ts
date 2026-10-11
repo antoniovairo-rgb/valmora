@@ -25,4 +25,11 @@
 //   causa: PO-044, PO-048…PO-051. misura: completa 3/3 sulla build del rilascio; Chromium 0 errori di installabilità
 //   (oltre all'incognito della prova), ricarica offline verde; email non in chiaro nel bundle.
 //   guardiano: passo «email» della catena grafica, tests/collegamenti.test.ts, __NO_C13M01 (città).
-export const GAME_VERSION = '0.4.0';
+//
+// 0.5.0 – rilascio notturno (D-093): sala, briefing e verbale a passi (PO-045), folla che segue l'ondata (PO-046),
+//   bilancio di fine episodio con «Cosa ti ha penalizzato» (PO-036/057), colori e stemmi dei club (PO-038/040),
+//   home con logo e guida «La città e il gioco» (PO-063/065), «fiducia» al posto di «credito» (PO-067), città per
+//   stagione con tutti i 36 episodi e segno «bozza» (S-09), ripartenza dall'ondata persa nella logica (PO-060).
+//   causa: PO-036…PO-067. misura: completa 3/3 sulla build del rilascio.
+//   guardiano: controllaFolla, passi ≤760 px (S-10), D-097 nel validatore, tests/ripartenza.test.ts.
+export const GAME_VERSION = '0.5.0';
