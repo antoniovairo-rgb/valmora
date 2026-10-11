@@ -57,18 +57,19 @@ export function pianoAttento(dirDati = 'data') {
   const m = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio)[0];
   const dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d]));
   const migliore = m.esiti[0].id;
+  const testi = Object.assign({}, ...Object.entries(dati).filter(([k]) => k.startsWith('testi/it/')).map(([, v]) => v));
   const fallimento = gioca(m, dich, peggiore(creaCaso(1), dich)); // per provare «fallito → rigioca» (D-059)
   const att = attenta(creaCaso(1), dich);
   const base = gioca(m, dich, att);
-  if (base.esito === migliore) return { m, ...base, migliore, fallimento, giocatore: 'attento', esitoAttento: base.esito };
+  if (base.esito === migliore) return { m, ...base, migliore, fallimento, testi, giocatore: 'attento', esitoAttento: base.esito };
   const eq = gioca(m, dich, equilibrata(creaCaso(1), dich));
-  if (eq.esito === migliore) return { m, ...eq, migliore, fallimento, giocatore: 'equilibrato', esitoAttento: base.esito };
+  if (eq.esito === migliore) return { m, ...eq, migliore, fallimento, testi, giocatore: 'equilibrato', esitoAttento: base.esito };
   for (let seme = 1; seme <= 1000; seme++) {
     const caso = creaCaso(`foto:${m.id}:${seme}`);
     const p = gioca(m, dich, { schiera: att.schiera, scegli: (_m, st, c) => caso.scegli(opzioniValide(c, st)).id });
-    if (p.esito === migliore) return { m, ...p, migliore, fallimento, giocatore: `schieramento attento, risposte dal seme ${seme}`, esitoAttento: base.esito };
+    if (p.esito === migliore) return { m, ...p, migliore, fallimento, testi, giocatore: `schieramento attento, risposte dal seme ${seme}`, esitoAttento: base.esito };
   }
-  return { m, ...base, migliore, fallimento, giocatore: 'attento (nessun seme 1-1000 arriva al migliore)', esitoAttento: base.esito };
+  return { m, ...base, migliore, fallimento, testi, giocatore: 'attento (nessun seme 1-1000 arriva al migliore)', esitoAttento: base.esito };
 }
 
 export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 'data') {
@@ -120,7 +121,13 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
       await foto();
       await premi('[data-azione="crediti"]'); await scena('crediti'); await foto();
       await pagina.getByRole('button', { name: 'Torna al titolo' }).click(); await scena('titolo');
-      await pagina.getByRole('button', { name: 'Nuova partita' }).click(); await scena('citta'); await foto();
+      // Genere (D-063): a 375 px la protagonista è donna, alle altre larghezze uomo.
+      const genere = larghezza === 375 ? 'f' : 'm';
+      await pagina.getByRole('button', { name: 'Nuova partita' }).click(); await scena('genere'); await foto();
+      await premi(`[data-genere="${genere}"]`); await scena('citta'); await foto();
+      const salvato = await pagina.evaluate(() => JSON.parse(localStorage.getItem('valmora-salvataggio') ?? '{}').genere);
+      atteso(`genere: salvato «${salvato}» invece di «${genere}»`, salvato === genere);
+      const variante = (piano.m.introduzione ?? []).map((k) => k.replace(/^testi:/, '')).find((k) => piano.testi[`${k}@f`]);
 
       // Una partita intera dall'interfaccia, dalla sala al verbale. «completa»: foto di ogni scena,
       // trascinamento e ricariche a metà ondata; altrimenti solo il verbale (serve per il fallimento).
@@ -128,6 +135,10 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
       const fotoSe = () => (completa ? foto() : Promise.resolve());
       const partita = async (p) => {
         await scena('sala'); await fotoSe();
+        if (variante) {
+          const atteso_ = piano.testi[genere === 'f' ? `${variante}@f` : variante];
+          atteso(`genere «${genere}»: la sala non mostra «${atteso_.slice(0, 40)}…»`, (await pagina.locator('.scena').textContent()).includes(atteso_));
+        }
         await premi('[data-azione="avanti"]'); await scena('briefing'); await fotoSe();
         while (await pagina.locator('[data-azione="prossimo"]').count()) await premi('[data-azione="prossimo"]');
         if (p.m.briefing.length > 1) { await scena('briefing'); await fotoSe(); }

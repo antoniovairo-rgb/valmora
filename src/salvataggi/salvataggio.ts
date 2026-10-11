@@ -2,11 +2,13 @@
 // Regola: ogni campo nuovo = SAVE_VERSION + 1 e una migrazione MIGRAZIONI[v] che porta v → v+1.
 // Ogni versione vecchia deve avere almeno un salvataggio vero in tests/salvataggi-reali/
 // (passo «salvataggi-reali» della catena logica).
+import type { Genere } from '../dati/testi.ts';
 import type { Registro } from '../logica/episodi.ts';
 import type { InCorso } from '../logica/missione.ts';
 
 // 2 – in_corso diventa lo stato della missione a scene (missione.ts, D-053); i v1 ripartono dalla missione;
-//     nuovo campo «episodi» = registro della mappa degli episodi (episodi.ts, D-059…D-062).
+//     nuovo campo «episodi» = registro della mappa degli episodi (episodi.ts, D-059…D-062);
+//     nuovo campo «genere» del protagonista, scelto a inizio partita (D-063).
 export const SAVE_VERSION = 2;
 
 export type ValoreVariabile = boolean | number | string;
@@ -25,6 +27,8 @@ export interface Salvataggio {
   missioni_concluse: string[];
   /** registro degli episodi: tentativi, risultato migliore, variabili di partenza (D-062) */
   episodi: Registro;
+  /** genere del protagonista, per i testi «chiave@f» (D-063) */
+  genere: Genere;
   /** missione interrotta, salvata dopo ogni passo (schieramento, chiamata, ondata), o null (D-040) */
   in_corso: InCorso | null;
 }
@@ -41,6 +45,7 @@ export const MIGRAZIONI: Record<number, (s: Grezzo) => Grezzo> = {
   // salvava né l'esito né le variabili di prima, quindi esito «concluso_v1» e variabili attuali.
   1: (s) => ({
     ...s, in_corso: null,
+    genere: 'm', // la 0.1.0 non chiedeva il genere: i suoi testi erano al maschile
     episodi: Object.fromEntries((Array.isArray(s.missioni_concluse) ? s.missioni_concluse as string[] : []).map((id) => [id, {
       migliore: { esito: ESITO_V1, fallita: false, stelle: 1 }, tentativi: 1, variabili_prima: s.variabili, variabili_dopo: s.variabili,
     }])),
@@ -82,6 +87,7 @@ export function controllaSalvataggio(s: Grezzo): string[] {
   if (typeof v !== 'object' || v === null || Array.isArray(v)) p.push('variabili non è un oggetto');
   else for (const [k, x] of Object.entries(v)) if (!['boolean', 'number', 'string'].includes(typeof x)) p.push(`variabile ${k}: tipo ${typeof x}`);
   if (!Array.isArray(s.missioni_concluse) || s.missioni_concluse.some((m) => typeof m !== 'string')) p.push('missioni_concluse non è un elenco di id');
+  if (s.genere !== 'm' && s.genere !== 'f') p.push(`genere ${String(s.genere)} non è «m» né «f»`);
   if (!oggetto(s.episodi)) p.push('episodi non è un oggetto');
   else for (const [id, x] of Object.entries(s.episodi)) p.push(...controllaVoce(id, x));
   const ic = s.in_corso as Grezzo | null | undefined;

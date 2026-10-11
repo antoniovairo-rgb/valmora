@@ -10,7 +10,9 @@ import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
 import { carica, nuovoSeme, salva } from './archivio.ts';
-import { dichiarate, missione, missioni } from './dati.ts';
+import { dichiarate, impostaGenere, missione, missioni } from './dati.ts';
+import type { Genere } from '../dati/testi.ts';
+import { SceltaGenere } from './schermate/SceltaGenere.tsx';
 import { chiudiEpisodio, iniziaEpisodio, prossimoEpisodio } from './episodi.ts';
 import type { Risultato } from '../logica/episodi.ts';
 import { Mappa, type MappaProps } from './mappa/Mappa.tsx';
@@ -26,7 +28,7 @@ import { Schieramento, usate } from './schermate/Schieramento.tsx';
 import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
 
-type Schermata = 'titolo' | 'crediti' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
+type Schermata = 'titolo' | 'crediti' | 'genere' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
 
 const libera = (m: Missione, ic: InCorso, d: Disposizione, preferita: string | null) => {
   const disp = disponibili(m, ic);
@@ -46,9 +48,10 @@ export function App() {
   const aggiorna = (s: Salvataggio) => { salva(s); setSal(s); };
   const conIc = (ic: InCorso | null) => sal && aggiorna({ ...sal, in_corso: ic });
 
-  const nuova = () => {
+  impostaGenere(sal?.genere ?? 'm');
+  const nuova = (genere: Genere) => {
     const seme = nuovoSeme();
-    const s: Salvataggio = { save_version: SAVE_VERSION, game_version: GAME_VERSION, seme, caso: seme, variabili: variabiliIniziali(dichiarate.values()), missioni_concluse: [], episodi: {}, in_corso: null };
+    const s: Salvataggio = { save_version: SAVE_VERSION, game_version: GAME_VERSION, seme, caso: seme, variabili: variabiliIniziali(dichiarate.values()), missioni_concluse: [], episodi: {}, genere, in_corso: null };
     aggiorna(s);
     alla_citta(s);
   };
@@ -68,8 +71,9 @@ export function App() {
   let corpo;
   let mappa: Omit<MappaProps, 'm'> | null = null;
 
-  const titolo = <Titolo puoRiprendere={!!sal} nuova={nuova} riprendi={riprendi} crediti={() => setSchermata('crediti')} />;
+  const titolo = <Titolo puoRiprendere={!!sal} nuova={() => setSchermata('genere')} riprendi={riprendi} crediti={() => setSchermata('crediti')} />;
   if (schermata === 'crediti') corpo = <Crediti indietro={() => setSchermata('titolo')} />;
+  else if (schermata === 'genere') corpo = <SceltaGenere scegli={nuova} indietro={() => setSchermata('titolo')} />;
   else if (schermata === 'verbale' && esito && sal) {
     corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
       rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} />;

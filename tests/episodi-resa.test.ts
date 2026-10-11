@@ -10,7 +10,7 @@ import { chiudiEpisodio, iniziaEpisodio, prossimoEpisodio, statoEpisodio } from 
 import { SAVE_VERSION, type Salvataggio } from '../src/salvataggi/salvataggio.ts';
 
 const m = missioni[0]!;
-const nuovo = (): Salvataggio => ({ save_version: SAVE_VERSION, game_version: 'prova', seme: 1, caso: 1, variabili: variabiliIniziali(dichiarate.values()), missioni_concluse: [], episodi: {}, in_corso: null });
+const nuovo = (): Salvataggio => ({ save_version: SAVE_VERSION, game_version: 'prova', seme: 1, caso: 1, variabili: variabiliIniziali(dichiarate.values()), missioni_concluse: [], episodi: {}, genere: 'm', in_corso: null });
 
 /** Gioca un tentativo come farebbe la resa (iniziaEpisodio … concludiMissione) con una strategia dei bot. */
 function tentativo(s: Salvataggio, mm: Missione, strategia: string) {

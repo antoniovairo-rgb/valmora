@@ -49,3 +49,16 @@ docs/foto/e01/2026-10-11-s02/ (città e verbali, 3 larghezze).
 ## Cosa mi serve
 
 - Collaudo e integrazione di S-01 + S-02.
+
+## Aggiunta: genere del protagonista (D-063, merge di cb7250e)
+
+- Dopo «Nuova partita» c'è la scena «Chi prende servizio oggi?»: «La nuova responsabile» o «Il nuovo
+  responsabile ad interim», due pulsanti uguali, nessuno preselezionato.
+- Salvataggio: campo `genere` ('m' | 'f') nella stessa SAVE_VERSION 2, controllato; la migrazione da v1
+  mette 'm' (i testi della 0.1.0 erano al maschile).
+- La resa sceglie i testi con `scegliTesto` di src/dati/testi.ts (variante `@f` se c'è).
+- foto.mjs: a 375 px gioca come donna, a 360 e 412 come uomo. Controlla il genere salvato e che la sala
+  mostri la variante giusta di `e01.intro1` («Benvenuta… la quarta» / «Benvenuto… il quarto»).
+  Foto `*-03-genere.png` e `*-06-sala.png` in docs/foto/e01/2026-10-11-s02/.
+- Stelle legate all'esito (D-064): arrivano già da `valutaEpisodio`, la resa non cambia.
+- `npx vitest run`: 95 test verdi (nuovi: genere sconosciuto rifiutato, migrazione v1 → 'm').
