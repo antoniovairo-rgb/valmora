@@ -35,7 +35,7 @@ S-07-rapporto.md è già la consegna del controllo di versione. Stato: **consegn
 | `node tools/foto.mjs out/foto` | e01 ×2 + e02 + e03, 3 larghezze | verde. e03 col giocatore equilibrato: «contenuto», 3 stelle, uguale al motore. Il giocatore attento di bot.ts: «contenuto_a_fatica» |
 | `VALMORA_LARGHEZZE=360 VALMORA_ROSSI=C09S01 node tools/foto.mjs …` | 360 px | ROSSO: «transenne in «curva_ospiti» senza avviso» e «transenne accettate in «curva_ospiti»». Poi il giro si interrompe, perché la partita diverge |
 | `… VALMORA_ROSSI=C09S02 …` | 360 px | ROSSO: «transenne montate in «quartiere» all'ondata 1 non si vedono» e «ritirabili», ondate 2, 3 e 4 |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 385e690, 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 ## Foto
 
