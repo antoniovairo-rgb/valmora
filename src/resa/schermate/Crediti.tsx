@@ -2,12 +2,12 @@
 import { ArrowLeft } from 'lucide-react';
 import { CREDITI } from '../crediti.ts';
 import { Icona } from '../icone.tsx';
+import { Testata } from './Fumetto.tsx';
 
 export function Crediti(p: { indietro: () => void }) {
   return (
     <>
-      <p className="sopratitolo">Crediti</p>
-      <h1>Chi ha reso possibile Valmora</h1>
+      <Testata numero="©" etichetta="Crediti" titolo="Chi ha reso possibile Valmora" />
       <p className="tenue">Software libero usato dal gioco. Nessun asset con licenza CC BY è ancora presente; quando entrerà, qui comparirà l'autore di ognuno.</p>
       {CREDITI.map((c) => (
         <div className="scheda" key={c.nome} data-credito={c.nome}>

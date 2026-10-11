@@ -1,94 +1,121 @@
-// Strato WebGL della mappa tattica (PixiJS, D-051): griglia, campo, tracciati fra i settori, aloni
-// colorati per tensione e impulso sui settori accesi. Solo disegno: tocchi e testi stanno nello
-// strato HTML sopra (Mappa.tsx). I colori si leggono dai token CSS, mai scritti qui.
-import { Application, extend, useApplication, useTick } from '@pixi/react';
-import { Container, Graphics } from 'pixi.js';
-import { useCallback, useEffect, useRef, useState, type RefObject } from 'react';
+// Strato WebGL della mappa aerea (PixiJS, D-051, D-067). Prestazioni (rischio D-006): lo sfondo si
+// disegna UNA volta in una texture (sfondo.ts); a ogni fotogramma si muovono solo la folla e il corteo
+// (particelle) e gli aloni dei settori. Tocchi e testi stanno nello strato HTML sopra (Mappa.tsx).
+// Con «riduci movimento» si disegna un solo fotogramma.
+import { Application, extend, useApplication } from '@pixi/react';
+import { Container, Graphics, Particle, ParticleContainer, Sprite, Texture, type Ticker } from 'pixi.js';
+import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
+import { bezier, canvasAlone, disegnaSfondo, disponi, token } from './sfondo.ts';
 
-extend({ Container, Graphics });
+extend({ Container });
 
-export interface PuntoMappa { id: string; x: number; y: number; livello: number | null; acceso: boolean }
-/** Campo da gioco schematico, in coordinate 0-100 come i settori. */
-export interface Campo { x: number; y: number; larghezza: number }
+export interface PuntoMappa { id: string; tipo: string; x: number; y: number; livello: number | null; acceso: boolean }
 
-const token = (nome: string) => getComputedStyle(document.documentElement).getPropertyValue(nome).trim();
-const rapido = () => !matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fermo = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function Disegno(p: { punti: PuntoMappa[]; campo: Campo | null }) {
+function Disegno(p: { punti: PuntoMappa[]; margine: number }) {
   const { app } = useApplication();
   const [dim, setDim] = useState({ w: app.screen.width, h: app.screen.height });
-  const vivo = useRef<Graphics>(null);
-  const tempo = useRef(0);
-
   useEffect(() => {
-    // Il renderer si tiene da parte: quando la mappa si smonta, Pixi lo ha già tolto da «app».
-    const r = app.renderer;
+    const r = app.renderer; // tenuto da parte: allo smontaggio Pixi lo toglie da «app»
     const aggiorna = () => setDim({ w: app.screen.width, h: app.screen.height });
     r.on('resize', aggiorna);
-    aggiorna();
     return () => { r.off('resize', aggiorna); };
   }, [app]);
 
-  // Stesso calcolo del CSS (.settore): margine interno di mezzo cerchio, poi 0-100 sullo spazio che resta.
-  const raggio = parseFloat(token('--settore')) / 2 || 24;
-  const px = useCallback((q: { x: number; y: number }) => ({
-    x: raggio + ((dim.w - 2 * raggio) * q.x) / 100, y: raggio + ((dim.h - 2 * raggio) * q.y) / 100,
-  }), [dim, raggio]);
+  const { w: W, h: H } = dim;
+  const m = p.margine;
+  const punti = useMemo(() => p.punti.map((q) => ({ ...q, x: m + ((W - 2 * m) * q.x) / 100, y: m + ((H - 2 * m) * q.y) / 100 })), [p.punti, W, H, m]);
+  // Lo sfondo dipende solo da dimensioni e posizioni dei settori, non da tensione o settori accesi.
+  const pianta = JSON.stringify(punti.map((q) => [q.tipo, Math.round(q.x), Math.round(q.y)]));
+  const strato = useRef<Container | null>(null);
+  const aloni = useRef<{ s: Sprite; acceso: boolean; x: number; y: number }[]>([]);
+  const texAlone = useMemo(() => Texture.from(canvasAlone(128)), []);
+  useEffect(() => () => { texAlone.destroy(true); }, [texAlone]);
 
-  const fondo = useCallback((g: Graphics) => {
-    g.clear();
-    const passo = Math.max(16, Math.round(dim.w / 12));
-    for (let x = passo; x < dim.w; x += passo) g.moveTo(x, 0).lineTo(x, dim.h);
-    for (let y = passo; y < dim.h; y += passo) g.moveTo(0, y).lineTo(dim.w, y);
-    g.stroke({ color: token('--colore-griglia'), width: 1 });
-    if (p.campo) {
-      const c = px(p.campo); const w = ((dim.w - 2 * raggio) * p.campo.larghezza) / 100; const h = w * 0.62;
-      g.roundRect(c.x - w / 2, c.y - h / 2, w, h, 6).fill({ color: token('--colore-campo') }).stroke({ color: token('--colore-traccia'), width: 1.5 });
-      g.moveTo(c.x, c.y - h / 2).lineTo(c.x, c.y + h / 2).stroke({ color: token('--colore-traccia'), width: 1 });
-      g.circle(c.x, c.y, h * 0.18).stroke({ color: token('--colore-traccia'), width: 1 });
-    }
-    // Tracciati: ogni settore verso il baricentro, come le vie d'accesso di una pianta schematica.
-    const centro = p.punti.reduce((a, q) => ({ x: a.x + q.x / p.punti.length, y: a.y + q.y / p.punti.length }), { x: 0, y: 0 });
-    for (const q of p.punti) { const a = px(q); const b = px(centro); g.moveTo(a.x, a.y).lineTo(b.x, b.y); }
-    g.stroke({ color: token('--colore-traccia'), width: 1, alpha: 0.6 });
-  }, [dim, p.campo, p.punti, px]);
+  useEffect(() => {
+    if (W < 10 || H < 10) return;
+    const posti = JSON.parse(pianta) as [string, number, number][];
 
-  const aloni = useCallback((g: Graphics, t: number) => {
-    g.clear();
-    const r = raggio + 6;
-    for (const q of p.punti) {
-      const c = px(q);
-      if (q.livello !== null) g.circle(c.x, c.y, r).fill({ color: token(`--tensione-${q.livello}`), alpha: 0.28 });
-      if (q.acceso) {
-        const f = (Math.sin(t / 12) + 1) / 2;
-        g.circle(c.x, c.y, r * (1 + 0.35 * f)).stroke({ color: token('--colore-acceso'), width: 2, alpha: 1 - 0.6 * f });
+    // 1) sfondo: una volta sola
+    const ris = Math.min(2, window.devicePixelRatio || 1);
+    const tela = document.createElement('canvas'); tela.width = Math.round(W * ris); tela.height = Math.round(H * ris);
+    const ctx = tela.getContext('2d')!; ctx.scale(ris, ris);
+    const animati = disegnaSfondo(ctx, disponi(W, H, posti.map(([tipo, x, y]) => ({ tipo, x, y }))));
+    const texSfondo = Texture.from(tela);
+    const scena = new Container();
+    const sfondo = new Sprite(texSfondo); sfondo.width = W; sfondo.height = H; scena.addChild(sfondo);
+
+    // 2) folla (alpha che ondeggia) e corteo (posizione che avanza): particelle
+    const bianco = Texture.WHITE; const unita = 1 / bianco.width;
+    const folla = new ParticleContainer({ dynamicProperties: { color: true } });
+    const tifosi = animati.folla.map((f) => {
+      const q = new Particle({ texture: bianco, x: f.x, y: f.y, scaleX: 1.3 * unita, scaleY: 1.3 * unita, tint: f.colore });
+      folla.addParticle(q); return { q, fase: f.fase };
+    });
+    scena.addChild(folla);
+    const corteo = new ParticleContainer({ dynamicProperties: { position: true, color: true } });
+    const marcia = animati.corteo ? Array.from({ length: 70 }, (_, i) => {
+      const q = new Particle({ texture: bianco, scaleX: 2.2 * unita, scaleY: 2.2 * unita });
+      corteo.addParticle(q);
+      return { q, u: (i * 0.618) % 1, off: ((i * 7) % 9) - 4, fase: i * 0.9 };
+    }) : [];
+    scena.addChild(corteo);
+
+    // 3) posto per gli aloni (riempito dall'effetto sotto) e onde sui settori accesi
+    const livelloAloni = new Container(); scena.addChild(livelloAloni); strato.current = livelloAloni;
+    const onde = new Graphics(); scena.addChild(onde);
+    app.stage.addChild(scena);
+
+    const c1 = token('--mappa-corteo-1'), c2 = token('--mappa-corteo-2'), giallo = token('--giallo');
+    let t = 0;
+    const passo = (tk?: Ticker) => {
+      t += (tk?.deltaMS ?? 0) / 1000;
+      for (const f of tifosi) f.q.alpha = 0.75 + 0.25 * Math.sin(t * 3 + f.fase);
+      if (animati.corteo) for (const k of marcia) {
+        const pos = bezier(animati.corteo, ((k.u + t * 0.025) % 1) * 0.75);
+        k.q.x = pos.x + k.off; k.q.y = pos.y + k.off * 0.4; k.q.tint = Math.sin(k.fase + t * 4) > 0 ? c1 : c2;
       }
-    }
-    // Radar della sala operativa: una lancetta che gira piano.
-    const o = { x: dim.w / 2, y: dim.h / 2 }; const a = t / 90; const l = Math.hypot(dim.w, dim.h) / 2;
-    g.moveTo(o.x, o.y).lineTo(o.x + Math.cos(a) * l, o.y + Math.sin(a) * l).stroke({ color: token('--colore-acceso'), width: 1, alpha: 0.18 });
-  }, [dim, p.punti, px, raggio]);
+      const battito = 1 + 0.15 * Math.sin(t * 4);
+      for (const a of aloni.current) a.s.scale.set((68 * battito) / 128);
+      onde.clear();
+      for (const a of aloni.current) if (a.acceso) {
+        const f = (t % 1.2) / 1.2;
+        onde.circle(a.x, a.y, 14 + f * 26).stroke({ color: giallo, width: 3, alpha: 1 - f });
+      }
+      folla.update(); corteo.update();
+    };
+    passo();
+    const anima = !fermo();
+    if (anima) app.ticker.add(passo); // da fermo resta il fotogramma disegnato da passo()
+    return () => {
+      app.ticker?.remove(passo);
+      strato.current = null;
+      scena.destroy({ children: true });
+      texSfondo.destroy(true);
+    };
+  }, [app, W, H, pianta]);
 
-  useEffect(() => { if (vivo.current) aloni(vivo.current, tempo.current); }, [aloni]);
-  const anima = useCallback((k: { deltaTime: number }) => {
-    tempo.current += k.deltaTime;
-    if (vivo.current) aloni(vivo.current, tempo.current);
-  }, [aloni]);
-  useTick({ callback: anima, isEnabled: rapido() });
-
-  return (
-    <pixiContainer>
-      <pixiGraphics draw={fondo} />
-      <pixiGraphics ref={vivo} draw={(g) => aloni(g, tempo.current)} />
-    </pixiContainer>
-  );
+  // Aloni: colore della tensione (D-055) o giallo per i settori accesi; cambiano a ogni scena.
+  useEffect(() => {
+    const livello = strato.current;
+    if (!livello) return;
+    livello.removeChildren().forEach((c) => c.destroy());
+    aloni.current = punti.filter((q) => q.livello !== null || q.acceso).map((q) => {
+      const s = new Sprite(texAlone); s.anchor.set(0.5); s.position.set(q.x, q.y); s.scale.set(68 / 128);
+      s.tint = q.livello !== null ? token(`--tensione-${q.livello}`) : token('--giallo');
+      livello.addChild(s);
+      return { s, acceso: q.acceso, x: q.x, y: q.y };
+    });
+  }, [punti, texAlone, pianta]);
+  return null;
 }
 
-export function StratoPixi(p: { contenitore: RefObject<HTMLDivElement | null>; punti: PuntoMappa[]; campo: Campo | null; pronto: () => void }) {
+export function StratoPixi(p: { contenitore: RefObject<HTMLDivElement | null>; punti: PuntoMappa[]; margine: number; pronto: () => void }) {
   return (
     <Application className="mappa-tela" resizeTo={p.contenitore} preference="webgl" backgroundAlpha={0} antialias autoDensity
       resolution={Math.min(2, window.devicePixelRatio || 1)} onInit={p.pronto}>
-      <Disegno punti={p.punti} campo={p.campo} />
+      <Disegno punti={p.punti} margine={p.margine} />
     </Application>
   );
 }

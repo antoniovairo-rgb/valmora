@@ -51,12 +51,9 @@ export function Schieramento(p: {
 }) {
   const disp = disponibili(p.m, p.ic);
   const tr = useTrascina(p.metti);
-  const ondata = p.m.ondate[p.ic.ondata - 1]!;
   const tutte = Object.entries(disp).reduce((a, [r, n]) => a + n - usate(p.d, r), 0) === 0;
   return (
     <>
-      <p className="sopratitolo">Episodio {p.m.episodio} · Ondata {p.ic.ondata} di {p.m.ondate.length} · Schieramento</p>
-      <h1>{ondata.titolo ? t(ondata.titolo) : `Ondata ${p.ic.ondata}`}</h1>
       <p className="tenue">Trascina le unità sui settori, oppure tocca un'unità e poi il settore. Tocca un'unità sulla mappa per ritirarla.</p>
       <div className="vassoio" role="group" aria-label="Unità da schierare">
         {Object.entries(disp).map(([r, n]) => {

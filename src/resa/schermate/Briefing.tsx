@@ -5,6 +5,7 @@ import { ChevronRight, Play } from 'lucide-react';
 import type { Missione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import { Icona, iconaFonte } from '../icone.tsx';
+import { Mittente } from './Fumetto.tsx';
 import { Messaggio } from './Scena.tsx';
 
 export function Briefing(p: { m: Missione; visti: number; prossimo: () => void; inizia: () => void }) {
@@ -12,14 +13,10 @@ export function Briefing(p: { m: Missione; visti: number; prossimo: () => void; 
   const finito = p.visti >= p.m.briefing.length;
   return (
     <>
-      <p className="sopratitolo">Episodio {p.m.episodio} · Briefing · {fonti.length} di {p.m.briefing.length} fonti</p>
       {fonti.map((b, i) => (
         <Messaggio key={i} classe={`radio${i === fonti.length - 1 ? ' ultimo' : ''}`} dati={`fonte-${i + 1}`}>
-          <div className="riga">
-            <strong className="chi"><Icona di={iconaFonte(b.fonte)} />{t(`fonte.${b.fonte}`)}</strong>
-            <span className="etichetta">{t(`affidabilita.${b.affidabilita}`)}</span>
-          </div>
-          <p>{t(b.testo)}</p>
+          <Mittente icona={iconaFonte(b.fonte)} nome={t(`fonte.${b.fonte}`)} etichetta={t(`affidabilita.${b.affidabilita}`)} />
+          <p className="testo-radio">{t(b.testo)}</p>
           {b.settore && <p className="tenue">Settore: {t(`settore.${b.settore}`)}</p>}
         </Messaggio>
       ))}

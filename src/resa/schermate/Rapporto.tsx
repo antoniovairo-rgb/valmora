@@ -12,8 +12,7 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
   const riposo = Object.entries(p.r.aRiposo).filter(([, n]) => n > 0);
   return (
     <>
-      <p className="sopratitolo">Episodio {p.m.episodio} · Rapporto dell'ondata {p.r.n} di {p.m.ondate.length}</p>
-      <h1>Rapporto dell'ondata {p.r.n}</h1>
+      <div className="scheda">
       <ul className="elenco-settori">
         {p.m.mappa.settori.map((s) => {
           const scoperto = (p.r.scoperto[s.id] ?? 0) > 0;
@@ -25,6 +24,7 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
           );
         })}
       </ul>
+      </div>
       {riposo.length > 0 && !p.ultima && (
         <p className="riposo"><Icona di={Moon} />A riposo nella prossima ondata: {riposo.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}</p>
       )}

@@ -1,24 +1,32 @@
-// Verbale: esito, fonti vere e false (D-024), le scelte fatte durante le chiamate.
-// Esito «fallita» (D-059): l'episodio non è superato e si rigioca da «Riprendi»; stelle e mappa
-// degli episodi arrivano con S-02.
-import { House } from 'lucide-react';
+// Verbale: esito e stelle (D-060), fonti vere e false (D-024), le scelte fatte durante le chiamate.
+// Esito «fallita» (D-059): l'episodio non è superato e il verbale porta a «Rigioca l'episodio».
+import { Map as IconaMappa, RotateCcw } from 'lucide-react';
+import type { Risultato } from '../../logica/episodi.ts';
 import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import { Icona, iconaFonte } from '../icone.tsx';
 import { sceltaLeggibile, tono } from '../partita.ts';
+import { Stelle } from '../stelle.tsx';
+import { due, Mittente, Testata } from './Fumetto.tsx';
 
-export function Verbale(p: { m: Missione; esito: EsitoMissione; fine: () => void }) {
+export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void }) {
   return (
     <>
-      <p className="sopratitolo">Episodio {p.m.episodio} · Verbale</p>
-      <h1 className={tono(p.m, p.esito.esito)} data-esito={p.esito.esito.id}>{t(`esito.${p.esito.esito.id}`)}</h1>
-      <p>{t(p.esito.esito.verbale)}</p>
-      {p.esito.esito.fallita && <p className="male" data-fallita="si">Episodio fallito: va rigiocato.</p>}
+      <Testata numero={due(p.m.episodio)} etichetta="Verbale" titolo={<span className={tono(p.m, p.esito.esito)} data-esito={p.esito.esito.id}>{t(`esito.${p.esito.esito.id}`)}</span>} />
+      <div className="scheda verbale">
+        <Stelle n={p.risultato.stelle} />
+        <p>{t(p.esito.esito.verbale)}</p>
+      </div>
+      {p.risultato.fallita
+        ? <p className="avviso" data-fallita="si">Episodio fallito: va rigiocato. Si riparte da come stavano le cose prima.</p>
+        : <p className="avviso buono" data-migliore={p.migliore ? 'si' : 'no'}>{p.migliore ? 'Nuovo miglior risultato per questo episodio.' : 'Resta il risultato migliore di un tentativo precedente.'}</p>}
+      {p.risultato.fallita && <button className="pulsante" data-azione="rigioca" onClick={p.rigioca}><Icona di={RotateCcw} />Rigioca l'episodio</button>}
       <h2>Le fonti</h2>
       {p.m.briefing.map((b, i) => (
         <div className="scheda" key={i} data-fonte={b.fonte}>
-          <div className="riga"><strong className="chi"><Icona di={iconaFonte(b.fonte)} />{t(`fonte.${b.fonte}`)}</strong><strong className={b.vera ? 'bene' : 'male'}>{b.vera ? 'vera' : 'falsa'}</strong></div>
+          <Mittente icona={iconaFonte(b.fonte)} nome={t(`fonte.${b.fonte}`)} />
+          <span className={`timbro ${b.vera ? 'vero' : ''}`} data-vera={b.vera ? 'si' : 'no'}>{b.vera ? 'Vera' : 'Falsa'}</span>
           <p className="tenue">{t(b.testo)}</p>
         </div>
       ))}
@@ -33,7 +41,7 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; fine: () => void
           </div>
         );
       })}
-      <button className="pulsante" onClick={p.fine}><Icona di={House} />Torna al titolo</button>
+      <button className={`pulsante${p.risultato.fallita ? ' secondario' : ''}`} data-azione="citta" onClick={p.citta}><Icona di={IconaMappa} />Alla mappa della città</button>
     </>
   );
 }

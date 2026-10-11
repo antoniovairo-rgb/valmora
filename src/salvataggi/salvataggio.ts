@@ -2,9 +2,13 @@
 // Regola: ogni campo nuovo = SAVE_VERSION + 1 e una migrazione MIGRAZIONI[v] che porta v → v+1.
 // Ogni versione vecchia deve avere almeno un salvataggio vero in tests/salvataggi-reali/
 // (passo «salvataggi-reali» della catena logica).
+import type { Genere } from '../dati/testi.ts';
+import type { Registro } from '../logica/episodi.ts';
 import type { InCorso } from '../logica/missione.ts';
 
-// 2 – in_corso diventa lo stato della missione a scene (missione.ts, D-053); i v1 ripartono dalla missione.
+// 2 – in_corso diventa lo stato della missione a scene (missione.ts, D-053); i v1 ripartono dalla missione;
+//     nuovo campo «episodi» = registro della mappa degli episodi (episodi.ts, D-059…D-062);
+//     nuovo campo «genere» del protagonista, scelto a inizio partita (D-063).
 export const SAVE_VERSION = 2;
 
 export type ValoreVariabile = boolean | number | string;
@@ -19,19 +23,33 @@ export interface Salvataggio {
   caso: number;
   /** valori delle variabili narrative dichiarate in data/stato.json */
   variabili: Record<string, ValoreVariabile>;
-  /** id delle missioni concluse, in ordine */
+  /** id delle missioni superate, in ordine (un episodio fallito non c'è finché non lo superi) */
   missioni_concluse: string[];
+  /** registro degli episodi: tentativi, risultato migliore, variabili di partenza (D-062) */
+  episodi: Registro;
+  /** genere del protagonista, per i testi «chiave@f» (D-063) */
+  genere: Genere;
   /** missione interrotta, salvata dopo ogni passo (schieramento, chiamata, ondata), o null (D-040) */
   in_corso: InCorso | null;
 }
 
 type Grezzo = Record<string, unknown>;
 
+export const ESITO_V1 = 'concluso_v1';
+
 /** MIGRAZIONI[v] trasforma un salvataggio v in v+1. */
 export const MIGRAZIONI: Record<number, (s: Grezzo) => Grezzo> = {
   // v1 → v2: la missione interrotta del motore 0.1.0 (ondate giocate) non ha equivalente nel motore a
   // scene; si butta e la missione riparte dal briefing. Variabili e missioni concluse restano.
-  1: (s) => ({ ...s, in_corso: null }),
+  // Ogni missione conclusa in v1 diventa una voce superata con 1 stella e 1 tentativo: la v1 non
+  // salvava né l'esito né le variabili di prima, quindi esito «concluso_v1» e variabili attuali.
+  1: (s) => ({
+    ...s, in_corso: null,
+    genere: 'm', // la 0.1.0 non chiedeva il genere: i suoi testi erano al maschile
+    episodi: Object.fromEntries((Array.isArray(s.missioni_concluse) ? s.missioni_concluse as string[] : []).map((id) => [id, {
+      migliore: { esito: ESITO_V1, fallita: false, stelle: 1 }, tentativi: 1, variabili_prima: s.variabili, variabili_dopo: s.variabili,
+    }])),
+  }),
 };
 
 const oggetto = (x: unknown): x is Grezzo => typeof x === 'object' && x !== null && !Array.isArray(x);
@@ -43,6 +61,17 @@ function controllaInCorso(ic: Grezzo): string[] {
   for (const k of ['tensione', 'riserva', 'riposo', 'modifiche', 'risposte', 'variabili']) if (!oggetto(ic[k])) p.push(`in_corso.${k} non è un oggetto`);
   if (ic.disposizione !== null && !oggetto(ic.disposizione)) p.push('in_corso.disposizione non è un oggetto né null');
   for (const k of ['scelte', 'rapporti']) if (!Array.isArray(ic[k])) p.push(`in_corso.${k} non è un elenco`);
+  return p;
+}
+
+function controllaVoce(id: string, x: unknown): string[] {
+  if (!oggetto(x)) return [`episodi.${id} non è un oggetto`];
+  const p: string[] = [];
+  if (!Number.isInteger(x.tentativi) || (x.tentativi as number) < 0) p.push(`episodi.${id}.tentativi non è un intero ≥ 0`);
+  const m = x.migliore;
+  if (m !== null && !(oggetto(m) && typeof m.esito === 'string' && typeof m.fallita === 'boolean' && [0, 1, 2, 3].includes(m.stelle as number))) p.push(`episodi.${id}.migliore malformato`);
+  if (!oggetto(x.variabili_prima)) p.push(`episodi.${id}.variabili_prima non è un oggetto`);
+  if (x.variabili_dopo !== null && !oggetto(x.variabili_dopo)) p.push(`episodi.${id}.variabili_dopo non è un oggetto né null`);
   return p;
 }
 
@@ -58,6 +87,9 @@ export function controllaSalvataggio(s: Grezzo): string[] {
   if (typeof v !== 'object' || v === null || Array.isArray(v)) p.push('variabili non è un oggetto');
   else for (const [k, x] of Object.entries(v)) if (!['boolean', 'number', 'string'].includes(typeof x)) p.push(`variabile ${k}: tipo ${typeof x}`);
   if (!Array.isArray(s.missioni_concluse) || s.missioni_concluse.some((m) => typeof m !== 'string')) p.push('missioni_concluse non è un elenco di id');
+  if (s.genere !== 'm' && s.genere !== 'f') p.push(`genere ${String(s.genere)} non è «m» né «f»`);
+  if (!oggetto(s.episodi)) p.push('episodi non è un oggetto');
+  else for (const [id, x] of Object.entries(s.episodi)) p.push(...controllaVoce(id, x));
   const ic = s.in_corso as Grezzo | null | undefined;
   if (ic === undefined) p.push('in_corso mancante');
   else if (ic !== null) {
