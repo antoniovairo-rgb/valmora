@@ -79,7 +79,7 @@ principale li ha chiesti per il rischio D-006, e li tengo fuori da qualunque gua
 
 ## Catena
 
-`node tools/catena.mjs completa` su 265cff5: 3 giri su 3 VERDI, nessun passo ritentato.
+`node tools/catena.mjs completa` su 265cff5 (stile) e su 9fcaae7 (stile + R01-R07): 3 giri su 3 VERDI ciascuno, nessun passo ritentato.
 
 ## Foto
 
