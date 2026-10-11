@@ -20,6 +20,8 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Dessì (D-017): capo di una curva inventata, che usa la curva come copertura per affari illeciti. Nessun simbolo, ideologia o riferimento reale (REGOLE_PLAY §2).
 - Protagonista (D-018): è «ad interim» perché il predecessore è stato rimosso in fretta dopo una gestione contestata e nessuno voleva il posto.
 
+- Il vice (D-054): consigliere del protagonista. Ha visto passare tre responsabili ad interim, è disilluso e ironico, scommette sul tuo fallimento ma ti aiuta. Nome: DA DECIDERE.
+
 ## Episodio 1 (D-019, D-021, D-022)
 - Primo giorno del protagonista: derby cittadino, con fonti del briefing in contraddizione.
 - Il derby è fra due quartieri rivali: ogni club è il simbolo del suo quartiere (D-021). La mappa comprende stadio e strade dei quartieri.
