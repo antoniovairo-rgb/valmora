@@ -1,0 +1,852 @@
+{
+  "id": "e35",
+  "bozza": true,
+  "stagione": 3,
+  "episodio": 35,
+  "titolo": "testi:e35.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 65,
+    "y": 75
+  },
+  "introduzione": [
+    "testi:e35.intro1",
+    "testi:e35.intro2",
+    "testi:e35.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e35.info_comando",
+      "fonte": "comando",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "cantiere_stadio_nuovo"
+    },
+    {
+      "testo": "testi:e35.info_guardiano",
+      "fonte": "guardiano_cantiere",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "cantiere_stadio_nuovo"
+    },
+    {
+      "testo": "testi:e35.info_testimone",
+      "fonte": "testimone",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "banchine"
+    },
+    {
+      "testo": "testi:e35.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "quartiere"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "banchine",
+        "tipo": "porto",
+        "pos": {
+          "x": 85,
+          "y": 20
+        }
+      },
+      {
+        "id": "magazzino_fonderie",
+        "tipo": "magazzino",
+        "pos": {
+          "x": 15,
+          "y": 25
+        }
+      },
+      {
+        "id": "cantiere_stadio_nuovo",
+        "tipo": "cantiere",
+        "pos": {
+          "x": 50,
+          "y": 45
+        }
+      },
+      {
+        "id": "stazione",
+        "tipo": "stazione",
+        "pos": {
+          "x": 20,
+          "y": 80
+        }
+      },
+      {
+        "id": "quartiere",
+        "tipo": "quartiere",
+        "pos": {
+          "x": 80,
+          "y": 80
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 6,
+        "efficacia": {
+          "porto": 2,
+          "magazzino": 2,
+          "cantiere": 2,
+          "stazione": 2,
+          "quartiere": 2
+        }
+      },
+      "steward": {
+        "quantita": 5,
+        "efficacia": {
+          "stazione": 2,
+          "quartiere": 2,
+          "cantiere": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "raduno"
+        ]
+      }
+    },
+    "ora": "notte",
+    "dettagli": [
+      "cartelloni_stadio_nuovo"
+    ]
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e35.ondata1",
+      "eventi": [
+        {
+          "id": "barca",
+          "tipo": "movimento",
+          "settore": "banchine",
+          "pressione": 3
+        },
+        {
+          "id": "raduno_curva",
+          "tipo": "raduno",
+          "settore": "quartiere",
+          "pressione": 4
+        },
+        {
+          "id": "luci_cantiere",
+          "tipo": "movimento",
+          "settore": "cantiere_stadio_nuovo",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "cantiere_acceso",
+          "fonte": "centrale_radio",
+          "testo": "testi:e35.ch.cantiere_acceso",
+          "commento": "testi:e35.ch.cantiere_acceso.vice",
+          "settore": "cantiere_stadio_nuovo",
+          "opzioni": [
+            {
+              "id": "squadra_cantiere",
+              "testo": "testi:e35.op.squadra_cantiere",
+              "costo": "testi:e35.op.squadra_cantiere.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.squadra_cantiere.r"
+            },
+            {
+              "id": "avvisa_comando",
+              "testo": "testi:e35.op.avvisa_comando",
+              "costo": "testi:e35.op.avvisa_comando.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.avvisa_comando.r"
+            },
+            {
+              "id": "aspetta_una",
+              "testo": "testi:e35.op.aspetta_una",
+              "costo": "testi:e35.op.aspetta_una.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.aspetta_una.r"
+            }
+          ]
+        },
+        {
+          "id": "barca_porto",
+          "fonte": "testimone",
+          "testo": "testi:e35.ch.barca_porto",
+          "settore": "banchine",
+          "opzioni": [
+            {
+              "id": "blocca_barca",
+              "testo": "testi:e35.op.blocca_barca",
+              "costo": "testi:e35.op.blocca_barca.c",
+              "effetti": [
+                {
+                  "pressione": "banchine",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.blocca_barca.r"
+            },
+            {
+              "id": "segui_barca",
+              "testo": "testi:e35.op.segui_barca",
+              "costo": "testi:e35.op.segui_barca.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.segui_barca.r"
+            }
+          ]
+        },
+        {
+          "id": "raduno_quartiere",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e35.ch.raduno_quartiere",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "mediatore_raduno",
+              "testo": "testi:e35.op.mediatore_raduno",
+              "costo": "testi:e35.op.mediatore_raduno.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.mediatore_raduno.r"
+            },
+            {
+              "id": "steward_quartiere",
+              "testo": "testi:e35.op.steward_quartiere",
+              "costo": "testi:e35.op.steward_quartiere.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e35.op.steward_quartiere.r"
+            },
+            {
+              "id": "ignora_raduno",
+              "testo": "testi:e35.op.ignora_raduno",
+              "costo": "testi:e35.op.ignora_raduno.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.ignora_raduno.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e35.ondata2",
+      "eventi": [
+        {
+          "id": "ingresso_magazzino",
+          "tipo": "movimento",
+          "settore": "magazzino_fonderie",
+          "pressione": 3
+        },
+        {
+          "id": "ingresso_cantiere",
+          "tipo": "movimento",
+          "settore": "cantiere_stadio_nuovo",
+          "pressione": 3
+        },
+        {
+          "id": "notizia_curva",
+          "tipo": "raduno",
+          "settore": "quartiere",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "magazzino_vuoto",
+          "fonte": "centrale_radio",
+          "testo": "testi:e35.ch.magazzino_vuoto",
+          "commento": "testi:e35.ch.magazzino_vuoto.vice",
+          "settore": "magazzino_fonderie",
+          "opzioni": [
+            {
+              "id": "cordone_magazzino",
+              "testo": "testi:e35.op.cordone_magazzino",
+              "costo": "testi:e35.op.cordone_magazzino.c",
+              "effetti": [
+                {
+                  "pressione": "magazzino_fonderie",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.cordone_magazzino.r"
+            },
+            {
+              "id": "stampa_magazzino",
+              "testo": "testi:e35.op.stampa_magazzino",
+              "costo": "testi:e35.op.stampa_magazzino.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "magazzino_fonderie",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.stampa_magazzino.r"
+            }
+          ]
+        },
+        {
+          "id": "uffici_cantiere",
+          "fonte": "comando",
+          "testo": "testi:e35.ch.uffici_cantiere",
+          "settore": "cantiere_stadio_nuovo",
+          "opzioni": [
+            {
+              "id": "interroga_guardiano",
+              "testo": "testi:e35.op.interroga_guardiano",
+              "costo": "testi:e35.op.interroga_guardiano.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e35.op.interroga_guardiano.r"
+            },
+            {
+              "id": "posti_blocco",
+              "testo": "testi:e35.op.posti_blocco",
+              "costo": "testi:e35.op.posti_blocco.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e35.op.posti_blocco.r"
+            },
+            {
+              "id": "lascia_comando",
+              "testo": "testi:e35.op.lascia_comando",
+              "costo": "testi:e35.op.lascia_comando.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.lascia_comando.r"
+            }
+          ]
+        },
+        {
+          "id": "curva_sa",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e35.ch.curva_sa",
+          "commento": "testi:e35.ch.curva_sa.vice",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "portavoce_quartiere",
+              "testo": "testi:e35.op.portavoce_quartiere",
+              "costo": "testi:e35.op.portavoce_quartiere.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.portavoce_quartiere.r"
+            },
+            {
+              "id": "squadra_quartiere",
+              "testo": "testi:e35.op.squadra_quartiere",
+              "costo": "testi:e35.op.squadra_quartiere.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.squadra_quartiere.r"
+            },
+            {
+              "id": "lascia_curva",
+              "testo": "testi:e35.op.lascia_curva",
+              "costo": "testi:e35.op.lascia_curva.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.lascia_curva.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e35.ondata3",
+      "eventi": [
+        {
+          "id": "stazione_notte",
+          "tipo": "movimento",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "corteo_cantiere",
+          "tipo": "raduno",
+          "settore": "cantiere_stadio_nuovo",
+          "pressione": 4
+        },
+        {
+          "id": "barca_torna",
+          "tipo": "movimento",
+          "settore": "banchine",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "treno_notte",
+          "fonte": "centrale_radio",
+          "testo": "testi:e35.ch.treno_notte",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "presidia_stazione",
+              "testo": "testi:e35.op.presidia_stazione",
+              "costo": "testi:e35.op.presidia_stazione.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.presidia_stazione.r"
+            },
+            {
+              "id": "ferrovie_avvisa",
+              "testo": "testi:e35.op.ferrovie_avvisa",
+              "costo": "testi:e35.op.ferrovie_avvisa.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.ferrovie_avvisa.r"
+            },
+            {
+              "id": "ignora_treno",
+              "testo": "testi:e35.op.ignora_treno",
+              "costo": "testi:e35.op.ignora_treno.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.ignora_treno.r"
+            }
+          ]
+        },
+        {
+          "id": "curva_al_cantiere",
+          "fonte": "centrale_radio",
+          "testo": "testi:e35.ch.curva_al_cantiere",
+          "settore": "cantiere_stadio_nuovo",
+          "opzioni": [
+            {
+              "id": "mediatore_cancelli",
+              "testo": "testi:e35.op.mediatore_cancelli",
+              "costo": "testi:e35.op.mediatore_cancelli.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.mediatore_cancelli.r"
+            },
+            {
+              "id": "apri_cancelli",
+              "testo": "testi:e35.op.apri_cancelli",
+              "costo": "testi:e35.op.apri_cancelli.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.apri_cancelli.r"
+            },
+            {
+              "id": "sgombera_cancelli",
+              "testo": "testi:e35.op.sgombera_cancelli",
+              "costo": "testi:e35.op.sgombera_cancelli.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": -2
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.sgombera_cancelli.r"
+            }
+          ]
+        },
+        {
+          "id": "barca_ritorno",
+          "fonte": "testimone",
+          "testo": "testi:e35.ch.barca_ritorno",
+          "settore": "banchine",
+          "opzioni": [
+            {
+              "id": "cerca_scatoloni",
+              "testo": "testi:e35.op.cerca_scatoloni",
+              "costo": "testi:e35.op.cerca_scatoloni.c",
+              "effetti": [
+                {
+                  "pressione": "banchine",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.cerca_scatoloni.r"
+            },
+            {
+              "id": "ferma_barca",
+              "testo": "testi:e35.op.ferma_barca",
+              "costo": "testi:e35.op.ferma_barca.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.ferma_barca.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e35.ondata4",
+      "eventi": [
+        {
+          "id": "primo_treno",
+          "tipo": "movimento",
+          "settore": "stazione",
+          "pressione": 3
+        },
+        {
+          "id": "quartiere_alba",
+          "tipo": "raduno",
+          "settore": "quartiere",
+          "pressione": 4
+        },
+        {
+          "id": "cantiere_alba",
+          "tipo": "movimento",
+          "settore": "cantiere_stadio_nuovo",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "posto_prenotato",
+          "fonte": "centrale_radio",
+          "testo": "testi:e35.ch.posto_prenotato",
+          "commento": "testi:e35.ch.posto_prenotato.vice",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "ferma_uomo",
+              "testo": "testi:e35.op.ferma_uomo",
+              "costo": "testi:e35.op.ferma_uomo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e35.op.ferma_uomo.r"
+            },
+            {
+              "id": "lascia_partire",
+              "testo": "testi:e35.op.lascia_partire",
+              "costo": "testi:e35.op.lascia_partire.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.lascia_partire.r"
+            }
+          ]
+        },
+        {
+          "id": "alba_quartiere",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e35.ch.alba_quartiere",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "colazione",
+              "testo": "testi:e35.op.colazione",
+              "costo": "testi:e35.op.colazione.c",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e35.op.colazione.r"
+            },
+            {
+              "id": "sgombera_quartiere",
+              "testo": "testi:e35.op.sgombera_quartiere",
+              "costo": "testi:e35.op.sgombera_quartiere.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.sgombera_quartiere.r"
+            }
+          ]
+        },
+        {
+          "id": "rapporto_notte",
+          "fonte": "comando",
+          "testo": "testi:e35.ch.rapporto_notte",
+          "commento": "testi:e35.ch.rapporto_notte.vice",
+          "opzioni": [
+            {
+              "id": "scrivi_nome",
+              "testo": "testi:e35.op.scrivi_nome",
+              "costo": "testi:e35.op.scrivi_nome.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.scrivi_nome.r"
+            },
+            {
+              "id": "un_imprenditore",
+              "testo": "testi:e35.op.un_imprenditore",
+              "costo": "testi:e35.op.un_imprenditore.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "quartiere",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.un_imprenditore.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e35.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e35.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e35.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

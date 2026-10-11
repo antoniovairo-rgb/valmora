@@ -1,0 +1,833 @@
+{
+  "id": "e27",
+  "bozza": true,
+  "stagione": 3,
+  "episodio": 27,
+  "titolo": "testi:e27.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 65,
+    "y": 20
+  },
+  "introduzione": [
+    "testi:e27.intro1",
+    "testi:e27.intro2",
+    "testi:e27.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e27.info_gemellati",
+      "fonte": "gemellati",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_gemellati"
+    },
+    {
+      "testo": "testi:e27.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "stazione"
+    },
+    {
+      "testo": "testi:e27.info_cinderwick",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "curva_cinderwick"
+    },
+    {
+      "testo": "testi:e27.info_informatore",
+      "fonte": "informatore_di_strada",
+      "affidabilita": "bassa",
+      "vera": false,
+      "settore": "strada_cinderwick"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 16,
+          "y": 40
+        }
+      },
+      {
+        "id": "curva_gemellati",
+        "tipo": "curva",
+        "club": "thornmere_wanderers",
+        "pos": {
+          "x": 40,
+          "y": 18
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "calderholt_rovers",
+        "pos": {
+          "x": 86,
+          "y": 42
+        }
+      },
+      {
+        "id": "stazione",
+        "tipo": "stazione",
+        "pos": {
+          "x": 80,
+          "y": 85
+        }
+      },
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 18,
+          "y": 82
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "stazione": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "strada": 1,
+          "stazione": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e27.ondata1",
+      "eventi": [
+        {
+          "id": "treno_gemellati",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 3
+        },
+        {
+          "id": "a_piedi",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 2
+        },
+        {
+          "id": "attesa_curva",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 1
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "fermata_prima",
+          "fonte": "centrale_radio",
+          "testo": "testi:e27.ch.fermata_prima",
+          "commento": "testi:e27.ch.fermata_prima.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "intercetta",
+              "testo": "testi:e27.op.intercetta",
+              "costo": "testi:e27.op.intercetta.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.intercetta.r"
+            },
+            {
+              "id": "mediatore_gemellati",
+              "testo": "testi:e27.op.mediatore_gemellati",
+              "costo": "testi:e27.op.mediatore_gemellati.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.mediatore_gemellati.r"
+            },
+            {
+              "id": "lascia_camminare",
+              "testo": "testi:e27.op.lascia_camminare",
+              "costo": "testi:e27.op.lascia_camminare.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.lascia_camminare.r"
+            }
+          ]
+        },
+        {
+          "id": "settore_assegnato",
+          "fonte": "gemellati",
+          "testo": "testi:e27.ch.settore_assegnato",
+          "settore": "curva_gemellati",
+          "opzioni": [
+            {
+              "id": "tieni_separati",
+              "testo": "testi:e27.op.tieni_separati",
+              "costo": "testi:e27.op.tieni_separati.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_gemellati",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.tieni_separati.r"
+            },
+            {
+              "id": "apri_curva",
+              "testo": "testi:e27.op.apri_curva",
+              "costo": "testi:e27.op.apri_curva.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 3
+                }
+              ],
+              "risposta": "testi:e27.op.apri_curva.r"
+            }
+          ]
+        },
+        {
+          "id": "treno_affollato",
+          "fonte": "centrale_radio",
+          "testo": "testi:e27.ch.treno_affollato",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "scorta_stazione",
+              "testo": "testi:e27.op.scorta_stazione",
+              "costo": "testi:e27.op.scorta_stazione.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.scorta_stazione.r"
+            },
+            {
+              "id": "chiudi_bar",
+              "testo": "testi:e27.op.chiudi_bar",
+              "costo": "testi:e27.op.chiudi_bar.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.chiudi_bar.r"
+            },
+            {
+              "id": "aspettino",
+              "testo": "testi:e27.op.aspettino",
+              "costo": "testi:e27.op.aspettino.c",
+              "effetti": [
+                {
+                  "tensione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.aspettino.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e27.ondata2",
+      "eventi": [
+        {
+          "id": "fazioni",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 3
+        },
+        {
+          "id": "cori_gemellati",
+          "tipo": "curva",
+          "settore": "curva_gemellati",
+          "pressione": 3
+        },
+        {
+          "id": "cori_rovers",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "due_capi",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e27.ch.due_capi",
+          "commento": "testi:e27.ch.due_capi.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "sequestra_tamburo",
+              "testo": "testi:e27.op.sequestra_tamburo",
+              "costo": "testi:e27.op.sequestra_tamburo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 3
+                }
+              ],
+              "risposta": "testi:e27.op.sequestra_tamburo.r"
+            },
+            {
+              "id": "steward_tra_gruppi",
+              "testo": "testi:e27.op.steward_tra_gruppi",
+              "costo": "testi:e27.op.steward_tra_gruppi.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e27.op.steward_tra_gruppi.r"
+            },
+            {
+              "id": "aspetta_tamburo",
+              "testo": "testi:e27.op.aspetta_tamburo",
+              "costo": "testi:e27.op.aspetta_tamburo.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.aspetta_tamburo.r"
+            }
+          ]
+        },
+        {
+          "id": "messaggio_dessi",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e27.ch.messaggio_dessi",
+          "settore": "curva_gemellati",
+          "opzioni": [
+            {
+              "id": "acquisisci_video",
+              "testo": "testi:e27.op.acquisisci_video",
+              "costo": "testi:e27.op.acquisisci_video.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_gemellati",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.acquisisci_video.r"
+            },
+            {
+              "id": "lascia_video",
+              "testo": "testi:e27.op.lascia_video",
+              "costo": "testi:e27.op.lascia_video.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.lascia_video.r"
+            }
+          ]
+        },
+        {
+          "id": "rovers_provocati",
+          "fonte": "centrale_radio",
+          "testo": "testi:e27.ch.rovers_provocati",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_rovers",
+              "testo": "testi:e27.op.steward_rovers",
+              "costo": "testi:e27.op.steward_rovers.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.steward_rovers.r"
+            },
+            {
+              "id": "ignora_rovers",
+              "testo": "testi:e27.op.ignora_rovers",
+              "costo": "testi:e27.op.ignora_rovers.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_gemellati",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e27.op.ignora_rovers.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e27.ondata3",
+      "eventi": [
+        {
+          "id": "gol_rovers",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        },
+        {
+          "id": "nervi_casa",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "gemellati_inquieti",
+          "tipo": "curva",
+          "settore": "curva_gemellati",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "gol_ospiti",
+          "fonte": "centrale_radio",
+          "testo": "testi:e27.ch.gol_ospiti",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "mediatore_curva",
+              "testo": "testi:e27.op.mediatore_curva",
+              "costo": "testi:e27.op.mediatore_curva.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.mediatore_curva.r"
+            },
+            {
+              "id": "annuncio",
+              "testo": "testi:e27.op.annuncio",
+              "costo": "testi:e27.op.annuncio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.annuncio.r"
+            }
+          ]
+        },
+        {
+          "id": "gemellati_escono",
+          "fonte": "gemellati",
+          "testo": "testi:e27.ch.gemellati_escono",
+          "commento": "testi:e27.ch.gemellati_escono.vice",
+          "settore": "curva_gemellati",
+          "opzioni": [
+            {
+              "id": "trattieni_gemellati",
+              "testo": "testi:e27.op.trattieni_gemellati",
+              "costo": "testi:e27.op.trattieni_gemellati.c",
+              "effetti": [
+                {
+                  "tensione": "curva_gemellati",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.trattieni_gemellati.r"
+            },
+            {
+              "id": "uscita_scortata",
+              "testo": "testi:e27.op.uscita_scortata",
+              "costo": "testi:e27.op.uscita_scortata.c",
+              "effetti": [
+                {
+                  "pressione": "curva_gemellati",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.uscita_scortata.r"
+            }
+          ]
+        },
+        {
+          "id": "rovers_festa",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e27.ch.rovers_festa",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "uscita_separata",
+              "testo": "testi:e27.op.uscita_separata",
+              "costo": "testi:e27.op.uscita_separata.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.uscita_separata.r"
+            },
+            {
+              "id": "lascia_festa",
+              "testo": "testi:e27.op.lascia_festa",
+              "costo": "testi:e27.op.lascia_festa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.lascia_festa.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e27.ondata4",
+      "eventi": [
+        {
+          "id": "ritorno_gemellati",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "strada_sera",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "ultimi_cori",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "abbraccio",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e27.ch.abbraccio",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "corteo_scortato",
+              "testo": "testi:e27.op.corteo_scortato",
+              "costo": "testi:e27.op.corteo_scortato.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.corteo_scortato.r"
+            },
+            {
+              "id": "niente_corteo",
+              "testo": "testi:e27.op.niente_corteo",
+              "costo": "testi:e27.op.niente_corteo.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e27.op.niente_corteo.r"
+            },
+            {
+              "id": "corteo_libero",
+              "testo": "testi:e27.op.corteo_libero",
+              "costo": "testi:e27.op.corteo_libero.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.corteo_libero.r"
+            }
+          ]
+        },
+        {
+          "id": "binario",
+          "fonte": "centrale_radio",
+          "testo": "testi:e27.ch.binario",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "sala_attesa",
+              "testo": "testi:e27.op.sala_attesa",
+              "costo": "testi:e27.op.sala_attesa.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.sala_attesa.r"
+            },
+            {
+              "id": "steward_banchina",
+              "testo": "testi:e27.op.steward_banchina",
+              "costo": "testi:e27.op.steward_banchina.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e27.op.steward_banchina.r"
+            },
+            {
+              "id": "banchina_piena",
+              "testo": "testi:e27.op.banchina_piena",
+              "costo": "testi:e27.op.banchina_piena.c",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.banchina_piena.r"
+            }
+          ]
+        },
+        {
+          "id": "lettera_gemellati",
+          "fonte": "gemellati",
+          "testo": "testi:e27.ch.lettera_gemellati",
+          "commento": "testi:e27.ch.lettera_gemellati.vice",
+          "settore": "curva_gemellati",
+          "opzioni": [
+            {
+              "id": "tieni_busta",
+              "testo": "testi:e27.op.tieni_busta",
+              "costo": "testi:e27.op.tieni_busta.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.tieni_busta.r"
+            },
+            {
+              "id": "consegna_comando",
+              "testo": "testi:e27.op.consegna_comando",
+              "costo": "testi:e27.op.consegna_comando.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e27.op.consegna_comando.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e27.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e27.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e27.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

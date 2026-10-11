@@ -1,0 +1,850 @@
+{
+  "id": "e36",
+  "bozza": true,
+  "stagione": 3,
+  "episodio": 36,
+  "titolo": "testi:e36.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 86,
+    "y": 86
+  },
+  "introduzione": [
+    "testi:e36.intro1",
+    "testi:e36.intro2",
+    "testi:e36.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e36.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "cantiere_stadio_nuovo"
+    },
+    {
+      "testo": "testi:e36.info_segreteria",
+      "fonte": "segreteria_comune",
+      "affidabilita": "alta",
+      "vera": false,
+      "settore": "piazzale"
+    },
+    {
+      "testo": "testi:e36.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "strada_larkspire"
+    },
+    {
+      "testo": "testi:e36.info_informatore",
+      "fonte": "informatore_di_strada",
+      "affidabilita": "bassa",
+      "vera": false,
+      "settore": "curva_cinderwick"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 15,
+          "y": 40
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 85,
+          "y": 40
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 50,
+          "y": 62
+        }
+      },
+      {
+        "id": "cantiere_stadio_nuovo",
+        "tipo": "cantiere",
+        "pos": {
+          "x": 20,
+          "y": 86
+        }
+      },
+      {
+        "id": "strada_larkspire",
+        "tipo": "strada",
+        "pos": {
+          "x": 80,
+          "y": 86
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 5,
+        "efficacia": {
+          "strada": 2,
+          "cantiere": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 1,
+          "strada": 1,
+          "cantiere": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    },
+    "dettagli": [
+      "cartelloni_stadio_nuovo"
+    ]
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e36.ondata1",
+      "eventi": [
+        {
+          "id": "cantiere_raduno",
+          "tipo": "folla",
+          "settore": "cantiere_stadio_nuovo",
+          "pressione": 4
+        },
+        {
+          "id": "collina",
+          "tipo": "corteo",
+          "settore": "strada_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "festa",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "cantiere_festa",
+          "fonte": "centrale_radio",
+          "testo": "testi:e36.ch.cantiere_festa",
+          "commento": "testi:e36.ch.cantiere_festa.vice",
+          "settore": "cantiere_stadio_nuovo",
+          "opzioni": [
+            {
+              "id": "presidio_cantiere",
+              "testo": "testi:e36.op.presidio_cantiere",
+              "costo": "testi:e36.op.presidio_cantiere.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.presidio_cantiere.r"
+            },
+            {
+              "id": "cartellone_regalo",
+              "testo": "testi:e36.op.cartellone_regalo",
+              "costo": "testi:e36.op.cartellone_regalo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 2
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e36.op.cartellone_regalo.r"
+            },
+            {
+              "id": "niente_cantiere",
+              "testo": "testi:e36.op.niente_cantiere",
+              "costo": "testi:e36.op.niente_cantiere.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.niente_cantiere.r"
+            }
+          ]
+        },
+        {
+          "id": "coreografia_collina",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e36.ch.coreografia_collina",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "scorta_stoffa",
+              "testo": "testi:e36.op.scorta_stoffa",
+              "costo": "testi:e36.op.scorta_stoffa.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.scorta_stoffa.r"
+            },
+            {
+              "id": "mediatore_stoffa",
+              "testo": "testi:e36.op.mediatore_stoffa",
+              "costo": "testi:e36.op.mediatore_stoffa.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.mediatore_stoffa.r"
+            },
+            {
+              "id": "strada_libera",
+              "testo": "testi:e36.op.strada_libera",
+              "costo": "testi:e36.op.strada_libera.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.strada_libera.r"
+            }
+          ]
+        },
+        {
+          "id": "festa_vietata",
+          "fonte": "segreteria_comune",
+          "testo": "testi:e36.ch.festa_vietata",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "smonta_palco",
+              "testo": "testi:e36.op.smonta_palco",
+              "costo": "testi:e36.op.smonta_palco.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.smonta_palco.r"
+            },
+            {
+              "id": "palco_resta",
+              "testo": "testi:e36.op.palco_resta",
+              "costo": "testi:e36.op.palco_resta.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.palco_resta.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e36.ondata2",
+      "eventi": [
+        {
+          "id": "cori_cinderwick",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "cori_larkspire",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale_pieno",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "coreografia_alzata",
+          "fonte": "centrale_radio",
+          "testo": "testi:e36.ch.coreografia_alzata",
+          "commento": "testi:e36.ch.coreografia_alzata.vice",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "lascia_applausi",
+              "testo": "testi:e36.op.lascia_applausi",
+              "costo": "testi:e36.op.lascia_applausi.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e36.op.lascia_applausi.r"
+            },
+            {
+              "id": "steward_coreo",
+              "testo": "testi:e36.op.steward_coreo",
+              "costo": "testi:e36.op.steward_coreo.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e36.op.steward_coreo.r"
+            }
+          ]
+        },
+        {
+          "id": "messaggio_carcere",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e36.ch.messaggio_carcere",
+          "commento": "testi:e36.ch.messaggio_carcere.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "portavoce_smentisce",
+              "testo": "testi:e36.op.portavoce_smentisce",
+              "costo": "testi:e36.op.portavoce_smentisce.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.portavoce_smentisce.r"
+            },
+            {
+              "id": "lascia_aspettare",
+              "testo": "testi:e36.op.lascia_aspettare",
+              "costo": "testi:e36.op.lascia_aspettare.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.lascia_aspettare.r"
+            }
+          ]
+        },
+        {
+          "id": "piazzale_maxi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e36.ch.piazzale_maxi",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "squadra_piazzale",
+              "testo": "testi:e36.op.squadra_piazzale",
+              "costo": "testi:e36.op.squadra_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.squadra_piazzale.r"
+            },
+            {
+              "id": "chiudi_piazzale",
+              "testo": "testi:e36.op.chiudi_piazzale",
+              "costo": "testi:e36.op.chiudi_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.chiudi_piazzale.r"
+            },
+            {
+              "id": "lascia_piazzale",
+              "testo": "testi:e36.op.lascia_piazzale",
+              "costo": "testi:e36.op.lascia_piazzale.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.lascia_piazzale.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e36.ondata3",
+      "eventi": [
+        {
+          "id": "gol",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "risposta",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "cantiere_sera",
+          "tipo": "folla",
+          "settore": "cantiere_stadio_nuovo",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "gol_derby",
+          "fonte": "centrale_radio",
+          "testo": "testi:e36.ch.gol_derby",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "mediatore_derby",
+              "testo": "testi:e36.op.mediatore_derby",
+              "costo": "testi:e36.op.mediatore_derby.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.mediatore_derby.r"
+            },
+            {
+              "id": "barriera_curve",
+              "testo": "testi:e36.op.barriera_curve",
+              "costo": "testi:e36.op.barriera_curve.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.barriera_curve.r"
+            },
+            {
+              "id": "festa_libera",
+              "testo": "testi:e36.op.festa_libera",
+              "costo": "testi:e36.op.festa_libera.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e36.op.festa_libera.r"
+            }
+          ]
+        },
+        {
+          "id": "comando_conti",
+          "fonte": "comando",
+          "testo": "testi:e36.ch.comando_conti",
+          "commento": "testi:e36.ch.comando_conti.vice",
+          "opzioni": [
+            {
+              "id": "frase_dura",
+              "testo": "testi:e36.op.frase_dura",
+              "costo": "testi:e36.op.frase_dura.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.frase_dura.r"
+            },
+            {
+              "id": "frase_neutra",
+              "testo": "testi:e36.op.frase_neutra",
+              "costo": "testi:e36.op.frase_neutra.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.frase_neutra.r"
+            }
+          ]
+        },
+        {
+          "id": "cantiere_notte",
+          "fonte": "guardiano_cantiere",
+          "testo": "testi:e36.ch.cantiere_notte",
+          "commento": "testi:e36.ch.cantiere_notte.vice",
+          "settore": "cantiere_stadio_nuovo",
+          "opzioni": [
+            {
+              "id": "steward_cantiere",
+              "testo": "testi:e36.op.steward_cantiere",
+              "costo": "testi:e36.op.steward_cantiere.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e36.op.steward_cantiere.r"
+            },
+            {
+              "id": "muri_liberi",
+              "testo": "testi:e36.op.muri_liberi",
+              "costo": "testi:e36.op.muri_liberi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.muri_liberi.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e36.ondata4",
+      "eventi": [
+        {
+          "id": "deflusso_larkspire",
+          "tipo": "corteo",
+          "settore": "strada_larkspire",
+          "pressione": 5
+        },
+        {
+          "id": "festa_notte",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 4
+        },
+        {
+          "id": "cantiere_ultimo",
+          "tipo": "folla",
+          "settore": "cantiere_stadio_nuovo",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "ritorno_collina",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e36.ch.ritorno_collina",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "scorta_collina",
+              "testo": "testi:e36.op.scorta_collina",
+              "costo": "testi:e36.op.scorta_collina.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.scorta_collina.r"
+            },
+            {
+              "id": "separa_gruppi",
+              "testo": "testi:e36.op.separa_gruppi",
+              "costo": "testi:e36.op.separa_gruppi.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.separa_gruppi.r"
+            },
+            {
+              "id": "lascia_insieme",
+              "testo": "testi:e36.op.lascia_insieme",
+              "costo": "testi:e36.op.lascia_insieme.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.lascia_insieme.r"
+            }
+          ]
+        },
+        {
+          "id": "piazzale_ultimo",
+          "fonte": "segreteria_comune",
+          "testo": "testi:e36.ch.piazzale_ultimo",
+          "commento": "testi:e36.ch.piazzale_ultimo.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "chiudi_festa",
+              "testo": "testi:e36.op.chiudi_festa",
+              "costo": "testi:e36.op.chiudi_festa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e36.op.chiudi_festa.r"
+            },
+            {
+              "id": "mezzora",
+              "testo": "testi:e36.op.mezzora",
+              "costo": "testi:e36.op.mezzora.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e36.op.mezzora.r"
+            }
+          ]
+        },
+        {
+          "id": "busta",
+          "fonte": "vice",
+          "testo": "testi:e36.ch.busta",
+          "commento": "testi:e36.ch.busta.vice",
+          "opzioni": [
+            {
+              "id": "apri_ora",
+              "testo": "testi:e36.op.apri_ora",
+              "costo": "testi:e36.op.apri_ora.c",
+              "effetti": [
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.apri_ora.r"
+            },
+            {
+              "id": "ultimo_giro",
+              "testo": "testi:e36.op.ultimo_giro",
+              "costo": "testi:e36.op.ultimo_giro.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "cantiere_stadio_nuovo",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.ultimo_giro.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e36.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
