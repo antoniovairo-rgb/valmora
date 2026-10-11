@@ -1,7 +1,7 @@
 // Tutti gli episodi, abbozzi compresi (S-09, D-087), senza giocarli tutti a ogni catena:
 // - un salvataggio di prova con ogni episodio superato (1 stella, variabili iniziali) li rende tutti avviabili;
 // - ognuno si apre dalla città (stagione giusta, segno «bozza»), si attraversano sala e briefing fino al primo
-//   schieramento: nessun errore di console, nessuna chiave di testo mancante «[[…]]»;
+//   schieramento: nessun errore di console, nessuna chiave di testo mancante «[[…]]», i dettagli dei dati disegnati;
 // - il primo episodio di ogni stagione oltre la prima si gioca per intero (partita di foto.mjs).
 import { leggiDati } from './dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
@@ -37,6 +37,8 @@ export async function apriTutte(c) {
   const { pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori } = c;
   const { missioni, v0 } = missioniDai(dirDati);
   const sal = JSON.stringify(salvataggioTutti(missioni, v0));
+  const finestra = pagina.viewportSize();
+  await pagina.setViewportSize({ width: finestra.width, height: 760 }); // il telefono di riferimento (PO-045, PO-052)
   const prime = new Set([...new Set(missioni.map((m) => m.stagione))].slice(1).map((s) => missioni.find((m) => m.stagione === s)?.id));
   for (const [i, m] of missioni.entries()) {
     const prima = errori.length;
@@ -49,6 +51,10 @@ export async function apriTutte(c) {
       else {
         const testi = [];
         await scena('sala'); testi.push(await pagina.locator('main').textContent());
+        if ((await pagina.getAttribute('.mappa', 'data-mappa')) === 'webgl') { // dettagli dei dati disegnati davvero (D-095)
+          const voluti = (m.mappa.dettagli ?? []).map((x) => x.split('@')[0]).sort().join(','), visti = ((await pagina.getAttribute('.mappa', 'data-dettagli')) ?? '').split(',').filter(Boolean).sort().join(',');
+          atteso(`${m.id}: dettagli disegnati «${visti}», i dati dicono «${voluti}» (D-095)`, visti === voluti);
+        }
         await premi('[data-azione="avanti"]'); await scena('briefing'); testi.push(await pagina.locator('main').textContent());
         await premi('[data-azione="inizia"]'); await scena('schieramento'); testi.push(await pagina.locator('main').textContent());
         const manca = [...new Set(testi.join(' ').match(/\[\[[^\]]+\]\]/g) ?? [])];
@@ -57,4 +63,5 @@ export async function apriTutte(c) {
     } catch (e) { atteso(`${m.id}: non si apre (${e.message.split('\n')[0]})`, false); }
     atteso(`${m.id}: ${errori.length - prima} errori di console aprendolo (${errori.slice(prima, prima + 1).join('')})`, errori.length === prima);
   }
+  await pagina.setViewportSize(finestra);
 }

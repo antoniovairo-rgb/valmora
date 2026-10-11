@@ -77,6 +77,30 @@
   --mappa-lampione: #ffe9b0;
   --mappa-parcheggio: #3d4047;
   --mappa-cartellone: #f4f1e8;
+  /* Dettagli delle mappe (D-095) */
+  --mappa-pietra: #cfc6b4;
+  --mappa-furgone: #3f5a4a;
+  --mappa-transenna: #e8412c;
+  --mappa-presidio: #5d6470;
+  --mappa-palco: #1f1f24;
+  --mappa-lastricato: #a69b88;
+  --mappa-acqua: #2c6e9e;
+  --mappa-capannone: #8a8f96;
+  --mappa-striscione-1: #e0115f;
+  --mappa-striscione-2: #ffd400;
+  --mappa-striscione-3: #00c2ff;
+  --mappa-nastro: #ffd400;
+  --mappa-soccorso: #f2f2f2;
+  --mappa-lampeggiante-1: #2f7bff;
+  --mappa-lampeggiante-2: #ff2f2f;
+  --mappa-terra: #8b6a47;
+  --mappa-gru: #f2b705;
+  --mappa-container-1: #b8462e;
+  --mappa-container-2: #2e6eb8;
+  --mappa-container-3: #3b8a4a;
+  --mappa-tenda-1: #d9483b;
+  --mappa-tenda-2: #2f8f6b;
+  --mappa-tenda-3: #e2a72e;
 
   /* Città degli episodi (D-061) */
   --citta-fiume: #1f6fa8;

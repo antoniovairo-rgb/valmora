@@ -72,6 +72,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
       return { q, c, u: (i * 0.618) % 1, off: ((i * 7) % 9) - 4, fase: i * 0.9 };
     }));
     const el = p.contenitore.current; // per le foto: cosa è stato disegnato davvero
+    el?.setAttribute('data-dettagli', animati.dettagli.join(','));
     el?.setAttribute('data-folla', `${folla0.spalti}|${cortei.map((c) => `${c.settore}>${c.verso}`).join(',')}`);
     scena.addChild(corteo);
 
