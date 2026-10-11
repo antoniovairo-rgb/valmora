@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 19,
   "titolo": "testi:e19.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 70,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e19.intro1",
-    "testi:e19.intro2",
-    "testi:e19.intro3"
+    "testi:e19.intro2"
   ],
   "briefing": [
     {
@@ -330,6 +328,42 @@
               "risposta": "testi:e19.op.tieni19.r"
             }
           ]
+        },
+        {
+          "id": "testimone_sicuro",
+          "fonte": "testimone",
+          "testo": "testi:e19.ch.testimone_sicuro",
+          "settore": "magazzino",
+          "se": {
+            "var": "testimone",
+            "uguale": "protetto"
+          },
+          "opzioni": [
+            {
+              "id": "riferisci_t19",
+              "testo": "testi:e19.op.riferisci_t19",
+              "costo": "testi:e19.op.riferisci_t19.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "magazzino",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e19.op.riferisci_t19.r"
+            },
+            {
+              "id": "tieni_t19",
+              "testo": "testi:e19.op.tieni_t19",
+              "costo": "testi:e19.op.tieni_t19.c",
+              "effetti": [],
+              "risposta": "testi:e19.op.tieni_t19.r"
+            }
+          ],
+          "commento": "testi:e19.ch.testimone_sicuro.vice"
         }
       ]
     },
@@ -452,6 +486,39 @@
           ]
         },
         {
+          "id": "lavezzari_radio",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e19.ch.lavezzari_radio",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "annota_dubbio19",
+              "testo": "testi:e19.op.annota_dubbio19",
+              "costo": "testi:e19.op.annota_dubbio19.c",
+              "effetti": [
+                {
+                  "aggiungi": "sospetti_talpa",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e19.op.annota_dubbio19.r"
+            },
+            {
+              "id": "aiuto_lavezzari19",
+              "testo": "testi:e19.op.aiuto_lavezzari19",
+              "costo": "testi:e19.op.aiuto_lavezzari19.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e19.op.aiuto_lavezzari19.r"
+            }
+          ],
+          "commento": "testi:e19.ch.lavezzari_radio.vice"
+        },
+        {
           "id": "ridono",
           "fonte": "club_ospite",
           "testo": "testi:e19.ch.ridono",
@@ -548,6 +615,47 @@
               "risposta": "testi:e19.op.no_comment19.r"
             }
           ]
+        },
+        {
+          "id": "testimone_esposto",
+          "fonte": "stampa_locale",
+          "testo": "testi:e19.ch.testimone_esposto",
+          "settore": "curva_cinderwick",
+          "se": {
+            "var": "testimone",
+            "uguale": "esposto"
+          },
+          "opzioni": [
+            {
+              "id": "difendi_t19",
+              "testo": "testi:e19.op.difendi_t19",
+              "costo": "testi:e19.op.difendi_t19.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e19.op.difendi_t19.r"
+            },
+            {
+              "id": "taci_t19",
+              "testo": "testi:e19.op.taci_t19",
+              "costo": "testi:e19.op.taci_t19.c",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e19.op.taci_t19.r"
+            }
+          ],
+          "commento": "testi:e19.ch.testimone_esposto.vice"
         },
         {
           "id": "chi_sapeva",
