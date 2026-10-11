@@ -1,0 +1,38 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="fonts.css"><script src="comune.js"></script>
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:Sora,sans-serif;color:#1a1033;min-height:100vh;padding:14px 14px 28px;background:linear-gradient(160deg,#6a2cff 0%,#c22cff 38%,#ff4f8b 70%,#ff9a3c 100%)}
+.top{display:flex;align-items:center;justify-content:space-between;color:#fff;margin-bottom:12px}
+.top h1{font:700 20px Sora;letter-spacing:-.02em}.top small{display:block;font:600 11px Sora;opacity:.85;letter-spacing:.06em;text-transform:uppercase}
+.step{display:flex;gap:5px}.step i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35)}.step i.on{background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.3)}
+.mappa{border-radius:28px;overflow:hidden;border:4px solid #fff;box-shadow:0 18px 0 -6px rgba(40,0,80,.25),0 30px 50px -20px rgba(40,0,80,.6)}
+.card{margin-top:16px;background:#fff;border-radius:28px;padding:18px;box-shadow:0 10px 0 #e6d9ff,0 30px 50px -20px rgba(40,0,80,.55)}
+.chi{display:flex;gap:12px;align-items:center}
+.av{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,#ffd23f,#ff7a00);box-shadow:0 4px 0 #d45f00}
+.chi b{font:700 15px Sora;display:block}.tag{display:inline-block;margin-top:3px;font:700 10px Sora;padding:3px 8px;border-radius:999px;background:#fff1d6;color:#c25b00;text-transform:uppercase;letter-spacing:.05em}
+.live{margin-left:auto;font:700 10px Sora;color:#fff;background:#ff2e63;padding:5px 9px;border-radius:999px;box-shadow:0 0 0 4px #ffd6e0}
+.msg{margin-top:14px;font:700 19px/1.3 Sora;letter-spacing:-.01em}
+.vice{margin-top:14px;display:flex;gap:10px;align-items:flex-start;background:#f3ecff;border-radius:18px;padding:12px}
+.vice .f{font-size:22px}.vice p{font:500 13px/1.45 Sora;color:#4b2a8a}.vice b{color:#6a2cff}
+.scelte{margin-top:16px;display:grid;gap:12px}
+.s{display:flex;align-items:center;gap:12px;padding:15px 16px;border-radius:22px;background:#fff;font:700 15px Sora;box-shadow:0 6px 0 #d9c7ff}
+.s .i{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-size:20px;flex:none}
+.s small{display:block;font:500 11px Sora;color:#7a6aa0;margin-top:2px}
+.s.p{background:linear-gradient(135deg,#00d4b0,#00a2ff);color:#fff;box-shadow:0 6px 0 #0077c2}.s.p small{color:#e6fbff}
+</style></head><body>
+<div class="top"><div><small>Episodio 1 · Ondata 1</small><h1>Chiamata 1 di 5</h1></div><div class="step"><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
+<div class="mappa" id="m"></div>
+<div class="card">
+ <div class="chi"><div class="av">🧣</div><div><b>Informatore di strada</b><span class="tag">affidabilità bassa</span></div><span class="live">● LIVE</span></div>
+ <div class="msg">«È partito! Duecento persone dalle fonderie, cori e bandiere. Nessuno ha avvisato nessuno.»</div>
+ <div class="vice"><div class="f">☕</div><p><b>Il vice:</b> il ragazzo delle sciarpe ha ragione più spesso di quanto gli si dia credito. Non dirglielo.</p></div>
+</div>
+<div class="scelte">
+ <div class="s p"><div class="i" style="background:rgba(255,255,255,.22)">🛡️</div><div>Scortalo fino allo stadio<small>Una squadra impegnata per tutta la giornata</small></div></div>
+ <div class="s"><div class="i" style="background:#ffe8e0">✋</div><div>Fermalo a metà strada<small>Rischi di farlo arrivare più arrabbiato</small></div></div>
+ <div class="s"><div class="i" style="background:#e0f6ff">👁️</div><div>Lascialo passare, osserva<small>Nessun costo, nessuna garanzia</small></div></div>
+</div>
+<script>
+mappa(document.getElementById('m'),{sfondo:'#2a1466',griglia:'rgba(255,255,255,.06)',blocchi:'rgba(255,255,255,.07)',strada:'#ffd23f',stradaAttiva:'#00f0ff',stadio:['#ff6fb5','#c22cff'],bordoStadio:'#fff',anello:'rgba(255,255,255,.35)',prato:'#22c55e',righe:'#eafff1',caldo:['#00e08a','#ffc400','#ff2e63'],testo:'#fff',ombraTesto:'0 2px 0 #2a1466,0 0 6px #2a1466',font:'700 10px Sora',badgeBg:'#fff',badgeTesto:'#2a1466',badgeBordo:'0',bordoPin:'#fff',ombraStadio:'rgba(0,0,0,.3)'});
+</script></body></html>

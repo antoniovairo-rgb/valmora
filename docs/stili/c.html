@@ -1,0 +1,38 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="fonts.css"><script src="comune.js"></script>
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:Inter,sans-serif;color:#111;min-height:100vh;padding:14px 14px 28px;background:#ffd400;background-image:radial-gradient(rgba(0,0,0,.12) 1.2px,transparent 1.3px);background-size:9px 9px}
+.testata{display:flex;align-items:stretch;gap:8px;margin-bottom:12px}
+.testata .n{background:#111;color:#ffd400;font:700 34px/1 'Space Grotesk';padding:8px 12px;transform:skew(-8deg)}
+.testata .t{background:#fff;border:3px solid #111;padding:6px 10px;flex:1;box-shadow:5px 5px 0 #111}
+.testata .t small{font:700 10px 'Space Grotesk';letter-spacing:.14em;text-transform:uppercase;color:#e0115f}.testata .t b{display:block;font:700 17px 'Space Grotesk';text-transform:uppercase;letter-spacing:-.01em}
+.mappa{border:3px solid #111;box-shadow:7px 7px 0 #111;background:#111}
+.fumetto{position:relative;margin-top:22px;background:#fff;border:3px solid #111;border-radius:22px;padding:16px;box-shadow:7px 7px 0 #111}
+.fumetto:before{content:'';position:absolute;left:34px;top:-18px;border:9px solid transparent;border-bottom:16px solid #111}
+.chi{display:flex;align-items:center;gap:10px}.chi .a{width:42px;height:42px;border:3px solid #111;background:#00c2ff;display:grid;place-items:center;font:700 16px 'Space Grotesk';transform:rotate(-4deg)}
+.chi b{font:700 15px 'Space Grotesk';text-transform:uppercase}.aff{font:700 10px 'Space Grotesk';background:#111;color:#ffd400;padding:2px 6px;margin-top:3px;display:inline-block}
+.urg{margin-left:auto;font:700 12px 'Space Grotesk';color:#fff;background:#e0115f;padding:6px 10px;transform:rotate(4deg);border:3px solid #111}
+.msg{margin-top:12px;font:700 20px/1.25 'Space Grotesk';letter-spacing:-.01em}
+.vice{margin-top:14px;border-left:6px solid #e0115f;padding:6px 12px;font:600 13px/1.45 Inter;background:#ffeef4}
+.scelte{margin-top:18px;display:grid;gap:12px}
+.s{display:flex;align-items:center;gap:12px;padding:13px 14px;background:#fff;border:3px solid #111;box-shadow:5px 5px 0 #111;font:700 15px 'Space Grotesk';text-transform:uppercase;letter-spacing:-.01em}
+.s small{display:block;font:500 11px Inter;text-transform:none;color:#444;margin-top:2px;letter-spacing:0}
+.s .k{width:34px;height:34px;flex:none;display:grid;place-items:center;background:#111;color:#ffd400;font:700 16px 'Space Grotesk'}
+.s.p{background:#00c2ff}.s.p .k{background:#fff;color:#111}
+</style></head><body>
+<div class="testata"><div class="n">01</div><div class="t"><small>Ondata 1 · chiamata 1/5</small><b>Primo giorno, primo derby</b></div></div>
+<div class="mappa" id="m"></div>
+<div class="fumetto">
+ <div class="chi"><div class="a">IS</div><div><b>Informatore di strada</b><br><span class="aff">AFFIDABILITÀ BASSA</span></div><div class="urg">URGENTE!</div></div>
+ <div class="msg">«È partito! Duecento persone dalle fonderie, cori e bandiere. Nessuno ha avvisato nessuno.»</div>
+ <div class="vice"><b>IL VICE —</b> Il ragazzo delle sciarpe ha ragione più spesso di quanto gli si dia credito. Non dirglielo.</div>
+</div>
+<div class="scelte">
+ <div class="s p"><div class="k">A</div><div>Scortalo fino allo stadio<small>Una squadra impegnata per tutta la giornata</small></div></div>
+ <div class="s"><div class="k">B</div><div>Fermalo a metà strada<small>Rischi di farlo arrivare più arrabbiato</small></div></div>
+ <div class="s"><div class="k">C</div><div>Lascialo passare, osserva<small>Nessun costo, nessuna garanzia</small></div></div>
+</div>
+<script>
+mappa(document.getElementById('m'),{sfondo:'#16161d',griglia:'rgba(255,212,0,.10)',blocchi:'rgba(255,255,255,.06)',strada:'#ffd400',stradaAttiva:'#00c2ff',stadio:['#2b2b36','#1b1b22'],bordoStadio:'#ffd400',anello:'rgba(255,212,0,.25)',prato:'#1f7a4a',righe:'#ffffff',caldo:['#2fe07a','#ffd400','#ff1f6b'],testo:'#fff',ombraTesto:'2px 2px 0 #000',font:'700 10px Space Grotesk',badgeBg:'#ffd400',badgeTesto:'#111',badgeBordo:'2px solid #111',bordoPin:'#111',ombraStadio:'rgba(255,212,0,.15)'});
+</script></body></html>
