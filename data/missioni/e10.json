@@ -1,6 +1,5 @@
 {
   "id": "e10",
-  "bozza": true,
   "stagione": 1,
   "episodio": 10,
   "titolo": "testi:e10.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e10.intro1",
-    "testi:e10.intro2",
-    "testi:e10.intro3"
+    "testi:e10.intro2"
   ],
   "briefing": [
     {
@@ -406,6 +404,100 @@
                 }
               ],
               "risposta": "testi:e10.op.nessun_rispetto.r"
+            }
+          ],
+          "se": {
+            "var": "rapporto_dessi",
+            "uguale": "neutro"
+          }
+        },
+        {
+          "id": "patto_trasferta",
+          "fonte": "dessi",
+          "testo": "testi:e10.ch.patto_trasferta",
+          "commento": "testi:e10.ch.patto_trasferta.vice",
+          "settore": "curva_cinderwick",
+          "se": {
+            "var": "rapporto_dessi",
+            "uguale": "rispetto"
+          },
+          "opzioni": [
+            {
+              "id": "fidati10",
+              "testo": "testi:e10.op.fidati10",
+              "costo": "testi:e10.op.fidati10.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e10.op.fidati10.r"
+            },
+            {
+              "id": "controlla10",
+              "testo": "testi:e10.op.controlla10",
+              "costo": "testi:e10.op.controlla10.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e10.op.controlla10.r"
+            }
+          ]
+        },
+        {
+          "id": "sgarbo_trasferta",
+          "fonte": "dessi",
+          "testo": "testi:e10.ch.sgarbo_trasferta",
+          "commento": "testi:e10.ch.sgarbo_trasferta.vice",
+          "settore": "curva_cinderwick",
+          "se": {
+            "var": "rapporto_dessi",
+            "uguale": "ostile"
+          },
+          "opzioni": [
+            {
+              "id": "chiarisci10",
+              "testo": "testi:e10.op.chiarisci10",
+              "costo": "testi:e10.op.chiarisci10.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e10.op.chiarisci10.r"
+            },
+            {
+              "id": "tieni_punto10",
+              "testo": "testi:e10.op.tieni_punto10",
+              "costo": "testi:e10.op.tieni_punto10.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 3
+                }
+              ],
+              "risposta": "testi:e10.op.tieni_punto10.r"
             }
           ]
         },
