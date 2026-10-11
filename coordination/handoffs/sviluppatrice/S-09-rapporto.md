@@ -31,7 +31,7 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnata la parte di resa**. I disegni
 | `… VALMORA_ROSSI=C14B01 …` | 360 px | ROSSO: «abbozzo senza segno bozza» su città e scheda, da e04 in poi |
 | build con dati rotti (`out/dati-rotti`: tolta la chiave `e20.intro1`) + `node tools/foto.mjs out/foto-rosso out/dist-rotti out/dati-rotti` | 360 px | ROSSO: «e20: chiavi di testo mancanti [[testi:e20.intro1]]» |
 | `node tools/foto-mappe.mjs out/mappe-dopo` e `… out/mappe-prima C14M01` | e11, e17, e30, e35 | foto prima/dopo |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 092d53c (merge della principale 06b868c), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Visti nelle foto (FATTO MISURATO, non sono difetti di questa consegna):
 - nella città (disposizione PO-044) il nome dell'episodio scelto, per esempio «Il mercato del sabato» su e04, copre il punto vicino (e07);
