@@ -51,7 +51,8 @@ if (!CATENE[nome]) {
 const commit = git('rev-parse --short HEAD');
 // I file scritti dalla catena stessa non rendono «sporca» la build.
 const PRODOTTI = ['STABILITA.json', 'docs/governo/governo.html'];
-const sporco = git('status --porcelain').split('\n').filter((r) => r && !PRODOTTI.includes(r.slice(3))).length > 0;
+// Niente trim qui: la prima colonna di --porcelain può essere uno spazio.
+const sporco = execSync('git status --porcelain', { encoding: 'utf8' }).split('\n').filter((r) => r && !PRODOTTI.includes(r.slice(3))).length > 0;
 const giro = { catena: nome, data: new Date().toISOString(), commit, modifiche_non_committate: sporco, passi: [] };
 let rosso = false;
 
