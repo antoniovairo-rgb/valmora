@@ -7,7 +7,7 @@ import { creaCaso } from '../../logica/caso.ts';
 
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number }
-export interface Disposizione { W: number; H: number; stadio: Stadio | null; viali: Pt[][]; centro: Pt }
+export interface Disposizione { W: number; H: number; stadio: Stadio | null; viali: Pt[][]; centro: Pt; stazione: Pt | null }
 export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; corteo: Pt[] | null; fari: Pt[] }
 
 // Il minificatore CSS può scrivere i token come «#fff» o con un nome: il canvas li riporta a «#rrggbb».
@@ -35,11 +35,15 @@ export function disponi(W: number, H: number, settori: { tipo: string; x: number
     stadio = { cx: (a.x + b.x) / 2, cy: (a.y + b.y) / 2 - rx * 0.12, rx, ry: rx * 0.62 };
   }
   const meta = stadio ? { x: stadio.cx, y: stadio.cy + stadio.ry * 0.9 } : centro;
+  // Se c'è una stazione (e02) i viali partono da lì: gli ospiti arrivano in treno; altrimenti dal bordo basso.
+  const st = settori.find((s) => s.tipo === 'stazione');
+  const stazione = st ? { x: st.x, y: st.y } : null;
   const viali = settori.filter((s) => s.tipo === 'strada').map((s) => {
     const fine = { x: meta.x + Math.sign(s.x - meta.x) * (stadio ? stadio.rx * 0.32 : 0), y: meta.y };
-    return [{ x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 }, { x: s.x, y: s.y }, { x: s.x + (fine.x - s.x) * 0.55, y: fine.y + (s.y - fine.y) * 0.35 }, fine];
+    const inizio = stazione ?? { x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 };
+    return [inizio, { x: s.x, y: s.y }, { x: s.x + (fine.x - s.x) * 0.55, y: fine.y + (s.y - fine.y) * 0.35 }, fine];
   });
-  return { W, H, stadio, viali, centro };
+  return { W, H, stadio, viali, centro, stazione };
 }
 
 export const bezier = (p: Pt[], t: number): Pt => {
@@ -59,7 +63,9 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   const chiaro = token('--bianco'); const scuro = token('--nero');
   for (let i = 0; i < W * H / 12; i++) { f.fillStyle = alfa(r() < 0.5 ? chiaro : scuro, r() * 0.05); f.fillRect(r() * W, r() * H, 1, 1); }
 
-  isolati(f, W, H, r, (x, y) => dentro(x, y, 1.42));
+  const st = d.stazione;
+  isolati(f, W, H, r, (x, y) => dentro(x, y, 1.42) || (!!st && Math.abs(y - st.y) < 34 && x < st.x + 70));
+  if (st) stazione(f, W, st);
   const auto = lista('--mappa-auto', 5);
   for (let i = 0; i < 40; i++) { const x = r() * W, y = r() * H; if (dentro(x, y, 1.3)) continue; f.fillStyle = scegli(auto); f.fillRect(x, y, 6, 3); }
 
@@ -149,6 +155,19 @@ function isolati(f: CanvasRenderingContext2D, W: number, H: number, r: () => num
       f.fillStyle = scegli(alberi); f.beginPath(); f.arc(tx, ty, tr, 0, 7); f.fill();
     }
   }
+}
+
+/** Stazione (e02): fascio di binari che esce dal bordo sinistro, pensiline e fabbricato viaggiatori. */
+function stazione(f: CanvasRenderingContext2D, W: number, st: Pt) {
+  const fine = Math.min(W, st.x + 62);
+  f.fillStyle = token('--mappa-viale'); f.fillRect(0, st.y - 16, fine, 32);
+  for (let x = 0; x < fine; x += 5) { f.fillStyle = alfa(token('--mappa-marciapiede'), 0.35); f.fillRect(x, st.y - 15, 1.5, 30); }
+  f.strokeStyle = token('--mappa-marciapiede'); f.lineWidth = 1;
+  for (const dy of [-11, -6, 6, 11]) { f.beginPath(); f.moveTo(0, st.y + dy); f.lineTo(fine, st.y + dy); f.stroke(); }
+  f.fillStyle = token('--mappa-tetto-4'); f.fillRect(st.x - 40, st.y - 2, 80, 4); // pensilina
+  f.fillStyle = alfa(token('--nero'), 0.45); f.fillRect(st.x - 31, st.y + 19, 64, 18);
+  f.fillStyle = token('--mappa-tetto-7'); f.fillRect(st.x - 34, st.y + 16, 64, 18); // fabbricato viaggiatori
+  f.fillStyle = alfa(token('--bianco'), 0.15); f.fillRect(st.x - 34, st.y + 16, 64, 2);
 }
 
 /** Città di Valmora dall'alto per la mappa degli episodi (D-061): isolati, fiume, parco, velo serale. */

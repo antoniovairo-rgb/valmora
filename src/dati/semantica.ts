@@ -3,6 +3,8 @@
 // Fuori da qui, perché servono la simulazione o dati che non esistono ancora (L2):
 // raggiungibilità da e01, tappe garantite in tutti i percorsi, lista delle parole vietate.
 
+import { spento } from '../interruttori.ts';
+
 type Obj = Record<string, any>; // forma già garantita dallo schema
 interface Variabile { id: string; tipo: 'bool' | 'int' | 'enum'; min?: number; max?: number; valori?: string[]; iniziale: unknown }
 
@@ -104,6 +106,8 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
       c.opzioni.forEach((x: Obj, h: number) => {
         testo(`${dove}.opzioni[${h}]`, x.testo);
         if (x.risposta) testo(`${dove}.opzioni[${h}]`, x.risposta);
+        if (x.costo) testo(`${dove}.opzioni[${h}]`, x.costo);
+        else if (!spento('C06D78')) p.push(`${dove}.opzioni[${h}]: manca l'accenno di costo (D-078)`);
         if (x.se) condizione(`${dove}.opzioni[${h}].se`, x.se);
         x.effetti.forEach((e: Obj, q: number) => {
           const w = `${dove}.opzioni[${h}].effetti[${q}]`;

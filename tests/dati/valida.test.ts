@@ -50,6 +50,8 @@ describe('validatore dei dati', () => {
     ['effetto di storia su variabile non dichiarata', (d) => { d[M].ondate[0].chiamate[0].opzioni[0].effetti[1].aggiungi = 'var_x'; }, /«var_x» non dichiarata/],
     ['chiamata con una sola opzione', (d) => { d[M].ondate[0].chiamate[0].opzioni.pop(); }, /opzioni: must NOT have fewer than 2/],
     ['chiamata senza uscita garantita', (d) => { d[M].ondate[0].chiamate[0].opzioni[0].se = { var: 'var_bool', uguale: true }; }, /senza uscita garantita/],
+    ['opzione senza accenno di costo (D-078)', (d) => { delete d[M].ondate[0].chiamate[0].opzioni[1].costo; }, /manca l'accenno di costo/],
+    ['accenno di costo senza testo', (d) => { d[M].ondate[0].chiamate[0].opzioni[0].costo = 'testi:prova.zzz'; }, /prova\.zzz/],
     ['opzioni con id ripetuto', (d) => { d[M].ondate[0].chiamate[0].opzioni[1].id = 'op_a'; }, /opzioni con id ripetuto/],
     ['testo della chiamata mancante', (d) => { delete d['testi/it/prova.json']['prova.ch_a']; }, /«testi:prova\.ch_a» non esiste/],
     ['briefing su settore inesistente', (d) => { d[M].briefing[0].settore = 'settore_z'; }, /briefing\[0\]: settore «settore_z»/],

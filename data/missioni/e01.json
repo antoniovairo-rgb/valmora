@@ -138,6 +138,7 @@
             {
               "id": "scorta",
               "testo": "testi:e01.op.scorta",
+              "costo": "testi:e01.op.scorta.c",
               "effetti": [
                 {
                   "pressione": "strada_cinderwick",
@@ -153,6 +154,7 @@
             {
               "id": "ferma",
               "testo": "testi:e01.op.ferma",
+              "costo": "testi:e01.op.ferma.c",
               "effetti": [
                 {
                   "pressione": "strada_cinderwick",
@@ -172,6 +174,7 @@
             {
               "id": "osserva",
               "testo": "testi:e01.op.osserva",
+              "costo": "testi:e01.op.osserva.c",
               "effetti": [
                 {
                   "pressione": "strada_cinderwick",
@@ -192,6 +195,7 @@
             {
               "id": "asseconda",
               "testo": "testi:e01.op.asseconda",
+              "costo": "testi:e01.op.asseconda.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -207,6 +211,7 @@
             {
               "id": "ignora",
               "testo": "testi:e01.op.ignora",
+              "costo": "testi:e01.op.ignora.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -226,6 +231,7 @@
             {
               "id": "conta",
               "testo": "testi:e01.op.conta",
+              "costo": "testi:e01.op.conta.c",
               "effetti": [
                 {
                   "pressione": "strada_larkspire",
@@ -237,6 +243,7 @@
             {
               "id": "aspetta",
               "testo": "testi:e01.op.aspetta",
+              "costo": "testi:e01.op.aspetta.c",
               "effetti": [
                 {
                   "pressione": "strada_larkspire",
@@ -260,6 +267,7 @@
             {
               "id": "chiedi",
               "testo": "testi:e01.op.chiedi",
+              "costo": "testi:e01.op.chiedi.c",
               "effetti": [
                 {
                   "riserva": "squadre",
@@ -275,6 +283,7 @@
             {
               "id": "rifiuta",
               "testo": "testi:e01.op.rifiuta",
+              "costo": "testi:e01.op.rifiuta.c",
               "effetti": [],
               "risposta": "testi:e01.op.rifiuta.r"
             }
@@ -289,6 +298,7 @@
             {
               "id": "rimuovi",
               "testo": "testi:e01.op.rimuovi",
+              "costo": "testi:e01.op.rimuovi.c",
               "effetti": [
                 {
                   "tensione": "curva_larkspire",
@@ -304,6 +314,7 @@
             {
               "id": "lascia",
               "testo": "testi:e01.op.lascia",
+              "costo": "testi:e01.op.lascia.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -315,6 +326,7 @@
             {
               "id": "ridi",
               "testo": "testi:e01.op.ridi",
+              "costo": "testi:e01.op.ridi.c",
               "effetti": [
                 {
                   "tensione": "curva_larkspire",
@@ -361,6 +373,7 @@
             {
               "id": "spegni",
               "testo": "testi:e01.op.spegni",
+              "costo": "testi:e01.op.spegni.c",
               "effetti": [
                 {
                   "pressione": "curva_cinderwick",
@@ -376,6 +389,7 @@
             {
               "id": "sospendi",
               "testo": "testi:e01.op.sospendi",
+              "costo": "testi:e01.op.sospendi.c",
               "effetti": [
                 {
                   "pressione": "curva_cinderwick",
@@ -391,6 +405,7 @@
             {
               "id": "lascia_fumo",
               "testo": "testi:e01.op.lascia_fumo",
+              "costo": "testi:e01.op.lascia_fumo.c",
               "effetti": [
                 {
                   "pressione": "curva_cinderwick",
@@ -410,6 +425,7 @@
             {
               "id": "presidia",
               "testo": "testi:e01.op.presidia",
+              "costo": "testi:e01.op.presidia.c",
               "effetti": [
                 {
                   "pressione": "piazzale",
@@ -425,6 +441,7 @@
             {
               "id": "finta",
               "testo": "testi:e01.op.finta",
+              "costo": "testi:e01.op.finta.c",
               "effetti": [
                 {
                   "pressione": "curva_larkspire",
@@ -444,6 +461,7 @@
             {
               "id": "vai",
               "testo": "testi:e01.op.vai",
+              "costo": "testi:e01.op.vai.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -463,6 +481,7 @@
             {
               "id": "manda_vice",
               "testo": "testi:e01.op.manda_vice",
+              "costo": "testi:e01.op.manda_vice.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -478,6 +497,7 @@
             {
               "id": "aspetti",
               "testo": "testi:e01.op.aspetti",
+              "costo": "testi:e01.op.aspetti.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -497,6 +517,7 @@
             {
               "id": "mediatore",
               "testo": "testi:e01.op.mediatore",
+              "costo": "testi:e01.op.mediatore.c",
               "effetti": [
                 {
                   "pressione": "curva_cinderwick",
@@ -512,6 +533,7 @@
             {
               "id": "nessuna",
               "testo": "testi:e01.op.nessuna",
+              "costo": "testi:e01.op.nessuna.c",
               "effetti": [
                 {
                   "tensione": "curva_cinderwick",
@@ -523,6 +545,7 @@
             {
               "id": "ascolta",
               "testo": "testi:e01.op.ascolta",
+              "costo": "testi:e01.op.ascolta.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -572,6 +595,7 @@
             {
               "id": "trattieni",
               "testo": "testi:e01.op.trattieni",
+              "costo": "testi:e01.op.trattieni.c",
               "effetti": [
                 {
                   "pressione": "strada_larkspire",
@@ -587,6 +611,7 @@
             {
               "id": "insieme",
               "testo": "testi:e01.op.insieme",
+              "costo": "testi:e01.op.insieme.c",
               "effetti": [
                 {
                   "pressione": "piazzale",
@@ -606,6 +631,7 @@
             {
               "id": "chiudi",
               "testo": "testi:e01.op.chiudi",
+              "costo": "testi:e01.op.chiudi.c",
               "effetti": [
                 {
                   "tensione": "strada_cinderwick",
@@ -621,6 +647,7 @@
             {
               "id": "scorrere",
               "testo": "testi:e01.op.scorrere",
+              "costo": "testi:e01.op.scorrere.c",
               "effetti": [
                 {
                   "tensione": "strada_larkspire",
@@ -640,6 +667,7 @@
             {
               "id": "intervista",
               "testo": "testi:e01.op.intervista",
+              "costo": "testi:e01.op.intervista.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -655,6 +683,7 @@
             {
               "id": "niente",
               "testo": "testi:e01.op.niente",
+              "costo": "testi:e01.op.niente.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -675,6 +704,7 @@
             {
               "id": "paga",
               "testo": "testi:e01.op.paga",
+              "costo": "testi:e01.op.paga.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -694,6 +724,7 @@
             {
               "id": "non_paga",
               "testo": "testi:e01.op.non_paga",
+              "costo": "testi:e01.op.non_paga.c",
               "effetti": [
                 {
                   "imposta": "informatore_pagato",

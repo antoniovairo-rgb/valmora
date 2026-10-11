@@ -92,6 +92,7 @@
             {
               "id": "op_calma",
               "testo": "testi:prova.op_calma",
+              "costo": "testi:prova.op_calma.c",
               "effetti": [
                 {
                   "pressione": "settore_b",
@@ -103,6 +104,7 @@
             {
               "id": "op_spingi",
               "testo": "testi:prova.op_spingi",
+              "costo": "testi:prova.op_spingi.c",
               "effetti": [
                 {
                   "tensione": "settore_b",
@@ -125,6 +127,7 @@
             {
               "id": "op_rinforzo",
               "testo": "testi:prova.op_rinforzo",
+              "costo": "testi:prova.op_rinforzo.c",
               "effetti": [
                 {
                   "riserva": "risorsa_a",
@@ -135,6 +138,7 @@
             {
               "id": "op_niente",
               "testo": "testi:prova.op_niente",
+              "costo": "testi:prova.op_niente.c",
               "effetti": [
                 {
                   "pressione": "settore_c",
@@ -167,6 +171,7 @@
             {
               "id": "op_ascolta",
               "testo": "testi:prova.op_ascolta",
+              "costo": "testi:prova.op_ascolta.c",
               "effetti": [
                 {
                   "pressione": "settore_c",
@@ -177,6 +182,7 @@
             {
               "id": "op_ignora",
               "testo": "testi:prova.op_ignora",
+              "costo": "testi:prova.op_ignora.c",
               "effetti": []
             }
           ]
