@@ -16,6 +16,8 @@ Ambiente: Node 22.22.0, Chromium headless di `/opt/pw-browsers/chromium` via pla
 Le misure di tempo sono **AUSILIARIE** (server headless ≠ telefono). Le foto sono in `out/c14/foto/` (non committate: file pesanti).
 Gli avvisi `GL Driver Message … GPU stall due to ReadPixels` in console vengono dal WebGL software di Chromium headless durante gli screenshot: non sono errori del gioco e non li conto.
 
+Perimetro: a metà collaudo la principale ha passato i giri meccanici (eccedenze, prima opzione, ricarica, salvataggi rotti, doppio tocco, indietro, offline) alla collaudatrice C-014b; quelli che avevo già fatto restano qui (C14-01, C14-05…C14-09, B2-B12).
+
 Già registrati e **non** rifatti come rilievi nuovi (stato in `docs/governo/COLLAUDI.md` e `BACKLOG.md`): C-009.4, C-010.2, C-010.3, C-010.4, C-012.2 (vedi «Aggiornamenti su rilievi già aperti»); funzioni in coda PO-056, PO-060 (resa), PO-061, PO-066, PO-067 (barra della fiducia). Comportamenti decisi dal PO (D-055, D-085, D-093, D-097) non sono difetti.
 
 ---
@@ -88,6 +90,19 @@ Conseguenza: dopo «Nuova partita» la guida («La città e il gioco») e i cred
 
 **FATTO:** Valmorea è un comune della provincia di Como ([Wikipedia](https://en.wikipedia.org/wiki/Valmorea), [Tuttitalia](https://www.tuttitalia.it/lombardia/71-valmorea/)). Differisce di una lettera. Ricerche web sui 7 club dei dati (Cinderwick United, Larkspire Athletic, Calderholt Rovers, Quillhaven Albion, Mossgarth Town, Ollerbrook Town, Saltmere Wanderers): nessun risultato con quei nomi (ricerca del 2026-10-11; un'assenza nei risultati non prova che non esistano). **IPOTESI:** rischio basso di confusione; decide il PO.
 
+### C14-11 · MEDIA · Al primo uso non si sa dove rende ogni unità
+
+**FATTO MISURATO:** la regola delle unità (D-037: squadre 2 in strada e 1 in curva, steward 2 in curva e 1 in strada, il mediatore dimezza un corteo) non è scritta da nessuna parte a schermo: `grep -i "efficac|dimezz|squadre.*strad|steward.*curv"` su `data/testi/it/comune.json` e `src/resa/schermate/*.tsx` = 0 righe; la guida dice solo «schieri squadre, steward e mediatore sui settori» (`comune.json`, `guida.4`); lo schieramento dà solo l'istruzione del gesto (`Schieramento.tsx:58`); l'introduzione di e01 non ne parla.
+**IPOTESI:** il giocatore la scopre solo per tentativi dai colori del rapporto; con D-055 (colori, non numeri) e la fiducia invisibile (PO-067) le prime partite sembrano casuali. Da verificare col collaudo del PO.
+
+### C14-12 · BASSA · Titolo del rapporto con il numero da solo a capo a 360 px
+
+**FATTO MISURATO:** foto `out/c14/foto/360-rapporto.png` (B2): «RAPPORTO DELL'ONDATA» su una riga e «1» da solo sulla riga sotto. A 375 e 412 px non lo vedo nelle foto della stessa sonda.
+
+### C14-13 · BASSA · Ogni passo dell'ondata costa circa un secondo di transizione
+
+**FATTO MISURATO (ausiliario):** vedi «Fluidità»: ~1,09 s dalla risposta alla scena dopo e ~1,09 s dal «Avanti» della risposta alla chiamata dopo. In e01 (13 chiamate con risposta) sono 26 transizioni ≈ 28 s di attesa per episodio. `App.tsx:207` usa `AnimatePresence mode="wait"` (la scena nuova entra solo dopo che la vecchia è uscita) e `Scena.tsx` una molla con uscita e entrata. **IPOTESI:** su un telefono economico il tempo può crescere; il giudizio («scatta» o «è lento») va al collaudo del PO, nessuna soglia nei documenti.
+
 ---
 
 ## Aggiornamenti su rilievi già aperti (non nuovi)
@@ -107,7 +122,12 @@ Conseguenza: dopo «Nuova partita» la guida («La città e il gioco») e i cred
 - **Salvataggio 0.4.0** a metà e02 → ripreso e finito con la 0.5.0 senza errori (B7).
 - **Usabilità a 360/375/412:** home senza scorrimento; nessun bersaglio di tocco sotto 44 px trovato dalla sonda nelle schermate di e01; nessun testo tagliato; carattere minimo 12 px; schieramento, sala, briefing, chiusura e verbale a passi senza scorrimento (B2). Errori in console: 0 (oltre agli avvisi GL headless).
 
-SESSIONE_LUNGA_E_TEMPI
+## Fluidità (misure AUSILIARIE: Chromium headless su server, non un telefono)
+
+- **Sessione lunga** (B9, `c14-resa.mjs lunga`, 360×760, una sola pagina senza ricariche): e01→e36 giocati tutti dall'interfaccia con il piano del bot «attenta», **36/36 superati** (2★ in 34, 1★ in e17 ed e21), 12,0 minuti reali. Heap JS dopo garbage collection, dopo ogni episodio (MB): 6,1 → 9,2 dopo e01, 10,9 dopo e10, 11,6 dopo e21, 11,9 dopo e36: cresce sempre meno (+0,3 MB negli ultimi 10 episodi). Nodi DOM fra 135 e 254, tornano giù a ogni cambio di stagione; ascoltatori JS fermi a 204 da e01 a e36; 1 solo canvas. **Nessun segno di perdita di memoria** su 36 episodi.
+- **Tempi tocco → scena nuova del tutto visibile**, animazioni attive (B11, 3 episodi): opzione → scena dopo **mediana 1090 ms** (n=42, dev.st 14, 1074-1157); continua → 1089 ms (n=42); chiusura → rapporto 1075 ms (n=11); rapporto → ondata dopo 1083 ms (n=11); conferma → chiamata 741 ms (n=11); città → sala 1085 ms (n=3, max 1318). La dispersione minima dice che il tempo è quasi tutto animazione, non calcolo (IPOTESI). Vedi C14-13.
+- **Spostamenti di layout** (CLS) nello stesso giro: 6 eventi, somma 0,047, il più grande 0,022; la soglia «buono» di Web Vitals è 0,1 ([web.dev/articles/cls](https://web.dev/articles/cls)).
+- Errori in console: 0 (B9: solo gli avvisi GL headless).
 
 ## Realismo
 
@@ -130,8 +150,11 @@ SESSIONE_LUNGA_E_TEMPI
 | C14-08 | bassa | fluidità / ricarica | ricarica perde schieramento non confermato e verbale |
 | C14-09 | bassa | offline | cache dei rilasci vecchi mai ripulita |
 | C14-10 | bassa | realismo | «Valmora» ≈ Valmorea (comune reale) |
+| C14-11 | media | usabilità | dove rende ogni unità non è spiegato da nessuna parte |
+| C14-12 | bassa | usabilità | «Rapporto dell'ondata / 1» a capo a 360 px |
+| C14-13 | bassa | fluidità | ~1,1 s di transizione a ogni passo dell'ondata (ausiliario) |
 
-Bloccanti: **0**. Alte: **1**. Medie: **4**. Basse: **5**.
+Bloccanti: **0**. Alte: **1**. Medie: **5**. Basse: **7**.
 
 ## Cosa NON ho potuto verificare
 
