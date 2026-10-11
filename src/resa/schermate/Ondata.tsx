@@ -2,6 +2,8 @@
 // alla scelta, poi la chiusura col rapporto. Ogni scelta si salva subito: una ricarica riporta alla
 // chiamata successiva (la risposta già letta non torna).
 import { ChevronRight, Coffee, FileText, Radio } from 'lucide-react';
+import { useState } from 'react';
+import { spento } from '../../interruttori.ts';
 import { opzioniValide, type InCorso } from '../../logica/missione.ts';
 import type { Chiamata as TChiamata, Missione, Opzione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
@@ -11,6 +13,8 @@ import { Messaggio } from './Scena.tsx';
 
 
 export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: number; totale: number; rispondi: (opzione: string) => void }) {
+  // Al primo tocco le opzioni si bloccano: un secondo tocco non cambia la scelta (C-005 R01).
+  const [scelta, setScelta] = useState<string | null>(null);
   return (
     <>
       <Messaggio key={p.c.id} classe="radio ultimo" dati={`chiamata-${p.c.id}`}>
@@ -20,7 +24,8 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
       </Messaggio>
       <div className="opzioni" role="group" aria-label="Che cosa rispondi?">
         {opzioniValide(p.c, p.ic).map((o, i) => (
-          <button key={o.id} className="opzione" data-opzione={o.id} onClick={() => p.rispondi(o.id)}>
+          <button key={o.id} className={`opzione${scelta === o.id ? ' scelta' : ''}`} data-opzione={o.id} disabled={scelta !== null && !spento('C05R01')}
+            onClick={() => { if (scelta !== null && !spento('C05R01')) return; setScelta(o.id); p.rispondi(o.id); }}>
             <span className="tasto" aria-hidden="true">{LETTERE[i]}</span><span>{t(o.testo)}</span>
           </button>
         ))}

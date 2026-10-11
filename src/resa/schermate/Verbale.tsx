@@ -6,7 +6,8 @@ import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import { Icona, iconaFonte } from '../icone.tsx';
-import { sceltaLeggibile, tono } from '../partita.ts';
+import { spento } from '../../interruttori.ts';
+import { sceltaLeggibile, scelteDecisive, tono } from '../partita.ts';
 import { Stelle } from '../stelle.tsx';
 import { due, Mittente, Testata } from './Fumetto.tsx';
 
@@ -30,9 +31,9 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
           <p className="tenue">{t(b.testo)}</p>
         </div>
       ))}
-      <h2>Le tue scelte</h2>
-      {p.esito.scelte.length === 0 && <p className="tenue">Nessuna chiamata in questa missione.</p>}
-      {p.esito.scelte.map((x, i) => {
+      <h2>Le scelte che hanno pesato</h2>
+      {scelteDecisive(p.m, p.esito.scelte).length === 0 && <p className="tenue">Nessuna scelta ha spostato la tensione o il credito.</p>}
+      {(spento('C05R03') ? p.esito.scelte : scelteDecisive(p.m, p.esito.scelte)).map((x, i) => {
         const { chiamata, opzione } = sceltaLeggibile(p.m, x);
         return (
           <div className="scheda" key={i} data-scelta={`${x.chiamata}:${x.opzione}`}>

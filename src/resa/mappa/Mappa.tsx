@@ -4,6 +4,7 @@
 // La tensione si vede SOLO come colore (D-055): classe liv-0…liv-5, mai il numero.
 import { lazy, Suspense, useMemo, useRef, useState } from 'react';
 import type { Disposizione, Missione } from '../../logica/tipi.ts';
+import { spento } from '../../interruttori.ts';
 import { t } from '../dati.ts';
 import { Icona, iconaRisorsa } from '../icone.tsx';
 import { livello } from '../partita.ts';
@@ -41,7 +42,11 @@ export function Mappa(p: MappaProps) {
     id: s.id, tipo: s.tipo, x: s.pos.x, y: s.pos.y, acceso: accesi.has(s.id), livello: p.tensione ? livello(p.tensione[s.id] ?? 0) : null,
   })), [settori, accesi, p.tensione]);
   // Margine interno = mezzo punto del settore, come nel CSS (.settore), così Pixi e HTML coincidono.
-  const margine = useMemo(() => (typeof document === 'undefined' ? 22 : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--settore')) / 2 || 22), []);
+  // e in basso c'è in più lo spazio per i nomi (--margine-nomi): stessi conti di .settore in stile.css.
+  const margine = useMemo(() => {
+    const v = (k: string, d: number) => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(k)) || d;
+    return { lato: v('--settore', 44) / 2, sotto: v('--margine-nomi', 34) };
+  }, []);
 
   return (
     <div className="mappa" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
@@ -60,9 +65,9 @@ export function Mappa(p: MappaProps) {
             {qui.length > 0 && (
               <span className="settore-unita">
                 {qui.map(([r, n]) => (
-                  <button key={r} type="button" className="pastiglia" data-presenza={`${r}@${s.id}`} disabled={!p.onTogli}
+                  <button key={r} type="button" className={spento('C05R05') ? 'pastiglia-rossa' : 'tocco-pastiglia'} data-presenza={`${r}@${s.id}`} disabled={!p.onTogli}
                     aria-label={`ritira ${t(`risorsa.${r}`)} da ${nome}`} onClick={() => p.onTogli?.(r, s.id)}>
-                    <Icona di={iconaRisorsa(r)} />{n}
+                    <span className="pastiglia"><Icona di={iconaRisorsa(r)} />{n}</span>
                   </button>
                 ))}
               </span>

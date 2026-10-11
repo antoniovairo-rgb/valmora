@@ -8,7 +8,8 @@ import type { InCorso } from '../logica/missione.ts';
 
 // 2 – in_corso diventa lo stato della missione a scene (missione.ts, D-053); i v1 ripartono dalla missione;
 //     nuovo campo «episodi» = registro della mappa degli episodi (episodi.ts, D-059…D-062);
-//     nuovo campo «genere» del protagonista, scelto a inizio partita (D-063).
+//     nuovo campo «genere» del protagonista, scelto a inizio partita (D-063);
+//     nuovo campo «rapporto_aperto» (C-005 R04).
 export const SAVE_VERSION = 2;
 
 export type ValoreVariabile = boolean | number | string;
@@ -29,6 +30,8 @@ export interface Salvataggio {
   episodi: Registro;
   /** genere del protagonista, per i testi «chiave@f» (D-063) */
   genere: Genere;
+  /** ondata il cui rapporto è a schermo, o null: una ricarica torna al rapporto (C-005 R04) */
+  rapporto_aperto: number | null;
   /** missione interrotta, salvata dopo ogni passo (schieramento, chiamata, ondata), o null (D-040) */
   in_corso: InCorso | null;
 }
@@ -46,6 +49,7 @@ export const MIGRAZIONI: Record<number, (s: Grezzo) => Grezzo> = {
   1: (s) => ({
     ...s, in_corso: null,
     genere: 'm', // la 0.1.0 non chiedeva il genere: i suoi testi erano al maschile
+    rapporto_aperto: null,
     episodi: Object.fromEntries((Array.isArray(s.missioni_concluse) ? s.missioni_concluse as string[] : []).map((id) => [id, {
       migliore: { esito: ESITO_V1, fallita: false, stelle: 1 }, tentativi: 1, variabili_prima: s.variabili, variabili_dopo: s.variabili,
     }])),
@@ -87,6 +91,7 @@ export function controllaSalvataggio(s: Grezzo): string[] {
   if (typeof v !== 'object' || v === null || Array.isArray(v)) p.push('variabili non è un oggetto');
   else for (const [k, x] of Object.entries(v)) if (!['boolean', 'number', 'string'].includes(typeof x)) p.push(`variabile ${k}: tipo ${typeof x}`);
   if (!Array.isArray(s.missioni_concluse) || s.missioni_concluse.some((m) => typeof m !== 'string')) p.push('missioni_concluse non è un elenco di id');
+  if (s.rapporto_aperto !== null && !(Number.isInteger(s.rapporto_aperto) && (s.rapporto_aperto as number) >= 1)) p.push('rapporto_aperto non è null né un intero ≥ 1');
   if (s.genere !== 'm' && s.genere !== 'f') p.push(`genere ${String(s.genere)} non è «m» né «f»`);
   if (!oggetto(s.episodi)) p.push('episodi non è un oggetto');
   else for (const [id, x] of Object.entries(s.episodi)) p.push(...controllaVoce(id, x));
