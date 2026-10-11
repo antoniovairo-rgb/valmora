@@ -79,3 +79,7 @@ Nessuna.
 | D-068 | 2026-10-11 | PO (PO-009) | Indice della triade (docs/INDICE_TRIADE.md) | Approvato come base | Ogni episodio torna al PO prima di essere scritto |
 | D-069 | 2026-10-11 | PO | Chi protegge Dessì? | Un costruttore inventato dello stadio nuovo, che usa i disordini per far chiudere lo stadio vecchio | Filo «stadio nuovo» seminato in e03, e06, e12; nessuna istituzione reale |
 | D-070 | 2026-10-11 | PO | Il vice nell'arco | Alleato fino in fondo; la talpa è un altro | La scommessa si chiude in e36 |
+| D-071 | 2026-10-11 | PO | e02 · club ospite | Calderholt Rovers (arriva in treno) | Ricerca web 2026-10-11: nessun risultato con la grafia esatta; somiglia ad Alderholt (villaggio reale) e a Calder (nome di luogo comune) |
+| D-072 | 2026-10-11 | PO | e02 · novità di gioco | Arrivi scaglionati in stazione e biglietti falsi ai tornelli | Settori nuovi: stazione, viale della stazione, tornelli |
+| D-073 | 2026-10-11 | PO | e02 · dilemma principale | Scortare gli ospiti dalla stazione o contenerli finché non arrivano tutti | — |
+| D-074 | 2026-10-11 | tecnica | Come rendere gli arrivi scaglionati | Più ondate brevi (un treno per ondata) invece di eventi a orario dentro l'ondata: nessuna regola nuova nel motore | Lo spostamento delle unità fra stazione e stadio è lo schieramento fra un'ondata e l'altra |

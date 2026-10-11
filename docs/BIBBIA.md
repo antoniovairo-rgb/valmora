@@ -55,3 +55,17 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Misura (node tools/bot.mjs 1000): casuale 16 / 693 / 291 (contenuto / a fatica / degenerato), tensione massima mediana 6; attento solo sulla tensione 0 / 1000 / 0 (spende troppo credito); peggiore 0 / 0 / 1000; schieramento attento con scelte a caso 126 / 174 / 0 su 300. 0 blocchi.
 - Ribilanciamento dopo il collaudo C-01 (C-002): il credito costa tensione, niente opzioni dominate, «incrocio» pesa, nel deflusso si riforma il corteo di Cinderwick. Misura nuova (node tools/bot.mjs 1000): casuale 2 / 401 / 597, stelle 0★ 597 · 1★ 393 · 2★ 10 · 3★ 0; attento 0 / 1000 / 0 (2★); equilibrato 1000 / 0 / 0 (3★); peggiore 0 / 0 / 1000. Su tutte le 62.208 combinazioni di risposte con schieramento attento: 0★ 7.432 · 1★ 39.656 · 2★ 12.886 · 3★ 2.234.
 - Testi: bozza della sessione principale, da far giudicare al PO dopo la prova della resa v2.
+
+## e02 «Ospiti numerosi» (D-071…D-074)
+- Larkspire Athletic in casa contro i Calderholt Rovers, che arrivano in treno da fuori città. Due treni, uno in ritardo; gira una voce di biglietti falsi.
+- Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Larkspire. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 16 chiamate.
+- Dilemma (D-073): scortare gli ospiti o contenerli in stazione. Novità (D-072): stazione e biglietti falsi ai tornelli.
+- Fili: se in e01 hai pagato l'informatore, ti segnala i venditori di biglietti e un furgone grigio senza targa (variabile nuova `furgone_visto`, prima comparsa del furgone, indice e09).
+- Testi: bozza della sessione principale, da far giudicare al PO.
+- Misura (node tools/bot.mjs 1000):
+e02 · casuale: blocchi 0/1000 · esiti {"degenerato":597,"contenuto_a_fatica":385,"contenuto":18} · stelle {"0":597,"1":370,"2":29,"3":4}
+e02 · attenta: blocchi 0/1000 · esiti {"contenuto_a_fatica":1000} · stelle {"0":0,"1":0,"2":1000,"3":0}
+e02 · equilibrata: blocchi 0/1000 · esiti {"contenuto":1000} · stelle {"0":0,"1":0,"2":0,"3":1000}
+e02 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000,"1":0,"2":0,"3":0}
+e02 · scelte a caso con schieramento attento: {"contenuto":82,"contenuto_a_fatica":181,"degenerato":37}
+

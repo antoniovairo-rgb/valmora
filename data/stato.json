@@ -27,6 +27,12 @@
       "tipo": "bool",
       "iniziale": false,
       "descrizione": "Il protagonista ha incontrato il presidente del Larkspire Athletic in e01"
+    },
+    {
+      "id": "furgone_visto",
+      "tipo": "bool",
+      "iniziale": false,
+      "descrizione": "Il protagonista ha annotato il furgone grigio dei biglietti falsi (filo, e02)"
     }
   ]
 }

@@ -1,0 +1,925 @@
+{
+  "id": "e02",
+  "stagione": 1,
+  "episodio": 2,
+  "titolo": "testi:e02.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 22,
+    "y": 30
+  },
+  "introduzione": [
+    "testi:e02.intro1",
+    "testi:e02.intro2",
+    "testi:e02.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e02.info_ferrovie",
+      "fonte": "ferrovie",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "stazione"
+    },
+    {
+      "testo": "testi:e02.info_club",
+      "fonte": "club_ospite",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e02.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "tornelli"
+    },
+    {
+      "testo": "testi:e02.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "viale_stazione"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "stazione",
+        "tipo": "stazione",
+        "pos": {
+          "x": 14,
+          "y": 18
+        }
+      },
+      {
+        "id": "viale_stazione",
+        "tipo": "strada",
+        "pos": {
+          "x": 30,
+          "y": 55
+        }
+      },
+      {
+        "id": "tornelli",
+        "tipo": "tornelli",
+        "pos": {
+          "x": 55,
+          "y": 80
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "pos": {
+          "x": 28,
+          "y": 40
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "pos": {
+          "x": 80,
+          "y": 40
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "stazione": 2,
+          "curva": 1,
+          "tornelli": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "tornelli": 2,
+          "strada": 1,
+          "stazione": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e02.ondata1",
+      "eventi": [
+        {
+          "id": "treno1",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "bandiere",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "ritardo",
+          "fonte": "ferrovie",
+          "testo": "testi:e02.ch.ritardo",
+          "commento": "testi:e02.ch.ritardo.vice",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "scorta_subito",
+              "testo": "testi:e02.op.scorta_subito",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e02.op.scorta_subito.r"
+            },
+            {
+              "id": "trattieni",
+              "testo": "testi:e02.op.trattieni",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 2
+                },
+                {
+                  "tensione": "stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.trattieni.r"
+            },
+            {
+              "id": "lasciali",
+              "testo": "testi:e02.op.lasciali",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e02.op.lasciali.r"
+            }
+          ]
+        },
+        {
+          "id": "responsabile",
+          "fonte": "club_ospite",
+          "testo": "testi:e02.ch.responsabile",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "fidati",
+              "testo": "testi:e02.op.fidati",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e02.op.fidati.r"
+            },
+            {
+              "id": "non_fidarti",
+              "testo": "testi:e02.op.non_fidarti",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e02.op.non_fidarti.r"
+            }
+          ]
+        },
+        {
+          "id": "selfie",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e02.ch.selfie",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "devia",
+              "testo": "testi:e02.op.devia",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e02.op.devia.r"
+            },
+            {
+              "id": "ignora_rete",
+              "testo": "testi:e02.op.ignora_rete",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e02.op.ignora_rete.r"
+            }
+          ]
+        },
+        {
+          "id": "biglietti_voce",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e02.ch.biglietti_voce",
+          "commento": "testi:e02.ch.biglietti_voce.vice",
+          "settore": "tornelli",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "sequestra",
+              "testo": "testi:e02.op.sequestra",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e02.op.sequestra.r"
+            },
+            {
+              "id": "lascia_vendere",
+              "testo": "testi:e02.op.lascia_vendere",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.lascia_vendere.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e02.ondata2",
+      "eventi": [
+        {
+          "id": "treno2",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 3
+        },
+        {
+          "id": "corteo_ospiti",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 4
+        },
+        {
+          "id": "falsi",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "secondo_treno",
+          "fonte": "ferrovie",
+          "testo": "testi:e02.ch.secondo_treno",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "accoglienza",
+              "testo": "testi:e02.op.accoglienza",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e02.op.accoglienza.r"
+            },
+            {
+              "id": "binario_lontano",
+              "testo": "testi:e02.op.binario_lontano",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": -1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.binario_lontano.r"
+            },
+            {
+              "id": "normale",
+              "testo": "testi:e02.op.normale",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.normale.r"
+            }
+          ]
+        },
+        {
+          "id": "tornelli_falsi",
+          "fonte": "centrale_radio",
+          "testo": "testi:e02.ch.tornelli_falsi",
+          "commento": "testi:e02.ch.tornelli_falsi.vice",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "respingi",
+              "testo": "testi:e02.op.respingi",
+              "effetti": [
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.respingi.r"
+            },
+            {
+              "id": "settore_separato",
+              "testo": "testi:e02.op.settore_separato",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e02.op.settore_separato.r"
+            },
+            {
+              "id": "chiudi_occhio",
+              "testo": "testi:e02.op.chiudi_occhio",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e02.op.chiudi_occhio.r"
+            }
+          ]
+        },
+        {
+          "id": "corteo_viale",
+          "fonte": "club_ospite",
+          "testo": "testi:e02.ch.corteo_viale",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "corteo_scortato",
+              "testo": "testi:e02.op.corteo_scortato",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e02.op.corteo_scortato.r"
+            },
+            {
+              "id": "corteo_no",
+              "testo": "testi:e02.op.corteo_no",
+              "effetti": [
+                {
+                  "tensione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e02.op.corteo_no.r"
+            },
+            {
+              "id": "mediatore_corteo",
+              "testo": "testi:e02.op.mediatore_corteo",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.mediatore_corteo.r"
+            }
+          ]
+        },
+        {
+          "id": "sindaca_quartiere",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e02.ch.sindaca_quartiere",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "presidio_quartiere",
+              "testo": "testi:e02.op.presidio_quartiere",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.presidio_quartiere.r"
+            },
+            {
+              "id": "comunicato",
+              "testo": "testi:e02.op.comunicato",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.comunicato.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e02.ondata3",
+      "eventi": [
+        {
+          "id": "cori_ospiti",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 5
+        },
+        {
+          "id": "cori_casa",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 3
+        },
+        {
+          "id": "ritardatari",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "striscione_ospiti",
+          "fonte": "centrale_radio",
+          "testo": "testi:e02.ch.striscione_ospiti",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "chiedi",
+              "testo": "testi:e02.op.chiedi",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.chiedi.r"
+            },
+            {
+              "id": "rimuovi_str",
+              "testo": "testi:e02.op.rimuovi_str",
+              "effetti": [
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e02.op.rimuovi_str.r"
+            },
+            {
+              "id": "ignora_str",
+              "testo": "testi:e02.op.ignora_str",
+              "effetti": [],
+              "risposta": "testi:e02.op.ignora_str.r"
+            }
+          ]
+        },
+        {
+          "id": "fumogeni_ospiti",
+          "fonte": "centrale_radio",
+          "testo": "testi:e02.ch.fumogeni_ospiti",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_fumo",
+              "testo": "testi:e02.op.steward_fumo",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.steward_fumo.r"
+            },
+            {
+              "id": "sospendi2",
+              "testo": "testi:e02.op.sospendi2",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e02.op.sospendi2.r"
+            },
+            {
+              "id": "lascia_fumo2",
+              "testo": "testi:e02.op.lascia_fumo2",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e02.op.lascia_fumo2.r"
+            }
+          ]
+        },
+        {
+          "id": "caldo_casa",
+          "fonte": "vice",
+          "testo": "testi:e02.ch.caldo_casa",
+          "commento": "testi:e02.ch.caldo_casa.vice",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "mediatore_casa",
+              "testo": "testi:e02.op.mediatore_casa",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e02.op.mediatore_casa.r"
+            },
+            {
+              "id": "niente",
+              "testo": "testi:e02.op.niente",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.niente.r"
+            }
+          ]
+        },
+        {
+          "id": "biglietti_rete",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e02.ch.biglietti_rete",
+          "settore": "tornelli",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "annota",
+              "testo": "testi:e02.op.annota",
+              "effetti": [
+                {
+                  "imposta": "furgone_visto",
+                  "valore": true
+                }
+              ],
+              "risposta": "testi:e02.op.annota.r"
+            },
+            {
+              "id": "lascia_perdere",
+              "testo": "testi:e02.op.lascia_perdere",
+              "effetti": [],
+              "risposta": "testi:e02.op.lascia_perdere.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e02.ondata4",
+      "eventi": [
+        {
+          "id": "ritorno",
+          "tipo": "corteo",
+          "settore": "viale_stazione",
+          "pressione": 5
+        },
+        {
+          "id": "treni_ritorno",
+          "tipo": "arrivo",
+          "settore": "stazione",
+          "pressione": 4
+        },
+        {
+          "id": "uscita",
+          "tipo": "folla",
+          "settore": "tornelli",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "risultato",
+          "fonte": "vice",
+          "testo": "testi:e02.ch.risultato",
+          "commento": "testi:e02.ch.risultato.vice",
+          "opzioni": [
+            {
+              "id": "trattieni_ospiti",
+              "testo": "testi:e02.op.trattieni_ospiti",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e02.op.trattieni_ospiti.r"
+            },
+            {
+              "id": "prima_ospiti",
+              "testo": "testi:e02.op.prima_ospiti",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.prima_ospiti.r"
+            }
+          ]
+        },
+        {
+          "id": "ultimo_treno",
+          "fonte": "ferrovie",
+          "testo": "testi:e02.ch.ultimo_treno",
+          "settore": "stazione",
+          "opzioni": [
+            {
+              "id": "trattieni_treno",
+              "testo": "testi:e02.op.trattieni_treno",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e02.op.trattieni_treno.r"
+            },
+            {
+              "id": "parte",
+              "testo": "testi:e02.op.parte",
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 3
+                }
+              ],
+              "risposta": "testi:e02.op.parte.r"
+            }
+          ]
+        },
+        {
+          "id": "responsabile_saluta",
+          "fonte": "club_ospite",
+          "testo": "testi:e02.ch.responsabile_saluta",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "saluta",
+              "testo": "testi:e02.op.saluta",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.saluta.r"
+            },
+            {
+              "id": "rifiuta_saluto",
+              "testo": "testi:e02.op.rifiuta_saluto",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e02.op.rifiuta_saluto.r"
+            }
+          ]
+        },
+        {
+          "id": "vetrine",
+          "fonte": "centrale_radio",
+          "testo": "testi:e02.ch.vetrine",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "indaga",
+              "testo": "testi:e02.op.indaga",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e02.op.indaga.r"
+            },
+            {
+              "id": "chiudi_viale",
+              "testo": "testi:e02.op.chiudi_viale",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "tensione": "stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e02.op.chiudi_viale.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e02.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e02.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e02.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
