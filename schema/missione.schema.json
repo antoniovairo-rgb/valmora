@@ -258,6 +258,9 @@
                       "testo": {
                         "$ref": "comune.schema.json#/$defs/testo"
                       },
+                      "costo": {
+                        "$ref": "comune.schema.json#/$defs/testo"
+                      },
                       "se": {
                         "$ref": "comune.schema.json#/$defs/condizione"
                       },

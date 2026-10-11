@@ -52,6 +52,8 @@ export const PASSI_LOGICA = {
     if (!controllaConfini({ 'src/logica/a.ts': 'const x = Math.random();' }).length) ciechi.push('confini/Math.random è cieco');
     if (!controllaConfini({ 'src/logica/a.ts': "import { x } from '../resa/b.ts';" }).length) ciechi.push('confini/import resa è cieco');
     if (!validaDati(leggiSchemi(), { 'stato.json': { variabili: [] }, 'missioni/m.json': {} }).length) ciechi.push('schema è cieco');
+    const mc = structuredClone(leggiDati()['missioni/e01.json']); delete mc.ondate[0].chiamate[0].opzioni[0].costo;
+    if (!validaDati(leggiSchemi(), { ...leggiDati(), 'missioni/e01.json': mc }).some((x) => x.includes('D-078'))) ciechi.push('schema/accenno di costo è cieco');
     if (!controllaSalvataggiReali(2, {}, migra).length) ciechi.push('salvataggi-reali/copertura è cieco');
     if (!controllaSalvataggiReali(1, { 'v1-rotto.json': { save_version: 1 } }, migra).length) ciechi.push('salvataggi-reali/migrazione è cieco');
     const d = leggiDati(); const m = structuredClone(d['missioni/e01.json']);
