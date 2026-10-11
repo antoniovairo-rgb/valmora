@@ -1,12 +1,38 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "club.schema.json",
-  "title": "minimo finché la bibbia non dice quali campi servono (D-012)",
+  "title": "club: nome e colori (D-012, D-086)",
   "type": "object",
-  "required": ["id", "nome"],
+  "required": [
+    "id",
+    "nome"
+  ],
   "additionalProperties": false,
   "properties": {
-    "id": { "$ref": "comune.schema.json#/$defs/id" },
-    "nome": { "$ref": "comune.schema.json#/$defs/testo" }
+    "id": {
+      "$ref": "comune.schema.json#/$defs/id"
+    },
+    "nome": {
+      "$ref": "comune.schema.json#/$defs/testo"
+    },
+    "colori": {
+      "type": "object",
+      "required": [
+        "primario",
+        "secondario"
+      ],
+      "additionalProperties": false,
+      "description": "colori del club (D-086, PO-038): curve, sciarpe e tifosi sulla mappa. Dato, non token: i token restano per l'interfaccia",
+      "properties": {
+        "primario": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "secondario": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      }
+    }
   }
 }

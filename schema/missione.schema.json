@@ -97,6 +97,10 @@
               "tipo": {
                 "$ref": "comune.schema.json#/$defs/id"
               },
+              "club": {
+                "$ref": "comune.schema.json#/$defs/id",
+                "description": "club della curva (D-086): ne prende i colori sulla mappa"
+              },
               "pos": {
                 "type": "object",
                 "required": [

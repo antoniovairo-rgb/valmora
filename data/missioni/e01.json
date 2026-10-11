@@ -39,6 +39,7 @@
       {
         "id": "curva_cinderwick",
         "tipo": "curva",
+        "club": "cinderwick_united",
         "pos": {
           "x": 15,
           "y": 50
@@ -47,6 +48,7 @@
       {
         "id": "curva_larkspire",
         "tipo": "curva",
+        "club": "larkspire_athletic",
         "pos": {
           "x": 85,
           "y": 50
