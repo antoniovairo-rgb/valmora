@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { applica, valuta, variabiliIniziali } from '../src/logica/condizioni.ts';
 import {
-  chiamateAperte, chiudiOndata, concludiMissione, controllaDisposizione, disponibili, giocaMissione, iniziaMissione, rispondi, schiera,
+  chiamateAperte, chiudiOndata, concludiMissione, controllaDisposizione, disponibili, giocaMissione, iniziaMissione, rispondi, schiera, type InCorso,
 } from '../src/logica/missione.ts';
 import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
 
@@ -67,6 +67,12 @@ describe('missione a scene', () => {
     let s = schiera(m, iniziaMissione(m, v0, dich), { squadre: { strada: 2 } });
     s = rispondi(m, s, 'k1', 'rinforzi', dich);
     expect(() => schiera(m, s, { squadre: { strada: 3 } })).toThrow(/prima delle chiamate/);
+  });
+  it('anche il solo mediatore presidia il settore (C02-N05)', () => {
+    const m = missione();
+    let s: InCorso = { ...iniziaMissione(m, v0, dich), tensione: { strada: 0, curva: 6 } };
+    s = chiudiOndata(m, rispondi(m, schiera(m, s, { squadre: { strada: 2 }, mediatore: { curva: 1 } }), 'k1', 'rinforzi', dich), dich);
+    expect(s.tensione.curva).toBe(3);
   });
   it('la riserva non scende sotto zero unità (C01-A04)', () => {
     const m = missione();

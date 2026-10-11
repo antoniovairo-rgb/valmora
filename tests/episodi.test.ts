@@ -15,6 +15,13 @@ describe('stelle', () => {
   });
 });
 
+describe('le stelle seguono l\'esito (D-064)', () => {
+  const lim = (id: string, v: Record<string, number>, min?: number, max?: number) =>
+    valutaEpisodio(m, { esito: { id, fallita: false, se: {}, effetti: [], verbale: '', stelle_min: min, stelle_max: max }, variabili: v, rapporti: [], scelte: [] } as EsitoMissione).stelle;
+  it('«a fatica» al massimo 2 anche con tensione bassa e credito salvato', () => expect(lim('fatica', { t: 2, c: 9 }, undefined, 2)).toBe(2));
+  it('«contenuto» almeno 2 anche con tensione alta', () => expect(lim('contenuto', { t: 9, c: 0 }, 2)).toBe(2));
+});
+
 describe('registro della mappa degli episodi', () => {
   const prima = { c: 5 };
   it('un fallimento conta come tentativo ma non supera l\'episodio', () => {

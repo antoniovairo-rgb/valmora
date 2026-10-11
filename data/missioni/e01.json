@@ -683,6 +683,10 @@
                 {
                   "imposta": "informatore_pagato",
                   "valore": true
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
                 }
               ],
               "risposta": "testi:e01.op.paga.r"
@@ -719,7 +723,8 @@
         ]
       },
       "effetti": [],
-      "verbale": "testi:e01.verbale_contenuto"
+      "verbale": "testi:e01.verbale_contenuto",
+      "stelle_min": 2
     },
     {
       "id": "contenuto_a_fatica",
@@ -728,7 +733,8 @@
         "al_massimo": 6
       },
       "effetti": [],
-      "verbale": "testi:e01.verbale_a_fatica"
+      "verbale": "testi:e01.verbale_a_fatica",
+      "stelle_max": 2
     },
     {
       "id": "degenerato",

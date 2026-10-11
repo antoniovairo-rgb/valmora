@@ -1,0 +1,27 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="fonts.css"><script src="comune.js"></script><script src="mappa-realistica.js"></script>
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:Inter,sans-serif;color:#111;min-height:100vh;padding:14px 14px 28px;background:#ffd400;background-image:radial-gradient(rgba(0,0,0,.12) 1.2px,transparent 1.3px);background-size:9px 9px}
+.testata{display:flex;gap:8px;margin-bottom:12px}.testata .n{background:#111;color:#ffd400;font:700 34px/1 'Space Grotesk';padding:8px 12px;transform:skew(-8deg)}
+.testata .t{background:#fff;border:3px solid #111;padding:6px 10px;flex:1;box-shadow:5px 5px 0 #111}.testata small{font:700 10px 'Space Grotesk';letter-spacing:.14em;text-transform:uppercase;color:#e0115f}.testata b{display:block;font:700 17px 'Space Grotesk';text-transform:uppercase}
+.mappa{position:relative;border:3px solid #111;box-shadow:7px 7px 0 #111;background:#111;overflow:hidden}
+.lab{position:absolute;transform:translate(-50%,16px);font:700 10px 'Space Grotesk';text-transform:uppercase;background:#111;color:#ffd400;padding:2px 5px;white-space:nowrap}
+.unit{position:absolute;transform:translate(-50%,-150%);display:flex;gap:3px}.unit b{font:700 10px Inter;background:#ffd400;border:2px solid #111;padding:1px 5px}
+.fumetto{position:relative;margin-top:22px;background:#fff;border:3px solid #111;border-radius:22px;padding:16px;box-shadow:7px 7px 0 #111}
+.fumetto:before{content:'';position:absolute;left:34px;top:-18px;border:9px solid transparent;border-bottom:16px solid #111}
+.chi{display:flex;align-items:center;gap:10px}.a{width:42px;height:42px;border:3px solid #111;background:#00c2ff;display:grid;place-items:center;font:700 16px 'Space Grotesk';transform:rotate(-4deg)}
+.chi b{font:700 15px 'Space Grotesk';text-transform:uppercase}.aff{font:700 10px 'Space Grotesk';background:#111;color:#ffd400;padding:2px 6px;display:inline-block;margin-top:3px}
+.urg{margin-left:auto;font:700 12px 'Space Grotesk';color:#fff;background:#e0115f;padding:6px 10px;transform:rotate(4deg);border:3px solid #111}
+.msg{margin-top:12px;font:700 20px/1.25 'Space Grotesk'}
+</style></head><body>
+<div class="testata"><div class="n">01</div><div class="t"><small>Ondata 1 · chiamata 1/5</small><b>Primo giorno, primo derby</b></div></div>
+<div class="mappa" id="mp"><canvas id="cv"></canvas></div>
+<div class="fumetto"><div class="chi"><div class="a">IS</div><div><b>Informatore di strada</b><br><span class="aff">AFFIDABILITÀ BASSA</span></div><div class="urg">URGENTE!</div></div>
+<div class="msg">«È partito! Duecento persone dalle fonderie, cori e bandiere. Nessuno ha avvisato nessuno.»</div></div>
+<script>
+const set=[{id:'cc',nome:'Curva Cinderwick',x:20,y:39,t:.55},{id:'cl',nome:'Curva Larkspire',x:80,y:39,t:.2},{id:'pz',nome:'Piazzale',x:50,y:72,t:.35},{id:'sc',nome:'Viale Cinderwick',x:14,y:86,t:.85,attiva:true},{id:'sl',nome:'Viale Larkspire',x:86,y:86,t:.1}];
+mappaReale(document.getElementById('cv'),{settori:set});
+const u={cc:['🦺4','🤝1'],pz:['🦺2'],sc:['👥3'],sl:['👥1']};
+for(const s of set){const x=Math.min(92,Math.max(8,s.x));document.getElementById('mp').insertAdjacentHTML('beforeend',`<div class="lab" style="left:${x}%;top:${s.y}%">${s.nome}</div>`+(u[s.id]?`<div class="unit" style="left:${x}%;top:${s.y}%">${u[s.id].map(k=>`<b>${k}</b>`).join('')}</div>`:''))}
+</script></body></html>

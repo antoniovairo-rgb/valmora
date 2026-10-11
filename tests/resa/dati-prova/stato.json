@@ -1,0 +1,6 @@
+{
+  "variabili": [
+    { "id": "tensione_max", "tipo": "int", "min": 0, "max": 99, "iniziale": 0, "descrizione": "prova" },
+    { "id": "var_prova", "tipo": "bool", "iniziale": false, "descrizione": "prova" }
+  ]
+}

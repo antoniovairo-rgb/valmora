@@ -26,7 +26,7 @@ export interface Dichiarazione {
 
 export interface Risorsa { quantita: number; efficacia: Record<string, number>; dimezza?: string[] }
 export interface Evento { id: string; tipo: string; settore: string; pressione: number; se?: Condizione }
-export interface Esito { id: string; se: Condizione; effetti: Effetto[]; verbale: string; fallita?: boolean }
+export interface Esito { id: string; se: Condizione; effetti: Effetto[]; verbale: string; fallita?: boolean; stelle_min?: number; stelle_max?: number }
 export interface Informazione { testo: string; fonte: string; affidabilita: 'bassa' | 'media' | 'alta'; vera: boolean; settore?: string }
 export interface Opzione { id: string; testo: string; risposta?: string; se?: Condizione; effetti: EffettoMissione[] }
 export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; se?: Condizione; opzioni: Opzione[] }

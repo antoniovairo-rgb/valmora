@@ -1,8 +1,9 @@
 // Dati di gioco per la resa: i JSON di data/ (già validati dalla catena «logica») e i testi.
 import type { Dichiarazione, Missione } from '../logica/tipi.ts';
 
-const file = import.meta.glob('../../data/**/*.json', { eager: true, import: 'default' }) as Record<string, unknown>;
-const perPercorso = (prefisso: string) => Object.entries(file).filter(([k]) => k.includes(`/data/${prefisso}`)).map(([, v]) => v);
+// «@dati» = data/ (alias in vite.config.ts). Le chiavi arrivano come «/data/missioni/e01.json».
+const file = import.meta.glob('@dati/**/*.json', { eager: true, import: 'default' }) as Record<string, unknown>;
+const perPercorso = (prefisso: string) => Object.entries(file).filter(([k]) => k.includes(`/${prefisso}`)).map(([, v]) => v);
 
 const testi: Record<string, string> = Object.assign({}, ...perPercorso('testi/it/') as Record<string, string>[]);
 
