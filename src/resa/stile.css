@@ -39,8 +39,12 @@ p { margin: var(--spazio-2) 0; }
 /* Opzioni A/B/C */
 .opzioni { display: grid; gap: var(--spazio-3); margin: var(--spazio-4) 0; }
 .opzione { display: flex; align-items: center; gap: var(--spazio-3); width: 100%; min-height: var(--tocco-min); padding: var(--spazio-3); background: var(--bianco); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); color: var(--nero); font: 700 var(--testo-base) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; text-align: left; cursor: pointer; transition: transform 80ms, box-shadow 80ms, background 80ms; }
-.opzione:hover, .opzione.scelta { background: var(--ciano); }
+.opzione.scelta { background: var(--ciano); }
+/* Solo con un puntatore vero: sui telefoni :hover resta acceso dopo il tocco e sembra una scelta già fatta */
+@media (hover: hover) { .opzione:not(:disabled):hover { background: var(--ciano); } }
 .opzione:disabled { cursor: default; }
+.opzione-testo { display: block; min-width: 0; }
+.costo { display: block; margin-top: var(--spazio-1); font: 500 var(--testo-piccolo) / var(--linea-stretta) var(--font); text-transform: none; letter-spacing: 0; color: var(--colore-testo-tenue); }
 .tasto { display: grid; place-items: center; flex: none; width: var(--tasto-lettera); height: var(--tasto-lettera); background: var(--nero); color: var(--giallo); font: 700 var(--testo-base) var(--font-titoli); }
 
 /* Fumetti: messaggi radio, battute del vice, schede */
@@ -57,7 +61,7 @@ p { margin: var(--spazio-2) 0; }
 .chi-nome { font: 700 var(--testo-base) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; }
 .avatar { display: grid; place-items: center; flex: none; width: var(--avatar); height: var(--avatar); border: var(--bordo) solid var(--nero); background: var(--ciano); transform: rotate(var(--rotazione-avatar)); }
 .avatar.vice { background: var(--magenta); color: var(--bianco); }
-.etichetta { display: inline-block; margin-top: var(--spazio-1); padding: 0 var(--spazio-2); background: var(--nero); color: var(--giallo); font: 700 var(--testo-mini) / 1.8 var(--font-titoli); letter-spacing: var(--spaziatura-etichetta); text-transform: uppercase; }
+.etichetta { display: inline-block; margin-top: var(--spazio-1); padding: 0 var(--spazio-2); background: var(--nero); color: var(--giallo); font: 700 var(--testo-mini) / 1.5 var(--font-titoli); letter-spacing: var(--spaziatura-etichetta); text-transform: uppercase; }
 .timbro { margin-left: auto; padding: var(--spazio-1) var(--spazio-2); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); font: 700 var(--testo-piccolo) var(--font-titoli); text-transform: uppercase; transform: rotate(var(--rotazione-timbro)); white-space: nowrap; }
 .timbro.vero { background: var(--tensione-0); color: var(--nero); }
 .timbro.ciano { background: var(--ciano); color: var(--nero); }
