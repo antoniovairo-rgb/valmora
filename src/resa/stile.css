@@ -8,6 +8,7 @@ p { margin: var(--spazio-2) 0; }
 .scheda { background: var(--colore-superficie); border: var(--bordo) solid var(--colore-bordo); border-radius: var(--raggio-2); padding: var(--spazio-3); margin: var(--spazio-3) 0; }
 .riga { display: flex; align-items: center; justify-content: space-between; gap: var(--spazio-2); flex-wrap: wrap; }
 .pulsante { display: block; width: 100%; min-height: var(--tocco-min); margin: var(--spazio-3) 0; border: 0; border-radius: var(--raggio-2); background: var(--colore-accento); color: var(--colore-accento-testo); font: inherit; font-weight: 700; cursor: pointer; }
+a.pulsante { display: flex; align-items: center; justify-content: center; text-decoration: none; }
 .pulsante.secondario { background: var(--colore-superficie-2); color: var(--colore-testo); }
 .passo { display: inline-flex; align-items: center; gap: var(--spazio-2); }
 .passo button { min-width: var(--tocco-min); min-height: var(--tocco-min); border: var(--bordo) solid var(--colore-bordo); border-radius: var(--raggio-1); background: var(--colore-superficie-2); color: var(--colore-testo); font: inherit; font-weight: 700; }

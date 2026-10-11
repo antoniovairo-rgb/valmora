@@ -10,6 +10,7 @@ import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { iniziaMissione, giocaOndata } from '../src/logica/plancia.ts';
 import { attenta } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
+import { URL_APK } from '../src/resa/collegamenti.ts';
 
 export const LARGHEZZE = [360, 375, 412];
 const TIPI = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml' };
@@ -60,6 +61,8 @@ export async function giraFoto(cartella = 'out/foto') {
       await pagina.goto(url);
       await pagina.evaluate(() => localStorage.clear());
       await pagina.reload();
+      const apk = await pagina.getAttribute('[data-azione="apk"]', 'href').catch(() => null);
+      g.attesi.push({ cosa: `nella home manca il link all'APK (trovato «${apk}»)`, ok: apk === URL_APK });
       await foto();
       await premi('Nuova partita'); await foto();
       await premi('Alla plancia');
