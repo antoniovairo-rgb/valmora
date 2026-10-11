@@ -9,9 +9,11 @@
     "dev": "vite",
     "build": "vite build",
     "test": "vitest run",
-    "tipi": "tsc --noEmit -p ."
+    "tipi": "tsc --noEmit -p .",
+    "android": "vite build && cap sync android"
   },
   "devDependencies": {
+    "@capacitor/cli": "8.5.3",
     "@types/node": "24.19.2",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
@@ -22,6 +24,8 @@
     "vitest": "5.0.3"
   },
   "dependencies": {
+    "@capacitor/android": "8.5.3",
+    "@capacitor/core": "8.5.3",
     "ajv": "8.20.0",
     "react": "19.3.0",
     "react-dom": "19.3.0"
