@@ -23,11 +23,11 @@
       "settore": "anello_cinderwick"
     },
     {
-      "testo": "testi:e21.info_radio",
-      "fonte": "centrale_radio",
-      "affidabilita": "alta",
+      "testo": "testi:e21.info_centro",
+      "fonte": "centro_sociale",
+      "affidabilita": "media",
       "vera": true,
-      "settore": "strada_cinderwick"
+      "settore": "ex_fonderia"
     },
     {
       "testo": "testi:e21.info_rete",
@@ -37,11 +37,11 @@
       "settore": "curva_cinderwick"
     },
     {
-      "testo": "testi:e21.info_quillhaven",
-      "fonte": "club_quillhaven",
-      "affidabilita": "media",
+      "testo": "testi:e21.info_comune",
+      "fonte": "qualcuno_in_comune",
+      "affidabilita": "alta",
       "vera": false,
-      "settore": "curva_ospiti"
+      "settore": "ex_fonderia"
     }
   ],
   "mappa": {
@@ -82,11 +82,11 @@
         }
       },
       {
-        "id": "strada_cinderwick",
-        "tipo": "strada",
+        "id": "ex_fonderia",
+        "tipo": "magazzino",
         "pos": {
           "x": 20,
-          "y": 80
+          "y": 82
         }
       }
     ],
@@ -94,7 +94,7 @@
       "squadre": {
         "quantita": 4,
         "efficacia": {
-          "strada": 2,
+          "magazzino": 2,
           "piazzale": 2,
           "curva": 1
         }
@@ -104,7 +104,7 @@
         "efficacia": {
           "curva": 2,
           "piazzale": 2,
-          "strada": 1
+          "magazzino": 1
         }
       },
       "mediatore": {
@@ -122,9 +122,9 @@
       "titolo": "testi:e21.ondata1",
       "eventi": [
         {
-          "id": "cortei21",
+          "id": "corteo_fonderia",
           "tipo": "corteo",
-          "settore": "strada_cinderwick",
+          "settore": "ex_fonderia",
           "pressione": 4
         },
         {
@@ -142,35 +142,35 @@
       ],
       "chiamate": [
         {
-          "id": "due_cortei",
-          "fonte": "ufficio_sicurezza_cinderwick",
-          "testo": "testi:e21.ch.due_cortei",
-          "commento": "testi:e21.ch.due_cortei.vice",
-          "settore": "strada_cinderwick",
+          "id": "corteo_dal_cortile",
+          "fonte": "centro_sociale",
+          "testo": "testi:e21.ch.corteo_dal_cortile",
+          "commento": "testi:e21.ch.corteo_dal_cortile.vice",
+          "settore": "ex_fonderia",
           "opzioni": [
             {
-              "id": "uno_solo",
-              "testo": "testi:e21.op.uno_solo",
-              "costo": "testi:e21.op.uno_solo.c",
+              "id": "parti_dalla_strada",
+              "testo": "testi:e21.op.parti_dalla_strada",
+              "costo": "testi:e21.op.parti_dalla_strada.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
                   "valore": 1
                 },
                 {
-                  "tensione": "strada_cinderwick",
+                  "tensione": "ex_fonderia",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e21.op.uno_solo.r"
+              "risposta": "testi:e21.op.parti_dalla_strada.r"
             },
             {
-              "id": "due_percorsi",
-              "testo": "testi:e21.op.due_percorsi",
-              "costo": "testi:e21.op.due_percorsi.c",
+              "id": "squadra_cancello",
+              "testo": "testi:e21.op.squadra_cancello",
+              "costo": "testi:e21.op.squadra_cancello.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "ex_fonderia",
                   "valore": -2
                 },
                 {
@@ -178,7 +178,7 @@
                   "valore": -1
                 }
               ],
-              "risposta": "testi:e21.op.due_percorsi.r"
+              "risposta": "testi:e21.op.squadra_cancello.r"
             },
             {
               "id": "mediatore21",
@@ -186,7 +186,7 @@
               "costo": "testi:e21.op.mediatore21.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "ex_fonderia",
                   "valore": -1
                 },
                 {
@@ -279,10 +279,10 @@
           ]
         },
         {
-          "id": "furgone_anello",
+          "id": "furgone_fonderia",
           "fonte": "vice",
-          "testo": "testi:e21.ch.furgone_anello",
-          "settore": "anello_cinderwick",
+          "testo": "testi:e21.ch.furgone_fonderia",
+          "settore": "ex_fonderia",
           "se": {
             "var": "furgone_visto",
             "uguale": true
@@ -441,15 +441,16 @@
           ]
         },
         {
-          "id": "striscione_storico",
+          "id": "striscione_sgombero",
           "fonte": "ufficio_sicurezza_cinderwick",
-          "testo": "testi:e21.ch.striscione_storico",
+          "testo": "testi:e21.ch.striscione_sgombero",
+          "commento": "testi:e21.ch.striscione_sgombero.vice",
           "settore": "curva_cinderwick",
           "opzioni": [
             {
-              "id": "concedi21",
-              "testo": "testi:e21.op.concedi21",
-              "costo": "testi:e21.op.concedi21.c",
+              "id": "togli_striscione21",
+              "testo": "testi:e21.op.togli_striscione21",
+              "costo": "testi:e21.op.togli_striscione21.c",
               "effetti": [
                 {
                   "pressione": "curva_cinderwick",
@@ -460,12 +461,12 @@
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e21.op.concedi21.r"
+              "risposta": "testi:e21.op.togli_striscione21.r"
             },
             {
-              "id": "rifiuta21",
-              "testo": "testi:e21.op.rifiuta21",
-              "costo": "testi:e21.op.rifiuta21.c",
+              "id": "niente_patti21",
+              "testo": "testi:e21.op.niente_patti21",
+              "costo": "testi:e21.op.niente_patti21.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -476,7 +477,7 @@
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e21.op.rifiuta21.r"
+              "risposta": "testi:e21.op.niente_patti21.r"
             }
           ]
         }
@@ -486,12 +487,6 @@
       "n": 3,
       "titolo": "testi:e21.ondata3",
       "eventi": [
-        {
-          "id": "tira_basso",
-          "tipo": "faida",
-          "settore": "curva_cinderwick",
-          "pressione": 4
-        },
         {
           "id": "tira_alto",
           "tipo": "faida",
@@ -503,19 +498,25 @@
           "tipo": "folla",
           "settore": "piazzale",
           "pressione": 3
+        },
+        {
+          "id": "cortile_pieno",
+          "tipo": "presidio",
+          "settore": "ex_fonderia",
+          "pressione": 3
         }
       ],
       "chiamate": [
         {
-          "id": "tiro_alla_fune",
-          "fonte": "centrale_radio",
-          "testo": "testi:e21.ch.tiro_alla_fune",
+          "id": "stanotte_sgombero",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e21.ch.stanotte_sgombero",
           "settore": "anello_cinderwick",
           "opzioni": [
             {
-              "id": "sequestra21",
-              "testo": "testi:e21.op.sequestra21",
-              "costo": "testi:e21.op.sequestra21.c",
+              "id": "chiudi_anello",
+              "testo": "testi:e21.op.chiudi_anello",
+              "costo": "testi:e21.op.chiudi_anello.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
@@ -526,12 +527,12 @@
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e21.op.sequestra21.r"
+              "risposta": "testi:e21.op.chiudi_anello.r"
             },
             {
-              "id": "steward_str21",
-              "testo": "testi:e21.op.steward_str21",
-              "costo": "testi:e21.op.steward_str21.c",
+              "id": "steward_scale21",
+              "testo": "testi:e21.op.steward_scale21",
+              "costo": "testi:e21.op.steward_scale21.c",
               "effetti": [
                 {
                   "pressione": "anello_cinderwick",
@@ -542,59 +543,60 @@
                   "valore": -1
                 }
               ],
-              "risposta": "testi:e21.op.steward_str21.r"
+              "risposta": "testi:e21.op.steward_scale21.r"
             },
             {
-              "id": "lascia_str21",
-              "testo": "testi:e21.op.lascia_str21",
-              "costo": "testi:e21.op.lascia_str21.c",
+              "id": "lascia_uscire21",
+              "testo": "testi:e21.op.lascia_uscire21",
+              "costo": "testi:e21.op.lascia_uscire21.c",
               "effetti": [
                 {
-                  "tensione": "curva_cinderwick",
-                  "valore": 1
+                  "pressione": "anello_cinderwick",
+                  "valore": -1
                 },
                 {
-                  "tensione": "anello_cinderwick",
+                  "pressione": "ex_fonderia",
                   "valore": 1
                 }
               ],
-              "risposta": "testi:e21.op.lascia_str21.r"
+              "risposta": "testi:e21.op.lascia_uscire21.r"
             }
           ]
         },
         {
-          "id": "si_spacca",
-          "fonte": "stampa_locale",
-          "testo": "testi:e21.ch.si_spacca",
-          "settore": "piazzale",
+          "id": "residenti_divisi",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e21.ch.residenti_divisi",
+          "commento": "testi:e21.ch.residenti_divisi.vice",
+          "settore": "ex_fonderia",
           "opzioni": [
             {
-              "id": "commento21",
-              "testo": "testi:e21.op.commento21",
-              "costo": "testi:e21.op.commento21.c",
+              "id": "rassicura21",
+              "testo": "testi:e21.op.rassicura21",
+              "costo": "testi:e21.op.rassicura21.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
+                  "pressione": "ex_fonderia",
+                  "valore": -2
                 },
-                {
-                  "pressione": "piazzale",
-                  "valore": 1
-                }
-              ],
-              "risposta": "testi:e21.op.commento21.r"
-            },
-            {
-              "id": "no21",
-              "testo": "testi:e21.op.no21",
-              "costo": "testi:e21.op.no21.c",
-              "effetti": [
                 {
                   "aggiungi": "credito",
                   "valore": -1
                 }
               ],
-              "risposta": "testi:e21.op.no21.r"
+              "risposta": "testi:e21.op.rassicura21.r"
+            },
+            {
+              "id": "nessun_commento21",
+              "testo": "testi:e21.op.nessun_commento21",
+              "costo": "testi:e21.op.nessun_commento21.c",
+              "effetti": [
+                {
+                  "pressione": "ex_fonderia",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e21.op.nessun_commento21.r"
             }
           ]
         },
@@ -603,7 +605,7 @@
           "fonte": "qualcuno_in_comune",
           "testo": "testi:e21.ch.curva_debole",
           "commento": "testi:e21.ch.curva_debole.vice",
-          "settore": "curva_cinderwick",
+          "settore": "ex_fonderia",
           "opzioni": [
             {
               "id": "ascolta21",
@@ -615,7 +617,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "curva_cinderwick",
+                  "tensione": "ex_fonderia",
                   "valore": 1
                 }
               ],
@@ -631,7 +633,7 @@
                   "valore": -1
                 },
                 {
-                  "pressione": "curva_cinderwick",
+                  "pressione": "ex_fonderia",
                   "valore": -1
                 }
               ],
@@ -646,9 +648,9 @@
       "titolo": "testi:e21.ondata4",
       "eventi": [
         {
-          "id": "ritorno21",
+          "id": "ritorno_fonderia",
           "tipo": "corteo",
-          "settore": "strada_cinderwick",
+          "settore": "ex_fonderia",
           "pressione": 5
         },
         {
@@ -669,7 +671,7 @@
           "id": "chi_arriva_primo",
           "fonte": "ufficio_sicurezza_cinderwick",
           "testo": "testi:e21.ch.chi_arriva_primo",
-          "settore": "strada_cinderwick",
+          "settore": "ex_fonderia",
           "opzioni": [
             {
               "id": "in_ordine",
@@ -677,7 +679,7 @@
               "costo": "testi:e21.op.in_ordine.c",
               "effetti": [
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "ex_fonderia",
                   "valore": -2
                 },
                 {
@@ -697,7 +699,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "strada_cinderwick",
+                  "pressione": "ex_fonderia",
                   "valore": 2
                 }
               ],
