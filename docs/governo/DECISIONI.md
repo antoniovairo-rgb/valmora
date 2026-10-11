@@ -37,3 +37,6 @@ Nessuna.
 | D-026 | 2026-10-11 | PO | e01 · esiti | Tre: contenuto, contenuto a fatica, degenerato fuori campo (ultimo senza condizione) | Tre verbali e tre varianti del seguito |
 | D-027 | 2026-10-11 | PO | e01 · ondate | Tre: arrivo delle tifoserie, partita, deflusso | Una pressione da bilanciare per ondata |
 | D-028 | 2026-10-11 | PO | e01 · fonti del briefing | Entrambe le coppie proposte («1 e 2»): informatore di strada (bassa), ufficio sicurezza di un club (media), voce dalla centrale radio, voci in rete | Quattro fonti; le voci in rete richiedono attenzione a tono e policy Play; affidabilità di radio e rete DA DECIDERE |
+| D-029 | 2026-10-11 | PO | Nomi di club e quartieri: chi li propone? | Li propone la sessione principale, il PO sceglie | Ogni nome proposto è cercato sul web; nessuna ricerca prova l'inesistenza: resta rischio dichiarato fino alla lista vietata (L2) |
+| D-030 | 2026-10-11 | PO | e01 · affidabilità di radio e rete | Radio alta, rete media | Due fonti «affidabili» su quattro |
+| D-031 | 2026-10-11 | PO | e01 · il corteo c'è davvero? | Sì: lo annuncia l'informatore di strada (affidabilità bassa) | Lezione: affidabilità ≠ verità; «contenuto a fatica» deve restare raggiungibile anche per chi si fida della fonte migliore |

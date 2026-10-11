@@ -28,7 +28,9 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Ondate (D-027): 1 arrivo delle tifoserie · 2 partita · 3 deflusso.
 - Esiti (D-026): contenuto · contenuto a fatica · degenerato fuori campo (sempre raggiungibile, la storia prosegue).
 - Fonti del briefing (D-028): informatore di strada (affidabilità bassa), ufficio sicurezza di un club (media), voce dalla centrale radio, voci in rete.
-- Nomi dei club e dei quartieri, settori della mappa, quantità delle risorse, condizioni degli esiti, affidabilità di radio e rete: DA DECIDERE.
+- Affidabilità (D-030): radio alta, rete media.
+- Verità (D-031): il corteo c'è davvero; lo annuncia l'informatore di strada, la fonte meno affidabile. Il verbale lo rivela.
+- Nomi dei club e dei quartieri, settori della mappa, quantità delle risorse, condizioni degli esiti: DA DECIDERE.
 
 ## Regole di gioco decise
 - Risorse diverse per missione (D-023).
