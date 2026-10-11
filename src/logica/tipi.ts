@@ -34,7 +34,7 @@ export interface Chiamata { id: string; fonte: string; testo: string; commento?:
 export interface Missione {
   id: string; stagione: number; episodio: number; titolo: string; disponibile_se: Condizione; introduzione?: string[];
   briefing: Informazione[];
-  mappa: { settori: { id: string; tipo: string; club?: string; pos?: { x: number; y: number } }[]; risorse: Record<string, Risorsa> };
+  mappa: { settori: { id: string; tipo: string; club?: string; pos?: { x: number; y: number } }[]; risorse: Record<string, Risorsa>; ora?: 'giorno' | 'notte'; dettagli?: string[] };
   ondate: { n: number; titolo?: string; eventi: Evento[]; chiamate?: Chiamata[] }[];
   esiti: Esito[];
   stelle: { due: Condizione; tre: Condizione };

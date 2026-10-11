@@ -168,6 +168,23 @@
               }
             }
           }
+        },
+        "ora": {
+          "enum": [
+            "giorno",
+            "notte"
+          ],
+          "description": "ora della partita sulla mappa (S-07, e03): senza, giorno"
+        },
+        "dettagli": {
+          "type": "array",
+          "uniqueItems": true,
+          "description": "dettagli grafici della mappa che servono alla storia (es. cartelloni dello stadio nuovo, D-084)",
+          "items": {
+            "enum": [
+              "cartelloni_stadio_nuovo"
+            ]
+          }
         }
       }
     },
