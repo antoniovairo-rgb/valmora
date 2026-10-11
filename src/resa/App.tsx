@@ -34,8 +34,9 @@ import { t } from './dati.ts';
 
 type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
 
-// Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta lunga.
-const ROSSI_CSS = ['C05R06', 'C05R07'];
+// Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
+// lunga, C05N01 stato del rapporto che va a capo sotto il nome.
+const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01'];
 const libera = (m: Missione, ic: InCorso, d: Disposizione, preferita: string | null) => {
   const disp = disponibili(m, ic);
   const ok = (r: string) => (disp[r] ?? 0) - usate(d, r) > 0;

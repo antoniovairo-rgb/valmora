@@ -84,13 +84,18 @@ p { margin: var(--spazio-2) 0; }
 .tocco-pastiglia { display: grid; place-items: end center; min-width: var(--tocco-min); min-height: var(--tocco-min); padding: 0; border: 0; background: transparent; cursor: pointer; }
 .tocco-pastiglia:disabled { cursor: default; }
 .pastiglia-rossa { padding: 0; border: 0; background: transparent; }
-.nome-sopra .settore-nome { top: auto; bottom: calc(var(--settore) / 2 - var(--spazio-1)); }
-.unita-lato .settore-unita { bottom: auto; top: calc(var(--tocco-min) / -2); left: calc(var(--settore) / 2 - var(--spazio-2)); transform: none; }
-.unita-lato.lato-destra .settore-unita { left: auto; right: calc(var(--settore) / 2 - var(--spazio-2)); }
-.nome-lato .settore-nome { top: 50%; bottom: auto; left: calc(var(--settore) / 2); transform: translateY(-50%); text-align: left; }
-.nome-lato.lato-destra .settore-nome { left: auto; right: calc(var(--settore) / 2); }
-.nome-lato .settore-unita { left: auto; right: calc(var(--settore) / 2 - var(--spazio-2)); }
-.nome-lato.lato-destra .settore-unita { right: auto; left: calc(var(--settore) / 2 - var(--spazio-2)); }
+/* Posti di nomi e unità scelti da mappa/etichette.ts misurando le sovrapposizioni (C-008) */
+.settore[data-nome="sopra"] .settore-nome { top: auto; bottom: calc(var(--settore) / 2 - var(--spazio-1)); }
+.settore[data-nome="destra"] .settore-nome { top: 50%; bottom: auto; left: calc(var(--settore) / 2); right: auto; transform: translateY(-50%); text-align: left; }
+.settore[data-nome="sinistra"] .settore-nome { top: 50%; bottom: auto; left: auto; right: calc(var(--settore) / 2); transform: translateY(-50%); text-align: right; }
+.settore[data-nome="sotto-sx"] .settore-nome { left: auto; right: calc(var(--settore) / -2); transform: none; text-align: right; }
+.settore[data-nome="sotto-dx"] .settore-nome { left: calc(var(--settore) / -2); right: auto; transform: none; text-align: left; }
+.settore[data-unita="sopra"] .settore-unita { bottom: calc(var(--settore) / 2); }
+.settore[data-unita="destra"] .settore-unita { bottom: auto; top: calc(var(--tocco-min) / -2); left: calc(var(--settore) / 2); right: auto; transform: none; }
+.settore[data-unita="sinistra"] .settore-unita { bottom: auto; top: calc(var(--tocco-min) / -2); left: auto; right: calc(var(--settore) / 2); transform: none; }
+.settore[data-unita="sotto"] .settore-unita { bottom: auto; top: calc(var(--settore) / 2); }
+.settore[data-unita="destra-alto"] .settore-unita { bottom: 0; top: auto; left: calc(var(--settore) / 2); right: auto; transform: none; }
+.settore[data-unita="sinistra-alto"] .settore-unita { bottom: 0; top: auto; left: auto; right: calc(var(--settore) / 2); transform: none; }
 .pastiglia { display: inline-flex; align-items: center; gap: var(--spazio-px); min-height: var(--pastiglia); padding: 0 var(--spazio-1); border: var(--bordo-fine) solid var(--nero); background: var(--giallo); color: var(--nero); font: 700 var(--testo-piccolo) var(--font); }
 .pastiglia .icona { width: var(--testo-piccolo); height: var(--testo-piccolo); }
 /* Tensione a colori (D-055) */
@@ -102,9 +107,10 @@ p { margin: var(--spazio-2) 0; }
 .liv-5 .settore-punto::after, .campione.liv-5 { background: var(--tensione-5); }
 .campione { display: inline-block; width: var(--spazio-4); height: var(--spazio-4); border-radius: var(--raggio-tondo); border: var(--bordo-fine) solid var(--nero); flex: none; }
 .elenco-settori { list-style: none; padding: 0; margin: 0; }
-.elenco-settori li { padding: var(--spazio-2) 0; border-bottom: var(--bordo-fine) solid var(--nero); font-weight: 600; }
+.elenco-settori li { flex-wrap: nowrap; padding: var(--spazio-2) 0; border-bottom: var(--bordo-fine) solid var(--nero); font-weight: 600; }
 .elenco-settori li:last-child { border-bottom: 0; }
-.elenco-settori strong { font-family: var(--font-titoli); text-transform: uppercase; font-size: var(--testo-piccolo); }
+.elenco-settori .riga-sx { flex: 1; min-width: 0; }
+.elenco-settori strong { flex: none; white-space: nowrap; font-family: var(--font-titoli); text-transform: uppercase; font-size: var(--testo-piccolo); }
 
 /* Vassoio delle unità da schierare */
 .vassoio { display: flex; flex-wrap: wrap; gap: var(--spazio-3); margin: var(--spazio-3) 0; }

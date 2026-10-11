@@ -6,8 +6,12 @@ import { missioni, t } from '../dati.ts';
 import { statoEpisodio, type StatoEpisodio } from '../episodi.ts';
 import { Icona } from '../icone.tsx';
 import { MappaCitta } from '../mappa/MappaCitta.tsx';
+import { spento } from '../../interruttori.ts';
 import { Stelle } from '../stelle.tsx';
 import { due, Testata } from './Fumetto.tsx';
+
+/** «1 tentativo», «N tentativi» (C-008.1). */
+const tentativi = (n: number) => `${n} ${n === 1 && !spento('C05S81') ? 'tentativo' : 'tentativi'}`;
 
 const DESCRIZIONE: Record<StatoEpisodio, string> = {
   superato: 'Superato: puoi rigiocarlo, resta il risultato migliore.',
@@ -25,7 +29,7 @@ export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (i
       <MappaCitta voci={voci} scelto={p.scelto?.id ?? null} scegli={p.scegli} />
       {v ? (
         <div className="scheda" data-scheda-episodio={v.m.id}>
-          <div className="riga"><span className="etichetta">Episodio {due(v.m.episodio)}</span><span className="tenue">{p.sal.episodi[v.m.id]?.tentativi ?? 0} tentativi</span></div>
+          <div className="riga"><span className="etichetta">Episodio {due(v.m.episodio)}</span><span className="tenue">{tentativi(p.sal.episodi[v.m.id]?.tentativi ?? 0)}</span></div>
           <h2>{t(v.m.titolo)}</h2>
           {v.stelle !== null && <Stelle n={v.stelle} />}
           <p className={v.stato === 'da_rigiocare' ? 'avviso' : 'tenue'}>{DESCRIZIONE[v.stato]}</p>
