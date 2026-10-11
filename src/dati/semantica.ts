@@ -56,6 +56,7 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
     if (testi.has(chiave)) p.push(`${k}: chiave «${chiave}» già definita in un altro file`);
     testi.add(chiave);
   }
+  for (const k of testi) if (k.endsWith('@f') && !testi.has(k.slice(0, -2))) p.push(`testi: variante «${k}» senza la forma base «${k.slice(0, -2)}»`);
   const testo = (dove: string, rif: string) => {
     if (!testi.has(rif.replace(/^testi:/, ''))) p.push(`${dove}: testo «${rif}» non esiste in data/testi/it/`);
   };

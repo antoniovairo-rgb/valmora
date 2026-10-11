@@ -56,6 +56,7 @@ describe('validatore dei dati', () => {
     ['missione senza stelle', (d) => { delete d[M].stelle; }, /must have required property 'stelle'/],
     ['stelle su variabile non dichiarata', (d) => { d[M].stelle.tre = { var: 'var_x', uguale: true }; }, /stelle\.tre: variabile «var_x»/],
     ['tutti gli esiti falliti', (d) => { for (const e of d[M].esiti) e.fallita = true; }, /missione impossibile da superare/],
+    ['variante femminile senza forma base', (d) => { d['testi/it/prova.json']['prova.zz@f'] = 'x'; }, /variante «prova\.zz@f» senza la forma base/],
     ['ondate non numerate in ordine', (d) => { d[M].ondate[0].n = 2; }, /n=2, attesa 1/],
     ['filo inesistente', (d) => { d[M].fili = ['filo_z']; }, /filo «filo_z» non esiste/],
     ['episodio doppio', (d) => { d['missioni/m_altra.json'] = { ...structuredClone(d[M]), id: 'm_altra' }; }, /episodio 1 già usato/],
