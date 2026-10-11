@@ -1,0 +1,850 @@
+{
+  "id": "e22",
+  "stagione": 2,
+  "episodio": 22,
+  "titolo": "testi:e22.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 40,
+    "y": 70
+  },
+  "introduzione": [
+    "testi:e22.intro1",
+    "testi:e22.intro2",
+    "testi:e22.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e22.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "piazza_municipio"
+    },
+    {
+      "testo": "testi:e22.info_comando",
+      "fonte": "comando",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "piazzale"
+    },
+    {
+      "testo": "testi:e22.info_cinderwick",
+      "fonte": "ufficio_sicurezza_cinderwick",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "strada_cinderwick"
+    },
+    {
+      "testo": "testi:e22.info_larkspire",
+      "fonte": "ufficio_sicurezza_larkspire",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_larkspire"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 20,
+          "y": 25
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 80,
+          "y": 25
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 50,
+          "y": 50
+        }
+      },
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 15,
+          "y": 76
+        }
+      },
+      {
+        "id": "piazza_municipio",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 82,
+          "y": 78
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 2,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "protesta"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e22.ondata1",
+      "eventi": [
+        {
+          "id": "presidio22",
+          "tipo": "protesta",
+          "settore": "piazza_municipio",
+          "pressione": 5
+        },
+        {
+          "id": "salita22",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "piazzale22",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "cartello",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e22.ch.cartello",
+          "commento": "testi:e22.ch.cartello.vice",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "vai_tu",
+              "testo": "testi:e22.op.vai_tu",
+              "costo": "testi:e22.op.vai_tu.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e22.op.vai_tu.r"
+            },
+            {
+              "id": "mediatore22",
+              "testo": "testi:e22.op.mediatore22",
+              "costo": "testi:e22.op.mediatore22.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.mediatore22.r"
+            },
+            {
+              "id": "ignora22",
+              "testo": "testi:e22.op.ignora22",
+              "costo": "testi:e22.op.ignora22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e22.op.ignora22.r"
+            }
+          ]
+        },
+        {
+          "id": "ridateci",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e22.ch.ridateci",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "scorta22",
+              "testo": "testi:e22.op.scorta22",
+              "costo": "testi:e22.op.scorta22.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.scorta22.r"
+            },
+            {
+              "id": "togli_str22",
+              "testo": "testi:e22.op.togli_str22",
+              "costo": "testi:e22.op.togli_str22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e22.op.togli_str22.r"
+            },
+            {
+              "id": "lascia22",
+              "testo": "testi:e22.op.lascia22",
+              "costo": "testi:e22.op.lascia22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e22.op.lascia22.r"
+            }
+          ]
+        },
+        {
+          "id": "sindaco_tribuna",
+          "fonte": "comando",
+          "testo": "testi:e22.ch.sindaco_tribuna",
+          "commento": "testi:e22.ch.sindaco_tribuna.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "tribuna22",
+              "testo": "testi:e22.op.tribuna22",
+              "costo": "testi:e22.op.tribuna22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.tribuna22.r"
+            },
+            {
+              "id": "normale22",
+              "testo": "testi:e22.op.normale22",
+              "costo": "testi:e22.op.normale22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.normale22.r"
+            }
+          ]
+        },
+        {
+          "id": "ti_difendo",
+          "fonte": "vice",
+          "testo": "testi:e22.ch.ti_difendo",
+          "commento": "testi:e22.ch.ti_difendo.vice",
+          "settore": "curva_cinderwick",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "accetta22",
+              "testo": "testi:e22.op.accetta22",
+              "costo": "testi:e22.op.accetta22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e22.op.accetta22.r"
+            },
+            {
+              "id": "declina22",
+              "testo": "testi:e22.op.declina22",
+              "costo": "testi:e22.op.declina22.c",
+              "effetti": [],
+              "risposta": "testi:e22.op.declina22.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e22.ondata2",
+      "eventi": [
+        {
+          "id": "cori_cinder22",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 5
+        },
+        {
+          "id": "cori_lark22",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 5
+        },
+        {
+          "id": "presidio22b",
+          "tipo": "protesta",
+          "settore": "piazza_municipio",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "in_rima",
+          "fonte": "centrale_radio",
+          "testo": "testi:e22.ch.in_rima",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "steward22",
+              "testo": "testi:e22.op.steward22",
+              "costo": "testi:e22.op.steward22.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.steward22.r"
+            },
+            {
+              "id": "speaker22",
+              "testo": "testi:e22.op.speaker22",
+              "costo": "testi:e22.op.speaker22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.speaker22.r"
+            },
+            {
+              "id": "lascia_cori22",
+              "testo": "testi:e22.op.lascia_cori22",
+              "costo": "testi:e22.op.lascia_cori22.c",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e22.op.lascia_cori22.r"
+            }
+          ]
+        },
+        {
+          "id": "coniglio",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e22.ch.coniglio",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "club_l22",
+              "testo": "testi:e22.op.club_l22",
+              "costo": "testi:e22.op.club_l22.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.club_l22.r"
+            },
+            {
+              "id": "lascia_l22",
+              "testo": "testi:e22.op.lascia_l22",
+              "costo": "testi:e22.op.lascia_l22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e22.op.lascia_l22.r"
+            }
+          ]
+        },
+        {
+          "id": "diretta",
+          "fonte": "stampa_locale",
+          "testo": "testi:e22.ch.diretta",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "intervista",
+              "testo": "testi:e22.op.intervista",
+              "costo": "testi:e22.op.intervista.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e22.op.intervista.r"
+            },
+            {
+              "id": "no_intervista",
+              "testo": "testi:e22.op.no_intervista",
+              "costo": "testi:e22.op.no_intervista.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.no_intervista.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e22.ondata3",
+      "eventi": [
+        {
+          "id": "str_cinder",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "str_lark",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale22b",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "due_striscioni",
+          "fonte": "centrale_radio",
+          "testo": "testi:e22.ch.due_striscioni",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "rimuovi_entrambi",
+              "testo": "testi:e22.op.rimuovi_entrambi",
+              "costo": "testi:e22.op.rimuovi_entrambi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e22.op.rimuovi_entrambi.r"
+            },
+            {
+              "id": "steward_str22",
+              "testo": "testi:e22.op.steward_str22",
+              "costo": "testi:e22.op.steward_str22.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.steward_str22.r"
+            },
+            {
+              "id": "lascia_entrambi",
+              "testo": "testi:e22.op.lascia_entrambi",
+              "costo": "testi:e22.op.lascia_entrambi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.lascia_entrambi.r"
+            }
+          ]
+        },
+        {
+          "id": "stadio_sicuro",
+          "fonte": "qualcuno_in_comune",
+          "testo": "testi:e22.ch.stadio_sicuro",
+          "commento": "testi:e22.ch.stadio_sicuro.vice",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "sicuro",
+              "testo": "testi:e22.op.sicuro",
+              "costo": "testi:e22.op.sicuro.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e22.op.sicuro.r"
+            },
+            {
+              "id": "dubbio",
+              "testo": "testi:e22.op.dubbio",
+              "costo": "testi:e22.op.dubbio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e22.op.dubbio.r"
+            }
+          ]
+        },
+        {
+          "id": "venduto",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e22.ch.venduto",
+          "settore": "curva_cinderwick",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "smentisci_voce",
+              "testo": "testi:e22.op.smentisci_voce",
+              "costo": "testi:e22.op.smentisci_voce.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e22.op.smentisci_voce.r"
+            },
+            {
+              "id": "lascia_voce",
+              "testo": "testi:e22.op.lascia_voce",
+              "costo": "testi:e22.op.lascia_voce.c",
+              "effetti": [],
+              "risposta": "testi:e22.op.lascia_voce.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e22.ondata4",
+      "eventi": [
+        {
+          "id": "discesa22",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "presidio22c",
+          "tipo": "protesta",
+          "settore": "piazza_municipio",
+          "pressione": 5
+        },
+        {
+          "id": "festa_piazzale",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "salutare_presidio",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e22.ch.salutare_presidio",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "devia22",
+              "testo": "testi:e22.op.devia22",
+              "costo": "testi:e22.op.devia22.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -2
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e22.op.devia22.r"
+            },
+            {
+              "id": "lascia_passare",
+              "testo": "testi:e22.op.lascia_passare",
+              "costo": "testi:e22.op.lascia_passare.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e22.op.lascia_passare.r"
+            }
+          ]
+        },
+        {
+          "id": "dimissioni",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e22.ch.dimissioni",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "parla22",
+              "testo": "testi:e22.op.parla22",
+              "costo": "testi:e22.op.parla22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e22.op.parla22.r"
+            },
+            {
+              "id": "sciogli",
+              "testo": "testi:e22.op.sciogli",
+              "costo": "testi:e22.op.sciogli.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -3
+                }
+              ],
+              "risposta": "testi:e22.op.sciogli.r"
+            }
+          ]
+        },
+        {
+          "id": "festa_collina",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e22.ch.festa_collina",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "chiudi_piazzale22",
+              "testo": "testi:e22.op.chiudi_piazzale22",
+              "costo": "testi:e22.op.chiudi_piazzale22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e22.op.chiudi_piazzale22.r"
+            },
+            {
+              "id": "festa22",
+              "testo": "testi:e22.op.festa22",
+              "costo": "testi:e22.op.festa22.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e22.op.festa22.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e22.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e22.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e22.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

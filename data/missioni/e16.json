@@ -1,0 +1,828 @@
+{
+  "id": "e16",
+  "stagione": 2,
+  "episodio": 16,
+  "titolo": "testi:e16.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 86,
+    "y": 30
+  },
+  "introduzione": [
+    "testi:e16.intro1",
+    "testi:e16.intro2",
+    "testi:e16.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e16.info_informatore",
+      "fonte": "informatore_di_strada",
+      "affidabilita": "bassa",
+      "vera": true,
+      "settore": "magazzino"
+    },
+    {
+      "testo": "testi:e16.info_comando",
+      "fonte": "comando",
+      "affidabilita": "alta",
+      "vera": false,
+      "settore": "magazzino"
+    },
+    {
+      "testo": "testi:e16.info_quillhaven",
+      "fonte": "club_quillhaven",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e16.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_cinderwick"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "magazzino",
+        "tipo": "magazzino",
+        "pos": {
+          "x": 85,
+          "y": 20
+        }
+      },
+      {
+        "id": "strada_cinderwick",
+        "tipo": "strada",
+        "pos": {
+          "x": 60,
+          "y": 32
+        }
+      },
+      {
+        "id": "curva_cinderwick",
+        "tipo": "curva",
+        "club": "cinderwick_united",
+        "pos": {
+          "x": 28,
+          "y": 40
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 45,
+          "y": 68
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "quillhaven_albion",
+        "pos": {
+          "x": 80,
+          "y": 76
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "magazzino": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 5,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 2,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "corteo"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e16.ondata1",
+      "eventi": [
+        {
+          "id": "furgone_arriva",
+          "tipo": "furgone",
+          "settore": "magazzino",
+          "pressione": 2
+        },
+        {
+          "id": "corteo_fonderie",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "magazzino_sette",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e16.ch.magazzino_sette",
+          "settore": "magazzino",
+          "opzioni": [
+            {
+              "id": "squadra_magazzino",
+              "testo": "testi:e16.op.squadra_magazzino",
+              "costo": "testi:e16.op.squadra_magazzino.c",
+              "effetti": [
+                {
+                  "pressione": "magazzino",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.squadra_magazzino.r"
+            },
+            {
+              "id": "borghese",
+              "testo": "testi:e16.op.borghese",
+              "costo": "testi:e16.op.borghese.c",
+              "effetti": [
+                {
+                  "pressione": "magazzino",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.borghese.r"
+            },
+            {
+              "id": "niente_pista",
+              "testo": "testi:e16.op.niente_pista",
+              "costo": "testi:e16.op.niente_pista.c",
+              "effetti": [
+                {
+                  "tensione": "magazzino",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e16.op.niente_pista.r"
+            }
+          ]
+        },
+        {
+          "id": "corteo_fonderie",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e16.ch.corteo_fonderie",
+          "commento": "testi:e16.ch.corteo_fonderie.vice",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "devia16",
+              "testo": "testi:e16.op.devia16",
+              "costo": "testi:e16.op.devia16.c",
+              "effetti": [
+                {
+                  "pressione": "magazzino",
+                  "valore": -1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e16.op.devia16.r"
+            },
+            {
+              "id": "lascia_percorso",
+              "testo": "testi:e16.op.lascia_percorso",
+              "costo": "testi:e16.op.lascia_percorso.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "magazzino",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.lascia_percorso.r"
+            },
+            {
+              "id": "mediatore16",
+              "testo": "testi:e16.op.mediatore16",
+              "costo": "testi:e16.op.mediatore16.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.mediatore16.r"
+            }
+          ]
+        },
+        {
+          "id": "foto_benzinaio",
+          "fonte": "vice",
+          "testo": "testi:e16.ch.foto_benzinaio",
+          "commento": "testi:e16.ch.foto_benzinaio.vice",
+          "settore": "magazzino",
+          "se": {
+            "var": "furgone_visto",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "targa_dietro",
+              "testo": "testi:e16.op.targa_dietro",
+              "costo": "testi:e16.op.targa_dietro.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e16.op.targa_dietro.r"
+            },
+            {
+              "id": "non_ora16",
+              "testo": "testi:e16.op.non_ora16",
+              "costo": "testi:e16.op.non_ora16.c",
+              "effetti": [],
+              "risposta": "testi:e16.op.non_ora16.r"
+            }
+          ]
+        },
+        {
+          "id": "pullman_fonderie",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e16.ch.pullman_fonderie",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "fonderie_si",
+              "testo": "testi:e16.op.fonderie_si",
+              "costo": "testi:e16.op.fonderie_si.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "magazzino",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e16.op.fonderie_si.r"
+            },
+            {
+              "id": "piazzale16",
+              "testo": "testi:e16.op.piazzale16",
+              "costo": "testi:e16.op.piazzale16.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.piazzale16.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e16.ondata2",
+      "eventi": [
+        {
+          "id": "ospiti16",
+          "tipo": "arrivo",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        },
+        {
+          "id": "cancelli16",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        },
+        {
+          "id": "scarico",
+          "tipo": "furgone",
+          "settore": "magazzino",
+          "pressione": 2
+        },
+        {
+          "id": "ritardatari16",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "cancelli16",
+          "fonte": "centrale_radio",
+          "testo": "testi:e16.ch.cancelli16",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "due_ingressi",
+              "testo": "testi:e16.op.due_ingressi",
+              "costo": "testi:e16.op.due_ingressi.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.due_ingressi.r"
+            },
+            {
+              "id": "tutti_insieme",
+              "testo": "testi:e16.op.tutti_insieme",
+              "costo": "testi:e16.op.tutti_insieme.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.tutti_insieme.r"
+            }
+          ]
+        },
+        {
+          "id": "scatole",
+          "fonte": "centrale_radio",
+          "testo": "testi:e16.ch.scatole",
+          "settore": "magazzino",
+          "opzioni": [
+            {
+              "id": "entra",
+              "testo": "testi:e16.op.entra",
+              "costo": "testi:e16.op.entra.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.entra.r"
+            },
+            {
+              "id": "osserva",
+              "testo": "testi:e16.op.osserva",
+              "costo": "testi:e16.op.osserva.c",
+              "effetti": [
+                {
+                  "pressione": "magazzino",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e16.op.osserva.r"
+            }
+          ]
+        },
+        {
+          "id": "annunci16",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e16.ch.annunci16",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "avvisa_ospiti",
+              "testo": "testi:e16.op.avvisa_ospiti",
+              "costo": "testi:e16.op.avvisa_ospiti.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e16.op.avvisa_ospiti.r"
+            },
+            {
+              "id": "oscura",
+              "testo": "testi:e16.op.oscura",
+              "costo": "testi:e16.op.oscura.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "magazzino",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.oscura.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e16.ondata3",
+      "eventi": [
+        {
+          "id": "cori_cinder16",
+          "tipo": "curva",
+          "settore": "curva_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "cori_quill",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "carico",
+          "tipo": "furgone",
+          "settore": "magazzino",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "cori_nome",
+          "fonte": "centrale_radio",
+          "testo": "testi:e16.ch.cori_nome",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "speaker16",
+              "testo": "testi:e16.op.speaker16",
+              "costo": "testi:e16.op.speaker16.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e16.op.speaker16.r"
+            },
+            {
+              "id": "steward_cinder",
+              "testo": "testi:e16.op.steward_cinder",
+              "costo": "testi:e16.op.steward_cinder.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.steward_cinder.r"
+            },
+            {
+              "id": "lascia16",
+              "testo": "testi:e16.op.lascia16",
+              "costo": "testi:e16.op.lascia16.c",
+              "effetti": [
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.lascia16.r"
+            }
+          ]
+        },
+        {
+          "id": "senza_dessi",
+          "fonte": "vice",
+          "testo": "testi:e16.ch.senza_dessi",
+          "commento": "testi:e16.ch.senza_dessi.vice",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "cerca_fonderie",
+              "testo": "testi:e16.op.cerca_fonderie",
+              "costo": "testi:e16.op.cerca_fonderie.c",
+              "effetti": [
+                {
+                  "pressione": "magazzino",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.cerca_fonderie.r"
+            },
+            {
+              "id": "chiedi_curva",
+              "testo": "testi:e16.op.chiedi_curva",
+              "costo": "testi:e16.op.chiedi_curva.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.chiedi_curva.r"
+            }
+          ]
+        },
+        {
+          "id": "proprietario",
+          "fonte": "comando",
+          "testo": "testi:e16.ch.proprietario",
+          "commento": "testi:e16.ch.proprietario.vice",
+          "settore": "magazzino",
+          "opzioni": [
+            {
+              "id": "firma",
+              "testo": "testi:e16.op.firma",
+              "costo": "testi:e16.op.firma.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "magazzino",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.firma.r"
+            },
+            {
+              "id": "ritira",
+              "testo": "testi:e16.op.ritira",
+              "costo": "testi:e16.op.ritira.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "magazzino",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.ritira.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e16.ondata4",
+      "eventi": [
+        {
+          "id": "partenza",
+          "tipo": "furgone",
+          "settore": "magazzino",
+          "pressione": 3
+        },
+        {
+          "id": "ritorno_fonderie",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "pressione": 4
+        },
+        {
+          "id": "pullman_via",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "fari_spenti",
+          "fonte": "centrale_radio",
+          "testo": "testi:e16.ch.fari_spenti",
+          "settore": "magazzino",
+          "opzioni": [
+            {
+              "id": "segui_furgone",
+              "testo": "testi:e16.op.segui_furgone",
+              "costo": "testi:e16.op.segui_furgone.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.segui_furgone.r"
+            },
+            {
+              "id": "lascia_andare",
+              "testo": "testi:e16.op.lascia_andare",
+              "costo": "testi:e16.op.lascia_andare.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.lascia_andare.r"
+            }
+          ]
+        },
+        {
+          "id": "ritorno16",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e16.ch.ritorno16",
+          "settore": "strada_cinderwick",
+          "opzioni": [
+            {
+              "id": "scorta_fonderie",
+              "testo": "testi:e16.op.scorta_fonderie",
+              "costo": "testi:e16.op.scorta_fonderie.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e16.op.scorta_fonderie.r"
+            },
+            {
+              "id": "libera16",
+              "testo": "testi:e16.op.libera16",
+              "costo": "testi:e16.op.libera16.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.libera16.r"
+            }
+          ]
+        },
+        {
+          "id": "giro_lungo",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e16.ch.giro_lungo",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "via_lunga",
+              "testo": "testi:e16.op.via_lunga",
+              "costo": "testi:e16.op.via_lunga.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e16.op.via_lunga.r"
+            },
+            {
+              "id": "aspettino16",
+              "testo": "testi:e16.op.aspettino16",
+              "costo": "testi:e16.op.aspettino16.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e16.op.aspettino16.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e16.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e16.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e16.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}

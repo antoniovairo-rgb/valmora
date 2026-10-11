@@ -1,0 +1,868 @@
+{
+  "id": "e24",
+  "stagione": 2,
+  "episodio": 24,
+  "titolo": "testi:e24.titolo",
+  "bozza": true,
+  "disponibile_se": {},
+  "luogo": {
+    "x": 86,
+    "y": 86
+  },
+  "introduzione": [
+    "testi:e24.intro1",
+    "testi:e24.intro2",
+    "testi:e24.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e24.info_testimone",
+      "fonte": "testimone",
+      "affidabilita": "bassa",
+      "vera": true,
+      "settore": "piazza_municipio"
+    },
+    {
+      "testo": "testi:e24.info_quillhaven",
+      "fonte": "club_quillhaven",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "curva_ospiti"
+    },
+    {
+      "testo": "testi:e24.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "tornelli"
+    },
+    {
+      "testo": "testi:e24.info_larkspire",
+      "fonte": "ufficio_sicurezza_larkspire",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "strada_larkspire"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "quillhaven_albion",
+        "pos": {
+          "x": 20,
+          "y": 25
+        }
+      },
+      {
+        "id": "tornelli",
+        "tipo": "tornelli",
+        "pos": {
+          "x": 50,
+          "y": 45
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 80,
+          "y": 25
+        }
+      },
+      {
+        "id": "piazza_municipio",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 30,
+          "y": 80
+        }
+      },
+      {
+        "id": "strada_larkspire",
+        "tipo": "strada",
+        "pos": {
+          "x": 82,
+          "y": 80
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 4,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "tornelli": 1,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "tornelli": 2,
+          "piazzale": 2,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "festa"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e24.ondata1",
+      "eventi": [
+        {
+          "id": "doppi24",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 4
+        },
+        {
+          "id": "corteo24",
+          "tipo": "corteo",
+          "settore": "strada_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "arrivo_quill24",
+          "tipo": "arrivo",
+          "settore": "curva_ospiti",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "busta",
+          "fonte": "vice",
+          "testo": "testi:e24.ch.busta",
+          "commento": "testi:e24.ch.busta.vice",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "apri_busta",
+              "testo": "testi:e24.op.apri_busta",
+              "costo": "testi:e24.op.apri_busta.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e24.op.apri_busta.r"
+            },
+            {
+              "id": "dopo_busta",
+              "testo": "testi:e24.op.dopo_busta",
+              "costo": "testi:e24.op.dopo_busta.c",
+              "effetti": [],
+              "risposta": "testi:e24.op.dopo_busta.r"
+            }
+          ]
+        },
+        {
+          "id": "stessa_carta24",
+          "fonte": "centrale_radio",
+          "testo": "testi:e24.ch.stessa_carta24",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "steward24",
+              "testo": "testi:e24.op.steward24",
+              "costo": "testi:e24.op.steward24.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.steward24.r"
+            },
+            {
+              "id": "chiudi_occhio24",
+              "testo": "testi:e24.op.chiudi_occhio24",
+              "costo": "testi:e24.op.chiudi_occhio24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e24.op.chiudi_occhio24.r"
+            },
+            {
+              "id": "respingi24",
+              "testo": "testi:e24.op.respingi24",
+              "costo": "testi:e24.op.respingi24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e24.op.respingi24.r"
+            }
+          ]
+        },
+        {
+          "id": "ci_crede",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e24.ch.ci_crede",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "scorta24",
+              "testo": "testi:e24.op.scorta24",
+              "costo": "testi:e24.op.scorta24.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.scorta24.r"
+            },
+            {
+              "id": "mediatore24",
+              "testo": "testi:e24.op.mediatore24",
+              "costo": "testi:e24.op.mediatore24.c",
+              "effetti": [
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.mediatore24.r"
+            },
+            {
+              "id": "libero24",
+              "testo": "testi:e24.op.libero24",
+              "costo": "testi:e24.op.libero24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e24.op.libero24.r"
+            }
+          ]
+        },
+        {
+          "id": "festa_presidente",
+          "fonte": "vice",
+          "testo": "testi:e24.ch.festa_presidente",
+          "commento": "testi:e24.ch.festa_presidente.vice",
+          "settore": "piazza_municipio",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "si_festa",
+              "testo": "testi:e24.op.si_festa",
+              "costo": "testi:e24.op.si_festa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e24.op.si_festa.r"
+            },
+            {
+              "id": "no_festa",
+              "testo": "testi:e24.op.no_festa",
+              "costo": "testi:e24.op.no_festa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.no_festa.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e24.ondata2",
+      "eventi": [
+        {
+          "id": "cori_lark24",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 5
+        },
+        {
+          "id": "cori_quill24",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 5
+        },
+        {
+          "id": "palco24",
+          "tipo": "festa",
+          "settore": "piazza_municipio",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "balaustre",
+          "fonte": "centrale_radio",
+          "testo": "testi:e24.ch.balaustre",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "steward_bal",
+              "testo": "testi:e24.op.steward_bal",
+              "costo": "testi:e24.op.steward_bal.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.steward_bal.r"
+            },
+            {
+              "id": "speaker24",
+              "testo": "testi:e24.op.speaker24",
+              "costo": "testi:e24.op.speaker24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.speaker24.r"
+            },
+            {
+              "id": "lascia_bal",
+              "testo": "testi:e24.op.lascia_bal",
+              "costo": "testi:e24.op.lascia_bal.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e24.op.lascia_bal.r"
+            }
+          ]
+        },
+        {
+          "id": "titolo_scappa",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e24.ch.titolo_scappa",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "steward_l24",
+              "testo": "testi:e24.op.steward_l24",
+              "costo": "testi:e24.op.steward_l24.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.steward_l24.r"
+            },
+            {
+              "id": "capitano",
+              "testo": "testi:e24.op.capitano",
+              "costo": "testi:e24.op.capitano.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e24.op.capitano.r"
+            },
+            {
+              "id": "lascia_l24",
+              "testo": "testi:e24.op.lascia_l24",
+              "costo": "testi:e24.op.lascia_l24.c",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e24.op.lascia_l24.r"
+            }
+          ]
+        },
+        {
+          "id": "consegna",
+          "fonte": "comando",
+          "testo": "testi:e24.ch.consegna",
+          "commento": "testi:e24.ch.consegna.vice",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "consegna_chiusa",
+              "testo": "testi:e24.op.consegna_chiusa",
+              "costo": "testi:e24.op.consegna_chiusa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e24.op.consegna_chiusa.r"
+            },
+            {
+              "id": "copia",
+              "testo": "testi:e24.op.copia",
+              "costo": "testi:e24.op.copia.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.copia.r"
+            },
+            {
+              "id": "rifiuta24",
+              "testo": "testi:e24.op.rifiuta24",
+              "costo": "testi:e24.op.rifiuta24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e24.op.rifiuta24.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e24.ondata3",
+      "eventi": [
+        {
+          "id": "cori_lark24b",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "cori_quill24b",
+          "tipo": "curva",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        },
+        {
+          "id": "senza_biglietto",
+          "tipo": "biglietti",
+          "settore": "tornelli",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "foglio",
+          "fonte": "qualcuno_in_comune",
+          "testo": "testi:e24.ch.foglio",
+          "commento": "testi:e24.ch.foglio.vice",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "registra",
+              "testo": "testi:e24.op.registra",
+              "costo": "testi:e24.op.registra.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e24.op.registra.r"
+            },
+            {
+              "id": "riattacca",
+              "testo": "testi:e24.op.riattacca",
+              "costo": "testi:e24.op.riattacca.c",
+              "effetti": [],
+              "risposta": "testi:e24.op.riattacca.r"
+            }
+          ]
+        },
+        {
+          "id": "secondo_tempo",
+          "fonte": "centrale_radio",
+          "testo": "testi:e24.ch.secondo_tempo",
+          "settore": "tornelli",
+          "opzioni": [
+            {
+              "id": "steward_t24",
+              "testo": "testi:e24.op.steward_t24",
+              "costo": "testi:e24.op.steward_t24.c",
+              "effetti": [
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.steward_t24.r"
+            },
+            {
+              "id": "apri24",
+              "testo": "testi:e24.op.apri24",
+              "costo": "testi:e24.op.apri24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "tornelli",
+                  "valore": -2
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e24.op.apri24.r"
+            },
+            {
+              "id": "tieni24",
+              "testo": "testi:e24.op.tieni24",
+              "costo": "testi:e24.op.tieni24.c",
+              "effetti": [
+                {
+                  "tensione": "tornelli",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e24.op.tieni24.r"
+            }
+          ]
+        },
+        {
+          "id": "pareggio",
+          "fonte": "centrale_radio",
+          "testo": "testi:e24.ch.pareggio",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "separa24",
+              "testo": "testi:e24.op.separa24",
+              "costo": "testi:e24.op.separa24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.separa24.r"
+            },
+            {
+              "id": "lascia24",
+              "testo": "testi:e24.op.lascia24",
+              "costo": "testi:e24.op.lascia24.c",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e24.op.lascia24.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e24.ondata4",
+      "eventi": [
+        {
+          "id": "festa_piazza",
+          "tipo": "festa",
+          "settore": "piazza_municipio",
+          "pressione": 5
+        },
+        {
+          "id": "collina_giu",
+          "tipo": "corteo",
+          "settore": "strada_larkspire",
+          "pressione": 5
+        },
+        {
+          "id": "uscita_quill24",
+          "tipo": "folla",
+          "settore": "curva_ospiti",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "campioni",
+          "fonte": "club_quillhaven",
+          "testo": "testi:e24.ch.campioni",
+          "settore": "piazza_municipio",
+          "opzioni": [
+            {
+              "id": "niente_piazza",
+              "testo": "testi:e24.op.niente_piazza",
+              "costo": "testi:e24.op.niente_piazza.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e24.op.niente_piazza.r"
+            },
+            {
+              "id": "festa_ospiti",
+              "testo": "testi:e24.op.festa_ospiti",
+              "costo": "testi:e24.op.festa_ospiti.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e24.op.festa_ospiti.r"
+            }
+          ]
+        },
+        {
+          "id": "delusi",
+          "fonte": "ufficio_sicurezza_larkspire",
+          "testo": "testi:e24.ch.delusi",
+          "settore": "strada_larkspire",
+          "opzioni": [
+            {
+              "id": "devia24",
+              "testo": "testi:e24.op.devia24",
+              "costo": "testi:e24.op.devia24.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -1
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e24.op.devia24.r"
+            },
+            {
+              "id": "scortali24",
+              "testo": "testi:e24.op.scortali24",
+              "costo": "testi:e24.op.scortali24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e24.op.scortali24.r"
+            }
+          ]
+        },
+        {
+          "id": "posta_alzata",
+          "fonte": "vice",
+          "testo": "testi:e24.ch.posta_alzata",
+          "commento": "testi:e24.ch.posta_alzata.vice",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "caffe",
+              "testo": "testi:e24.op.caffe",
+              "costo": "testi:e24.op.caffe.c",
+              "effetti": [],
+              "risposta": "testi:e24.op.caffe.r"
+            },
+            {
+              "id": "turno",
+              "testo": "testi:e24.op.turno",
+              "costo": "testi:e24.op.turno.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.turno.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e24.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e24.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e24.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
