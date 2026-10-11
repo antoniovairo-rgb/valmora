@@ -2,11 +2,14 @@
 // restituisce uno nuovo, serializzabile (finisce nel salvataggio fra un passo e l'altro).
 //
 // Per ogni ondata: schiera → rispondi alle chiamate aperte → chiudiOndata.
-// - La tensione di ogni settore (0-10) passa all'ondata dopo: se il settore resta coperto si dimezza
-//   (per difetto), altrimenti resta e si somma allo scoperto.
+// - La tensione di ogni settore (0-10) passa all'ondata dopo: se il settore è presidiato (almeno un'unità)
+//   e non resta scoperto si dimezza (per difetto); se è vuoto resta com'è; se è scoperto si somma (C01-O01).
+// - Lo schieramento si fa una volta per ondata, prima delle chiamate (C01-A01). Rinforzi e perdite
+//   (effetto «riserva») contano dall'ondata successiva; la riserva non scende sotto −quantità (C01-A04).
 // - Le unità rimaste in un settore scoperto vanno a riposo per l'ondata successiva (D-056).
 // - «tensione_max» = tensione di settore più alta vista nella missione; decide l'esito con le variabili.
 import { applica, valuta } from './condizioni.ts';
+import { spento } from '../interruttori.ts';
 import type { Chiamata, Dichiarazione, Disposizione, EffettoMissione, Esito, Missione, Variabili } from './tipi.ts';
 
 export const VAR_TENSIONE = 'tensione_max';
@@ -53,12 +56,16 @@ export function disponibili(m: Missione, s: InCorso): Record<string, number> {
   return Object.fromEntries(Object.entries(m.mappa.risorse).map(([r, x]) => [r, Math.max(0, x.quantita + (s.riserva[r] ?? 0) - (s.riposo[r] ?? 0))]));
 }
 
+const oggetto = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
+
 export function controllaDisposizione(m: Missione, s: InCorso, d: Disposizione): string[] {
+  if (!spento('C02N04') && !oggetto(d)) return ['la disposizione non è un elenco di risorse'];
   const p: string[] = [];
   const settori = new Set(m.mappa.settori.map((x) => x.id));
   const disp = disponibili(m, s);
   for (const [r, perSettore] of Object.entries(d)) {
-    if (!(r in disp)) { p.push(`risorsa «${r}» non disponibile in ${m.id}`); continue; }
+    if (spento('C01A05') ? !(r in disp) : !Object.hasOwn(disp, r)) { p.push(`risorsa «${r}» non disponibile in ${m.id}`); continue; }
+    if (!spento('C02N04') && !oggetto(perSettore)) { p.push(`${r}: serve un elenco settore → unità`); continue; }
     let tot = 0;
     for (const [settore, n] of Object.entries(perSettore)) {
       if (!settori.has(settore)) p.push(`settore «${settore}» non è nella mappa di ${m.id}`);
@@ -72,6 +79,7 @@ export function controllaDisposizione(m: Missione, s: InCorso, d: Disposizione):
 
 export function schiera(m: Missione, s: InCorso, d: Disposizione): InCorso {
   if (missioneFinita(m, s)) throw new Error(`${m.id}: missione già finita`);
+  if (!spento('C01A01') && Object.keys(s.risposte).length) throw new Error(`${m.id}: lo schieramento si fa prima delle chiamate (ondata ${s.ondata})`);
   const errori = controllaDisposizione(m, s, d);
   if (errori.length) throw new Error(errori.join('; '));
   return { ...s, disposizione: structuredClone(d) };
@@ -85,10 +93,14 @@ export function chiamateAperte(m: Missione, s: InCorso): Chiamata[] {
 
 export const opzioniValide = (c: Chiamata, s: InCorso) => c.opzioni.filter((o) => !o.se || valuta(o.se, s.variabili));
 
-function applicaEffetto(s: InCorso, e: EffettoMissione, d: Dich): InCorso {
+function applicaEffetto(m: Missione, s: InCorso, e: EffettoMissione, d: Dich): InCorso {
   if ('tensione' in e) return { ...s, tensione: { ...s.tensione, [e.tensione]: lim((s.tensione[e.tensione] ?? 0) + e.valore) } };
   if ('pressione' in e) return { ...s, modifiche: { ...s.modifiche, [e.pressione]: (s.modifiche[e.pressione] ?? 0) + e.valore } };
-  if ('riserva' in e) return { ...s, riserva: { ...s.riserva, [e.riserva]: (s.riserva[e.riserva] ?? 0) + e.valore } };
+  if ('riserva' in e) {
+    const q = m.mappa.risorse[e.riserva]?.quantita ?? 0;
+    const v = (s.riserva[e.riserva] ?? 0) + e.valore;
+    return { ...s, riserva: { ...s.riserva, [e.riserva]: spento('C01A04') ? v : Math.max(-q, v) } };
+  }
   return { ...s, variabili: applica(e, s.variabili, d) };
 }
 
@@ -99,7 +111,7 @@ export function rispondi(m: Missione, s: InCorso, chiamata: string, opzione: str
   const o = opzioniValide(c, s).find((x) => x.id === opzione);
   if (!o) throw new Error(`${m.id}: l'opzione «${opzione}» non è valida per «${chiamata}»`);
   let t: InCorso = { ...s, risposte: { ...s.risposte, [chiamata]: opzione }, scelte: [...s.scelte, { ondata: s.ondata, chiamata, opzione }] };
-  for (const e of o.effetti) t = applicaEffetto(t, e, d);
+  for (const e of o.effetti) t = applicaEffetto(m, t, e, d);
   return t;
 }
 
@@ -126,7 +138,9 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
     const sc = Math.max(0, pressione - copertura);
     const prima = s.tensione[settore.id] ?? 0;
     scoperto[settore.id] = sc;
-    tensione[settore.id] = lim((sc === 0 ? Math.floor(prima / 2) : prima) + sc);
+    // qualunque unità presidia, anche il mediatore (C02-N05); rossi: C01O01 = sempre, C02N05 = solo con copertura
+    const presidiato = spento('C01O01') || (spento('C02N05') ? copertura > 0 : unita.length > 0);
+    tensione[settore.id] = lim(sc > 0 ? prima + sc : presidiato ? Math.floor(prima / 2) : prima);
     if (sc > 0) for (const u of unita) aRiposo[u.r] = (aRiposo[u.r] ?? 0) + u.n;
   }
   const massimo = Math.max(s.variabili[VAR_TENSIONE] as number, ...Object.values(tensione), ...Object.values(s.tensione));

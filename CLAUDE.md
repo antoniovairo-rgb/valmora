@@ -50,6 +50,7 @@ Gioco Android a missioni, offline. Storia: docs/BIBBIA.md. Policy: docs/REGOLE_P
 - Catena scelta in base a cosa si è toccato; nel dubbio «completa».
 - Le catene si attendono nel turno; rossa o interrotta si rifà da capo sulla stessa build; mai ricostruire durante una catena.
 - Rosso che passa al nuovo tentativo = instabile: si ripara lo strumento, non si ignora.
+- Mai filtrare l'uscita di una catena con una pipe senza `set -o pipefail`: il 2026-10-11 un `| grep` ha nascosto un rosso pubblicato su main (afa4916).
 - Rilascio: rituale in 10 passi di docs/governo/ISTRUZIONI_PO.md §7, sempre completo.
 
 ## Interfaccia

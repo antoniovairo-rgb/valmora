@@ -3,7 +3,7 @@
 import { leggiDati } from './dati-disco.mjs';
 import { creaCaso } from '../src/logica/caso.ts';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
-import { giocaMissione } from '../src/logica/missione.ts';
+import { giocaMissione, opzioniValide } from '../src/logica/missione.ts';
 import { STRATEGIE, attenta } from '../src/logica/bot.ts';
 import { valutaEpisodio } from '../src/logica/episodi.ts';
 
@@ -40,7 +40,7 @@ export function sceltePesano(dati, semi = 300) {
     const esiti = {};
     for (let seme = 1; seme <= semi; seme++) {
       const caso = creaCaso(`scelte:${m.id}:${seme}`);
-      const g = { schiera: attenta(caso, dich).schiera, scegli: (_m, s, c) => caso.scegli(c.opzioni.filter((o) => !o.se)).id };
+      const g = { schiera: attenta(caso, dich).schiera, scegli: (_m, s, c) => caso.scegli(opzioniValide(c, s)).id };
       const r = giocaMissione(m, iniziali, dich, g);
       esiti[r.esito.id] = (esiti[r.esito.id] ?? 0) + 1;
     }
