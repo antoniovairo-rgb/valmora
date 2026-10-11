@@ -13,6 +13,7 @@ export function controllaBot(rapporto, dati) {
   const p = rapporto.flatMap((r) => r.blocchi.slice(0, 3).map((b) => `${r.missione} · ${r.strategia}: ${b}`));
   for (const [k, m] of Object.entries(dati).filter(([k]) => k.startsWith('missioni/'))) {
     for (const e of m.esiti) if (!rapporto.some((r) => r.missione === m.id && r.esiti[e.id])) p.push(`${k}: esito «${e.id}» mai raggiunto dai bot`);
+    for (const n of [1, 2, 3]) if (!rapporto.some((r) => r.missione === m.id && r.stelle?.[n])) p.push(`${k}: ${n} stelle mai raggiunte dai bot`);
   }
   return p;
 }
@@ -55,6 +56,9 @@ export const PASSI_LOGICA = {
     if (!controllaBot(giraBot({ ...d, 'missioni/e01.json': m }, 20), d).length) ciechi.push('bot/soft-lock è cieco');
     const m2 = structuredClone(d['missioni/e01.json']); m2.esiti.push({ ...m2.esiti[0], id: 'irraggiungibile' });
     if (!controllaBot(giraBot({ ...d, 'missioni/e01.json': m2 }, 20), { ...d, 'missioni/e01.json': m2 }).length) ciechi.push('bot/esito irraggiungibile è cieco');
+    const m4 = structuredClone(d['missioni/e01.json']); m4.stelle.tre = { var: 'tensione_max', al_massimo: -1 };
+    const d4 = { ...d, 'missioni/e01.json': m4 };
+    if (!controllaBot(giraBot(d4, 30), d4).some((x) => x.includes('3 stelle'))) ciechi.push('bot/stelle è cieco');
     const m3 = structuredClone(d['missioni/e01.json']);
     for (const o of m3.ondate) for (const c of o.chiamate ?? []) for (const x of c.opzioni) x.effetti = [];
     const d3 = { ...d, 'missioni/e01.json': m3 };

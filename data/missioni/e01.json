@@ -713,7 +713,8 @@
       "id": "degenerato",
       "se": {},
       "effetti": [],
-      "verbale": "testi:e01.verbale_degenerato"
+      "verbale": "testi:e01.verbale_degenerato",
+      "fallita": true
     }
   ],
   "fili": [],
@@ -721,5 +722,27 @@
     "testi:e01.intro1",
     "testi:e01.intro2",
     "testi:e01.intro3"
-  ]
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "luogo": {
+    "x": 50,
+    "y": 55
+  }
 }
