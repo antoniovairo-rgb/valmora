@@ -1,0 +1,10 @@
+{
+  "name": "valmora",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "catena": "node tools/catena.mjs",
+    "governo": "node tools/governo-html.mjs"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "giri": [
+    {
+      "catena": "governo",
+      "data": "2026-10-10T23:59:46.425Z",
+      "commit": "c650418",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "git log:3: identificativo del modello"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-10T23:59:50.743Z",
+      "commit": "c650418",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "git log:3: identificativo del modello"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-10T23:59:54.494Z",
+      "commit": "c650418",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "git log:3: identificativo del modello"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    }
+  ]
+}

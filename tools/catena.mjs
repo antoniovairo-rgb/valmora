@@ -1,0 +1,78 @@
+// Esecutore unico delle catene di prova.
+// Uso: node tools/catena.mjs <nome>      (nomi: vedi CATENE)
+// Ogni giro viene registrato in STABILITA.json. Un passo rosso si rilancia da solo
+// fino a 2 volte: se poi passa è «instabile», se resta rosso la catena è rossa.
+import { execSync } from 'node:child_process';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import {
+  DOCUMENTI_OBBLIGATORI, controllaDocumenti, controllaBacklog, controllaSegreti, controllaModello,
+} from './controlli.mjs';
+import { generaGoverno } from './governo-html.mjs';
+
+const leggi = (p) => (existsSync(p) ? readFileSync(p, 'utf8') : null);
+const git = (cmd) => execSync(`git ${cmd}`, { encoding: 'utf8' }).trim();
+const tracciati = () => git('ls-files').split('\n').filter(Boolean);
+
+// Passi: ognuno restituisce l'elenco dei problemi.
+const PASSI = {
+  documenti: () => controllaDocumenti(Object.fromEntries(Object.keys(DOCUMENTI_OBBLIGATORI).map((p) => [p, leggi(p)]))),
+  backlog: () => controllaBacklog(leggi('docs/governo/BACKLOG.md') ?? ''),
+  segreti: () => controllaSegreti(tracciati()),
+  modello: () => {
+    const testi = {};
+    for (const p of tracciati()) if (/\.(md|mjs|js|ts|tsx|json|html|css|txt)$/.test(p) && existsSync(p)) testi[p] = readFileSync(p, 'utf8');
+    testi['git log'] = git('log --format=%B');
+    return controllaModello(testi);
+  },
+  // Braccio rosso: ogni guardiano deve trovare il difetto in un campione difettoso.
+  'bracci-rossi': () => {
+    const ciechi = [];
+    if (!controllaDocumenti({}).length) ciechi.push('documenti è cieco');
+    if (!controllaBacklog('| PO-1 | ieri | x | boh | FATTO | L0 | – | – | chat |').length) ciechi.push('backlog è cieco');
+    if (!controllaSegreti(['android/app/rilascio.jks']).length) ciechi.push('segreti è cieco');
+    const firma = ['Co-Authored-By:', 'Claude'].join(' ');
+    if (!controllaModello({ prova: firma }).length) ciechi.push('modello è cieco');
+    return ciechi;
+  },
+  'governo.html': () => { generaGoverno(); return []; },
+};
+
+const CATENE = {
+  governo: ['documenti', 'backlog', 'segreti', 'modello', 'bracci-rossi', 'governo.html'],
+};
+CATENE.completa = [...CATENE.governo]; // si allunga quando nascono «logica» e «grafica»
+
+const nome = process.argv[2];
+if (!CATENE[nome]) {
+  console.error(`Catena sconosciuta «${nome}». Disponibili: ${Object.keys(CATENE).join(', ')}`);
+  process.exit(2);
+}
+
+const commit = git('rev-parse --short HEAD');
+const sporco = git('status --porcelain').length > 0;
+const giro = { catena: nome, data: new Date().toISOString(), commit, modifiche_non_committate: sporco, passi: [] };
+let rosso = false;
+
+for (const passo of CATENE[nome]) {
+  let tentativi = 0;
+  let problemi;
+  do {
+    tentativi++;
+    try { problemi = PASSI[passo](); } catch (e) { problemi = [`eccezione: ${e.message}`]; }
+  } while (problemi.length && tentativi < 3);
+  const esito = problemi.length ? 'rosso' : tentativi > 1 ? 'instabile' : 'verde';
+  giro.passi.push({ passo, esito, tentativi, problemi });
+  console.log(`${esito === 'verde' ? '✔' : esito === 'instabile' ? '≈' : '✘'} ${passo}${tentativi > 1 ? ` (${tentativi} tentativi)` : ''}`);
+  for (const p of problemi) console.log(`    ${p}`);
+  if (esito === 'rosso') { rosso = true; break; }
+}
+
+giro.esito = rosso ? 'rosso' : giro.passi.some((p) => p.esito === 'instabile') ? 'instabile' : 'verde';
+const registro = existsSync('STABILITA.json') ? JSON.parse(readFileSync('STABILITA.json', 'utf8')) : { giri: [] };
+registro.giri.push(giro);
+writeFileSync('STABILITA.json', JSON.stringify(registro, null, 2) + '\n');
+// Rigenera la pagina anche dopo l'ultimo giro, così mostra l'esito appena registrato.
+generaGoverno();
+
+console.log(`\nCatena «${nome}» su ${commit}${sporco ? ' (con modifiche non committate)' : ''}: ${giro.esito.toUpperCase()}`);
+process.exit(rosso ? 1 : 0);

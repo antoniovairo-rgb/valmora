@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Governo Valmora</title>
+<style>
+:root{--sfondo:#f6f5f2;--carta:#fff;--testo:#1d1d1f;--tenue:#6b6b70;--bordo:#e2e0da;--verde:#1f7a4d;--rosso:#b3261e;--giallo:#9a6a00}
+@media (prefers-color-scheme:dark){:root{--sfondo:#141416;--carta:#1d1d20;--testo:#ececef;--tenue:#9a9aa2;--bordo:#2e2e33;--verde:#5cc28f;--rosso:#ff8a80;--giallo:#e0b44c}}
+body{margin:0;background:var(--sfondo);color:var(--testo);font:15px/1.5 system-ui,sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 10px}
+.tenue{color:var(--tenue);font-size:13px}
+.griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.scheda{background:var(--carta);border:1px solid var(--bordo);border-radius:10px;padding:12px 14px}
+.stato{font-size:12px;font-weight:600;letter-spacing:.04em}
+.IN.CORSO,.IN{color:var(--giallo)}.CHIUSO{color:var(--verde)}.PROPOSTO{color:var(--tenue)}
+.cifre{display:flex;gap:16px;flex-wrap:wrap}.cifre b{font-size:24px;display:block}
+table{width:100%;border-collapse:collapse;background:var(--carta);border:1px solid var(--bordo);border-radius:10px;overflow:hidden;font-size:14px}
+td,th{padding:7px 10px;border-bottom:1px solid var(--bordo);text-align:left;vertical-align:top}
+.tab{overflow-x:auto}
+.pallino{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:3px}
+.verde{background:var(--verde)}.rosso{background:var(--rosso)}.instabile{background:var(--giallo)}
+</style></head><body><main>
+<h1>Governo Valmora</h1>
+<div class="tenue">Generata il 2026-10-10 23:59 UTC da tools/governo-html.mjs</div>
+
+<h2>Lotti</h2>
+<div class="griglia"><div class="scheda"><div class="stato IN CORSO">IN CORSO</div><strong>L0 – Impianto del governo</strong><p>documenti di governo, regole, prima catena di prova funzionante, decisioni di partenza.</p><div class="tenue">Uscita: catena «governo» verde per 3 giri consecutivi sullo stesso commit; D-006…D-010 chiuse; docs/BIBBIA.md non più segnaposto.</div></div><div class="scheda"><div class="stato PROPOSTO">PROPOSTO</div><strong>L1 – Fetta verticale: episodio 1</strong><p>e01 giocabile da capo a fondo (briefing, plancia, ondate, verbale) nel browser e come APK di debug sul telefono del PO.</p><div class="tenue">Uscita: e01 completata dal bot con 1000 semi (1…1000), 0 blocchi; catena «logica» verde 3 giri; 0 errori di console sulle schermate di e01 a 360/375/412 px; salvataggio e ripresa provati; ore reali di lavoro misurate e scritte qui.</div></div><div class="scheda"><div class="stato PROPOSTO">PROPOSTO</div><strong>L2 – Strumenti e stagione 1</strong><p>validatore dello schema, controllo del grafo narrativo, bot di partite; 12 missioni della stagione 1.</p><div class="tenue">Uscita: 12 missioni valide allo schema; bot con 1000 semi × strategie «casuale» e «peggiore» arriva sempre alla fine della stagione; 0 soft-lock e 0 fili orfani; un rapporto di collaudo per missione in COLLAUDI.md senza difetti critici aperti.</div></div><div class="scheda"><div class="stato PROPOSTO">PROPOSTO</div><strong>L3 – Prima pubblicazione</strong><p>ambito della prima pubblicazione (stagione 1 o triade intera: D-009), test chiuso su Play, richiesta di produzione.</p><div class="tenue">Uscita: controllo copyright a 0; build offline verificata; 0 errori di console nelle schermate principali; AAB caricato dal PO nel test chiuso; requisiti Play letti e datati in docs/RILASCIO.md.</div></div></div>
+
+<h2>Voci del backlog</h2>
+<div class="scheda cifre"><div><b>3</b><span class="tenue">FATTO</span></div><div><b>3</b><span class="tenue">PARZIALE</span></div><div><b>1</b><span class="tenue">DOPPIONE</span></div><div><b>1</b><span class="tenue">IN CODA</span></div><div><b>8</b><span class="tenue">totale</span></div></div>
+<h2>Aperte (4)</h2>
+<div class="tab"><table><tr><th>id</th><th>richiesta</th><th>stato</th><th>lotto</th></tr><tr><td>PO-003</td><td>Fare da Team Leader e partire dalla Fase 0</td><td>PARZIALE – proposta in docs/FASE0_PROPOSTA.md, in attesa delle decisioni D-006 e D-007</td><td>L0</td></tr><tr><td>PO-005</td><td>Adottare il governo del progetto (istruzioni permanenti)</td><td>PARZIALE – docs/governo/ISTRUZIONI_PO.md, CLAUDE.md riscritto</td><td>L0</td></tr><tr><td>PO-006</td><td>Primo passo: visione, stack, lotti L1-L3 con data, documenti di governo, prima catena funzionante</td><td>PARZIALE – (d) ed (e) pronti; (a)(b)(c) in approvazione</td><td>L0</td></tr><tr><td>PO-008</td><td>Il progetto deve lavorare in cloud e non in locale come gli altri giochi</td><td>IN CODA – serve il repo GitHub (D-008)</td><td>L0</td></tr></table></div>
+<h2>Chiuse (4)</h2>
+<div class="tab"><table><tr><th>id</th><th>richiesta</th><th>stato</th><th>lotto</th></tr><tr><td>PO-001</td><td>Preparare il repository dal pacchetto «Valmora – Prompt per il team Claude Code»</td><td>FATTO – commit iniziale, file in CLAUDE.md, docs/, coordination/</td><td>L0</td></tr><tr><td>PO-002</td><td>Rivedere il pacchetto di prompt</td><td>FATTO – correzioni elencate in AVVIO.md</td><td>L0</td></tr><tr><td>PO-004</td><td>«Non puoi lavorare in cloud?»</td><td>DOPPIONE (unita a PO-008)</td><td>L0</td></tr><tr><td>PO-007</td><td>Fammi tutte le domande sempre in questionario wizard</td><td>FATTO – regola in CLAUDE.md</td><td>L0</td></tr></table></div>
+
+<h2>Stabilità delle catene</h2>
+<div class="tab"><table><tr><th>catena</th><th>giri</th><th>verdi</th><th>ultimi 20</th><th>ultimo</th></tr><tr><td>governo</td><td>3</td><td>0</td><td><span class="pallino rosso" title="c650418 2026-10-10T23:59:46.425Z"></span><span class="pallino rosso" title="c650418 2026-10-10T23:59:50.743Z"></span><span class="pallino rosso" title="c650418 2026-10-10T23:59:54.494Z"></span></td><td>rosso su c650418</td></tr></table></div>
+</main></body></html>

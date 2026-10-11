@@ -1,36 +1,65 @@
-# Progetto: Valmora – Cortina di fumo
+# Valmora – Cortina di fumo · regole di lavoro
 
-Gioco Android a missioni per Google Play. Il giocatore è il responsabile dell'ordine pubblico di Valmora, metropoli immaginaria con 13 club di calcio. Soprannome tra gli ultras: "Killjoy ad interim". Struttura: triadi di 3 stagioni da 12 missioni, rilasciate a blocchi. Storia: docs/BIBBIA.md. Regole policy: docs/REGOLE_PLAY.md.
+Gioco Android a missioni, offline. Storia: docs/BIBBIA.md. Policy: docs/REGOLE_PLAY.md. Governo completo: docs/governo/ISTRUZIONI_PO.md.
 
-Tecnologia: DA DECIDERE (Fase 0, decisione del PO). Proposta in docs/FASE0_PROPOSTA.md. Nessuno scrive codice di gioco prima della decisione.
+## Ruoli e lingua
+- Il PO (Antonio) parla solo con la sessione principale; la sessione principale dirige le altre.
+- Sempre in italiano, dando del tu al PO.
+- Ogni risposta al PO inizia con «Lotto in corso: … · Voci toccate: PO-… · Richieste nuove registrate: PO-…».
+- Ogni domanda al PO si fa con il questionario a scelte (2-4 opzioni, consigliata per prima, costi di ciascuna), mai in testo libero.
+- Il progetto lavora in cloud: sessioni su claude.ai/code sul repository GitHub, non in locale.
 
-## Persone
-- Product Owner (PO): Antonio, 2-3 ore al giorno. Decide scelte di prodotto e storia. Non va disturbato per dettagli tecnici.
+## Verità
+- Mai inventare fatti, numeri, file, norme, procedure di polizia o comportamenti: se non verificabile, «Non posso confermarlo».
+- Ogni affermazione sul codice cita file:riga; ogni affermazione su un comportamento cita comando, campione ed esito.
+- FATTO MISURATO e IPOTESI sono sempre distinti; le ipotesi sono marcate.
+- Una misura sbagliata si ritira dichiarandolo.
+- Ogni riferimento reale (legge, policy, documentazione) ha la sua fonte (URL).
+- Il mondo di gioco è finzione dichiarata: nessuna persona, club, stemma, forza di polizia, luogo o evento reale.
+- Violenza fuori campo (rapporti, radio, verbali); il rating lo decide solo il questionario IARC.
 
-## Regole di verità (valgono per tutti)
-- Non inventare fatti, norme, procedure di polizia, dati di mercato o citazioni. Se un'affermazione non è verificata, scrivere "Non posso confermarlo".
-- Ogni riferimento reale (legge, policy, documentazione) va con fonte (URL).
-- Tutto ciò che appartiene al mondo di gioco è finzione dichiarata: città, club, gruppi, persone e fatti sono inventati. Nessun riferimento a persone, squadre, stemmi o eventi reali.
-- Nessuna imitazione di forze di polizia reali: niente stemmi, nomi ufficiali o loghi reali. Il gioco ha un avviso di non affiliazione.
-- Violenza stilizzata e fuori campo (rapporti, radio, verbali). Target 16+. Il rating definitivo si ottiene solo dal questionario IARC su Play Console: non dichiarare un rating come certo.
+## Governo
+- Ogni richiesta del PO diventa subito una voce PO-xxx in docs/governo/BACKLOG.md.
+- Ogni decisione va in docs/governo/DECISIONI.md; le zone congelate elencate lì non si toccano senza il via del PO.
+- Scelte tecniche con default ovvio: le prende la sessione principale e le dichiara.
+- Direttiva standard: prosegui senza fermarti; ci si ferma solo per una decisione del PO o un blocco reale.
+- La storia delle release va in docs/RELEASE_HISTORY.md, mai qui.
+- Dieci giorni prima della data di pubblicazione: ambito congelato, entrano solo difetti.
 
-## Regole tecniche
-- Contenuti (missioni, dialoghi, personaggi, eventi) sono DATI in file strutturati con schema validato, non codice.
-- Nessun soft-lock: ogni stato narrativo deve avere almeno un'uscita. Un test automatico lo verifica.
-- Segreti (keystore, chiavi Play Console, token, password, file *.jks, *.keystore, keystore.properties, google-services*.json, .env*) FUORI LIMITE: mai nel repository, nei prompt o nei log; mai letti né stampati dalle sessioni. Il rilascio su Google Play e le azioni su Play Console le fa solo il PO.
-- Gioco offline. Nessun dato personale raccolto. Nessuna pubblicità invasiva.
-- Lingue: italiano per primo; inglese dopo, con le stringhe in file separati.
-- Ogni modifica ha test. Nessun merge senza esito dei collaudatori.
+## Architettura
+- Nessun codice di gioco prima delle decisioni D-006 (stack) e D-007 (schema).
+- Moduli piccoli (massimo 400 righe), ricomposti dal build.
+- Logica pura in src/logica, testabile senza browser; mai importa da src/resa.
+- Casualità solo dal generatore con seme; Math.random vietato nel percorso deterministico.
+- Salvataggi con SAVE_VERSION e migrazione retrocompatibile, testata su salvataggi vecchi reali.
+- GAME_VERSION aumenta a ogni rilascio, con commento: causa, misura, guardiano.
+- Contenuti (missioni, dialoghi, personaggi) sono dati validati da schema, non codice.
+- Nessun soft-lock: ogni stato narrativo ha un'uscita, verificato in catena.
 
-## Git e coordinamento
-- Un branch per ruolo: worktree-dev-engine, worktree-dev-contenuti, worktree-test-auto, worktree-test-play (creati da `claude --worktree <nome>`). Il Leader lavora su main nella cartella principale.
-- Tutti i worktree condividono lo stesso repository: i branch degli altri si leggono senza fetch (git log <branch>, git show <branch>:percorso).
-- Commit piccoli, messaggi chiari. Mai force push, mai rebase di branch condivisi.
-- Solo il Team Leader fa merge su main e scrive coordination/BOARD.md.
-- Gli altri ruoli scrivono consegne in coordination/handoffs/<ruolo>/<ID>.md e committano sul proprio branch.
-- All'avvio di ogni sessione e a ogni ciclo: aggiornare il proprio branch con `git merge main`, poi leggere questo file, docs/BIBBIA.md e la lavagna (git show main:coordination/BOARD.md).
-- Collaudatori: per provare il compito <ID> fanno `git merge <branch-dev>` nel proprio branch, eseguono i test, scrivono la consegna. Non modificano codice o contenuti degli sviluppatori.
-- Se sulla lavagna non c'è un compito per il proprio ruolo, la sessione si ferma e lo scrive in una riga (non inventa lavoro).
+## Metodo
+- Ogni difetto: riproduci e misura, patch minima, interruttore rosso globalThis.__NO_XXX, misura verde e rosso, guardiano permanente.
+- Se il braccio rosso non mostra il difetto, il guardiano è cieco e va riparato.
+- Mai abbassare la soglia di un guardiano per far passare una modifica.
+- Le misure contano passi e minuti di gioco, mai tempo reale o fps.
+- Campioni rumorosi: media, mediana, dispersione, numero di prove.
+- Pianifica prima di toccare; leggi il minimo; patch con ancore univoche; niente refactoring non richiesti.
+- Nessun identificativo del modello in commit, codice o documenti (niente righe Co-Authored-By).
 
-## Comunicazione con il PO
-- Report giornaliero del Leader in coordination/REPORT.md (in cima il più recente): massimo 15 righe, con "Fatto", "In corso", "Bloccato" e "Decisioni richieste al PO" (con 2-3 opzioni e la raccomandazione).
+## Catene
+- Esecutore unico: node tools/catena.mjs <nome>; ogni giro finisce in STABILITA.json.
+- Catena scelta in base a cosa si è toccato; nel dubbio «completa».
+- Le catene si attendono nel turno; rossa o interrotta si rifà da capo sulla stessa build; mai ricostruire durante una catena.
+- Rosso che passa al nuovo tentativo = instabile: si ripara lo strumento, non si ignora.
+- Rilascio: rituale in 10 passi di docs/governo/ISTRUZIONI_PO.md §7, sempre completo.
+
+## Interfaccia
+- Ogni schermata verificata a 360, 375 e 412 px con foto prima e dopo.
+- Colori, raggi e spaziature solo da token; un guardiano segnala i valori scritti a mano.
+- Verifiche percettive solo con asset veri.
+
+## Sessioni e git
+- Sessioni parallele: collaudatrice (sola lettura), sviluppatrice (compiti delimitati), rilascio; ognuna sul suo ramo, con prompt autosufficiente.
+- Solo la sessione principale promuove su main.
+- Commit piccoli e chiari; mai force push, mai rebase di rami condivisi.
+- Segreti (keystore, chiavi Play Console, token, password, .env) mai letti, stampati o committati; Play Console la usa solo il PO.
+- Gioco offline, nessun dato personale, nessuna pubblicità invasiva.
