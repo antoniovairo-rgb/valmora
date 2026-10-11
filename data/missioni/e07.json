@@ -1,0 +1,856 @@
+{
+  "id": "e07",
+  "bozza": true,
+  "stagione": 1,
+  "episodio": 7,
+  "titolo": "testi:e07.titolo",
+  "disponibile_se": {},
+  "luogo": {
+    "x": 14,
+    "y": 56
+  },
+  "introduzione": [
+    "testi:e07.intro1",
+    "testi:e07.intro2",
+    "testi:e07.intro3"
+  ],
+  "briefing": [
+    {
+      "testo": "testi:e07.info_club",
+      "fonte": "club_saltmere",
+      "affidabilita": "media",
+      "vera": false,
+      "settore": "parcheggi"
+    },
+    {
+      "testo": "testi:e07.info_radio",
+      "fonte": "centrale_radio",
+      "affidabilita": "alta",
+      "vera": true,
+      "settore": "viale_stazione"
+    },
+    {
+      "testo": "testi:e07.info_rete",
+      "fonte": "voci_in_rete",
+      "affidabilita": "media",
+      "vera": true,
+      "settore": "curva_larkspire"
+    },
+    {
+      "testo": "testi:e07.info_comitato",
+      "fonte": "comitato_residenti",
+      "affidabilita": "bassa",
+      "vera": false,
+      "settore": "viale_stazione"
+    }
+  ],
+  "mappa": {
+    "settori": [
+      {
+        "id": "viale_stazione",
+        "tipo": "strada",
+        "pos": {
+          "x": 25,
+          "y": 85
+        }
+      },
+      {
+        "id": "piazzale",
+        "tipo": "piazzale",
+        "pos": {
+          "x": 55,
+          "y": 65
+        }
+      },
+      {
+        "id": "parcheggi",
+        "tipo": "strada",
+        "pos": {
+          "x": 85,
+          "y": 85
+        }
+      },
+      {
+        "id": "curva_ospiti",
+        "tipo": "curva",
+        "club": "saltmere_wanderers",
+        "pos": {
+          "x": 20,
+          "y": 38
+        }
+      },
+      {
+        "id": "curva_larkspire",
+        "tipo": "curva",
+        "club": "larkspire_athletic",
+        "pos": {
+          "x": 80,
+          "y": 38
+        }
+      }
+    ],
+    "risorse": {
+      "squadre": {
+        "quantita": 3,
+        "efficacia": {
+          "strada": 2,
+          "piazzale": 2,
+          "curva": 1
+        }
+      },
+      "steward": {
+        "quantita": 6,
+        "efficacia": {
+          "curva": 2,
+          "piazzale": 1,
+          "strada": 1
+        }
+      },
+      "mediatore": {
+        "quantita": 1,
+        "efficacia": {},
+        "dimezza": [
+          "festa"
+        ]
+      }
+    }
+  },
+  "ondate": [
+    {
+      "n": 1,
+      "titolo": "testi:e07.ondata1",
+      "eventi": [
+        {
+          "id": "pulmini",
+          "tipo": "festa",
+          "settore": "viale_stazione",
+          "pressione": 4
+        },
+        {
+          "id": "sosta7",
+          "tipo": "arrivo",
+          "settore": "parcheggi",
+          "pressione": 4
+        },
+        {
+          "id": "banda7",
+          "tipo": "festa",
+          "settore": "piazzale",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "quaranta_pulmini",
+          "fonte": "club_saltmere",
+          "testo": "testi:e07.ch.quaranta_pulmini",
+          "commento": "testi:e07.ch.quaranta_pulmini.vice",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "guida_parcheggi",
+              "testo": "testi:e07.op.guida_parcheggi",
+              "costo": "testi:e07.op.guida_parcheggi.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -3
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.guida_parcheggi.r"
+            },
+            {
+              "id": "indicazioni_rete",
+              "testo": "testi:e07.op.indicazioni_rete",
+              "costo": "testi:e07.op.indicazioni_rete.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "parcheggi",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.indicazioni_rete.r"
+            },
+            {
+              "id": "dove_capita",
+              "testo": "testi:e07.op.dove_capita",
+              "costo": "testi:e07.op.dove_capita.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.dove_capita.r"
+            }
+          ]
+        },
+        {
+          "id": "foto_ricordo",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e07.ch.foto_ricordo",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "lascia_foto7",
+              "testo": "testi:e07.op.lascia_foto7",
+              "costo": "testi:e07.op.lascia_foto7.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e07.op.lascia_foto7.r"
+            },
+            {
+              "id": "separa_gruppi",
+              "testo": "testi:e07.op.separa_gruppi",
+              "costo": "testi:e07.op.separa_gruppi.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e07.op.separa_gruppi.r"
+            }
+          ]
+        },
+        {
+          "id": "banda",
+          "fonte": "centrale_radio",
+          "testo": "testi:e07.ch.banda",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "banda_suona",
+              "testo": "testi:e07.op.banda_suona",
+              "costo": "testi:e07.op.banda_suona.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.banda_suona.r"
+            },
+            {
+              "id": "banda_dentro",
+              "testo": "testi:e07.op.banda_dentro",
+              "costo": "testi:e07.op.banda_dentro.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.banda_dentro.r"
+            },
+            {
+              "id": "mediatore_banda",
+              "testo": "testi:e07.op.mediatore_banda",
+              "costo": "testi:e07.op.mediatore_banda.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.mediatore_banda.r"
+            }
+          ]
+        },
+        {
+          "id": "sconti_benvenuto",
+          "fonte": "informatore_di_strada",
+          "testo": "testi:e07.ch.sconti_benvenuto",
+          "commento": "testi:e07.ch.sconti_benvenuto.vice",
+          "settore": "piazzale",
+          "se": {
+            "var": "informatore_pagato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "avvisa_club",
+              "testo": "testi:e07.op.avvisa_club",
+              "costo": "testi:e07.op.avvisa_club.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e07.op.avvisa_club.r"
+            },
+            {
+              "id": "lascia_sconti",
+              "testo": "testi:e07.op.lascia_sconti",
+              "costo": "testi:e07.op.lascia_sconti.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e07.op.lascia_sconti.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "testi:e07.ondata2",
+      "eventi": [
+        {
+          "id": "festa_curva",
+          "tipo": "festa",
+          "settore": "curva_ospiti",
+          "pressione": 5
+        },
+        {
+          "id": "cori7",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "piazzale7",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 2
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "pupazzo",
+          "fonte": "centrale_radio",
+          "testo": "testi:e07.ch.pupazzo",
+          "commento": "testi:e07.ch.pupazzo.vice",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "togli_pupazzo",
+              "testo": "testi:e07.op.togli_pupazzo",
+              "costo": "testi:e07.op.togli_pupazzo.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -2
+                },
+                {
+                  "tensione": "curva_ospiti",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e07.op.togli_pupazzo.r"
+            },
+            {
+              "id": "lascia_pupazzo",
+              "testo": "testi:e07.op.lascia_pupazzo",
+              "costo": "testi:e07.op.lascia_pupazzo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.lascia_pupazzo.r"
+            }
+          ]
+        },
+        {
+          "id": "coro_imparato",
+          "fonte": "voci_in_rete",
+          "testo": "testi:e07.ch.coro_imparato",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "spiega_coro",
+              "testo": "testi:e07.op.spiega_coro",
+              "costo": "testi:e07.op.spiega_coro.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.spiega_coro.r"
+            },
+            {
+              "id": "lascia_coro7",
+              "testo": "testi:e07.op.lascia_coro7",
+              "costo": "testi:e07.op.lascia_coro7.c",
+              "effetti": [
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.lascia_coro7.r"
+            }
+          ]
+        },
+        {
+          "id": "bambino",
+          "fonte": "club_saltmere",
+          "testo": "testi:e07.ch.bambino",
+          "settore": "piazzale",
+          "opzioni": [
+            {
+              "id": "steward_bambini",
+              "testo": "testi:e07.op.steward_bambini",
+              "costo": "testi:e07.op.steward_bambini.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": -2
+                },
+                {
+                  "riserva": "steward",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.steward_bambini.r"
+            },
+            {
+              "id": "annuncio_bambini",
+              "testo": "testi:e07.op.annuncio_bambini",
+              "costo": "testi:e07.op.annuncio_bambini.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e07.op.annuncio_bambini.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "testi:e07.ondata3",
+      "eventi": [
+        {
+          "id": "gol_storia",
+          "tipo": "festa",
+          "settore": "curva_ospiti",
+          "pressione": 5
+        },
+        {
+          "id": "pareggio",
+          "tipo": "curva",
+          "settore": "curva_larkspire",
+          "pressione": 4
+        },
+        {
+          "id": "pulmini_aperti",
+          "tipo": "festa",
+          "settore": "parcheggi",
+          "pressione": 3
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "primo_gol",
+          "fonte": "vice",
+          "testo": "testi:e07.ch.primo_gol",
+          "commento": "testi:e07.ch.primo_gol.vice",
+          "settore": "curva_ospiti",
+          "opzioni": [
+            {
+              "id": "cordone_campo",
+              "testo": "testi:e07.op.cordone_campo",
+              "costo": "testi:e07.op.cordone_campo.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.cordone_campo.r"
+            },
+            {
+              "id": "lascia_festa7",
+              "testo": "testi:e07.op.lascia_festa7",
+              "costo": "testi:e07.op.lascia_festa7.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.lascia_festa7.r"
+            },
+            {
+              "id": "mediatore_festa",
+              "testo": "testi:e07.op.mediatore_festa",
+              "costo": "testi:e07.op.mediatore_festa.c",
+              "effetti": [
+                {
+                  "pressione": "curva_ospiti",
+                  "valore": -1
+                },
+                {
+                  "riserva": "mediatore",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.mediatore_festa.r"
+            }
+          ]
+        },
+        {
+          "id": "pareggio_casa",
+          "fonte": "centrale_radio",
+          "testo": "testi:e07.ch.pareggio_casa",
+          "settore": "curva_larkspire",
+          "opzioni": [
+            {
+              "id": "squadra_larkspire7",
+              "testo": "testi:e07.op.squadra_larkspire7",
+              "costo": "testi:e07.op.squadra_larkspire7.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.squadra_larkspire7.r"
+            },
+            {
+              "id": "lascia_sollievo",
+              "testo": "testi:e07.op.lascia_sollievo",
+              "costo": "testi:e07.op.lascia_sollievo.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.lascia_sollievo.r"
+            }
+          ]
+        },
+        {
+          "id": "immagine_club",
+          "fonte": "vice",
+          "testo": "testi:e07.ch.immagine_club",
+          "settore": "curva_larkspire",
+          "se": {
+            "var": "presidente_incontrato",
+            "uguale": true
+          },
+          "opzioni": [
+            {
+              "id": "accetta7",
+              "testo": "testi:e07.op.accetta7",
+              "costo": "testi:e07.op.accetta7.c",
+              "effetti": [
+                {
+                  "riserva": "steward",
+                  "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.accetta7.r"
+            },
+            {
+              "id": "declina7",
+              "testo": "testi:e07.op.declina7",
+              "costo": "testi:e07.op.declina7.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e07.op.declina7.r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "testi:e07.ondata4",
+      "eventi": [
+        {
+          "id": "carovana",
+          "tipo": "festa",
+          "settore": "viale_stazione",
+          "pressione": 5
+        },
+        {
+          "id": "partenza",
+          "tipo": "festa",
+          "settore": "parcheggi",
+          "pressione": 4
+        },
+        {
+          "id": "uscita7",
+          "tipo": "folla",
+          "settore": "piazzale",
+          "pressione": 4
+        }
+      ],
+      "chiamate": [
+        {
+          "id": "risultato",
+          "fonte": "vice",
+          "testo": "testi:e07.ch.risultato",
+          "commento": "testi:e07.ch.risultato.vice",
+          "opzioni": [
+            {
+              "id": "carovana_percorso",
+              "testo": "testi:e07.op.carovana_percorso",
+              "costo": "testi:e07.op.carovana_percorso.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.carovana_percorso.r"
+            },
+            {
+              "id": "niente_carovana",
+              "testo": "testi:e07.op.niente_carovana",
+              "costo": "testi:e07.op.niente_carovana.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "parcheggi",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.niente_carovana.r"
+            },
+            {
+              "id": "carovana_libera",
+              "testo": "testi:e07.op.carovana_libera",
+              "costo": "testi:e07.op.carovana_libera.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.carovana_libera.r"
+            }
+          ]
+        },
+        {
+          "id": "capodanno",
+          "fonte": "comitato_residenti",
+          "testo": "testi:e07.ch.capodanno",
+          "settore": "viale_stazione",
+          "opzioni": [
+            {
+              "id": "chiudi_viale7",
+              "testo": "testi:e07.op.chiudi_viale7",
+              "costo": "testi:e07.op.chiudi_viale7.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -2
+                },
+                {
+                  "pressione": "parcheggi",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e07.op.chiudi_viale7.r"
+            },
+            {
+              "id": "chiedi_pazienza",
+              "testo": "testi:e07.op.chiedi_pazienza",
+              "costo": "testi:e07.op.chiedi_pazienza.c",
+              "effetti": [
+                {
+                  "pressione": "viale_stazione",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.chiedi_pazienza.r"
+            }
+          ]
+        },
+        {
+          "id": "batteria",
+          "fonte": "club_saltmere",
+          "testo": "testi:e07.ch.batteria",
+          "settore": "parcheggi",
+          "opzioni": [
+            {
+              "id": "spingi_pulmino",
+              "testo": "testi:e07.op.spingi_pulmino",
+              "costo": "testi:e07.op.spingi_pulmino.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e07.op.spingi_pulmino.r"
+            },
+            {
+              "id": "carro_attrezzi",
+              "testo": "testi:e07.op.carro_attrezzi",
+              "costo": "testi:e07.op.carro_attrezzi.c",
+              "effetti": [
+                {
+                  "pressione": "parcheggi",
+                  "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e07.op.carro_attrezzi.r"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "esiti": [
+    {
+      "id": "contenuto",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e07.verbale_contenuto",
+      "stelle_min": 2
+    },
+    {
+      "id": "contenuto_a_fatica",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "effetti": [],
+      "verbale": "testi:e07.verbale_a_fatica",
+      "stelle_max": 2
+    },
+    {
+      "id": "degenerato",
+      "se": {},
+      "effetti": [],
+      "verbale": "testi:e07.verbale_degenerato",
+      "fallita": true
+    }
+  ],
+  "stelle": {
+    "due": {
+      "var": "tensione_max",
+      "al_massimo": 3
+    },
+    "tre": {
+      "tutte": [
+        {
+          "var": "tensione_max",
+          "al_massimo": 3
+        },
+        {
+          "var": "credito",
+          "almeno": 5
+        }
+      ]
+    }
+  },
+  "fili": []
+}
