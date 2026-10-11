@@ -2,7 +2,7 @@
 
 Build del ramo principale dopo 5df546d (comprende bilancio, colori e stemmi, città leggibile; NON ancora il wizard S-10
 né la folla S-11 della sviluppatrice). Partita e01 completa col giocatore attento, a 360×760 e 412×830, sonda
-`rev.mjs` (derivata da c06 della collaudatrice): per ogni scena scorrimento verticale/orizzontale, carattere minimo,
+`coordination/sonde/rev-schermate.mjs` (derivata da c06 della collaudatrice): per ogni scena scorrimento verticale/orizzontale, carattere minimo,
 bersagli di tocco < 44 px, testi tagliati, sovrapposizioni fra testi. Foto in docs/revisioni/2026-10-11/.
 
 ## Scorrimento verticale (px oltre lo schermo; tra parentesi: scene con scorrimento / scene viste)
