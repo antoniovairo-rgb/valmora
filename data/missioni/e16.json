@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 16,
   "titolo": "testi:e16.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 86,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e16.intro1",
-    "testi:e16.intro2",
-    "testi:e16.intro3"
+    "testi:e16.intro2"
   ],
   "briefing": [
     {
@@ -541,6 +539,39 @@
               "risposta": "testi:e16.op.lascia16.r"
             }
           ]
+        },
+        {
+          "id": "lavezzari_curva",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e16.ch.lavezzari_curva",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "annota_dubbio16",
+              "testo": "testi:e16.op.annota_dubbio16",
+              "costo": "testi:e16.op.annota_dubbio16.c",
+              "effetti": [
+                {
+                  "aggiungi": "sospetti_talpa",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e16.op.annota_dubbio16.r"
+            },
+            {
+              "id": "ringrazia16",
+              "testo": "testi:e16.op.ringrazia16",
+              "costo": "testi:e16.op.ringrazia16.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e16.op.ringrazia16.r"
+            }
+          ],
+          "commento": "testi:e16.ch.lavezzari_curva.vice"
         },
         {
           "id": "senza_dessi",

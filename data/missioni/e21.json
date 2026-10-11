@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 21,
   "titolo": "testi:e21.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 15,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e21.intro1",
-    "testi:e21.intro2",
-    "testi:e21.intro3"
+    "testi:e21.intro2"
   ],
   "briefing": [
     {
@@ -20,7 +18,7 @@
       "fonte": "ufficio_sicurezza_cinderwick",
       "affidabilita": "media",
       "vera": true,
-      "settore": "anello_cinderwick"
+      "settore": "piazza_fonderie"
     },
     {
       "testo": "testi:e21.info_centro",
@@ -56,18 +54,16 @@
         }
       },
       {
-        "id": "anello_cinderwick",
-        "tipo": "curva",
-        "club": "cinderwick_united",
+        "id": "piazza_fonderie",
+        "tipo": "piazzale",
         "pos": {
           "x": 42,
           "y": 14
         }
       },
       {
-        "id": "curva_ospiti",
-        "tipo": "curva",
-        "club": "quillhaven_albion",
+        "id": "quartiere",
+        "tipo": "quartiere",
         "pos": {
           "x": 85,
           "y": 30
@@ -136,7 +132,7 @@
         {
           "id": "anello21",
           "tipo": "faida",
-          "settore": "anello_cinderwick",
+          "settore": "piazza_fonderie",
           "pressione": 3
         }
       ],
@@ -190,7 +186,7 @@
                   "valore": -1
                 },
                 {
-                  "pressione": "anello_cinderwick",
+                  "pressione": "piazza_fonderie",
                   "valore": -1
                 },
                 {
@@ -206,7 +202,7 @@
           "id": "nuovo_capo",
           "fonte": "voci_in_rete",
           "testo": "testi:e21.ch.nuovo_capo",
-          "settore": "anello_cinderwick",
+          "settore": "piazza_fonderie",
           "opzioni": [
             {
               "id": "ignora21",
@@ -214,7 +210,7 @@
               "costo": "testi:e21.op.ignora21.c",
               "effetti": [
                 {
-                  "pressione": "anello_cinderwick",
+                  "pressione": "piazza_fonderie",
                   "valore": 2
                 }
               ],
@@ -230,7 +226,7 @@
                   "valore": -1
                 },
                 {
-                  "pressione": "anello_cinderwick",
+                  "pressione": "piazza_fonderie",
                   "valore": -2
                 }
               ],
@@ -242,7 +238,7 @@
           "id": "approfittarne",
           "fonte": "club_quillhaven",
           "testo": "testi:e21.ch.approfittarne",
-          "settore": "curva_ospiti",
+          "settore": "quartiere",
           "opzioni": [
             {
               "id": "rinforza21",
@@ -250,7 +246,7 @@
               "costo": "testi:e21.op.rinforza21.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "quartiere",
                   "valore": -2
                 },
                 {
@@ -270,7 +266,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "quartiere",
                   "valore": 1
                 }
               ],
@@ -328,14 +324,14 @@
         {
           "id": "faida_alto",
           "tipo": "faida",
-          "settore": "anello_cinderwick",
+          "settore": "piazza_fonderie",
           "pressione": 4
         },
         {
-          "id": "cori_quill21",
-          "tipo": "curva",
-          "settore": "curva_ospiti",
-          "pressione": 4
+          "id": "voci21",
+          "tipo": "raduno",
+          "settore": "quartiere",
+          "pressione": 3
         }
       ],
       "chiamate": [
@@ -355,7 +351,7 @@
                   "valore": -2
                 },
                 {
-                  "pressione": "anello_cinderwick",
+                  "pressione": "piazza_fonderie",
                   "valore": -2
                 },
                 {
@@ -391,7 +387,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "anello_cinderwick",
+                  "tensione": "piazza_fonderie",
                   "valore": 1
                 }
               ],
@@ -404,7 +400,7 @@
           "fonte": "centrale_radio",
           "testo": "testi:e21.ch.dov_e_il_capo",
           "commento": "testi:e21.ch.dov_e_il_capo.vice",
-          "settore": "curva_ospiti",
+          "settore": "quartiere",
           "opzioni": [
             {
               "id": "steward_ospiti21",
@@ -412,7 +408,7 @@
               "costo": "testi:e21.op.steward_ospiti21.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "quartiere",
                   "valore": -2
                 },
                 {
@@ -432,7 +428,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "quartiere",
                   "valore": 2
                 }
               ],
@@ -457,7 +453,7 @@
                   "valore": -2
                 },
                 {
-                  "tensione": "anello_cinderwick",
+                  "tensione": "piazza_fonderie",
                   "valore": 2
                 }
               ],
@@ -490,7 +486,7 @@
         {
           "id": "tira_alto",
           "tipo": "faida",
-          "settore": "anello_cinderwick",
+          "settore": "piazza_fonderie",
           "pressione": 4
         },
         {
@@ -511,7 +507,7 @@
           "id": "stanotte_sgombero",
           "fonte": "voci_in_rete",
           "testo": "testi:e21.ch.stanotte_sgombero",
-          "settore": "anello_cinderwick",
+          "settore": "piazza_fonderie",
           "opzioni": [
             {
               "id": "chiudi_anello",
@@ -523,7 +519,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "anello_cinderwick",
+                  "tensione": "piazza_fonderie",
                   "valore": 2
                 }
               ],
@@ -535,7 +531,7 @@
               "costo": "testi:e21.op.steward_scale21.c",
               "effetti": [
                 {
-                  "pressione": "anello_cinderwick",
+                  "pressione": "piazza_fonderie",
                   "valore": -2
                 },
                 {
@@ -551,7 +547,7 @@
               "costo": "testi:e21.op.lascia_uscire21.c",
               "effetti": [
                 {
-                  "pressione": "anello_cinderwick",
+                  "pressione": "piazza_fonderie",
                   "valore": -1
                 },
                 {
@@ -654,10 +650,10 @@
           "pressione": 5
         },
         {
-          "id": "uscita_quill",
-          "tipo": "folla",
-          "settore": "curva_ospiti",
-          "pressione": 3
+          "id": "notte21",
+          "tipo": "raduno",
+          "settore": "quartiere",
+          "pressione": 2
         },
         {
           "id": "piazzale21b",
@@ -683,7 +679,7 @@
                   "valore": -2
                 },
                 {
-                  "tensione": "anello_cinderwick",
+                  "tensione": "piazza_fonderie",
                   "valore": 2
                 }
               ],
@@ -711,7 +707,7 @@
           "id": "pullman21",
           "fonte": "club_quillhaven",
           "testo": "testi:e21.ch.pullman21",
-          "settore": "curva_ospiti",
+          "settore": "quartiere",
           "opzioni": [
             {
               "id": "subito21",
@@ -739,7 +735,7 @@
                   "valore": -2
                 },
                 {
-                  "tensione": "curva_ospiti",
+                  "tensione": "quartiere",
                   "valore": 1
                 },
                 {
@@ -756,7 +752,7 @@
           "fonte": "informatore_di_strada",
           "testo": "testi:e21.ch.telefono_anello",
           "commento": "testi:e21.ch.telefono_anello.vice",
-          "settore": "anello_cinderwick",
+          "settore": "piazza_fonderie",
           "se": {
             "var": "informatore_pagato",
             "uguale": true

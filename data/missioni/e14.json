@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 14,
   "titolo": "testi:e14.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 40,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e14.intro1",
-    "testi:e14.intro2",
-    "testi:e14.intro3"
+    "testi:e14.intro2"
   ],
   "briefing": [
     {

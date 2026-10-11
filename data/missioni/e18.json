@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 18,
   "titolo": "testi:e18.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 45,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e18.intro1",
-    "testi:e18.intro2",
-    "testi:e18.intro3"
+    "testi:e18.intro2"
   ],
   "briefing": [
     {
@@ -675,6 +673,10 @@
                 {
                   "pressione": "strada_larkspire",
                   "valore": 2
+                },
+                {
+                  "imposta": "testimone",
+                  "valore": "protetto"
                 }
               ],
               "risposta": "testi:e18.op.auto_scorta.r"
@@ -687,6 +689,10 @@
                 {
                   "pressione": "retro_tribuna",
                   "valore": 2
+                },
+                {
+                  "imposta": "testimone",
+                  "valore": "esposto"
                 }
               ],
               "risposta": "testi:e18.op.con_folla.r"
@@ -755,6 +761,10 @@
                 {
                   "pressione": "retro_tribuna",
                   "valore": 2
+                },
+                {
+                  "imposta": "testimone",
+                  "valore": "esposto"
                 }
               ],
               "risposta": "testi:e18.op.conferma18.r"
