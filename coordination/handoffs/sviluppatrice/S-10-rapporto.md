@@ -41,7 +41,7 @@ Il controllo «pulsante principale in vista» (C09-03) conta anche «Avanti» de
 |---|---|---|
 | `node tools/foto.mjs out/foto-s10` | e01 ×2, e02, e03, 3 larghezze | verde: ogni passo ≤ 760 px a 360, 375 e 412 |
 | `VALMORA_LARGHEZZE=360 VALMORA_ROSSI=C12P01 VALMORA_MISURE=1 …` | 360 px | ROSSO: sala 1149 / 1227 / 1251 px, briefing 908 / 1117 / 1325 px, verbale 1820 / 1838 / 1854 / 1926 px |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit f952668 (merge della principale d1c680d), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Nota sul «prima»:
 - il braccio rosso usa già la mappa 4:3 e il testo radio a 16 px; prima di S-10, con la mappa quadrata, le pagine erano più alte di circa 80 px;

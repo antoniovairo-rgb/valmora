@@ -44,6 +44,6 @@ Spostato anche il controllo dei colori dei club (S-08) alla prima ondata di part
 | `VALMORA_LARGHEZZE=360 node tools/foto.mjs out/foto-s11` | e01 ×2, e02, e03 | verde |
 | `… VALMORA_ROSSI=C11F01 …` | 360 px | ROSSO: 11 righe (e01 ondate 2 e 3, e02 ondata 3, e03 ondate 2 e 3) |
 | `… VALMORA_ROSSI=C10C01 …` (controllo spostato) | 360 px | ROSSO: curva_ospiti di e02 (61) ed e03 (53) |
-| `node tools/catena.mjs completa` | vedi rapporto S-10 (catena unica) | |
+| `node tools/catena.mjs completa` | commit f952668 (merge della principale d1c680d), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s11/2026-10-11/`: e01 a 360 px, prima e dopo (partita, deflusso), più l'arrivo dopo.
