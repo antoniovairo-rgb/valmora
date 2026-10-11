@@ -1,6 +1,5 @@
 {
   "id": "e05",
-  "bozza": true,
   "stagione": 1,
   "episodio": 5,
   "titolo": "testi:e05.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e05.intro1",
-    "testi:e05.intro2",
-    "testi:e05.intro3"
+    "testi:e05.intro2"
   ],
   "briefing": [
     {
