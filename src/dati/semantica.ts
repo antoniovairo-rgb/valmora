@@ -58,6 +58,8 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
     if (testi.has(chiave)) p.push(`${k}: chiave «${chiave}» già definita in un altro file`);
     testi.add(chiave);
   }
+  // D-097 (PO-067): nei testi la variabile «credito» si chiama «fiducia»; la parola «credito» non deve comparire
+  if (!spento('C17F01')) for (const [f, x] of voci('testi/')) for (const [k, v] of Object.entries(x as Obj)) if (/\bcredit[oi]\b/i.test(String(v)) && !k.startsWith('crediti.')) p.push(`${f}: «${k}» dice «credito»: si chiama «fiducia» (D-097)`);
   for (const k of testi) if (k.endsWith('@f') && !testi.has(k.slice(0, -2))) p.push(`testi: variante «${k}» senza la forma base «${k.slice(0, -2)}»`);
   const testo = (dove: string, rif: string) => {
     if (!testi.has(rif.replace(/^testi:/, ''))) p.push(`${dove}: testo «${rif}» non esiste in data/testi/it/`);

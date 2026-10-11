@@ -14,7 +14,7 @@ const segno = (n: number) => (n > 0 ? `+${n}` : `−${Math.abs(n)}`);
 
 /** «−2 pressione su Strada da Cinderwick», «+1 credito», «+1 Squadre di riserva». */
 export function impattoInParole(i: Impatto): string {
-  if (i.tipo === 'credito') return `${segno(i.valore)} credito`;
+  if (i.tipo === 'credito') return `${segno(i.valore)} ${t('var.credito').toLowerCase()}`; // D-097: «fiducia»
   if (i.tipo === 'riserva') return `${segno(i.valore)} ${t(`risorsa.${i.dove}`)} di riserva`;
   return `${segno(i.valore)} ${i.tipo} su ${t(`settore.${i.dove}`)}`;
 }
