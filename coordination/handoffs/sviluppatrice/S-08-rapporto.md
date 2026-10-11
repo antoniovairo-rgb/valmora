@@ -69,7 +69,7 @@ sull'avviso mancante.
 | `… VALMORA_ROSSI=C10S01 …` | 360 px | ROSSO: 8 picchi non mostrati (e01 rapporti 1-3, e02 rapporti 2-3) |
 | `… VALMORA_ROSSI=C10B01 …` (motore) | 360 px | ROSSO: «partita con scelte ma bilancio vuoto» ×4 |
 | `… VALMORA_ROSSI=C05R03 …` | 360 px | ROSSO: «13 scelte fuori dal bilancio», sezioni assenti |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 551ec0c (merge della principale ca0d7cc), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Limite del controllo dei colori (FATTO MISURATO):
 - su e01 il braccio rosso non scatta, perché il primario del Cinderwick (#ff6a13) è quasi uguale al vecchio token arancio. Lo stesso vale per il Larkspire su tutte le missioni: primario e token sono identici (#2fa7ff);
