@@ -325,13 +325,14 @@ export async function controllaVignetta(pagina, prefisso, atteso, dove) {
 /** C16-06: «Riparti dall'ondata N» non lascia il numero da solo sull'ultima riga. Si fa perdere, dalla città, il primo
  *  episodio il cui fallimento dà una ripartenza N > 1 (e01 dopo C16-01 offre solo «Ricomincia»). */
 export async function controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }) {
-  const { ondataDaRiprendere } = await import('../src/logica/missione.ts');
+  const { ondataVincibile } = await import('../src/logica/ripartenza.ts'); // PO-083: la stessa regola dell'app
+  const dich = new Map(leggiDati(dirDati)['stato.json'].variabili.map((x) => [x.id, x]));
   const { missioniDai, salvataggioTutti, apriDallaCitta } = await import('./foto-bozze.mjs');
   const { missioni, v0 } = missioniDai(dirDati);
   let scelto = null;
   for (let i = 0; i < missioni.length && !scelto; i++) {
     const p = pianoAttento(dirDati, i, v0); const f = p?.fallimento;
-    if (f?.fallita && ondataDaRiprendere({ rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili }, p.m) > 1) scelto = p;
+    if (f?.fallita && f.ic && ondataVincibile(p.m, { rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili }, f.ic, dich) > 1) scelto = p;
   }
   if (!scelto) { atteso('C16-06: nessun episodio con ripartenza oltre la prima ondata, il controllo non si può fare', false); return; }
   await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify(salvataggioTutti(missioni, v0)));

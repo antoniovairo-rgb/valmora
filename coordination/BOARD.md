@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-12 17:30 UTC – principale 91c1bd8 completa VERDE: integrato S-23 secondo pezzo della sviluppatrice (vignette di sala e verbale, scorrimento zero a 760 px) + PO-083 (D-111). Pronta per il rilascio delle 23:00. Sviluppatrice: contrordine, prima S-26 poi S-25, poi C16-02/03/04/06 (descrizioni in docs/revisioni/COLLAUDO_C16.md sul ramo claude/valmora-collaudo-c16).
+Ultimo giro della routine: 2026-10-12 21:45 Roma – 0.9.0 PUBBLICATA su main (5969adc, completa 3/3 su 58aafc8, Pages verificata), rilascio anticipato su richiesta del PO. Nuove voci PO-084…PO-089 dal collaudo del PO, piano D-112 (prima la mappa che dice il vero). Dopo il rilascio dei nuovi PO: collaudo approfondito di affidabilità, credibilità e grafica (richiesta del PO).
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
