@@ -96,9 +96,9 @@ export const PASSI_LOGICA = {
     if (!controllaFisse(posizioneConta({ ...d, 'missioni/e03.json': m6 })).length) ciechi.push('bot/transenne fisse è cieco');
     globalThis.__NO_C23F01 = true;
     try { if (!controllaFiduciaMinima(d).length) ciechi.push('bot/fiducia minima è cieco'); } finally { delete globalThis.__NO_C23F01; }
-    const m7 = structuredClone(d['missioni/e02.json']); m7.ondate[1].eventi[1].pressione = 4; m7.ondate[2].eventi[0].pressione = 5; // e02 prima di D-108
-    const d7 = { 'stato.json': d['stato.json'], 'missioni/e01.json': d['missioni/e01.json'], 'missioni/e02.json': m7, 'missioni/e03.json': d['missioni/e03.json'] };
-    if (!controllaDifficolta(giraBot(d7, 1000), d7).length) ciechi.push('bot/difficoltà della stagione 1 è cieco');
+    const m8 = structuredClone(d['missioni/e02.json']); m8.ondate[1].eventi[1].pressione = 4; m8.ondate[2].eventi[0].pressione = 5; // e02 prima di D-108
+    const d8 = { 'stato.json': d['stato.json'], 'missioni/e01.json': d['missioni/e01.json'], 'missioni/e02.json': m8, 'missioni/e03.json': d['missioni/e03.json'] };
+    if (!controllaDifficolta(giraBot(d8, 1000), d8).length) ciechi.push('bot/difficoltà della stagione 1 è cieco');
     const m3 = structuredClone(d['missioni/e01.json']);
     for (const o of m3.ondate) for (const c of o.chiamate ?? []) for (const x of c.opzioni) x.effetti = [];
     const d3 = { ...d, 'missioni/e01.json': m3 };
