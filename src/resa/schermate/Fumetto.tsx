@@ -1,17 +1,24 @@
 // Pezzi comuni dello stile «graphic novel» (D-066): testata con numero inclinato, mittente di un
 // messaggio (avatar, nome, affidabilità, timbro), lettera delle opzioni.
-import type { LucideIcon } from 'lucide-react';
+import { House, type LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { Icona } from '../icone.tsx';
 
 export const due = (n: number) => String(n).padStart(2, '0');
 export const LETTERE = 'ABCDEFGH';
 
-export function Testata(p: { numero: string; etichetta: string; titolo: ReactNode }) {
+/** Pulsante «Home» (S-21, C14-05): nella testata del verbale e nell'angolo delle mappe; la partita resta salvata. */
+export function TastoHome(p: { vai: () => void; angolo?: string }) {
+  return <button type="button" className={`tasto-home${p.angolo ? ` ${p.angolo}` : ''}`} data-azione="home" aria-label="Torna alla home (la partita resta salvata)" onClick={p.vai}><Icona di={House} /></button>;
+}
+
+/** «home» (S-21, C14-05): pulsante per tornare alla home, la partita resta salvata. */
+export function Testata(p: { numero: string; etichetta: string; titolo: ReactNode; home?: () => void }) {
   return (
     <header className="testata">
       <div className="testata-n" aria-hidden="true">{p.numero}</div>
       <div className="testata-t"><small>{p.etichetta}</small><h1>{p.titolo}</h1></div>
+      {p.home && <TastoHome vai={p.home} />}
     </header>
   );
 }

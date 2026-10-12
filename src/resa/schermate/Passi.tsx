@@ -6,11 +6,14 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { spento } from '../../interruttori.ts';
 import { Icona } from '../icone.tsx';
+import { useIndietro } from '../indietro.ts';
 
 export const aCascata = () => spento('C12P01');
 
 export function Passi(p: { passo: number; vai: (i: number) => void; fine: ReactNode; passi: ReactNode[]; nome: string; compatto?: boolean }) {
   const n = p.passi.length;
+  // S-21 (D-104): il tasto indietro del telefono rilegge il passo precedente
+  useIndietro(p.passo > 0 && !aCascata() ? () => { p.vai(p.passo - 1); return true; } : null);
   if (aCascata()) return <>{p.passi}{p.fine}</>;
   const vai = (i: number) => { p.vai(i); window.scrollTo({ top: 0 }); };
   return (

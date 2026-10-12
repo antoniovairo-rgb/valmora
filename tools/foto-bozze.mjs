@@ -4,7 +4,7 @@
 //   schieramento: nessun errore di console, nessuna chiave di testo mancante «[[…]]», i dettagli dei dati disegnati;
 // - il primo episodio di ogni stagione oltre la prima si gioca per intero (partita di foto.mjs).
 import { leggiDati } from './dati-disco.mjs';
-import { controllaTripla } from './foto-club.mjs';
+import { controllaHome, controllaTripla } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
@@ -54,12 +54,18 @@ export async function apriTutte(c) {
       else {
         const testi = [];
         await scena('sala'); testi.push(await pagina.locator('main').textContent());
+        if (i === 0 && (await pagina.locator('[data-azione="passo"]').count())) { // S-21: indietro rilegge il passo precedente
+          await pagina.click('[data-azione="passo"]'); await pagina.goBack().catch(() => {}); await pagina.waitForTimeout(150);
+          const passo = await pagina.getAttribute('.passi', 'data-passo').catch(() => null);
+          atteso(`${m.id} sala: col tasto indietro si è a «${passo}», non al passo 1 (D-104)`, passo?.startsWith('1/') && (await pagina.locator('.scena[data-scena="sala"]').count()) === 1);
+        }
         if ((await pagina.getAttribute('.mappa', 'data-mappa')) === 'webgl') { // dettagli dei dati disegnati davvero (D-095)
           const voluti = (m.mappa.dettagli ?? []).map((x) => x.split('@')[0]).sort().join(','), visti = ((await pagina.getAttribute('.mappa', 'data-dettagli')) ?? '').split(',').filter(Boolean).sort().join(',');
           atteso(`${m.id}: dettagli disegnati «${visti}», i dati dicono «${voluti}» (D-095)`, visti === voluti);
         }
         await premi('[data-azione="avanti"]'); await scena('briefing'); testi.push(await pagina.locator('main').textContent());
         await premi('[data-azione="inizia"]'); await scena('schieramento'); testi.push(await pagina.locator('main').textContent());
+        await controllaHome(pagina, `${m.id} schieramento`, atteso);
         const manca = [...new Set(testi.join(' ').match(/\[\[[^\]]+\]\]/g) ?? [])];
         atteso(`${m.id}: chiavi di testo mancanti ${manca.slice(0, 3).join(', ')}`, !manca.length);
       }

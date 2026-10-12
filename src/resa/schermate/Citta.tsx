@@ -10,7 +10,7 @@ import { bozza, MappaCitta } from '../mappa/MappaCitta.tsx';
 import { spento } from '../../interruttori.ts';
 import { Stelle } from '../stelle.tsx';
 import { Sfida } from '../stemma.tsx';
-import { due, Testata } from './Fumetto.tsx';
+import { due, TastoHome, Testata } from './Fumetto.tsx';
 import { Tripla } from './Tripla.tsx';
 
 /** «1 tentativo», «N tentativi» (C-008.1). */
@@ -23,7 +23,7 @@ const DESCRIZIONE: Record<StatoEpisodio, string> = {
   futuro: 'Non ancora disponibile.',
 };
 
-export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (id: string) => void; avvia: (m: Missione) => void }) {
+export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (id: string) => void; avvia: (m: Missione) => void; home?: () => void }) {
   const [rigioca, setRigioca] = useState<string | null>(null);
   const tutte = missioni.map((m) => ({ m, stato: statoEpisodio(p.sal, m), stelle: p.sal.episodi[m.id]?.migliore?.stelle ?? null }));
   // PO-044: una stagione alla volta (quella dell'episodio scelto, cambiabile); rosso __NO_C13M01 = tutte insieme
@@ -36,6 +36,7 @@ export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (i
       <Testata numero={`S${stagione}`} etichetta={`Stagione ${stagione} · mappa della città`} titolo="Valmora" />
       {stagioni.length > 1 && (
         <div className="stagioni" data-stagioni>
+          {p.home && <TastoHome vai={p.home} />}
           {stagioni.map((n) => (
             <button key={n} type="button" className={`pulsante${n === stagione ? '' : ' secondario'}`} data-stagione={n}
               aria-pressed={n === stagione} onClick={() => setStagione(n)}>Stagione {n}</button>
