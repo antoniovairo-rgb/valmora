@@ -33,6 +33,7 @@ import { Verbale } from './schermate/Verbale.tsx';
 import { due, Testata } from './schermate/Fumetto.tsx';
 import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
+import { useIndietroApp } from './indietro.ts';
 
 type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
 
@@ -105,6 +106,9 @@ export function App() {
   let testata: { etichetta: string; titolo: string } | null = null; // sopra la mappa, come nella bozza C2
 
   // Con una partita salvata, «Nuova partita» chiede conferma prima di cancellarla (C-005 R02).
+  // S-21 (D-104, C14-05): «Home» dalla città e dall'episodio; il tasto indietro del telefono non esce a metà.
+  const home = () => { setEco(null); setSchermata('titolo'); };
+  useIndietroApp(schermata === 'titolo', () => { if (schermata === 'titolo') return false; home(); return true; });
   // S-17 (PO-060): episodio perso → si riparte dall'ondata che ha deciso l'esito, se lo stato di quell'ondata
   // c'è (salvataggi vecchi: no) e non è la prima (allora è «Ricomincia»). Rosso C21R01: solo «Ricomincia».
   const ripartenza = (x: NonNullable<typeof esito>) => {
@@ -120,10 +124,10 @@ export function App() {
   else if (schermata === 'guida' && sal) { nome = 'guida'; corpo = <Guida introduttiva chiudi={() => alla_citta(sal)} />; }
   else if (schermata === 'verbale' && esito && sal) {
     corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
-      rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} riparti={ripartenza(esito)}
+      rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} home={home} riparti={ripartenza(esito)}
       prossimo={prossimoEpisodio(sal) ? () => giocaEpisodio(prossimoEpisodio(sal)!.id) : undefined} />;
   } else if (schermata === 'citta' && sal && !ic) {
-    corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} />;
+    corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} home={home} />;
   }
   else if (schermata === 'titolo' || !sal || !m) { nome = 'titolo'; corpo = titolo; }
   else if (schermata === 'sala') {
@@ -166,7 +170,7 @@ export function App() {
     const f = faseDi(m, ic);
     nome = f.tipo;
     const ondata = m.ondate[ic.ondata - 1];
-    const cosa = f.tipo === 'chiamata' ? `chiamata ${f.numero} di ${f.totale}` : f.tipo === 'chiusura' ? 'in corso' : 'schieramento';
+    const cosa = f.tipo === 'chiamata' ? `chiamata ${f.numero}/${f.totale}` : f.tipo === 'chiusura' ? 'in corso' : 'schieramento';
     testata = { etichetta: `Ondata ${ic.ondata}/${m.ondate.length} · ${cosa}`, titolo: f.tipo === 'schieramento' && ondata?.titolo ? t(ondata.titolo) : t(m.titolo) };
     if (f.tipo === 'schieramento') {
       // C-010 C09-04: l'unità scelta resta scelta anche quando è finita (prima si passava in silenzio alla
@@ -224,7 +228,7 @@ export function App() {
       <main data-schermata={nome} data-ondata={ic?.ondata ?? 0} className={ROSSI_CSS.filter((x) => spento(x)).map((x) => `rosso-${x.toLowerCase()}`).join(' ')}>
         {mappa && m && testata && <Testata numero={due(m.episodio)} etichetta={testata.etichetta} titolo={testata.titolo} />}
         {ic && (schermata === 'gioco' || schermata === 'rapporto') && <Fiducia valore={Number(ic.variabili.credito ?? 0)} max={Number(dichiarate.get('credito')?.max ?? 10)} />}
-        {mappa && m && <Mappa m={m} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
+        {mappa && m && <Mappa m={m} home={home} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
         <Voli voli={voli} finito={(id) => setVoli((v) => v.filter((x) => x.id !== id))} />
         <AnimatePresence mode="wait" initial={false}>
           <Scena key={chiave} nome={nome} missione={m?.id}>{corpo}</Scena>

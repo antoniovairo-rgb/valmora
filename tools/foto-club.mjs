@@ -249,3 +249,37 @@ export async function controllaGuida(pagina, { atteso, scena, foto, salta }) {
   atteso(`guida introduttiva: ${passi} passi, ne servono 6`, passi === 6);
   await pagina.click('[data-azione="guida-fine"]');
 }
+
+/** S-21 (D-104, C14-05): il tasto indietro non esce dal gioco e non annulla niente. Dall'episodio in corso porta
+ *  alla home (salvataggio identico, «Riprendi» torna lì); il pulsante «Home» fa lo stesso; dalla città, alla home. */
+export async function controllaIndietro(pagina, { atteso, scena }) {
+  const salvato = () => pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'));
+  const dove = () => pagina.evaluate(() => document.querySelector('.scena')?.dataset.scena ?? `fuori dal gioco (${location.href})`);
+  const qui = await dove(); const prima = await salvato();
+  if (!['schieramento', 'chiamata', 'chiusura', 'rapporto'].includes(qui)) { atteso(`indietro: si doveva partire da un episodio in corso, non da «${qui}»`, false); return; }
+  await pagina.goBack().catch(() => {}); await scena('titolo').catch(() => {});
+  atteso(`indietro dall'episodio («${qui}»): si arriva a «${await dove()}», non alla home (D-104)`, (await dove()) === 'titolo');
+  atteso('indietro dall\'episodio: il salvataggio è cambiato (D-104)', (await salvato()) === prima);
+  if ((await dove()) !== 'titolo') return;
+  await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena(qui).catch(() => {});
+  atteso(`indietro, poi «Riprendi»: si torna a «${await dove()}», non a «${qui}»`, (await dove()) === qui);
+  await pagina.click('[data-azione="home"]'); await scena('titolo').catch(() => {});
+  atteso(`«Home» dall'episodio porta a «${await dove()}» (C14-05)`, (await dove()) === 'titolo' && (await salvato()) === prima);
+  // dalla città: la partita in corso si lascia con «Riprendi» → episodio; la città si vede con una partita senza episodio in corso
+  await pagina.evaluate(() => { const s = JSON.parse(localStorage.getItem('valmora-salvataggio')); s.in_corso = null; localStorage.setItem('valmora-salvataggio', JSON.stringify(s)); });
+  await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  await pagina.goBack().catch(() => {}); await scena('titolo').catch(() => {});
+  atteso(`indietro dalla città: si arriva a «${await dove()}», non alla home (C14-05)`, (await dove()) === 'titolo');
+}
+
+/** S-21: il pulsante «Home» sulla mappa non copre punti né nomi dei settori. */
+export async function controllaHome(pagina, nome, atteso) {
+  const sopra = await pagina.evaluate(() => {
+    const h = document.querySelector('.mappa > .tasto-home')?.getBoundingClientRect();
+    if (!h) return [];
+    const inter = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+    return [...document.querySelectorAll('.mappa .settore-punto, .mappa .settore-nome')].filter((e) => inter(h, e.getBoundingClientRect()) > 4)
+      .map((e) => e.closest('[data-settore]')?.dataset.settore ?? '?');
+  });
+  atteso(`${nome}: il pulsante «Home» copre ${sopra.join(', ')} (S-21)`, sopra.length === 0);
+}

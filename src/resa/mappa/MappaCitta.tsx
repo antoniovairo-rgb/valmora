@@ -5,6 +5,7 @@ import type { Missione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import type { StatoEpisodio } from '../episodi.ts';
 import { Stelle } from '../stelle.tsx';
+import { TastoHome } from '../schermate/Fumetto.tsx';
 import type { PuntoCitta } from './StratoCitta.tsx';
 import { webglDisponibile } from './webgl.ts';
 import { spento } from '../../interruttori.ts';
@@ -22,7 +23,7 @@ const posiziona = (x: number, y: number) => (el: HTMLElement | null) => {
   el?.style.setProperty('--y', String(y));
 };
 
-export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli: (id: string) => void }) {
+export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli: (id: string) => void; home?: () => void }) {
   const contenitore = useRef<HTMLDivElement>(null);
   const [pronta, setPronta] = useState(!conWebgl);
   const margine = useMemo(() => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--settore')) / 2 || 22, []);
@@ -31,6 +32,7 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
   const punti: PuntoCitta[] = useMemo(() => voci.map((v) => ({ id: v.m.id, x: v.pos.x, y: v.pos.y, acceso: v.stato !== 'futuro' && v.stato !== 'superato' })), [voci]);
   return (
     <div className="mappa citta" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa di Valmora">
+      {p.home && <TastoHome vai={p.home} />}
       {conWebgl && <Suspense fallback={null}><StratoCitta contenitore={contenitore} punti={punti} margine={margine} pronto={() => setPronta(true)} /></Suspense>}
       {voci.map((v) => (
         <div key={v.m.id} ref={posiziona(v.pos.x, v.pos.y)} data-episodio={v.m.id} data-stato={v.stato} data-bozza={bozza(v.m) ? 'si' : undefined}

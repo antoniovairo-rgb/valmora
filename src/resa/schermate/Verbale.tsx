@@ -16,7 +16,7 @@ import { Stelle } from '../stelle.tsx';
 import { Sfida } from '../stemma.tsx';
 import { due, Testata } from './Fumetto.tsx';
 
-export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void; prossimo?: () => void; riparti?: { n: number; vai: () => void } | null }) {
+export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void; prossimo?: () => void; riparti?: { n: number; vai: () => void } | null; home?: () => void }) {
   const [passo, setPasso] = useState(0);
   const [condivisione, setCondivisione] = useState<string | null>(null);
   // PO-074: testo + link al gioco, dal pannello del telefono o copiato negli appunti
@@ -76,7 +76,7 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
   );
   return (
     <>
-      <Testata numero={due(p.m.episodio)} etichetta="Verbale" titolo={<span className={tono(p.m, p.esito.esito)} data-esito={p.esito.esito.id}>{t(`esito.${p.esito.esito.id}`)}</span>} />
+      <Testata numero={due(p.m.episodio)} etichetta="Verbale" titolo={<span className={tono(p.m, p.esito.esito)} data-esito={p.esito.esito.id}>{t(`esito.${p.esito.esito.id}`)}</span>} home={p.home} />
       <Passi nome="Verbale" compatto={fine !== mappa} passo={passo} vai={setPasso} passi={[esito, ...bilancio, fonti]}
         fine={fine} />
     </>

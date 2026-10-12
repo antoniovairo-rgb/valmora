@@ -11,6 +11,7 @@ import type { Disposizione, Missione } from '../../logica/tipi.ts';
 import { spento } from '../../interruttori.ts';
 import { club, t } from '../dati.ts';
 import { Lock } from 'lucide-react';
+import { TastoHome } from '../schermate/Fumetto.tsx';
 import { Icona, iconaRisorsa } from '../icone.tsx';
 import { livello } from '../partita.ts';
 import type { PuntoMappa } from './StratoPixi.tsx';
@@ -25,6 +26,8 @@ const conWebgl = typeof document !== 'undefined' && webglDisponibile();
 
 export interface MappaProps {
   m: Missione;
+  /** S-21 (C14-05): pulsante «Home» nell'angolo della mappa (la partita resta salvata) */
+  home?: () => void;
   /** ondata di cui si mostrano spalti e cortei (prima della prima: 1) */
   ondata?: number;
   accesi?: string[];
@@ -49,6 +52,12 @@ export function Mappa(p: MappaProps) {
   const contenitore = useRef<HTMLDivElement>(null);
   const [pronta, setPronta] = useState(!conWebgl);
   const settori = useMemo(() => p.m.mappa.settori.map((s, i, tutti) => ({ ...s, pos: s.pos ?? { x: ((i + 1) * 100) / (tutti.length + 1), y: 50 } })), [p.m]);
+  // S-21: il pulsante «Home» va nell'angolo più lontano dai settori (in e02 la stazione sta in alto a sinistra).
+  const angolo = useMemo(() => {
+    const angoli = { 'alto-sx': [0, 0], 'alto-dx': [100, 0], 'basso-sx': [0, 100], 'basso-dx': [100, 100] } as const;
+    const lontano = (k: keyof typeof angoli) => Math.min(...settori.map((s) => Math.hypot(s.pos.x - angoli[k][0], s.pos.y - angoli[k][1])));
+    return (Object.keys(angoli) as (keyof typeof angoli)[]).reduce((a, b) => (lontano(b) > lontano(a) + 5 ? b : a));
+  }, [settori]);
   const accesi = useMemo(() => new Set(p.accesi ?? []), [p.accesi]);
   const punti: PuntoMappa[] = useMemo(() => settori.map((s) => ({
     id: s.id, tipo: s.tipo, x: s.pos.x, y: s.pos.y, acceso: accesi.has(s.id), livello: p.tensione ? livello(p.tensione[s.id] ?? 0) : null,
@@ -81,6 +90,7 @@ export function Mappa(p: MappaProps) {
 
   return (
     <div className={`mappa${atmosfera.notte ? ' notte' : ''}`} ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
+      {p.home && <TastoHome vai={p.home} angolo={angolo} />}
       {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} atmosfera={atmosfera} folla={folla} pronto={() => setPronta(true)} /></Suspense>}
       {settori.map((s) => {
         const liv = p.tensione ? livello(p.tensione[s.id] ?? 0) : null;
