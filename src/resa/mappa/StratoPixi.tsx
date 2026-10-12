@@ -7,6 +7,7 @@ import { Container, Graphics, Particle, ParticleContainer, Sprite, Texture, type
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import type { Folla } from './folla.ts';
 import { useRidisegno } from './ridisegno.ts';
+import { spento } from '../../interruttori.ts';
 import { bezier, canvasAlone, disegnaSfondo, disponi, token, type Atmosfera, type Colori } from './sfondo.ts';
 
 extend({ Container });
@@ -37,7 +38,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
   // Lo sfondo dipende solo da dimensioni e posizioni dei settori, non da tensione o settori accesi.
   const pianta = JSON.stringify([p.atmosfera, p.folla, punti.map((q) => [q.id, q.tipo, Math.round(q.x), Math.round(q.y), q.colori ?? null])]);
   const strato = useRef<Container | null>(null);
-  const aloni = useRef<{ s: Sprite; acceso: boolean; x: number; y: number }[]>([]);
+  const aloni = useRef<{ s: Sprite; acceso: boolean; batte: boolean; x: number; y: number }[]>([]);
   const texAlone = useMemo(() => Texture.from(canvasAlone(128)), []);
   useEffect(() => () => { texAlone.destroy(true); }, [texAlone]);
 
@@ -97,7 +98,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
         k.q.x = pos.x + k.off; k.q.y = pos.y + k.off * 0.4; k.q.tint = Math.sin(k.fase + t * 4) > 0 ? c1 : c2;
       }
       const battito = 1 + 0.15 * Math.sin(t * 4);
-      for (const a of aloni.current) a.s.scale.set((68 * battito) / 128);
+      for (const a of aloni.current) if (a.batte) a.s.scale.set((68 * battito) / 128);
       onde.clear();
       for (const a of aloni.current) if (a.acceso) {
         const f = (t % 1.2) / 1.2;
@@ -117,17 +118,21 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
   }, [app, W, H, pianta, p.contenitore, volte]);
 
   // Aloni: colore della tensione (D-055) o giallo per i settori accesi; cambiano a ogni scena.
+  // PO-088: pulsa (battito e onde) SOLO il settore acceso, cioè quello della chiamata in corso; gli altri aloni
+  // restano fermi col colore della loro tensione. Rosso C31M01: pulsano tutti, come prima.
   useEffect(() => {
     const livello = strato.current;
     if (!livello) return;
     livello.removeChildren().forEach((c) => c.destroy());
+    const tutti = spento('C31M01');
     aloni.current = punti.filter((q) => q.livello !== null || q.acceso).map((q) => {
       const s = new Sprite(texAlone); s.anchor.set(0.5); s.position.set(q.x, q.y); s.scale.set(68 / 128);
       s.tint = q.livello !== null ? token(`--tensione-${q.livello}`) : token('--giallo');
       livello.addChild(s);
-      return { s, acceso: q.acceso, x: q.x, y: q.y };
+      return { s, acceso: q.acceso, batte: tutti || q.acceso, x: q.x, y: q.y };
     });
-  }, [punti, texAlone, pianta]);
+    p.contenitore.current?.setAttribute('data-lampeggianti', punti.filter((q) => (tutti && q.livello !== null) || q.acceso).map((q) => q.id).join(','));
+  }, [punti, texAlone, pianta, p.contenitore]);
   return null;
 }
 

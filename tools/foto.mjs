@@ -10,7 +10,7 @@ import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaLampeggio, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -220,7 +220,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             const n = i + 1;
             await scena('schieramento');
             atteso(`ondata ${n}: la scena è dell'ondata ${await pagina.getAttribute('main', 'data-ondata')}`, (await pagina.getAttribute('main', 'data-ondata')) === String(n));
-            await controllaCurve(pagina, p.m, n, club, atteso); await controllaFolla(pagina, p.m, n, atteso); await controllaRende(pagina, p.m, n, atteso, piano.testi); if (n === 1) await controllaRidisegno(pagina, atteso, `${p.m.id} schieramento`);
+            await controllaCurve(pagina, p.m, n, club, atteso); await controllaFolla(pagina, p.m, n, atteso); await controllaRende(pagina, p.m, n, atteso, piano.testi); if (n === 1) { await controllaRidisegno(pagina, atteso, `${p.m.id} schieramento`); await controllaLampeggio(pagina, atteso, [], `${p.m.id} schieramento`); }
             // Risorse fisse (transenne, D-082): all'ondata 1 non si montano in curva (avviso, nessuna presenza);
             // dall'ondata 2 quelle montate all'ondata 1 restano sulla mappa col lucchetto e non si ritirano.
             const fisse = Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => r);
@@ -277,7 +277,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             }
             for (const [j, [c, op]] of o.risposte.entries()) {
               await scena('chiamata');
-              atteso(`ondata ${n}: aperta una chiamata diversa da «${c}»`, (await pagina.locator(`[data-messaggio="chiamata-${c}"]`).count()) === 1);
+              atteso(`ondata ${n}: aperta una chiamata diversa da «${c}»`, (await pagina.locator(`[data-messaggio="chiamata-${c}"]`).count()) === 1); const sett = p.m.ondate[i].chiamate.find((x) => x.id === c).settore; await controllaLampeggio(pagina, atteso, sett ? [sett] : [], `chiamata «${c}»`);
             // D-078 (S-05): sotto ogni opzione visibile c'è l'accenno di costo, in parole, mai numeri
             const accenni = await pagina.evaluate(() => [...document.querySelectorAll('.opzione')].map((o) => o.querySelector('[data-costo]')?.textContent?.trim() ?? ''));
             atteso(`chiamata «${c}»: ${accenni.filter(Boolean).length} accenni di costo su ${accenni.length} opzioni (D-078)`, accenni.length > 0 && accenni.every(Boolean));
