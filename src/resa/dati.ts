@@ -11,6 +11,7 @@ const testi: Record<string, string> = Object.assign({}, ...perPercorso('testi/it
 // Genere della partita in corso (D-063): lo fissa App a ogni disegno, prima delle schermate.
 let genere: Genere = 'm';
 export const impostaGenere = (g: Genere) => { genere = g; };
+export const genereAttuale = (): Genere => genere;
 
 /** «testi:e01.titolo» o «e01.titolo» → testo (variante «@f» se c'è e la protagonista è donna);
  *  chiave mancante = errore visibile, mai un vuoto. */

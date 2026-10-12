@@ -2,7 +2,8 @@
 // Testi in data/testi/it/comune.json (guida.N.t, guida.N, varianti @f). La userà anche il wizard introduttivo (PO-056).
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { t } from '../dati.ts';
+import { genereAttuale, t } from '../dati.ts';
+import { VignettaGuida } from '../vignette-guida.tsx';
 import { Icona } from '../icone.tsx';
 
 const PASSI = 6;
@@ -12,6 +13,7 @@ export function Guida(p: { chiudi: () => void; introduttiva?: boolean }) {
   const [n, setN] = useState(1);
   return (
     <div className="guida" data-guida={n}>
+      <VignettaGuida n={n} genere={genereAttuale() === 'f' ? 'f' : 'm'} />
       <div className="scheda">
         <span className="etichetta">{t('guida.titolo')} · {n}/{PASSI}</span>
         <h2>{t(`guida.${n}.t`)}</h2>

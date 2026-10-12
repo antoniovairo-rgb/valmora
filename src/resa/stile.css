@@ -254,3 +254,54 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .mappa > .tasto-home.basso-sx { top: auto; bottom: var(--spazio-1); }
 .mappa > .tasto-home.basso-dx { top: auto; bottom: var(--spazio-1); left: auto; right: var(--spazio-1); }
 .in-mano .rende { display: block; margin-top: var(--spazio-1); font-size: var(--testo-mini); color: var(--colore-testo-tenue); }
+
+/* Vignette a fumetto (S-23, PO-078): l'altezza si stringe prima che la pagina scorra */
+.vignetta { display: block; width: 100%; height: clamp(var(--vignetta-min), calc(100dvh - var(--vignetta-riserva)), var(--vignetta-max)); margin: var(--spazio-2) 0; }
+.vignetta .v-giallo { fill: var(--giallo); }
+.vignetta .v-retino { fill: var(--retino-punto); }
+.vignetta .v-cornice { fill: none; stroke: var(--nero); stroke-width: var(--bordo); }
+.vignetta .v-tratto { stroke: var(--nero); stroke-width: var(--bordo-fine); stroke-linejoin: round; }
+.vignetta .v-linea { fill: none; stroke: var(--nero); stroke-width: var(--bordo-fine); stroke-linecap: round; }
+.vignetta .v-strada { fill: none; stroke: var(--mappa-viale); stroke-width: var(--spazio-3); }
+.vignetta .v-nero { fill: var(--nero); }
+.vignetta .v-bianco { fill: var(--bianco); }
+.vignetta .v-magenta { fill: var(--magenta); }
+.vignetta .v-ciano { fill: var(--ciano); }
+.vignetta .v-rosa { fill: var(--rosa-tenue); }
+.vignetta .v-grigio { fill: var(--mappa-tetto-4); }
+.vignetta .v-mattone { fill: var(--mappa-tetto-1); }
+.vignetta .v-verde { fill: var(--mappa-albero-2); }
+.vignetta .v-prato { fill: var(--mappa-prato-2); }
+.vignetta .v-asfalto { fill: var(--mappa-asfalto); }
+.vignetta .v-acqua { fill: var(--citta-fiume); }
+.vignetta .v-pelle { fill: var(--vignetta-pelle); }
+.vignetta .v-capelli { fill: var(--vignetta-capelli); }
+.vignetta .v-fumo { fill: var(--vignetta-fumo); }
+.vignetta .v-timbro { fill: none; stroke: var(--magenta); stroke-width: var(--bordo); }
+.vignetta .v-scritta { fill: var(--nero); font: 700 var(--testo-piccolo) var(--font-titoli); text-anchor: middle; }
+.vignetta .v-scritta.grande { font-size: var(--testo-titolo); }
+.vignetta .v-scritta.timbro { fill: var(--magenta); font-size: var(--testo-mini); }
+
+/* Schieramento compatto (S-24, PO «Compatto», C16-02): una fila di unità, una riga, la barra in basso */
+.compatto .vassoio { flex-wrap: nowrap; gap: var(--spazio-2); margin: var(--spazio-2) 0 var(--spazio-1); }
+.compatto .unita { position: relative; flex: 1 1 0; min-width: 0; justify-content: center; gap: var(--spazio-1); padding: 0 var(--spazio-1); font-size: var(--testo-mini); }
+.compatto .unita-nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.compatto .unita.aiuto { flex: 0 0 var(--tocco-min); }
+.unita-fissa { position: absolute; top: calc(var(--spazio-2) * -1); left: calc(var(--spazio-2) * -1); display: grid; place-items: center; width: var(--pastiglia); height: var(--pastiglia); border: var(--bordo-fine) solid var(--nero); background: var(--giallo); }
+.unita-extra { display: inline-flex; align-items: center; font-weight: 500; opacity: var(--opaco-tenue); }
+.compatto .in-mano { display: block; margin: 0 0 var(--spazio-2); padding: 0; font-size: var(--testo-mini); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.compatto .in-mano .rende { color: var(--colore-testo-tenue); }
+.aiuto-schieramento { font-size: var(--testo-piccolo); }
+.aiuto-schieramento p { margin: 0 0 var(--spazio-1); }
+.barra-schieramento { position: sticky; bottom: 0; z-index: 4; display: flex; gap: var(--spazio-2); padding: var(--spazio-2) 0; background: var(--giallo); }
+.barra-schieramento .pulsante { margin: 0; }
+.barra-schieramento .pulsante.secondario { flex: 0 0 var(--tocco-min); width: var(--tocco-min); padding: 0; }
+.barra-schieramento [data-azione="conferma"] { flex: 1 1 auto; }
+.compatto .unita { flex-wrap: wrap; align-content: center; row-gap: 0; padding-block: var(--spazio-1); }
+.compatto .unita-nome { flex-basis: 100%; text-align: center; }
+.compatto .unita strong { min-width: var(--icona); height: var(--icona); }
+.compatto .in-mano .rende { display: inline; margin: 0; font-size: inherit; }
+.compatto .unita-nome { text-transform: none; letter-spacing: 0; }
+.riga-in-mano { display: flex; align-items: center; gap: var(--spazio-2); }
+.riga-in-mano .in-mano { flex: 1; min-width: 0; margin: 0; }
+.riga-in-mano .aiuto { display: grid; place-items: center; flex: none; width: var(--tocco-min); height: var(--tocco-min); border: 0; background: none; color: var(--nero); cursor: pointer; }
