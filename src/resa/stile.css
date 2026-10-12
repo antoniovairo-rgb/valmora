@@ -230,3 +230,8 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .in-mano { display: flex; align-items: center; gap: var(--spazio-2); margin: var(--spazio-2) 0; padding: var(--spazio-2) var(--spazio-3); font-size: var(--testo-piccolo); }
 .riepilogo h3 { margin: 0 0 var(--spazio-2); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; }
 .riepilogo ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--spazio-1); }
+
+/* Esporta e importa (S-20, PO-073): la riga dei pulsanti piccoli va a capo; la seconda conferma è magenta */
+.secondari { flex-wrap: wrap; }
+.secondari .pulsante.piccolo { flex: 1 1 28%; }
+.conferma-importa.grave { background: var(--magenta); color: var(--bianco); }
