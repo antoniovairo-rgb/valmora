@@ -61,15 +61,17 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
   const mappa = <button className={`pulsante${p.risultato.fallita ? ' secondario' : ''}`} data-azione="citta" onClick={p.citta}><Icona di={IconaMappa} />Alla mappa della città</button>;
   const fine = spento('C18V01') || !p.prossimo || p.risultato.fallita ? mappa : (
     <div className="verbale-fine">
-      <button className="pulsante" data-azione="prossimo" onClick={p.prossimo}>Prossimo episodio<Icona di={ChevronRight} /></button>
-      <button className="pulsante piccolo" data-azione="citta" onClick={p.citta}><Icona di={IconaMappa} />Mappa della città</button>
-      <p className="tenue" data-spiega="mappa">Dalla mappa puoi rigiocare gli episodi passati.</p>
+      <div className="verbale-riga">
+        <button className="pulsante secondario icona" data-azione="citta" aria-label="Mappa della città" title="Mappa della città" onClick={p.citta}><Icona di={IconaMappa} /></button>
+        <button className="pulsante" data-azione="prossimo" onClick={p.prossimo}>Prossimo episodio<Icona di={ChevronRight} /></button>
+      </div>
+      <p className="tenue" data-spiega="mappa">Mappa: rigioca gli episodi passati.</p>
     </div>
   );
   return (
     <>
       <Testata numero={due(p.m.episodio)} etichetta="Verbale" titolo={<span className={tono(p.m, p.esito.esito)} data-esito={p.esito.esito.id}>{t(`esito.${p.esito.esito.id}`)}</span>} />
-      <Passi nome="Verbale" passo={passo} vai={setPasso} passi={[esito, ...bilancio, fonti]}
+      <Passi nome="Verbale" compatto={fine !== mappa} passo={passo} vai={setPasso} passi={[esito, ...bilancio, fonti]}
         fine={fine} />
     </>
   );

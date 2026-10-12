@@ -8,6 +8,7 @@ import { join, extname } from 'node:path';
 import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
+import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
 import { avanzaFino, clubDai, controllaAltezza, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
@@ -304,16 +305,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             await premi('[data-azione="avanti"]');
           }
           await scena('verbale'); await foto(); await controllaSfida(pagina, p.m, atteso, 'verbale');
-          // Bilancio (D-085): 4 sezioni, ≤ 3 scelte per aiuti e pesi, nessuna fuori (R03), non vuoto (__NO_C10B01).
-          const sezioni = await pagina.$$eval('[data-sezione]', (xs) => xs.map((x) => x.dataset.sezione).join(','));
-          atteso(`verbale: sezioni del bilancio «${sezioni}», servono aiuti,pesi,scoperti,stelle (D-085)`, sezioni === 'aiuti,pesi,scoperti,stelle');
-          const [aiuti, pesi, fuori] = await pagina.evaluate(() => [
-            document.querySelectorAll('[data-sezione="aiuti"] [data-scelta]').length, document.querySelectorAll('[data-sezione="pesi"] [data-scelta]').length,
-            [...document.querySelectorAll('[data-scelta]')].filter((x) => !x.closest('[data-sezione]')).length]);
-          atteso(`verbale: ${fuori} scelte fuori dal bilancio, ${aiuti} aiuti e ${pesi} pesi (massimo 3 l'uno, C-005 R03)`, fuori === 0 && aiuti <= 3 && pesi <= 3);
-          if (p.ondate.some((o) => o.risposte.length)) atteso('verbale: partita con scelte ma bilancio vuoto (D-085)', aiuti + pesi >= 1);
-          const stella = await pagina.locator('[data-sezione="stelle"] p').first().textContent({ timeout: 2000 }).catch(() => '');
-          atteso(`verbale: «per la stella successiva» senza indicazione («${stella}»)`, !!stella?.trim() && !stella.includes('[['));
+          await controllaBilancio(pagina, p, atteso); // D-085, C-005 R03
         };
 
         // 1) fallimento col giocatore peggiore → «Rigioca l'episodio» (D-059)
@@ -334,21 +326,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso(`giocatore «${piano.giocatore}»: non arriva all'esito migliore «${piano.migliore}» (arriva a «${esito}»)`, esito === piano.migliore);
         const stelle = await pagina.getAttribute('.stelle', 'data-stelle');
         atteso(`verbale: ${stelle} stelle a schermo, il motore dice ${piano.stelle}`, stelle === String(piano.stelle));
-        // PO-074: «Condividi» manda testo (episodio, esito, stelle) + link del gioco (rosso VALMORA_ROSSI=C20C01)
-        const bottone = pagina.locator('[data-azione="condividi"]');
-        atteso('verbale: manca «Condividi» (PO-074)', (await bottone.count()) === 1);
-        if (await bottone.count()) {
-          await pagina.evaluate(() => { navigator.share = async (d) => { window.__condiviso = d; }; });
-          await bottone.evaluate((b) => b.click()); // sta nel primo passo del verbale, anche se ora se ne vede un altro
-          const d = await pagina.waitForFunction(() => window.__condiviso, null, { timeout: 3000 }).then((h) => h.jsonValue(), () => null);
-          const ep = `Ep. ${String(piano.m.episodio).padStart(2, '0')}`;
-          atteso(`verbale: condiviso «${d?.text}» senza «${ep}» o senza ${piano.stelle} stelle piene`, !!d?.text?.includes(ep) && (d.text.match(/★/g) ?? []).length === piano.stelle);
-          atteso(`verbale: condiviso senza il link del gioco («${d?.url}»)`, d?.url === 'https://antoniovairo-rgb.github.io/valmora/');
-        }
-        // PO-072: a episodio superato il verbale dice come andare avanti (rosso VALMORA_ROSSI=C18V01)
-        const prossimo = pagina.locator('[data-azione="prossimo"]');
-        atteso('verbale: manca «Prossimo episodio» a episodio superato (PO-072)', (await prossimo.count()) === 1 && await prossimo.isVisible());
-        atteso('verbale: manca la riga che spiega la mappa (PO-072)', (await pagina.locator('[data-spiega="mappa"]').count()) === 1);
+        await controllaVerbaleAvanti(pagina, piano, atteso, fotoSe); // PO-072, PO-074
         // 3) mappa della città: l'episodio è superato e mostra le sue stelle
         await premi('[data-azione="citta"]'); await scena('citta'); await foto();
         const ep = pagina.locator(`[data-episodio="${piano.m.id}"]`);
@@ -383,15 +361,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           completa = true; modoFoto = 'tutte';
           const esito3 = await pagina.getAttribute('[data-esito]', 'data-esito');
           atteso(`${piano3.m.id}, giocatore «${piano3.giocatore}»: la resa finisce con «${esito3}», il motore dice «${piano3.esito}»`, esito3 === piano3.esito);
-          // PO-072: «Prossimo episodio» apre la sala dell'episodio dopo, senza passare dalla mappa
-          // poi si ricarica e «Riprendi» riporta alla città
-          if (await pagina.locator('[data-azione="prossimo"]').count()) {
-            await premi('[data-azione="prossimo"]'); await scena('sala');
-            const dopo = await pagina.getAttribute('.scena[data-scena="sala"]', 'data-missione');
-            atteso(`verbale: «Prossimo episodio» apre «${dopo}» invece dell'episodio dopo ${piano3.m.id}`, !!dopo && dopo > piano3.m.id);
-            await pagina.reload(); await scena('titolo');
-            await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta'); await foto();
-          } else { await premi('[data-azione="citta"]'); await scena('citta'); await foto(); }
+          await provaProssimo(pagina, piano3, atteso, scena, premi); await foto(); // PO-072
           atteso(`città: ${piano3.m.id} non è superato`, (await ep3.getAttribute('data-stato')) === 'superato');
         }
         // C-005 R02: con una partita salvata, «Nuova partita» chiede conferma e «No» non cancella nulla
