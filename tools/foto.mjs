@@ -8,7 +8,7 @@ import { join, extname } from 'node:path';
 import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
-import { avanzaFino, clubDai, controllaAltezza, controllaCifreTensione, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
+import { avanzaFino, clubDai, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -153,7 +153,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
             return p;
           });
-          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso);
+          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso);
         await pagina.mouse.move(0, 0); // niente :hover rimasto dal clic precedente nelle foto
         await pagina.screenshot({ path: join(cartella, `${larghezza}-${String(++k).padStart(2, '0')}-${nome}.png`), fullPage: true });
         };

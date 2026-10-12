@@ -205,3 +205,12 @@ main[data-schermata="sala"] .mappa, main[data-schermata="briefing"] .mappa { asp
 /* Interruttore rosso della regola sulle stelline della città (sopra, «non devono rubare il tocco») */
 main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .etichetta.bozza { background: var(--grigio-testo); color: var(--bianco); }
+
+/* Barra della fiducia (PO-067, D-097): sempre in vista durante l'episodio */
+.fiducia { display: flex; align-items: center; gap: var(--spazio-2); margin: var(--spazio-2) 0 0; font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; }
+.fiducia-tacche { display: flex; flex: 1; gap: var(--spazio-px); padding: var(--spazio-px); border: var(--bordo-fine) solid var(--nero); background: var(--bianco); }
+.fiducia-tacche span { flex: 1; height: var(--spazio-3); background: var(--rosa-tenue); }
+.fiducia-tacche span.piena { background: var(--ciano); }
+.fiducia-delta { padding: 0 var(--spazio-1); border: var(--bordo-fine) solid var(--nero); }
+.fiducia-delta.su { background: var(--colore-bene); color: var(--bianco); }
+.fiducia-delta.giu { background: var(--colore-male); color: var(--bianco); }

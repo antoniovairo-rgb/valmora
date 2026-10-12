@@ -31,6 +31,7 @@ import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
 import { due, Testata } from './schermate/Fumetto.tsx';
 import { t } from './dati.ts';
+import { Fiducia } from './fiducia.tsx';
 
 type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
 
@@ -202,6 +203,7 @@ export function App() {
     <MotionConfig reducedMotion="user">
       <main data-schermata={nome} data-ondata={ic?.ondata ?? 0} className={ROSSI_CSS.filter((x) => spento(x)).map((x) => `rosso-${x.toLowerCase()}`).join(' ')}>
         {mappa && m && testata && <Testata numero={due(m.episodio)} etichetta={testata.etichetta} titolo={testata.titolo} />}
+        {ic && (schermata === 'gioco' || schermata === 'rapporto') && <Fiducia valore={Number(ic.variabili.credito ?? 0)} max={Number(dichiarate.get('credito')?.max ?? 10)} />}
         {mappa && m && <Mappa m={m} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
         <Voli voli={voli} finito={(id) => setVoli((v) => v.filter((x) => x.id !== id))} />
         <AnimatePresence mode="wait" initial={false}>

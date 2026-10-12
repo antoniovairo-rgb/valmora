@@ -112,3 +112,19 @@ export async function controllaCifreTensione(pagina, atteso, dove) {
   const male = frasi.flatMap((x) => x.split(/[·,:;]/)).filter((x) => /tension/i.test(x) && /\d/.test(x));
   atteso(`${dove}: tensione in cifre «${male.slice(0, 2).join(' | ')}» (C12-01, D-055)`, male.length === 0);
 }
+
+/** S-19 (PO-067, D-097): barra della fiducia in ogni schermata dell'episodio, col valore del salvataggio; se
+ *  cambia rispetto alla schermata prima, nella risposta compare «+N/−N» col segno giusto. */
+let fiduciaPrima = null;
+export async function controllaFiducia(pagina, nome, atteso) {
+  if (!['schieramento', 'chiamata', 'risposta', 'chiusura', 'rapporto'].includes(nome)) { fiduciaPrima = null; return; }
+  const [barra, valore, delta, salvata] = await pagina.evaluate(() => {
+    const b = document.querySelectorAll('[data-fiducia]');
+    const s = JSON.parse(localStorage.getItem('valmora-salvataggio') ?? 'null');
+    return [b.length, Number(b[0]?.dataset.fiducia), Number(document.querySelector('[data-delta]')?.dataset.delta ?? 0), s?.in_corso?.variabili?.credito];
+  });
+  atteso(`${nome}: ${barra} barre della fiducia, ne serve una (PO-067)`, barra === 1);
+  if (salvata !== undefined) atteso(`${nome}: la barra dice ${valore}, la fiducia salvata è ${salvata} (PO-067)`, valore === salvata);
+  if (nome === 'risposta' && fiduciaPrima !== null && valore !== fiduciaPrima) atteso(`risposta: fiducia da ${fiduciaPrima} a ${valore} senza «${valore - fiduciaPrima}» accanto alla barra (PO-067)`, delta === valore - fiduciaPrima);
+  fiduciaPrima = valore;
+}
