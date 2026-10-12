@@ -95,6 +95,12 @@ export async function importa(file: File): Promise<Salvataggio> {
   return adattaAiDati(migra(dati)).salvataggio;
 }
 
+// S-18: la guida introduttiva si vede alla prima partita su questo telefono (non nel salvataggio: una nuova
+// partita non la ripropone).
+const GUIDA = 'valmora-guida-vista';
+export const guidaVista = () => { try { return localStorage.getItem(GUIDA) === 'si'; } catch { return true; } };
+export const segnaGuidaVista = () => { try { localStorage.setItem(GUIDA, 'si'); } catch { /* niente */ } };
+
 export function nuovoSeme(): number {
   const a = new Uint32Array(1);
   crypto.getRandomValues(a); // il seme nasce qui una volta; da lì in poi tutto è deterministico

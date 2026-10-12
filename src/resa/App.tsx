@@ -10,10 +10,11 @@ import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFi
 import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
-import { carica, nuovoSeme, salva, ultimoAvviso } from './archivio.ts';
+import { carica, guidaVista, segnaGuidaVista, nuovoSeme, salva, ultimoAvviso } from './archivio.ts';
 import { dichiarate, impostaGenere, missione, missioni } from './dati.ts';
 import type { Genere } from '../dati/testi.ts';
 import { ConfermaNuova, SceltaGenere } from './schermate/SceltaGenere.tsx';
+import { Guida } from './schermate/Guida.tsx';
 import { chiudiEpisodio, iniziaEpisodio, prossimoEpisodio } from './episodi.ts';
 import type { Risultato } from '../logica/episodi.ts';
 import { Mappa, type MappaProps } from './mappa/Mappa.tsx';
@@ -33,7 +34,7 @@ import { due, Testata } from './schermate/Fumetto.tsx';
 import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
 
-type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
+type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
@@ -80,6 +81,9 @@ export function App() {
     const seme = nuovoSeme();
     const s: Salvataggio = { save_version: SAVE_VERSION, game_version: GAME_VERSION, seme, caso: seme, variabili: variabiliIniziali(dichiarate.values()), missioni_concluse: [], episodi: {}, genere, in_corso: null, rapporto_aperto: null };
     aggiorna(s);
+    // S-18 (PO-056): alla prima partita su questo telefono, la guida a passi (saltabile) prima della città.
+    // Rosso C22G01: niente guida.
+    if (!guidaVista() && !spento('C22G01')) { segnaGuidaVista(); setScelto(prossimoEpisodio(s)?.id ?? null); setSchermata('guida'); return; }
     alla_citta(s);
   };
   // Sulla mappa è già scelto il prossimo episodio da giocare; se sono tutti superati, l'ultimo.
@@ -113,6 +117,7 @@ export function App() {
   if (schermata === 'crediti') corpo = <Crediti indietro={() => setSchermata('titolo')} />;
   else if (schermata === 'conferma') corpo = <ConfermaNuova si={() => setSchermata('genere')} no={() => setSchermata('titolo')} />;
   else if (schermata === 'genere') corpo = <SceltaGenere scegli={nuova} indietro={() => setSchermata('titolo')} />;
+  else if (schermata === 'guida' && sal) { nome = 'guida'; corpo = <Guida introduttiva chiudi={() => alla_citta(sal)} />; }
   else if (schermata === 'verbale' && esito && sal) {
     corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
       rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} riparti={ripartenza(esito)}
