@@ -112,3 +112,45 @@ export async function controllaCifreTensione(pagina, atteso, dove) {
   const male = frasi.flatMap((x) => x.split(/[·,:;]/)).filter((x) => /tension/i.test(x) && /\d/.test(x));
   atteso(`${dove}: tensione in cifre «${male.slice(0, 2).join(' | ')}» (C12-01, D-055)`, male.length === 0);
 }
+
+/** S-19 (PO-067, D-097): barra della fiducia in ogni schermata dell'episodio, col valore del salvataggio; se
+ *  cambia rispetto alla schermata prima, nella risposta compare «+N/−N» col segno giusto. */
+let fiduciaPrima = null;
+export async function controllaFiducia(pagina, nome, atteso) {
+  if (!['schieramento', 'chiamata', 'risposta', 'chiusura', 'rapporto'].includes(nome)) { fiduciaPrima = null; return; }
+  const [barra, valore, delta, salvata] = await pagina.evaluate(() => {
+    const b = document.querySelectorAll('[data-fiducia]');
+    const s = JSON.parse(localStorage.getItem('valmora-salvataggio') ?? 'null');
+    return [b.length, Number(b[0]?.dataset.fiducia), Number(document.querySelector('[data-delta]')?.dataset.delta ?? 0), s?.in_corso?.variabili?.credito];
+  });
+  atteso(`${nome}: ${barra} barre della fiducia, ne serve una (PO-067)`, barra === 1);
+  if (salvata !== undefined) atteso(`${nome}: la barra dice ${valore}, la fiducia salvata è ${salvata} (PO-067)`, valore === salvata);
+  if (nome === 'risposta' && fiduciaPrima !== null && valore !== fiduciaPrima) atteso(`risposta: fiducia da ${fiduciaPrima} a ${valore} senza «${valore - fiduciaPrima}» accanto alla barra (PO-067)`, delta === valore - fiduciaPrima);
+  fiduciaPrima = valore;
+}
+
+/** S-12 (PO-061): «Annulla l'ultima» toglie l'ultima unità messa; «Conferma» apre il riepilogo con le unità messe e,
+ *  se ne avanzano, «Ti restano N»; poi «Sì, conferma». */
+export async function confermaSchieramento(pagina, { premi, atteso, fotoSe, prova, ultima }) {
+  const sulla = () => pagina.evaluate(() => [...document.querySelectorAll('[data-presenza] .pastiglia')].reduce((a, e) => a + Number(e.textContent.replace(/\D/g, '') || 0), 0));
+  if (prova && ultima) {
+    const [r, s] = ultima, prima = await sulla();
+    await premi('[data-azione="annulla"]');
+    atteso(`schieramento: «Annulla l'ultima» da ${prima} a ${await sulla()} unità, doveva toglierne una (PO-061)`, (await sulla()) === prima - 1);
+    if ((await sulla()) === prima - 1) {
+      if ((await pagina.getAttribute(`[data-risorsa="${r}"]`, 'aria-pressed')) !== 'true') await premi(`[data-risorsa="${r}"]`);
+      await premi(`[data-settore="${s}"] .settore-punto`);
+    }
+  }
+  const messe = await sulla();
+  const libere = await pagina.evaluate(() => [...document.querySelectorAll('[data-risorsa] strong')].reduce((a, e) => a + Number(e.textContent || 0), 0));
+  await premi('[data-azione="conferma"]');
+  const riepilogo = await pagina.getAttribute('[data-riepilogo]', 'data-riepilogo', { timeout: 2000 }).catch(() => null);
+  atteso(`schieramento: «Conferma» senza riepilogo di cosa va dove (PO-061)`, riepilogo !== null);
+  if (riepilogo === null) return;
+  atteso(`riepilogo: ${riepilogo} unità, sulla mappa ce ne sono ${messe} (PO-061)`, Number(riepilogo) === messe);
+  const restano = await pagina.getAttribute('[data-restano]', 'data-restano', { timeout: 500 }).catch(() => null);
+  atteso(`riepilogo: ${libere} unità libere ma «Ti restano» dice ${restano ?? 'niente'} (PO-061)`, libere ? Number(restano) === libere : restano === null);
+  await fotoSe();
+  await premi('[data-azione="conferma-davvero"]');
+}

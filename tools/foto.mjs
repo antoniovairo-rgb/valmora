@@ -9,7 +9,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, controllaAltezza, controllaCifreTensione, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -141,9 +141,9 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             if (b.top >= a.bottom - 2) p.push(`rapporto: lo stato di ${li.dataset.esitoSettore} va sotto il nome`);
           }
           // C-010 C09-03: a scorrimento zero il pulsante principale (o l'indicatore delle opzioni) si vede
-          const vista = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); return r.height > 0 && r.top >= 0 && r.bottom <= innerHeight; };
-          const principale = document.querySelector('.scena [data-azione="avanti"], .scena [data-azione="passo"], .scena [data-azione="prossimo"], .scena [data-azione="inizia"], .scena [data-azione="rapporto"], .scena [data-azione="continua"], .scena [data-azione="conferma"]');
-          if (principale && !vista(principale)) p.push(`pulsante principale «${principale.textContent.trim()}» sotto la piega`);
+          const vista = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); return r.height > 0 && r.top >= 0 && r.bottom <= innerHeight && r.left >= 0 && r.right <= innerWidth; };
+          const principale = document.querySelector('.scena [data-azione="avanti"], .scena [data-azione="passo"], .scena [data-azione="prossimo"], .scena [data-azione="inizia"], .scena [data-azione="rapporto"], .scena [data-azione="continua"], .scena [data-azione="conferma"], .scena [data-azione="conferma-davvero"]');
+          if (principale && !vista(principale)) p.push(`pulsante principale «${principale.textContent.trim()}» sotto la piega o fuori dallo schermo`);
           if (document.querySelector('.scena .opzione') && !vista(document.querySelector('.scena .opzione')) && !vista(document.querySelector('[data-indicatore]'))) p.push('opzioni sotto la piega senza indicatore');
           // C-010 C09-02: un settore scoperto ha almeno il giallo (liv-2)
           for (const li of document.querySelectorAll('[data-esito-settore]')) {
@@ -154,7 +154,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
             return p;
           });
-          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso);
+          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso);
         await pagina.mouse.move(0, 0); // niente :hover rimasto dal clic precedente nelle foto
         await pagina.screenshot({ path: join(cartella, `${larghezza}-${String(++k).padStart(2, '0')}-${nome}.png`), fullPage: true });
         };
@@ -264,7 +264,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             await fotoSe();
             const piccoli = await pagina.locator('[data-presenza]').evaluateAll((xs) => xs.map((x) => x.getBoundingClientRect()).filter((r) => r.width < 44 || r.height < 44).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));
             atteso(`ondata ${n}: bersagli «ritira unità» sotto 44×44 px (C-005 R05): ${piccoli.join(', ')}`, piccoli.length === 0);
-            await premi('[data-azione="conferma"]');
+            await confermaSchieramento(pagina, { premi, atteso, fotoSe, prova: completa && n === 1, ultima: unita.at(-1) }); // S-12
             const dopo = o.risposte.length ? 'chiamata' : 'chiusura';
             await scena(dopo);
             if (completa && n === 1) { // a metà ondata: ricarico e riprendo

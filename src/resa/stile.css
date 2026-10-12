@@ -35,6 +35,10 @@ p { margin: var(--spazio-2) 0; }
 .pulsante:focus-visible, .opzione:focus-visible, .unita:focus-visible, .settore-punto:focus-visible { outline: var(--bordo) solid var(--magenta); outline-offset: var(--spazio-1); }
 .azioni { display: flex; gap: var(--spazio-3); flex-wrap: nowrap; }
 .azioni .pulsante { margin: var(--spazio-3) 0; }
+/* S-12: tre pulsanti dello schieramento su una riga sola (su due coprivano il vassoio), etichette corte */
+.azioni.tre { align-items: stretch; }
+.azioni.tre .pulsante { flex: 1 1 0; min-width: 0; padding-inline: var(--spazio-1); gap: var(--spazio-1); font-size: var(--testo-piccolo); }
+.azioni.tre [data-azione="conferma"] { flex-grow: 1.3; }
 /* PO-063/PO-065: home più compatta, logo, pulsanti secondari piccoli */
 .logo-icona { width: var(--logo-icona); height: var(--logo-icona); display: block; margin-bottom: var(--spazio-2); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); }
 .secondari { display: flex; gap: var(--spazio-2); margin: var(--spazio-3) 0; }
@@ -212,3 +216,17 @@ main[data-schermata="sala"] .mappa, main[data-schermata="briefing"] .mappa { asp
 /* Interruttore rosso della regola sulle stelline della città (sopra, «non devono rubare il tocco») */
 main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .etichetta.bozza { background: var(--grigio-testo); color: var(--bianco); }
+
+/* Barra della fiducia (PO-067, D-097): sempre in vista durante l'episodio */
+.fiducia { display: flex; align-items: center; gap: var(--spazio-2); margin: var(--spazio-2) 0 0; font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; }
+.fiducia-tacche { display: flex; flex: 1; gap: var(--spazio-px); padding: var(--spazio-px); border: var(--bordo-fine) solid var(--nero); background: var(--bianco); }
+.fiducia-tacche span { flex: 1; height: var(--spazio-3); background: var(--rosa-tenue); }
+.fiducia-tacche span.piena { background: var(--ciano); }
+.fiducia-delta { padding: 0 var(--spazio-1); border: var(--bordo-fine) solid var(--nero); }
+.fiducia-delta.su { background: var(--colore-bene); color: var(--bianco); }
+.fiducia-delta.giu { background: var(--colore-male); color: var(--bianco); }
+
+/* Schieramento (S-12, PO-061): cosa hai in mano, riepilogo prima di confermare */
+.in-mano { display: flex; align-items: center; gap: var(--spazio-2); margin: var(--spazio-2) 0; padding: var(--spazio-2) var(--spazio-3); font-size: var(--testo-piccolo); }
+.riepilogo h3 { margin: 0 0 var(--spazio-2); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; }
+.riepilogo ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--spazio-1); }
