@@ -7,13 +7,15 @@
 // fallisce due volte con la prima opzione, dalla terza si usa l'ultima opzione (annotato).
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { RADICE, MISURE, avviaServer, apriBrowser, nuovaPagina, attendiScena, scenaCorrente, salvato, osserva, scrivi, attesa, agisci, OUT } from './c14b-lib.mjs';
+import { RADICE, MISURE, avviaServer, apriBrowser, apriPersistente, nuovaPagina, attendiScena, scenaCorrente, salvato, osserva, scrivi, attesa, agisci, OUT } from './c14b-lib.mjs';
 
 const LARG = Number(process.env.LARG ?? 360);
 const alt = MISURE.find(([l]) => l === LARG)[1];
 const RIPRESA = LARG === 360 ? new Set(['e01', 'e02', 'e13', 'e14', 'e25', 'e26']) : new Set();
 const dati = (id) => JSON.parse(readFileSync(join(RADICE, 'data', 'missioni', `${id}.json`), 'utf8'));
-const ID = Array.from({ length: Number(process.env.MAX_EP ?? 36) }, (_, i) => `e${String(i + 1).padStart(2, '0')}`);
+const DA = Number(process.env.DA ?? 1), A = Number(process.env.A ?? 36);
+const ID = Array.from({ length: A - DA + 1 }, (_, i) => `e${String(DA + i).padStart(2, '0')}`);
+const PROFILO = process.env.PROFILO ?? null; // chunk: stesso profilo = stesso salvataggio
 
 const misure = [];
 const episodi = {};
@@ -22,8 +24,11 @@ const log = (x) => console.log(`[${LARG}] ${x}`);
 const M = (r) => misure.push(r);
 
 const { srv, url } = await avviaServer();
-const b = await apriBrowser();
-const p = await nuovaPagina(b, url, [LARG, alt]);
+let b, p;
+if (PROFILO) { const r = await apriPersistente(PROFILO, [LARG, alt]); b = r.ctx; p = r.p; }
+else { b = await apriBrowser(); p = await nuovaPagina(b, url, [LARG, alt]); }
+if (PROFILO) await p.goto(url);
+const RIPRENDI = PROFILO && (await p.evaluate(() => localStorage.getItem('valmora-salvataggio'))) !== null;
 
 async function titolo() {
   await attendiScena(p, ['titolo']);
@@ -51,7 +56,7 @@ async function titolo() {
 }
 
 /** Gioca un episodio dalla sala al verbale. Ritorna l'esito registrato. */
-async function giocaEpisodio(id) {
+async function giocaEpisodio(id, dentro = false) {
   const e = { id, tentativi: 0, fallimenti: 0, esiti: [], ondate: 0, bloccato: null, ultimaOpzioneDa3: false, ripresa: [] };
   const m = dati(id);
   const dichR = new Map(JSON.parse(readFileSync(join(RADICE, 'data', 'stato.json'), 'utf8')).variabili.map((d) => [d.id, d]));
@@ -59,29 +64,32 @@ async function giocaEpisodio(id) {
   const piano = await pianoSchieramento(m, dichR, variabiliIniziali(dichR.values()));
   for (let tent = 0; tent < 6; tent++) {
     e.tentativi++;
-    const scenaSala = await attendiScena(p, ['sala']);
-    if (!scenaSala) { e.bloccato = `attesa sala fallita (scena ${await scenaCorrente(p)})`; break; }
-    M(await osserva(p, { larg: LARG, episodio: id, scena: 'sala' }));
-    // Sala: i passi si scorrono con «passo»; «avanti» compare all'ultimo (Passi.tsx)
-    for (let k = 0; k < 30 && !(await p.locator('[data-azione="avanti"]').count()); k++) {
-      await agisci(p, () => p.click('[data-azione="passo"]')); await attesa(p, 120);
+    // Ripresa dentro un episodio: si salta sala e briefing (già fatti) e si riparte dalla fase salvata
+    if (!(dentro && tent === 0)) {
+      const scenaSala = await attendiScena(p, ['sala']);
+      if (!scenaSala) { e.bloccato = `attesa sala fallita (scena ${await scenaCorrente(p)})`; break; }
       M(await osserva(p, { larg: LARG, episodio: id, scena: 'sala' }));
-    }
-    await agisci(p, () => p.click('[data-azione="avanti"]'));
-    await attendiScena(p, ['briefing']);
-    let passi = 0;
-    // Briefing a passi (Passi.tsx): «passo» fino all'ultimo, poi «inizia»
-    while (!(await p.locator('[data-azione="inizia"]').count()) && passi < 40) {
-      const avanza = p.locator('[data-azione="passo"], [data-azione="prossimo"]').first();
-      if (await avanza.count()) {
-        M(await osserva(p, { larg: LARG, episodio: id, scena: 'briefing' }));
-        await avanza.click(); passi++;
+      // Sala: i passi si scorrono con «passo»; «avanti» compare all'ultimo (Passi.tsx)
+      for (let k = 0; k < 30 && !(await p.locator('[data-azione="avanti"]').count()); k++) {
+        await agisci(p, () => p.click('[data-azione="passo"]')); await attesa(p, 120);
+        M(await osserva(p, { larg: LARG, episodio: id, scena: 'sala' }));
       }
-      await attesa(p, 150);
+      await agisci(p, () => p.click('[data-azione="avanti"]'));
+      await attendiScena(p, ['briefing']);
+      let passi = 0;
+      // Briefing a passi (Passi.tsx): «passo» fino all'ultimo, poi «inizia»
+      while (!(await p.locator('[data-azione="inizia"]').count()) && passi < 40) {
+        const avanza = p.locator('[data-azione="passo"], [data-azione="prossimo"]').first();
+        if (await avanza.count()) {
+          M(await osserva(p, { larg: LARG, episodio: id, scena: 'briefing' }));
+          await avanza.click(); passi++;
+        }
+        await attesa(p, 150);
+      }
+      await p.waitForSelector('[data-azione="inizia"]', { timeout: 8000 });
+      M(await osserva(p, { larg: LARG, episodio: id, scena: 'briefing-fine' }));
+      await agisci(p, () => p.click('[data-azione="inizia"]'));
     }
-    await p.waitForSelector('[data-azione="inizia"]', { timeout: 8000 });
-    M(await osserva(p, { larg: LARG, episodio: id, scena: 'briefing-fine' }));
-    await agisci(p, () => p.click('[data-azione="inizia"]'));
     let ultimaOpzione = e.fallimenti >= 2;
     if (ultimaOpzione) e.ultimaOpzioneDa3 = true;
     let fase = null;
@@ -195,24 +203,34 @@ async function proveRipresa(e, m) {
   ripresa.push(r); e.ripresa.push(r.esito); log(`ripresa ${JSON.stringify(r)}`);
 }
 
-await titolo();
+if (RIPRENDI) { await p.goto(url); await attendiScena(p, ['titolo']); await p.getByRole('button', { name: 'Riprendi' }).click(); await attesa(p, 800); }
+else await titolo();
+// Salvataggio dentro un episodio: si riprende da quella fase (il chunk precedente si è fermato lì)
+let dentroIniziale = RIPRENDI && !!(await salvato(p))?.in_corso;
+if (dentroIniziale && (await salvato(p)).in_corso.missione !== ID[0]) { log(`salvataggio in ${(await salvato(p)).in_corso.missione}, atteso ${ID[0]}: fermo`); dentroIniziale = false; ID.length = 0; }
+if (dentroIniziale) log(`ripresa dentro ${ID[0]}`);
 for (const id of ID) {
-  const cur = await p.getAttribute('[data-scheda-episodio]', 'data-scheda-episodio').catch(() => null);
-  if (cur !== id) { log(`città: scheda su ${cur}, atteso ${id}: fermo`); episodi[id] = { bloccato: `scheda su ${cur}` }; break; }
-  M(await osserva(p, { larg: LARG, episodio: id, scena: 'citta' }));
-  const avvia = p.locator('[data-azione="avvia-episodio"]');
-  if (!(await avvia.count())) { episodi[id] = { bloccato: 'nessun «Avvia l\'episodio» in città' }; break; }
-  await avvia.click();
+  if (!dentroIniziale) {
+    await attendiScena(p, ['citta'], 8000);
+    const cur = await p.getAttribute('[data-scheda-episodio]', 'data-scheda-episodio').catch(() => null);
+    if (cur !== id) { log(`città: scheda su ${cur}, atteso ${id}: fermo`); episodi[id] = { bloccato: `scheda su ${cur}` }; break; }
+    M(await osserva(p, { larg: LARG, episodio: id, scena: 'citta' }));
+    const avvia = p.locator('[data-azione="avvia-episodio"]');
+    if (!(await avvia.count())) { episodi[id] = { bloccato: 'nessun «Avvia l\'episodio» in città' }; break; }
+    await avvia.click();
+  }
   const e0 = p.errori.length;
-  const r = await giocaEpisodio(id);
+  const r = await giocaEpisodio(id, dentroIniziale);
+  dentroIniziale = false;
   r.errori = p.errori.slice(e0);
   episodi[id] = r;
   log(`${id}: esiti ${r.esiti.join(',') || '-'} · tentativi ${r.tentativi} · ondate ${r.ondate} · bloccato ${r.bloccato ?? 'no'}`);
+  scrivi(`gioco-${LARG}-${DA}-${A}.json`, { larg: LARG, alt, da: DA, a: A, misure, episodi, ripresa, erroriPagina: p.errori }); // dopo ogni episodio: un'interruzione non perde le misure
   if (r.bloccato) break;
 }
 
 const errori = p.errori;
-scrivi(`gioco-${LARG}.json`, { larg: LARG, alt, misure, episodi, ripresa, erroriPagina: errori });
+scrivi(`gioco-${LARG}-${DA}-${A}.json`, { larg: LARG, alt, da: DA, a: A, misure, episodi, ripresa, erroriPagina: errori });
 const cattive = misure.filter((x) => x.verticale > 0 || x.orizzontale > 0 || x.piccoli > 0 || x.tagliati > 0);
 console.log(`[${LARG}] misure ${misure.length} · con difetto ${cattive.length} · episodi giocati ${Object.values(episodi).filter((x) => !x.bloccato).length}/36 · ripresa ${ripresa.length} · errori pagina ${errori.length}`);
 console.log(`[${LARG}] cartella uscita: ${OUT}`);

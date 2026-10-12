@@ -23,7 +23,8 @@ export async function avviaServer() {
     r.writeHead(200, { 'content-type': TIPI[extname(p)] ?? 'application/octet-stream' });
     r.end(readFileSync(p));
   });
-  await new Promise((ok) => srv.listen(0, '127.0.0.1', ok));
+  // PORTA fissa: ogni chunk è un processo a sé, e localStorage è per origine (porta compresa)
+  await new Promise((ok) => srv.listen(Number(process.env.PORTA ?? 0), '127.0.0.1', ok));
   return { srv, url: `http://127.0.0.1:${srv.address().port}/` };
 }
 
@@ -99,4 +100,14 @@ export async function agisci(p, azione) {
   await p.evaluate(() => { window.__c14bPrev = document.querySelector('.scena'); });
   await azione();
   await p.waitForFunction(() => { const s = document.querySelector('.scena'); return s && s !== window.__c14bPrev && getComputedStyle(s).opacity === '1'; }, null, { timeout: 4000, polling: 50 }).catch(() => {});
+}
+
+/** Profilo persistente: il salvataggio resta tra un chunk e l'altro (ogni chunk è un processo a sé). */
+export async function apriPersistente(dir, [larg, alt]) {
+  const ctx = await chromium.launchPersistentContext(dir, { executablePath: '/opt/pw-browsers/chromium', viewport: { width: larg, height: alt }, hasTouch: true, reducedMotion: 'reduce', serviceWorkers: 'allow' });
+  const p = ctx.pages()[0] ?? await ctx.newPage();
+  p.errori = [];
+  p.on('console', (x) => { if (x.type() === 'error') p.errori.push(`console: ${x.text()}`); });
+  p.on('pageerror', (e) => p.errori.push(`pageerror: ${e.message}`));
+  return { ctx, p };
 }
