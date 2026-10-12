@@ -88,7 +88,7 @@ export async function controllaFolla(pagina, m, n, atteso) {
 /** Schermate a passi (S-10, PO-045): a 360 px di larghezza la pagina sta in 760 px di altezza, senza scorrere.
  *  Con VALMORA_MISURE=1 stampa l'altezza di ogni schermata (misura prima/dopo). */
 export async function controllaAltezza(pagina, larghezza, nome, atteso) {
-  if (!['sala', 'briefing', 'verbale', 'guida'].includes(nome)) return;
+  if (!['sala', 'briefing', 'verbale', 'guida'].includes(nome) && process.env.VALMORA_MISURE !== 'tutte') return; // «tutte»: misura ogni schermata
   const prima = pagina.viewportSize();
   await pagina.setViewportSize({ width: prima.width, height: 760 }); // il telefono di riferimento è 360×760
   await pagina.waitForTimeout(50);
@@ -310,4 +310,10 @@ export async function controllaRende(pagina, m, n, atteso, t) {
     const ok = testo && migliori.every((x) => testo.includes(x)) && (!ris.dimezza?.length || testo.includes('Dimezza'));
     atteso(`${m.id}: con «${r}» in mano la spiegazione «${testo}» non dice dove rende (${migliori.join(', ') || 'dimezza'}) (C14-11)`, !!ok);
   }
+}
+
+/** S-23 (PO-078): la vignetta della schermata si vede (sala: apertura; verbale: esito). Rosso __NO_C26V01. */
+export async function controllaVignetta(pagina, prefisso, atteso, dove) {
+  const vista = await pagina.locator(`[data-vignetta^="${prefisso}"]`).first().isVisible().catch(() => false);
+  atteso(`${dove}: manca la vignetta «${prefisso}…» (S-23, PO-078)`, vista);
 }

@@ -10,7 +10,7 @@ import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -207,7 +207,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           if (modoFoto === 'chiave' && !viste.has(nome)) { viste.add(nome); await foto(); }
         };
         const partita = async (p) => {
-          await scena('sala'); await fotoSe(); await controllaSfida(pagina, p.m, atteso, 'sala');
+          await scena('sala'); await fotoSe(); await controllaSfida(pagina, p.m, atteso, 'sala'); await controllaVignetta(pagina, 'apertura-', atteso, `${p.m.id} sala`);
           const variante = (p.m.introduzione ?? []).map((k) => k.replace(/^testi:/, '')).find((k) => piano.testi[`${k}@f`]);
           if (variante) {
             const atteso_ = piano.testi[genere === 'f' ? `${variante}@f` : variante];
@@ -307,7 +307,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             atteso(`rapporto ${n}: la tensione si vede in numeri (D-055): «${cifre}»`, !/\d/.test(cifre ?? '')); await controllaPicco(pagina, p.m, o.rapporto, atteso); await controllaCifreTensione(pagina, atteso, `${p.m.id} rapporto ${n}`);
             await premi('[data-azione="avanti"]');
           }
-          await scena('verbale'); await foto(); await controllaSfida(pagina, p.m, atteso, 'verbale'); await controllaCifreTensione(pagina, atteso, `${p.m.id} verbale`);
+          await scena('verbale'); await foto(); await controllaSfida(pagina, p.m, atteso, 'verbale'); await controllaVignetta(pagina, 'esito-', atteso, `${p.m.id} verbale`); await controllaCifreTensione(pagina, atteso, `${p.m.id} verbale`);
           await controllaBilancio(pagina, p, atteso); // D-085, C-005 R03
         };
 

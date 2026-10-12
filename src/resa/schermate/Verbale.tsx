@@ -6,13 +6,14 @@ import { Fragment, useState } from 'react';
 import type { Risultato } from '../../logica/episodi.ts';
 import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
-import { t } from '../dati.ts';
+import { t, genereAttuale } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { spento } from '../../interruttori.ts';
 import { tono } from '../partita.ts';
 import { sezioniBilancio } from './Bilancio.tsx';
 import { Passi } from './Passi.tsx';
 import { Stelle } from '../stelle.tsx';
+import { VignettaEsito } from '../vignette-gioco.tsx';
 import { Sfida } from '../stemma.tsx';
 import { due, Testata } from './Fumetto.tsx';
 
@@ -26,7 +27,10 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
   const esito = (
     <>
       <div className="scheda verbale">
-        <Sfida m={p.m} />
+        <div className="vignetta-cornice">
+          <VignettaEsito m={p.m} tono={p.risultato.fallita ? 'fallita' : tono(p.m, p.esito.esito)} genere={genereAttuale() === 'f' ? 'f' : 'm'} />
+          <Sfida m={p.m} />
+        </div>
         <Stelle n={p.risultato.stelle} />
         <p>{t(p.esito.esito.verbale)}</p>
       </div>

@@ -305,3 +305,15 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .riga-in-mano { display: flex; align-items: center; gap: var(--spazio-2); }
 .riga-in-mano .in-mano { flex: 1; min-width: 0; margin: 0; }
 .riga-in-mano .aiuto { display: grid; place-items: center; flex: none; width: var(--tocco-min); height: var(--tocco-min); border: 0; background: none; color: var(--nero); cursor: pointer; }
+.vignetta .v-notte { fill: var(--mappa-notte); }
+.vignetta .v-faro { fill: var(--mappa-faro); }
+.vignetta .v-gru { fill: var(--mappa-gru); }
+.vignetta .v-nuvola { fill: var(--mappa-tetto-6); }
+/* Vignette nelle schermate di gioco: riserva = tutto il resto della schermata a 360×760 (misurata), così la vignetta
+   si stringe invece di far scorrere */
+.stasera .vignetta { --vignetta-riserva: var(--vignetta-riserva-sala); --vignetta-min: var(--vignetta-min-sala); }
+.vignetta-cornice { position: relative; }
+.vignetta-cornice .vignetta { --vignetta-riserva: var(--vignetta-riserva-esito); --vignetta-min: var(--vignetta-min-esito); margin-bottom: 0; }
+.vignetta-cornice > .sfida { position: absolute; inset-inline: var(--spazio-2); bottom: var(--spazio-1); margin: 0; }
+.vignetta-cornice > .sfida .sfida-club > span:last-child, .vignetta-cornice > .sfida .sfida-contro { padding: 0 var(--spazio-1); background: var(--bianco); }
+.vignetta-cornice .stemma { width: var(--icona); height: var(--icona); }
