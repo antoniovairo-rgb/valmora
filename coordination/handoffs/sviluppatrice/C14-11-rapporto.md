@@ -25,7 +25,7 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnata**.
 | stesso comando, prima versione | 360 px | ROSSO: «Rende di più: …» a 10,8 px (C-005 R06). Corretto con `--testo-mini` |
 | `… VALMORA_ROSSI=C22R01 …` | 360 px | ROSSO: «con squadre/steward/mediatore in mano la spiegazione «» non dice dove rende» su e01 ed e02 |
 | `node tools/foto.mjs out/foto-c1411` | 3 larghezze | verde |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit a23a21d (merge della principale), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/c14-11/2026-10-12/`: schieramento di e01 con un'unità in mano, a 360, 375 e 412 px. La foto «prima» è quella di S-12, `docs/foto/s12/2026-10-12/`.
 
