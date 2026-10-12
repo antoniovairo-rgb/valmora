@@ -234,3 +234,18 @@ export async function controllaRipartenza(pagina, { atteso, scena, partita, pian
   const [ondata, salvata] = await pagina.evaluate(() => [document.querySelector('main')?.dataset.ondata, JSON.parse(localStorage.getItem('valmora-salvataggio'))?.in_corso?.ondata]);
   atteso(`ripartenza: dopo «Riparti» si è all'ondata ${ondata} (salvata ${salvata}), non alla ${n} (PO-060)`, ondata === String(n) && salvata === n);
 }
+
+/** S-18 (PO-056): alla prima «Nuova partita», dopo il genere, la guida a passi; si salta dal primo passo
+ *  («Salta») oppure si arriva a «Iniziamo»; poi la città. */
+export async function controllaGuida(pagina, { atteso, scena, foto, salta }) {
+  const c = await scena('guida').then(() => true, () => false);
+  atteso('prima partita: dopo il genere manca la guida introduttiva (PO-056)', c);
+  if (!c) return;
+  atteso('guida introduttiva: al primo passo manca «Salta»', (await pagina.locator('[data-azione="guida-salta"]').count()) === 1);
+  await foto();
+  if (salta) { await pagina.click('[data-azione="guida-salta"]'); return; }
+  let passi = 1;
+  while (await pagina.locator('[data-azione="guida-avanti"]').count()) { await pagina.click('[data-azione="guida-avanti"]'); passi++; await foto(); }
+  atteso(`guida introduttiva: ${passi} passi, ne servono 6`, passi === 6);
+  await pagina.click('[data-azione="guida-fine"]');
+}

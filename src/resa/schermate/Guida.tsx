@@ -7,7 +7,8 @@ import { Icona } from '../icone.tsx';
 
 const PASSI = 6;
 
-export function Guida(p: { chiudi: () => void }) {
+/** «introduttiva» (S-18, PO-056): alla prima partita, dopo il genere; si salta dal primo passo e finisce con «Iniziamo». */
+export function Guida(p: { chiudi: () => void; introduttiva?: boolean }) {
   const [n, setN] = useState(1);
   return (
     <div className="guida" data-guida={n}>
@@ -18,9 +19,9 @@ export function Guida(p: { chiudi: () => void }) {
       </div>
       <div className="azioni guida-azioni">
         {n > 1 ? <button className="pulsante secondario" data-azione="guida-indietro" onClick={() => setN(n - 1)}><Icona di={ChevronLeft} />Indietro</button>
-          : <button className="pulsante secondario" data-azione="guida-chiudi" onClick={p.chiudi}><Icona di={X} />Chiudi</button>}
+          : <button className="pulsante secondario" data-azione={p.introduttiva ? 'guida-salta' : 'guida-chiudi'} onClick={p.chiudi}><Icona di={X} />{p.introduttiva ? 'Salta' : 'Chiudi'}</button>}
         {n < PASSI ? <button className="pulsante" data-azione="guida-avanti" onClick={() => setN(n + 1)}>Avanti<Icona di={ChevronRight} /></button>
-          : <button className="pulsante" data-azione="guida-fine" onClick={p.chiudi}>Ho capito</button>}
+          : <button className="pulsante" data-azione="guida-fine" onClick={p.chiudi}>{p.introduttiva ? 'Iniziamo' : 'Ho capito'}</button>}
       </div>
     </div>
   );

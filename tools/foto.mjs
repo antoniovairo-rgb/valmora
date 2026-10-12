@@ -9,7 +9,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -191,7 +191,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         // Genere (D-063): a 375 px la protagonista è donna, alle altre larghezze uomo.
         const genere = larghezza === 375 ? 'f' : 'm';
         await pagina.getByRole('button', { name: 'Nuova partita' }).click(); await scena('genere'); await foto();
-        await premi(`[data-genere="${genere}"]`); await scena('citta'); await foto();
+        await premi(`[data-genere="${genere}"]`); await controllaGuida(pagina, { atteso, scena, foto, salta: larghezza === 375 }); await scena('citta'); await foto();
         const salvato = await pagina.evaluate(() => JSON.parse(localStorage.getItem('valmora-salvataggio') ?? '{}').genere);
         atteso(`genere: salvato «${salvato}» invece di «${genere}»`, salvato === genere);
 
