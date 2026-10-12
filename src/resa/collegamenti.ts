@@ -4,6 +4,18 @@
 // PO-049: servito dal sito stesso (GitHub Pages) invece che dal redirect delle release, dove il download si bloccava (PO-020).
 export const URL_APK = './valmora-debug.apk';
 
+/** Indirizzo pubblico del gioco (GitHub Pages), usato dalla condivisione del verbale (PO-074). */
+export const URL_GIOCO = 'https://antoniovairo-rgb.github.io/valmora/';
+
+/** Condivisione (PO-074): pannello del telefono se c'è (Web Share API), altrimenti copia negli appunti.
+ *  «annullato» se il giocatore chiude il pannello: non è un errore e non si mostra nulla. */
+export async function condividi(testo: string): Promise<'condiviso' | 'copiato' | 'annullato' | 'errore'> {
+  try {
+    if (typeof navigator.share === 'function') { await navigator.share({ title: 'Valmora', text: testo, url: URL_GIOCO }); return 'condiviso'; }
+    await navigator.clipboard.writeText(`${testo} ${URL_GIOCO}`); return 'copiato';
+  } catch (e) { return (e as Error)?.name === 'AbortError' ? 'annullato' : 'errore'; }
+}
+
 /** Sostieni il progetto (PO-050): donazione esterna pura, nessuna ricompensa nel gioco. Stesso link dell'altro gioco del PO. */
 export const URL_DONAZIONE = 'https://paypal.me/elevoraCPM';
 

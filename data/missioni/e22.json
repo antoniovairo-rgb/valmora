@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 22,
   "titolo": "testi:e22.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 40,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e22.intro1",
-    "testi:e22.intro2",
-    "testi:e22.intro3"
+    "testi:e22.intro2"
   ],
   "briefing": [
     {

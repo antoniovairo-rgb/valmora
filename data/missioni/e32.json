@@ -1,6 +1,5 @@
 {
   "id": "e32",
-  "bozza": true,
   "stagione": 3,
   "episodio": 32,
   "titolo": "testi:e32.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e32.intro1",
-    "testi:e32.intro2",
-    "testi:e32.intro3"
+    "testi:e32.intro2"
   ],
   "briefing": [
     {

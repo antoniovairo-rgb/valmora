@@ -3,7 +3,6 @@
   "stagione": 3,
   "episodio": 30,
   "titolo": "testi:e30.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 45,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e30.intro1",
-    "testi:e30.intro2",
-    "testi:e30.intro3"
+    "testi:e30.intro2"
   ],
   "briefing": [
     {
@@ -64,7 +62,7 @@
       },
       {
         "id": "viale_stazione",
-        "tipo": "viale",
+        "tipo": "strada",
         "pos": {
           "x": 30,
           "y": 86
@@ -92,7 +90,6 @@
         "quantita": 6,
         "efficacia": {
           "strada": 2,
-          "viale": 2,
           "quartiere": 2,
           "piazza": 2,
           "piazzale": 1
@@ -104,7 +101,6 @@
           "piazzale": 2,
           "piazza": 2,
           "strada": 1,
-          "viale": 1,
           "quartiere": 1
         }
       },

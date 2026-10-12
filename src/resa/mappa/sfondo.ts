@@ -12,7 +12,7 @@ import { disegnaDettagli, leggiDettaglio } from './dettagli.ts';
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number }
 export interface Colori { primario: string; secondario: string }
-export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; viali: Pt[][]; idViali: string[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; dettagli: { id: string; dove: Pt }[]; notte: boolean; cartelloni: boolean }
+export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; curvaSola: (Pt & { verso: number }) | null; viali: Pt[][]; idViali: string[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; dettagli: { id: string; dove: Pt }[]; notte: boolean; cartelloni: boolean }
 /** Atmosfera della missione (campi facoltativi dei dati, mappa.ora e mappa.dettagli): e03 è di notte. */
 export interface Atmosfera { notte?: boolean; cartelloni?: boolean; dettagli?: string[] }
 export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; dettagli: string[]; coloriCorteo: [string, string]; fari: Pt[] }
@@ -37,6 +37,8 @@ export const colore = (grezzo: string | undefined) => {
 /** Colore del token con trasparenza, come «#rrggbbaa» (i token dei colori sono «#rrggbb»). */
 export const alfa = (colore: string, a: number) => colore + Math.round(Math.max(0, Math.min(1, a)) * 255).toString(16).padStart(2, '0');
 
+/** Raggio esterno della curva sola (episodi di città con una curva). */
+const RC_SOLA = 48;
 const lista = (base: string, n: number) => Array.from({ length: n }, (_, i) => token(`${base}-${i + 1}`));
 
 /** Dove stanno stadio e viali, dalle posizioni (già in pixel) dei settori. */
@@ -52,6 +54,13 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
     const rx = Math.abs(b.x - a.x) / 2 * 0.98;
     stadio = { cx: (a.x + b.x) / 2, cy: (a.y + b.y) / 2 - rx * 0.12, rx, ry: rx * 0.62 };
   }
+  // Episodio di città con UNA sola curva (e13, e25): niente stadio, ma la curva si disegna lo stesso,
+  // gradinata a ferro di cavallo coi colori del club aperta verso il centro della mappa (D-086); il settore
+  // sta sulla gradinata, in fondo al ferro di cavallo, come le curve dello stadio. «curvaSola» è il centro.
+  // Rosso C22K01: nessuna curva disegnata, come prima.
+  const una = curve.length === 1 && !spento('C22K01') ? curve[0]! : null;
+  const verso = una ? Math.sign(centro.x - una.x) || 1 : 1;
+  const curvaSola = una ? { x: una.x + verso * (RC_SOLA - 11), y: una.y, verso } : null;
   const meta = stadio ? { x: stadio.cx, y: stadio.cy + stadio.ry * 0.9 } : centro;
   // Se c'è una stazione (e02) i viali partono da lì: gli ospiti arrivano in treno; altrimenti dal bordo basso.
   const st = settori.find((s) => s.tipo === 'stazione');
@@ -77,7 +86,7 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
     const dove = { x: base.x + ((centro.x - base.x) / d) * passo, y: base.y + ((centro.y - base.y) / d) * passo };
     return { id: x.id, dove: { x: Math.min(W - 50, Math.max(50, dove.x)), y: Math.min(H - 50, Math.max(50, dove.y)) } };
   });
-  return { W, H, club, stadio, viali, idViali: strade.map((s) => s.id ?? ''), centro, stazione, quartieri, parcheggi: parch, slarghi, dettagli, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
+  return { W, H, club, stadio, curvaSola, viali, idViali: strade.map((s) => s.id ?? ''), centro, stazione, quartieri, parcheggi: parch, slarghi, dettagli, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
 }
 
 export const bezier = (p: Pt[], t: number): Pt => {
@@ -107,7 +116,8 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   const slarghi = d.slarghi.filter((q) => !dentro(q.x, q.y, 1.6)); // dentro lo stadio c'è già il piazzale
   const RQ = Math.min(W, H) * 0.2; // raggio del quartiere di case basse (e03)
   const vicino = (ps: Pt[], x: number, y: number, rx: number, ry: number) => ps.some((p) => Math.abs(x - p.x) < rx && Math.abs(y - p.y) < ry);
-  isolati(f, W, H, r, (x, y) => dentro(x, y, 1.42) || (!!st && Math.abs(y - st.y) < 34 && x < st.x + 70)
+  const cs = d.curvaSola, RC = RC_SOLA;
+  isolati(f, W, H, r, (x, y) => dentro(x, y, 1.42) || (!!cs && Math.hypot(x - cs.x, y - cs.y) < RC + 16) || (!!st && Math.abs(y - st.y) < 34 && x < st.x + 70)
     || vicino(d.quartieri, x, y, RQ + 20, RQ + 16) || vicino(d.parcheggi, x, y, 70, 50) || vicino(slarghi, x, y, 52, 42) || vicino(d.dettagli.map((q) => q.dove), x, y, 58, 46));
   for (const q of slarghi) piazza(f, q);
   const dettagli = disegnaDettagli(f, d.dettagli, r);
@@ -174,6 +184,23 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
       const a = r() * Math.PI * 2, q = r(), c = Math.cos(a);
       folla.push({ x: cx + c * (rx - q * 22 * k), y: cy + Math.sin(a) * (ry - q * 14 * k), fase: r() * 6.28,
         colore: c < -0.55 ? tifoso(d.club.sx, i, '--mappa-folla-a') : c > 0.55 ? tifoso(d.club.dx, i, '--mappa-folla-b') : scegli(tinte) });
+    }
+  }
+  if (cs) {
+    // Ferro di cavallo: dalle 12 alle 6 passando per il lato opposto al centro (la bocca guarda il campo).
+    const c = d.club.sx, tinta = colore(c?.primario) ?? token('--mappa-curva-a');
+    const a0 = cs.verso > 0 ? Math.PI * 0.5 : -Math.PI * 0.5, a1 = a0 + Math.PI;
+    f.fillStyle = token('--mappa-piazzale'); f.beginPath(); f.arc(cs.x, cs.y, RC + 8, 0, 7); f.fill();
+    f.fillStyle = alfa(scuro, 0.55); f.beginPath(); f.arc(cs.x + 4, cs.y + 5, RC + 2, a0, a1); f.fill();
+    for (let i = 0; i < 12; i++) {
+      f.beginPath(); f.arc(cs.x, cs.y, RC - i * 2, a0, a1);
+      f.strokeStyle = token(i % 2 ? '--mappa-gradinata-1' : '--mappa-gradinata-2'); f.lineWidth = 2.2; f.stroke();
+      f.strokeStyle = alfa(tinta, 0.5 + 0.04 * i); f.stroke();
+    }
+    f.strokeStyle = alfa(token('--mappa-tetto-stadio'), 0.55); f.lineWidth = 5; f.beginPath(); f.arc(cs.x, cs.y, RC + 2, a0, a1); f.stroke();
+    for (let i = 0; i < 300; i++) {
+      const a = a0 + r() * Math.PI, q = RC - r() * 22;
+      folla.push({ x: cs.x + Math.cos(a) * q, y: cs.y + Math.sin(a) * q, fase: r() * 6.28, colore: c ? colore(i % 4 ? c.primario : c.secondario)! : token('--mappa-folla-a') });
     }
   }
   // Velo serale.

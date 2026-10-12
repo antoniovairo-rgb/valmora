@@ -2,7 +2,9 @@
 // S-20 (PO-073): copia di riserva dell'ultimo salvataggio buono sotto una seconda chiave; se il principale è
 // illeggibile si riprende dalla copia (e la home lo dice); esporta e importa la partita come file .json.
 import { spento } from '../interruttori.ts';
+import { completaPartita, riparaInCorso } from '../logica/aggiornamento.ts';
 import { migra, type Salvataggio } from '../salvataggi/salvataggio.ts';
+import { dichiarate, missioni } from './dati.ts';
 
 const CHIAVE = 'valmora-salvataggio';
 const RISERVA = 'valmora-salvataggio-riserva';
@@ -10,12 +12,43 @@ const RISERVA = 'valmora-salvataggio-riserva';
 /** Vero se l'ultimo carica() ha dovuto usare la copia di riserva (avviso in home). */
 export let dallaRiserva = false;
 
+export const AVVISO_RIPARTE = 'Il gioco è stato aggiornato: l\'episodio riparte dall\'inizio.';
+export const AVVISO_SPARITO = 'Il gioco è stato aggiornato: l\'episodio interrotto non c\'è più, si riparte dalla città.';
+
+/**
+ * Adatta un salvataggio ai dati di gioco attuali (C-014): completa le variabili dichiarate dopo (C14-03) e
+ * fa ripartire un episodio in corso che nomina cose sparite (C14-02). Mai un'eccezione verso la resa: se
+ * l'adattamento fallisce, l'episodio in corso si lascia e si torna alla città.
+ */
+export function adattaAiDati(s: Salvataggio): { salvataggio: Salvataggio; avviso: string | null } {
+  try {
+    const { salvataggio, motivi } = riparaInCorso(completaPartita(s, dichiarate.values()), missioni, dichiarate);
+    if (!motivi.length) return { salvataggio, avviso: null };
+    console.warn(`episodio in corso incompatibile coi dati attuali: ${motivi.join('; ')}`);
+    return { salvataggio, avviso: salvataggio.in_corso ? AVVISO_RIPARTE : AVVISO_SPARITO };
+  } catch (e) {
+    console.warn(`adattamento non riuscito, episodio in corso lasciato: ${(e as Error).message}`);
+    return { salvataggio: { ...s, in_corso: null, rapporto_aperto: null }, avviso: AVVISO_SPARITO };
+  }
+}
+
+/** Avviso dell'ultimo caricamento (da mostrare in home), o null. */
+let avvisoCaricamento: string | null = null;
+export const ultimoAvviso = () => avvisoCaricamento;
+
+/** Legge e adatta un salvataggio grezzo; l'avviso dell'adattamento resta per la home. */
+function leggi(grezzo: string): Salvataggio {
+  const { salvataggio, avviso } = adattaAiDati(migra(JSON.parse(grezzo)));
+  avvisoCaricamento = avviso;
+  if (avviso) salva(salvataggio); // l'avviso compare una volta sola: il salvataggio riparato è già scritto
+  return salvataggio;
+}
+
 export function carica(): Salvataggio | null {
   dallaRiserva = false;
-  let grezzo: string | null = null;
   try {
-    grezzo = localStorage.getItem(CHIAVE);
-    return grezzo ? migra(JSON.parse(grezzo)) : null;
+    const grezzo = localStorage.getItem(CHIAVE);
+    return grezzo ? leggi(grezzo) : null;
   } catch (e) {
     console.warn(`salvataggio illeggibile: ${(e as Error).message}`);
   }
@@ -24,9 +57,9 @@ export function carica(): Salvataggio | null {
   try {
     const copia = localStorage.getItem(RISERVA);
     if (!copia) return null;
-    const s = migra(JSON.parse(copia));
+    const s = leggi(copia);
     dallaRiserva = true;
-    localStorage.setItem(CHIAVE, copia); // il principale torna buono
+    localStorage.setItem(CHIAVE, JSON.stringify(s)); // il principale torna buono
     return s;
   } catch (e) {
     console.warn(`anche la copia di riserva è illeggibile, si riparte: ${(e as Error).message}`);
@@ -54,12 +87,12 @@ export function esporta(s: Salvataggio): void {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-/** Legge un file di salvataggio e lo fa passare da migra(): se non è valido, errore con il motivo. */
+/** Legge un file di salvataggio, lo fa passare da migra() e lo adatta ai dati attuali; se non è valido, errore. */
 export async function importa(file: File): Promise<Salvataggio> {
   const testo = await file.text();
   let dati: unknown;
   try { dati = JSON.parse(testo); } catch { throw new Error('non è un file di salvataggio (JSON non leggibile)'); }
-  return migra(dati);
+  return adattaAiDati(migra(dati)).salvataggio;
 }
 
 export function nuovoSeme(): number {

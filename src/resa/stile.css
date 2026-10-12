@@ -200,6 +200,13 @@ main[data-schermata="sala"] .mappa, main[data-schermata="briefing"] .mappa { asp
 .passi-nav .pulsante { margin: var(--spazio-3) 0; }
 .passo > .messaggio:first-child { margin-top: var(--spazio-4); }
 .passi-nav .pulsante.secondario { flex: 0 1 40%; }
+/* PO-074: condividi nel verbale, piccolo e non a tutta riga */
+.pulsante.piccolo.condividi { flex: none; margin: 0 0 var(--spazio-3); }
+/* PO-072: fine del verbale — prossimo episodio in evidenza, mappa piccola sotto */
+.verbale-fine { flex: 1; min-width: 0; }
+.verbale-riga { display: flex; gap: var(--spazio-2); }
+.passi-nav .pulsante.icona { flex: none; width: var(--tocco-min); padding: 0; }
+.verbale-fine .tenue { margin: calc(-1 * var(--spazio-2)) 0 var(--spazio-2); text-align: center; }
 .fonti-verbale { margin: 0; padding: var(--spazio-3); list-style: none; display: grid; gap: var(--spazio-3); }
 .fonti-verbale .tenue { margin: var(--spazio-1) 0 0; }
 .fonti-verbale .riga { flex-wrap: nowrap; align-items: flex-start; }

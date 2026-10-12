@@ -8,6 +8,8 @@ import { validaDati } from '../src/dati/valida.ts';
 import { migra, SAVE_VERSION } from '../src/salvataggi/salvataggio.ts';
 import { giraBot, sceltePesano, chiamateViste, esisteStelle } from './bot.mjs';
 import { controllaFisse, posizioneConta } from './fisse.mjs';
+import { controllaConsolidamento } from './consolidamento.mjs';
+import { controllaRitmo } from '../src/dati/ritmo.ts';
 
 // Bot: 0 blocchi su tutti i semi, e ogni esito di ogni missione raggiunto da almeno una strategia.
 export function controllaBot(rapporto, dati) {
@@ -39,12 +41,15 @@ const SALVATAGGI = 'tests/salvataggi-reali';
 const leggiSalvataggi = () => Object.fromEntries(readdirSync(SALVATAGGI).filter((n) => n.endsWith('.json'))
   .map((n) => [n, JSON.parse(readFileSync(`${SALVATAGGI}/${n}`, 'utf8'))]));
 
+const missioni = (d) => Object.entries(d).filter(([k]) => k.startsWith('missioni/')).map(([, m]) => m);
 export const PASSI_LOGICA = {
   tipi: () => esegui('npx tsc --noEmit -p .'),
   confini: () => controllaConfini(Object.fromEntries(tracciatiENuovi().map((p) => [p, readFileSync(p, 'utf8')]))),
   schema: () => validaDati(leggiSchemi(), leggiDati()),
   test: () => esegui('npx vitest run'),
   bot: () => { const d = leggiDati(); return [...controllaBot(giraBot(d, 1000), d), ...controllaScelte(sceltePesano(d), d), ...controllaCampagna(chiamateViste(d)), ...controllaFisse(posizioneConta(d))]; },
+  // PO-068/D-092: testi consolidati (lunghezze, niente bozze, variabili di storia impostate e poi lette) e ritmo della campagna
+  storia: () => { const d = leggiDati(); return [...controllaConsolidamento(d), ...controllaRitmo(missioni(d))]; },
   'salvataggi-reali': () => controllaSalvataggiReali(SAVE_VERSION, leggiSalvataggi(), migra),
   'bracci-rossi-logica': () => {
     const ciechi = [];
@@ -58,6 +63,11 @@ export const PASSI_LOGICA = {
     if (!controllaSalvataggiReali(2, {}, migra).length) ciechi.push('salvataggi-reali/copertura è cieco');
     if (!controllaSalvataggiReali(1, { 'v1-rotto.json': { save_version: 1 } }, migra).length) ciechi.push('salvataggi-reali/migrazione è cieco');
     const d = leggiDati(); const m = structuredClone(d['missioni/e01.json']);
+    const mb = structuredClone(m); mb.bozza = true;
+    if (!controllaConsolidamento({ ...d, 'missioni/e01.json': mb }).length) ciechi.push('storia/bozza è cieco');
+    const sv = structuredClone(d['stato.json']); sv.variabili.push({ id: 'mai_letta', tipo: 'bool', iniziale: false, descrizione: 'prova' });
+    if (!controllaConsolidamento({ ...d, 'stato.json': sv }).length) ciechi.push('storia/variabili è cieco');
+    if (!controllaRitmo([1, 2, 3, 4].map((episodio) => ({ ...d['missioni/e01.json'], episodio }))).length) ciechi.push('storia/ritmo è cieco');
     m.esiti.at(-1).se = { var: 'tensione_max', al_massimo: -1 };
     if (!controllaBot(giraBot({ ...d, 'missioni/e01.json': m }, 20), d).length) ciechi.push('bot/soft-lock è cieco');
     const m2 = structuredClone(d['missioni/e01.json']); m2.esiti.push({ ...m2.esiti[0], id: 'irraggiungibile' });

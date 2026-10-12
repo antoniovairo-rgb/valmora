@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 23,
   "titolo": "testi:e23.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 65,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e23.intro1",
-    "testi:e23.intro2",
-    "testi:e23.intro3"
+    "testi:e23.intro2"
   ],
   "briefing": [
     {
@@ -524,6 +522,39 @@
               "risposta": "testi:e23.op.foto23.r"
             }
           ]
+        },
+        {
+          "id": "lavezzari_porto",
+          "fonte": "ufficio_sicurezza_cinderwick",
+          "testo": "testi:e23.ch.lavezzari_porto",
+          "settore": "curva_cinderwick",
+          "opzioni": [
+            {
+              "id": "annota_dubbio23",
+              "testo": "testi:e23.op.annota_dubbio23",
+              "costo": "testi:e23.op.annota_dubbio23.c",
+              "effetti": [
+                {
+                  "aggiungi": "sospetti_talpa",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e23.op.annota_dubbio23.r"
+            },
+            {
+              "id": "aiuto_lavezzari23",
+              "testo": "testi:e23.op.aiuto_lavezzari23",
+              "costo": "testi:e23.op.aiuto_lavezzari23.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e23.op.aiuto_lavezzari23.r"
+            }
+          ],
+          "commento": "testi:e23.ch.lavezzari_porto.vice"
         },
         {
           "id": "camion_targa",

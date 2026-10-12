@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 24,
   "titolo": "testi:e24.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 86,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e24.intro1",
-    "testi:e24.intro2",
-    "testi:e24.intro3"
+    "testi:e24.intro2"
   ],
   "briefing": [
     {
@@ -484,21 +482,13 @@
                 {
                   "aggiungi": "credito",
                   "valore": 2
+                },
+                {
+                  "imposta": "busta",
+                  "valore": "consegnata"
                 }
               ],
               "risposta": "testi:e24.op.consegna_chiusa.r"
-            },
-            {
-              "id": "copia",
-              "testo": "testi:e24.op.copia",
-              "costo": "testi:e24.op.copia.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
-              "risposta": "testi:e24.op.copia.r"
             },
             {
               "id": "rifiuta24",
@@ -508,6 +498,10 @@
                 {
                   "aggiungi": "credito",
                   "valore": -2
+                },
+                {
+                  "imposta": "busta",
+                  "valore": "tenuta"
                 }
               ],
               "risposta": "testi:e24.op.rifiuta24.r"
@@ -571,6 +565,83 @@
               "risposta": "testi:e24.op.riattacca.r"
             }
           ]
+        },
+        {
+          "id": "testimone_ritratta",
+          "fonte": "stampa_locale",
+          "testo": "testi:e24.ch.testimone_ritratta",
+          "settore": "piazza_municipio",
+          "se": {
+            "var": "testimone",
+            "uguale": "esposto"
+          },
+          "opzioni": [
+            {
+              "id": "difendi_t24",
+              "testo": "testi:e24.op.difendi_t24",
+              "costo": "testi:e24.op.difendi_t24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.difendi_t24.r"
+            },
+            {
+              "id": "taci_t24",
+              "testo": "testi:e24.op.taci_t24",
+              "costo": "testi:e24.op.taci_t24.c",
+              "effetti": [
+                {
+                  "tensione": "piazza_municipio",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e24.op.taci_t24.r"
+            }
+          ],
+          "commento": "testi:e24.ch.testimone_ritratta.vice"
+        },
+        {
+          "id": "testimone_conferma",
+          "fonte": "testimone",
+          "testo": "testi:e24.ch.testimone_conferma",
+          "settore": "piazza_municipio",
+          "se": {
+            "var": "testimone",
+            "uguale": "protetto"
+          },
+          "opzioni": [
+            {
+              "id": "mettilo_atti24",
+              "testo": "testi:e24.op.mettilo_atti24",
+              "costo": "testi:e24.op.mettilo_atti24.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e24.op.mettilo_atti24.r"
+            },
+            {
+              "id": "grazie_t24",
+              "testo": "testi:e24.op.grazie_t24",
+              "costo": "testi:e24.op.grazie_t24.c",
+              "effetti": [],
+              "risposta": "testi:e24.op.grazie_t24.r"
+            }
+          ],
+          "commento": "testi:e24.ch.testimone_conferma.vice"
         },
         {
           "id": "secondo_tempo",

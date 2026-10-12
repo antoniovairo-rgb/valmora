@@ -6,9 +6,9 @@ import type { ReactNode } from 'react';
 
 const molla = { type: 'spring', stiffness: 520, damping: 26 } as const;
 
-export function Scena(p: { nome: string; children: ReactNode }) {
+export function Scena(p: { nome: string; missione?: string; children: ReactNode }) {
   return (
-    <motion.section className="scena" data-scena={p.nome}
+    <motion.section className="scena" data-scena={p.nome} data-missione={p.missione}
       initial={{ opacity: 0, scale: 0.9, rotate: -2, y: 24 }} animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
       exit={{ opacity: 0, scale: 1.04, rotate: 1, x: -40 }} transition={{ ...molla, opacity: { duration: 0.15 } }}>
       {p.children}

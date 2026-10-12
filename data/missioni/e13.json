@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 13,
   "titolo": "testi:e13.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 15,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e13.intro1",
-    "testi:e13.intro2",
-    "testi:e13.intro3"
+    "testi:e13.intro2"
   ],
   "briefing": [
     {
@@ -27,7 +25,7 @@
       "fonte": "centrale_radio",
       "affidabilita": "alta",
       "vera": true,
-      "settore": "curva_ospiti"
+      "settore": "piazzale"
     },
     {
       "testo": "testi:e13.info_club",
@@ -80,9 +78,8 @@
         }
       },
       {
-        "id": "curva_ospiti",
-        "tipo": "curva",
-        "club": "calderholt_rovers",
+        "id": "piazzale",
+        "tipo": "piazzale",
         "pos": {
           "x": 72,
           "y": 70
@@ -266,7 +263,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "curva_ospiti",
+                  "tensione": "piazzale",
                   "valore": 2
                 }
               ],
@@ -331,7 +328,7 @@
         {
           "id": "cori_ospiti",
           "tipo": "curva",
-          "settore": "curva_ospiti",
+          "settore": "piazzale",
           "pressione": 4
         },
         {
@@ -352,7 +349,7 @@
           "id": "microfono",
           "fonte": "centrale_radio",
           "testo": "testi:e13.ch.microfono",
-          "settore": "curva_ospiti",
+          "settore": "piazzale",
           "opzioni": [
             {
               "id": "sospendi_prove",
@@ -360,7 +357,7 @@
               "costo": "testi:e13.op.sospendi_prove.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": -2
                 },
                 {
@@ -376,7 +373,7 @@
               "costo": "testi:e13.op.lascia_cori.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": 2
                 },
                 {
@@ -486,7 +483,7 @@
         {
           "id": "rissa_ospiti",
           "tipo": "rissa",
-          "settore": "curva_ospiti",
+          "settore": "piazzale",
           "pressione": 4
         },
         {
@@ -507,7 +504,7 @@
           "id": "spintoni",
           "fonte": "centrale_radio",
           "testo": "testi:e13.ch.spintoni",
-          "settore": "curva_ospiti",
+          "settore": "piazzale",
           "opzioni": [
             {
               "id": "separa",
@@ -515,7 +512,7 @@
               "costo": "testi:e13.op.separa.c",
               "effetti": [
                 {
-                  "tensione": "curva_ospiti",
+                  "tensione": "piazzale",
                   "valore": -2
                 },
                 {
@@ -535,7 +532,7 @@
                   "valore": -2
                 },
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": -3
                 },
                 {
@@ -551,7 +548,7 @@
               "costo": "testi:e13.op.si_stanchino.c",
               "effetti": [
                 {
-                  "tensione": "curva_ospiti",
+                  "tensione": "piazzale",
                   "valore": 2
                 },
                 {
@@ -773,7 +770,7 @@
                   "valore": -1
                 },
                 {
-                  "tensione": "curva_ospiti",
+                  "tensione": "piazzale",
                   "valore": 1
                 }
               ],

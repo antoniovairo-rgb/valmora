@@ -3,7 +3,6 @@
   "stagione": 2,
   "episodio": 20,
   "titolo": "testi:e20.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 86,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e20.intro1",
-    "testi:e20.intro2",
-    "testi:e20.intro3"
+    "testi:e20.intro2"
   ],
   "briefing": [
     {
@@ -137,6 +135,16 @@
           "tipo": "folla",
           "settore": "piazzale",
           "pressione": 2
+        },
+        {
+          "id": "rancore20",
+          "tipo": "corteo",
+          "settore": "strada_cinderwick",
+          "se": {
+            "var": "rapporto_dessi",
+            "uguale": "ostile"
+          },
+          "pressione": 2
         }
       ],
       "chiamate": [
@@ -194,6 +202,22 @@
                 }
               ],
               "risposta": "testi:e20.op.libero20.r"
+            },
+            {
+              "id": "patto_fabbro20",
+              "testo": "testi:e20.op.patto_fabbro20",
+              "costo": "testi:e20.op.patto_fabbro20.c",
+              "se": {
+                "var": "rapporto_dessi",
+                "uguale": "rispetto"
+              },
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e20.op.patto_fabbro20.r"
             }
           ]
         },

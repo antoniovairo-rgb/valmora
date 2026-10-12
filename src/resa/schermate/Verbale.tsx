@@ -1,6 +1,7 @@
 // Verbale: esito e stelle (D-060), fonti vere e false (D-024), le scelte fatte durante le chiamate.
 // Sotto l'esito il bilancio (D-085, PO-036). Esito «fallita» (D-059): l'episodio non è superato e il verbale porta a «Rigioca l'episodio».
-import { Map as IconaMappa, RotateCcw } from 'lucide-react';
+import { ChevronRight, Map as IconaMappa, RotateCcw, Share2 } from 'lucide-react';
+import { condividi } from '../collegamenti.ts';
 import { Fragment, useState } from 'react';
 import type { Risultato } from '../../logica/episodi.ts';
 import type { EsitoMissione } from '../../logica/missione.ts';
@@ -15,8 +16,13 @@ import { Stelle } from '../stelle.tsx';
 import { Sfida } from '../stemma.tsx';
 import { due, Testata } from './Fumetto.tsx';
 
-export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void }) {
+export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void; prossimo?: () => void }) {
   const [passo, setPasso] = useState(0);
+  const [condivisione, setCondivisione] = useState<string | null>(null);
+  // PO-074: testo + link al gioco, dal pannello del telefono o copiato negli appunti
+  const stelle = p.risultato.stelle;
+  const testoCondiviso = `Valmora · Ep. ${due(p.m.episodio)} «${t(p.m.titolo)}»: ${t(`esito.${p.esito.esito.id}`)} ${'★'.repeat(stelle)}${'☆'.repeat(3 - stelle)}. Ce la fai meglio di me?`;
+  const condividiVerbale = () => condividi(testoCondiviso).then((r) => setCondivisione(r === 'copiato' ? 'Copiato: incollalo dove vuoi.' : r === 'errore' ? 'Condivisione non riuscita.' : null));
   const esito = (
     <>
       <div className="scheda verbale">
@@ -27,6 +33,8 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
       {p.risultato.fallita
         ? <p className="avviso" data-fallita="si">Episodio fallito: va rigiocato. Si riparte da come stavano le cose prima.</p>
         : <p className="avviso buono" data-migliore={p.migliore ? 'si' : 'no'}>{p.migliore ? 'Nuovo miglior risultato per questo episodio.' : 'Resta il risultato migliore di un tentativo precedente.'}</p>}
+      {!spento('C20C01') && <button className="pulsante piccolo condividi" data-azione="condividi" data-testo={testoCondiviso} onClick={condividiVerbale}><Icona di={Share2} />Condividi</button>}
+      {condivisione && <p className="tenue" data-condivisione role="status">{condivisione}</p>}
       {p.risultato.fallita && <button className="pulsante" data-azione="rigioca" onClick={p.rigioca}><Icona di={RotateCcw} />Rigioca l'episodio</button>}
     </>
   );
@@ -48,11 +56,23 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
       </ul>
     </>
   );
+  // PO-072: a fine verbale si capisce come andare avanti — «Prossimo episodio» in evidenza, la mappa sotto, piccola,
+  // con la riga che dice a cosa serve. Rosso C18V01: solo «Alla mappa della città» (difetto originale).
+  const mappa = <button className={`pulsante${p.risultato.fallita ? ' secondario' : ''}`} data-azione="citta" onClick={p.citta}><Icona di={IconaMappa} />Alla mappa della città</button>;
+  const fine = spento('C18V01') || !p.prossimo || p.risultato.fallita ? mappa : (
+    <div className="verbale-fine">
+      <div className="verbale-riga">
+        <button className="pulsante secondario icona" data-azione="citta" aria-label="Mappa della città" title="Mappa della città" onClick={p.citta}><Icona di={IconaMappa} /></button>
+        <button className="pulsante" data-azione="prossimo" onClick={p.prossimo}>Prossimo episodio<Icona di={ChevronRight} /></button>
+      </div>
+      <p className="tenue" data-spiega="mappa">Mappa: rigioca gli episodi passati.</p>
+    </div>
+  );
   return (
     <>
       <Testata numero={due(p.m.episodio)} etichetta="Verbale" titolo={<span className={tono(p.m, p.esito.esito)} data-esito={p.esito.esito.id}>{t(`esito.${p.esito.esito.id}`)}</span>} />
-      <Passi nome="Verbale" passo={passo} vai={setPasso} passi={[esito, ...bilancio, fonti]}
-        fine={<button className={`pulsante${p.risultato.fallita ? ' secondario' : ''}`} data-azione="citta" onClick={p.citta}><Icona di={IconaMappa} />Alla mappa della città</button>} />
+      <Passi nome="Verbale" compatto={fine !== mappa} passo={passo} vai={setPasso} passi={[esito, ...bilancio, fonti]}
+        fine={fine} />
     </>
   );
 }

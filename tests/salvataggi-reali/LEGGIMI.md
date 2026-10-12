@@ -8,3 +8,10 @@ SAVE_VERSION = 2 (missione a scene). I file v1 sono stati scritti dalla build 0.
 giocata da Chromium headless a 360 px, copiando `localStorage["valmora-salvataggio"]` così com'era:
 - `v1-nuova-partita.json`: subito dopo «Nuova partita» (in_corso null);
 - `v1-dopo-ondata-1.json`: dopo l'ondata 1 della plancia (in_corso del motore 0.1.0).
+
+File v2 (stessa SAVE_VERSION di oggi, ma dati di gioco della versione pubblicata — collaudo C-014):
+- `v2-0.4.0-e02-in-corso.json`: build 0.4.0 (commit 9f969d1) ricostruita e giocata da Chromium headless a
+  360 px dall'interfaccia: nuova partita, e01 superato, e02 interrotto a metà dell'ondata 2 (una risposta).
+  Ha le sole 5 variabili della 0.4.0 (mancano le 6 del consolidamento) e un in_corso senza «partenze».
+  Lo usa tests/aggiornamento.test.ts: caricamento come il gioco (migra → adattaAiDati), episodio in corso
+  fino al verbale, poi il prossimo episodio.

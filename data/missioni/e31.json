@@ -1,6 +1,5 @@
 {
   "id": "e31",
-  "bozza": true,
   "stagione": 3,
   "episodio": 31,
   "titolo": "testi:e31.titolo",
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e31.intro1",
-    "testi:e31.intro2",
-    "testi:e31.intro3"
+    "testi:e31.intro2"
   ],
   "briefing": [
     {
@@ -41,15 +39,14 @@
       "fonte": "cronista",
       "affidabilita": "media",
       "vera": false,
-      "settore": "curva_larkspire"
+      "settore": "piazzale"
     }
   ],
   "mappa": {
     "settori": [
       {
-        "id": "curva_larkspire",
-        "tipo": "curva",
-        "club": "larkspire_athletic",
+        "id": "piazzale",
+        "tipo": "piazzale",
         "pos": {
           "x": 85,
           "y": 40
@@ -96,7 +93,8 @@
           "strada": 2,
           "stazione": 2,
           "curva": 1,
-          "tribuna": 1
+          "tribuna": 1,
+          "piazzale": 1
         }
       },
       "steward": {
@@ -105,7 +103,8 @@
           "curva": 2,
           "tribuna": 2,
           "strada": 1,
-          "stazione": 1
+          "stazione": 1,
+          "piazzale": 2
         }
       },
       "mediatore": {
@@ -115,7 +114,10 @@
           "corteo"
         ]
       }
-    }
+    },
+    "dettagli": [
+      "cartelloni_stadio_nuovo@piazzale"
+    ]
   },
   "ondate": [
     {
@@ -307,8 +309,8 @@
       "eventi": [
         {
           "id": "cori_casa",
-          "tipo": "curva",
-          "settore": "curva_larkspire",
+          "tipo": "folla",
+          "settore": "piazzale",
           "pressione": 4
         },
         {
@@ -342,7 +344,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_larkspire",
+                  "pressione": "piazzale",
                   "valore": 2
                 }
               ],
@@ -382,7 +384,7 @@
           "id": "coreografia",
           "fonte": "centrale_radio",
           "testo": "testi:e31.ch.coreografia",
-          "settore": "curva_larkspire",
+          "settore": "piazzale",
           "opzioni": [
             {
               "id": "steward_uscite",
@@ -390,7 +392,7 @@
               "costo": "testi:e31.op.steward_uscite.c",
               "effetti": [
                 {
-                  "pressione": "curva_larkspire",
+                  "pressione": "piazzale",
                   "valore": -2
                 },
                 {
@@ -410,7 +412,7 @@
                   "valore": 1
                 },
                 {
-                  "tensione": "curva_larkspire",
+                  "tensione": "piazzale",
                   "valore": 2
                 }
               ],
@@ -492,8 +494,8 @@
         },
         {
           "id": "secondo_tempo_casa",
-          "tipo": "curva",
-          "settore": "curva_larkspire",
+          "tipo": "folla",
+          "settore": "piazzale",
           "pressione": 4
         },
         {
@@ -501,6 +503,16 @@
           "tipo": "arrivo",
           "settore": "stazione",
           "pressione": 2
+        },
+        {
+          "id": "testimone_ritratta",
+          "tipo": "folla",
+          "settore": "tribuna_autorita",
+          "pressione": 2,
+          "se": {
+            "var": "testimone",
+            "uguale": "esposto"
+          }
         }
       ],
       "chiamate": [
@@ -509,7 +521,7 @@
           "fonte": "cronista",
           "testo": "testi:e31.ch.cronista_cartella",
           "commento": "testi:e31.ch.cronista_cartella.vice",
-          "settore": "curva_larkspire",
+          "settore": "piazzale",
           "opzioni": [
             {
               "id": "dai_cronista",
@@ -521,7 +533,7 @@
                   "valore": -2
                 },
                 {
-                  "pressione": "curva_larkspire",
+                  "pressione": "piazzale",
                   "valore": -2
                 }
               ],
@@ -537,7 +549,7 @@
                   "valore": 1
                 },
                 {
-                  "pressione": "curva_larkspire",
+                  "pressione": "piazzale",
                   "valore": 2
                 }
               ],
@@ -583,6 +595,42 @@
                 }
               ],
               "risposta": "testi:e31.op.denuncia_offerta.r"
+            },
+            {
+              "id": "mostra_busta",
+              "testo": "testi:e31.op.mostra_busta",
+              "costo": "testi:e31.op.mostra_busta.c",
+              "effetti": [
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e31.op.mostra_busta.r",
+              "se": {
+                "var": "busta",
+                "uguale": "tenuta"
+              }
+            },
+            {
+              "id": "busta_al_comando",
+              "testo": "testi:e31.op.busta_al_comando",
+              "costo": "testi:e31.op.busta_al_comando.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e31.op.busta_al_comando.r",
+              "se": {
+                "var": "busta",
+                "uguale": "consegnata"
+              }
             }
           ]
         },
@@ -682,6 +730,22 @@
                 }
               ],
               "risposta": "testi:e31.op.mostra_indice.r"
+            },
+            {
+              "id": "testimone_firma",
+              "testo": "testi:e31.op.testimone_firma",
+              "costo": "testi:e31.op.testimone_firma.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e31.op.testimone_firma.r",
+              "se": {
+                "var": "testimone",
+                "uguale": "protetto"
+              }
             }
           ]
         },
@@ -770,6 +834,86 @@
                 }
               ],
               "risposta": "testi:e31.op.parte_treno.r"
+            }
+          ]
+        },
+        {
+          "id": "consegna_fascicolo",
+          "fonte": "vice",
+          "testo": "testi:e31.ch.consegna_fascicolo",
+          "commento": "testi:e31.ch.consegna_fascicolo.vice",
+          "opzioni": [
+            {
+              "id": "a_procura",
+              "testo": "testi:e31.op.a_procura",
+              "costo": "testi:e31.op.a_procura.c",
+              "effetti": [
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": 1
+                },
+                {
+                  "imposta": "fascicolo",
+                  "valore": "procura"
+                }
+              ],
+              "risposta": "testi:e31.op.a_procura.r"
+            },
+            {
+              "id": "a_stampa",
+              "testo": "testi:e31.op.a_stampa",
+              "costo": "testi:e31.op.a_stampa.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -2
+                },
+                {
+                  "imposta": "fascicolo",
+                  "valore": "stampa"
+                }
+              ],
+              "risposta": "testi:e31.op.a_stampa.r"
+            },
+            {
+              "id": "a_comando",
+              "testo": "testi:e31.op.a_comando",
+              "costo": "testi:e31.op.a_comando.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "tribuna_autorita",
+                  "valore": 2
+                },
+                {
+                  "imposta": "fascicolo",
+                  "valore": "comando"
+                }
+              ],
+              "risposta": "testi:e31.op.a_comando.r"
+            },
+            {
+              "id": "tieni_fascicolo",
+              "testo": "testi:e31.op.tieni_fascicolo",
+              "costo": "testi:e31.op.tieni_fascicolo.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                },
+                {
+                  "imposta": "fascicolo",
+                  "valore": "nessuno"
+                }
+              ],
+              "risposta": "testi:e31.op.tieni_fascicolo.r"
             }
           ]
         }

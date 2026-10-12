@@ -9,7 +9,7 @@ import { Icona } from '../icone.tsx';
 
 export const aCascata = () => spento('C12P01');
 
-export function Passi(p: { passo: number; vai: (i: number) => void; fine: ReactNode; passi: ReactNode[]; nome: string }) {
+export function Passi(p: { passo: number; vai: (i: number) => void; fine: ReactNode; passi: ReactNode[]; nome: string; compatto?: boolean }) {
   const n = p.passi.length;
   if (aCascata()) return <>{p.passi}{p.fine}</>;
   const vai = (i: number) => { p.vai(i); window.scrollTo({ top: 0 }); };
@@ -20,7 +20,10 @@ export function Passi(p: { passo: number; vai: (i: number) => void; fine: ReactN
       </ol>
       {p.passi.map((x, i) => <div key={i} className="passo" hidden={i !== p.passo}>{x}</div>)}
       <div className="passi-nav">
-        {p.passo > 0 && <button className="pulsante secondario" data-azione="indietro" onClick={() => vai(p.passo - 1)}><Icona di={ChevronLeft} />Indietro</button>}
+        {/* «compatto»: all'ultimo passo «Indietro» è solo l'icona, per lasciare spazio ai pulsanti finali (PO-072) */}
+        {p.passo > 0 && (p.compatto && p.passo === n - 1
+          ? <button className="pulsante secondario icona" data-azione="indietro" aria-label="Indietro" title="Indietro" onClick={() => vai(p.passo - 1)}><Icona di={ChevronLeft} /></button>
+          : <button className="pulsante secondario" data-azione="indietro" onClick={() => vai(p.passo - 1)}><Icona di={ChevronLeft} />Indietro</button>)}
         {p.passo < n - 1 ? <button className="pulsante" data-azione="passo" onClick={() => vai(p.passo + 1)}>Avanti<Icona di={ChevronRight} /></button> : p.fine}
       </div>
     </>

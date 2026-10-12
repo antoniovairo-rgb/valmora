@@ -13,7 +13,7 @@ import { giaInstallata, suIphone, useInstallazione } from '../installa.ts';
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 
-export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi: () => void; crediti: () => void; sal: Salvataggio | null; importata: (s: Salvataggio) => void }) {
+export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi: () => void; crediti: () => void; avviso?: string | null; sal: Salvataggio | null; importata: (s: Salvataggio) => void }) {
   const [daImportare, setDaImportare] = useState<Salvataggio | null>(null);
   const [errore, setErrore] = useState<string | null>(null);
   const [importata, setImportata] = useState(false);
@@ -33,6 +33,8 @@ export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi:
       {importata && <p className="avviso buono" role="status" data-importata>Partita importata.</p>}
       {daImportare && <ConfermaImporta nuova={daImportare} esiste={!!p.sal} annulla={() => setDaImportare(null)} fatto={(s) => { setDaImportare(null); setImportata(true); p.importata(s); }} />}
       <p className="tenue" data-versione={GAME_VERSION}>Versione {GAME_VERSION} · build {spento('C05S09') ? 'sviluppo' : BUILD}</p>
+      {/* C-014: salvataggio adattato ai dati nuovi (episodio in corso ripartito o sparito) */}
+      {p.avviso && <p className="avviso buono" role="status" data-avviso-aggiornamento>{p.avviso}</p>}
       {p.puoRiprendere && <button className="pulsante" onClick={p.riprendi}><Icona di={RotateCcw} />Riprendi</button>}
       <button className={`pulsante${p.puoRiprendere ? ' secondario' : ''}`} onClick={p.nuova}><Icona di={Play} />Nuova partita</button>
       {inst.pronta && <button className="pulsante" data-azione="installa" onClick={inst.installa}><Icona di={Smartphone} />Installa sul telefono</button>}

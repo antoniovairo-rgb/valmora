@@ -3,7 +3,6 @@
   "stagione": 3,
   "episodio": 25,
   "titolo": "testi:e25.titolo",
-  "bozza": true,
   "disponibile_se": {},
   "luogo": {
     "x": 15,
@@ -11,8 +10,7 @@
   },
   "introduzione": [
     "testi:e25.intro1",
-    "testi:e25.intro2",
-    "testi:e25.intro3"
+    "testi:e25.intro2"
   ],
   "briefing": [
     {
@@ -56,9 +54,8 @@
         }
       },
       {
-        "id": "curva_ospiti",
-        "tipo": "curva",
-        "club": "calderholt_rovers",
+        "id": "piazzale",
+        "tipo": "piazzale",
         "pos": {
           "x": 85,
           "y": 45
@@ -96,6 +93,7 @@
           "zona": 2,
           "piazza": 2,
           "stazione": 2,
+          "piazzale": 1,
           "curva": 1
         }
       },
@@ -103,6 +101,7 @@
         "quantita": 6,
         "efficacia": {
           "curva": 2,
+          "piazzale": 2,
           "piazza": 2,
           "stazione": 1
         }
@@ -114,7 +113,10 @@
           "corteo"
         ]
       }
-    }
+    },
+    "dettagli": [
+      "zona_rossa@zona_rossa"
+    ]
   },
   "ondate": [
     {
@@ -195,6 +197,42 @@
                 }
               ],
               "risposta": "testi:e25.op.mediatore_corteo.r"
+            },
+            {
+              "id": "mostra_busta",
+              "testo": "testi:e25.op.mostra_busta",
+              "costo": "testi:e25.op.mostra_busta.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -2
+                }
+              ],
+              "risposta": "testi:e25.op.mostra_busta.r",
+              "se": {
+                "var": "busta",
+                "uguale": "tenuta"
+              }
+            },
+            {
+              "id": "chiama_comando",
+              "testo": "testi:e25.op.chiama_comando",
+              "costo": "testi:e25.op.chiama_comando.c",
+              "effetti": [
+                {
+                  "pressione": "piazza_municipio",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e25.op.chiama_comando.r",
+              "se": {
+                "var": "busta",
+                "uguale": "consegnata"
+              }
             }
           ]
         },
@@ -284,8 +322,8 @@
         },
         {
           "id": "cori_ospiti",
-          "tipo": "curva",
-          "settore": "curva_ospiti",
+          "tipo": "folla",
+          "settore": "piazzale",
           "pressione": 4
         },
         {
@@ -341,7 +379,7 @@
           "id": "permesso_mediatore",
           "fonte": "struttura_vertice",
           "testo": "testi:e25.ch.permesso_mediatore",
-          "settore": "curva_ospiti",
+          "settore": "piazzale",
           "opzioni": [
             {
               "id": "scrivi_richiesta",
@@ -349,7 +387,7 @@
               "costo": "testi:e25.op.scrivi_richiesta.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": 2
                 }
               ],
@@ -361,7 +399,7 @@
               "costo": "testi:e25.op.mediatore_subito.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": -2
                 },
                 {
@@ -381,7 +419,7 @@
               "costo": "testi:e25.op.steward_ospiti.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": -2
                 },
                 {
@@ -438,8 +476,8 @@
       "eventi": [
         {
           "id": "rigore",
-          "tipo": "curva",
-          "settore": "curva_ospiti",
+          "tipo": "folla",
+          "settore": "piazzale",
           "pressione": 4
         },
         {
@@ -460,7 +498,7 @@
           "id": "rigore_ospiti",
           "fonte": "centrale_radio",
           "testo": "testi:e25.ch.rigore_ospiti",
-          "settore": "curva_ospiti",
+          "settore": "piazzale",
           "opzioni": [
             {
               "id": "steward_sedie",
@@ -468,7 +506,7 @@
               "costo": "testi:e25.op.steward_sedie.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": -2
                 },
                 {
@@ -484,7 +522,7 @@
               "costo": "testi:e25.op.lascia_festeggiare.c",
               "effetti": [
                 {
-                  "pressione": "curva_ospiti",
+                  "pressione": "piazzale",
                   "valore": 2
                 },
                 {
