@@ -10,12 +10,12 @@ import { cartelloni, notte, parcheggi, quartiere } from './notte.ts';
 import { disegnaDettagli, leggiDettaglio } from './dettagli.ts';
 
 export interface Pt { x: number; y: number }
-export interface Stadio { cx: number; cy: number; rx: number; ry: number }
+export interface Stadio { cx: number; cy: number; rx: number; ry: number; vuoto?: boolean }
 export interface Colori { primario: string; secondario: string }
 export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; curvaSola: (Pt & { verso: number }) | null; viali: Pt[][]; idViali: string[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; dettagli: { id: string; dove: Pt }[]; notte: boolean; cartelloni: boolean }
 /** Atmosfera della missione (campi facoltativi dei dati, mappa.ora e mappa.dettagli): e03 è di notte. */
 export interface Atmosfera { notte?: boolean; cartelloni?: boolean; dettagli?: string[] }
-export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; dettagli: string[]; coloriCorteo: [string, string]; fari: Pt[] }
+export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; dettagli: string[]; coloriCorteo: [string, string]; fari: Pt[]; stadio: '' | 'pieno' | 'vuoto' }
 
 // Il minificatore CSS può scrivere i token come «#fff» o con un nome: il canvas li riporta a «#rrggbb».
 let tavolozza: CanvasRenderingContext2D | null = null;
@@ -41,6 +41,31 @@ export const alfa = (colore: string, a: number) => colore + Math.round(Math.max(
 const RC_SOLA = 48;
 const lista = (base: string, n: number) => Array.from({ length: n }, (_, i) => token(`${base}-${i + 1}`));
 
+/** Stadio vuoto accanto al piazzale (S-25): fra 8 direzioni, la misura più grande con cui gli spalti stanno quasi
+ * tutti dentro la mappa (al più un quarto fuori) e lontani dai pallini degli altri settori (distanza in raggi
+ * dell'ellisse); il piazzale resta fuori dagli spalti. I nomi (fondo nero) possono stare sopra gli spalti.
+ * Se nessuna va bene, la meno peggio. Rosso C29P02: stadio sopra il piazzale. */
+export function stadioVuoto(W: number, H: number, pz: Pt, altri: Pt[]): Stadio {
+  if (spento('C29P02')) return { cx: pz.x, cy: pz.y, rx: Math.min(W, H) * 0.3, ry: Math.min(W, H) * 0.19, vuoto: true };
+  let meglio: { s: Stadio; voto: number } | null = null;
+  for (const scala of [1, 0.85, 0.7, 0.58]) {
+    const rx = Math.min(W, H) * 0.3 * scala, ry = rx * 0.62;
+    let qui: { s: Stadio; voto: number } | null = null;
+    for (let i = 0; i < 8; i++) {
+      const a = (i / 8) * Math.PI * 2, ux = Math.cos(a), uy = Math.sin(a);
+      const d = 1.45 / Math.hypot(ux / rx, uy / ry); // il piazzale a 1,45 raggi dal centro: fuori dagli spalti
+      const s = { cx: pz.x + ux * d, cy: pz.y + uy * d, rx, ry, vuoto: true };
+      const fuori = Math.max(0, (rx * 1.04 - s.cx) / rx, (s.cx + rx * 1.04 - W) / rx, (ry * 1.06 - s.cy) / ry, (s.cy + ry * 1.06 - H) / ry);
+      const vicino = Math.min(9, ...altri.map((q) => Math.hypot((q.x - s.cx) / rx, (q.y - s.cy) / ry)));
+      const voto = Math.min(vicino, 2.5) - fuori * 3;
+      if (fuori <= 0.25 && vicino >= 1.3 && (!qui || voto > qui.voto)) qui = { s, voto };
+      if (!meglio || voto + scala > meglio.voto) meglio = { s, voto: voto + scala };
+    }
+    if (qui) return qui.s;
+  }
+  return meglio!.s;
+}
+
 /** Dove stanno stadio e viali, dalle posizioni (già in pixel) dei settori. */
 export function disponi(W: number, H: number, settori: { id?: string; tipo: string; x: number; y: number; colori?: Colori }[], atm: Atmosfera = {}): Disposizione {
   const curve = settori.filter((s) => s.tipo === 'curva');
@@ -54,6 +79,10 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
     const rx = Math.abs(b.x - a.x) / 2 * 0.98;
     stadio = { cx: (a.x + b.x) / 2, cy: (a.y + b.y) / 2 - rx * 0.12, rx, ry: rx * 0.62 };
   }
+  // Episodio di città senza curve ma col «Piazzale dello stadio» (e04, e17, e30; S-25, PO-080): lo stadio c'è,
+  // vuoto, accanto al piazzale. Rosso C29P01: niente stadio, come prima.
+  const pz = settori.find((s) => s.tipo === 'piazzale');
+  if (!curve.length && pz && !spento('C29P01')) stadio = stadioVuoto(W, H, pz, settori.filter((s) => s !== pz));
   // Episodio di città con UNA sola curva (e13, e25): niente stadio, ma la curva si disegna lo stesso,
   // gradinata a ferro di cavallo coi colori del club aperta verso il centro della mappa (D-086); il settore
   // sta sulla gradinata, in fondo al ferro di cavallo, come le curve dello stadio. «curvaSola» è il centro.
@@ -61,13 +90,13 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
   const una = curve.length === 1 && !spento('C22K01') ? curve[0]! : null;
   const verso = una ? Math.sign(centro.x - una.x) || 1 : 1;
   const curvaSola = una ? { x: una.x + verso * (RC_SOLA - 11), y: una.y, verso } : null;
-  const meta = stadio ? { x: stadio.cx, y: stadio.cy + stadio.ry * 0.9 } : centro;
+  const meta = stadio && !stadio.vuoto ? { x: stadio.cx, y: stadio.cy + stadio.ry * 0.9 } : centro; // i viali vanno allo stadio solo se c'è la partita
   // Se c'è una stazione (e02) i viali partono da lì: gli ospiti arrivano in treno; altrimenti dal bordo basso.
   const st = settori.find((s) => s.tipo === 'stazione');
   const stazione = st ? { x: st.x, y: st.y } : null;
   const strade = settori.filter((s) => s.tipo === 'strada');
   const viali = strade.map((s) => {
-    const fine = { x: meta.x + Math.sign(s.x - meta.x) * (stadio ? stadio.rx * 0.32 : 0), y: meta.y };
+    const fine = { x: meta.x + Math.sign(s.x - meta.x) * (stadio && !stadio.vuoto ? stadio.rx * 0.32 : 0), y: meta.y };
     const inizio = stazione ?? { x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 };
     return [inizio, { x: s.x, y: s.y }, { x: s.x + (fine.x - s.x) * 0.55, y: fine.y + (s.y - fine.y) * 0.35 }, fine];
   });
@@ -113,7 +142,7 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   for (let i = 0; i < W * H / 12; i++) { f.fillStyle = alfa(r() < 0.5 ? chiaro : scuro, r() * 0.05); f.fillRect(r() * W, r() * H, 1, 1); }
 
   const st = d.stazione;
-  const slarghi = d.slarghi.filter((q) => !dentro(q.x, q.y, 1.6)); // dentro lo stadio c'è già il piazzale
+  const slarghi = d.slarghi.filter((q) => stadio?.vuoto || !dentro(q.x, q.y, 1.6)); // dentro lo stadio c'è già il piazzale; quello dello stadio vuoto sta fuori
   const RQ = Math.min(W, H) * 0.2; // raggio del quartiere di case basse (e03)
   const vicino = (ps: Pt[], x: number, y: number, rx: number, ry: number) => ps.some((p) => Math.abs(x - p.x) < rx && Math.abs(y - p.y) < ry);
   const cs = d.curvaSola, RC = RC_SOLA;
@@ -158,7 +187,7 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
         f.strokeStyle = alfa(colore, 0.25 + 0.04 * i); f.lineWidth = 1.6 * k; f.stroke();
       }
     };
-    curva(Math.PI * 0.72, Math.PI * 1.28, colore(d.club.sx?.primario) ?? token('--mappa-curva-a')); curva(-Math.PI * 0.28, Math.PI * 0.28, colore(d.club.dx?.primario) ?? token('--mappa-curva-b'));
+    if (!stadio.vuoto) { curva(Math.PI * 0.72, Math.PI * 1.28, colore(d.club.sx?.primario) ?? token('--mappa-curva-a')); curva(-Math.PI * 0.28, Math.PI * 0.28, colore(d.club.dx?.primario) ?? token('--mappa-curva-b')); }
     // Tifosi delle curve: tre su quattro col primario, uno col secondario (sciarpe e bandiere).
     const tifoso = (c: Colori | undefined, i: number, base: string) => (c ? colore(i % 4 ? c.primario : c.secondario)! : token(base));
     const pw = 88 * k, ph = 52 * k;
@@ -180,7 +209,7 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
       f.fillStyle = token('--mappa-faro'); f.beginPath(); f.arc(p.x, p.y, 2.2, 0, 7); f.fill();
     }
     const tinte = lista('--mappa-folla', 3);
-    for (let i = 0; i < 1400; i++) {
+    for (let i = 0; i < (stadio.vuoto ? 0 : 1400); i++) { // lo stadio vuoto non ha tifosi
       const a = r() * Math.PI * 2, q = r(), c = Math.cos(a);
       folla.push({ x: cx + c * (rx - q * 22 * k), y: cy + Math.sin(a) * (ry - q * 14 * k), fase: r() * 6.28,
         colore: c < -0.55 ? tifoso(d.club.sx, i, '--mappa-folla-a') : c > 0.55 ? tifoso(d.club.dx, i, '--mappa-folla-b') : scegli(tinte) });
@@ -214,7 +243,7 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
     f.save(); f.globalAlpha = 0.6; disegnaDettagli(f, d.dettagli, r); f.restore();
   }
   const corteo = d.club.corteo;
-  return { folla, dettagli: d.cartelloni ? ['cartelloni_stadio_nuovo', ...dettagli] : dettagli, viali: d.viali.map((punti, i) => ({ id: d.idViali[i] ?? '', punti })), fari,
+  return { folla, dettagli: d.cartelloni ? ['cartelloni_stadio_nuovo', ...dettagli] : dettagli, viali: d.viali.map((punti, i) => ({ id: d.idViali[i] ?? '', punti })), fari, stadio: stadio ? (stadio.vuoto ? 'vuoto' : 'pieno') : '',
     coloriCorteo: corteo ? [colore(corteo.primario)!, colore(corteo.secondario)!] : [token('--mappa-corteo-1'), token('--mappa-corteo-2')] };
 }
 

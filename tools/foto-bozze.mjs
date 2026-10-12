@@ -37,7 +37,7 @@ export async function apriDallaCitta(pagina, m, atteso) {
 }
 
 export async function apriTutte(c) {
-  const { pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori } = c;
+  const { pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori, cartella } = c;
   const { missioni, v0 } = missioniDai(dirDati);
   const sal = JSON.stringify(salvataggioTutti(missioni, v0));
   const finestra = pagina.viewportSize();
@@ -62,6 +62,17 @@ export async function apriTutte(c) {
         if ((await pagina.getAttribute('.mappa', 'data-mappa')) === 'webgl') { // dettagli dei dati disegnati davvero (D-095)
           const voluti = (m.mappa.dettagli ?? []).map((x) => x.split('@')[0]).sort().join(','), visti = ((await pagina.getAttribute('.mappa', 'data-dettagli')) ?? '').split(',').filter(Boolean).sort().join(',');
           atteso(`${m.id}: dettagli disegnati «${visti}», i dati dicono «${voluti}» (D-095)`, visti === voluti);
+          // S-25 (PO-080): due curve = stadio con la partita; nessuna curva ma il piazzale dello stadio = stadio vuoto
+          const tipi = m.mappa.settori.map((x) => x.tipo), curve = tipi.filter((t) => t === 'curva').length;
+          const stadio = curve >= 2 ? 'pieno' : !curve && tipi.includes('piazzale') ? 'vuoto' : '', visto = await pagina.getAttribute('.mappa', 'data-stadio');
+          atteso(`${m.id}: stadio disegnato «${visto}», i dati dicono «${stadio}» (S-25)`, visto === stadio);
+          const coperti = stadio === 'vuoto' ? await pagina.evaluate(() => { // pallini dei settori fuori dagli spalti (i nomi, su fondo nero, possono starci sopra)
+            const m = document.querySelector('.mappa'), r = m.getBoundingClientRect(), [cx, cy, rx, ry] = m.dataset.stadioEllisse.split(',').map(Number);
+            return [...m.querySelectorAll('.settore-punto')].filter((e) => { const b = e.getBoundingClientRect();
+              return Math.hypot((b.x + b.width / 2 - r.x - cx) / rx, (b.y + b.height / 2 - r.y - cy) / ry) < 1.1; }).map((e) => e.closest('[data-settore]').dataset.settore);
+          }) : [];
+          atteso(`${m.id}: lo stadio vuoto copre ${coperti.join(', ')} (S-25)`, !coperti.length);
+          if (stadio === 'vuoto' && cartella) await pagina.locator('.mappa').first().screenshot({ path: `${cartella}/s25-${m.id}-stadio-vuoto.png` });
         }
         await premi('[data-azione="avanti"]'); await scena('briefing'); testi.push(await pagina.locator('main').textContent());
         await premi('[data-azione="inizia"]'); await scena('schieramento'); testi.push(await pagina.locator('main').textContent());
