@@ -60,6 +60,6 @@ Foto in `docs/foto/s23/2026-10-12/`: i 6 passi a 360 px.
 | `VALMORA_LARGHEZZE=360 node tools/foto.mjs out/foto-s23b` | e01 ×2, e02, e03, e13, e25 | verde |
 | `… VALMORA_ROSSI=C26V01 …` | 360 px | ROSSO: 7 sale senza «apertura», 7 verbali senza «esito», 6 passi della guida senza vignetta |
 | `node tools/foto.mjs out/foto-s23b` | 3 larghezze | verde |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | prima: ROSSA su f07ff1d (passo token: px in stile.css, corretto in 0cf8cd4); poi 710a90e, 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Non ancora fatte: home, città, crediti, briefing, chiamata, risposta, rapporto. Chiamata, risposta e rapporto scorrono già senza vignetta (1181, 881 e 974 px a 360×760): vanno fatte insieme a S-13.
