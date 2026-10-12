@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-12 23:10 Roma – 0.10.0 PUBBLICATA su main (080fc2e, completa 3/3 su d3b12a6, Pages verificata; 10 minuti di ritardo per un giro rosso al passo backlog, errore della principale). Nuove voci PO-091…PO-094 (stagioni chiuse, vignette, fonte e settore, fiducia).
+Ultimo giro della routine: 2026-10-13 01:31 Roma – principale con completa VERDE su 10e25bf: integrati S-26, S-25, PO-088 (sviluppatrice), PO-094 fiducia che premia il risultato e PO-093 (principale). In attesa del PO: stile vignette (provino PO-092) e scorrimento della chiamata (PO-089). Rilascio 0.11.0 alle 08:00.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
