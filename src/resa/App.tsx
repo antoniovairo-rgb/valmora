@@ -3,10 +3,10 @@
 // sotto. La resa legge e mostra; i calcoli stanno in src/logica. Si salva dopo ogni passo (D-040):
 // la scena dentro l'ondata si ricava dal salvataggio (partita.ts), quindi una ricarica riprende lì.
 import { AnimatePresence, MotionConfig } from 'motion/react';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { spento } from '../interruttori.ts';
 import { variabiliIniziali } from '../logica/condizioni.ts';
-import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFinita, ondataDaRiprendere, riprendiDallOndata, rispondi, schiera, settoriAmmessi, type EsitoMissione, type InCorso } from '../logica/missione.ts';
+import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFinita, riprendiDallOndata, rispondi, schiera, settoriAmmessi, type EsitoMissione, type InCorso } from '../logica/missione.ts';
 import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
@@ -30,6 +30,7 @@ import { Scena } from './schermate/Scena.tsx';
 import { Schieramento, usate } from './schermate/Schieramento.tsx';
 import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
+import { ondataVincibile } from '../logica/ripartenza.ts';
 import { due, Testata } from './schermate/Fumetto.tsx';
 import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
@@ -60,6 +61,8 @@ export function App() {
   const [scelta, setScelta] = useState<string | null>(null);
   const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione; r: Risultato; migliore: boolean; ic: InCorso } | null>(null);
   const [scelto, setScelto] = useState<string | null>(null); // episodio scelto sulla mappa della città
+  // PO-083: l'ondata da cui ripartire si calcola una volta a fine episodio (fino a ~0,7 s misurati su computer), non a ogni disegno
+  const nRiparti = useMemo(() => (esito?.r.fallita ? ondataVincibile(esito.m, esito.e, esito.ic, dichiarate) : 1), [esito]);
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
   const contaVoli = useRef(0);
   const vola = (risorsa: string, settore: string) => {
@@ -114,7 +117,7 @@ export function App() {
   // c'è (salvataggi vecchi: no) e non è la prima (allora è «Ricomincia»). Rosso C21R01: solo «Ricomincia».
   const ripartenza = (x: NonNullable<typeof esito>) => {
     if (!x.r.fallita || spento('C21R01')) return null;
-    const n = ondataDaRiprendere(x.e, x.m);
+    const n = nRiparti;
     const stato = n > 1 ? riprendiDallOndata(x.ic, n) : null;
     return stato ? { n, vai: () => { nuovaBozza(); setEsito(null); setScelto(x.m.id); conIc(stato, { rapporto_aperto: null }); setSchermata('gioco'); } } : null;
   };

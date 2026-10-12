@@ -211,15 +211,16 @@ export async function controllaTripla(pagina, atteso, cosa, foto = async () => {
   await foto();
 }
 
-/** S-17 (PO-060): a episodio perso il verbale offre «Riparti dall'ondata N» con N = ondataDaRiprendere (se N > 1)
+/** S-17 (PO-060): a episodio perso il verbale offre «Riparti dall'ondata N» con N = ondataVincibile (PO-083; se N > 1)
  *  e «Ricomincia»; ripartire porta allo schieramento dell'ondata N, salvato. Si fa perdere e01 dalla città. */
 export async function controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }) {
-  const { ondataDaRiprendere } = await import('../src/logica/missione.ts');
+  const { ondataVincibile } = await import('../src/logica/ripartenza.ts');
   const { variabiliIniziali } = await import('../src/logica/condizioni.ts');
   const v0 = variabiliIniziali(leggiDati(dirDati)['stato.json'].variabili); // il piano del fallimento parte da qui
   const f = piano.fallimento;
   if (!f.fallita) return;
-  const n = ondataDaRiprendere({ rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili }, piano.m);
+  const dich = new Map(leggiDati(dirDati)['stato.json'].variabili.map((x) => [x.id, x]));
+  const n = ondataVincibile(piano.m, { rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili }, f.ic, dich);
   await pagina.evaluate((v) => { const s = JSON.parse(localStorage.getItem('valmora-salvataggio')); s.episodi = {}; s.missioni_concluse = []; s.in_corso = null; s.variabili = v; localStorage.setItem('valmora-salvataggio', JSON.stringify(s)); }, v0);
   await pagina.reload(); await scena('titolo');
   await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
