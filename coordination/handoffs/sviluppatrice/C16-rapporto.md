@@ -42,4 +42,4 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnati**.
 |---|---|---|
 | `VALMORA_LARGHEZZE=360 node tools/foto.mjs out/foto-c16` | partita, archivio, ripartenze e01 ed e07, indietro, 144 ondate, 36 episodi | verde |
 | `… VALMORA_ROSSI=C10S03 …` | 360 px | ROSSO: 18 chiamate, 15 pulsanti sotto la piega |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 3845a9d (merge della principale), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
