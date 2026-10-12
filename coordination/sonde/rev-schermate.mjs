@@ -27,7 +27,7 @@ const sc = (p, n) => p.waitForFunction((n) => { const s = document.querySelector
 const quale = (p) => p.evaluate(() => document.querySelector('.scena')?.dataset.scena);
 const salvato = (p) => p.evaluate(() => JSON.parse(localStorage.getItem('valmora-salvataggio') ?? 'null'));
 async function nuova(p, gen = 'm') { await p.getByRole('button', { name: 'Nuova partita' }).click(); await p.waitForTimeout(300);
-  if ((await quale(p)) === 'conferma') { while (await p.locator('[data-azione="conferma-passo"]').count()) await p.click('[data-azione="conferma-passo"]'); await p.click('[data-azione="conferma-nuova"]'); } // S-16: tre conferme await sc(p, 'genere'); await p.click(`[data-genere="${gen}"]`); if (await p.locator('[data-azione="guida-salta"]').count()) await p.click('[data-azione="guida-salta"]'); await sc(p, 'citta'); }
+  if ((await quale(p)) === 'conferma') { while (await p.locator('[data-azione="conferma-passo"]').count()) await p.click('[data-azione="conferma-passo"]'); await p.click('[data-azione="conferma-nuova"]'); } /* S-16: tre conferme */ await sc(p, 'genere'); await p.click(`[data-genere="${gen}"]`); if (await p.locator('[data-azione="guida-salta"]').count()) await p.click('[data-azione="guida-salta"]'); await sc(p, 'citta'); }
 async function allaPrimaOndata(p) { await p.click('[data-azione="avvia-episodio"]'); await sc(p, 'sala'); await p.click('[data-azione="avanti"]'); await sc(p, 'briefing');
   while (await p.locator('[data-azione="prossimo"]').count()) { await p.click('[data-azione="prossimo"]'); await p.waitForTimeout(60); } await p.click('[data-azione="inizia"]'); await sc(p, 'schieramento'); }
 const piano = (m, v) => { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich); const ond = [];

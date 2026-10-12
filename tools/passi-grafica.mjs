@@ -4,6 +4,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { controllaToken, controllaGiro, controllaEmail } from './controlli-grafica.mjs';
 import { readdirSync } from 'node:fs';
 import { giraFoto } from './foto.mjs';
+import { giraOffline } from './offline.mjs';
 
 const fileResa = () => execSync('git ls-files --cached --others --exclude-standard src/resa', { encoding: 'utf8' })
   .split('\n').filter((p) => p && existsSync(p));
@@ -12,8 +13,15 @@ export const PASSI_GRAFICA = {
   token: () => controllaToken(Object.fromEntries(fileResa().map((p) => [p, readFileSync(p, 'utf8')]))),
   email: () => controllaEmail(Object.fromEntries(['dist/index.html', ...readdirSync('dist/assets').filter((f) => /\.(js|css|html)$/.test(f)).map((f) => `dist/assets/${f}`)].map((p) => [p, readFileSync(p, 'utf8')]))),
   foto: async () => (await giraFoto('out/foto')).flatMap(controllaGiro),
-  'bracci-rossi-grafica': () => {
+  // S-22 (C14-01): il gioco installato funziona offline (service worker), su http://localhost
+  offline: () => giraOffline('dist'),
+  'bracci-rossi-grafica': async () => {
     const ciechi = [];
+    // offline: ogni rosso del service worker e del contenitore d'errore va visto (S-22)
+    for (const r of ['C14O01', 'C14O02', 'C14O03']) {
+      process.env.VALMORA_ROSSI = r;
+      try { if (!(await giraOffline('dist')).length) ciechi.push(`offline/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
+    }
     if (!controllaToken({ 'src/resa/x.css': '.a { color: #fff; }' }).length) ciechi.push('token/colore è cieco');
     if (!controllaToken({ 'src/resa/x.css': '.a { margin: 3px; }' }).length) ciechi.push('token/misura è cieco');
     if (!controllaToken({ 'src/resa/X.tsx': '<div style={{ color: "red" }} />' }).length) ciechi.push('token/stile in linea è cieco');

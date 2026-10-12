@@ -7,5 +7,6 @@ import { createRoot } from 'react-dom/client';
 import './token.css';
 import './stile.css';
 import { App } from './App.tsx';
+import { Contenitore } from './errore.tsx';
 
-createRoot(document.getElementById('app')!).render(<App />);
+createRoot(document.getElementById('app')!).render(<Contenitore><App /></Contenitore>);
