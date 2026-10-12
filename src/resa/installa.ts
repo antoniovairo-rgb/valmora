@@ -9,7 +9,7 @@ let richiesta: Richiesta | null = null;
 const ascoltatori = new Set<() => void>();
 
 // Rossi del service worker (S-22): passano al worker come parametro, perché lì globalThis della pagina non arriva.
-const rossiSw = () => { const r = ['C14O01', 'C14O02'].filter((x) => spento(x)); return r.length ? `?rossi=${r.join(',')}` : ''; };
+const rossiSw = () => { const r = ['C14O01', 'C14O02', 'C28W01'].filter((x) => spento(x)); return r.length ? `?rossi=${r.join(',')}` : ''; };
 
 if (typeof window !== 'undefined' && !Capacitor.isNativePlatform()) {
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) navigator.serviceWorker.register(`./sw.js${rossiSw()}`).catch(() => {});

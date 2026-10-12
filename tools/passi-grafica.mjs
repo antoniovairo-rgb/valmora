@@ -18,7 +18,7 @@ export const PASSI_GRAFICA = {
   'bracci-rossi-grafica': async () => {
     const ciechi = [];
     // offline: ogni rosso del service worker e del contenitore d'errore va visto (S-22)
-    for (const r of ['C14O01', 'C14O02', 'C14O03']) {
+    for (const r of ['C14O01', 'C14O02', 'C14O03', 'C28W01']) {
       process.env.VALMORA_ROSSI = r;
       try { if (!(await giraOffline('dist')).length) ciechi.push(`offline/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }
