@@ -114,6 +114,7 @@
   --vignetta-min-sala: 80px;
   --vignetta-riserva-esito: 680px;
   --vignetta-min-esito: 70px;
+  --vignetta-chiamata: 34%; /* PO-089: larghezza della vignetta nel fumetto della chiamata (circa un terzo) */
 
   /* Città degli episodi (D-061) */
   --citta-fiume: #1f6fa8;
@@ -171,6 +172,7 @@
   --nome-max: 7.5em;
   --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */
   --mappa-proporzione: 1 / 1;
+  --mappa-proporzione-chiamata: 4 / 3; /* PO-089: nella chiamata la mappa è intera ma più bassa */
   --mappa-proporzione-passi: 4 / 3; /* sala e briefing a passi (S-10): mappa più bassa, niente scorrimento */
   --citta-proporzione: 4 / 5;
   --citta-riserva: 500px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine) */

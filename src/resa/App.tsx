@@ -66,8 +66,10 @@ export function App() {
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
   const contaVoli = useRef(0);
   const vola = (risorsa: string, settore: string) => {
+    document.documentElement.dataset.volo = `${risorsa}>${settore}`; // per le foto: anche quando il volo non si vede
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const da = centro(`[data-risorsa="${risorsa}"]`), a = centro(`[data-settore="${settore}"] .settore-punto`);
+    // dal vassoio dello schieramento; nella chiamata (PO-089) dal bordo basso della mappa, cioè dalla centrale
+    const da = centro(`[data-risorsa="${risorsa}"]`) ?? centro('.mappa', 'basso'), a = centro(`[data-settore="${settore}"] .settore-punto`);
     if (da && a) setVoli((v) => [...v, { id: ++contaVoli.current, risorsa, da, a }]);
   };
   const [avviso, setAvviso] = useState<string | null>(null); // transenne su un settore dove non si montano (D-082)
@@ -205,7 +207,7 @@ export function App() {
       corpo = <Schieramento m={m} ic={ic} d={bozza} scelta={sel} avviso={avviso} scegli={(r) => { setScelta(r); setAvviso(null); }} metti={metti} azzera={() => cambiaBozza({})} annulla={storia.length ? annulla : null}
         conferma={() => { setAvviso(null); const ora = icOra(); if (ora && !ora.disposizione && ora.ondata === ic.ondata) conIc(schiera(m, ora, bozza)); }} />;
     } else if (f.tipo === 'chiamata') {
-      mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, accesi: f.chiamata.settore ? [f.chiamata.settore] : [] };
+      mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, accesi: f.chiamata.settore ? [f.chiamata.settore] : [], citato: f.chiamata.settore };
       corpo = <Chiamata key={f.chiamata.id} m={m} ic={ic} c={f.chiamata} numero={f.numero} totale={f.totale}
         rispondi={(o) => {
           const ora = icOra();
@@ -213,6 +215,8 @@ export function App() {
           if (!ora) return;
           conIc(rispondi(m, ora, f.chiamata.id, o, dichiarate));
           const scelta = f.chiamata.opzioni.find((x) => x.id === o)!;
+          // PO-089: le squadre che la risposta impegna raggiungono il punto della chiamata. Rosso C32D01: no.
+          if (f.chiamata.settore && !spento('C32D01')) for (const e of scelta.effetti) if ('riserva' in e && e.valore < 0) vola(e.riserva, f.chiamata.settore);
           if (scelta.risposta) setEco(scelta);
         }} />;
     } else if (f.tipo === 'chiusura') {
