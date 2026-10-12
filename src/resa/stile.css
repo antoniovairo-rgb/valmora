@@ -235,3 +235,7 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .secondari { flex-wrap: wrap; }
 .secondari .pulsante.piccolo { flex: 1 1 28%; }
 .conferma-importa.grave { background: var(--magenta); color: var(--bianco); }
+
+/* Triplice conferma (S-16, PO-066): l'ultimo passo in magenta */
+.tripla.grave { background: var(--magenta); color: var(--bianco); }
+.tripla.grave .tenue { color: var(--bianco); }

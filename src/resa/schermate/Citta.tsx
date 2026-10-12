@@ -11,6 +11,7 @@ import { spento } from '../../interruttori.ts';
 import { Stelle } from '../stelle.tsx';
 import { Sfida } from '../stemma.tsx';
 import { due, Testata } from './Fumetto.tsx';
+import { Tripla } from './Tripla.tsx';
 
 /** «1 tentativo», «N tentativi» (C-008.1). */
 const tentativi = (n: number) => `${n} ${n === 1 && !spento('C05S81') ? 'tentativo' : 'tentativi'}`;
@@ -23,6 +24,7 @@ const DESCRIZIONE: Record<StatoEpisodio, string> = {
 };
 
 export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (id: string) => void; avvia: (m: Missione) => void }) {
+  const [rigioca, setRigioca] = useState<string | null>(null);
   const tutte = missioni.map((m) => ({ m, stato: statoEpisodio(p.sal, m), stelle: p.sal.episodi[m.id]?.migliore?.stelle ?? null }));
   // PO-044: una stagione alla volta (quella dell'episodio scelto, cambiabile); rosso __NO_C13M01 = tutte insieme
   const stagioni = [...new Set(missioni.map((m) => m.stagione))].sort((a, b) => a - b);
@@ -49,8 +51,14 @@ export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (i
           <Sfida m={v.m} />
           {v.stelle !== null && <Stelle n={v.stelle} />}
           <p className={v.stato === 'da_rigiocare' ? 'avviso' : 'tenue'}>{DESCRIZIONE[v.stato]}</p>
-          {v.stato !== 'futuro' && (
-            <button className="pulsante" data-azione="avvia-episodio" onClick={() => p.avvia(v.m)}>
+          {/* S-16 (PO-066): rigiocare un episodio già superato chiede tre conferme */}
+          {rigioca === v.m.id && v.stato === 'superato' ? (
+            <Tripla azione="rigioca" no="No, resta qui" si="Sì, rigioca l'episodio" annulla={() => setRigioca(null)} conferma={() => p.avvia(v.m)}
+              testi={[`Rigiocare «${t(v.m.titolo)}»? L'hai già superato.`,
+                'Sicuro? Si riparte da come stavano le cose prima di questo episodio; resta il risultato migliore che hai già.',
+                'Ultima conferma: rigiochi l\'episodio dall\'inizio.']} />
+          ) : v.stato !== 'futuro' && (
+            <button className="pulsante" data-azione="avvia-episodio" onClick={() => (v.stato === 'superato' ? setRigioca(v.m.id) : p.avvia(v.m))}>
               {v.stato === 'disponibile' ? <><Icona di={Play} />Avvia l'episodio</> : <><Icona di={RotateCcw} />Rigioca l'episodio</>}
             </button>
           )}

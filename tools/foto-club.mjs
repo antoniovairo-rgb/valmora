@@ -195,3 +195,18 @@ export async function controllaArchivio(pagina, { atteso, scena, foto }) {
   atteso('archivio: dopo la ripresa il salvataggio non è quello della copia', JSON.stringify(ripreso) === JSON.stringify(esportato));
   if ((await pagina.locator('[data-riserva]').count())) await foto();
 }
+
+/** S-16 (PO-066): la conferma arriva solo dopo tre passi, con l'ultimo in magenta e «No» sempre presente.
+ *  Si ferma all'ultimo passo: chi chiama sceglie se confermare o annullare. */
+export async function controllaTripla(pagina, atteso, cosa, foto = async () => {}) {
+  let passi = 1;
+  for (;;) {
+    atteso(`${cosa}: passo ${passi} senza «No»`, (await pagina.locator('.tripla [data-azione^="annulla-"]').count()) === 1);
+    if (!(await pagina.locator('[data-azione="conferma-passo"]').count())) break;
+    await pagina.click('[data-azione="conferma-passo"]'); passi++;
+    if (passi > 5) break;
+  }
+  atteso(`${cosa}: ${passi} conferme invece di 3 (PO-066)`, passi === 3);
+  atteso(`${cosa}: l'ultima conferma non è in magenta (PO-066)`, (await pagina.locator('.tripla.grave').count()) === 1);
+  await foto();
+}

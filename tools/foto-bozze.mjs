@@ -4,6 +4,7 @@
 //   schieramento: nessun errore di console, nessuna chiave di testo mancante «[[…]]», i dettagli dei dati disegnati;
 // - il primo episodio di ogni stagione oltre la prima si gioca per intero (partita di foto.mjs).
 import { leggiDati } from './dati-disco.mjs';
+import { controllaTripla } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
@@ -31,6 +32,8 @@ export async function apriDallaCitta(pagina, m, atteso) {
   await punto.locator('.settore-punto').click();
   atteso(`${m.id}: scheda ${m.bozza ? 'senza' : 'con'} segno «bozza» (S-09)`, ((await pagina.locator('[data-bozza-scheda]').count()) === 1) === !!m.bozza);
   await pagina.click('[data-azione="avvia-episodio"]');
+  // episodio già superato: tre conferme prima di rigiocarlo (S-16, PO-066)
+  if (await pagina.locator('.tripla').count()) { await controllaTripla(pagina, atteso, `${m.id} «Rigioca»`); await pagina.click('[data-azione="conferma-rigioca"]'); }
 }
 
 export async function apriTutte(c) {
