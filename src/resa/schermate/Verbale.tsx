@@ -1,6 +1,6 @@
 // Verbale: esito e stelle (D-060), fonti vere e false (D-024), le scelte fatte durante le chiamate.
-// Sotto l'esito il bilancio (D-085, PO-036). Esito «fallita» (D-059): l'episodio non è superato e il verbale porta a «Rigioca l'episodio».
-import { ChevronRight, Map as IconaMappa, RotateCcw, Share2 } from 'lucide-react';
+// Sotto l'esito il bilancio (D-085, PO-036). Esito «fallita» (D-059): l'episodio non è superato e il verbale porta a «Riparti dall'ondata N» (S-17) o «Ricomincia l'episodio».
+import { ChevronRight, Map as IconaMappa, RotateCcw, Share2, StepForward } from 'lucide-react';
 import { condividi } from '../collegamenti.ts';
 import { Fragment, useState } from 'react';
 import type { Risultato } from '../../logica/episodi.ts';
@@ -16,7 +16,7 @@ import { Stelle } from '../stelle.tsx';
 import { Sfida } from '../stemma.tsx';
 import { due, Testata } from './Fumetto.tsx';
 
-export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void; prossimo?: () => void }) {
+export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void; prossimo?: () => void; riparti?: { n: number; vai: () => void } | null }) {
   const [passo, setPasso] = useState(0);
   const [condivisione, setCondivisione] = useState<string | null>(null);
   // PO-074: testo + link al gioco, dal pannello del telefono o copiato negli appunti
@@ -31,11 +31,17 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
         <p>{t(p.esito.esito.verbale)}</p>
       </div>
       {p.risultato.fallita
-        ? <p className="avviso" data-fallita="si">Episodio fallito: va rigiocato. Si riparte da come stavano le cose prima.</p>
+        ? <p className="avviso" data-fallita="si">{p.riparti ? `Episodio fallito: riparti dall'ondata ${p.riparti.n}, dove si è deciso, o da capo.` : 'Episodio fallito: va rigiocato. Si riparte da come stavano le cose prima.'}</p>
         : <p className="avviso buono" data-migliore={p.migliore ? 'si' : 'no'}>{p.migliore ? 'Nuovo miglior risultato per questo episodio.' : 'Resta il risultato migliore di un tentativo precedente.'}</p>}
       {!spento('C20C01') && <button className="pulsante piccolo condividi" data-azione="condividi" data-testo={testoCondiviso} onClick={condividiVerbale}><Icona di={Share2} />Condividi</button>}
       {condivisione && <p className="tenue" data-condivisione role="status">{condivisione}</p>}
-      {p.risultato.fallita && <button className="pulsante" data-azione="rigioca" onClick={p.rigioca}><Icona di={RotateCcw} />Rigioca l'episodio</button>}
+      {/* S-17 (PO-060): si riparte dall'ondata che ha deciso l'esito, oppure da capo */}
+      {p.risultato.fallita && (
+        <div className="riga ripartenza">
+          {p.riparti && <button className="pulsante" data-azione="riparti" data-ondata={p.riparti.n} onClick={p.riparti.vai}><Icona di={StepForward} />Riparti dall'ondata {p.riparti.n}</button>}
+          <button className={`pulsante${p.riparti ? ' secondario' : ''}`} data-azione="rigioca" aria-label="Ricomincia l'episodio" onClick={p.rigioca}><Icona di={RotateCcw} />{p.riparti ? 'Ricomincia' : "Ricomincia l'episodio"}</button>
+        </div>
+      )}
     </>
   );
   // Bilancio (D-085): cosa ha aiutato, cosa ha pesato, dove eri scoperto, cosa manca per la stella dopo.
