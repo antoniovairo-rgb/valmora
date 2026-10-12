@@ -1,7 +1,7 @@
 // Schieramento: le unità si trascinano dal vassoio sui settori della mappa. Alternativa a tocco
 // (accessibilità): tocchi un'unità, poi il settore; tocchi un'unità sulla mappa per ritirarla.
 // Le unità a riposo (D-056) si vedono a parte e non si possono schierare.
-import { ArrowLeft, Check, Hand, Lock, Moon, RotateCcw, Undo2 } from 'lucide-react';
+import { ArrowLeft, Check, CircleHelp, Lock, Moon, RotateCcw, Undo2 } from 'lucide-react';
 import { useRef, useState, type PointerEvent } from 'react';
 import { spento } from '../../interruttori.ts';
 import { disponibili, type InCorso } from '../../logica/missione.ts';
@@ -68,6 +68,7 @@ export function Schieramento(p: {
   avviso?: string | null; annulla: (() => void) | null;
 }) {
   const [riepilogo, setRiepilogo] = useState(false);
+  const [aiuto, setAiuto] = useState(false);
   const disp = disponibili(p.m, p.ic);
   const tr = useTrascina(p.metti);
   const restano = Object.entries(disp).map(([r, n]) => [r, n - usate(p.d, r)] as const).filter(([, n]) => n > 0);
@@ -75,20 +76,18 @@ export function Schieramento(p: {
   // S-12 (PO-061): prima di confermare, il riepilogo di cosa va dove e di cosa resta. Rosso C17C01: conferma subito.
   if (riepilogo && !spento('C17C01')) return <Riepilogo m={p.m} d={p.d} restano={restano} indietro={() => setRiepilogo(false)} conferma={p.conferma} />;
   const libereScelta = p.scelta ? (disp[p.scelta] ?? 0) - usate(p.d, p.scelta) : 0;
+  // S-24 (PO, «Compatto», C16-02): sotto la mappa solo la fila delle unità e una riga; le istruzioni dietro «?»;
+  // barra fissa in basso con Annulla e Ritira a sola icona e «Conferma» grande. Rosso C27S01: la disposizione di S-12.
+  const vecchio = spento('C27S01');
+  const fisse = Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => r);
   return (
-    <>
-      <p className="tenue">Trascina le unità sui settori, oppure tocca un'unità e poi il settore. Tocca un segnalino sulla mappa per ritirare una sola unità.</p>
-      <p className="scheda in-mano" data-in-mano={p.scelta ?? ''} role="status">
-        <Icona di={Hand} />{p.scelta
-          ? <span>In mano: <strong>{t(`risorsa.${p.scelta}`)}</strong>, {libereScelta === 1 ? 'ne resta 1' : `ne restano ${libereScelta}`}. Tocca un settore sulla mappa.
-            {!spento('C22R01') && <small className="rende" data-rende={p.scelta}>{rende(p.m, p.scelta)}</small>}</span>
-          : <span>Tocca un'unità qui sotto per prenderla.</span>}
-      </p>
-      {Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => (
-        <p key={r} className="scheda nota-fisse" data-nota-fisse={r}>
-          <Icona di={Lock} /> <strong>{t(`risorsa.${r}`)}</strong>: una volta montate restano fino a fine serata. Si montano solo dove servono, mai sugli spalti.
-        </p>
-      ))}
+    <div className={`schieramento${vecchio ? '' : ' compatto'}`}>
+      {(aiuto || vecchio) && (
+        <div className="scheda aiuto-schieramento" data-aiuto>
+          <p>Trascina le unità sui settori, oppure tocca un'unità e poi il settore. Tocca un segnalino sulla mappa per ritirare una sola unità.</p>
+          {fisse.map((r) => <p key={r} data-nota-fisse={r}><Icona di={Lock} /> <strong>{t(`risorsa.${r}`)}</strong>: una volta montate restano fino a fine serata. Si montano solo dove servono, mai sugli spalti.</p>)}
+        </div>
+      )}
       {p.avviso && <p className="avviso" role="status" data-avviso="si">{p.avviso}</p>}
       <div className="vassoio" role="group" aria-label="Unità da schierare">
         {Object.entries(disp).map(([r, n]) => {
@@ -96,24 +95,32 @@ export function Schieramento(p: {
           const riposo = p.ic.riposo[r] ?? 0;
           const montate = usate(p.ic.fisse ?? {}, r);
           return (
-            <div className="vassoio-voce" key={r}>
-              <button type="button" className={`unita${p.scelta === r ? ' scelta' : ''}`} data-risorsa={r} disabled={libere <= 0}
-                aria-pressed={p.scelta === r} aria-label={`${t(`risorsa.${r}`)}: ${libere} libere`}
-                {...tr.gestori(r)} onClick={() => { if (!tr.eraTrascinamento()) p.scegli(r); }}>
-                <Icona di={iconaRisorsa(r)} /><span>{t(`risorsa.${r}`)}</span><strong>{libere}</strong>
-              </button>
-              {riposo > 0 && <span className="riposo" data-riposo={r}><Icona di={Moon} />{riposo} a riposo</span>}
-              {montate > 0 && <span className="riposo" data-montate={r}><Icona di={Lock} />{montate} già montate</span>}
-            </div>
+            <button key={r} type="button" className={`unita${p.scelta === r ? ' scelta' : ''}`} data-risorsa={r} disabled={libere <= 0}
+              aria-pressed={p.scelta === r}
+              aria-label={`${t(`risorsa.${r}`)}: ${libere} libere${riposo ? `, ${riposo} a riposo` : ''}${montate ? `, ${montate} già montate` : ''}${fisse.includes(r) ? ', restano fino a fine serata' : ''}`}
+              {...tr.gestori(r)} onClick={() => { if (!tr.eraTrascinamento()) p.scegli(r); }}>
+              {fisse.includes(r) && <span className="unita-fissa" data-fissa-chip={r}><Icona di={Lock} /></span>}
+              <Icona di={iconaRisorsa(r)} /><span className="unita-nome">{t(`risorsa.${r}`)}</span><strong>{libere}</strong>
+              {riposo > 0 && <span className="unita-extra" data-riposo={r}><Icona di={Moon} />{riposo}</span>}
+              {montate > 0 && <span className="unita-extra" data-montate={r}><Icona di={Lock} />{montate}</span>}
+            </button>
           );
         })}
       </div>
-      <div className="riga azioni tre">
-        <button className="pulsante secondario" data-azione="annulla" aria-label="Annulla l'ultima mossa" disabled={!p.annulla} onClick={() => p.annulla?.()}><Icona di={Undo2} />Annulla</button>
-        <button className="pulsante secondario" data-azione="azzera" aria-label="Ritira tutte le unità" onClick={p.azzera}><Icona di={RotateCcw} />Ritira tutte</button>
+      <div className="riga-in-mano">
+      <p className="in-mano" data-in-mano={p.scelta ?? ''} role="status">
+        {p.scelta
+          ? <><strong>{t(`risorsa.${p.scelta}`)}</strong> {libereScelta === 1 ? '(1)' : `(${libereScelta})`}{!spento('C22R01') && <span className="rende" data-rende={p.scelta} title={rende(p.m, p.scelta)}> · {rende(p.m, p.scelta)}</span>}</>
+          : <>Tocca un'unità, poi un settore della mappa.</>}
+      </p>
+      {!vecchio && <button type="button" className="aiuto" data-azione="aiuto" aria-pressed={aiuto} aria-label="Come si schiera" onClick={() => setAiuto(!aiuto)}><Icona di={CircleHelp} /></button>}
+      </div>
+      <div className={vecchio ? 'riga azioni tre' : 'barra-schieramento'} data-barra>
+        <button className="pulsante secondario" data-azione="annulla" aria-label="Annulla l'ultima mossa" title="Annulla l'ultima mossa" disabled={!p.annulla} onClick={() => p.annulla?.()}><Icona di={Undo2} />{vecchio && 'Annulla'}</button>
+        <button className="pulsante secondario" data-azione="azzera" aria-label="Ritira tutte le unità" title="Ritira tutte le unità" onClick={p.azzera}><Icona di={RotateCcw} />{vecchio && 'Ritira tutte'}</button>
         <button className="pulsante" data-azione="conferma" aria-label={tutte ? 'Conferma lo schieramento' : 'Conferma lo schieramento, con unità libere'} onClick={() => (spento('C17C01') ? p.conferma() : setRiepilogo(true))}><Icona di={Check} />Conferma</button>
       </div>
-    </>
+    </div>
   );
 }
 

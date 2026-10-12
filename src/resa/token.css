@@ -102,6 +102,14 @@
   --mappa-tenda-2: #2f8f6b;
   --mappa-tenda-3: #e2a72e;
 
+  /* Vignette a fumetto (S-23, PO-078) */
+  --vignetta-pelle: #f2c9a0;
+  --vignetta-capelli: #3a2a20;
+  --vignetta-fumo: rgba(60, 60, 60, 0.55);
+  --vignetta-riserva: 420px; /* spazio della pagina fuori dalla vignetta: sotto questa soglia la vignetta si stringe */
+  --vignetta-min: 90px;
+  --vignetta-max: 200px;
+
   /* Città degli episodi (D-061) */
   --citta-fiume: #1f6fa8;
   --citta-parco: #3d7a35;

@@ -88,14 +88,14 @@ export async function controllaFolla(pagina, m, n, atteso) {
 /** Schermate a passi (S-10, PO-045): a 360 px di larghezza la pagina sta in 760 px di altezza, senza scorrere.
  *  Con VALMORA_MISURE=1 stampa l'altezza di ogni schermata (misura prima/dopo). */
 export async function controllaAltezza(pagina, larghezza, nome, atteso) {
-  if (!['sala', 'briefing', 'verbale'].includes(nome)) return;
+  if (!['sala', 'briefing', 'verbale', 'guida'].includes(nome)) return;
   const prima = pagina.viewportSize();
   await pagina.setViewportSize({ width: prima.width, height: 760 }); // il telefono di riferimento è 360×760
   await pagina.waitForTimeout(50);
   const [h, passo, passi] = await pagina.evaluate(() => [document.documentElement.scrollHeight, document.querySelector('.passi')?.dataset.passo, !!document.querySelector('.passi')]);
   await pagina.setViewportSize(prima);
   if (process.env.VALMORA_MISURE) console.log(`misura ${larghezza}px ${nome} ${passo ?? '-'}: ${h} px`);
-  if (larghezza === 360 && (passi || process.env.VALMORA_ROSSI?.includes('C12P01')) ) atteso(`${nome} ${passo ?? ''}: ${h} px di pagina, a 360×760 si scorre (PO-045)`, h <= 760);
+  if (larghezza === 360 && (passi || nome === 'guida' || process.env.VALMORA_ROSSI?.includes('C12P01'))) atteso(`${nome} ${passo ?? ''}: ${h} px di pagina, a 360×760 si scorre (PO-045)`, h <= 760);
 }
 
 /** Attraversa i passi della schermata («Avanti») finché il pulsante cercato non si vede; foto a ogni passo. */
@@ -254,7 +254,9 @@ export async function controllaGuida(pagina, { atteso, scena, foto, salta }) {
   await foto();
   if (salta) { await pagina.click('[data-azione="guida-salta"]'); return; }
   let passi = 1;
-  while (await pagina.locator('[data-azione="guida-avanti"]').count()) { await pagina.click('[data-azione="guida-avanti"]'); passi++; await foto(); }
+  const vignetta = async () => atteso(`guida passo ${passi}: manca la vignetta (S-23, PO-078)`, await pagina.locator(`[data-vignetta="guida-${passi}"]`).isVisible().catch(() => false));
+  await vignetta();
+  while (await pagina.locator('[data-azione="guida-avanti"]').count()) { await pagina.click('[data-azione="guida-avanti"]'); passi++; await vignetta(); await foto(); }
   atteso(`guida introduttiva: ${passi} passi, ne servono 6`, passi === 6);
   await pagina.click('[data-azione="guida-fine"]');
 }
