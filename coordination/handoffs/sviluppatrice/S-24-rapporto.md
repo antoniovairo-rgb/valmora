@@ -38,6 +38,6 @@ Ho riparato una cecità del guardiano stesso: le pagine nuove non ricevevano gli
 | `VALMORA_LARGHEZZE=360 node tools/foto.mjs out/foto-s24` | partita completa + 144 ondate | verde |
 | `… VALMORA_ROSSI=C27S01 …` | 360 px | ROSSO: 144 «px di scorrimento nello schieramento», 144 «la barra in basso copre», 10 foto con la barra sopra il contenuto |
 | `node tools/foto.mjs out/foto-s24` | 3 larghezze | verde |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit be070e6 (merge della principale), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s24/2026-10-12/`: e03 ondata 3 prima e dopo, a 360×760, 375×812 e 412×915.

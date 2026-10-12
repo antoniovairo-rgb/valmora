@@ -30,6 +30,6 @@ Ramo `claude/valmora-resa-v2`. Stato: **primo pezzo consegnato** (le 6 vignette 
 | `… VALMORA_ROSSI=C26V01 …` | 360 px | ROSSO: «guida passo 1…6: manca la vignetta» |
 | `node tools/foto.mjs out/foto-s23` | 3 larghezze | verde |
 | altezza della pagina a 360×760 e 412×915, 6 passi (sonda a mano) | 12 misure | 760 e 915 px: nessuno scorrimento |
-| `node tools/catena.mjs completa` | vedi rapporto S-24 (catena unica) | |
+| `node tools/catena.mjs completa` | commit be070e6, 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s23/2026-10-12/`: i 6 passi a 360 px.
