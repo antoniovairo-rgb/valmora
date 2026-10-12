@@ -12,7 +12,7 @@
 //   non tornano disponibili e non vanno a riposo. Rosso: __NO_C09F01 (si comportano come unità normali).
 import { applica, valuta } from './condizioni.ts';
 import { spento } from '../interruttori.ts';
-import type { Chiamata, Dichiarazione, Disposizione, EffettoMissione, Esito, Missione, Variabili } from './tipi.ts';
+import type { Chiamata, Condizione, Dichiarazione, Disposizione, EffettoMissione, Esito, Missione, Variabili } from './tipi.ts';
 
 export const VAR_TENSIONE = 'tensione_max';
 export const TENSIONE_MAX = 10;
@@ -191,12 +191,27 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
   return missioneFinita(m, dopo) ? dopo : { ...dopo, partenze: { ...(partenze ?? {}), [dopo.ondata]: senza } };
 }
 
-/** Ondata da cui ripartire dopo un episodio perso (PO-060): la prima in cui la tensione ha toccato il massimo che ha
- *  deciso l'esito. Prima di lì la partita era andata come andrà comunque. Rosso __NO_C16R01: sempre dall'inizio. */
-export function ondataDaRiprendere(r: { rapporti: RapportoOndata[]; variabili: Variabili }): number {
+/** Soglia di tensione oltre la quale nessun esito non fallito è più possibile: il più alto «al_massimo» su tensione_max
+ *  fra gli esiti non falliti (Infinity se un esito non fallito non lo limita). C-016: tensione_max non scende mai. */
+export function sogliaTensione(m: Missione): number {
+  const tetto = (c: Condizione): number => ('tutte' in c ? Math.min(Infinity, ...c.tutte.map(tetto))
+    : 'almeno_una' in c ? Math.max(-Infinity, ...c.almeno_una.map(tetto))
+    : 'var' in c && c.var === VAR_TENSIONE && 'al_massimo' in c ? c.al_massimo : Infinity);
+  return Math.max(-Infinity, ...m.esiti.filter((e) => !e.fallita).map((e) => tetto(e.se)));
+}
+
+/** Ondata da cui ripartire dopo un episodio perso (PO-060): quella in cui la tensione ha superato per la prima volta la
+ *  soglia oltre cui non si vince più (C16-01: prima si cercava il massimo FINALE, e in un caso su quattro si ripartiva
+ *  da un'ondata già persa; rosso __NO_C16R02). Senza la missione, o senza soglia: la prima che tocca il massimo finale.
+ *  Rosso __NO_C16R01: sempre dall'inizio. */
+export function ondataDaRiprendere(r: { rapporti: RapportoOndata[]; variabili: Variabili }, m?: Missione): number {
   if (spento('C16R01')) return 1;
+  const picco = (x: RapportoOndata) => Math.max(...Object.values(x.picco ?? x.tensione));
+  const soglia = m && !spento('C16R02') ? sogliaTensione(m) : Infinity;
+  const oltre = Number.isFinite(soglia) ? r.rapporti.find((x) => picco(x) > soglia) : undefined;
+  if (oltre) return oltre.n;
   const max = Number(r.variabili[VAR_TENSIONE] ?? 0);
-  const k = r.rapporti.find((x) => Math.max(...Object.values(x.picco ?? x.tensione)) >= max);
+  const k = r.rapporti.find((x) => picco(x) >= max);
   return k ? k.n : 1;
 }
 

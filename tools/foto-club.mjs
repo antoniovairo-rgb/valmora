@@ -219,7 +219,7 @@ export async function controllaRipartenza(pagina, { atteso, scena, partita, pian
   const v0 = variabiliIniziali(leggiDati(dirDati)['stato.json'].variabili); // il piano del fallimento parte da qui
   const f = piano.fallimento;
   if (!f.fallita) return;
-  const n = ondataDaRiprendere({ rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili });
+  const n = ondataDaRiprendere({ rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili }, piano.m);
   await pagina.evaluate((v) => { const s = JSON.parse(localStorage.getItem('valmora-salvataggio')); s.episodi = {}; s.missioni_concluse = []; s.in_corso = null; s.variabili = v; localStorage.setItem('valmora-salvataggio', JSON.stringify(s)); }, v0);
   await pagina.reload(); await scena('titolo');
   await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
