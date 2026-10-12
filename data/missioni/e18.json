@@ -767,7 +767,33 @@
                   "valore": "esposto"
                 }
               ],
-              "risposta": "testi:e18.op.conferma18.r"
+              "risposta": "testi:e18.op.conferma18.r",
+              "se": {
+                "non": {
+                  "var": "testimone",
+                  "uguale": "protetto"
+                }
+              }
+            },
+            {
+              "id": "conferma18p",
+              "testo": "testi:e18.op.conferma18p",
+              "costo": "testi:e18.op.conferma18p.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e18.op.conferma18p.r",
+              "se": {
+                "var": "testimone",
+                "uguale": "protetto"
+              }
             },
             {
               "id": "nega18",
