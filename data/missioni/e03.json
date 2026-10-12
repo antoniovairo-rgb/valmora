@@ -538,7 +538,7 @@
           "id": "tensione_ospiti",
           "tipo": "curva",
           "settore": "curva_ospiti",
-          "pressione": 4
+          "pressione": 2
         },
         {
           "id": "tensione_casa",
@@ -550,7 +550,7 @@
           "id": "mezzanotte",
           "tipo": "protesta",
           "settore": "quartiere",
-          "pressione": 6
+          "pressione": 4
         },
         {
           "id": "nervosi",

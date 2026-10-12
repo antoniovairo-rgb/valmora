@@ -16,6 +16,10 @@ import type { Chiamata, Dichiarazione, Disposizione, EffettoMissione, Esito, Mis
 
 export const VAR_TENSIONE = 'tensione_max';
 export const TENSIONE_MAX = 10;
+// D-105: a inizio episodio la fiducia («credito») risale almeno a FIDUCIA_MIN, applicata alle variabili di partenza
+// di ogni tentativo (D-062). Tarata coi bot: il valore più basso con 3★ raggiungibili in 36/36. Rosso __NO_C23F01.
+export const VAR_FIDUCIA = 'credito';
+export const FIDUCIA_MIN = 2;
 const lim = (x: number) => Math.max(0, Math.min(TENSIONE_MAX, x));
 type Dich = Map<string, Dichiarazione>;
 
@@ -45,13 +49,20 @@ const ondataDi = (m: Missione, s: InCorso) => {
   return o;
 };
 
+/** Fiducia minima a inizio episodio (D-105); solo se lo stato dichiara la variabile. */
+export function fiduciaMinima(v: Variabili, d: Dich): Variabili {
+  const f = v[VAR_FIDUCIA];
+  if (spento('C23F01') || !d.has(VAR_FIDUCIA) || typeof f !== 'number' || f >= FIDUCIA_MIN) return v;
+  return { ...v, [VAR_FIDUCIA]: FIDUCIA_MIN };
+}
+
 export function iniziaMissione(m: Missione, iniziali: Variabili, d: Dich): InCorso {
   if (!d.has(VAR_TENSIONE)) throw new Error(`stato.json deve dichiarare «${VAR_TENSIONE}»`);
   const zero = (ids: string[]) => Object.fromEntries(ids.map((id) => [id, 0]));
   const risorse = Object.keys(m.mappa.risorse);
   const s: InCorso = {
     missione: m.id, ondata: 1, tensione: zero(m.mappa.settori.map((x) => x.id)), riserva: zero(risorse), riposo: zero(risorse),
-    disposizione: null, modifiche: {}, risposte: {}, scelte: [], rapporti: [], variabili: { ...iniziali, [VAR_TENSIONE]: 0 },
+    disposizione: null, modifiche: {}, risposte: {}, scelte: [], rapporti: [], variabili: fiduciaMinima({ ...iniziali, [VAR_TENSIONE]: 0 }, d),
   };
   return { ...s, partenze: { 1: s } };
 }

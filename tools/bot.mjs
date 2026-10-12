@@ -3,7 +3,7 @@
 import { leggiDati } from './dati-disco.mjs';
 import { creaCaso } from '../src/logica/caso.ts';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
-import { giocaMissione, opzioniValide } from '../src/logica/missione.ts';
+import { chiamateAperte, chiudiOndata, concludiMissione, giocaMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { DETERMINISTICHE, STRATEGIE, attenta, casuale } from '../src/logica/bot.ts';
 import { spento } from '../src/interruttori.ts';
 import { valutaEpisodio } from '../src/logica/episodi.ts';
@@ -88,6 +88,31 @@ export function esisteStelle(dati, id, n, limite = 400000) {
     if (i === idx.length) return false;
   }
   return false;
+}
+
+/** Come esisteStelle ma esaustiva e veloce: ricerca in profondità sugli stati (schieramento attento), con memoria e
+ *  potatura (tensione_max non scende mai). Entrando con le variabili «iniziali» date, 3★ possibili? (D-105) */
+export function treStellePossibili(dati, id, iniziali) {
+  const { dich } = contesto(dati);
+  const m = dati[`missioni/${id}.json`]; const att = attenta(creaCaso(1), dich); const visti = new Set();
+  const chiave = (s) => JSON.stringify([s.ondata, s.tensione, s.riserva, s.riposo, s.disposizione, s.modifiche, s.risposte, s.variabili, s.fisse]);
+  const cerca = (s) => {
+    if (missioneFinita(m, s)) return valutaEpisodio(m, concludiMissione(m, s, dich)).stelle >= 3;
+    if (s.variabili.tensione_max > 3) return false;
+    const k = chiave(s); if (visti.has(k)) return false; visti.add(k);
+    if (!s.disposizione) return cerca(schiera(m, s, att.schiera(m, s)));
+    const c = chiamateAperte(m, s)[0];
+    if (!c) return cerca(chiudiOndata(m, s, dich));
+    return opzioniValide(c, s).some((o) => cerca(rispondi(m, s, c.id, o.id, dich)));
+  };
+  return cerca(iniziaMissione(m, iniziali, dich));
+}
+
+/** D-105: entrando in ogni episodio con fiducia 0 (la peggiore), il minimo la rialza e le 3★ restano possibili. */
+export function controllaFiduciaMinima(dati) {
+  const { iniziali, missioni } = contesto(dati);
+  return missioni.filter((m) => !treStellePossibili(dati, m.id, { ...iniziali, credito: 0 }))
+    .map((m) => `${m.id}: entrando con fiducia 0 le 3 stelle non sono raggiungibili (D-105)`);
 }
 
 /** Campagna: episodi in fila, variabili portate da uno all'altro (giocatore casuale). Quali chiamate compaiono? */
