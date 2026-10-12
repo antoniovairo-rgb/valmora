@@ -113,7 +113,7 @@ export function App() {
   // c'è (salvataggi vecchi: no) e non è la prima (allora è «Ricomincia»). Rosso C21R01: solo «Ricomincia».
   const ripartenza = (x: NonNullable<typeof esito>) => {
     if (!x.r.fallita || spento('C21R01')) return null;
-    const n = ondataDaRiprendere(x.e);
+    const n = ondataDaRiprendere(x.e, x.m);
     const stato = n > 1 ? riprendiDallOndata(x.ic, n) : null;
     return stato ? { n, vai: () => { nuovaBozza(); setEsito(null); setScelto(x.m.id); conIc(stato, { rapporto_aperto: null }); setSchermata('gioco'); } } : null;
   };

@@ -2,7 +2,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { leggiDati } from '../tools/dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
-import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, ondataDaRiprendere, riprendiDallOndata, rispondi, schiera, type Giocatore, type InCorso } from '../src/logica/missione.ts';
+import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, ondataDaRiprendere, sogliaTensione, riprendiDallOndata, rispondi, schiera, type Giocatore, type InCorso } from '../src/logica/missione.ts';
 import { attenta, casuale } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
@@ -11,7 +11,7 @@ const d = leggiDati() as Record<string, unknown>;
 const dich = new Map((d['stato.json'] as { variabili: Dichiarazione[] }).variabili.map((x) => [x.id, x]));
 const v0 = variabiliIniziali(dich.values());
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C16R01; });
+afterEach(() => { delete g.__NO_C16R01; delete g.__NO_C16R02; });
 
 function gioca(m: Missione, s: InCorso, gioc: Giocatore) {
   while (!missioneFinita(m, s)) {
@@ -45,6 +45,29 @@ describe('ripartenza dall\'ondata persa (PO-060)', () => {
       console.log(`${id}: perse ${perse}/200 · ripartenza media dall'ondata ${(ondate / perse).toFixed(2)} · salvabili da lì col giocatore attento ${salvate}/${perse}`);
       expect(perse).toBeGreaterThan(0);
     }
+  });
+  // C16-01: l'ondata proposta non deve partire con la sconfitta già decisa (tensione_max oltre la soglia degli esiti non falliti)
+  const giaPerse = () => {
+    let certe = 0, tot = 0;
+    for (const [k, mm] of Object.entries(d).filter(([k]) => k.startsWith('missioni/')) as [string, Missione][]) {
+      const soglia = sogliaTensione(mm);
+      for (let seme = 1; seme <= 20; seme++) {
+        const { s, r } = gioca(mm, iniziaMissione(mm, v0, dich), casuale(creaCaso(`c16:${k}:${seme}`), dich));
+        if (!r.esito.fallita) continue;
+        tot++; const p = riprendiDallOndata(s, ondataDaRiprendere(r, mm));
+        if (p && Number(p.variabili.tensione_max) > soglia) certe++;
+      }
+    }
+    return { certe, tot };
+  };
+  it('C16-01: su 36 episodi nessuna ripartenza parte da un\'ondata già persa', () => {
+    const { certe, tot } = giaPerse();
+    console.log(`C16-01: ripartenze già perse ${certe}/${tot}`);
+    expect(tot).toBeGreaterThan(0); expect(certe).toBe(0);
+  });
+  it('braccio rosso __NO_C16R02: col massimo finale (vecchia regola) alcune ripartenze sono già perse', () => {
+    g.__NO_C16R02 = true;
+    expect(giaPerse().certe).toBeGreaterThan(0);
   });
   it('braccio rosso __NO_C16R01: si riparte sempre dall\'ondata 1', () => {
     g.__NO_C16R01 = true;

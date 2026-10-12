@@ -19,6 +19,10 @@ if (typeof window !== 'undefined' && !Capacitor.isNativePlatform()) {
 
 export const giaInstallata = () => typeof window !== 'undefined' && (window.matchMedia?.('(display-mode: standalone)').matches || Capacitor.isNativePlatform());
 export const suIphone = () => typeof navigator !== 'undefined' && /iphone|ipad|ipod/i.test(navigator.userAgent);
+/** PO-082: su Android, se il browser non offre la richiesta, si spiega come fare a mano. Nel browser interno di un'app
+ *  (WhatsApp, Facebook…: «; wv)» nell'user agent) non si installa: va aperto in Chrome. */
+export const suAndroid = () => typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent);
+export const browserInterno = () => typeof navigator !== 'undefined' && /; wv\)|FBAN|FBAV|Instagram/i.test(navigator.userAgent);
 
 /** Stato dell'installazione per la home: «pronta» se il browser offre la richiesta. */
 export function useInstallazione() {
