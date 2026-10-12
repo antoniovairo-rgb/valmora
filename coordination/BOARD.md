@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-12 11:36 UTC – 0.8.0 su main (061839a, Pages verificato): offline corretto (S-22), guida (S-18), riparti dall'ondata (S-17), logo a sinistra, correzioni C-015, fiducia minima 3 (D-110). Sviluppatrice su S-21, poi S-23 (vignette a fumetto).
+Ultimo giro della routine: 2026-10-12 16:00 UTC – principale 7af29bb completa VERDE: S-24 schieramento compatto (PO-079), vignette della guida (S-23, primo pezzo), C16-01, PO-082, C14-11, S-21; pronta per il rilascio delle 23:00. Sviluppatrice su S-26 (mappa scura), poi S-25 (stadio e04), poi S-23.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
