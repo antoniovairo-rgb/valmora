@@ -1,17 +1,20 @@
 // Nuova partita: chi sei? (D-063). Il genere sceglie le varianti «@f» dei testi e resta nel salvataggio.
-import { ArrowLeft, TriangleAlert, UserRound } from 'lucide-react';
+import { ArrowLeft, UserRound } from 'lucide-react';
 import type { Genere } from '../../dati/testi.ts';
 import { Icona } from '../icone.tsx';
 import { Testata } from './Fumetto.tsx';
+import { Tripla } from './Tripla.tsx';
 
 /** Nuova partita con una partita già salvata: si chiede prima di cancellarla (C-005 R02). */
 export function ConfermaNuova(p: { si: () => void; no: () => void }) {
   return (
     <>
       <Testata numero="!" etichetta="Nuova partita" titolo="Ricominciare da capo?" />
-      <div className="scheda"><p className="avviso">La partita salvata (episodi, stelle, scelte) verrà cancellata.</p></div>
-      <button className="pulsante" data-azione="annulla-nuova" onClick={p.no}><Icona di={ArrowLeft} />No, tieni la partita</button>
-      <button className="pulsante secondario" data-azione="conferma-nuova" onClick={p.si}><Icona di={TriangleAlert} />Sì, cancella e ricomincia</button>
+      {/* S-16 (PO-066): tre conferme, testo crescente, l'ultima in magenta */}
+      <Tripla azione="nuova" no="No, tieni la partita" si="Sì, cancella tutto e ricomincia" annulla={p.no} conferma={p.si}
+        testi={['La partita salvata (episodi, stelle, scelte) verrà cancellata. Vuoi ricominciare?',
+          'Sicuro? Perdi tutti gli episodi superati, le stelle e le scelte fatte finora.',
+          'Ultima conferma: cancello la partita. Non si può tornare indietro.']} />
     </>
   );
 }
