@@ -7,6 +7,7 @@ import type { Missione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { Sfida } from '../stemma.tsx';
+import { VignettaApertura } from '../vignette-gioco.tsx';
 import { Mittente } from './Fumetto.tsx';
 import { Passi } from './Passi.tsx';
 import { Messaggio } from './Scena.tsx';
@@ -17,7 +18,7 @@ export function Sala(p: { m: Missione; avanti: () => void }) {
   const sfida = Sfida({ m: p.m }); // la sfida della serata è il primo passo, se ci sono club
   return (
     <Passi nome="Sala operativa" passo={passo} vai={setPasso}
-      passi={[...(sfida ? [<div key="sfida" className="scheda stasera" data-stasera><p className="etichetta">Stasera</p>{sfida}</div>] : []), ...battute.map((x, i) => (
+      passi={[<div key="sfida" className="scheda stasera" data-stasera><p className="etichetta">Stasera</p><VignettaApertura m={p.m} />{sfida}</div>, ...battute.map((x, i) => (
         <Fragment key={i}>
           <Messaggio classe="vice" dati={`vice-${i + 1}`}>
             {i === 0 && <Mittente icona={Coffee} nome="Il vice" vice />}

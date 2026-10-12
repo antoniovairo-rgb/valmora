@@ -33,3 +33,33 @@ Ramo `claude/valmora-resa-v2`. Stato: **primo pezzo consegnato** (le 6 vignette 
 | `node tools/catena.mjs completa` | commit be070e6, 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s23/2026-10-12/`: i 6 passi a 360 px.
+
+## Secondo pezzo: sala (S-15) e verbale (S-14)
+
+- **Apertura dell'episodio** (`VignettaApertura`, `src/resa/vignette-gioco.tsx`), nel primo passo della sala («Stasera»). Ora quel passo c'è sempre, anche senza club. La vignetta è disegnata dai dati:
+  - notte o giorno (`mappa.ora`, con stelle e fari accesi);
+  - stadio con le curve nei colori del loro club (D-086), oppure una piazza con la folla se la missione non ha curve;
+  - cartelloni e gru se i dettagli li nominano.
+- **Fine episodio** (`VignettaEsito`), nel primo passo del verbale: protagonista (col genere della partita) e vice, con l'espressione presa dall'esito.
+
+  | esito | protagonista | vice | in più |
+  |---|---|---|---|
+  | bene: festa | sorride | sorride | coriandoli |
+  | medio: sollievo | dritto | sorride | |
+  | male: preoccupazione | giù | dritto | una goccia di sudore |
+  | fallito: sconfitta | giù | giù | nuvola |
+
+  Gli stemmi del verbale (D-088) stanno in sovrimpressione in fondo alla vignetta, così non occupano altra altezza.
+- **Scorrimento zero**: ogni vignetta ha una «riserva» misurata (il resto della schermata a 360×760) e si stringe.
+  - Prima della taratura: sala passo 1 a 839-863 px, verbale passo 1 a 780-803 px.
+  - Dopo: tutte a 760.
+- **Guardiano**: `controllaVignetta` nella sala (`apertura-…`) e nel verbale (`esito-…`) di ogni partita giocata.
+
+| comando | campione | esito |
+|---|---|---|
+| `VALMORA_LARGHEZZE=360 node tools/foto.mjs out/foto-s23b` | e01 ×2, e02, e03, e13, e25 | verde |
+| `… VALMORA_ROSSI=C26V01 …` | 360 px | ROSSO: 7 sale senza «apertura», 7 verbali senza «esito», 6 passi della guida senza vignetta |
+| `node tools/foto.mjs out/foto-s23b` | 3 larghezze | verde |
+| `node tools/catena.mjs completa` | vedi sotto | |
+
+Non ancora fatte: home, città, crediti, briefing, chiamata, risposta, rapporto. Chiamata, risposta e rapporto scorrono già senza vignetta (1181, 881 e 974 px a 360×760): vanno fatte insieme a S-13.
