@@ -19,7 +19,7 @@ export const TENSIONE_MAX = 10;
 // D-105: a inizio episodio la fiducia («credito») risale almeno a FIDUCIA_MIN, applicata alle variabili di partenza
 // di ogni tentativo (D-062). Tarata coi bot: il valore più basso con 3★ raggiungibili in 36/36. Rosso __NO_C23F01.
 export const VAR_FIDUCIA = 'credito';
-export const FIDUCIA_MIN = 2;
+export const FIDUCIA_MIN = 3; // D-110: il PO sceglie 3 (con 2 le 3★ erano possibili ma rare)
 const lim = (x: number) => Math.max(0, Math.min(TENSIONE_MAX, x));
 type Dich = Map<string, Dichiarazione>;
 
