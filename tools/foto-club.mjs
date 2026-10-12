@@ -128,3 +128,29 @@ export async function controllaFiducia(pagina, nome, atteso) {
   if (nome === 'risposta' && fiduciaPrima !== null && valore !== fiduciaPrima) atteso(`risposta: fiducia da ${fiduciaPrima} a ${valore} senza «${valore - fiduciaPrima}» accanto alla barra (PO-067)`, delta === valore - fiduciaPrima);
   fiduciaPrima = valore;
 }
+
+/** S-12 (PO-061): «Annulla l'ultima» toglie l'ultima unità messa; «Conferma» apre il riepilogo con le unità messe e,
+ *  se ne avanzano, «Ti restano N»; poi «Sì, conferma». */
+export async function confermaSchieramento(pagina, { premi, atteso, fotoSe, prova, ultima }) {
+  const sulla = () => pagina.evaluate(() => [...document.querySelectorAll('[data-presenza] .pastiglia')].reduce((a, e) => a + Number(e.textContent.replace(/\D/g, '') || 0), 0));
+  if (prova && ultima) {
+    const [r, s] = ultima, prima = await sulla();
+    await premi('[data-azione="annulla"]');
+    atteso(`schieramento: «Annulla l'ultima» da ${prima} a ${await sulla()} unità, doveva toglierne una (PO-061)`, (await sulla()) === prima - 1);
+    if ((await sulla()) === prima - 1) {
+      if ((await pagina.getAttribute(`[data-risorsa="${r}"]`, 'aria-pressed')) !== 'true') await premi(`[data-risorsa="${r}"]`);
+      await premi(`[data-settore="${s}"] .settore-punto`);
+    }
+  }
+  const messe = await sulla();
+  const libere = await pagina.evaluate(() => [...document.querySelectorAll('[data-risorsa] strong')].reduce((a, e) => a + Number(e.textContent || 0), 0));
+  await premi('[data-azione="conferma"]');
+  const riepilogo = await pagina.getAttribute('[data-riepilogo]', 'data-riepilogo', { timeout: 2000 }).catch(() => null);
+  atteso(`schieramento: «Conferma» senza riepilogo di cosa va dove (PO-061)`, riepilogo !== null);
+  if (riepilogo === null) return;
+  atteso(`riepilogo: ${riepilogo} unità, sulla mappa ce ne sono ${messe} (PO-061)`, Number(riepilogo) === messe);
+  const restano = await pagina.getAttribute('[data-restano]', 'data-restano', { timeout: 500 }).catch(() => null);
+  atteso(`riepilogo: ${libere} unità libere ma «Ti restano» dice ${restano ?? 'niente'} (PO-061)`, libere ? Number(restano) === libere : restano === null);
+  await fotoSe();
+  await premi('[data-azione="conferma-davvero"]');
+}

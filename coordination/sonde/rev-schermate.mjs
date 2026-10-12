@@ -35,7 +35,7 @@ const piano = (m, v) => { const g = attenta(creaCaso(1), dich); let s = M.inizia
   return { ond, esito: M.concludiMissione(m, s, dich).esito.id }; };
 async function schiera(p, d) { for (const [r, ps] of Object.entries(d)) for (const [s, q] of Object.entries(ps)) for (let x = 0; x < q; x++) { if ((await p.getAttribute(`[data-risorsa="${r}"]`, 'aria-pressed')) !== 'true') await p.click(`[data-risorsa="${r}"]`); await p.click(`[data-settore="${s}"] .settore-punto`); } }
 async function ondata(p, o, controlli) {
-  await schiera(p, o.d); if (controlli) await controlli('schieramento'); await p.click('[data-azione="conferma"]');
+  await schiera(p, o.d); if (controlli) await controlli('schieramento'); await p.click('[data-azione="conferma"]'); if (await p.locator('[data-azione="conferma-davvero"]').count()) await p.click('[data-azione="conferma-davvero"]'); // S-12: riepilogo
   for (const [, op] of o.rs) { await sc(p, 'chiamata'); if (controlli) await controlli('chiamata'); await p.click(`[data-opzione="${op}"]`); await p.waitForTimeout(250); if (await p.locator('[data-azione="continua"]').count()) await p.click('[data-azione="continua"]'); }
   await sc(p, 'chiusura'); await p.click('[data-azione="rapporto"]'); await sc(p, 'rapporto'); if (controlli) await controlli('rapporto');
 }
@@ -76,7 +76,7 @@ for (const [larg, alt] of [[360, 760], [412, 830]]) {
   const e01 = dati['missioni/e01.json']; const pl = piano(e01, (await salvato(p)).variabili);
   for (const [i, o] of pl.ond.entries()) {
     if (i) await sc(p, 'schieramento');
-    await schiera(p, o.d); await rileva(p, larg, alt, 'schieramento'); await p.click('[data-azione="conferma"]');
+    await schiera(p, o.d); await rileva(p, larg, alt, 'schieramento'); await p.click('[data-azione="conferma"]'); if (await p.locator('[data-azione="conferma-davvero"]').count()) await p.click('[data-azione="conferma-davvero"]'); // S-12: riepilogo
     for (const [, op] of o.rs) { await sc(p, 'chiamata'); await p.waitForTimeout(300); await rileva(p, larg, alt, 'chiamata'); await p.click(`[data-opzione="${op}"]`); await p.waitForTimeout(400);
       if (await p.locator('[data-azione="continua"]').count()) { await rileva(p, larg, alt, 'risposta'); await p.click('[data-azione="continua"]'); } }
     await sc(p, 'chiusura'); await rileva(p, larg, alt, 'chiusura'); await p.click('[data-azione="rapporto"]'); await sc(p, 'rapporto'); await rileva(p, larg, alt, 'rapporto');

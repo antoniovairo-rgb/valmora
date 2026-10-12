@@ -49,6 +49,11 @@ export function App() {
   const [schermata, setSchermata] = useState<Schermata>('titolo');
   const [visti, setVisti] = useState(0);
   const [bozza, setBozza] = useState<Disposizione>({});
+  // S-12 (PO-061): ogni mossa dello schieramento si può annullare («Annulla l'ultima»).
+  const [storia, setStoria] = useState<Disposizione[]>([]);
+  const cambiaBozza = (d: Disposizione) => { setStoria((s) => [...s, bozza]); setBozza(d); };
+  const nuovaBozza = () => { setStoria([]); setBozza({}); };
+  const annulla = () => { if (!storia.length || spento('C17C02')) return; setBozza(storia.at(-1)!); setStoria(storia.slice(0, -1)); setAvviso(null); };
   const [scelta, setScelta] = useState<string | null>(null);
   const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione; r: Risultato; migliore: boolean } | null>(null);
   const [scelto, setScelto] = useState<string | null>(null); // episodio scelto sulla mappa della città
@@ -80,7 +85,7 @@ export function App() {
   function alla_citta(s: Salvataggio) { setScelto(prossimoEpisodio(s)?.id ?? missioni.at(-1)?.id ?? null); setSchermata('citta'); }
   const riprendi = () => {
     const ic = sal?.in_corso;
-    setBozza({}); setEco(null);
+    nuovaBozza(); setEco(null);
     if (!ic) { if (sal) alla_citta(sal); return; }
     // Rapporto aperto al momento del salvataggio: si torna lì (C-005 R04).
     setSchermata(missioneFinita(missione(ic.missione), ic) || (sal?.rapporto_aperto && !spento('C05R04')) ? 'rapporto' : 'gioco');
@@ -117,7 +122,7 @@ export function App() {
     testata = { etichetta: `Briefing · ${Math.min(visti, m.briefing.length)} di ${m.briefing.length} fonti`, titolo: t(m.titolo) };
     corpo = <Briefing m={m} visti={visti} vai={setVisti} inizia={() => {
       if (icOra()) return; // già iniziata (doppio tocco)
-      setBozza({}); conIc(iniziaEpisodio(sal, m)); setSchermata('gioco');
+      nuovaBozza(); conIc(iniziaEpisodio(sal, m)); setSchermata('gioco');
     }} />;
   } else if (schermata === 'rapporto' && ic?.rapporti.length) {
     const r = ic.rapporti.at(-1)!;
@@ -129,7 +134,7 @@ export function App() {
     corpo = <Rapporto m={m} r={r} ultima={fine} prossime={fine ? {} : disponibili(m, ic)} avanti={() => {
       const ora = icOra();
       if (!ora) return; // episodio già chiuso (doppio tocco)
-      if (!missioneFinita(m, ora)) { conIc(ora, { rapporto_aperto: null }); setBozza({}); setSchermata('gioco'); return; }
+      if (!missioneFinita(m, ora)) { conIc(ora, { rapporto_aperto: null }); nuovaBozza(); setSchermata('gioco'); return; }
       const e = concludiMissione(m, ora, dichiarate);
       const chiuso = chiudiEpisodio(ultimo.current!, m, e); // registro, stelle, variabili (D-059…D-062)
       aggiorna({ ...chiuso.salvataggio, rapporto_aperto: null });
@@ -166,15 +171,15 @@ export function App() {
         setAvviso(null);
         const d = structuredClone(bozza);
         d[r] = { ...(d[r] ?? {}), [settore]: (d[r]?.[settore] ?? 0) + 1 };
-        setBozza(d); setScelta(spento('C10S04') ? libera(m, ic, d, r) : r); vola(r, settore);
+        cambiaBozza(d); setScelta(spento('C10S04') ? libera(m, ic, d, r) : r); vola(r, settore);
       };
       mappa = {
         tensione: ic.tensione, presenze: bozza, fisse: spento('C09S02') ? null : ic.fisse,
         vietati: sel && m.mappa.risorse[sel]?.fissa ? m.mappa.settori.map((x) => x.id).filter((x) => !settoriAmmessi(m, sel).includes(x)) : [],
         onSettore: (s) => sel && metti(sel, s),
-        onTogli: (r, s) => setBozza((d) => ({ ...d, [r]: { ...d[r], [s]: Math.max(0, (d[r]?.[s] ?? 0) - 1) } })),
+        onTogli: (r, s) => cambiaBozza({ ...bozza, [r]: { ...bozza[r], [s]: Math.max(0, (bozza[r]?.[s] ?? 0) - 1) } }),
       };
-      corpo = <Schieramento m={m} ic={ic} d={bozza} scelta={sel} avviso={avviso} scegli={(r) => { setScelta(r); setAvviso(null); }} metti={metti} azzera={() => setBozza({})}
+      corpo = <Schieramento m={m} ic={ic} d={bozza} scelta={sel} avviso={avviso} scegli={(r) => { setScelta(r); setAvviso(null); }} metti={metti} azzera={() => cambiaBozza({})} annulla={storia.length ? annulla : null}
         conferma={() => { setAvviso(null); const ora = icOra(); if (ora && !ora.disposizione && ora.ondata === ic.ondata) conIc(schiera(m, ora, bozza)); }} />;
     } else if (f.tipo === 'chiamata') {
       mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, accesi: f.chiamata.settore ? [f.chiamata.settore] : [] };
