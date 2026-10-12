@@ -22,9 +22,8 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnata la scelta A del PO**. Lo zero
 
 ## Chiamata compatta
 
-Solo nella chiamata:
-- mappa intera ma 4:3 invece di 1:1 (`--mappa-proporzione-chiamata`);
-- testata, fumetto, commento del vice e opzioni più stretti.
+Solo nella chiamata: testata, fumetto, commento del vice e opzioni più stretti. La mappa resta intera e quadrata.
+- Ho provato la mappa 4:3: il guardiano dei nomi (C-008) dava 47 nomi sovrapposti e 23 aree di tocco sopra un nome a 360 px, quindi l'ho tolta.
 
 ## Misure (FATTO MISURATO)
 
@@ -33,10 +32,11 @@ Prima chiamata di ogni ondata, 142 chiamate dei 36 episodi, a 360×760, giocator
 | Versione | Scorrimento minimo | Mediana | Massimo | Senza scorrimento |
 |---|---|---|---|---|
 | Con la vignetta, senza compattazione | 102 px | 359 px | 607 px | 0/142 |
-| Con la compattazione | 0 px | 151 px | 433 px | 5/142 |
-| Prova scartata: commento del vice nascosto | 0 px | 97 px | 303 px | 7/142 |
+| Con la compattazione consegnata (mappa quadrata) | 42 px | 271 px | 515 px | 0/142 |
+| Prova scartata: compattazione con mappa 4:3 | 0 px | 151 px | 433 px | 5/142 |
+| Prova scartata: mappa 4:3 e commento del vice nascosto | 0 px | 97 px | 303 px | 7/142 |
 
-- La mappa a 16:9 sovrappone i nomi dei settori (foto controllata), quindi non l'ho tenuta.
+- Anche la mappa a 16:9 sovrappone i nomi (foto controllata).
 - **Lo zero scorrimento con la mappa intera non si raggiunge.** Resta l'indicatore «Rispondi» (C09-03), che porta alle opzioni con un tocco. Alla principale ho mandato tre opzioni per il PO.
 
 ## Guardiani (`tools/foto-chiamata.mjs`, chiamati da `tools/foto.mjs` nelle partite di e01, e02 ed e03)

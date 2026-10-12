@@ -321,8 +321,8 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .chiamata-corpo { display: flex; gap: var(--spazio-3); align-items: flex-start; margin-top: var(--spazio-3); }
 .chiamata-corpo > .vignetta { flex: none; width: var(--vignetta-chiamata); height: auto; margin: 0; border: var(--bordo-fine) solid var(--nero); }
 .chiamata-corpo .testo-radio { margin-top: 0; }
-/* PO-089: chiamata compatta (solo la chiamata): mappa intera ma più bassa, fumetto e opzioni più stretti */
-main:has(.scena[data-scena="chiamata"]) .mappa { aspect-ratio: var(--mappa-proporzione-chiamata); margin-bottom: var(--spazio-2); }
+/* PO-089: chiamata compatta (solo la chiamata): mappa intera e quadrata (più bassa i nomi si sovrappongono, C-008), fumetto e opzioni più stretti */
+main:has(.scena[data-scena="chiamata"]) .mappa { margin-bottom: var(--spazio-2); }
 main:has(.scena[data-scena="chiamata"]) .testata { margin: var(--spazio-1) 0 var(--spazio-2); }
 .scena[data-scena="chiamata"] .messaggio { margin: var(--spazio-4) 0 var(--spazio-2); padding: var(--spazio-3); }
 .scena[data-scena="chiamata"] .vice-a-margine { margin-top: var(--spazio-2); padding: var(--spazio-1) var(--spazio-2); }
