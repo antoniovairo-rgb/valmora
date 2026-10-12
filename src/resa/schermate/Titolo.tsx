@@ -9,7 +9,7 @@ import { Guida } from './Guida.tsx';
 import { ConfermaImporta, PulsantiArchivio } from './Archivio.tsx';
 import { dallaRiserva } from '../archivio.ts';
 import type { Salvataggio } from '../../salvataggi/salvataggio.ts';
-import { giaInstallata, suIphone, useInstallazione } from '../installa.ts';
+import { browserInterno, giaInstallata, suAndroid, suIphone, useInstallazione } from '../installa.ts';
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 
@@ -42,6 +42,9 @@ export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi:
       <button className={`pulsante${p.puoRiprendere ? ' secondario' : ''}`} onClick={p.nuova}><Icona di={Play} />Nuova partita</button>
       {inst.pronta && <button className="pulsante" data-azione="installa" onClick={inst.installa}><Icona di={Smartphone} />Installa sul telefono</button>}
       {!inst.pronta && !giaInstallata() && suIphone() && <p className="tenue" data-installa-iphone>Per installarla: Condividi → «Aggiungi alla schermata Home».</p>}
+      {/* PO-082: Android senza richiesta del browser. Rosso C30I01: nessuna spiegazione, come prima */}
+      {!inst.pronta && !giaInstallata() && suAndroid() && !spento('C30I01') && <p className="tenue" data-installa-android>
+        {browserInterno() ? 'Per installarla apri questa pagina in Chrome (menu ⋮ → «Apri in Chrome»).' : 'Per installarla: menu ⋮ del browser → «Installa app» o «Aggiungi a schermata Home».'}</p>}
       <button className="pulsante secondario" data-azione="guida" onClick={() => setGuida(true)}><Icona di={BookOpen} />{t('guida.titolo')}</button>
       {/* PO-063: pulsanti secondari piccoli su una riga; PO-064: niente più APK (l'app passa da Play, test chiusi con l'AAB) */}
       <div className="secondari" data-sostieni>
