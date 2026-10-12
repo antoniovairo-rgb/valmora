@@ -32,4 +32,12 @@
 //   stagione con tutti i 36 episodi e segno «bozza» (S-09), ripartenza dall'ondata persa nella logica (PO-060).
 //   causa: PO-036…PO-067. misura: completa 3/3 sulla build del rilascio.
 //   guardiano: controllaFolla, passi ≤760 px (S-10), D-097 nel validatore, tests/ripartenza.test.ts.
-export const GAME_VERSION = '0.5.0';
+//
+// 0.6.0 – i 36 episodi consolidati (PO-068): testi brevi (D-101), sei scelte che cambiano la storia (D-100), talpa,
+//   costruttore e finale agrodolce (D-098/099), Tano Ferrigno «il Fabbro» (D-102), ritmo città/stadio (D-092); verbale
+//   con «Prossimo episodio» e «Condividi» (PO-072/074); tensione a colori anche nel bilancio (C12-01); salvataggi delle
+//   versioni pubblicate adattati ai dati nuovi (C14-02/03); curva del club anche negli episodi di città (e13, e25).
+//   causa: PO-068, PO-072, PO-074, collaudo C-014. misura: completa 3/3 sulla build del rilascio.
+//   guardiano: passo «storia» della catena logica (consolidamento + ritmo, tre bracci rossi), foto-verbale.mjs
+//   (rossi C18V01/C20C01), tests/aggiornamento.test.ts + salvataggio reale 0.4.0 (rossi C14V01/C14I01), C22K01.
+export const GAME_VERSION = '0.6.0';
