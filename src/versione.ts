@@ -63,4 +63,10 @@
 //   tasto indietro che rilegge senza annullare (S-21), «In mano» dice dove rende l'unità (C14-11).
 //   causa: C-016, PO-079, PO-082, PO-083. misura: completa 3/3 sulla build del rilascio; ripartenze sotto 1/3 36→0 su 455.
 //   guardiano: tests/ripartenza-po083.test.ts (PO083), tests/ripartenza.test.ts (C16R02), C27S01, C26V01, C30I01, C25I01, C22R01.
-export const GAME_VERSION = '0.9.0';
+//
+// 0.10.0 – rilascio delle 23:00 (D-109): aggiornamento con la scheda aperta che usa la cache invece di dire «manca la
+//   rete» (C16-03), guida segnata vista solo a «Salta» o «Iniziamo» (C16-04), «Riparti dall'ondata N» senza numero
+//   a capo (C16-06), indicatore «Rispondi ↓» calcolato senza IntersectionObserver.
+//   causa: collaudo C-016. misura: completa 3/3 sulla build del rilascio; offline O5 verde e rosso.
+//   guardiano: tools/offline.mjs O5 (C28W01), guida passo 3 (C28G01), controllaRipartiTesto (C28R01), C10S03.
+export const GAME_VERSION = '0.10.0';
