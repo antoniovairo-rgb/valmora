@@ -30,6 +30,6 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnata**.
 | stesso comando con i pulsanti uno sotto l'altro | 360 px | ROSSO: «verbale 1/5: 825 px di pagina, a 360×760 si scorre» ×2 |
 | `… VALMORA_ROSSI=C21R01 …` | 360 px | ROSSO: «il verbale offre «Riparti dall'ondata —», il motore dice 2» |
 | `node tools/foto.mjs out/foto-s17` | 3 larghezze | verde |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit c4a3da3 (merge della principale), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s17/2026-10-12/`: verbale di e01 perso, prima e dopo, a 360, 375 e 412 px.
