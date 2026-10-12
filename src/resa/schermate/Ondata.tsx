@@ -10,6 +10,7 @@ import { t } from '../dati.ts';
 import { Icona, iconaFonte } from '../icone.tsx';
 import { LETTERE, Mittente } from './Fumetto.tsx';
 import { Messaggio } from './Scena.tsx';
+import { VignettaChiamata } from '../vignette-chiamata.tsx';
 
 
 export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: number; totale: number; rispondi: (opzione: string) => void }) {
@@ -38,8 +39,14 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
     <>
       <Messaggio key={p.c.id} classe="radio ultimo" dati={`chiamata-${p.c.id}`}>
         <Mittente icona={iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro="Urgente!" />
-        <p className="testo-radio">{t(p.c.testo)}</p>
-        {p.c.commento && <p className="vice-a-margine"><span className="chi-vice">Il vice — </span>{t(p.c.commento)}</p>}
+        {/* PO-089 (scelta A del PO): vignetta piccola a sinistra del testo, dentro il fumetto */}
+        <div className="chiamata-corpo">
+          <VignettaChiamata m={p.m} c={p.c} />
+          <div>
+            <p className="testo-radio">{t(p.c.testo)}</p>
+            {p.c.commento && <p className="vice-a-margine"><span className="chi-vice">Il vice — </span>{t(p.c.commento)}</p>}
+          </div>
+        </div>
       </Messaggio>
       {nascoste && (
         <button type="button" className="indicatore" data-indicatore="opzioni" onClick={() => opzioni.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>
