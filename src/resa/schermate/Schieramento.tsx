@@ -9,6 +9,22 @@ import type { Disposizione, Missione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import { Icona, iconaRisorsa } from '../icone.tsx';
 
+/** C14-11 (D-037): dove rende l'unità, coi settori di questa missione: «Rende di più: …; normale: …; qui non serve: …».
+ *  Rosso C22R01: nessuna spiegazione. */
+export function rende(m: Missione, r: string): string {
+  const ris = m.mappa.risorse[r];
+  if (!ris) return '';
+  const per = (f: (v: number) => boolean) => m.mappa.settori.filter((s) => f(ris.efficacia[s.tipo] ?? 0)).map((s) => t(`settore.${s.id}`));
+  const max = Math.max(0, ...m.mappa.settori.map((s) => ris.efficacia[s.tipo] ?? 0));
+  const parti = [
+    max > 1 && per((v) => v === max).length ? `Rende di più: ${per((v) => v === max).join(', ')}` : '',
+    per((v) => v > 0 && v < max).length ? `normale: ${per((v) => v > 0 && v < max).join(', ')}` : max === 1 ? `Rende: ${per((v) => v === 1).join(', ')}` : '',
+    ris.dimezza?.length ? `Dimezza: ${ris.dimezza.join(', ')}` : '',
+    !ris.dimezza?.length && per((v) => v === 0).length ? `qui non serve: ${per((v) => v === 0).join(', ')}` : '',
+  ].filter(Boolean);
+  return `${parti.join('; ')}.`;
+}
+
 export const usate = (d: Disposizione, r: string) => Object.values(d[r] ?? {}).reduce((a, n) => a + n, 0);
 
 /** Trascinamento con i pointer event (dito e mouse); se il dito non si muove è un tocco normale. */
@@ -64,7 +80,8 @@ export function Schieramento(p: {
       <p className="tenue">Trascina le unità sui settori, oppure tocca un'unità e poi il settore. Tocca un segnalino sulla mappa per ritirare una sola unità.</p>
       <p className="scheda in-mano" data-in-mano={p.scelta ?? ''} role="status">
         <Icona di={Hand} />{p.scelta
-          ? <span>In mano: <strong>{t(`risorsa.${p.scelta}`)}</strong>, {libereScelta === 1 ? 'ne resta 1' : `ne restano ${libereScelta}`}. Tocca un settore sulla mappa.</span>
+          ? <span>In mano: <strong>{t(`risorsa.${p.scelta}`)}</strong>, {libereScelta === 1 ? 'ne resta 1' : `ne restano ${libereScelta}`}. Tocca un settore sulla mappa.
+            {!spento('C22R01') && <small className="rende" data-rende={p.scelta}>{rende(p.m, p.scelta)}</small>}</span>
           : <span>Tocca un'unità qui sotto per prenderla.</span>}
       </p>
       {Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => (

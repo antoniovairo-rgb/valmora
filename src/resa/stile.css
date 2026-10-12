@@ -253,3 +253,4 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .mappa > .tasto-home.alto-dx { left: auto; right: var(--spazio-1); }
 .mappa > .tasto-home.basso-sx { top: auto; bottom: var(--spazio-1); }
 .mappa > .tasto-home.basso-dx { top: auto; bottom: var(--spazio-1); left: auto; right: var(--spazio-1); }
+.in-mano .rende { display: block; margin-top: var(--spazio-1); font-size: var(--testo-mini); color: var(--colore-testo-tenue); }

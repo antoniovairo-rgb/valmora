@@ -283,3 +283,19 @@ export async function controllaHome(pagina, nome, atteso) {
   });
   atteso(`${nome}: il pulsante «Home» copre ${sopra.join(', ')} (S-21)`, sopra.length === 0);
 }
+
+/** C14-11 (D-037): prendendo un'unità, la riga «In mano» dice dove rende di più (i settori della missione col valore
+ *  più alto) o cosa dimezza. Si prova all'ondata 1, prima di schierare. */
+export async function controllaRende(pagina, m, n, atteso, t) {
+  if (n !== 1) return;
+  for (const [r, ris] of Object.entries(m.mappa.risorse)) {
+    const b = pagina.locator(`[data-risorsa="${r}"]:not([disabled])`);
+    if (!(await b.count())) continue;
+    await b.click();
+    const testo = (await pagina.locator(`[data-rende="${r}"]`).textContent({ timeout: 1000 }).catch(() => '')) ?? '';
+    const max = Math.max(0, ...m.mappa.settori.map((s) => ris.efficacia?.[s.tipo] ?? 0));
+    const migliori = m.mappa.settori.filter((s) => max > 0 && (ris.efficacia?.[s.tipo] ?? 0) === max).map((s) => t[`settore.${s.id}`] ?? s.id);
+    const ok = testo && migliori.every((x) => testo.includes(x)) && (!ris.dimezza?.length || testo.includes('Dimezza'));
+    atteso(`${m.id}: con «${r}» in mano la spiegazione «${testo}» non dice dove rende (${migliori.join(', ') || 'dimezza'}) (C14-11)`, !!ok);
+  }
+}
