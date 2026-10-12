@@ -29600,6 +29600,145 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-12T21:43:08.781Z",
+      "commit": "92c6f70",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "360px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "360px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "360px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "360px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "360px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "360px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "360px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "360px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "360px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "375px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "375px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "375px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "412px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "412px: rapporto: 2 barre della fiducia, ne serve una (PO-067)",
+            "412px: rapporto: 2 barre della fiducia, ne serve una (PO-067)"
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }
