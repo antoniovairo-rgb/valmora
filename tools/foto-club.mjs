@@ -210,3 +210,27 @@ export async function controllaTripla(pagina, atteso, cosa, foto = async () => {
   atteso(`${cosa}: l'ultima conferma non è in magenta (PO-066)`, (await pagina.locator('.tripla.grave').count()) === 1);
   await foto();
 }
+
+/** S-17 (PO-060): a episodio perso il verbale offre «Riparti dall'ondata N» con N = ondataDaRiprendere (se N > 1)
+ *  e «Ricomincia»; ripartire porta allo schieramento dell'ondata N, salvato. Si fa perdere e01 dalla città. */
+export async function controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }) {
+  const { ondataDaRiprendere } = await import('../src/logica/missione.ts');
+  const { variabiliIniziali } = await import('../src/logica/condizioni.ts');
+  const v0 = variabiliIniziali(leggiDati(dirDati)['stato.json'].variabili); // il piano del fallimento parte da qui
+  const f = piano.fallimento;
+  if (!f.fallita) return;
+  const n = ondataDaRiprendere({ rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili });
+  await pagina.evaluate((v) => { const s = JSON.parse(localStorage.getItem('valmora-salvataggio')); s.episodi = {}; s.missioni_concluse = []; s.in_corso = null; s.variabili = v; localStorage.setItem('valmora-salvataggio', JSON.stringify(s)); }, v0);
+  await pagina.reload(); await scena('titolo');
+  await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  await pagina.locator(`[data-episodio="${piano.m.id}"] .settore-punto`).click();
+  await pagina.click('[data-azione="avvia-episodio"]');
+  await partita({ m: piano.m, ...f });
+  const visto = await pagina.getAttribute('[data-azione="riparti"]', 'data-ondata', { timeout: 2000 }).catch(() => null);
+  atteso(`ripartenza: il verbale offre «Riparti dall'ondata ${visto ?? '—'}», il motore dice ${n > 1 ? n : 'solo «Ricomincia»'} (PO-060)`, n > 1 ? visto === String(n) : visto === null);
+  atteso('ripartenza: manca «Ricomincia l\'episodio»', (await pagina.locator('[data-azione="rigioca"]').count()) === 1);
+  if (n <= 1 || visto === null) return;
+  await pagina.click('[data-azione="riparti"]'); await scena('schieramento');
+  const [ondata, salvata] = await pagina.evaluate(() => [document.querySelector('main')?.dataset.ondata, JSON.parse(localStorage.getItem('valmora-salvataggio'))?.in_corso?.ondata]);
+  atteso(`ripartenza: dopo «Riparti» si è all'ondata ${ondata} (salvata ${salvata}), non alla ${n} (PO-060)`, ondata === String(n) && salvata === n);
+}

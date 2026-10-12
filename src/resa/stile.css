@@ -239,3 +239,8 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 /* Triplice conferma (S-16, PO-066): l'ultimo passo in magenta */
 .tripla.grave { background: var(--magenta); color: var(--bianco); }
 .tripla.grave .tenue { color: var(--bianco); }
+
+/* Episodio perso (S-17, PO-060): «Riparti dall'ondata N» e «Ricomincia» affiancati */
+.ripartenza { flex-wrap: nowrap; align-items: stretch; }
+.ripartenza .pulsante { flex: 1 1 0; min-width: 0; margin: var(--spazio-2) 0; padding-inline: var(--spazio-2); font-size: var(--testo-piccolo); }
+.ripartenza [data-azione="riparti"] { flex-grow: 1.4; }

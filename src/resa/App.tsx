@@ -6,7 +6,7 @@ import { AnimatePresence, MotionConfig } from 'motion/react';
 import { useRef, useState } from 'react';
 import { spento } from '../interruttori.ts';
 import { variabiliIniziali } from '../logica/condizioni.ts';
-import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFinita, rispondi, schiera, settoriAmmessi, type EsitoMissione, type InCorso } from '../logica/missione.ts';
+import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFinita, ondataDaRiprendere, riprendiDallOndata, rispondi, schiera, settoriAmmessi, type EsitoMissione, type InCorso } from '../logica/missione.ts';
 import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
@@ -56,7 +56,7 @@ export function App() {
   const nuovaBozza = () => { setStoria([]); setBozza({}); };
   const annulla = () => { if (!storia.length || spento('C17C02')) return; setBozza(storia.at(-1)!); setStoria(storia.slice(0, -1)); setAvviso(null); };
   const [scelta, setScelta] = useState<string | null>(null);
-  const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione; r: Risultato; migliore: boolean } | null>(null);
+  const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione; r: Risultato; migliore: boolean; ic: InCorso } | null>(null);
   const [scelto, setScelto] = useState<string | null>(null); // episodio scelto sulla mappa della città
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
   const contaVoli = useRef(0);
@@ -101,13 +101,21 @@ export function App() {
   let testata: { etichetta: string; titolo: string } | null = null; // sopra la mappa, come nella bozza C2
 
   // Con una partita salvata, «Nuova partita» chiede conferma prima di cancellarla (C-005 R02).
+  // S-17 (PO-060): episodio perso → si riparte dall'ondata che ha deciso l'esito, se lo stato di quell'ondata
+  // c'è (salvataggi vecchi: no) e non è la prima (allora è «Ricomincia»). Rosso C21R01: solo «Ricomincia».
+  const ripartenza = (x: NonNullable<typeof esito>) => {
+    if (!x.r.fallita || spento('C21R01')) return null;
+    const n = ondataDaRiprendere(x.e);
+    const stato = n > 1 ? riprendiDallOndata(x.ic, n) : null;
+    return stato ? { n, vai: () => { nuovaBozza(); setEsito(null); setScelto(x.m.id); conIc(stato, { rapporto_aperto: null }); setSchermata('gioco'); } } : null;
+  };
   const titolo = <Titolo avviso={aggiornato} puoRiprendere={!!sal} nuova={() => setSchermata(sal && !spento('C05R02') ? 'conferma' : 'genere')} riprendi={riprendi} crediti={() => setSchermata('crediti')} sal={sal} importata={aggiorna} />;
   if (schermata === 'crediti') corpo = <Crediti indietro={() => setSchermata('titolo')} />;
   else if (schermata === 'conferma') corpo = <ConfermaNuova si={() => setSchermata('genere')} no={() => setSchermata('titolo')} />;
   else if (schermata === 'genere') corpo = <SceltaGenere scegli={nuova} indietro={() => setSchermata('titolo')} />;
   else if (schermata === 'verbale' && esito && sal) {
     corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
-      rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)}
+      rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} riparti={ripartenza(esito)}
       prossimo={prossimoEpisodio(sal) ? () => giocaEpisodio(prossimoEpisodio(sal)!.id) : undefined} />;
   } else if (schermata === 'citta' && sal && !ic) {
     corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} />;
@@ -140,7 +148,7 @@ export function App() {
       const e = concludiMissione(m, ora, dichiarate);
       const chiuso = chiudiEpisodio(ultimo.current!, m, e); // registro, stelle, variabili (D-059…D-062)
       aggiorna({ ...chiuso.salvataggio, rapporto_aperto: null });
-      setEsito({ m, e, r: chiuso.risultato, migliore: chiuso.migliore });
+      setEsito({ m, e, r: chiuso.risultato, migliore: chiuso.migliore, ic: ora });
       setSchermata('verbale');
     }} />;
   } else if (!ic) { nome = 'titolo'; corpo = titolo; }

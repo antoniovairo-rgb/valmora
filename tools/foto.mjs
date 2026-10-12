@@ -9,7 +9,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -372,7 +372,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso('«Nuova partita» con una partita salvata non chiede conferma (C-005 R02)', chiede);
         if (chiede) { await foto(); await controllaTripla(pagina, atteso, '«Nuova partita»', foto); await premi('[data-azione="annulla-nuova"]'); await scena('titolo'); }
         atteso('«No, tieni la partita» ha cambiato il salvataggio', (await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'))) === prima);
-        if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori }); } // S-09
+        if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); await controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori }); } // S-09
       } catch (e) { atteso(`giro interrotto: ${e.message.split('\n')[0]}`, false); }
       await pagina.close();
       giri.push(g);
