@@ -375,12 +375,3 @@ export async function controllaRidisegno(pagina, atteso, dove) {
   atteso(`${dove}: tornando dal background lo sfondo della mappa non si ridisegna (${volte} → ${volte2}) (S-26)`, volte2 >= volte + 2);
   atteso(`${dove}: dopo il background la mappa è cambiata (media dei pixel ${prima.toFixed(1)} → ${dopo.toFixed(1)}) (S-26)`, Math.abs(prima - dopo) < 8);
 }
-
-/** PO-088: sulla mappa pulsa SOLO il settore della chiamata in corso («attesi»; nessuno fuori dalle chiamate). */
-export async function controllaLampeggio(pagina, atteso, attesi, dove) {
-  if ((await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) !== 'webgl') return;
-  const voluti = [...attesi].sort().join(',');
-  let visti = null;
-  for (let k = 0; k < 20 && visti !== voluti; k++) { if (k) await pagina.waitForTimeout(50); visti = ((await pagina.getAttribute('.mappa', 'data-lampeggianti')) ?? '').split(',').filter(Boolean).sort().join(','); }
-  atteso(`${dove}: pulsano «${visti}», dovrebbe pulsare solo «${voluti}» (PO-088)`, visti === voluti);
-}

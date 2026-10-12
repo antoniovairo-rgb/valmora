@@ -31,6 +31,8 @@ export interface MappaProps {
   /** ondata di cui si mostrano spalti e cortei (prima della prima: 1) */
   ondata?: number;
   accesi?: string[];
+  /** PO-089: settore di cui parla la chiamata in corso: lì la gente si muove (corteo o folla) */
+  citato?: string;
   tensione?: Record<string, number> | null;
   presenze?: Disposizione | null;
   /** unità fisse già montate nelle ondate prima (transenne, D-082): si vedono col lucchetto e non si ritirano */
@@ -91,7 +93,7 @@ export function Mappa(p: MappaProps) {
   return (
     <div className={`mappa${atmosfera.notte ? ' notte' : ''}`} ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
       {p.home && <TastoHome vai={p.home} angolo={angolo} />}
-      {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} atmosfera={atmosfera} folla={folla} pronto={() => setPronta(true)} /></Suspense>}
+      {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} atmosfera={atmosfera} folla={folla} citato={p.citato} pronto={() => setPronta(true)} /></Suspense>}
       {settori.map((s) => {
         const liv = p.tensione ? livello(p.tensione[s.id] ?? 0) : null;
         const lato = s.pos.x < 30 ? 'sinistra' : s.pos.x > 70 ? 'destra' : 'centro';

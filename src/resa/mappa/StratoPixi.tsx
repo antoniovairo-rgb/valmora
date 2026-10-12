@@ -7,6 +7,7 @@ import { Container, Graphics, Particle, ParticleContainer, Sprite, Texture, type
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import type { Folla } from './folla.ts';
 import { useRidisegno } from './ridisegno.ts';
+import { costruisciDinamica, dinamicaDi } from './dinamica.ts';
 import { spento } from '../../interruttori.ts';
 import { bezier, canvasAlone, disegnaSfondo, disponi, token, type Atmosfera, type Colori } from './sfondo.ts';
 
@@ -21,7 +22,7 @@ export interface Margine { lato: number; sotto: number }
 // Quanti tifosi si vedono sugli spalti: pieni durante la partita, a metà all'arrivo, pochi al deflusso.
 const QUOTA = { pieni: 1, arrivo: 2, deflusso: 4 } as const;
 
-function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfera; folla: Folla; contenitore: RefObject<HTMLDivElement | null> }) {
+function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfera; folla: Folla; citato?: string; contenitore: RefObject<HTMLDivElement | null> }) {
   const { app } = useApplication();
   const volte = useRidisegno(app, p.contenitore.current); // S-26: sfondo ridisegnato al ritorno dal background
   const [dim, setDim] = useState({ w: app.screen.width, h: app.screen.height });
@@ -39,6 +40,9 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
   const pianta = JSON.stringify([p.atmosfera, p.folla, punti.map((q) => [q.id, q.tipo, Math.round(q.x), Math.round(q.y), q.colori ?? null])]);
   const strato = useRef<Container | null>(null);
   const aloni = useRef<{ s: Sprite; acceso: boolean; batte: boolean; x: number; y: number }[]>([]);
+  // PO-089: strato della dinamica della chiamata, viali e colori del corteo, e come muoverla (dall'effetto in fondo)
+  const strDinamica = useRef<Container | null>(null), vialiDin = useRef<{ id: string; punti: { x: number; y: number }[] }[]>([]);
+  const coloriDin = useRef<[string, string]>(['', '']), muoviDin = useRef<((t: number) => void) | null>(null);
   const texAlone = useMemo(() => Texture.from(canvasAlone(128)), []);
   useEffect(() => () => { texAlone.destroy(true); }, [texAlone]);
 
@@ -85,6 +89,8 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     // 3) posto per gli aloni (riempito dall'effetto sotto) e onde sui settori accesi
     const livelloAloni = new Container(); scena.addChild(livelloAloni); strato.current = livelloAloni;
     const onde = new Graphics(); scena.addChild(onde);
+    const dinamica = new Container(); scena.addChild(dinamica); strDinamica.current = dinamica;
+    vialiDin.current = animati.viali; coloriDin.current = animati.coloriCorteo;
     app.stage.addChild(scena);
 
     const [c1, c2] = animati.coloriCorteo, giallo = token('--giallo');
@@ -104,6 +110,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
         const f = (t % 1.2) / 1.2;
         onde.circle(a.x, a.y, 14 + f * 26).stroke({ color: giallo, width: 3, alpha: 1 - f });
       }
+      muoviDin.current?.(t);
       folla.update(); corteo.update();
     };
     passo();
@@ -133,14 +140,26 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     });
     p.contenitore.current?.setAttribute('data-lampeggianti', punti.filter((q) => (tutti && q.livello !== null) || q.acceso).map((q) => q.id).join(','));
   }, [punti, texAlone, pianta, p.contenitore]);
+
+  // PO-089: chi si muove per la chiamata in corso (corteo sul viale citato o folla attorno al punto).
+  useEffect(() => {
+    const livello = strDinamica.current;
+    if (!livello) return;
+    livello.removeChildren().forEach((c) => c.destroy());
+    const q = punti.find((x) => x.id === p.citato);
+    const d = dinamicaDi(p.citato, q?.tipo, vialiDin.current);
+    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, coloriDin.current, p.folla.spalti === 'deflusso') : null;
+    muoviDin.current?.(0);
+    p.contenitore.current?.setAttribute('data-dinamica', d ? `${d.tipo}:${d.settore}` : '');
+  }, [punti, pianta, volte, p.citato, p.folla.spalti, p.contenitore]);
   return null;
 }
 
-export function StratoPixi(p: { contenitore: RefObject<HTMLDivElement | null>; punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfera; folla: Folla; pronto: () => void }) {
+export function StratoPixi(p: { contenitore: RefObject<HTMLDivElement | null>; punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfera; folla: Folla; citato?: string; pronto: () => void }) {
   return (
     <Application className="mappa-tela" resizeTo={p.contenitore} preference="webgl" backgroundAlpha={0} antialias autoDensity
       resolution={Math.min(2, window.devicePixelRatio || 1)} onInit={p.pronto}>
-      <Disegno punti={p.punti} margine={p.margine} atmosfera={p.atmosfera} folla={p.folla} contenitore={p.contenitore} />
+      <Disegno punti={p.punti} margine={p.margine} atmosfera={p.atmosfera} folla={p.folla} citato={p.citato} contenitore={p.contenitore} />
     </Application>
   );
 }
