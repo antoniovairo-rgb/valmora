@@ -937,11 +937,78 @@
           {
             "var": "credito",
             "almeno": 6
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "nessuno"
           }
         ]
       },
       "effetti": [],
       "verbale": "testi:e36.verbale_confermato"
+    },
+    {
+      "id": "confermato_procura",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "credito",
+            "almeno": 6
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "procura"
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_confermato_procura"
+    },
+    {
+      "id": "confermato_stampa",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "credito",
+            "almeno": 6
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "stampa"
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_confermato_stampa"
+    },
+    {
+      "id": "confermato_comando",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "credito",
+            "almeno": 6
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "comando"
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_confermato_comando"
     },
     {
       "id": "prorogato",
@@ -954,6 +1021,10 @@
           {
             "var": "credito",
             "almeno": 3
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "nessuno"
           }
         ]
       },
@@ -961,14 +1032,139 @@
       "verbale": "testi:e36.verbale_prorogato"
     },
     {
+      "id": "prorogato_procura",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "procura"
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_prorogato_procura"
+    },
+    {
+      "id": "prorogato_stampa",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "stampa"
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_prorogato_stampa"
+    },
+    {
+      "id": "prorogato_comando",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "comando"
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_prorogato_comando"
+    },
+    {
       "id": "sostituito",
       "se": {
-        "var": "tensione_max",
-        "al_massimo": 6
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "nessuno"
+          }
+        ]
       },
       "effetti": [],
       "stelle_max": 2,
       "verbale": "testi:e36.verbale_sostituito"
+    },
+    {
+      "id": "sostituito_procura",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "procura"
+          }
+        ]
+      },
+      "effetti": [],
+      "stelle_max": 2,
+      "verbale": "testi:e36.verbale_sostituito_procura"
+    },
+    {
+      "id": "sostituito_stampa",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "stampa"
+          }
+        ]
+      },
+      "effetti": [],
+      "stelle_max": 2,
+      "verbale": "testi:e36.verbale_sostituito_stampa"
+    },
+    {
+      "id": "sostituito_comando",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "comando"
+          }
+        ]
+      },
+      "effetti": [],
+      "stelle_max": 2,
+      "verbale": "testi:e36.verbale_sostituito_comando"
     },
     {
       "id": "degenerato",

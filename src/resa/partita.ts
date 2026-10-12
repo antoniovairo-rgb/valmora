@@ -1,7 +1,8 @@
 // Dove si trova il giocatore dentro una missione: si ricava SOLO dallo stato salvato (InCorso),
 // così una ricarica a metà ondata riporta esattamente alla stessa scena.
+import { spento } from '../interruttori.ts';
 import { chiamateAperte, missioneFinita, type InCorso } from '../logica/missione.ts';
-import type { Chiamata, Esito, Missione } from '../logica/tipi.ts';
+import type { Chiamata, Condizione, Esito, Missione } from '../logica/tipi.ts';
 
 export type Fase =
   | { tipo: 'schieramento' }
@@ -21,10 +22,16 @@ export function faseDi(m: Missione, s: InCorso): Fase {
 /** Livello di colore 0-5 per una tensione di settore 0-10 (D-055: si mostra il colore, mai il numero). */
 export const livello = (tensione: number): number => (tensione <= 0 ? 0 : Math.min(5, Math.ceil(tensione / 2)));
 
-/** Tono dell'esito: il primo della lista è il migliore, l'ultimo il peggiore (ordine dei dati). */
+/** Tono dell'esito: il primo della lista è il migliore, l'ultimo il peggiore (ordine dei dati). Le versioni di un
+ *  esito («confermato_procura» di «confermato», D-106) hanno il tono dell'esito di cui sono versione.
+ *  Rosso C24T01: solo la posizione, e «Confermato» con procura/stampa/comando esce col colore medio. */
 export function tono(m: Missione, e: Esito): 'bene' | 'medio' | 'male' {
-  const i = m.esiti.findIndex((x) => x.id === e.id);
-  return i === 0 ? 'bene' : i === m.esiti.length - 1 ? 'male' : 'medio';
+  // versione = id dell'esito + «_» + un valore che la sua condizione confronta con «uguale» (es. fascicolo = procura)
+  const valori = (c: Condizione): string[] => ('tutte' in c ? c.tutte.flatMap(valori) : 'almeno_una' in c ? c.almeno_una.flatMap(valori)
+    : 'uguale' in c && typeof c.uguale === 'string' ? [c.uguale] : []);
+  const v = spento('C24T01') ? undefined : valori(e.se).find((x) => e.id.endsWith(`_${x}`) && m.esiti.some((q) => q.id === e.id.slice(0, -x.length - 1)));
+  const i = m.esiti.findIndex((x) => x.id === (v ? e.id.slice(0, -v.length - 1) : e.id));
+  return e.fallita || i === m.esiti.length - 1 ? 'male' : i === 0 ? 'bene' : 'medio';
 }
 
 /**
