@@ -38,7 +38,7 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnata**.
 | `… VALMORA_ROSSI=C17C01 …` | 360 px | ROSSO: 22 righe «Conferma senza riepilogo di cosa va dove» |
 | `… VALMORA_ROSSI=C17C02 …` | 360 px | ROSSO: «Annulla l'ultima da 11 a 11 unità» |
 | `node tools/foto.mjs out/foto-s12` | 3 larghezze | verde (dopo i pulsanti su una riga: su due righe coprivano il vassoio e a 412 px il trascinamento falliva) |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 9fe2d14 (merge della principale a5fbe11), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Visto nelle foto e lasciato a S-13 (PO-053 punto 2, PO-058): la barra fissa dei pulsanti copre l'ultima voce del vassoio finché non si scorre.
 

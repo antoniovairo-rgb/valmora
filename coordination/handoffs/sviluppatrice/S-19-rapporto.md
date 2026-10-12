@@ -28,7 +28,7 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnata**.
 | `VALMORA_LARGHEZZE=360 node tools/foto.mjs out/foto-s19` | e01 ×2, e02, e03, e13, e25 | verde |
 | `… VALMORA_ROSSI=C16F01 …` | 360 px | ROSSO: «0 barre della fiducia» su chiamate e chiusure (20 righe), valore NaN contro quello salvato |
 | `… VALMORA_ROSSI=C16F02 …` | 360 px | ROSSO: «risposta: fiducia da 4 a 5 senza «1» accanto alla barra» |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | prima: ROSSA su 5dca100 per docs/governo/BACKLOG.md:77 (riga della principale, corretta in a5fbe11); poi commit 9fe2d14 (merge della principale a5fbe11), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Limite del guardiano del «+N/−N» (FATTO MISURATO): nel giro delle foto lo scatta una sola risposta fotografata che cambia la fiducia. Le partite delle stagioni 2 e 3 si fotografano solo nelle scene chiave.
 
