@@ -100,7 +100,7 @@ export function App() {
   let testata: { etichetta: string; titolo: string } | null = null; // sopra la mappa, come nella bozza C2
 
   // Con una partita salvata, «Nuova partita» chiede conferma prima di cancellarla (C-005 R02).
-  const titolo = <Titolo puoRiprendere={!!sal} nuova={() => setSchermata(sal && !spento('C05R02') ? 'conferma' : 'genere')} riprendi={riprendi} crediti={() => setSchermata('crediti')} />;
+  const titolo = <Titolo puoRiprendere={!!sal} nuova={() => setSchermata(sal && !spento('C05R02') ? 'conferma' : 'genere')} riprendi={riprendi} crediti={() => setSchermata('crediti')} sal={sal} importata={aggiorna} />;
   if (schermata === 'crediti') corpo = <Crediti indietro={() => setSchermata('titolo')} />;
   else if (schermata === 'conferma') corpo = <ConfermaNuova si={() => setSchermata('genere')} no={() => setSchermata('titolo')} />;
   else if (schermata === 'genere') corpo = <SceltaGenere scegli={nuova} indietro={() => setSchermata('titolo')} />;

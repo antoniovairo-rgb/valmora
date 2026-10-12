@@ -6,11 +6,17 @@ import { spento } from '../../interruttori.ts';
 import { BUILD } from '../build.ts';
 import { mailIdee, URL_DONAZIONE } from '../collegamenti.ts';
 import { Guida } from './Guida.tsx';
+import { ConfermaImporta, PulsantiArchivio } from './Archivio.tsx';
+import { dallaRiserva } from '../archivio.ts';
+import type { Salvataggio } from '../../salvataggi/salvataggio.ts';
 import { giaInstallata, suIphone, useInstallazione } from '../installa.ts';
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 
-export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi: () => void; crediti: () => void }) {
+export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi: () => void; crediti: () => void; sal: Salvataggio | null; importata: (s: Salvataggio) => void }) {
+  const [daImportare, setDaImportare] = useState<Salvataggio | null>(null);
+  const [errore, setErrore] = useState<string | null>(null);
+  const [importata, setImportata] = useState(false);
   const [nome, sotto] = t('gioco.titolo').split(/\s+[–-]\s+/);
   const inst = useInstallazione();
   const [guida, setGuida] = useState(false);
@@ -22,6 +28,10 @@ export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi:
         <h1 className="logo-nome">{nome}</h1>
         {sotto && <div className="logo-sotto">{sotto}</div>}
       </div>
+      {dallaRiserva && <p className="avviso" role="status" data-riserva>Il salvataggio era rovinato: ho ripreso la partita dalla copia di riserva.</p>}
+      {errore && <p className="avviso" role="alert" data-errore-importa>{errore}</p>}
+      {importata && <p className="avviso buono" role="status" data-importata>Partita importata.</p>}
+      {daImportare && <ConfermaImporta nuova={daImportare} esiste={!!p.sal} annulla={() => setDaImportare(null)} fatto={(s) => { setDaImportare(null); setImportata(true); p.importata(s); }} />}
       <p className="tenue" data-versione={GAME_VERSION}>Versione {GAME_VERSION} · build {spento('C05S09') ? 'sviluppo' : BUILD}</p>
       {p.puoRiprendere && <button className="pulsante" onClick={p.riprendi}><Icona di={RotateCcw} />Riprendi</button>}
       <button className={`pulsante${p.puoRiprendere ? ' secondario' : ''}`} onClick={p.nuova}><Icona di={Play} />Nuova partita</button>
@@ -33,6 +43,7 @@ export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi:
         <button className="pulsante piccolo" data-azione="crediti" onClick={p.crediti}><Icona di={Info} />Crediti</button>
         {/* PO-050: la donazione solo dal browser, non nell'app Android, finché la regola Play non è verificata (REGOLE_PLAY §7) */}
         {!Capacitor.isNativePlatform() && <a className="pulsante piccolo" data-azione="dona" href={URL_DONAZIONE} target="_blank" rel="noopener noreferrer"><Icona di={Heart} />Sostieni</a>}
+        <PulsantiArchivio sal={p.sal} chiedi={(s) => { setErrore(null); setImportata(false); setDaImportare(s); }} errore={(x) => { setImportata(false); setErrore(x); }} />
         <button type="button" className="pulsante piccolo" data-azione="idee" onClick={() => { location.href = mailIdee(GAME_VERSION); }}><Icona di={Lightbulb} />Idee</button>
       </div>
       <p className="tenue avviso-finzione">{t('gioco.avviso')}</p>

@@ -154,3 +154,44 @@ export async function confermaSchieramento(pagina, { premi, atteso, fotoSe, prov
   await fotoSe();
   await premi('[data-azione="conferma-davvero"]');
 }
+
+/** S-20 (PO-073): esporta → ricarica pulita → importa = stesso salvataggio; file rovinato = avviso e nulla
+ *  cambia; con una partita, due conferme; salvataggio principale rovinato = ripresa dalla copia di riserva. */
+export async function controllaArchivio(pagina, { atteso, scena, foto }) {
+  const CH = 'valmora-salvataggio';
+  const leggi = () => pagina.evaluate((k) => localStorage.getItem(k), CH);
+  await pagina.reload(); await scena('titolo');
+  const prima = await leggi();
+  if (!prima) { atteso('archivio: nessun salvataggio da esportare', false); return; }
+  const [scarico] = await Promise.all([pagina.waitForEvent('download'), pagina.click('[data-azione="esporta"]')]);
+  atteso(`archivio: il file si chiama «${scarico.suggestedFilename()}», non valmora-AAAA-MM-GG.json`, /^valmora-\d{4}-\d{2}-\d{2}\.json$/.test(scarico.suggestedFilename()));
+  const percorso = await scarico.path();
+  const { readFileSync } = await import('node:fs');
+  const esportato = JSON.parse(readFileSync(percorso, 'utf8'));
+  atteso('archivio: il file esportato non è il salvataggio', JSON.stringify(esportato) === JSON.stringify(JSON.parse(prima)));
+  // ricarica pulita e importazione: senza partita entra subito
+  await pagina.evaluate(() => localStorage.clear()); await pagina.reload(); await scena('titolo');
+  await pagina.setInputFiles('[data-importa]', percorso);
+  await pagina.waitForSelector('[data-importata]', { timeout: 3000 }).catch(() => {});
+  atteso('archivio: esporta → ricarica pulita → importa non ridà lo stesso salvataggio', JSON.stringify(JSON.parse((await leggi()) ?? 'null')) === JSON.stringify(esportato));
+  // file non valido: avviso, nulla cambia
+  const ora = await leggi();
+  await pagina.setInputFiles('[data-importa]', { name: 'rotto.json', mimeType: 'application/json', buffer: Buffer.from('{rotto') });
+  await pagina.waitForSelector('[data-errore-importa]', { timeout: 3000 }).catch(() => {});
+  atteso('archivio: file rovinato senza avviso', (await pagina.locator('[data-errore-importa]').count()) === 1);
+  atteso('archivio: il file rovinato ha cambiato il salvataggio', (await leggi()) === ora);
+  // con una partita: due conferme
+  await pagina.setInputFiles('[data-importa]', percorso);
+  const uno = await pagina.waitForSelector('[data-conferma-importa="1"]', { timeout: 3000 }).then(() => true, () => false);
+  atteso('archivio: importare sopra una partita non chiede conferma', uno);
+  if (uno) { await foto(); await pagina.click('[data-azione="si-importa"]'); }
+  const due = await pagina.waitForSelector('[data-conferma-importa="2"]', { timeout: 3000 }).then(() => true, () => false);
+  atteso('archivio: manca la seconda conferma prima di sostituire la partita', due);
+  if (due) { await foto(); await pagina.click('[data-azione="si-importa"]'); }
+  // salvataggio principale rovinato: si riprende dalla copia di riserva
+  await pagina.evaluate((k) => localStorage.setItem(k, '{rotto'), CH); await pagina.reload(); await scena('titolo');
+  atteso('archivio: salvataggio rovinato senza ripresa dalla copia di riserva (C19S01)', (await pagina.locator('[data-riserva]').count()) === 1 && (await pagina.getByRole('button', { name: 'Riprendi' }).count()) === 1);
+  const dopo = await leggi(); let ripreso = null; try { ripreso = JSON.parse(dopo ?? 'null'); } catch { /* resta rovinato */ }
+  atteso('archivio: dopo la ripresa il salvataggio non è quello della copia', JSON.stringify(ripreso) === JSON.stringify(esportato));
+  if ((await pagina.locator('[data-riserva]').count())) await foto();
+}
