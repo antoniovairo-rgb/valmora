@@ -6,6 +6,7 @@ import { Application, extend, useApplication } from '@pixi/react';
 import { Container, Graphics, Particle, ParticleContainer, Sprite, Texture, type Ticker } from 'pixi.js';
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import type { Folla } from './folla.ts';
+import { useRidisegno } from './ridisegno.ts';
 import { bezier, canvasAlone, disegnaSfondo, disponi, token, type Atmosfera, type Colori } from './sfondo.ts';
 
 extend({ Container });
@@ -21,6 +22,7 @@ const QUOTA = { pieni: 1, arrivo: 2, deflusso: 4 } as const;
 
 function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfera; folla: Folla; contenitore: RefObject<HTMLDivElement | null> }) {
   const { app } = useApplication();
+  const volte = useRidisegno(app, p.contenitore.current); // S-26: sfondo ridisegnato al ritorno dal background
   const [dim, setDim] = useState({ w: app.screen.width, h: app.screen.height });
   useEffect(() => {
     const r = app.renderer; // tenuto da parte: allo smontaggio Pixi lo toglie da «app»
@@ -47,7 +49,8 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     const ris = Math.min(2, window.devicePixelRatio || 1);
     const tela = document.createElement('canvas'); tela.width = Math.round(W * ris); tela.height = Math.round(H * ris);
     const ctx = tela.getContext('2d')!; ctx.scale(ris, ris);
-    const animati = disegnaSfondo(ctx, disponi(W, H, posti.map(([id, tipo, x, y, colori]) => ({ id, tipo, x, y, colori: colori ?? undefined })), atm));
+    const disp = disponi(W, H, posti.map(([id, tipo, x, y, colori]) => ({ id, tipo, x, y, colori: colori ?? undefined })), atm);
+    const animati = disegnaSfondo(ctx, disp);
     const texSfondo = Texture.from(tela);
     const scena = new Container();
     const sfondo = new Sprite(texSfondo); sfondo.width = W; sfondo.height = H; scena.addChild(sfondo);
@@ -73,6 +76,8 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     }));
     const el = p.contenitore.current; // per le foto: cosa è stato disegnato davvero
     el?.setAttribute('data-dettagli', animati.dettagli.join(','));
+    el?.setAttribute('data-stadio', animati.stadio); // S-25: e dove sta, per controllare che non copra i settori
+    el?.setAttribute('data-stadio-ellisse', disp.stadio ? [disp.stadio.cx, disp.stadio.cy, disp.stadio.rx, disp.stadio.ry].map(Math.round).join(',') : '');
     el?.setAttribute('data-folla', `${folla0.spalti}|${cortei.map((c) => `${c.settore}>${c.verso}`).join(',')}`);
     scena.addChild(corteo);
 
@@ -109,7 +114,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
       scena.destroy({ children: true });
       texSfondo.destroy(true);
     };
-  }, [app, W, H, pianta, p.contenitore]);
+  }, [app, W, H, pianta, p.contenitore, volte]);
 
   // Aloni: colore della tensione (D-055) o giallo per i settori accesi; cambiano a ogni scena.
   useEffect(() => {

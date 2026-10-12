@@ -347,3 +347,30 @@ export async function controllaRipartiTesto(pagina, { atteso, scena, partita, pi
   atteso(`${scelto.m.id} verbale perso: manca «Riparti dall'ondata»`, ultima !== -1);
   atteso(`${scelto.m.id} verbale perso: l'ultima riga di «Riparti dall'ondata» è larga ${ultima} px, il numero è rimasto solo (C16-06)`, ultima === -1 || ultima > 30);
 }
+
+/** S-26 (PO-081): tornando dal background (pagina nascosta e poi visibile) e dopo la perdita e il ripristino del
+ *  contesto WebGL, lo sfondo della mappa si ridisegna e la mappa ha lo stesso aspetto (media dei pixel). */
+export async function controllaRidisegno(pagina, atteso, dove) {
+  if ((await pagina.getAttribute('.mappa', 'data-mappa')) !== 'webgl') return;
+  const media = async () => {
+    const png = (await pagina.locator('.mappa').first().screenshot()).toString('base64');
+    return pagina.evaluate(async (png) => {
+      const i = new Image(); i.src = `data:image/png;base64,${png}`; await i.decode();
+      const c = document.createElement('canvas'); c.width = i.width; c.height = i.height; const f = c.getContext('2d'); f.drawImage(i, 0, 0);
+      const d = f.getImageData(0, 0, c.width, c.height).data; let s = 0; for (let k = 0; k < d.length; k += 4) s += d[k] + d[k + 1] + d[k + 2];
+      return s / (d.length / 4) / 3;
+    }, png);
+  };
+  const prima = await media(); const volte = Number(await pagina.getAttribute('.mappa', 'data-sfondo') ?? 0);
+  await pagina.evaluate(async () => {
+    const stato = (v) => { Object.defineProperty(document, 'visibilityState', { value: v, configurable: true }); document.dispatchEvent(new Event('visibilitychange')); };
+    stato('hidden'); stato('visible');
+    const gl = document.querySelector('.mappa canvas')?.getContext('webgl2') ?? document.querySelector('.mappa canvas')?.getContext('webgl');
+    const e = gl?.getExtension('WEBGL_lose_context');
+    if (e) { e.loseContext(); await new Promise((ok) => setTimeout(ok, 200)); e.restoreContext(); }
+  });
+  await pagina.waitForTimeout(800);
+  const dopo = await media(); const volte2 = Number(await pagina.getAttribute('.mappa', 'data-sfondo') ?? 0);
+  atteso(`${dove}: tornando dal background lo sfondo della mappa non si ridisegna (${volte} → ${volte2}) (S-26)`, volte2 >= volte + 2);
+  atteso(`${dove}: dopo il background la mappa è cambiata (media dei pixel ${prima.toFixed(1)} → ${dopo.toFixed(1)}) (S-26)`, Math.abs(prima - dopo) < 8);
+}
