@@ -10,7 +10,7 @@ import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFi
 import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
-import { carica, nuovoSeme, salva } from './archivio.ts';
+import { carica, nuovoSeme, salva, ultimoAvviso } from './archivio.ts';
 import { dichiarate, impostaGenere, missione, missioni } from './dati.ts';
 import type { Genere } from '../dati/testi.ts';
 import { ConfermaNuova, SceltaGenere } from './schermate/SceltaGenere.tsx';
@@ -45,6 +45,7 @@ const libera = (m: Missione, ic: InCorso, d: Disposizione, preferita: string | n
 
 export function App() {
   const [sal, setSal] = useState<Salvataggio | null>(() => carica());
+  const [aggiornato] = useState(() => ultimoAvviso()); // dopo carica(): avviso dell'adattamento ai dati nuovi (C-014)
   const [schermata, setSchermata] = useState<Schermata>('titolo');
   const [visti, setVisti] = useState(0);
   const [bozza, setBozza] = useState<Disposizione>({});
@@ -94,7 +95,7 @@ export function App() {
   let testata: { etichetta: string; titolo: string } | null = null; // sopra la mappa, come nella bozza C2
 
   // Con una partita salvata, «Nuova partita» chiede conferma prima di cancellarla (C-005 R02).
-  const titolo = <Titolo puoRiprendere={!!sal} nuova={() => setSchermata(sal && !spento('C05R02') ? 'conferma' : 'genere')} riprendi={riprendi} crediti={() => setSchermata('crediti')} />;
+  const titolo = <Titolo avviso={aggiornato} puoRiprendere={!!sal} nuova={() => setSchermata(sal && !spento('C05R02') ? 'conferma' : 'genere')} riprendi={riprendi} crediti={() => setSchermata('crediti')} />;
   if (schermata === 'crediti') corpo = <Crediti indietro={() => setSchermata('titolo')} />;
   else if (schermata === 'conferma') corpo = <ConfermaNuova si={() => setSchermata('genere')} no={() => setSchermata('titolo')} />;
   else if (schermata === 'genere') corpo = <SceltaGenere scegli={nuova} indietro={() => setSchermata('titolo')} />;
