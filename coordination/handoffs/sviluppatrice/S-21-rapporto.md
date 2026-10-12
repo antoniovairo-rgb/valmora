@@ -37,6 +37,6 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnata**.
 | stesso comando, con «Home» sempre in alto a sinistra | 360 px | ROSSO: «il pulsante Home copre stazione» (e02, e15) |
 | `… VALMORA_ROSSI=C25I01 …` | 360 px | ROSSO: «indietro dall'episodio: si arriva a fuori dal gioco (about:blank)» |
 | `node tools/foto.mjs out/foto-s21` | 3 larghezze | verde |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 938b6f7 (merge della principale), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s21/2026-10-12/`: schieramento e città, prima e dopo, a 360, 375 e 412 px.
