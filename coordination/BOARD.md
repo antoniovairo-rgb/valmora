@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-12 16:31 UTC – principale baa7dcc: completa VERDE su df179fc, CI verde; contiene PO-083 (D-111, la ripartenza propone solo un'ondata con almeno una possibilità su tre). Sviluppatrice indietro di 5 commit e senza consegne nuove: le ho chiesto il merge dalla principale; resta su S-26, poi S-25, poi S-23. main a 0.8.0; il prossimo rilascio è alle 23:00.
+Ultimo giro della routine: 2026-10-12 17:30 UTC – principale 91c1bd8 completa VERDE: integrato S-23 secondo pezzo della sviluppatrice (vignette di sala e verbale, scorrimento zero a 760 px) + PO-083 (D-111). Pronta per il rilascio delle 23:00. Sviluppatrice: contrordine, prima S-26 poi S-25, poi C16-02/03/04/06 (descrizioni in docs/revisioni/COLLAUDO_C16.md sul ramo claude/valmora-collaudo-c16).
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
