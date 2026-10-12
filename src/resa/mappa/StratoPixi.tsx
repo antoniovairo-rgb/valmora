@@ -112,6 +112,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     return () => {
       app.ticker?.remove(passo);
       strato.current = null; aloni.current = []; // distrutti con la scena: il prossimo disegno non li deve toccare
+      p.contenitore.current?.setAttribute('data-aloni', '0');
       scena.destroy({ children: true });
       texSfondo.destroy(true);
     };
@@ -131,8 +132,10 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
       livello.addChild(s);
       return { s, acceso: q.acceso, batte: tutti || q.acceso, x: q.x, y: q.y };
     });
+    p.contenitore.current?.setAttribute('data-aloni', String(aloni.current.length));
     p.contenitore.current?.setAttribute('data-lampeggianti', punti.filter((q) => (tutti && q.livello !== null) || q.acceso).map((q) => q.id).join(','));
-  }, [punti, texAlone, pianta, p.contenitore]);
+    // S-26: anche gli aloni si rifanno quando lo sfondo si ridisegna (la scena vecchia li ha distrutti). Rosso C31W02: no.
+  }, [punti, texAlone, pianta, p.contenitore, spento('C31W02') ? 0 : volte]);
   return null;
 }
 

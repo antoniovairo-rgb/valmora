@@ -362,7 +362,7 @@ export async function controllaRidisegno(pagina, atteso, dove) {
       return s / (d.length / 4) / 3;
     }, png);
   };
-  const prima = await media(); const volte = Number(await pagina.getAttribute('.mappa', 'data-sfondo') ?? 0);
+  const prima = await media(); const volte = Number(await pagina.getAttribute('.mappa', 'data-sfondo') ?? 0); const aloni = await pagina.getAttribute('.mappa', 'data-aloni');
   await pagina.evaluate(async () => {
     const stato = (v) => { Object.defineProperty(document, 'visibilityState', { value: v, configurable: true }); document.dispatchEvent(new Event('visibilitychange')); };
     stato('hidden'); stato('visible');
@@ -372,6 +372,8 @@ export async function controllaRidisegno(pagina, atteso, dove) {
   });
   await pagina.waitForTimeout(800);
   const dopo = await media(); const volte2 = Number(await pagina.getAttribute('.mappa', 'data-sfondo') ?? 0);
+  const aloni2 = await pagina.getAttribute('.mappa', 'data-aloni');
+  atteso(`${dove}: dopo il background gli aloni della tensione sono ${aloni2} invece di ${aloni} (S-26)`, aloni2 === aloni);
   atteso(`${dove}: tornando dal background lo sfondo della mappa non si ridisegna (${volte} → ${volte2}) (S-26)`, volte2 >= volte + 2);
   atteso(`${dove}: dopo il background la mappa è cambiata (media dei pixel ${prima.toFixed(1)} → ${dopo.toFixed(1)}) (S-26)`, Math.abs(prima - dopo) < 8);
 }
