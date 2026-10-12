@@ -42,7 +42,7 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
       {/* S-17 (PO-060): si riparte dall'ondata che ha deciso l'esito, oppure da capo */}
       {p.risultato.fallita && (
         <div className="riga ripartenza">
-          {p.riparti && <button className="pulsante" data-azione="riparti" data-ondata={p.riparti.n} onClick={p.riparti.vai}><Icona di={StepForward} />Riparti dall'ondata {p.riparti.n}</button>}
+          {p.riparti && <button className="pulsante" data-azione="riparti" data-ondata={p.riparti.n} onClick={p.riparti.vai}><Icona di={StepForward} />{spento('C28R01') ? `Riparti dall'ondata ${p.riparti.n}` : `Riparti dall'ondata\u00a0${p.riparti.n}`}</button>}
           <button className={`pulsante${p.riparti ? ' secondario' : ''}`} data-azione="rigioca" aria-label="Ricomincia l'episodio" onClick={p.rigioca}><Icona di={RotateCcw} />{p.riparti ? 'Ricomincia' : "Ricomincia l'episodio"}</button>
         </div>
       )}

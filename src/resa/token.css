@@ -112,8 +112,8 @@
   /* riserve misurate a 360×760: tutto il resto della schermata (S-23) */
   --vignetta-riserva-sala: 680px;
   --vignetta-min-sala: 80px;
-  --vignetta-riserva-esito: 662px;
-  --vignetta-min-esito: 90px;
+  --vignetta-riserva-esito: 680px;
+  --vignetta-min-esito: 70px;
 
   /* Città degli episodi (D-061) */
   --citta-fiume: #1f6fa8;

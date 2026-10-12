@@ -84,7 +84,8 @@ export function App() {
     aggiorna(s);
     // S-18 (PO-056): alla prima partita su questo telefono, la guida a passi (saltabile) prima della città.
     // Rosso C22G01: niente guida.
-    if (!guidaVista() && !spento('C22G01')) { segnaGuidaVista(); setScelto(prossimoEpisodio(s)?.id ?? null); setSchermata('guida'); return; }
+    // C16-04: «vista» quando la chiudi o la finisci, non prima di mostrarla (rosso C28G01: prima, come allora)
+    if (!guidaVista() && !spento('C22G01')) { if (spento('C28G01')) segnaGuidaVista(); setScelto(prossimoEpisodio(s)?.id ?? null); setSchermata('guida'); return; }
     alla_citta(s);
   };
   // Sulla mappa è già scelto il prossimo episodio da giocare; se sono tutti superati, l'ultimo.
@@ -121,7 +122,7 @@ export function App() {
   if (schermata === 'crediti') corpo = <Crediti indietro={() => setSchermata('titolo')} />;
   else if (schermata === 'conferma') corpo = <ConfermaNuova si={() => setSchermata('genere')} no={() => setSchermata('titolo')} />;
   else if (schermata === 'genere') corpo = <SceltaGenere scegli={nuova} indietro={() => setSchermata('titolo')} />;
-  else if (schermata === 'guida' && sal) { nome = 'guida'; corpo = <Guida introduttiva chiudi={() => alla_citta(sal)} />; }
+  else if (schermata === 'guida' && sal) { nome = 'guida'; corpo = <Guida introduttiva chiudi={() => { segnaGuidaVista(); alla_citta(sal); }} />; }
   else if (schermata === 'verbale' && esito && sal) {
     corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
       rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} home={home} riparti={ripartenza(esito)}

@@ -256,7 +256,11 @@ export async function controllaGuida(pagina, { atteso, scena, foto, salta }) {
   let passi = 1;
   const vignetta = async () => atteso(`guida passo ${passi}: manca la vignetta (S-23, PO-078)`, await pagina.locator(`[data-vignetta="guida-${passi}"]`).isVisible().catch(() => false));
   await vignetta();
-  while (await pagina.locator('[data-azione="guida-avanti"]').count()) { await pagina.click('[data-azione="guida-avanti"]'); passi++; await vignetta(); await foto(); }
+  while (await pagina.locator('[data-azione="guida-avanti"]').count()) {
+    await pagina.click('[data-azione="guida-avanti"]'); passi++; await vignetta(); await foto();
+    // C16-04: a metà guida non è ancora «vista» (se l'app si chiude qui, la prossima volta torna)
+    if (passi === 3) atteso('guida introduttiva: segnata «vista» prima di finirla (C16-04)', (await pagina.evaluate(() => localStorage.getItem('valmora-guida-vista'))) !== 'si');
+  }
   atteso(`guida introduttiva: ${passi} passi, ne servono 6`, passi === 6);
   await pagina.click('[data-azione="guida-fine"]');
 }
@@ -315,4 +319,30 @@ export async function controllaRende(pagina, m, n, atteso, t) {
 export async function controllaVignetta(pagina, prefisso, atteso, dove) {
   const vista = await pagina.locator(`[data-vignetta^="${prefisso}"]`).first().isVisible().catch(() => false);
   atteso(`${dove}: manca la vignetta «${prefisso}…» (S-23, PO-078)`, vista);
+}
+
+/** C16-06: «Riparti dall'ondata N» non lascia il numero da solo sull'ultima riga. Si fa perdere, dalla città, il primo
+ *  episodio il cui fallimento dà una ripartenza N > 1 (e01 dopo C16-01 offre solo «Ricomincia»). */
+export async function controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }) {
+  const { ondataDaRiprendere } = await import('../src/logica/missione.ts');
+  const { missioniDai, salvataggioTutti, apriDallaCitta } = await import('./foto-bozze.mjs');
+  const { missioni, v0 } = missioniDai(dirDati);
+  let scelto = null;
+  for (let i = 0; i < missioni.length && !scelto; i++) {
+    const p = pianoAttento(dirDati, i, v0); const f = p?.fallimento;
+    if (f?.fallita && ondataDaRiprendere({ rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili }, p.m) > 1) scelto = p;
+  }
+  if (!scelto) { atteso('C16-06: nessun episodio con ripartenza oltre la prima ondata, il controllo non si può fare', false); return; }
+  await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify(salvataggioTutti(missioni, v0)));
+  await pagina.reload(); await scena('titolo');
+  await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  await apriDallaCitta(pagina, scelto.m, atteso);
+  await partita({ m: scelto.m, ...scelto.fallimento });
+  const ultima = await pagina.evaluate(() => {
+    const b = document.querySelector('[data-azione="riparti"]'); if (!b) return -1;
+    const t = [...b.childNodes].find((x) => x.nodeType === 3); if (!t) return 999;
+    const r = document.createRange(); r.selectNodeContents(t); return Math.round([...r.getClientRects()].at(-1).width);
+  });
+  atteso(`${scelto.m.id} verbale perso: manca «Riparti dall'ondata»`, ultima !== -1);
+  atteso(`${scelto.m.id} verbale perso: l'ultima riga di «Riparti dall'ondata» è larga ${ultima} px, il numero è rimasto solo (C16-06)`, ultima === -1 || ultima > 30);
 }

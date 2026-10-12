@@ -4,6 +4,7 @@
 //  O2 offline, uno script che non esiste non riceve index.html (prima: pagina HTML al posto del modulo);
 //  O3 offline, modulo della città tolto dalla cache → avviso con «Riprova», non una pagina bianca;
 //  O4 rilascio nuovo (sw.js con un'altra versione) aperto online → la cache della build vecchia non c'è più.
+//  O5 online durante un rilascio, un file della build vecchia risponde 404 ma è in cache: si usa la cache (C16-03).
 // Uso a mano: node tools/offline.mjs [dist]; VALMORA_ROSSI=C14O01,… accende i rossi (come in foto.mjs).
 import { createServer } from 'node:http';
 import { readFileSync, existsSync } from 'node:fs';
@@ -14,12 +15,12 @@ const TIPI = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css
 
 export async function giraOffline(build = 'dist') {
   const radice = resolve(build);
-  let rete = true, versioneFinta = null;
+  let rete = true, versioneFinta = null, sparito = null; // sparito: file che il server non ha più (rilascio nuovo)
   const srv = createServer((q, r) => {
     if (!rete) { r.destroy(); return; }
     const u = decodeURIComponent((q.url ?? '/').split('?')[0]);
     const p = join(radice, u === '/' ? 'index.html' : u);
-    if (!existsSync(p)) { r.writeHead(404); return r.end(); }
+    if (!existsSync(p) || (sparito && sparito.test(u))) { r.writeHead(404); return r.end(); }
     let corpo = readFileSync(p);
     if (versioneFinta && u === '/sw.js') corpo = Buffer.from(corpo.toString().replace(/const VERSIONE = '[^']*'/, `const VERSIONE = '${versioneFinta}'`));
     r.writeHead(200, { 'content-type': TIPI[extname(p)] ?? 'application/octet-stream', 'cache-control': 'no-store' }); r.end(corpo);
@@ -37,7 +38,7 @@ export async function giraOffline(build = 'dist') {
     if (rossi.length) await ctx.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
     const p = await ctx.newPage(); p.errori = [];
     p.on('pageerror', (e) => p.errori.push(e.message.slice(0, 120)));
-    rete = true; versioneFinta = null;
+    rete = true; versioneFinta = null; sparito = null;
     await p.goto(URL); await p.evaluate(() => navigator.serviceWorker.ready); await p.waitForTimeout(300); await p.reload(); await scena(p, 'titolo');
     return { ctx, p };
   }
@@ -66,6 +67,14 @@ export async function giraOffline(build = 'dist') {
       const avviso = (await p.locator('[data-errore-carica] [data-azione="riprova"]').count()) === 1;
       const conMappa = (await p.locator('.mappa[data-pronta="si"]').count()) === 1; // senza WebGL la città non carica il modulo
       atteso('O3 modulo mancante offline: niente «Riprova», pagina bianca', avviso || conMappa);
+      await ctx.close();
+    }
+    { // O5 (C16-03): online, scheda della build vecchia aperta, il server non ha più il modulo della città (404)
+      const { ctx, p } = await contesto();
+      sparito = /StratoCitta/;
+      await nuova(p);
+      const citta = await p.waitForSelector('.mappa[data-pronta="si"]', { timeout: 6000 }).then(() => true, () => false);
+      atteso(`O5 online durante un rilascio: modulo vecchio 404 sul server ma in cache, la città ${citta ? 'si apre' : 'non si apre'} (C16-03)`, citta && !(await p.locator('[data-errore-carica]').count()));
       await ctx.close();
     }
     { // O4: rilascio nuovo → via la cache vecchia

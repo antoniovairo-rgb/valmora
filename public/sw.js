@@ -6,7 +6,8 @@
 //  (b) senza rete, la pagina si dà solo alle navigazioni: mai index.html al posto di uno script;
 //  (d) all'attivazione si tolgono le cache delle build vecchie.
 // Rossi (dal parametro «rossi» con cui la pagina registra il worker): C14O01 = in cache solo i file citati
-// dalla pagina, come prima; C14O02 = pagina per ogni richiesta fallita e cache vecchie tenute, come prima.
+// dalla pagina, come prima; C14O02 = pagina per ogni richiesta fallita e cache vecchie tenute, come prima;
+// C28W01 = una risposta di errore della rete vince sulla cache, come prima (C16-03).
 const VERSIONE = /*VERSIONE*/'sviluppo'/*VERSIONE*/;
 const FILE = /*FILE*/[]/*FILE*/;
 const ROSSI = (new URL(self.location.href).searchParams.get('rossi') ?? '').split(',');
@@ -31,7 +32,10 @@ self.addEventListener('activate', (e) => e.waitUntil((async () => {
 self.addEventListener('fetch', (e) => {
   const r = e.request;
   if (r.method !== 'GET' || new URL(r.url).origin !== self.location.origin) return;
-  e.respondWith(fetch(r).then((risposta) => {
+  e.respondWith(fetch(r).then(async (risposta) => {
+    // C16-03: online durante un rilascio, un file della build vecchia risponde 404 dal server ma è in cache: si usa
+    // la cache (rosso C28W01: si restituisce il 404 come prima)
+    if (!risposta.ok && !ROSSI.includes('C28W01')) { const x = await caches.match(r, { ignoreSearch: true }); if (x) return x; }
     // solo se la cache di questa build c'è ancora: un worker vecchio, mentre arriva il nuovo, non la ricrea (d)
     if (risposta.ok) { const copia = risposta.clone(); caches.has(CACHE).then((c) => c && caches.open(CACHE).then((x) => x.put(r, copia))); }
     return risposta;

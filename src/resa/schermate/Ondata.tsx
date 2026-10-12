@@ -2,7 +2,7 @@
 // alla scelta, poi la chiusura col rapporto. Ogni scelta si salva subito: una ricarica riporta alla
 // chiamata successiva (la risposta già letta non torna).
 import { ChevronDown, ChevronRight, Coffee, FileText, Radio } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { spento } from '../../interruttori.ts';
 import { opzioniValide, type InCorso } from '../../logica/missione.ts';
 import type { Chiamata as TChiamata, Missione, Opzione } from '../../logica/tipi.ts';
@@ -18,12 +18,21 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
   const [nascoste, setNascoste] = useState(false);
-  useEffect(() => {
+  // Calcolo diretto (non IntersectionObserver, che risponde solo attraversando soglie e in ritardo): prima del disegno,
+  // a ogni scorrimento e ridimensionamento e quando cambia il layout della pagina (mappa pronta, caratteri caricati).
+  useLayoutEffect(() => {
     const el = opzioni.current?.querySelector('.opzione'); // la prima opzione deve vedersi tutta
-    if (!el || typeof IntersectionObserver === 'undefined') return;
-    const io = new IntersectionObserver(([e]) => setNascoste(e!.intersectionRatio < 0.99), { threshold: [0, 0.5, 0.99, 1] });
-    io.observe(el);
-    return () => io.disconnect();
+    if (!el) return;
+    const misura = () => {
+      const r = el.getBoundingClientRect();
+      const visibile = Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0));
+      setNascoste(r.height > 0 && visibile / r.height < 0.99);
+    };
+    misura();
+    addEventListener('scroll', misura, { passive: true }); addEventListener('resize', misura);
+    const ro = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(misura);
+    ro?.observe(document.body);
+    return () => { removeEventListener('scroll', misura); removeEventListener('resize', misura); ro?.disconnect(); };
   }, []);
   return (
     <>
