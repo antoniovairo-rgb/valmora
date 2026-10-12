@@ -48,7 +48,8 @@ await caso('JSON rotto', '{"save_version":2,"seme":');
   const ctx = await b.newContext({ viewport: { width: larg, height: alt }, hasTouch: true, reducedMotion: 'reduce', serviceWorkers: 'allow' });
   const p = await ctx.newPage();
   const errori = []; p.on('pageerror', (e) => errori.push(e.message)); p.on('console', (x) => { if (x.type() === 'error') errori.push(x.text()); });
-  await p.goto(url); await attendiScena(p, ['titolo']);
+  const urlL = url.replace('127.0.0.1', 'localhost'); // il SW si registra solo su https o localhost (installa.ts:11)
+  await p.goto(urlL); await attendiScena(p, ['titolo']);
   // attende fino a 8 s la registrazione del service worker (campionata ogni 500 ms)
   for (let i = 0; i < 16; i++) { if (await p.evaluate(async () => (await navigator.serviceWorker?.getRegistrations?.())?.length > 0).catch(() => false)) break; await attesa(p, 500); }
   await attesa(p, 500);
