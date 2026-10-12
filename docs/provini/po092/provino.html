@@ -1,0 +1,119 @@
+<!doctype html>
+<!-- Provino PO-092: tre alternative per le vignette «Stasera» (stadio) e «Fine episodio» (protagonista e vice).
+     Solo provino, non è codice di gioco: i colori nuovi diventeranno token in src/resa/token.css nello stile scelto.
+     Persone, club e luoghi inventati. -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provino PO-092</title>
+<style>
+  :root {
+    --giallo: #ffd400; --nero: #111111; --bianco: #ffffff; --magenta: #e0115f; --ciano: #00c2ff;
+    --pelle: #f2c9a0; --pelle-ombra: #d9a27a; --capelli: #3a2a20; --cielo-alto: #1b2a4a; --cielo-basso: #f08a4b;
+    --cemento: #b9bcc4; --cemento-ombra: #7d818c; --prato: #3fa34d; --prato-chiaro: #59bd63; --luce: #fff6c2;
+    --curva-a: #c8102e; --curva-b: #1d4fa0; --giacca-ombra: #0089b8; --nero-giacca: #2b2b33;
+  }
+  body { margin: 0; padding: 16px 8px; background: #f4f1e8; font: 14px/1.4 system-ui, sans-serif; color: var(--nero); }
+  h2 { margin: 18px 0 6px; font-size: 15px; }
+  p { margin: 0 0 8px; }
+  svg { display: block; width: 100%; height: auto; border: 3px solid var(--nero); box-sizing: border-box; margin-bottom: 6px; }
+  .t { stroke: var(--nero); stroke-linejoin: round; stroke-linecap: round; }
+</style>
+</head>
+<body>
+<div id="tavole"></div>
+<script>
+const S = {
+  A: { nome: 'A · Linea chiara', nota: 'Contorni sottili e uguali, colori pieni con un solo tono d\'ombra, prospettiva di tre quarti. Leggibile anche piccola.', w: 1.4, ombra: 'tono' },
+  B: { nome: 'B · Chiaroscuro notturno', nota: 'Ombre nere piene e luci dei fari che tagliano la scena: più drammatica, meno colore.', w: 2.2, ombra: 'nero' },
+  C: { nome: 'C · Pop retinato', nota: 'Ombre fatte di retino a punti come nei fumetti stampati, contorno nero spesso: la più vicina allo stile C di oggi.', w: 2.6, ombra: 'retino' },
+};
+const ombra = (s, base) => s.ombra === 'nero' ? 'var(--nero)' : s.ombra === 'retino' ? 'url(#ret)' : base;
+const defs = `<defs>
+  <pattern id="ret" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="var(--cemento-ombra)"/><circle cx="2.5" cy="2.5" r="1.4" fill="var(--nero)"/></pattern>
+  <pattern id="retg" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="var(--giallo)"/><circle cx="3" cy="3" r="1.1" fill="#e0b800"/></pattern>
+  <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--cielo-alto)"/><stop offset="1" stop-color="var(--cielo-basso)"/></linearGradient>
+  <linearGradient id="cono" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--luce)" stop-opacity=".85"/><stop offset="1" stop-color="var(--luce)" stop-opacity="0"/></linearGradient>
+</defs>`;
+
+function stadio(s) {
+  const w = s.w, notte = s.ombra === 'nero';
+  const cielo = s.ombra === 'retino' ? 'url(#retg)' : 'url(#cielo)';
+  // catino in prospettiva: bordo alto (ellisse grande), campo (ellisse piccola), facciata davanti
+  const fari = [[34, 30], [286, 30]].map(([x, y]) => `
+    <polygon points="${x - 4},${y + 6} ${x + 4},${y + 6} ${x + (x < 160 ? 70 : -70)},150 ${x + (x < 160 ? 10 : -10)},150" fill="url(#cono)" opacity="${notte ? 0.9 : 0.55}"/>
+    <rect x="${x - 2}" y="${y}" width="4" height="70" fill="var(--nero)"/>
+    <rect class="t" x="${x - 10}" y="${y - 10}" width="20" height="12" fill="var(--luce)" stroke-width="${w}"/>
+    ${[0, 1, 2].map((i) => `<circle cx="${x - 6 + i * 6}" cy="${y - 4}" r="2" fill="var(--bianco)"/>`).join('')}`).join('');
+  const folla = Array.from({ length: 70 }, (_, i) => {
+    const a = Math.PI * (0.05 + 0.9 * (i / 70)), r = 0.82 + (i % 3) * 0.05;
+    const x = 160 - Math.cos(a) * 126 * r, y = 96 - Math.sin(a) * 34 * r;
+    const c = x < 120 ? 'var(--curva-a)' : x > 200 ? 'var(--curva-b)' : (i % 2 ? 'var(--bianco)' : 'var(--nero)');
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.9" fill="${c}"/>`;
+  }).join('');
+  const strisce = Array.from({ length: 8 }, (_, i) => {
+    const x0 = 72 + i * 22, x1 = 82 + i * 19.5;
+    return `<polygon points="${x0},96 ${x0 + 22},96 ${x1 + 19.5},134 ${x1},134" fill="${i % 2 ? 'var(--prato)' : 'var(--prato-chiaro)'}"/>`;
+  }).join('');
+  return `<svg viewBox="0 0 320 180" role="img" aria-label="Stasera: lo stadio, ${s.nome}">${defs}
+    <rect width="320" height="180" fill="${notte ? 'var(--cielo-alto)' : cielo}"/>
+    ${notte ? [[40, 18], [120, 10], [210, 22], [300, 12]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.4" fill="var(--bianco)"/>`).join('') : ''}
+    <path d="M0 150 L40 120 L70 132 L96 112 L130 128 L190 110 L230 126 L262 108 L320 128 V180 H0 Z" fill="${notte ? 'var(--nero)' : 'var(--cemento-ombra)'}"/>
+    ${fari}
+    <ellipse class="t" cx="160" cy="98" rx="140" ry="44" fill="var(--cemento)" stroke-width="${w}"/>
+    <path d="M24 98 A136 40 0 0 1 296 98 L262 100 A102 26 0 0 0 58 100 Z" fill="${ombra(s, 'var(--cemento-ombra)')}" opacity="${s.ombra === 'nero' ? 0.85 : 1}"/>
+    ${folla}
+    <ellipse class="t" cx="160" cy="114" rx="96" ry="22" fill="var(--prato)" stroke-width="${w}"/>
+    <clipPath id="campo"><ellipse cx="160" cy="114" rx="95" ry="21"/></clipPath>
+    <g clip-path="url(#campo)">${strisce}<path d="M160 92 V136 M120 114 h80" stroke="var(--bianco)" stroke-width="1" fill="none" opacity=".8"/><ellipse cx="160" cy="114" rx="12" ry="4" stroke="var(--bianco)" fill="none" opacity=".8"/></g>
+    <path class="t" d="M20 100 Q20 150 160 156 Q300 150 300 100 L300 132 Q300 172 160 176 Q20 172 20 132 Z" fill="var(--cemento)" stroke-width="${w}"/>
+    <path d="M20 132 Q20 172 160 176 Q300 172 300 132 L300 146 Q300 180 160 180 Q20 180 20 146 Z" fill="${ombra(s, 'var(--cemento-ombra)')}"/>
+    ${Array.from({ length: 11 }, (_, i) => `<rect class="t" x="${38 + i * 24}" y="${150 - Math.abs(5 - i) * 2}" width="10" height="16" fill="var(--nero-giacca)" stroke-width="${w * 0.6}"/>`).join('')}
+  </svg>`;
+}
+
+function busto(s, x, y, o) {
+  const w = s.w, sc = o.s ?? 1;
+  const om = s.ombra === 'nero' ? 'var(--nero)' : s.ombra === 'retino' ? 'url(#ret)' : null;
+  const bocca = { su: 'M-7 15 Q0 22 7 15', giu: 'M-7 19 Q0 13 7 19', dritta: 'M-6 17 L6 17' }[o.bocca];
+  const giacca = o.giacca, giaccaOmbra = om ?? o.giaccaOmbra;
+  return `<g transform="translate(${x} ${y}) scale(${sc})">
+    <path class="t" d="M-44 92 Q-46 52 -20 44 L0 52 L20 44 Q46 52 44 92 Z" fill="${giacca}" stroke-width="${w}"/>
+    <path d="M10 48 Q40 54 42 92 L18 92 Z" fill="${giaccaOmbra}" opacity="${s.ombra === 'nero' ? 0.9 : 1}"/>
+    <path class="t" d="M-20 44 L-6 70 L0 52 L6 70 L20 44" fill="${o.colletto}" stroke-width="${w}"/>
+    ${o.distintivo ? `<path class="t" d="M-30 62 l6 -4 l6 4 l-1 8 l-5 3 l-5 -3 Z" fill="var(--giallo)" stroke-width="${w * 0.7}"/>` : ''}
+    <path class="t" d="M-9 30 L-9 46 Q0 52 9 46 L9 30" fill="var(--pelle)" stroke-width="${w}"/>
+    <path class="t" d="M-22 0 Q-24 -30 0 -32 Q24 -30 22 0 Q22 24 0 34 Q-22 24 -22 0 Z" fill="var(--pelle)" stroke-width="${w}"/>
+    <path d="M6 -28 Q22 -22 21 2 Q20 22 2 32 Q14 14 12 -6 Z" fill="${om ?? 'var(--pelle-ombra)'}" opacity="${s.ombra === 'nero' ? 0.75 : 1}"/>
+    <path class="t" d="M-23 2 q-7 2 -5 9 q2 5 7 3" fill="var(--pelle)" stroke-width="${w * 0.8}"/>
+    <path class="t" d="M23 2 q7 2 5 9 q-2 5 -7 3" fill="var(--pelle)" stroke-width="${w * 0.8}"/>
+    ${o.capelli}
+    <path d="M-14 -6 q6 -4 11 0 M3 -6 q6 -4 11 0" stroke="var(--capelli)" stroke-width="${w * 1.3}" fill="none" stroke-linecap="round"/>
+    <ellipse cx="-8" cy="1" rx="2.4" ry="3" fill="var(--nero)"/><ellipse cx="8" cy="1" rx="2.4" ry="3" fill="var(--nero)"/>
+    <circle cx="-7.2" cy="0" r=".9" fill="var(--bianco)"/><circle cx="8.8" cy="0" r=".9" fill="var(--bianco)"/>
+    <path d="M0 2 Q-3 10 1 12" stroke="var(--nero)" stroke-width="${w * 0.8}" fill="none" stroke-linecap="round"/>
+    ${o.baffi ? `<path class="t" d="M-11 13 Q0 7 11 13 Q4 15 0 13 Q-4 15 -11 13 Z" fill="var(--capelli)" stroke-width="${w * 0.6}"/>` : ''}
+    <path d="${bocca}" stroke="var(--nero)" stroke-width="${w * 1.1}" fill="none" stroke-linecap="round"/>
+  </g>`;
+}
+function persone(s) {
+  const notte = s.ombra === 'nero';
+  const lunghi = `<path class="t" d="M-24 4 Q-30 -36 0 -36 Q30 -36 24 4 L26 36 L14 30 L15 -10 Q0 -20 -15 -10 L-14 30 L-26 36 Z" fill="var(--capelli)" stroke-width="${s.w}"/>`;
+  const berretto = `<path class="t" d="M-24 -6 Q-24 -36 0 -36 Q24 -36 24 -6 Z" fill="var(--nero-giacca)" stroke-width="${s.w}"/><path class="t" d="M-26 -6 H30 L40 -2 L-24 -1 Z" fill="var(--nero)" stroke-width="${s.w}"/><path class="t" d="M-6 -30 l6 -4 l6 4 l-1 7 l-5 3 l-5 -3 Z" fill="var(--giallo)" stroke-width="${s.w * 0.6}"/>`;
+  const sfondo = notte ? 'var(--cielo-alto)' : s.ombra === 'retino' ? 'url(#retg)' : 'url(#cielo)';
+  const coriandoli = Array.from({ length: 22 }, (_, i) => `<rect x="${(i * 41) % 310 + 4}" y="${(i * 23) % 70 + 6}" width="5" height="9" transform="rotate(${(i * 47) % 180} ${(i * 41) % 310 + 6} ${(i * 23) % 70 + 10})" fill="${['var(--magenta)', 'var(--ciano)', 'var(--bianco)', 'var(--giallo)'][i % 4]}" stroke="var(--nero)" stroke-width=".6"/>`).join('');
+  return `<svg viewBox="0 0 320 180" role="img" aria-label="Fine episodio: protagonista e vice, ${s.nome}">${defs}
+    <rect width="320" height="180" fill="${sfondo}"/>
+    <path d="M0 132 L40 104 L70 116 L110 96 L160 112 L210 94 L260 110 L320 98 V180 H0 Z" fill="${notte ? 'var(--nero)' : 'var(--cemento-ombra)'}" opacity=".9"/>
+    ${notte ? '<polygon points="300,0 320,0 200,180 120,180" fill="url(#cono)" opacity=".6"/>' : ''}
+    ${coriandoli}
+    ${busto(s, 110, 92, { giacca: 'var(--ciano)', giaccaOmbra: 'var(--giacca-ombra)', colletto: 'var(--bianco)', capelli: lunghi, bocca: 'su', distintivo: true })}
+    ${busto(s, 218, 98, { s: 0.92, giacca: 'var(--nero-giacca)', giaccaOmbra: 'var(--nero)', colletto: 'var(--bianco)', capelli: berretto, bocca: 'su', baffi: true })}
+  </svg>`;
+}
+document.getElementById('tavole').innerHTML = Object.entries(S).map(([k, s]) =>
+  `<section data-stile="${k}"><h2>${s.nome}</h2><p>${s.nota}</p>${stadio(s)}${persone(s)}</section>`).join('');
+</script>
+</body>
+</html>

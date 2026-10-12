@@ -4,14 +4,16 @@
 import { Application, extend, useApplication } from '@pixi/react';
 import { Container, Sprite, Texture, type Ticker } from 'pixi.js';
 import { useEffect, useState, type RefObject } from 'react';
+import { useRidisegno } from './ridisegno.ts';
 import { canvasAlone, disegnaCitta, token } from './sfondo.ts';
 
 extend({ Container });
 
 export interface PuntoCitta { id: string; x: number; y: number; acceso: boolean }
 
-function Disegno(p: { punti: PuntoCitta[]; margine: number }) {
+function Disegno(p: { punti: PuntoCitta[]; margine: number; contenitore: RefObject<HTMLDivElement | null> }) {
   const { app } = useApplication();
+  const volte = useRidisegno(app, p.contenitore.current); // S-26
   const [dim, setDim] = useState({ w: app.screen.width, h: app.screen.height });
   useEffect(() => {
     const r = app.renderer; // tenuto da parte: allo smontaggio Pixi lo toglie da «app»
@@ -42,7 +44,7 @@ function Disegno(p: { punti: PuntoCitta[]; margine: number }) {
     const anima = !matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (anima) app.ticker.add(passo);
     return () => { app.ticker?.remove(passo); scena.destroy({ children: true }); texCitta.destroy(true); texAlone.destroy(true); };
-  }, [app, dim, p.punti, p.margine]);
+  }, [app, dim, p.punti, p.margine, volte]);
   return null;
 }
 
@@ -50,7 +52,7 @@ export function StratoCitta(p: { contenitore: RefObject<HTMLDivElement | null>; 
   return (
     <Application className="mappa-tela" resizeTo={p.contenitore} preference="webgl" backgroundAlpha={0} antialias autoDensity
       resolution={Math.min(2, window.devicePixelRatio || 1)} onInit={p.pronto}>
-      <Disegno punti={p.punti} margine={p.margine} />
+      <Disegno punti={p.punti} margine={p.margine} contenitore={p.contenitore} />
     </Application>
   );
 }
