@@ -13,17 +13,38 @@ const contesto = (dati) => {
   return { dich, iniziali: variabiliIniziali(dich.values()), missioni: Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, m]) => m) };
 };
 
+/** Variabili di storia (enum) lette dalle condizioni degli esiti di una missione. */
+const enumNegliEsiti = (m, dich) => {
+  const lette = new Set();
+  const giu = (c) => { if (!c) return; if (c.var && dich.get(c.var)?.tipo === 'enum') lette.add(c.var); for (const x of c.tutte ?? c.almeno_una ?? []) giu(x); giu(c.non); };
+  for (const e of m.esiti) giu(e.se);
+  return [...lette];
+};
+
+/** D-106: se gli esiti leggono variabili di storia (enum), la missione si gioca anche da ogni combinazione dei loro
+ *  valori, come se la campagna li avesse prodotti. Prima la combinazione iniziale (righe invariate), poi le altre in
+ *  ordine di dichiarazione: deterministico. Rosso __NO_D106BOT: solo le variabili iniziali. */
+const partenze = (m, dich, iniziali) => {
+  let combo = [{ etichetta: '', variabili: iniziali }];
+  if (spento('D106BOT')) return combo;
+  for (const id of enumNegliEsiti(m, dich)) {
+    const valori = [iniziali[id], ...dich.get(id).valori.filter((x) => x !== iniziali[id])];
+    combo = combo.flatMap((c) => valori.map((x) => ({ etichetta: x === iniziali[id] ? c.etichetta : `${c.etichetta} [${id}=${x}]`, variabili: { ...c.variabili, [id]: x } })));
+  }
+  return combo;
+};
+
 export function giraBot(dati, semi = 1000) {
   const { dich, iniziali, missioni } = contesto(dati);
   const rapporto = [];
-  for (const m of missioni) for (const [nome, strategia] of Object.entries(STRATEGIE)) {
+  for (const m of missioni) for (const { etichetta, variabili: partenza } of partenze(m, dich, iniziali)) for (const [nome, strategia] of Object.entries(STRATEGIE)) {
     const esiti = {}; const blocchi = []; const tensioni = []; const stelle = { 0: 0, 1: 0, 2: 0, 3: 0 };
     // D-089: una strategia deterministica gioca la stessa partita con ogni seme → una sola, contata «semi» volte (rosso __NO_C11D01)
     const una = DETERMINISTICHE.has(nome) && !spento('C11D01');
     for (let seme = 1; seme <= (una ? 1 : semi); seme++) {
       const volte = una ? semi : 1;
       try {
-        const r = giocaMissione(m, iniziali, dich, strategia(creaCaso(`${m.id}:${nome}:${seme}`), dich));
+        const r = giocaMissione(m, partenza, dich, strategia(creaCaso(`${m.id}:${nome}:${seme}`), dich));
         esiti[r.esito.id] = (esiti[r.esito.id] ?? 0) + volte;
         stelle[valutaEpisodio(m, r).stelle] += volte;
         for (let i = 0; i < volte; i++) tensioni.push(r.variabili.tensione_max);
@@ -31,7 +52,7 @@ export function giraBot(dati, semi = 1000) {
     }
     tensioni.sort((a, b) => a - b);
     const media = tensioni.reduce((s, x) => s + x, 0) / (tensioni.length || 1);
-    rapporto.push({ missione: m.id, strategia: nome, semi, blocchi, esiti, stelle,
+    rapporto.push({ missione: m.id, strategia: `${nome}${etichetta}`, semi, blocchi, esiti, stelle,
       tensione: { media: +media.toFixed(2), mediana: tensioni[Math.floor(tensioni.length / 2)], min: tensioni[0], max: tensioni.at(-1) } });
   }
   return rapporto;

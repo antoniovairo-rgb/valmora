@@ -72,6 +72,11 @@ export const PASSI_LOGICA = {
     if (!controllaBot(giraBot({ ...d, 'missioni/e01.json': m }, 20), d).length) ciechi.push('bot/soft-lock è cieco');
     const m2 = structuredClone(d['missioni/e01.json']); m2.esiti.push({ ...m2.esiti[0], id: 'irraggiungibile' });
     if (!controllaBot(giraBot({ ...d, 'missioni/e01.json': m2 }, 20), { ...d, 'missioni/e01.json': m2 }).length) ciechi.push('bot/esito irraggiungibile è cieco');
+    // D-106: le partenze per versione (variabili di storia degli esiti) non devono far passare un esito impossibile
+    const m7 = structuredClone(d['missioni/e36.json']);
+    m7.esiti.splice(-1, 0, { ...m7.esiti[0], id: 'impossibile', se: { tutte: [{ var: 'fascicolo', uguale: 'procura' }, { var: 'fascicolo', uguale: 'stampa' }] } });
+    const d7 = { ...d, 'missioni/e36.json': m7 };
+    if (!controllaBot(giraBot(d7, 20), d7).some((x) => x.includes('«impossibile»'))) ciechi.push('bot/esito per versione è cieco');
     const m4 = structuredClone(d['missioni/e01.json']); m4.stelle.tre = { var: 'tensione_max', al_massimo: -1 };
     const d4 = { ...d, 'missioni/e01.json': m4 };
     if (!controllaBot(giraBot(d4, 30), d4).some((x) => x.includes('3 stelle'))) ciechi.push('bot/stelle è cieco');

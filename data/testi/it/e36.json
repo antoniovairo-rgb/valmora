@@ -123,7 +123,16 @@
   "e36.ch.conti_stampa.vice": "«La prima pagina l'hai voluta tu. Adesso ci metti la faccia.»",
   "e36.ch.conti_comando": "«Il comando: stamattina abbiamo mandato il fascicolo in procura, a nome nostro. Per i giornali ci serve una tua frase.»",
   "e36.ch.conti_comando.vice": "«A nome loro. Il merito ha sempre un indirizzo diverso dal lavoro.»",
-  "e36.verbale_confermato": "Varrone & Figli sotto inchiesta, cantiere fermo. Il comando ti conferma: niente più «ad interim». Malvasi paga la scommessa, un anno di caffè. «Mi piace sbagliarmi.»",
-  "e36.verbale_prorogato": "Varrone & Figli sotto inchiesta, lo stadio vecchio resta. Il comando non decide: ancora ad interim. Malvasi paga lo stesso. «Hai durato più di tutti. Era quella, la scommessa.»",
-  "e36.verbale_sostituito": "Varrone & Figli sotto inchiesta: il lavoro è fatto. Ma la fiducia è finita e il comando nomina un altro. Malvasi paga al bar: «Hai perso il posto, non la scommessa»."
+  "e36.verbale_confermato": "Varrone & Figli sotto inchiesta, ma solo per le carte della rapina: il resto del fascicolo dorme in cassaforte. Il comando ti conferma. Malvasi paga un anno di caffè. «Metà verità, posto intero.»",
+  "e36.verbale_prorogato": "Varrone & Figli sotto inchiesta per la rapina, non per il resto: il fascicolo è ancora in cassaforte. Il comando non decide: ancora ad interim. Malvasi paga lo stesso. «Hai durato più di tutti.»",
+  "e36.verbale_sostituito": "Varrone & Figli sotto inchiesta, ma a metà: il fascicolo resta in cassaforte, e il resto con lui. La fiducia è finita, il comando nomina un altro. Malvasi paga al bar: «Hai perso il posto, non la scommessa».",
+  "e36.verbale_confermato_procura": "La procura indaga sulla Varrone & Figli col tuo fascicolo: ci vorranno anni, ma nessuno la ferma più. Il comando ti conferma, niente più «ad interim». Malvasi paga un anno di caffè. «Mi piace sbagliarmi.»",
+  "e36.verbale_confermato_stampa": "Il fascicolo in prima pagina ha fatto il resto: Varrone & Figli sotto inchiesta, mezzo comune in imbarazzo. Il comando ti conferma, a denti stretti. Malvasi paga un anno di caffè. «E i giornali.»",
+  "e36.verbale_confermato_comando": "Il comando ha portato il fascicolo in procura a nome suo: Varrone & Figli sotto inchiesta, la foto la fanno loro. A te la conferma, senza «ad interim». Malvasi paga un anno di caffè.",
+  "e36.verbale_prorogato_procura": "La procura indaga sulla Varrone & Figli, coi suoi tempi. Il comando aspetta i suoi: ancora ad interim. Malvasi paga lo stesso. «Hai durato più di tutti. Era quella, la scommessa.»",
+  "e36.verbale_prorogato_stampa": "Lo scandalo è in edicola, Varrone & Figli sotto inchiesta, il comune cerca un colpevole comodo. Il comando non decide: ancora ad interim. Malvasi paga lo stesso. «Hai durato più di tutti.»",
+  "e36.verbale_prorogato_comando": "Varrone & Figli sotto inchiesta, e il comando se ne prende il merito. Per te nessuna decisione: ancora ad interim. Malvasi paga lo stesso. «Il merito a loro, il caffè a te.»",
+  "e36.verbale_sostituito_procura": "La procura indaga sulla Varrone & Figli col tuo fascicolo: il lavoro è fatto, ci vorranno anni. Ma la fiducia è finita e il comando nomina un altro. Malvasi paga al bar: «Hai perso il posto, non la scommessa».",
+  "e36.verbale_sostituito_stampa": "Il giornale ha fatto lo scandalo, Varrone & Figli sotto inchiesta. Il conto lo paghi tu: fiducia finita, il comando nomina un altro. Malvasi paga al bar: «Hai perso il posto, non la scommessa».",
+  "e36.verbale_sostituito_comando": "Il comando porta il tuo fascicolo in procura a nome suo: Varrone & Figli sotto inchiesta. A te niente: fiducia finita, nominano un altro. Malvasi paga al bar: «Hai perso il posto, non la scommessa»."
 }
