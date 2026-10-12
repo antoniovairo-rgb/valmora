@@ -94,8 +94,9 @@ export const PASSI_LOGICA = {
     if (!controllaCampagna(chiamateViste({ ...d, 'missioni/e02.json': m5 }, 20)).length) ciechi.push('bot/campagna è cieco');
     const m6 = structuredClone(d['missioni/e03.json']); for (const o of m6.ondate) for (const e of o.eventi) if (e.settore !== 'curva_ospiti' && e.settore !== 'curva_larkspire') e.pressione = 0;
     if (!controllaFisse(posizioneConta({ ...d, 'missioni/e03.json': m6 })).length) ciechi.push('bot/transenne fisse è cieco');
-    globalThis.__NO_C23F01 = true;
-    try { if (!controllaFiduciaMinima(d).length) ciechi.push('bot/fiducia minima è cieco'); } finally { delete globalThis.__NO_C23F01; }
+    // D-113: col premio di fine ondata (PO-094) entrando a fiducia 0 le 3★ tornano possibili: il rosso spegne anche quello
+    globalThis.__NO_C23F01 = true; globalThis.__NO_PO094 = true;
+    try { if (!controllaFiduciaMinima(d).length) ciechi.push('bot/fiducia minima è cieco'); } finally { delete globalThis.__NO_C23F01; delete globalThis.__NO_PO094; }
     const m8 = structuredClone(d['missioni/e02.json']); m8.ondate[1].eventi[1].pressione = 4; m8.ondate[2].eventi[0].pressione = 5; // e02 prima di D-108
     const d8 = { 'stato.json': d['stato.json'], 'missioni/e01.json': d['missioni/e01.json'], 'missioni/e02.json': m8, 'missioni/e03.json': d['missioni/e03.json'] };
     if (!controllaDifficolta(giraBot(d8, 1000), d8).length) ciechi.push('bot/difficoltà della stagione 1 è cieco');

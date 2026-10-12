@@ -31,6 +31,11 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
         })}
       </ul>
       </div>
+      {p.r.fiducia ? (
+        <p className={p.r.fiducia > 0 ? 'bene' : 'male'} data-premio-fiducia={p.r.fiducia}>
+          Fiducia {p.r.fiducia > 0 ? `+${p.r.fiducia}: nessun settore scoperto` : `${p.r.fiducia}: ${-p.r.fiducia === 1 ? 'un settore è degenerato' : `${-p.r.fiducia} settori sono degenerati`}`}.
+        </p>
+      ) : null}
       {riposo.length > 0 && !p.ultima && (
         <p className="riposo"><Icona di={Moon} />A riposo nella prossima ondata: {riposo.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}</p>
       )}
