@@ -6,7 +6,7 @@ import { leggiSchemi, leggiDati } from './dati-disco.mjs';
 // Moduli TypeScript del gioco: Node li esegue togliendo i tipi (Node ≥ 22.18; la CI usa 24).
 import { validaDati } from '../src/dati/valida.ts';
 import { migra, SAVE_VERSION } from '../src/salvataggi/salvataggio.ts';
-import { giraBot, sceltePesano, chiamateViste, esisteStelle } from './bot.mjs';
+import { giraBot, sceltePesano, chiamateViste, esisteStelle, controllaFiduciaMinima } from './bot.mjs';
 import { controllaFisse, posizioneConta } from './fisse.mjs';
 import { controllaConsolidamento } from './consolidamento.mjs';
 import { controllaRitmo } from '../src/dati/ritmo.ts';
@@ -19,6 +19,16 @@ export function controllaBot(rapporto, dati) {
     for (const n of [1, 2, 3]) if (!rapporto.some((r) => r.missione === m.id && r.stelle?.[n]) && !(n === 3 && esisteStelle(dati, m.id, 3))) p.push(`${k}: ${n} stelle mai raggiunte dai bot`);
   }
   return p;
+}
+
+// D-108: nella stagione 1 la quota di fallimento del giocatore casuale non scende da un episodio al successivo
+// (tolleranza di rumore: 1 punto percentuale).
+export function controllaDifficolta(rapporto, dati, stagione = 1, tolleranza = 1) {
+  const quota = (id) => { const r = rapporto.find((x) => x.missione === id && x.strategia === 'casuale'); return r ? (100 * (r.stelle?.[0] ?? 0)) / r.semi : null; };
+  const ep = Object.values(dati).filter((m) => m?.ondate && m.stagione === stagione).sort((a, b) => a.episodio - b.episodio)
+    .map((m) => [m.id, quota(m.id)]).filter(([, q]) => q !== null);
+  return ep.slice(1).flatMap(([id, q], i) => (q < ep[i][1] - tolleranza
+    ? [`stagione ${stagione}: il casuale fallisce in ${id} il ${q.toFixed(1)}%, meno di ${ep[i][0]} (${ep[i][1].toFixed(1)}%) oltre la tolleranza di ${tolleranza} punto (D-108)`] : []));
 }
 
 // Ogni chiamata compare in almeno una campagna (episodi in fila, variabili portate avanti): nessuna chiamata morta.
@@ -47,7 +57,7 @@ export const PASSI_LOGICA = {
   confini: () => controllaConfini(Object.fromEntries(tracciatiENuovi().map((p) => [p, readFileSync(p, 'utf8')]))),
   schema: () => validaDati(leggiSchemi(), leggiDati()),
   test: () => esegui('npx vitest run'),
-  bot: () => { const d = leggiDati(); return [...controllaBot(giraBot(d, 1000), d), ...controllaScelte(sceltePesano(d), d), ...controllaCampagna(chiamateViste(d)), ...controllaFisse(posizioneConta(d))]; },
+  bot: () => { const d = leggiDati(); const r = giraBot(d, 1000); return [...controllaBot(r, d), ...controllaDifficolta(r, d), ...controllaScelte(sceltePesano(d), d), ...controllaCampagna(chiamateViste(d)), ...controllaFisse(posizioneConta(d)), ...controllaFiduciaMinima(d)]; },
   // PO-068/D-092: testi consolidati (lunghezze, niente bozze, variabili di storia impostate e poi lette) e ritmo della campagna
   storia: () => { const d = leggiDati(); return [...controllaConsolidamento(d), ...controllaRitmo(missioni(d))]; },
   'salvataggi-reali': () => controllaSalvataggiReali(SAVE_VERSION, leggiSalvataggi(), migra),
@@ -84,6 +94,11 @@ export const PASSI_LOGICA = {
     if (!controllaCampagna(chiamateViste({ ...d, 'missioni/e02.json': m5 }, 20)).length) ciechi.push('bot/campagna è cieco');
     const m6 = structuredClone(d['missioni/e03.json']); for (const o of m6.ondate) for (const e of o.eventi) if (e.settore !== 'curva_ospiti' && e.settore !== 'curva_larkspire') e.pressione = 0;
     if (!controllaFisse(posizioneConta({ ...d, 'missioni/e03.json': m6 })).length) ciechi.push('bot/transenne fisse è cieco');
+    globalThis.__NO_C23F01 = true;
+    try { if (!controllaFiduciaMinima(d).length) ciechi.push('bot/fiducia minima è cieco'); } finally { delete globalThis.__NO_C23F01; }
+    const m7 = structuredClone(d['missioni/e02.json']); m7.ondate[1].eventi[1].pressione = 4; m7.ondate[2].eventi[0].pressione = 5; // e02 prima di D-108
+    const d7 = { 'stato.json': d['stato.json'], 'missioni/e01.json': d['missioni/e01.json'], 'missioni/e02.json': m7, 'missioni/e03.json': d['missioni/e03.json'] };
+    if (!controllaDifficolta(giraBot(d7, 1000), d7).length) ciechi.push('bot/difficoltà della stagione 1 è cieco');
     const m3 = structuredClone(d['missioni/e01.json']);
     for (const o of m3.ondate) for (const c of o.chiamate ?? []) for (const x of c.opzioni) x.effetti = [];
     const d3 = { ...d, 'missioni/e01.json': m3 };

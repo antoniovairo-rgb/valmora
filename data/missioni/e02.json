@@ -307,7 +307,7 @@
           "id": "corteo_ospiti",
           "tipo": "corteo",
           "settore": "viale_stazione",
-          "pressione": 4
+          "pressione": 2
         },
         {
           "id": "falsi",
@@ -577,7 +577,7 @@
           "id": "cori_ospiti",
           "tipo": "curva",
           "settore": "curva_ospiti",
-          "pressione": 5
+          "pressione": 3
         },
         {
           "id": "cori_casa",
