@@ -48,4 +48,12 @@
 //   causa: PO-054…PO-073, D-105…D-108. misura: completa 3/3 sulla build del rilascio.
 //   guardiano: controllaFiducia, controllaArchivio (rosso C19S01), Tripla (C20T01), controllaFiduciaMinima (C23F01),
 //   controllaDifficolta, bot per versione di esito (D106BOT), tests/tono.test.ts (C24T01).
-export const GAME_VERSION = '0.7.0';
+//
+// 0.8.0 – rilascio delle 13:30 (D-109): pagina bianca offline corretta (S-22, C14-01), guida alla prima partita (S-18),
+//   «Riparti dall'ondata N» a episodio perso (S-17, PO-060), logo a sinistra (PO-077), testimone di e18 coerente
+//   (C15-03), steward che segnalano invece di sequestrare (C15-10), «il Fabbro» nei dialoghi (C15-11, D-110),
+//   fiducia minima 3 (D-110).
+//   causa: C-014, C-015, PO-060, PO-077, D-110. misura: completa 3/3 sulla build del rilascio.
+//   guardiano: passo «offline» della catena grafica (rossi C14O01-03), C21R01, C22G01, C25L01, tests/testimone.test.ts,
+//   controllaFiduciaMinima (C23F01).
+export const GAME_VERSION = '0.8.0';
