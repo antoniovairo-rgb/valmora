@@ -311,9 +311,9 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .vignetta .v-nuvola { fill: var(--mappa-tetto-6); }
 /* Vignette nelle schermate di gioco: riserva = tutto il resto della schermata a 360×760 (misurata), così la vignetta
    si stringe invece di far scorrere */
-.stasera .vignetta { --vignetta-riserva: 680px; --vignetta-min: 80px; }
+.stasera .vignetta { --vignetta-riserva: var(--vignetta-riserva-sala); --vignetta-min: var(--vignetta-min-sala); }
 .vignetta-cornice { position: relative; }
-.vignetta-cornice .vignetta { --vignetta-riserva: 662px; --vignetta-min: 90px; margin-bottom: 0; }
+.vignetta-cornice .vignetta { --vignetta-riserva: var(--vignetta-riserva-esito); --vignetta-min: var(--vignetta-min-esito); margin-bottom: 0; }
 .vignetta-cornice > .sfida { position: absolute; inset-inline: var(--spazio-2); bottom: var(--spazio-1); margin: 0; }
 .vignetta-cornice > .sfida .sfida-club > span:last-child, .vignetta-cornice > .sfida .sfida-contro { padding: 0 var(--spazio-1); background: var(--bianco); }
 .vignetta-cornice .stemma { width: var(--icona); height: var(--icona); }
