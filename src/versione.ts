@@ -56,4 +56,11 @@
 //   causa: C-014, C-015, PO-060, PO-077, D-110. misura: completa 3/3 sulla build del rilascio.
 //   guardiano: passo «offline» della catena grafica (rossi C14O01-03), C21R01, C22G01, C25L01, tests/testimone.test.ts,
 //   controllaFiduciaMinima (C23F01).
-export const GAME_VERSION = '0.8.0';
+//
+// 0.9.0 – rilascio anticipato su richiesta del PO (deroga all'orario di D-109): schieramento compatto (S-24, PO-079),
+//   vignette a fumetto in guida, sala ed esito del verbale (S-23), ripartenza solo da un'ondata da cui si può ancora
+//   vincere (C16-01, PO-083, D-111), spiegazione dell'installazione su Android e nei browser interni (PO-082),
+//   tasto indietro che rilegge senza annullare (S-21), «In mano» dice dove rende l'unità (C14-11).
+//   causa: C-016, PO-079, PO-082, PO-083. misura: completa 3/3 sulla build del rilascio; ripartenze sotto 1/3 36→0 su 455.
+//   guardiano: tests/ripartenza-po083.test.ts (PO083), tests/ripartenza.test.ts (C16R02), C27S01, C26V01, C30I01, C25I01, C22R01.
+export const GAME_VERSION = '0.9.0';
