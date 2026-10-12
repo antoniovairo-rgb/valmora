@@ -43,7 +43,7 @@ Anche il passo «bracci-rossi-grafica» lancia il guardiano con ciascun rosso C1
 | `VALMORA_ROSSI=C14O01 node tools/offline.mjs` | O1-O4 | ROSSO: O1 «città sì, mappa no» (con il contenitore il giocatore vede «Riprova») |
 | `VALMORA_ROSSI=C14O02 …` | O1-O4 | ROSSO: O2 «script mancante riceve text/html»; O4 «la cache vecchia doveva sparire» |
 | `VALMORA_ROSSI=C14O03 …` | O1-O4 | ROSSO: O3 «niente Riprova, pagina bianca» |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 0b01766 (merge della principale 9ad611c), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Nota sul guardiano: la prima versione falliva per difetti suoi, che ho riparato.
 - O1: guardava la città prima che comparisse la guida introduttiva.

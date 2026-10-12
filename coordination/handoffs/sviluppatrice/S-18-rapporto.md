@@ -29,7 +29,7 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnata**.
 | `VALMORA_LARGHEZZE=360,375 node tools/foto.mjs out/foto-s18` | 360 (tutti i passi), 375 (Salta) | verde |
 | `… VALMORA_ROSSI=C22G01 …` | 360 px | ROSSO: «prima partita: dopo il genere manca la guida introduttiva» |
 | `node tools/foto.mjs out/foto-s18` | 3 larghezze | verde |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 0b01766 (merge della principale 9ad611c), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s18/2026-10-12/`:
 - prima: subito la città dopo il genere, a 360, 375 e 412 px;
