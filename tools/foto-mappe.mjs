@@ -7,15 +7,15 @@ import { chromium } from 'playwright-core';
 import { missioniDai, salvataggioTutti, apriDallaCitta } from './foto-bozze.mjs';
 const [out, rosso] = process.argv.slice(2); mkdirSync(out, { recursive: true });
 const T = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
-const dir = 'dist';
+const dir = process.env.VALMORA_BUILD ?? 'dist'; // con dati di prova: build fatta con VALMORA_DATI
 const srv = createServer((q, r) => { const u = decodeURIComponent(q.url.split('?')[0]); const p = join(dir, u === '/' ? 'index.html' : u); try { r.writeHead(200, { 'content-type': T[extname(p)] ?? 'application/octet-stream' }); r.end(readFileSync(p)); } catch { r.writeHead(404); r.end(); } });
 await new Promise((ok) => srv.listen(0, '127.0.0.1', ok));
 const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const pg = await b.newPage({ viewport: { width: 360, height: 760 }, reducedMotion: 'reduce' });
 if (rosso) await pg.addInitScript((x) => { globalThis[`__NO_${x}`] = true; }, rosso);
-const { missioni, v0 } = missioniDai('data');
+const { missioni, v0 } = missioniDai(process.env.VALMORA_DATI ?? 'data');
 await pg.goto(`http://127.0.0.1:${srv.address().port}/`);
-for (const id of ['e11', 'e17', 'e30', 'e35']) {
+for (const id of (process.env.VALMORA_EPISODI ?? 'e11,e17,e30,e35').split(',')) {
   const m = missioni.find((x) => x.id === id);
   await pg.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify(salvataggioTutti(missioni, v0)));
   await pg.reload(); await pg.getByRole('button', { name: 'Riprendi' }).click(); await pg.waitForSelector('[data-scena="citta"]');

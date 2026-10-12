@@ -7,14 +7,15 @@
 import { creaCaso } from '../../logica/caso.ts';
 import { spento } from '../../interruttori.ts';
 import { cartelloni, notte, parcheggi, quartiere } from './notte.ts';
+import { disegnaDettagli, leggiDettaglio } from './dettagli.ts';
 
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number }
 export interface Colori { primario: string; secondario: string }
-export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; curvaSola: (Pt & { verso: number }) | null; viali: Pt[][]; idViali: string[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; notte: boolean; cartelloni: boolean }
+export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; curvaSola: (Pt & { verso: number }) | null; viali: Pt[][]; idViali: string[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; dettagli: { id: string; dove: Pt }[]; notte: boolean; cartelloni: boolean }
 /** Atmosfera della missione (campi facoltativi dei dati, mappa.ora e mappa.dettagli): e03 è di notte. */
-export interface Atmosfera { notte?: boolean; cartelloni?: boolean }
-export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; coloriCorteo: [string, string]; fari: Pt[] }
+export interface Atmosfera { notte?: boolean; cartelloni?: boolean; dettagli?: string[] }
+export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; dettagli: string[]; coloriCorteo: [string, string]; fari: Pt[] }
 
 // Il minificatore CSS può scrivere i token come «#fff» o con un nome: il canvas li riporta a «#rrggbb».
 let tavolozza: CanvasRenderingContext2D | null = null;
@@ -76,7 +77,16 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
   // lastricata sotto il settore, così il punto non cade sui tetti. Rosso C14M01: niente piazze.
   const disegnati = new Set(['curva', 'strada', 'stazione', 'quartiere']);
   const slarghi = spento('C14M01') ? [] : settori.filter((s) => !disegnati.has(s.tipo) && !s.id?.includes('parcheggi')).map((s) => ({ x: s.x, y: s.y }));
-  return { W, H, club, stadio, curvaSola, viali, idViali: strade.map((s) => s.id ?? ''), centro, stazione, quartieri, parcheggi: parch, slarghi, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
+  // Dettagli (D-095): «id@settore» accanto al settore, spostato verso il centro perché il punto non lo copra;
+  // «id» al centro della mappa. Dentro la mappa con 50 px di margine.
+  const dettagli = (atm.dettagli ?? []).map(leggiDettaglio).map((x) => {
+    const s = settori.find((q) => q.id === x.settore);
+    const base = s ? { x: s.x, y: s.y } : centro;
+    const d = Math.hypot(centro.x - base.x, centro.y - base.y) || 1, passo = s ? Math.min(40, d) : 0;
+    const dove = { x: base.x + ((centro.x - base.x) / d) * passo, y: base.y + ((centro.y - base.y) / d) * passo };
+    return { id: x.id, dove: { x: Math.min(W - 50, Math.max(50, dove.x)), y: Math.min(H - 50, Math.max(50, dove.y)) } };
+  });
+  return { W, H, club, stadio, curvaSola, viali, idViali: strade.map((s) => s.id ?? ''), centro, stazione, quartieri, parcheggi: parch, slarghi, dettagli, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
 }
 
 export const bezier = (p: Pt[], t: number): Pt => {
@@ -108,8 +118,9 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   const vicino = (ps: Pt[], x: number, y: number, rx: number, ry: number) => ps.some((p) => Math.abs(x - p.x) < rx && Math.abs(y - p.y) < ry);
   const cs = d.curvaSola, RC = RC_SOLA;
   isolati(f, W, H, r, (x, y) => dentro(x, y, 1.42) || (!!cs && Math.hypot(x - cs.x, y - cs.y) < RC + 16) || (!!st && Math.abs(y - st.y) < 34 && x < st.x + 70)
-    || vicino(d.quartieri, x, y, RQ + 20, RQ + 16) || vicino(d.parcheggi, x, y, 70, 50) || vicino(slarghi, x, y, 52, 42));
+    || vicino(d.quartieri, x, y, RQ + 20, RQ + 16) || vicino(d.parcheggi, x, y, 70, 50) || vicino(slarghi, x, y, 52, 42) || vicino(d.dettagli.map((q) => q.dove), x, y, 58, 46));
   for (const q of slarghi) piazza(f, q);
+  const dettagli = disegnaDettagli(f, d.dettagli, r);
   if (st) stazione(f, W, st);
   for (const q of d.quartieri) quartiere(f, q, r, RQ);
   for (const q of d.parcheggi) parcheggi(f, q, r, 96, 64);
@@ -197,9 +208,13 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   v.addColorStop(0, alfa(token('--mappa-velo-alto'), 0.28)); v.addColorStop(1, alfa(token('--mappa-velo-basso'), 0.1));
   f.fillStyle = v; f.fillRect(0, 0, W, H);
   if (d.cartelloni && d.viali[0]) cartelloni(f, d.viali[0]);
-  if (d.notte) notte(f, W, H, d.viali, fari, r);
+  if (d.notte) {
+    notte(f, W, H, d.viali, fari, r);
+    // Di notte i dettagli (D-095) sono illuminati: ridisegnati sopra il velo, un po' smorzati.
+    f.save(); f.globalAlpha = 0.6; disegnaDettagli(f, d.dettagli, r); f.restore();
+  }
   const corteo = d.club.corteo;
-  return { folla, viali: d.viali.map((punti, i) => ({ id: d.idViali[i] ?? '', punti })), fari,
+  return { folla, dettagli: d.cartelloni ? ['cartelloni_stadio_nuovo', ...dettagli] : dettagli, viali: d.viali.map((punti, i) => ({ id: d.idViali[i] ?? '', punti })), fari,
     coloriCorteo: corteo ? [colore(corteo.primario)!, colore(corteo.secondario)!] : [token('--mappa-corteo-1'), token('--mappa-corteo-2')] };
 }
 

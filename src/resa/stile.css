@@ -209,4 +209,6 @@ main[data-schermata="sala"] .mappa, main[data-schermata="briefing"] .mappa { asp
 
 /* Episodi abbozzati (D-087, S-09): segno discreto */
 .episodio.bozza .settore-punto { border-style: dashed; }
+/* Interruttore rosso della regola sulle stelline della città (sopra, «non devono rubare il tocco») */
+main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .etichetta.bozza { background: var(--grigio-testo); color: var(--bianco); }

@@ -1,0 +1,21 @@
+{
+ "e11": [
+  "zona_rossa",
+  "incidente@viale_stazione"
+ ],
+ "e17": [
+  "palco_concerto",
+  "fabbrica@piazza_municipio"
+ ],
+ "e30": [
+  "piazza_storica@piazza_municipio",
+  "stabile_occupato@quartiere",
+  "mercato"
+ ],
+ "e35": [
+  "banca@perimetro_banca",
+  "porto@perimetro_banca",
+  "cantiere_stadio@cantiere_stadio_nuovo",
+  "cartelloni_stadio_nuovo"
+ ]
+}

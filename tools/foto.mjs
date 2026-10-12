@@ -9,7 +9,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, controllaAltezza, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
+import { avanzaFino, clubDai, controllaAltezza, controllaCifreTensione, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -301,10 +301,10 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             // Se la ripresa non torna al rapporto (difetto R04) si è già allo schieramento dopo: si prosegue da lì.
             if (completa && n === 1 && !(await ricaricaERiprendi('rapporto', 'ricarica sul rapporto (C-005 R04)'))) continue;
             const cifre = await pagina.locator('.elenco-settori').textContent();
-            atteso(`rapporto ${n}: la tensione si vede in numeri (D-055): «${cifre}»`, !/\d/.test(cifre ?? '')); await controllaPicco(pagina, p.m, o.rapporto, atteso);
+            atteso(`rapporto ${n}: la tensione si vede in numeri (D-055): «${cifre}»`, !/\d/.test(cifre ?? '')); await controllaPicco(pagina, p.m, o.rapporto, atteso); await controllaCifreTensione(pagina, atteso, `${p.m.id} rapporto ${n}`);
             await premi('[data-azione="avanti"]');
           }
-          await scena('verbale'); await foto(); await controllaSfida(pagina, p.m, atteso, 'verbale');
+          await scena('verbale'); await foto(); await controllaSfida(pagina, p.m, atteso, 'verbale'); await controllaCifreTensione(pagina, atteso, `${p.m.id} verbale`);
           await controllaBilancio(pagina, p, atteso); // D-085, C-005 R03
         };
 

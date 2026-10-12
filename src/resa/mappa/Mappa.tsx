@@ -65,7 +65,7 @@ export function Mappa(p: MappaProps) {
   // Atmosfera dai dati (campi facoltativi mappa.ora e mappa.dettagli, e03 «Notte di coppa»).
   const extra = p.m.mappa as { ora?: string; dettagli?: string[] };
   const folla = useMemo(() => follaDellOndata(p.m, p.ondata ?? 1), [p.m, p.ondata]);
-  const atmosfera = useMemo(() => ({ notte: extra.ora === 'notte', cartelloni: !!extra.dettagli?.includes('cartelloni_stadio_nuovo') }), [extra.ora, extra.dettagli]);
+  const atmosfera = useMemo(() => ({ notte: extra.ora === 'notte', cartelloni: !!extra.dettagli?.some((x) => x.split('@')[0] === 'cartelloni_stadio_nuovo'), dettagli: extra.dettagli ?? [] }), [extra.ora, extra.dettagli]);
 
   // Nomi e unità al posto che non copre niente (C-008): a ogni disegno, quando la mappa cambia misura e
   // quando arrivano i caratteri.
