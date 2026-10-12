@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-12 16:00 UTC – principale 7af29bb completa VERDE: S-24 schieramento compatto (PO-079), vignette della guida (S-23, primo pezzo), C16-01, PO-082, C14-11, S-21; pronta per il rilascio delle 23:00. Sviluppatrice su S-26 (mappa scura), poi S-25 (stadio e04), poi S-23.
+Ultimo giro della routine: 2026-10-12 16:31 UTC – principale baa7dcc: completa VERDE su df179fc, CI verde; contiene PO-083 (D-111, la ripartenza propone solo un'ondata con almeno una possibilità su tre). Sviluppatrice indietro di 5 commit e senza consegne nuove: le ho chiesto il merge dalla principale; resta su S-26, poi S-25, poi S-23. main a 0.8.0; il prossimo rilascio è alle 23:00.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
