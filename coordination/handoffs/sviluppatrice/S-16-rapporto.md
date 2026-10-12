@@ -39,7 +39,7 @@ Dove si usa:
 | `VALMORA_LARGHEZZE=360 node tools/foto.mjs out/foto-s16` | partita completa, 36 episodi | verde |
 | `… VALMORA_ROSSI=C20T01 …` | 360 px | ROSSO: «1 conferme invece di 3» su «Nuova partita» e sul «Rigioca» dei 36 episodi |
 | `node tools/foto.mjs out/foto-s16` | 3 larghezze | verde |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 91b9ef7 (merge della principale f5483cc), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s16/2026-10-12/`: «Nuova partita» prima (conferma unica) e dopo (passo 1 e passo 3), a 360, 375 e 412 px.
 
