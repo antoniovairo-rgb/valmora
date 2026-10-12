@@ -40,4 +40,12 @@
 //   causa: PO-068, PO-072, PO-074, collaudo C-014. misura: completa 3/3 sulla build del rilascio.
 //   guardiano: passo «storia» della catena logica (consolidamento + ritmo, tre bracci rossi), foto-verbale.mjs
 //   (rossi C18V01/C20C01), tests/aggiornamento.test.ts + salvataggio reale 0.4.0 (rossi C14V01/C14I01), C22K01.
-export const GAME_VERSION = '0.6.0';
+//
+// 0.7.0 – primo dei tre rilasci al giorno (D-109): barra della fiducia (S-19, PO-067), doppia conferma dello
+//   schieramento con avviso delle unità non usate (S-12, PO-061/054), esporta/importa e copia di riserva (S-20, PO-073),
+//   triplice conferma per ripartire (S-16, PO-066), finale di e36 per fascicolo (D-106) col tono giusto, fiducia minima 2
+//   a inizio episodio (D-105), e02/e03 ammorbiditi (D-108).
+//   causa: PO-054…PO-073, D-105…D-108. misura: completa 3/3 sulla build del rilascio.
+//   guardiano: controllaFiducia, controllaArchivio (rosso C19S01), Tripla (C20T01), controllaFiduciaMinima (C23F01),
+//   controllaDifficolta, bot per versione di esito (D106BOT), tests/tono.test.ts (C24T01).
+export const GAME_VERSION = '0.7.0';
