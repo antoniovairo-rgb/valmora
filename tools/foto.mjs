@@ -46,7 +46,7 @@ function gioca(m, dich, g, iniziali = variabiliIniziali(dich.values())) {
     ondate.push({ disposizione, risposte, rapporto: s.rapporti.at(-1) });
   }
   const fine = concludiMissione(m, s, dich);
-  return { ondate, esito: fine.esito.id, stelle: valutaEpisodio(m, fine).stelle, fallita: !!fine.esito.fallita, variabili: fine.variabili };
+  return { ondate, esito: fine.esito.id, stelle: valutaEpisodio(m, fine).stelle, fallita: !!fine.esito.fallita, variabili: fine.variabili, ic: s };
 }
 
 /**

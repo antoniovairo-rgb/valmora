@@ -1,0 +1,1 @@
+export function misura(semi?: number): { tot: number; sotto: number; zero: number; mediana: number; min: number; ricomincia: number; ondataMedia: number; ms: number; p50: number; p95: number; lenti: string[]; peggiori: [number, string][] };
