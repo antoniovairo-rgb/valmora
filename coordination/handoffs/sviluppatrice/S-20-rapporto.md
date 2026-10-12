@@ -34,10 +34,12 @@ Ramo `claude/valmora-resa-v2`. Stato: **consegnata**. Lo scaricamento nell'app A
 | `… VALMORA_ROSSI=C19S01 …` | 360 px | ROSSO: «salvataggio rovinato senza ripresa dalla copia di riserva», «dopo la ripresa il salvataggio non è quello della copia» |
 | `node tools/foto.mjs out/foto-s20` | 3 larghezze | verde |
 | home con partita, `scrollHeight` a 360/375/412 × 760 | build bf80536 (prima) e build nuova (dopo) | 760 px in tutti e 6 i casi, nessuno scorrimento |
-| `node tools/catena.mjs completa` | vedi sotto | |
+| `node tools/catena.mjs completa` | commit 35e2c3d (merge della principale 06128a0, 0.6.0), 3 giri | 3 su 3 VERDI, nessun passo ritentato |
 
 Foto in `docs/foto/s20/2026-10-12/`:
 - home con partita, prima e dopo, a 360, 375 e 412 px;
 - a 360 px: le due conferme dell'importazione e la ripresa dalla copia.
 
 Nota del guardiano: la prima versione si interrompeva leggendo il salvataggio rovinato (`JSON.parse`). L'ho resa robusta.
+
+Merge con la 0.6.0 della principale: `archivio.ts` era cambiato da entrambe le parti. Ho tenuto il suo `adattaAiDati` (salvataggi adattati ai dati nuovi, C-014) e lo applico anche alla copia di riserva e ai file importati.
