@@ -178,6 +178,8 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         // PO-064: niente più APK nella home (l'app passa da Play con l'AAB); PO-065: c'è il logo
         atteso('home: c\'è ancora il link all\'APK', (await pagina.locator('[data-azione="apk"]').count()) === 0);
         atteso('home: manca il logo', (await pagina.locator('[data-logo]').count()) === 1);
+        const [li, ln] = [await pagina.locator('[data-logo]').boundingBox(), await pagina.locator('.logo-nome').boundingBox()]; // PO-077
+        atteso('home: il logo non sta a sinistra del nome, sulla stessa riga (PO-077)', !!li && !!ln && li.x + li.width <= ln.x && li.y < ln.y + ln.height && ln.y < li.y + li.height);
         // PO-032: la home dice versione e build vera (non «sviluppo»); interruttore rosso C05S09
         const versione = await pagina.getAttribute('[data-versione]', 'data-versione').catch(() => null);
         const riga = (await pagina.locator('[data-versione]').textContent().catch(() => '')) ?? '';

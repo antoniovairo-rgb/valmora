@@ -24,8 +24,11 @@ export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi:
   return (
     <>
       <div className="logo">
-        <img className="logo-icona" src="./icone/icona.svg" alt="" aria-hidden="true" data-logo />
-        <h1 className="logo-nome">{nome}</h1>
+        {/* PO-077: icona a sinistra, affiancata al nome. Rosso C25L01: icona sopra il nome, come prima */}
+        <div className={spento('C25L01') ? undefined : 'logo-riga'}>
+          <img className="logo-icona" src="./icone/icona.svg" alt="" aria-hidden="true" data-logo />
+          <h1 className="logo-nome">{nome}</h1>
+        </div>
         {sotto && <div className="logo-sotto">{sotto}</div>}
       </div>
       {dallaRiserva && <p className="avviso" role="status" data-riserva>Il salvataggio era rovinato: ho ripreso la partita dalla copia di riserva.</p>}
