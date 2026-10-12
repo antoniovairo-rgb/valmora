@@ -37,3 +37,13 @@ Dopo essere usciti dall'app e rientrati, la mappa diventa scura: le particelle r
 - Verde: 0 errori.
 - Rosso (misurato col vecchio nome C30M01, stesso codice): il guardiano scatta in e01, e02 ed e03 con «tornando dal background lo sfondo della mappa non si ridisegna (0 → 0)». Il braccio rosso vede il difetto, quindi il guardiano non è cieco.
 - Limite dichiarato: il guardiano dimostra che lo sfondo si ridisegna; non dimostra che questo basti sul telefono del PO, perché lì non ho potuto misurare. **Chiedo al PO una prova sul telefono** con l'APK di questa build.
+
+## Correzione successiva: aloni persi dopo il ridisegno (difetto mio, trovato prima della consegna)
+
+- Difetto: il ridisegno dello sfondo distruggeva la scena Pixi con gli aloni colorati della tensione, e l'effetto degli aloni non si rifaceva. Dopo il background i settori restavano senza alone fino alla scena successiva.
+- Correzione: l'effetto degli aloni dipende anche dal contatore dei ridisegni (`src/resa/mappa/StratoPixi.tsx`); la mappa espone `data-aloni`.
+- **Rosso `__NO_C31W02`**: gli aloni non si rifanno, come prima della correzione.
+- Guardiano: `controllaRidisegno` confronta `data-aloni` prima e dopo il background.
+- FATTO MISURATO (`VALMORA_LARGHEZZE=360 node tools/foto.mjs`):
+  - verde: 0 errori;
+  - rosso `C31W02`: «gli aloni della tensione sono 0 invece di 5» negli schieramenti di e01 (3 volte), e02, e03, e07, e13 ed e25.
