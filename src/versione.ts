@@ -69,4 +69,12 @@
 //   a capo (C16-06), indicatore «Rispondi ↓» calcolato senza IntersectionObserver.
 //   causa: collaudo C-016. misura: completa 3/3 sulla build del rilascio; offline O5 verde e rosso.
 //   guardiano: tools/offline.mjs O5 (C28W01), guida passo 3 (C28G01), controllaRipartiTesto (C28R01), C10S03.
-export const GAME_VERSION = '0.10.0';
+//
+// 0.11.0 – rilascio delle 08:00 (D-109): fiducia che premia il risultato dell'ondata (PO-094, D-113), perché di ogni
+//   settore scoperto nel rapporto (PO-087), lampeggia solo il settore della chiamata (PO-088, PO-093), corteo e squadre
+//   in movimento con vignetta nella chiamata (PO-089, parte A), mappa ridisegnata al ritorno dal background (S-26,
+//   PO-081), stadio accanto al piazzale (S-25, PO-080), stagione chiusa spiegata (PO-091), C15-04…09.
+//   causa: collaudo del PO del 12/10 e C-015. misura: completa 3/3 sulla build del rilascio; peggiore sopra equilibrata
+//   26→0/36; 1161 scoperti, 0 senza causa. guardiano: tests/fiducia-risultato.test.ts (PO094), tests/causa-scoperto.test.ts
+//   (PO087), C31M01, C32D01, C31W01/W02, C29P01/P02, C33C01, C34N01…C34S01, C34P01.
+export const GAME_VERSION = '0.11.0';
