@@ -365,10 +365,10 @@
             {
               "id": "scorta_ospiti",
               "testo": "testi:e04.op.scorta_ospiti",
-              "costo": "testi:e04.op.scorta_ospiti.c",
+              "costo": "testi:e04.op.scorta_ospiti_chiuso.c",
               "effetti": [
                 {
-                  "pressione": "mercato",
+                  "pressione": "piazza_fonderie",
                   "valore": -1
                 },
                 {
