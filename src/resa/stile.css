@@ -374,29 +374,3 @@ main:not(.rosso-c38r01) .scena .azioni.riepilogo-azioni { position: static; }
    col colore come striscia a sinistra. Rosso C40C01: come prima. */
 main:not(.rosso-c40c01) [data-premio-fiducia] { padding: var(--spazio-1) var(--spazio-2); border: var(--bordo-fine) solid var(--nero); border-left: var(--spazio-2) solid var(--colore-bene); background: var(--bianco); color: var(--nero); }
 main:not(.rosso-c40c01) [data-premio-fiducia].male { border-left-color: var(--colore-male); }
-/* C18-05: «Rispondi» nel fumetto della chiamata, sotto il mittente, allineato a destra: non è più fisso sopra il testo */
-.messaggio .indicatore { position: static; margin: var(--spazio-2) 0 0 auto; }
-/* C17-05: settore coperto ma ancora a tensione da degenerato: testo nero, striscia del colore della tensione alta */
-.elenco-settori .caldo { padding-left: var(--spazio-1); border-left: var(--spazio-1) solid var(--tensione-4); color: var(--nero); text-align: right; }
-.elenco-settori .caldo small { display: block; font-weight: 400; font-size: var(--testo-mini); }
-/* C17-22: all'ultimo passo del verbale i pulsanti stanno sotto il testo, non fissi: a 375×667 coprivano «Voci in rete». Rosso C42V01: fissi. */
-main:not(.rosso-c42v01)[data-schermata="verbale"] .passi-nav[data-ultimo] { position: static; }
-/* C17-12: spostamento del nome dell'episodio scelto verso l'interno della mappa, misurato da etichette.ts */
-.mappa.citta .settore-nome { translate: var(--nome-dx, 0) var(--nome-dy, 0); }
-/* C18-07: l'aiuto aperto si porta in vista sopra la barra fissa «Conferma», non sotto */
-.compatto .aiuto-schieramento { scroll-margin-bottom: calc(var(--tocco-min) + var(--spazio-5)); }
-/* C18-08: nel verbale la sfida sta sulla riga delle stelle, a soli stemmi, non sopra i busti (si leggevano come i due club) */
-.stelle-sfida .sfida { display: flex; margin: 0; }
-.stelle-sfida .sfida-club > span:last-child { display: none; }
-/* PO-101: «i» dell'ondata accanto al titolo, nello stile del «?» dello schieramento (giallo, bordo nero, tondo).
-   L'etichetta resta su tutta la riga sopra (non si tronca); il tondo è più piccolo del «?» ma il tocco resta 44 px
-   (::after), così la testata non cresce. La riga si apre sotto il titolo. */
-.testata-t:has(.info-ondata) { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--spazio-2); align-items: center; }
-.testata-t:has(.info-ondata) > small { grid-column: 1 / -1; }
-.testata-t:has(.info-ondata) > h1 { grid-column: 1; }
-.info-ondata { display: contents; }
-.info-ondata .info { position: relative; grid-column: 2; grid-row: 2; display: grid; place-items: center; width: calc(var(--tocco-min) - var(--spazio-3)); height: calc(var(--tocco-min) - var(--spazio-3)); padding: 0; border: var(--bordo) solid var(--nero); border-radius: var(--raggio-tondo); background: var(--giallo); box-shadow: var(--ombra-1); color: var(--nero); cursor: pointer; }
-.info-ondata .info::after { content: ""; position: absolute; inset: calc(var(--spazio-3) / -2); }
-.info-ondata .info svg { width: var(--icona); height: var(--icona); }
-.info-ondata .info[aria-expanded="true"] { background: var(--nero); color: var(--giallo); }
-.info-riga { grid-column: 1 / -1; margin: var(--spazio-1) 0 0; padding: var(--spazio-1) var(--spazio-2); border-left: var(--spazio-1) solid var(--magenta); background: var(--bianco); color: var(--nero); font-size: var(--testo-piccolo); line-height: var(--linea-stretta); font-weight: 500; text-transform: none; }

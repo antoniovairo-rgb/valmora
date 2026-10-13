@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- Provino PO-085 punto 3: indicatore di urgenza solo visivo sulle chiamate «URGENTE!» (la logica non ha timer).
+     Tre alternative sul fumetto della chiamata, a 360 px. Solo provino: i colori diventeranno token nello stile scelto. -->
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Provino PO-085 urgenza</title>
+<style>
+  :root { --giallo:#ffd400; --nero:#111; --bianco:#fff; --magenta:#e0115f; --ciano:#00c2ff; --rosa:#ffeef4; }
+  body { margin:0; padding:12px 8px; background:var(--giallo); font:14px/1.35 system-ui,sans-serif; color:var(--nero); }
+  h2 { margin:14px 0 4px; font-size:15px; } p.nota { margin:0 0 8px; font-size:13px; }
+  .msg { position:relative; background:var(--bianco); border:3px solid var(--nero); border-radius:18px; padding:12px; box-shadow:5px 5px 0 var(--nero); }
+  .riga { display:flex; align-items:center; gap:8px; }
+  .ic { width:34px; height:34px; border:3px solid var(--nero); background:var(--ciano); }
+  .chi { font:800 14px/1.1 system-ui; text-transform:uppercase; flex:1; }
+  .timbro { background:var(--magenta); color:var(--bianco); font:800 13px system-ui; padding:4px 8px; border:2px solid var(--nero); transform:rotate(3deg); text-transform:uppercase; }
+  .testo { font:700 15px/1.3 system-ui; margin:10px 0 0; }
+  /* A: barra che si svuota sotto il timbro */
+  .barra { height:8px; border:2px solid var(--nero); background:var(--rosa); margin-top:10px; overflow:hidden; }
+  .barra i { display:block; height:100%; background:var(--magenta); animation:svuota 8s linear infinite; transform-origin:left; }
+  @keyframes svuota { from { transform:scaleX(1); } to { transform:scaleX(.08); } }
+  /* B: spicchio d'orologio che si riempie accanto al timbro */
+  .orologio { width:30px; height:30px; border-radius:50%; border:3px solid var(--nero); background:conic-gradient(var(--magenta) var(--g,0deg), var(--bianco) 0); animation:gira 8s linear infinite; }
+  @property --g { syntax:'<angle>'; inherits:false; initial-value:0deg; }
+  @keyframes gira { to { --g:340deg; } }
+  /* C: bordo che pulsa e timbro che trema */
+  .pulsa { animation:pulsa 1.2s ease-in-out infinite; }
+  @keyframes pulsa { 50% { box-shadow:5px 5px 0 var(--nero), 0 0 0 6px var(--magenta); } }
+  .trema { animation:trema 1.2s ease-in-out infinite; }
+  @keyframes trema { 0%,100% { transform:rotate(3deg); } 25% { transform:rotate(-2deg); } 75% { transform:rotate(5deg); } }
+  @media (prefers-reduced-motion: reduce) { .barra i, .orologio, .pulsa, .trema { animation:none; } }
+</style></head><body>
+<h2>A · Barra che si svuota</h2><p class="nota">Sotto il testo una striscia magenta che si accorcia in 8 s e ricomincia. Si legge subito, occupa 12 px in altezza.</p>
+<div class="msg" data-alt="A"><div class="riga"><div class="ic"></div><div class="chi">Informatore di strada</div><div class="timbro">Urgente!</div></div>
+<p class="testo">«È partito! Duecento persone dalle fonderie, cori e bandiere.»</p><div class="barra"><i></i></div></div>
+<h2>B · Spicchio d'orologio</h2><p class="nota">Accanto al timbro un orologio che si riempie di magenta in 8 s. Non aggiunge altezza.</p>
+<div class="msg" data-alt="B"><div class="riga"><div class="ic"></div><div class="chi">Informatore di strada</div><div class="orologio"></div><div class="timbro">Urgente!</div></div>
+<p class="testo">«È partito! Duecento persone dalle fonderie, cori e bandiere.»</p></div>
+<h2>C · Fumetto che pulsa</h2><p class="nota">Il bordo del fumetto pulsa di magenta e il timbro trema. Molto visibile, più agitato; nessuna altezza in più.</p>
+<div class="msg pulsa" data-alt="C"><div class="riga"><div class="ic"></div><div class="chi">Informatore di strada</div><div class="timbro trema">Urgente!</div></div>
+<p class="testo">«È partito! Duecento persone dalle fonderie, cori e bandiere.»</p></div>
+</body></html>
