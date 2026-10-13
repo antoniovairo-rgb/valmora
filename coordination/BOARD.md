@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-13 20:40 Roma – main 0.14.0 (aacbfc0). Principale 8fdb40a: integrata la consegna C-018 resa della sviluppatrice (812925d, merge 6d1dd15); rosso D-108 (e04 53,7% < e03 54,8%) causato dalla correzione C19-03 della principale, chiuso con la variante kebab_chiuso (e04 54,1%, logica verde). Sviluppatrice: PO-101 + C19-04 pronti (db7db4a), merge dalla principale e 3/3 in corso. Prossimo: rilascio 0.15.0.
+Ultimo giro della routine: 2026-10-13 21:32 Roma – main 0.14.0 (aacbfc0), principale 15 commit avanti (catena logica verde dopo la correzione D-108). Sviluppatrice: PO-101 + C19-04 riallineati alla principale (1ce4232), completa giro 1 verde, giri 2-3 in corso, non ancora pushato. Prossimo: rilascio 0.15.0 alla routine delle 23:00 se la consegna arriva in tempo.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
