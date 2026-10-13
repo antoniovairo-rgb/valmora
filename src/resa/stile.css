@@ -361,7 +361,7 @@ main:not(.rosso-c38a01) .riga-in-mano .aiuto svg { width: var(--icona-aiuto); he
 #app { position: relative; min-height: 100dvh; }
 .versione-angolo { position: absolute; right: var(--spazio-4); bottom: var(--spazio-1); pointer-events: none; font: 500 var(--testo-mini) / 1 var(--font); color: var(--colore-testo-tenue); }
 /* PO-098: giallo su giallo non si leggeva: nero su fondino bianco (contrasto ≥ 4,5:1). Rosso C40C01: come prima. */
-main:not(.rosso-c40c01) .versione-angolo { padding: var(--spazio-px) var(--spazio-1); background: var(--bianco); color: var(--nero); }
+main:not(.rosso-c40c01) .versione-angolo { padding: var(--spazio-px) var(--spazio-1); border: var(--bordo-fine) solid var(--nero); background: var(--bianco); color: var(--nero); } /* bordo: il fondino bianco sul giallo è solo 1,43:1 (WCAG 1.4.11) */
 /* C18-10 (scelta A): sempre nella vista, in basso a destra, in verticale nel margine destro della pagina (dove non ci sono
    testi né comandi), sotto i pulsanti fissi */
 main:not(.rosso-c40c01) .versione-angolo { position: fixed; right: 0; bottom: var(--spazio-2); z-index: 3; writing-mode: vertical-rl; transform: rotate(180deg); padding: var(--spazio-1) var(--spazio-px); }

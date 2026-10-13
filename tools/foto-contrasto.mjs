@@ -26,3 +26,31 @@ export async function controllaContrasto(pagina, atteso, nome) {
   });
   atteso(`${nome}: testi sul giallo sotto 4,5:1: ${bassi.join('; ')} (PO-098)`, !bassi.length);
 }
+
+/** PO-098 (WCAG 1.4.11, componenti non testuali): ogni riquadro con un fondo suo, posato direttamente sulla pagina
+ *  gialla, si stacca dallo sfondo con almeno 3:1, col fondo o col bordo. Fonte: https://www.w3.org/TR/WCAG21/#non-text-contrast */
+export async function trovaRiquadri(pagina) {
+  return pagina.evaluate(() => {
+    const rgb = (c) => { const m = c.match(/[\d.]+/g)?.map(Number) ?? [0, 0, 0, 0]; return { r: m[0], g: m[1], b: m[2], a: m.length > 3 ? m[3] : 1 }; };
+    const lum = ({ r, g, b }) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b); };
+    const rapp = (x, y) => { const [a, b] = [lum(x), lum(y)].sort((p, q) => q - p); return (a + 0.05) / (b + 0.05); };
+    const pag = rgb(getComputedStyle(document.body).backgroundColor);
+    const out = [];
+    for (const el of document.querySelectorAll('main *')) {
+      if (el.closest('svg') || !el.getClientRects().length) continue;
+      const cs = getComputedStyle(el), f = rgb(cs.backgroundColor);
+      if (f.a < 0.5) continue;
+      let a = el.parentElement, sullaPagina = true;
+      while (a && a !== document.body) { if (rgb(getComputedStyle(a).backgroundColor).a > 0.5) { sullaPagina = false; break; } a = a.parentElement; }
+      if (!sullaPagina) continue;
+      const bordo = ['Top', 'Right', 'Bottom', 'Left'].some((k) => parseFloat(cs[`border${k}Width`]) >= 1 && rgb(cs[`border${k}Color`]).a > 0.5 && rapp(rgb(cs[`border${k}Color`]), pag) >= 3);
+      const r = rapp(f, pag);
+      if (r < 3 && !bordo) out.push(`${el.tagName.toLowerCase()}.${[...el.classList].join('.')} «${el.textContent.trim().slice(0, 20)}» fondo ${r.toFixed(2)}:1`);
+    }
+    return out;
+  });
+}
+export async function controllaRiquadri(pagina, atteso, nome) {
+  const bassi = await trovaRiquadri(pagina);
+  atteso(`${nome}: riquadri che non si staccano dal giallo (fondo e bordo sotto 3:1): ${bassi.join('; ')} (PO-098)`, !bassi.length);
+}
