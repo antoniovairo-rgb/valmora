@@ -1,6 +1,6 @@
 // Sonda C-017 (affidabilità nel browser), build in dist/, Chromium headless a 360×760.
 //  A1 tempo di caricamento (fino al titolo visibile e alla mappa pronta in sala), CPU 1× e 4×, 5 prove;
-//  A2 episodio perso (e01, piano del bot peggiore): «Riparti dall'ondata N»; poi ricarica sul verbale, tasto
+//  A2 episodio perso (e01, partita casuale c17:e01:casuale:3, per cui la logica propone l'ondata 2): «Riparti dall'ondata N»; poi ricarica sul verbale, tasto
 //     indietro sul verbale → che cosa resta della ripartenza;
 //  A3 «Riparti» → si riparte davvero dall'ondata N (scena e salvataggio);
 //  A4 ricarica a metà ondata (sulla risposta, sulla chiamata, sul rapporto) e tasto indietro in chiamata;
@@ -47,8 +47,8 @@ async function giocaOndata(p, o, fermati) { // fermati(fase, i) → true = esci 
   await sc(p, 'chiusura'); await p.click('[data-azione="rapporto"]'); await sc(p, 'rapporto'); return true; }
 async function alVerbale(p) { await sc(p, 'verbale', 30000); while (await p.locator('[data-azione="passo"]').count()) await p.click('[data-azione="passo"]'); }
 
-// A1
-{ for (const rate of [1, 4]) { const tit = [], map = [];
+// A1 (SALTA_A1=1 la salta)
+if (!process.env.SALTA_A1) { for (const rate of [1, 4]) { const tit = [], map = [];
   for (let i = 0; i < 5; i++) { const ctx = await b.newContext({ viewport: { width: 360, height: 760 } }); const p = await ctx.newPage(); await cpu(p, rate);
     const t0 = Date.now(); await p.goto(URL); await sc(p, 'titolo', 60000); tit.push(Date.now() - t0);
     await p.evaluate(() => localStorage.setItem('valmora-guida-vista', 'si')); await nuova(p); const t1 = Date.now(); await p.click('[data-azione="avvia-episodio"]');
@@ -56,7 +56,7 @@ async function alVerbale(p) { await sc(p, 'verbale', 30000); while (await p.loca
   out(`A1 CPU ${rate}×: titolo visibile ms ${stat(tit)}; sala con mappa pronta ms ${stat(map)}`); } }
 
 // A2 + A3
-{ const m = dati['missioni/e01.json']; const pl = piano(m, B.peggiore(creaCaso(1), dich)); out(`A2 piano peggiore e01: esito ${pl.esito.id}, logica propone ondata ${pl.n}`);
+{ const m = dati['missioni/e01.json']; const pl = piano(m, B.casuale(creaCaso('c17:e01:casuale:3'), dich)); out(`A2 piano casuale e01 seme 3: esito ${pl.esito.id}, logica propone ondata ${pl.n}`);
   const p = await pagina(); await nuova(p); await p.click('[data-azione="avvia-episodio"]'); await finoAllOndata(p);
   for (const [i, o] of pl.ond.entries()) { if (i) await sc(p, 'schieramento'); await giocaOndata(p, o); await p.click('[data-azione="avanti"]'); }
   await alVerbale(p); const rip = await p.getAttribute('[data-azione="riparti"]', 'data-ondata').catch(() => null);
