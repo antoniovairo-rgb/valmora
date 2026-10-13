@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-13 12:57 Roma – 0.12.0 PUBBLICATA su main (ea3b7a0, completa 3/3 su 9ecc009 e CI GitHub verde, Pages verificata), rilascio anticipato su richiesta del PO. Il rilascio delle 13:30 non serve. Sviluppatrice sul secondo pacchetto (vignette stile C, PO-096, PO-097, C17-15, C17-22) per le 23:00.
+Ultimo giro della routine: 2026-10-13 14:2x Roma – 0.13.0 PUBBLICATA su main (5bcaf6b, completa 3/3 su 6216f06 e CI verde, Pages verificata), anticipata su richiesta del PO: vignette stile C, PO-096, PO-097, C17-15, C17-22. Prossimo: collaudo sulla 0.13.0.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
