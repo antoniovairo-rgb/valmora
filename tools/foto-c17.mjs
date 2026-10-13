@@ -109,3 +109,29 @@ export async function controllaVersione(pagina, atteso, nome, versione) {
   atteso(`${nome}: la versione non è nella vista senza scorrere (C18-10)`, r.vista);
   atteso(`${nome}: la versione non ha un fondino suo: sul giallo a puntini si legge male (PO-098)`, r.fondino);
 }
+
+/** C18-09: nel rapporto la riga della fiducia (perché sale o scende) si legge a inizio pagina, intera e non coperta
+ *  dal pulsante fisso «Prossima ondata» / «Leggi il verbale». Rosso VALMORA_ROSSI=C42F01: riga in fondo, come prima. */
+export async function controllaFiduciaRapporto(pagina, atteso, dove) {
+  const r = await pagina.evaluate(() => {
+    scrollTo(0, 0);
+    const f = document.querySelector('[data-premio-fiducia]');
+    if (!f) return null;
+    const a = f.getBoundingClientRect(), b = document.querySelector('.scena [data-azione="avanti"]')?.getBoundingClientRect();
+    const sopra = b ? Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)) : 0;
+    return { vista: a.top >= 0 && a.bottom <= innerHeight, sopra };
+  });
+  if (r) atteso(`${dove}: la riga della fiducia non si legge a inizio pagina (${r.vista ? `coperta per ${Math.round(r.sopra)} px²` : 'fuori dalla finestra'}) (C18-09)`, r.vista && r.sopra === 0);
+}
+
+/** C18-08: nel verbale la riga della sfida (club e «contro») non sta sopra la vignetta dei busti.
+ *  Rosso VALMORA_ROSSI=C42S01: sopra, come prima. */
+export async function controllaSfidaBusti(pagina, atteso, dove) {
+  const area = await pagina.evaluate(() => {
+    const c = document.querySelector('.verbale .vignetta-cornice'), v = c?.querySelector('svg.vignetta'), s = c?.querySelector('.sfida');
+    if (!v || !s) return 0;
+    const A = v.getBoundingClientRect(), B = s.getBoundingClientRect();
+    return Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
+  });
+  atteso(`${dove}: la sfida sta sopra i busti della vignetta per ${Math.round(area)} px² (C18-08)`, area === 0);
+}

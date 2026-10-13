@@ -383,3 +383,8 @@ main:not(.rosso-c40c01) [data-premio-fiducia].male { border-left-color: var(--co
 main:not(.rosso-c42v01)[data-schermata="verbale"] .passi-nav[data-ultimo] { position: static; }
 /* C17-12: spostamento del nome dell'episodio scelto verso l'interno della mappa, misurato da etichette.ts */
 .mappa.citta .settore-nome { translate: var(--nome-dx, 0) var(--nome-dy, 0); }
+/* C18-07: l'aiuto aperto si porta in vista sopra la barra fissa «Conferma», non sotto */
+.compatto .aiuto-schieramento { scroll-margin-bottom: calc(var(--tocco-min) + var(--spazio-5)); }
+/* C18-08: nel verbale la sfida sta sulla riga delle stelle, a soli stemmi, non sopra i busti (si leggevano come i due club) */
+.stelle-sfida .sfida { display: flex; margin: 0; }
+.stelle-sfida .sfida-club > span:last-child { display: none; }
