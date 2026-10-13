@@ -18,7 +18,10 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
     const cosa = [...new Set(c.eventi)].map((e) => t(`evento.${e}`));
     if (c.risposte > 0) cosa.push('le tue risposte');
     const testo = cosa.join(', ');
-    return `${testo.charAt(0).toUpperCase()}${testo.slice(1)}: pressione ${c.pressione}, copertura ${c.copertura}`;
+    // D-055: niente numeri, il confronto fra pressione e copertura in parole. Rosso C34P01: i numeri, come in 09ff232.
+    const quanto = spento('C34P01') ? `pressione ${c.pressione}, copertura ${c.copertura}`
+      : c.copertura <= 0 ? 'nessuna unità a coprirlo' : c.copertura * 2 < c.pressione ? 'unità troppo poche' : 'unità non abbastanza';
+    return `${testo.charAt(0).toUpperCase()}${testo.slice(1)}: ${quanto}`;
   };
   return (
     <>
