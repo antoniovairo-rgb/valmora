@@ -337,6 +337,46 @@
               "risposta": "testi:e04.op.scorta_ospiti.r"
             }
           ]
+        }, {
+          "id": "kebab_chiuso",
+          "dopo": {"gia": ["arance/chiudi_mercato"]},
+          "fonte": "voci_in_rete",
+          "testo": "testi:e04.ch.kebab_chiuso",
+          "settore": "piazza_fonderie",
+          "opzioni": [
+            {
+              "id": "lascia_panino",
+              "testo": "testi:e04.op.lascia_panino",
+              "costo": "testi:e04.op.lascia_panino.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "piazza_fonderie",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e04.op.lascia_panino.r"
+            },
+            {
+              "id": "scorta_ospiti",
+              "testo": "testi:e04.op.scorta_ospiti",
+              "costo": "testi:e04.op.scorta_ospiti.c",
+              "effetti": [
+                {
+                  "pressione": "mercato",
+                  "valore": -1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e04.op.scorta_ospiti.r"
+            }
+          ]
         }
       ]
     },
