@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-13 14:2x Roma – 0.13.0 PUBBLICATA su main (5bcaf6b, completa 3/3 su 6216f06 e CI verde, Pages verificata), anticipata su richiesta del PO: vignette stile C, PO-096, PO-097, C17-15, C17-22. Prossimo: collaudo sulla 0.13.0.
+Ultimo giro della routine: 2026-10-13 14:20 Roma – 0.13.0 su main (5bcaf6b). Collaudo C-018 avviato sulla 0.13.0 (session_01Kv9aEX5svcACT3dF3oWu2X). Sviluppatrice: PO-085 parte grafica (conseguenza visibile sulla mappa, icone degli effetti, provino urgenza). Principale: testi brevi PO-084/085, C17-07/08.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
