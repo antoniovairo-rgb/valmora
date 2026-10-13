@@ -19,7 +19,7 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean) {
       const main = svg.closest('main') ?? document.body, app = main.parentElement ?? document.body;
       const px = (e: Element, k: 'marginBottom' | 'paddingBottom') => parseFloat(getComputedStyle(e)[k]) || 0;
       const fondo = main.getBoundingClientRect().bottom + window.scrollY + px(main, 'marginBottom') + px(app, 'paddingBottom') + (app === document.body ? 0 : px(document.body, 'paddingBottom'));
-      const libero = innerHeight - fondo;
+      const libero = innerHeight - fondo - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-margine')) || 0);
       svg.style.setProperty('height', `${Math.max(min, Math.min(max, svg.getBoundingClientRect().height + libero))}px`);
     };
     fai();
