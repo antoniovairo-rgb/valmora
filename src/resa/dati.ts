@@ -17,6 +17,8 @@ export const genereAttuale = (): Genere => genere;
 /** «testi:e01.titolo» o «e01.titolo» → testo (variante «@f» se c'è e la protagonista è donna);
  *  chiave mancante = errore visibile, mai un vuoto. */
 export const t = (chiave: string): string => scegliTesto(testi, chiave, genere) ?? `[[${chiave}]]`;
+/** Testo facoltativo: null se la chiave non c'è (PO-101, riga «i» dell'ondata). */
+export const testoSe = (chiave: string): string | null => scegliTesto(testi, chiave, genere) ?? null;
 
 /** «1 squadra», «3 squadre» (C15-05): forme dai testi «risorsa.<r>.uno» e «risorsa.<r>.molti» (dati); se mancano,
  * il nome della risorsa com'era. Rosso C34T01: sempre il nome, come prima («1 Squadre»). */

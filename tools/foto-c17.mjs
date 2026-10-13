@@ -135,3 +135,35 @@ export async function controllaSfidaBusti(pagina, atteso, dove) {
   });
   atteso(`${dove}: la sfida sta sopra i busti della vignetta per ${Math.round(area)} px² (C18-08)`, area === 0);
 }
+
+/** PO-085: dopo una risposta, ogni settore toccato dagli effetti (pressione, tensione, unità sul settore della
+ *  chiamata) mostra un segno sulla mappa, e nessun altro settore. Dai dati, senza la funzione della resa. */
+export async function controllaSegni(pagina, atteso, c, op, dove) {
+  if ((await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === null) return;
+  const o = c.opzioni.find((x) => x.id === op);
+  const voluti = new Set();
+  for (const e of o?.effetti ?? []) {
+    if ('pressione' in e && e.valore) voluti.add(e.pressione);
+    if ('tensione' in e && e.valore) voluti.add(e.tensione);
+    if ('riserva' in e && e.valore && c.settore) voluti.add(c.settore);
+  }
+  const visti = new Set(await pagina.evaluate(() => [...document.querySelectorAll('[data-segno]')].map((x) => x.dataset.segno.split(':')[0])));
+  const a = [...voluti].sort().join(','), b = [...visti].sort().join(',');
+  atteso(`${dove}: segni sulla mappa su «${b}», gli effetti toccano «${a}» (PO-085)`, a === b);
+}
+
+/** PO-085: sotto ogni opzione, le icone d'effetto sono quelle dei dati (settore, fiducia, unità), senza numeri. */
+export async function controllaIconeEffetti(pagina, atteso, c, dove) {
+  const viste = await pagina.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-opzione]')].map((b) =>
+    [b.dataset.opzione, [...b.querySelectorAll('[data-effetto]')].map((x) => x.dataset.effetto).sort().join(',') + (/\d/.test(b.querySelector('.effetti-opzione')?.textContent ?? '') ? ' CON NUMERI' : '')])));
+  for (const [id, v] of Object.entries(viste)) {
+    const o = c.opzioni.find((x) => x.id === id), k = new Set();
+    for (const e of o?.effetti ?? []) {
+      if (('tensione' in e || 'pressione' in e) && e.valore) k.add(`settore:${e.tensione ?? e.pressione}`);
+      else if ('aggiungi' in e && e.aggiungi === 'credito' && e.valore) k.add('fiducia');
+      else if ('riserva' in e && e.valore) k.add(`unita:${e.riserva}`);
+    }
+    const voluti = [...k].sort().join(',');
+    atteso(`${dove} opzione «${id}»: icone «${v}», i dati dicono «${voluti}» (PO-085)`, v === voluti);
+  }
+}

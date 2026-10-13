@@ -106,5 +106,43 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     atteso(`schieramento ${primo.m.id} 375×667 col «?» aperto: fuori vista o sotto la barra ${male.join(', ')} (C18-07)`, male.length === 0);
     await q.close();
   }
+  // PO-101: e07 ondata 2 («La partita, fuori») a 360×760, 375×667 e 412×915: c'è la «i» accanto al titolo; al tocco la
+  //         riga dei dati sotto il titolo, che non copre la mappa né comandi; si chiude col secondo tocco e toccando altrove.
+  //         Foto chiusa e aperta. Rosso VALMORA_ROSSI=C43I01: niente icona.
+  const e07 = stati.find((x) => x.m.id === 'e07' && x.n === 2);
+  if (e07) for (const [w, h] of [[360, 760], [375, 667], [412, 915]]) {
+    const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
+    await q.goto(url);
+    await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: e07.s }));
+    await q.reload(); await q.getByRole('button', { name: 'Riprendi' }).click();
+    await q.waitForSelector('[data-barra]', { timeout: 5000 }).catch(() => {}); await q.waitForTimeout(120);
+    const dove = `e07 ondata 2 ${w}×${h}`;
+    await q.screenshot({ path: join(cartella, `po101-${w}-chiusa.png`) });
+    const icona = q.locator('[data-azione="info-ondata"]');
+    atteso(`${dove}: manca la «i» accanto al titolo dell'ondata (PO-101)`, (await icona.count()) === 1);
+    if (await icona.count()) {
+      await icona.click(); await q.waitForTimeout(80);
+      await q.screenshot({ path: join(cartella, `po101-${w}-aperta.png`) });
+      const r = await q.evaluate(() => {
+        const riga = document.querySelector('[data-info-ondata]');
+        if (!riga) return null;
+        const a = riga.getBoundingClientRect();
+        const tocca = (b) => Math.min(a.right, b.right) - Math.max(a.left, b.left) > 0 && Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 0;
+        const sopra = [...document.querySelectorAll('.mappa, main button')].filter((e) => !e.closest('.info-ondata') && e.getClientRects().length && tocca(e.getBoundingClientRect()))
+          .map((e) => e.dataset.azione ?? e.className);
+        return { testo: riga.textContent, sopra, vista: a.top >= 0 && a.bottom <= innerHeight };
+      });
+      atteso(`${dove}: al tocco della «i» non compare la riga (PO-101)`, !!r);
+      if (r) {
+        atteso(`${dove}: riga «i» «${r.testo}» vuota o senza testo dei dati (PO-101)`, r.testo.trim().length > 0 && !r.testo.includes('[['));
+        atteso(`${dove}: la riga «i» copre ${r.sopra.join(', ')} o è fuori dalla finestra (PO-101)`, r.sopra.length === 0 && r.vista);
+      }
+      await icona.click(); await q.waitForTimeout(80);
+      atteso(`${dove}: il secondo tocco della «i» non chiude la riga (PO-101)`, (await q.locator('[data-info-ondata]').count()) === 0);
+      await icona.click(); await q.waitForTimeout(80); await q.mouse.click(w / 2, h - 120); await q.waitForTimeout(80);
+      atteso(`${dove}: toccando altrove la riga «i» resta aperta (PO-101)`, (await q.locator('[data-info-ondata]').count()) === 0);
+    }
+    await q.close();
+  }
   return stati.length;
 }

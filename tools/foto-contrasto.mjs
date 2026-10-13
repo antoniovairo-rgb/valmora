@@ -1,7 +1,8 @@
-// PO-098: contrasto dei testi sullo sfondo giallo della pagina (WCAG 2.x, AA per testo normale: ≥ 4,5:1).
-// Per ogni elemento visibile con testo proprio si cerca lo sfondo effettivo risalendo gli antenati: se è quello della
-// pagina (nessun antenato con un colore di fondo), si confronta il colore del testo col colore di fondo della pagina.
-// Le vignette SVG hanno i loro colori e restano fuori. Fonte della formula: https://www.w3.org/TR/WCAG21/#dfn-contrast-ratio
+// PO-098, C19-04: contrasto di OGNI testo sul suo fondo effettivo (WCAG 2.x, AA: ≥ 4,5:1; testo grande ≥ 3:1, cioè
+// ≥ 24 px o ≥ 18,66 px in grassetto). Il fondo si cerca risalendo gli antenati fino al primo con un colore di fondo
+// pieno; se nessuno ce l'ha, è la pagina gialla. Restano fuori: vignette SVG, la mappa (testi su tela disegnata),
+// fondi a immagine e comandi disattivati (WCAG li esenta). Fonte: https://www.w3.org/TR/WCAG21/#dfn-contrast-ratio
+// e https://www.w3.org/TR/WCAG21/#contrast-minimum («large scale», «incidental»).
 export async function controllaContrasto(pagina, atteso, nome) {
   const bassi = await pagina.evaluate(() => {
     const rgb = (c) => { const m = c.match(/[\d.]+/g)?.map(Number) ?? [0, 0, 0, 1]; return { r: m[0], g: m[1], b: m[2], a: m.length > 3 ? m[3] : 1 }; };
@@ -9,22 +10,28 @@ export async function controllaContrasto(pagina, atteso, nome) {
     const fondoPagina = rgb(getComputedStyle(document.body).backgroundColor);
     const out = [];
     for (const el of document.querySelectorAll('body *')) {
-      if (el.closest('svg') || !el.getClientRects().length) continue;
+      if (el.closest('svg') || el.closest('.mappa') || el.closest(':disabled') || !el.getClientRects().length) continue;
       const proprio = [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
       if (!proprio) continue;
       const cs = getComputedStyle(el);
       if (cs.visibility === 'hidden' || Number(cs.opacity) === 0) continue;
-      let a = el, sulGiallo = true;
-      while (a && a !== document.body) { if (rgb(getComputedStyle(a).backgroundColor).a > 0.5) { sulGiallo = false; break; } a = a.parentElement; }
-      if (!sulGiallo) continue;
-      const t = rgb(cs.color), mix = { r: t.r * t.a + fondoPagina.r * (1 - t.a), g: t.g * t.a + fondoPagina.g * (1 - t.a), b: t.b * t.a + fondoPagina.b * (1 - t.a) };
-      const [l1, l2] = [lum(mix), lum(fondoPagina)].sort((x, y) => y - x);
+      let a = el, fondo = fondoPagina, immagine = false;
+      while (a && a !== document.body) {
+        const s = getComputedStyle(a);
+        if (rgb(s.backgroundColor).a > 0.5) { fondo = rgb(s.backgroundColor); break; }
+        if (s.backgroundImage !== 'none') { immagine = true; break; }
+        a = a.parentElement;
+      }
+      if (immagine) continue;
+      const t = rgb(cs.color), mix = { r: t.r * t.a + fondo.r * (1 - t.a), g: t.g * t.a + fondo.g * (1 - t.a), b: t.b * t.a + fondo.b * (1 - t.a) };
+      const [l1, l2] = [lum(mix), lum(fondo)].sort((x, y) => y - x);
       const rapporto = (l1 + 0.05) / (l2 + 0.05);
-      if (rapporto < 4.5) out.push(`«${el.textContent.trim().slice(0, 24)}» ${rapporto.toFixed(2)}:1`);
+      const px = parseFloat(cs.fontSize), grande = px >= 24 || (px >= 18.66 && Number(cs.fontWeight) >= 700);
+      if (rapporto < (grande ? 3 : 4.5)) out.push(`«${el.textContent.trim().slice(0, 24)}» ${rapporto.toFixed(2)}:1`);
     }
-    return out;
+    return [...new Set(out)];
   });
-  atteso(`${nome}: testi sul giallo sotto 4,5:1: ${bassi.join('; ')} (PO-098)`, !bassi.length);
+  atteso(`${nome}: testi sotto il contrasto minimo (4,5:1; 3:1 se grandi): ${bassi.join('; ')} (PO-098, C19-04)`, !bassi.length);
 }
 
 /** PO-098 (WCAG 1.4.11, componenti non testuali): ogni riquadro con un fondo suo, posato direttamente sulla pagina

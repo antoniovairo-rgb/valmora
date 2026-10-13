@@ -11,6 +11,7 @@ import { Icona, iconaFonte } from '../icone.tsx';
 import { LETTERE, Mittente } from './Fumetto.tsx';
 import { Messaggio } from './Scena.tsx';
 import { VignettaChiamata } from '../vignette-chiamata.tsx';
+import { EffettiOpzione } from '../effetti-opzione.tsx';
 
 
 export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: number; totale: number; rispondi: (opzione: string) => void }) {
@@ -67,6 +68,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
               {t(o.testo)}
               {/* Accenno di costo in parole (D-078); interruttore rosso C05S05 lo nasconde */}
               {o.costo && !spento('C05S05') && <small className="costo" data-costo={o.id}>{t(o.costo)}</small>}
+              <EffettiOpzione c={p.c} o={o} />
             </span>
           </button>
         ))}

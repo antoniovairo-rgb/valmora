@@ -22,6 +22,13 @@ export function faseDi(m: Missione, s: InCorso): Fase {
 /** Livello di colore 0-5 per una tensione di settore 0-10 (D-055: si mostra il colore, mai il numero). */
 export const livello = (tensione: number): number => (tensione <= 0 ? 0 : Math.min(5, Math.ceil(tensione / 2)));
 
+/** PO-101: la riga «i» dell'ondata n («eXX.ondataN.i» dei dati, dalla chiave del titolo); null se manca: niente icona.
+ *  Rosso C43I01: mai. */
+export const infoOndata = (m: Missione, n: number, testo: (k: string) => string | null): string | null => {
+  const o = m.ondate[n - 1];
+  return o && !spento('C43I01') ? testo(`${(o.titolo ?? `testi:${m.id}.ondata${o.n}`).replace(/^testi:/, '')}.i`) : null;
+};
+
 /** C17-05: lo stato di un settore nel rapporto. Coperto ma a tensione da degenerato (≥ DEGENERA) non è «sotto
  *  controllo» e basta: è «caldo». Rosso C42C01: solo «scoperto» o «sotto controllo», come prima. */
 export const statoSettore = (tensione: number, scoperto: boolean): 'scoperto' | 'caldo' | 'controllo' =>
