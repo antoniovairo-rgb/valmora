@@ -110,8 +110,8 @@
   --vignetta-min: 90px;
   --vignetta-max: 200px;
   /* riserve misurate a 360×760: tutto il resto della schermata (S-23) */
-  --vignetta-riserva-sala: 690px; /* C15-07: +10 per la barra della fiducia in sala */
-  --vignetta-min-sala: 70px;
+  --vignetta-riserva-sala: 702px; /* C15-07: +10 per la barra della fiducia in sala; +12 di margine: nel Chromium della CI la sala misurava 762-764 px (CI rossa da cbee54b) */
+  --vignetta-min-sala: 56px;
   --vignetta-riserva-esito: 706px; /* C15-07: +26 per la barra della fiducia nel verbale */
   --vignetta-min-esito: 54px;
   --vignetta-chiamata: 34%; /* PO-089: larghezza della vignetta nel fumetto della chiamata (circa un terzo) */
