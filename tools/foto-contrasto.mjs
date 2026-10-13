@@ -45,7 +45,8 @@ export async function trovaRiquadri(pagina) {
       if (!sullaPagina) continue;
       const bordo = ['Top', 'Right', 'Bottom', 'Left'].some((k) => parseFloat(cs[`border${k}Width`]) >= 1 && rgb(cs[`border${k}Color`]).a > 0.5 && rapp(rgb(cs[`border${k}Color`]), pag) >= 3);
       const r = rapp(f, pag), nome = `${el.tagName.toLowerCase()}.${[...el.classList].join('.')} «${el.textContent.trim().slice(0, 20)}»`;
-      if (r < 3 && !bordo) out.push(`${nome} fondo ${r.toFixed(2)}:1`);
+      // un fondo identico alla pagina senza bordo non disegna un riquadro (es. la barra fissa dello schieramento)
+      if (r < 3 && r > 1.01 && !bordo) out.push(`${nome} fondo ${r.toFixed(2)}:1`);
       // strisce laterali (bordo spesso, di colore diverso dal resto): si devono vedere contro la pagina o contro il fondo
       for (const k of ['Top', 'Right', 'Bottom', 'Left']) {
         const c = rgb(cs[`border${k}Color`]);
