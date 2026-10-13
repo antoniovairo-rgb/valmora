@@ -16,13 +16,15 @@ main:not(.rosso-c42v01)[data-schermata="verbale"] .passi-nav[data-ultimo] { posi
 .stelle-sfida .sfida-club > span:last-child { display: none; }
 /* PO-101: «i» dell'ondata accanto al titolo, nello stile del «?» dello schieramento (giallo, bordo nero, tondo).
    L'etichetta resta su tutta la riga sopra (non si tronca); il tondo è più piccolo del «?» ma il tocco resta 44 px
-   (::after), così la testata non cresce. La riga si apre sotto il titolo. */
+   (::after, vedi C20-06), così la testata non cresce. La riga si apre sotto il titolo. */
 .testata-t:has(.info-ondata) { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--spazio-2); align-items: center; }
 .testata-t:has(.info-ondata) > small { grid-column: 1 / -1; }
 .testata-t:has(.info-ondata) > h1 { grid-column: 1; }
 .info-ondata { display: contents; }
 .info-ondata .info { position: relative; grid-column: 2; grid-row: 2; display: grid; place-items: center; width: calc(var(--tocco-min) - var(--spazio-3)); height: calc(var(--tocco-min) - var(--spazio-3)); padding: 0; border: var(--bordo) solid var(--nero); border-radius: var(--raggio-tondo); background: var(--giallo); box-shadow: var(--ombra-1); color: var(--nero); cursor: pointer; }
 .info-ondata .info::after { content: ""; position: absolute; inset: calc(var(--spazio-3) / -2); }
+/* C20-06: l'::after parte dal riquadro interno (32 - 2 bordi = 26 px): servono anche i bordi per arrivare a 44. Rosso C44I02: 38 px. */
+main:not(.rosso-c44i02) .info-ondata .info::after { inset: calc(var(--spazio-3) / -2 - var(--bordo)); }
 .info-ondata .info svg { width: var(--icona); height: var(--icona); }
 .info-ondata .info[aria-expanded="true"] { background: var(--nero); color: var(--giallo); }
 .info-riga { grid-column: 1 / -1; margin: var(--spazio-1) 0 0; padding: var(--spazio-1) var(--spazio-2); border-left: var(--spazio-1) solid var(--magenta); background: var(--bianco); color: var(--nero); font-size: var(--testo-piccolo); line-height: var(--linea-stretta); font-weight: 500; text-transform: none; }

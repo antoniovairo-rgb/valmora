@@ -74,7 +74,18 @@ export function Schieramento(p: {
   useEffect(() => { riepilogoAperto?.(riepilogo); return () => riepilogoAperto?.(false); }, [riepilogo, riepilogoAperto]);
   const [aiuto, setAiuto] = useState(false);
   const finestraAiuto = useRef<HTMLDivElement>(null); // C18-07: aperto, si porta in vista
-  useEffect(() => { if (aiuto && !spento('C42A01')) finestraAiuto.current?.scrollIntoView({ block: 'nearest' }); }, [aiuto]);
+  useEffect(() => {
+    if (!aiuto || spento('C42A01')) return;
+    const el = finestraAiuto.current;
+    el?.scrollIntoView({ block: 'nearest' });
+    // C20-04: a 360×760 il riquadro è già nella finestra ma sotto la barra fissa «Conferma»: si scorre quanto serve
+    // a mostrarlo sopra la barra, con lo stacco di --spazio-2. Rosso C44A01: solo scrollIntoView, come prima.
+    const barra = document.querySelector('[data-barra]');
+    if (!el || !barra || spento('C44A01')) return;
+    const stacco = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--spazio-2')) || 0;
+    const sotto = el.getBoundingClientRect().bottom + stacco - barra.getBoundingClientRect().top;
+    if (sotto > 0) window.scrollBy({ top: sotto });
+  }, [aiuto]);
   const disp = disponibili(p.m, p.ic);
   const tr = useTrascina(p.metti);
   const restano = Object.entries(disp).map(([r, n]) => [r, n - usate(p.d, r)] as const).filter(([, n]) => n > 0);

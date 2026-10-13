@@ -86,11 +86,13 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     atteso(`riepilogo 375×667: pulsanti sopra ${sotto.join(', ')} (C17-22)`, sotto.length === 0);
     await q.close();
   }
-  // C18-07: a 375×667, aperto il «?», le unità, il «?» e l'aiuto sono nella finestra e non sotto la barra «Conferma».
-  //         Rosso VALMORA_ROSSI=C42A01: aiuto sopra le unità, come prima.
-  const primo = stati.find((x) => x.n === 1) ?? e03;
-  if (primo) {
-    const q = await nuova({ viewport: { width: 375, height: 667 }, reducedMotion: 'reduce' });
+  // C18-07, C20-04: aperto il «?», le unità, il «?» e l'aiuto sono nella finestra e non sotto la barra «Conferma»;
+  //         a 375×667 (C18-07) e a 360×760 (C20-04: riquadro già nella finestra ma sotto la barra), e01 ed e06 ondata 1.
+  //         Rosso VALMORA_ROSSI=C42A01: aiuto sopra le unità, come prima; VALMORA_ROSSI=C44A01: nessuno scorrimento sopra la barra.
+  for (const id of ['e01', 'e06']) for (const [w, h] of [[375, 667], [360, 760]]) {
+    const primo = stati.find((x) => x.m.id === id && x.n === 1);
+    if (!primo) continue;
+    const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
     await q.goto(url);
     await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: primo.s }));
     await q.reload(); await q.getByRole('button', { name: 'Riprendi' }).click();
@@ -103,7 +105,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
         return r.top < 0 || r.bottom > innerHeight || (barra && r.bottom > barra.top + 1 && r.top < barra.bottom);
       }).map((e) => e.dataset.risorsa ?? e.dataset.azione ?? 'aiuto');
     });
-    atteso(`schieramento ${primo.m.id} 375×667 col «?» aperto: fuori vista o sotto la barra ${male.join(', ')} (C18-07)`, male.length === 0);
+    atteso(`schieramento ${id} ${w}×${h} col «?» aperto: fuori vista o sotto la barra ${male.join(', ')} (C18-07, C20-04)`, male.length === 0);
     await q.close();
   }
   // PO-101: e07 ondata 2 («La partita, fuori») a 360×760, 375×667 e 412×915: c'è la «i» accanto al titolo; al tocco la
@@ -121,6 +123,14 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     const icona = q.locator('[data-azione="info-ondata"]');
     atteso(`${dove}: manca la «i» accanto al titolo dell'ondata (PO-101)`, (await icona.count()) === 1);
     if (await icona.count()) {
+      // C20-06: la zona di tocco è almeno --tocco-min (44 px): i punti a ±21 px dal centro colpiscono la «i».
+      //         Rosso VALMORA_ROSSI=C44I02: 38 px, come prima.
+      const tocco = await q.evaluate(() => {
+        const b = document.querySelector('[data-azione="info-ondata"]'), r = b.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        const s = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tocco-min')) / 2 - 1;
+        return [[-s, -s], [s, -s], [-s, s], [s, s], [0, -s], [0, s], [-s, 0], [s, 0]].filter(([dx, dy]) => !b.contains(document.elementFromPoint(cx + dx, cy + dy))).length;
+      });
+      atteso(`${dove}: la zona di tocco della «i» è sotto 44 px (${tocco} punti di 8 a ±21 px fuori) (C20-06)`, tocco === 0);
       await icona.click(); await q.waitForTimeout(80);
       await q.screenshot({ path: join(cartella, `po101-${w}-aperta.png`) });
       const r = await q.evaluate(() => {

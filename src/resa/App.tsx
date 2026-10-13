@@ -42,7 +42,7 @@ type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
-const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01', 'C10S03', 'C14T01', 'C35C01', 'C38A01', 'C38R01', 'C40C01', 'C40C02', 'C42V01'];
+const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01', 'C10S03', 'C14T01', 'C35C01', 'C38A01', 'C38R01', 'C40C01', 'C40C02', 'C42V01', 'C44I02'];
 const libera = (m: Missione, ic: InCorso, d: Disposizione, preferita: string | null) => {
   const disp = disponibili(m, ic);
   const ok = (r: string) => (disp[r] ?? 0) - usate(d, r) > 0;
