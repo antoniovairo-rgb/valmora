@@ -32,11 +32,13 @@ export async function controllaCitta(pagina, atteso, dove) {
 
 /** PO-092: la vignetta (fuori dalla chiamata) prende lo spazio libero: o la pagina è piena, o la vignetta è al massimo. */
 export async function controllaRiempi(pagina, atteso, nome) {
+  // la finestra può essere appena tornata da 760 a 800 (controllaAltezza): si lascia arrivare l'evento «resize»
+  await pagina.evaluate(() => new Promise((ok) => requestAnimationFrame(() => requestAnimationFrame(ok)))); await pagina.waitForTimeout(100);
   const r = await pagina.evaluate(() => {
     const v = [...document.querySelectorAll('svg.vignetta')].find((x) => !x.closest('.chiamata-corpo') && x.getClientRects().length);
     if (!v) return null;
-    const main = document.querySelector('main'), cm = getComputedStyle(main), cb = getComputedStyle(document.body);
-    const libero = innerHeight - (main.getBoundingClientRect().bottom + parseFloat(cm.marginBottom) + parseFloat(cb.paddingBottom));
+    const main = document.querySelector('main'), app = main.parentElement;
+    const libero = innerHeight - (main.getBoundingClientRect().bottom + scrollY + parseFloat(getComputedStyle(main).marginBottom) + parseFloat(getComputedStyle(app).paddingBottom));
     return { h: v.getBoundingClientRect().height, max: parseFloat(getComputedStyle(v).maxHeight), libero };
   });
   if (r) atteso(`${nome}: vignetta alta ${Math.round(r.h)} px con ${Math.round(r.libero)} px liberi sotto (massimo ${r.max}) (PO-092)`, r.libero <= 8 || r.h >= r.max - 1);
@@ -54,6 +56,7 @@ export async function controllaRispondi(pagina, atteso, dove) {
   }
   atteso(`${dove}: dopo «Rispondi» la prima opzione è a ${r?.map(Math.round).join('–')} (finestra ${r?.[2]}), non intera (C17-15)`, !!r && r[0] >= 0 && r[1] <= r[2]);
   await pagina.evaluate(() => scrollTo(0, 0));
+  await pagina.waitForTimeout(150); // l'indicatore si aggiorna all'evento di scorrimento
 }
 
 /** PO-096: nello schieramento la riga «in mano» non è troncata e il «?» è grande (tocco ≥ 44 px, icona ≥ 24 px). */
@@ -72,7 +75,7 @@ export async function controllaRigaAiuto(pagina, atteso, nome) {
 /** PO-097: la versione c'è su ogni schermata, è quella del gioco e non tocca nessun comando. */
 export async function controllaVersione(pagina, atteso, nome, versione) {
   const r = await pagina.evaluate(() => {
-    const v = document.querySelector('[data-versione]');
+    const v = document.querySelector('[data-versione-angolo]');
     if (!v) return null;
     const a = v.getBoundingClientRect();
     const sopra = [...document.querySelectorAll('button, a, input, [role="button"]')].filter((e) => e.getClientRects().length).filter((e) => {

@@ -15,14 +15,21 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean) {
       svg.style.removeProperty('height');
       const css = getComputedStyle(svg), min = parseFloat(css.minHeight) || 0, max = parseFloat(css.maxHeight) || Infinity;
       // spazio libero sotto il contenuto (scrollHeight non scende mai sotto la finestra, quindi si misura il fondo di main)
-      const main = svg.closest('main') ?? document.body, cm = getComputedStyle(main), cb = getComputedStyle(document.body);
-      const fondo = Math.max(main.getBoundingClientRect().bottom + parseFloat(cm.marginBottom) + parseFloat(cb.paddingBottom), document.documentElement.scrollHeight > innerHeight ? document.documentElement.scrollHeight : 0);
+      // il fondo della pagina = fondo di main + suo margine + padding inferiore del contenitore (#app) e del body
+      const main = svg.closest('main') ?? document.body, app = main.parentElement ?? document.body;
+      const px = (e: Element, k: 'marginBottom' | 'paddingBottom') => parseFloat(getComputedStyle(e)[k]) || 0;
+      const fondo = main.getBoundingClientRect().bottom + window.scrollY + px(main, 'marginBottom') + px(app, 'paddingBottom') + (app === document.body ? 0 : px(document.body, 'paddingBottom'));
       const libero = innerHeight - fondo;
       svg.style.setProperty('height', `${Math.max(min, Math.min(max, svg.getBoundingClientRect().height + libero))}px`);
     };
     fai();
+    // si rifà quando l'impaginazione cambia (mappa pronta, caratteri, passi): fermo appena la misura non cambia più
+    const main = svg.closest('main');
+    let ultimo = '';
+    const ro = typeof ResizeObserver === 'undefined' || !main ? null : new ResizeObserver(() => { const ora = `${innerHeight}:${Math.round(main.getBoundingClientRect().height)}`; if (ora !== ultimo) { ultimo = ora; fai(); } });
+    if (main) ro?.observe(main);
     addEventListener('resize', fai); void document.fonts?.ready.then(fai);
-    return () => removeEventListener('resize', fai);
+    return () => { removeEventListener('resize', fai); ro?.disconnect(); };
   }, [el, attivo]);
 }
 

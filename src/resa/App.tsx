@@ -269,7 +269,7 @@ export function App() {
         {mappa && m && <Mappa m={m} home={home} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
         <Voli voli={voli} finito={(id) => setVoli((v) => v.filter((x) => x.id !== id))} />
         {/* PO-097: versione su ogni schermata, in basso a destra, piccola e non toccabile. Rosso C38V01: niente. */}
-        {!spento('C38V01') && <small className="versione-angolo" data-versione aria-hidden="true">v{GAME_VERSION}</small>}
+        {!spento('C38V01') && <small className="versione-angolo" data-versione-angolo aria-hidden="true">v{GAME_VERSION}</small>}
         <AnimatePresence mode="wait" initial={false}>
           <Scena key={chiave} nome={nome} missione={m?.id}>{corpo}</Scena>
         </AnimatePresence>
