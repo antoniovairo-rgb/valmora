@@ -14,14 +14,14 @@ function percorso(m: Missione, scelte: [string, string][]): InCorso {
   let s = iniziaMissione(m, variabiliIniziali(dich.values()), dich);
   while (s.ondata < 4) {
     s = schiera(m, s, {});
-    for (const c of chiamateAperte(m, s)) s = rispondi(m, s, c.id, opzioniValide(c, s)[0]!.id, dich);
+    for (const c of chiamateAperte(m, s)) s = rispondi(m, s, c.id, opzioniValide(c, s, m)[0]!.id, dich);
     s = chiudiOndata(m, s, dich);
   }
   s = schiera(m, s, {});
   for (const [c, o] of scelte) s = rispondi(m, s, c, o, dich);
   return s;
 }
-const conferma = (s: InCorso) => opzioniValide(chiamateAperte(e18, s).find((c) => c.id === 'qualcuno_ha_parlato')!, s).find((o) => o.testo.endsWith('.op.conferma18') || o.testo.endsWith('.op.conferma18p'))!.id;
+const conferma = (s: InCorso) => opzioniValide(chiamateAperte(e18, s).find((c) => c.id === 'qualcuno_ha_parlato')!, s, e18).find((o) => o.testo.endsWith('.op.conferma18') || o.testo.endsWith('.op.conferma18p'))!.id;
 
 describe('testimone in e18 (C15-03)', () => {
   it('protetto, poi conferma alla stampa: resta protetto', () => {

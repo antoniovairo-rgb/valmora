@@ -21,8 +21,8 @@ function stima(m: Missione, s: InCorso, d: Dich): number {
 const PESO_CREDITO = 60; // misurato: 3 stelle stabili con pesi da 20 a 100 su e01 (120 = troppo)
 
 const opzioneMigliore = (m: Missione, s: InCorso, c: Chiamata, d: Dich, segno: 1 | -1, credito = 0) => {
-  let scelta = opzioniValide(c, s)[0]!.id, voto = Infinity;
-  for (const o of opzioniValide(c, s)) {
+  let scelta = opzioniValide(c, s, m)[0]!.id, voto = Infinity;
+  for (const o of opzioniValide(c, s, m)) {
     const t = rispondi(m, s, c.id, o.id, d);
     const v = segno * stima(m, t, d) - credito * (Number(t.variabili.credito ?? 0));
     if (v < voto) { voto = v; scelta = o.id; }
@@ -39,7 +39,7 @@ export const casuale: Strategia = (caso) => ({
     for (const [r, n] of Object.entries(disponibili(m, s))) for (let i = 0; i < n; i++) metti(dd, r, caso.scegli(settoriAmmessi(m, r)));
     return dd;
   },
-  scegli: (_m, s, c) => caso.scegli(opzioniValide(c, s)).id,
+  scegli: (m, s, c) => caso.scegli(opzioniValide(c, s, m)).id,
 });
 
 /** Avido: un'unità per volta dove abbassa di più la tensione stimata; risposte che la abbassano. */

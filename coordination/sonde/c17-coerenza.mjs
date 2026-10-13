@@ -30,7 +30,7 @@ for (const [ep, scelta, testo, extra] of CASI) {
       s = schiera(m, s, g.schiera(m, s));
       for (let c = chiamateAperte(m, s)[0]; c; c = chiamateAperte(m, s)[0]) {
         if (fatta && testo === `ch:${c.id}`) visto = true;
-        let ops = opzioniValide(c, s);
+        let ops = opzioniValide(c, s, m);
         if (fatta && testo.startsWith('opz:') && testo.slice(4).split('/')[0] === c.id) { const o = ops.find((x) => x.id === testo.split('/')[1]); if (o) { visto = true; ops = [o]; } }
         if (c.id === sc && !fatta) { const o = so === '*' ? caso.scegli(ops) : ops.find((x) => x.id === so); if (o) { ops = [o]; fatta = true; } }
         s = rispondi(m, s, c.id, caso.scegli(ops).id, dich);

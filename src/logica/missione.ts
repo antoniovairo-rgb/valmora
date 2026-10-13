@@ -12,7 +12,7 @@
 //   non tornano disponibili e non vanno a riposo. Rosso: __NO_C09F01 (si comportano come unità normali).
 import { applica, valuta } from './condizioni.ts';
 import { spento } from '../interruttori.ts';
-import type { Chiamata, Condizione, Dichiarazione, Disposizione, EffettoMissione, Esito, Missione, Variabili } from './tipi.ts';
+import type { Chiamata, Condizione, Dichiarazione, Disposizione, Dopo, EffettoMissione, Esito, Missione, Opzione, Variabili } from './tipi.ts';
 
 export const VAR_TENSIONE = 'tensione_max';
 export const TENSIONE_MAX = 10;
@@ -127,7 +127,7 @@ export function schiera(m: Missione, s: InCorso, d: Disposizione): InCorso {
 /** Chiamate dell'ondata in corso ancora senza risposta, nell'ordine dei dati. */
 export function chiamateAperte(m: Missione, s: InCorso): Chiamata[] {
   if (missioneFinita(m, s)) return [];
-  return (ondataDi(m, s).chiamate ?? []).filter((c) => !(c.id in s.risposte) && (!c.se || valuta(c.se, s.variabili)) && (!c.senza || spento('PO095') || nessuno(s, c.senza)));
+  return (ondataDi(m, s).chiamate ?? []).filter((c) => !(c.id in s.risposte) && (!c.se || valuta(c.se, s.variabili)) && (!c.senza || spento('PO095') || nessuno(s, c.senza)) && coerente(s, c.dopo));
 }
 
 /** PO-095: «senza steward», «non c'è nessuno»: vero solo se nel settore non hai schierato nessuna di quelle unità. */
@@ -136,7 +136,20 @@ function nessuno(s: InCorso, x: NonNullable<Chiamata['senza']>): boolean {
   return !Object.entries(inCampo(s, s.disposizione)).some(([r, ps]) => (!x.risorse || x.risorse.includes(r)) && (ps[x.settore] ?? 0) > 0);
 }
 
-export const opzioniValide = (c: Chiamata, s: InCorso) => c.opzioni.filter((o) => !o.se || valuta(o.se, s.variabili));
+export const opzioniValide = (c: Chiamata, s: InCorso, m: Missione) => c.opzioni.filter((o) => (!o.se || valuta(o.se, s.variabili)) && coerente(s, o.dopo) && haUnita(m, s, o));
+
+/** PO-086: la chiamata o l'opzione dipende da scelte già fatte («chiamata/opzione»). Rosso __NO_PO086. */
+function coerente(s: InCorso, x?: Dopo): boolean {
+  if (!x || spento('PO086')) return true;
+  const fatte = new Set(s.scelte.map((y) => `${y.chiamata}/${y.opzione}`));
+  return !(x.mai ?? []).some((k) => fatte.has(k)) && (x.gia ?? []).every((k) => fatte.has(k));
+}
+
+/** C17-03: un'opzione che impegna un'unità (riserva negativa) non si offre se di quell'unità non ne resta nessuna. Rosso __NO_C17R03. */
+function haUnita(m: Missione, s: InCorso, o: Opzione): boolean {
+  if (spento('C17R03')) return true;
+  return o.effetti.every((e) => !('riserva' in e) || e.valore >= 0 || (m.mappa.risorse[e.riserva]?.quantita ?? 0) + (s.riserva[e.riserva] ?? 0) > 0);
+}
 
 function applicaEffetto(m: Missione, s: InCorso, e: EffettoMissione, d: Dich): InCorso {
   if ('tensione' in e) return { ...s, tensione: { ...s.tensione, [e.tensione]: lim((s.tensione[e.tensione] ?? 0) + e.valore) } };
@@ -153,7 +166,7 @@ export function rispondi(m: Missione, s: InCorso, chiamata: string, opzione: str
   if (!s.disposizione) throw new Error(`${m.id}: prima si schiera, poi si risponde`);
   const c = chiamateAperte(m, s).find((x) => x.id === chiamata);
   if (!c) throw new Error(`${m.id}: la chiamata «${chiamata}» non è aperta`);
-  const o = opzioniValide(c, s).find((x) => x.id === opzione);
+  const o = opzioniValide(c, s, m).find((x) => x.id === opzione);
   if (!o) throw new Error(`${m.id}: l'opzione «${opzione}» non è valida per «${chiamata}»`);
   let t: InCorso = { ...s, risposte: { ...s.risposte, [chiamata]: opzione }, scelte: [...s.scelte, { ondata: s.ondata, chiamata, opzione }] };
   for (const e of o.effetti) t = applicaEffetto(m, t, e, d);

@@ -431,6 +431,7 @@
         },
         {
           "id": "verdura",
+          "dopo": {"mai": ["arance/chiudi_mercato"]},
           "fonte": "commercianti",
           "testo": "testi:e04.ch.verdura",
           "settore": "mercato",
@@ -573,6 +574,7 @@
       "chiamate": [
         {
           "id": "risultato",
+          "dopo": {"mai": ["arance/chiudi_mercato", "verdura/sgombera"]},
           "fonte": "vice",
           "testo": "testi:e04.ch.risultato",
           "commento": "testi:e04.ch.risultato.vice",
@@ -610,9 +612,88 @@
               "risposta": "testi:e04.op.ospiti_prima4.r"
             }
           ]
+        }, {
+          "id": "risultato_sgombero",
+          "dopo": {"gia": ["verdura/sgombera"]},
+          "fonte": "vice",
+          "testo": "testi:e04.ch.risultato_chiuso",
+          "opzioni": [
+            {
+              "id": "festa_piazzale",
+              "testo": "testi:e04.op.festa_piazzale",
+              "costo": "testi:e04.op.festa_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "mercato",
+                  "valore": -2
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e04.op.festa_piazzale.r"
+            },
+            {
+              "id": "ospiti_prima4",
+              "testo": "testi:e04.op.ospiti_prima4",
+              "costo": "testi:e04.op.ospiti_prima4.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazza_fonderie",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e04.op.ospiti_prima4.r"
+            }
+          ]
+        }, {
+          "id": "risultato_chiuso",
+          "dopo": {"gia": ["arance/chiudi_mercato"]},
+          "fonte": "vice",
+          "testo": "testi:e04.ch.risultato_chiuso",
+          "opzioni": [
+            {
+              "id": "festa_piazzale",
+              "testo": "testi:e04.op.festa_piazzale",
+              "costo": "testi:e04.op.festa_piazzale.c",
+              "effetti": [
+                {
+                  "pressione": "mercato",
+                  "valore": -2
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e04.op.festa_piazzale.r"
+            },
+            {
+              "id": "ospiti_prima4",
+              "testo": "testi:e04.op.ospiti_prima4",
+              "costo": "testi:e04.op.ospiti_prima4.c",
+              "effetti": [
+                {
+                  "pressione": "strada_cinderwick",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazza_fonderie",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e04.op.ospiti_prima4.r"
+            }
+          ]
         },
         {
           "id": "casalinghi",
+          "dopo": {"mai": ["arance/chiudi_mercato", "verdura/sgombera"]},
           "fonte": "commercianti",
           "testo": "testi:e04.ch.casalinghi",
           "settore": "mercato",

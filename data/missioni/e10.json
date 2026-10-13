@@ -707,6 +707,7 @@
         },
         {
           "id": "fumo_pareggio",
+          "dopo": {"mai": ["patto_trasferta/fidati10"]},
           "fonte": "centrale_radio",
           "testo": "testi:e10.ch.fumo_pareggio",
           "settore": "curva_cinderwick",

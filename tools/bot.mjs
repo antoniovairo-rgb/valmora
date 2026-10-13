@@ -65,7 +65,7 @@ export function sceltePesano(dati, semi = 300) {
     const esiti = {};
     for (let seme = 1; seme <= semi; seme++) {
       const caso = creaCaso(`scelte:${m.id}:${seme}`);
-      const g = { schiera: attenta(caso, dich).schiera, scegli: (_m, s, c) => caso.scegli(opzioniValide(c, s)).id };
+      const g = { schiera: attenta(caso, dich).schiera, scegli: (mm, s, c) => caso.scegli(opzioniValide(c, s, mm)).id };
       const r = giocaMissione(m, iniziali, dich, g);
       esiti[r.esito.id] = (esiti[r.esito.id] ?? 0) + 1;
     }
@@ -82,7 +82,7 @@ export function esisteStelle(dati, id, n, limite = 400000) {
   const chiamate = m.ondate.flatMap((o) => o.chiamate ?? []);
   const lim = chiamate.map((c) => c.opzioni.length); const idx = lim.map(() => 0);
   for (let prove = 0; prove < limite; prove++) {
-    const r = giocaMissione(m, iniziali, dich, { schiera: att.schiera, scegli: (_m, s, c) => { const v = opzioniValide(c, s); const k = chiamate.findIndex((x) => x.id === c.id); return (v[idx[k] % v.length] ?? v[0]).id; } });
+    const r = giocaMissione(m, iniziali, dich, { schiera: att.schiera, scegli: (mm, s, c) => { const v = opzioniValide(c, s, mm); const k = chiamate.findIndex((x) => x.id === c.id); return (v[idx[k] % v.length] ?? v[0]).id; } });
     if (valutaEpisodio(m, r).stelle >= n) return true;
     let i = 0; while (i < idx.length && ++idx[i] === lim[i]) idx[i++] = 0;
     if (i === idx.length) return false;
@@ -103,7 +103,7 @@ export function treStellePossibili(dati, id, iniziali) {
     if (!s.disposizione) return cerca(schiera(m, s, att.schiera(m, s)));
     const c = chiamateAperte(m, s)[0];
     if (!c) return cerca(chiudiOndata(m, s, dich));
-    return opzioniValide(c, s).some((o) => cerca(rispondi(m, s, c.id, o.id, dich)));
+    return opzioniValide(c, s, m).some((o) => cerca(rispondi(m, s, c.id, o.id, dich)));
   };
   return cerca(iniziaMissione(m, iniziali, dich));
 }
