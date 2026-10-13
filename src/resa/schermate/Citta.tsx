@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type { Missione } from '../../logica/tipi.ts';
 import type { Salvataggio } from '../../salvataggi/salvataggio.ts';
 import { missioni, t } from '../dati.ts';
-import { statoEpisodio, type StatoEpisodio } from '../episodi.ts';
+import { prossimoEpisodio, statoEpisodio, type StatoEpisodio } from '../episodi.ts';
 import { Icona } from '../icone.tsx';
 import { bozza, MappaCitta } from '../mappa/MappaCitta.tsx';
 import { spento } from '../../interruttori.ts';
@@ -64,7 +64,28 @@ export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (i
             </button>
           )}
         </div>
-      ) : <p className="tenue">Tocca un episodio sulla mappa.</p>}
+      ) : <Invito sal={p.sal} stagione={stagione} voci={voci} scegli={(id) => { setStagione(missioni.find((x) => x.id === id)?.stagione ?? stagione); p.scegli(id); }} />}
     </>
+  );
+}
+
+/** PO-091: senza episodio scelto, una scheda come le altre. Se la stagione è tutta chiusa dice perché e cosa la
+ * apre (il prossimo episodio da superare, toccabile); altrimenti invita a toccare un episodio. Rosso C33C01: la
+ * riga di prima, anche per le stagioni chiuse. */
+function Invito(p: { sal: Salvataggio; stagione: number; voci: { m: Missione; stato: StatoEpisodio }[]; scegli: (id: string) => void }) {
+  if (spento('C33C01')) return <p className="tenue">Tocca un episodio sulla mappa.</p>;
+  const chiusa = p.voci.length > 0 && p.voci.every((x) => x.stato === 'futuro');
+  if (!chiusa) return <div className="scheda invito" data-invito="tocca"><p>Tocca un episodio sulla mappa per vederlo e giocarlo.</p></div>;
+  const prossimo = prossimoEpisodio(p.sal);
+  return (
+    <div className="scheda invito" data-invito="chiusa">
+      <h2>Stagione {p.stagione} chiusa</h2>
+      {prossimo && prossimo.stagione < p.stagione ? <>
+        <p>Si apre quando avrai superato tutti gli episodi della stagione {prossimo.stagione}{prossimo.stagione < p.stagione - 1 ? ' e di quelle prima' : ''}.</p>
+        <button className="pulsante secondario" data-azione="vai-prossimo" onClick={() => p.scegli(prossimo.id)}>
+          Prossimo: episodio {due(prossimo.episodio)}, {t(prossimo.titolo)}
+        </button>
+      </> : <p>Si apre più avanti nella storia.</p>}
+    </div>
   );
 }

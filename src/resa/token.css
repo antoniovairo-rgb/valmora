@@ -114,6 +114,7 @@
   --vignetta-min-sala: 80px;
   --vignetta-riserva-esito: 680px;
   --vignetta-min-esito: 70px;
+  --vignetta-chiamata: 34%; /* PO-089: larghezza della vignetta nel fumetto della chiamata (circa un terzo) */
 
   /* Città degli episodi (D-061) */
   --citta-fiume: #1f6fa8;

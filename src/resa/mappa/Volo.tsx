@@ -21,10 +21,10 @@ export function Voli(p: { voli: Volo[]; finito: (id: number) => void }) {
   );
 }
 
-/** Centro di un elemento sullo schermo, se c'è. */
-export function centro(sel: string): { x: number; y: number } | null {
+/** Centro di un elemento sullo schermo (o del suo bordo basso), se c'è. */
+export function centro(sel: string, dove: 'centro' | 'basso' = 'centro'): { x: number; y: number } | null {
   const el = document.querySelector(sel);
   if (!el) return null;
   const r = el.getBoundingClientRect();
-  return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+  return { x: r.left + r.width / 2, y: dove === 'basso' ? r.bottom : r.top + r.height / 2 };
 }

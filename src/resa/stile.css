@@ -317,3 +317,14 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .vignetta-cornice > .sfida { position: absolute; inset-inline: var(--spazio-2); bottom: var(--spazio-1); margin: 0; }
 .vignetta-cornice > .sfida .sfida-club > span:last-child, .vignetta-cornice > .sfida .sfida-contro { padding: 0 var(--spazio-1); background: var(--bianco); }
 .vignetta-cornice .stemma { width: var(--icona); height: var(--icona); }
+/* PO-089 (scelta A): vignetta della chiamata piccola, a sinistra del testo, dentro il fumetto */
+.chiamata-corpo { display: flex; gap: var(--spazio-3); align-items: flex-start; margin-top: var(--spazio-3); }
+.chiamata-corpo > .vignetta { flex: none; width: var(--vignetta-chiamata); height: auto; margin: 0; border: var(--bordo-fine) solid var(--nero); }
+.chiamata-corpo .testo-radio { margin-top: 0; }
+/* PO-089: chiamata compatta (solo la chiamata): mappa intera e quadrata (più bassa i nomi si sovrappongono, C-008), fumetto e opzioni più stretti */
+main:has(.scena[data-scena="chiamata"]) .mappa { margin-bottom: var(--spazio-2); }
+main:has(.scena[data-scena="chiamata"]) .testata { margin: var(--spazio-1) 0 var(--spazio-2); }
+.scena[data-scena="chiamata"] .messaggio { margin: var(--spazio-4) 0 var(--spazio-2); padding: var(--spazio-3); }
+.scena[data-scena="chiamata"] .vice-a-margine { margin-top: var(--spazio-2); padding: var(--spazio-1) var(--spazio-2); }
+.scena[data-scena="chiamata"] .opzioni { gap: var(--spazio-2); margin: var(--spazio-2) 0; }
+.scena[data-scena="chiamata"] .opzione { padding: var(--spazio-2) var(--spazio-3); }

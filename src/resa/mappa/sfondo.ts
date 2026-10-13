@@ -39,7 +39,7 @@ export const alfa = (colore: string, a: number) => colore + Math.round(Math.max(
 
 /** Raggio esterno della curva sola (episodi di città con una curva). */
 const RC_SOLA = 48;
-const lista = (base: string, n: number) => Array.from({ length: n }, (_, i) => token(`${base}-${i + 1}`));
+export const lista = (base: string, n: number) => Array.from({ length: n }, (_, i) => token(`${base}-${i + 1}`));
 
 /** Stadio vuoto accanto al piazzale (S-25): fra 8 direzioni, la misura più grande con cui gli spalti stanno quasi
  * tutti dentro la mappa (al più un quarto fuori) e lontani dai pallini degli altri settori (distanza in raggi

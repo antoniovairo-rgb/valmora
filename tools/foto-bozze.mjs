@@ -42,6 +42,14 @@ export async function apriTutte(c) {
   const sal = JSON.stringify(salvataggioTutti(missioni, v0));
   const finestra = pagina.viewportSize();
   await pagina.setViewportSize({ width: finestra.width, height: 760 }); // il telefono di riferimento (PO-045, PO-052)
+  // PO-091: con nessun episodio superato, la stagione 2 è chiusa e la scheda dice cosa la apre; «Prossimo» porta all'episodio 01
+  await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, JSON.stringify({ ...JSON.parse(sal), episodi: {}, missioni_concluse: [] })]);
+  await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  await pagina.click('[data-stagione="2"]');
+  const chiusa = await pagina.locator('[data-invito="chiusa"]').textContent().catch(() => '');
+  atteso(`città: la stagione 2 chiusa dice «${chiusa}» invece di perché è chiusa e cosa la apre (PO-091)`, /chiusa/.test(chiusa) && /superato/.test(chiusa));
+  await pagina.click('[data-azione="vai-prossimo"]').catch(() => {});
+  atteso('città: «Prossimo» non porta alla scheda dell\'episodio 01 (PO-091)', (await pagina.locator('[data-scheda-episodio="e01"]').count()) === 1);
   const prime = new Set([...new Set(missioni.map((m) => m.stagione))].slice(1).map((s) => missioni.find((m) => m.stagione === s)?.id));
   for (const [i, m] of missioni.entries()) {
     const prima = errori.length;
