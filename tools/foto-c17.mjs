@@ -41,3 +41,17 @@ export async function controllaRiempi(pagina, atteso, nome) {
   });
   if (r) atteso(`${nome}: vignetta alta ${Math.round(r.h)} px con ${Math.round(r.libero)} px liberi sotto (massimo ${r.max}) (PO-092)`, r.libero <= 8 || r.h >= r.max - 1);
 }
+
+/** C17-15 (D-114): nella chiamata si accetta lo scorrimento, ma «Rispondi ↓» porta sempre alla prima opzione, intera. */
+export async function controllaRispondi(pagina, atteso, dove) {
+  if (!(await pagina.locator('[data-indicatore="opzioni"]').count())) return;
+  await pagina.click('[data-indicatore="opzioni"]');
+  let r = null;
+  for (let k = 0; k < 20; k++) { // lo scorrimento può essere animato
+    await pagina.waitForTimeout(80);
+    r = await pagina.evaluate(() => { const b = document.querySelector('.opzione')?.getBoundingClientRect(); return b ? [b.top, b.bottom, innerHeight] : null; });
+    if (r && r[0] >= 0 && r[1] <= r[2]) break;
+  }
+  atteso(`${dove}: dopo «Rispondi» la prima opzione è a ${r?.map(Math.round).join('–')} (finestra ${r?.[2]}), non intera (C17-15)`, !!r && r[0] >= 0 && r[1] <= r[2]);
+  await pagina.evaluate(() => scrollTo(0, 0));
+}
