@@ -20,7 +20,7 @@
   --colore-testo-tenue: var(--grigio-testo);
   --colore-superficie: var(--bianco);
   --colore-accento: var(--ciano);
-  --colore-bene: #0f9d4f;
+  --colore-bene: #0b7d3e; /* C19-04: 5,23:1 sul bianco (prima #0f9d4f, 3,53:1); rosso C40C01 lo rimette */
   --colore-male: var(--magenta);
   --colore-medio: #c26a00;
 
@@ -202,3 +202,4 @@
 .rosso-c05n01 .elenco-settori .riga-sx { flex: none; }
 main.rosso-c10s03 .scena .pulsante[data-azione], main.rosso-c10s03 .scena .azioni { position: static; }
 .rosso-c10s03 .indicatore { display: none; }
+.rosso-c40c01 { --colore-bene: #0f9d4f; } /* C19-04: rosso, il verde di prima */
