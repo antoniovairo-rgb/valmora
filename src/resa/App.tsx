@@ -31,6 +31,7 @@ import { Schieramento, usate } from './schermate/Schieramento.tsx';
 import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
 import { ondataVincibile } from '../logica/ripartenza.ts';
+import { valutaEpisodio } from '../logica/episodi.ts';
 import { due, Testata } from './schermate/Fumetto.tsx';
 import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
@@ -55,9 +56,14 @@ export function App() {
   const [bozza, setBozza] = useState<Disposizione>({});
   // S-12 (PO-061): ogni mossa dello schieramento si può annullare («Annulla l'ultima»).
   const [storia, setStoria] = useState<Disposizione[]>([]);
-  const cambiaBozza = (d: Disposizione) => { setStoria((s) => [...s, bozza]); setBozza(d); };
+  // C17-16: la bozza va anche nel salvataggio, così una ricarica non la perde. Rosso C35B01: solo in memoria, come prima.
+  const salvaBozza = (d: Disposizione) => {
+    const ora = ultimo.current, c = ora?.in_corso;
+    if (ora && c && !spento('C35B01')) aggiorna({ ...ora, bozza: Object.values(d).some((x) => Object.values(x ?? {}).some((n) => n > 0)) ? { missione: c.missione, ondata: c.ondata, d } : null });
+  };
+  const cambiaBozza = (d: Disposizione) => { setStoria((s) => [...s, bozza]); setBozza(d); salvaBozza(d); };
   const nuovaBozza = () => { setStoria([]); setBozza({}); };
-  const annulla = () => { if (!storia.length || spento('C17C02')) return; setBozza(storia.at(-1)!); setStoria(storia.slice(0, -1)); setAvviso(null); };
+  const annulla = () => { if (!storia.length || spento('C17C02')) return; setBozza(storia.at(-1)!); salvaBozza(storia.at(-1)!); setStoria(storia.slice(0, -1)); setAvviso(null); };
   const [scelta, setScelta] = useState<string | null>(null);
   const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione; r: Risultato; migliore: boolean; ic: InCorso } | null>(null);
   const [scelto, setScelto] = useState<string | null>(null); // episodio scelto sulla mappa della città
@@ -81,7 +87,8 @@ export function App() {
   const aggiorna = (s: Salvataggio) => { ultimo.current = s; salva(s); setSal(s); };
   // Interruttore rosso C05R01: si torna allo stato catturato dalla scena (difetto originale).
   const icOra = () => (spento('C05R01') ? sal?.in_corso ?? null : ultimo.current?.in_corso ?? null);
-  const conIc = (ic: InCorso | null, extra: Partial<Salvataggio> = {}) => ultimo.current && aggiorna({ ...ultimo.current, in_corso: ic, ...extra });
+  // C17-04: un nuovo stato di gioco («Riparti», «Ricomincia», un altro episodio) chiude la sconfitta salvata
+  const conIc = (ic: InCorso | null, extra: Partial<Salvataggio> = {}) => ultimo.current && aggiorna({ ...ultimo.current, in_corso: ic, bozza: null, ...(ic ? { sconfitta: null } : {}), ...extra });
 
   impostaGenere(sal?.genere ?? 'm');
   const nuova = (genere: Genere) => {
@@ -99,7 +106,19 @@ export function App() {
   const riprendi = () => {
     const ic = sal?.in_corso;
     nuovaBozza(); setEco(null);
-    if (!ic) { if (sal) alla_citta(sal); return; }
+    if (!ic) {
+      // C17-04: ultimo episodio perso e non ancora ripartito → di nuovo il verbale, con «Riparti». Rosso C35R01: città.
+      const sc = sal?.sconfitta;
+      if (sc && !spento('C35R01')) {
+        try {
+          const mm = missione(sc.missione), e = concludiMissione(mm, sc, dichiarate);
+          setEsito({ m: mm, e, r: valutaEpisodio(mm, e), migliore: false, ic: sc }); setSchermata('verbale'); return;
+        } catch (x) { console.warn(`sconfitta salvata non più valida: ${(x as Error).message}`); }
+      }
+      if (sal) alla_citta(sal); return;
+    }
+    const b = sal?.bozza; // C17-16: la bozza di questa ondata, se lo schieramento non è ancora confermato
+    if (b && b.missione === ic.missione && b.ondata === ic.ondata && !ic.disposizione && !spento('C35B01')) setBozza(b.d);
     // Rapporto aperto al momento del salvataggio: si torna lì (C-005 R04).
     setSchermata(missioneFinita(missione(ic.missione), ic) || (sal?.rapporto_aperto && !spento('C05R04')) ? 'rapporto' : 'gioco');
   };
@@ -139,7 +158,8 @@ export function App() {
   else if (schermata === 'titolo' || !sal || !m) { nome = 'titolo'; corpo = titolo; }
   else if (schermata === 'sala') {
     nome = 'sala';
-    mappa = { accesi: m.mappa.settori.map((s) => s.id) };
+    // C17-17: in sala non pulsa niente (non c'è ancora una chiamata). Rosso C35S01: tutti accesi, come prima.
+    mappa = { accesi: spento('C35S01') ? m.mappa.settori.map((s) => s.id) : [] };
     testata = { etichetta: 'Sala operativa', titolo: t(m.titolo) };
     corpo = <Sala m={m} avanti={() => { setVisti(Math.min(1, m.briefing.length)); setSchermata('briefing'); }} />;
   } else if (schermata === 'briefing') {
@@ -163,7 +183,7 @@ export function App() {
       if (!missioneFinita(m, ora)) { conIc(ora, { rapporto_aperto: null }); nuovaBozza(); setSchermata('gioco'); return; }
       const e = concludiMissione(m, ora, dichiarate);
       const chiuso = chiudiEpisodio(ultimo.current!, m, e); // registro, stelle, variabili (D-059…D-062)
-      aggiorna({ ...chiuso.salvataggio, rapporto_aperto: null });
+      aggiorna({ ...chiuso.salvataggio, rapporto_aperto: null, sconfitta: chiuso.risultato.fallita && !spento('C35R01') ? ora : null });
       setEsito({ m, e, r: chiuso.risultato, migliore: chiuso.migliore, ic: ora });
       setSchermata('verbale');
     }} />;

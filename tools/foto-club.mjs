@@ -255,6 +255,11 @@ export async function controllaRipartenza(pagina, { atteso, scena, partita, pian
     await pagina.click('[data-azione="inizia"]'); await scena('schieramento');
     return;
   }
+  // C17-04: ricaricando sul verbale, «Riprendi» riporta al verbale e «Riparti» c'è ancora
+  await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('verbale').catch(() => {});
+  const dopo = await pagina.getAttribute('[data-azione="riparti"]', 'data-ondata', { timeout: 2000 }).catch(() => null);
+  atteso(`ripartenza: dopo una ricarica sul verbale «Riparti» ${dopo ? `dall'ondata ${dopo}` : 'sparisce'}, doveva restare dall'ondata ${n} (C17-04)`, dopo === String(n));
+  if (dopo === null) return;
   await pagina.click('[data-azione="riparti"]'); await scena('schieramento');
   const [ondata, salvata] = await pagina.evaluate(() => [document.querySelector('main')?.dataset.ondata, JSON.parse(localStorage.getItem('valmora-salvataggio'))?.in_corso?.ondata]);
   atteso(`ripartenza: dopo «Riparti» si è all'ondata ${ondata} (salvata ${salvata}), non alla ${n} (PO-060)`, ondata === String(n) && salvata === n);
