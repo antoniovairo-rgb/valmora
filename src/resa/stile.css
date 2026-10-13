@@ -362,5 +362,8 @@ main:not(.rosso-c38a01) .riga-in-mano .aiuto svg { width: var(--icona-aiuto); he
 .versione-angolo { position: absolute; right: var(--spazio-4); bottom: var(--spazio-1); pointer-events: none; font: 500 var(--testo-mini) / 1 var(--font); color: var(--colore-testo-tenue); }
 /* PO-098: giallo su giallo non si leggeva: nero su fondino bianco (contrasto ≥ 4,5:1). Rosso C40C01: come prima. */
 main:not(.rosso-c40c01) .versione-angolo { padding: var(--spazio-px) var(--spazio-1); background: var(--bianco); color: var(--nero); }
+/* C18-10 (scelta A): sempre nella vista, in basso a destra, in verticale nel margine destro della pagina (dove non ci sono
+   testi né comandi), sotto i pulsanti fissi */
+main:not(.rosso-c40c01) .versione-angolo { position: fixed; right: 0; bottom: var(--spazio-2); z-index: 3; writing-mode: vertical-rl; transform: rotate(180deg); padding: var(--spazio-1) var(--spazio-px); }
 /* C17-22: nel riepilogo dello schieramento i pulsanti stanno sotto l'elenco, non fissi: su schermi bassi coprivano il testo. Rosso C38R01: fissi. */
 main:not(.rosso-c38r01) .scena .azioni.riepilogo-azioni { position: static; }

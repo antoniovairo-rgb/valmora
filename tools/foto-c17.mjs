@@ -74,17 +74,22 @@ export async function controllaRigaAiuto(pagina, atteso, nome) {
 
 /** PO-097: la versione c'è su ogni schermata, è quella del gioco e non tocca nessun comando. */
 export async function controllaVersione(pagina, atteso, nome, versione) {
+  // C18-10: alla posizione iniziale della pagina (in cima) la versione è nella vista e non copre testi né comandi
+  const y = await pagina.evaluate(() => { const y = scrollY; scrollTo(0, 0); return y; });
   const r = await pagina.evaluate(() => {
     const v = document.querySelector('[data-versione-angolo]');
     if (!v) return null;
     const a = v.getBoundingClientRect();
-    const sopra = [...document.querySelectorAll('button, a, input, [role="button"]')].filter((e) => e.getClientRects().length).filter((e) => {
+    const proprio = (e) => [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+    const sopra = [...document.querySelectorAll('button, a, input, [role="button"], body *')].filter((e) => e !== v && !v.contains(e) && !e.contains(v) && !e.closest('svg') && e.getClientRects().length && (e.matches('button, a, input, [role="button"]') || proprio(e))).filter((e) => {
       const b = e.getBoundingClientRect(); return Math.min(a.right, b.right) - Math.max(a.left, b.left) > 0 && Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 0;
     }).map((e) => e.dataset.azione ?? e.textContent.trim().slice(0, 20));
-    return { testo: v.textContent, sopra, carattere: parseFloat(getComputedStyle(v).fontSize) };
+    return { testo: v.textContent, sopra: [...new Set(sopra)], carattere: parseFloat(getComputedStyle(v).fontSize), vista: a.bottom <= innerHeight && a.top >= 0 };
   });
+  await pagina.evaluate((y) => scrollTo(0, y), y);
   atteso(`${nome}: manca il numero di versione (PO-097)`, !!r);
   if (!r) return;
   atteso(`${nome}: versione «${r.testo}» invece di «v${versione}» (PO-097)`, r.testo === `v${versione}`);
   atteso(`${nome}: la versione copre ${r.sopra.join(', ')} (PO-097)`, !r.sopra.length);
+  atteso(`${nome}: la versione non è nella vista senza scorrere (C18-10)`, r.vista);
 }
