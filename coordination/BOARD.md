@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-13 15:50 Roma – main ferma alla 0.13.0 (5bcaf6b), principale a 60ca528 (14 commit avanti). Principale: correzioni C-018 (C18-01/02/03/04/06, C17-09/10/14/19), PO-084/085 stagione 1 (fonti ≤80, chiamate ≤100), D-116. CI rossa su 16055e0 (tipi in tests/riserva-tetto, mio errore, corretto in ae385f2: logica locale verde, CI in corso). Sviluppatrice (e30c5cd sul remoto, 21 indietro): PO-098 (contrasto, riquadro «stella successiva»), PO-099 (via «Rende di più»), C18-10 pronti in locale, completa 3/3 in corso, poi push. Prossimo: merge, rilascio 0.14.0 anticipato su richiesta del PO (3/3 + CI).
+Ultimo giro della routine: 2026-10-13 16:32 Roma – main 0.13.0 (5bcaf6b). Principale 56e05b4, CI verde (rosso di 16055e0/7a003c0 sui tipi chiuso da ae385f2). Sviluppatrice: PO-098/PO-099/C18-10 in completa 3/3 dalle 15:40 (allineata in locale alla principale), remoto ancora e30c5cd. Prossimo: merge della consegna e rilascio 0.14.0 anticipato (3/3 + CI).
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
