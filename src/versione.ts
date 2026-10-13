@@ -93,4 +93,12 @@
 //   non coperto dai pulsanti (C17-22).
 //   causa: PO-092, PO-096, PO-097, collaudo C-017. misura: completa 3/3 e CI verde sulla build del rilascio.
 //   guardiano: C26V01, C36V01, C38A01, C38V01 e i controlli di C17-15/C17-22 nella catena grafica.
-export const GAME_VERSION = '0.13.0';
+//
+// 0.14.0 – rilascio anticipato su richiesta del PO (deroga all'orario di D-109): fonti (≤ 80 caratteri) e chiamate in stile
+//   radio (≤ 100) della stagione 1 (PO-084, PO-085), testi coerenti con le scelte fatte (collaudo C-018: C18-01/02/03/04,
+//   C17-09/10/19), tetto ai rientri di unità (C17-14), contrasto di testi e riquadri sul giallo (PO-098), via il
+//   suggerimento «Rende di più» (PO-099, D-116), versione sempre visibile in basso a destra (C18-10).
+//   causa: PO-084/085/098/099, collaudo C-018. misura: completa 3/3 e CI verde sulla build del rilascio.
+//   guardiano: tests/brevita.test.ts, tests/riserva-tetto.test.ts (C17R14), tests/dopo-scelte.test.ts esteso, C40C01,
+//   C40C02, C41R01.
+export const GAME_VERSION = '0.14.0';
