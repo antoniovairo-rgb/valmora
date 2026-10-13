@@ -9,7 +9,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
-import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
+import { controllaBilancio, controllaVerbaleAvanti, controllaVerbaleBasso, provaProssimo } from './foto-verbale.mjs';
 import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaContrasto, controllaRiquadri } from './foto-contrasto.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
@@ -321,7 +321,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         completa = true; modoFoto = 'tutte';
         atteso(`fallimento: il verbale non dice «fallito» (esito «${await pagina.getAttribute('[data-esito]', 'data-esito')}»)`, (await pagina.locator('[data-fallita="si"]').count()) === 1);
         atteso('fallimento: stelle diverse da 0', (await pagina.getAttribute('.stelle', 'data-stelle')) === '0');
-        await premi('[data-azione="rigioca"]');
+        await controllaVerbaleBasso(pagina, atteso, 'verbale perso'); await premi('[data-azione="rigioca"]');
 
         // 2) rigioco col giocatore migliore, con tutte le prove
         await partita(piano);

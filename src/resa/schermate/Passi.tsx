@@ -22,7 +22,8 @@ export function Passi(p: { passo: number; vai: (i: number) => void; fine: ReactN
         {p.passi.map((_, i) => <li key={i} className={i === p.passo ? 'attuale' : i < p.passo ? 'fatto' : undefined} />)}
       </ol>
       {p.passi.map((x, i) => <div key={i} className="passo" hidden={i !== p.passo}>{x}</div>)}
-      <div className="passi-nav">
+      {/* C17-22: «data-ultimo» lascia al CSS i pulsanti finali sotto il testo invece che fissi (verbale) */}
+      <div className="passi-nav" data-ultimo={p.passo === n - 1 ? 'si' : undefined}>
         {/* «compatto»: all'ultimo passo «Indietro» è solo l'icona, per lasciare spazio ai pulsanti finali (PO-072) */}
         {p.passo > 0 && (p.compatto && p.passo === n - 1
           ? <button className="pulsante secondario icona" data-azione="indietro" aria-label="Indietro" title="Indietro" onClick={() => vai(p.passo - 1)}><Icona di={ChevronLeft} /></button>

@@ -19,6 +19,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
   const [nascoste, setNascoste] = useState(false);
+  const [serve, setServe] = useState(false); // C18-05: una volta comparso nel fumetto resta, così il testo non salta scorrendo
   // Calcolo diretto (non IntersectionObserver, che risponde solo attraversando soglie e in ritardo): prima del disegno,
   // a ogni scorrimento e ridimensionamento e quando cambia il layout della pagina (mappa pronta, caratteri caricati).
   useLayoutEffect(() => {
@@ -27,7 +28,8 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
     const misura = () => {
       const r = el.getBoundingClientRect();
       const visibile = Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0));
-      setNascoste(r.height > 0 && visibile / r.height < 0.99);
+      const n = r.height > 0 && visibile / r.height < 0.99;
+      setNascoste(n); if (n) setServe(true);
     };
     misura();
     addEventListener('scroll', misura, { passive: true }); addEventListener('resize', misura);
@@ -35,10 +37,17 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
     ro?.observe(document.body);
     return () => { removeEventListener('scroll', misura); removeEventListener('resize', misura); ro?.disconnect(); };
   }, []);
+  const indicatore = (
+    <button type="button" className="indicatore" data-indicatore="opzioni" onClick={() => opzioni.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>
+      Rispondi <Icona di={ChevronDown} />
+    </button>
+  );
   return (
     <>
       <Messaggio key={p.c.id} classe="radio ultimo" dati={`chiamata-${p.c.id}`}>
         <Mittente icona={iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro="Urgente!" />
+        {/* C18-05: «Rispondi» dentro il fumetto, sotto il mittente: fisso in basso copriva il testo. Rosso C42R01: fisso. */}
+        {serve && !spento('C42R01') && indicatore}
         {/* PO-089 (scelta A del PO): vignetta piccola a sinistra del testo, dentro il fumetto */}
         <div className="chiamata-corpo">
           <VignettaChiamata m={p.m} c={p.c} />
@@ -48,11 +57,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
           </div>
         </div>
       </Messaggio>
-      {nascoste && (
-        <button type="button" className="indicatore" data-indicatore="opzioni" onClick={() => opzioni.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>
-          Rispondi <Icona di={ChevronDown} />
-        </button>
-      )}
+      {nascoste && spento('C42R01') && indicatore}
       <div className="opzioni" ref={opzioni} role="group" aria-label="Che cosa rispondi?">
         {opzioniValide(p.c, p.ic, p.m).map((o, i) => (
           <button key={o.id} className={`opzione${scelta === o.id ? ' scelta' : ''}`} data-opzione={o.id} disabled={scelta !== null && !spento('C05R01')}

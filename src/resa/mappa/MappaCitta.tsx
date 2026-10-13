@@ -1,6 +1,6 @@
 // Mappa della città degli episodi (D-061): ogni episodio è un punto in «missione.luogo» (0-100) con
 // esito e stelle; i futuri sono spenti. Tocco su un punto = lo scegli. Pixi sotto (se c'è WebGL), HTML sopra.
-import { lazy, Suspense, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Missione } from '../../logica/tipi.ts';
 import { t } from '../dati.ts';
 import type { StatoEpisodio } from '../episodi.ts';
@@ -8,6 +8,7 @@ import { Stelle } from '../stelle.tsx';
 import { TastoHome } from '../schermate/Fumetto.tsx';
 import type { PuntoCitta } from './StratoCitta.tsx';
 import { webglDisponibile } from './webgl.ts';
+import { disponiNomeCitta } from './etichette.ts';
 import { spento } from '../../interruttori.ts';
 
 const StratoCitta = lazy(() => import('./StratoCitta.tsx').then((x) => ({ default: x.StratoCitta })));
@@ -30,6 +31,17 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
   // Senza «luogo» nei dati gli episodi si mettono in fila, così non spariscono.
   const voci = useMemo(() => p.voci.map((v, i) => ({ ...v, pos: v.m.luogo ?? { x: ((i + 1) * 100) / (p.voci.length + 1), y: 50 } })), [p.voci]);
   const punti: PuntoCitta[] = useMemo(() => voci.map((v) => ({ id: v.m.id, x: v.pos.x, y: v.pos.y, acceso: v.stato !== 'futuro' && v.stato !== 'superato' })), [voci]);
+  // C17-12: il nome dell'episodio scelto al posto che non copre altri dischi, a ogni disegno, quando la mappa cambia
+  // misura e quando arrivano i caratteri. Rosso C42N01: sempre sotto il disco, come prima.
+  const disponi = () => { if (contenitore.current && !spento('C42N01')) disponiNomeCitta(contenitore.current); };
+  useLayoutEffect(disponi);
+  useLayoutEffect(() => {
+    const el = contenitore.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(disponi); ro.observe(el);
+    void document.fonts?.ready.then(disponi);
+    return () => ro.disconnect();
+  }, []);
   return (
     <div className="mappa citta" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa di Valmora">
       {p.home && <TastoHome vai={p.home} />}

@@ -9,7 +9,7 @@ import type { Missione } from '../../logica/tipi.ts';
 import { t, quante } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { spento } from '../../interruttori.ts';
-import { livello } from '../partita.ts';
+import { livello, statoSettore } from '../partita.ts';
 
 export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; prossime: Record<string, number>; avanti: () => void }) {
   const riposo = Object.entries(p.r.aRiposo).filter(([, n]) => n > 0);
@@ -29,6 +29,7 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
       <ul className="elenco-settori">
         {p.m.mappa.settori.map((s) => {
           const scoperto = (p.r.scoperto[s.id] ?? 0) > 0;
+          const stato = statoSettore(p.r.tensione[s.id] ?? 0, scoperto);
           const picco = livello(p.r.picco?.[s.id] ?? 0);
           const salita = !spento('C10S01') && picco > livello(p.r.tensione[s.id] ?? 0);
           return (
@@ -36,7 +37,9 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
               <span className="riga-sx"><span className={`campione liv-${scoperto && !spento('C10S02') ? Math.max(2, livello(p.r.tensione[s.id] ?? 0)) : livello(p.r.tensione[s.id] ?? 0)}`} aria-hidden="true" /><span className="nome-picco">{t(`settore.${s.id}`)}
                 {salita && <small className="picco" data-picco={s.id}><span className={`campione liv-${picco}`} aria-hidden="true" />salita, poi calmata</small>}
                 {p.r.causa?.[s.id] && <small className="causa" data-causa={s.id}>{causa(p.r.causa[s.id]!)}</small>}</span></span>
-              <strong className={scoperto ? 'male' : 'bene'}>{scoperto ? 'scoperto' : 'sotto controllo'}</strong>
+              {/* C17-05: coperto ma ancora a tensione da degenerato: nero con la striscia del colore della tensione */}
+              <strong className={stato === 'scoperto' ? 'male' : stato === 'caldo' ? 'caldo' : 'bene'} data-stato-settore={stato}>
+                {stato === 'scoperto' ? 'scoperto' : stato === 'caldo' ? <>sotto controllo<small>ma ancora caldo</small></> : 'sotto controllo'}</strong>
             </li>
           );
         })}

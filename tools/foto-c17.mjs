@@ -14,20 +14,24 @@ export async function controllaBozzaRicarica(pagina, atteso) {
 
 /** C17-12: nella città i dischi degli episodi non si coprono e il nome dell'episodio scelto è in primo piano. */
 export async function controllaCitta(pagina, atteso, dove) {
-  const [dischi, sopra] = await pagina.evaluate(() => {
+  const [dischi, sopra, copre] = await pagina.evaluate(() => {
     const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
     const d = [...document.querySelectorAll('[data-episodio] .settore-punto')].map((e) => e.getBoundingClientRect());
     let dd = 0; for (let i = 0; i < d.length; i++) for (let j = 0; j < i; j++) dd += a(d[i], d[j]);
     const nm = document.querySelector('.episodio.acceso .settore-nome');
-    if (!nm) return [dd, true];
+    if (!nm) return [dd, true, 0];
     const prima = nm.style.pointerEvents; nm.style.pointerEvents = 'auto'; // .settore non riceve tocchi: per misurare sì
     const r = nm.getBoundingClientRect();
     const ok = [[0.2, 0.3], [0.5, 0.5], [0.8, 0.7]].every(([x, y]) => nm.contains(document.elementFromPoint(r.left + r.width * x, r.top + r.height * y)));
     nm.style.pointerEvents = prima;
-    return [dd, ok];
+    // C17-12 (C-018): il nome dell'episodio scelto non copre gli altri dischi
+    const proprio = nm.closest('[data-episodio]').querySelector('.settore-punto');
+    const copre = [...document.querySelectorAll('[data-episodio] .settore-punto')].filter((e) => e !== proprio).reduce((s, e) => s + a(r, e.getBoundingClientRect()), 0);
+    return [dd, ok, copre];
   });
   atteso(`${dove}: dischi degli episodi sovrapposti per ${Math.round(dischi)} px² (C17-12)`, dischi === 0);
   atteso(`${dove}: il nome dell'episodio scelto è coperto da altri dischi (C17-12)`, sopra);
+  atteso(`${dove}: il nome dell'episodio scelto copre altri dischi per ${Math.round(copre)} px² (C17-12)`, copre === 0);
 }
 
 /** PO-092: la vignetta (fuori dalla chiamata) prende lo spazio libero: o la pagina è piena, o la vignetta è al massimo. */
@@ -47,6 +51,16 @@ export async function controllaRiempi(pagina, atteso, nome) {
 /** C17-15 (D-114): nella chiamata si accetta lo scorrimento, ma «Rispondi ↓» porta sempre alla prima opzione, intera. */
 export async function controllaRispondi(pagina, atteso, dove) {
   if (!(await pagina.locator('[data-indicatore="opzioni"]').count())) return;
+  // C18-05: alla posizione iniziale «Rispondi» non copre nessun testo né comando
+  const sopra = await pagina.evaluate(() => {
+    scrollTo(0, 0);
+    const v = document.querySelector('[data-indicatore="opzioni"]'), a = v.getBoundingClientRect();
+    const proprio = (e) => [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+    return [...new Set([...document.querySelectorAll('body *')].filter((e) => e !== v && !v.contains(e) && !e.contains(v) && !e.closest('svg') && e.getClientRects().length && (e.matches('button, a, input, [role="button"]') || proprio(e))).filter((e) => {
+      const b = e.getBoundingClientRect(); return Math.min(a.right, b.right) - Math.max(a.left, b.left) > 1 && Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 1;
+    }).map((e) => e.dataset.azione ?? e.textContent.trim().slice(0, 20)))];
+  });
+  atteso(`${dove}: «Rispondi» copre ${sopra.join(', ')} (C18-05)`, !sopra.length);
   await pagina.click('[data-indicatore="opzioni"]');
   let r = null;
   for (let k = 0; k < 20; k++) { // lo scorrimento può essere animato

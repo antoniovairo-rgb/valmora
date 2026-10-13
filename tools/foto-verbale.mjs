@@ -45,3 +45,23 @@ export async function provaProssimo(pagina, piano, atteso, scena, premi) {
   await pagina.reload(); await scena('titolo');
   await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
 }
+
+/** C17-22 (C-018): all'ultimo passo del verbale, su uno schermo basso (667 px) e a inizio pagina, i pulsanti non
+ *  stanno sopra nessun testo. Rosso VALMORA_ROSSI=C42V01: pulsanti fissi in basso, come prima. */
+export async function controllaVerbaleBasso(pagina, atteso, dove) {
+  const finestra = pagina.viewportSize();
+  await avanzaFino(pagina, '.passi-nav[data-ultimo]', async () => {});
+  await pagina.setViewportSize({ width: finestra.width, height: 667 });
+  await pagina.evaluate(() => new Promise((ok) => { scrollTo(0, 0); requestAnimationFrame(() => requestAnimationFrame(ok)); })); await pagina.waitForTimeout(100);
+  const sopra = await pagina.evaluate(() => {
+    const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
+    const nav = [...document.querySelectorAll('.passi-nav button')].map((b) => b.getBoundingClientRect());
+    const proprio = (e) => [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+    return [...document.querySelectorAll('.passo:not([hidden]) *')].filter((e) => proprio(e) && e.getClientRects().length)
+      .filter((e) => nav.some((r) => a(r, e.getBoundingClientRect()) > 1)).map((e) => e.textContent.trim().slice(0, 20));
+  });
+  await pagina.setViewportSize(finestra);
+  // si torna al primo passo, dove stanno «Ricomincia» e «Riparti»
+  while (await pagina.locator('[data-azione="indietro"]').isVisible().catch(() => false)) await pagina.click('[data-azione="indietro"]');
+  atteso(`${dove} ${finestra.width}×667: pulsanti sopra ${sopra.join(', ')} (C17-22)`, sopra.length === 0);
+}

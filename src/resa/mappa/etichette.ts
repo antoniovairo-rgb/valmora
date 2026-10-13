@@ -87,6 +87,30 @@ export function disponiEtichette(contenitore: HTMLElement) {
   }
 }
 
+/** C17-12: nella città il nome dell'episodio scelto va al posto che non copre gli altri dischi né le loro stelle.
+ *  Vicino al bordo nessun posto sta dentro la mappa (e01 in alto a sinistra): il nome si sposta verso l'interno
+ *  quanto basta (--nome-dx/--nome-dy, misurati qui, non scritti a mano) e il costo si conta già spostato. */
+export function disponiNomeCitta(contenitore: HTMLElement) {
+  const s = contenitore.querySelector<HTMLElement>('[data-episodio].acceso'), nome = s?.querySelector<HTMLElement>('.settore-nome');
+  if (!s || !nome) return;
+  const m = contenitore.getBoundingClientRect();
+  const altri = [...contenitore.querySelectorAll('[data-episodio]')].filter((x) => x !== s)
+    .flatMap((x) => [...x.querySelectorAll('.settore-punto, .settore-unita')]).map((e) => ostacolo(e.getBoundingClientRect(), STACCO));
+  const sposta = (dx: number, dy: number) => { nome.style.setProperty('--nome-dx', `${dx}px`); nome.style.setProperty('--nome-dy', `${dy}px`); };
+  const dentro = (a: number, b: number, min: number, max: number) => (a < min ? min - a : b > max ? max - b : 0);
+  let migliore = { posto: NOMI[0] as string, dx: 0, dy: 0, costo: Infinity };
+  sposta(0, 0);
+  for (const posto of NOMI) {
+    s.setAttribute('data-nome', posto);
+    const r = nome.getBoundingClientRect();
+    const dx = dentro(r.left, r.right, m.left + MARGINE, m.right - MARGINE), dy = dentro(r.top, r.bottom, m.top + MARGINE, m.bottom - MARGINE);
+    const q = { left: r.left + dx, right: r.right + dx, top: r.top + dy, bottom: r.bottom + dy };
+    const costo = altri.reduce((c, o) => c + VERA * area(q, o.vero) + area(q, o.largo) - area(q, o.vero), 0) + Math.abs(dx) + Math.abs(dy);
+    if (costo < migliore.costo) migliore = { posto, dx, dy, costo };
+  }
+  s.setAttribute('data-nome', migliore.posto); sposta(migliore.dx, migliore.dy);
+}
+
 /** Costo di una disposizione dei soli nomi: sovrapposizioni con nomi (col distacco) e punti degli altri, bordi. */
 export function costoNomi(r: Rett[], punti: Rett[], mappa: Rett): number {
   let c = 0;
