@@ -1,0 +1,3 @@
+#!/bin/sh
+# PO-100: niente push con la CI che sarebbe rossa sui passi veloci della catena logica.
+exec node tools/prima-del-push.mjs

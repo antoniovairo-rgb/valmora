@@ -6,6 +6,7 @@ Il progetto lavora in cloud (D-011) sul repository github.com/antoniovairo-rgb/v
 - Sessioni parallele (collaudatrice, sviluppatrice, rilascio): le apre e le dirige la sessione principale, ognuna sul suo ramo, con un prompt autosufficiente (base, perimetro, cosa non toccare, formato del rapporto, commit e push dopo ogni consegna).
 - Coordinamento: tramite rami su GitHub, docs/governo/ e coordination/handoffs/<ruolo>/.
 - Routine oraria: controlla le sessioni e riprende quelle ferme con lavoro da fare.
+- Ogni sessione, appena clonato il repo: `git config core.hooksPath .githooks` (PO-100, D-117: il pre-push ferma in 5 s i push che farebbero rossa la CI). Va scritto anche nel prompt di ogni sessione parallela.
 
 Il pacchetto iniziale (docs/PROMPT_TEAM.md) descriveva 5 terminali locali con worktree: è superato da questo file e da docs/governo/ISTRUZIONI_PO.md §9.
 
