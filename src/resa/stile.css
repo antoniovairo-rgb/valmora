@@ -143,6 +143,9 @@ p.riposo { opacity: 1; }
 
 /* Città degli episodi e stelle (D-060, D-061) */
 .mappa.citta { aspect-ratio: var(--citta-proporzione); /* PO-052: la mappa si stringe perché la scheda resti nello schermo */ width: min(100%, max(var(--citta-larghezza-min), calc((100dvh - var(--citta-riserva)) * 4 / 5))); margin-inline: auto; }
+/* C17-12: su schermi bassi la mappa della città resta bassa ma prende tutta la larghezza (prima si stringeva fino a 208 px
+   e i dischi degli episodi si coprivano). Rosso C35C01: la regola di prima. */
+main:not(.rosso-c35c01) .mappa.citta { aspect-ratio: auto; width: 100%; height: clamp(var(--citta-altezza-min), calc(100dvh - var(--citta-riserva)), var(--citta-altezza-max)); }
 main[data-schermata="sala"] .mappa, main[data-schermata="briefing"] .mappa { aspect-ratio: var(--mappa-proporzione-passi); }
 /* le stelline sotto un episodio sono decorative: non devono rubare il tocco al punto vicino (difetto trovato dalla sviluppatrice a 360×760) */
 .episodio .settore-unita { pointer-events: none; }
@@ -335,3 +338,5 @@ main:has(.scena[data-scena="chiamata"]) .testata { margin: var(--spazio-1) 0 var
 /* C15-07: in sala, briefing e verbale la barra della fiducia sta attaccata alla testata (zero scorrimento a 360×760) */
 main[data-schermata="sala"] .fiducia, main[data-schermata="briefing"] .fiducia, main[data-schermata="verbale"] .fiducia { margin-top: 0; }
 main[data-schermata="sala"] .testata, main[data-schermata="briefing"] .testata, main[data-schermata="verbale"] .testata { margin: var(--spazio-1) 0; }
+/* C17-12: l'episodio scelto (disco e nome) sta sopra gli altri dischi della città. Rosso C35C01: come prima. */
+main:not(.rosso-c35c01) .mappa.citta .settore.acceso { z-index: 3; }

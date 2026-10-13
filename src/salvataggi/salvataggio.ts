@@ -34,6 +34,11 @@ export interface Salvataggio {
   rapporto_aperto: number | null;
   /** missione interrotta, salvata dopo ogni passo (schieramento, chiamata, ondata), o null (D-040) */
   in_corso: InCorso | null;
+  /** C17-04: stato finale dell'ultimo episodio perso, finché non si sceglie «Riparti» o «Ricomincia» (così il verbale
+   *  con «Riparti» sopravvive a una ricarica). Facoltativo: i salvataggi senza restano validi, SAVE_VERSION invariata. */
+  sconfitta?: InCorso | null;
+  /** C17-16: schieramento non ancora confermato (unità messe sulla mappa), per non perderlo a una ricarica. Facoltativo. */
+  bozza?: { missione: string; ondata: number; d: Record<string, Record<string, number>> } | null;
 }
 
 type Grezzo = Record<string, unknown>;
@@ -101,6 +106,14 @@ export function controllaSalvataggio(s: Grezzo): string[] {
     const q = oggetto(ic) ? controllaInCorso(ic) : ['in_corso non è un oggetto'];
     if (q.length) p.push(`in_corso malformato (${q.join(', ')})`);
   }
+  const sc = s.sconfitta as Grezzo | null | undefined;
+  if (sc !== undefined && sc !== null) {
+    const q = oggetto(sc) ? controllaInCorso(sc) : ['sconfitta non è un oggetto'];
+    if (q.length) p.push(`sconfitta malformata (${q.join(', ')})`);
+  }
+  const b = s.bozza as Grezzo | null | undefined;
+  if (b !== undefined && b !== null && !(oggetto(b) && typeof b.missione === 'string' && Number.isInteger(b.ondata) && oggetto(b.d)
+    && Object.values(b.d as Grezzo).every((x) => oggetto(x) && Object.values(x as Grezzo).every((n) => Number.isInteger(n) && (n as number) >= 0)))) p.push('bozza malformata');
   return p;
 }
 

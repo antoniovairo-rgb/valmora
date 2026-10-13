@@ -10,7 +10,7 @@ import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaBozzaRicarica } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -155,7 +155,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
             return p;
           });
-          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso); if (nome === 'sala' && (await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === 'webgl') await controllaNomiSala(pagina, atteso, `sala ${larghezza}`); await controllaHome(pagina, nome, atteso); const coperti = await copertiDallaBarra(pagina); atteso(`${nome}: la barra in basso copre ${coperti.join(', ')} (S-24)`, !coperti.length);
+          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso); if (nome === 'sala' && (await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === 'webgl') { await controllaNomiSala(pagina, atteso, `sala ${larghezza}`); await controllaLampeggio(pagina, atteso, [], `sala ${larghezza} (C17-17)`); } await controllaHome(pagina, nome, atteso); const coperti = await copertiDallaBarra(pagina); atteso(`${nome}: la barra in basso copre ${coperti.join(', ')} (S-24)`, !coperti.length);
         await pagina.mouse.move(0, 0); // niente :hover rimasto dal clic precedente nelle foto
         await pagina.screenshot({ path: join(cartella, `${larghezza}-${String(++k).padStart(2, '0')}-${nome}.png`), fullPage: true });
         };
@@ -267,6 +267,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             await fotoSe();
             const piccoli = await pagina.locator('[data-presenza]').evaluateAll((xs) => xs.map((x) => x.getBoundingClientRect()).filter((r) => r.width < 44 || r.height < 44).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));
             atteso(`ondata ${n}: bersagli «ritira unità» sotto 44×44 px (C-005 R05): ${piccoli.join(', ')}`, piccoli.length === 0);
+            if (completa && n === 2) await controllaBozzaRicarica(pagina, atteso); // C17-16 (all'ondata 1 «Annulla» usa la storia, che la ricarica azzera)
             await confermaSchieramento(pagina, { premi, atteso, fotoSe, prova: completa && n === 1, ultima: unita.at(-1) }); // S-12
             const dopo = o.risposte.length ? 'chiamata' : 'chiusura';
             await scena(dopo);

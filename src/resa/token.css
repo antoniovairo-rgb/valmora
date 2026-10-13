@@ -176,6 +176,8 @@
   --citta-proporzione: 4 / 5;
   --citta-riserva: 500px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine) */
   --citta-larghezza-min: 208px;
+  --citta-altezza-min: 260px; /* C17-12: altezza minima della mappa della città (quella di oggi a 760 px) */
+  --citta-altezza-max: 460px; /* C17-12: oltre, la mappa diventerebbe più alta che larga */
   --logo-icona: 72px;      /* PO-065 */
 
   --font-titoli: "Space Grotesk", system-ui, sans-serif;

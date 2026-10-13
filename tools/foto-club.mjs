@@ -362,6 +362,11 @@ export async function controllaRipartiTesto(pagina, { atteso, scena, partita, pi
   });
   atteso(`${scelto.m.id} verbale perso: manca «Riparti dall'ondata»`, ultima !== -1);
   atteso(`${scelto.m.id} verbale perso: l'ultima riga di «Riparti dall'ondata» è larga ${ultima} px, il numero è rimasto solo (C16-06)`, ultima === -1 || ultima > 30);
+  // C17-04: ricaricando sul verbale, «Riprendi» riporta al verbale e «Riparti» c'è ancora, dalla stessa ondata
+  const prima = await pagina.getAttribute('[data-azione="riparti"]', 'data-ondata').catch(() => null);
+  await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('verbale').catch(() => {});
+  const dopo = await pagina.getAttribute('[data-azione="riparti"]', 'data-ondata', { timeout: 2000 }).catch(() => null);
+  atteso(`${scelto.m.id}: dopo una ricarica sul verbale «Riparti» ${dopo ? `dall'ondata ${dopo}` : 'sparisce'}, prima era dall'ondata ${prima} (C17-04)`, prima !== null && dopo === prima);
 }
 
 /** S-26 (PO-081): tornando dal background (pagina nascosta e poi visibile) e dopo la perdita e il ripristino del
