@@ -333,3 +333,4 @@ main:has(.scena[data-scena="chiamata"]) .testata { margin: var(--spazio-1) 0 var
 .scena[data-scena="chiamata"] .opzione { padding: var(--spazio-2) var(--spazio-3); }
 /* C15-07: in sala, briefing e verbale la barra della fiducia sta attaccata alla testata (zero scorrimento a 360×760) */
 main[data-schermata="sala"] .fiducia, main[data-schermata="briefing"] .fiducia, main[data-schermata="verbale"] .fiducia { margin-top: 0; }
+main[data-schermata="sala"] .testata, main[data-schermata="briefing"] .testata, main[data-schermata="verbale"] .testata { margin-bottom: var(--spazio-1); }
