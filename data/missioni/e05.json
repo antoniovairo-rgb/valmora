@@ -242,6 +242,7 @@
           "fonte": "club_quillhaven",
           "testo": "testi:e05.ch.pullman_varco",
           "settore": "piazzale",
+          "senza": { "settore": "tornelli" },
           "opzioni": [
             {
               "id": "aspettino",
@@ -324,6 +325,7 @@
           "fonte": "centrale_radio",
           "testo": "testi:e05.ch.balaustra",
           "settore": "curva_larkspire",
+          "senza": { "settore": "curva_larkspire", "risorse": ["steward"] },
           "opzioni": [
             {
               "id": "squadra_scale",
@@ -596,6 +598,7 @@
           "fonte": "centrale_radio",
           "testo": "testi:e05.ch.torce5",
           "settore": "curva_larkspire",
+          "senza": { "settore": "curva_larkspire", "risorse": ["steward"] },
           "opzioni": [
             {
               "id": "squadra_torce",

@@ -127,7 +127,13 @@ export function schiera(m: Missione, s: InCorso, d: Disposizione): InCorso {
 /** Chiamate dell'ondata in corso ancora senza risposta, nell'ordine dei dati. */
 export function chiamateAperte(m: Missione, s: InCorso): Chiamata[] {
   if (missioneFinita(m, s)) return [];
-  return (ondataDi(m, s).chiamate ?? []).filter((c) => !(c.id in s.risposte) && (!c.se || valuta(c.se, s.variabili)));
+  return (ondataDi(m, s).chiamate ?? []).filter((c) => !(c.id in s.risposte) && (!c.se || valuta(c.se, s.variabili)) && (!c.senza || spento('PO095') || nessuno(s, c.senza)));
+}
+
+/** PO-095: «senza steward», «non c'è nessuno»: vero solo se nel settore non hai schierato nessuna di quelle unità. */
+function nessuno(s: InCorso, x: NonNullable<Chiamata['senza']>): boolean {
+  if (!s.disposizione) return true;
+  return !Object.entries(inCampo(s, s.disposizione)).some(([r, ps]) => (!x.risorse || x.risorse.includes(r)) && (ps[x.settore] ?? 0) > 0);
 }
 
 export const opzioniValide = (c: Chiamata, s: InCorso) => c.opzioni.filter((o) => !o.se || valuta(o.se, s.variabili));
@@ -190,7 +196,9 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
   const picco = Object.fromEntries(m.mappa.settori.map(({ id }) => [id, Math.max(s.tensione[id] ?? 0, tensione[id] ?? 0)]));
   // PO-094 (D-113): la fiducia premia il risultato dell'ondata: +1 se nessun settore è scoperto, −1 per ogni settore che degenera.
   // Prima la davano solo le scelte, e chi proteggeva la città la perdeva. Rosso __NO_PO094.
-  const premio = spento('PO094') || !d.has(VAR_FIDUCIA) ? 0 : Object.values(tensione).some((x) => x >= DEGENERA) ? -Object.values(tensione).filter((x) => x >= DEGENERA).length : Object.values(scoperto).every((x) => x === 0) ? 1 : 0;
+  // C17-05: degenera solo un settore SCOPERTO in quest'ondata (il rapporto lo dice «scoperto»); rosso __NO_C17R05: anche se coperto
+  const degenerati = m.mappa.settori.filter(({ id }) => (tensione[id] ?? 0) >= DEGENERA && (spento('C17R05') || (scoperto[id] ?? 0) > 0)).length;
+  const premio = spento('PO094') || !d.has(VAR_FIDUCIA) ? 0 : degenerati ? -degenerati : Object.values(scoperto).every((x) => x === 0) ? 1 : 0;
   const base: RapportoOndata = spento('C10P01') ? { n: s.ondata, scoperto, tensione, aRiposo } : { n: s.ondata, scoperto, tensione, aRiposo, picco };
   const conCausa: RapportoOndata = Object.keys(causa).length ? { ...base, causa } : base;
   const rapporto: RapportoOndata = premio ? { ...conCausa, fiducia: premio } : conCausa;
