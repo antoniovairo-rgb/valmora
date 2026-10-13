@@ -407,6 +407,7 @@
         },
         {
           "id": "contro_tutti",
+          "dopo": {"mai": ["pullman_fermi/scarica_pullman"]},
           "fonte": "centrale_radio",
           "testo": "testi:e09.ch.contro_tutti",
           "settore": "curva_ospiti",
@@ -582,6 +583,7 @@
         },
         {
           "id": "rigore9",
+          "dopo": {"mai": ["pullman_fermi/scarica_pullman"]},
           "fonte": "centrale_radio",
           "testo": "testi:e09.ch.rigore9",
           "settore": "curva_ospiti",

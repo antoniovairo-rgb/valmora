@@ -751,8 +751,61 @@
         },
         {
           "id": "silenzio",
+          "dopo": {"gia": ["cartelloni/promessa"]},
           "fonte": "comitato_residenti",
           "testo": "testi:e03.ch.silenzio",
+          "settore": "quartiere",
+          "opzioni": [
+            {
+              "id": "vie_chiuse",
+              "testo": "testi:e03.op.vie_chiuse",
+              "costo": "testi:e03.op.vie_chiuse.c",
+              "risposta": "testi:e03.op.vie_chiuse.r",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -3
+                },
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ]
+            },
+            {
+              "id": "scuse",
+              "testo": "testi:e03.op.scuse",
+              "costo": "testi:e03.op.scuse.c",
+              "risposta": "testi:e03.op.scuse.r",
+              "effetti": [
+                {
+                  "pressione": "quartiere",
+                  "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ]
+            },
+            {
+              "id": "nessuna_risposta",
+              "testo": "testi:e03.op.nessuna_risposta",
+              "costo": "testi:e03.op.nessuna_risposta.c",
+              "risposta": "testi:e03.op.nessuna_risposta.r",
+              "effetti": [
+                {
+                  "tensione": "quartiere",
+                  "valore": 3
+                }
+              ]
+            }
+          ]
+        }, {
+          "id": "silenzio_np",
+          "dopo": {"mai": ["cartelloni/promessa"]},
+          "fonte": "comitato_residenti",
+          "testo": "testi:e03.ch.silenzio_np",
           "settore": "quartiere",
           "opzioni": [
             {

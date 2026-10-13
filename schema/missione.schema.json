@@ -297,6 +297,28 @@
                       "risposta": {
                         "$ref": "comune.schema.json#/$defs/testo",
                         "description": "cosa succede subito dopo la scelta"
+                      },
+                      "dopo": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "mai": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "pattern": "^[a-z0-9_]+/[a-z0-9_]+$"
+                            },
+                            "minItems": 1
+                          },
+                          "gia": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "pattern": "^[a-z0-9_]+/[a-z0-9_]+$"
+                            },
+                            "minItems": 1
+                          }
+                        }
                       }
                     }
                   }
@@ -319,6 +341,28 @@
                       "type": "array",
                       "items": {
                         "$ref": "comune.schema.json#/$defs/id"
+                      },
+                      "minItems": 1
+                    }
+                  }
+                },
+                "dopo": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "mai": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_]+/[a-z0-9_]+$"
+                      },
+                      "minItems": 1
+                    },
+                    "gia": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_]+/[a-z0-9_]+$"
                       },
                       "minItems": 1
                     }

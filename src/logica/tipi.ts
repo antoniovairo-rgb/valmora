@@ -28,9 +28,11 @@ export interface Risorsa { quantita: number; efficacia: Record<string, number>; 
 export interface Evento { id: string; tipo: string; settore: string; pressione: number; se?: Condizione }
 export interface Esito { id: string; se: Condizione; effetti: Effetto[]; verbale: string; fallita?: boolean; stelle_min?: number; stelle_max?: number }
 export interface Informazione { testo: string; fonte: string; affidabilita: 'bassa' | 'media' | 'alta'; vera: boolean; settore?: string }
-export interface Opzione { id: string; testo: string; costo?: string; risposta?: string; se?: Condizione; effetti: EffettoMissione[] }
+/** dopo (PO-086): «chiamata/opzione» già scelte (gia) o mai scelte (mai) in questa partita perché la chiamata o l'opzione compaia. */
+export interface Dopo { mai?: string[]; gia?: string[] }
+export interface Opzione { id: string; testo: string; costo?: string; risposta?: string; se?: Condizione; dopo?: Dopo; effetti: EffettoMissione[] }
 /** senza (PO-095): la chiamata si apre solo se nel settore non c'è nessuna unità schierata (fra le risorse indicate, o tutte). */
-export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; se?: Condizione; senza?: { settore: string; risorse?: string[] }; opzioni: Opzione[] }
+export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; se?: Condizione; dopo?: Dopo; senza?: { settore: string; risorse?: string[] }; opzioni: Opzione[] }
 
 export interface Missione {
   id: string; stagione: number; episodio: number; titolo: string; bozza?: boolean; disponibile_se: Condizione; introduzione?: string[];

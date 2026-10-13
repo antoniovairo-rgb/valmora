@@ -54,7 +54,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
         </button>
       )}
       <div className="opzioni" ref={opzioni} role="group" aria-label="Che cosa rispondi?">
-        {opzioniValide(p.c, p.ic).map((o, i) => (
+        {opzioniValide(p.c, p.ic, p.m).map((o, i) => (
           <button key={o.id} className={`opzione${scelta === o.id ? ' scelta' : ''}`} data-opzione={o.id} disabled={scelta !== null && !spento('C05R01')}
             onClick={() => { if (scelta !== null && !spento('C05R01')) return; setScelta(o.id); p.rispondi(o.id); }}>
             <span className="tasto" aria-hidden="true">{LETTERE[i]}</span>

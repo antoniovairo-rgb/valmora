@@ -34,7 +34,7 @@ export function possibilita(m: Missione, s: InCorso, d: Dich): number {
     else {
       const c = chiamateAperte(m, x)[0];
       if (!c) v = p(chiudiOndata(m, x, d));
-      else { const o = opzioniValide(c, x); v = o.reduce((t, y) => t + p(rispondi(m, x, c.id, y.id, d)), 0) / o.length; }
+      else { const o = opzioniValide(c, x, m); v = o.reduce((t, y) => t + p(rispondi(m, x, c.id, y.id, d)), 0) / o.length; }
     }
     memo.set(k, v); if (memo.size > LIMITE && !spento('C17R06')) throw TROPPI; return v;
   };
@@ -46,7 +46,7 @@ export function possibilita(m: Missione, s: InCorso, d: Dich): number {
     const caso = creaCaso(`possibilita:${m.id}:${i}`); let x: InCorso = s0;
     while (!missioneFinita(m, x)) {
       x = schiera(m, x, schieraAtt(x));
-      for (let c = chiamateAperte(m, x)[0]; c; c = chiamateAperte(m, x)[0]) x = rispondi(m, x, c.id, caso.scegli(opzioniValide(c, x)).id, d);
+      for (let c = chiamateAperte(m, x)[0]; c; c = chiamateAperte(m, x)[0]) x = rispondi(m, x, c.id, caso.scegli(opzioniValide(c, x, m)).id, d);
       x = chiudiOndata(m, x, d);
     }
     if (!concludiMissione(m, x, d).esito.fallita) vinte++;

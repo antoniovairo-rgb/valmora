@@ -29,7 +29,7 @@ const contraddizioni = () => {
           const presenti = Object.entries(inCampo(s, s.disposizione!)).some(([r, ps]) => (!c.senza!.risorse || c.senza!.risorse.includes(r)) && (ps[c.senza!.settore] ?? 0) > 0);
           if (presenti) false_++;
         }
-        s = rispondi(m, s, c.id, caso.scegli(opzioniValide(c, s)).id, dich);
+        s = rispondi(m, s, c.id, caso.scegli(opzioniValide(c, s, m)).id, dich);
       }
       s = chiudiOndata(m, s, dich);
     }

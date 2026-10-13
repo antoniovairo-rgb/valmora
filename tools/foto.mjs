@@ -73,7 +73,7 @@ export function pianoAttento(dirDati = 'data', indice = 0, iniziali = null) {
   if (eq.esito === migliore) return { ...comune, ...eq, giocatore: 'equilibrato' };
   for (let seme = 1; seme <= 1000; seme++) {
     const caso = creaCaso(`foto:${m.id}:${seme}`);
-    const p = gioca(m, dich, { schiera: att.schiera, scegli: (_m, st, c) => caso.scegli(opzioniValide(c, st)).id }, v0);
+    const p = gioca(m, dich, { schiera: att.schiera, scegli: (mm, st, c) => caso.scegli(opzioniValide(c, st, mm)).id }, v0);
     if (p.esito === migliore) return { ...comune, ...p, giocatore: `schieramento attento, risposte dal seme ${seme}` };
   }
   return { ...comune, ...base, giocatore: 'attento (nessun seme 1-1000 arriva al migliore)' };
