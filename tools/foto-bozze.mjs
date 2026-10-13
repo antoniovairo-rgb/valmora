@@ -6,6 +6,7 @@
 import { leggiDati } from './dati-disco.mjs';
 import { controllaHome, controllaTripla } from './foto-club.mjs';
 import { controllaNomiSala } from './foto-c15.mjs';
+import { controllaCitta } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
@@ -46,6 +47,7 @@ export async function apriTutte(c) {
   // PO-091: con nessun episodio superato, la stagione 2 è chiusa e la scheda dice cosa la apre; «Prossimo» porta all'episodio 01
   await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, JSON.stringify({ ...JSON.parse(sal), episodi: {}, missioni_concluse: [] })]);
   await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  await controllaCitta(pagina, atteso, `città ${pagina.viewportSize().width}×${pagina.viewportSize().height}`);
   await pagina.click('[data-stagione="2"]');
   const chiusa = await pagina.locator('[data-invito="chiusa"]').textContent().catch(() => '');
   atteso(`città: la stagione 2 chiusa dice «${chiusa}» invece di perché è chiusa e cosa la apre (PO-091)`, /chiusa/.test(chiusa) && /superato/.test(chiusa));
