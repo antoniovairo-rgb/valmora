@@ -42,7 +42,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
   const aloni = useRef<{ s: Sprite; acceso: boolean; batte: boolean; x: number; y: number }[]>([]);
   // PO-089: strato della dinamica della chiamata, viali e colori del corteo, e come muoverla (dall'effetto in fondo)
   const strDinamica = useRef<Container | null>(null), vialiDin = useRef<{ id: string; punti: { x: number; y: number }[] }[]>([]);
-  const coloriDin = useRef<[string, string]>(['', '']), muoviDin = useRef<((t: number) => void) | null>(null);
+  const coloriDin = useRef<Record<string, [string, string]>>({}), muoviDin = useRef<((t: number) => void) | null>(null);
   const texAlone = useMemo(() => Texture.from(canvasAlone(128)), []);
   useEffect(() => () => { texAlone.destroy(true); }, [texAlone]);
 
@@ -72,7 +72,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     // Un corteo per ogni strada con gente in strada in questa ondata: verso lo stadio o, dopo, via dallo stadio.
     const cortei = folla0.cortei.flatMap((c) => {
       const v = animati.viali.find((x) => x.id === c.settore);
-      return v ? [{ ...c, punti: v.punti }] : [];
+      return v ? [{ ...c, punti: v.punti, colori: animati.coloriViali[c.settore] ?? animati.coloriCorteo }] : [];
     });
     const marcia = cortei.flatMap((c) => Array.from({ length: 70 }, (_, i) => {
       const q = new Particle({ texture: bianco, scaleX: 2.2 * unita, scaleY: 2.2 * unita });
@@ -83,6 +83,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     el?.setAttribute('data-dettagli', animati.dettagli.join(','));
     el?.setAttribute('data-stadio', animati.stadio); // S-25: e dove sta, per controllare che non copra i settori
     el?.setAttribute('data-stadio-ellisse', disp.stadio ? [disp.stadio.cx, disp.stadio.cy, disp.stadio.rx, disp.stadio.ry].map(Math.round).join(',') : '');
+    el?.setAttribute('data-colori-cortei', Object.entries(animati.origineViali).map(([id, o]) => `${id}=${o}`).join(','));
     el?.setAttribute('data-folla', `${folla0.spalti}|${cortei.map((c) => `${c.settore}>${c.verso}`).join(',')}`);
     scena.addChild(corteo);
 
@@ -90,10 +91,10 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     const livelloAloni = new Container(); scena.addChild(livelloAloni); strato.current = livelloAloni;
     const onde = new Graphics(); scena.addChild(onde);
     const dinamica = new Container(); scena.addChild(dinamica); strDinamica.current = dinamica;
-    vialiDin.current = animati.viali; coloriDin.current = animati.coloriCorteo;
+    vialiDin.current = animati.viali; coloriDin.current = animati.coloriViali; // PO-102: colori per strada
     app.stage.addChild(scena);
 
-    const [c1, c2] = animati.coloriCorteo, giallo = token('--giallo');
+    const giallo = token('--giallo');
     let t = 0;
     const passo = (tk?: Ticker) => {
       t += (tk?.deltaMS ?? 0) / 1000;
@@ -101,7 +102,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
       for (const k of marcia) {
         const u = (k.u + t * 0.025) % 1;
         const pos = bezier(k.c.punti, (k.c.verso === 'entra' ? u : 1 - u) * 0.75);
-        k.q.x = pos.x + k.off; k.q.y = pos.y + k.off * 0.4; k.q.tint = Math.sin(k.fase + t * 4) > 0 ? c1 : c2;
+        k.q.x = pos.x + k.off; k.q.y = pos.y + k.off * 0.4; k.q.tint = k.c.colori[Math.sin(k.fase + t * 4) > 0 ? 0 : 1];
       }
       const battito = 1 + 0.15 * Math.sin(t * 4);
       for (const a of aloni.current) if (a.batte) a.s.scale.set((68 * battito) / 128);
@@ -151,7 +152,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     livello.removeChildren().forEach((c) => c.destroy());
     const q = punti.find((x) => x.id === p.citato);
     const d = dinamicaDi(p.citato, q?.tipo, vialiDin.current);
-    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, coloriDin.current, p.folla.spalti === 'deflusso') : null;
+    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, coloriDin.current[d.settore] ?? [token('--mappa-corteo-1'), token('--mappa-corteo-2')], p.folla.spalti === 'deflusso') : null;
     muoviDin.current?.(0);
     p.contenitore.current?.setAttribute('data-dinamica', d ? `${d.tipo}:${d.settore}` : '');
   }, [punti, pianta, volte, p.citato, p.folla.spalti, p.contenitore]);

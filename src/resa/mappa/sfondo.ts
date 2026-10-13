@@ -12,10 +12,10 @@ import { disegnaDettagli, leggiDettaglio } from './dettagli.ts';
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number; vuoto?: boolean }
 export interface Colori { primario: string; secondario: string }
-export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; curvaSola: (Pt & { verso: number }) | null; viali: Pt[][]; idViali: string[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; dettagli: { id: string; dove: Pt }[]; notte: boolean; cartelloni: boolean }
+export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; curvaSola: (Pt & { verso: number }) | null; viali: Pt[][]; idViali: string[]; tifosiViali: (Colori | undefined)[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; dettagli: { id: string; dove: Pt }[]; notte: boolean; cartelloni: boolean }
 /** Atmosfera della missione (campi facoltativi dei dati, mappa.ora e mappa.dettagli): e03 è di notte. */
 export interface Atmosfera { notte?: boolean; cartelloni?: boolean; dettagli?: string[] }
-export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; dettagli: string[]; coloriCorteo: [string, string]; fari: Pt[]; stadio: '' | 'pieno' | 'vuoto' }
+export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; dettagli: string[]; coloriCorteo: [string, string]; coloriViali: Record<string, [string, string]>; origineViali: Record<string, string>; fari: Pt[]; stadio: '' | 'pieno' | 'vuoto' }
 
 // Il minificatore CSS può scrivere i token come «#fff» o con un nome: il canvas li riporta a «#rrggbb».
 let tavolozza: CanvasRenderingContext2D | null = null;
@@ -115,7 +115,11 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
     const dove = { x: base.x + ((centro.x - base.x) / d) * passo, y: base.y + ((centro.y - base.y) / d) * passo };
     return { id: x.id, dove: { x: Math.min(W - 50, Math.max(50, dove.x)), y: Math.min(H - 50, Math.max(50, dove.y)) } };
   });
-  return { W, H, club, stadio, curvaSola, viali, idViali: strade.map((s) => s.id ?? ''), centro, stazione, quartieri, parcheggi: parch, slarghi, dettagli, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
+  // PO-102: il corteo di una strada ha i colori dei tifosi che ci sono davvero: il club della strada nei dati, altrimenti
+  // quello della curva con lo stesso nome (strada_larkspire → curva_larkspire); se i dati non lo dicono, colori neutri,
+  // mai quelli dell'altra squadra. Rosso C43C02: un colore solo per tutte le strade (la curva ospiti), come prima.
+  const tifosiViali = strade.map((s) => s.colori ?? curve.find((c) => c.id === `curva_${(s.id ?? '').replace(/^[a-z]+_/, '')}`)?.colori);
+  return { W, H, club, stadio, curvaSola, viali, idViali: strade.map((s) => s.id ?? ''), tifosiViali, centro, stazione, quartieri, parcheggi: parch, slarghi, dettagli, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
 }
 
 export const bezier = (p: Pt[], t: number): Pt => {
@@ -243,8 +247,12 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
     f.save(); f.globalAlpha = 0.6; disegnaDettagli(f, d.dettagli, r); f.restore();
   }
   const corteo = d.club.corteo;
+  const coppia = (c: Colori | undefined): [string, string] => (c ? [colore(c.primario)!, colore(c.secondario)!] : [token('--mappa-corteo-1'), token('--mappa-corteo-2')]);
+  const vecchio = spento('C43C02');
   return { folla, dettagli: d.cartelloni ? ['cartelloni_stadio_nuovo', ...dettagli] : dettagli, viali: d.viali.map((punti, i) => ({ id: d.idViali[i] ?? '', punti })), fari, stadio: stadio ? (stadio.vuoto ? 'vuoto' : 'pieno') : '',
-    coloriCorteo: corteo ? [colore(corteo.primario)!, colore(corteo.secondario)!] : [token('--mappa-corteo-1'), token('--mappa-corteo-2')] };
+    coloriCorteo: coppia(corteo),
+    coloriViali: Object.fromEntries(d.idViali.map((id, i) => [id, coppia(vecchio ? corteo : d.tifosiViali[i])])),
+    origineViali: Object.fromEntries(d.idViali.map((id, i) => [id, (vecchio ? corteo : d.tifosiViali[i])?.primario ?? 'neutro'])) };
 }
 
 /** Isolati con tetti, ombre, comignoli e alberi; «salta» lascia libero un posto (stadio, fiume). */
