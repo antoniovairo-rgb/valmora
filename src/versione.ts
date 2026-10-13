@@ -100,5 +100,5 @@
 //   suggerimento «Rende di più» (PO-099, D-116), versione sempre visibile in basso a destra (C18-10).
 //   causa: PO-084/085/098/099, collaudo C-018. misura: completa 3/3 e CI verde sulla build del rilascio.
 //   guardiano: tests/brevita.test.ts, tests/riserva-tetto.test.ts (C17R14), tests/dopo-scelte.test.ts esteso, C40C01,
-//   C40C02, C41R01.
+//   C40C02, C41R01; controllo pre-push tools/prima-del-push.mjs (PO-100, D-117).
 export const GAME_VERSION = '0.14.0';
