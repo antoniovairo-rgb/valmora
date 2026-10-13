@@ -27,7 +27,7 @@ describe('fonti e chiamate brevi (PO-084, PO-085)', () => {
   it('braccio rosso: un testo lungo viene segnalato', () => {
     const lungo = { ...(d['testi/it/e01.json'] as Record<string, string>) };
     const m = d['missioni/e01.json'] as Missione;
-    lungo[m.briefing[0].testo.replace(/^testi:/, '')] = 'x'.repeat(FONTE_MAX + 1);
+    lungo[(m.briefing[0]?.testo ?? '').replace(/^testi:/, '')] = 'x'.repeat(FONTE_MAX + 1);
     expect(troppoLunghi({ ...d, 'testi/it/e01.json': lungo }, ['e01']).length).toBeGreaterThan(0);
   });
 });
