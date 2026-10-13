@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-13 18:30 Roma – 0.14.0 su main (aacbfc0), online su Pages (verificato nel bundle), completa 3/3 verde su 4ff4874 e CI verde (run 38422918289). Rilascio anticipato su richiesta del PO. Prima verifica uccisa dal riavvio del container (15:31 UTC), rifatta da capo. Dentro: PO-084/085 stagione 1, C-018 (C18-01/02/03/04, C17-09/10/14/19), PO-098, PO-099, C18-10, PO-100 (pre-push, D-117). Sviluppatrice: riallineamento e resto di C-018, poi PO-085 grafica.
+Ultimo giro della routine: 2026-10-13 19:31 Roma – main 0.14.0 (aacbfc0). Principale f713f2e (7 avanti): PO-101 dati (142 righe «i», guardiano tests/ondata-info), C19-01/02/03/05 corretti. Collaudo C-019 consegnato (be821fd: 0 alti, 4 medi, 1 basso; C-018 11 chiuse su 12), sessione archiviata. Sviluppatrice: PO-101 icona «i» + C19-04 contrasto del verde, catena in corso. Prossimo: integrazione e rilascio 0.15.0.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
