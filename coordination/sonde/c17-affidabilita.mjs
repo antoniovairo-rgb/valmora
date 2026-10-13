@@ -73,7 +73,7 @@ if (!process.env.SALTA_A1) { for (const rate of [1, 4]) { const tit = [], map = 
   // A3
   const p3 = await pagina(); await nuova(p3); await p3.click('[data-azione="avvia-episodio"]'); await finoAllOndata(p3);
   for (const [i, o] of pl.ond.entries()) { if (i) await sc(p3, 'schieramento'); await giocaOndata(p3, o); await p3.click('[data-azione="avanti"]'); }
-  await alVerbale(p3); const tens = (await salvato(p3)); await p3.click('[data-azione="riparti"]'); await p3.waitForTimeout(600);
+  await sc(p3, 'verbale', 30000); const tens = (await salvato(p3)); await p3.click('[data-azione="riparti"]'); await p3.waitForTimeout(600);
   const s3 = await salvato(p3); out(`A3 «Riparti» → scena «${await quale(p3)}», ondata salvata ${s3.in_corso?.ondata}, testata «${await p3.textContent('.testata, header').catch(() => '?')}», tentativi e01 ${tens.episodi.e01?.tentativi}`);
   // A3b: rigiocata dall'ondata N col bot attento: si vince?
   if (s3.in_corso) { const st = s3.in_corso; const g = B.attenta(creaCaso(1), dich); let s = st; while (!M.missioneFinita(m, s)) { s = M.schiera(m, s, g.schiera(m, s)); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); s = M.chiudiOndata(m, s, dich); }
