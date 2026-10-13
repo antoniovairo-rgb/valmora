@@ -195,6 +195,7 @@ main[data-schermata="sala"] .mappa, main[data-schermata="briefing"] .mappa { asp
 .stemma-iniziali { font: 700 var(--testo-piccolo) var(--font-titoli); stroke: none; }
 .nome-picco { display: grid; gap: var(--spazio-1); }
 .picco { display: inline-flex; align-items: center; gap: var(--spazio-1); font-size: var(--testo-mini); color: var(--colore-testo-tenue); }
+.causa { display: block; font-size: var(--testo-mini); color: var(--colore-testo-tenue); line-height: 1.3; }
 
 /* Schermate a passi (S-10, PO-045): indicatore, una carta alla volta, Indietro e Avanti in basso */
 .passi { display: flex; justify-content: center; gap: var(--spazio-2); margin: var(--spazio-2) 0 0; padding: 0; list-style: none; }

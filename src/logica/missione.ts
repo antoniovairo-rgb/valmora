@@ -27,7 +27,9 @@ type Dich = Map<string, Dichiarazione>;
 
 // picco = tensione più alta del settore nell'ondata (prima del dimezzamento): è quella che conta per «tensione_max» e
 // per le stelle, quindi il rapporto la mostra (C09-01). Assente nei rapporti salvati prima; rosso __NO_C10P01.
-export interface RapportoOndata { n: number; scoperto: Record<string, number>; tensione: Record<string, number>; aRiposo: Record<string, number>; picco?: Record<string, number>; fiducia?: number }
+export interface RapportoOndata { n: number; scoperto: Record<string, number>; tensione: Record<string, number>; aRiposo: Record<string, number>; picco?: Record<string, number>; fiducia?: number;
+  /** PO-087: per ogni settore scoperto, perché: pressione (eventi dell'ondata + effetto delle risposte) contro copertura */
+  causa?: Record<string, { pressione: number; copertura: number; eventi: string[]; risposte: number }> }
 
 export interface InCorso {
   missione: string;
@@ -161,20 +163,24 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
   const scoperto: Record<string, number> = {};
   const tensione: Record<string, number> = {};
   const aRiposo: Record<string, number> = {};
+  const causa: NonNullable<RapportoOndata['causa']> = {};
   for (const settore of m.mappa.settori) {
     const unita = Object.entries(disp).map(([r, ps]) => ({ r, ris: m.mappa.risorse[r]!, n: ps[settore.id] ?? 0 })).filter((u) => u.n > 0);
     let pressione = s.modifiche[settore.id] ?? 0;
+    const eventi: string[] = [];
     for (const ev of o.eventi) {
       if (ev.settore !== settore.id || (ev.se && !valuta(ev.se, s.variabili))) continue;
       let p = ev.pressione;
       const dimezzatori = unita.filter((u) => u.ris.dimezza?.includes(ev.tipo)).reduce((t, u) => t + u.n, 0);
       for (let i = 0; i < dimezzatori; i++) p = Math.floor(p / 2);
       pressione += p;
+      if (p > 0) eventi.push(ev.tipo);
     }
     const copertura = unita.reduce((t, u) => t + u.n * (u.ris.efficacia[settore.tipo] ?? 0), 0);
     const sc = Math.max(0, pressione - copertura);
     const prima = s.tensione[settore.id] ?? 0;
     scoperto[settore.id] = sc;
+    if (sc > 0 && !spento('PO087')) causa[settore.id] = { pressione, copertura, eventi, risposte: s.modifiche[settore.id] ?? 0 };
     // qualunque unità presidia, anche il mediatore (C02-N05); rossi: C01O01 = sempre, C02N05 = solo con copertura
     const presidiato = spento('C01O01') || (spento('C02N05') ? copertura > 0 : unita.length > 0);
     tensione[settore.id] = lim(sc > 0 ? prima + sc : presidiato ? Math.floor(prima / 2) : prima);
@@ -186,7 +192,8 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
   // Prima la davano solo le scelte, e chi proteggeva la città la perdeva. Rosso __NO_PO094.
   const premio = spento('PO094') || !d.has(VAR_FIDUCIA) ? 0 : Object.values(tensione).some((x) => x >= DEGENERA) ? -Object.values(tensione).filter((x) => x >= DEGENERA).length : Object.values(scoperto).every((x) => x === 0) ? 1 : 0;
   const base: RapportoOndata = spento('C10P01') ? { n: s.ondata, scoperto, tensione, aRiposo } : { n: s.ondata, scoperto, tensione, aRiposo, picco };
-  const rapporto: RapportoOndata = premio ? { ...base, fiducia: premio } : base;
+  const conCausa: RapportoOndata = Object.keys(causa).length ? { ...base, causa } : base;
+  const rapporto: RapportoOndata = premio ? { ...conCausa, fiducia: premio } : conCausa;
   const conTensione = applica({ imposta: VAR_TENSIONE, valore: massimo }, s.variabili, d);
   const dopo: InCorso = {
     ...s, ondata: s.ondata + 1, tensione, riposo: aRiposo, disposizione: null,

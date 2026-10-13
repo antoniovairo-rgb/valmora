@@ -13,6 +13,13 @@ import { livello } from '../partita.ts';
 
 export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; prossime: Record<string, number>; avanti: () => void }) {
   const riposo = Object.entries(p.r.aRiposo).filter(([, n]) => n > 0);
+  // PO-087: «scoperto» dice sempre perché: cosa ha pesato sul settore e quanto lo coprivi
+  const causa = (c: NonNullable<RapportoOndata['causa']>[string]) => {
+    const cosa = [...new Set(c.eventi)].map((e) => t(`evento.${e}`));
+    if (c.risposte > 0) cosa.push('le tue risposte');
+    const testo = cosa.join(', ');
+    return `${testo.charAt(0).toUpperCase()}${testo.slice(1)}: pressione ${c.pressione}, copertura ${c.copertura}`;
+  };
   return (
     <>
       <div className="scheda">
@@ -24,7 +31,8 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
           return (
             <li key={s.id} className="riga" data-esito-settore={s.id}>
               <span className="riga-sx"><span className={`campione liv-${scoperto && !spento('C10S02') ? Math.max(2, livello(p.r.tensione[s.id] ?? 0)) : livello(p.r.tensione[s.id] ?? 0)}`} aria-hidden="true" /><span className="nome-picco">{t(`settore.${s.id}`)}
-                {salita && <small className="picco" data-picco={s.id}><span className={`campione liv-${picco}`} aria-hidden="true" />salita, poi calmata</small>}</span></span>
+                {salita && <small className="picco" data-picco={s.id}><span className={`campione liv-${picco}`} aria-hidden="true" />salita, poi calmata</small>}
+                {p.r.causa?.[s.id] && <small className="causa" data-causa={s.id}>{causa(p.r.causa[s.id]!)}</small>}</span></span>
               <strong className={scoperto ? 'male' : 'bene'}>{scoperto ? 'scoperto' : 'sotto controllo'}</strong>
             </li>
           );
