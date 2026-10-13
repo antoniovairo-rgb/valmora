@@ -77,4 +77,13 @@
 //   causa: collaudo del PO del 12/10 e C-015. misura: completa 3/3 sulla build del rilascio; peggiore sopra equilibrata
 //   26→0/36; 1161 scoperti, 0 senza causa. guardiano: tests/fiducia-risultato.test.ts (PO094), tests/causa-scoperto.test.ts
 //   (PO087), C31M01, C32D01, C31W01/W02, C29P01/P02, C33C01, C34N01…C34S01, C34P01.
-export const GAME_VERSION = '0.11.0';
+//
+// 0.12.0 – rilascio anticipato su richiesta del PO (deroga all'orario di D-109): scelte che cambiano il seguito (PO-086,
+//   campo «dopo»: e04 mercato, e06 bis, e09, e10, e03, mediatore e02/e07), chiamate «non c'è nessuno» solo se il settore
+//   è davvero sguarnito (PO-095), fiducia che scende solo per settori scoperti (C17-05), Riparti più leggero (C17-06) e
+//   che resiste al ricarico (C17-04), città a 360/375 (C17-12), bozza dello schieramento salvata (C17-16), in sala pulsa
+//   solo il settore del passo (C17-17), sala con margine per la CI (D-115).
+//   causa: collaudo C-017 e foto del PO del 13/10. misura: completa 3/3 e CI verde sulla build del rilascio; contraddizioni
+//   0 su 461 scelte forzate. guardiano: tests/dopo-scelte.test.ts (PO086, C17R03), tests/senza-presidio.test.ts (PO095),
+//   tests/fiducia-risultato.test.ts (C17R05), tests/ripartenza-po083.test.ts (C17R06), C35R01, C35C01, C35B01, C35S01.
+export const GAME_VERSION = '0.12.0';
