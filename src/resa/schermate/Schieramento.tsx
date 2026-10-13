@@ -114,7 +114,7 @@ export function Schieramento(p: {
       <div className="riga-in-mano">
       <p className="in-mano" data-in-mano={p.scelta ?? ''} role="status">
         {p.scelta
-          ? <><strong>{t(`risorsa.${p.scelta}`)}</strong> {libereScelta === 1 ? '(1)' : `(${libereScelta})`}{!spento('C22R01') && <span className="rende" data-rende={p.scelta} title={rende(p.m, p.scelta)}> · {rende(p.m, p.scelta)}</span>}</>
+          ? <><strong>{t(`risorsa.${p.scelta}`)}</strong> {libereScelta === 1 ? '(1)' : `(${libereScelta})`}{/* PO-099 (D-116): niente suggerimento «dove rende»: anticipava dove schierare. Rosso C41R01: lo rimette. */}{spento('C41R01') && !spento('C22R01') && <span className="rende" data-rende={p.scelta} title={rende(p.m, p.scelta)}> · {rende(p.m, p.scelta)}</span>}</>
           : <>Tocca un'unità, poi un settore della mappa.</>}
       </p>
       {!vecchio && <button type="button" className="aiuto" data-azione="aiuto" aria-pressed={aiuto} aria-label="Come si schiera" onClick={() => setAiuto(!aiuto)}><Icona di={CircleHelp} /></button>}
