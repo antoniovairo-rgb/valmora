@@ -40,7 +40,7 @@ function Sfondo(p: { luogo: Luogo; colore?: string }) {
 }
 
 function Chi(p: { chi: Chi }) {
-  if (p.chi === 'vice') return <Persona x={262} y={92} s={0.9} giacca="v-nero" capelli="berretto" bocca="dritta" baffi />;
+  if (p.chi === 'vice') return <Persona x={262} y={92} s={0.9} giacca="v-giacca-scura" capelli="berretto" bocca="dritta" baffi />;
   return (
     <g transform="translate(232 18)">
       <rect x="0" y="0" width="76" height="60" className="v-bianco v-tratto" />
@@ -57,8 +57,10 @@ export function VignettaChiamata(p: { m: Missione; c: Chiamata }) {
   const luogo = s ? LUOGHI[s.tipo] ?? 'piazza' : 'sala';
   const chi = chiDi(p.c.fonte);
   return (
-    <Vignetta nome={`chiamata-${luogo}-${chi}`} titolo={`Chiamata: ${luogo}, ${chi}`}>
+    <Vignetta fissa nome={`chiamata-${luogo}-${chi}`} titolo={`Chiamata: ${luogo}, ${chi}`}>
       <Sfondo luogo={luogo} colore={s?.club ? club.get(s.club)?.colori?.primario : undefined} />
+      {/* PO-092: ombra a retino sul primo piano (stile C) */}
+      <path d="M0 150 L110 180 H0 Z" className="v-ombra" />
       <Chi chi={chi} />
     </Vignetta>
   );

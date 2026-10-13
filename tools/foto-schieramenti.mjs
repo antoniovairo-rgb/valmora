@@ -69,5 +69,22 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     if (e03) await prova(q, e03, `e03 ondata 3 ${w}×${h}`, true);
     await q.close();
   }
+  // C17-22: a 375×667 il riepilogo (Conferma senza unità) non ha pulsanti sopra il testo
+  if (e03) {
+    const q = await nuova({ viewport: { width: 375, height: 667 }, reducedMotion: 'reduce' });
+    await q.goto(url);
+    await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: e03.s }));
+    await q.reload(); await q.getByRole('button', { name: 'Riprendi' }).click();
+    await q.waitForSelector('[data-barra]', { timeout: 5000 }).catch(() => {}); await q.click('[data-azione="conferma"]');
+    await q.waitForSelector('[data-riepilogo]', { timeout: 3000 }).catch(() => {});
+    const sotto = await q.evaluate(() => {
+      const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
+      const testi = [...document.querySelectorAll('.riepilogo li, .riepilogo h3, [data-restano]')].map((e) => [e.textContent.trim().slice(0, 20), e.getBoundingClientRect()]);
+      const pulsanti = [...document.querySelectorAll('main button')].filter((b) => !b.closest('.mappa')).map((b) => b.getBoundingClientRect());
+      return testi.filter(([, r]) => pulsanti.some((b) => a(r, b) > 1)).map(([t]) => t);
+    });
+    atteso(`riepilogo 375×667: pulsanti sopra ${sotto.join(', ')} (C17-22)`, sotto.length === 0);
+    await q.close();
+  }
   return stati.length;
 }

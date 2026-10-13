@@ -147,7 +147,7 @@ function Riepilogo(p: { m: Missione; d: Disposizione; restano: (readonly [string
           Ti restano {elenco(p.restano.map(([r, n]) => quante(n, r)))}: confermi lo stesso?
         </p>
       )}
-      <div className="riga azioni">
+      <div className="riga azioni riepilogo-azioni">
         <button className="pulsante secondario" data-azione="modifica" onClick={p.indietro}><Icona di={ArrowLeft} />Torna allo schieramento</button>
         <button className="pulsante" data-azione="conferma-davvero" onClick={p.conferma}><Icona di={Check} />Sì, conferma</button>
       </div>
