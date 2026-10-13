@@ -13,12 +13,13 @@ import { livello } from '../partita.ts';
 
 export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; prossime: Record<string, number>; avanti: () => void }) {
   const riposo = Object.entries(p.r.aRiposo).filter(([, n]) => n > 0);
-  // PO-087: «scoperto» dice sempre perché: cosa ha pesato sul settore e quanto lo coprivi
+  // PO-087: «scoperto» dice sempre perché: cosa ha pesato sul settore e se c'era qualcuno a coprirlo
   const causa = (c: NonNullable<RapportoOndata['causa']>[string]) => {
     const cosa = [...new Set(c.eventi)].map((e) => t(`evento.${e}`));
     if (c.risposte > 0) cosa.push('le tue risposte');
     const testo = cosa.join(', ');
-    return `${testo.charAt(0).toUpperCase()}${testo.slice(1)}: pressione ${c.pressione}, copertura ${c.copertura}`;
+    // D-055: niente numeri, solo il motivo
+    return `${testo.charAt(0).toUpperCase()}${testo.slice(1)}: ${c.copertura > 0 ? 'troppo per chi c\'era' : 'nessuno a coprirlo'}`;
   };
   return (
     <>
