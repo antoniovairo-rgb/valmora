@@ -32,6 +32,7 @@ import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
 import { ondataVincibile } from '../logica/ripartenza.ts';
 import { valutaEpisodio } from '../logica/episodi.ts';
+import { segniDi, type Segno } from './mappa/segni.ts';
 import { due, Testata } from './schermate/Fumetto.tsx';
 import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
@@ -70,6 +71,9 @@ export function App() {
   // PO-083: l'ondata da cui ripartire si calcola una volta a fine episodio (fino a ~0,7 s misurati su computer), non a ogni disegno
   const nRiparti = useMemo(() => (esito?.r.fallita ? ondataVincibile(esito.m, esito.e, esito.ic, dichiarate) : 1), [esito]);
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
+  const [segni, setSegni] = useState<Segno[]>([]); // PO-085: segni dell'ultima risposta sulla mappa, per 1,8 s
+  const timerSegni = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mostraSegni = (xs: Segno[]) => { if (timerSegni.current) clearTimeout(timerSegni.current); setSegni(xs); timerSegni.current = setTimeout(() => setSegni([]), 1800); };
   const contaVoli = useRef(0);
   const vola = (risorsa: string, settore: string) => {
     document.documentElement.dataset.volo = `${risorsa}>${settore}`; // per le foto: anche quando il volo non si vede
@@ -241,6 +245,7 @@ export function App() {
           const scelta = f.chiamata.opzioni.find((x) => x.id === o)!;
           // PO-089: le squadre che la risposta impegna raggiungono il punto della chiamata. Rosso C32D01: no.
           if (f.chiamata.settore && !spento('C32D01')) for (const e of scelta.effetti) if ('riserva' in e && e.valore < 0) vola(e.riserva, f.chiamata.settore);
+          mostraSegni(segniDi(f.chiamata, scelta)); // PO-085: la conseguenza sulla mappa, subito
           if (scelta.risposta) setEco(scelta);
         }} />;
     } else if (f.tipo === 'chiusura') {
@@ -266,7 +271,7 @@ export function App() {
       <main data-schermata={nome} data-ondata={ic?.ondata ?? 0} className={ROSSI_CSS.filter((x) => spento(x)).map((x) => `rosso-${x.toLowerCase()}`).join(' ')}>
         {mappa && m && testata && <Testata numero={due(m.episodio)} etichetta={testata.etichetta} titolo={testata.titolo} />}
         {fiducia !== null && <Fiducia valore={fiducia} max={Number(dichiarate.get('credito')?.max ?? 10)} />}
-        {mappa && m && <Mappa m={m} home={home} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
+        {mappa && m && <Mappa m={m} home={home} segni={segni} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
         <Voli voli={voli} finito={(id) => setVoli((v) => v.filter((x) => x.id !== id))} />
         {/* PO-097: versione su ogni schermata, in basso a destra, piccola e non toccabile. Rosso C38V01: niente. */}
         {!spento('C38V01') && <small className="versione-angolo" data-versione-angolo aria-hidden="true">v{GAME_VERSION}</small>}

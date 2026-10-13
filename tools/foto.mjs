@@ -10,7 +10,7 @@ import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione } from './foto-c17.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione, controllaSegni, controllaIconeEffetti } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -278,7 +278,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             }
             for (const [j, [c, op]] of o.risposte.entries()) {
               await scena('chiamata');
-              atteso(`ondata ${n}: aperta una chiamata diversa da «${c}»`, (await pagina.locator(`[data-messaggio="chiamata-${c}"]`).count()) === 1); const sett = p.m.ondate[i].chiamate.find((x) => x.id === c).settore; await controllaLampeggio(pagina, atteso, sett ? [sett] : [], `chiamata «${c}»`); await controllaDinamica(pagina, atteso, p.m, p.m.ondate[i].chiamate.find((x) => x.id === c), `chiamata «${c}»`); await controllaRispondi(pagina, atteso, `chiamata «${c}» ${larghezza}`);
+              atteso(`ondata ${n}: aperta una chiamata diversa da «${c}»`, (await pagina.locator(`[data-messaggio="chiamata-${c}"]`).count()) === 1); const sett = p.m.ondate[i].chiamate.find((x) => x.id === c).settore; await controllaLampeggio(pagina, atteso, sett ? [sett] : [], `chiamata «${c}»`); await controllaDinamica(pagina, atteso, p.m, p.m.ondate[i].chiamate.find((x) => x.id === c), `chiamata «${c}»`); await controllaRispondi(pagina, atteso, `chiamata «${c}» ${larghezza}`); await controllaIconeEffetti(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), `chiamata «${c}»`);
             // D-078 (S-05): sotto ogni opzione visibile c'è l'accenno di costo, in parole, mai numeri
             const accenni = await pagina.evaluate(() => [...document.querySelectorAll('.opzione')].map((o) => o.querySelector('[data-costo]')?.textContent?.trim() ?? ''));
             atteso(`chiamata «${c}»: ${accenni.filter(Boolean).length} accenni di costo su ${accenni.length} opzioni (D-078)`, accenni.length > 0 && accenni.every(Boolean));
@@ -292,7 +292,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
                 }), [op, altra]);
                 const salvata = await pagina.evaluate((k) => JSON.parse(localStorage.getItem('valmora-salvataggio')).in_corso.risposte[k], c);
                 atteso(`doppio tocco: salvata «${salvata}» invece di «${op}» (C-005 R01)`, salvata === op);
-              } else { await premi(`[data-opzione="${op}"]`); await controllaVoloRisposta(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `chiamata «${c}»`); }
+              } else { await premi(`[data-opzione="${op}"]`); await controllaVoloRisposta(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `chiamata «${c}»`); await controllaSegni(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `risposta «${op}»`); }
               if (p.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) {
                 await scena('risposta');
                 if (j === 0) await fotoSe();

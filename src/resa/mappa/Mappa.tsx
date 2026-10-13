@@ -17,6 +17,7 @@ import { livello } from '../partita.ts';
 import type { PuntoMappa } from './StratoPixi.tsx';
 import { webglDisponibile } from './webgl.ts';
 import { follaDellOndata } from './folla.ts';
+import { parolaSegno, type Segno } from './segni.ts';
 
 // PixiJS pesa: si carica a parte, dopo il titolo, e solo se WebGL c'è.
 const StratoPixi = lazy(() => import('./StratoPixi.tsx').then((x) => ({ default: x.StratoPixi })));
@@ -33,6 +34,8 @@ export interface MappaProps {
   accesi?: string[];
   /** PO-089: settore di cui parla la chiamata in corso: lì la gente si muove (corteo o folla) */
   citato?: string;
+  /** PO-085: segni dell'ultima risposta (▲/▼ pressione o tensione, squadre), per un attimo */
+  segni?: Segno[];
   tensione?: Record<string, number> | null;
   presenze?: Disposizione | null;
   /** unità fisse già montate nelle ondate prima (transenne, D-082): si vedono col lucchetto e non si ritirano */
@@ -106,6 +109,15 @@ export function Mappa(p: MappaProps) {
             <button type="button" className="settore-punto" disabled={!p.onSettore} onClick={() => p.onSettore?.(s.id)}
               aria-label={`${nome}${liv !== null ? `, situazione ${PAROLE[liv]}` : ''}${qui.length ? `, ${qui.map(([r, n]) => quante(n, r)).join(', ')}` : ''}`} />
             <span className="settore-nome" aria-hidden="true">{nome}</span>
+            {(p.segni ?? []).some((x) => x.settore === s.id) && (
+              <span className="segni-effetto" role="status">
+                {(p.segni ?? []).filter((x) => x.settore === s.id).map((x, i) => (
+                  <span key={`${x.tipo}-${i}`} className={`segno-effetto ${x.tipo} ${x.verso}`} data-segno={`${x.settore}:${x.tipo}:${x.verso}`} aria-label={`${nome}: ${parolaSegno(x)}`}>
+                    {x.tipo === 'squadra' ? '⚑' : x.verso === 'su' ? '▲' : '▼'}
+                  </span>
+                ))}
+              </span>
+            )}
             {(qui.length > 0 || fisse.length > 0) && (
               <span className="settore-unita">
                 {fisse.map(([r, n]) => (
