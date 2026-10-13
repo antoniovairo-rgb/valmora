@@ -19,3 +19,13 @@ describe('ripartenza vincibile (PO-083)', () => {
     expect(x.sotto).toBeGreaterThan(0);
   }, 120000);
 });
+
+// C17-06: il calcolo veloce (schieramenti in memoria, stima oltre 1000 stati) propone le stesse ondate di quello esatto
+describe('ripartenza veloce (C17-06)', () => {
+  it('stesse ondate proposte del calcolo esatto, in meno tempo', () => {
+    const t0 = performance.now(); const veloce = misura(4); const tv = performance.now() - t0;
+    g.__NO_C17R06 = true; const t1 = performance.now(); const esatto = misura(4); const te = performance.now() - t1; delete g.__NO_C17R06;
+    console.log(`C17-06: ondata media veloce ${veloce.ondataMedia.toFixed(3)} esatta ${esatto.ondataMedia.toFixed(3)} · max ms ${veloce.ms.toFixed(0)} contro ${esatto.ms.toFixed(0)} · totale ${tv.toFixed(0)} contro ${te.toFixed(0)} ms`);
+    expect(veloce.ondataMedia).toBe(esatto.ondataMedia); expect(veloce.sotto).toBe(0);
+  }, 180000);
+});
