@@ -143,6 +143,11 @@
                 "type": "integer",
                 "minimum": 1
               },
+              "massimo": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "C17-14: tetto delle unità di questa risorsa anche dopo i rientri (riserva positiva)"
+              },
               "efficacia": {
                 "type": "object",
                 "description": "pressione assorbita da un'unità, per tipo di settore (assente = 0)",

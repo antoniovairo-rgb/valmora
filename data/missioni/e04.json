@@ -253,6 +253,7 @@
         },
         {
           "id": "banco_calzini",
+          "dopo": {"mai": ["arance/chiudi_mercato"]},
           "fonte": "informatore_di_strada",
           "testo": "testi:e04.ch.banco_calzini",
           "commento": "testi:e04.ch.banco_calzini.vice",

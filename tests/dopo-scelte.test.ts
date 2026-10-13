@@ -23,6 +23,9 @@ const CASI: [string, string, string, Record<string, string>?][] = [
   ['e09', 'pullman_fermi/scarica_pullman', 'rigore9'], ['e09', 'pullman_fermi/scarica_pullman', 'contro_tutti'],
   ['e10', 'patto_trasferta/fidati10', 'fumo_pareggio', { rapporto_dessi: 'rispetto' }], ['e03', 'cartelloni/promessa', 'silenzio_np'],
   ['e02', 'corteo_viale/mediatore_corteo', 'caldo_casa/mediatore_casa'], ['e07', 'banda/mediatore_banda', 'primo_gol/mediatore_festa'],
+  // C-018: bancarella dopo il mercato chiuso, lite in coda dopo lo scarico, favore all'impresa dopo il bis deciso.
+  ['e04', 'arance/chiudi_mercato', 'banco_calzini'], ['e09', 'pullman_fermi/scarica_pullman', 'lite_coda'],
+  ['e06', 'bis/niente_bis', 'favore_impresa'], ['e06', 'bis/bis_lungo', 'favore_impresa'],
 ];
 
 const contraddizioni = (n = 40) => {

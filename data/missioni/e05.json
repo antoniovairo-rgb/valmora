@@ -99,6 +99,7 @@
       },
       "steward": {
         "quantita": 3,
+        "massimo": 6,
         "efficacia": {
           "curva": 2,
           "tornelli": 2,
@@ -154,7 +155,7 @@
               "effetti": [
                 {
                   "riserva": "steward",
-                  "valore": 2
+                  "valore": 1
                 },
                 {
                   "aggiungi": "credito",
@@ -472,7 +473,7 @@
               "effetti": [
                 {
                   "riserva": "steward",
-                  "valore": 2
+                  "valore": 1
                 },
                 {
                   "aggiungi": "credito",
@@ -570,7 +571,7 @@
               "effetti": [
                 {
                   "riserva": "steward",
-                  "valore": 2
+                  "valore": 1
                 },
                 {
                   "aggiungi": "credito",

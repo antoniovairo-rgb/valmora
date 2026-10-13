@@ -621,6 +621,7 @@
         },
         {
           "id": "favore_impresa",
+          "dopo": {"mai": ["bis/niente_bis", "bis/bis_lungo"]},
           "fonte": "vice",
           "testo": "testi:e06.ch.favore_impresa",
           "commento": "testi:e06.ch.favore_impresa.vice",

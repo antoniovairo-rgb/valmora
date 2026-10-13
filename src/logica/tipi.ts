@@ -24,7 +24,7 @@ export interface Dichiarazione {
   id: string; tipo: 'bool' | 'int' | 'enum'; iniziale: Valore; min?: number; max?: number; valori?: string[]; descrizione: string;
 }
 
-export interface Risorsa { quantita: number; efficacia: Record<string, number>; dimezza?: string[]; fissa?: boolean }
+export interface Risorsa { quantita: number; efficacia: Record<string, number>; dimezza?: string[]; fissa?: boolean; massimo?: number }
 export interface Evento { id: string; tipo: string; settore: string; pressione: number; se?: Condizione }
 export interface Esito { id: string; se: Condizione; effetti: Effetto[]; verbale: string; fallita?: boolean; stelle_min?: number; stelle_max?: number }
 export interface Informazione { testo: string; fonte: string; affidabilita: 'bassa' | 'media' | 'alta'; vera: boolean; settore?: string }
