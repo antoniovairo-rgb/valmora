@@ -366,6 +366,7 @@
       "chiamate": [
         {
           "id": "lite_coda",
+          "dopo": {"mai": ["pullman_fermi/scarica_pullman"]},
           "fonte": "centrale_radio",
           "testo": "testi:e09.ch.lite_coda",
           "commento": "testi:e09.ch.lite_coda.vice",
