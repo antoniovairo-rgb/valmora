@@ -35346,6 +35346,65 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-13T13:31:17.432Z",
+      "commit": "547c46e",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "tests/riserva-tetto.test.ts(47,17): error TS2532: Object is possibly 'undefined'."
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }
