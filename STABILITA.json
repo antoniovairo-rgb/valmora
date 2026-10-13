@@ -37289,6 +37289,255 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-13T18:21:56.126Z",
+      "commit": "cd572e4",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "stagione 1: il casuale fallisce in e04 il 53.7%, meno di e03 (54.8%) oltre la tolleranza di 1 punto (D-108)"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-13T18:24:04.080Z",
+      "commit": "cd572e4",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "stagione 1: il casuale fallisce in e04 il 53.7%, meno di e03 (54.8%) oltre la tolleranza di 1 punto (D-108)"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-13T18:26:13.201Z",
+      "commit": "cd572e4",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "stagione 1: il casuale fallisce in e04 il 53.7%, meno di e03 (54.8%) oltre la tolleranza di 1 punto (D-108)"
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }
