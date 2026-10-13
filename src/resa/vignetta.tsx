@@ -2,15 +2,40 @@
 // Colori solo da token: le forme usano classi «v-*» definite in stile.css. Riquadro nero spesso, retino giallo
 // di fondo. La vignetta si rimpicciolisce (altezza dal CSS) prima di far scorrere la pagina.
 // Rosso C26V01: nessuna vignetta.
-import type { ReactNode } from 'react';
+import { useLayoutEffect, useRef, type ReactNode, type RefObject } from 'react';
 import { spento } from '../interruttori.ts';
 
-export function Vignetta(p: { nome: string; titolo: string; children: ReactNode }) {
+/** PO-092: la vignetta prende lo spazio che resta libero nella pagina (fra il minimo e il massimo dei token), senza
+ *  farla scorrere: la riserva fissa era tarata sul testo più lungo e lasciava vignette minuscole. Rosso C36V01: no. */
+function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean) {
+  useLayoutEffect(() => {
+    const svg = el.current;
+    if (!svg || !attivo || spento('C36V01')) return;
+    const fai = () => {
+      svg.style.removeProperty('height');
+      const css = getComputedStyle(svg), min = parseFloat(css.minHeight) || 0, max = parseFloat(css.maxHeight) || Infinity;
+      // spazio libero sotto il contenuto (scrollHeight non scende mai sotto la finestra, quindi si misura il fondo di main)
+      const main = svg.closest('main') ?? document.body, cm = getComputedStyle(main), cb = getComputedStyle(document.body);
+      const fondo = Math.max(main.getBoundingClientRect().bottom + parseFloat(cm.marginBottom) + parseFloat(cb.paddingBottom), document.documentElement.scrollHeight > innerHeight ? document.documentElement.scrollHeight : 0);
+      const libero = innerHeight - fondo;
+      svg.style.setProperty('height', `${Math.max(min, Math.min(max, svg.getBoundingClientRect().height + libero))}px`);
+    };
+    fai();
+    addEventListener('resize', fai); void document.fonts?.ready.then(fai);
+    return () => removeEventListener('resize', fai);
+  }, [el, attivo]);
+}
+
+export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean }) {
+  const el = useRef<SVGSVGElement>(null);
+  useRiempi(el, !p.fissa); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
   if (spento('C26V01')) return null;
   return (
-    <svg className="vignetta" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" role="img" aria-label={p.titolo} data-vignetta={p.nome}>
+    <svg ref={el} className="vignetta" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" role="img" aria-label={p.titolo} data-vignetta={p.nome}>
       <defs>
         <pattern id="v-retino" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.2" className="v-retino" /></pattern>
+        {/* PO-092: ombra a retino (stile C): fondo grigio scuro a punti neri */}
+        <pattern id="v-ombra" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" className="v-retino-ombra-fondo" /><circle cx="2.5" cy="2.5" r="1.4" className="v-nero" /></pattern>
       </defs>
       <rect x="0" y="0" width="320" height="180" className="v-giallo" />
       <rect x="0" y="0" width="320" height="180" fill="url(#v-retino)" />
@@ -20,20 +45,29 @@ export function Vignetta(p: { nome: string; titolo: string; children: ReactNode 
   );
 }
 
-/** Persona stilizzata a fumetto (testa, capelli, busto); «f» = capelli lunghi. Espressione: bocca su/giù/dritta. */
-export function Persona(p: { x: number; y: number; s?: number; giacca: string; capelli: 'corti' | 'lunghi' | 'berretto'; bocca?: 'su' | 'giu' | 'dritta'; baffi?: boolean }) {
-  const s = p.s ?? 1;
-  const bocca = p.bocca === 'giu' ? 'M-6 12 Q0 7 6 12' : p.bocca === 'dritta' ? 'M-5 10 L5 10' : 'M-6 8 Q0 14 6 8';
+/** Busto a fumetto in stile C (PO-092, D-114): spalle con la giacca e l'ombra a retino, colletto, collo, testa con
+ *  orecchie, sopracciglia, occhi con la luce, naso; capelli lunghi, corti o berretto; espressione dalla bocca. */
+export function Persona(p: { x: number; y: number; s?: number; giacca: string; capelli: 'corti' | 'lunghi' | 'berretto'; bocca?: 'su' | 'giu' | 'dritta'; baffi?: boolean; distintivo?: boolean }) {
+  const s = (p.s ?? 1) * 0.8;
+  const bocca = p.bocca === 'giu' ? 'M-7 19 Q0 13 7 19' : p.bocca === 'dritta' ? 'M-6 17 L6 17' : 'M-7 15 Q0 22 7 15';
   return (
     <g transform={`translate(${p.x} ${p.y}) scale(${s})`}>
-      <path d="M-26 70 Q-26 34 0 32 Q26 34 26 70 Z" className={`${p.giacca} v-tratto`} />
-      <path d="M-6 33 L0 46 L6 33" className="v-bianco v-tratto" />
-      <circle cx="0" cy="0" r="20" className="v-pelle v-tratto" />
-      {p.capelli === 'lunghi' && <path d="M-21 2 Q-24 -24 0 -22 Q24 -24 21 2 L22 26 L14 22 L14 -6 Q0 -12 -14 -6 L-14 22 L-22 26 Z" className="v-capelli v-tratto" />}
-      {p.capelli === 'corti' && <path d="M-20 -2 Q-20 -24 0 -22 Q20 -24 20 -2 Q10 -12 -20 -2 Z" className="v-capelli v-tratto" />}
-      {p.capelli === 'berretto' && <path d="M-21 -4 Q-20 -26 0 -25 Q20 -26 21 -4 Z M18 -6 L32 -4 L20 -1 Z" className="v-nero v-tratto" />}
-      <circle cx="-7" cy="-2" r="2.4" className="v-nero" /><circle cx="7" cy="-2" r="2.4" className="v-nero" />
-      {p.baffi && <path d="M-9 5 Q0 1 9 5 Q0 8 -9 5 Z" className="v-capelli" />}
+      <path d="M-44 92 Q-46 52 -20 44 L0 52 L20 44 Q46 52 44 92 Z" className={`${p.giacca} v-tratto`} />
+      <path d="M10 48 Q40 54 42 92 L18 92 Z" className="v-ombra" />
+      <path d="M-20 44 L-6 70 L0 52 L6 70 L20 44" className="v-bianco v-tratto" />
+      {p.distintivo && <path d="M-30 62 l6 -4 l6 4 l-1 8 l-5 3 l-5 -3 Z" className="v-giallo v-tratto" />}
+      <path d="M-9 30 L-9 46 Q0 52 9 46 L9 30" className="v-pelle v-tratto" />
+      <path d="M-22 0 Q-24 -30 0 -32 Q24 -30 22 0 Q22 24 0 34 Q-22 24 -22 0 Z" className="v-pelle v-tratto" />
+      <path d="M6 -28 Q22 -22 21 2 Q20 22 2 32 Q14 14 12 -6 Z" className="v-ombra" />
+      <path d="M-23 2 q-7 2 -5 9 q2 5 7 3" className="v-pelle v-tratto" /><path d="M23 2 q7 2 5 9 q-2 5 -7 3" className="v-pelle v-tratto" />
+      {p.capelli === 'lunghi' && <path d="M-24 4 Q-30 -36 0 -36 Q30 -36 24 4 L26 36 L14 30 L15 -10 Q0 -20 -15 -10 L-14 30 L-26 36 Z" className="v-capelli v-tratto" />}
+      {p.capelli === 'corti' && <path d="M-23 -2 Q-24 -36 0 -35 Q24 -36 23 -2 Q12 -16 -23 -2 Z" className="v-capelli v-tratto" />}
+      {p.capelli === 'berretto' && <g><path d="M-24 -6 Q-24 -36 0 -36 Q24 -36 24 -6 Z" className="v-giacca-scura v-tratto" /><path d="M-26 -6 H30 L40 -2 L-24 -1 Z" className="v-nero v-tratto" /><path d="M-6 -30 l6 -4 l6 4 l-1 7 l-5 3 l-5 -3 Z" className="v-giallo v-tratto" /></g>}
+      <path d="M-14 -6 q6 -4 11 0 M3 -6 q6 -4 11 0" className="v-linea" />
+      <ellipse cx="-8" cy="1" rx="2.4" ry="3" className="v-nero" /><ellipse cx="8" cy="1" rx="2.4" ry="3" className="v-nero" />
+      <circle cx="-7.2" cy="0" r="0.9" className="v-bianco" /><circle cx="8.8" cy="0" r="0.9" className="v-bianco" />
+      <path d="M0 2 Q-3 10 1 12" className="v-linea" />
+      {p.baffi && <path d="M-11 13 Q0 7 11 13 Q4 15 0 13 Q-4 15 -11 13 Z" className="v-capelli v-tratto" />}
       <path d={bocca} className="v-linea" />
     </g>
   );

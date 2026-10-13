@@ -29,3 +29,15 @@ export async function controllaCitta(pagina, atteso, dove) {
   atteso(`${dove}: dischi degli episodi sovrapposti per ${Math.round(dischi)} px² (C17-12)`, dischi === 0);
   atteso(`${dove}: il nome dell'episodio scelto è coperto da altri dischi (C17-12)`, sopra);
 }
+
+/** PO-092: la vignetta (fuori dalla chiamata) prende lo spazio libero: o la pagina è piena, o la vignetta è al massimo. */
+export async function controllaRiempi(pagina, atteso, nome) {
+  const r = await pagina.evaluate(() => {
+    const v = [...document.querySelectorAll('svg.vignetta')].find((x) => !x.closest('.chiamata-corpo') && x.getClientRects().length);
+    if (!v) return null;
+    const main = document.querySelector('main'), cm = getComputedStyle(main), cb = getComputedStyle(document.body);
+    const libero = innerHeight - (main.getBoundingClientRect().bottom + parseFloat(cm.marginBottom) + parseFloat(cb.paddingBottom));
+    return { h: v.getBoundingClientRect().height, max: parseFloat(getComputedStyle(v).maxHeight), libero };
+  });
+  if (r) atteso(`${nome}: vignetta alta ${Math.round(r.h)} px con ${Math.round(r.libero)} px liberi sotto (massimo ${r.max}) (PO-092)`, r.libero <= 8 || r.h >= r.max - 1);
+}

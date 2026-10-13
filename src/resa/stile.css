@@ -263,7 +263,7 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .in-mano .rende { display: block; margin-top: var(--spazio-1); font-size: var(--testo-mini); color: var(--colore-testo-tenue); }
 
 /* Vignette a fumetto (S-23, PO-078): l'altezza si stringe prima che la pagina scorra */
-.vignetta { display: block; width: 100%; height: clamp(var(--vignetta-min), calc(100dvh - var(--vignetta-riserva)), var(--vignetta-max)); margin: var(--spazio-2) 0; }
+.vignetta { display: block; width: 100%; height: clamp(var(--vignetta-min), calc(100dvh - var(--vignetta-riserva)), var(--vignetta-max)); min-height: var(--vignetta-min); max-height: var(--vignetta-max); margin: var(--spazio-2) 0; }
 .vignetta .v-giallo { fill: var(--giallo); }
 .vignetta .v-retino { fill: var(--retino-punto); }
 .vignetta .v-cornice { fill: none; stroke: var(--nero); stroke-width: var(--bordo); }
@@ -326,7 +326,7 @@ main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
 .vignetta-cornice .stemma { width: var(--icona); height: var(--icona); }
 /* PO-089 (scelta A): vignetta della chiamata piccola, a sinistra del testo, dentro il fumetto */
 .chiamata-corpo { display: flex; gap: var(--spazio-3); align-items: flex-start; margin-top: var(--spazio-3); }
-.chiamata-corpo > .vignetta { flex: none; width: var(--vignetta-chiamata); height: auto; margin: 0; border: var(--bordo-fine) solid var(--nero); }
+.chiamata-corpo > .vignetta { flex: none; width: var(--vignetta-chiamata); height: auto; min-height: 0; margin: 0; border: var(--bordo-fine) solid var(--nero); }
 .chiamata-corpo .testo-radio { margin-top: 0; }
 /* PO-089: chiamata compatta (solo la chiamata): mappa intera e quadrata (più bassa i nomi si sovrappongono, C-008), fumetto e opzioni più stretti */
 main:has(.scena[data-scena="chiamata"]) .mappa { margin-bottom: var(--spazio-2); }
@@ -340,3 +340,14 @@ main[data-schermata="sala"] .fiducia, main[data-schermata="briefing"] .fiducia, 
 main[data-schermata="sala"] .testata, main[data-schermata="briefing"] .testata, main[data-schermata="verbale"] .testata { margin: var(--spazio-1) 0; }
 /* C17-12: l'episodio scelto (disco e nome) sta sopra gli altri dischi della città. Rosso C35C01: come prima. */
 main:not(.rosso-c35c01) .mappa.citta .settore.acceso { z-index: 3; }
+/* PO-092 (D-114): stile C «pop retinato» per le vignette: ombre fatte di retino a punti, contorno nero spesso */
+.vignetta .v-tratto { stroke-width: var(--vignetta-tratto); }
+.vignetta .v-cemento { fill: var(--vignetta-cemento); }
+.vignetta .v-ombra { fill: url(#v-ombra); }
+.vignetta .v-ombra-pelle { fill: var(--vignetta-pelle-ombra); }
+.vignetta .v-giacca-scura { fill: var(--vignetta-giacca-scura); }
+.vignetta .v-luce { fill: var(--vignetta-luce); }
+.vignetta .v-prato-chiaro { fill: var(--vignetta-prato-chiaro); }
+.vignetta .v-retino-ombra-fondo { fill: var(--vignetta-cemento-ombra); }
+.vignetta .v-cono { fill: var(--vignetta-luce); opacity: var(--opaco); }
+.vignetta .v-bianco-linea { stroke: var(--bianco); }

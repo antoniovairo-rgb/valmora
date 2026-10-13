@@ -105,6 +105,14 @@
   /* Vignette a fumetto (S-23, PO-078) */
   --vignetta-pelle: #f2c9a0;
   --vignetta-capelli: #3a2a20;
+  /* PO-092 (D-114): stile C «pop retinato» per tutte le vignette: ombre a retino, contorno spesso */
+  --vignetta-tratto: 2.4px;
+  --vignetta-cemento: #b9bcc4;
+  --vignetta-cemento-ombra: #7d818c;
+  --vignetta-pelle-ombra: #d9a27a;
+  --vignetta-giacca-scura: #2b2b33;
+  --vignetta-luce: #fff6c2;
+  --vignetta-prato-chiaro: #59bd63;
   --vignetta-fumo: rgba(60, 60, 60, 0.55);
   --vignetta-riserva: 420px; /* spazio della pagina fuori dalla vignetta: sotto questa soglia la vignetta si stringe */
   --vignetta-min: 90px;
