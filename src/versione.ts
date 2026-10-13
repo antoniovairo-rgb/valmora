@@ -101,4 +101,11 @@
 //   causa: PO-084/085/098/099, collaudo C-018. misura: completa 3/3 e CI verde sulla build del rilascio.
 //   guardiano: tests/brevita.test.ts, tests/riserva-tetto.test.ts (C17R14), tests/dopo-scelte.test.ts esteso, C40C01,
 //   C40C02, C41R01; controllo pre-push tools/prima-del-push.mjs (PO-100, D-117).
-export const GAME_VERSION = '0.14.0';
+//
+// 0.15.0 – rilascio delle 23:00: icona «i» accanto al titolo dell'ondata con una riga che spiega il momento (PO-101,
+//   142 righe), contrasto di ogni testo su ogni fondo e verde più scuro (C19-04), segno della conseguenza sul settore
+//   dopo una risposta e icone dell'effetto sotto le opzioni (PO-085), correzioni grafiche C-018 (C18-05/07/08/09, C17-05,
+//   C17-12, C17-22), coerenza C-019 (C19-01/02/03/05), controllo pre-push con «bot» quando cambiano dati o logica.
+//   causa: PO-101, PO-085, collaudi C-018 e C-019. misura: completa 3/3 e CI verde sulla build del rilascio.
+//   guardiano: tests/ondata-info.test.ts, C43I01, C40C01, C39E01, C39I01, C42*, tests/dopo-scelte.test.ts esteso.
+export const GAME_VERSION = '0.15.0';
