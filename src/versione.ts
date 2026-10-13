@@ -86,4 +86,11 @@
 //   causa: collaudo C-017 e foto del PO del 13/10. misura: completa 3/3 e CI verde sulla build del rilascio; contraddizioni
 //   0 su 461 scelte forzate. guardiano: tests/dopo-scelte.test.ts (PO086, C17R03), tests/senza-presidio.test.ts (PO095),
 //   tests/fiducia-risultato.test.ts (C17R05), tests/ripartenza-po083.test.ts (C17R06), C35R01, C35C01, C35B01, C35S01.
-export const GAME_VERSION = '0.12.0';
+//
+// 0.13.0 – rilascio anticipato su richiesta del PO (deroga all'orario di D-109): vignette nello stile C «pop retinato»
+//   in sala, verbale e chiamate (PO-092, D-114), aiuto del «?» leggibile per intero (PO-096), numero di versione in basso
+//   a destra su ogni schermata (PO-097), «Rispondi» porta sempre alla prima opzione (C17-15), riepilogo dello schieramento
+//   non coperto dai pulsanti (C17-22).
+//   causa: PO-092, PO-096, PO-097, collaudo C-017. misura: completa 3/3 e CI verde sulla build del rilascio.
+//   guardiano: C26V01, C36V01, C38A01, C38V01 e i controlli di C17-15/C17-22 nella catena grafica.
+export const GAME_VERSION = '0.13.0';
