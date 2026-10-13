@@ -167,3 +167,17 @@ export async function controllaIconeEffetti(pagina, atteso, c, dove) {
     atteso(`${dove} opzione «${id}»: icone «${v}», i dati dicono «${voluti}» (PO-085)`, v === voluti);
   }
 }
+
+/** PO-102: ogni corteo in strada ha i colori dei tifosi che i dati mettono lì: il club della strada, altrimenti quello
+ *  della curva con lo stesso nome (strada_larkspire → curva_larkspire); se i dati non lo dicono, neutri. Si legge
+ *  «data-colori-cortei» (strada=primario del club usato, o «neutro»). Rosso VALMORA_ROSSI=C43C02: la curva ospiti. */
+export async function controllaColoriCortei(pagina, m, club, atteso, dove) {
+  if ((await pagina.getAttribute('.mappa', 'data-mappa')) !== 'webgl') return;
+  const visti = Object.fromEntries(((await pagina.getAttribute('.mappa', 'data-colori-cortei')) ?? '').split(',').filter(Boolean).map((x) => x.split('=')));
+  for (const s of m.mappa.settori.filter((x) => x.tipo === 'strada')) {
+    const curva = m.mappa.settori.find((c) => c.tipo === 'curva' && c.id === `curva_${s.id.replace(/^[a-z]+_/, '')}`);
+    const di = s.club ?? curva?.club;
+    const atteso_ = di ? club[di]?.colori?.primario ?? 'neutro' : 'neutro';
+    atteso(`${dove}: corteo di «${s.id}» coi colori «${visti[s.id]}», i dati dicono «${di ?? 'non si sa'}» (${atteso_}) (PO-102)`, visti[s.id] === atteso_);
+  }
+}
