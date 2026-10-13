@@ -44,7 +44,7 @@ describe('i rientri di unità non superano il tetto (C17-14)', () => {
   it('in nessun episodio una risorsa con «massimo» lo supera', () => {
     const oltre: string[] = [];
     for (const m of ms) for (const [r, x] of Object.entries(picco(m, 10))) {
-      const t = m.mappa.risorse[r].massimo; if (t !== undefined && x > t) oltre.push(`${m.id} ${r}: ${x} su ${t}`);
+      const t = m.mappa.risorse[r]?.massimo; if (t !== undefined && x > t) oltre.push(`${m.id} ${r}: ${x} su ${t}`);
     }
     expect(oltre).toEqual([]);
   });
