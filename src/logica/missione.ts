@@ -157,7 +157,10 @@ function applicaEffetto(m: Missione, s: InCorso, e: EffettoMissione, d: Dich): I
   if ('riserva' in e) {
     const q = m.mappa.risorse[e.riserva]?.quantita ?? 0;
     const v = (s.riserva[e.riserva] ?? 0) + e.valore;
-    return { ...s, riserva: { ...s.riserva, [e.riserva]: spento('C01A04') ? v : Math.max(-q, v) } };
+    // C17-14: i rientri non superano il tetto dichiarato dalla risorsa («massimo»). Rosso __NO_C17R14.
+    const tetto = m.mappa.risorse[e.riserva]?.massimo;
+    const w = tetto === undefined || spento('C17R14') ? v : Math.min(tetto - q, v);
+    return { ...s, riserva: { ...s.riserva, [e.riserva]: spento('C01A04') ? w : Math.max(-q, w) } };
   }
   return { ...s, variabili: applica(e, s.variabili, d) };
 }
