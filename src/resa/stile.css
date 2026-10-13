@@ -351,3 +351,10 @@ main:not(.rosso-c35c01) .mappa.citta .settore.acceso { z-index: 3; }
 .vignetta .v-retino-ombra-fondo { fill: var(--vignetta-cemento-ombra); }
 .vignetta .v-cono { fill: var(--vignetta-luce); opacity: var(--opaco); }
 .vignetta .v-bianco-linea { stroke: var(--bianco); }
+/* PO-096: nello schieramento la riga «in mano» si legge per intero (va a capo, carattere piccolo e non minimo) e il «?»
+   è un bottone tondo ben visibile. Rosso C38A01: riga troncata e «?» piccolo, come prima. */
+main:not(.rosso-c38a01) .compatto .in-mano { white-space: normal; overflow: visible; text-overflow: clip; font-size: var(--testo-piccolo); line-height: var(--linea-stretta); }
+main:not(.rosso-c38a01) .riga-in-mano .aiuto { border: var(--bordo) solid var(--nero); border-radius: var(--raggio-tondo); background: var(--giallo); box-shadow: var(--ombra-1); }
+main:not(.rosso-c38a01) .riga-in-mano .aiuto svg { width: var(--icona-aiuto); height: var(--icona-aiuto); }
+/* PO-097: numero di versione nell'angolo in basso a destra, nella fascia libera sotto i pulsanti fissi */
+.versione-angolo { position: fixed; right: var(--spazio-1); bottom: 0; z-index: 5; pointer-events: none; font: 500 var(--testo-mini) / 1 var(--font); color: var(--colore-testo-tenue); }

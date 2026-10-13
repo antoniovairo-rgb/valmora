@@ -55,3 +55,33 @@ export async function controllaRispondi(pagina, atteso, dove) {
   atteso(`${dove}: dopo «Rispondi» la prima opzione è a ${r?.map(Math.round).join('–')} (finestra ${r?.[2]}), non intera (C17-15)`, !!r && r[0] >= 0 && r[1] <= r[2]);
   await pagina.evaluate(() => scrollTo(0, 0));
 }
+
+/** PO-096: nello schieramento la riga «in mano» non è troncata e il «?» è grande (tocco ≥ 44 px, icona ≥ 24 px). */
+export async function controllaRigaAiuto(pagina, atteso, nome) {
+  const r = await pagina.evaluate(() => {
+    const p = document.querySelector('.riga-in-mano .in-mano'), b = document.querySelector('.riga-in-mano .aiuto');
+    if (!p || !b) return null;
+    const i = b.querySelector('svg')?.getBoundingClientRect();
+    return { tagliata: p.scrollWidth > p.clientWidth + 1 || getComputedStyle(p).textOverflow === 'ellipsis', tocco: Math.min(b.offsetWidth, b.offsetHeight), icona: i ? Math.min(i.width, i.height) : 0 };
+  });
+  if (!r) return;
+  atteso(`${nome}: la riga dell'aiuto è troncata coi puntini (PO-096)`, !r.tagliata);
+  atteso(`${nome}: il «?» è piccolo (tocco ${r.tocco} px, icona ${Math.round(r.icona)} px) (PO-096)`, r.tocco >= 44 && r.icona >= 24);
+}
+
+/** PO-097: la versione c'è su ogni schermata, è quella del gioco e non tocca nessun comando. */
+export async function controllaVersione(pagina, atteso, nome, versione) {
+  const r = await pagina.evaluate(() => {
+    const v = document.querySelector('[data-versione]');
+    if (!v) return null;
+    const a = v.getBoundingClientRect();
+    const sopra = [...document.querySelectorAll('button, a, input, [role="button"]')].filter((e) => e.getClientRects().length).filter((e) => {
+      const b = e.getBoundingClientRect(); return Math.min(a.right, b.right) - Math.max(a.left, b.left) > 0 && Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 0;
+    }).map((e) => e.dataset.azione ?? e.textContent.trim().slice(0, 20));
+    return { testo: v.textContent, sopra, carattere: parseFloat(getComputedStyle(v).fontSize) };
+  });
+  atteso(`${nome}: manca il numero di versione (PO-097)`, !!r);
+  if (!r) return;
+  atteso(`${nome}: versione «${r.testo}» invece di «v${versione}» (PO-097)`, r.testo === `v${versione}`);
+  atteso(`${nome}: la versione copre ${r.sopra.join(', ')} (PO-097)`, !r.sopra.length);
+}
