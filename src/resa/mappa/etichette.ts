@@ -3,12 +3,14 @@
 // settori (44×44), i nomi già messi, le aree di tocco delle unità già messe e i bordi della mappa (margine 5 px).
 // Nessun numero di pixel scritto qui: le posizioni stanno in stile.css ([data-nome], [data-unita]).
 
+import { spento } from '../../interruttori.ts';
+
 type Rett = { left: number; top: number; right: number; bottom: number };
 const MARGINE = 5; // distanza minima dal bordo della mappa (controllo R06 di tools/foto.mjs)
 const STACCO = 6;  // distacco minimo fra due nomi: attaccati sembrerebbero un nome solo
 const largo = (r: Rett, d: number): Rett => ({ left: r.left - d, top: r.top - d, right: r.right + d, bottom: r.bottom + d });
 const VERA = 100; // una sovrapposizione vera pesa molto più di un distacco mancante fra due nomi
-const NOMI = ['sotto', 'sopra', 'destra', 'sinistra', 'sotto-sx', 'sotto-dx'] as const;
+const NOMI = ['sotto', 'sopra', 'destra', 'sinistra', 'sotto-sx', 'sotto-dx', 'sopra-sx', 'sopra-dx'] as const;
 const UNITA = ['sopra', 'destra', 'sinistra', 'destra-alto', 'sinistra-alto', 'sotto'] as const;
 
 const area = (a: Rett, b: Rett) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
@@ -54,6 +56,11 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const r = piazza(s, 'data-nome', NOMI, () => nome.getBoundingClientRect(), [...punti.filter((_, j) => settori[j] !== s).map((r) => ostacolo(r)), ...nomi.map((n) => ostacolo(n, STACCO))], mappa);
     if (r) nomi.push(r);
   }
+  // 1b) C15-04: i nomi insieme, cercando la combinazione migliore fra tutte (la ricerca uno alla volta si ferma
+  //     in un minimo locale, e25 a 360). Rosso C34N01: niente, come prima.
+  if (!spento('C34N01')) migliorCombinazione(settori, punti, mappa);
+  // con nessuna unità sulla mappa (sala, briefing) la combinazione migliore è già quella finale
+  if (!contenitore.querySelector('.settore-unita') && !spento('C34N01')) return;
   // 2) nome e unità insieme (6 × 6 combinazioni; solo il nome per i settori senza unità), si tiene quella che costa meno
   //    (due passate, così anche i primi settori vedono dove sono finiti gli ultimi).
   //    Nome contro: punti, nomi e unità degli altri settori. Unità contro: tutti i punti (anche il proprio),
@@ -78,4 +85,37 @@ export function disponiEtichette(contenitore: HTMLElement) {
     }
     s.setAttribute('data-nome', migliore.nome); s.setAttribute('data-unita', migliore.unita);
   }
+}
+
+/** Costo di una disposizione dei soli nomi: sovrapposizioni con nomi (col distacco) e punti degli altri, bordi. */
+export function costoNomi(r: Rett[], punti: Rett[], mappa: Rett): number {
+  let c = 0;
+  for (let i = 0; i < r.length; i++) {
+    c += VERA * 10 * fuori(r[i]!, mappa);
+    for (let j = 0; j < punti.length; j++) if (j !== i) c += VERA * area(r[i]!, punti[j]!);
+    for (let j = 0; j < i; j++) { const v = area(r[i]!, r[j]!); c += VERA * v + area(r[i]!, largo(r[j]!, STACCO)) - v; }
+  }
+  return c;
+}
+
+/** Ricerca con taglio (al più 200 000 nodi): per ogni settore la posizione del nome, misurata una volta nel DOM. */
+function migliorCombinazione(settori: HTMLElement[], punti: Rett[], mappa: Rett) {
+  const conNome = settori.map((s, i) => [s, i] as const).filter(([s]) => s.querySelector('.settore-nome'));
+  const rett = conNome.map(([s]) => { const prima = s.getAttribute('data-nome'); const rs = NOMI.map((n) => { s.setAttribute('data-nome', n); return s.querySelector('.settore-nome')!.getBoundingClientRect() as Rett; }); if (prima) s.setAttribute('data-nome', prima); return rs; });
+  const solo = conNome.map(([, i], a) => rett[a]!.map((r) => VERA * 10 * fuori(r, mappa) + punti.reduce((c, p, j) => c + (j === i ? 0 : VERA * area(r, p)), 0)));
+  const attuale = conNome.map(([s]) => Math.max(0, NOMI.indexOf(s.getAttribute('data-nome') as typeof NOMI[number])));
+  const costoDi = (sc: number[]) => sc.reduce((c, k, a) => c + solo[a]![k]! + sc.slice(0, a).reduce((d, kk, b) => { const x = rett[a]![k]!, y = rett[b]![kk]!, v = area(x, y); return d + VERA * v + area(x, largo(y, STACCO)) - v; }, 0), 0);
+  let migliore = { c: costoDi(attuale), s: attuale }, nodi = 0;
+  const scelta: number[] = [];
+  const giu = (a: number, c: number) => {
+    if (c >= migliore.c || ++nodi > 200000) return;
+    if (a === conNome.length) { migliore = { c, s: [...scelta] }; return; }
+    for (let k = 0; k < NOMI.length; k++) {
+      let d = solo[a]![k]!;
+      for (let b = 0; b < a; b++) { const x = rett[a]![k]!, y = rett[b]![scelta[b]!]!, v = area(x, y); d += VERA * v + area(x, largo(y, STACCO)) - v; }
+      scelta[a] = k; giu(a + 1, c + d);
+    }
+  };
+  giu(0, 0);
+  conNome.forEach(([s], a) => s.setAttribute('data-nome', NOMI[migliore.s[a]!]!));
 }

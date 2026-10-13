@@ -72,7 +72,8 @@ export function App() {
     const da = centro(`[data-risorsa="${risorsa}"]`) ?? centro('.mappa', 'basso'), a = centro(`[data-settore="${settore}"] .settore-punto`);
     if (da && a) setVoli((v) => [...v, { id: ++contaVoli.current, risorsa, da, a }]);
   };
-  const [avviso, setAvviso] = useState<string | null>(null); // transenne su un settore dove non si montano (D-082)
+  const [avviso, setAvviso] = useState<string | null>(null);
+  const [riepilogoAperto, setRiepilogoAperto] = useState(false); // C15-06: col riepilogo aperto la mappa non si tocca // transenne su un settore dove non si montano (D-082)
   const [eco, setEco] = useState<Opzione | null>(null); // risposta all'ultima scelta, solo a schermo
   // Ogni azione parte dal salvataggio PIÙ RECENTE (ref), non da quello catturato quando la scena è stata
   // disegnata: un secondo tocco durante l'uscita della scena trova la chiamata già chiusa e non fa nulla (C-005 R01).
@@ -201,10 +202,13 @@ export function App() {
       mappa = {
         tensione: ic.tensione, presenze: bozza, fisse: spento('C09S02') ? null : ic.fisse,
         vietati: sel && m.mappa.risorse[sel]?.fissa ? m.mappa.settori.map((x) => x.id).filter((x) => !settoriAmmessi(m, sel).includes(x)) : [],
-        onSettore: (s) => sel && metti(sel, s),
-        onTogli: (r, s) => cambiaBozza({ ...bozza, [r]: { ...bozza[r], [s]: Math.max(0, (bozza[r]?.[s] ?? 0) - 1) } }),
+        // C15-06: col riepilogo aperto la mappa è solo da guardare. Rosso C34R01: resta toccabile, come prima.
+        ...(riepilogoAperto && !spento('C34R01') ? {} : {
+          onSettore: (s: string) => sel && metti(sel, s),
+          onTogli: (r: string, s: string) => cambiaBozza({ ...bozza, [r]: { ...bozza[r], [s]: Math.max(0, (bozza[r]?.[s] ?? 0) - 1) } }),
+        }),
       };
-      corpo = <Schieramento m={m} ic={ic} d={bozza} scelta={sel} avviso={avviso} scegli={(r) => { setScelta(r); setAvviso(null); }} metti={metti} azzera={() => cambiaBozza({})} annulla={storia.length ? annulla : null}
+      corpo = <Schieramento riepilogoAperto={setRiepilogoAperto} m={m} ic={ic} d={bozza} scelta={sel} avviso={avviso} scegli={(r) => { setScelta(r); setAvviso(null); }} metti={metti} azzera={() => cambiaBozza({})} annulla={storia.length ? annulla : null}
         conferma={() => { setAvviso(null); const ora = icOra(); if (ora && !ora.disposizione && ora.ondata === ic.ondata) conIc(schiera(m, ora, bozza)); }} />;
     } else if (f.tipo === 'chiamata') {
       mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, accesi: f.chiamata.settore ? [f.chiamata.settore] : [], citato: f.chiamata.settore };
@@ -230,12 +234,18 @@ export function App() {
     } else { nome = 'titolo'; corpo = titolo; }
   }
 
+  // Barra della fiducia (D-097): durante l'episodio, e (C15-07) anche in sala e briefing col valore da cui parte
+  // il tentativo, e nel verbale col valore finale che decide le stelle. Rosso C34F01: solo gioco e rapporto.
+  const altrove = !spento('C34F01');
+  const fiducia = ic && (schermata === 'gioco' || schermata === 'rapporto') ? Number(ic.variabili.credito ?? 0)
+    : altrove && !ic && sal && m && (schermata === 'sala' || schermata === 'briefing') ? Number(iniziaEpisodio(sal, m).variabili.credito ?? 0)
+    : altrove && schermata === 'verbale' && esito ? Number(esito.ic.variabili.credito ?? 0) : null;
   const chiave = (nome === 'chiamata' || nome === 'risposta') && ic ? `${nome}-${ic.ondata}-${Object.keys(ic.risposte).length}` : `${nome}-${ic?.ondata ?? 0}`;
   return (
     <MotionConfig reducedMotion="user">
       <main data-schermata={nome} data-ondata={ic?.ondata ?? 0} className={ROSSI_CSS.filter((x) => spento(x)).map((x) => `rosso-${x.toLowerCase()}`).join(' ')}>
         {mappa && m && testata && <Testata numero={due(m.episodio)} etichetta={testata.etichetta} titolo={testata.titolo} />}
-        {ic && (schermata === 'gioco' || schermata === 'rapporto') && <Fiducia valore={Number(ic.variabili.credito ?? 0)} max={Number(dichiarate.get('credito')?.max ?? 10)} />}
+        {fiducia !== null && <Fiducia valore={fiducia} max={Number(dichiarate.get('credito')?.max ?? 10)} />}
         {mappa && m && <Mappa m={m} home={home} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
         <Voli voli={voli} finito={(id) => setVoli((v) => v.filter((x) => x.id !== id))} />
         <AnimatePresence mode="wait" initial={false}>

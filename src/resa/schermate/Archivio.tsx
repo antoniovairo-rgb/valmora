@@ -6,12 +6,20 @@ import { useEffect, useRef, useState } from 'react';
 import type { Salvataggio } from '../../salvataggi/salvataggio.ts';
 import { esporta, importa } from '../archivio.ts';
 import { Icona } from '../icone.tsx';
+import { spento } from '../../interruttori.ts';
+
+/** C15-08: il motivo in parole da giocatore, senza nomi tecnici; la partita non cambia. Rosso C34I01: il messaggio tecnico. */
+const perche = (tecnico: string) => (tecnico.startsWith('salvataggio di una versione futura')
+  ? 'Questo salvataggio viene da una versione più nuova di Valmora: aggiorna il gioco e riprova. La partita non è cambiata.'
+  : /JSON|non è un oggetto|save_version/.test(tecnico)
+    ? 'Questo file non è un salvataggio di Valmora. La partita non è cambiata.'
+    : 'Questo salvataggio è rovinato e non si può caricare. La partita non è cambiata.');
 
 export function PulsantiArchivio(p: { sal: Salvataggio | null; chiedi: (s: Salvataggio) => void; errore: (x: string) => void }) {
   const file = useRef<HTMLInputElement>(null);
   const scelto = async (f: File | undefined) => {
     if (!f) return;
-    try { p.chiedi(await importa(f)); } catch (e) { p.errore(`File non valido: ${(e as Error).message}. La partita non è cambiata.`); }
+    try { p.chiedi(await importa(f)); } catch (e) { p.errore(spento('C34I01') ? `File non valido: ${(e as Error).message}. La partita non è cambiata.` : perche((e as Error).message)); }
     if (file.current) file.current.value = '';
   };
   return (

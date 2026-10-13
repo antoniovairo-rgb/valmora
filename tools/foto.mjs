@@ -10,7 +10,7 @@ import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta } from './foto-chiamata.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -155,7 +155,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
             return p;
           });
-          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso); await controllaHome(pagina, nome, atteso); const coperti = await copertiDallaBarra(pagina); atteso(`${nome}: la barra in basso copre ${coperti.join(', ')} (S-24)`, !coperti.length);
+          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso); if (nome === 'sala' && (await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === 'webgl') await controllaNomiSala(pagina, atteso, `sala ${larghezza}`); await controllaHome(pagina, nome, atteso); const coperti = await copertiDallaBarra(pagina); atteso(`${nome}: la barra in basso copre ${coperti.join(', ')} (S-24)`, !coperti.length);
         await pagina.mouse.move(0, 0); // niente :hover rimasto dal clic precedente nelle foto
         await pagina.screenshot({ path: join(cartella, `${larghezza}-${String(++k).padStart(2, '0')}-${nome}.png`), fullPage: true });
         };
@@ -375,7 +375,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso('«Nuova partita» con una partita salvata non chiede conferma (C-005 R02)', chiede);
         if (chiede) { await foto(); await controllaTripla(pagina, atteso, '«Nuova partita»', foto); await premi('[data-azione="annulla-nuova"]'); await scena('titolo'); }
         atteso('«No, tieni la partita» ha cambiato il salvataggio', (await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'))) === prima);
-        if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); await controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }); await controllaIndietro(pagina, { atteso, scena }); await controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi); await controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori, cartella }); } // S-09
+        if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); await controllaSalvataggiPersi(pagina, { atteso, scena }); await controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }); await controllaIndietro(pagina, { atteso, scena }); await controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi); await controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori, cartella }); } // S-09
       } catch (e) { atteso(`giro interrotto: ${e.message.split('\n')[0]}`, false); }
       await pagina.close();
       giri.push(g);

@@ -1,4 +1,5 @@
 // Dati di gioco per la resa: i JSON di data/ (già validati dalla catena «logica») e i testi.
+import { spento } from '../interruttori.ts';
 import { scegliTesto, type Genere } from '../dati/testi.ts';
 import type { Dichiarazione, Missione } from '../logica/tipi.ts';
 
@@ -16,6 +17,13 @@ export const genereAttuale = (): Genere => genere;
 /** «testi:e01.titolo» o «e01.titolo» → testo (variante «@f» se c'è e la protagonista è donna);
  *  chiave mancante = errore visibile, mai un vuoto. */
 export const t = (chiave: string): string => scegliTesto(testi, chiave, genere) ?? `[[${chiave}]]`;
+
+/** «1 squadra», «3 squadre» (C15-05): forme dai testi «risorsa.<r>.uno» e «risorsa.<r>.molti» (dati); se mancano,
+ * il nome della risorsa com'era. Rosso C34T01: sempre il nome, come prima («1 Squadre»). */
+export const quante = (n: number, r: string): string => {
+  const forma = spento('C34T01') ? null : scegliTesto(testi, `risorsa.${r}.${n === 1 ? 'uno' : 'molti'}`, genere);
+  return `${n} ${forma ?? t(`risorsa.${r}`)}`;
+};
 
 export const dichiarate = new Map<string, Dichiarazione>(
   ((perPercorso('stato.json')[0] as { variabili: Dichiarazione[] }).variabili).map((d) => [d.id, d]),

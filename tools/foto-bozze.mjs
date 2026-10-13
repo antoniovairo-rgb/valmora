@@ -5,6 +5,7 @@
 // - il primo episodio di ogni stagione oltre la prima si gioca per intero (partita di foto.mjs).
 import { leggiDati } from './dati-disco.mjs';
 import { controllaHome, controllaTripla } from './foto-club.mjs';
+import { controllaNomiSala } from './foto-c15.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
@@ -70,6 +71,7 @@ export async function apriTutte(c) {
         if ((await pagina.getAttribute('.mappa', 'data-mappa')) === 'webgl') { // dettagli dei dati disegnati davvero (D-095)
           const voluti = (m.mappa.dettagli ?? []).map((x) => x.split('@')[0]).sort().join(','), visti = ((await pagina.getAttribute('.mappa', 'data-dettagli')) ?? '').split(',').filter(Boolean).sort().join(',');
           atteso(`${m.id}: dettagli disegnati «${visti}», i dati dicono «${voluti}» (D-095)`, visti === voluti);
+          await controllaNomiSala(pagina, atteso, `${m.id} sala`);
           // S-25 (PO-080): due curve = stadio con la partita; nessuna curva ma il piazzale dello stadio = stadio vuoto
           const tipi = m.mappa.settori.map((x) => x.tipo), curve = tipi.filter((t) => t === 'curva').length;
           const stadio = curve >= 2 ? 'pieno' : !curve && tipi.includes('piazzale') ? 'vuoto' : '', visto = await pagina.getAttribute('.mappa', 'data-stadio');

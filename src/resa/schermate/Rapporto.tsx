@@ -6,7 +6,7 @@
 import { ChevronRight, FileText, Moon } from 'lucide-react';
 import type { RapportoOndata } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
-import { t } from '../dati.ts';
+import { t, quante } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { spento } from '../../interruttori.ts';
 import { livello } from '../partita.ts';
@@ -37,10 +37,10 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
         </p>
       ) : null}
       {riposo.length > 0 && !p.ultima && (
-        <p className="riposo"><Icona di={Moon} />A riposo nella prossima ondata: {riposo.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}</p>
+        <p className="riposo"><Icona di={Moon} />A riposo nella prossima ondata: {riposo.map(([r, n]) => quante(n, r)).join(', ')}</p>
       )}
       {!p.ultima && (
-        <p className="tenue" data-disponibili="prossima">Disponibili nella prossima ondata: {Object.entries(p.prossime).map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}</p>
+        <p className="tenue" data-disponibili="prossima">Disponibili nella prossima ondata: {Object.entries(p.prossime).map(([r, n]) => quante(n, r)).join(', ')}</p>
       )}
       <button className="pulsante" data-azione="avanti" onClick={p.avanti}>
         {p.ultima ? <><Icona di={FileText} />Leggi il verbale</> : <>Prossima ondata<Icona di={ChevronRight} /></>}

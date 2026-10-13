@@ -11,6 +11,8 @@ const RISERVA = 'valmora-salvataggio-riserva';
 
 /** Vero se l'ultimo carica() ha dovuto usare la copia di riserva (avviso in home). */
 export let dallaRiserva = false;
+/** C15-09: c'era un salvataggio ma né lui né la copia di riserva si leggono: la partita è persa (la home lo dice). */
+export let persa = false;
 
 export const AVVISO_RIPARTE = 'Il gioco è stato aggiornato: l\'episodio riparte dall\'inizio.';
 export const AVVISO_SPARITO = 'Il gioco è stato aggiornato: l\'episodio interrotto non c\'è più, si riparte dalla città.';
@@ -45,7 +47,7 @@ function leggi(grezzo: string): Salvataggio {
 }
 
 export function carica(): Salvataggio | null {
-  dallaRiserva = false;
+  dallaRiserva = false; persa = false;
   try {
     const grezzo = localStorage.getItem(CHIAVE);
     return grezzo ? leggi(grezzo) : null;
@@ -56,13 +58,14 @@ export function carica(): Salvataggio | null {
   if (spento('C19S01')) return null;
   try {
     const copia = localStorage.getItem(RISERVA);
-    if (!copia) return null;
+    if (!copia) { persa = !spento('C34S01'); return null; }
     const s = leggi(copia);
     dallaRiserva = true;
     localStorage.setItem(CHIAVE, JSON.stringify(s)); // il principale torna buono
     return s;
   } catch (e) {
     console.warn(`anche la copia di riserva è illeggibile, si riparte: ${(e as Error).message}`);
+    persa = !spento('C34S01'); // Rosso C34S01: nessun avviso, come prima
     return null;
   }
 }

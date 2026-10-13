@@ -7,7 +7,7 @@ import { BUILD } from '../build.ts';
 import { mailIdee, URL_DONAZIONE } from '../collegamenti.ts';
 import { Guida } from './Guida.tsx';
 import { ConfermaImporta, PulsantiArchivio } from './Archivio.tsx';
-import { dallaRiserva } from '../archivio.ts';
+import { dallaRiserva, persa } from '../archivio.ts';
 import type { Salvataggio } from '../../salvataggi/salvataggio.ts';
 import { browserInterno, giaInstallata, suAndroid, suIphone, useInstallazione } from '../installa.ts';
 import { t } from '../dati.ts';
@@ -32,6 +32,7 @@ export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi:
         {sotto && <div className="logo-sotto">{sotto}</div>}
       </div>
       {dallaRiserva && <p className="avviso" role="status" data-riserva>Il salvataggio era rovinato: ho ripreso la partita dalla copia di riserva.</p>}
+      {persa && <p className="avviso" role="alert" data-persa>Il salvataggio e la sua copia di riserva sono rovinati: la partita di prima non si può riprendere. Se l'avevi esportata, caricala con «Importa».</p>}
       {errore && <p className="avviso" role="alert" data-errore-importa>{errore}</p>}
       {importata && <p className="avviso buono" role="status" data-importata>Partita importata.</p>}
       {daImportare && <ConfermaImporta nuova={daImportare} esiste={!!p.sal} annulla={() => setDaImportare(null)} fatto={(s) => { setDaImportare(null); setImportata(true); p.importata(s); }} />}

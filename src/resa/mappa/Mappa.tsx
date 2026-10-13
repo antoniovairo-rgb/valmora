@@ -9,7 +9,7 @@ import { disponiEtichette } from './etichette.ts';
 const disponi = (el: HTMLElement) => { if (!spento('C05S08')) disponiEtichette(el); };
 import type { Disposizione, Missione } from '../../logica/tipi.ts';
 import { spento } from '../../interruttori.ts';
-import { club, t } from '../dati.ts';
+import { club, t, quante } from '../dati.ts';
 import { Lock } from 'lucide-react';
 import { TastoHome } from '../schermate/Fumetto.tsx';
 import { Icona, iconaRisorsa } from '../icone.tsx';
@@ -104,12 +104,12 @@ export function Mappa(p: MappaProps) {
           <div key={s.id} ref={posiziona(s.pos.x, s.pos.y)} data-settore={s.id}
             className={`settore lato-${lato}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}${p.vietati?.includes(s.id) ? ' vietato' : ''}`} data-vietato={p.vietati?.includes(s.id) ? 'si' : undefined}>
             <button type="button" className="settore-punto" disabled={!p.onSettore} onClick={() => p.onSettore?.(s.id)}
-              aria-label={`${nome}${liv !== null ? `, situazione ${PAROLE[liv]}` : ''}${qui.length ? `, ${qui.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`).join(', ')}` : ''}`} />
+              aria-label={`${nome}${liv !== null ? `, situazione ${PAROLE[liv]}` : ''}${qui.length ? `, ${qui.map(([r, n]) => quante(n, r)).join(', ')}` : ''}`} />
             <span className="settore-nome" aria-hidden="true">{nome}</span>
             {(qui.length > 0 || fisse.length > 0) && (
               <span className="settore-unita">
                 {fisse.map(([r, n]) => (
-                  <span key={`f-${r}`} className="tocco-pastiglia" data-fissa={`${r}@${s.id}`} role="img" aria-label={`${n} ${t(`risorsa.${r}`)} montate, restano fino a fine serata`}>
+                  <span key={`f-${r}`} className="tocco-pastiglia" data-fissa={`${r}@${s.id}`} role="img" aria-label={`${quante(n, r)} ${n === 1 ? 'montata' : 'montate'}, restano fino a fine serata`}>
                     <span className="pastiglia fissa"><Icona di={Lock} /><Icona di={iconaRisorsa(r)} />{n}</span>
                   </span>
                 ))}

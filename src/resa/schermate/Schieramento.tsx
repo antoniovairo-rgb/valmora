@@ -2,11 +2,11 @@
 // (accessibilità): tocchi un'unità, poi il settore; tocchi un'unità sulla mappa per ritirarla.
 // Le unità a riposo (D-056) si vedono a parte e non si possono schierare.
 import { ArrowLeft, Check, CircleHelp, Lock, Moon, RotateCcw, Undo2 } from 'lucide-react';
-import { useRef, useState, type PointerEvent } from 'react';
+import { useRef, useState, type PointerEvent, useEffect } from 'react';
 import { spento } from '../../interruttori.ts';
 import { disponibili, type InCorso } from '../../logica/missione.ts';
 import type { Disposizione, Missione } from '../../logica/tipi.ts';
-import { t } from '../dati.ts';
+import { t, quante } from '../dati.ts';
 import { Icona, iconaRisorsa } from '../icone.tsx';
 
 /** C14-11 (D-037): dove rende l'unità, coi settori di questa missione: «Rende di più: …; normale: …; qui non serve: …».
@@ -66,8 +66,12 @@ export function Schieramento(p: {
   m: Missione; ic: InCorso; d: Disposizione; scelta: string | null;
   scegli: (r: string) => void; metti: (r: string, settore: string) => void; azzera: () => void; conferma: () => void;
   avviso?: string | null; annulla: (() => void) | null;
+  /** C15-06: dice all'App quando il riepilogo è aperto (la mappa allora non si tocca) */
+  riepilogoAperto?: (aperto: boolean) => void;
 }) {
   const [riepilogo, setRiepilogo] = useState(false);
+  const { riepilogoAperto } = p;
+  useEffect(() => { riepilogoAperto?.(riepilogo); return () => riepilogoAperto?.(false); }, [riepilogo, riepilogoAperto]);
   const [aiuto, setAiuto] = useState(false);
   const disp = disponibili(p.m, p.ic);
   const tr = useTrascina(p.metti);
@@ -135,12 +139,12 @@ function Riepilogo(p: { m: Missione; d: Disposizione; restano: (readonly [string
       <div className="scheda riepilogo" data-riepilogo={righe.reduce((a, [, xs]) => a + xs.reduce((b, [, n]) => b + n, 0), 0)}>
         <h3>Il tuo schieramento</h3>
         {righe.length ? (
-          <ul>{righe.map(([s, xs]) => <li key={s} data-riepilogo-settore={s}><strong>{t(`settore.${s}`)}</strong>: {elenco(xs.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`))}</li>)}</ul>
+          <ul>{righe.map(([s, xs]) => <li key={s} data-riepilogo-settore={s}><strong>{t(`settore.${s}`)}</strong>: {elenco(xs.map(([r, n]) => quante(n, r)))}</li>)}</ul>
         ) : <p className="tenue">Nessuna unità schierata.</p>}
       </div>
       {p.restano.length > 0 && (
         <p className="avviso" role="alert" data-restano={p.restano.reduce((a, [, n]) => a + n, 0)}>
-          Ti restano {elenco(p.restano.map(([r, n]) => `${n} ${t(`risorsa.${r}`)}`))}: confermi lo stesso?
+          Ti restano {elenco(p.restano.map(([r, n]) => quante(n, r)))}: confermi lo stesso?
         </p>
       )}
       <div className="riga azioni">

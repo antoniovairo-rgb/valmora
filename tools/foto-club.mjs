@@ -117,14 +117,18 @@ export async function controllaCifreTensione(pagina, atteso, dove) {
  *  cambia rispetto alla schermata prima, nella risposta compare «+N/−N» col segno giusto. */
 let fiduciaPrima = null;
 export async function controllaFiducia(pagina, nome, atteso) {
-  if (!['schieramento', 'chiamata', 'risposta', 'chiusura', 'rapporto'].includes(nome)) { fiduciaPrima = null; return; }
+  // C15-07: anche in sala e briefing (valore da cui parte il tentativo, uguale a quello dello schieramento) e nel
+  // verbale (valore finale, uguale a quello dell'ultimo rapporto)
+  const prima = ['sala', 'briefing'].includes(nome), fine = nome === 'verbale';
+  if (!prima && !fine && !['schieramento', 'chiamata', 'risposta', 'chiusura', 'rapporto'].includes(nome)) { fiduciaPrima = null; return; }
   const [barra, valore, delta, salvata] = await pagina.evaluate(() => {
     const b = document.querySelectorAll('[data-fiducia]');
     const s = JSON.parse(localStorage.getItem('valmora-salvataggio') ?? 'null');
     return [b.length, Number(b[0]?.dataset.fiducia), Number(document.querySelector('[data-delta]')?.dataset.delta ?? 0), s?.in_corso?.variabili?.credito];
   });
   atteso(`${nome}: ${barra} barre della fiducia, ne serve una (PO-067)`, barra === 1);
-  if (salvata !== undefined) atteso(`${nome}: la barra dice ${valore}, la fiducia salvata è ${salvata} (PO-067)`, valore === salvata);
+  if (salvata !== undefined && !prima && !fine) atteso(`${nome}: la barra dice ${valore}, la fiducia salvata è ${salvata} (PO-067)`, valore === salvata);
+  if ((nome === 'schieramento' && fiduciaPrima !== null) || fine) atteso(`${nome}: la barra dice ${valore}, prima diceva ${fiduciaPrima} (C15-07)`, fiduciaPrima === null || valore === fiduciaPrima);
   if (nome === 'risposta' && fiduciaPrima !== null && valore !== fiduciaPrima) atteso(`risposta: fiducia da ${fiduciaPrima} a ${valore} senza «${valore - fiduciaPrima}» accanto alla barra (PO-067)`, delta === valore - fiduciaPrima);
   fiduciaPrima = valore;
 }
@@ -151,6 +155,11 @@ export async function confermaSchieramento(pagina, { premi, atteso, fotoSe, prov
   atteso(`riepilogo: ${riepilogo} unità, sulla mappa ce ne sono ${messe} (PO-061)`, Number(riepilogo) === messe);
   const restano = await pagina.getAttribute('[data-restano]', 'data-restano', { timeout: 500 }).catch(() => null);
   atteso(`riepilogo: ${libere} unità libere ma «Ti restano» dice ${restano ?? 'niente'} (PO-061)`, libere ? Number(restano) === libere : restano === null);
+  const frase = (await pagina.locator('main').textContent()).match(/\b(1 (squadre|transenne|mediatori)|([2-9]|\d\d+) (squadra|transenna|mediatore))\b/i)?.[0];
+  atteso(`riepilogo: «${frase}», numero e nome non si accordano (C15-05)`, !frase);
+  await pagina.evaluate(() => document.querySelector('[data-settore] .settore-punto')?.click()); await pagina.waitForTimeout(150);
+  const dopo = await pagina.getAttribute('[data-riepilogo]', 'data-riepilogo', { timeout: 500 }).catch(() => null);
+  atteso(`riepilogo: un tocco sulla mappa lo cambia (${riepilogo} → ${dopo} unità), doveva restare com'era (C15-06)`, dopo === riepilogo);
   await fotoSe();
   await premi('[data-azione="conferma-davvero"]');
 }
@@ -180,6 +189,13 @@ export async function controllaArchivio(pagina, { atteso, scena, foto }) {
   await pagina.waitForSelector('[data-errore-importa]', { timeout: 3000 }).catch(() => {});
   atteso('archivio: file rovinato senza avviso', (await pagina.locator('[data-errore-importa]').count()) === 1);
   atteso('archivio: il file rovinato ha cambiato il salvataggio', (await leggi()) === ora);
+  // C15-08: messaggi in parole da giocatore (niente save_version, JSON, undefined) per file estraneo, futuro e rotto
+  for (const [n, x] of [['estraneo', '{"ciao": 1}'], ['futuro', '{"save_version": 99}'], ['rotto', '{rotto']]) {
+    await pagina.setInputFiles('[data-importa]', { name: `${n}.json`, mimeType: 'application/json', buffer: Buffer.from(x) });
+    await pagina.waitForTimeout(150);
+    const msg = (await pagina.locator('[data-errore-importa]').textContent().catch(() => '')) ?? '';
+    atteso(`archivio: file ${n}, messaggio «${msg}» (C15-08)`, /non è cambiata/.test(msg) && !/save_version|JSON|undefined|oggetto/.test(msg));
+  }
   // con una partita: due conferme
   await pagina.setInputFiles('[data-importa]', percorso);
   const uno = await pagina.waitForSelector('[data-conferma-importa="1"]', { timeout: 3000 }).then(() => true, () => false);
