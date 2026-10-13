@@ -41,5 +41,7 @@ export default defineConfig({
   // Dati di gioco: data/. VALMORA_DATI punta a un'altra cartella SOLO per provare la resa con dati
   // di prova (tests/resa/dati-prova) in una build a parte; la catena usa sempre data/.
   resolve: { alias: { '@dati': resolve(process.env.VALMORA_DATI ?? 'data') } },
-  test: { include: ['tests/**/*.test.ts'], environment: 'node' },
+  // Tetto di tempo per test: le simulazioni di coerenza (PO-086, PO-095, C17-14) durano 2-4 s da sole e sotto carico
+  // superavano i 5 s di base (misurato il 13/10: dopo-scelte 4,2 s). È il tempo concesso, non la soglia di un guardiano.
+  test: { include: ['tests/**/*.test.ts'], environment: 'node', testTimeout: 60_000 },
 });
