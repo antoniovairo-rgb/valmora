@@ -44,8 +44,21 @@ export async function trovaRiquadri(pagina) {
       while (a && a !== document.body) { if (rgb(getComputedStyle(a).backgroundColor).a > 0.5) { sullaPagina = false; break; } a = a.parentElement; }
       if (!sullaPagina) continue;
       const bordo = ['Top', 'Right', 'Bottom', 'Left'].some((k) => parseFloat(cs[`border${k}Width`]) >= 1 && rgb(cs[`border${k}Color`]).a > 0.5 && rapp(rgb(cs[`border${k}Color`]), pag) >= 3);
-      const r = rapp(f, pag);
-      if (r < 3 && !bordo) out.push(`${el.tagName.toLowerCase()}.${[...el.classList].join('.')} «${el.textContent.trim().slice(0, 20)}» fondo ${r.toFixed(2)}:1`);
+      const r = rapp(f, pag), nome = `${el.tagName.toLowerCase()}.${[...el.classList].join('.')} «${el.textContent.trim().slice(0, 20)}»`;
+      if (r < 3 && !bordo) out.push(`${nome} fondo ${r.toFixed(2)}:1`);
+      // strisce laterali (bordo spesso, di colore diverso dal resto): si devono vedere contro la pagina o contro il fondo
+      for (const k of ['Top', 'Right', 'Bottom', 'Left']) {
+        const c = rgb(cs[`border${k}Color`]);
+        if (parseFloat(cs[`border${k}Width`]) >= 2 && c.a > 0.5 && rapp(c, pag) < 3 && rapp(c, f) < 3) out.push(`${nome} striscia ${k.toLowerCase()} ${Math.max(rapp(c, pag), rapp(c, f)).toFixed(2)}:1`);
+      }
+    }
+    // icone e stelle: il tratto si stacca dal fondo su cui stanno
+    for (const ic of document.querySelectorAll('main svg.stella, main svg.icona')) {
+      if (!ic.getClientRects().length) continue;
+      let a = ic.parentElement, fondo = pag;
+      while (a && a !== document.body) { const c = rgb(getComputedStyle(a).backgroundColor); if (c.a > 0.5) { fondo = c; break; } a = a.parentElement; }
+      const tratto = rgb(getComputedStyle(ic).color), r = rapp(tratto, fondo);
+      if (r < 3) out.push(`icona ${[...ic.classList].join('.')} in «${ic.parentElement?.textContent.trim().slice(0, 20)}» ${r.toFixed(2)}:1`);
     }
     return out;
   });
