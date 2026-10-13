@@ -55,6 +55,7 @@
       {
         "id": "strada_cinderwick",
         "tipo": "strada",
+        "club": "cinderwick_united",
         "pos": {
           "x": 12,
           "y": 88
@@ -71,6 +72,7 @@
       {
         "id": "parcheggi",
         "tipo": "strada",
+        "club": "calderholt_rovers",
         "pos": {
           "x": 70,
           "y": 30
