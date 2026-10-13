@@ -689,10 +689,61 @@
       "chiamate": [
         {
           "id": "risultato",
-          "dopo": {"mai": ["bis/niente_bis", "bis/bis_lungo"]},
+          "dopo": {"mai": ["bis/niente_bis", "bis/bis_lungo", "favore_impresa/accetta_favore"]},
           "fonte": "vice",
           "testo": "testi:e06.ch.risultato",
           "commento": "testi:e06.ch.risultato.vice",
+          "opzioni": [
+            {
+              "id": "stadio_prima",
+              "testo": "testi:e06.op.stadio_prima",
+              "costo": "testi:e06.op.stadio_prima.c",
+              "effetti": [
+                {
+                  "pressione": "viale_concerto",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazza_concerto",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.stadio_prima.r"
+            },
+            {
+              "id": "piazza_prima",
+              "testo": "testi:e06.op.piazza_prima",
+              "costo": "testi:e06.op.piazza_prima.c",
+              "effetti": [
+                {
+                  "pressione": "viale_concerto",
+                  "valore": -2
+                },
+                {
+                  "tensione": "piazzale",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e06.op.piazza_prima.r"
+            },
+            {
+              "id": "tutti_insieme",
+              "testo": "testi:e06.op.tutti_insieme",
+              "costo": "testi:e06.op.tutti_insieme.c",
+              "effetti": [
+                {
+                  "pressione": "viale_concerto",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e06.op.tutti_insieme.r"
+            }
+          ]
+        }, {
+          "id": "risultato_favore",
+          "dopo": {"gia": ["favore_impresa/accetta_favore"]},
+          "fonte": "vice",
+          "testo": "testi:e06.ch.risultato_favore",
           "opzioni": [
             {
               "id": "stadio_prima",

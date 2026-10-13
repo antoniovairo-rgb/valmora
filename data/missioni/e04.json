@@ -299,6 +299,7 @@
         },
         {
           "id": "kebab",
+          "dopo": {"mai": ["arance/chiudi_mercato"]},
           "fonte": "voci_in_rete",
           "testo": "testi:e04.ch.kebab",
           "settore": "piazza_fonderie",

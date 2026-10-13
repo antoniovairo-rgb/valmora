@@ -26,6 +26,9 @@ const CASI: [string, string, string, Record<string, string>?][] = [
   // C-018: bancarella dopo il mercato chiuso, lite in coda dopo lo scarico, favore all'impresa dopo il bis deciso.
   ['e04', 'arance/chiudi_mercato', 'banco_calzini'], ['e09', 'pullman_fermi/scarica_pullman', 'lite_coda'],
   ['e06', 'bis/niente_bis', 'favore_impresa'], ['e06', 'bis/bis_lungo', 'favore_impresa'],
+  // C-019: la lite in coda dopo lo scarico, il panino al mercato chiuso, il risultato dopo il favore accettato.
+  ['e09', 'pullman_fermi/scarica_pullman', 'non_erano_nostri'], ['e04', 'arance/chiudi_mercato', 'kebab'],
+  ['e06', 'favore_impresa/accetta_favore', 'risultato'],
 ];
 
 const contraddizioni = (n = 40) => {

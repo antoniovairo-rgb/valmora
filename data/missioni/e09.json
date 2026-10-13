@@ -767,6 +767,7 @@
         },
         {
           "id": "non_erano_nostri",
+          "dopo": {"mai": ["pullman_fermi/scarica_pullman"]},
           "fonte": "club_ospite",
           "testo": "testi:e09.ch.non_erano_nostri",
           "settore": "piazzale",
