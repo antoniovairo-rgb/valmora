@@ -29,7 +29,8 @@ export interface Evento { id: string; tipo: string; settore: string; pressione: 
 export interface Esito { id: string; se: Condizione; effetti: Effetto[]; verbale: string; fallita?: boolean; stelle_min?: number; stelle_max?: number }
 export interface Informazione { testo: string; fonte: string; affidabilita: 'bassa' | 'media' | 'alta'; vera: boolean; settore?: string }
 export interface Opzione { id: string; testo: string; costo?: string; risposta?: string; se?: Condizione; effetti: EffettoMissione[] }
-export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; se?: Condizione; opzioni: Opzione[] }
+/** senza (PO-095): la chiamata si apre solo se nel settore non c'è nessuna unità schierata (fra le risorse indicate, o tutte). */
+export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; se?: Condizione; senza?: { settore: string; risorse?: string[] }; opzioni: Opzione[] }
 
 export interface Missione {
   id: string; stagione: number; episodio: number; titolo: string; bozza?: boolean; disponibile_se: Condizione; introduzione?: string[];

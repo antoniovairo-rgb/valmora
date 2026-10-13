@@ -304,6 +304,25 @@
                 "commento": {
                   "$ref": "comune.schema.json#/$defs/testo",
                   "description": "commento del vice alla chiamata"
+                },
+                "senza": {
+                  "type": "object",
+                  "required": [
+                    "settore"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "settore": {
+                      "$ref": "comune.schema.json#/$defs/id"
+                    },
+                    "risorse": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "comune.schema.json#/$defs/id"
+                      },
+                      "minItems": 1
+                    }
+                  }
                 }
               }
             }
