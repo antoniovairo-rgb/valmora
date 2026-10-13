@@ -193,7 +193,7 @@ for (const [q, r, x] of bassi) for (const s of x.bassi) { const k = s.replace(/�
 console.log(`PO-085 icone: opzioni mostrate ${VOCI.length}, uguali agli effetti dei dati ${VOCI.filter((x) => x.ok).length}, con almeno un'icona ${VOCI.filter((x) => x.voci.length).length}`); for (const x of VOCI.filter((x) => !x.ok).slice(0, 6)) console.log(`  !! ${JSON.stringify(x)}`);
 console.log(`PO-085 segni: risposte ${SEGNI.length}, segni uguali agli effetti ${SEGNI.filter((x) => x.ok).length}, risposte con segni ${SEGNI.filter((x) => x.seg.length).length}, segni ${SEGNI.reduce((t, x) => t + x.seg.length, 0)}, segni fuori dalla finestra ${SEGNI.reduce((t, x) => t + x.fuori, 0)}`);
 for (const w of [360, 375, 412]) { const x = SEGNI.filter((y) => y.tag.startsWith(`${w}-`)); console.log(`  ${w}: segni ${x.reduce((t, y) => t + y.seg.length, 0)}, fuori dalla finestra ${x.reduce((t, y) => t + y.fuori, 0)}`); }
-for (const x of SEGNI.filter((x) => !x.ok).slice(0, 6)) console.log(`  !! ${JSON.stringify(x)}`);
+for (const x of SEGNI.filter((x) => !x.ok || x.fuori).slice(0, 6)) console.log(`  !! ${JSON.stringify(x)}`);
 const ind = RISP.filter((r) => r.ind);
 console.log(`C18-05: chiamate ${RISP.length}; con «Rispondi» ${ind.length}; «Rispondi» sopra testo ${ind.filter((r) => r.copre).length}; dopo il tocco prima opzione intera ${ind.filter((r) => r.dopo.intera).length}, coperta ${ind.filter((r) => r.dopo.coperta > 0).length}`);
 for (const w of [360, 375, 412]) { const x = RISP.filter((r) => r.tag.startsWith(`${w}-`)); console.log(`  ${w}: chiamate ${x.length}, «Rispondi» ${x.filter((r) => r.ind).length}, sopra testo ${x.filter((r) => r.copre).length}`); }
