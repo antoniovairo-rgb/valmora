@@ -118,7 +118,7 @@ export async function controllaCifreTensione(pagina, atteso, dove) {
 let fiduciaPrima = null;
 export async function controllaFiducia(pagina, nome, atteso) {
   // C15-07: anche in sala e briefing (valore da cui parte il tentativo, uguale a quello dello schieramento) e nel
-  // verbale (valore finale, uguale a quello dell'ultimo rapporto)
+  // verbale (valore finale, con gli effetti dell'esito)
   const prima = ['sala', 'briefing'].includes(nome), fine = nome === 'verbale';
   if (!prima && !fine && !['schieramento', 'chiamata', 'risposta', 'chiusura', 'rapporto'].includes(nome)) { fiduciaPrima = null; return; }
   const [barra, valore, delta, salvata] = await pagina.evaluate(() => {
@@ -128,7 +128,7 @@ export async function controllaFiducia(pagina, nome, atteso) {
   });
   atteso(`${nome}: ${barra} barre della fiducia, ne serve una (PO-067)`, barra === 1);
   if (salvata !== undefined && !prima && !fine) atteso(`${nome}: la barra dice ${valore}, la fiducia salvata è ${salvata} (PO-067)`, valore === salvata);
-  if ((nome === 'schieramento' && fiduciaPrima !== null) || fine) atteso(`${nome}: la barra dice ${valore}, prima diceva ${fiduciaPrima} (C15-07)`, fiduciaPrima === null || valore === fiduciaPrima);
+  if (nome === 'schieramento' && fiduciaPrima !== null) atteso(`${nome}: la barra dice ${valore}, prima diceva ${fiduciaPrima} (C15-07)`, valore === fiduciaPrima);
   if (nome === 'risposta' && fiduciaPrima !== null && valore !== fiduciaPrima) atteso(`risposta: fiducia da ${fiduciaPrima} a ${valore} senza «${valore - fiduciaPrima}» accanto alla barra (PO-067)`, delta === valore - fiduciaPrima);
   fiduciaPrima = valore;
 }
@@ -157,9 +157,8 @@ export async function confermaSchieramento(pagina, { premi, atteso, fotoSe, prov
   atteso(`riepilogo: ${libere} unità libere ma «Ti restano» dice ${restano ?? 'niente'} (PO-061)`, libere ? Number(restano) === libere : restano === null);
   const frase = (await pagina.locator('main').textContent()).match(/\b(1 (squadre|transenne|mediatori)|([2-9]|\d\d+) (squadra|transenna|mediatore))\b/i)?.[0];
   atteso(`riepilogo: «${frase}», numero e nome non si accordano (C15-05)`, !frase);
-  await pagina.evaluate(() => document.querySelector('[data-settore] .settore-punto')?.click()); await pagina.waitForTimeout(150);
-  const dopo = await pagina.getAttribute('[data-riepilogo]', 'data-riepilogo', { timeout: 500 }).catch(() => null);
-  atteso(`riepilogo: un tocco sulla mappa lo cambia (${riepilogo} → ${dopo} unità), doveva restare com'era (C15-06)`, dopo === riepilogo);
+  const attivi = await pagina.locator('.mappa .settore-punto:enabled, .mappa button.tocco-pastiglia:enabled').count();
+  atteso(`riepilogo: ${attivi} punti della mappa ancora toccabili, col riepilogo aperto la mappa è solo da guardare (C15-06)`, attivi === 0);
   await fotoSe();
   await premi('[data-azione="conferma-davvero"]');
 }
