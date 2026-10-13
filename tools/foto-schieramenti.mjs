@@ -86,5 +86,25 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     atteso(`riepilogo 375×667: pulsanti sopra ${sotto.join(', ')} (C17-22)`, sotto.length === 0);
     await q.close();
   }
+  // C18-07: a 375×667, aperto il «?», le unità, il «?» e l'aiuto sono nella finestra e non sotto la barra «Conferma».
+  //         Rosso VALMORA_ROSSI=C42A01: aiuto sopra le unità, come prima.
+  const primo = stati.find((x) => x.n === 1) ?? e03;
+  if (primo) {
+    const q = await nuova({ viewport: { width: 375, height: 667 }, reducedMotion: 'reduce' });
+    await q.goto(url);
+    await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: primo.s }));
+    await q.reload(); await q.getByRole('button', { name: 'Riprendi' }).click();
+    await q.waitForSelector('[data-azione="aiuto"]', { timeout: 5000 }).catch(() => {});
+    await q.click('[data-azione="aiuto"]'); await q.waitForTimeout(300);
+    const male = await q.evaluate(() => {
+      const barra = document.querySelector('[data-barra]')?.getBoundingClientRect();
+      return [...document.querySelectorAll('.vassoio .unita, [data-azione="aiuto"], [data-aiuto]')].filter((e) => {
+        const r = e.getBoundingClientRect();
+        return r.top < 0 || r.bottom > innerHeight || (barra && r.bottom > barra.top + 1 && r.top < barra.bottom);
+      }).map((e) => e.dataset.risorsa ?? e.dataset.azione ?? 'aiuto');
+    });
+    atteso(`schieramento ${primo.m.id} 375×667 col «?» aperto: fuori vista o sotto la barra ${male.join(', ')} (C18-07)`, male.length === 0);
+    await q.close();
+  }
   return stati.length;
 }

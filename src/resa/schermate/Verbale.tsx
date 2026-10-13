@@ -29,9 +29,11 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
       <div className="scheda verbale">
         <div className="vignetta-cornice">
           <VignettaEsito m={p.m} tono={p.risultato.fallita ? 'fallita' : tono(p.m, p.esito.esito)} genere={genereAttuale() === 'f' ? 'f' : 'm'} />
-          <Sfida m={p.m} />
+          {spento('C42S01') && <Sfida m={p.m} />}
         </div>
-        <Stelle n={p.risultato.stelle} />
+        {/* C18-08: la sfida sulla riga delle stelle, a soli stemmi (il nome del club resta nell'etichetta dello stemma):
+            sopra la vignetta i nomi dei club stavano sui busti. Rosso C42S01: sopra la vignetta, come prima. */}
+        {spento('C42S01') ? <Stelle n={p.risultato.stelle} /> : <div className="riga stelle-sfida"><Stelle n={p.risultato.stelle} /><Sfida m={p.m} /></div>}
         <p>{t(p.esito.esito.verbale)}</p>
       </div>
       {p.risultato.fallita

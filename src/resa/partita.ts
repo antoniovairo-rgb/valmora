@@ -1,7 +1,7 @@
 // Dove si trova il giocatore dentro una missione: si ricava SOLO dallo stato salvato (InCorso),
 // così una ricarica a metà ondata riporta esattamente alla stessa scena.
 import { spento } from '../interruttori.ts';
-import { chiamateAperte, missioneFinita, type InCorso } from '../logica/missione.ts';
+import { chiamateAperte, DEGENERA, missioneFinita, type InCorso } from '../logica/missione.ts';
 import type { Chiamata, Condizione, Esito, Missione } from '../logica/tipi.ts';
 
 export type Fase =
@@ -21,6 +21,11 @@ export function faseDi(m: Missione, s: InCorso): Fase {
 
 /** Livello di colore 0-5 per una tensione di settore 0-10 (D-055: si mostra il colore, mai il numero). */
 export const livello = (tensione: number): number => (tensione <= 0 ? 0 : Math.min(5, Math.ceil(tensione / 2)));
+
+/** C17-05: lo stato di un settore nel rapporto. Coperto ma a tensione da degenerato (≥ DEGENERA) non è «sotto
+ *  controllo» e basta: è «caldo». Rosso C42C01: solo «scoperto» o «sotto controllo», come prima. */
+export const statoSettore = (tensione: number, scoperto: boolean): 'scoperto' | 'caldo' | 'controllo' =>
+  (scoperto ? 'scoperto' : tensione >= DEGENERA && !spento('C42C01') ? 'caldo' : 'controllo');
 
 /** Tono dell'esito: il primo della lista è il migliore, l'ultimo il peggiore (ordine dei dati). Le versioni di un
  *  esito («confermato_procura» di «confermato», D-106) hanno il tono dell'esito di cui sono versione.

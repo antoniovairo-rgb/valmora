@@ -73,6 +73,8 @@ export function Schieramento(p: {
   const { riepilogoAperto } = p;
   useEffect(() => { riepilogoAperto?.(riepilogo); return () => riepilogoAperto?.(false); }, [riepilogo, riepilogoAperto]);
   const [aiuto, setAiuto] = useState(false);
+  const finestraAiuto = useRef<HTMLDivElement>(null); // C18-07: aperto, si porta in vista
+  useEffect(() => { if (aiuto && !spento('C42A01')) finestraAiuto.current?.scrollIntoView({ block: 'nearest' }); }, [aiuto]);
   const disp = disponibili(p.m, p.ic);
   const tr = useTrascina(p.metti);
   const restano = Object.entries(disp).map(([r, n]) => [r, n - usate(p.d, r)] as const).filter(([, n]) => n > 0);
@@ -84,14 +86,18 @@ export function Schieramento(p: {
   // barra fissa in basso con Annulla e Ritira a sola icona e «Conferma» grande. Rosso C27S01: la disposizione di S-12.
   const vecchio = spento('C27S01');
   const fisse = Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => r);
+  // C18-07: aperto col «?», l'aiuto va sotto la riga del «?» e si porta in vista: sopra le unità le spingeva sotto la
+  // barra «Conferma» (375×667). Rosso C42A01: sopra le unità, come prima.
+  const sopra = vecchio || spento('C42A01');
+  const scatola = (aiuto || vecchio) && (
+    <div className="scheda aiuto-schieramento" data-aiuto ref={finestraAiuto}>
+      <p>Trascina le unità sui settori, oppure tocca un'unità e poi il settore. Tocca un segnalino sulla mappa per ritirare una sola unità.</p>
+      {fisse.map((r) => <p key={r} data-nota-fisse={r}><Icona di={Lock} /> <strong>{t(`risorsa.${r}`)}</strong>: una volta montate restano fino a fine serata. Si montano solo dove servono, mai sugli spalti.</p>)}
+    </div>
+  );
   return (
     <div className={`schieramento${vecchio ? '' : ' compatto'}`}>
-      {(aiuto || vecchio) && (
-        <div className="scheda aiuto-schieramento" data-aiuto>
-          <p>Trascina le unità sui settori, oppure tocca un'unità e poi il settore. Tocca un segnalino sulla mappa per ritirare una sola unità.</p>
-          {fisse.map((r) => <p key={r} data-nota-fisse={r}><Icona di={Lock} /> <strong>{t(`risorsa.${r}`)}</strong>: una volta montate restano fino a fine serata. Si montano solo dove servono, mai sugli spalti.</p>)}
-        </div>
-      )}
+      {sopra && scatola}
       {p.avviso && <p className="avviso" role="status" data-avviso="si">{p.avviso}</p>}
       <div className="vassoio" role="group" aria-label="Unità da schierare">
         {Object.entries(disp).map(([r, n]) => {
@@ -119,6 +125,7 @@ export function Schieramento(p: {
       </p>
       {!vecchio && <button type="button" className="aiuto" data-azione="aiuto" aria-pressed={aiuto} aria-label="Come si schiera" onClick={() => setAiuto(!aiuto)}><Icona di={CircleHelp} /></button>}
       </div>
+      {!sopra && scatola}
       <div className={vecchio ? 'riga azioni tre' : 'barra-schieramento'} data-barra>
         <button className="pulsante secondario" data-azione="annulla" aria-label="Annulla l'ultima mossa" title="Annulla l'ultima mossa" disabled={!p.annulla} onClick={() => p.annulla?.()}><Icona di={Undo2} />{vecchio && 'Annulla'}</button>
         <button className="pulsante secondario" data-azione="azzera" aria-label="Ritira tutte le unità" title="Ritira tutte le unità" onClick={p.azzera}><Icona di={RotateCcw} />{vecchio && 'Ritira tutte'}</button>
