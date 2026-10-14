@@ -97,11 +97,9 @@ Altre righe «da fuori» che **non** riguardano un club (restano come sono): l'a
 («quattro a zero fuori … due ore di treno», e11.json:3, 12); gente e auto «da fuori» nei disordini (e11.json:39, 85);
 il furgone e la fuga verso fuori (e04.json:104, e16.json:103, e20.json:100, 106).
 
-### 1.3 Due anomalie trovate per strada (FATTO, non corrette qui)
-- **Articoli sbagliati dopo D-124**: «del Skyfield» 42 volte, «del Arches» 12, «dei Stoneway» 9, «i Stoneway» 5,
-  «il Skyfield» 4, «il Arches» 3, più casi su Square e Studio (es. «Responsabile dell'Studio Town», bozze_s2.json:11;
-  «Il Arches Town comunica», e33.json:7). Comando: `grep -oE "\b(del|il|al|dal|nel|sul|dei|i|un) (Skyfield|Square|Studio|Stoneway|Arches)" data/testi/it/*.json | sort | uniq -c` → 84 occorrenze.
-  Servono «dello Skyfield», «dell'Arches», «degli Stoneway», «lo Square», «dello Studio».
+### 1.3 Due anomalie trovate per strada (FATTO)
+- **Articoli sbagliati dopo D-124** (84 occorrenze misurate su questo ramo): secondo la sessione principale
+  sono già stati corretti sulla principale (109 correzioni). Non l'ho verificato su questo ramo, e qui non è più una decisione.
 - **e21, fonte che non corrisponde al testo**: due chiamate hanno `"fonte": "club_quillhaven"` (data/missioni/e21.json:239, 708)
   ma il testo è «In rete: …» (e21.json:29 dei testi) e «Comando: …» (e21.json:108 dei testi).
 
@@ -160,76 +158,121 @@ Vale il controllo dei nomi reali prima della pubblicazione su Play, come per D-1
 Prudenza (PROPOSTA): i caratteri delle curve nuove non devono richiamare stereotipi dei quartieri veri da cui
 viene l'immagine (vale soprattutto per le periferie): la curva di Belltower è «lontana e rumorosa», non altro.
 
-## 3. Club di fuori città
+## 3. Club di fuori città (rivista il 14/10: nomi da Roma Nord)
 
-PROPOSTA: **sì, ne servono due, con nome; un terzo resta senza nome**. Criterio: un ruolo resta esterno solo se la
-storia o la meccanica hanno bisogno della distanza; altrimenti diventa un club di Valmora.
+Direttiva del PO (14/10, dopo la prima stesura): «Le squadre da fuori devono essere ispirate a Roma Nord». Stessa
+regola di D-124 (inglese, suffisso classico, prefisso = immagine del quartiere, mai il suo nome), ma con quartieri
+di Roma Nord. I sei club nuovi di Valmora restano ispirati a Roma Sud (sezione 2.3).
 
-| ruolo oggi (chi lo fa) | diventa | motivo |
-|------------------------|---------|--------|
-| ospiti in treno, e02 / e25 / e31 (Square) | **Valmora** (treno della linea urbana) | la stazione resta (novità D-072), cambia il viaggio: e02.json:102 «restano in città fino a domattina» → «restano dall'altra parte della città». Conflitto con BIBBIA.md:62 e INDICE_TRIADE.md:16 («da fuori città»): serve il via del PO |
-| ospiti in pullman, e03 / e16 / e34 (Garden) | **Valmora** | seicento in pullman da un altro quartiere regge; cambia solo «dal mare» |
-| neopromossa, e07 (Stoneway) | **Valmora** | «prima volta in città» → «prima volta nello stadio grande»: il quartiere al margine verde sale per la prima volta in serie; ritocco a e07.json:3, 10 |
-| ospiti con trasferta vietata, e28 / e33 (Arches) | **Valmora** | il divieto riguarda il settore ospiti, non la città (vedi e10.json:51) |
-| **gemellati da 300 km**, e15 / e27 (Studio) | **esterno**: club nuovo, proposta «Ironvale Town» (una valle di ferriere: spiega l'amicizia con le fonderie di Kiln) | un gemellaggio fra due curve della stessa città contraddice «si odiano» (comune.json:78); il treno lungo e il binario (e27.json:102) sono parte della scena. Studio Town resta, da club di Valmora, con episodi suoi (sezione 4) |
-| **porto della pista**, e21 / e23 (Garden) | **esterno**: club nuovo della città di mare, proposta «Saltport Albion» | e23 vive sulla giurisdizione: «la richiesta fuori città ti costa fiducia» (e23.json:24, 102), «Quello che succede fuori città non è affar suo» (e23.json:90). Se il porto fosse in città, la scelta perde senso |
-| avversario della sconfitta «fuori», e11 | **esterno, senza nome** | non è mai nominato (e11.json:3, 12); non serve nominarlo |
+### 3.1 Quanti ne servono: il minimo che rispetta i testi
 
-Nomi dei due esterni: la regola D-124 parla delle squadre in generale e chiede prefissi da Roma Sud; per i club di
-fuori città quell'immagine confonderebbe (sembrerebbero quartieri). Decisione del PO (sezione 7). Non posso
-confermarlo che «Ironvale Town» e «Saltport Albion» non esistano come club reali.
+FATTO MISURATO: i ruoli che i testi scrivono come «da fuori» sono quelli della sezione 1.2.
+- **Treno** (oggi Square): e02 (e02.json:3, 102), e25 (e25.json:6, 22, 90), e31 (e31.json:114).
+- **Gemellati da trecento chilometri** (oggi Studio): e15 (e15.json:3, 61), e27 (e27.json:3, 102, 112).
+- **Neopromossa di provincia** (oggi Stoneway): e07 (e07.json:3, 10), che torna in e12 (e12.json:4).
+- **Porto sul mare** (oggi Garden): e21 (e21.json:119), e23 (e23.json:3-5, 10, 24, 90, 102).
+- **Avversario della sconfitta di Kiln** (e11.json:3, 12): mai nominato.
 
-**Conflitto di trama da chiarire: quale porto?** FATTO: in e23 il porto è di Garden ed è fuori città (e23.json:3-5);
-l'informazione «Ferrigno è ancora in città» è segnata falsa (data/missioni/e23.json, briefing `info_comando`, `"vera": false`).
-In e28 e e29 le banchine stanno sulla stessa mappa della curva Kiln (settori `banchine` tipo `porto` in
-data/missioni/e28.json e e29.json) e la curva va «verso il porto» a piedi (e28.json:103). PROPOSTA: due porti
-distinti — e23 è il porto di Saltport (fuori città, dove porta la pista e dove arriva il traghetto); da e27 in poi
-il porto è quello fluviale di Valmora, nel quartiere Gasworks (l'indirizzo che il responsabile dei gemellati lascia,
-e27.json:112, riporta Ferrigno in città). Va scritto nella BIBBIA solo col via del PO.
+PROPOSTA: **bastano due club esterni con nome**, più l'avversario di e11, che resta senza nome. I quattro ruoli si
+uniscono a due a due senza toccare le righe di viaggio:
+- **treno + gemellati = un solo club.** In e02, e25 ed e31 arriva in treno da lontano; in e15 ed e27 la sua curva
+  viene «da trecento chilometri», sempre in treno, a cantare con la curva Kiln. È un club gemellato con Kiln che gioca
+  contro Skyfield (e02, e31) e una volta contro Kiln (e25): FATTO, in e25 non c'è nessuna riga di ostilità fra gli
+  ospiti e la curva Kiln (`grep -n 'Rovers\|Kiln' data/testi/it/e25.json`). La serie torna: prima trasferta (e02),
+  gemellaggio annunciato (e15), ritorno dei gemellati (e27).
+- **neopromossa + porto = un solo club.** Una città di provincia sul mare: in e07 è appena promossa e viene «per la
+  prima volta in città» (FATTO: prima di e07 non compare, quindi la frase resta vera), in e12 chiude la stagione a
+  Kiln, in e21 ed e23 il suo porto è la pista di Ferrigno. «Quaranta pulmini» (e07.json:3) e «dieci pullman dal mare»
+  (e23.json:4) stanno bene sulla stessa città.
 
-## 4. Mappa club → episodi (PROPOSTA, restando a 36 episodi)
+Perché non meno di due: le due coppie non si uniscono fra loro. FATTO: il club del treno arriva già in e02, quindi non
+può essere la neopromossa che in e07 viene «per la prima volta in città».
+Perché non tre: un terzo club servirebbe solo a non toccare l'avversario di e15. Oggi lì gli avversari («i Rovers»)
+arrivano anche loro in treno («ognuno sul suo treno», e15.json:121), ma con Stoneway di Valmora la riga regge col
+treno urbano. Alternativa per il PO (sezione 7): tre esterni e nessun ritocco.
 
-Criterio: ogni club ha un episodio di presentazione (P) e almeno una ricomparsa (R); derby, eventi di città e
-fili restano dove sono; si cambia **solo l'avversario** dove oggi Square (11 episodi) e Garden (10) si ripetono.
+### 3.2 I due club esterni (PROPOSTA)
 
-| club | P | R | note |
-|------|---|---|------|
-| Kiln | e01 | ovunque | invariato |
-| Skyfield | e01 | ovunque | invariato |
-| Square | e02 | e08, e15 | invariati |
-| Garden | e03 | e06, e24 | invariati |
-| **Pinegrove** | e04 (al posto di Sq) | e27 (al posto di Sq) | il mercato di Kiln è anche suo |
-| **Marble** | e05 (al posto di Ga) | e26 (al posto di Ga) | finale di coppa contro Skyfield: la rivalità dei ricchi |
-| Stoneway | e07 | e12 | invariati, ritocco «città» in e07 |
-| **Belltower** | e09 (al posto di Sq) | e25 (al posto di Sq) | i pullman in tangenziale sono i loro: è la curva più lontana |
-| Studio | e13 (al posto di Sq) | e31 (al posto di Sq) | il palco del concertone; Varrone in tribuna davanti alle telecamere |
-| **Laurel** | e14 (al posto di Ga) | e19 (al posto di Sq) | biglietti doppi; la retata |
-| **Gasworks** | e16 (al posto di Ga) | e29 (al posto di Ga) | il magazzino e poi la cattura: il porto è il loro quartiere |
-| **Shardhill** | e18 (al posto di Sq) | e34 (al posto di Ga) | il testimone; la commissione dell'interim |
-| Arches | e28 | e33 | invariati; presentazione tarda (stagione 3): vedi conflitti |
-| Ironvale (esterno) | e15 (al posto di St come gemellati) | e27 | |
-| Saltport (esterno) | e21 (solo traccia) | e23 (al posto di Ga) | |
+| nome | ispirazione → immagine | dove sta | colori | stemma | ruolo negli episodi |
+|------|------------------------|----------|--------|--------|---------------------|
+| **Lockbridge County** | Ponte Milvio → il ponte coi lucchetti: un legame che non si scioglie, cioè il gemellaggio | città lontana, trecento chilometri di treno | #b39ddb lilla · #311b92 viola scuro | tondo, lucchetto | ospiti in treno a Skyfield (e02); gemellati della curva Kiln (e15, e27); avversario di Kiln nel giorno del vertice (e25); avversario di Skyfield nella sera del fascicolo (e31) |
+| **Saltway Town** | Salario → la via del sale: una città di saline e di porto | città di provincia sul mare, oltre il casello | #64dd17 verde lime · #ffffff bianco | rombo, ancora | neopromossa alla prima trasferta in città (e07); ultima di campionato a Kiln (e12); il suo porto nella traccia del telefono (e21) e nella pista di Ferrigno (e23) |
 
-Conteggio dopo la proposta: Kiln e Skyfield come oggi; Square 3, Garden 3, gli altri 2 ciascuno; tutti i 13 hanno
-P e R. Stagione 1 presenta 8 club (Kiln, Skyfield, Square, Garden, Pinegrove, Marble, Stoneway, Belltower), la
-stagione 2 altri 4 (Studio, Laurel, Gasworks, Shardhill), la 3 l'ultimo (Arches).
+Colori (FATTO MISURATO, distanza euclidea RGB fra colori primari, la stessa misura della sezione 2.3): Lockbridge
+ha il primario più vicino a Marble (113), Saltway a Square (131). Distanza fra Lockbridge e Pinegrove, l'altro viola:
+163. Tutti e 15 i club restano sopra il minimo di oggi (59, Square–Studio). Rischio da guardare nelle foto: il lime
+di Saltway assomiglia al colore secondario di Arches (#c0ca33). La misura non è percettiva (vedi 2.3).
 
-**Rispetto della trama (BIBBIA) e conflitti da segnalare**
-- Ferrigno capo della curva Kiln (BIBBIA.md:96), fuga e20 e cattura e29 (BIBBIA.md:10): invariati, Kiln resta.
-- Talpa Lavezzari, sicurezza del Kiln (BIBBIA.md:90), smascherata in e33: e33 resta Skyfield–Arches, nessun conflitto.
-- Varrone & Figli (BIBBIA.md:91): nessun club coinvolto. IPOTESI da non scrivere senza il PO: il cantiere dello
-  stadio nuovo potrebbe stare a Marble.
-- CONFLITTO 1 — e02 «da fuori città» (BIBBIA.md:62, INDICE_TRIADE.md:16, D-071): Square diventa di Valmora.
-- CONFLITTO 2 — il porto (sezione 3): «porto di Garden» va spostato su Saltport (e21.json:119, e23.json:3-5,
-  bozze_s2.json:15 `fonte.ufficio_porto`).
-- CONFLITTO 3 — e29 a Gasworks: la curva ospiti viene dal quartiere del porto dove si cattura Ferrigno. Il testo non
-  deve far pensare che quel club lo protegga (la protezione è di Varrone, D-069).
-- CONFLITTO 4 — Arches presentato solo in stagione 3. Alternativa: e19 ad Arches e Laurel in e14 + e24 (Garden
-  scende a 2: e03, e06).
-- CONFLITTO 5 — D-083 nomina Garden come «club nuovo inventato» di e03 e i testi di e03 restano; nessun problema, ma
-  la BIBBIA (BIBBIA.md:75) andrà aggiornata con «di Valmora».
-- Ritmo D-092 (mai più di 3 episodi di stadio di fila, src/dati/ritmo.ts:1-2): cambiare l'avversario non cambia il
-  numero di curve sulla mappa, quindi le serie restano le stesse (FATTO: la misura conta settori `curva`, non club).
+I suffissi «County» e «Town» dicono già che il club non è un quartiere ma un'altra città. Lockbridge prende un
+suffisso diverso da United, Athletic e Rovers, perché in e02, e25 ed e31 il testo dice oggi «i Rovers»: tenere
+«Rovers» lo confonderebbe con lo Square.
+
+Nomi reali: Non posso confermarlo che nessun club reale porti «Lockbridge County» o «Saltway Town». Il controllo va
+fatto prima della pubblicazione su Play.
+
+Prudenza (PROPOSTA): le due città esterne sono finzione, senza regione né distanza da luoghi reali; «trecento
+chilometri» resta l'unica indicazione, com'è oggi.
+
+### 3.3 Il porto: conflitto da chiarire
+FATTO: in e23 il porto è fuori città (e23.json:3-5) e l'informazione «Ferrigno è ancora in città» è segnata falsa
+(data/missioni/e23.json, briefing `info_comando`, `"vera": false`). In e28 ed e29 invece le banchine stanno sulla stessa
+mappa della curva Kiln (settori `banchine` di tipo `porto` in data/missioni/e28.json ed e29.json) e la curva va
+«verso il porto» a piedi (e28.json:103).
+PROPOSTA: due porti distinti.
+- e21 ed e23: il porto di mare di Saltway, fuori città. Lì porta la pista e lì arriva il traghetto.
+- Da e27 in poi: il porto fluviale di Valmora, nel quartiere Gasworks. L'indirizzo lasciato in e27.json:112 riporta
+  Ferrigno in città.
+
+## 4. Mappa club → episodi (PROPOSTA, rivista: restando a 36 episodi)
+
+Criteri:
+- ogni club di Valmora ha un episodio di presentazione (P) e almeno una ricomparsa (R);
+- derby, eventi di città e fili restano dove sono;
+- i ruoli «da fuori» passano a Lockbridge e Saltway, che ereditano le righe di viaggio così come sono.
+
+FATTO sui posti disponibili: gli episodi con un avversario che non sia un derby sono 24; ne tolgo e02, e07, e12, e25
+ed e31 (esterni) e restano 19. Aggiungendo un avversario con nome in e17 (porte chiuse, oggi senza nome) ed e30
+(partita rinviata, oggi senza nome) i posti diventano 21. Ma 11 club per 2 apparizioni fanno 22: **uno resta corto**.
+PROPOSTA: per Gasworks la ricomparsa è il suo quartiere. Le banchine del porto fluviale ci sono già in e28, e29 ed
+e35, senza la sua curva.
+
+| club | P | R | cosa cambia rispetto a oggi |
+|------|---|---|-----------------------------|
+| Kiln | e01 | ovunque | niente |
+| Skyfield | e01 | ovunque | niente |
+| Garden | e03 | e06 | niente; perde e05, e14, e16, e24, e26, e29, e34 e il porto (e21, e23) |
+| Square | e04 | e08 | niente; perde il treno (e02, e25, e31) e e09, e13, e15, e18, e19, e27 |
+| **Marble** | e05 (al posto di Ga) | e26 (al posto di Ga) | finale di coppa contro Skyfield |
+| **Belltower** | e09 (al posto di Sq) | e19 (al posto di Sq) | i pullman in tangenziale; la retata |
+| Studio | e13 (al posto di Sq) | e29 (al posto di Ga) | il palco del concertone; la sera della cattura |
+| **Laurel** | e14 (al posto di Ga) | e24 (al posto di Ga) | biglietti doppi; il titolo contro Skyfield |
+| Stoneway | e15 (al posto di Sq come avversario) | e30 (avversario nominato della partita rinviata) | perde e07/e12 (passano a Saltway) e diventa di Valmora |
+| **Gasworks** | e16 (al posto di Ga) | e28, e29, e35 come quartiere del porto | l'unico con la ricomparsa senza curva |
+| **Pinegrove** | e17 (avversario nominato a porte chiuse) | e27 (al posto di Sq) | i vicini «arrivati a piedi» (e17.json:11) |
+| **Shardhill** | e18 (al posto di Sq) | e34 (al posto di Ga) | il testimone; l'interim |
+| Arches | e28 | e33 | niente |
+| Lockbridge (esterno) | e02 (al posto di Sq) | e15, e25, e27, e31 | gemellati in e15/e27 al posto di Studio |
+| Saltway (esterno) | e07 (al posto di Sw) | e12, e21, e23 | e21/e23 al posto di Garden |
+
+Restano come oggi: e01, e03, e04, e06, e08, e10, e11, e20, e22, e28, e32, e33, e35, e36, più il resto di e21 ed
+e30. Presentati in stagione 1: Kiln, Skyfield, Garden, Square, Marble, Belltower più Lockbridge e Saltway. In
+stagione 2: Studio, Laurel, Stoneway, Gasworks, Pinegrove, Shardhill. In stagione 3: Arches.
+
+**Rispetto della trama (BIBBIA) e conflitti**
+- Ferrigno capo della curva Kiln (BIBBIA.md:96), fuga in e20 e cattura in e29 (BIBBIA.md:10): restano come sono.
+- La talpa Lavezzari (BIBBIA.md:90), smascherata in e33: e33 resta Skyfield–Arches, nessun conflitto.
+- Varrone & Figli (BIBBIA.md:91): nessun club coinvolto.
+- CONFLITTO 1 — i treni di e02 «da fuori città» (BIBBIA.md:62, INDICE_TRIADE.md:16): restano veri, ma il club
+  cambia. D-071 («Calderholt Rovers arriva in treno», DECISIONI.md:82) è superata: serve una decisione nuova.
+- CONFLITTO 2 — il gemellaggio è fra la curva Kiln e Lockbridge, non più con Studio (BIBBIA e INDICE: e15, e27). Il
+  verbale di e15 nomina «il capo di Stu…» (e15.json:121): va rinominato.
+- CONFLITTO 3 — Stoneway lascia il ruolo di neopromossa che le danno l'indice (INDICE_TRIADE.md:21) e i testi di e07 (e07.json:3)
+  e diventa di Valmora: è il club che cambia identità più di tutti.
+- CONFLITTO 4 — il porto (sezione 3.3).
+- CONFLITTO 5 — Arches viene presentato solo in stagione 3. Alternativa: e19 ad Arches, e Belltower ricompare in e25
+  al posto di Lockbridge (Lockbridge resterebbe con e02, e15, e27, e31).
+- CONFLITTO 6 — e17 ed e30 oggi non nominano l'avversario. Nominarlo aggiunge una o due righe per episodio, nessuna
+  curva nuova: il ritmo D-092 (src/dati/ritmo.ts:1-2), che conta le curve sulla mappa, non cambia.
 
 ## 5. Quanti episodi per stagione
 
@@ -246,49 +289,64 @@ FATTO che pesa sulla scelta:
 
 | opzione | cosa | costo | rischio |
 |---------|------|-------|---------|
-| **A. Restare a 12 (36)** — consigliata | redistribuire gli avversari (sezione 4) | 14 episodi con avversario cambiato + 4 ritocchi (e02, e07, e15, e21/e23); nessun episodio nuovo; bot invariati | presentazione tarda di Arches; densità: 13 club in 36 episodi, i nuovi si vedono 2 volte |
-| B. 13 per stagione (39) | un episodio in più a stagione, dedicato a un club | 3 episodi nuovi (~400 righe di testi, ~45 chiamate) + tutto A; rinumerare `episodio` da e13 in poi; ritaratura D-108 della stagione 1 (sequenza non decrescente); ricontrollo del ritmo D-092; testo «36 episodi» in comune.json:83; cambia l'ambito di D-009 | i salvataggi già oltre il punto d'inserimento trovano un episodio nuovo da giocare prima di proseguire, con variabili di partenza prese da episodi successivi (D-062): va provato sui salvataggi veri (tests/salvataggi-reali/) |
+| **A. Restare a 12 (36)** — consigliata | redistribuire gli avversari (sezione 4) | 22 episodi toccati, quasi tutti per sostituire un nome: le righe di viaggio restano; nessun episodio nuovo; bot invariati | presentazione tarda di Arches; Gasworks ricompare solo come quartiere; i nuovi si vedono 2 volte |
+| B. 13 per stagione (39) | un episodio in più a stagione, dedicato a un club | 3 episodi nuovi (~400 righe di testi, ~45 chiamate) + tutto A; rinumerare `episodio` da e13 in poi; ritaratura D-108 della stagione 1 (sequenza non decrescente); ricontrollo del ritmo D-092; testo «36 episodi» in comune.json:83; cambia l'ambito di D-009 | i salvataggi già oltre il punto d'inserimento trovano un episodio nuovo da giocare prima di proseguire, con variabili di partenza prese da episodi successivi (D-062): va provato sui salvataggi veri (tests/salvataggi-reali/). In cambio risolve il posto mancante (sezione 4) |
 | C. 12 + episodi in stagione 4 | A adesso; i club con 2 sole apparizioni tornano nella stagione 4 «la città» (docs/RISERVA_EVENTI.md) | come A, poi lavoro dopo la triade | nessuno sul 30/11 |
 
-Motivo della scelta A (o A+C): rispetta D-009 senza toccare l'ambito, non sposta i bot e racconta comunque tutti i
-13 club. «Un episodio per club» con 13 per stagione non regge da solo: e01 presenta già due club e cinque episodi
-(e11, e17, e21, e30, e35) non hanno avversario, quindi anche a 13 servirebbe la redistribuzione.
+Perché A (o A+C):
+- rispetta D-009 senza toccare l'ambito;
+- non sposta i bot;
+- racconta comunque tutti i 13 club.
 
-## 6. Elenco dei costi (opzione A)
+«Un episodio per club» con 13 per stagione non regge da solo: e01 presenta già due club e cinque episodi (e11, e17,
+e21, e30, e35) non hanno avversario, quindi anche a 13 servirebbe la redistribuzione.
 
-Dati
-- data/club/: 8 file nuovi (6 di Valmora + Ironvale + Saltport); facoltativo `stemma` per arches/studio/stoneway.
-- data/testi/it/comune.json: 8 nomi `club.*` e 8 fonti `fonte.club_*` nuove; guida.1 (riga 78) può restare (dice già 13).
-- data/missioni: cambiare `club` dei settori e degli eventi e, dove serve, la `fonte` in 16 episodi:
-  e04, e05, e09, e13, e14, e15, e16, e18, e19, e23, e25, e26, e27, e29, e31, e34. Id dei settori invariati
-  (`curva_ospiti`, `settore_gemellati`, `curva_gemellati`).
-- Fonti condivise: `club_ospite` (Square) va sostituita nei 5 episodi passati ad altri (e04, e09, e13, e18, e19);
-  `club_quillhaven` (Garden) in e05, e14, e16, e23, e26, e29, e34; `gemellati` (e27) e il responsabile di Studio in e15.
+## 6. Elenco dei costi (opzione A, rivista)
 
-Testi da riscrivere (righe che nominano il club o il suo viaggio)
-- Cambio d'avversario: e04, e05, e09, e13, e14, e16, e18, e19, e23, e25, e26, e27, e29, e31, e34 (righe con i nomi:
-  vedi il comando della sezione 1; esempio e09: «Rovers» in 13 righe, e31: 18).
-- Ritocchi «città»: e02.json:3, 91, 102, 115; e07.json:3, 10, 100, 125; e15.json:3, 61 (diventa Ironvale);
-  e27.json:3, 102, 112; e21.json:119; e23.json:3-5, 10, 24, 90-91, 102; bozze_s2.json:15.
-- Articoli dopo D-124 (sezione 1.3): 84 occorrenze, utile farle nello stesso giro.
+**Dati**
+- data/club/: 8 file nuovi (6 di Valmora + Lockbridge + Saltway). Facoltativo: `stemma` per arches, studio e stoneway.
+- data/testi/it/comune.json: 8 nomi `club.*` e le fonti `fonte.club_*` nuove (una per club nuovo).
+  guida.1 (riga 78) può restare: dice già 13.
+- data/missioni: `club` dei settori e degli eventi, e dove serve la `fonte`, in e02, e05, e07, e09, e12, e13, e14,
+  e15, e16, e18, e19, e23, e24, e26, e27, e29, e31, e34. Gli id dei settori restano gli stessi (`curva_ospiti`,
+  `settore_gemellati`, `curva_gemellati`).
+- e17, e25, e30: cambiano solo i testi. e25 non ha un campo `club` per gli ospiti.
 
-Codice (esce dal perimetro «solo dati»: catena completa)
-- src/resa/stemma.tsx: 6 simboli nuovi (pigna, anfora, gasometro, colonna, torre, alloro) + 3 facoltativi.
+**Fonti condivise**
+- `club_ospite` (Square, comune.json:36): resta in e04 ed e08. Passa a Lockbridge in e02; ai club nuovi in e09, e13,
+  e18, e19; in e15 diventa `club_saltmere` (Stoneway, id già esistente).
+- `club_quillhaven` (Garden): resta in e03 ed e06; cambia in e05, e14, e16, e23, e24, e26, e29, e34.
+- `club_saltmere` in e07 ed e12: passa a Saltway.
+- `gemellati` (e27, bozze_s3.json:6): il testo diventa «Responsabile del Lockbridge County».
 
-Documenti
-- docs/BIBBIA.md: righe 8, 62, 75 e la geografia dei quartieri; docs/INDICE_TRIADE.md (nomi vecchi: righe 7-8 e le tre tabelle); docs/governo/VISIONE.md:6 è già corretto; DECISIONI.md: una decisione nuova.
+**Testi**
+- Solo sostituzione del nome, righe di viaggio intatte: e02 («Rovers» in 18 righe), e07, e12, e15 (parte dei
+  gemellati), e21.json:119, e23, e25 (12 righe), e27 (parte dei gemellati), e31 (18 righe); bozze_s2.json:15 (porto).
+- Cambio d'avversario con riscrittura delle battute che lo nominano: e05, e09, e13, e14, e15 (avversario), e16, e18,
+  e19, e24, e26, e27 (avversario), e29, e34.
+- Avversario nominato per la prima volta: e17, e30.
+- Studio Town esce dalle righe dei gemellati (e15.json:3, 121; e27.json:3, 102, 112).
 
-Prove
-- Catena «completa» (tocca missioni e codice). Bot: attesi identici (il club non entra nel motore) — va misurato,
-  non dato per scontato. Foto delle curve coi colori nuovi (tools/foto-club.mjs) a 360/375/412 px. Controllo dei
-  nomi reali prima di Play.
+**Codice** (esce dal perimetro «solo dati»: catena completa)
+- src/resa/stemma.tsx: 8 simboli nuovi (pigna, anfora, gasometro, colonna, torre, alloro, lucchetto, ancora) + 3 facoltativi.
+
+**Documenti**
+- docs/BIBBIA.md: righe 8, 62, 75 e la geografia dei quartieri e delle due città esterne.
+- docs/INDICE_TRIADE.md: nomi vecchi alle righe 7-8 e nelle tre tabelle.
+- docs/governo/DECISIONI.md: una decisione nuova, che supera D-071.
+
+**Prove**
+- Catena «completa», perché tocca missioni e codice.
+- Bot: attesi identici, perché il club non entra nel motore. Va misurato, non dato per scontato.
+- Foto delle curve coi colori nuovi (tools/foto-club.mjs) a 360/375/412 px.
+- Controllo dei nomi reali prima di Play.
 
 ## 7. Decisioni che servono al PO
 1. Numero di episodi: A (12×3, consigliata), B (13×3), C (A ora + stagione 4).
-2. I sei nomi nuovi (e i colori): approvarli o chiedere alternative.
-3. Square di Valmora col treno urbano (conflitto con BIBBIA.md:62 e D-071) oppure e02 a un ospite esterno.
-4. Club esterni: due con nome (gemellati, porto) come proposto? Con quale regola per i nomi (Roma Sud anche per loro,
-   o immagini di mare/valle)?
-5. Il porto: due porti distinti (Saltport fuori, Gasworks in città) come proposto?
-6. Stemma per Arches, Studio, Stoneway, o restano alle iniziali.
-7. Correzione degli 84 articoli nello stesso giro.
+2. I sei nomi nuovi di Valmora (Roma Sud) e i loro colori: approvarli o chiedere alternative.
+3. I due esterni (Roma Nord): Lockbridge County (dal Ponte Milvio: treno + gemellati) e Saltway Town (dal Salario:
+   neopromossa + porto). Va bene unire i ruoli a due a due, oppure tre esterni per non toccare l'avversario di e15?
+4. Stoneway lascia il ruolo di neopromossa a Saltway e diventa di Valmora (cambio d'identità più grande).
+5. Il porto: due porti distinti (Saltway fuori, Gasworks in città)?
+6. Il posto mancante: Gasworks ricompare solo come quartiere del porto, oppure si prende l'opzione B.
+7. Lo stemma per Arches, Studio e Stoneway, oppure restano con le iniziali.
