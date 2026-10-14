@@ -121,4 +121,12 @@
 //   dicono chi c'è (C21-02, C21-03).
 //   causa: PO-054, PO-103, D-119, collaudo C-021. misura: completa 3/3 e CI verde sulla build del rilascio.
 //   guardiano: C46R01, C47N01/N02, C48P01, C48N01, C49C01, C49E01, tests/corteo-club.test.ts, controllaColoriCortei.
-export const GAME_VERSION = '0.17.0';
+//
+// 0.18.0 – rilascio anticipato su richiesta del PO (PO-107, deroga all'orario di D-109): vignetta del luogo 42×42 al posto
+//   dell'avatar nel briefing (PO-078, D-118, D-122), spicchio d'orologio dell'urgenza come bollino (PO-085, D-120), cerimonie,
+//   minacce e liti disegnate come gente e «scontro» solo per le risse (C21-05/06), spalti di e15 fra le due squadre (C21-04),
+//   eventi condizionati solo quando la condizione è vera (C21-09), club Cinderwick sui cortei della curva in e30 ed e17 (C23-03),
+//   corteo della chiamata col club dell'evento (C23-01), nome dell'episodio in città fuori dalle proprie stelline (C23-02).
+//   causa: PO-078, PO-085, collaudi C-021 e C-023, PO-107. misura: completa 3/3 e CI verde sulla build del rilascio.
+//   guardiano: C51A01, C51O01, C50G01, C50C01, C50S01, C53D01, C53N01, controllaColoriCortei.
+export const GAME_VERSION = '0.18.0';
