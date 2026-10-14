@@ -201,6 +201,37 @@ export async function controllaColoriCortei(pagina, m, club, atteso, dove) {
 export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena) {
   await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), salvataggio);
   await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  // Strumento instabile in CI (412, «Il mercato del sabato» sul bordo): il posto del nome non deve dipendere da una
+  // scala in corso (animazione d'entrata della scena). Si sceglie ogni episodio della stagione 1 con la pagina in
+  // scala 0,85 e senza: posto, spostamento e larghezza uguali (entro 1 px). Rosso VALMORA_ROSSI=C47N01.
+  const posto = (id) => pagina.evaluate((id) => { const s = document.querySelector(`[data-episodio="${id}"]`), n = s?.querySelector('.settore-nome');
+    return n ? { p: s.dataset.nome, dx: parseFloat(n.style.getPropertyValue('--nome-dx')) || 0, dy: parseFloat(n.style.getPropertyValue('--nome-dy')) || 0, w: n.style.maxWidth } : null; }, id);
+  const scala = (v) => pagina.evaluate((v) => { const m = document.querySelector('main'); m.style.transformOrigin = 'top left'; m.style.transform = v; }, v);
+  const prima = await pagina.$$eval('[data-episodio]', (xs) => xs.map((x) => x.dataset.episodio));
+  const diversi = [];
+  for (const [i, id] of prima.entries()) {
+    const altro = prima[(i + 1) % prima.length];
+    await pagina.click(`[data-episodio="${id}"] .settore-punto`); await pagina.waitForTimeout(60);
+    const a = await posto(id);
+    await scala('scale(0.85)'); await pagina.click(`[data-episodio="${altro}"] .settore-punto`, { force: true }); await pagina.click(`[data-episodio="${id}"] .settore-punto`, { force: true }); await pagina.waitForTimeout(60);
+    const b = await posto(id); await scala('');
+    if (a && b && (a.p !== b.p || a.w !== b.w || Math.abs(a.dx - b.dx) > 1 || Math.abs(a.dy - b.dy) > 1)) diversi.push(`${id} ${a.p}/${b.p} ${a.dx.toFixed(1)},${a.dy.toFixed(1)}→${b.dx.toFixed(1)},${b.dy.toFixed(1)}`);
+  }
+  atteso(`città, nome dell'episodio scelto con la pagina in scala: posto diverso in ${diversi.length} casi: ${diversi.join('; ')} (strumento instabile, C20-03)`, !diversi.length);
+  // Il nome cambia misura dopo il calcolo (carattere che arriva tardi): si allarga la spaziatura del nome scelto e il
+  // posto deve essere quello di un calcolo da capo (scelta di un altro episodio e ritorno). Rosso VALMORA_ROSSI=C47N02.
+  const largo = (v) => pagina.evaluate((v) => { let st = document.getElementById('prova-largo'); if (!st) { st = document.createElement('style'); st.id = 'prova-largo'; document.head.append(st); } st.textContent = v ? '.settore-nome { letter-spacing: 0.12em; }' : ''; }, v);
+  const stantii = [];
+  for (const [i, id] of prima.entries()) {
+    const altro = prima[(i + 1) % prima.length];
+    await pagina.click(`[data-episodio="${id}"] .settore-punto`); await pagina.waitForTimeout(60);
+    await largo(true); await pagina.waitForTimeout(120);
+    const a = await posto(id);
+    await pagina.click(`[data-episodio="${altro}"] .settore-punto`); await pagina.click(`[data-episodio="${id}"] .settore-punto`); await pagina.waitForTimeout(60);
+    const b = await posto(id); await largo(false);
+    if (a && b && (a.p !== b.p || a.w !== b.w || Math.abs(a.dx - b.dx) > 1 || Math.abs(a.dy - b.dy) > 1)) stantii.push(`${id} ${a.p}/${b.p} ${a.w || '-'}/${b.w || '-'}`);
+  }
+  atteso(`città: dopo un cambio di misura del nome il posto non si rifà in ${stantii.length} casi: ${stantii.join('; ')} (strumento instabile, C20-03)`, !stantii.length);
   const male = [];
   for (const st of await pagina.$$eval('[data-stagione]', (xs) => xs.map((x) => x.dataset.stagione))) {
     await pagina.click(`[data-stagione="${st}"]`); await pagina.waitForTimeout(150);
@@ -231,6 +262,11 @@ export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
   const gruppi = new Set((ondata.eventi ?? []).filter((e) => c.settore && e.settore === c.settore).map((e) => GRUPPI_EVENTO[e.tipo]));
   const voluto = ['scontro', 'fumo', 'corteo', 'tifo', 'veicoli', 'biglietti', 'gente'].find((g) => gruppi.has(g)) ?? 'nessuno';
   atteso(`${dove}: la vignetta mostra «${visto}», i dati dicono «${voluto}» (D-112 punto 5)`, visto === voluto);
+  // PO-103: le persone sono pallini piatti, niente omini con testa e braccia; i gruppi con gente ne mostrano.
+  // Rosso VALMORA_ROSSI=C48P01: gli omini di prima.
+  const [omini, pallini] = await pagina.evaluate(() => ['omino', 'pallino'].map((f) => document.querySelectorAll(`.chiamata-corpo svg.vignetta [data-figura="${f}"]`).length));
+  const conGente = ['gente', 'tifo', 'corteo', 'biglietti'].includes(voluto);
+  atteso(`${dove}: ${omini} omini e ${pallini} pallini nella vignetta «${visto}» (PO-103)`, omini === 0 && (!conGente || pallini > 0));
   // i tratti coi colori del club (gradinate, sciarpa) si vedono davvero: il colore calcolato è quello del club.
   // Rosso VALMORA_ROSSI=C45E02: «.v-linea» li rende neri.
   const spenti = await pagina.evaluate(() => [...document.querySelectorAll('.chiamata-corpo svg.vignetta [stroke^="#"]')].filter((e) => {

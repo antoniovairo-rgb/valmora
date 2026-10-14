@@ -96,13 +96,22 @@ export function disponiEtichette(contenitore: HTMLElement) {
 export function disponiNomeCitta(contenitore: HTMLElement) {
   const s = contenitore.querySelector<HTMLElement>('[data-episodio].acceso'), nome = s?.querySelector<HTMLElement>('.settore-nome');
   if (!s || !nome) return;
-  const m = contenitore.getBoundingClientRect();
+  // Instabile in CI (412, «Il mercato del sabato» a 3 px dal bordo): il calcolo girava mentre la scena entrava con
+  // l'animazione (scala in corso), e getBoundingClientRect misura coi trasformati. Si lavora in coordinate di
+  // impaginazione: rettangoli relativi alla mappa divisi per la scala attuale; mezzo pixel in più di margine contro
+  // gli arrotondamenti. Rosso C47N01: misure trasformate, come prima.
+  const vista = contenitore.getBoundingClientRect(), vecchio = spento('C47N01');
+  const k = vecchio || !contenitore.offsetWidth ? 1 : vista.width / contenitore.offsetWidth;
+  const ox0 = vecchio ? 0 : vista.left, oy0 = vecchio ? 0 : vista.top;
+  const rel = (r: Rett): Rett => ({ left: (r.left - ox0) / k, right: (r.right - ox0) / k, top: (r.top - oy0) / k, bottom: (r.bottom - oy0) / k });
+  const m = vecchio ? vista : { left: 0, top: 0, right: contenitore.offsetWidth, bottom: contenitore.offsetHeight };
+  const bordo = MARGINE + (vecchio ? 0 : 0.5);
   // i dischi pesano dieci volte le stelline: se proprio non c'è un posto libero, il nome copre stelline, non dischi
   const altri = [...contenitore.querySelectorAll('[data-episodio]')].filter((x) => x !== s)
-    .flatMap((x) => [...x.querySelectorAll('.settore-punto, .settore-unita')]).map((e) => ({ ...ostacolo(e.getBoundingClientRect(), STACCO), peso: e.classList.contains('settore-punto') && !spento('C44N01') ? 10 : 1 }));
+    .flatMap((x) => [...x.querySelectorAll('.settore-punto, .settore-unita')]).map((e) => ({ ...ostacolo(rel(e.getBoundingClientRect()), STACCO), peso: e.classList.contains('settore-punto') && !spento('C44N01') ? 10 : 1 }));
   const sposta = (dx: number, dy: number) => { nome.style.setProperty('--nome-dx', `${dx}px`); nome.style.setProperty('--nome-dy', `${dy}px`); };
   const dentro = (a: number, b: number, min: number, max: number) => (a < min ? min - a : b > max ? max - b : 0);
-  const disco = s.querySelector('.settore-punto')?.getBoundingClientRect().width ?? 0;
+  const disco = (s.querySelector('.settore-punto')?.getBoundingClientRect().width ?? 0) / k;
   const passo = disco / 8, giri = spento('C44N01') || !passo ? 0 : 8;
   const scarti = Array.from({ length: 2 * giri + 1 }, (_, k) => (k - giri) * passo).sort((a, b) => Math.abs(a) - Math.abs(b));
   // anche più stretto (va a capo su più righe): larghezza massima intera, 80% e 65% di --nome-max
@@ -112,10 +121,10 @@ export function disponiNomeCitta(contenitore: HTMLElement) {
   for (const largo of larghezze) for (const posto of NOMI) {
     nome.style.maxWidth = largo;
     s.setAttribute('data-nome', posto);
-    const r = nome.getBoundingClientRect();
+    const r = rel(nome.getBoundingClientRect());
     for (const ox of scarti) for (const oy of scarti) {
       const a = { left: r.left + ox, right: r.right + ox, top: r.top + oy, bottom: r.bottom + oy };
-      const dx = ox + dentro(a.left, a.right, m.left + MARGINE, m.right - MARGINE), dy = oy + dentro(a.top, a.bottom, m.top + MARGINE, m.bottom - MARGINE);
+      const dx = ox + dentro(a.left, a.right, m.left + bordo, m.right - bordo), dy = oy + dentro(a.top, a.bottom, m.top + bordo, m.bottom - bordo);
       const q = { left: r.left + dx, right: r.right + dx, top: r.top + dy, bottom: r.bottom + dy };
       const costo = altri.reduce((c, o) => c + o.peso * VERA * area(q, o.vero) + area(q, o.largo) - area(q, o.vero), 0) + Math.abs(dx) + Math.abs(dy);
       if (costo < migliore.costo) migliore = { posto, dx, dy, costo, largo };
