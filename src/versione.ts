@@ -108,4 +108,10 @@
 //   C17-12, C17-22), coerenza C-019 (C19-01/02/03/05), controllo pre-push con «bot» quando cambiano dati o logica.
 //   causa: PO-101, PO-085, collaudi C-018 e C-019. misura: completa 3/3 e CI verde sulla build del rilascio.
 //   guardiano: tests/ondata-info.test.ts, C43I01, C40C01, C39E01, C39I01, C42*, tests/dopo-scelte.test.ts esteso.
-export const GAME_VERSION = '0.15.0';
+//
+// 0.16.0 – rilascio delle 08:00: colori dei cortei coerenti con la strada e con chi c'è (PO-102: club su 11 settori,
+//   altrimenti neutri), vignetta di ogni chiamata con la sagoma dell'evento e scontro solo fuori scena (D-112 punto 5),
+//   correzioni del collaudo C-020 (C20-01/02/03/04/05/06/07/08).
+//   causa: PO-102, D-112 punto 5, collaudo C-020. misura: completa 3/3 e CI verde sulla build del rilascio.
+//   guardiano: C44S03 e i controlli della catena grafica sulle vignette, tests/ondata-info.test.ts, bot D-108.
+export const GAME_VERSION = '0.16.0';
