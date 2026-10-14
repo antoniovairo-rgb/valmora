@@ -23,7 +23,7 @@ export function controllaDocumenti(file) {
 }
 
 const TIPI = ['difetto', 'miglioramento', 'nuova funzione', 'processo', 'debito tecnico'];
-const STATI = ['IN CODA', 'PARZIALE', 'FATTO', 'DOPPIONE', 'REVOCATA'];
+const STATI = ['IN CODA', 'IN CORSO', 'PARZIALE', 'FATTO', 'DOPPIONE', 'REVOCATA'];
 
 export function righeBacklog(testo) {
   return testo.split('\n')
