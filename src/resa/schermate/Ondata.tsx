@@ -51,7 +51,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
         {serve && !spento('C42R01') && indicatore}
         {/* PO-089 (scelta A del PO): vignetta piccola a sinistra del testo, dentro il fumetto */}
         <div className="chiamata-corpo">
-          <VignettaChiamata m={p.m} c={p.c} />
+          <VignettaChiamata m={p.m} c={p.c} variabili={p.ic.variabili} />
           <div>
             <p className="testo-radio">{t(p.c.testo)}</p>
             {p.c.commento && <p className="vice-a-margine"><span className="chi-vice">Il vice — </span>{t(p.c.commento)}</p>}

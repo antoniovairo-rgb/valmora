@@ -1,3 +1,4 @@
+import { valuta } from '../src/logica/condizioni.ts';
 // Guardiani dei difetti del collaudo C-017, chiamati da tools/foto.mjs.
 /** C17-16: unità messe e non confermate; ricarica e «Riprendi» → lo schieramento ha le stesse unità sulla mappa. */
 export async function controllaBozzaRicarica(pagina, atteso) {
@@ -274,11 +275,14 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
 
 /** D-112 punto 5: la vignetta della chiamata mostra il gruppo dell'evento che i dati mettono sul settore in quell'ondata
  *  (il più grave se sono più d'uno; «nessuno» senza settore o senza eventi). Rosso VALMORA_ROSSI=C45E01: nessuna sagoma. */
-const GRUPPI_EVENTO = { folla: 'gente', raduno: 'gente', assembramento: 'gente', movimento: 'gente', arrivo: 'gente', deflusso: 'gente', fuga: 'gente', curva: 'tifo', festa: 'tifo', cerimonia: 'tifo', corteo: 'corteo', protesta: 'corteo', picchetto: 'corteo', presidio: 'corteo', furgone: 'veicoli', sosta: 'veicoli', traffico: 'veicoli', retata: 'veicoli', rissa: 'scontro', lite: 'scontro', faida: 'scontro', minaccia: 'scontro', biglietti: 'biglietti', incendio: 'fumo' };
+// C21-05/06: cerimonia, minaccia, lite e faida sono «gente» (i testi non parlano di colluttazione); scontro solo rissa
+const GRUPPI_EVENTO = { folla: 'gente', raduno: 'gente', assembramento: 'gente', movimento: 'gente', arrivo: 'gente', deflusso: 'gente', fuga: 'gente', cerimonia: 'gente', minaccia: 'gente', lite: 'gente', faida: 'gente', curva: 'tifo', festa: 'tifo', corteo: 'corteo', protesta: 'corteo', picchetto: 'corteo', presidio: 'corteo', furgone: 'veicoli', sosta: 'veicoli', traffico: 'veicoli', retata: 'veicoli', rissa: 'scontro', biglietti: 'biglietti', incendio: 'fumo' };
 export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
   const visto = await pagina.getAttribute('.chiamata-corpo svg.vignetta', 'data-evento').catch(() => null);
   if (visto === null) return;
-  const gruppi = new Set((ondata.eventi ?? []).filter((e) => c.settore && e.settore === c.settore).map((e) => GRUPPI_EVENTO[e.tipo]));
+  // C21-09: un evento con «se» conta solo se è vero con le variabili della partita (dal salvataggio)
+  const variabili = (await statoSalvato(pagina))?.variabili ?? {};
+  const gruppi = new Set((ondata.eventi ?? []).filter((e) => c.settore && e.settore === c.settore && (!e.se || valuta(e.se, variabili))).map((e) => GRUPPI_EVENTO[e.tipo]));
   const voluto = ['scontro', 'fumo', 'corteo', 'tifo', 'veicoli', 'biglietti', 'gente'].find((g) => gruppi.has(g)) ?? 'nessuno';
   atteso(`${dove}: la vignetta mostra «${visto}», i dati dicono «${voluto}» (D-112 punto 5)`, visto === voluto);
   // PO-103: le persone sono pallini piatti, niente omini con testa e braccia; i gruppi con gente ne mostrano.
