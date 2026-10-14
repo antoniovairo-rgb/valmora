@@ -129,4 +129,10 @@
 //   corteo della chiamata col club dell'evento (C23-01), nome dell'episodio in città fuori dalle proprie stelline (C23-02).
 //   causa: PO-078, PO-085, collaudi C-021 e C-023, PO-107. misura: completa 3/3 e CI verde sulla build del rilascio.
 //   guardiano: C51A01, C51O01, C50G01, C50C01, C50S01, C53D01, C53N01, controllaColoriCortei.
-export const GAME_VERSION = '0.18.0';
+//
+// 0.19.0 – rilascio delle 23:00: nomi delle squadre più semplici ispirati a Roma Sud (PO-108, D-124: Kiln United, Skyfield
+//   Athletic, Square Rovers, Arches Town, Studio Town, Garden Albion, Stoneway Wanderers; id invariati), icona HTML leggibile di
+//   chi chiama accanto alla vignetta (C22-01, PO-106), pallini delle vignette più grandi e con contorno (C22-02).
+//   causa: PO-108, PO-106, collaudo C-022. misura: completa 3/3 e CI verde sulla build del rilascio.
+//   guardiano: C54C01 e controllaChiIcona, C55P01, test e bot sui testi rinominati.
+export const GAME_VERSION = '0.19.0';
