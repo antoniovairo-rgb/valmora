@@ -40,9 +40,10 @@ describe('C-021 resa', () => {
   });
   it('braccio rosso __NO_C50S01: l\'evento condizionato conta anche se falso', () => { g.__NO_C50S01 = true; expect(condizionate().some((y) => y.veri === 0 && y.gruppo !== null)).toBe(true); });
   const e15 = () => { const m = missioni.find((x) => x.id === 'e15')!; return disponi(400, 400, m.mappa.settori.map((s) => ({ id: s.id, tipo: s.tipo, x: (s.pos?.x ?? 0) * 4, y: (s.pos?.y ?? 0) * 4, colori: s.club ? club[s.club] : undefined }))); };
+  // D-125: in e15 l'avversario è il Wallgate Rovers (prima Calderholt/Square Rovers)
   it('C21-04: in e15 gli spalti sono Cinderwick e Rovers', () => {
     const d = e15();
-    expect([d.club.sx?.primario, d.club.dx?.primario].sort()).toEqual([club.calderholt_rovers.primario, club.cinderwick_united.primario].sort());
+    expect([d.club.sx?.primario, d.club.dx?.primario].sort()).toEqual([club.wallgate_rovers.primario, club.cinderwick_united.primario].sort());
   });
   it('braccio rosso __NO_C50C01: l\'arancio del Cinderwick manca', () => { g.__NO_C50C01 = true; const d = e15(); expect([d.club.sx?.primario, d.club.dx?.primario]).not.toContain(club.cinderwick_united.primario); });
 });

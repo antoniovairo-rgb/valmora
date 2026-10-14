@@ -63,7 +63,7 @@
       {
         "id": "settore_gemellati",
         "tipo": "curva",
-        "club": "ollerbrook_town",
+        "club": "railhead_county",
         "pos": {
           "x": 62,
           "y": 18
@@ -81,7 +81,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "calderholt_rovers",
+        "club": "wallgate_rovers",
         "pos": {
           "x": 30,
           "y": 78
@@ -423,7 +423,7 @@
         },
         {
           "id": "salutarli",
-          "fonte": "club_ospite",
+          "fonte": "club_wallgate",
           "testo": "testi:e15.ch.salutarli",
           "commento": "testi:e15.ch.salutarli.vice",
           "settore": "curva_ospiti",
@@ -628,7 +628,7 @@
       "eventi": [
         {
           "id": "corteo_ritorno15",
-          "club": "ollerbrook_town",
+          "club": "railhead_county",
           "tipo": "corteo",
           "settore": "viale_stazione",
           "pressione": 5
