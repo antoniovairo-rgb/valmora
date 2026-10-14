@@ -32,3 +32,25 @@ export async function controllaVoloRisposta(pagina, atteso, c, op, dove) {
   const visto = await pagina.evaluate(() => document.documentElement.dataset.volo ?? '');
   atteso(`${dove}: le squadre impegnate non raggiungono il punto («${visto}» invece di «${sq.riserva}>${c.settore}») (PO-089)`, visto === `${sq.riserva}>${c.settore}`);
 }
+/** C22-01: in ogni chiamata non del vice chi chiama è un'icona HTML accanto alla vignetta, non un riquadro disegnato
+ *  dentro: glifo misurato a schermo ≥24×24 px, glifo e contorno a ≥3:1 sul fondo dell'icona (WCAG 1.4.11,
+ *  https://www.w3.org/TR/WCAG21/#non-text-contrast), senza coprire il testo. Rosso VALMORA_ROSSI=C54C01. */
+export async function controllaChiIcona(pagina, atteso, c, dove) {
+  if (c.fonte === 'vice') return;
+  const x = await pagina.evaluate(() => {
+    const rgb = (s) => (s.match(/[\d.]+/g) ?? ['0', '0', '0']).slice(0, 3).map(Number);
+    const lum = (v) => { const [r, g, b] = v.map((u) => { u /= 255; return u <= 0.03928 ? u / 12.92 : ((u + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+    const rap = (a, b) => { const [l1, l2] = [lum(a), lum(b)].sort((p, q) => q - p); return (l1 + 0.05) / (l2 + 0.05); };
+    const i = document.querySelector('.chiamata-corpo [data-chi-icona]'), g = i?.querySelector('svg');
+    const riquadro = document.querySelectorAll('.chiamata-corpo svg.vignetta [data-chi-riquadro]').length;
+    if (!i || !g) return { manca: true, riquadro };
+    const r = g.getBoundingClientRect(), cs = getComputedStyle(i), fondo = rgb(cs.backgroundColor), t = document.querySelector('.chiamata-corpo .testo-radio')?.getBoundingClientRect();
+    const q = i.getBoundingClientRect(), sopra = t ? Math.max(0, Math.min(q.right, t.right) - Math.max(q.left, t.left)) * Math.max(0, Math.min(q.bottom, t.bottom) - Math.max(q.top, t.top)) : 0;
+    return { riquadro, w: r.width, h: r.height, glifo: rap(rgb(getComputedStyle(g).color), fondo), bordo: rap(rgb(cs.borderTopColor), fondo), sopra, chi: i.dataset.chiIcona };
+  });
+  atteso(`${dove}: chi chiama è disegnato dentro la vignetta (${x.riquadro} riquadri) o manca l'icona accanto (C22-01)`, !x.manca && !x.riquadro);
+  if (x.manca) return;
+  atteso(`${dove}: glifo di chi chiama ${x.w.toFixed(1)}×${x.h.toFixed(1)} px, minimo 24×24 (C22-01)`, x.w >= 24 && x.h >= 24);
+  atteso(`${dove}: contrasto dell'icona di chi chiama: glifo ${x.glifo.toFixed(2)}:1, contorno ${x.bordo.toFixed(2)}:1, minimo 3:1 (C22-01)`, x.glifo >= 3 && x.bordo >= 3);
+  atteso(`${dove}: l'icona di chi chiama copre ${x.sopra.toFixed(0)} px² del testo (C22-01)`, x.sopra === 0);
+}

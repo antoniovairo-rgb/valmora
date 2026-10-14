@@ -178,6 +178,7 @@
   --icona-aiuto: 26px; /* PO-096: il «?» dello schieramento, ben visibile */
   --stella: 26px;
   --avatar: 42px;
+  --icona-chi: 24px; /* C22-01: glifo di chi chiama accanto alla vignetta della chiamata (Material: icone da 24 dp) */
   --tasto-lettera: 34px;
   --nome-max: 7.5em;
   --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */
