@@ -179,6 +179,7 @@
   --icona-aiuto: 26px; /* PO-096: il «?» dello schieramento, ben visibile */
   --stella: 26px;
   --avatar: 42px;
+  --icona-piccola: 16px; /* C22-05: glifo minimo delle icone nelle pastiglie e negli effetti (metro C-022: sotto 16 px = media) */
   --icona-chi: 24px; /* C22-01: glifo di chi chiama accanto alla vignetta della chiamata (Material: icone da 24 dp) */
   --tasto-lettera: 34px;
   --nome-max: 7.5em;

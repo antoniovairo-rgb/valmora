@@ -11,6 +11,7 @@ export async function controllaLampeggio(pagina, atteso, attesi, dove) {
 /** PO-089: nella chiamata la gente si muove dove la chiamata parla (corteo sulla strada, folla altrove); dopo una
  * risposta che impegna squadre, l'unità vola al punto (data-volo, scritto anche quando il volo non si vede). */
 export async function controllaDinamica(pagina, atteso, m, c, dove, ondata, club) {
+  if ((await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === 'webgl') await controllaPersone(pagina, atteso, dove);
   if (!c.settore || (await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) !== 'webgl') return;
   const voluto = `${m.mappa.settori.find((s) => s.id === c.settore)?.tipo === 'strada' ? 'corteo' : 'folla'}:${c.settore}`;
   let visto = null;
@@ -53,4 +54,27 @@ export async function controllaChiIcona(pagina, atteso, c, dove) {
   atteso(`${dove}: glifo di chi chiama ${x.w.toFixed(1)}×${x.h.toFixed(1)} px, minimo 24×24 (C22-01)`, x.w >= 24 && x.h >= 24);
   atteso(`${dove}: contrasto dell'icona di chi chiama: glifo ${x.glifo.toFixed(2)}:1, contorno ${x.bordo.toFixed(2)}:1, minimo 3:1 (C22-01)`, x.glifo >= 3 && x.bordo >= 3);
   atteso(`${dove}: l'icona di chi chiama copre ${x.sopra.toFixed(0)} px² del testo (C22-01)`, x.sopra === 0);
+}
+/** C22-03: sulla mappa le persone (spalti, cortei, folla della chiamata) hanno una misura minima, un contorno nero e un
+ *  alone bianco: il contorno sta a ≥3:1 sull'alone, e su ogni fondo della mappa almeno uno dei due sta a ≥3:1 (WCAG
+ *  1.4.11). Le misure sono quelle con cui Pixi disegna (data-persone, px CSS), non lette dai pixel: la tela WebGL non si
+ *  legge senza conservarne il buffer. Rosso VALMORA_ROSSI=C56P01: i quadratini di prima. */
+const MINIMO = { spalti: 3, corteo: 6, folla: 6 };
+export async function controllaPersone(pagina, atteso, dove) {
+  const x = await pagina.evaluate(() => {
+    // ogni colore passa dal browser (la build accorcia #111111 in #111): valore del token → rgb calcolato
+    const rgb = (n) => { const e = document.createElement('i'); e.style.color = getComputedStyle(document.documentElement).getPropertyValue(n).trim(); document.body.append(e); const c = getComputedStyle(e).color; e.remove(); return c.match(/[\d.]+/g).slice(0, 3).map(Number); };
+    const lum = (v) => v.map((u) => { u /= 255; return u <= 0.03928 ? u / 12.92 : ((u + 0.055) / 1.055) ** 2.4; }).reduce((s, u, i) => s + u * [0.2126, 0.7152, 0.0722][i], 0);
+    const rap = (a, b) => { const [l1, l2] = [lum(a), lum(b)].sort((p, q) => q - p); return (l1 + 0.05) / (l2 + 0.05); };
+    const nero = rgb('--nero'), bianco = rgb('--bianco');
+    const fondi = ['--mappa-viale', '--mappa-asfalto', '--mappa-gradinata-1', '--mappa-gradinata-2', '--mappa-piazzale'];
+    // il contorno con l'alfa minima della persona (data-persone: lato/alone/alfa) sopra l'alone bianco
+    const persone = document.querySelector('.mappa')?.dataset.persone ?? '', alfa = Math.min(...persone.split(',').map((p) => Number(p.split('/')[2] ?? 1)));
+    const misto = nero.map((c, i) => c * alfa + bianco[i] * (1 - alfa));
+    return { persone, anello: rap(misto, bianco), deboli: fondi.filter((n) => Math.max(rap(misto, rgb(n)), rap(bianco, rgb(n))) < 3) };
+  });
+  if (!x.persone) return;
+  const male = x.persone.split(',').map((p) => p.split(/[:/]/).slice(0, 3)).filter(([n, l, a]) => Number(l) < MINIMO[n] || a !== 'alone').map(([n, l, a]) => `${n} ${l} px${a === 'alone' ? '' : ' senza contorno né alone'}`);
+  atteso(`${dove}: persone sulla mappa piccole o senza contorno: ${male.join(', ')} (C22-03)`, !male.length);
+  atteso(`${dove}: contorno sull'alone ${x.anello.toFixed(2)}:1, fondi senza contrasto: ${x.deboli.join(', ')} (C22-03)`, x.anello >= 3 && !x.deboli.length);
 }
