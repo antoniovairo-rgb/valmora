@@ -6,7 +6,7 @@ Decisione del PO, riportata dalla principale: «Via il nome a 360/375».
 
 ## Correzione
 
-- `src/resa/mappa/MappaCitta.tsx`: il nome dell'episodio scelto si mostra solo con la finestra larga almeno 400 px (`matchMedia('(min-width: 400px)')`, aggiornato quando la finestra cambia misura).
+- `src/resa/mappa/MappaCitta.tsx`: il nome dell'episodio scelto si mostra solo con la finestra larga almeno `--citta-nome-da` (400 px, nuovo token; `matchMedia`, aggiornato quando la finestra cambia misura). Il primo giro della catena era rosso perché la soglia era scritta a mano nel codice (guardiano dei token).
 - Soglia scelta dalla sviluppatrice fra 375 e 412.
 - **Rosso `__NO_C61N01`:** il nome a ogni larghezza, come prima.
 

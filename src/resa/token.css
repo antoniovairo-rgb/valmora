@@ -191,6 +191,7 @@
   --citta-larghezza-min: 208px;
   --citta-altezza-min: 260px; /* C17-12: altezza minima della mappa della città (quella di oggi a 760 px) */
   --citta-altezza-max: 460px; /* C17-12: oltre, la mappa diventerebbe più alta che larga */
+  --citta-nome-da: 400px; /* D-123: sotto questa larghezza della finestra il nome dell'episodio scelto non sta sulla mappa */
   --logo-icona: 72px;      /* PO-065 */
 
   --font-titoli: "Space Grotesk", system-ui, sans-serif;

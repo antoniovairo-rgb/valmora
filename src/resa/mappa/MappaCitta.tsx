@@ -25,13 +25,13 @@ const posiziona = (x: number, y: number) => (el: HTMLElement | null) => {
 };
 
 /** D-123 (decisione del PO): a 360 e 375 px il nome dell'episodio scelto non sta sulla mappa (si legge nella scheda
- *  sotto): solo da questa larghezza della finestra in su. Rosso C61N01: il nome a ogni larghezza, come prima. */
-const LARGHEZZA_NOME = '(min-width: 400px)';
+ *  sotto): solo dalla larghezza della finestra del token --citta-nome-da in su. Rosso C61N01: il nome a ogni larghezza, come prima. */
+const larghezzaNome = () => `(min-width: ${getComputedStyle(document.documentElement).getPropertyValue('--citta-nome-da').trim()})`;
 function useConNome() {
-  const [si, setSi] = useState(() => typeof matchMedia === 'undefined' || matchMedia(LARGHEZZA_NOME).matches);
+  const [si, setSi] = useState(() => typeof matchMedia === 'undefined' || matchMedia(larghezzaNome()).matches);
   useLayoutEffect(() => {
     if (typeof matchMedia === 'undefined') return;
-    const q = matchMedia(LARGHEZZA_NOME), cambia = () => setSi(q.matches);
+    const q = matchMedia(larghezzaNome()), cambia = () => setSi(q.matches);
     q.addEventListener('change', cambia); cambia();
     return () => q.removeEventListener('change', cambia);
   }, []);
