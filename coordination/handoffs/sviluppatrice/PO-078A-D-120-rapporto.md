@@ -39,7 +39,7 @@ Ramo `claude/valmora-resa-v2`.
 
 In `po078-d120/`, `prima-*` (rossi) e `dopo-*`:
 - briefing di e01 ed e07, ogni passo, a 360, 375 e 412;
-- chiamate e01 «pullman» ed e07 «benvenuto7», a 360, 375 e 412.
+- chiamata e01 «pullman» a 360, 375 e 412 (la sonda non ha raggiunto e07 «benvenuto7» col giocatore equilibrato).
 
 ## Collegamento con C22-01 / C22-09
 
