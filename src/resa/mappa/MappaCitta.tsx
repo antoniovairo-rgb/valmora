@@ -40,8 +40,21 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
     if (!el || typeof ResizeObserver === 'undefined') return;
     const ro = new ResizeObserver(disponi); ro.observe(el);
     void document.fonts?.ready.then(disponi);
-    return () => ro.disconnect();
+    // strumento instabile in CI: «fonts.ready» può risolversi prima che il carattere del nome inizi a caricarsi; il
+    // nome calcolato col carattere di riserva restava largo e sul bordo. Si rifà a ogni carattere caricato.
+    const caratteri = spento('C47N02') ? null : document.fonts;
+    caratteri?.addEventListener?.('loadingdone', disponi);
+    return () => { ro.disconnect(); caratteri?.removeEventListener?.('loadingdone', disponi); };
   }, []);
+  // ...e quando cambia la misura del nome scelto (carattere arrivato, testo diverso). Rosso C47N02: no.
+  useLayoutEffect(() => {
+    const n = contenitore.current?.querySelector('[data-episodio].acceso .settore-nome');
+    if (!n || typeof ResizeObserver === 'undefined' || spento('C47N02')) return;
+    let primo = true;
+    const ro = new ResizeObserver(() => { if (primo) { primo = false; return; } disponi(); });
+    ro.observe(n);
+    return () => ro.disconnect();
+  });
   return (
     <div className="mappa citta" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa di Valmora">
       {p.home && <TastoHome vai={p.home} />}
