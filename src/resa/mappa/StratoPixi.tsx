@@ -9,6 +9,7 @@ import { neutroCorteo, type Folla } from './folla.ts';
 import { club as datiClub } from '../dati.ts';
 import { useRidisegno } from './ridisegno.ts';
 import { costruisciDinamica, dinamicaDi } from './dinamica.ts';
+import { ALFA_MIN, gente } from './persone.ts';
 import { spento } from '../../interruttori.ts';
 import { bezier, canvasAlone, colore, disegnaSfondo, disponi, token, type Atmosfera, type Colori } from './sfondo.ts';
 
@@ -62,14 +63,16 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     const sfondo = new Sprite(texSfondo); sfondo.width = W; sfondo.height = H; scena.addChild(sfondo);
 
     // 2) folla (alpha che ondeggia) e corteo (posizione che avanza): particelle
-    const bianco = Texture.WHITE; const unita = 1 / bianco.width;
-    const folla = new ParticleContainer({ dynamicProperties: { color: true } });
+    // C22-03: persone con contorno e alone (persone.ts); gli aloni stanno in un contenitore sotto le persone
+    const gs = gente('spalti', 1.3), gc = gente('corteo', 2.2);
+    const aloniFolla = new ParticleContainer(), folla = new ParticleContainer({ dynamicProperties: { color: true } });
     const tifosi = animati.folla.filter((_, i) => i % QUOTA[folla0.spalti] === 0).map((f) => {
-      const q = new Particle({ texture: bianco, x: f.x, y: f.y, scaleX: 1.3 * unita, scaleY: 1.3 * unita, tint: f.colore });
+      if (gs.alone) aloniFolla.addParticle(new Particle({ texture: gs.alone.tex, x: f.x, y: f.y, scaleX: gs.alone.scala, scaleY: gs.alone.scala, anchorX: 0.5, anchorY: 0.5 }));
+      const q = new Particle({ texture: gs.persona, x: f.x, y: f.y, scaleX: gs.scala, scaleY: gs.scala, anchorX: gs.alone ? 0.5 : 0, anchorY: gs.alone ? 0.5 : 0, tint: f.colore });
       folla.addParticle(q); return { q, fase: f.fase };
     });
-    scena.addChild(folla);
-    const corteo = new ParticleContainer({ dynamicProperties: { position: true, color: true } });
+    scena.addChild(aloniFolla, folla);
+    const aloniCorteo = new ParticleContainer({ dynamicProperties: { position: true } }), corteo = new ParticleContainer({ dynamicProperties: { position: true, color: true } });
     // Un corteo per ogni strada con gente in strada in questa ondata: verso lo stadio o, dopo, via dallo stadio.
     const cortei = folla0.cortei.flatMap((c) => {
       const v = animati.viali.find((x) => x.id === c.settore);
@@ -79,9 +82,11 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
       return v ? [{ ...c, punti: v.punti, colori, origine: delClub?.primario ?? animati.origineViali[c.settore] }] : [];
     });
     const marcia = cortei.flatMap((c) => Array.from({ length: 70 }, (_, i) => {
-      const q = new Particle({ texture: bianco, scaleX: 2.2 * unita, scaleY: 2.2 * unita });
+      const h = gc.alone ? new Particle({ texture: gc.alone.tex, scaleX: gc.alone.scala, scaleY: gc.alone.scala, anchorX: 0.5, anchorY: 0.5 }) : null;
+      if (h) aloniCorteo.addParticle(h);
+      const q = new Particle({ texture: gc.persona, scaleX: gc.scala, scaleY: gc.scala, anchorX: gc.alone ? 0.5 : 0, anchorY: gc.alone ? 0.5 : 0 });
       corteo.addParticle(q);
-      return { q, c, u: (i * 0.618) % 1, off: ((i * 7) % 9) - 4, fase: i * 0.9 };
+      return { q, h, c, u: (i * 0.618) % 1, off: ((i * 7) % 9) - 4, fase: i * 0.9 };
     }));
     const el = p.contenitore.current; // per le foto: cosa è stato disegnato davvero
     el?.setAttribute('data-dettagli', animati.dettagli.join(','));
@@ -89,7 +94,9 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     el?.setAttribute('data-stadio-ellisse', disp.stadio ? [disp.stadio.cx, disp.stadio.cy, disp.stadio.rx, disp.stadio.ry].map(Math.round).join(',') : '');
     el?.setAttribute('data-colori-cortei', Object.entries({ ...animati.origineViali, ...Object.fromEntries(cortei.map((c) => [c.settore, c.origine])) }).map(([id, o]) => `${id}=${o}`).join(','));
     el?.setAttribute('data-folla', `${folla0.spalti}|${cortei.map((c) => `${c.settore}>${c.verso}`).join(',')}`);
-    scena.addChild(corteo);
+    // C22-03, per il guardiano: lato della persona in px CSS e se ha contorno e alone (la folla è quella della dinamica)
+    el?.setAttribute('data-persone', ([['spalti', gs], ['corteo', gc], ['folla', gente('folla', 2.4)]] as const).map(([n, g]) => `${n}:${g.lato}/${g.alone ? 'alone' : 'no'}/${ALFA_MIN[n]}`).join(','));
+    scena.addChild(aloniCorteo, corteo);
 
     // 3) posto per gli aloni (riempito dall'effetto sotto) e onde sui settori accesi
     const livelloAloni = new Container(); scena.addChild(livelloAloni); strato.current = livelloAloni;
@@ -102,11 +109,11 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     let t = 0;
     const passo = (tk?: Ticker) => {
       t += (tk?.deltaMS ?? 0) / 1000;
-      for (const f of tifosi) f.q.alpha = 0.75 + 0.25 * Math.sin(t * 3 + f.fase);
+      for (const f of tifosi) f.q.alpha = 0.75 + 0.25 * Math.sin(t * 3 + f.fase); // C22-03: minimo in ALFA_MIN.spalti
       for (const k of marcia) {
         const u = (k.u + t * 0.025) % 1;
         const pos = bezier(k.c.punti, (k.c.verso === 'entra' ? u : 1 - u) * 0.75);
-        k.q.x = pos.x + k.off; k.q.y = pos.y + k.off * 0.4; k.q.tint = k.c.colori[Math.sin(k.fase + t * 4) > 0 ? 0 : 1];
+        k.q.x = pos.x + k.off; k.q.y = pos.y + k.off * 0.4; if (k.h) { k.h.x = k.q.x; k.h.y = k.q.y; } k.q.tint = k.c.colori[Math.sin(k.fase + t * 4) > 0 ? 0 : 1];
       }
       const battito = 1 + 0.15 * Math.sin(t * 4);
       for (const a of aloni.current) if (a.batte) a.s.scale.set((68 * battito) / 128);
@@ -116,7 +123,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
         onde.circle(a.x, a.y, 14 + f * 26).stroke({ color: giallo, width: 3, alpha: 1 - f });
       }
       muoviDin.current?.(t);
-      folla.update(); corteo.update();
+      folla.update(); corteo.update(); aloniCorteo.update();
     };
     passo();
     const anima = !fermo();

@@ -58,6 +58,7 @@ export async function controllaSfida(pagina, m, atteso, dove) {
   if (!attesi) return;
   const visti = await pagina.$$eval('.scena [data-sfida] [data-stemma]', (xs) => xs.map((x) => x.dataset.stemma).join(','));
   atteso(`${m.id} ${dove}: stemmi «${visti}», servono «${attesi}» (D-088)`, visti === attesi);
+  await (await import('./foto-c22.mjs')).controllaStemmi(pagina, atteso, `${m.id} ${dove}`); // C22-06
 }
 
 /** Picco della tensione nel rapporto (C09-01): segnato dove il picco ha un colore più alto della fine. */

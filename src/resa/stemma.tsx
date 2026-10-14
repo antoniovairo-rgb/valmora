@@ -19,18 +19,31 @@ const SIMBOLO: Record<string, ReactNode> = {
   penna: <path d="M29 9C19 14 14 24 13 37L15 37C17 28 21 19 29 9ZM13 37L11 41L14 39Z" />,
 };
 
+/** Luminanza relativa WCAG di un colore #rrggbb dei dati (https://www.w3.org/TR/WCAG21/#dfn-relative-luminance). */
+const luce = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((u) => (u <= 0.03928 ? u / 12.92 : ((u + 0.055) / 1.055) ** 2.4)).reduce((s, u, i) => s + u * [0.2126, 0.7152, 0.0722][i]!, 0);
+const stacco = (a: number, b: number) => (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+/** C22-06: il simbolo sulla forma stava sotto 3:1 per tre club (Larkspire 2,60, Quillhaven 2,66, Ollerbrook 2,98). Lì il
+ *  simbolo ha un contorno nero o bianco, quello che stacca di più dalla forma. Rosso C57S01: nessun contorno. */
+export function aloneStemma(primario?: string, secondario?: string): 'nero' | 'bianco' | null {
+  if (spento('C57S01') || !/^#[0-9a-f]{6}$/i.test(primario ?? '') || !/^#[0-9a-f]{6}$/i.test(secondario ?? '')) return null;
+  const f = luce(primario!);
+  if (stacco(f, luce(secondario!)) >= 3) return null;
+  return stacco(f, 0) >= stacco(f, 1) ? 'nero' : 'bianco';
+}
+
 const iniziali = (nome: string) => nome.split(/\s+/).map((x) => x[0]).join('').slice(0, 2);
 
 export function Stemma(p: { c: Club }) {
   const forma = p.c.stemma?.forma ?? 'scudo';
   const simbolo = p.c.stemma && SIMBOLO[p.c.stemma.simbolo];
   const { primario, secondario } = p.c.colori ?? { primario: 'currentColor', secondario: 'currentColor' };
+  const alone = aloneStemma(p.c.colori?.primario, p.c.colori?.secondario);
+  const segno = simbolo ?? <text x="20" y="31" textAnchor="middle" className="stemma-iniziali">{iniziali(t(p.c.nome))}</text>;
   return (
     <svg className="stemma" viewBox="0 0 40 50" role="img" aria-label={`stemma di ${t(p.c.nome)}`} data-stemma={p.c.id} data-forma={forma}>
       <g className="stemma-forma" fill={primario}>{FORMA[forma]}</g>
-      <g fill={secondario} stroke={secondario}>
-        {simbolo ?? <text x="20" y="31" textAnchor="middle" className="stemma-iniziali">{iniziali(t(p.c.nome))}</text>}
-      </g>
+      {alone && <g className={`stemma-alone ${alone}`} data-alone-stemma={alone} aria-hidden>{segno}</g>}
+      <g fill={secondario} stroke={secondario} data-simbolo>{segno}</g>
     </svg>
   );
 }
