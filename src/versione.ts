@@ -114,4 +114,11 @@
 //   correzioni del collaudo C-020 (C20-01/02/03/04/05/06/07/08).
 //   causa: PO-102, D-112 punto 5, collaudo C-020. misura: completa 3/3 e CI verde sulla build del rilascio.
 //   guardiano: C44S03 e i controlli della catena grafica sulle vignette, tests/ondata-info.test.ts, bot D-108.
-export const GAME_VERSION = '0.16.0';
+//
+// 0.17.0 – rilascio delle 13:30: ritiro di una sola unità invece di tutte (PO-054), persone a pallini piatti nelle vignette
+//   (PO-103), nomi in città più piccoli a 360/375 e posto del nome stabile (D-119, C20-03, controllo instabile della CI),
+//   cortei neutri grigi e non più arancio (C21-01), club dei tifosi anche sul singolo evento e sulle strade dove i testi
+//   dicono chi c'è (C21-02, C21-03).
+//   causa: PO-054, PO-103, D-119, collaudo C-021. misura: completa 3/3 e CI verde sulla build del rilascio.
+//   guardiano: C46R01, C47N01/N02, C48P01, C48N01, C49C01, C49E01, tests/corteo-club.test.ts, controllaColoriCortei.
+export const GAME_VERSION = '0.17.0';
