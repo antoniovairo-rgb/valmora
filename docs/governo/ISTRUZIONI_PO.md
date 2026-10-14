@@ -22,7 +22,7 @@ Testo consegnato dal PO il 2026-10-11 (PO-005). Aggiunta del PO lo stesso giorno
 
 ## 3. Documenti di governo (docs/governo/), creati il primo giorno
 - ROADMAP.md: lotti L1…Ln in alto, ognuno con obiettivo, voci e CRITERIO D'USCITA misurabile. In fondo il registro delle release, la più recente in alto, con i numeri misurati.
-- BACKLOG.md: una riga per richiesta, numerata PO-001… Colonne fisse: id | data | testo del PO | tipo | stato e prova | lotto | versione | guardiano | fonte. Stati: IN CODA / PARZIALE / FATTO / DOPPIONE (unita a…) / REVOCATA (perché).
+- BACKLOG.md: una riga per richiesta, numerata PO-001… Colonne fisse: id | data | testo del PO | tipo | stato e prova | lotto | versione | guardiano | fonte. Stati: IN CODA / IN CORSO (chi ci lavora) / PARZIALE / FATTO / DOPPIONE (unita a…) / REVOCATA (perché).
 - DECISIONI.md: vedi punto 2.
 - COLLAUDI.md: rapporti delle sessioni collaudatrici e dei collaudatori esterni, con il loro stato.
 - governo.html: pagina generata da uno script a partire dai documenti (avanzamento lotti, voci aperte e chiuse, stabilità delle catene). La rigeneri e me la mostri a ogni rilascio.

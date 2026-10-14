@@ -20,17 +20,28 @@ export function generaGoverno() {
   const giri = existsSync('STABILITA.json') ? JSON.parse(readFileSync('STABILITA.json', 'utf8')).giri : [];
 
   const conta = {};
-  for (const v of voci) { const s = v[4].split(/[ –(]/)[0] === 'IN' ? 'IN CODA' : v[4].split(/[ –(]/)[0]; conta[s] = (conta[s] || 0) + 1; }
-  const aperte = voci.filter((v) => /^(IN CODA|PARZIALE)/.test(v[4]));
-  const chiuse = voci.filter((v) => !/^(IN CODA|PARZIALE)/.test(v[4]));
+  for (const v of voci) { const s = /^IN (CODA|CORSO)/.test(v[4]) ? v[4].match(/^IN (CODA|CORSO)/)[0] : v[4].split(/[ –(]/)[0]; conta[s] = (conta[s] || 0) + 1; }
+  const aperte = voci.filter((v) => /^(IN CODA|IN CORSO|PARZIALE)/.test(v[4]));
+  const chiuse = voci.filter((v) => !/^(IN CODA|IN CORSO|PARZIALE)/.test(v[4]));
 
   const perCatena = {};
   for (const g of giri) (perCatena[g.catena] ||= []).push(g);
 
   // PO-104: una sola tabella, filtrabile per testo, stato, tipo e lotto (script in pagina, nessuna libreria).
-  const gruppo = (stato) => (/^IN CODA/.test(stato) ? 'IN CODA' : stato.split(/[ –(]/)[0]);
+  const gruppo = (stato) => (/^IN (CODA|CORSO)/.test(stato) ? stato.match(/^IN (CODA|CORSO)/)[0] : stato.split(/[ –(]/)[0]);
+  // PO-104 (14/10, «manca lo stato di avanzamento»): passo del percorso dedotto da stato e versione, con chi ci lavora.
+  const PASSI = ['da iniziare', 'in lavorazione', 'in parte fatta', 'pronta, da rilasciare', 'rilasciata'];
+  function avanzamento(v) {
+    const g = gruppo(v[4]);
+    if (g === 'DOPPIONE' || g === 'REVOCATA') return { passo: -1, testo: g === 'DOPPIONE' ? 'unita ad altra voce' : 'revocata' };
+    const ver = (v[6] && v[6] !== '–' ? v[6] : (v[4].match(/\b0\.\d+\.\d+\b/) || [''])[0]);
+    const passo = g === 'IN CODA' ? 0 : g === 'IN CORSO' ? 1 : g === 'PARZIALE' ? 2 : /^FATTO sul ramo/.test(v[4]) ? 3 : 4;
+    return { passo, testo: PASSI[passo] + (passo === 4 && ver ? ' in ' + ver : '') };
+  }
+  const chi = (s) => [/sviluppatrice/i.test(s) && 'sviluppatrice', /principale/i.test(s) && 'principale', /\bPO\b(?! decide| ha)/.test(s) && /(serve|attende|aspetta|prova) [^.;]*\bPO\b/i.test(s) && 'PO'].filter(Boolean).join(', ');
+  const barra = (a) => a.passo < 0 ? '<span class="tenue">—</span>' : `<span class="barra" role="img" aria-label="${a.passo} passi su 4">${[1, 2, 3, 4].map((i) => `<i class="${i <= a.passo ? 'pieno' : ''}"></i>`).join('')}</span>`;
   const opzioni = (valori) => [...new Set(valori)].filter(Boolean).sort().map((x) => `<option value="${esc(x)}">${esc(x)}</option>`).join('');
-  const riga = (v) => `<tr data-stato="${esc(gruppo(v[4]))}" data-tipo="${esc(v[3])}" data-lotto="${esc(v[5])}"><td>${esc(v[0])}</td><td class="tenue">${esc(v[1])}</td><td>${esc(v[2])}</td><td>${esc(v[3])}</td><td>${esc(v[4])}</td><td>${esc(v[5])}</td></tr>`;
+  const riga = (v) => { const a = avanzamento(v); return `<tr data-stato="${esc(gruppo(v[4]))}" data-tipo="${esc(v[3])}" data-lotto="${esc(v[5])}" data-passo="${a.passo}"><td>${esc(v[0])}</td><td class="tenue">${esc(v[1])}</td><td>${esc(v[2])}</td><td class="av">${barra(a)}<div>${esc(a.testo)}</div><div class="tenue">${esc(chi(v[4]))}</div></td><td>${esc(v[3])}</td><td class="tenue dett">${esc(v[4])}</td><td>${esc(v[5])}</td></tr>`; };
   const html = `<!doctype html>
 <html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Governo Valmora</title>
@@ -45,6 +56,8 @@ main{max-width:960px;margin:0 auto;padding-block:24px;padding-left:max(16px,env(
 .filtri input{flex:1 1 220px}.filtri select{flex:0 1 auto}
 .filtri :focus-visible{outline:2px solid var(--giallo);outline-offset:1px}
 #conteggio{font-variant-numeric:tabular-nums}
+.av{min-width:132px;font-size:13px}.dett{font-size:13px}
+.barra{display:flex;gap:3px;margin:2px 0 4px}.barra i{flex:1;height:6px;border-radius:2px;background:var(--bordo)}.barra i.pieno{background:var(--verde)}
 h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 10px}
 .tenue{color:var(--tenue);font-size:13px}
 .griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
@@ -70,29 +83,30 @@ td,th{padding:7px 10px;border-bottom:1px solid var(--bordo);text-align:left;vert
 <div class="filtri">
 <input id="cerca" type="search" placeholder="Cerca id, parole, file…" aria-label="Cerca nelle voci">
 <select id="f-stato" aria-label="Stato"><option value="aperte">Aperte (${aperte.length})</option><option value="chiuse">Chiuse (${chiuse.length})</option><option value="">Tutti gli stati</option>${opzioni(voci.map((v) => gruppo(v[4])))}</select>
+<select id="f-passo" aria-label="Avanzamento"><option value="">Tutto l'avanzamento</option>${PASSI.map((x, i) => `<option value="${i}">${esc(x)}</option>`).join('')}</select>
 <select id="f-tipo" aria-label="Tipo"><option value="">Tutti i tipi</option>${opzioni(voci.map((v) => v[3]))}</select>
 <select id="f-lotto" aria-label="Lotto"><option value="">Tutti i lotti</option>${opzioni(voci.map((v) => v[5]))}</select>
 </div>
 <div class="tenue" id="conteggio"></div>
-<div class="tab"><table id="voci"><thead><tr><th>id</th><th>data</th><th>richiesta</th><th>tipo</th><th>stato</th><th>lotto</th></tr></thead><tbody>${[...voci].reverse().map(riga).join('')}</tbody></table></div>
+<div class="tab"><table id="voci"><thead><tr><th>id</th><th>data</th><th>richiesta</th><th>avanzamento</th><th>tipo</th><th>stato e prova</th><th>lotto</th></tr></thead><tbody>${[...voci].reverse().map(riga).join('')}</tbody></table></div>
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
   const righe = [...document.querySelectorAll('#voci tbody tr')];
-  const APERTI = ['IN CODA', 'PARZIALE'];
+  const APERTI = ['IN CODA', 'IN CORSO', 'PARZIALE'];
   function filtra() {
     const parole = $('cerca').value.toLowerCase().split(/\s+/).filter(Boolean);
-    const st = $('f-stato').value, ti = $('f-tipo').value, lo = $('f-lotto').value;
+    const pa = $('f-passo').value, st = $('f-stato').value, ti = $('f-tipo').value, lo = $('f-lotto').value;
     let n = 0;
     for (const r of righe) {
       const d = r.dataset, testo = r.textContent.toLowerCase();
       const okStato = !st || (st === 'aperte' ? APERTI.includes(d.stato) : st === 'chiuse' ? !APERTI.includes(d.stato) : d.stato === st);
-      const ok = okStato && (!ti || d.tipo === ti) && (!lo || d.lotto === lo) && parole.every((p) => testo.includes(p));
+      const ok = okStato && (!pa || d.passo === pa) && (!ti || d.tipo === ti) && (!lo || d.lotto === lo) && parole.every((p) => testo.includes(p));
       r.hidden = !ok; if (ok) n++;
     }
     $('conteggio').textContent = n + ' voci su ' + righe.length;
   }
-  for (const id of ['cerca', 'f-stato', 'f-tipo', 'f-lotto']) $(id).addEventListener('input', filtra);
+  for (const id of ['cerca', 'f-passo', 'f-stato', 'f-tipo', 'f-lotto']) $(id).addEventListener('input', filtra);
   filtra();
 })();
 </script>
