@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-13 23:32 Roma – 0.15.0 su main (4eecaa6), online. Collaudo C-020 avviato (session_01SiHTJp9eVNFwWXLndhc3Pa). Sviluppatrice: PO-102 (colori dei cortei). Nessuna integrazione in attesa.
+Ultimo giro della routine: 2026-10-14 00:45 Roma – main 0.15.0 (4eecaa6). Principale 191d3af: PO-102 integrato (cortei coi colori dei tifosi, club su 11 settori), C20-01/02/05 corretti. bf777c9 con un test rosso (riga «i» di 91 caratteri), corretto in 191d3af; il pre-push ora esegue anche i test. Collaudo C-020 consegnato (6ad0f80), sessione archiviata. Sviluppatrice: C20-03/04/06/07. PO-085 urgenza: provino al PO.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 

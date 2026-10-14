@@ -10,7 +10,9 @@ import { PASSI_LOGICA } from './passi-logica.mjs';
 const base = (() => { try { return execSync('git merge-base HEAD @{upstream}', { encoding: 'utf8', stdio: 'pipe' }).trim(); } catch { return null; } })();
 const toccati = base ? execSync(`git diff --name-only ${base} HEAD`, { encoding: 'utf8' }).split('\n') : ['data/missioni/'];
 const pesante = toccati.some((f) => f.startsWith('data/missioni/') || f.startsWith('data/stato') || f.startsWith('src/logica/'));
-const PASSI = ['tipi', 'confini', 'schema', 'storia', ...(pesante ? ['bot'] : [])];
+// E se cambiano dati, codice o test, anche «test» (30 s): il 13/10 una riga «i» di 91 caratteri è passata (bf777c9).
+const codice = toccati.some((f) => /^(data|src|tests)\//.test(f));
+const PASSI = ['tipi', 'confini', 'schema', 'storia', ...(codice ? ['test'] : []), ...(pesante ? ['bot'] : [])];
 let rossi = 0;
 for (const nome of PASSI) {
   const t0 = Date.now();
