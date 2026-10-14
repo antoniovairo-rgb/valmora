@@ -27,15 +27,24 @@ export function generaGoverno() {
   const perCatena = {};
   for (const g of giri) (perCatena[g.catena] ||= []).push(g);
 
-  const riga = (v) => `<tr><td>${esc(v[0])}</td><td>${esc(v[2])}</td><td>${esc(v[4])}</td><td>${esc(v[5])}</td></tr>`;
+  // PO-104: una sola tabella, filtrabile per testo, stato, tipo e lotto (script in pagina, nessuna libreria).
+  const gruppo = (stato) => (/^IN CODA/.test(stato) ? 'IN CODA' : stato.split(/[ –(]/)[0]);
+  const opzioni = (valori) => [...new Set(valori)].filter(Boolean).sort().map((x) => `<option value="${esc(x)}">${esc(x)}</option>`).join('');
+  const riga = (v) => `<tr data-stato="${esc(gruppo(v[4]))}" data-tipo="${esc(v[3])}" data-lotto="${esc(v[5])}"><td>${esc(v[0])}</td><td class="tenue">${esc(v[1])}</td><td>${esc(v[2])}</td><td>${esc(v[3])}</td><td>${esc(v[4])}</td><td>${esc(v[5])}</td></tr>`;
   const html = `<!doctype html>
 <html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Governo Valmora</title>
 <style>
 :root{--sfondo:#f6f5f2;--carta:#fff;--testo:#1d1d1f;--tenue:#6b6b70;--bordo:#e2e0da;--verde:#1f7a4d;--rosso:#b3261e;--giallo:#9a6a00}
-@media (prefers-color-scheme:dark){:root{--sfondo:#141416;--carta:#1d1d20;--testo:#ececef;--tenue:#9a9aa2;--bordo:#2e2e33;--verde:#5cc28f;--rosso:#ff8a80;--giallo:#e0b44c}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sfondo:#141416;--carta:#1d1d20;--testo:#ececef;--tenue:#9a9aa2;--bordo:#2e2e33;--verde:#5cc28f;--rosso:#ff8a80;--giallo:#e0b44c;color-scheme:dark}}
+:root[data-theme="dark"]{--sfondo:#141416;--carta:#1d1d20;--testo:#ececef;--tenue:#9a9aa2;--bordo:#2e2e33;--verde:#5cc28f;--rosso:#ff8a80;--giallo:#e0b44c;color-scheme:dark}
 body{margin:0;background:var(--sfondo);color:var(--testo);font:15px/1.5 system-ui,sans-serif}
-main{max-width:960px;margin:0 auto;padding:24px 16px}
+main{max-width:960px;margin:0 auto;padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.filtri{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.filtri input,.filtri select{font:inherit;color:var(--testo);background:var(--carta);border:1px solid var(--bordo);border-radius:8px;padding:7px 10px;min-width:0}
+.filtri input{flex:1 1 220px}.filtri select{flex:0 1 auto}
+.filtri :focus-visible{outline:2px solid var(--giallo);outline-offset:1px}
+#conteggio{font-variant-numeric:tabular-nums}
 h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 10px}
 .tenue{color:var(--tenue);font-size:13px}
 .griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
@@ -57,10 +66,36 @@ td,th{padding:7px 10px;border-bottom:1px solid var(--bordo);text-align:left;vert
 
 <h2>Voci del backlog</h2>
 <div class="scheda cifre">${Object.entries(conta).map(([s, n]) => `<div><b>${n}</b><span class="tenue">${esc(s)}</span></div>`).join('')}<div><b>${voci.length}</b><span class="tenue">totale</span></div></div>
-<h2>Aperte (${aperte.length})</h2>
-<div class="tab"><table><tr><th>id</th><th>richiesta</th><th>stato</th><th>lotto</th></tr>${aperte.map(riga).join('')}</table></div>
-<h2>Chiuse (${chiuse.length})</h2>
-<div class="tab"><table><tr><th>id</th><th>richiesta</th><th>stato</th><th>lotto</th></tr>${chiuse.map(riga).join('')}</table></div>
+<h2>Tabella delle voci</h2>
+<div class="filtri">
+<input id="cerca" type="search" placeholder="Cerca id, parole, file…" aria-label="Cerca nelle voci">
+<select id="f-stato" aria-label="Stato"><option value="aperte">Aperte (${aperte.length})</option><option value="chiuse">Chiuse (${chiuse.length})</option><option value="">Tutti gli stati</option>${opzioni(voci.map((v) => gruppo(v[4])))}</select>
+<select id="f-tipo" aria-label="Tipo"><option value="">Tutti i tipi</option>${opzioni(voci.map((v) => v[3]))}</select>
+<select id="f-lotto" aria-label="Lotto"><option value="">Tutti i lotti</option>${opzioni(voci.map((v) => v[5]))}</select>
+</div>
+<div class="tenue" id="conteggio"></div>
+<div class="tab"><table id="voci"><thead><tr><th>id</th><th>data</th><th>richiesta</th><th>tipo</th><th>stato</th><th>lotto</th></tr></thead><tbody>${[...voci].reverse().map(riga).join('')}</tbody></table></div>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const righe = [...document.querySelectorAll('#voci tbody tr')];
+  const APERTI = ['IN CODA', 'PARZIALE'];
+  function filtra() {
+    const parole = $('cerca').value.toLowerCase().split(/\s+/).filter(Boolean);
+    const st = $('f-stato').value, ti = $('f-tipo').value, lo = $('f-lotto').value;
+    let n = 0;
+    for (const r of righe) {
+      const d = r.dataset, testo = r.textContent.toLowerCase();
+      const okStato = !st || (st === 'aperte' ? APERTI.includes(d.stato) : st === 'chiuse' ? !APERTI.includes(d.stato) : d.stato === st);
+      const ok = okStato && (!ti || d.tipo === ti) && (!lo || d.lotto === lo) && parole.every((p) => testo.includes(p));
+      r.hidden = !ok; if (ok) n++;
+    }
+    $('conteggio').textContent = n + ' voci su ' + righe.length;
+  }
+  for (const id of ['cerca', 'f-stato', 'f-tipo', 'f-lotto']) $(id).addEventListener('input', filtra);
+  filtra();
+})();
+</script>
 
 <h2>Stabilità delle catene</h2>
 ${Object.keys(perCatena).length ? `<div class="tab"><table><tr><th>catena</th><th>giri</th><th>verdi</th><th>ultimi 20</th><th>ultimo</th></tr>${Object.entries(perCatena).map(([c, gs]) => `<tr><td>${esc(c)}</td><td>${gs.length}</td><td>${gs.filter((g) => g.esito === 'verde').length}</td><td>${gs.slice(-20).map((g) => `<span class="pallino ${esc(g.esito)}" title="${esc(g.commit)} ${esc(g.data)}"></span>`).join('')}</td><td>${esc(gs.at(-1).esito)} su ${esc(gs.at(-1).commit)}</td></tr>`).join('')}</table></div>` : '<p class="tenue">Nessun giro registrato.</p>'}
