@@ -43,7 +43,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
   const aloni = useRef<{ s: Sprite; acceso: boolean; batte: boolean; x: number; y: number }[]>([]);
   // PO-089: strato della dinamica della chiamata, viali e colori del corteo, e come muoverla (dall'effetto in fondo)
   const strDinamica = useRef<Container | null>(null), vialiDin = useRef<{ id: string; punti: { x: number; y: number }[] }[]>([]);
-  const coloriDin = useRef<Record<string, [string, string]>>({}), muoviDin = useRef<((t: number) => void) | null>(null);
+  const coloriDin = useRef<Record<string, [string, string]>>({}), origineDin = useRef<Record<string, string>>({}), muoviDin = useRef<((t: number) => void) | null>(null);
   const texAlone = useMemo(() => Texture.from(canvasAlone(128)), []);
   useEffect(() => () => { texAlone.destroy(true); }, [texAlone]);
 
@@ -95,7 +95,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     const livelloAloni = new Container(); scena.addChild(livelloAloni); strato.current = livelloAloni;
     const onde = new Graphics(); scena.addChild(onde);
     const dinamica = new Container(); scena.addChild(dinamica); strDinamica.current = dinamica;
-    vialiDin.current = animati.viali; coloriDin.current = animati.coloriViali; // PO-102: colori per strada
+    vialiDin.current = animati.viali; coloriDin.current = animati.coloriViali; origineDin.current = animati.origineViali; // PO-102: colori per strada
     app.stage.addChild(scena);
 
     const giallo = token('--giallo');
@@ -156,10 +156,14 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     livello.removeChildren().forEach((c) => c.destroy());
     const q = punti.find((x) => x.id === p.citato);
     const d = dinamicaDi(p.citato, q?.tipo, vialiDin.current);
-    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, coloriDin.current[d.settore] ?? neutroCorteo().map(token) as [string, string], p.folla.spalti === 'deflusso') : null;
+    // C23-01: club dell'evento dell'ondata → club della strada → curva omonima → neutro (come i cortei dell'ondata)
+    const delClub = d && p.folla.club?.[d.settore] ? datiClub.get(p.folla.club[d.settore]!)?.colori : undefined;
+    const colori: [string, string] = delClub ? [colore(delClub.primario)!, colore(delClub.secondario)!] : d ? coloriDin.current[d.settore] ?? neutroCorteo().map(token) as [string, string] : ['', ''];
+    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, colori, p.folla.spalti === 'deflusso') : null;
     muoviDin.current?.(0);
     p.contenitore.current?.setAttribute('data-dinamica', d ? `${d.tipo}:${d.settore}` : '');
-  }, [punti, pianta, volte, p.citato, p.folla.spalti, p.contenitore]);
+    p.contenitore.current?.setAttribute('data-dinamica-colori', d?.tipo === 'corteo' ? delClub?.primario ?? origineDin.current[d.settore] ?? 'neutro' : '');
+  }, [punti, pianta, volte, p.citato, p.folla.spalti, JSON.stringify(p.folla.club ?? {}), p.contenitore]);
   return null;
 }
 

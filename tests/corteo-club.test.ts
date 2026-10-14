@@ -7,7 +7,7 @@ import { follaDellOndata, neutroCorteo } from '../src/resa/mappa/folla.ts';
 import type { Missione } from '../src/logica/tipi.ts';
 
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C49C01; delete g.__NO_C49E01; });
+afterEach(() => { delete g.__NO_C49C01; delete g.__NO_C49E01; delete g.__NO_C53D01; });
 
 const token = (nome: string) => readFileSync('src/resa/token.css', 'utf8').match(new RegExp(`${nome}:\\s*(#[0-9a-fA-F]{6})`))![1]!;
 const club = readdirSync('data/club').map((f) => JSON.parse(readFileSync(`data/club/${f}`, 'utf8')) as { id: string; colori: { primario: string } });
@@ -24,9 +24,15 @@ const vicini = () => neutroCorteo().flatMap((t) => club.filter((c) => deltaE(tok
 const strada = { id: 'm', episodio: 1, mappa: { settori: [{ id: 'via', tipo: 'strada', pos: { x: 1, y: 1 } }], risorse: {} },
   ondate: [{ n: 1, chiamate: [], eventi: [{ id: 'c', tipo: 'corteo', settore: 'via', pressione: 1, club: 'cinderwick_united' }] }] } as unknown as Missione;
 
+// C23-01: in un'ondata di partita (nessun corteo dell'ondata) il club dell'evento in strada vale per il corteo della chiamata
+const partita = { ...strada, mappa: { ...strada.mappa, settori: [...strada.mappa.settori, { id: 'curva_x', tipo: 'curva', club: 'larkspire_athletic', pos: { x: 2, y: 2 } }] },
+  ondate: [{ n: 1, chiamate: [], eventi: [{ id: 'k', tipo: 'curva', settore: 'curva_x', pressione: 1 }, { id: 'a', tipo: 'rissa', settore: 'via', pressione: 1, club: 'mossgarth_town' }] }] } as unknown as Missione;
+
 describe('C-021: colori del corteo', () => {
   it(`il neutro dista almeno ΔE ${SOGLIA} dal colore principale di ogni club`, () => expect(vicini()).toEqual([]));
   it('braccio rosso __NO_C49C01: il neutro arancio sembra del Cinderwick', () => { g.__NO_C49C01 = true; expect(vicini().some((x) => x.includes('cinderwick'))).toBe(true); });
   it('il club dell\'evento passa al corteo', () => expect(follaDellOndata(strada, 1).cortei[0]?.club).toBe('cinderwick_united'));
   it('braccio rosso __NO_C49E01: il club dell\'evento si perde', () => { g.__NO_C49E01 = true; expect(follaDellOndata(strada, 1).cortei[0]?.club).toBeUndefined(); });
+  it('C23-01: il club dell\'evento arriva alla chiamata anche in partita', () => expect(follaDellOndata(partita, 1).club).toEqual({ via: 'mossgarth_town' }));
+  it('braccio rosso __NO_C53D01: la chiamata non lo vede', () => { g.__NO_C53D01 = true; expect(follaDellOndata(partita, 1).club).toEqual({}); });
 });
