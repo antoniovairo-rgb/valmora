@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-14 04:31 Roma – main 0.15.0 (4eecaa6). Principale 4729836, allineata con la sviluppatrice: dentro PO-102 e le correzioni C-020 (C20-01..08). Sviluppatrice: PO-089 vignetta per chiamata (7 sagome di evento, confermate). In attesa del PO: urgenza PO-085 (provino A/B/C), nomi in città a 360/375 (C20-03). Prossimo: rilascio delle 08:00.
+Ultimo giro della routine: 2026-10-14 06:31 Roma – main 0.15.0 (4eecaa6). Principale 0efcb79: dentro PO-102, C-020 corretto, vignette con l'evento (D-112 punto 5), ricognizione BACKLOG (9 voci di resa fatte). Sviluppatrice: PO-054 (guardiano del ritiro singolo), poi PO-078 su briefing e rapporto. In attesa del PO: urgenza PO-085, nomi in città C20-03, prova PO-081 sul telefono. Prossimo: rilascio 0.16.0 delle 08:00.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
