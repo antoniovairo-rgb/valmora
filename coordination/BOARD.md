@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-14 08:57 Roma – main 0.16.0 (7dfa5ff, verifica 3/3 su 7537141, CI verde, Pages verificato). Rilascio delle 08:00 uscito alle 08:55: il 2° giro della prima verifica era rosso per una riga PO-103 scritta dalla principale con uno stato non ammesso; verifica rifatta da capo. Integrato PO-104 (d1e3fe7: backlog con ricerca, filtri e avanzamento; stato IN CORSO). Collaudo C-021 avviato. Sviluppatrice: 1) controllo instabile del nome in città (d597e3c verde sul suo ramo, rosso sulla principale), 2) PO-103 vignette a pallini, 3) PO-078; PO-054 (005f8d0) da integrare.
+Ultimo giro della routine: 2026-10-14 09:48 Roma – main 0.16.0 (7dfa5ff). Principale avanti di 11: PO-054 integrato (c4ddc29, completa verde su 0339a1e), PO-104, D-118/119/120 (risposte del PO), PO-105/D-121 (collaudo approfondito come passo 6 delle routine di rilascio). Sviluppatrice (005f8d0) indietro di 12, merge chiesto; ordine: nomi in città (instabile + D-119), PO-103, PO-078 (D-118), PO-085 spicchio (D-120). C-021 in corso sulla 0.16.0.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
 
