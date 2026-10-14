@@ -59,7 +59,7 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Giudizio del PO su e01 (2026-10-11, PO-037): «Primo episodio carino».
 
 ## e02 «Ospiti numerosi» (D-071…D-074)
-- Skyfield Athletic in casa contro i Square Rovers, che arrivano in treno da fuori città. Due treni, uno in ritardo; gira una voce di biglietti falsi.
+- Skyfield Athletic in casa contro gli Square Rovers, che arrivano in treno da fuori città. Due treni, uno in ritardo; gira una voce di biglietti falsi.
 - Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Skyfield. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 16 chiamate.
 - Dilemma (D-073): scortare gli ospiti o contenerli in stazione. Novità (D-072): stazione e biglietti falsi ai tornelli.
 - Fili: se in e01 hai pagato l'informatore, ti segnala i venditori di biglietti e un furgone grigio senza targa (variabile nuova `furgone_visto`, prima comparsa del furgone, indice e09).
