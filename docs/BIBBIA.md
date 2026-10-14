@@ -34,12 +34,12 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Fonti del briefing (D-028): informatore di strada (affidabilità bassa), ufficio sicurezza di un club (media), voce dalla centrale radio, voci in rete.
 - Affidabilità (D-030): radio alta, rete media.
 - Verità (D-031): il corteo c'è davvero; lo annuncia l'informatore di strada, la fonte meno affidabile. Il verbale lo rivela.
-- Quartieri (D-032): Cinderwick, fonderie e ciminiere, contro Larkspire, la collina elegante.
-- Club (D-033): Cinderwick United contro Larkspire Athletic.
-- Settori (D-034): curva Cinderwick, curva Larkspire, piazzale dello stadio, strada da Cinderwick, strada da Larkspire.
+- Quartieri (D-032): Kiln, fonderie e ciminiere, contro Skyfield, la collina elegante.
+- Club (D-033): Kiln United contro Skyfield Athletic.
+- Settori (D-034): curva Kiln, curva Skyfield, piazzale dello stadio, strada da Kiln, strada da Skyfield.
 - Esito (D-035): decide la tensione massima raggiunta (bassa → contenuto, media → contenuto a fatica, altrimenti degenerato).
 - Regole della plancia (D-037, D-038): squadre 2 in strada e 1 in curva, steward 2 in curva e 1 in strada, entrambi 1 in piazzale; il mediatore dimezza un corteo; prima di ogni ondata si ridistribuisce tutto.
-- Numeri iniziali (D-036, scelti dalla sessione principale, misurati col bot): 4 squadre, 6 steward, 1 mediatore. Pressioni per ondata: corteo 6 dalla strada di Cinderwick, arrivi 2, piazzale 2 · curve 5 e 4, piazzale 1 · deflusso 4 e 3, piazzale 3. Soglie: contenuto se tensione massima ≤ 2, a fatica se ≤ 5.
+- Numeri iniziali (D-036, scelti dalla sessione principale, misurati col bot): 4 squadre, 6 steward, 1 mediatore. Pressioni per ondata: corteo 6 dalla strada di Kiln, arrivi 2, piazzale 2 · curve 5 e 4, piazzale 1 · deflusso 4 e 3, piazzale 3. Soglie: contenuto se tensione massima ≤ 2, a fatica se ≤ 5.
 - Misura (node tools/bot.mjs 1000, semi 1…1000): giocatore casuale 28 contenuto / 565 a fatica / 407 degenerato (tensione massima media 5,19, mediana 5, da 1 a 9); giocatore attento 1000 contenuto; giocatore peggiore 1000 degenerato. 0 blocchi.
 - Testi di e01 (data/testi/it/e01.json): approvati per ora (D-043), da rivedere dopo la prova sul telefono.
 
@@ -53,14 +53,14 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Variabili nuove: `credito` (0-10, parte da 5: comando, club e stampa), `informatore_pagato`, `presidente_incontrato` (fili per gli episodi successivi).
 - Esiti: contenuto se tensione massima ≤ 3 e credito ≥ 3; a fatica se tensione ≤ 6; altrimenti degenerato.
 - Misura (node tools/bot.mjs 1000): casuale 16 / 693 / 291 (contenuto / a fatica / degenerato), tensione massima mediana 6; attento solo sulla tensione 0 / 1000 / 0 (spende troppo credito); peggiore 0 / 0 / 1000; schieramento attento con scelte a caso 126 / 174 / 0 su 300. 0 blocchi.
-- Ribilanciamento dopo il collaudo C-01 (C-002): il credito costa tensione, niente opzioni dominate, «incrocio» pesa, nel deflusso si riforma il corteo di Cinderwick. Misura nuova (node tools/bot.mjs 1000): casuale 2 / 401 / 597, stelle 0★ 597 · 1★ 393 · 2★ 10 · 3★ 0; attento 0 / 1000 / 0 (2★); equilibrato 1000 / 0 / 0 (3★); peggiore 0 / 0 / 1000. Su tutte le 62.208 combinazioni di risposte con schieramento attento: 0★ 7.432 · 1★ 39.656 · 2★ 12.886 · 3★ 2.234.
+- Ribilanciamento dopo il collaudo C-01 (C-002): il credito costa tensione, niente opzioni dominate, «incrocio» pesa, nel deflusso si riforma il corteo di Kiln. Misura nuova (node tools/bot.mjs 1000): casuale 2 / 401 / 597, stelle 0★ 597 · 1★ 393 · 2★ 10 · 3★ 0; attento 0 / 1000 / 0 (2★); equilibrato 1000 / 0 / 0 (3★); peggiore 0 / 0 / 1000. Su tutte le 62.208 combinazioni di risposte con schieramento attento: 0★ 7.432 · 1★ 39.656 · 2★ 12.886 · 3★ 2.234.
 - Testi: bozza della sessione principale, da far giudicare al PO dopo la prova della resa v2.
 
 - Giudizio del PO su e01 (2026-10-11, PO-037): «Primo episodio carino».
 
 ## e02 «Ospiti numerosi» (D-071…D-074)
-- Larkspire Athletic in casa contro i Calderholt Rovers, che arrivano in treno da fuori città. Due treni, uno in ritardo; gira una voce di biglietti falsi.
-- Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Larkspire. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 16 chiamate.
+- Skyfield Athletic in casa contro i Square Rovers, che arrivano in treno da fuori città. Due treni, uno in ritardo; gira una voce di biglietti falsi.
+- Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Skyfield. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 16 chiamate.
 - Dilemma (D-073): scortare gli ospiti o contenerli in stazione. Novità (D-072): stazione e biglietti falsi ai tornelli.
 - Fili: se in e01 hai pagato l'informatore, ti segnala i venditori di biglietti e un furgone grigio senza targa (variabile nuova `furgone_visto`, prima comparsa del furgone, indice e09).
 - Testi: bozza della sessione principale, da far giudicare al PO.
@@ -72,8 +72,8 @@ e02 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000
 e02 · scelte a caso con schieramento attento: {"contenuto":82,"contenuto_a_fatica":181,"degenerato":37}
 
 ## e03 «Notte di coppa» (D-081…D-083)
-- Coppa, sera infrasettimanale: Larkspire Athletic in casa contro il Quillhaven Albion (club inventato, D-083), seicento ospiti in pullman. Lo stadio è a cinquanta metri dalle case: il comitato dei residenti protesta.
-- Settori: vie del quartiere, parcheggi, piazzale, curva ospiti, curva Larkspire. Quattro ondate: il tramonto, primo tempo, supplementari, l'uscita di notte. 14 chiamate.
+- Coppa, sera infrasettimanale: Skyfield Athletic in casa contro il Garden Albion (club inventato, D-083), seicento ospiti in pullman. Lo stadio è a cinquanta metri dalle case: il comitato dei residenti protesta.
+- Settori: vie del quartiere, parcheggi, piazzale, curva ospiti, curva Skyfield. Quattro ondate: il tramonto, primo tempo, supplementari, l'uscita di notte. 14 chiamate.
 - Dilemma (D-081): quartiere o stadio. Novità (D-082): transenne fisse (2), che una volta montate restano fino a fine serata e si montano solo dove servono (quartiere, strade, piazzale). Trappola voluta: i parcheggi si riempiono subito, le proteste del quartiere crescono verso mezzanotte.
 - Fili: cartelloni dello stadio nuovo (prima comparsa, D-069), nel briefing (centrale radio: nessun permesso in comune) e nella chiamata del comitato, senza scelta (D-084). Premi di campagna: il presidente spegne le luci esterne se lo hai incontrato in e01; il furgone grigio torna nei parcheggi se hai pagato l'informatore e lo hai annotato in e02.
 - Testi: bozza della sessione principale, da far giudicare al PO.
@@ -87,10 +87,10 @@ e03 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000
 
 
 ## Decisioni del consolidamento (2026-10-11, D-098…D-101)
-- Talpa: Gianni Lavezzari, responsabile della sicurezza del Cinderwick United; in e01 è la fonte che dà l'informazione falsa sul corteo. Smascherato in e33.
+- Talpa: Gianni Lavezzari, responsabile della sicurezza del Kiln United; in e01 è la fonte che dà l'informazione falsa sul corteo. Smascherato in e33.
 - Costruttore: impresa «Varrone & Figli»; l'erede Tullio Varrone guida il progetto dello stadio nuovo e protegge Ferrigno. Sotto inchiesta grazie al fascicolo (e31).
 - Finale agrodolce (e36): inchiesta sul costruttore; conferma o sostituzione del protagonista secondo la fiducia; il vice paga la scommessa.
 - Scelte che contano: rapporto_dessi, testimone, busta, pista_cattura, fascicolo, sospetti_talpa (data/stato.json).
 - Testi: battute entro 140 caratteri, introduzioni di 2 battute.
 
-- Capo della curva Cinderwick (D-102): Tano Ferrigno, detto «il Fabbro» (prima «Dessì»).
+- Capo della curva Kiln (D-102): Tano Ferrigno, detto «il Fabbro» (prima «Dessì»).
