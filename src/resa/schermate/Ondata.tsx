@@ -46,7 +46,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   return (
     <>
       <Messaggio key={p.c.id} classe="radio ultimo" dati={`chiamata-${p.c.id}`}>
-        <Mittente icona={iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro="Urgente!" />
+        <Mittente icona={iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro="Urgente!" urgenza={!spento('C51O01')} />
         {/* C18-05: «Rispondi» dentro il fumetto, sotto il mittente: fisso in basso copriva il testo. Rosso C42R01: fisso. */}
         {serve && !spento('C42R01') && indicatore}
         {/* PO-089 (scelta A del PO): vignetta piccola a sinistra del testo, dentro il fumetto */}

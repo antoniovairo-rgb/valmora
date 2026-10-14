@@ -47,3 +47,15 @@ main:not(.rosso-c44i02) .info-ondata .info::after { inset: calc(var(--spazio-3) 
 .vignetta .v-club { fill: none; stroke-linecap: round; }
 /* D-119: riquadro stretto del nome in città (stesso carattere, minimo leggibile): interlinea 1 e margini interni di 1 px */
 .mappa.citta .settore-nome.stretto { padding: 0 var(--spazio-px); line-height: 1; }
+/* D-118 (PO-078 A): nel briefing la vignetta della fonte al posto dell'avatar: alta come l'avatar, larga in proporzione (16:9) */
+.figura-fonte { flex: none; display: block; height: var(--avatar); width: var(--avatar); /* misura: più larga dell'avatar il nome va a capo (+19 px in 12 passi su 108 già a 56 px) */ }
+.figura-fonte > .vignetta { width: 100%; height: 100%; min-height: 0; margin: 0; border: var(--bordo-fine) solid var(--nero); }
+/* D-120 (PO-085, provino B): spicchio d'orologio magenta che si svuota in 8 s accanto al timbro «Urgente!»; fermo a metà
+   con il movimento ridotto. Solo grafica: nessun tempo limite. Rosso C51O01: niente orologio. */
+@property --spicchio { syntax: '<angle>'; inherits: false; initial-value: 360deg; }
+/* bollino sull'angolo dell'avatar, fuori dalla riga: nella riga mandava a capo il nome (109 chiamate su 142 più alte),
+   sull'angolo del fumetto copriva «Urgente!» (13 chiamate). L'avatar è decorativo; il nome comincia dopo lo spazio. */
+.chi:has(.orologio) { position: relative; }
+.chi .orologio { position: absolute; top: calc(var(--spazio-3) * -1); left: calc(var(--spazio-3) * -1); z-index: 1; width: calc(var(--tocco-min) - var(--spazio-3)); height: calc(var(--tocco-min) - var(--spazio-3)); border: var(--bordo) solid var(--nero); border-radius: var(--raggio-tondo); box-shadow: var(--ombra-1); background: conic-gradient(var(--magenta) var(--spicchio), var(--bianco) 0); animation: spicchio 8s linear infinite; }
+@keyframes spicchio { from { --spicchio: 360deg; } to { --spicchio: 0deg; } }
+@media (prefers-reduced-motion: reduce) { .chi .orologio { animation: none; --spicchio: 180deg; } }

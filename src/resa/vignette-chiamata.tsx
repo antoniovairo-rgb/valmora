@@ -54,14 +54,14 @@ function Chi(p: { chi: Chi }) {
   );
 }
 
-export function VignettaChiamata(p: { m: Missione; c: Chiamata; variabili?: Variabili }) {
+export function VignettaChiamata(p: { m: Missione; c: Chiamata; variabili?: Variabili; ritaglio?: string }) {
   const s = p.m.mappa.settori.find((x) => x.id === p.c.settore);
   const luogo = s ? LUOGHI[s.tipo] ?? 'piazza' : 'sala';
   const chi = chiDi(p.c.fonte);
   const evento = gruppoEvento(p.m, p.c, p.variabili); // D-112 punto 5: cosa succede sul settore in questa ondata
   const colore = s?.club ? club.get(s.club)?.colori?.primario : undefined;
   return (
-    <Vignetta fissa nome={`chiamata-${luogo}-${chi}`} titolo={`Chiamata: ${luogo}, ${chi}${evento ? `, ${evento}` : ''}`} evento={evento ?? 'nessuno'}>
+    <Vignetta fissa nome={`chiamata-${luogo}-${chi}`} titolo={`Chiamata: ${luogo}, ${chi}${evento ? `, ${evento}` : ''}`} evento={evento ?? 'nessuno'} ritaglio={p.ritaglio}>
       <Sfondo luogo={luogo} colore={colore} />
       {/* PO-092: ombra a retino sul primo piano (stile C) */}
       <path d="M0 150 L110 180 H0 Z" className="v-ombra" />
