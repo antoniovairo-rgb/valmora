@@ -9,7 +9,7 @@ import { spento } from '../../interruttori.ts';
 import type { Missione } from '../../logica/tipi.ts';
 
 export type Spalti = 'pieni' | 'arrivo' | 'deflusso';
-export interface Corteo { settore: string; verso: 'entra' | 'esce' }
+export interface Corteo { settore: string; verso: 'entra' | 'esce'; /** C-021: club dei tifosi dell'evento (dati), se c'è */ club?: string }
 export interface Folla { spalti: Spalti; cortei: Corteo[] }
 
 /** Eventi che vogliono dire gente che cammina in strada. */
@@ -22,7 +22,16 @@ export function follaDellOndata(m: Missione, n: number): Folla {
   const partita = (k: number) => (m.ondate[k - 1]?.eventi ?? []).some((e) => e.tipo === 'curva');
   if (partita(n)) return { spalti: 'pieni', cortei: [] };
   const dopo = eventi.some((e) => e.tipo === 'deflusso') || m.ondate.slice(0, n - 1).some((o) => o.eventi.some((e) => e.tipo === 'curva'));
-  const cortei = [...new Set(eventi.filter((e) => IN_STRADA.has(e.tipo) && strade.includes(e.settore)).map((e) => e.settore))]
-    .map((settore): Corteo => ({ settore, verso: dopo ? 'esce' : 'entra' }));
+  const inStrada = eventi.filter((e) => IN_STRADA.has(e.tipo) && strade.includes(e.settore));
+  // C-021: se un evento della strada dice di che club sono i tifosi, il corteo è di quel club. Rosso C49E01: no.
+  const cortei = [...new Set(inStrada.map((e) => e.settore))]
+    .map((settore): Corteo => {
+      const club = spento('C49E01') ? undefined : inStrada.find((e) => e.settore === settore && e.club)?.club;
+      return { settore, verso: dopo ? 'esce' : 'entra', ...(club ? { club } : {}) };
+    });
   return { spalti: dopo ? 'deflusso' : 'arrivo', cortei };
 }
+
+/** C21-01: i token dei colori del corteo quando non si sa di chi sia: la stessa famiglia di grigi della folla. Prima era
+ *  un arancio (--mappa-corteo-1) a ΔE 8 dal Cinderwick: la gente «neutra» sembrava del Cinderwick. Rosso C49C01. */
+export const neutroCorteo = (): [string, string] => (spento('C49C01') ? ['--mappa-corteo-1', '--mappa-corteo-2'] : ['--mappa-folla-2', '--mappa-folla-3']);

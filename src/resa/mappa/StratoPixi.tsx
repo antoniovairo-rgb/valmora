@@ -5,11 +5,12 @@
 import { Application, extend, useApplication } from '@pixi/react';
 import { Container, Graphics, Particle, ParticleContainer, Sprite, Texture, type Ticker } from 'pixi.js';
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
-import type { Folla } from './folla.ts';
+import { neutroCorteo, type Folla } from './folla.ts';
+import { club as datiClub } from '../dati.ts';
 import { useRidisegno } from './ridisegno.ts';
 import { costruisciDinamica, dinamicaDi } from './dinamica.ts';
 import { spento } from '../../interruttori.ts';
-import { bezier, canvasAlone, disegnaSfondo, disponi, token, type Atmosfera, type Colori } from './sfondo.ts';
+import { bezier, canvasAlone, colore, disegnaSfondo, disponi, token, type Atmosfera, type Colori } from './sfondo.ts';
 
 extend({ Container });
 
@@ -72,7 +73,10 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     // Un corteo per ogni strada con gente in strada in questa ondata: verso lo stadio o, dopo, via dallo stadio.
     const cortei = folla0.cortei.flatMap((c) => {
       const v = animati.viali.find((x) => x.id === c.settore);
-      return v ? [{ ...c, punti: v.punti, colori: animati.coloriViali[c.settore] ?? animati.coloriCorteo }] : [];
+      // C-021: club dell'evento → club della strada → curva omonima → neutro grigio (gli ultimi tre in coloriViali)
+      const delClub = c.club ? datiClub.get(c.club)?.colori : undefined;
+      const colori: [string, string] = delClub ? [colore(delClub.primario)!, colore(delClub.secondario)!] : animati.coloriViali[c.settore] ?? animati.coloriCorteo;
+      return v ? [{ ...c, punti: v.punti, colori, origine: delClub?.primario ?? animati.origineViali[c.settore] }] : [];
     });
     const marcia = cortei.flatMap((c) => Array.from({ length: 70 }, (_, i) => {
       const q = new Particle({ texture: bianco, scaleX: 2.2 * unita, scaleY: 2.2 * unita });
@@ -83,7 +87,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     el?.setAttribute('data-dettagli', animati.dettagli.join(','));
     el?.setAttribute('data-stadio', animati.stadio); // S-25: e dove sta, per controllare che non copra i settori
     el?.setAttribute('data-stadio-ellisse', disp.stadio ? [disp.stadio.cx, disp.stadio.cy, disp.stadio.rx, disp.stadio.ry].map(Math.round).join(',') : '');
-    el?.setAttribute('data-colori-cortei', Object.entries(animati.origineViali).map(([id, o]) => `${id}=${o}`).join(','));
+    el?.setAttribute('data-colori-cortei', Object.entries({ ...animati.origineViali, ...Object.fromEntries(cortei.map((c) => [c.settore, c.origine])) }).map(([id, o]) => `${id}=${o}`).join(','));
     el?.setAttribute('data-folla', `${folla0.spalti}|${cortei.map((c) => `${c.settore}>${c.verso}`).join(',')}`);
     scena.addChild(corteo);
 
@@ -152,7 +156,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     livello.removeChildren().forEach((c) => c.destroy());
     const q = punti.find((x) => x.id === p.citato);
     const d = dinamicaDi(p.citato, q?.tipo, vialiDin.current);
-    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, coloriDin.current[d.settore] ?? [token('--mappa-corteo-1'), token('--mappa-corteo-2')], p.folla.spalti === 'deflusso') : null;
+    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, coloriDin.current[d.settore] ?? neutroCorteo().map(token) as [string, string], p.folla.spalti === 'deflusso') : null;
     muoviDin.current?.(0);
     p.contenitore.current?.setAttribute('data-dinamica', d ? `${d.tipo}:${d.settore}` : '');
   }, [punti, pianta, volte, p.citato, p.folla.spalti, p.contenitore]);

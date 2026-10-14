@@ -45,3 +45,5 @@ main:not(.rosso-c44i02) .info-ondata .info::after { inset: calc(var(--spazio-3) 
 /* D-112 punto 5: tratti coi colori del club (gradinate della curva, sciarpa del tifo) nella vignetta della chiamata.
    «.v-linea» imponeva tratto nero e sottile, e i colori del club non si vedevano. Rosso C45E02: «.v-linea», come prima. */
 .vignetta .v-club { fill: none; stroke-linecap: round; }
+/* D-119: riquadro stretto del nome in città (stesso carattere, minimo leggibile): interlinea 1 e margini interni di 1 px */
+.mappa.citta .settore-nome.stretto { padding: 0 var(--spazio-px); line-height: 1; }

@@ -8,6 +8,7 @@ import { creaCaso } from '../../logica/caso.ts';
 import { spento } from '../../interruttori.ts';
 import { cartelloni, notte, parcheggi, quartiere } from './notte.ts';
 import { disegnaDettagli, leggiDettaglio } from './dettagli.ts';
+import { neutroCorteo } from './folla.ts';
 
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number; vuoto?: boolean }
@@ -247,7 +248,8 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
     f.save(); f.globalAlpha = 0.6; disegnaDettagli(f, d.dettagli, r); f.restore();
   }
   const corteo = d.club.corteo;
-  const coppia = (c: Colori | undefined): [string, string] => (c ? [colore(c.primario)!, colore(c.secondario)!] : [token('--mappa-corteo-1'), token('--mappa-corteo-2')]);
+  const neutro = neutroCorteo();
+  const coppia = (c: Colori | undefined): [string, string] => (c ? [colore(c.primario)!, colore(c.secondario)!] : [token(neutro[0]), token(neutro[1])]);
   const vecchio = spento('C43C02');
   return { folla, dettagli: d.cartelloni ? ['cartelloni_stadio_nuovo', ...dettagli] : dettagli, viali: d.viali.map((punti, i) => ({ id: d.idViali[i] ?? '', punti })), fari, stadio: stadio ? (stadio.vuoto ? 'vuoto' : 'pieno') : '',
     coloriCorteo: coppia(corteo),

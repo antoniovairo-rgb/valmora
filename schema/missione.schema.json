@@ -238,6 +238,10 @@
                 "pressione": {
                   "type": "integer",
                   "minimum": 0
+                },
+                "club": {
+                  "$ref": "comune.schema.json#/$defs/id",
+                  "description": "C-021: club dei tifosi dell'evento in strada (colori del corteo); se manca, quello della strada"
                 }
               }
             }

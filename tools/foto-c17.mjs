@@ -184,12 +184,15 @@ export async function controllaIconeEffetti(pagina, atteso, c, dove) {
 /** PO-102: ogni corteo in strada ha i colori dei tifosi che i dati mettono lì: il club della strada, altrimenti quello
  *  della curva con lo stesso nome (strada_larkspire → curva_larkspire); se i dati non lo dicono, neutri. Si legge
  *  «data-colori-cortei» (strada=primario del club usato, o «neutro»). Rosso VALMORA_ROSSI=C43C02: la curva ospiti. */
-export async function controllaColoriCortei(pagina, m, club, atteso, dove) {
+export async function controllaColoriCortei(pagina, m, club, atteso, dove, n) {
   if ((await pagina.getAttribute('.mappa', 'data-mappa')) !== 'webgl') return;
   const visti = Object.fromEntries(((await pagina.getAttribute('.mappa', 'data-colori-cortei')) ?? '').split(',').filter(Boolean).map((x) => x.split('=')));
   for (const s of m.mappa.settori.filter((x) => x.tipo === 'strada')) {
     const curva = m.mappa.settori.find((c) => c.tipo === 'curva' && c.id === `curva_${s.id.replace(/^[a-z]+_/, '')}`);
-    const di = s.club ?? curva?.club;
+    // C-021: un corteo di quest'ondata col club sull'evento è di quel club (precedenza sul club della strada)
+    const cortei = ((await pagina.getAttribute('.mappa', 'data-folla')) ?? '').split('|')[1]?.split(',').map((x) => x.split('>')[0]) ?? [];
+    const dell = n && cortei.includes(s.id) ? (m.ondate[n - 1]?.eventi ?? []).find((e) => e.settore === s.id && e.club && ['corteo', 'arrivo', 'deflusso', 'folla', 'raduno', 'movimento', 'fuga'].includes(e.tipo))?.club : undefined;
+    const di = dell ?? s.club ?? curva?.club;
     const atteso_ = di ? club[di]?.colori?.primario ?? 'neutro' : 'neutro';
     atteso(`${dove}: corteo di «${s.id}» coi colori «${visti[s.id]}», i dati dicono «${di ?? 'non si sa'}» (${atteso_}) (PO-102)`, visti[s.id] === atteso_);
   }
@@ -232,6 +235,7 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
     if (a && b && (a.p !== b.p || a.w !== b.w || Math.abs(a.dx - b.dx) > 1 || Math.abs(a.dy - b.dy) > 1)) stantii.push(`${id} ${a.p}/${b.p} ${a.w || '-'}/${b.w || '-'}`);
   }
   atteso(`città: dopo un cambio di misura del nome il posto non si rifà in ${stantii.length} casi: ${stantii.join('; ')} (strumento instabile, C20-03)`, !stantii.length);
+  const giro = async () => {
   const male = [];
   for (const st of await pagina.$$eval('[data-stagione]', (xs) => xs.map((x) => x.dataset.stagione))) {
     await pagina.click(`[data-stagione="${st}"]`); await pagina.waitForTimeout(150);
@@ -241,16 +245,31 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
         const n = document.querySelector(`[data-episodio="${id}"].acceso .settore-nome`);
         if (!n) return [];
         const r = n.getBoundingClientRect();
-        return [...document.querySelectorAll('[data-episodio] .settore-punto')].filter((d) => d.closest('[data-episodio]').dataset.episodio !== id).filter((d) => {
+        const dischi = [...document.querySelectorAll('[data-episodio] .settore-punto')].filter((d) => d.closest('[data-episodio]').dataset.episodio !== id).filter((d) => {
           const c = d.getBoundingClientRect(), cx = c.left + c.width / 2, cy = c.top + c.height / 2, raggio = c.width / 2;
           const px = Math.max(r.left, Math.min(cx, r.right)), py = Math.max(r.top, Math.min(cy, r.bottom));
           return Math.hypot(px - cx, py - cy) < raggio - 0.5;
         }).map((d) => d.closest('[data-episodio]').dataset.episodio);
+        // D-119: nemmeno le stelline degli altri episodi, né il bordo della mappa (5 px)
+        const stelle = [...document.querySelectorAll('[data-episodio] .settore-unita')].filter((d) => d.closest('[data-episodio]').dataset.episodio !== id).filter((d) => {
+          const c = d.getBoundingClientRect(); return Math.min(r.right, c.right) - Math.max(r.left, c.left) > 0.5 && Math.min(r.bottom, c.bottom) - Math.max(r.top, c.top) > 0.5;
+        }).map((d) => `stelle ${d.closest('[data-episodio]').dataset.episodio}`);
+        const m = document.querySelector('.mappa').getBoundingClientRect();
+        const bordo = r.left < m.left + 5 || r.right > m.right - 5 || r.top < m.top + 5 || r.bottom > m.bottom - 5 ? ['bordo'] : [];
+        return [...dischi, ...stelle, ...bordo];
       }, id);
       if (su.length) male.push(`${id} su ${su.join('+')}`);
     }
   }
-  atteso(`città ${pagina.viewportSize().width}, episodi conclusi: il nome dell'episodio scelto tocca altri dischi in ${male.length} casi: ${male.join(', ')} (C20-03)`, !male.length);
+  atteso(`città ${pagina.viewportSize().width}×${pagina.viewportSize().height}, episodi conclusi: il nome dell'episodio scelto tocca dischi, stelline o bordo in ${male.length} casi: ${male.join(', ')} (C20-03, D-119)`, !male.length);
+  };
+  await giro();
+  // D-119 vale a 360 e a 375: si rifà a 375×667 e si torna alla misura di prima
+  const prima375 = pagina.viewportSize();
+  await pagina.setViewportSize({ width: 375, height: 667 }); await pagina.reload(); await scena('titolo');
+  await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  await giro();
+  await pagina.setViewportSize(prima375);
 }
 
 /** D-112 punto 5: la vignetta della chiamata mostra il gruppo dell'evento che i dati mettono sul settore in quell'ondata
