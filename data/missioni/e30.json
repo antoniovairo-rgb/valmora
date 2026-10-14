@@ -284,6 +284,7 @@
       "eventi": [
         {
           "id": "silenzio_strada",
+          "club": "cinderwick_united",
           "tipo": "corteo",
           "settore": "strada_cinderwick",
           "pressione": 4
@@ -449,6 +450,7 @@
         },
         {
           "id": "coda_corteo",
+          "club": "cinderwick_united",
           "tipo": "folla",
           "settore": "strada_cinderwick",
           "pressione": 3
@@ -606,6 +608,7 @@
       "eventi": [
         {
           "id": "fiaccole",
+          "club": "cinderwick_united",
           "tipo": "corteo",
           "settore": "strada_cinderwick",
           "pressione": 5
