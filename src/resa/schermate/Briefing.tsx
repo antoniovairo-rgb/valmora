@@ -8,11 +8,15 @@ import { Icona, iconaFonte } from '../icone.tsx';
 import { Mittente } from './Fumetto.tsx';
 import { aCascata, Passi } from './Passi.tsx';
 import { Messaggio } from './Scena.tsx';
+import { spento } from '../../interruttori.ts';
+import { VignettaChiamata } from '../vignette-chiamata.tsx';
 
 export function Briefing(p: { m: Missione; visti: number; vai: (visti: number) => void; inizia: () => void }) {
   const fonte = (b: Missione['briefing'][number], i: number, ultimo: boolean) => (
     <Messaggio key={i} classe={`radio${ultimo ? ' ultimo' : ''}`} dati={`fonte-${i + 1}`}>
-      <Mittente icona={iconaFonte(b.fonte)} nome={t(`fonte.${b.fonte}`)} etichetta={t(`affidabilita.${b.affidabilita}`)} />
+      {/* D-118 (PO-078, opzione A): la vignetta prende il posto dell'avatar, 78×44 px, zero altezza in più. Rosso C51A01: avatar. */}
+      <Mittente icona={iconaFonte(b.fonte)} nome={t(`fonte.${b.fonte}`)} etichetta={t(`affidabilita.${b.affidabilita}`)}
+        figura={spento('C51A01') ? undefined : <VignettaChiamata m={p.m} c={{ id: `briefing-${i + 1}`, fonte: b.fonte, settore: b.settore, testo: b.testo, opzioni: [] }} ritaglio="xMaxYMid slice" />} />
       <p className="testo-radio">{t(b.testo)}</p>
       {b.settore && <p className="tenue">Settore: {t(`settore.${b.settore}`)}</p>}
     </Messaggio>

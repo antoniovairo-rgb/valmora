@@ -42,14 +42,17 @@ export function Testata(p: { numero: string; etichetta: string; titolo: ReactNod
   );
 }
 
-export function Mittente(p: { icona: LucideIcon; nome: string; etichetta?: string; timbro?: string; vice?: boolean }) {
+export function Mittente(p: { icona: LucideIcon; nome: string; etichetta?: string; timbro?: string; vice?: boolean; figura?: ReactNode; urgenza?: boolean }) {
   return (
     <div className="chi">
-      <span className={`avatar${p.vice ? ' vice' : ''}`}><Icona di={p.icona} /></span>
+      {/* D-118: nel briefing al posto dell'avatar c'è la vignetta della fonte (luogo e chi parla), alta come l'avatar */}
+      {p.figura ? <span className="figura-fonte" data-figura-fonte>{p.figura}</span> : <span className={`avatar${p.vice ? ' vice' : ''}`}><Icona di={p.icona} /></span>}
       <div>
         <div className="chi-nome">{p.nome}</div>
         {p.etichetta && <span className="etichetta">{p.etichetta}</span>}
       </div>
+      {/* D-120 (PO-085): spicchio d'orologio che si svuota accanto al timbro; solo grafica, nessun tempo limite */}
+      {p.timbro && p.urgenza && <span className="orologio" data-urgenza aria-hidden="true" />}
       {p.timbro && <span className="timbro">{p.timbro}</span>}
     </div>
   );

@@ -37,10 +37,35 @@ export async function controllaCitta(pagina, atteso, dove) {
 
 /** PO-092: la vignetta (fuori dalla chiamata) prende lo spazio libero: o la pagina è piena, o la vignetta è al massimo. */
 export async function controllaRiempi(pagina, atteso, nome) {
+  // D-118 (PO-078 A): nel briefing ogni fonte visibile ha la vignetta al posto dell'avatar, alta come l'avatar (zero
+  // altezza in più). Rosso VALMORA_ROSSI=C51A01: l'avatar di prima.
+  const fonte = await pagina.evaluate(() => {
+    if (!document.querySelector('.scena[data-scena="briefing"]')) return null;
+    const m = [...document.querySelectorAll('.scena [data-messaggio^="fonte-"]')].find((x) => x.getClientRects().length && !x.closest('[hidden]'));
+    if (!m) return null;
+    const f = m.querySelector('[data-figura-fonte] svg.vignetta'), avatar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--avatar'));
+    const r = f?.getBoundingClientRect();
+    return { c: !!f, h: r ? Math.round(r.height) : 0, w: r ? Math.round(r.width) : 0, avatar };
+  });
+  // D-120 (PO-085): nella chiamata lo spicchio d'orologio c'è, sta nella finestra e non copre testi né comandi (bollino
+  // sull'angolo del fumetto, fuori dalla riga del mittente). Rosso VALMORA_ROSSI=C51O01: niente orologio.
+  const orologio = await pagina.evaluate(() => {
+    const m = document.querySelector('.scena[data-scena="chiamata"] .messaggio.ultimo');
+    if (!m) return null;
+    const o = m.querySelector('[data-urgenza]');
+    if (!o) return { c: false, sopra: [] };
+    const a = o.getBoundingClientRect(), proprio = (e) => [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+    const sopra = [...document.querySelectorAll('body *')].filter((e) => e !== o && !e.contains(o) && !e.closest('svg') && e.getClientRects().length && (e.matches('button, a') || proprio(e))).filter((e) => {
+      const b = e.getBoundingClientRect(); return Math.min(a.right, b.right) - Math.max(a.left, b.left) > 0.5 && Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 0.5;
+    }).map((e) => e.textContent.trim().slice(0, 20));
+    return { c: true, sopra, dentro: a.left >= 0 && a.right <= innerWidth };
+  });
+  if (orologio) atteso(`${nome}: spicchio d'orologio ${orologio.c ? `sopra «${orologio.sopra.join(', ')}»${orologio.dentro ? '' : ' fuori dalla finestra'}` : 'assente'} (D-120)`, orologio.c && !orologio.sopra.length && orologio.dentro);
+  if (fonte) atteso(`${nome}: fonte del briefing ${fonte.c ? `con vignetta ${fonte.w}×${fonte.h}` : 'senza vignetta'} (serve ${fonte.avatar}×${fonte.avatar} px, al posto dell'avatar) (D-118)`, fonte.c && fonte.h <= fonte.avatar + 1 && fonte.w <= fonte.avatar + 1 && fonte.w >= fonte.avatar - 1); // 42×42: più larga manda a capo il nome (misura del 14/10)
   // la finestra può essere appena tornata da 760 a 800 (controllaAltezza): si lascia arrivare l'evento «resize»
   await pagina.evaluate(() => new Promise((ok) => requestAnimationFrame(() => requestAnimationFrame(ok)))); await pagina.waitForTimeout(100);
   const r = await pagina.evaluate(() => {
-    const v = [...document.querySelectorAll('svg.vignetta')].find((x) => !x.closest('.chiamata-corpo') && x.getClientRects().length);
+    const v = [...document.querySelectorAll('svg.vignetta')].find((x) => !x.closest('.chiamata-corpo, .figura-fonte') && x.getClientRects().length); // fisse per scelta: chiamata (PO-089 A) e fonte del briefing (D-118)
     if (!v) return null;
     const main = document.querySelector('main'), app = main.parentElement;
     const libero = innerHeight - (main.getBoundingClientRect().bottom + scrollY + parseFloat(getComputedStyle(main).marginBottom) + parseFloat(getComputedStyle(app).paddingBottom));
