@@ -73,7 +73,12 @@ export function App() {
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
   const [segni, setSegni] = useState<Segno[]>([]); // PO-085: segni dell'ultima risposta sulla mappa, per 1,8 s
   const timerSegni = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const mostraSegni = (xs: Segno[]) => { if (timerSegni.current) clearTimeout(timerSegni.current); setSegni(xs); timerSegni.current = setTimeout(() => setSegni([]), 1800); };
+  const mostraSegni = (xs: Segno[]) => {
+    if (timerSegni.current) clearTimeout(timerSegni.current); setSegni(xs); timerSegni.current = setTimeout(() => setSegni([]), 1800);
+    // C20-07: se la mappa è scorsa via (opzione toccata in fondo alla pagina), torna in vista. Rosso C44E04: no.
+    const mappa = document.querySelector('.mappa');
+    if (xs.length && mappa && !spento('C44E04') && mappa.getBoundingClientRect().top < 0) mappa.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  };
   const contaVoli = useRef(0);
   const vola = (risorsa: string, settore: string) => {
     document.documentElement.dataset.volo = `${risorsa}>${settore}`; // per le foto: anche quando il volo non si vede
@@ -241,11 +246,12 @@ export function App() {
           const ora = icOra();
           if (!spento('C05R01') && (!ora || !chiamateAperte(m, ora).some((c) => c.id === f.chiamata.id))) return; // già risposta
           if (!ora) return;
-          conIc(rispondi(m, ora, f.chiamata.id, o, dichiarate));
+          const dopo = rispondi(m, ora, f.chiamata.id, o, dichiarate);
+          conIc(dopo);
           const scelta = f.chiamata.opzioni.find((x) => x.id === o)!;
           // PO-089: le squadre che la risposta impegna raggiungono il punto della chiamata. Rosso C32D01: no.
           if (f.chiamata.settore && !spento('C32D01')) for (const e of scelta.effetti) if ('riserva' in e && e.valore < 0) vola(e.riserva, f.chiamata.settore);
-          mostraSegni(segniDi(f.chiamata, scelta)); // PO-085: la conseguenza sulla mappa, subito
+          mostraSegni(segniDi(f.chiamata, scelta, ora, dopo)); // PO-085: la conseguenza sulla mappa, subito (C20-07: solo se cambia)
           if (scelta.risposta) setEco(scelta);
         }} />;
     } else if (f.tipo === 'chiusura') {

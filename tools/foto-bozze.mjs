@@ -6,7 +6,7 @@
 import { leggiDati } from './dati-disco.mjs';
 import { controllaHome, controllaTripla } from './foto-club.mjs';
 import { controllaNomiSala } from './foto-c15.mjs';
-import { controllaCitta } from './foto-c17.mjs';
+import { controllaCitta, controllaNomiCittaTutti } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
@@ -44,6 +44,7 @@ export async function apriTutte(c) {
   const sal = JSON.stringify(salvataggioTutti(missioni, v0));
   const finestra = pagina.viewportSize();
   await pagina.setViewportSize({ width: finestra.width, height: 760 }); // il telefono di riferimento (PO-045, PO-052)
+  await controllaNomiCittaTutti(pagina, atteso, sal, scena); // C20-03
   // PO-091: con nessun episodio superato, la stagione 2 è chiusa e la scheda dice cosa la apre; «Prossimo» porta all'episodio 01
   await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, JSON.stringify({ ...JSON.parse(sal), episodi: {}, missioni_concluse: [] })]);
   await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');

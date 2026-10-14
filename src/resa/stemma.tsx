@@ -37,7 +37,10 @@ export function Stemma(p: { c: Club }) {
 
 /** I club delle curve della missione (di solito due): la sfida della serata. Niente se non ci sono curve. */
 export function Sfida(p: { m: Missione }) {
-  const lista = p.m.mappa.settori.map((s) => s.club && club.get(s.club)).filter((c): c is Club => !!c);
+  // C20-08: la sfida è fra i club delle CURVE, ognuno una volta: con PO-102 anche le strade hanno un club (i loro
+  // tifosi), e la sala diceva «Calderholt contro Calderholt contro Larkspire». Rosso C44S03: tutti i settori, come prima.
+  const ids = p.m.mappa.settori.filter((s) => spento('C44S03') || s.tipo === 'curva').map((s) => s.club).filter((x): x is string => !!x);
+  const lista = (spento('C44S03') ? ids : [...new Set(ids)]).map((id) => club.get(id)).filter((c): c is Club => !!c);
   if (spento('C10C02') || lista.length === 0) return null;
   return (
     <div className="sfida" data-sfida={lista.map((c) => c.id).join(',')}>

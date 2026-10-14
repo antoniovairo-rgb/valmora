@@ -136,20 +136,33 @@ export async function controllaSfidaBusti(pagina, atteso, dove) {
   atteso(`${dove}: la sfida sta sopra i busti della vignetta per ${Math.round(area)} px² (C18-08)`, area === 0);
 }
 
-/** PO-085: dopo una risposta, ogni settore toccato dagli effetti (pressione, tensione, unità sul settore della
- *  chiamata) mostra un segno sulla mappa, e nessun altro settore. Dai dati, senza la funzione della resa. */
-export async function controllaSegni(pagina, atteso, c, op, dove) {
+/** Stato della partita in corso, letto dal salvataggio (per confrontare prima e dopo una risposta). */
+export const statoSalvato = (pagina) => pagina.evaluate(() => { try { return JSON.parse(localStorage.getItem('valmora-salvataggio'))?.in_corso ?? null; } catch { return null; } });
+
+/** PO-085, C20-07: dopo la risposta, i segni sulla mappa sono quelli degli effetti che CAMBIANO lo stato (stato prima
+ *  e dopo dal salvataggio); una chiamata senza settore ha il suo segno al centro (settore «»); le squadre dicono il
+ *  verso («+⚑» in arrivo, «−⚑» richiamate); i segni stanno nella finestra. */
+export async function controllaSegni(pagina, atteso, c, op, dove, prima) {
   if ((await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === null) return;
-  const o = c.opzioni.find((x) => x.id === op);
-  const voluti = new Set();
+  const o = c.opzioni.find((x) => x.id === op), dopo = await statoSalvato(pagina);
+  const cambia = (k, x) => !prima || !dopo || (prima[k]?.[x] ?? 0) !== (dopo[k]?.[x] ?? 0);
+  const voluti = new Set(), squadre = [];
   for (const e of o?.effetti ?? []) {
     if ('pressione' in e && e.valore) voluti.add(e.pressione);
-    if ('tensione' in e && e.valore) voluti.add(e.tensione);
-    if ('riserva' in e && e.valore && c.settore) voluti.add(c.settore);
+    if ('tensione' in e && e.valore && cambia('tensione', e.tensione)) voluti.add(e.tensione);
+    if ('riserva' in e && e.valore && cambia('riserva', e.riserva)) { voluti.add(c.settore ?? ''); squadre.push(e.valore < 0 ? '+⚑' : '−⚑'); }
   }
-  const visti = new Set(await pagina.evaluate(() => [...document.querySelectorAll('[data-segno]')].map((x) => x.dataset.segno.split(':')[0])));
-  const a = [...voluti].sort().join(','), b = [...visti].sort().join(',');
-  atteso(`${dove}: segni sulla mappa su «${b}», gli effetti toccano «${a}» (PO-085)`, a === b);
+  await pagina.waitForTimeout(60); // la mappa può tornare in vista (C20-07)
+  const segni = await pagina.evaluate(() => [...document.querySelectorAll('[data-segno]')].map((x) => {
+    const r = x.getBoundingClientRect();
+    return { dove: x.dataset.segno.split(':')[0], tipo: x.dataset.segno.split(':')[1], testo: x.textContent, vista: r.top >= 0 && r.bottom <= innerHeight };
+  }));
+  const a = [...voluti].sort().join(','), b = [...new Set(segni.map((x) => x.dove))].sort().join(',');
+  atteso(`${dove}: segni sulla mappa su «${b}», gli effetti che cambiano lo stato toccano «${a}» (PO-085, C20-07)`, a === b);
+  const viste = segni.filter((x) => x.tipo === 'squadra').map((x) => x.testo).sort().join(' '), attese = squadre.sort().join(' ');
+  atteso(`${dove}: squadre «${viste}», servono «${attese}» (C20-07)`, viste === attese);
+  const fuori = segni.filter((x) => !x.vista).map((x) => x.dove || 'centrale');
+  atteso(`${dove}: segni fuori dalla finestra su ${fuori.join(', ')} (C20-07)`, !fuori.length);
 }
 
 /** PO-085: sotto ogni opzione, le icone d'effetto sono quelle dei dati (settore, fiducia, unità), senza numeri. */
@@ -180,4 +193,31 @@ export async function controllaColoriCortei(pagina, m, club, atteso, dove) {
     const atteso_ = di ? club[di]?.colori?.primario ?? 'neutro' : 'neutro';
     atteso(`${dove}: corteo di «${s.id}» coi colori «${visti[s.id]}», i dati dicono «${di ?? 'non si sa'}» (${atteso_}) (PO-102)`, visti[s.id] === atteso_);
   }
+}
+
+/** C20-03 (C17-12): con tutti gli episodi conclusi, scelto a turno ogni episodio di ogni stagione, il nome non tocca
+ *  il cerchio di nessun altro disco (le stelline sono decorazione, non ricevono tocchi). Rosso VALMORA_ROSSI=C44N01:
+ *  solo gli 8 posti; VALMORA_ROSSI=C42N01: nome sempre sotto il disco. */
+export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena) {
+  await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), salvataggio);
+  await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  const male = [];
+  for (const st of await pagina.$$eval('[data-stagione]', (xs) => xs.map((x) => x.dataset.stagione))) {
+    await pagina.click(`[data-stagione="${st}"]`); await pagina.waitForTimeout(150);
+    for (const id of await pagina.$$eval('[data-episodio]', (xs) => xs.map((x) => x.dataset.episodio))) {
+      await pagina.click(`[data-episodio="${id}"] .settore-punto`); await pagina.waitForTimeout(80);
+      const su = await pagina.evaluate((id) => {
+        const n = document.querySelector(`[data-episodio="${id}"].acceso .settore-nome`);
+        if (!n) return [];
+        const r = n.getBoundingClientRect();
+        return [...document.querySelectorAll('[data-episodio] .settore-punto')].filter((d) => d.closest('[data-episodio]').dataset.episodio !== id).filter((d) => {
+          const c = d.getBoundingClientRect(), cx = c.left + c.width / 2, cy = c.top + c.height / 2, raggio = c.width / 2;
+          const px = Math.max(r.left, Math.min(cx, r.right)), py = Math.max(r.top, Math.min(cy, r.bottom));
+          return Math.hypot(px - cx, py - cy) < raggio - 0.5;
+        }).map((d) => d.closest('[data-episodio]').dataset.episodio);
+      }, id);
+      if (su.length) male.push(`${id} su ${su.join('+')}`);
+    }
+  }
+  atteso(`città ${pagina.viewportSize().width}, episodi conclusi: il nome dell'episodio scelto tocca altri dischi in ${male.length} casi: ${male.join(', ')} (C20-03)`, !male.length);
 }

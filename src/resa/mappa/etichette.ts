@@ -89,26 +89,39 @@ export function disponiEtichette(contenitore: HTMLElement) {
 
 /** C17-12: nella città il nome dell'episodio scelto va al posto che non copre gli altri dischi né le loro stelle.
  *  Vicino al bordo nessun posto sta dentro la mappa (e01 in alto a sinistra): il nome si sposta verso l'interno
- *  quanto basta (--nome-dx/--nome-dy, misurati qui, non scritti a mano) e il costo si conta già spostato. */
+ *  quanto basta (--nome-dx/--nome-dy, misurati qui, non scritti a mano) e il costo si conta già spostato.
+ *  C20-03: con tutti gli episodi conclusi a 360/375 nessuno degli 8 posti è libero; si provano anche piccoli
+ *  spostamenti (griglia di passo pari a un ottavo del disco, fino a un disco) e vince il posto libero col minimo
+ *  spostamento. Rosso C44N01: solo gli 8 posti, come prima. */
 export function disponiNomeCitta(contenitore: HTMLElement) {
   const s = contenitore.querySelector<HTMLElement>('[data-episodio].acceso'), nome = s?.querySelector<HTMLElement>('.settore-nome');
   if (!s || !nome) return;
   const m = contenitore.getBoundingClientRect();
+  // i dischi pesano dieci volte le stelline: se proprio non c'è un posto libero, il nome copre stelline, non dischi
   const altri = [...contenitore.querySelectorAll('[data-episodio]')].filter((x) => x !== s)
-    .flatMap((x) => [...x.querySelectorAll('.settore-punto, .settore-unita')]).map((e) => ostacolo(e.getBoundingClientRect(), STACCO));
+    .flatMap((x) => [...x.querySelectorAll('.settore-punto, .settore-unita')]).map((e) => ({ ...ostacolo(e.getBoundingClientRect(), STACCO), peso: e.classList.contains('settore-punto') && !spento('C44N01') ? 10 : 1 }));
   const sposta = (dx: number, dy: number) => { nome.style.setProperty('--nome-dx', `${dx}px`); nome.style.setProperty('--nome-dy', `${dy}px`); };
   const dentro = (a: number, b: number, min: number, max: number) => (a < min ? min - a : b > max ? max - b : 0);
-  let migliore = { posto: NOMI[0] as string, dx: 0, dy: 0, costo: Infinity };
+  const disco = s.querySelector('.settore-punto')?.getBoundingClientRect().width ?? 0;
+  const passo = disco / 8, giri = spento('C44N01') || !passo ? 0 : 8;
+  const scarti = Array.from({ length: 2 * giri + 1 }, (_, k) => (k - giri) * passo).sort((a, b) => Math.abs(a) - Math.abs(b));
+  // anche più stretto (va a capo su più righe): larghezza massima intera, 80% e 65% di --nome-max
+  const larghezze = spento('C44N01') ? [''] : ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.65)', 'calc(var(--nome-max) * 0.5)'];
+  let migliore = { posto: NOMI[0] as string, dx: 0, dy: 0, costo: Infinity, largo: '' };
   sposta(0, 0);
-  for (const posto of NOMI) {
+  for (const largo of larghezze) for (const posto of NOMI) {
+    nome.style.maxWidth = largo;
     s.setAttribute('data-nome', posto);
     const r = nome.getBoundingClientRect();
-    const dx = dentro(r.left, r.right, m.left + MARGINE, m.right - MARGINE), dy = dentro(r.top, r.bottom, m.top + MARGINE, m.bottom - MARGINE);
-    const q = { left: r.left + dx, right: r.right + dx, top: r.top + dy, bottom: r.bottom + dy };
-    const costo = altri.reduce((c, o) => c + VERA * area(q, o.vero) + area(q, o.largo) - area(q, o.vero), 0) + Math.abs(dx) + Math.abs(dy);
-    if (costo < migliore.costo) migliore = { posto, dx, dy, costo };
+    for (const ox of scarti) for (const oy of scarti) {
+      const a = { left: r.left + ox, right: r.right + ox, top: r.top + oy, bottom: r.bottom + oy };
+      const dx = ox + dentro(a.left, a.right, m.left + MARGINE, m.right - MARGINE), dy = oy + dentro(a.top, a.bottom, m.top + MARGINE, m.bottom - MARGINE);
+      const q = { left: r.left + dx, right: r.right + dx, top: r.top + dy, bottom: r.bottom + dy };
+      const costo = altri.reduce((c, o) => c + o.peso * VERA * area(q, o.vero) + area(q, o.largo) - area(q, o.vero), 0) + Math.abs(dx) + Math.abs(dy);
+      if (costo < migliore.costo) migliore = { posto, dx, dy, costo, largo };
+    }
   }
-  s.setAttribute('data-nome', migliore.posto); sposta(migliore.dx, migliore.dy);
+  nome.style.maxWidth = migliore.largo; s.setAttribute('data-nome', migliore.posto); sposta(migliore.dx, migliore.dy);
 }
 
 /** Costo di una disposizione dei soli nomi: sovrapposizioni con nomi (col distacco) e punti degli altri, bordi. */

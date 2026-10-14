@@ -40,3 +40,5 @@ main:not(.rosso-c44i02) .info-ondata .info::after { inset: calc(var(--spazio-3) 
 .effetti-opzione { display: flex; flex-wrap: wrap; gap: var(--spazio-1); margin-top: var(--spazio-1); }
 .effetto-chip { display: inline-flex; align-items: center; gap: var(--spazio-px); padding: 0 var(--spazio-1); border: var(--bordo-fine) solid var(--nero); background: var(--rosa-tenue); font: 700 var(--testo-mini) / var(--linea-stretta) var(--font); text-transform: none; letter-spacing: 0; }
 .effetto-chip .icona { width: var(--testo-mini); height: var(--testo-mini); }
+/* C20-07: segno delle squadre per una chiamata senza settore: al centro in basso della mappa, dove parte il volo */
+.mappa > .segni-effetto.centrale { left: 50%; bottom: var(--spazio-2); transform: translateX(-50%); }

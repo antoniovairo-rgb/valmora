@@ -17,7 +17,7 @@ import { livello } from '../partita.ts';
 import type { PuntoMappa } from './StratoPixi.tsx';
 import { webglDisponibile } from './webgl.ts';
 import { follaDellOndata } from './folla.ts';
-import { parolaSegno, type Segno } from './segni.ts';
+import { parolaSegno, simboloSegno, type Segno } from './segni.ts';
 
 // PixiJS pesa: si carica a parte, dopo il titolo, e solo se WebGL c'è.
 const StratoPixi = lazy(() => import('./StratoPixi.tsx').then((x) => ({ default: x.StratoPixi })));
@@ -96,6 +96,14 @@ export function Mappa(p: MappaProps) {
   return (
     <div className={`mappa${atmosfera.notte ? ' notte' : ''}`} ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
       {p.home && <TastoHome vai={p.home} angolo={angolo} />}
+      {/* C20-07: segni di una chiamata senza settore (squadre dalla centrale), al centro in basso della mappa */}
+      {(p.segni ?? []).some((x) => !x.settore) && (
+        <span className="segni-effetto centrale" role="status">
+          {(p.segni ?? []).filter((x) => !x.settore).map((x, i) => (
+            <span key={`${x.tipo}-${i}`} className={`segno-effetto ${x.tipo} ${x.verso}`} data-segno={`:${x.tipo}:${x.verso}`} aria-label={`Centrale: ${parolaSegno(x)}`}>{simboloSegno(x)}</span>
+          ))}
+        </span>
+      )}
       {conWebgl && <Suspense fallback={null}><StratoPixi contenitore={contenitore} punti={punti} margine={margine} atmosfera={atmosfera} folla={folla} citato={p.citato} pronto={() => setPronta(true)} /></Suspense>}
       {settori.map((s) => {
         const liv = p.tensione ? livello(p.tensione[s.id] ?? 0) : null;
@@ -113,7 +121,7 @@ export function Mappa(p: MappaProps) {
               <span className="segni-effetto" role="status">
                 {(p.segni ?? []).filter((x) => x.settore === s.id).map((x, i) => (
                   <span key={`${x.tipo}-${i}`} className={`segno-effetto ${x.tipo} ${x.verso}`} data-segno={`${x.settore}:${x.tipo}:${x.verso}`} aria-label={`${nome}: ${parolaSegno(x)}`}>
-                    {x.tipo === 'squadra' ? '⚑' : x.verso === 'su' ? '▲' : '▼'}
+                    {simboloSegno(x)}
                   </span>
                 ))}
               </span>
