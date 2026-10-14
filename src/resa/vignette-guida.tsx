@@ -1,11 +1,11 @@
 // Le 6 vignette della guida «La città e il gioco» (S-23, PO-078): skyline di Valmora con fonderie e collina di
-// Larkspire; protagonista col vice Malvasi; mappa con le squadre; sala operativa; barra della fiducia; verbale con
+// Skyfield; protagonista col vice Malvasi; mappa con le squadre; sala operativa; barra della fiducia; verbale con
 // le stelle. Città e persone inventate.
 import { Persona, Vignetta } from './vignetta.tsx';
 
 function Skyline() {
   return (
-    <Vignetta nome="guida-1" titolo="Valmora: le fonderie di Cinderwick e la collina di Larkspire">
+    <Vignetta nome="guida-1" titolo="Valmora: le fonderie di Kiln e la collina di Skyfield">
       <path d="M190 180 Q250 60 320 70 L320 180 Z" className="v-verde v-tratto" />
       {([[232, 96], [252, 84], [272, 80], [292, 82]] as const).map(([x, y], i) => <g key={i}><rect x={x} y={y} width="14" height="12" className="v-bianco v-tratto" /><path d={`M${x - 2} ${y} L${x + 7} ${y - 8} L${x + 16} ${y} Z`} className="v-magenta v-tratto" /></g>)}
       {([[20, 70], [44, 56], [68, 74]] as const).map(([x, y], i) => <g key={i}><rect x={x} y={y} width="12" height={180 - y} className="v-mattone v-tratto" /><circle cx={x + 8} cy={y - 10} r="9" className="v-fumo" /><circle cx={x + 18} cy={y - 22} r="12" className="v-fumo" /></g>)}
