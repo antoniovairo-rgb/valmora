@@ -107,6 +107,7 @@
   --vignetta-capelli: #3a2a20;
   /* PO-092 (D-114): stile C «pop retinato» per tutte le vignette: ombre a retino, contorno spesso */
   --vignetta-tratto: 2.4px;
+  --vignetta-contorno: 4px; /* C22-02: contorno dei pallini delle persone (unità del disegno) */
   --vignetta-margine: 4px; /* PO-092: spazio lasciato libero sotto la pagina quando la vignetta la riempie (arrotondamenti) */
   --vignetta-cemento: #b9bcc4;
   --vignetta-cemento-ombra: #7d818c;

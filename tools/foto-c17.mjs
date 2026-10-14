@@ -319,6 +319,27 @@ export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
   const [omini, pallini] = await pagina.evaluate(() => ['omino', 'pallino'].map((f) => document.querySelectorAll(`.chiamata-corpo svg.vignetta [data-figura="${f}"]`).length));
   const conGente = ['gente', 'tifo', 'corteo', 'biglietti'].includes(voluto);
   atteso(`${dove}: ${omini} omini e ${pallini} pallini nella vignetta «${visto}» (PO-103)`, omini === 0 && (!conGente || pallini > 0));
+  // C22-02: ogni pallino è largo almeno 6 px a schermo e ha un contorno. Il contorno sta a ≥3:1 sul suo alone, e
+  // l'alone o il contorno a ≥3:1 sul fondo della scena sotto il pallino (WCAG 1.4.11). Rosso VALMORA_ROSSI=C55P01.
+  const deboli = await pagina.evaluate(() => {
+    const rgb = (s) => (s.match(/[\d.]+/g) ?? []).map(Number), pieno = (s) => /^rgb\(/.test(s);
+    const lum = (v) => { const [r, g, b] = v.map((u) => { u /= 255; return u <= 0.03928 ? u / 12.92 : ((u + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+    const rap = (a, b) => { const [l1, l2] = [lum(rgb(a)), lum(rgb(b))].sort((p, q) => q - p); return (l1 + 0.05) / (l2 + 0.05); };
+    // il fondo si legge con elementsFromPoint, che vede solo la finestra: prima la vignetta va in vista (poi si torna)
+    const y0 = scrollY, v = document.querySelector('.chiamata-corpo svg.vignetta'); v?.scrollIntoView({ block: 'center' });
+    const out = [...document.querySelectorAll('.chiamata-corpo svg.vignetta [data-figura="pallino"]')].flatMap((g) => {
+      const d = g.querySelector('[data-pallino]') ?? g, alone = g.querySelector('[data-alone]'), r = d.getBoundingClientRect(), cs = getComputedStyle(d);
+      const fondo = document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2).find((e) => e.closest('svg.vignetta') && !g.contains(e) && e !== g && e.tagName !== 'svg' && pieno(getComputedStyle(e).fill) && getComputedStyle(e).opacity === '1');
+      const sotto = fondo ? getComputedStyle(fondo).fill : 'rgb(255, 255, 255)', bordo = pieno(cs.stroke) && parseFloat(cs.strokeWidth) > 0 ? cs.stroke : null;
+      const giro = alone ? getComputedStyle(alone).fill : null, out = [];
+      if (Math.min(r.width, r.height) < 6) out.push(`${r.width.toFixed(1)} px`);
+      if (!bordo) out.push(`senza contorno (${cs.fill} su ${sotto}: ${rap(cs.fill, sotto).toFixed(2)}:1)`);
+      else if ((giro && rap(bordo, giro) < 3) || Math.max(rap(bordo, sotto), giro ? rap(giro, sotto) : 0) < 3) out.push(`contorno ${bordo}, alone ${giro}, fondo ${sotto}`);
+      return out.length ? [out.join(', ')] : [];
+    });
+    scrollTo(0, y0); return out;
+  });
+  atteso(`${dove}: ${deboli.length} pallini piccoli o poco contrastati: ${deboli.slice(0, 3).join('; ')} (C22-02)`, !deboli.length);
   // i tratti coi colori del club (gradinate, sciarpa) si vedono davvero: il colore calcolato è quello del club.
   // Rosso VALMORA_ROSSI=C45E02: «.v-linea» li rende neri.
   const spenti = await pagina.evaluate(() => [...document.querySelectorAll('.chiamata-corpo svg.vignetta [stroke^="#"]')].filter((e) => {
