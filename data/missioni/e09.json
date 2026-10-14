@@ -29,7 +29,7 @@
     },
     {
       "testo": "testi:e09.info_club",
-      "fonte": "club_ospite",
+      "fonte": "club_belltower",
       "affidabilita": "media",
       "vera": true,
       "settore": "curva_ospiti"
@@ -80,7 +80,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "calderholt_rovers",
+        "club": "belltower_harriers",
         "pos": {
           "x": 20,
           "y": 36
@@ -243,7 +243,7 @@
         },
         {
           "id": "pullman_fermi",
-          "fonte": "club_ospite",
+          "fonte": "club_belltower",
           "testo": "testi:e09.ch.pullman_fermi",
           "settore": "tangenziale",
           "opzioni": [
@@ -768,7 +768,7 @@
         {
           "id": "non_erano_nostri",
           "dopo": {"mai": ["pullman_fermi/scarica_pullman"]},
-          "fonte": "club_ospite",
+          "fonte": "club_belltower",
           "testo": "testi:e09.ch.non_erano_nostri",
           "settore": "piazzale",
           "opzioni": [
