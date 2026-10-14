@@ -9,11 +9,13 @@ const { b, chiudi, URL } = await avvia();
 const p = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, deviceScaleFactor: Number(process.env.SCALA ?? 1), reducedMotion: 'reduce' });
 const pile = [];
 p.on('pageerror', (e) => pile.push(`pageerror: ${e.stack?.split('\n').slice(0, 6).join(' | ')}`));
-p.on('console', (x) => { if (x.type() === 'error') pile.push(`console: ${x.text().split('\n').slice(0, 6).join(' | ')}`); });
+const dopo = [];
+p.on('console', (x) => { if (x.type() === 'error') { pile.push(`console: ${x.text().split('\n').slice(0, 6).join(' | ')}`); setTimeout(async () => { try { dopo.push(await p.evaluate(() => ({ scena: document.querySelector('.scena')?.dataset.scena, avviso: !!document.querySelector('[data-errore-carica]'), tele: document.querySelectorAll('.mappa canvas').length }))); await p.screenshot({ path: `${process.env.FOTO ?? '.'}/screen-errore-${dopo.length}.jpg`, type: 'jpeg', quality: 70 }); } catch {} }, 50); } });
 await p.goto(URL);
 const c = await p.context().newCDPSession(p); await c.send('Emulation.setCPUThrottlingRate', { rate: RATE });
 let giri = 0, falliti = 0;
 for (let i = 0; i < N; i++) for (const ep of EP) { giri++; try { await alBriefing(p, ep); while (await p.locator('[data-azione="prossimo"], [data-azione="passo"]').count()) { await p.click('[data-azione="prossimo"], [data-azione="passo"]'); await p.waitForTimeout(100); } } catch { falliti++; } }
 console.log(`giri ${giri} (rallentamento ${RATE}×, ${w}×${h}), percorsi non completati ${falliti}, errori ${pile.length}`);
 for (const x of [...new Set(pile)].slice(0, 5)) console.log('  ' + x);
+for (const d of dopo) console.log(`  subito dopo l'errore: scena ${d.scena}, avviso «Qualcosa non si è caricato» ${d.avviso}, tele della mappa ${d.tele}`);
 await chiudi();
