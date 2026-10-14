@@ -24,8 +24,23 @@ const posiziona = (x: number, y: number) => (el: HTMLElement | null) => {
   el?.style.setProperty('--y', String(y));
 };
 
+/** D-123 (decisione del PO): a 360 e 375 px il nome dell'episodio scelto non sta sulla mappa (si legge nella scheda
+ *  sotto): solo da questa larghezza della finestra in su. Rosso C61N01: il nome a ogni larghezza, come prima. */
+const LARGHEZZA_NOME = '(min-width: 400px)';
+function useConNome() {
+  const [si, setSi] = useState(() => typeof matchMedia === 'undefined' || matchMedia(LARGHEZZA_NOME).matches);
+  useLayoutEffect(() => {
+    if (typeof matchMedia === 'undefined') return;
+    const q = matchMedia(LARGHEZZA_NOME), cambia = () => setSi(q.matches);
+    q.addEventListener('change', cambia); cambia();
+    return () => q.removeEventListener('change', cambia);
+  }, []);
+  return si;
+}
+
 export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli: (id: string) => void; home?: () => void }) {
   const contenitore = useRef<HTMLDivElement>(null);
+  const conNome = useConNome();
   const [pronta, setPronta] = useState(!conWebgl);
   const margine = useMemo(() => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--settore')) / 2 || 22, []);
   // Senza «luogo» nei dati gli episodi si mettono in fila, così non spariscono.
@@ -67,7 +82,7 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
             {v.m.episodio}
           </button>
           {/* PO-044: il nome solo sull'episodio scelto, gli altri punti mostrano il numero (rosso __NO_C13M01: tutti i nomi) */}
-          {(p.scelto === v.m.id || spento('C13M01')) && <span className="settore-nome" aria-hidden="true">{t(v.m.titolo)}</span>}
+          {((p.scelto === v.m.id && (conNome || spento('C61N01'))) || spento('C13M01')) && <span className="settore-nome" aria-hidden="true">{t(v.m.titolo)}</span>}
           {v.stelle !== null && <span className="settore-unita"><Stelle n={v.stelle} piccole /></span>}
         </div>
       ))}

@@ -73,6 +73,11 @@ main:not(.rosso-c44i02) .info-ondata .info::after { inset: calc(var(--spazio-3) 
 .stemma-alone.bianco, .stemma-alone.bianco * { fill: var(--bianco); stroke: var(--bianco); }
 /* C22-05: icone delle pastiglie (erano 13 px) e degli effetti sotto le opzioni (erano 12 px) a 16 px. Rosso C58I01: come prima */
 .pastiglia .icona, .effetto-chip .icona { width: var(--icona-piccola); height: var(--icona-piccola); }
+/* altezza zero (regola dello zero scorrimento): nella riga dell'effetto l'icona da 16 px non alza la riga, sborda di
+   (16 − 12 × 1,2) / 2 = 0,8 px sopra e sotto, dentro il bordo da 2 px */
+.effetto-chip .icona { margin-block: calc((var(--testo-mini) * var(--linea-stretta) - var(--icona-piccola)) / 2 - var(--spazio-px)); } /* −1 px: l'icona conta meno della riga, niente arrotondamenti */
+/* e larghezza zero: l'icona è 4 px più larga, i margini laterali della riga 2 + 2 px più stretti (righe che andavano a capo) */
+main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2); }
 .rosso-c58i01 .pastiglia .icona { width: var(--testo-piccolo); height: var(--testo-piccolo); }
 .rosso-c58i01 .effetto-chip .icona { width: var(--testo-mini); height: var(--testo-mini); }
 /* C22-10: con le icone a 20 px i due pulsanti del riepilogo uscivano sotto la versione a 360 (PO-097): spazio interno
