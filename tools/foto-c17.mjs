@@ -240,3 +240,21 @@ export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
   }).length);
   atteso(`${dove}: ${spenti} tratti col colore del club ridipinti da un'altra regola (D-112 punto 5)`, spenti === 0);
 }
+
+/** PO-054: un tocco su una pastiglia dello schieramento ritira UNA sola unità di quella risorsa da quel settore (le
+ *  altre restano); «Annulla l'ultima» la rimette. Serve una pastiglia con almeno 2 unità, altrimenti «una» e «tutte»
+ *  coincidono e il guardiano sarebbe cieco. Rosso VALMORA_ROSSI=C46R01: il tocco le ritira tutte. */
+export async function controllaRitiroSingolo(pagina, atteso, dove) {
+  const conta = () => pagina.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-presenza]')].map((e) => [e.dataset.presenza, Number(e.textContent.replace(/\D/g, '') || 0)])));
+  const prima = await conta();
+  const chiave = Object.keys(prima).find((k) => prima[k] >= 2);
+  atteso(`${dove}: nessuna pastiglia con almeno 2 unità, il ritiro singolo non si può provare (PO-054)`, !!chiave);
+  if (!chiave) return;
+  await pagina.click(`[data-presenza="${chiave}"]`);
+  const dopo = await conta();
+  const altre = Object.keys(prima).filter((k) => k !== chiave && prima[k] !== dopo[k]);
+  atteso(`${dove}: il tocco su «${chiave}» da ${prima[chiave]} a ${dopo[chiave] ?? 0} unità, doveva toglierne una (PO-054)`, (dopo[chiave] ?? 0) === prima[chiave] - 1 && !altre.length);
+  await pagina.click('[data-azione="annulla"]');
+  const ancora = await conta();
+  atteso(`${dove}: dopo «Annulla l'ultima» «${chiave}» è a ${ancora[chiave] ?? 0} invece di ${prima[chiave]} (PO-054)`, ancora[chiave] === prima[chiave]);
+}

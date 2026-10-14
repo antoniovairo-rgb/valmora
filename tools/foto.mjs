@@ -10,7 +10,7 @@ import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, controllaVerbaleBasso, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaContrasto, controllaRiquadri } from './foto-contrasto.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione, controllaFiduciaRapporto, controllaSfidaBusti, controllaSegni, controllaIconeEffetti, controllaColoriCortei, statoSalvato, controllaVignettaEvento } from './foto-c17.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaContrasto, controllaRiquadri } from './foto-contrasto.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione, controllaFiduciaRapporto, controllaSfidaBusti, controllaSegni, controllaIconeEffetti, controllaColoriCortei, statoSalvato, controllaVignettaEvento, controllaRitiroSingolo } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -263,6 +263,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
               atteso(`schieramento: unità finita, il tocco ha messo un'altra unità (${prima} → ${dopo}) (C09-04)`, dopo === prima);
               atteso('schieramento: unità finita senza avviso (C09-04)', (await pagina.locator('[data-avviso]').count()) === 1);
               if (dopo > prima) await pagina.locator('[data-presenza]').last().click(); // rimette lo schieramento del piano (braccio rosso)
+              await controllaRitiroSingolo(pagina, atteso, `${p.m.id} schieramento`); // PO-054
             }
             await fotoSe();
             const piccoli = await pagina.locator('[data-presenza]').evaluateAll((xs) => xs.map((x) => x.getBoundingClientRect()).filter((r) => r.width < 44 || r.height < 44).map((r) => `${Math.round(r.width)}×${Math.round(r.height)}`));

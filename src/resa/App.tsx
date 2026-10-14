@@ -234,7 +234,8 @@ export function App() {
         // C15-06: col riepilogo aperto la mappa è solo da guardare. Rosso C34R01: resta toccabile, come prima.
         ...(riepilogoAperto && !spento('C34R01') ? {} : {
           onSettore: (s: string) => sel && metti(sel, s),
-          onTogli: (r: string, s: string) => cambiaBozza({ ...bozza, [r]: { ...bozza[r], [s]: Math.max(0, (bozza[r]?.[s] ?? 0) - 1) } }),
+          // PO-054: il tocco su una pastiglia ritira UNA unità di quella risorsa da quel settore. Rosso C46R01: le ritira tutte.
+          onTogli: (r: string, s: string) => cambiaBozza({ ...bozza, [r]: { ...bozza[r], [s]: spento('C46R01') ? 0 : Math.max(0, (bozza[r]?.[s] ?? 0) - 1) } }),
         }),
       };
       corpo = <Schieramento riepilogoAperto={setRiepilogoAperto} m={m} ic={ic} d={bozza} scelta={sel} avviso={avviso} scegli={(r) => { setScelta(r); setAvviso(null); }} metti={metti} azzera={() => cambiaBozza({})} annulla={storia.length ? annulla : null}
