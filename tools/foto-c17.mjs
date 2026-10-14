@@ -271,13 +271,13 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
         const n = document.querySelector(`[data-episodio="${id}"].acceso .settore-nome`);
         if (!n) return [];
         const r = n.getBoundingClientRect();
-        const dischi = [...document.querySelectorAll('[data-episodio] .settore-punto')].filter((d) => d.closest('[data-episodio]').dataset.episodio !== id).filter((d) => {
+        const dischi = [...document.querySelectorAll('[data-episodio] .settore-punto')].filter((d) => { // C23-02: anche il proprio
           const c = d.getBoundingClientRect(), cx = c.left + c.width / 2, cy = c.top + c.height / 2, raggio = c.width / 2;
           const px = Math.max(r.left, Math.min(cx, r.right)), py = Math.max(r.top, Math.min(cy, r.bottom));
           return Math.hypot(px - cx, py - cy) < raggio - 0.5;
         }).map((d) => d.closest('[data-episodio]').dataset.episodio);
-        // D-119: nemmeno le stelline degli altri episodi, né il bordo della mappa (5 px)
-        const stelle = [...document.querySelectorAll('[data-episodio] .settore-unita')].filter((d) => d.closest('[data-episodio]').dataset.episodio !== id).filter((d) => {
+        // D-119: nemmeno le stelline degli altri episodi, né il bordo della mappa (5 px); C23-02: nemmeno le proprie
+        const stelle = [...document.querySelectorAll('[data-episodio] .settore-unita')].filter((d) => {
           const c = d.getBoundingClientRect(); return Math.min(r.right, c.right) - Math.max(r.left, c.left) > 0.5 && Math.min(r.bottom, c.bottom) - Math.max(r.top, c.top) > 0.5;
         }).map((d) => `stelle ${d.closest('[data-episodio]').dataset.episodio}`);
         const m = document.querySelector('.mappa').getBoundingClientRect();
@@ -293,6 +293,10 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
   // D-119 vale a 360 e a 375: si rifà a 375×667 e si torna alla misura di prima
   const prima375 = pagina.viewportSize();
   await pagina.setViewportSize({ width: 375, height: 667 }); await pagina.reload(); await scena('titolo');
+  await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  await giro();
+  // C23-02: anche a 412×915 (il C-023 misurava 13/36 nomi coperti)
+  await pagina.setViewportSize({ width: 412, height: 915 }); await pagina.reload(); await scena('titolo');
   await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
   await giro();
   await pagina.setViewportSize(prima375);

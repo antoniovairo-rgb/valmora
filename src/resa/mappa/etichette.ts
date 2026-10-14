@@ -10,6 +10,7 @@ const MARGINE = 5; // distanza minima dal bordo della mappa (controllo R06 di to
 const STACCO = 6;  // distacco minimo fra due nomi: attaccati sembrerebbero un nome solo
 const largo = (r: Rett, d: number): Rett => ({ left: r.left - d, top: r.top - d, right: r.right + d, bottom: r.bottom + d });
 const VERA = 100; // una sovrapposizione vera pesa molto più di un distacco mancante fra due nomi
+const LONTANO = 0; // C23-02: px² di stelline che vale un px di distanza in più dal proprio disco. 0 = nessuna sovrapposizione (nomi fino a 55 px dal disco a 360); 400 = nomi entro 11 px ma 7/36 su stelline altrui. La scelta è del PO (rapporto C23).
 const NOMI = ['sotto', 'sopra', 'destra', 'sinistra', 'sotto-sx', 'sotto-dx', 'sopra-sx', 'sopra-dx'] as const;
 const UNITA = ['sopra', 'destra', 'sinistra', 'destra-alto', 'sinistra-alto', 'sotto'] as const;
 
@@ -109,13 +110,20 @@ export function disponiNomeCitta(contenitore: HTMLElement) {
   // i dischi pesano dieci volte le stelline: se proprio non c'è un posto libero, il nome copre stelline, non dischi
   const altri = [...contenitore.querySelectorAll('[data-episodio]')].filter((x) => x !== s)
     .flatMap((x) => [...x.querySelectorAll('.settore-punto, .settore-unita')]).map((e) => ({ ...ostacolo(rel(e.getBoundingClientRect()), STACCO), peso: e.classList.contains('settore-punto') && !spento('C44N01') ? 10 : 1 }));
+  // C23-02: anche il disco e le stelline del SUO episodio (coprivano «La finale» al 100% a 360). Disco esatto, senza
+  // distacco: i posti del nome gli stanno accanto per costruzione. Rosso C53N01: solo gli altri episodi, come prima.
+  if (!spento('C53N01')) for (const e of [...s.querySelectorAll('.settore-punto, .settore-unita')]) {
+    const r = rel(e.getBoundingClientRect()), disco = e.classList.contains('settore-punto');
+    altri.push({ ...ostacolo(disco ? { left: r.left + 1, top: r.top + 1, right: r.right - 1, bottom: r.bottom - 1 } : r, disco ? 0 : STACCO), peso: disco ? 10 : 1 });
+  }
   const sposta = (dx: number, dy: number) => { nome.style.setProperty('--nome-dx', `${dx}px`); nome.style.setProperty('--nome-dy', `${dy}px`); };
   const dentro = (a: number, b: number, min: number, max: number) => (a < min ? min - a : b > max ? max - b : 0);
   const disco = (s.querySelector('.settore-punto')?.getBoundingClientRect().width ?? 0) / k;
-  const passo = disco / 8, giri = spento('C44N01') || !passo ? 0 : 8;
+  const mio = rel(s.querySelector('.settore-punto')!.getBoundingClientRect());
+  const passo = disco / 8, giri = spento('C44N01') || !passo ? 0 : 10;
   const scarti = Array.from({ length: 2 * giri + 1 }, (_, k) => (k - giri) * passo).sort((a, b) => Math.abs(a) - Math.abs(b));
   // anche più stretto (va a capo su più righe): larghezza massima intera, 80% e 65% di --nome-max
-  const larghezze = spento('C44N01') ? [''] : ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.65)', 'calc(var(--nome-max) * 0.5)'];
+  const larghezze = spento('C44N01') ? [''] : ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.65)', 'calc(var(--nome-max) * 0.5)', 'calc(var(--nome-max) * 0.4)'];
   // D-119: se non basta, il riquadro del nome si stringe (interlinea e margini interni), mai il carattere: è già alla
   // misura minima leggibile (--testo-mini). Rosso C48N01: niente riquadro stretto.
   const stretti = spento('C48N01') ? [false] : [false, true];
@@ -130,7 +138,10 @@ export function disponiNomeCitta(contenitore: HTMLElement) {
       const a = { left: r.left + ox, right: r.right + ox, top: r.top + oy, bottom: r.bottom + oy };
       const dx = ox + dentro(a.left, a.right, m.left + bordo, m.right - bordo), dy = oy + dentro(a.top, a.bottom, m.top + bordo, m.bottom - bordo);
       const q = { left: r.left + dx, right: r.right + dx, top: r.top + dy, bottom: r.bottom + dy };
-      const costo = altri.reduce((c, o) => c + o.peso * VERA * area(q, o.vero) + area(q, o.largo) - area(q, o.vero), 0) + Math.abs(dx) + Math.abs(dy);
+      // C23-02: il nome resta vicino al suo disco: oltre un quarto di disco di distanza costa come coprire stelline
+      const gx = Math.max(0, mio.left - q.right, q.left - mio.right), gy = Math.max(0, mio.top - q.bottom, q.top - mio.bottom);
+      const lontano = spento('C53N01') ? 0 : Math.max(0, Math.hypot(gx, gy) - disco / 4) * VERA * LONTANO;
+      const costo = altri.reduce((c, o) => c + o.peso * VERA * area(q, o.vero) + area(q, o.largo) - area(q, o.vero), 0) + Math.abs(dx) + Math.abs(dy) + lontano;
       if (costo < migliore.costo - (stretto ? 0.5 : 0)) migliore = { posto, dx, dy, costo, largo, stretto };
     }
   }
