@@ -33,12 +33,12 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean) {
   }, [el, attivo]);
 }
 
-export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean }) {
+export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean; evento?: string }) {
   const el = useRef<SVGSVGElement>(null);
   useRiempi(el, !p.fissa); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
   if (spento('C26V01')) return null;
   return (
-    <svg ref={el} className="vignetta" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" role="img" aria-label={p.titolo} data-vignetta={p.nome}>
+    <svg ref={el} className="vignetta" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" role="img" aria-label={p.titolo} data-vignetta={p.nome} data-evento={p.evento}>
       <defs>
         <pattern id="v-retino" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.2" className="v-retino" /></pattern>
         {/* PO-092: ombra a retino (stile C): fondo grigio scuro a punti neri */}

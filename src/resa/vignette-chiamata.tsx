@@ -6,7 +6,9 @@
 // Colori solo da token (classi «v-*»); le curve coi colori del club del settore (dati, D-086).
 import type { Chiamata, Missione } from '../logica/tipi.ts';
 import { club } from './dati.ts';
+import { spento } from '../interruttori.ts';
 import { Persona, Vignetta } from './vignetta.tsx';
+import { gruppoEvento, SagomaEvento } from './vignette-evento.tsx';
 
 type Luogo = 'strada' | 'piazzale' | 'curva' | 'stazione' | 'tornelli' | 'quartiere' | 'piazza' | 'industria' | 'acqua' | 'sala';
 const LUOGHI: Record<string, Luogo> = {
@@ -27,7 +29,7 @@ function Sfondo(p: { luogo: Luogo; colore?: string }) {
     case 'piazzale': return <g><rect x="0" y="120" width="320" height="60" className="v-grigio v-tratto" /><path d="M180 120 Q250 40 320 60 V120 Z" className="v-bianco v-tratto" />
       {Array.from({ length: 18 }, (_, i) => <circle key={i} cx={20 + (i * 17) % 300} cy={140 + (i % 3) * 10} r="4.5" className={i % 4 ? 'v-nero' : 'v-ciano'} />)}</g>;
     case 'curva': return <g><path d="M0 70 Q160 20 320 70 V180 H0 Z" className="v-grigio v-tratto" />
-      {[0, 1, 2, 3].map((r) => <path key={r} d={`M0 ${86 + r * 22} Q160 ${40 + r * 22} 320 ${86 + r * 22}`} stroke={p.colore ?? 'currentColor'} className="v-linea" strokeWidth="9" fill="none" />)}</g>;
+      {[0, 1, 2, 3].map((r) => <path key={r} d={`M0 ${86 + r * 22} Q160 ${40 + r * 22} 320 ${86 + r * 22}`} stroke={p.colore ?? 'currentColor'} className={spento('C45E02') ? 'v-linea' : 'v-club'} strokeWidth="9" fill="none" />)}</g>;
     case 'stazione': return <g><rect x="0" y="130" width="320" height="50" className="v-grigio" /><rect x="10" y="80" width="200" height="50" className="v-ciano v-tratto" />
       {[0, 1, 2, 3, 4].map((i) => <rect key={i} x={20 + i * 38} y="90" width="26" height="18" className="v-bianco v-tratto" />)}<path d="M0 150 H320 M0 162 H320" className="v-linea" /></g>;
     case 'tornelli': return <g><rect x="0" y="40" width="320" height="90" className="v-mattone v-tratto" />{[0, 1, 2, 3].map((i) => <g key={i}><rect x={40 + i * 66} y="96" width="30" height="40" className="v-nero" /><path d={`M${55 + i * 66} 110 h24`} className="v-linea" /></g>)}<rect x="0" y="136" width="320" height="44" className="v-grigio" /></g>;
@@ -56,11 +58,14 @@ export function VignettaChiamata(p: { m: Missione; c: Chiamata }) {
   const s = p.m.mappa.settori.find((x) => x.id === p.c.settore);
   const luogo = s ? LUOGHI[s.tipo] ?? 'piazza' : 'sala';
   const chi = chiDi(p.c.fonte);
+  const evento = gruppoEvento(p.m, p.c); // D-112 punto 5: cosa succede sul settore in questa ondata
+  const colore = s?.club ? club.get(s.club)?.colori?.primario : undefined;
   return (
-    <Vignetta fissa nome={`chiamata-${luogo}-${chi}`} titolo={`Chiamata: ${luogo}, ${chi}`}>
-      <Sfondo luogo={luogo} colore={s?.club ? club.get(s.club)?.colori?.primario : undefined} />
+    <Vignetta fissa nome={`chiamata-${luogo}-${chi}`} titolo={`Chiamata: ${luogo}, ${chi}${evento ? `, ${evento}` : ''}`} evento={evento ?? 'nessuno'}>
+      <Sfondo luogo={luogo} colore={colore} />
       {/* PO-092: ombra a retino sul primo piano (stile C) */}
       <path d="M0 150 L110 180 H0 Z" className="v-ombra" />
+      {evento && <SagomaEvento gruppo={evento} colore={colore} />}
       <Chi chi={chi} />
     </Vignetta>
   );

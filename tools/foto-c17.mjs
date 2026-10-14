@@ -221,3 +221,22 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
   }
   atteso(`città ${pagina.viewportSize().width}, episodi conclusi: il nome dell'episodio scelto tocca altri dischi in ${male.length} casi: ${male.join(', ')} (C20-03)`, !male.length);
 }
+
+/** D-112 punto 5: la vignetta della chiamata mostra il gruppo dell'evento che i dati mettono sul settore in quell'ondata
+ *  (il più grave se sono più d'uno; «nessuno» senza settore o senza eventi). Rosso VALMORA_ROSSI=C45E01: nessuna sagoma. */
+const GRUPPI_EVENTO = { folla: 'gente', raduno: 'gente', assembramento: 'gente', movimento: 'gente', arrivo: 'gente', deflusso: 'gente', fuga: 'gente', curva: 'tifo', festa: 'tifo', cerimonia: 'tifo', corteo: 'corteo', protesta: 'corteo', picchetto: 'corteo', presidio: 'corteo', furgone: 'veicoli', sosta: 'veicoli', traffico: 'veicoli', retata: 'veicoli', rissa: 'scontro', lite: 'scontro', faida: 'scontro', minaccia: 'scontro', biglietti: 'biglietti', incendio: 'fumo' };
+export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
+  const visto = await pagina.getAttribute('.chiamata-corpo svg.vignetta', 'data-evento').catch(() => null);
+  if (visto === null) return;
+  const gruppi = new Set((ondata.eventi ?? []).filter((e) => c.settore && e.settore === c.settore).map((e) => GRUPPI_EVENTO[e.tipo]));
+  const voluto = ['scontro', 'fumo', 'corteo', 'tifo', 'veicoli', 'biglietti', 'gente'].find((g) => gruppi.has(g)) ?? 'nessuno';
+  atteso(`${dove}: la vignetta mostra «${visto}», i dati dicono «${voluto}» (D-112 punto 5)`, visto === voluto);
+  // i tratti coi colori del club (gradinate, sciarpa) si vedono davvero: il colore calcolato è quello del club.
+  // Rosso VALMORA_ROSSI=C45E02: «.v-linea» li rende neri.
+  const spenti = await pagina.evaluate(() => [...document.querySelectorAll('.chiamata-corpo svg.vignetta [stroke^="#"]')].filter((e) => {
+    const prova = document.createElement('i'); prova.style.color = e.getAttribute('stroke'); document.body.append(prova);
+    const voluto = getComputedStyle(prova).color; prova.remove();
+    return getComputedStyle(e).stroke !== voluto;
+  }).length);
+  atteso(`${dove}: ${spenti} tratti col colore del club ridipinti da un'altra regola (D-112 punto 5)`, spenti === 0);
+}
