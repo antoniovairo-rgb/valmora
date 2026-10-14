@@ -47,13 +47,20 @@ const Omino = (p: { x: number; y: number; classe?: string; braccia?: boolean }) 
 );
 /** PO-103 (il PO: «le sagome sembrano insetti, meglio solo i pallini 2D»): una persona è un pallino piatto, come la folla
  *  dello sfondo della strada; col colore del club (dati) per il tifo. Rosso C48P01: gli omini di prima. */
+/** C22-02: il pallino era largo 3,3-4 px senza contorno (nero sulla strada 1,37:1). Ora raggio 10 unità (6,3 px a 360),
+ *  contorno nero e alone bianco: su fondo scuro si stacca l'alone, su fondo chiaro il contorno. Rosso C55P01: come prima. */
+const PALLINO = 10, ALONE = 15;
 const Persona = (p: { x: number; y: number; classe?: string; braccia?: boolean; colore?: string }) => (spento('C48P01') ? <Omino {...p} />
-  : p.colore ? <circle cx={p.x} cy={p.y + 6} r="5.5" fill={p.colore} data-figura="pallino" />
-  : <circle cx={p.x} cy={p.y + 6} r="5.5" className={p.classe ?? 'v-nero'} data-figura="pallino" />);
+  : spento('C55P01') ? (p.colore ? <circle cx={p.x} cy={p.y + 6} r="5.5" fill={p.colore} data-figura="pallino" />
+    : <circle cx={p.x} cy={p.y + 6} r="5.5" className={p.classe ?? 'v-nero'} data-figura="pallino" />)
+  : <g data-figura="pallino"><circle cx={p.x} cy={p.y + 6} r={ALONE} className="v-bianco" data-alone />
+    <circle cx={p.x} cy={p.y + 6} r={PALLINO} fill={p.colore} className={`${p.colore ? '' : p.classe ?? 'v-nero'} v-contorno`} data-pallino /></g>);
+/** C22-02: con pallini più grandi le file si diradano, per non sovrapporsi (rosso C55P01: le file di prima). */
+const fila = (prima: number, dopo: number) => (spento('C55P01') ? prima : dopo);
 
 export function SagomaEvento(p: { gruppo: GruppoEvento; colore?: string }) {
   switch (p.gruppo) {
-    case 'gente': return <g>{[0, 1, 2, 3, 4, 5, 6].map((i) => <Persona key={i} x={22 + i * 26} y={150 + (i % 2) * 8} classe={i % 3 ? 'v-nero' : 'v-magenta'} />)}</g>;
+    case 'gente': return <g>{(spento('C55P01') ? [0, 1, 2, 3, 4, 5, 6] : [0, 1, 2, 3, 4, 5]).map((i) => <Persona key={i} x={22 + i * fila(26, 34)} y={150 + (i % 2) * 8} classe={i % 3 ? 'v-nero' : 'v-magenta'} />)}</g>;
     case 'tifo': return (
       <g>{[0, 1, 2, 3, 4].map((i) => <Persona key={i} x={30 + i * 34} y={150} classe="v-nero" braccia colore={i % 2 ? undefined : p.colore} />)}
         <path d="M14 132 L200 120" stroke={p.colore ?? 'currentColor'} className={spento('C45E02') ? 'v-linea' : 'v-club'} strokeWidth="7" fill="none" /></g>
@@ -73,7 +80,7 @@ export function SagomaEvento(p: { gruppo: GruppoEvento; colore?: string }) {
     );
     case 'biglietti': return (
       <g><rect x="30" y="100" width="60" height="70" className="v-magenta v-tratto" /><rect x="40" y="112" width="40" height="20" className="v-ciano v-tratto" />
-        {[0, 1, 2, 3].map((i) => <Persona key={i} x={108 + i * 24} y={152} classe="v-nero" />)}</g>
+        {[0, 1, 2, 3].map((i) => <Persona key={i} x={108 + i * fila(24, 30)} y={152} classe="v-nero" />)}</g>
     );
     case 'fumo': return <g>{[[70, 160, 16], [80, 136, 20], [96, 108, 24], [118, 80, 26], [146, 58, 24]].map(([x, y, r], i) => <circle key={i} cx={x} cy={y} r={r} className="v-fumo v-tratto" />)}</g>;
   }

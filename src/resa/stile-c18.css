@@ -59,3 +59,11 @@ main:not(.rosso-c44i02) .info-ondata .info::after { inset: calc(var(--spazio-3) 
 .chi .orologio { position: absolute; top: calc(var(--spazio-3) * -1); left: calc(var(--spazio-3) * -1); z-index: 1; width: calc(var(--tocco-min) - var(--spazio-3)); height: calc(var(--tocco-min) - var(--spazio-3)); border: var(--bordo) solid var(--nero); border-radius: var(--raggio-tondo); box-shadow: var(--ombra-1); background: conic-gradient(var(--magenta) var(--spicchio), var(--bianco) 0); animation: spicchio 8s linear infinite; }
 @keyframes spicchio { from { --spicchio: 360deg; } to { --spicchio: 0deg; } }
 @media (prefers-reduced-motion: reduce) { .chi .orologio { animation: none; --spicchio: 180deg; } }
+/* C22-01: chi chiama fuori dalla vignetta, elemento HTML sull'angolo in alto a destra: glifo nero da 24 px su bianco,
+   contorno nero; sporge di --spazio-2 verso l'alto e verso il testo per coprire meno scena */
+.chiamata-corpo > .vignetta-chi { flex: none; position: relative; width: var(--vignetta-chiamata); }
+.vignetta-chi > .vignetta { display: block; width: 100%; height: auto; min-height: 0; margin: 0; border: var(--bordo-fine) solid var(--nero); }
+.vignetta-chi > .chi-icona { position: absolute; top: calc(var(--spazio-2) * -1); right: calc(var(--spazio-2) * -1); display: grid; place-items: center; padding: var(--spazio-1); background: var(--bianco); color: var(--nero); border: var(--bordo-fine) solid var(--nero); }
+.chi-icona .icona { width: var(--icona-chi); height: var(--icona-chi); }
+/* C22-02: contorno dei pallini delle persone nelle vignette (unità del disegno: circa 1,3 px a 360) */
+.vignetta .v-contorno { stroke: var(--nero); stroke-width: var(--vignetta-contorno); }

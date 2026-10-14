@@ -9,6 +9,8 @@ import { club } from './dati.ts';
 import { spento } from '../interruttori.ts';
 import { Persona, Vignetta } from './vignetta.tsx';
 import { gruppoEvento, SagomaEvento } from './vignette-evento.tsx';
+import { FileText, Globe, Phone, Radio, type LucideIcon } from 'lucide-react';
+import { Icona } from './icone.tsx';
 
 type Luogo = 'strada' | 'piazzale' | 'curva' | 'stazione' | 'tornelli' | 'quartiere' | 'piazza' | 'industria' | 'acqua' | 'sala';
 const LUOGHI: Record<string, Luogo> = {
@@ -44,7 +46,7 @@ function Sfondo(p: { luogo: Luogo; colore?: string }) {
 function Chi(p: { chi: Chi }) {
   if (p.chi === 'vice') return <Persona x={262} y={92} s={0.9} giacca="v-giacca-scura" capelli="berretto" bocca="dritta" baffi />;
   return (
-    <g transform="translate(232 18)">
+    <g transform="translate(232 18)" data-chi-riquadro>
       <rect x="0" y="0" width="76" height="60" className="v-bianco v-tratto" />
       {p.chi === 'radio' && <g><rect x="28" y="14" width="22" height="38" className="v-nero" /><rect x="40" y="4" width="4" height="12" className="v-nero" /><rect x="32" y="20" width="14" height="8" className="v-ciano" /><path d="M56 18 q8 10 0 20 M62 12 q14 16 0 32" className="v-linea" /></g>}
       {p.chi === 'telefono' && <g><path d="M18 40 q-6 -24 12 -28 l6 10 l-8 6 q2 10 12 14 l6 -8 l10 6 q-4 16 -28 0 Z" className="v-nero" /><path d="M52 14 q8 8 4 18" className="v-linea" /></g>}
@@ -54,19 +56,27 @@ function Chi(p: { chi: Chi }) {
   );
 }
 
-export function VignettaChiamata(p: { m: Missione; c: Chiamata; variabili?: Variabili; ritaglio?: string }) {
+/** C22-01: chi chiama come icona HTML (glifo da 24 px) accanto alla vignetta della chiamata, al posto del riquadro
+ *  disegnato (76×60 unità: glifo di 12-15 px, bianco su giallo 1,43:1). Il vice resta disegnato nella scena. */
+const ICONE_CHI: Record<Exclude<Chi, 'vice'>, LucideIcon> = { radio: Radio, telefono: Phone, rete: Globe, ufficio: FileText };
+
+export function VignettaChiamata(p: { m: Missione; c: Chiamata; variabili?: Variabili; ritaglio?: string; chiFuori?: boolean }) {
   const s = p.m.mappa.settori.find((x) => x.id === p.c.settore);
   const luogo = s ? LUOGHI[s.tipo] ?? 'piazza' : 'sala';
   const chi = chiDi(p.c.fonte);
   const evento = gruppoEvento(p.m, p.c, p.variabili); // D-112 punto 5: cosa succede sul settore in questa ondata
   const colore = s?.club ? club.get(s.club)?.colori?.primario : undefined;
-  return (
+  // Rosso C54C01: il riquadro disegnato dentro la vignetta, come prima.
+  const fuori = p.chiFuori && chi !== 'vice' && !spento('C54C01');
+  const vignetta = (
     <Vignetta fissa nome={`chiamata-${luogo}-${chi}`} titolo={`Chiamata: ${luogo}, ${chi}${evento ? `, ${evento}` : ''}`} evento={evento ?? 'nessuno'} ritaglio={p.ritaglio}>
       <Sfondo luogo={luogo} colore={colore} />
       {/* PO-092: ombra a retino sul primo piano (stile C) */}
       <path d="M0 150 L110 180 H0 Z" className="v-ombra" />
       {evento && <SagomaEvento gruppo={evento} colore={colore} />}
-      <Chi chi={chi} />
+      {!fuori && <Chi chi={chi} />}
     </Vignetta>
   );
+  if (!fuori) return vignetta;
+  return <span className="vignetta-chi">{vignetta}<span className="chi-icona" data-chi-icona={chi} aria-hidden><Icona di={ICONE_CHI[chi as Exclude<Chi, 'vice'>]} /></span></span>;
 }

@@ -107,6 +107,7 @@
   --vignetta-capelli: #3a2a20;
   /* PO-092 (D-114): stile C «pop retinato» per tutte le vignette: ombre a retino, contorno spesso */
   --vignetta-tratto: 2.4px;
+  --vignetta-contorno: 4px; /* C22-02: contorno dei pallini delle persone (unità del disegno) */
   --vignetta-margine: 4px; /* PO-092: spazio lasciato libero sotto la pagina quando la vignetta la riempie (arrotondamenti) */
   --vignetta-cemento: #b9bcc4;
   --vignetta-cemento-ombra: #7d818c;
@@ -178,6 +179,7 @@
   --icona-aiuto: 26px; /* PO-096: il «?» dello schieramento, ben visibile */
   --stella: 26px;
   --avatar: 42px;
+  --icona-chi: 24px; /* C22-01: glifo di chi chiama accanto alla vignetta della chiamata (Material: icone da 24 dp) */
   --tasto-lettera: 34px;
   --nome-max: 7.5em;
   --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */
