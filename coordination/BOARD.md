@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-14 11:32 Roma – main 0.16.0 (7dfa5ff); principale db80d85, CI verde sulle ultime 4 run. Sviluppatrice ferma su f426019 (già integrato), al lavoro su C21-01 neutro grigio + club sull'evento. Prossimo: rilascio delle 13:30 (verifica dalle 12:34).
+Ultimo giro della routine: 2026-10-14 14:56 Roma – main 0.17.0 (8c560a6). Principale: C21-04/05/06/09 integrati (8f05685, completa verde), D-122. C-023 in corso (sta misurando un possibile difetto D-119 a 360). Sviluppatrice: PO-078 A (42×42) e spicchio in misura, poi C-022 da C22-01. Prossimo: rilascio delle 23:00 (verifica dalle 22:04).
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
