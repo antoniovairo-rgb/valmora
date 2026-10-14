@@ -5,24 +5,34 @@
 // tifo coi colori del club del settore (dati, D-086). Rosso C45E01: nessuna sagoma, come prima.
 import { spento } from '../interruttori.ts';
 import type { Chiamata, Missione } from '../logica/tipi.ts';
+import { valuta } from '../logica/condizioni.ts';
+import type { Variabili } from '../logica/tipi.ts';
 
 export type GruppoEvento = 'gente' | 'tifo' | 'corteo' | 'veicoli' | 'scontro' | 'biglietti' | 'fumo';
+// C21-05/06: cerimonia (tribuna autorità), minaccia, lite e faida sono «gente», non tifo né rissa: i testi (e14, e18,
+// e21, e26, e34) non parlano di colluttazione («Nessuno si alza»). Rosso C50G01: i gruppi di prima.
+const PRIMA: Record<string, GruppoEvento> = { cerimonia: 'tifo', minaccia: 'scontro', lite: 'scontro', faida: 'scontro' };
 const GRUPPI: Record<string, GruppoEvento> = {
   folla: 'gente', raduno: 'gente', assembramento: 'gente', movimento: 'gente', arrivo: 'gente', deflusso: 'gente', fuga: 'gente',
-  curva: 'tifo', festa: 'tifo', cerimonia: 'tifo',
+  cerimonia: 'gente', minaccia: 'gente', lite: 'gente', faida: 'gente',
+  curva: 'tifo', festa: 'tifo',
   corteo: 'corteo', protesta: 'corteo', picchetto: 'corteo', presidio: 'corteo',
   furgone: 'veicoli', sosta: 'veicoli', traffico: 'veicoli', retata: 'veicoli',
-  rissa: 'scontro', lite: 'scontro', faida: 'scontro', minaccia: 'scontro',
+  rissa: 'scontro',
   biglietti: 'biglietti', incendio: 'fumo',
 };
 /** Dal più grave al meno grave: decide quando sul settore ci sono eventi di più gruppi. */
 export const GRAVITA: GruppoEvento[] = ['scontro', 'fumo', 'corteo', 'tifo', 'veicoli', 'biglietti', 'gente'];
 
-/** Il gruppo dell'evento sul settore della chiamata, nell'ondata della chiamata; null senza settore o senza eventi. */
-export function gruppoEvento(m: Missione, c: Chiamata): GruppoEvento | null {
+/** Il gruppo dell'evento sul settore della chiamata, nell'ondata della chiamata; null senza settore o senza eventi.
+ *  C21-09: un evento con «se» conta solo se la condizione è vera con le variabili della partita (senza variabili non
+ *  conta, come il motore che non lo apre). Rosso C50S01: «se» ignorato. */
+export function gruppoEvento(m: Missione, c: Chiamata, variabili?: Variabili): GruppoEvento | null {
   if (!c.settore || spento('C45E01')) return null;
   const ondata = m.ondate.find((o) => o.chiamate?.some((x) => x.id === c.id));
-  const gruppi = new Set((ondata?.eventi ?? []).filter((e) => e.settore === c.settore).map((e) => GRUPPI[e.tipo]).filter(Boolean));
+  const vale = (e: { se?: Parameters<typeof valuta>[0] }) => !e.se || spento('C50S01') || (!!variabili && valuta(e.se, variabili));
+  const gruppo = (tipo: string) => (spento('C50G01') ? PRIMA[tipo] ?? GRUPPI[tipo] : GRUPPI[tipo]);
+  const gruppi = new Set((ondata?.eventi ?? []).filter((e) => e.settore === c.settore && vale(e)).map((e) => gruppo(e.tipo)).filter(Boolean));
   return GRAVITA.find((g) => gruppi.has(g)) ?? null;
 }
 

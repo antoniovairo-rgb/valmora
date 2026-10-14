@@ -69,9 +69,14 @@ export function stadioVuoto(W: number, H: number, pz: Pt, altri: Pt[]): Stadio {
 
 /** Dove stanno stadio e viali, dalle posizioni (già in pixel) dei settori. */
 export function disponi(W: number, H: number, settori: { id?: string; tipo: string; x: number; y: number; colori?: Colori }[], atm: Atmosfera = {}): Disposizione {
-  const curve = settori.filter((s) => s.tipo === 'curva');
+  const tutte = settori.filter((s) => s.tipo === 'curva');
+  // C21-04: con tre curve (e15, e27) lo stadio è fra le due della PARTITA: il settore o la curva dei gemellati è un
+  // ospite in più, non una delle due squadre. Prima: estremità dalle due curve con x minore, ellisse dalle prime due dei
+  // dati, che non coincidevano (e15 senza l'arancio del Cinderwick). Rosso C50C01: come prima.
+  const partita = tutte.length > 2 && !spento('C50C01') ? tutte.filter((s) => !s.id?.includes('gemellati')) : tutte;
+  const curve = partita.length >= 2 ? partita : tutte;
   // Curva di sinistra e di destra; il corteo è degli ospiti (la curva «ospiti», altrimenti la prima dei dati).
-  const [sx, dx] = [...curve].sort((a, b) => a.x - b.x);
+  const [sx, dx] = [...(spento('C50C01') ? tutte : curve)].sort((a, b) => a.x - b.x);
   const club = { sx: sx?.colori, dx: dx?.colori, corteo: (curve.find((s) => s.id?.includes('ospiti')) ?? curve[0])?.colori };
   const centro = settori.length ? { x: settori.reduce((a, s) => a + s.x, 0) / settori.length, y: settori.reduce((a, s) => a + s.y, 0) / settori.length } : { x: W / 2, y: H / 2 };
   let stadio: Stadio | null = null;

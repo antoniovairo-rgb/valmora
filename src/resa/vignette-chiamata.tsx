@@ -4,7 +4,7 @@
 // - Chi chiama viene dalla fonte, raggruppata in pochi tipi: radio della centrale o del comando, telefono
 //   (informatori, residenti, testimoni…), rete e giornali, il vice, gli uffici e i club. Persone e luoghi inventati.
 // Colori solo da token (classi «v-*»); le curve coi colori del club del settore (dati, D-086).
-import type { Chiamata, Missione } from '../logica/tipi.ts';
+import type { Chiamata, Missione, Variabili } from '../logica/tipi.ts';
 import { club } from './dati.ts';
 import { spento } from '../interruttori.ts';
 import { Persona, Vignetta } from './vignetta.tsx';
@@ -54,11 +54,11 @@ function Chi(p: { chi: Chi }) {
   );
 }
 
-export function VignettaChiamata(p: { m: Missione; c: Chiamata }) {
+export function VignettaChiamata(p: { m: Missione; c: Chiamata; variabili?: Variabili }) {
   const s = p.m.mappa.settori.find((x) => x.id === p.c.settore);
   const luogo = s ? LUOGHI[s.tipo] ?? 'piazza' : 'sala';
   const chi = chiDi(p.c.fonte);
-  const evento = gruppoEvento(p.m, p.c); // D-112 punto 5: cosa succede sul settore in questa ondata
+  const evento = gruppoEvento(p.m, p.c, p.variabili); // D-112 punto 5: cosa succede sul settore in questa ondata
   const colore = s?.club ? club.get(s.club)?.colori?.primario : undefined;
   return (
     <Vignetta fissa nome={`chiamata-${luogo}-${chi}`} titolo={`Chiamata: ${luogo}, ${chi}${evento ? `, ${evento}` : ''}`} evento={evento ?? 'nessuno'}>
