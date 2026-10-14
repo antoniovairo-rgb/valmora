@@ -59,6 +59,8 @@ function Chi(p: { chi: Chi }) {
 /** C22-01: chi chiama come icona HTML (glifo da 24 px) accanto alla vignetta della chiamata, al posto del riquadro
  *  disegnato (76×60 unità: glifo di 12-15 px, bianco su giallo 1,43:1). Il vice resta disegnato nella scena. */
 const ICONE_CHI: Record<Exclude<Chi, 'vice'>, LucideIcon> = { radio: Radio, telefono: Phone, rete: Globe, ufficio: FileText };
+/** C22-09: l'icona di chi chiama per la fonte (null per il vice), la stessa per l'avatar del mittente e accanto alla vignetta. */
+export const iconaChi = (fonte: string): LucideIcon | null => { const chi = chiDi(fonte); return chi === 'vice' ? null : ICONE_CHI[chi]; };
 
 export function VignettaChiamata(p: { m: Missione; c: Chiamata; variabili?: Variabili; ritaglio?: string; chiFuori?: boolean }) {
   const s = p.m.mappa.settori.find((x) => x.id === p.c.settore);

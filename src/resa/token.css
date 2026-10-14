@@ -175,7 +175,7 @@
   --tocco-min: 44px;
   --settore: 44px;
   --pastiglia: 24px;
-  --icona: 18px;
+  --icona: 20px; /* C22-10: era 18 px, sotto i 20 dp minimi delle icone di Material */
   --icona-aiuto: 26px; /* PO-096: il «?» dello schieramento, ben visibile */
   --stella: 26px;
   --avatar: 42px;
@@ -200,6 +200,7 @@
 /* Interruttori rossi della resa (globalThis.__NO_C05R06 / __NO_C05R07): rimettono i difetti del collaudo
    C-005 per misurare il braccio rosso di tools/foto.mjs. Mai attivi nel gioco. */
 .rosso-c05r06 { --testo-mini: 10px; --margine-nomi: 0px; }
+.rosso-c60i01 { --icona: 18px; } /* C22-10: icone dei pulsanti come prima */
 .rosso-c05r07 .testata-t small { --spaziatura-maiuscolo: 0.3em; }
 .rosso-c05n01 .elenco-settori li { flex-wrap: wrap; }
 .rosso-c05n01 .elenco-settori .riga-sx { flex: none; }

@@ -75,3 +75,6 @@ main:not(.rosso-c44i02) .info-ondata .info::after { inset: calc(var(--spazio-3) 
 .pastiglia .icona, .effetto-chip .icona { width: var(--icona-piccola); height: var(--icona-piccola); }
 .rosso-c58i01 .pastiglia .icona { width: var(--testo-piccolo); height: var(--testo-piccolo); }
 .rosso-c58i01 .effetto-chip .icona { width: var(--testo-mini); height: var(--testo-mini); }
+/* C22-10: con le icone a 20 px i due pulsanti del riepilogo uscivano sotto la versione a 360 (PO-097): spazio interno
+   più stretto, come nei tre pulsanti dello schieramento */
+.riepilogo-azioni .pulsante { gap: var(--spazio-1); padding-inline: var(--spazio-2); }
