@@ -127,6 +127,7 @@
         },
         {
           "id": "accoglienza",
+          "club": "cinderwick_united",
           "tipo": "corteo",
           "settore": "viale_stazione",
           "pressione": 3
@@ -301,6 +302,7 @@
       "eventi": [
         {
           "id": "corteo_unito",
+          "club": "cinderwick_united",
           "tipo": "corteo",
           "settore": "viale_stazione",
           "pressione": 4
@@ -626,6 +628,7 @@
       "eventi": [
         {
           "id": "corteo_ritorno15",
+          "club": "ollerbrook_town",
           "tipo": "corteo",
           "settore": "viale_stazione",
           "pressione": 5

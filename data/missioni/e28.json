@@ -126,6 +126,7 @@
       "eventi": [
         {
           "id": "auto_ospiti",
+          "club": "mossgarth_town",
           "tipo": "arrivo",
           "settore": "strada_cinderwick",
           "pressione": 4
