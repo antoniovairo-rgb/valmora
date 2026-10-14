@@ -25,7 +25,7 @@ export interface Dichiarazione {
 }
 
 export interface Risorsa { quantita: number; efficacia: Record<string, number>; dimezza?: string[]; fissa?: boolean; massimo?: number }
-export interface Evento { id: string; tipo: string; settore: string; pressione: number; se?: Condizione }
+export interface Evento { id: string; tipo: string; settore: string; pressione: number; se?: Condizione; /** C-021: club dei tifosi in strada */ club?: string }
 export interface Esito { id: string; se: Condizione; effetti: Effetto[]; verbale: string; fallita?: boolean; stelle_min?: number; stelle_max?: number }
 export interface Informazione { testo: string; fonte: string; affidabilita: 'bassa' | 'media' | 'alta'; vera: boolean; settore?: string }
 /** dopo (PO-086): «chiamata/opzione» già scelte (gia) o mai scelte (mai) in questa partita perché la chiamata o l'opzione compaia. */

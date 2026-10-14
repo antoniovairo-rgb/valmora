@@ -92,6 +92,7 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
       if (o.n !== i + 1) p.push(`${k}.ondate[${i}]: n=${o.n}, attesa ${i + 1}`);
       o.eventi.forEach((ev: Obj, j: number) => {
         if (!settori.includes(ev.settore)) p.push(`${k}.ondate[${i}].eventi[${j}]: settore «${ev.settore}» non è nella mappa`);
+        if (ev.club && !club.has(ev.club)) p.push(`${k}.ondate[${i}].eventi[${j}]: club «${ev.club}» non esiste in data/club/ (C-021)`);
         if (ev.se) condizione(`${k}.ondate[${i}].eventi[${j}].se`, ev.se);
       });
     });
