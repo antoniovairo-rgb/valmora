@@ -1,9 +1,19 @@
-# Proposta: i 13 club di Valmora (PO-109)
+# Piano approvato: i 13 club di Valmora (PO-109)
 
-Stato: PROPOSTA della sessione sviluppatrice, da decidere col PO. Nessun dato di gioco e nessun codice toccato.
-Legenda: **FATTO MISURATO** = letto nei file, con file:riga o comando; **PROPOSTA** = scelta da approvare;
-**IPOTESI** = non verificata. Il mondo resta finzione dichiarata: i quartieri di Roma Sud sono solo l'immagine da
-cui nasce un prefisso inglese (regola D-124), mai un nome reale portato nel gioco.
+Stato: **PIANO APPROVATO** dal PO il 2026-10-14, con tre questionari sulla proposta.
+- Risposte del PO: 12 episodi per stagione; sei club di Valmora da Roma Sud (Pinegrove e Belltower confermati, quattro
+  quartieri d'ispirazione nuovi); tre club esterni da Quartiere Africano, San Paolo e Anagnina; stemmi anche per i
+  club che non li hanno.
+- Restano da approvare solo i nomi nuovi e i punti della sezione 7.
+- Nessun dato di gioco e nessun codice toccato da questo documento.
+
+Legenda:
+- **FATTO MISURATO** = letto nei file, con file:riga o comando;
+- **PROPOSTA** = scelta ancora da confermare;
+- **IPOTESI** = non verificata.
+
+Il mondo resta finzione dichiarata: i quartieri di Roma sono solo l'immagine da cui nasce un prefisso inglese
+(regola D-124), mai un nome reale portato nel gioco.
 
 ## 0. Il problema in breve
 
@@ -103,250 +113,332 @@ il furgone e la fuga verso fuori (e04.json:104, e16.json:103, e20.json:100, 106)
 - **e21, fonte che non corrisponde al testo**: due chiamate hanno `"fonte": "club_quillhaven"` (data/missioni/e21.json:239, 708)
   ma il testo è «In rete: …» (e21.json:29 dei testi) e «Comando: …» (e21.json:108 dei testi).
 
-## 2. I 13 club di Valmora
+## 2. I 13 club di Valmora (APPROVATO dal PO il 14/10, coi cambi della seconda risposta)
 
-### 2.1 Mappa dei quartieri (PROPOSTA)
-Valmora divisa in cinque zone, per dare un senso alle rivalità e ai tragitti:
-- **Est industriale**: Kiln (fonderie), Pinegrove; sopra, la collina di Skyfield.
-- **Sud-est, lungo la ferrovia e gli acquedotti**: Square, Arches, Studio; in fondo, le torri di Belltower.
-- **Sud, sul fiume**: Garden, Shardhill, Gasworks (con le banchine del porto fluviale).
-- **Sud nuovo**: Marble, Laurel.
-- **Margine verde**: Stoneway, lungo la strada antica, quasi campagna.
+### 2.1 Mappa dei quartieri
+- **Est, lungo le due grandi strade che escono dalla città**: Kiln (fonderie), Pinegrove, Domepark, Waterline,
+  Lookout; in fondo, Tramway e le torri di Belltower.
+- **Sopra l'Est**: la collina di Skyfield.
+- **Sud-est, lungo la ferrovia e gli acquedotti**: Square, Arches, Studio.
+- **Sud, sul fiume**: Garden.
+- **Margine verde**: Stoneway, lungo la strada antica.
 
-### 2.2 I 7 club esistenti: stessi colori, stessi stemmi, una casa in città
+Le **banchine del porto fluviale** (settori `banchine` in e28, e29, e35) non appartengono a nessun club. Nei testi
+non hanno mai un quartiere. FATTO, con `grep -n 'porto' data/testi/it/e2[7-9].json data/testi/it/e35.json`: nessuna
+riga dice di chi è il porto. L'unica riga che nomina un club accanto al porto è e27.json:112, dove il responsabile
+dei gemellati lascia un indirizzo del porto; dopo il cambio quel responsabile è di Railhead. È l'adattamento più semplice del ruolo che la prima stesura dava a Gasworks:
+nessuna riga cambia.
 
-Colori e stemmi FATTO da data/club/*.json; quartiere = PROPOSTA (dove il prefisso è già il nome del quartiere).
+### 2.2 I 7 club esistenti
+Colori e stemmi come oggi (FATTO, data/club/*.json). Gli stemmi mancanti si aggiungono (risposta 4 del PO, sezione 2.4).
 
-| club (id) | colori | stemma | quartiere di Valmora (PROPOSTA) |
-|-----------|--------|--------|---------------------------------|
-| Kiln United (cinderwick_united) | #ff6a13 arancio · #1a1a1a nero | scudo, ciminiera | Kiln: fonderie e ciminiere (già BIBBIA.md:37) |
-| Skyfield Athletic (larkspire_athletic) | #2fa7ff azzurro · #ffffff bianco | tondo, collina | Skyfield: la collina elegante (già BIBBIA.md:37) |
-| Square Rovers (calderholt_rovers) | #1e7b4a verde · #f2c230 giallo | scudo, calderone | Square: il quartiere dello scalo ferroviario; i tifosi arrivano col treno della linea urbana |
-| Arches Town (mossgarth_town) | #546e7a ardesia · #c0ca33 lime | **nessuno** (iniziali, src/resa/stemma.tsx:32) | Arches: case sotto gli archi del vecchio acquedotto |
-| Studio Town (ollerbrook_town) | #00897b verde acqua · #cfd8dc grigio chiaro | **nessuno** | Studio: i teatri di posa e le case dei tecnici del cinema |
+| club (id) | colori | stemma | quartiere |
+|-----------|--------|--------|-----------|
+| Kiln United (cinderwick_united) | #ff6a13 arancio · #1a1a1a nero | scudo, ciminiera | Kiln: fonderie e ciminiere (BIBBIA.md:37) |
+| Skyfield Athletic (larkspire_athletic) | #2fa7ff azzurro · #ffffff bianco | tondo, collina | Skyfield: la collina elegante (BIBBIA.md:37) |
+| Square Rovers (calderholt_rovers) | #1e7b4a verde · #f2c230 giallo | scudo, calderone | Square: lo scalo ferroviario |
+| Arches Town (mossgarth_town) | #546e7a ardesia · #c0ca33 lime | **nuovo**: tondo, arco | Arches: le case sotto gli archi del vecchio acquedotto |
+| Studio Town (ollerbrook_town) | #00897b verde acqua · #cfd8dc grigio chiaro | **nuovo**: rombo, ciak | Studio: i teatri di posa |
 | Garden Albion (quillhaven_albion) | #1b2a6b blu notte · #d62839 rosso | rombo, penna | Garden: case popolari coi cortili-giardino, sul fiume |
-| Stoneway Wanderers (saltmere_wanderers) | #5d4037 marrone · #e9c46a sabbia | **nessuno** | Stoneway: la strada di pietra al margine verde |
+| Stoneway Wanderers (saltmere_wanderers) | #5d4037 marrone · #e9c46a sabbia | **nuovo**: scudo, pietra miliare | Stoneway: la strada di pietra al margine verde |
 
-PROPOSTA facoltativa: dare uno stemma ai tre che non l'hanno (Arches: tondo, arco · Studio: rombo, ciak ·
-Stoneway: scudo, pietra miliare). Il PO ha chiesto «stessi stemmi»: se vuole lasciarli alle iniziali, si salta.
-
-### 2.3 Sei club nuovi (PROPOSTA)
-
-Regola D-124: inglese, suffisso classico, prefisso = immagine di un quartiere di Roma Sud, mai il suo nome.
+### 2.3 I sei club nuovi
+Regola D-124: inglese, suffisso classico, prefisso = immagine del quartiere di Roma Sud, mai il suo nome.
+Pinegrove e Belltower erano già approvati. Gli altri quattro sono una PROPOSTA nata dalla seconda risposta del PO,
+che va confermata.
 
 | nome | ispirazione → immagine | quartiere di Valmora | colori | stemma | curva in una riga | rivalità |
 |------|------------------------|----------------------|--------|--------|-------------------|----------|
-| **Pinegrove Rangers** | Pigneto → il bosco di pini | Pinegrove: case basse fra i binari, osterie, muri dipinti | #6a1b9a viola · #ffc107 oro | tondo, pigna | tamburi e striscioni dipinti a mano, ironica, mai puntuale | Kiln (vicini: stesso mercato, e04) |
-| **Shardhill Borough** | Testaccio → la collina di cocci | Shardhill: la collinetta di cocci e i vecchi macelli sul fiume | #c62828 rosso · #f5f5f5 bianco | scudo, anfora | la più antica, cori lenti e orgoglio di bottega | Gasworks («derby del fiume») |
-| **Gasworks FC** | Ostiense → il gasometro e il vecchio porto fluviale | Gasworks: gasometro, magazzini, banchine del porto | #121212 nero · #f5f5f5 bianco | rombo, gasometro | gente di banchina, poche parole, si muove compatta | Shardhill; Kiln (le due anime operaie) |
-| **Marble Villa** | EUR → il marmo bianco e i colonnati | Marble: palazzi bianchi degli uffici e il lago | #f5f5f5 bianco · #0d47a1 blu | tondo, colonna | composta, da tribuna, cori ironici sui soldi | Skyfield (ricchi vecchi contro ricchi nuovi) |
-| **Belltower Harriers** | Tor Bella Monaca → la torre bella | Belltower: le torri di case popolari all'estremo est | #ec407a rosa · #263238 antracite | scudo, torre | la più lontana: arriva tardi, tutta insieme, rumorosissima | Square («chi arriva col treno») |
-| **Laurel City** | Laurentino → l'alloro | Laurel: il quartiere nuovo dei palazzi-ponte | #fbc02d giallo · #1565c0 blu royal | rombo, corona d'alloro | giovane e di famiglie, la prima curva con le bambine in prima fila | Marble (vicini a sud) |
+| **Pinegrove Rangers** | Pigneto → il bosco di pini | Pinegrove: case basse fra i binari, osterie, muri dipinti | #6a1b9a viola · #ffc107 oro | tondo, pigna | tamburi e striscioni dipinti a mano, ironica, mai puntuale | Kiln (vicini di mercato) |
+| **Belltower Harriers** | Tor Bella Monaca → la torre bella | Belltower: torri di case all'estremo est | #ec407a rosa · #263238 antracite | scudo, campanile | la più lontana: arriva tardi, tutta insieme, rumorosissima | Tramway («derby del capolinea») |
+| **Waterline City** | Alessandrino → l'acqua che l'acquedotto porta attraverso il quartiere | Waterline: i lotti lungo la linea dell'acqua | #f5f5f5 bianco · #0d47a1 blu | rombo, tre onde | bandiere bianche e blu, cori lunghi e lenti | Lookout (vicini di casa) |
+| **Lookout FC** | Torre Maura → la torre di vedetta in mezzo ai campi | Lookout: case basse attorno alla vecchia torre | #c62828 rosso · #f5f5f5 bianco | scudo, torre merlata con feritoia | pochi, sempre in piedi: la curva che fischia per prima | Waterline |
+| **Domepark Villa** | Villa Gordiani → il parco con le rovine a cupola | Domepark: palazzine attorno al parco delle rovine | #121212 nero · #f5f5f5 bianco | tondo, cupola | si ritrova al parco prima della partita, tamburi sotto gli alberi | Skyfield (il parco contro la collina: si affrontano in e05 ed e26) |
+| **Tramway Borough** | Giardinetti → il capolinea del trenino | Tramway: il capolinea e le case attorno ai binari del tram | #fbc02d giallo · #1565c0 blu royal | rombo, vettura del tram | arriva col trenino tutta insieme, cori a tempo di rotaia | Belltower |
 
-Rivalità fra esistenti (PROPOSTA, in aggiunta a Kiln–Skyfield, D-032/D-033): Arches–Stoneway («derby dei sassi»),
-Studio–Arches (vicini sotto gli acquedotti), Garden–Shardhill (stesso fiume, ma meno accesa di Gasworks–Shardhill).
+Note sulle immagini:
+- Giardinetti non si traduce con «giardini», perché Garden esiste già: per questo l'immagine è il trenino.
+- Lookout e Belltower hanno entrambi una torre: le immagini restano diverse (vedetta contro campanile), e lo stesso
+  vale per gli stemmi (torre merlata contro campanile).
+- Waterline e Arches nascono entrambi da un acquedotto: Arches prende gli archi, Waterline l'acqua.
 
-**Colori a colpo d'occhio** (FATTO MISURATO, distanza euclidea RGB fra colori primari, la stessa grandezza
-grezza che usa tools/foto-club.mjs per campionare le curve): coppia più vicina fra i 7 esistenti = 59 (Square–Studio);
-fra i 6 nuovi e tutti gli altri il minimo è 90 (Shardhill–Kiln, Laurel–Kiln); Marble 207. Non è una misura
-percettiva: va confermata con le foto delle curve (tools/foto-club.mjs) a 360/375/412 px. Rischio da guardare:
-il bianco primario di Marble su sfondi chiari della mappa (IPOTESI).
+Ruoli della prima stesura che non esistono più, con l'adattamento più semplice:
+- il gasometro e il porto fluviale di Gasworks → le banchine restano senza club (2.1);
+- il «derby del fiume» Gasworks–Shardhill → non c'è più. Le rivalità nuove nascono dai vicini e dagli accoppiamenti
+  del calendario (4.1);
+- Marble, i «ricchi nuovi contro Skyfield» → Domepark–Skyfield, «il parco contro la collina»;
+- l'ipotesi del cantiere dello stadio nuovo a Marble → cade: il cantiere resta dov'è nei dati (`cantiere_stadio_nuovo`
+  in e35 ed e36), senza quartiere.
 
-**Nomi reali**: Non posso confermarlo che nessun club reale (anche amatoriale) porti uno di questi sei nomi;
-«Gasworks», «Marble», «Laurel» e «Pinegrove» sono parole comuni o nomi di luogo, quindi il rischio è più alto.
-Vale il controllo dei nomi reali prima della pubblicazione su Play, come per D-124.
-Prudenza (PROPOSTA): i caratteri delle curve nuove non devono richiamare stereotipi dei quartieri veri da cui
-viene l'immagine (vale soprattutto per le periferie): la curva di Belltower è «lontana e rumorosa», non altro.
+Rischio di contenuto (PROPOSTA): le curve nuove non devono richiamare stereotipi dei quartieri veri da cui viene
+l'immagine, soprattutto per le periferie.
 
-## 3. Club di fuori città (rivista il 14/10: nomi da Roma Nord)
+### 2.4 Stemmi da disegnare (risposta 4 del PO)
+FATTO: gli stemmi si disegnano in src/resa/stemma.tsx.
+- Forme: scudo, tondo e rombo.
+- Simboli: tracciati SVG in un riquadro di circa 40×40, per esempio la ciminiera a stemma.tsx:16 e la collina a :18.
+- Senza simbolo il gioco mostra le iniziali (stemma.tsx:32).
 
-Direttiva del PO (14/10, dopo la prima stesura): «Le squadre da fuori devono essere ispirate a Roma Nord». Stessa
-regola di D-124 (inglese, suffisso classico, prefisso = immagine del quartiere, mai il suo nome), ma con quartieri
-di Roma Nord. I sei club nuovi di Valmora restano ispirati a Roma Sud (sezione 2.3).
+Descrizione dei 12 simboli nuovi, a tinta unita come quelli esistenti:
 
-### 3.1 Quanti ne servono: il minimo che rispetta i testi
+| club | forma | simbolo | come disegnarlo |
+|------|-------|---------|-----------------|
+| Arches | tondo | arco | due pilastri e un arco a tutto sesto, con un secondo arco più piccolo dietro, a metà altezza |
+| Studio | rombo | ciak | rettangolo della lavagnetta con l'asta incernierata in alto, aperta di 20°, e tre strisce diagonali sull'asta |
+| Stoneway | scudo | pietra miliare | cippo a colonna bassa con la cima arrotondata, una tacca orizzontale e la base squadrata |
+| Pinegrove | tondo | pigna | ovale a punta in basso con le scaglie a rombi (tre file) e un ciuffo di tre aghi in alto |
+| Belltower | scudo | campanile | torre stretta con la cella aperta in alto e la campana dentro, tetto a punta |
+| Waterline | rombo | tre onde | tre linee ondulate parallele, spessore 2 |
+| Lookout | scudo | torre di vedetta | torre larga con tre merli e una feritoia verticale |
+| Domepark | tondo | cupola | mezza sfera su un tamburo con tre finestre ad arco |
+| Tramway | rombo | tram | profilo della vettura (rettangolo coi bordi arrotondati, tre finestrini) col pantografo a V sul tetto |
+| Railhead (esterno) | scudo | fine linea | due binari che convergono verso l'alto e finiscono contro un respingente |
+| Southwind (esterno) | rombo | ancora | ancora con l'anello in alto e i bracci curvi |
+| Wallgate (esterno) | scudo | porta nelle mura | arco d'ingresso fra due torri merlate |
 
-FATTO MISURATO: i ruoli che i testi scrivono come «da fuori» sono quelli della sezione 1.2.
-- **Treno** (oggi Square): e02 (e02.json:3, 102), e25 (e25.json:6, 22, 90), e31 (e31.json:114).
-- **Gemellati da trecento chilometri** (oggi Studio): e15 (e15.json:3, 61), e27 (e27.json:3, 102, 112).
-- **Neopromossa di provincia** (oggi Stoneway): e07 (e07.json:3, 10), che torna in e12 (e12.json:4).
-- **Porto sul mare** (oggi Garden): e21 (e21.json:119), e23 (e23.json:3-5, 10, 24, 90, 102).
-- **Avversario della sconfitta di Kiln** (e11.json:3, 12): mai nominato.
+**Colori** (FATTO MISURATO, distanza euclidea RGB fra colori primari, la stessa misura grezza di tools/foto-club.mjs):
+- Minimo fra i 16 club (13 di Valmora + 3 esterni): 59 (Square–Studio), cioè quello che c'è già oggi fra i 7 esistenti.
+- Per ogni club nuovo, la distanza dal primario più vicino:
 
-PROPOSTA: **bastano due club esterni con nome**, più l'avversario di e11, che resta senza nome. I quattro ruoli si
-uniscono a due a due senza toccare le righe di viaggio:
-- **treno + gemellati = un solo club.** In e02, e25 ed e31 arriva in treno da lontano; in e15 ed e27 la sua curva
-  viene «da trecento chilometri», sempre in treno, a cantare con la curva Kiln. È un club gemellato con Kiln che gioca
-  contro Skyfield (e02, e31) e una volta contro Kiln (e25): FATTO, in e25 non c'è nessuna riga di ostilità fra gli
-  ospiti e la curva Kiln (`grep -n 'Rovers\|Kiln' data/testi/it/e25.json`). La serie torna: prima trasferta (e02),
-  gemellaggio annunciato (e15), ritorno dei gemellati (e27).
-- **neopromossa + porto = un solo club.** Una città di provincia sul mare: in e07 è appena promossa e viene «per la
-  prima volta in città» (FATTO: prima di e07 non compare, quindi la frase resta vera), in e12 chiude la stagione a
-  Kiln, in e21 ed e23 il suo porto è la pista di Ferrigno. «Quaranta pulmini» (e07.json:3) e «dieci pullman dal mare»
-  (e23.json:4) stanno bene sulla stessa città.
+| club | distanza | club più vicino |
+|------|----------|-----------------|
+| Pinegrove | 92 | Arches |
+| Belltower | 94 | Lookout |
+| Waterline | 113 | Railhead |
+| Lookout | 90 | Kiln |
+| Domepark | 93 | Garden |
+| Tramway | 90 | Kiln |
+| Railhead | 107 | Wallgate |
+| Southwind | 131 | Square |
+| Wallgate | 102 | Tramway |
 
-Perché non meno di due: le due coppie non si uniscono fra loro. FATTO: il club del treno arriva già in e02, quindi non
-può essere la neopromossa che in e07 viene «per la prima volta in città».
-Perché non tre: un terzo club servirebbe solo a non toccare l'avversario di e15. Oggi lì gli avversari («i Rovers»)
-arrivano anche loro in treno («ognuno sul suo treno», e15.json:121), ma con Stoneway di Valmora la riga regge col
-treno urbano. Alternativa per il PO (sezione 7): tre esterni e nessun ritocco.
+Il salmone di Wallgate sta a 142 dall'arancio di Kiln.
 
-### 3.2 I due club esterni (PROPOSTA)
+Comando:
+```
+python3 -c "
+P={'Kiln':'#ff6a13','Skyfield':'#2fa7ff','Square':'#1e7b4a','Arches':'#546e7a','Studio':'#00897b','Garden':'#1b2a6b','Stoneway':'#5d4037','Pinegrove':'#6a1b9a','Belltower':'#ec407a','Waterline':'#f5f5f5','Lookout':'#c62828','Domepark':'#121212','Tramway':'#fbc02d','Railhead':'#b39ddb','Southwind':'#64dd17','Wallgate':'#ffab91'}
+rgb=lambda h:[int(h[i:i+2],16) for i in (1,3,5)]
+d=lambda a,b:sum((x-y)**2 for x,y in zip(rgb(a),rgb(b)))**.5
+for n in P: print(n,'%.0f %s'%min((d(P[n],v),k) for k,v in P.items() if k!=n))"
+```
+La misura non è percettiva. Le coppie da guardare nelle foto:
+- Lookout (rosso) con Kiln (arancio);
+- Wallgate (salmone) con Kiln;
+- Southwind (lime) col colore secondario di Arches;
+- il bianco di Waterline sugli sfondi chiari della mappa.
 
-| nome | ispirazione → immagine | dove sta | colori | stemma | ruolo negli episodi |
-|------|------------------------|----------|--------|--------|---------------------|
-| **Lockbridge County** | Ponte Milvio → il ponte coi lucchetti: un legame che non si scioglie, cioè il gemellaggio | città lontana, trecento chilometri di treno | #b39ddb lilla · #311b92 viola scuro | tondo, lucchetto | ospiti in treno a Skyfield (e02); gemellati della curva Kiln (e15, e27); avversario di Kiln nel giorno del vertice (e25); avversario di Skyfield nella sera del fascicolo (e31) |
-| **Saltway Town** | Salario → la via del sale: una città di saline e di porto | città di provincia sul mare, oltre il casello | #64dd17 verde lime · #ffffff bianco | rombo, ancora | neopromossa alla prima trasferta in città (e07); ultima di campionato a Kiln (e12); il suo porto nella traccia del telefono (e21) e nella pista di Ferrigno (e23) |
+Nomi reali: Non posso confermarlo che nessun club reale porti uno di questi nomi.
+- Rischio più alto: «Lookout», «Tramway», «Waterline» e «Pinegrove», che sono parole comuni o nomi di luogo.
+- «Wallgate Rovers» ripete il suffisso dello Square (vedi 3.2).
 
-Colori (FATTO MISURATO, distanza euclidea RGB fra colori primari, la stessa misura della sezione 2.3): Lockbridge
-ha il primario più vicino a Marble (113), Saltway a Square (131). Distanza fra Lockbridge e Pinegrove, l'altro viola:
-163. Tutti e 15 i club restano sopra il minimo di oggi (59, Square–Studio). Rischio da guardare nelle foto: il lime
-di Saltway assomiglia al colore secondario di Arches (#c0ca33). La misura non è percettiva (vedi 2.3).
+## 3. Club di fuori città (APPROVATO: tre)
 
-I suffissi «County» e «Town» dicono già che il club non è un quartiere ma un'altra città. Lockbridge prende un
-suffisso diverso da United, Athletic e Rovers, perché in e02, e25 ed e31 il testo dice oggi «i Rovers»: tenere
-«Rovers» lo confonderebbe con lo Square.
+Risposta 3 del PO: tre club esterni, ispirati a Quartiere Africano, San Paolo e Anagnina.
+SEGNALAZIONE (non cambio la scelta): San Paolo e Anagnina sono quartieri di Roma Sud, non di Roma Nord. La direttiva
+precedente del PO diceva «Le squadre da fuori devono essere ispirate a Roma Nord»; vale la scelta più recente.
 
-Nomi reali: Non posso confermarlo che nessun club reale porti «Lockbridge County» o «Saltway Town». Il controllo va
-fatto prima della pubblicazione su Play.
+| nome | ispirazione → immagine | dove sta | colori | stemma | ruoli |
+|------|------------------------|----------|--------|--------|-------|
+| **Railhead County** | Anagnina → il capolinea, dove finisce la linea | città lontana, trecento chilometri di treno | #b39ddb lilla · #311b92 viola scuro | scudo, fine linea | **treno + gemellati**: ospiti in treno a Skyfield (e02); gemellati della curva Kiln (e15, e27, al posto di Studio); avversario di Skyfield nella sera del fascicolo (e31) |
+| **Southwind Town** | Quartiere Africano → «Africus», il nome latino del vento di libeccio: un vento di mare. L'immagine evita di proposito ogni richiamo ai nomi delle strade del quartiere | città di provincia sul mare, oltre il casello | #64dd17 verde lime · #ffffff bianco | rombo, ancora | **neopromossa + porto**: prima trasferta in città (e07, al posto di Stoneway); ultima di campionato a Kiln (e12); il suo porto nella traccia del telefono (e21.json:119) e nella pista di Ferrigno (e23, al posto di Garden) |
+| **Wallgate Rovers** | San Paolo → la porta nelle mura | città vicina, due ore di treno | #ffab91 salmone · #37474f grigio scuro | scudo, porta nelle mura | **avversario di e15** (al posto di Square): arriva in treno e non sopporta i gemellati della curva Kiln (e15.json:29). PROPOSTA facoltativa: è anche la squadra che in e11 batte Kiln «quattro a zero fuori» (e11.json:3), oggi senza nome; così e15 diventa la rivincita |
 
-Prudenza (PROPOSTA): le due città esterne sono finzione, senza regione né distanza da luoghi reali; «trecento
-chilometri» resta l'unica indicazione, com'è oggi.
+### 3.1 Perché i ruoli stanno così (FATTO dai testi)
+- Il treno e i gemellati stanno insieme senza toccare le righe di viaggio:
+  - e02, e31: arrivo e ripartenza in treno (e02.json:3, 102; e31.json:114);
+  - e15, e27: «da trecento chilometri», il binario (e15.json:3, 61; e27.json:102).
+- Il club del treno non gioca mai contro Kiln: e25 passa a un club di Valmora (4.1). Così il gemellaggio con la curva
+  Kiln non ha mai una partita contro.
+- La neopromossa e il porto stanno insieme: prima di e07 il club non compare, quindi «per la prima volta in città»
+  (e07.json:10) resta vero. Le righe «quaranta pulmini» (e07.json:3) e «dieci pullman dal mare» (e23.json:4) stanno
+  bene sulla stessa città.
+- L'avversario di e15 è esterno: «ognuno sul suo treno» (e15.json:121) e «prima ancora di partire» (e15.json:25)
+  restano veri.
+- Suffisso «Rovers» per Wallgate: in e15 le 11 righe dicono già «i Rovers» (e15.json:4, 8, 25, 29, 62, 66, 71, 106,
+  107, 121, 123) e lo Square non c'è più. Con questo suffisso cambia solo il prefisso nelle righe che nominano «Square»
+  (e15.json:4, 71). Il costo è un secondo club «Rovers» nella guida. Alternativa: «Wallgate Athletic», con 11 righe da
+  riscrivere.
 
-### 3.3 Il porto: conflitto da chiarire
-FATTO: in e23 il porto è fuori città (e23.json:3-5) e l'informazione «Ferrigno è ancora in città» è segnata falsa
-(data/missioni/e23.json, briefing `info_comando`, `"vera": false`). In e28 ed e29 invece le banchine stanno sulla stessa
-mappa della curva Kiln (settori `banchine` di tipo `porto` in data/missioni/e28.json ed e29.json) e la curva va
-«verso il porto» a piedi (e28.json:103).
-PROPOSTA: due porti distinti.
-- e21 ed e23: il porto di mare di Saltway, fuori città. Lì porta la pista e lì arriva il traghetto.
-- Da e27 in poi: il porto fluviale di Valmora, nel quartiere Gasworks. L'indirizzo lasciato in e27.json:112 riporta
-  Ferrigno in città.
+### 3.2 Il porto
+- e21 ed e23: il porto di mare di Southwind, fuori città.
+- Da e27 in poi: le banchine del porto fluviale di Valmora, senza club (2.1).
 
-## 4. Mappa club → episodi (PROPOSTA, rivista: restando a 36 episodi)
+FATTO a sostegno:
+- in e23 l'informazione «Ferrigno è ancora in città» è segnata falsa (data/missioni/e23.json, briefing
+  `info_comando`, `"vera": false`);
+- in e28 ed e29 le banchine stanno sulla mappa della città (settori `banchine` di tipo `porto`).
 
-Criteri:
-- ogni club di Valmora ha un episodio di presentazione (P) e almeno una ricomparsa (R);
-- derby, eventi di città e fili restano dove sono;
-- i ruoli «da fuori» passano a Lockbridge e Saltway, che ereditano le righe di viaggio così come sono.
+## 4. Mappa club → episodi (APPROVATA: 12 episodi per stagione, opzione A)
 
-FATTO sui posti disponibili: gli episodi con un avversario che non sia un derby sono 24; ne tolgo e02, e07, e12, e25
-ed e31 (esterni) e restano 19. Aggiungendo un avversario con nome in e17 (porte chiuse, oggi senza nome) ed e30
-(partita rinviata, oggi senza nome) i posti diventano 21. Ma 11 club per 2 apparizioni fanno 22: **uno resta corto**.
-PROPOSTA: per Gasworks la ricomparsa è il suo quartiere. Le banchine del porto fluviale ci sono già in e28, e29 ed
-e35, senza la sua curva.
+### 4.1 Posti e assegnazione
+FATTO sui posti:
+- Gli episodi con un avversario che non sia un derby sono 24.
+- Agli esterni ne vanno 5: e02, e07, e12, e15, e31 (e23 non era fra i 24, perché è già esterno). Ne restano 19.
+- Si aggiunge un avversario con nome dove oggi manca, senza curve nuove: e17 (porte chiuse), e21 (la partita durante
+  lo sgombero, «Partita in corso» e21.json:72) ed e30 (partita rinviata). I posti diventano 22.
+- e25 passa da esterno a Valmora: i club di Valmora diversi da Kiln e Skyfield sono 11, per 2 apparizioni fanno 22.
+  **Il posto mancante della prima stesura è chiuso**, senza ricomparse «solo come quartiere».
 
-| club | P | R | cosa cambia rispetto a oggi |
-|------|---|---|-----------------------------|
-| Kiln | e01 | ovunque | niente |
-| Skyfield | e01 | ovunque | niente |
-| Garden | e03 | e06 | niente; perde e05, e14, e16, e24, e26, e29, e34 e il porto (e21, e23) |
-| Square | e04 | e08 | niente; perde il treno (e02, e25, e31) e e09, e13, e15, e18, e19, e27 |
-| **Marble** | e05 (al posto di Ga) | e26 (al posto di Ga) | finale di coppa contro Skyfield |
-| **Belltower** | e09 (al posto di Sq) | e19 (al posto di Sq) | i pullman in tangenziale; la retata |
-| Studio | e13 (al posto di Sq) | e29 (al posto di Ga) | il palco del concertone; la sera della cattura |
-| **Laurel** | e14 (al posto di Ga) | e24 (al posto di Ga) | biglietti doppi; il titolo contro Skyfield |
-| Stoneway | e15 (al posto di Sq come avversario) | e30 (avversario nominato della partita rinviata) | perde e07/e12 (passano a Saltway) e diventa di Valmora |
-| **Gasworks** | e16 (al posto di Ga) | e28, e29, e35 come quartiere del porto | l'unico con la ricomparsa senza curva |
-| **Pinegrove** | e17 (avversario nominato a porte chiuse) | e27 (al posto di Sq) | i vicini «arrivati a piedi» (e17.json:11) |
-| **Shardhill** | e18 (al posto di Sq) | e34 (al posto di Ga) | il testimone; l'interim |
+Gli episodi deboli sono e17, e21 ed e30, dove l'avversario è solo nominato. Li uso soltanto come ricomparsa, mai
+come presentazione.
+
+| club | presentazione | ricomparsa | rispetto a oggi |
+|------|---------------|------------|-----------------|
+| Kiln, Skyfield | e01 | ovunque | niente |
+| Garden | e03 | e06 | niente; perde e05, e14, e16, e23, e24, e26, e29, e34 |
+| Square | e04 | e08 | niente; perde e02, e09, e13, e15, e18, e19, e25, e27, e31 |
+| Domepark | e05 (al posto di Ga) | e26 (al posto di Ga) | finale di coppa contro Skyfield |
+| Belltower | e09 (al posto di Sq) | e25 (al posto di Sq) | pullman in tangenziale; «un treno solo» nella zona rossa |
+| Tramway | e13 (al posto di Sq) | e17 (avversario nominato) | arriva col trenino all'amichevole del concertone |
+| Waterline | e14 (al posto di Ga) | e27 (al posto di Sq, coi gemellati di Railhead) | |
+| Pinegrove | e16 (al posto di Ga) | e21 (avversario nominato) | vicini delle fonderie: il magazzino; lo sgombero nel quartiere accanto |
+| Lookout | e18 (al posto di Sq) | e34 (al posto di Ga) | il testimone; la commissione che guarda |
+| Studio | e19 (al posto di Sq) | e30 (avversario nominato) | la retata; la partita rinviata |
+| Stoneway | e24 (al posto di Ga) | e29 (al posto di Ga) | il titolo contro Skyfield; la sera della cattura |
 | Arches | e28 | e33 | niente |
-| Lockbridge (esterno) | e02 (al posto di Sq) | e15, e25, e27, e31 | gemellati in e15/e27 al posto di Studio |
-| Saltway (esterno) | e07 (al posto di Sw) | e12, e21, e23 | e21/e23 al posto di Garden |
+| Railhead (esterno) | e02 | e15, e27 (gemellati), e31 | |
+| Southwind (esterno) | e07 | e12, e21 (porto), e23 | |
+| Wallgate (esterno) | e15 | (e11, se si nomina) | |
 
-Restano come oggi: e01, e03, e04, e06, e08, e10, e11, e20, e22, e28, e32, e33, e35, e36, più il resto di e21 ed
-e30. Presentati in stagione 1: Kiln, Skyfield, Garden, Square, Marble, Belltower più Lockbridge e Saltway. In
-stagione 2: Studio, Laurel, Stoneway, Gasworks, Pinegrove, Shardhill. In stagione 3: Arches.
+Presentati per stagione:
+- stagione 1: Kiln, Skyfield, Garden, Square, Domepark, Belltower, più Railhead e Southwind;
+- stagione 2: Tramway, Waterline, Pinegrove, Lookout, Studio, Stoneway, più Wallgate;
+- stagione 3: Arches.
 
-**Rispetto della trama (BIBBIA) e conflitti**
-- Ferrigno capo della curva Kiln (BIBBIA.md:96), fuga in e20 e cattura in e29 (BIBBIA.md:10): restano come sono.
-- La talpa Lavezzari (BIBBIA.md:90), smascherata in e33: e33 resta Skyfield–Arches, nessun conflitto.
-- Varrone & Figli (BIBBIA.md:91): nessun club coinvolto.
-- CONFLITTO 1 — i treni di e02 «da fuori città» (BIBBIA.md:62, INDICE_TRIADE.md:16): restano veri, ma il club
-  cambia. D-071 («Calderholt Rovers arriva in treno», DECISIONI.md:82) è superata: serve una decisione nuova.
-- CONFLITTO 2 — il gemellaggio è fra la curva Kiln e Lockbridge, non più con Studio (BIBBIA e INDICE: e15, e27). Il
-  verbale di e15 nomina «il capo di Stu…» (e15.json:121): va rinominato.
-- CONFLITTO 3 — Stoneway lascia il ruolo di neopromossa che le danno l'indice (INDICE_TRIADE.md:21) e i testi di e07 (e07.json:3)
-  e diventa di Valmora: è il club che cambia identità più di tutti.
-- CONFLITTO 4 — il porto (sezione 3.3).
-- CONFLITTO 5 — Arches viene presentato solo in stagione 3. Alternativa: e19 ad Arches, e Belltower ricompare in e25
-  al posto di Lockbridge (Lockbridge resterebbe con e02, e15, e27, e31).
-- CONFLITTO 6 — e17 ed e30 oggi non nominano l'avversario. Nominarlo aggiunge una o due righe per episodio, nessuna
-  curva nuova: il ritmo D-092 (src/dati/ritmo.ts:1-2), che conta le curve sulla mappa, non cambia.
+### 4.2 Trama (BIBBIA) e conflitti
+- Restano come sono:
+  - Ferrigno (BIBBIA.md:96, :10);
+  - la talpa Lavezzari (BIBBIA.md:90), con e33 che resta Skyfield–Arches;
+  - Varrone (BIBBIA.md:91).
+- CONFLITTO 1: D-071 («Calderholt Rovers arriva in treno», DECISIONI.md:82) è superata. Il treno di e02 resta «da
+  fuori città» (BIBBIA.md:62, INDICE_TRIADE.md:16), ma è di Railhead. Serve una decisione nuova che la superi.
+- CONFLITTO 2: il gemellaggio passa da Studio a Railhead (e15, e27). Il verbale di e15 nomina «il capo di Stu…»
+  (e15.json:121).
+- CONFLITTO 3: Stoneway non è più la neopromossa, che è un ruolo dell'indice (INDICE_TRIADE.md:21) e dei testi
+  (e07.json:3). Il ruolo passa a Southwind.
+- CONFLITTO 4: Arches viene presentato solo in stagione 3, come oggi.
+- CONFLITTO 5 (da verificare riga per riga prima di scrivere): in e17 la sicurezza dello Skyfield dice «i nostri
+  scendono a piedi dalla collina» (e17.json:80). Nominare Tramway come avversario non deve far sembrare che gli
+  ospiti siano quelli dello Skyfield.
+- Ritmo D-092 (src/dati/ritmo.ts:1-2): non cambia, perché nessuna curva viene aggiunta o tolta.
+- D-108: non cambia, perché il campo `club` non entra nel motore (src/logica/tipi.ts:28, 40). Va comunque misurato
+  (passo 8.6).
 
-## 5. Quanti episodi per stagione
+## 5. Episodi per stagione (APPROVATO: 12)
 
-FATTO che pesa sulla scelta:
-- D-009 (docs/governo/DECISIONI.md:20): prima pubblicazione = triade intera di **36 missioni**, data **2026-11-30**,
-  ambito congelato dal **2026-11-20**. Oggi è il 2026-10-14.
-- Il campo `club` non entra nel motore: in src/logica compare solo nelle dichiarazioni di tipo (src/logica/tipi.ts:28, 40).
-  Cambiare avversario non cambia i numeri dei bot (D-108).
-- L'ordine degli episodi è il campo `episodio` (src/resa/dati.ts:40); un episodio si gioca se tutti quelli con
-  numero minore sono superati (src/resa/episodi.ts:12-16). I salvataggi registrano gli episodi per id
-  (src/salvataggi/salvataggio.ts:28-31).
-- Un episodio oggi: circa 134 righe di testi in media (4844 righe in 36 file, `wc -l data/testi/it/e*.json`) e
-  14-17 chiamate (e02 17, e04 15, e09 14, e14 14).
+FATTO: D-009 fissa 36 missioni, uscita il 2026-11-30 e ambito congelato dal 2026-11-20 (docs/governo/DECISIONI.md:20).
+- Con 12 episodi per stagione non si rinumera niente: l'ordine degli episodi segue il campo `episodio`
+  (src/resa/dati.ts:40) e i salvataggi seguono gli id (src/salvataggi/salvataggio.ts:28-31).
+- comune.json:83 («36 episodi in tre stagioni») resta vero.
+- Le opzioni B (13×3) e C (stagione 4) sono scartate.
 
-| opzione | cosa | costo | rischio |
-|---------|------|-------|---------|
-| **A. Restare a 12 (36)** — consigliata | redistribuire gli avversari (sezione 4) | 22 episodi toccati, quasi tutti per sostituire un nome: le righe di viaggio restano; nessun episodio nuovo; bot invariati | presentazione tarda di Arches; Gasworks ricompare solo come quartiere; i nuovi si vedono 2 volte |
-| B. 13 per stagione (39) | un episodio in più a stagione, dedicato a un club | 3 episodi nuovi (~400 righe di testi, ~45 chiamate) + tutto A; rinumerare `episodio` da e13 in poi; ritaratura D-108 della stagione 1 (sequenza non decrescente); ricontrollo del ritmo D-092; testo «36 episodi» in comune.json:83; cambia l'ambito di D-009 | i salvataggi già oltre il punto d'inserimento trovano un episodio nuovo da giocare prima di proseguire, con variabili di partenza prese da episodi successivi (D-062): va provato sui salvataggi veri (tests/salvataggi-reali/). In cambio risolve il posto mancante (sezione 4) |
-| C. 12 + episodi in stagione 4 | A adesso; i club con 2 sole apparizioni tornano nella stagione 4 «la città» (docs/RISERVA_EVENTI.md) | come A, poi lavoro dopo la triade | nessuno sul 30/11 |
+## 6. Costi in sintesi
+- **Episodi toccati: 23.**
+  - Cambia l'avversario o il ruolo: e02, e05, e07, e09, e12, e13, e14, e15, e16, e18, e19, e23, e24, e25, e26, e27,
+    e29, e31, e34.
+  - Si aggiunge un nome: e11 (facoltativo), e17, e21, e30.
+- **Restano come sono:** e01, e03, e04, e06, e08, e10, e20, e22, e28, e32, e33, e35, e36.
+- **Nuovi:** 9 file in data/club/ e 12 simboli di stemma.
+- **Bot:** attesi identici.
 
-Perché A (o A+C):
-- rispetta D-009 senza toccare l'ambito;
-- non sposta i bot;
-- racconta comunque tutti i 13 club.
+## 7. Decisioni rimaste per il PO
+1. I quattro nomi nuovi (Waterline City, Lookout FC, Domepark Villa, Tramway Borough) e i nomi dei tre esterni
+   (Railhead County, Southwind Town, Wallgate Rovers): approvarli o chiedere alternative.
+2. Wallgate col suffisso «Rovers», che riusa le righe di e15, oppure con un altro suffisso (11 righe in più da
+   riscrivere).
+3. Nominare Wallgate anche in e11, come la squadra che ha battuto Kiln: sì o no.
+4. Le banchine del porto fluviale senza club (consigliato), oppure in un quartiere.
 
-«Un episodio per club» con 13 per stagione non regge da solo: e01 presenta già due club e cinque episodi (e11, e17,
-e21, e30, e35) non hanno avversario, quindi anche a 13 servirebbe la redistribuzione.
+## 8. PIANO DI LAVORO
+Regole per tutti i passi:
+- Ogni passo è piccolo e si chiude con una verifica.
+- I passi segnati **P** li fa la sessione principale (dati e testi); quelli segnati **S** la sviluppatrice (stemmi e
+  resa).
+- Dopo ogni passo che tocca data/ si fa girare la catena logica (tipi, confini, schema, storia; il pre-push di D-117).
+- Prima della promozione si fa girare la catena «completa».
 
-## 6. Elenco dei costi (opzione A, rivista)
+### 8.1 Dati dei club — P
+1. Nove file nuovi in data/club/ (schema/club.schema.json: `id`, `nome`, `colori`, `stemma`; id in minuscolo con
+   underscore):
+   - di Valmora: `pinegrove_rangers`, `belltower_harriers`, `waterline_city`, `lookout_fc`, `domepark_villa`,
+     `tramway_borough`;
+   - esterni: `railhead_county`, `southwind_town`, `wallgate_rovers`.
+   - Gli stemmi, finché manca il simbolo, cadono sulle iniziali (stemma.tsx:32): il passo non rompe nulla.
+   - Verifica: lo schema è verde e src/dati/semantica.ts:149 trova il nome di ogni club.
+2. In data/testi/it/comune.json: nove chiavi `club.<id>` e nove fonti `fonte.club_<prefisso>` («Responsabile del …»,
+   con l'articolo giusto). Verifica: catena logica verde.
+3. `stemma` per arches, studio e stoneway nei loro file. Si fa dopo il passo 8.2, altrimenti punta a simboli che non
+   esistono ancora e quei club cadono sulle iniziali.
 
-**Dati**
-- data/club/: 8 file nuovi (6 di Valmora + Lockbridge + Saltway). Facoltativo: `stemma` per arches, studio e stoneway.
-- data/testi/it/comune.json: 8 nomi `club.*` e le fonti `fonte.club_*` nuove (una per club nuovo).
-  guida.1 (riga 78) può restare: dice già 13.
-- data/missioni: `club` dei settori e degli eventi, e dove serve la `fonte`, in e02, e05, e07, e09, e12, e13, e14,
-  e15, e16, e18, e19, e23, e24, e26, e27, e29, e31, e34. Gli id dei settori restano gli stessi (`curva_ospiti`,
-  `settore_gemellati`, `curva_gemellati`).
-- e17, e25, e30: cambiano solo i testi. e25 non ha un campo `club` per gli ospiti.
+### 8.2 Stemmi — S
+1. In src/resa/stemma.tsx, 12 tracciati nella tabella dei simboli (accanto a :16-19), secondo le descrizioni di 2.4.
+2. Verifica:
+   - foto dello stemma dei 16 club a 360, 375 e 412 px;
+   - tools/foto-club.mjs («stemmi della sfida, uno per club delle curve»);
+   - guardiano dei valori scritti a mano (CLAUDE.md, «Interfaccia»). I colori dei club restano dati, non token, come dice lo schema (schema/club.schema.json, descrizione di `colori`).
+3. Bump di GAME_VERSION col commento causa/misura/guardiano.
 
-**Fonti condivise**
-- `club_ospite` (Square, comune.json:36): resta in e04 ed e08. Passa a Lockbridge in e02; ai club nuovi in e09, e13,
-  e18, e19; in e15 diventa `club_saltmere` (Stoneway, id già esistente).
-- `club_quillhaven` (Garden): resta in e03 ed e06; cambia in e05, e14, e16, e23, e24, e26, e29, e34.
-- `club_saltmere` in e07 ed e12: passa a Saltway.
-- `gemellati` (e27, bozze_s3.json:6): il testo diventa «Responsabile del Lockbridge County».
+### 8.3 Episodi — P, un episodio per commit
+Per ognuno: cambiare il campo `club` dei settori e degli eventi (righe di data/missioni dalla sezione 1.1) e la
+`fonte` dove serve, poi i testi alle righe indicate (data/testi/it/eNN.json). Verifica per episodio: catena logica
+verde e `node tools/bot.mjs` sull'episodio con esiti identici a prima.
 
-**Testi**
-- Solo sostituzione del nome, righe di viaggio intatte: e02 («Rovers» in 18 righe), e07, e12, e15 (parte dei
-  gemellati), e21.json:119, e23, e25 (12 righe), e27 (parte dei gemellati), e31 (18 righe); bozze_s2.json:15 (porto).
-- Cambio d'avversario con riscrittura delle battute che lo nominano: e05, e09, e13, e14, e15 (avversario), e16, e18,
-  e19, e24, e26, e27 (avversario), e29, e34.
-- Avversario nominato per la prima volta: e17, e30.
-- Studio Town esce dalle righe dei gemellati (e15.json:3, 121; e27.json:3, 102, 112).
+| ep | cosa | data/missioni (riga `club`) | testi da riscrivere (righe) | fonte |
+|----|------|-----------------------------|-----------------------------|-------|
+| e02 | Square → Railhead | 57, 74 | 3, 6, 8, 10, 23, 28, 38, 40, 55, 57, 65, 68, 96, 107, 113, 115, 127, 161 | `club_ospite` → `club_railhead` |
+| e05 | Garden → Domepark | 83 | 3, 7, 29, 55, 76, 82, 120 | `club_quillhaven` → `club_domepark` |
+| e07 | Stoneway → Southwind | 50, 67, 76 | 3, 5, 10, 11, 22, 28, 29, 43, 57, 60, 73, 90, 99, 100, 125, 126, 127 | `club_saltmere` → `club_southwind` |
+| e09 | Square → Belltower | 83 | 3, 7, 10, 32, 35, 38, 46, 60, 63, 108, 123, 126, 129 | `club_ospite` → `club_belltower` |
+| e11 | (facoltativo) nominare Wallgate | – | 3 | – |
+| e12 | Stoneway → Southwind | 59 | 4, 7, 46, 54, 57, 94, 97, 103 | `club_saltmere` → `club_southwind` |
+| e13 | Square → Tramway | 689 | 3, 6, 34, 49, 120, 122, 123 | `club_ospite` → `club_tramway` |
+| e14 | Garden → Waterline | 75 | 4, 8, 26, 52, 110, 115 | `club_quillhaven` → `club_waterline` |
+| e15 | Square → Wallgate; Studio (gemellati) → Railhead | 66, 84, 631 | Square: 4, 71 (con il suffisso «Rovers»); Studio: 3, 5, 6, 11, 21, 36, 99, 121 | `club_ospite` → `club_wallgate` |
+| e16 | Garden → Pinegrove | 83 | 4, 7, 40, 66, 71, 114, 117 | `club_quillhaven` → `club_pinegrove` |
+| e17 | nominare Tramway | – | 3-4, e una riga che leghi gli ospiti a Tramway (attenzione a e17.json:80) | – |
+| e18 | Square → Lookout | 50 | 4, 6, 22, 47, 48, 92, 108, 109, 111 | `club_ospite` → `club_lookout` |
+| e19 | Square → Studio | 83 | 4, 8, 69, 72, 109, 112, 115 | `club_ospite` → `club_ollerbrook` (esiste: bozze_s2.json:11) |
+| e21 | nominare Pinegrove; porto → Southwind | – | 3-4 (avversario); 119 (porto) | correggere l'anomalia delle righe 239 e 708 (1.3) |
+| e23 | Garden → Southwind | 59, 68, 85 | 3, 4, 5, 6, 10, 11, 22, 29, 36, 46, 80, 99, 107 | `club_quillhaven` → `club_southwind`; `fonte.ufficio_porto` (bozze_s2.json:15) |
+| e24 | Garden → Stoneway | 50 | 3, 6, 49, 87, 106, 112, 116 | `club_quillhaven` → `club_saltmere` |
+| e25 | Rovers (Square) → Belltower | – (gli ospiti non hanno campo `club`) | 4, 6, 10, 22, 46, 49, 53, 55, 66, 69, 90, 96 | – |
+| e26 | Garden → Domepark | 58, 84 | 3, 6, 7, 11, 42, 57, 103 | `club_quillhaven` → `club_domepark` |
+| e27 | Square → Waterline; Studio (gemellati) → Railhead | 59, 68 | Square: 4, 59, 61, 62, 68, 75, 83, 84, 86; Studio: 3, 5, 22, 75, 102, 112 | `gemellati` (bozze_s3.json:6) → Railhead |
+| e29 | Garden → Stoneway | 59 | 4, 6, 29, 89, 97 | `club_quillhaven` → `club_saltmere` |
+| e30 | nominare Studio | – | 3-4 | – |
+| e31 | Square → Railhead | 58, 83 | 4, 6, 10, 11, 15, 18, 29, 35, 40, 59, 64, 65, 66, 87, 95, 104, 114, 120, 121 | `club_ospite` → `club_railhead` |
+| e34 | Garden → Lookout | 67, 84 | 4, 6, 10, 29, 54, 74, 101 | `club_quillhaven` → `club_lookout` |
 
-**Codice** (esce dal perimetro «solo dati»: catena completa)
-- src/resa/stemma.tsx: 8 simboli nuovi (pigna, anfora, gasometro, colonna, torre, alloro, lucchetto, ancora) + 3 facoltativi.
+Le righe sono quelle che oggi contengono il prefisso o il suffisso del club uscente
+(`grep -nE 'Square|Rovers' data/testi/it/eNN.json`, ecc.), misurate su questo ramo.
+- Prima di scrivere, rifare il grep: la principale ha corretto gli articoli e i numeri di riga possono essere cambiati.
+- Ordine consigliato: prima gli esterni (e02, e07, e12, e15, e21, e23, e27, e31), poi i cambi d'avversario per
+  stagione.
 
-**Documenti**
-- docs/BIBBIA.md: righe 8, 62, 75 e la geografia dei quartieri e delle due città esterne.
-- docs/INDICE_TRIADE.md: nomi vecchi alle righe 7-8 e nelle tre tabelle.
-- docs/governo/DECISIONI.md: una decisione nuova, che supera D-071.
+### 8.4 Documenti — P
+1. docs/BIBBIA.md:
+   - riga 8 («13 club»), già giusta;
+   - righe 37 e 62 e la sezione e02;
+   - riga 75 (Garden «di Valmora»);
+   - una sezione «Quartieri e club» con la mappa di 2.1 e i tre esterni.
+2. docs/INDICE_TRIADE.md: nomi vecchi alle righe 7-8 e nelle tre tabelle, coi club per episodio di 4.1.
+3. Prefazione (data/testi/it/comune.json:78, guida.1): è già vera («13 club»). Se il PO vuole, si aggiunge un terzo
+   quartiere d'esempio, entro 140 caratteri per battuta (BIBBIA.md, consolidamento).
+4. docs/governo/DECISIONI.md: una decisione che supera D-071 e registra i 13 club, i 3 esterni e la mappa.
+5. docs/governo/BACKLOG.md: la voce PO-109, che oggi manca.
+6. Roadmap e registro delle release, come nel rituale di docs/governo/ISTRUZIONI_PO.md §7.
 
-**Prove**
-- Catena «completa», perché tocca missioni e codice.
-- Bot: attesi identici, perché il club non entra nel motore. Va misurato, non dato per scontato.
-- Foto delle curve coi colori nuovi (tools/foto-club.mjs) a 360/375/412 px.
-- Controllo dei nomi reali prima di Play.
-
-## 7. Decisioni che servono al PO
-1. Numero di episodi: A (12×3, consigliata), B (13×3), C (A ora + stagione 4).
-2. I sei nomi nuovi di Valmora (Roma Sud) e i loro colori: approvarli o chiedere alternative.
-3. I due esterni (Roma Nord): Lockbridge County (dal Ponte Milvio: treno + gemellati) e Saltway Town (dal Salario:
-   neopromossa + porto). Va bene unire i ruoli a due a due, oppure tre esterni per non toccare l'avversario di e15?
-4. Stoneway lascia il ruolo di neopromossa a Saltway e diventa di Valmora (cambio d'identità più grande).
-5. Il porto: due porti distinti (Saltway fuori, Gasworks in città)?
-6. Il posto mancante: Gasworks ricompare solo come quartiere del porto, oppure si prende l'opzione B.
-7. Lo stemma per Arches, Studio e Stoneway, oppure restano con le iniziali.
+### 8.5 Controlli finali — P per la catena, S per le foto
+1. Test e catena «completa» (`node tools/catena.mjs completa`), attesa nel turno; nessuna pipe senza
+   `set -o pipefail`.
+2. Bot D-108: `node tools/bot.mjs 1000`.
+   - Esiti per episodio identici a prima (atteso, perché il club non entra nel motore).
+   - `controllaDifficolta` verde (tools/passi-logica.mjs:26).
+   - Se un numero si sposta, prima si trova la causa: non si tocca nessuna soglia.
+3. Foto delle curve coi colori nuovi (tools/foto-club.mjs) a 360, 375 e 412 px, con asset veri, prima e dopo. Le
+   coppie da guardare sono in 2.4.
+4. Audit dei nomi reali dei 16 club (ricerca in rete del nome esatto + «football club»), con le fonti in DECISIONI.
+   Per ogni nome si scrive «Non posso confermarlo» finché la ricerca non è fatta.
+5. Salvataggi: nessun campo nuovo e nessun id di episodio cambiato. Il passo «salvataggi-reali» della catena deve
+   restare verde (tests/salvataggi-reali/).
