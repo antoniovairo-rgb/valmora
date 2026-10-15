@@ -35,7 +35,7 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Affidabilità (D-030): radio alta, rete media.
 - Verità (D-031): il corteo c'è davvero; lo annuncia l'informatore di strada, la fonte meno affidabile. Il verbale lo rivela.
 - Quartieri (D-032): Kiln, fonderie e ciminiere, contro Skyfield, la collina elegante.
-- Club (D-033): Kiln United contro Skyfield Athletic.
+- Club (D-033): Kiln United contro Skyfield Athletic. Gli altri undici club di Valmora e i tre di fuori città: sezione «Quartieri e club» (D-125).
 - Settori (D-034): curva Kiln, curva Skyfield, piazzale dello stadio, strada da Kiln, strada da Skyfield.
 - Esito (D-035): decide la tensione massima raggiunta (bassa → contenuto, media → contenuto a fatica, altrimenti degenerato).
 - Regole della plancia (D-037, D-038): squadre 2 in strada e 1 in curva, steward 2 in curva e 1 in strada, entrambi 1 in piazzale; il mediatore dimezza un corteo; prima di ogni ondata si ridistribuisce tutto.
@@ -59,7 +59,7 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Giudizio del PO su e01 (2026-10-11, PO-037): «Primo episodio carino».
 
 ## e02 «Ospiti numerosi» (D-071…D-074)
-- Skyfield Athletic in casa contro gli Square Rovers, che arrivano in treno da fuori città. Due treni, uno in ritardo; gira una voce di biglietti falsi.
+- Skyfield Athletic in casa contro il Railhead County, che arriva in treno da fuori città: trecento chilometri (D-125; con D-071 erano gli Square Rovers, oggi club di Valmora). Due treni, uno in ritardo; gira una voce di biglietti falsi.
 - Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Skyfield. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 16 chiamate.
 - Dilemma (D-073): scortare gli ospiti o contenerli in stazione. Novità (D-072): stazione e biglietti falsi ai tornelli.
 - Fili: se in e01 hai pagato l'informatore, ti segnala i venditori di biglietti e un furgone grigio senza targa (variabile nuova `furgone_visto`, prima comparsa del furgone, indice e09).
@@ -72,7 +72,7 @@ e02 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000
 e02 · scelte a caso con schieramento attento: {"contenuto":82,"contenuto_a_fatica":181,"degenerato":37}
 
 ## e03 «Notte di coppa» (D-081…D-083)
-- Coppa, sera infrasettimanale: Skyfield Athletic in casa contro il Garden Albion (club inventato, D-083), seicento ospiti in pullman. Lo stadio è a cinquanta metri dalle case: il comitato dei residenti protesta.
+- Coppa, sera infrasettimanale: Skyfield Athletic in casa contro il Garden Albion (club inventato, D-083; di Valmora, il quartiere sul fiume, D-125), seicento ospiti in pullman. Lo stadio è a cinquanta metri dalle case: il comitato dei residenti protesta.
 - Settori: vie del quartiere, parcheggi, piazzale, curva ospiti, curva Skyfield. Quattro ondate: il tramonto, primo tempo, supplementari, l'uscita di notte. 14 chiamate.
 - Dilemma (D-081): quartiere o stadio. Novità (D-082): transenne fisse (2), che una volta montate restano fino a fine serata e si montano solo dove servono (quartiere, strade, piazzale). Trappola voluta: i parcheggi si riempiono subito, le proteste del quartiere crescono verso mezzanotte.
 - Fili: cartelloni dello stadio nuovo (prima comparsa, D-069), nel briefing (centrale radio: nessun permesso in comune) e nella chiamata del comitato, senza scelta (D-084). Premi di campagna: il presidente spegne le luci esterne se lo hai incontrato in e01; il furgone grigio torna nei parcheggi se hai pagato l'informatore e lo hai annotato in e02.
@@ -94,3 +94,53 @@ e03 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000
 - Testi: battute entro 140 caratteri, introduzioni di 2 battute.
 
 - Capo della curva Kiln (D-102): Tano Ferrigno, detto «il Fabbro» (prima «Dessì»).
+
+## Quartieri e club (D-125)
+Tredici club di Valmora, uno per quartiere, e tre club di fuori città. Nomi D-124 e D-125; piano completo, colori e stemmi:
+docs/proposte/13-club.md. I quartieri veri da cui nasce l'immagine non si nominano mai nel gioco.
+
+Mappa di Valmora:
+- Est, lungo le due grandi strade che escono dalla città: Kiln (fonderie e ciminiere), Pinegrove (case basse fra i binari,
+  osterie, muri dipinti), Domepark (palazzine attorno al parco delle rovine), Waterline (i lotti lungo la linea
+  dell'acqua), Lookout (case basse attorno alla vecchia torre di vedetta); in fondo Tramway (il capolinea del trenino) e le
+  torri di Belltower.
+- Sopra l'Est: la collina di Skyfield.
+- Sud-est, lungo la ferrovia e gli acquedotti: Square (lo scalo ferroviario), Arches (le case sotto gli archi del vecchio
+  acquedotto), Studio (i teatri di posa).
+- Sud, sul fiume: Garden (case popolari coi cortili-giardino).
+- Margine verde: Stoneway, lungo la strada antica.
+- Le banchine del porto fluviale (e28, e29, e35) non sono di nessun club.
+
+Club di Valmora e dove giocano (la prima volta è la presentazione):
+| club | quartiere | episodi |
+|------|-----------|---------|
+| Kiln United | Kiln | quasi tutti; derby con lo Skyfield in e01, e10, e20, e22, e32, e36 |
+| Skyfield Athletic | Skyfield | e01 e quasi tutti |
+| Garden Albion | Garden | e03 (coppa), e06 |
+| Square Rovers | Square | e04, e08 |
+| Domepark Villa | Domepark | e05, e26 (finale di coppa): il parco contro la collina |
+| Belltower Harriers | Belltower | e09 (pullman in tangenziale), e25 (treno urbano nella zona rossa) |
+| Tramway Borough | Tramway | e13 (amichevole, arriva col trenino), e17 (porte chiuse, trenino fermo per lo sciopero) |
+| Waterline City | Waterline | e14, e27 |
+| Pinegrove Rangers | Pinegrove | e16 (i vicini di là dai binari), e21 (si gioca durante lo sgombero) |
+| Lookout FC | Lookout | e18 (in metro), e34 (si gioca la salvezza) |
+| Studio Town | Studio | e19, e30 (partita rinviata) |
+| Stoneway Wanderers | Stoneway | e24 (vince il titolo a Skyfield), e29 |
+| Arches Town | Arches | e28, e33 |
+
+Club di fuori città:
+- Railhead County: città lontana, trecento chilometri di treno. Ospite dello Skyfield in e02 ed e31; gemellato da
+  vent'anni con la curva Kiln, viene a cantare con lei in e15 ed e27. Non gioca mai contro il Kiln.
+- Southwind Town: città di provincia sulla costa, oltre il casello. Neopromossa alla prima trasferta in città (e07), si
+  salva all'ultima giornata a Kiln (e12); il suo porto è nella traccia del telefono (e21) e nella pista di Ferrigno (e23).
+- Wallgate Rovers: città vicina, due ore di treno. Batte il Kiln quattro a zero in casa sua (e11); in e15 viene a Valmora
+  per la rivincita e non sopporta i gemellati della curva Kiln.
+
+Rivalità e amicizie: Kiln–Skyfield (il derby); Kiln–Pinegrove (vicini di mercato); Skyfield–Domepark (il parco contro la
+collina); Belltower–Tramway (il derby del capolinea); Waterline–Lookout (vicini di casa); curva Kiln gemellata col Railhead.
+
+Come arrivano le tifoserie (richiesta del PO del 14/10: «la storia deve essere molto credibile»): da fuori in treno
+(Railhead, Wallgate) o in pullman e pulmini dal casello (Southwind). Dentro la città in pullman organizzati quando lo
+chiedono il club o il comando (Domepark, Belltower in tangenziale, Pinegrove «niente corteo fra vicini», Studio, Stoneway,
+Lookout in e34 perché «la metro non basta»), in metro (Lookout, e18), col trenino (Tramway) o col treno urbano
+(Belltower, e25).
