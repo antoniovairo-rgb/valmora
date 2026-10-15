@@ -22,7 +22,7 @@
     },
     {
       "testo": "testi:e23.info_quillhaven",
-      "fonte": "club_quillhaven",
+      "fonte": "club_southwind",
       "affidabilita": "media",
       "vera": true,
       "settore": "parcheggi"
@@ -56,7 +56,7 @@
       {
         "id": "parcheggi",
         "tipo": "strada",
-        "club": "quillhaven_albion",
+        "club": "southwind_town",
         "pos": {
           "x": 60,
           "y": 35
@@ -65,7 +65,7 @@
       {
         "id": "casello",
         "tipo": "strada",
-        "club": "quillhaven_albion",
+        "club": "southwind_town",
         "pos": {
           "x": 85,
           "y": 12
@@ -82,7 +82,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "quillhaven_albion",
+        "club": "southwind_town",
         "pos": {
           "x": 82,
           "y": 68
@@ -230,7 +230,7 @@
         },
         {
           "id": "dieci_pullman",
-          "fonte": "club_quillhaven",
+          "fonte": "club_southwind",
           "testo": "testi:e23.ch.dieci_pullman",
           "settore": "parcheggi",
           "opzioni": [
@@ -715,7 +715,7 @@
         },
         {
           "id": "ripartire",
-          "fonte": "club_quillhaven",
+          "fonte": "club_southwind",
           "testo": "testi:e23.ch.ripartire",
           "settore": "parcheggi",
           "opzioni": [

@@ -22,7 +22,7 @@
     },
     {
       "testo": "testi:e24.info_quillhaven",
-      "fonte": "club_quillhaven",
+      "fonte": "club_saltmere",
       "affidabilita": "media",
       "vera": false,
       "settore": "curva_ospiti"
@@ -47,7 +47,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "quillhaven_albion",
+        "club": "saltmere_wanderers",
         "pos": {
           "x": 20,
           "y": 25
@@ -771,7 +771,7 @@
       "chiamate": [
         {
           "id": "campioni",
-          "fonte": "club_quillhaven",
+          "fonte": "club_saltmere",
           "testo": "testi:e24.ch.campioni",
           "settore": "piazza_municipio",
           "opzioni": [

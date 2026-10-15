@@ -22,7 +22,7 @@
     },
     {
       "testo": "testi:e02.info_club",
-      "fonte": "club_ospite",
+      "fonte": "club_railhead",
       "affidabilita": "media",
       "vera": false,
       "settore": "curva_ospiti"
@@ -54,7 +54,7 @@
       {
         "id": "viale_stazione",
         "tipo": "strada",
-        "club": "calderholt_rovers",
+        "club": "railhead_county",
         "pos": {
           "x": 30,
           "y": 55
@@ -71,7 +71,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "calderholt_rovers",
+        "club": "railhead_county",
         "pos": {
           "x": 28,
           "y": 40
@@ -189,7 +189,7 @@
         },
         {
           "id": "responsabile",
-          "fonte": "club_ospite",
+          "fonte": "club_railhead",
           "testo": "testi:e02.ch.responsabile",
           "settore": "viale_stazione",
           "opzioni": [
@@ -432,7 +432,7 @@
         },
         {
           "id": "corteo_viale",
-          "fonte": "club_ospite",
+          "fonte": "club_railhead",
           "testo": "testi:e02.ch.corteo_viale",
           "settore": "viale_stazione",
           "opzioni": [
@@ -875,7 +875,7 @@
         },
         {
           "id": "responsabile_saluta",
-          "fonte": "club_ospite",
+          "fonte": "club_railhead",
           "testo": "testi:e02.ch.responsabile_saluta",
           "settore": "viale_stazione",
           "opzioni": [

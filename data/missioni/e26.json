@@ -22,7 +22,7 @@
     },
     {
       "testo": "testi:e26.info_quillhaven",
-      "fonte": "club_quillhaven",
+      "fonte": "club_domepark",
       "affidabilita": "media",
       "vera": false,
       "settore": "curva_ospiti"
@@ -55,7 +55,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "quillhaven_albion",
+        "club": "domepark_villa",
         "pos": {
           "x": 14,
           "y": 45
@@ -81,7 +81,7 @@
       {
         "id": "parcheggi",
         "tipo": "strada",
-        "club": "quillhaven_albion",
+        "club": "domepark_villa",
         "pos": {
           "x": 22,
           "y": 88
@@ -677,7 +677,7 @@
         },
         {
           "id": "pullman_sconfitti",
-          "fonte": "club_quillhaven",
+          "fonte": "club_domepark",
           "testo": "testi:e26.ch.pullman_sconfitti",
           "settore": "parcheggi",
           "opzioni": [

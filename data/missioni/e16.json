@@ -29,7 +29,7 @@
     },
     {
       "testo": "testi:e16.info_quillhaven",
-      "fonte": "club_quillhaven",
+      "fonte": "club_pinegrove",
       "affidabilita": "media",
       "vera": true,
       "settore": "curva_ospiti"
@@ -80,7 +80,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "quillhaven_albion",
+        "club": "pinegrove_rangers",
         "pos": {
           "x": 80,
           "y": 76
@@ -276,7 +276,7 @@
         },
         {
           "id": "pullman_fonderie",
-          "fonte": "club_quillhaven",
+          "fonte": "club_pinegrove",
           "testo": "testi:e16.ch.pullman_fonderie",
           "settore": "curva_ospiti",
           "opzioni": [
@@ -763,7 +763,7 @@
         },
         {
           "id": "giro_lungo",
-          "fonte": "club_quillhaven",
+          "fonte": "club_pinegrove",
           "testo": "testi:e16.ch.giro_lungo",
           "settore": "piazzale",
           "opzioni": [

@@ -686,7 +686,7 @@
         },
         {
           "id": "viale13b",
-          "club": "calderholt_rovers",
+          "club": "tramway_borough",
           "tipo": "corteo",
           "settore": "viale_concerto",
           "pressione": 4
@@ -741,7 +741,7 @@
         },
         {
           "id": "corteo_rovers",
-          "fonte": "club_ospite",
+          "fonte": "club_tramway",
           "testo": "testi:e13.ch.corteo_rovers",
           "settore": "viale_concerto",
           "opzioni": [

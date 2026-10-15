@@ -47,7 +47,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "calderholt_rovers",
+        "club": "lookout_fc",
         "pos": {
           "x": 15,
           "y": 25
@@ -195,7 +195,7 @@
         },
         {
           "id": "biglietti_rete18",
-          "fonte": "club_ospite",
+          "fonte": "club_lookout",
           "testo": "testi:e18.ch.biglietti_rete18",
           "settore": "curva_ospiti",
           "opzioni": [

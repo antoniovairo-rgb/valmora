@@ -22,7 +22,7 @@
     },
     {
       "testo": "testi:e34.info_quillhaven",
-      "fonte": "club_quillhaven",
+      "fonte": "club_lookout",
       "affidabilita": "media",
       "vera": true,
       "settore": "parcheggi"
@@ -64,7 +64,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "quillhaven_albion",
+        "club": "lookout_fc",
         "pos": {
           "x": 86,
           "y": 42
@@ -81,7 +81,7 @@
       {
         "id": "parcheggi",
         "tipo": "strada",
-        "club": "quillhaven_albion",
+        "club": "lookout_fc",
         "pos": {
           "x": 80,
           "y": 86
@@ -232,7 +232,7 @@
         },
         {
           "id": "pullman_quillhaven",
-          "fonte": "club_quillhaven",
+          "fonte": "club_lookout",
           "testo": "testi:e34.ch.pullman_quillhaven",
           "settore": "parcheggi",
           "opzioni": [
@@ -768,7 +768,7 @@
       "chiamate": [
         {
           "id": "pullman_ritorno",
-          "fonte": "club_quillhaven",
+          "fonte": "club_lookout",
           "testo": "testi:e34.ch.pullman_ritorno",
           "settore": "parcheggi",
           "opzioni": [
