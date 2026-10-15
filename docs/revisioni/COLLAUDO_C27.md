@@ -22,7 +22,7 @@ Convenzioni: **FATTO MISURATO** (comando, campione, esito) · **FATTO (codice/da
 | Bot, 1000 semi × 4 strategie × 36 episodi (3 stagioni) | **0 blocchi** in 156/156 righe; «chiamate mai comparse» `[]` in 36/36; `diff` con la 0.20.0 **vuoto** |
 | Errori di console | **non 0**: «reading 'on'» in `StratoCitta` 4 volte in 4 corse complete della 0.21.0, 1 volta in una della 0.20.0, 2/150 nella prova mirata; esiste già nella 0.20.0 → **C27-03** |
 | Salvataggi | 12/12 veri della 0.20.0 ripresi sulla stessa chiamata; R1 6/6; R2 3/3 salvataggi reali vecchi; 0 errori |
-| Schermate 360×760, 375×812, 375×667, 412×915 (1916 per misura) | **0** scorrimenti orizzontali, **0** testi tagliati, **0** nomi vecchi |
+| Schermate 360×760, 375×812, 375×667, 412×915 (1916 per misura) | **0** scorrimenti orizzontali, **0** testi tagliati (misura di overflow), **0** nomi vecchi; ma in e19 un’etichetta è coperta da una pastiglia a ogni misura → C27-06 |
 | Test e tipi | `npx vitest run` 39/39 file, 210/210 test; `tsc --noEmit` verde; offline verde (O1-O4) |
 
 ## 1. Il verso del corteo sui pixel e nel movimento
@@ -154,10 +154,10 @@ Nessuno è corretto nella 0.21.0, come atteso: codice e testi coinvolti non camb
 
 **C27-05 — Testi che dicono una direzione diversa da quella disegnata (candidati per `verso` e per altro).** Elenco completo nella tabella del § 2. Unico caso che `verso` risolve da solo: e17 ondata 4 `piazza17b` (`data/missioni/e17.json:656`, «tutti devono tornare a casa», disegnato 69/69 verso lo stadio). Gli altri chiedono una meta diversa dallo stadio (e06, e12, e13, e22, e30), la dinamica (C27-01: e04, e17, e19, e30) o la fase (C27-04: e07, e27); e20 `fari_spenti20` è un'auto, non un corteo.
 
-### Basso
-
 **C27-06 — Etichetta «Magazzino delle fonderie» coperta da una pastiglia in e19.**
-- Misura: e19 schieramento (dalla prima ondata), sovrapposizione 34,6×22,6 px fra `settore-nome` e `pastiglia «1»`, 16 schermate per misura, a 360, 375 e 412; anche «Strada da Kiln» × pastiglia 13,0×9,0 (360). Foto: `docs/foto/c27/360x760-e19-schierato-1.png`. C-026 non l'aveva elencata.
+- Misura: e19 schieramento (dalla prima ondata), sovrapposizione 34,6×22,6 px fra `settore-nome` e `pastiglia «1»`, 16 schermate per misura, a 360, 375 e 412; anche «Strada da Kiln» × pastiglia 13,0×9,0 (360). Foto: `docs/foto/c27/360x760-e19-schierato-1.png`. GIUDIZIO sulla foto: la pastiglia «1» copre «ZZINO»; si legge «MAGA… DELLE FONDERIE» per tutto l'episodio. C-026 non l'aveva elencata. IPOTESI sulla causa: posizione del settore nei dati della mappa di e19 (come C26-11), non verificata nel codice.
+
+### Basso
 
 **C27-07 — Piccole sovrapposizioni e centri sul bordo.**
 - «Intanto…» (nome di chi parla nella risposta) sopra il primo paragrafo per 2,6–5,6 px di altezza, 2–10 schermate per misura. GIUDIZIO: non ho una foto che mostri lettere tagliate; non posso confermarlo come difetto visibile.
