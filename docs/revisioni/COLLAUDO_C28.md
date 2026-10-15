@@ -1,6 +1,7 @@
-# Collaudo C-028 — 0.22.0: novità (C27-01, testi, D-130), rilievi aperti, regressioni; tablet e PC (PO-114)
+# Collaudo C-028 — 0.22.0 e 0.23.0: novità (C27-01, testi, D-130), consegna C-026 (C26-01/03/11, C78V01), rilievi aperti, regressioni; tablet e PC (PO-114)
 
 - **Build collaudata:** main a 869fd35, GAME_VERSION 0.22.0 (`src/versione.ts:160`, commento `:153-159`). Ricostruita in locale con `npm ci` e `npx vite build` (verde).
+- **Aggiornamento (richiesta della principale, sostituisce il C-029):** la parte A è rifatta sulla **0.23.0** (main a 35d2146, `src/versione.ts:167`), con le stesse sonde: § «Parte A sulla 0.23.0» qui sotto. **La parte B è misurata sulla 0.22.0** (869fd35); la 0.23.0 cambia solo sfida, vignette ed etichette della mappa (`git diff --stat 869fd35 35d2146 -- src`: `etichette.ts`, `stemma.tsx`, `token.css`, `vignetta.tsx`, `versione.ts`; nessun dato né schema).
 - **Confronto:** 0.21.0 a 56fa2a1, in un worktree separato (`git worktree add`, `npm ci`, `npx vite build`).
 - **Cosa cambia fra le due:** `git diff --stat 56fa2a1 869fd35 -- src data schema tests tools` → 17 file, 80 righe: `folla.ts` (+7, `esceDinamica`), `StratoPixi.tsx` (3 righe), `e17.json` (+1, `verso` su `piazza17b`), `partita` in e07, e13, e21, e25, e28, e31 (+4 ciascuno), testi di e08, e21, e32, e33, schema (+10), `tipi.ts` (+2), `tests/corteo-verso.test.ts`.
 - **Ramo:** claude/valmora-collaudo-c28. Sola lettura sul codice di gioco: nessun file di `src/`, `data/`, `schema/`, `tools/`, `tests/` toccato.
@@ -32,7 +33,32 @@ Convenzioni: **FATTO MISURATO** (comando, campione, esito) · **FATTO (codice/da
 | Parte B: tastiera | 4/4 episodi finiti con Tab, Invio e Spazio (412 azioni, 1216 Tab); fuoco sempre visibile e mai coperto; **fuoco perso** dopo 82/412 azioni → C28-09 |
 | Parte B: rotazione e ridimensionamento | 40/40 cambi senza perdite (scena, chiamata, pastiglie, salvataggio identici), ripresa dopo ricarica 2/2 |
 | Parte B: tocco su tablet | 36/36 episodi col dito a 768×1024 (`page.tap`, `hasTouch`), 0 blocchi, 0 comandi coperti; nessun comando sotto 44 px (la «i» ha l'area allargata) |
+| **0.23.0 (35d2146): parte A rifatta** | test 215/215, bot 0 blocchi e uguale alla 0.22.0, salvataggi 12/12 + 12/12 + 6/6 + 3/3, schermate 0/0/0 e 0 errori; **C26-01, C26-03, C26-11 chiusi**, C78V01 verificato (rosso vivo); effetto nuovo **C28-14** (nomi sotto le pastiglie in e13/e16) |
 | **Difetto trovato a ogni misura (anche 360)** | la tela della mappa non segue la mappa quando cambia forma: **fascia scura** nel quarto basso in **1412/1700** schermate con mappa → C28-01 |
+
+# Parte A sulla 0.23.0 (35d2146)
+
+Build ricostruita in un worktree (`npm ci`, `npx vite build` verdi). Le misure dei § A1-A5 sotto sono della 0.22.0; qui gli stessi comandi sulla 0.23.0 (uscite in `coordination/sonde/uscite-c28/v023/`).
+
+| verifica | 0.23.0 | come la 0.22.0? |
+|---|---|---|
+| Test e tipi (nella radice della 0.23.0) | `npx vitest run` **40/40 file, 215/215 test**; `tsc --noEmit` uscita 0 | +1 file (`tests/sfida.test.ts`), +2 test |
+| Bot `node tools/bot.mjs 1000` | **0 blocchi** in 156/156 righe; «mai comparse» `[]` 36/36 | `diff` delle righe di blocchi e chiamate con la 0.22.0 **vuoto** |
+| Verso dei cortei (`c27-pixel.mjs`, 360×760) | `silenzio_totale` 13 verso / 26 via, `fiaccolata` 13 / 27, `me_lo_dovete` 5 / 34, `fine_corteo` 0 / 39, `angolo` 0 / 39 | sì (scarti di 1 persona): C28-05 e C28-06 restano |
+| Salvataggi | 12/12 esportati col pulsante dalla **0.22.0** (e04, e07, e08, e13, e15, e17, e21, e25, e27, e30, e32, e33; file in `coordination/sonde/salvataggi-022/`) ripresi sulla stessa chiamata; 12/12 veri della 0.21.0 ripresi; `c25-ripresa.mjs` R1 6/6, R2 3/3; 0 errori di console | sì |
+| Schermate 360×760, 375×667, 412×915 (1916 per misura) | 0 scorrimenti, 0 tagli, 0 nomi vecchi, **0 errori di console** (C27-03 non comparso in queste corse); comandi coperti 0 / 142 («?», come prima) / 1 (C27-07) | sì, salvo i quattro punti sotto |
+| Testi, D-130 | dati identici alla 0.22.0 | § A2, A3 valgono invariati; C28-04, C28-07, C28-08 restano |
+
+**I quattro punti della consegna C-026, con le misure del C-026** (`c27-schermate.mjs` a 360×760, 375×667, 412×915; riassunti `c28-schermate-analisi.mjs` e `c28-c2611.mjs`; riferimento 0.22.0 con le stesse sonde):
+
+| punto | 0.22.0 | 0.23.0 | esito |
+|---|---|---|---|
+| **C26-01** sfida coi gemellati | e15 «RAILHEAD COUNTY contro KILN UNITED contro WALLGATE ROVERS», e27 «KILN UNITED contro RAILHEAD COUNTY contro WATERLINE CITY» | e15 «**KILN UNITED contro WALLGATE ROVERS**», e27 «**KILN UNITED contro WATERLINE CITY**», a 360, 375×667 e 412; gli altri sei episodi con la riga «Stasera» invariati | **chiuso** (C26-06, un club solo in e07/e13/e21/e25/e28/e31, resta) |
+| **C26-03** vignette a 375×667 | verbale mostrato nel primo passo **30/36** (61,7–97,0 px), sala 4/36 | verbale **0/36**, sala **0/36**; a 360 verbale 36/36 e sala 36/36, a 412 36/36 (200 px) | **chiuso** (la regola nuova guarda l'altezza della finestra, `vignetta.tsx`, `--vignetta-finestra-min: 700px` in `token.css:127`) |
+| **C26-11** pastiglia ed etichette | e06 a 360: «ritira Mediatore da Piazza del concerto» **coperto** dal disco del Piazzale (1 schermata); e13 «Viale fra stadio e piazza» × «Parcheggi» **20,5×4,2** (360, 8 schermate) e **16,8×3,4** (375); e16 «Magazzino delle fonderie» × «Strada da Kiln» **20,5×1,5** (360) | e06: **0** comandi coperti; nomi sopra altri nomi in e13 ed e16: **0** a ogni misura. Ma ora i nomi stanno sotto le pastiglie: e13 «Viale fra stadio e piazza» × pastiglia «1» **15,8×10,4** (360, 15 schermate) e 12,1×9,6 (375, 16), «Parcheggi» × pastiglia **34,6×3,3** (360, 16); e16 «Magazzino delle fonderie» × pastiglia **34,6×6,0** (360, 16). Nella 0.22.0 queste coppie erano 0 | **chiuso** come scritto nel C-026, con un effetto nuovo → **C28-14** |
+| **C78V01** vignetta misurata dall'impaginazione | sala di e25 a 360×760, passo 1: vignetta **105,9 px** in 5/5 giri; scorrimento verticale 0 | **102,6 px** in 5/5 giri, scorrimento verticale 0, 0 errori; col rosso `ROSSI=C78V01` torna 105,9 px in 5/5 (braccio rosso vivo) | **verificato**: la misura cambia ed è stabile. L'instabilità della catena che l'ha causata (pagina che scorre di 3 px) non l'ho riprodotta in 15 aperture: non posso confermare che sia sparita, solo che in queste prove non c'è |
+
+Comando di C78V01: `W=360 H=760 EP=e25 GIRI=5 [ROSSI=C78V01] node coordination/sonde/c28-c78v01.mjs <radice> <uscita.json>`. Foto di C26-11 prima/dopo: `c2611-0.22.0-360x760-e13-chiamata-viale_pieno.jpg` / `c2611-0.23.0-…`, idem per e16 `…-e16-chiamata-corteo_fonderie.jpg`.
 
 # Parte A — novità della 0.22.0
 
@@ -95,9 +121,9 @@ Codice di resa invariato fuori da `folla.ts`/`StratoPixi.tsx` (diff sopra); D-12
 
 | rilievo | stato | misura C-028 |
 |---|---|---|
-| C26-01 sfida coi gemellati «contro … contro» | **presente** | sala-1 a 360 e 375×667: e15 «RAILHEAD COUNTY contro KILN UNITED contro WALLGATE ROVERS», e27 «KILN UNITED contro RAILHEAD COUNTY contro WATERLINE CITY» |
+| C26-01 sfida coi gemellati «contro … contro» | **presente nella 0.22.0, chiuso nella 0.23.0** | sala-1 a 360 e 375×667: e15 «RAILHEAD COUNTY contro KILN UNITED contro WALLGATE ROVERS», e27 «KILN UNITED contro RAILHEAD COUNTY contro WATERLINE CITY» |
 | C26-02 Arches «di fuori» in e33 | **a metà** | `e33.json:117` corretto; `:111` e `:7` restano (C28-08) |
-| C26-03 vignette a 375×667 | **presente** | verbale mostrato nel primo passo 30/36, 61,7–97,0 px; sala 4/36 (come C-027) |
+| C26-03 vignette a 375×667 | **presente nella 0.22.0, chiuso nella 0.23.0** | verbale mostrato nel primo passo 30/36, 61,7–97,0 px; sala 4/36 (come C-027) |
 | C26-04 stesso avversario in casa due volte | **chiuso** | e08, e21 di coppa; residuo C28-07 |
 | C26-05 «terzo derby» | **chiuso** | «quinto», `e32.json:3,128` |
 | C26-06 sfida con un club solo | **presente a schermo** | e07 «SOUTHWIND TOWN», e13/e21/e25/e28 «KILN UNITED», e31 «RAILHEAD COUNTY» a 360 e 375×667; D-130 nei dati, coerente (§ A3), non usato dalla resa |
@@ -105,7 +131,7 @@ Codice di resa invariato fuori da `folla.ts`/`StratoPixi.tsx` (diff sopra); D-12
 | C26-08 colori per daltonici | **presente** | nessun colore cambiato (`git diff` vuoto su `data/club/`) |
 | C26-09 stemma del Tramway mai mostrato | **presente** | e13 sala: solo «KILN UNITED»; D-130 dice che va bene così finché il Tramway non ha una curva |
 | C26-10 «Urgente!» quasi ovunque | **presente** (D-129 decisa, non fatta) | 361/422 chiamate a 360 e a 375×667 |
-| C26-11 tocchi ed etichette a 360/375 | **presente** | e06 a 360: «ritira Mediatore da Piazza del concerto» coperto da `settore-punto` (1/1916) |
+| C26-11 tocchi ed etichette a 360/375 | **presente nella 0.22.0, chiuso nella 0.23.0** (con C28-14) | e06 a 360: «ritira Mediatore da Piazza del concerto» coperto da `settore-punto` (1/1916) |
 | C27-02 viale verso il centro senza stadio pieno | **presente** | `sfondo.ts` non cambiato; è anche la causa di C28-05 (IPOTESI, § C28-05) |
 | C27-03 «reading 'on'» in StratoCitta | **presente** | 1 volta nelle 3 corse delle schermate (360×760, ritorno in città dopo e01), 1 volta in `c25-ripresa.mjs`; 0 nelle 7 corse `c28-grandi.mjs` (13 167 schermate) e nelle 4 corse del mouse; nella 0.21.0 2 volte durante l'esportazione dei salvataggi |
 | C27-04 fase di partita sbagliata | **presente** | `folla.ts:22,25` invariati |
@@ -242,6 +268,11 @@ Nessuno.
 
 ## Basso
 
+**C28-14 — 0.23.0: nelle mappe di e13 ed e16 i nomi non si coprono più fra loro ma finiscono sotto le pastiglie e, in e13, sotto un disco.**
+- Misura (§ «Parte A sulla 0.23.0»): e13 «Viale fra stadio e piazza» × pastiglia 15,8×10,4 px (360) e 12,1×9,6 (375); «Parcheggi» × pastiglia 34,6×3,3 (360); e16 «Magazzino delle fonderie» × pastiglia 34,6×6,0 (360); nella 0.22.0 erano 0. Foto: `c2611-0.23.0-360x760-e13-chiamata-viale_pieno.jpg` contro `c2611-0.22.0-…`.
+- GIUDIZIO sulla foto di e13: il disco verde dei Parcheggi sta sopra la parola «FRA» del nome «Viale fra stadio e piazza», che si legge «VIALE … STADIO E PIAZZA»; la sonda non misura i dischi (non hanno testo), quindi questa copertura è solo dalla foto. In e16 il nome si legge intero.
+- Causa (FATTO, codice, 0.23.0): `src/resa/mappa/etichette.ts:81-89` aggiunge un costo molto alto per i nomi sopra altri nomi (`nomiSopra`) e per le pastiglie col centro sotto un disco (`sottoDisco`); un nome sotto la pastiglia di un altro settore ha solo il costo ordinario (`perNome`, `etichette.ts:74`), quindi la ricerca lo preferisce; è la stessa famiglia di C27-06 (e19, che resta: 34,6×22,6 a 360/375/412).
+
 **C28-05 — Il corteo della chiamata va via dallo stadio solo in maggioranza (e30, e17), non come il corteo dell'ondata.**
 - Misura: § A1, e30 `silenzio_totale` 12 verso / 28 via, `fiaccolata` 13 / 26, e17 `me_lo_dovete` 5 / 34, contro 0–1 / 68–69 dell'ondata.
 - Causa (FATTO, codice): i due cortei usano tratti diversi dello stesso viale: l'ondata `bezier(punti, (1 − u) × 0,75)`, tratto 0–0,75 (`StratoPixi.tsx:115-116`); la chiamata `bezier(viale, 1 − u)` con `u ≤ 0,8`, tratto 0,2–1 (`dinamica.ts:32-33`). IPOTESI: senza stadio pieno il viale finisce al centro della mappa (C27-02, `sfondo.ts:99`) e nell'ultimo quarto, percorso all'indietro, prima si avvicina allo stadio e poi se ne allontana; la geometria del viale non l'ho misurata.
@@ -279,6 +310,10 @@ Nessuno.
 | rilievo / novità | misura |
 |---|---|
 | C27-01 (corteo della chiamata col verso dell'ondata) | **chiuso in gran parte**: 4/4 chiamate citate ora vanno in maggioranza via dallo stadio; rosso C74D01 vivo; residuo C28-05 |
+| C26-01 (sfida coi gemellati) — 0.23.0 | e15 «Kiln United contro Wallgate Rovers», e27 «Kiln United contro Waterline City» a 3 misure |
+| C26-03 (vignette a 375×667) — 0.23.0 | verbale 0/36, sala 0/36 (0.22.0: 30/36 e 4/36) |
+| C26-11 (e06, e13, e16) — 0.23.0 | e06 0 comandi coperti, 0 nomi sopra nomi; effetto nuovo C28-14 |
+| C78V01 — 0.23.0 | vignetta della sala di e25 102,6 px in 5/5, rosso 105,9 px in 5/5, scorrimento 0 |
 | C27-05 (e17 `piazza17b`) | ondata 0/69 verso lo stadio; chiamata `fine_corteo` 0/39 |
 | C26-04 (stesso avversario in casa due volte) | e08 ed e21 di coppa (`e08.json:4`, `e21.json:3`); residuo C28-07 |
 | C26-05 («terzo derby») | «quinto derby» (`e32.json:3,128`), giusto rispetto a `docs/BIBBIA.md:117` |
@@ -306,5 +341,6 @@ Nessuno.
 | `c28-rotazione.mjs` | cambi di finestra in 4 punti della partita: stato, salvataggio, tela, ripresa | `EP=… node coordination/sonde/c28-rotazione.mjs <radice> <foto> <uscita.json>` |
 | `c28-mano.mjs` | partita «a mano»: si ferma a ogni decisione e mostra lo schermo | `W=… H=… EP=… SCELTE='…' node coordination/sonde/c28-mano.mjs <radice> <foto>` |
 | `c28-verso-tabella.mjs`, `c28-lunghezze.mjs`, `c28-partita.mjs`, `c28-schermate-analisi.mjs` | riassunti della parte A (verso dei cortei, lunghezze, D-130, rilievi aperti dalle schermate) | vedi § A1-A4 |
+| `c28-c2611.mjs`, `c28-c78v01.mjs` | C26-11 con le misure del C-026 (comandi coperti in e06, nomi sovrapposti in e13/e16/e19); vignetta della sala di e25 a ogni passo, più giri, con i rossi | `node coordination/sonde/c28-c2611.mjs <uscite c27-schermate>`; `W=… H=… EP=e25 GIRI=5 [ROSSI=…] node coordination/sonde/c28-c78v01.mjs <radice> <uscita.json>` |
 | `c28-salvataggi.mjs` | come `c26-salvataggi.mjs`, con `VA=` e `VECCHI_DIR=` | `EP=… VA=0.21.0 VECCHI_DIR=… node coordination/sonde/c28-salvataggi.mjs <A> <B> <cartella> <uscita.json>` |
 | `c27-*.mjs`, `c26-*.mjs` | come nel C-027 e nel C-026 | vedi COLLAUDO_C27.md e COLLAUDO_C26.md sui rispettivi rami |
