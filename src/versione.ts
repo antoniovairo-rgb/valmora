@@ -171,4 +171,10 @@
 //   misura: catena completa 3/3 sul ramo della sviluppatrice (5bea0c2) e sulla principale; mappe con pastiglie
 //   sopra i nomi da 19 a 7 ondate su 142; dettagli in coordination/handoffs/sviluppatrice/C27-rapporto.md.
 //   guardiano: rossi C79P01 (partita), C80R01 (renderer), C81P01 (etichette, tetto 7 ondate).
-export const GAME_VERSION = '0.24.0';
+// 0.25.0 – rilascio del 16/10 notte (PO: «rilascia il prima possibile»): D-128 e D-129.
+//   causa: D-129 lo spicchio e «Urgente!» comparivano su 415/498 chiamate (bastava un evento qualsiasi sul settore);
+//   D-128 simboli degli stemmi scollegati dal nome (calderone, penna) o illeggibili (pigna, campanile).
+//   misura: con D-129 le chiamate urgenti sono 235/498 (eventi con pressione ≥ 4); stemmi nuovi per Square (fontana),
+//   Garden (albero nel cortile), Pinegrove (pigna), Belltower (campanile), con foto a DPR 1 e 3; id nei dati aggiornati.
+//   guardiano: tests/urgente.test.ts (rosso C82U01), guardiano degli stemmi (rosso C83S01).
+export const GAME_VERSION = '0.25.0';
