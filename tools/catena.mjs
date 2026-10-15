@@ -67,14 +67,19 @@ let rosso = false;
 for (const passo of CATENE[nome]) {
   let tentativi = 0;
   let problemi;
+  // 2026-10-15: un passo «instabile» non lasciava traccia del tentativo fallito, quindi la causa non si poteva
+  // cercare. Ora i problemi dei tentativi falliti restano nel giro (precedenti) e vengono stampati.
+  const precedenti = [];
   do {
     tentativi++;
     try { problemi = await PASSI[passo](); } catch (e) { problemi = [`eccezione: ${e.message}`]; }
+    if (problemi.length) precedenti.push(problemi.slice(0, 20));
   } while (problemi.length && tentativi < 3);
   const esito = problemi.length ? 'rosso' : tentativi > 1 ? 'instabile' : 'verde';
-  giro.passi.push({ passo, esito, tentativi, problemi });
+  giro.passi.push({ passo, esito, tentativi, problemi, ...(esito === 'instabile' ? { precedenti } : {}) });
   console.log(`${esito === 'verde' ? '✔' : esito === 'instabile' ? '≈' : '✘'} ${passo}${tentativi > 1 ? ` (${tentativi} tentativi)` : ''}`);
   for (const p of problemi) console.log(`    ${p}`);
+  if (esito === 'instabile') for (const [i, ps] of precedenti.entries()) for (const p of ps) console.log(`    [tentativo ${i + 1} fallito] ${p}`);
   if (esito === 'rosso') { rosso = true; break; }
 }
 
