@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-15 06:33 Roma – main 0.19.0 (0744b24). Principale 2f348f3: 13 club (D-125: 9 club nuovi, 23 episodi, BIBBIA), 12 stemmi, D-123, C22-03…10, D-126 (avatar nel briefing, urgenza solo con evento, vignette nascoste a 375×667), C24/C25. Collaudi C-024 e C-025 chiusi e archiviati. Prossimo: rilascio delle 08:00 (0.20.0, verifica dalle 07:04); poi campo `verso` del corteo (D-127) e collaudo C-026.
+Ultimo giro della routine: 2026-10-15 11:32 Roma – main 0.20.0 (76935e1): la verifica delle 08:00 era INSTABILE (foto), rifatta da capo 3/3 VERDE su 7189cb7, CI verde, Pages verificata alle 10:58. Principale fca7e19: D-127 campo `verso` sui cortei (e30, e17) e folla.ts lo usa (rosso C73V01). Collaudo C-026 sulla 0.20.0 in corso. Sviluppatrice ferma: chiesto merge dalla principale (8 commit indietro) e i compiti C25 ancora aperti. Al PO: domanda sugli stemmi Square/Garden (C25-07). Prossimo: rilascio delle 13:30 (0.21.0, se la verifica parte con le novità D-127).
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
