@@ -50,4 +50,4 @@ Ramo `claude/valmora-resa-v2`. Decisioni del PO (PO-111, PO-112), comunicate dal
 
 ## Esito dei giri
 
-La catena completa è in corso su questo lavoro.
+FATTO MISURATO: catena completa 3/3 verde su ad38f7a (D-128, D-129, unione con la principale fino a e71d7a1). Il primo giro su b6890bd era rosso per il guardiano dei token: avevo messo uno `style` in linea sull'svg per il colore delle scaglie. Corretto usando l'attributo `color`.
