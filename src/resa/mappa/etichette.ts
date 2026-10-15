@@ -81,13 +81,25 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const sottoDisco = () => (nuovo && [...(s.querySelector('.settore-unita')?.children ?? [])].some((c) => { const u = c.getBoundingClientRect(), x = (u.left + u.right) / 2, y = (u.top + u.bottom) / 2;
       return punti.some((p, j) => j !== i && x >= p.left && x <= p.right && y >= p.top && y <= p.bottom); }) ? VERA * 1e6 : 0);
     const nomiSopra = (n: Rett) => (nuovo ? presenti(altri.map(nomeDi)).reduce((c, o) => c + VERA * 5 * area(n, o), 0) : 0);
+    // C27-06: una pastiglia sopra un nome (il suo o di un altro settore) lo rende illeggibile (e19 «MAGA… DELLE
+    // FONDERIE»): costa VERA × 5 in più, e così un nome sotto le pastiglie altrui. Perché questo non sposti i nomi uno
+    // sull'altro o fuori dalla mappa (e07, e26 alla prima prova), nome sopra nome e nome fuori diventano quasi vincoli.
+    // Il bordo per le unità si conta sulle pastiglie che si vedono, non sul pulsante di tocco da 44 px (trasparente
+    // sopra la pastiglia: «sopra» al bordo alto costava più che coprire un nome); il centro del tocco resta nella mappa.
+    // Rosso C81P01: tutto come prima.
+    const c27 = !spento('C81P01'), pastiglieDi = (x: HTMLElement) => unione([...x.querySelectorAll('.settore-unita .pastiglia')]), pastiglie = () => pastiglieDi(s);
+    const suNomi = (u: Rett, n: Rett) => (c27 ? VERA * 5 * (area(u, n) + presenti(altri.map(nomeDi)).reduce((c, o) => c + area(u, o), 0)) : 0);
+    const sottoPastiglie = (n: Rett) => (c27 ? VERA * 5 * presenti(altri.map(pastiglieDi)).reduce((c, o) => c + area(n, o), 0) : 0);
+    const toccoFuori = () => [...(s.querySelector('.settore-unita')?.children ?? [])].some((c) => { const u = c.getBoundingClientRect(), x = (u.left + u.right) / 2, y = (u.top + u.bottom) / 2;
+      return x < mappa.left + MARGINE || x > mappa.right - MARGINE || y < mappa.top + MARGINE || y > mappa.bottom - MARGINE; }) ? VERA * 1e6 : 0;
+    const bordoUnita = (u: Rett) => (c27 ? VERA * 10 * fuori(pastiglie() ?? u, mappa) + toccoFuori() : VERA * 10 * fuori(u, mappa));
     let migliore = { nome: NOMI[0] as string, unita: UNITA[0] as string, costo: Infinity };
     cerca: for (const nome of NOMI) for (const unita of conUnita ? UNITA : [UNITA[0]]) {
       s.setAttribute('data-nome', nome); s.setAttribute('data-unita', unita);
       const n = nomeDi(s), u = conUnita ? unitaDi(s) : null;
       if (!n || (conUnita && !u)) continue;
-      const costo = costoDi(n, perNome) + VERA * 10 * fuori(n, mappa) + nomiSopra(n) + (u ? sottoDisco() : 0)
-        + (u ? costoDi(u, perUnita) + VERA * area(n, u) + VERA * 10 * fuori(u, mappa) : 0);
+      const costo = costoDi(n, perNome) + VERA * (c27 ? 1e4 : 10) * fuori(n, mappa) + nomiSopra(n) * (c27 ? 2e3 : 1) + sottoPastiglie(n) + (u ? sottoDisco() : 0)
+        + (u ? costoDi(u, perUnita) + VERA * area(n, u) + bordoUnita(u) + suNomi(pastiglie() ?? u, n) : 0);
       if (costo < migliore.costo) migliore = { nome, unita, costo };
       if (costo === 0) break cerca;
     }

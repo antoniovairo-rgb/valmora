@@ -5,7 +5,7 @@ import { Application, extend, useApplication } from '@pixi/react';
 import { Container, Sprite, Texture, type Ticker } from 'pixi.js';
 import { useEffect, useState, type RefObject } from 'react';
 import { useRidisegno } from './ridisegno.ts';
-import { schermo } from './schermo.ts';
+import { schermo, seguiMisura } from './schermo.ts';
 import { canvasAlone, disegnaCitta, token } from './sfondo.ts';
 
 extend({ Container });
@@ -16,12 +16,8 @@ function Disegno(p: { punti: PuntoCitta[]; margine: number; contenitore: RefObje
   const { app } = useApplication();
   const volte = useRidisegno(app, p.contenitore.current); // S-26
   const [dim, setDim] = useState(() => schermo(app) ?? { w: 0, h: 0 }); // C24-03: mai app.screen senza renderer
-  useEffect(() => {
-    const r = app.renderer; // tenuto da parte: allo smontaggio Pixi lo toglie da «app»
-    const aggiorna = () => { const s = schermo(app); if (s) setDim(s); };
-    r.on('resize', aggiorna);
-    return () => { r.off('resize', aggiorna); };
-  }, [app]);
+  // C27-03: il renderer tenuto da parte (allo smontaggio Pixi lo toglie da «app»), e atteso se non c'è ancora
+  useEffect(() => seguiMisura(app, () => { const s = schermo(app); if (s) setDim(s); }), [app]);
 
   useEffect(() => {
     const { w: W, h: H } = dim;

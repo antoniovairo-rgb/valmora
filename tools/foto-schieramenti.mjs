@@ -30,7 +30,7 @@ function partenze(dirDati) {
 }
 
 /** Gli stati all'inizio di ogni ondata con la disposizione del bot attento (C26-11: la sonda del collaudo gioca così). */
-function partenzeAttente(dirDati) {
+export function partenzeAttente(dirDati) {
   const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), v0 = variabiliIniziali(dich.values());
   const missioni = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio), stati = [];
   for (const m of missioni) {
@@ -47,16 +47,26 @@ function partenzeAttente(dirDati) {
 /** C26-11: sulla mappa dello schieramento nessun nome di settore sopra un altro, e ogni pastiglia toccabile prende il
  *  tocco al suo centro (non il disco di un altro settore). Le unità si mettono come il bot attento (il caso del
  *  collaudo: e06 a 360, mediatore di Piazza del concerto), con la bozza nel salvataggio. Rosso VALMORA_ROSSI=C77E01. */
-async function mappaSchieramento(pagina) {
+export async function mappaSchieramento(pagina) {
   return pagina.evaluate(() => {
     const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
+    // pastiglia su nome come nella sonda del collaudo C-027: più di 1 px in tutte e due le direzioni
+    const lati = (A, B) => Math.min(A.right, B.right) - Math.max(A.left, B.left) > 1 && Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top) > 1;
     const nomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-nome')].filter((n) => n.getClientRects().length).map((n) => [n.textContent, n.getBoundingClientRect()]);
     const sopra = nomi.flatMap(([t, r], i) => nomi.slice(0, i).filter(([, q]) => a(r, q) > 0.5).map(([u]) => `${t} × ${u}`));
     const coperte = [...document.querySelectorAll('.mappa button.tocco-pastiglia:enabled')].filter((b) => b.getClientRects().length).filter((b) => {
       const r = b.getBoundingClientRect(), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2; if (y < 0 || y > innerHeight) return false;
       const t = document.elementFromPoint(x, y); return !(t && (b === t || b.contains(t)));
     }).map((b) => b.dataset.presenza);
-    return { sopra, coperte };
+    // C27-06: nessuna pastiglia sopra il nome di un settore (e19 «Magazzino delle fonderie» × «1», 34,6×22,6 px). Rosso C81P01.
+    const suNomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-unita .pastiglia')].filter((e) => e.getClientRects().length)
+      .flatMap((e) => nomi.filter(([, q]) => lati(e.getBoundingClientRect(), q)).map(([t, q]) => `«${e.textContent}» di ${e.closest('[data-settore]')?.dataset.settore} × ${t} ${a(e.getBoundingClientRect(), q).toFixed(0)} px²`));
+    // C27-06: e nessuna pastiglia oltre il bordo della mappa (dentro di 1 px almeno)
+    const m = document.querySelector('.mappa:not(.citta)')?.getBoundingClientRect();
+    const fuori = !m ? [] : [...document.querySelectorAll('.mappa:not(.citta) .settore-unita .pastiglia')].filter((e) => e.getClientRects().length)
+      .filter((e) => { const r = e.getBoundingClientRect(); return r.left < m.left + 1 || r.right > m.right - 1 || r.top < m.top + 1 || r.bottom > m.bottom - 1; })
+      .map((e) => `«${e.textContent}» di ${e.closest('[data-settore]')?.dataset.settore}`);
+    return { sopra, coperte, suNomi, fuori };
   });
 }
 
@@ -70,6 +80,8 @@ export const copertiDallaBarra = (pagina) => pagina.evaluate(() => {
     .filter((e) => !barra.contains(e) && e.getClientRects().length && inter(e.getBoundingClientRect()) > 1)
     .map((e) => (e.dataset.risorsa ?? e.dataset.azione ?? e.textContent.trim().slice(0, 24)));
 });
+
+const PASTIGLIE_SU_NOMI = 7; // C27-06, misura del 15/10 (vedi sopra)
 
 export async function controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi = []) {
   // ogni pagina nuova riceve gli stessi interruttori rossi del giro (altrimenti il braccio rosso qui è cieco)
@@ -94,6 +106,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   for (const st of stati) await prova(p, st, `${st.m.id} ondata ${st.n} 360×760`, st.m.id === 'e03' && st.n === 3);
   await p.close();
   // C26-11: ogni ondata di ogni episodio a 360×760 con le unità del bot attento già messe (bozza nel salvataggio)
+  const suNomi = [];
   const q6 = await nuova({ viewport: { width: 360, height: 760 }, reducedMotion: 'reduce' }); await q6.goto(url);
   for (const st of partenzeAttente(dirDati)) {
     await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
@@ -102,8 +115,14 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     await q6.waitForTimeout(120);
     const r = await mappaSchieramento(q6);
     atteso(`${st.m.id} ondata ${st.n} 360×760 con le unità: nomi sovrapposti ${r.sopra.join('; ')}, pastiglie col centro coperto ${r.coperte.join(', ')} (C26-11)`, !r.sopra.length && !r.coperte.length);
+    if (r.suNomi.length) suNomi.push(`${st.m.id} ondata ${st.n}: ${r.suNomi.join('; ')}`);
+    atteso(`${st.m.id} ondata ${st.n} 360×760 con le unità: pastiglie sopra i nomi ${r.suNomi.join('; ')} (C27-06, il caso del collaudo)`, st.m.id !== 'e19' || !r.suNomi.length);
+    atteso(`${st.m.id} ondata ${st.n} 360×760 con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
   }
   await q6.close();
+  // C27-06: le ondate con una pastiglia sopra un nome possono solo scendere; 7 su 142 misurate col codice nuovo (mappe
+  // affollate: e05, e13, e16, e35), 19 col rosso C81P01. Il numero si abbassa quando si correggono, mai si alza.
+  atteso(`schieramenti con le unità: ${suNomi.length} ondate con pastiglie sopra i nomi (al massimo ${PASTIGLIE_SU_NOMI}): ${suNomi.join(' | ')} (C27-06)`, suNomi.length <= PASTIGLIE_SU_NOMI);
   const e03 = stati.find((x) => x.m.id === 'e03' && x.n === 3);
   for (const [w, h] of [[375, 812], [412, 915]]) {
     const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });

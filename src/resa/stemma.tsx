@@ -84,6 +84,9 @@ export function Stemma(p: { c: Club }) {
 
 /** Gli id dei club che si sfidano: club delle curve della missione, ognuno con la sua curva. */
 export function sfidanti(m: Missione): string[] {
+  // C26-06 (D-130): se i dati dicono chi gioca in casa e chi fuori, la sfida è quella, anche se manca la curva di uno dei
+  // due (e13, e21, e25, e28: solo la curva di casa; e07, e31: solo quella ospite). Rosso C79P01: dalle curve, come prima.
+  if (m.partita && !spento('C79P01')) return [m.partita.casa, m.partita.ospiti];
   // C26-01: i gemellati (settore «…gemellati», come in C21-04) non sono uno sfidante: e15 ed e27 mostravano tre club.
   // Rosso C75G01: anche i gemellati.
   return m.mappa.settori.filter((s) => spento('C44S03') || (s.tipo === 'curva' && (spento('C75G01') || !s.id.includes('gemellati')))).map((s) => s.club).filter((x): x is string => !!x);
