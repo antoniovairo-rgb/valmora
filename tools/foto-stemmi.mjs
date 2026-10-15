@@ -12,8 +12,8 @@ import { controllaStemmi } from './foto-c22.mjs';
 /** Il piano (13-club.md §2.2-2.4, §3): forma, simbolo e colori. I file in data/club/ vincono, quando ci sono. */
 export const PIANO = {
   cinderwick_united: ['scudo', 'ciminiera', '#ff6a13', '#1a1a1a'], larkspire_athletic: ['tondo', 'collina', '#2fa7ff', '#ffffff'],
-  calderholt_rovers: ['scudo', 'calderone', '#1e7b4a', '#f2c230'], mossgarth_town: ['tondo', 'arco', '#546e7a', '#c0ca33'],
-  ollerbrook_town: ['rombo', 'ciak', '#00897b', '#cfd8dc'], quillhaven_albion: ['rombo', 'penna', '#1b2a6b', '#d62839'],
+  calderholt_rovers: ['scudo', 'fontana', '#1e7b4a', '#f2c230'], mossgarth_town: ['tondo', 'arco', '#546e7a', '#c0ca33'],
+  ollerbrook_town: ['rombo', 'ciak', '#00897b', '#cfd8dc'], quillhaven_albion: ['rombo', 'albero_cortile', '#1b2a6b', '#d62839'],
   saltmere_wanderers: ['scudo', 'pietra_miliare', '#5d4037', '#e9c46a'], pinegrove_rangers: ['tondo', 'pigna', '#6a1b9a', '#ffc107'],
   belltower_harriers: ['scudo', 'campanile', '#ec407a', '#263238'], waterline_city: ['rombo', 'onde', '#f5f5f5', '#0d47a1'],
   lookout_fc: ['scudo', 'torre_vedetta', '#c62828', '#f5f5f5'], domepark_villa: ['tondo', 'cupola', '#121212', '#f5f5f5'],

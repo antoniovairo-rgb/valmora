@@ -82,10 +82,11 @@ const D128: Record<string, ReactNode> = {
     <path d="M17.6 21.6Q17.6 17.4 20 17.4Q22.4 17.4 22.4 21.6Z" /><path d="M13 22H27V24H13Z" />
     <path fillRule="evenodd" d="M14.5 24H25.5V40H14.5ZM20 26A2.4 2.4 0 1 0 20 30.8A2.4 2.4 0 1 0 20 26ZM18.2 40V36.6A1.8 1.8 0 0 1 21.8 36.6V40Z" /></>,
 };
-const VECCHI_ID: Record<string, string> = { calderone: 'fontana', penna: 'albero_cortile' }; // finché i dati hanno gli id vecchi
-const simboloDi = (id: string) => (spento('C83S01') ? undefined : D128[VECCHI_ID[id] ?? id]) ?? SIMBOLO[id] ?? (spento('C62S01') ? undefined : NUOVI[id]);
+// Il rosso rimette i disegni di prima anche con gli id nuovi dei dati (fontana e albero_cortile da D-128)
+const PRIMA_ID: Record<string, string> = { fontana: 'calderone', albero_cortile: 'penna' };
+const simboloDi = (id: string) => (spento('C83S01') ? SIMBOLO[PRIMA_ID[id] ?? id] : D128[id] ?? SIMBOLO[id]) ?? (spento('C62S01') ? undefined : NUOVI[id]);
 /** Quale disegno si vede (per il guardiano di D-128): «fontana@D-128», «pigna@D-128», o l'id dei dati. */
-const disegnoDi = (id: string) => (!spento('C83S01') && D128[VECCHI_ID[id] ?? id] ? `${VECCHI_ID[id] ?? id}@D-128` : id);
+const disegnoDi = (id: string) => (!spento('C83S01') && D128[id] ? `${id}@D-128` : id);
 /** Gli id dei simboli disegnati (per i guardiani). */
 export const SIMBOLI = () => [...Object.keys(SIMBOLO), ...(spento('C62S01') ? [] : Object.keys(NUOVI)), ...(spento('C83S01') ? [] : Object.keys(D128))];
 
