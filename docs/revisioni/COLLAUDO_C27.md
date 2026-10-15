@@ -20,7 +20,7 @@ Convenzioni: **FATTO MISURATO** (comando, campione, esito) · **FATTO (codice/da
 | Testi dei cortei contro il verso disegnato (36 episodi, 85 ondate con gente in strada) | 4 contrasti dovuti alla dinamica (C27-01), 2 alla forma dei viali senza stadio (C27-02), 3 alla fase di partita sbagliata (C27-04), 7 da dati o forma (C27-05) |
 | Rilievi del C-026 | **13/13 ancora presenti** (codice e dati invariati; misure ripetute dove serve uno schermo) |
 | Bot, 1000 semi × 4 strategie × 36 episodi (3 stagioni) | **0 blocchi** in 156/156 righe; «chiamate mai comparse» `[]` in 36/36; `diff` con la 0.20.0 **vuoto** |
-| Errori di console | **non 0**: «reading 'on'» in `StratoCitta` 4 volte in 4 corse complete della 0.21.0 e 1 volta in una della 0.20.0; esiste già nella 0.20.0 → **C27-03** |
+| Errori di console | **non 0**: «reading 'on'» in `StratoCitta` 4 volte in 4 corse complete della 0.21.0, 1 volta in una della 0.20.0, 2/150 nella prova mirata; esiste già nella 0.20.0 → **C27-03** |
 | Salvataggi | 12/12 veri della 0.20.0 ripresi sulla stessa chiamata; R1 6/6; R2 3/3 salvataggi reali vecchi; 0 errori |
 | Schermate 360×760, 375×812, 375×667, 412×915 (1916 per misura) | **0** scorrimenti orizzontali, **0** testi tagliati, **0** nomi vecchi |
 | Test e tipi | `npx vitest run` 39/39 file, 210/210 test; `tsc --noEmit` verde; offline verde (O1-O4) |
@@ -144,7 +144,7 @@ Nessuno è corretto nella 0.21.0, come atteso: codice e testi coinvolti non camb
 
 **C27-03 — Errore di console «Cannot read properties of undefined (reading 'on')» in StratoCitta, saltuario, già nella 0.20.0.**
 - Riproduzione: aprire la città (ricarica → «Riprendi»), più volte; compare sotto carico.
-- Misura: 360×760 0, 412×915 1 (dopo e21 → città), 375×812 1 (dopo e23), 375×667 2 (all'avvio e dopo e04), corsa c27-pixel 0.21.0 0, corsa c27-pixel **0.20.0 1**: 5 errori in 6 corse con 36 aperture della città ciascuna, 4 corse in parallelo su 4 CPU. `c26-chiusi.mjs` parte S (150 giri città → sala → briefing → titolo): 0. Prova mirata `c27-citta-errori.mjs` (150 ricariche → città a 412): vedi nota in fondo. Nessun blocco: il gioco è andato avanti in tutti i casi.
+- Misura: 360×760 0, 412×915 1 (dopo e21 → città), 375×812 1 (dopo e23), 375×667 2 (all'avvio e dopo e04), corsa c27-pixel 0.21.0 0, corsa c27-pixel **0.20.0 1**: 5 errori in 6 corse con 36 aperture della città ciascuna, 4 corse in parallelo su 4 CPU. `c26-chiusi.mjs` parte S (150 giri città → sala → briefing → titolo): 0. Prova mirata `W=412 GIRI=150 node coordination/sonde/c27-citta-errori.mjs . <uscita>` (ricarica → «Riprendi» → città → sala, con altre corse in parallelo): **2 errori su 150 giri** (giri 17 e 39), 150/150 completati: **riprodotto**. Nessun blocco: il gioco è andato avanti in tutti i casi.
 - Causa (FATTO, codice; IPOTESI sul momento): `src/resa/mappa/StratoCitta.tsx:20-22` legge `app.renderer` e chiama `r.on('resize', …)` senza controllare che il renderer ci sia; è la stessa famiglia di C24-03 (`schermo.ts:1-3`: renderer assente prima che l'app sia pronta o dopo lo smontaggio). Stesso schema in `StratoPixi.tsx:33`, senza errori misurati qui.
 
 **C27-04 — Fase della partita sbagliata sulla mappa in e27, e07, e21, e23.**
