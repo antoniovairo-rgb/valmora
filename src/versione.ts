@@ -144,4 +144,10 @@
 //   lettura protetta di app.screen (C24-03), nome di e36 stabile (C24-06), ultimo nome vecchio nei testi (C25-01).
 //   causa: PO-109, PO-106, D-123, D-126, collaudi C-024 e C-025. misura: completa 3/3 e CI verde sulla build del rilascio.
 //   guardiano: tests/nomi-club.test.ts (C63N01), tools/foto-stemmi.mjs (C62S01), C61N01, C56P01, C58I01, C64U01, C66V01, C69I01.
-export const GAME_VERSION = '0.20.0';
+// 0.21.0 – rilascio delle 13:30 del 15/10: D-127, il corteo va nel verso che dicono i testi (C24-07).
+//   causa: negli episodi senza partita (e30, e17) il corteo sulla mappa camminava verso lo stadio mentre i testi lo
+//   facevano partire dallo stadio («dallo stadio verso il municipio», «tutti devono tornare a casa»).
+//   misura: campo facoltativo `verso` sugli eventi in schema e tipi; e30 silenzio_strada/fiaccole ed e17 dopo_corteo
+//   «dallo_stadio»; folla.ts: scritto nei dati vince, altrimenti la partita decide; catena completa 3/3.
+//   guardiano: tests/corteo-verso.test.ts (rosso C73V01: il corteo torna verso lo stadio).
+export const GAME_VERSION = '0.21.0';
