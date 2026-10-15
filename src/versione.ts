@@ -136,4 +136,12 @@
 //   109 articoli corretti dopo il cambio dei nomi («dello Skyfield», «dell'Arches», «degli Stoneway», «lo Studio»).
 //   causa: PO-108, PO-106, collaudo C-022. misura: completa 3/3 e CI verde sulla build del rilascio.
 //   guardiano: C54C01 e controllaChiIcona, C55P01, test e bot sui testi rinominati.
-export const GAME_VERSION = '0.19.0';
+//
+// 0.20.0 – rilascio delle 08:00: 13 club di Valmora e 3 di fuori città raccontati negli episodi (PO-109, D-125: 9 club nuovi,
+//   23 episodi ritoccati, BIBBIA con «Quartieri e club»), 12 stemmi nuovi; nome dell'episodio in città nascosto a 360/375 (D-123);
+//   persone sulla mappa, icone a 16-20 px, contorno degli stemmi, splash Android col logo (C22-03…10, PO-106); avatar nel briefing,
+//   urgenza solo con un evento sul settore, vignette nascoste a 375×667 (D-126); primo tocco sulla mappa con la «i» aperta (C25-02),
+//   lettura protetta di app.screen (C24-03), nome di e36 stabile (C24-06), ultimo nome vecchio nei testi (C25-01).
+//   causa: PO-109, PO-106, D-123, D-126, collaudi C-024 e C-025. misura: completa 3/3 e CI verde sulla build del rilascio.
+//   guardiano: tests/nomi-club.test.ts (C63N01), tools/foto-stemmi.mjs (C62S01), C61N01, C56P01, C58I01, C64U01, C66V01, C69I01.
+export const GAME_VERSION = '0.20.0';

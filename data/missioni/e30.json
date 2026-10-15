@@ -284,6 +284,7 @@
       "eventi": [
         {
           "id": "silenzio_strada",
+          "verso": "dallo_stadio",
           "club": "cinderwick_united",
           "tipo": "corteo",
           "settore": "strada_cinderwick",
@@ -608,6 +609,7 @@
       "eventi": [
         {
           "id": "fiaccole",
+          "verso": "dallo_stadio",
           "club": "cinderwick_united",
           "tipo": "corteo",
           "settore": "strada_cinderwick",

@@ -32,7 +32,10 @@ export function follaDellOndata(m: Missione, n: number): Folla {
   const cortei = [...new Set(inStrada.map((e) => e.settore))]
     .map((settore): Corteo => {
       const club = spento('C49E01') ? undefined : inStrada.find((e) => e.settore === settore && e.club)?.club;
-      return { settore, verso: dopo ? 'esce' : 'entra', ...(club ? { club } : {}) };
+      // D-127 (C24-07): se i dati dicono il verso del corteo, vale quello; altrimenti lo decide la partita. Rosso C73V01: no.
+      const scritto = spento('C73V01') ? undefined : inStrada.find((e) => e.settore === settore && e.verso)?.verso;
+      const verso = scritto ? (scritto === 'dallo_stadio' ? 'esce' : 'entra') : dopo ? 'esce' : 'entra';
+      return { settore, verso, ...(club ? { club } : {}) };
     });
   return { spalti: senzaCurve ? 'vuoti' : dopo ? 'deflusso' : 'arrivo', cortei, club };
 }
