@@ -5,7 +5,7 @@
 import { Application, extend, useApplication } from '@pixi/react';
 import { Container, Graphics, Particle, ParticleContainer, Sprite, Texture, type Ticker } from 'pixi.js';
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
-import { neutroCorteo, type Folla } from './folla.ts';
+import { esceDinamica, neutroCorteo, type Folla } from './folla.ts';
 import { club as datiClub } from '../dati.ts';
 import { useRidisegno } from './ridisegno.ts';
 import { schermo } from './schermo.ts';
@@ -167,11 +167,11 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     // C23-01: club dell'evento dell'ondata → club della strada → curva omonima → neutro (come i cortei dell'ondata)
     const delClub = d && p.folla.club?.[d.settore] ? datiClub.get(p.folla.club[d.settore]!)?.colori : undefined;
     const colori: [string, string] = delClub ? [colore(delClub.primario)!, colore(delClub.secondario)!] : d ? coloriDin.current[d.settore] ?? neutroCorteo().map(token) as [string, string] : ['', ''];
-    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, colori, p.folla.spalti === 'deflusso') : null;
+    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, colori, esceDinamica(p.folla, d.settore)) : null;
     muoviDin.current?.(0);
     p.contenitore.current?.setAttribute('data-dinamica', d ? `${d.tipo}:${d.settore}` : '');
     p.contenitore.current?.setAttribute('data-dinamica-colori', d?.tipo === 'corteo' ? delClub?.primario ?? origineDin.current[d.settore] ?? 'neutro' : '');
-  }, [punti, pianta, volte, p.citato, p.folla.spalti, JSON.stringify(p.folla.club ?? {}), p.contenitore]);
+  }, [punti, pianta, volte, p.citato, p.folla.spalti, JSON.stringify(p.folla.club ?? {}), JSON.stringify(p.folla.cortei), p.contenitore]);
   return null;
 }
 

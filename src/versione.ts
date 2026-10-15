@@ -150,4 +150,11 @@
 //   misura: campo facoltativo `verso` sugli eventi in schema e tipi; e30 silenzio_strada/fiaccole ed e17 dopo_corteo
 //   «dallo_stadio»; folla.ts: scritto nei dati vince, altrimenti la partita decide; catena completa 3/3.
 //   guardiano: tests/corteo-verso.test.ts (rosso C73V01: il corteo torna verso lo stadio).
-export const GAME_VERSION = '0.21.0';
+// 0.22.0 – rilascio anticipato del 15/10 (PO-113): collaudi C-026 e C-027.
+//   causa: C27-01 il corteo della chiamata andava verso lo stadio mentre quello dell'ondata ne usciva (e30, e17);
+//   C26-02/04/05 testi che contraddicevano la mappa dei quartieri e il calendario; C26-06 la sfida senza curva di casa.
+//   misura: esceDinamica in folla.ts legge il verso del corteo dell'ondata (e30 ondate 2 e 4, e17 ondata 4: via dallo
+//   stadio anche la chiamata); e17 piazza17b «dallo_stadio»; e32 «quinto derby»; e33 gli Arches tornano a casa a
+//   piedi; e08 ed e21 partite di coppa; campo `partita` (D-130) nei dati di e07, e13, e21, e25, e28, e31.
+//   guardiano: tests/corteo-verso.test.ts (rossi C73V01 e C74D01); limiti di lunghezza in tests/brevita.test.ts.
+export const GAME_VERSION = '0.22.0';

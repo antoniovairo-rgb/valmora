@@ -18,6 +18,16 @@
   ],
   "additionalProperties": false,
   "properties": {
+    "partita": {
+      "type": "object",
+      "description": "D-130 (C26-06): la sfida della serata quando le curve dei dati non la dicono (casa senza curva, ospiti chiusi fuori)",
+      "required": ["casa", "ospiti"],
+      "additionalProperties": false,
+      "properties": {
+        "casa": { "$ref": "comune.schema.json#/$defs/id" },
+        "ospiti": { "$ref": "comune.schema.json#/$defs/id" }
+      }
+    },
     "id": {
       "$ref": "comune.schema.json#/$defs/id"
     },
