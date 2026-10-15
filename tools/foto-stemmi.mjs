@@ -21,6 +21,8 @@ export const PIANO = {
   southwind_town: ['rombo', 'ancora', '#64dd17', '#ffffff'], wallgate_rovers: ['scudo', 'porta_mura', '#ffab91', '#37474f'],
 };
 
+const D128_CLUB = ['calderholt_rovers', 'quillhaven_albion', 'pinegrove_rangers', 'belltower_harriers'];
+
 export function clubDaProvare() {
   const dati = Object.fromEntries(readdirSync('data/club').map((f) => JSON.parse(readFileSync(`data/club/${f}`, 'utf8'))).map((c) => [c.id, c]));
   return Object.entries(PIANO).map(([id, [forma, simbolo, primario, secondario]]) => {
@@ -74,6 +76,10 @@ export async function controllaStemmiTutti(pagina, atteso, dove) {
     return out;
   }));
   atteso(`${dove}: stemmi: ${male.join('; ')} (D-125)`, !male.length);
+  // D-128 (PO-111): fontana, albero nel cortile, pigna e campanile ridisegnati. La lettura (pigna, non ananas) la giudica
+  // il PO sulle foto; qui si controlla che il disegno sia quello nuovo. Rosso VALMORA_ROSSI=C83S01: i disegni di prima.
+  const vecchi = await pagina.evaluate((ids) => ids.filter((id) => !document.querySelector(`figure[data-club="${id}"] [data-simbolo]`)?.getAttribute('data-simbolo')?.endsWith('@D-128')), D128_CLUB);
+  atteso(`${dove}: stemmi col disegno di prima (D-128): ${vecchi.join(', ')}`, !vecchi.length);
   await controllaStemmi(pagina, atteso, dove);
 }
 

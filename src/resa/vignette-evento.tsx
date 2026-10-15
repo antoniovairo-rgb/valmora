@@ -33,14 +33,23 @@ export function gruppoEvento(m: Missione, c: Chiamata, variabili?: Variabili): G
 
 /** D-126 c (C24-04): la chiamata è urgente se sul suo settore, nella sua ondata, c'è un evento in corso (stessa regola
  *  della sagoma, «se» compreso). Rosso C64U01: urgenti tutte, come prima. */
-export const urgente = (m: Missione, c: Chiamata, variabili?: Variabili) => spento('C64U01') || gruppoSul(m, c, variabili) !== null;
+export const urgente = (m: Missione, c: Chiamata, variabili?: Variabili) => spento('C64U01') || (spento('C82U01') ? gruppoSul(m, c, variabili) !== null : eventiSul(m, c, variabili).some((e) => e.pressione >= URGENTE_DA));
 
-function gruppoSul(m: Missione, c: Chiamata, variabili?: Variabili): GruppoEvento | null {
-  if (!c.settore) return null;
+/** D-129 (C26-10, PO-112): con D-126 c era urgente il 361/422 delle chiamate (basta un evento qualsiasi). Ora solo se un
+ *  evento in corso sul settore, nella stessa ondata, ha pressione almeno 4. Rosso C82U01: la regola di D-126 c. */
+export const URGENTE_DA = 4;
+
+/** Gli eventi in corso sul settore della chiamata, nella sua ondata («se» compreso, C21-09). */
+function eventiSul(m: Missione, c: Chiamata, variabili?: Variabili) {
+  if (!c.settore) return [];
   const ondata = m.ondate.find((o) => o.chiamate?.some((x) => x.id === c.id));
   const vale = (e: { se?: Parameters<typeof valuta>[0] }) => !e.se || spento('C50S01') || (!!variabili && valuta(e.se, variabili));
+  return (ondata?.eventi ?? []).filter((e) => e.settore === c.settore && vale(e));
+}
+
+function gruppoSul(m: Missione, c: Chiamata, variabili?: Variabili): GruppoEvento | null {
   const gruppo = (tipo: string) => (spento('C50G01') ? PRIMA[tipo] ?? GRUPPI[tipo] : GRUPPI[tipo]);
-  const gruppi = new Set((ondata?.eventi ?? []).filter((e) => e.settore === c.settore && vale(e)).map((e) => gruppo(e.tipo)).filter(Boolean));
+  const gruppi = new Set(eventiSul(m, c, variabili).map((e) => gruppo(e.tipo)).filter(Boolean));
   return GRAVITA.find((g) => gruppi.has(g)) ?? null;
 }
 
