@@ -46,7 +46,7 @@ export async function controllaIconePulsanti(pagina, atteso, dove) {
 }
 
 /** S-23, PO-078: la vignetta di sala («apertura-») e del verbale («esito-»). */
-export async function controllaVignetta(pagina, prefisso, atteso, dove) {
+export async function controllaVignetta(pagina, prefisso, atteso, dove, dallaCitta = false) {
   // D-126 d (C22-04): sala e verbale nascondono la vignetta se lo spazio libero non arriva al minimo; nascosta solo
   // allora, e mai al minimo con la pagina che scorre (prova anche a 375×667). Rosso VALMORA_ROSSI=C66V01: resta al minimo.
   const misura = () => pagina.evaluate((pre) => {
@@ -63,7 +63,20 @@ export async function controllaVignetta(pagina, prefisso, atteso, dove) {
     if (r.nascosta) atteso(`${qui}: vignetta «${prefisso}…» nascosta con ${(r.libero - r.margini).toFixed(0)} px liberi, minimo ${r.min} (D-126 d)`, r.libero - r.margini < r.min || (r.bassa && /^(apertura|esito)-/.test(prefisso)));
     else atteso(`${qui}: vignetta «${prefisso}…» alta ${r.h.toFixed(0)} px (minimo ${r.min}) con la pagina che scorre di ${(-r.libero).toFixed(0)} px: va nascosta (D-126 d)`, r.h >= r.min - 0.5 && r.libero > -1);
   };
+  // C26 (catena instabile su e25 sala): si misura a scena ferma, finita la molla d'entrata (Scena.tsx); la vignetta presa
+  // durante la molla restava alta col riquadro scalato e la pagina scorreva di 3 px. Rosso VALMORA_ROSSI=C78V01.
+  await pagina.waitForFunction(() => [...document.querySelectorAll('.scena')].every((e) => /^(none|matrix\(1, 0, 0, 1, 0, 0\))$/.test(getComputedStyle(e).transform)), null, { timeout: 3000 }).catch(() => {});
   giudica(await misura(), dove);
+  if (dallaCitta) {
+    // prova della molla, senza dipendere dai tempi: la scena scalata come all'entrata, la vignetta rimisurata (resize),
+    // poi la scala tolta senza altri eventi; la pagina non deve scorrere. Rosso VALMORA_ROSSI=C78V01: scorre di 3 px.
+    await pagina.evaluate(() => { for (const e of document.querySelectorAll('.scena')) e.style.setProperty('scale', '1.03'); dispatchEvent(new Event('resize'));
+      return new Promise((ok) => requestAnimationFrame(() => requestAnimationFrame(ok))); }); // scalata anche per il ResizeObserver
+    await pagina.evaluate(() => { for (const e of document.querySelectorAll('.scena')) e.style.removeProperty('scale'); });
+    giudica(await misura(), `${dove} (molla)`);
+    await pagina.evaluate(() => dispatchEvent(new Event('resize')));
+    return;
+  }
   if (!/^(apertura|esito)-/.test(prefisso)) return;
   const prima = pagina.viewportSize();
   await pagina.setViewportSize({ width: 375, height: 667 }); await pagina.waitForTimeout(250);

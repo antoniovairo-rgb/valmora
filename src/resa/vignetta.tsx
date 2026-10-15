@@ -24,7 +24,11 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
       // restare minuscole (54-67 px a 375×667). Da nascosta lo spazio libero comprende i suoi margini: si toglono per
       // non farla riapparire e sparire a ogni misura. Rosso C66V01: restano al minimo, come prima.
       const nascosta = svg.hasAttribute('data-nascosta'), margini = nascosta ? Number(svg.dataset.margini) || 0 : parseFloat(css.marginTop) + parseFloat(css.marginBottom);
-      const vuole = svg.getBoundingClientRect().height + libero - (nascosta ? margini : 0);
+      // C26 (catena instabile, e25 sala a 360): all'entrata la scena ha la scala della molla (Scena.tsx), quindi il
+      // riquadro a schermo non è l'altezza vera e la misura restava sbagliata finita la molla (pagina che scorre di 3 px).
+      // L'altezza si legge dall'impaginazione, senza trasformazioni. Rosso C78V01: dal riquadro, come prima.
+      const alta = spento('C78V01') ? svg.getBoundingClientRect().height : parseFloat(css.height) || 0;
+      const vuole = alta + libero - (nascosta ? margini : 0);
       // C26-03: a 375×667 il verbale restava a 62-95 px (sopra il minimo): la decisione del PO è «nascoste a 375×667»,
       // quindi conta anche l'altezza della finestra (--vignetta-finestra-min). Rosso C76V01: solo il minimo, come prima.
       const bassa = !spento('C76V01') && innerHeight < (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-finestra-min')) || 0);

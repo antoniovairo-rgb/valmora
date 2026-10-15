@@ -87,3 +87,38 @@ FATTO MISURATO, `VALMORA_LARGHEZZE=360 node tools/foto.mjs`:
 - Mappa dello schieramento con le unità del bot attento, e06 ondata 1, e13 ondata 2, e16 ondata 4, a 360/375/412 (rosso C77E01).
 - `conf-360-e13-mappa.png`: a sinistra prima («Viale fra stadio e piazza» sopra «Parcheggi»), a destra dopo.
 - C26-03: nessuna foto mia di sala e verbale a 375×667; ci sono la misura del guardiano e quelle del collaudo.
+
+## Catena instabile su e25 sala: vignetta misurata durante la molla d'entrata
+
+**Rilevato** (FATTO MISURATO): catena «completa» su 8801b7d verde, instabile, verde. Nel giro 2 il passo foto è fallito al primo tentativo con «360px: e25 sala: vignetta «apertura-…» alta 106 px (minimo 56) con la pagina che scorre di 3 px».
+
+**Riproduzione** (sonda in scratchpad, e25 aperto dalla città a 360×760 come `apriTutte`, misura a ogni frame per 2 s):
+- 8 prove su 8 con la pagina che scorre di 3,3 px a riposo;
+- vignetta di 105,9 px, `main` fermo a 711,3 px.
+
+**Causa** (FATTO, codice e misura):
+- la scena entra con una molla di scala (`Scena.tsx`: scala da 0,9 a 1, con rimbalzo sopra 1);
+- `useRiempi` (`vignetta.tsx`) prendeva l'altezza della vignetta dal riquadro a schermo, che è scalato;
+- finita la molla l'impaginazione non cambia, quindi né il ResizeObserver né altro rifà la misura;
+- nella sonda il riquadro passa da 108,2 a 105,9 px a impaginazione ferma.
+- Nel giro foto il difetto si vede solo a volte: di solito un'altra misura arriva dopo la molla (mappa pronta).
+
+**Correzione:** l'altezza si legge dall'impaginazione (`getComputedStyle().height`), senza trasformazioni.
+- **Rosso `__NO_C78V01`:** dal riquadro, come prima.
+- **Misura con la sonda:**
+  - e25: verde 0/6, rosso 6/6;
+  - e01, e02, e05, e10, e13, e16, e20, e30, e33, e36: verde 0 su 10, rosso 10 su 10 (una prova ciascuno).
+
+**Guardiano** (`controllaVignetta`, `tools/foto-c22.mjs`):
+- misura a scena ferma: aspetta che la scena non abbia più trasformazioni;
+- prova della molla, deterministica, su ogni episodio aperto dalla città (`apriTutte`, `tools/foto-bozze.mjs`):
+  1. scena scalata a 1,03 come all'entrata;
+  2. evento `resize`, che rifà la misura;
+  3. due frame, per il ResizeObserver;
+  4. scala tolta senza altri eventi;
+  5. la pagina non deve scorrere.
+- La prima versione, senza la prova della molla, nel rosso dava solo 2 righe (e05, e22): dipendeva dai tempi, quindi era quasi cieca. Riparata con la prova della molla.
+
+**Esito** (FATTO MISURATO, `VALMORA_LARGHEZZE=360 node tools/foto.mjs`):
+- verde: exit 0;
+- rosso C78V01: exit 1, 36 righe, di cui 34 della prova della molla. Per esempio «e01 sala dalla città (molla): … alta 80 px … scorre di 2 px», «e04 … 149 px … 2 px».
