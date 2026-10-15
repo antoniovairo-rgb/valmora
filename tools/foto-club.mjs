@@ -54,7 +54,7 @@ export async function controllaCurve(pagina, m, n, club, atteso) {
 
 /** Uno stemma per club delle curve, col club giusto (D-088). */
 export async function controllaSfida(pagina, m, atteso, dove) {
-  const attesi = [...new Set(m.mappa.settori.filter((s) => s.club && s.tipo === 'curva').map((s) => s.club))].join(','); // C20-08: club delle curve, una volta
+  const attesi = [...new Set(m.mappa.settori.filter((s) => s.club && s.tipo === 'curva' && !s.id.includes('gemellati')).map((s) => s.club))].join(','); // C20-08: club delle curve, una volta; C26-01: non i gemellati (rosso C75G01)
   if (!attesi) return;
   const visti = await pagina.$$eval('.scena [data-sfida] [data-stemma]', (xs) => xs.map((x) => x.dataset.stemma).join(','));
   atteso(`${m.id} ${dove}: stemmi «${visti}», servono «${attesi}» (D-088)`, visti === attesi);

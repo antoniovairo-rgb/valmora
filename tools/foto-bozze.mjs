@@ -6,6 +6,7 @@
 import { leggiDati } from './dati-disco.mjs';
 import { controllaHome, controllaTripla } from './foto-club.mjs';
 import { controllaNomiSala } from './foto-c15.mjs';
+import { controllaVignetta } from './foto-c22.mjs';
 import { controllaCitta, controllaNomiCittaTutti } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
@@ -69,6 +70,7 @@ export async function apriTutte(c) {
       else {
         const testi = [];
         await scena('sala'); testi.push(await pagina.locator('main').textContent());
+        await controllaVignetta(pagina, 'apertura-', atteso, `${m.id} sala dalla città`, true); // C26: entrata dalla città, rosso C78V01
         if (i === 0 && (await pagina.locator('[data-azione="passo"]').count())) { // S-21: indietro rilegge il passo precedente
           await pagina.click('[data-azione="passo"]'); await pagina.goBack().catch(() => {}); await pagina.waitForTimeout(150);
           const passo = await pagina.getAttribute('.passi', 'data-passo').catch(() => null);

@@ -82,11 +82,18 @@ export function Stemma(p: { c: Club }) {
   );
 }
 
+/** Gli id dei club che si sfidano: club delle curve della missione, ognuno con la sua curva. */
+export function sfidanti(m: Missione): string[] {
+  // C26-01: i gemellati (settore «…gemellati», come in C21-04) non sono uno sfidante: e15 ed e27 mostravano tre club.
+  // Rosso C75G01: anche i gemellati.
+  return m.mappa.settori.filter((s) => spento('C44S03') || (s.tipo === 'curva' && (spento('C75G01') || !s.id.includes('gemellati')))).map((s) => s.club).filter((x): x is string => !!x);
+}
+
 /** I club delle curve della missione (di solito due): la sfida della serata. Niente se non ci sono curve. */
 export function Sfida(p: { m: Missione }) {
   // C20-08: la sfida è fra i club delle CURVE, ognuno una volta: con PO-102 anche le strade hanno un club (i loro
   // tifosi), e la sala diceva «Calderholt contro Calderholt contro Larkspire». Rosso C44S03: tutti i settori, come prima.
-  const ids = p.m.mappa.settori.filter((s) => spento('C44S03') || s.tipo === 'curva').map((s) => s.club).filter((x): x is string => !!x);
+  const ids = sfidanti(p.m);
   const lista = (spento('C44S03') ? ids : [...new Set(ids)]).map((id) => club.get(id)).filter((c): c is Club => !!c);
   if (spento('C10C02') || lista.length === 0) return null;
   return (
