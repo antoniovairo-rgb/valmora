@@ -45,6 +45,9 @@ export async function apriTutte(c) {
   const finestra = pagina.viewportSize();
   await pagina.setViewportSize({ width: finestra.width, height: 760 }); // il telefono di riferimento (PO-045, PO-052)
   await controllaNomiCittaTutti(pagina, atteso, sal, scena); // C20-03
+  // D-125: i 16 stemmi alla misura vera, a 360/375/412 (tools/foto-stemmi.mjs), con le foto nella cartella del giro
+  const { paginaStemmi, controllaStemmiTutti } = await import('./foto-stemmi.mjs');
+  for (const w of [360, 375, 412]) { const p = await paginaStemmi(pagina.context().browser(), w, process.env.VALMORA_ROSSI ?? ''); await controllaStemmiTutti(p, atteso, `${w}px`); if (cartella) await p.screenshot({ path: `${cartella}/stemmi-${w}.png`, fullPage: true }); await p.close(); }
   // PO-091: con nessun episodio superato, la stagione 2 è chiusa e la scheda dice cosa la apre; «Prossimo» porta all'episodio 01
   await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, JSON.stringify({ ...JSON.parse(sal), episodi: {}, missioni_concluse: [] })]);
   await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
