@@ -8,6 +8,7 @@ import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import { neutroCorteo, type Folla } from './folla.ts';
 import { club as datiClub } from '../dati.ts';
 import { useRidisegno } from './ridisegno.ts';
+import { schermo } from './schermo.ts';
 import { costruisciDinamica, dinamicaDi } from './dinamica.ts';
 import { ALFA_MIN, gente } from './persone.ts';
 import { spento } from '../../interruttori.ts';
@@ -22,15 +23,15 @@ const fermo = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 export interface Margine { lato: number; sotto: number }
 
 // Quanti tifosi si vedono sugli spalti: pieni durante la partita, a metà all'arrivo, pochi al deflusso.
-const QUOTA = { pieni: 1, arrivo: 2, deflusso: 4 } as const;
+const QUOTA = { pieni: 1, arrivo: 2, deflusso: 4, vuoti: Infinity } as const; // C24-07: «vuoti», nessun tifoso
 
 function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfera; folla: Folla; citato?: string; contenitore: RefObject<HTMLDivElement | null> }) {
   const { app } = useApplication();
   const volte = useRidisegno(app, p.contenitore.current); // S-26: sfondo ridisegnato al ritorno dal background
-  const [dim, setDim] = useState({ w: app.screen.width, h: app.screen.height });
+  const [dim, setDim] = useState(() => schermo(app) ?? { w: 0, h: 0 }); // C24-03: mai app.screen senza renderer
   useEffect(() => {
     const r = app.renderer; // tenuto da parte: allo smontaggio Pixi lo toglie da «app»
-    const aggiorna = () => setDim({ w: app.screen.width, h: app.screen.height });
+    const aggiorna = () => { const s = schermo(app); if (s) setDim(s); };
     r.on('resize', aggiorna);
     return () => { r.off('resize', aggiorna); };
   }, [app]);
@@ -66,7 +67,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     // C22-03: persone con contorno e alone (persone.ts); gli aloni stanno in un contenitore sotto le persone
     const gs = gente('spalti', 1.3), gc = gente('corteo', 2.2);
     const aloniFolla = new ParticleContainer(), folla = new ParticleContainer({ dynamicProperties: { color: true } });
-    const tifosi = animati.folla.filter((_, i) => i % QUOTA[folla0.spalti] === 0).map((f) => {
+    const tifosi = animati.folla.filter((_, i) => folla0.spalti !== 'vuoti' && i % QUOTA[folla0.spalti] === 0).map((f) => {
       if (gs.alone) aloniFolla.addParticle(new Particle({ texture: gs.alone.tex, x: f.x, y: f.y, scaleX: gs.alone.scala, scaleY: gs.alone.scala, anchorX: 0.5, anchorY: 0.5 }));
       const q = new Particle({ texture: gs.persona, x: f.x, y: f.y, scaleX: gs.scala, scaleY: gs.scala, anchorX: gs.alone ? 0.5 : 0, anchorY: gs.alone ? 0.5 : 0, tint: f.colore });
       folla.addParticle(q); return { q, fase: f.fase };

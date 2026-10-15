@@ -37,15 +37,15 @@ export async function controllaCitta(pagina, atteso, dove) {
 
 /** PO-092: la vignetta (fuori dalla chiamata) prende lo spazio libero: o la pagina è piena, o la vignetta è al massimo. */
 export async function controllaRiempi(pagina, atteso, nome) {
-  // D-118 (PO-078 A): nel briefing ogni fonte visibile ha la vignetta al posto dell'avatar, alta come l'avatar (zero
-  // altezza in più). Rosso VALMORA_ROSSI=C51A01: l'avatar di prima.
+  // D-126 b (C24-01): nel briefing ogni fonte visibile ha l'avatar, non la vignetta (a 42×42 non si leggeva).
+  // Rosso VALMORA_ROSSI=C63A01: la vignetta di D-118.
   const fonte = await pagina.evaluate(() => {
     if (!document.querySelector('.scena[data-scena="briefing"]')) return null;
     const m = [...document.querySelectorAll('.scena [data-messaggio^="fonte-"]')].find((x) => x.getClientRects().length && !x.closest('[hidden]'));
     if (!m) return null;
-    const f = m.querySelector('[data-figura-fonte] svg.vignetta'), avatar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--avatar'));
+    const f = m.querySelector('[data-figura-fonte] svg.vignetta'), av = m.querySelector('.avatar'), avatar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--avatar'));
     const r = f?.getBoundingClientRect();
-    return { c: !!f, h: r ? Math.round(r.height) : 0, w: r ? Math.round(r.width) : 0, avatar };
+    return { c: !!f, av: !!av, h: r ? Math.round(r.height) : 0, w: r ? Math.round(r.width) : 0, avatar };
   });
   // D-120 (PO-085): nella chiamata lo spicchio d'orologio c'è, sta nella finestra e non copre testi né comandi (bollino
   // sull'angolo del fumetto, fuori dalla riga del mittente). Rosso VALMORA_ROSSI=C51O01: niente orologio.
@@ -60,8 +60,9 @@ export async function controllaRiempi(pagina, atteso, nome) {
     }).map((e) => e.textContent.trim().slice(0, 20));
     return { c: true, sopra, dentro: a.left >= 0 && a.right <= innerWidth };
   });
-  if (orologio) atteso(`${nome}: spicchio d'orologio ${orologio.c ? `sopra «${orologio.sopra.join(', ')}»${orologio.dentro ? '' : ' fuori dalla finestra'}` : 'assente'} (D-120)`, orologio.c && !orologio.sopra.length && orologio.dentro);
-  if (fonte) atteso(`${nome}: fonte del briefing ${fonte.c ? `con vignetta ${fonte.w}×${fonte.h}` : 'senza vignetta'} (serve ${fonte.avatar}×${fonte.avatar} px, al posto dell'avatar) (D-118)`, fonte.c && fonte.h <= fonte.avatar + 1 && fonte.w <= fonte.avatar + 1 && fonte.w >= fonte.avatar - 1); // 42×42: più larga manda a capo il nome (misura del 14/10)
+  // D-126 c: lo spicchio c'è solo sulle urgenti (controllaVignettaEvento); dove c'è, non copre nulla e sta nella finestra
+  if (orologio?.c) atteso(`${nome}: spicchio d'orologio ${orologio.c ? `sopra «${orologio.sopra.join(', ')}»${orologio.dentro ? '' : ' fuori dalla finestra'}` : 'assente'} (D-120)`, orologio.c && !orologio.sopra.length && orologio.dentro);
+  if (fonte) atteso(`${nome}: fonte del briefing ${fonte.c ? `con la vignetta ${fonte.w}×${fonte.h}` : ''}${fonte.av ? '' : ' senza avatar'}, serve l'avatar (D-126 b)`, !fonte.c && fonte.av);
   // la finestra può essere appena tornata da 760 a 800 (controllaAltezza): si lascia arrivare l'evento «resize»
   await pagina.evaluate(() => new Promise((ok) => requestAnimationFrame(() => requestAnimationFrame(ok)))); await pagina.waitForTimeout(100);
   const r = await pagina.evaluate(() => {
@@ -273,6 +274,14 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
   }
   atteso(`città: dopo un cambio di misura del nome il posto non si rifà in ${stantii.length} casi: ${stantii.join('; ')} (strumento instabile, C20-03)`, !stantii.length);
   atteso(`città: nessun nome ha cambiato misura con la spaziatura, il controllo del ricalcolo è cieco (C20-03)`, confrontati > 0);
+  // C24-06: mentre un carattere carica il nome non si vede (calcolato col carattere di riserva poi saltava); torna quando
+  // ha finito. Gli eventi di FontFaceSet si mandano a mano: deterministico. Rosso VALMORA_ROSSI=C68N01: resta visibile.
+  await pagina.click(`[data-episodio="${prima[0]}"] .settore-punto`); await pagina.waitForTimeout(60);
+  const nome = () => pagina.evaluate(() => !!document.querySelector('[data-episodio].acceso .settore-nome'));
+  const prova = (ev) => pagina.evaluate((ev) => document.fonts.dispatchEvent(new Event(ev)), ev);
+  await prova('loading'); await pagina.waitForTimeout(60); const durante = await nome();
+  await prova('loadingdone'); await pagina.waitForTimeout(60); const dopo = await nome();
+  atteso(`città: col carattere in arrivo il nome ${durante ? 'si vede (poi salta)' : 'non si vede'}, dopo ${dopo ? 'si vede' : 'non torna'} (C24-06)`, !durante && dopo);
   const giro = async () => {
   const male = [];
   for (const st of await pagina.$$eval('[data-stagione]', (xs) => xs.map((x) => x.dataset.stagione))) {
@@ -324,6 +333,11 @@ export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
   const gruppi = new Set((ondata.eventi ?? []).filter((e) => c.settore && e.settore === c.settore && (!e.se || valuta(e.se, variabili))).map((e) => GRUPPI_EVENTO[e.tipo]));
   const voluto = ['scontro', 'fumo', 'corteo', 'tifo', 'veicoli', 'biglietti', 'gente'].find((g) => gruppi.has(g)) ?? 'nessuno';
   atteso(`${dove}: la vignetta mostra «${visto}», i dati dicono «${voluto}» (D-112 punto 5)`, visto === voluto);
+  // D-126 c (C24-04): spicchio e «Urgente!» solo se sul settore c'è un evento in corso nell'ondata (stessa regola).
+  // Rossi VALMORA_ROSSI=C64U01 (urgenti tutte) e C51O01 (niente spicchio).
+  const [spicchio, timbro] = await pagina.evaluate(() => { const m = document.querySelector('[data-messaggio^="chiamata-"]'); return [!!m?.querySelector('[data-urgenza]'), m?.querySelector('.timbro')?.textContent ?? '']; });
+  const urge = voluto !== 'nessuno';
+  atteso(`${dove}: ${urge ? 'urgente' : 'non urgente'} per i dati, ma spicchio ${spicchio ? 'sì' : 'no'} e timbro «${timbro}» (D-126 c)`, spicchio === urge && (timbro === 'Urgente!') === urge);
   // PO-103: le persone sono pallini piatti, niente omini con testa e braccia; i gruppi con gente ne mostrano.
   // Rosso VALMORA_ROSSI=C48P01: gli omini di prima.
   const [omini, pallini] = await pagina.evaluate(() => ['omino', 'pallino'].map((f) => document.querySelectorAll(`.chiamata-corpo svg.vignetta [data-figura="${f}"]`).length));
@@ -343,6 +357,11 @@ export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
       const sotto = fondo ? getComputedStyle(fondo).fill : 'rgb(255, 255, 255)', bordo = pieno(cs.stroke) && parseFloat(cs.strokeWidth) > 0 ? cs.stroke : null;
       const giro = alone ? getComputedStyle(alone).fill : null, out = [];
       if (Math.min(r.width, r.height) < 6) out.push(`${r.width.toFixed(1)} px`);
+      // C25-05: l'anello bianco (alone meno pallino e mezzo contorno) almeno 1 px, e l'alone dentro la vignetta
+      if (alone) { const v = g.closest('svg.vignetta').getBoundingClientRect(), k = v.width / 320, ra = alone.getBoundingClientRect();
+        const anello = (ra.width - r.width) / 2 - (parseFloat(cs.strokeWidth) * k) / 2;
+        if (anello < 1) out.push(`anello ${anello.toFixed(2)} px`);
+        if (ra.bottom > v.bottom - 0.5 || ra.top < v.top + 0.5) out.push('alone sul bordo della vignetta'); }
       if (!bordo) out.push(`senza contorno (${cs.fill} su ${sotto}: ${rap(cs.fill, sotto).toFixed(2)}:1)`);
       else if ((giro && rap(bordo, giro) < 3) || Math.max(rap(bordo, sotto), giro ? rap(giro, sotto) : 0) < 3) out.push(`contorno ${bordo}, alone ${giro}, fondo ${sotto}`);
       return out.length ? [out.join(', ')] : [];
@@ -350,6 +369,8 @@ export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
     scrollTo(0, y0); return out;
   });
   atteso(`${dove}: ${deboli.length} pallini piccoli o poco contrastati: ${deboli.slice(0, 3).join('; ')} (C22-02)`, !deboli.length);
+  // C25-06: la folla di sfondo (strada, piazzale) è fatta dei pallini nuovi, non di puntini. Rosso VALMORA_ROSSI=C70F01.
+  const puntini = await pagina.evaluate(() => document.querySelectorAll('.chiamata-corpo svg.vignetta [data-folla-sfondo] > circle').length); atteso(`${dove}: ${puntini} puntini nella folla di sfondo invece dei pallini (C25-06)`, puntini === 0);
   // i tratti coi colori del club (gradinate, sciarpa) si vedono davvero: il colore calcolato è quello del club.
   // Rosso VALMORA_ROSSI=C45E02: «.v-linea» li rende neri.
   const spenti = await pagina.evaluate(() => [...document.querySelectorAll('.chiamata-corpo svg.vignetta [stroke^="#"]')].filter((e) => {

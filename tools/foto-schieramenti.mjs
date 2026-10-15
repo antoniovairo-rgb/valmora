@@ -151,6 +151,19 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
       atteso(`${dove}: il secondo tocco della «i» non chiude la riga (PO-101)`, (await q.locator('[data-info-ondata]').count()) === 0);
       await icona.click(); await q.waitForTimeout(80); await q.mouse.click(w / 2, h - 120); await q.waitForTimeout(80);
       atteso(`${dove}: toccando altrove la riga «i» resta aperta (PO-101)`, (await q.locator('[data-info-ondata]').count()) === 0);
+      // C25-02: con la riga aperta, il tocco vero (mouse) su un settore della mappa arriva a quel settore e chiude la
+      // riga. Si registra dove arriva il click. Rosso VALMORA_ROSSI=C69I01: chiusa al pointerdown, il tocco si perde.
+      await icona.click(); await q.waitForTimeout(80);
+      const bersaglio = await q.evaluate(() => {
+        window.__arrivato = null; document.addEventListener('click', (e) => { window.__arrivato = e.target.closest?.('[data-settore]')?.dataset.settore ?? '(altrove)'; }, { capture: true, once: true });
+        const p = [...document.querySelectorAll('.mappa [data-settore] .settore-punto')].find((x) => x.getClientRects().length && !x.disabled);
+        if (!p) return null; const r = p.getBoundingClientRect(); return { id: p.closest('[data-settore]').dataset.settore, x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      });
+      if (bersaglio) {
+        await q.mouse.click(bersaglio.x, bersaglio.y); await q.waitForTimeout(80);
+        const arrivato = await q.evaluate(() => window.__arrivato);
+        atteso(`${dove}: con la riga «i» aperta il tocco su «${bersaglio.id}» arriva a «${arrivato}» (C25-02)`, arrivato === bersaglio.id);
+      }
     }
     await q.close();
   }

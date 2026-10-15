@@ -38,9 +38,24 @@ function useConNome() {
   return si;
 }
 
+/** C24-06: il nome si mostra solo coi caratteri caricati. Calcolato col carattere di riserva e poi rifatto all'arrivo del
+ *  carattere vero (C47N02), si vedeva saltare (e36 a 412: da due righe a una, 43 px a sinistra). Rosso C68N01: subito. */
+function useCaratteri() {
+  const f = typeof document === 'undefined' ? undefined : document.fonts;
+  const [pronti, setPronti] = useState(() => !f || f.status === 'loaded');
+  useLayoutEffect(() => {
+    if (!f) return;
+    const si = () => setPronti(f.status === 'loaded'), no = () => setPronti(false);
+    f.addEventListener?.('loading', no); f.addEventListener?.('loadingdone', si); f.addEventListener?.('loadingerror', si);
+    void f.ready.then(si);
+    return () => { f.removeEventListener?.('loading', no); f.removeEventListener?.('loadingdone', si); f.removeEventListener?.('loadingerror', si); };
+  }, [f]);
+  return pronti || spento('C68N01');
+}
+
 export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli: (id: string) => void; home?: () => void }) {
   const contenitore = useRef<HTMLDivElement>(null);
-  const conNome = useConNome();
+  const conNome = useConNome(), caratteri = useCaratteri();
   const [pronta, setPronta] = useState(!conWebgl);
   const margine = useMemo(() => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--settore')) / 2 || 22, []);
   // Senza «luogo» nei dati gli episodi si mettono in fila, così non spariscono.
@@ -82,7 +97,7 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
             {v.m.episodio}
           </button>
           {/* PO-044: il nome solo sull'episodio scelto, gli altri punti mostrano il numero (rosso __NO_C13M01: tutti i nomi) */}
-          {((p.scelto === v.m.id && (conNome || spento('C61N01'))) || spento('C13M01')) && <span className="settore-nome" aria-hidden="true">{t(v.m.titolo)}</span>}
+          {((p.scelto === v.m.id && (conNome || spento('C61N01')) && caratteri) || spento('C13M01')) && <span className="settore-nome" aria-hidden="true">{t(v.m.titolo)}</span>}
           {v.stelle !== null && <span className="settore-unita"><Stelle n={v.stelle} piccole /></span>}
         </div>
       ))}

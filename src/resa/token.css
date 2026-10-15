@@ -180,7 +180,7 @@
   --stella: 26px;
   --avatar: 42px;
   --icona-piccola: 16px; /* C22-05: glifo minimo delle icone nelle pastiglie e negli effetti (metro C-022: sotto 16 px = media) */
-  --icona-chi: 24px; /* C22-01: glifo di chi chiama accanto alla vignetta della chiamata (Material: icone da 24 dp) */
+  --icona-chi: 27px; /* C22-01, C25-04: riquadro dell'icona di chi chiama; il glifo disegnato (tratto compreso) è 22/24 del riquadro, così il suo lato maggiore arriva a 24 px */
   --tasto-lettera: 34px;
   --nome-max: 7.5em;
   --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */

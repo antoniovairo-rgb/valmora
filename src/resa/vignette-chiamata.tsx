@@ -8,7 +8,9 @@ import type { Chiamata, Missione, Variabili } from '../logica/tipi.ts';
 import { club } from './dati.ts';
 import { spento } from '../interruttori.ts';
 import { Persona, Vignetta } from './vignetta.tsx';
-import { gruppoEvento, SagomaEvento } from './vignette-evento.tsx';
+import { gruppoEvento, PallinoPersona, SagomaEvento } from './vignette-evento.tsx';
+/** C25-06: la folla di sfondo (strada, piazzale) coi pallini delle persone, non puntini da 3 px. Rosso C70F01: come prima. */
+const folla = () => !spento('C70F01');
 import { FileText, Globe, Phone, Radio, type LucideIcon } from 'lucide-react';
 import { Icona } from './icone.tsx';
 
@@ -27,9 +29,11 @@ export const chiDi = (fonte: string): Chi => (fonte === 'vice' ? 'vice' : RADIO.
 function Sfondo(p: { luogo: Luogo; colore?: string }) {
   switch (p.luogo) {
     case 'strada': return <g><rect x="0" y="110" width="320" height="70" className="v-asfalto" /><path d="M0 146 H320" className="v-strada" />
-      {Array.from({ length: 14 }, (_, i) => <circle key={i} cx={40 + i * 18} cy={128 + (i % 3) * 6} r="5" className={i % 3 ? 'v-nero' : 'v-magenta'} />)}</g>;
+      <g data-folla-sfondo>{folla() ? Array.from({ length: 8 }, (_, i) => <PallinoPersona key={i} x={36 + i * 35} y={128 + (i % 2) * 8} classe={i % 3 ? 'v-nero' : 'v-magenta'} />)
+        : Array.from({ length: 14 }, (_, i) => <circle key={i} cx={40 + i * 18} cy={128 + (i % 3) * 6} r="5" className={i % 3 ? 'v-nero' : 'v-magenta'} />)}</g></g>;
     case 'piazzale': return <g><rect x="0" y="120" width="320" height="60" className="v-grigio v-tratto" /><path d="M180 120 Q250 40 320 60 V120 Z" className="v-bianco v-tratto" />
-      {Array.from({ length: 18 }, (_, i) => <circle key={i} cx={20 + (i * 17) % 300} cy={140 + (i % 3) * 10} r="4.5" className={i % 4 ? 'v-nero' : 'v-ciano'} />)}</g>;
+      <g data-folla-sfondo>{folla() ? Array.from({ length: 9 }, (_, i) => <PallinoPersona key={i} x={22 + i * 34} y={142 + (i % 2) * 10} classe={i % 4 ? 'v-nero' : 'v-ciano'} />)
+        : Array.from({ length: 18 }, (_, i) => <circle key={i} cx={20 + (i * 17) % 300} cy={140 + (i % 3) * 10} r="4.5" className={i % 4 ? 'v-nero' : 'v-ciano'} />)}</g></g>;
     case 'curva': return <g><path d="M0 70 Q160 20 320 70 V180 H0 Z" className="v-grigio v-tratto" />
       {[0, 1, 2, 3].map((r) => <path key={r} d={`M0 ${86 + r * 22} Q160 ${40 + r * 22} 320 ${86 + r * 22}`} stroke={p.colore ?? 'currentColor'} className={spento('C45E02') ? 'v-linea' : 'v-club'} strokeWidth="9" fill="none" />)}</g>;
     case 'stazione': return <g><rect x="0" y="130" width="320" height="50" className="v-grigio" /><rect x="10" y="80" width="200" height="50" className="v-ciano v-tratto" />

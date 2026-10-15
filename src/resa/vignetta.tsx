@@ -7,7 +7,7 @@ import { spento } from '../interruttori.ts';
 
 /** PO-092: la vignetta prende lo spazio che resta libero nella pagina (fra il minimo e il massimo dei token), senza
  *  farla scorrere: la riserva fissa era tarata sul testo più lungo e lasciava vignette minuscole. Rosso C36V01: no. */
-function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean) {
+function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascondibile = false) {
   useLayoutEffect(() => {
     const svg = el.current;
     if (!svg || !attivo || spento('C36V01')) return;
@@ -20,7 +20,14 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean) {
       const px = (e: Element, k: 'marginBottom' | 'paddingBottom') => parseFloat(getComputedStyle(e)[k]) || 0;
       const fondo = main.getBoundingClientRect().bottom + window.scrollY + px(main, 'marginBottom') + px(app, 'paddingBottom') + (app === document.body ? 0 : px(document.body, 'paddingBottom'));
       const libero = innerHeight - fondo - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-margine')) || 0);
-      svg.style.setProperty('height', `${Math.max(min, Math.min(max, svg.getBoundingClientRect().height + libero))}px`);
+      // D-126 d (C22-04): vignette di sala e verbale; se lo spazio libero non arriva al minimo si nascondono invece di
+      // restare minuscole (54-67 px a 375×667). Da nascosta lo spazio libero comprende i suoi margini: si toglono per
+      // non farla riapparire e sparire a ogni misura. Rosso C66V01: restano al minimo, come prima.
+      const nascosta = svg.hasAttribute('data-nascosta'), margini = nascosta ? Number(svg.dataset.margini) || 0 : parseFloat(css.marginTop) + parseFloat(css.marginBottom);
+      const vuole = svg.getBoundingClientRect().height + libero - (nascosta ? margini : 0);
+      if (nascondibile && !spento('C66V01') && vuole < min) { svg.dataset.margini = String(margini); svg.setAttribute('data-nascosta', ''); svg.style.setProperty('display', 'none'); return; }
+      svg.removeAttribute('data-nascosta'); svg.style.removeProperty('display');
+      svg.style.setProperty('height', `${Math.max(min, Math.min(max, vuole))}px`);
     };
     fai();
     // si rifà quando l'impaginazione cambia (mappa pronta, caratteri, passi): fermo appena la misura non cambia più
@@ -30,12 +37,12 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean) {
     if (main) ro?.observe(main);
     addEventListener('resize', fai); void document.fonts?.ready.then(fai);
     return () => { removeEventListener('resize', fai); ro?.disconnect(); };
-  }, [el, attivo]);
+  }, [el, attivo, nascondibile]);
 }
 
 export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean; evento?: string; ritaglio?: string }) {
   const el = useRef<SVGSVGElement>(null);
-  useRiempi(el, !p.fissa); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
+  useRiempi(el, !p.fissa, /^(apertura|esito)-/.test(p.nome)); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
   if (spento('C26V01')) return null;
   return (
     <svg ref={el} className="vignetta" viewBox="0 0 320 180" preserveAspectRatio={p.ritaglio ?? 'xMidYMid meet'} role="img" aria-label={p.titolo} data-vignetta={p.nome} data-evento={p.evento}>

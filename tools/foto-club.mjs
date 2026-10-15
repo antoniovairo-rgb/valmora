@@ -83,7 +83,10 @@ export async function controllaFolla(pagina, m, n, atteso) {
   if (tipi.has('curva')) atteso(`${dove}: durante la partita servono spalti pieni e strade vuote (PO-046)`, spalti === 'pieni' && cortei.length === 0);
   for (const [s] of cortei) atteso(`${dove}: corteo su «${s}» senza un evento in strada in questa ondata (PO-046)`, eventi.some((e) => e.settore === s));
   for (const e of eventi) if (e.tipo === 'corteo' && strade.has(e.settore) && !tipi.has('curva')) atteso(`${dove}: evento corteo su «${e.settore}» ma nessun corteo disegnato`, cortei.some(([s]) => s === e.settore));
-  if (tipi.has('deflusso')) atteso(`${dove}: al deflusso la gente esce dallo stadio`, spalti === 'deflusso' && cortei.every(([, v]) => v === 'esce'));
+  // C24-07: senza curve lo stadio è vuoto (S-25): spalti «vuoti», mai «in arrivo». Rosso VALMORA_ROSSI=C67S01.
+  const senzaCurve = !m.mappa.settori.some((s) => s.tipo === 'curva');
+  if (senzaCurve) atteso(`${dove}: episodio senza curve, gli spalti devono essere «vuoti» (C24-07)`, spalti === 'vuoti');
+  if (tipi.has('deflusso')) atteso(`${dove}: al deflusso la gente esce dallo stadio`, (spalti === 'deflusso' || senzaCurve) && cortei.every(([, v]) => v === 'esce'));
 }
 
 /** Schermate a passi (S-10, PO-045): a 360 px di larghezza la pagina sta in 760 px di altezza, senza scorrere.
@@ -330,10 +333,7 @@ export async function controllaRende(pagina, m, n, atteso) {
 }
 
 /** S-23 (PO-078): la vignetta della schermata si vede (sala: apertura; verbale: esito). Rosso __NO_C26V01. */
-export async function controllaVignetta(pagina, prefisso, atteso, dove) {
-  const vista = await pagina.locator(`[data-vignetta^="${prefisso}"]`).first().isVisible().catch(() => false);
-  atteso(`${dove}: manca la vignetta «${prefisso}…» (S-23, PO-078)`, vista);
-}
+export { controllaVignetta } from './foto-c22.mjs'; // D-126 d: spostata per la misura dei moduli (400 righe)
 
 /** C16-06: «Riparti dall'ondata N» non lascia il numero da solo sull'ultima riga. Si fa perdere, dalla città, il primo
  *  episodio il cui fallimento dà una ripartenza N > 1 (e01 dopo C16-01 offre solo «Ricomincia»). */

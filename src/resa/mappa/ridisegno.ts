@@ -6,16 +6,17 @@
 import { useEffect, useState } from 'react';
 import type { Application } from 'pixi.js';
 import { spento } from '../../interruttori.ts';
+import { tela as telaDi } from './schermo.ts';
 
 export function useRidisegno(app: Application, contenitore?: HTMLElement | null): number {
   const [volte, setVolte] = useState(0);
   useEffect(() => {
     const ancora = () => { if (!spento('C31W01')) setVolte((v) => v + 1); };
     const visibile = () => { if (document.visibilityState === 'visible') ancora(); };
-    const tela = app.canvas as HTMLCanvasElement;
+    const tela = telaDi(app); // C24-03: senza renderer non c'è tela
     document.addEventListener('visibilitychange', visibile);
-    tela.addEventListener('webglcontextrestored', ancora);
-    return () => { document.removeEventListener('visibilitychange', visibile); tela.removeEventListener('webglcontextrestored', ancora); };
+    tela?.addEventListener('webglcontextrestored', ancora);
+    return () => { document.removeEventListener('visibilitychange', visibile); tela?.removeEventListener('webglcontextrestored', ancora); };
   }, [app]);
   useEffect(() => { contenitore?.setAttribute('data-sfondo', String(volte)); }, [contenitore, volte]); // per le foto
   return volte;
