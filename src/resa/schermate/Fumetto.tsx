@@ -2,6 +2,7 @@
 // messaggio (avatar, nome, affidabilità, timbro), lettera delle opzioni.
 import { House, Info, type LucideIcon } from 'lucide-react';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { spento } from '../../interruttori.ts';
 import { Icona } from '../icone.tsx';
 
 export const due = (n: number) => String(n).padStart(2, '0');
@@ -20,9 +21,12 @@ function InfoOndata(p: { testo: string }) {
   const qui = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!aperta) return;
-    const fuori = (e: PointerEvent) => { if (!qui.current?.contains(e.target as Node)) setAperta(false); };
-    document.addEventListener('pointerdown', fuori);
-    return () => document.removeEventListener('pointerdown', fuori);
+    // C25-02: si chiude al «click», non al «pointerdown»: chiusa prima, la pagina saliva di 43-59 px fra il tocco e il
+    // click, e il tocco sulla mappa finiva altrove (0/108 arrivati). Rosso C69I01: al pointerdown, come prima.
+    const evento = spento('C69I01') ? 'pointerdown' : 'click';
+    const fuori = (e: Event) => { if (!qui.current?.contains(e.target as Node)) setAperta(false); };
+    document.addEventListener(evento, fuori);
+    return () => document.removeEventListener(evento, fuori);
   }, [aperta]);
   return (
     <div className="info-ondata" ref={qui}>

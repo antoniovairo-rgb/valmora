@@ -44,3 +44,28 @@ export async function controllaIconePulsanti(pagina, atteso, dove) {
     .map((i) => i.getBoundingClientRect()).filter((r) => r.width < 20 || r.height < 20).map((r) => `${r.width.toFixed(1)}×${r.height.toFixed(1)}`));
   atteso(`${dove}: ${piccole.length} icone di pulsanti sotto 20 px: ${[...new Set(piccole)].slice(0, 3).join(', ')} (C22-10)`, !piccole.length);
 }
+
+/** S-23, PO-078: la vignetta di sala («apertura-») e del verbale («esito-»). */
+export async function controllaVignetta(pagina, prefisso, atteso, dove) {
+  // D-126 d (C22-04): sala e verbale nascondono la vignetta se lo spazio libero non arriva al minimo; nascosta solo
+  // allora, e mai al minimo con la pagina che scorre (prova anche a 375×667). Rosso VALMORA_ROSSI=C66V01: resta al minimo.
+  const misura = () => pagina.evaluate((pre) => {
+    const v = document.querySelector(`[data-vignetta^="${pre}"]`); if (!v) return null;
+    const main = v.closest('main') ?? document.body, app = main.parentElement ?? document.body, px = (e, k) => parseFloat(getComputedStyle(e)[k]) || 0;
+    const fondo = main.getBoundingClientRect().bottom + scrollY + px(main, 'marginBottom') + px(app, 'paddingBottom') + (app === document.body ? 0 : px(document.body, 'paddingBottom'));
+    const libero = innerHeight - fondo - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-margine')) || 0);
+    return { nascosta: v.hasAttribute('data-nascosta'), vista: v.getClientRects().length > 0, h: v.getBoundingClientRect().height, min: parseFloat(getComputedStyle(v).minHeight) || 0, libero, margini: Number(v.dataset.margini) || 0 };
+  }, prefisso);
+  const giudica = (r, qui) => {
+    atteso(`${qui}: manca la vignetta «${prefisso}…» (S-23, PO-078)`, !!r && (r.vista || r.nascosta));
+    if (!r) return;
+    if (r.nascosta) atteso(`${qui}: vignetta «${prefisso}…» nascosta con ${(r.libero - r.margini).toFixed(0)} px liberi, minimo ${r.min} (D-126 d)`, r.libero - r.margini < r.min);
+    else atteso(`${qui}: vignetta «${prefisso}…» alta ${r.h.toFixed(0)} px (minimo ${r.min}) con la pagina che scorre di ${(-r.libero).toFixed(0)} px: va nascosta (D-126 d)`, r.h >= r.min - 0.5 && r.libero > -1);
+  };
+  giudica(await misura(), dove);
+  if (!/^(apertura|esito)-/.test(prefisso)) return;
+  const prima = pagina.viewportSize();
+  await pagina.setViewportSize({ width: 375, height: 667 }); await pagina.waitForTimeout(250);
+  giudica(await misura(), `${dove} a 375×667`);
+  await pagina.setViewportSize(prima); await pagina.waitForTimeout(150);
+}

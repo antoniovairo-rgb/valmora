@@ -63,7 +63,7 @@ main:not(.rosso-c44i02) .info-ondata .info::after { inset: calc(var(--spazio-3) 
    contorno nero; sporge di --spazio-2 verso l'alto e verso il testo per coprire meno scena */
 .chiamata-corpo > .vignetta-chi { flex: none; position: relative; width: var(--vignetta-chiamata); }
 .vignetta-chi > .vignetta { display: block; width: 100%; height: auto; min-height: 0; margin: 0; border: var(--bordo-fine) solid var(--nero); }
-.vignetta-chi > .chi-icona { position: absolute; top: calc(var(--spazio-2) * -1); right: calc(var(--spazio-2) * -1); display: grid; place-items: center; padding: var(--spazio-1); background: var(--bianco); color: var(--nero); border: var(--bordo-fine) solid var(--nero); }
+.vignetta-chi > .chi-icona { position: absolute; top: calc(var(--spazio-2) * -1); right: calc(var(--spazio-2) * -1); display: grid; place-items: center; padding: var(--spazio-px); background: var(--bianco); color: var(--nero); border: var(--bordo-fine) solid var(--nero); }
 .chi-icona .icona { width: var(--icona-chi); height: var(--icona-chi); }
 /* C22-02: contorno dei pallini delle persone nelle vignette (unità del disegno: circa 1,3 px a 360) */
 .vignetta .v-contorno { stroke: var(--nero); stroke-width: var(--vignetta-contorno); }

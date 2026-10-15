@@ -28,7 +28,15 @@ export const GRAVITA: GruppoEvento[] = ['scontro', 'fumo', 'corteo', 'tifo', 've
  *  C21-09: un evento con «se» conta solo se la condizione è vera con le variabili della partita (senza variabili non
  *  conta, come il motore che non lo apre). Rosso C50S01: «se» ignorato. */
 export function gruppoEvento(m: Missione, c: Chiamata, variabili?: Variabili): GruppoEvento | null {
-  if (!c.settore || spento('C45E01')) return null;
+  return spento('C45E01') ? null : gruppoSul(m, c, variabili);
+}
+
+/** D-126 c (C24-04): la chiamata è urgente se sul suo settore, nella sua ondata, c'è un evento in corso (stessa regola
+ *  della sagoma, «se» compreso). Rosso C64U01: urgenti tutte, come prima. */
+export const urgente = (m: Missione, c: Chiamata, variabili?: Variabili) => spento('C64U01') || gruppoSul(m, c, variabili) !== null;
+
+function gruppoSul(m: Missione, c: Chiamata, variabili?: Variabili): GruppoEvento | null {
+  if (!c.settore) return null;
   const ondata = m.ondate.find((o) => o.chiamate?.some((x) => x.id === c.id));
   const vale = (e: { se?: Parameters<typeof valuta>[0] }) => !e.se || spento('C50S01') || (!!variabili && valuta(e.se, variabili));
   const gruppo = (tipo: string) => (spento('C50G01') ? PRIMA[tipo] ?? GRUPPI[tipo] : GRUPPI[tipo]);
@@ -49,12 +57,17 @@ const Omino = (p: { x: number; y: number; classe?: string; braccia?: boolean }) 
  *  dello sfondo della strada; col colore del club (dati) per il tifo. Rosso C48P01: gli omini di prima. */
 /** C22-02: il pallino era largo 3,3-4 px senza contorno (nero sulla strada 1,37:1). Ora raggio 10 unità (6,3 px a 360),
  *  contorno nero e alone bianco: su fondo scuro si stacca l'alone, su fondo chiaro il contorno. Rosso C55P01: come prima. */
-const PALLINO = 10, ALONE = 15;
+// C25-05: alone 15,5 (anello bianco 3,5 unità: 1,1 px a 360; con 15 era 0,88) e centro mai sotto 180 − alone − 2 (i
+// pallini in fondo toccavano il bordo della vignetta). Rosso C72A01: alone 15 e nessun limite in basso.
+const PALLINO = 10, alone = () => (spento('C72A01') ? 15 : 15.5), fondo = () => (spento('C72A01') ? Infinity : 180 - 15.5 - 2);
 const Persona = (p: { x: number; y: number; classe?: string; braccia?: boolean; colore?: string }) => (spento('C48P01') ? <Omino {...p} />
   : spento('C55P01') ? (p.colore ? <circle cx={p.x} cy={p.y + 6} r="5.5" fill={p.colore} data-figura="pallino" />
     : <circle cx={p.x} cy={p.y + 6} r="5.5" className={p.classe ?? 'v-nero'} data-figura="pallino" />)
-  : <g data-figura="pallino"><circle cx={p.x} cy={p.y + 6} r={ALONE} className="v-bianco" data-alone />
-    <circle cx={p.x} cy={p.y + 6} r={PALLINO} fill={p.colore} className={`${p.colore ? '' : p.classe ?? 'v-nero'} v-contorno`} data-pallino /></g>);
+  : <PallinoPersona x={p.x} y={Math.min(p.y + 6, fondo())} classe={p.classe} colore={p.colore} />);
+/** Il pallino di una persona (C22-02), anche per la folla di sfondo delle vignette (C25-06). */
+export const PallinoPersona = (p: { x: number; y: number; classe?: string; colore?: string }) => (
+  <g data-figura="pallino"><circle cx={p.x} cy={p.y} r={alone()} className="v-bianco" data-alone />
+    <circle cx={p.x} cy={p.y} r={PALLINO} fill={p.colore} className={`${p.colore ? '' : p.classe ?? 'v-nero'} v-contorno`} data-pallino /></g>);
 /** C22-02: con pallini più grandi le file si diradano, per non sovrapporsi (rosso C55P01: le file di prima). */
 const fila = (prima: number, dopo: number) => (spento('C55P01') ? prima : dopo);
 

@@ -11,6 +11,8 @@ import { Icona, iconaFonte } from '../icone.tsx';
 import { LETTERE, Mittente } from './Fumetto.tsx';
 import { Messaggio } from './Scena.tsx';
 import { iconaChi, VignettaChiamata } from '../vignette-chiamata.tsx';
+import { urgente } from '../vignette-evento.tsx';
+import { altoNellaPagina, scorriPerIntero } from '../vista.ts';
 import { EffettiOpzione } from '../effetti-opzione.tsx';
 
 
@@ -19,6 +21,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   const [scelta, setScelta] = useState<string | null>(null);
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
+  const urgenteQui = urgente(p.m, p.c, p.ic.variabili); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
   const [nascoste, setNascoste] = useState(false);
   const [serve, setServe] = useState(false); // C18-05: una volta comparso nel fumetto resta, così il testo non salta scorrendo
   // Calcolo diretto (non IntersectionObserver, che risponde solo attraversando soglie e in ritardo): prima del disegno,
@@ -38,6 +41,15 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
     ro?.observe(document.body);
     return () => { removeEventListener('scroll', misura); removeEventListener('resize', misura); ro?.disconnect(); };
   }, []);
+  // C25-08: all'apertura (e quando compare «Rispondi», che sposta il fumetto) l'icona di chi chiama non resta tagliata
+  // dal fondo della finestra: la pagina scorre quanto basta. Posizione dall'impaginazione, non dall'animazione d'entrata.
+  useLayoutEffect(() => {
+    const b = document.querySelector<HTMLElement>('.chiamata-corpo [data-chi-icona]');
+    if (!b) return;
+    const alto = altoNellaPagina(b) - scrollY, margine = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--spazio-2')) || 0;
+    const d = scorriPerIntero(alto, alto + b.offsetHeight, innerHeight, margine);
+    if (d) scrollBy({ top: d, behavior: 'instant' });
+  }, [p.c.id, serve]);
   const indicatore = (
     <button type="button" className="indicatore" data-indicatore="opzioni" onClick={() => opzioni.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>
       Rispondi <Icona di={ChevronDown} />
@@ -47,7 +59,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
     <>
       <Messaggio key={p.c.id} classe="radio ultimo" dati={`chiamata-${p.c.id}`}>
         {/* C22-09: l'avatar segue la stessa regola dell'icona accanto alla vignetta (prima: 222/498 chiamate con l'icona generica). Rosso C59A01 */}
-        <Mittente icona={(!spento('C59A01') && iconaChi(p.c.fonte)) || iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro="Urgente!" urgenza={!spento('C51O01')} />
+        <Mittente icona={(!spento('C59A01') && iconaChi(p.c.fonte)) || iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro={urgenteQui ? 'Urgente!' : undefined} urgenza={urgenteQui && !spento('C51O01')} />
         {/* C18-05: «Rispondi» dentro il fumetto, sotto il mittente: fisso in basso copriva il testo. Rosso C42R01: fisso. */}
         {serve && !spento('C42R01') && indicatore}
         {/* PO-089 (scelta A del PO): vignetta piccola a sinistra del testo, dentro il fumetto */}

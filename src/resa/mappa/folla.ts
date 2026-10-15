@@ -8,7 +8,7 @@
 import { spento } from '../../interruttori.ts';
 import type { Missione } from '../../logica/tipi.ts';
 
-export type Spalti = 'pieni' | 'arrivo' | 'deflusso';
+export type Spalti = 'pieni' | 'arrivo' | 'deflusso' | 'vuoti';
 export interface Corteo { settore: string; verso: 'entra' | 'esce'; /** C-021: club dei tifosi dell'evento (dati), se c'è */ club?: string }
 export interface Folla { spalti: Spalti; cortei: Corteo[]; /** C23-01: club dei tifosi per strada, dagli eventi dell'ondata (anche in partita) */ club?: Record<string, string> }
 
@@ -23,6 +23,9 @@ export function follaDellOndata(m: Missione, n: number): Folla {
   // C23-01: il club dell'evento vale per ogni gente in strada dell'ondata, anche per il corteo della chiamata. Rosso C53D01.
   const club = spento('C53D01') ? {} : Object.fromEntries(eventi.filter((e) => e.club && strade.includes(e.settore)).map((e) => [e.settore, e.club!]));
   if (partita(n)) return { spalti: 'pieni', cortei: [], club };
+  // C24-07: episodio senza curve (e04, e11, e17, e30, e35): lo stadio, se c'è, è disegnato vuoto (S-25); gli spalti non
+  // sono «in arrivo». Rosso C67S01: «arrivo», come prima.
+  const senzaCurve = !m.mappa.settori.some((s) => s.tipo === 'curva') && !spento('C67S01');
   const dopo = eventi.some((e) => e.tipo === 'deflusso') || m.ondate.slice(0, n - 1).some((o) => o.eventi.some((e) => e.tipo === 'curva'));
   const inStrada = eventi.filter((e) => IN_STRADA.has(e.tipo) && strade.includes(e.settore));
   // C-021: se un evento della strada dice di che club sono i tifosi, il corteo è di quel club. Rosso C49E01: no.
@@ -31,7 +34,7 @@ export function follaDellOndata(m: Missione, n: number): Folla {
       const club = spento('C49E01') ? undefined : inStrada.find((e) => e.settore === settore && e.club)?.club;
       return { settore, verso: dopo ? 'esce' : 'entra', ...(club ? { club } : {}) };
     });
-  return { spalti: dopo ? 'deflusso' : 'arrivo', cortei, club };
+  return { spalti: senzaCurve ? 'vuoti' : dopo ? 'deflusso' : 'arrivo', cortei, club };
 }
 
 /** C21-01: i token dei colori del corteo quando non si sa di chi sia: la stessa famiglia di grigi della folla. Prima era
