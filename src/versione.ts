@@ -157,4 +157,11 @@
 //   stadio anche la chiamata); e17 piazza17b «dallo_stadio»; e32 «quinto derby»; e33 gli Arches tornano a casa a
 //   piedi; e08 ed e21 partite di coppa; campo `partita` (D-130) nei dati di e07, e13, e21, e25, e28, e31.
 //   guardiano: tests/corteo-verso.test.ts (rossi C73V01 e C74D01); limiti di lunghezza in tests/brevita.test.ts.
-export const GAME_VERSION = '0.22.0';
+// 0.23.0 – rilascio delle 23:00 del 15/10: consegna C-026 della sviluppatrice.
+//   causa: C26-01 la sfida «Stasera» mostrava i gemellati come terza squadra (e15, e27); C26-03 a 375×667 il verbale
+//   mostrava ancora la vignetta in 30/36 episodi (D-126 d); C26-11 pastiglia sotto il disco del Piazzale (e06) ed
+//   etichette sovrapposte (e13, e16); vignetta misurata sul riquadro scalato dalla molla d'entrata (instabile su e25).
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (24455d1) e sulla principale; dettagli in
+//   coordination/handoffs/sviluppatrice/C26-rapporto.md.
+//   guardiano: rossi C26 della sviluppatrice e C78V01 (vignetta dall'impaginazione, prova della molla).
+export const GAME_VERSION = '0.23.0';
