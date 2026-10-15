@@ -193,7 +193,7 @@ export async function controllaSegni(pagina, atteso, c, op, dove, prima) {
 
 /** PO-085: sotto ogni opzione, le icone d'effetto sono quelle dei dati (settore, fiducia, unità), senza numeri. */
 export async function controllaIconeEffetti(pagina, atteso, c, dove) {
-  await (await import('./foto-c22.mjs')).controllaIconePiccole(pagina, atteso, dove); // C22-05
+  const c22 = await import('./foto-c22.mjs'); await c22.controllaIconePiccole(pagina, atteso, dove); await c22.controllaAvatarChi(pagina, atteso, dove); await c22.controllaIconePulsanti(pagina, atteso, dove); // C22-05, C22-09, C22-10
   const viste = await pagina.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-opzione]')].map((b) =>
     [b.dataset.opzione, [...b.querySelectorAll('[data-effetto]')].map((x) => x.dataset.effetto).sort().join(',') + (/\d/.test(b.querySelector('.effetti-opzione')?.textContent ?? '') ? ' CON NUMERI' : '')])));
   for (const [id, v] of Object.entries(viste)) {
@@ -229,6 +229,9 @@ export async function controllaColoriCortei(pagina, m, club, atteso, dove, n) {
  *  il cerchio di nessun altro disco (le stelline sono decorazione, non ricevono tocchi). Rosso VALMORA_ROSSI=C44N01:
  *  solo gli 8 posti; VALMORA_ROSSI=C42N01: nome sempre sotto il disco. */
 export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena) {
+  // D-123: a 360 e 375 il nome non c'è; le prove di stabilità del posto si fanno a 412×915, dove il nome c'è (se no
+  // sarebbero cieche), poi i giri a 412, 375 e 360, e si torna alla misura di prima.
+  const misuraIniziale = pagina.viewportSize(); await pagina.setViewportSize({ width: 412, height: 915 });
   await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), salvataggio);
   await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
   // Strumento instabile in CI (412, «Il mercato del sabato» sul bordo): il posto del nome non deve dipendere da una
@@ -250,18 +253,26 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
   atteso(`città, nome dell'episodio scelto con la pagina in scala: posto diverso in ${diversi.length} casi: ${diversi.join('; ')} (strumento instabile, C20-03)`, !diversi.length);
   // Il nome cambia misura dopo il calcolo (carattere che arriva tardi): si allarga la spaziatura del nome scelto e il
   // posto deve essere quello di un calcolo da capo (scelta di un altro episodio e ritorno). Rosso VALMORA_ROSSI=C47N02.
+  // D-123: a 412 la spaziatura può non cambiare il riquadro del nome (larghezza fissata, stesse righe): il riquadro è lo
+  // stesso, quindi le sovrapposizioni pure; lì un calcolo da capo può scegliere un'altra larghezza ugualmente buona. Si
+  // confrontano solo i casi in cui il riquadro cambia misura, e devono essercene (se no il controllo è cieco).
+  const misura = (id) => pagina.evaluate((id) => { const r = document.querySelector(`[data-episodio="${id}"] .settore-nome`)?.getBoundingClientRect(); return r ? `${r.width.toFixed(1)}×${r.height.toFixed(1)}` : null; }, id);
+  let confrontati = 0;
   const largo = (v) => pagina.evaluate((v) => { let st = document.getElementById('prova-largo'); if (!st) { st = document.createElement('style'); st.id = 'prova-largo'; document.head.append(st); } st.textContent = v ? '.settore-nome { letter-spacing: 0.12em; }' : ''; }, v);
   const stantii = [];
   for (const [i, id] of prima.entries()) {
     const altro = prima[(i + 1) % prima.length];
     await pagina.click(`[data-episodio="${id}"] .settore-punto`); await pagina.waitForTimeout(60);
-    await largo(true); await pagina.waitForTimeout(120);
-    const a = await posto(id);
+    const m0 = await misura(id); await largo(true); await pagina.waitForTimeout(120);
+    const a = await posto(id), m1 = await misura(id);
     await pagina.click(`[data-episodio="${altro}"] .settore-punto`); await pagina.click(`[data-episodio="${id}"] .settore-punto`); await pagina.waitForTimeout(60);
     const b = await posto(id); await largo(false);
+    if (m0 === m1) continue;
+    confrontati += a && b ? 1 : 0;
     if (a && b && (a.p !== b.p || a.w !== b.w || Math.abs(a.dx - b.dx) > 1 || Math.abs(a.dy - b.dy) > 1)) stantii.push(`${id} ${a.p}/${b.p} ${a.w || '-'}/${b.w || '-'}`);
   }
   atteso(`città: dopo un cambio di misura del nome il posto non si rifà in ${stantii.length} casi: ${stantii.join('; ')} (strumento instabile, C20-03)`, !stantii.length);
+  atteso(`città: nessun nome ha cambiato misura con la spaziatura, il controllo del ricalcolo è cieco (C20-03)`, confrontati > 0);
   const giro = async () => {
   const male = [];
   for (const st of await pagina.$$eval('[data-stagione]', (xs) => xs.map((x) => x.dataset.stagione))) {
@@ -269,8 +280,9 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
     for (const id of await pagina.$$eval('[data-episodio]', (xs) => xs.map((x) => x.dataset.episodio))) {
       await pagina.click(`[data-episodio="${id}"] .settore-punto`); await pagina.waitForTimeout(80);
       const su = await pagina.evaluate((id) => {
-        const n = document.querySelector(`[data-episodio="${id}"].acceso .settore-nome`);
-        if (!n) return [];
+        const n = document.querySelector(`[data-episodio="${id}"].acceso .settore-nome`), conNome = innerWidth >= 400;
+        if (!n) return conNome ? ['senza nome (a 412 resta, D-123)'] : [];
+        if (!conNome) return ['nome mostrato a questa larghezza (D-123)'];
         const r = n.getBoundingClientRect();
         const dischi = [...document.querySelectorAll('[data-episodio] .settore-punto')].filter((d) => { // C23-02: anche il proprio
           const c = d.getBoundingClientRect(), cx = c.left + c.width / 2, cy = c.top + c.height / 2, raggio = c.width / 2;
@@ -291,16 +303,13 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
   atteso(`città ${pagina.viewportSize().width}×${pagina.viewportSize().height}, episodi conclusi: il nome dell'episodio scelto tocca dischi, stelline o bordo in ${male.length} casi: ${male.join(', ')} (C20-03, D-119)`, !male.length);
   };
   await giro();
-  // D-119 vale a 360 e a 375: si rifà a 375×667 e si torna alla misura di prima
-  const prima375 = pagina.viewportSize();
   await pagina.setViewportSize({ width: 375, height: 667 }); await pagina.reload(); await scena('titolo');
   await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
   await giro();
-  // C23-02: anche a 412×915 (il C-023 misurava 13/36 nomi coperti)
-  await pagina.setViewportSize({ width: 412, height: 915 }); await pagina.reload(); await scena('titolo');
+  await pagina.setViewportSize({ width: 360, height: 760 }); await pagina.reload(); await scena('titolo');
   await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
   await giro();
-  await pagina.setViewportSize(prima375);
+  await pagina.setViewportSize(misuraIniziale);
 }
 
 /** D-112 punto 5: la vignetta della chiamata mostra il gruppo dell'evento che i dati mettono sul settore in quell'ondata

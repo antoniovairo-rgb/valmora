@@ -27,3 +27,20 @@ export async function controllaIconePiccole(pagina, atteso, dove) {
     .map((i) => [i.closest('.pastiglia') ? 'pastiglia' : 'effetto', i.getBoundingClientRect()]).filter(([, r]) => r.width < 16 || r.height < 16).map(([k, r]) => `${k} ${r.width.toFixed(1)}×${r.height.toFixed(1)}`));
   atteso(`${dove}: ${piccole.length} icone sotto 16 px: ${[...new Set(piccole)].slice(0, 4).join(', ')} (C22-05)`, !piccole.length);
 }
+
+/** C22-09: nella chiamata l'avatar del mittente ha la stessa icona di chi chiama accanto alla vignetta (stesso disegno
+ *  SVG). Rosso VALMORA_ROSSI=C59A01: l'avatar dalla regola di prima (icone.tsx). */
+export async function controllaAvatarChi(pagina, atteso, dove) {
+  const [avatar, chi] = await pagina.evaluate(() => [document.querySelector('[data-messaggio^="chiamata-"] .avatar svg'), document.querySelector('.chiamata-corpo [data-chi-icona] svg')].map((s) => s?.innerHTML ?? null));
+  if (!chi) return; // il vice non ha l'icona accanto alla vignetta
+  atteso(`${dove}: l'avatar del mittente ha un'icona diversa da quella di chi chiama accanto alla vignetta (C22-09)`, avatar === chi);
+}
+
+/** C22-10: le icone dei pulsanti misurano a schermo almeno 20×20 px (Material: 20 dp minimo,
+ *  https://m3.material.io/styles/icons/designing-icons). Pastiglie ed effetti hanno la loro misura (C22-05).
+ *  Rosso VALMORA_ROSSI=C60I01: 18 px come prima. */
+export async function controllaIconePulsanti(pagina, atteso, dove) {
+  const piccole = await pagina.evaluate(() => [...document.querySelectorAll('button .icona, .pulsante .icona')].filter((i) => i.getClientRects().length && !i.closest('.pastiglia, .effetto-chip'))
+    .map((i) => i.getBoundingClientRect()).filter((r) => r.width < 20 || r.height < 20).map((r) => `${r.width.toFixed(1)}×${r.height.toFixed(1)}`));
+  atteso(`${dove}: ${piccole.length} icone di pulsanti sotto 20 px: ${[...new Set(piccole)].slice(0, 3).join(', ')} (C22-10)`, !piccole.length);
+}
