@@ -31,7 +31,7 @@ Ramo `claude/valmora-resa-v2`. Decisioni del PO (PO-111, PO-112), comunicate dal
 | Belltower Harriers | torre stretta (sembrava un obelisco) | più larga, tetto con gronda, cella ad arco con la campana, cornice, orologio, porta |
 
 - I dati hanno ancora gli id `calderone` e `penna`. Un alias (`VECCHI_ID`) li porta ai simboli nuovi; se la principale cambia gli id in `data/club/`, l'alias si toglie.
-- Le scaglie della pigna usano `--stemma-primario`, messo sull'svg dal colore del club (dati, D-086).
+- Le scaglie della pigna usano `currentColor`, cioè il `color` dell'svg, preso dal colore del club (dati, D-086).
 - **Rosso `__NO_C83S01`:** i disegni di prima.
 - **Guardiano** (`tools/foto-stemmi.mjs`, nel passo foto della catena):
   - restano i controlli D-125: simbolo dentro la forma, misura ≥ 40%, contrasto C22-06;

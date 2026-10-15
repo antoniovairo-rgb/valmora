@@ -1,7 +1,7 @@
 // Stemmi dei club disegnati dal codice (D-088, PO-040): forma (scudo, tondo, rombo) e simbolo dai dati,
 // coi colori del club (dati, non token: D-086). Club senza stemma (i nuovi degli abbozzi): scudo con le
 // iniziali. Club inventati: nessuno stemma vero. Rosso C10C02: nessuno stemma.
-import type { CSSProperties, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import type { Missione } from '../logica/tipi.ts';
 import { spento } from '../interruttori.ts';
 import { club, t, type Club } from './dati.ts';
@@ -64,7 +64,7 @@ const NUOVI: Record<string, ReactNode> = {
 /** D-128 (PO-111, C25-07, C26-07): quattro simboli ridisegnati. Square Rovers: piazza con la fontana (era il calderone);
  *  Garden Albion: albero in un cortile (era la penna); la pigna senza il ciuffo e con le scaglie a file, che sembrava un
  *  ananas; il campanile più largo, con la cella ad arco, la campana, l'orologio e la porta, che sembrava un obelisco.
- *  Le scaglie della pigna sono archi del colore della forma (--stemma-primario). Rosso C83S01: com'erano. */
+ *  Le scaglie della pigna sono archi del colore della forma («color» dell'svg, niente stile in linea). Rosso C83S01: com'erano. */
 const D128: Record<string, ReactNode> = {
   // fontana a due vasche sulla piazza lastricata: getto al centro, l'acqua che cade dalla vaschetta nella vasca
   fontana: <><path d="M11.5 37H28.5V39.5H11.5Z" /><path d="M9.5 29H30.5L28.5 34.5H11.5Z" /><path d="M19 22H21V29H19Z" /><path d="M14.5 20.5H25.5L24 23.5H16Z" />
@@ -76,7 +76,7 @@ const D128: Record<string, ReactNode> = {
   // archi del colore della forma
   pigna: <><path d="M19.3 11H20.7V16.5H19.3Z" /><path d="M20 38.5C13.5 35 12 27 13.6 21C14.8 16.6 25.2 16.6 26.4 21C28 27 26.5 35 20 38.5Z" />
     <path d={[19, 22.6, 26.2, 29.8, 33.4].map((y, r) => { const n = [3, 4, 4, 3, 2][r]!, w = 3.2; let d = `M${20 - (n * w) / 2} ${y}`; for (let k = 0; k < n; k++) d += `q${w / 2} 2.6 ${w} 0`; return d; }).join('')}
-      fill="none" stroke="var(--stemma-primario)" strokeWidth="0.9" strokeLinecap="round" /></>,
+      fill="none" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" /></>,
   // tetto a punta con la gronda, cella con l'arco aperto e la campana, cornice, fusto con l'orologio e la porta
   campanile: <><path d="M12.5 15.5L20 8.5L27.5 15.5Z" /><path fillRule="evenodd" d="M14 15.5H26V22H14ZM16.5 22V18.8A3.5 3.5 0 0 1 23.5 18.8V22Z" />
     <path d="M17.6 21.6Q17.6 17.4 20 17.4Q22.4 17.4 22.4 21.6Z" /><path d="M13 22H27V24H13Z" />
@@ -98,7 +98,7 @@ export function Stemma(p: { c: Club }) {
   const alone = aloneStemma(p.c.colori?.primario, p.c.colori?.secondario);
   const segno = simbolo ?? <text x="20" y="31" textAnchor="middle" className="stemma-iniziali">{iniziali(t(p.c.nome))}</text>;
   return (
-    <svg className="stemma" viewBox="0 0 40 50" role="img" aria-label={`stemma di ${t(p.c.nome)}`} data-stemma={p.c.id} data-forma={forma} style={{ '--stemma-primario': primario } as CSSProperties}>
+    <svg className="stemma" viewBox="0 0 40 50" role="img" aria-label={`stemma di ${t(p.c.nome)}`} data-stemma={p.c.id} data-forma={forma} color={primario}>
       <g className="stemma-forma" fill={primario}>{FORMA[forma]}</g>
       {alone && <g className={`stemma-alone ${alone}`} data-alone-stemma={alone} aria-hidden>{segno}</g>}
       <g fill={secondario} stroke={secondario} data-simbolo={p.c.stemma ? disegnoDi(p.c.stemma.simbolo) : ''}>{segno}</g>
