@@ -124,6 +124,7 @@
   --vignetta-min-sala: 56px;
   --vignetta-riserva-esito: 706px; /* C15-07: +26 per la barra della fiducia nel verbale */
   --vignetta-min-esito: 54px;
+  --vignetta-finestra-min: 700px; /* C26-03 (D-126 d): sotto questa altezza della finestra (375×667) le vignette di sala e verbale non compaiono */
   --vignetta-chiamata: 34%; /* PO-089: larghezza della vignetta nel fumetto della chiamata (circa un terzo) */
 
   /* Città degli episodi (D-061) */

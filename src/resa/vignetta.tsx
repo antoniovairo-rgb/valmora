@@ -25,7 +25,10 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
       // non farla riapparire e sparire a ogni misura. Rosso C66V01: restano al minimo, come prima.
       const nascosta = svg.hasAttribute('data-nascosta'), margini = nascosta ? Number(svg.dataset.margini) || 0 : parseFloat(css.marginTop) + parseFloat(css.marginBottom);
       const vuole = svg.getBoundingClientRect().height + libero - (nascosta ? margini : 0);
-      if (nascondibile && !spento('C66V01') && vuole < min) { svg.dataset.margini = String(margini); svg.setAttribute('data-nascosta', ''); svg.style.setProperty('display', 'none'); return; }
+      // C26-03: a 375×667 il verbale restava a 62-95 px (sopra il minimo): la decisione del PO è «nascoste a 375×667»,
+      // quindi conta anche l'altezza della finestra (--vignetta-finestra-min). Rosso C76V01: solo il minimo, come prima.
+      const bassa = !spento('C76V01') && innerHeight < (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-finestra-min')) || 0);
+      if (nascondibile && !spento('C66V01') && (vuole < min || bassa)) { svg.dataset.margini = String(margini); svg.setAttribute('data-nascosta', ''); svg.style.setProperty('display', 'none'); return; }
       svg.removeAttribute('data-nascosta'); svg.style.removeProperty('display');
       svg.style.setProperty('height', `${Math.max(min, Math.min(max, vuole))}px`);
     };

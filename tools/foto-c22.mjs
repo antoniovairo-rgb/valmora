@@ -54,18 +54,21 @@ export async function controllaVignetta(pagina, prefisso, atteso, dove) {
     const main = v.closest('main') ?? document.body, app = main.parentElement ?? document.body, px = (e, k) => parseFloat(getComputedStyle(e)[k]) || 0;
     const fondo = main.getBoundingClientRect().bottom + scrollY + px(main, 'marginBottom') + px(app, 'paddingBottom') + (app === document.body ? 0 : px(document.body, 'paddingBottom'));
     const libero = innerHeight - fondo - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-margine')) || 0);
-    return { nascosta: v.hasAttribute('data-nascosta'), vista: v.getClientRects().length > 0, h: v.getBoundingClientRect().height, min: parseFloat(getComputedStyle(v).minHeight) || 0, libero, margini: Number(v.dataset.margini) || 0 };
+    const soglia = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-finestra-min')) || 0;
+    return { bassa: innerHeight < soglia, nascosta: v.hasAttribute('data-nascosta'), vista: v.getClientRects().length > 0, h: v.getBoundingClientRect().height, min: parseFloat(getComputedStyle(v).minHeight) || 0, libero, margini: Number(v.dataset.margini) || 0 };
   }, prefisso);
   const giudica = (r, qui) => {
     atteso(`${qui}: manca la vignetta «${prefisso}…» (S-23, PO-078)`, !!r && (r.vista || r.nascosta));
     if (!r) return;
-    if (r.nascosta) atteso(`${qui}: vignetta «${prefisso}…» nascosta con ${(r.libero - r.margini).toFixed(0)} px liberi, minimo ${r.min} (D-126 d)`, r.libero - r.margini < r.min);
+    if (r.nascosta) atteso(`${qui}: vignetta «${prefisso}…» nascosta con ${(r.libero - r.margini).toFixed(0)} px liberi, minimo ${r.min} (D-126 d)`, r.libero - r.margini < r.min || (r.bassa && /^(apertura|esito)-/.test(prefisso)));
     else atteso(`${qui}: vignetta «${prefisso}…» alta ${r.h.toFixed(0)} px (minimo ${r.min}) con la pagina che scorre di ${(-r.libero).toFixed(0)} px: va nascosta (D-126 d)`, r.h >= r.min - 0.5 && r.libero > -1);
   };
   giudica(await misura(), dove);
   if (!/^(apertura|esito)-/.test(prefisso)) return;
   const prima = pagina.viewportSize();
   await pagina.setViewportSize({ width: 375, height: 667 }); await pagina.waitForTimeout(250);
-  giudica(await misura(), `${dove} a 375×667`);
+  const piccola = await misura(); giudica(piccola, `${dove} a 375×667`);
+  // C26-03 (D-126 d): a 375×667 sala e verbale senza vignetta, anche se ci starebbe sopra il minimo. Rosso VALMORA_ROSSI=C76V01.
+  atteso(`${dove} a 375×667: vignetta «${prefisso}…» mostrata a ${piccola?.h.toFixed(1)} px, va nascosta (C26-03)`, !piccola || piccola.nascosta);
   await pagina.setViewportSize(prima); await pagina.waitForTimeout(150);
 }

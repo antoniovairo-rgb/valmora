@@ -74,12 +74,19 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const perNome = [...punti.filter((_, j) => j !== i).map((r) => ostacolo(r)), ...presenti(altri.map(nomeDi)).map((n) => ostacolo(n, STACCO)), ...presenti(altri.map(unitaDi)).map((r) => ostacolo(r))];
     const perUnita = [...punti, ...presenti(altri.map(nomeDi)), ...presenti(altri.map(unitaDi))].map((r) => ostacolo(r));
     const costoDi = (r: Rett, os: Ostacolo[]) => os.reduce((a, o) => a + VERA * area(r, o.vero) + area(r, o.largo) - area(r, o.vero), 0);
+    // C26-11: una pastiglia col centro sotto il disco di un altro settore non si può toccare (e06 a 360), e due nomi
+    // sovrapposti non si leggono (e13, e16): costano molto più di una sovrapposizione qualunque. Rosso C77E01: no.
+    const nuovo = !spento('C77E01');
+    // il centro di OGNI pulsante di tocco (almeno 44 px, la pastiglia in basso), non dell'unione
+    const sottoDisco = () => (nuovo && [...(s.querySelector('.settore-unita')?.children ?? [])].some((c) => { const u = c.getBoundingClientRect(), x = (u.left + u.right) / 2, y = (u.top + u.bottom) / 2;
+      return punti.some((p, j) => j !== i && x >= p.left && x <= p.right && y >= p.top && y <= p.bottom); }) ? VERA * 1e6 : 0);
+    const nomiSopra = (n: Rett) => (nuovo ? presenti(altri.map(nomeDi)).reduce((c, o) => c + VERA * 5 * area(n, o), 0) : 0);
     let migliore = { nome: NOMI[0] as string, unita: UNITA[0] as string, costo: Infinity };
     cerca: for (const nome of NOMI) for (const unita of conUnita ? UNITA : [UNITA[0]]) {
       s.setAttribute('data-nome', nome); s.setAttribute('data-unita', unita);
       const n = nomeDi(s), u = conUnita ? unitaDi(s) : null;
       if (!n || (conUnita && !u)) continue;
-      const costo = costoDi(n, perNome) + VERA * 10 * fuori(n, mappa)
+      const costo = costoDi(n, perNome) + VERA * 10 * fuori(n, mappa) + nomiSopra(n) + (u ? sottoDisco() : 0)
         + (u ? costoDi(u, perUnita) + VERA * area(n, u) + VERA * 10 * fuori(u, mappa) : 0);
       if (costo < migliore.costo) migliore = { nome, unita, costo };
       if (costo === 0) break cerca;

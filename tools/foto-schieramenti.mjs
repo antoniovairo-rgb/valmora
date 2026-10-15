@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { leggiDati } from './dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, iniziaMissione, missioneFinita, rispondi, schiera } from '../src/logica/missione.ts';
-import { equilibrata } from '../src/logica/bot.ts';
+import { attenta, equilibrata } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { salvataggioTutti } from './foto-bozze.mjs';
 
@@ -27,6 +27,37 @@ function partenze(dirDati) {
     }
   }
   return { missioni, v0, stati };
+}
+
+/** Gli stati all'inizio di ogni ondata con la disposizione del bot attento (C26-11: la sonda del collaudo gioca così). */
+function partenzeAttente(dirDati) {
+  const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), v0 = variabiliIniziali(dich.values());
+  const missioni = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio), stati = [];
+  for (const m of missioni) {
+    const g = attenta(creaCaso(1), dich); let s = iniziaMissione(m, v0, dich);
+    while (!missioneFinita(m, s)) {
+      const d = g.schiera(m, s); stati.push({ m, n: s.ondata, s, d }); s = schiera(m, s, d);
+      for (let c = chiamateAperte(m, s)[0]; c; c = chiamateAperte(m, s)[0]) s = rispondi(m, s, c.id, g.scegli(m, s, c), dich);
+      s = chiudiOndata(m, s, dich);
+    }
+  }
+  return stati;
+}
+
+/** C26-11: sulla mappa dello schieramento nessun nome di settore sopra un altro, e ogni pastiglia toccabile prende il
+ *  tocco al suo centro (non il disco di un altro settore). Le unità si mettono come il bot attento (il caso del
+ *  collaudo: e06 a 360, mediatore di Piazza del concerto), con la bozza nel salvataggio. Rosso VALMORA_ROSSI=C77E01. */
+async function mappaSchieramento(pagina) {
+  return pagina.evaluate(() => {
+    const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
+    const nomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-nome')].filter((n) => n.getClientRects().length).map((n) => [n.textContent, n.getBoundingClientRect()]);
+    const sopra = nomi.flatMap(([t, r], i) => nomi.slice(0, i).filter(([, q]) => a(r, q) > 0.5).map(([u]) => `${t} × ${u}`));
+    const coperte = [...document.querySelectorAll('.mappa button.tocco-pastiglia:enabled')].filter((b) => b.getClientRects().length).filter((b) => {
+      const r = b.getBoundingClientRect(), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2; if (y < 0 || y > innerHeight) return false;
+      const t = document.elementFromPoint(x, y); return !(t && (b === t || b.contains(t)));
+    }).map((b) => b.dataset.presenza);
+    return { sopra, coperte };
+  });
 }
 
 /** Rettangoli di testo e comandi che la barra fissa dello schieramento copre (S-24). */
@@ -62,6 +93,17 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   await p.goto(url);
   for (const st of stati) await prova(p, st, `${st.m.id} ondata ${st.n} 360×760`, st.m.id === 'e03' && st.n === 3);
   await p.close();
+  // C26-11: ogni ondata di ogni episodio a 360×760 con le unità del bot attento già messe (bozza nel salvataggio)
+  const q6 = await nuova({ viewport: { width: 360, height: 760 }, reducedMotion: 'reduce' }); await q6.goto(url);
+  for (const st of partenzeAttente(dirDati)) {
+    await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
+    await q6.reload(); await q6.getByRole('button', { name: 'Riprendi' }).click();
+    if (!(await q6.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) continue;
+    await q6.waitForTimeout(120);
+    const r = await mappaSchieramento(q6);
+    atteso(`${st.m.id} ondata ${st.n} 360×760 con le unità: nomi sovrapposti ${r.sopra.join('; ')}, pastiglie col centro coperto ${r.coperte.join(', ')} (C26-11)`, !r.sopra.length && !r.coperte.length);
+  }
+  await q6.close();
   const e03 = stati.find((x) => x.m.id === 'e03' && x.n === 3);
   for (const [w, h] of [[375, 812], [412, 915]]) {
     const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
