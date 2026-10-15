@@ -78,16 +78,16 @@ export async function controllaFolla(pagina, m, n, atteso) {
   if ((await pagina.getAttribute('.mappa', 'data-mappa')) !== 'webgl') return;
   const [spalti, lista = ''] = ((await pagina.getAttribute('.mappa', 'data-folla')) ?? '').split('|');
   const cortei = lista ? lista.split(',').map((x) => x.split('>')) : [];
-  const eventi = m.ondate[n - 1].eventi; const tipi = new Set(eventi.map((e) => e.tipo));
+  const eventi = m.ondate[n - 1].eventi; const tipi = new Set(eventi.map((e) => e.tipo)); const fase = m.ondate[n - 1].fase, partita = fase ? fase === 'partita' : tipi.has('curva'); // C27-04: la fase dei dati, se c'è
   const strade = new Set(m.mappa.settori.filter((s) => s.tipo === 'strada').map((s) => s.id));
   const dove = `${m.id} ondata ${n} (spalti «${spalti}», cortei «${lista}»)`;
-  if (tipi.has('curva')) atteso(`${dove}: durante la partita servono spalti pieni e strade vuote (PO-046)`, spalti === 'pieni' && cortei.length === 0);
+  if (partita) atteso(`${dove}: durante la partita servono spalti pieni e strade vuote (PO-046)`, spalti === 'pieni' && cortei.length === 0);
   for (const [s] of cortei) atteso(`${dove}: corteo su «${s}» senza un evento in strada in questa ondata (PO-046)`, eventi.some((e) => e.settore === s));
-  for (const e of eventi) if (e.tipo === 'corteo' && strade.has(e.settore) && !tipi.has('curva')) atteso(`${dove}: evento corteo su «${e.settore}» ma nessun corteo disegnato`, cortei.some(([s]) => s === e.settore));
+  for (const e of eventi) if (e.tipo === 'corteo' && strade.has(e.settore) && !partita) atteso(`${dove}: evento corteo su «${e.settore}» ma nessun corteo disegnato`, cortei.some(([s]) => s === e.settore));
   // C24-07: senza curve lo stadio è vuoto (S-25): spalti «vuoti», mai «in arrivo». Rosso VALMORA_ROSSI=C67S01.
   const senzaCurve = !m.mappa.settori.some((s) => s.tipo === 'curva');
   if (senzaCurve) atteso(`${dove}: episodio senza curve, gli spalti devono essere «vuoti» (C24-07)`, spalti === 'vuoti');
-  if (tipi.has('deflusso')) atteso(`${dove}: al deflusso la gente esce dallo stadio`, (spalti === 'deflusso' || senzaCurve) && cortei.every(([, v]) => v === 'esce'));
+  if (fase ? fase === 'dopo' : tipi.has('deflusso')) atteso(`${dove}: al deflusso la gente esce dallo stadio`, (spalti === 'deflusso' || senzaCurve) && cortei.every(([, v]) => v === 'esce'));
 }
 
 /** Schermate a passi (S-10, PO-045): a 360 px di larghezza la pagina sta in 760 px di altezza, senza scorrere.

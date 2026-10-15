@@ -16,7 +16,7 @@ import { bezier, canvasAlone, colore, disegnaSfondo, disponi, token, type Atmosf
 
 extend({ Container });
 
-export interface PuntoMappa { id: string; tipo: string; x: number; y: number; livello: number | null; acceso: boolean; colori?: Colori }
+export interface PuntoMappa { id: string; tipo: string; x: number; y: number; livello: number | null; acceso: boolean; colori?: Colori; /** C27-02 */ meta?: string }
 
 const fermo = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -36,7 +36,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
   const { lato: m, sotto } = p.margine;
   const punti = useMemo(() => p.punti.map((q) => ({ ...q, x: m + ((W - 2 * m) * q.x) / 100, y: m + ((H - 2 * m - sotto) * q.y) / 100 })), [p.punti, W, H, m, sotto]);
   // Lo sfondo dipende solo da dimensioni e posizioni dei settori, non da tensione o settori accesi.
-  const pianta = JSON.stringify([p.atmosfera, p.folla, punti.map((q) => [q.id, q.tipo, Math.round(q.x), Math.round(q.y), q.colori ?? null])]);
+  const pianta = JSON.stringify([p.atmosfera, p.folla, punti.map((q) => [q.id, q.tipo, Math.round(q.x), Math.round(q.y), q.colori ?? null, q.meta ?? null])]);
   const strato = useRef<Container | null>(null);
   const aloni = useRef<{ s: Sprite; acceso: boolean; batte: boolean; x: number; y: number }[]>([]);
   // PO-089: strato della dinamica della chiamata, viali e colori del corteo, e come muoverla (dall'effetto in fondo)
@@ -47,13 +47,13 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
 
   useEffect(() => {
     if (W < 10 || H < 10) return;
-    const [atm, folla0, posti] = JSON.parse(pianta) as [Atmosfera, Folla, [string, string, number, number, Colori | null][]];
+    const [atm, folla0, posti] = JSON.parse(pianta) as [Atmosfera, Folla, [string, string, number, number, Colori | null, string | null][]];
 
     // 1) sfondo: una volta sola
     const ris = Math.min(2, window.devicePixelRatio || 1);
     const tela = document.createElement('canvas'); tela.width = Math.round(W * ris); tela.height = Math.round(H * ris);
     const ctx = tela.getContext('2d')!; ctx.scale(ris, ris);
-    const disp = disponi(W, H, posti.map(([id, tipo, x, y, colori]) => ({ id, tipo, x, y, colori: colori ?? undefined })), atm);
+    const disp = disponi(W, H, posti.map(([id, tipo, x, y, colori, meta]) => ({ id, tipo, x, y, colori: colori ?? undefined, meta: meta ?? undefined })), atm);
     const animati = disegnaSfondo(ctx, disp);
     const texSfondo = Texture.from(tela);
     const scena = new Container();
