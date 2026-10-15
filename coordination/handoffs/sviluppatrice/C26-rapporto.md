@@ -79,3 +79,11 @@ FATTO MISURATO, `VALMORA_LARGHEZZE=360 node tools/foto.mjs`:
   - C26-01: 0 righe nel giro foto, perché e15 ed e27 non ci passano; lo copre il test.
 - Primo giro verde, col peso ×10 dei nomi: rosso in e13, sala e verbale scorrevano di 3-4 px. Corretto col peso ×5, poi verde.
 - `npx vitest run tests/sfida.test.ts`: 2/2.
+
+## Foto (`c26/`)
+
+- `prima-*` sono coi rossi, `dopo-*` col codice nuovo.
+- Sfida nella città di e15 ed e27 a 360/375/412 (rosso C75G01).
+- Mappa dello schieramento con le unità del bot attento, e06 ondata 1, e13 ondata 2, e16 ondata 4, a 360/375/412 (rosso C77E01).
+- `conf-360-e13-mappa.png`: a sinistra prima («Viale fra stadio e piazza» sopra «Parcheggi»), a destra dopo.
+- C26-03: nessuna foto mia di sala e verbale a 375×667; ci sono la misura del guardiano e quelle del collaudo.
