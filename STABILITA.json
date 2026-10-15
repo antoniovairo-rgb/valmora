@@ -50922,6 +50922,173 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-15T12:30:22.473Z",
+      "commit": "b0827fe",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "   ❯ C-021: colori del corteo (6)",
+            "     × il neutro dista almeno ΔE 20 dal colore principale di ogni club 11ms",
+            " Test Files  1 failed | 38 passed (39)",
+            "      Tests  1 failed | 209 passed (210)",
+            "   Start at  12:31:31",
+            "   Duration  31.08s (tests 91%, import 5%, transform 4%)",
+            "    Isolate  39 workers spawned · ~168ms startup each (spawn + environment, per file)",
+            "             at least ~2.02s faster with isolate: false — reuses workers across files instead of one per file",
+            "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+            " FAIL  tests/corteo-club.test.ts > C-021: colori del corteo > il neutro dista almeno ΔE 20 dal colore principale di ogni club",
+            "AssertionError: expected [ '--mappa-folla-2~waterline_city 20' ] to deeply equal []",
+            "- Expected",
+            "+ Received",
+            "- []",
+            "+ [",
+            "+   \"--mappa-folla-2~waterline_city 20\",",
+            "+ ]",
+            " ❯ tests/corteo-club.test.ts:32:103",
+            "     30|",
+            "     31| describe('C-021: colori del corteo', () => {",
+            "     32|   it(`il neutro dista almeno ΔE ${SOGLIA} dal colore principale di ogn…",
+            "       |                                                                                                       ^",
+            "     33|   it('braccio rosso __NO_C49C01: il neutro arancio sembra del Cinderwi…",
+            "     34|   it('il club dell\\'evento passa al corteo', () => expect(follaDellOnd…",
+            "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-15T12:32:46.248Z",
+      "commit": "b0827fe",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-15T12:40:44.743Z",
+      "commit": "b0827fe",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
     }
   ]
 }

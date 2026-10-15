@@ -42,6 +42,8 @@ export interface Missione {
   esiti: Esito[];
   stelle: { due: Condizione; tre: Condizione };
   luogo?: { x: number; y: number };
+  /** D-130 (C26-06): la sfida della serata, se le curve non la dicono */
+  partita?: { casa: string; ospiti: string };
   fili: string[];
 }
 
