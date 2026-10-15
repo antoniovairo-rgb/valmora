@@ -236,7 +236,7 @@
         },
         {
           "id": "approfittarne",
-          "fonte": "club_quillhaven",
+          "fonte": "voci_in_rete",
           "testo": "testi:e21.ch.approfittarne",
           "settore": "quartiere",
           "opzioni": [
@@ -705,7 +705,7 @@
         },
         {
           "id": "pullman21",
-          "fonte": "club_quillhaven",
+          "fonte": "comando",
           "testo": "testi:e21.ch.pullman21",
           "settore": "quartiere",
           "opzioni": [

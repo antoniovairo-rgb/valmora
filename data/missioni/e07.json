@@ -15,7 +15,7 @@
   "briefing": [
     {
       "testo": "testi:e07.info_club",
-      "fonte": "club_saltmere",
+      "fonte": "club_southwind",
       "affidabilita": "media",
       "vera": false,
       "settore": "parcheggi"
@@ -47,7 +47,7 @@
       {
         "id": "viale_stazione",
         "tipo": "strada",
-        "club": "saltmere_wanderers",
+        "club": "southwind_town",
         "pos": {
           "x": 25,
           "y": 85
@@ -64,7 +64,7 @@
       {
         "id": "parcheggi",
         "tipo": "strada",
-        "club": "saltmere_wanderers",
+        "club": "southwind_town",
         "pos": {
           "x": 85,
           "y": 85
@@ -73,7 +73,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "saltmere_wanderers",
+        "club": "southwind_town",
         "pos": {
           "x": 20,
           "y": 38
@@ -141,7 +141,7 @@
       "chiamate": [
         {
           "id": "quaranta_pulmini",
-          "fonte": "club_saltmere",
+          "fonte": "club_southwind",
           "testo": "testi:e07.ch.quaranta_pulmini",
           "commento": "testi:e07.ch.quaranta_pulmini.vice",
           "settore": "parcheggi",
@@ -435,7 +435,7 @@
         },
         {
           "id": "bambino",
-          "fonte": "club_saltmere",
+          "fonte": "club_southwind",
           "testo": "testi:e07.ch.bambino",
           "settore": "piazzale",
           "opzioni": [
@@ -757,7 +757,7 @@
         },
         {
           "id": "batteria",
-          "fonte": "club_saltmere",
+          "fonte": "club_southwind",
           "testo": "testi:e07.ch.batteria",
           "settore": "parcheggi",
           "opzioni": [

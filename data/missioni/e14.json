@@ -72,7 +72,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "quillhaven_albion",
+        "club": "waterline_city",
         "pos": {
           "x": 20,
           "y": 68
@@ -190,7 +190,7 @@
         },
         {
           "id": "quillhaven_posti",
-          "fonte": "club_quillhaven",
+          "fonte": "club_waterline",
           "testo": "testi:e14.ch.quillhaven_posti",
           "settore": "curva_ospiti",
           "opzioni": [

@@ -80,7 +80,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "calderholt_rovers",
+        "club": "ollerbrook_town",
         "pos": {
           "x": 80,
           "y": 76
@@ -520,7 +520,7 @@
         },
         {
           "id": "ridono",
-          "fonte": "club_ospite",
+          "fonte": "club_ollerbrook",
           "testo": "testi:e19.ch.ridono",
           "settore": "curva_ospiti",
           "opzioni": [
@@ -789,7 +789,7 @@
         },
         {
           "id": "pullman_rovers",
-          "fonte": "club_ospite",
+          "fonte": "club_ollerbrook",
           "testo": "testi:e19.ch.pullman_rovers",
           "settore": "curva_ospiti",
           "opzioni": [

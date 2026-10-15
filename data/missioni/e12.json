@@ -29,7 +29,7 @@
     },
     {
       "testo": "testi:e12.info_club",
-      "fonte": "club_saltmere",
+      "fonte": "club_southwind",
       "affidabilita": "media",
       "vera": true,
       "settore": "curva_ospiti"
@@ -56,7 +56,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "saltmere_wanderers",
+        "club": "southwind_town",
         "pos": {
           "x": 82,
           "y": 35
@@ -380,7 +380,7 @@
         },
         {
           "id": "salvezza",
-          "fonte": "club_saltmere",
+          "fonte": "club_southwind",
           "testo": "testi:e12.ch.salvezza",
           "settore": "curva_ospiti",
           "opzioni": [

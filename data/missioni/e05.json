@@ -80,7 +80,7 @@
       {
         "id": "curva_ospiti",
         "tipo": "curva",
-        "club": "quillhaven_albion",
+        "club": "domepark_villa",
         "pos": {
           "x": 20,
           "y": 32
@@ -240,7 +240,7 @@
         },
         {
           "id": "pullman_varco",
-          "fonte": "club_quillhaven",
+          "fonte": "club_domepark",
           "testo": "testi:e05.ch.pullman_varco",
           "settore": "piazzale",
           "senza": { "settore": "tornelli" },
