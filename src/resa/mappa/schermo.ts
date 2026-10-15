@@ -15,3 +15,19 @@ export function tela(app: { renderer?: unknown; readonly canvas: unknown }): HTM
   if (!app.renderer && !spento('C65S01')) return null;
   return app.canvas as HTMLCanvasElement;
 }
+
+type ConEventi = { on(e: 'resize', f: () => void): unknown; off(e: 'resize', f: () => void): unknown };
+
+/** C27-03: «reading 'on'» (2 volte su 150 nel C-027), stessa causa: il ridimensionamento si segue solo col renderer.
+ *  Senza, si aspetta che arrivi (un frame alla volta) e allora si misura; allo smontaggio si stacca. Rosso C80R01: diretto. */
+export function seguiMisura(app: { renderer?: unknown }, aggiorna: () => void): () => void {
+  if (spento('C80R01')) { const r = app.renderer as ConEventi; r.on('resize', aggiorna); return () => { r.off('resize', aggiorna); }; }
+  let r: ConEventi | null = null, finito = false, id = 0;
+  const attacca = () => {
+    if (finito) return;
+    if (!app.renderer) { id = requestAnimationFrame(attacca); return; }
+    r = app.renderer as ConEventi; r.on('resize', aggiorna); aggiorna();
+  };
+  attacca();
+  return () => { finito = true; cancelAnimationFrame(id); r?.off('resize', aggiorna); };
+}
