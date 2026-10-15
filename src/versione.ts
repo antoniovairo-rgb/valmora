@@ -164,4 +164,11 @@
 //   misura: catena completa 3/3 sul ramo della sviluppatrice (24455d1) e sulla principale; dettagli in
 //   coordination/handoffs/sviluppatrice/C26-rapporto.md.
 //   guardiano: rossi C26 della sviluppatrice e C78V01 (vignetta dall'impaginazione, prova della molla).
-export const GAME_VERSION = '0.23.0';
+// 0.24.0 – rilascio del 15/10 sera (PO: «rilascia il prima possibile»): seconda consegna C-026/C-027 e C28-04.
+//   causa: C26-06 la riga «Stasera» mostrava un solo club dove la squadra di casa non ha curva (e07 e altri 5);
+//   C27-03 errore «reading 'on'» in StratoCitta (2/150 aperture); C27-06 pastiglia sopra il nome in e19;
+//   C28-04 striscione dello Square (club di Valmora) nella curva del Railhead in e02.
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (5bea0c2) e sulla principale; mappe con pastiglie
+//   sopra i nomi da 19 a 7 ondate su 142; dettagli in coordination/handoffs/sviluppatrice/C27-rapporto.md.
+//   guardiano: rossi C79P01 (partita), C80R01 (renderer), C81P01 (etichette, tetto 7 ondate).
+export const GAME_VERSION = '0.24.0';
