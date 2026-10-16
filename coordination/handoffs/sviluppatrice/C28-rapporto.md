@@ -1,4 +1,4 @@
-# C-028, tablet e PC: correzioni piccole (C28-01, C28-02, C28-09, C28-11) e vignetta instabile · rapporto della sviluppatrice
+# C-028, tablet e PC: correzioni piccole (C28-01, C28-02, C28-09, C28-11) e vignetta instabile (C29-01) · rapporto della sviluppatrice
 
 Ramo `claude/valmora-resa-v2`. Collaudo: `docs/revisioni/COLLAUDO_C28.md` sul ramo `claude/valmora-collaudo-c28`. Foto in `c28/`, a 1024×768 e 1366×768.
 
@@ -55,17 +55,14 @@ Ramo `claude/valmora-resa-v2`. Collaudo: `docs/revisioni/COLLAUDO_C28.md` sul ra
   - Col rosso C78V01 non oscilla: il difetto è mio, entrato nella 0.23.0.
   - Sopra 412 px nessun guardiano lo vedeva (C28-13).
   - IPOTESI: a 1024×768 e 1366×768 si vede su ogni sala e verbale abbastanza alti. Ho misurato solo e01 nella sonda; il guardiano trova e01 ed e02.
-- **Correzione:** da nascosta l'altezza conta 0.
-- **Rosso `__NO_C91V01`.**
-- **Guardiano** in `controllaVignetta`: per sala e verbale, a 1366×768, 20 frame con la stessa altezza della pagina.
-- **Esito:** rosso 8 righe, «e01 sala a 1366×768: la pagina cambia altezza a ogni frame (822 ↔ 768 px)»; verde 0.
+- **Correzione:** da nascosta l'altezza conta 0. La principale ha fatto la stessa correzione sul suo ramo (C29-01, rosso C89V01, guardiano su 30 frame a 1366×768 e 360×700). Nel merge ho tenuto la sua e tolto il mio rosso C91V01 e il mio guardiano, che erano un doppione.
+- Le mie misure col rosso C91V01, prima del merge: 8 righe, «e01 sala a 1366×768: la pagina cambia altezza a ogni frame (822 ↔ 768 px)»; verde 0.
 
 ## Esito dei giri
 
 FATTO MISURATO, `VALMORA_LARGHEZZE=360 node tools/foto.mjs`:
 - verde: exit 0;
 - rossi `C86T01,C87H01,C88F01,C89C01,C90V01` insieme: exit 1, con le righe sopra;
-- rosso C91V01: exit 1, 8 righe.
 
 ## Foto (`c28/`)
 

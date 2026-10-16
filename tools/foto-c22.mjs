@@ -78,17 +78,20 @@ export async function controllaVignetta(pagina, prefisso, atteso, dove, dallaCit
     return;
   }
   if (!/^(apertura|esito)-/.test(prefisso)) return;
-  // C28 (catena): a 1366×768 la vignetta della sala appariva e spariva a ogni frame (pagina 822 ↔ 768 px). Venti frame
-  // con la stessa altezza della pagina. Rosso VALMORA_ROSSI=C91V01: oscilla.
-  { const p0 = pagina.viewportSize(); await pagina.setViewportSize({ width: 1366, height: 768 }); await pagina.waitForTimeout(300);
-    const alte = await pagina.evaluate(() => new Promise((ok) => { const v = []; const g = () => { v.push(document.documentElement.scrollHeight); if (v.length < 20) requestAnimationFrame(g); else ok([...new Set(v)]); }; g(); }));
-    atteso(`${dove} a 1366×768: la pagina cambia altezza a ogni frame (${alte.join(' ↔ ')} px): la vignetta «${prefisso}…» appare e sparisce`, alte.length === 1);
-    await pagina.setViewportSize(p0); await pagina.waitForTimeout(150); }
   const prima = pagina.viewportSize();
   await pagina.setViewportSize({ width: 375, height: 667 }); await pagina.waitForTimeout(250);
   const piccola = await misura(); giudica(piccola, `${dove} a 375×667`);
   // C26-03 (D-126 d): a 375×667 sala e verbale senza vignetta, anche se ci starebbe sopra il minimo. Rosso VALMORA_ROSSI=C76V01.
   atteso(`${dove} a 375×667: vignetta «${prefisso}…» mostrata a ${piccola?.h.toFixed(1)} px, va nascosta (C26-03)`, !piccola || piccola.nascosta);
+  // C29-01: in alcune finestre la vignetta si nascondeva e riappariva a ogni frame (pagina che salta, clic a vuoto).
+  // Si contano i cambi in 30 frame a 1366×768 e 360×700, dove il collaudo li ha misurati. Rosso VALMORA_ROSSI=C89V01.
+  for (const [width, height] of [[1366, 768], [360, 700]]) {
+    await pagina.setViewportSize({ width, height }); await pagina.waitForTimeout(250);
+    const cambi = await pagina.evaluate((pre) => new Promise((ok) => { let n = 0, k = 0, prec = null; const f = () => {
+      const v = document.querySelector(`[data-vignetta^="${pre}"]`); const ora = v ? v.hasAttribute('data-nascosta') : null;
+      if (prec !== null && ora !== prec) k++; prec = ora; if (++n < 30) requestAnimationFrame(f); else ok(k); }; requestAnimationFrame(f); }), prefisso);
+    atteso(`${dove} a ${width}×${height}: vignetta «${prefisso}…» che appare e sparisce ${cambi} volte in 30 frame (C29-01)`, cambi === 0);
+  }
   await pagina.setViewportSize(prima); await pagina.waitForTimeout(150);
 }
 
