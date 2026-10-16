@@ -128,7 +128,7 @@ Questi contrasti non sono nuovi e non sono fra i rilievi da riverificare: li rip
 
 | rilievo | ancora presente? | misura C-031 | C-030 |
 |---|---|---|---|
-| **C28-01** tela della mappa diversa dalla mappa | **sì** | `resizeTo={p.contenitore}` invariato (`src/resa/mappa/StratoPixi.tsx:176`). GRANDI_RIGA. Fascia scura in basso nelle foto `dopo/360x760-e21-schieramento-3.png` e `-e30-chiamata-silenzio_totale.png` | 1412/1700 |
+| **C28-01** tela della mappa diversa dalla mappa | **sì** | `resizeTo={p.contenitore}` invariato (`src/resa/mappa/StratoPixi.tsx:176`). `W=360 H=760 node coordination/sonde/c28-grandi.mjs`: tela ≠ mappa in **1412/1700** schermate con mappa (36/36 episodi finiti col mouse, 0 errori; `uscite-c31/grandi-360-analisi.log`). Fascia scura in basso nelle foto `dopo/360x760-e21-schieramento-3.png` e `-e30-chiamata-silenzio_totale.png` | 1412/1700 |
 | **C28-02** opzione già accesa sotto il puntatore fermo | **sì** | `c28-mouse.mjs` (e01, e13, e19): 768×1024 **31/39**, 1920×1080 **29/39**, 1366×768 **23/39**; 0 errori; `src/resa/stile.css:58` invariato | 30, 29, 16 |
 | **C28-05** corteo della chiamata via dallo stadio solo in maggioranza | **sì** per e17 | e17 `me_lo_dovete` **6 verso / 34 via** (stadio). e30: con la meta il riferimento giusto è il municipio, e lì `fiaccolata` è 0/39 e `silenzio_totale` 39/0 | 6/34; e30 19/20, 20/20 |
 | **C28-09** fuoco perso dopo un'azione | **sì** | `c28-tastiera.mjs` 1366×768, e01, e13, e19, e30: 4/4 finiti, 411 azioni, **fuoco perso 87/411**, 0 coperto, 0 errori | 82/411 |
