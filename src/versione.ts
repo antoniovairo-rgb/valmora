@@ -197,4 +197,13 @@
 //   svuotavano a partita in corso); C30-03 due testi accorciati che avevano cambiato senso (e24 busta, e35 resa).
 //   misura: sonda pixel e30 rispetto al municipio, ondata 2 0/69 → 69/69 verso, chiamata 39/39; ondata 4 69/69 via.
 //   guardiano: tests/corteo-verso.test.ts aggiornato (rossi C73V01, C74D01 su e30 ondata 4), tests/brevita.test.ts.
-export const GAME_VERSION = '0.28.0';
+// 0.29.0 – tablet e PC, correzioni piccole (D-132), più la rifinitura e07–e09 (D-138).
+//   causa: C28-01 la tela della mappa non seguiva il cambio di forma (fascia scura, anche a 360); C28-02 col mouse
+//   un'opzione appariva già scelta sotto il puntatore fermo (106/156 chiamate); C28-09 il fuoco della tastiera si perdeva
+//   (82/412 azioni); C28-11 versione lontana dalla colonna; C29-05/06 stemmi (rosso C83S01, pigna sotto il pixel);
+//   rifinitura col PO: e08 coppa senza vincitore, presidente dello Skyfield in 5 episodi di fila.
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (7fd94a5), foto a 1024×768 e 1366×768; e08 «il Kiln passa
+//   ai rigori»; presidente in e05, e06, e09.
+//   guardiano: rossi C86T01 (tela), C87H01 (evidenza col puntatore fermo), C88F01/C89C01 (fuoco), C90V01 (versione),
+//   C92P01 (pigna); limiti di lunghezza dei testi.
+export const GAME_VERSION = '0.29.0';
