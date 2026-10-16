@@ -8,7 +8,7 @@ import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import { esceDinamica, neutroCorteo, type Folla } from './folla.ts';
 import { club as datiClub } from '../dati.ts';
 import { useRidisegno } from './ridisegno.ts';
-import { schermo, seguiMisura } from './schermo.ts';
+import { schermo, seguiContenitore, seguiMisura } from './schermo.ts';
 import { costruisciDinamica, dinamicaDi } from './dinamica.ts';
 import { ALFA_MIN, gente } from './persone.ts';
 import { spento } from '../../interruttori.ts';
@@ -31,6 +31,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
   const [dim, setDim] = useState(() => schermo(app) ?? { w: 0, h: 0 }); // C24-03: mai app.screen senza renderer
   // C27-03: il renderer tenuto da parte (allo smontaggio Pixi lo toglie da «app»), e atteso se non c'è ancora
   useEffect(() => seguiMisura(app, () => { const s = schermo(app); if (s) setDim(s); }), [app]);
+  useEffect(() => seguiContenitore(app as { renderer?: unknown; queueResize?: () => void }, p.contenitore.current), [app, p.contenitore]); // C28-01
 
   const { w: W, h: H } = dim;
   const { lato: m, sotto } = p.margine;

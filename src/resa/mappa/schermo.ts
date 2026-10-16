@@ -31,3 +31,13 @@ export function seguiMisura(app: { renderer?: unknown }, aggiorna: () => void): 
   attacca();
   return () => { finito = true; cancelAnimationFrame(id); r?.off('resize', aggiorna); };
 }
+
+/** C28-01: la tela segue il contenitore anche quando cambia forma senza che cambi la finestra (sala 4:3 → schieramento
+ *  1:1): il ResizePlugin di Pixi ascolta solo il «resize» della finestra, e il quarto basso restava scuro (1412/1700
+ *  schermate). Un ResizeObserver sul contenitore chiede a Pixi di rimisurarsi. Rosso C86T01: solo la finestra. */
+export function seguiContenitore(app: { renderer?: unknown; queueResize?: () => void }, el: Element | null): () => void {
+  if (spento('C86T01') || !el || typeof ResizeObserver === 'undefined') return () => {};
+  const ro = new ResizeObserver(() => { if (app.renderer) app.queueResize?.(); });
+  ro.observe(el);
+  return () => ro.disconnect();
+}

@@ -12,8 +12,8 @@ import { controllaStemmi } from './foto-c22.mjs';
 /** Il piano (13-club.md §2.2-2.4, §3): forma, simbolo e colori. I file in data/club/ vincono, quando ci sono. */
 export const PIANO = {
   cinderwick_united: ['scudo', 'ciminiera', '#ff6a13', '#1a1a1a'], larkspire_athletic: ['tondo', 'collina', '#2fa7ff', '#ffffff'],
-  calderholt_rovers: ['scudo', 'calderone', '#1e7b4a', '#f2c230'], mossgarth_town: ['tondo', 'arco', '#546e7a', '#c0ca33'],
-  ollerbrook_town: ['rombo', 'ciak', '#00897b', '#cfd8dc'], quillhaven_albion: ['rombo', 'penna', '#1b2a6b', '#d62839'],
+  calderholt_rovers: ['scudo', 'fontana', '#1e7b4a', '#f2c230'], mossgarth_town: ['tondo', 'arco', '#546e7a', '#c0ca33'],
+  ollerbrook_town: ['rombo', 'ciak', '#00897b', '#cfd8dc'], quillhaven_albion: ['rombo', 'albero_cortile', '#1b2a6b', '#d62839'],
   saltmere_wanderers: ['scudo', 'pietra_miliare', '#5d4037', '#e9c46a'], pinegrove_rangers: ['tondo', 'pigna', '#6a1b9a', '#ffc107'],
   belltower_harriers: ['scudo', 'campanile', '#ec407a', '#263238'], waterline_city: ['rombo', 'onde', '#f5f5f5', '#0d47a1'],
   lookout_fc: ['scudo', 'torre_vedetta', '#c62828', '#f5f5f5'], domepark_villa: ['tondo', 'cupola', '#121212', '#f5f5f5'],
@@ -80,6 +80,11 @@ export async function controllaStemmiTutti(pagina, atteso, dove) {
   // il PO sulle foto; qui si controlla che il disegno sia quello nuovo. Rosso VALMORA_ROSSI=C83S01: i disegni di prima.
   const vecchi = await pagina.evaluate((ids) => ids.filter((id) => !document.querySelector(`figure[data-club="${id}"] [data-simbolo]`)?.getAttribute('data-simbolo')?.endsWith('@D-128')), D128_CLUB);
   atteso(`${dove}: stemmi col disegno di prima (D-128): ${vecchi.join(', ')}`, !vecchi.length);
+  // C29-06: ogni tratto di un simbolo è largo almeno 1 px a schermo (a DPR 1 un tratto più sottile non si vede).
+  // Rosso VALMORA_ROSSI=C92P01: le scaglie della pigna a 0,76 px.
+  const sottili = await pagina.evaluate(() => [...document.querySelectorAll('figure[data-club] [data-simbolo] [stroke-width], figure[data-club] [data-simbolo] [stroke]')].filter((e) => e.getAttribute('fill') === 'none')
+    .map((e) => ({ id: e.closest('figure').dataset.club, px: parseFloat(getComputedStyle(e).strokeWidth) * e.getScreenCTM().a })).filter((x) => x.px < 1).map((x) => `${x.id} ${x.px.toFixed(2)} px`));
+  atteso(`${dove}: tratti dei simboli sotto 1 px: ${[...new Set(sottili)].join(', ')} (C29-06)`, !sottili.length);
   await controllaStemmi(pagina, atteso, dove);
 }
 

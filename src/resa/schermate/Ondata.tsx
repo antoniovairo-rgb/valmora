@@ -2,7 +2,7 @@
 // alla scelta, poi la chiusura col rapporto. Ogni scelta si salva subito: una ricarica riporta alla
 // chiamata successiva (la risposta già letta non torna).
 import { ChevronDown, ChevronRight, Coffee, FileText, Radio } from 'lucide-react';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { spento } from '../../interruttori.ts';
 import { opzioniValide, type InCorso } from '../../logica/missione.ts';
 import type { Chiamata as TChiamata, Missione, Opzione } from '../../logica/tipi.ts';
@@ -22,6 +22,16 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
   const urgenteQui = urgente(p.m, p.c, p.ic.variabili); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
+  // C28-02: col mouse, alla nuova chiamata l'opzione sotto il puntatore fermo appariva già accesa (106/156): l'evidenza
+  // al passaggio vale solo dopo che il puntatore si è mosso. Rosso C87H01: subito, come prima.
+  const [fermo, setFermo] = useState(true);
+  useEffect(() => {
+    if (spento('C87H01')) { setFermo(false); return; }
+    setFermo(true);
+    const via = () => setFermo(false);
+    addEventListener('pointermove', via, { once: true });
+    return () => removeEventListener('pointermove', via);
+  }, [p.c.id]);
   const [nascoste, setNascoste] = useState(false);
   const [serve, setServe] = useState(false); // C18-05: una volta comparso nel fumetto resta, così il testo non salta scorrendo
   // Calcolo diretto (non IntersectionObserver, che risponde solo attraversando soglie e in ritardo): prima del disegno,
@@ -72,7 +82,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
         </div>
       </Messaggio>
       {nascoste && spento('C42R01') && indicatore}
-      <div className="opzioni" ref={opzioni} role="group" aria-label="Che cosa rispondi?">
+      <div className="opzioni" ref={opzioni} role="group" aria-label="Che cosa rispondi?" data-fermo={fermo ? '' : undefined}>
         {opzioniValide(p.c, p.ic, p.m).map((o, i) => (
           <button key={o.id} className={`opzione${scelta === o.id ? ' scelta' : ''}`} data-opzione={o.id} disabled={scelta !== null && !spento('C05R01')}
             onClick={() => { if (scelta !== null && !spento('C05R01')) return; setScelta(o.id); p.rispondi(o.id); }}>
