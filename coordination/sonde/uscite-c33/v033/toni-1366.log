@@ -1,0 +1,20 @@
+A) motore: casuale, attenta, equilibrata, peggiore × semi 1…1 × 36 episodi: 568 fini d'ondata; toni {"teso":115,"calmo":309,"critico":144}
+  casuale: {"teso":69,"calmo":48,"critico":25}
+  attenta: {"calmo":135,"teso":7}
+  equilibrata: {"calmo":126,"teso":16}
+  peggiore: {"critico":119,"teso":23}
+  incroci {"scopertoCalmo":103,"scopertoTeso":114,"scopertoCritico":144,"premioPiuCritico":0,"premioPiuCalmo":206,"piccoCriticoFinaleCalmo":0,"piccoCriticoFinaleTeso":6,"nessunoScopertoCritico":0,"degeneratoCalmo":0,"degeneratoTeso":0,"degeneratoCritico":139}
+  es. scopertoTeso: e01 o1 casuale seme 1: livelli fine {"curva_cinderwick":0,"curva_larkspire":1,"piazzale":1,"strada_cinderwick":2,"strada_larkspire":0} picco 2 scoperti 2 fiducia 0
+  es. scopertoCalmo: e02 o3 casuale seme 1: livelli fine {"stazione":1,"viale_stazione":1,"tornelli":0,"curva_ospiti":0,"curva_larkspire":1} picco 2 scoperti 1 fiducia 0
+  es. scopertoCritico: e03 o4 casuale seme 1: livelli fine {"quartiere":5,"parcheggi":0,"piazzale":0,"curva_ospiti":1,"curva_larkspire":2} picco 5 scoperti 1 fiducia -1
+  es. degeneratoCritico: e03 o4 casuale seme 1: livelli fine {"quartiere":5,"parcheggi":0,"piazzale":0,"curva_ospiti":1,"curva_larkspire":2} picco 5 scoperti 1 fiducia -1
+  es. piccoCriticoFinaleTeso: e07 o4 casuale seme 1: livelli fine {"viale_stazione":1,"piazzale":1,"parcheggi":0,"curva_ospiti":1,"strada_larkspire":2} picco 4 scoperti 2 fiducia 0
+  es. premioPiuCalmo: e08 o1 casuale seme 1: livelli fine {"curva_cinderwick":1,"curva_ospiti":0,"piazzale":0,"strada_cinderwick":0,"tornelli":0} picco 1 scoperti 0 fiducia 1
+B) interfaccia 1366×768: rapporti 568, aperti 568, con vignetta 568, nascoste 568, scorrimento 0
+  data-tono ≠ atteso 0; vignetta ≠ ondata-<atteso> 0
+  espressioni viste con tono teso: {"bocche":["dritta","su"],"sopr":["giu","-"],"braccia":["-","-"]}
+  espressioni viste con tono calmo: {"bocche":["su","su"],"sopr":["-","-"],"braccia":["-","-"]}
+  espressioni viste con tono critico: {"bocche":["giu","giu"],"sopr":["giu","giu"],"braccia":["nuca","-"]}
+  per tono atteso {"teso":{"n":115,"nascoste":115},"calmo":{"n":309,"nascoste":309},"critico":{"n":144,"nascoste":144}}
+  nascoste per episodio {"e01":12,"e02":16,"e03":16,"e04":12,"e05":16,"e06":16,"e07":16,"e08":16,"e09":16,"e10":16,"e11":16,"e12":16,"e13":16,"e14":16,"e15":16,"e16":16,"e17":16,"e18":16,"e19":16,"e20":16,"e21":16,"e22":16,"e23":16,"e24":16,"e25":16,"e26":16,"e27":16,"e28":16,"e29":16,"e30":16,"e31":16,"e32":16,"e33":16,"e34":16,"e35":16,"e36":16}
+errori 0 []

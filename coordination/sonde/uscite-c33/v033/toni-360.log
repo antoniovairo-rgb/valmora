@@ -1,0 +1,22 @@
+A) motore: casuale, attenta, equilibrata, peggiore × semi 1…200 × 36 episodi: 113600 fini d'ondata; toni {"teso":25147,"calmo":58290,"critico":30163}
+  casuale: {"teso":15947,"calmo":6090,"critico":6363}
+  attenta: {"calmo":27000,"teso":1400}
+  equilibrata: {"calmo":25200,"teso":3200}
+  peggiore: {"critico":23800,"teso":4600}
+  incroci {"scopertoCalmo":19090,"scopertoTeso":24834,"scopertoCritico":30131,"premioPiuCritico":32,"premioPiuCalmo":39200,"piccoCriticoFinaleCalmo":0,"piccoCriticoFinaleTeso":2042,"nessunoScopertoCritico":32,"degeneratoCalmo":0,"degeneratoTeso":0,"degeneratoCritico":29688}
+  es. scopertoTeso: e01 o1 casuale seme 1: livelli fine {"curva_cinderwick":0,"curva_larkspire":1,"piazzale":1,"strada_cinderwick":2,"strada_larkspire":0} picco 2 scoperti 2 fiducia 0
+  es. scopertoCalmo: e02 o3 casuale seme 1: livelli fine {"stazione":1,"viale_stazione":1,"tornelli":0,"curva_ospiti":0,"curva_larkspire":1} picco 2 scoperti 1 fiducia 0
+  es. scopertoCritico: e03 o4 casuale seme 1: livelli fine {"quartiere":5,"parcheggi":0,"piazzale":0,"curva_ospiti":1,"curva_larkspire":2} picco 5 scoperti 1 fiducia -1
+  es. degeneratoCritico: e03 o4 casuale seme 1: livelli fine {"quartiere":5,"parcheggi":0,"piazzale":0,"curva_ospiti":1,"curva_larkspire":2} picco 5 scoperti 1 fiducia -1
+  es. piccoCriticoFinaleTeso: e07 o4 casuale seme 1: livelli fine {"viale_stazione":1,"piazzale":1,"parcheggi":0,"curva_ospiti":1,"strada_larkspire":2} picco 4 scoperti 2 fiducia 0
+  es. premioPiuCalmo: e08 o1 casuale seme 1: livelli fine {"curva_cinderwick":1,"curva_ospiti":0,"piazzale":0,"strada_cinderwick":0,"tornelli":0} picco 1 scoperti 0 fiducia 1
+  es. nessunoScopertoCritico: e05 o4 casuale seme 20: livelli fine {"tornelli":1,"strada_larkspire":0,"piazzale":1,"curva_larkspire":2,"curva_ospiti":4} picco 4 scoperti 0 fiducia 1
+  es. premioPiuCritico: e05 o4 casuale seme 20: livelli fine {"tornelli":1,"strada_larkspire":0,"piazzale":1,"curva_larkspire":2,"curva_ospiti":4} picco 4 scoperti 0 fiducia 1
+B) interfaccia 360×760: rapporti 1136, aperti 1136, con vignetta 1136, nascoste 1136, scorrimento 0
+  data-tono ≠ atteso 0; vignetta ≠ ondata-<atteso> 0
+  espressioni viste con tono teso: {"bocche":["dritta","su"],"sopr":["giu","-"],"braccia":["-","-"]}
+  espressioni viste con tono calmo: {"bocche":["su","su"],"sopr":["-","-"],"braccia":["-","-"]}
+  espressioni viste con tono critico: {"bocche":["giu","giu"],"sopr":["giu","giu"],"braccia":["nuca","-"]}
+  per tono atteso {"teso":{"n":243,"nascoste":243},"calmo":{"n":607,"nascoste":607},"critico":{"n":286,"nascoste":286}}
+  nascoste per episodio {"e01":24,"e02":32,"e03":32,"e04":24,"e05":32,"e06":32,"e07":32,"e08":32,"e09":32,"e10":32,"e11":32,"e12":32,"e13":32,"e14":32,"e15":32,"e16":32,"e17":32,"e18":32,"e19":32,"e20":32,"e21":32,"e22":32,"e23":32,"e24":32,"e25":32,"e26":32,"e27":32,"e28":32,"e29":32,"e30":32,"e31":32,"e32":32,"e33":32,"e34":32,"e35":32,"e36":32}
+errori 0 []

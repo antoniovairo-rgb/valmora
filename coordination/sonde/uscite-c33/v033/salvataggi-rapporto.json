@@ -1,0 +1,111 @@
+{
+ "ris": [
+  {
+   "ep": "e01",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": null,
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-032/0.32.0-e01-ondata2-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e08",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": null,
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-032/0.32.0-e08-ondata2-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e17",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": null,
+    "testo": null,
+    "folla": "vuoti|"
+   },
+   "file": "coordination/sonde/salvataggi-032/0.32.0-e17-ondata2-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "vuoti|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e30",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": null,
+    "testo": null,
+    "folla": "vuoti|strada_cinderwick>entra"
+   },
+   "file": "coordination/sonde/salvataggi-032/0.32.0-e30-ondata2-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "vuoti|strada_cinderwick>entra"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e35",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": null,
+    "testo": null,
+    "folla": "vuoti|corso_centro>entra"
+   },
+   "file": "coordination/sonde/salvataggi-032/0.32.0-e35-ondata2-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "vuoti|corso_centro>entra"
+   },
+   "ok": true
+  }
+ ],
+ "errA": [],
+ "errB": []
+}
