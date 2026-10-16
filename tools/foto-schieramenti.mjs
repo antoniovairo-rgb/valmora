@@ -81,7 +81,7 @@ export const copertiDallaBarra = (pagina) => pagina.evaluate(() => {
     .map((e) => (e.dataset.risorsa ?? e.dataset.azione ?? e.textContent.trim().slice(0, 24)));
 });
 
-const PASTIGLIE_SU_NOMI = 7; // C27-06, misura del 15/10 (vedi sopra)
+const PASTIGLIE_SU_NOMI = 0; // C27-06: 7 il 15/10; D-136 (C28-14): a 0 col nome su più righe e due posti in più (rosso C94N01: 7)
 
 export async function controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi = []) {
   // ogni pagina nuova riceve gli stessi interruttori rossi del giro (altrimenti il braccio rosso qui è cieco)
@@ -120,8 +120,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     atteso(`${st.m.id} ondata ${st.n} 360×760 con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
   }
   await q6.close();
-  // C27-06: le ondate con una pastiglia sopra un nome possono solo scendere; 7 su 142 misurate col codice nuovo (mappe
-  // affollate: e05, e13, e16, e35), 19 col rosso C81P01. Il numero si abbassa quando si correggono, mai si alza.
+  // C27-06 / D-136: nessuna ondata con una pastiglia sopra un nome (7 su 142 prima di C28-14, 19 col rosso C81P01).
   atteso(`schieramenti con le unità: ${suNomi.length} ondate con pastiglie sopra i nomi (al massimo ${PASTIGLIE_SU_NOMI}): ${suNomi.join(' | ')} (C27-06)`, suNomi.length <= PASTIGLIE_SU_NOMI);
   const e03 = stati.find((x) => x.m.id === 'e03' && x.n === 3);
   for (const [w, h] of [[375, 812], [412, 915]]) {

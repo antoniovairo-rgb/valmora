@@ -13,10 +13,10 @@ import { neutroCorteo } from './folla.ts';
 export interface Pt { x: number; y: number }
 export interface Stadio { cx: number; cy: number; rx: number; ry: number; vuoto?: boolean }
 export interface Colori { primario: string; secondario: string }
-export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; curvaSola: (Pt & { verso: number }) | null; viali: Pt[][]; idViali: string[]; tifosiViali: (Colori | undefined)[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; dettagli: { id: string; dove: Pt }[]; notte: boolean; cartelloni: boolean }
+export interface Disposizione { W: number; H: number; club: { sx?: Colori; dx?: Colori; corteo?: Colori }; stadio: Stadio | null; curvaSola: (Pt & { verso: number }) | null; viali: Pt[][]; idViali: string[]; /** C31-02: viale che parte dallo stadio, il corteo cammina verso la meta */ versoMeta: boolean[]; tifosiViali: (Colori | undefined)[]; centro: Pt; stazione: Pt | null; quartieri: Pt[]; parcheggi: Pt[]; slarghi: Pt[]; dettagli: { id: string; dove: Pt }[]; notte: boolean; cartelloni: boolean }
 /** Atmosfera della missione (campi facoltativi dei dati, mappa.ora e mappa.dettagli): e03 è di notte. */
 export interface Atmosfera { notte?: boolean; cartelloni?: boolean; dettagli?: string[] }
-export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[] }[]; dettagli: string[]; coloriCorteo: [string, string]; coloriViali: Record<string, [string, string]>; origineViali: Record<string, string>; fari: Pt[]; stadio: '' | 'pieno' | 'vuoto' }
+export interface Animati { folla: { x: number; y: number; colore: string; fase: number }[]; viali: { id: string; punti: Pt[]; versoMeta?: boolean }[]; dettagli: string[]; coloriCorteo: [string, string]; coloriViali: Record<string, [string, string]>; origineViali: Record<string, string>; fari: Pt[]; stadio: '' | 'pieno' | 'vuoto' }
 
 // Il minificatore CSS può scrivere i token come «#fff» o con un nome: il canvas li riporta a «#rrggbb».
 let tavolozza: CanvasRenderingContext2D | null = null;
@@ -117,6 +117,7 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
   // C27-02: se i dati dicono dove va la strada («meta», id di un settore: municipio, stazione, stadio vuoto) il viale
   // finisce lì; senza, come prima (stadio con la partita, altrimenti il centro). Rosso C85M01: «meta» ignorata.
   const doveVa = (s: (typeof settori)[number]) => (spento('C85M01') || !s.meta ? undefined : settori.find((q) => q.id === s.meta));
+  const versoMeta: boolean[] = [];
   const viali = strade.map((s) => {
     const dove = doveVa(s);
     const fine = dove ? { x: dove.x, y: dove.y } : { x: meta.x + Math.sign(s.x - meta.x) * (stadio && !stadio.vuoto ? stadio.rx * 0.32 : 0), y: meta.y };
@@ -125,7 +126,11 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
     // vicino alla strada fra quelli dalla parte opposta alla fine del viale. Solo per le strade senza «meta»: con la meta
     // (e30) il viale l'ha tarato la principale coi dati, e col bordo nuovo il corteo di e30 peggiorava (49/21 contro 58/11).
     // Rosso C93V01: sempre dal bordo basso.
-    const inizio = stazione ?? (spento('C93V01') || dove ? { x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 } : bordoLontano(s, fine, W, H));
+    // C31-02: con la meta e lo stadio disegnato (e30: «dallo stadio verso il municipio») il viale parte dal bordo dello
+    // stadio dalla parte della strada, non dal bordo della mappa. Rosso C95S01: dal bordo basso, come prima.
+    const daStadio = dove && stadio && !spento('C95S01') ? (() => { const a = Math.atan2((s.y - stadio.cy) / stadio.ry, (s.x - stadio.cx) / stadio.rx); return { x: stadio.cx + stadio.rx * Math.cos(a), y: stadio.cy + stadio.ry * Math.sin(a) }; })() : null;
+    versoMeta.push(!stazione && !!daStadio);
+    const inizio = stazione ?? daStadio ?? (spento('C93V01') || dove ? { x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 } : bordoLontano(s, fine, W, H));
     return [inizio, { x: s.x, y: s.y }, { x: s.x + (fine.x - s.x) * 0.55, y: fine.y + (s.y - fine.y) * 0.35 }, fine];
   });
   const quartieri = settori.filter((s) => s.tipo === 'quartiere').map((s) => ({ x: s.x, y: s.y }));
@@ -147,7 +152,7 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
   // quello della curva con lo stesso nome (strada_larkspire → curva_larkspire); se i dati non lo dicono, colori neutri,
   // mai quelli dell'altra squadra. Rosso C43C02: un colore solo per tutte le strade (la curva ospiti), come prima.
   const tifosiViali = strade.map((s) => s.colori ?? curve.find((c) => c.id === `curva_${(s.id ?? '').replace(/^[a-z]+_/, '')}`)?.colori);
-  return { W, H, club, stadio, curvaSola, viali, idViali: strade.map((s) => s.id ?? ''), tifosiViali, centro, stazione, quartieri, parcheggi: parch, slarghi, dettagli, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
+  return { W, H, club, stadio, curvaSola, viali, idViali: strade.map((s) => s.id ?? ''), versoMeta, tifosiViali, centro, stazione, quartieri, parcheggi: parch, slarghi, dettagli, notte: !!atm.notte, cartelloni: !!atm.cartelloni };
 }
 
 export const bezier = (p: Pt[], t: number): Pt => {
@@ -278,7 +283,7 @@ export function disegnaSfondo(f: CanvasRenderingContext2D, d: Disposizione): Ani
   const neutro = neutroCorteo();
   const coppia = (c: Colori | undefined): [string, string] => (c ? [colore(c.primario)!, colore(c.secondario)!] : [token(neutro[0]), token(neutro[1])]);
   const vecchio = spento('C43C02');
-  return { folla, dettagli: d.cartelloni ? ['cartelloni_stadio_nuovo', ...dettagli] : dettagli, viali: d.viali.map((punti, i) => ({ id: d.idViali[i] ?? '', punti })), fari, stadio: stadio ? (stadio.vuoto ? 'vuoto' : 'pieno') : '',
+  return { folla, dettagli: d.cartelloni ? ['cartelloni_stadio_nuovo', ...dettagli] : dettagli, viali: d.viali.map((punti, i) => ({ id: d.idViali[i] ?? '', punti, versoMeta: d.versoMeta[i] })), fari, stadio: stadio ? (stadio.vuoto ? 'vuoto' : 'pieno') : '',
     coloriCorteo: coppia(corteo),
     coloriViali: Object.fromEntries(d.idViali.map((id, i) => [id, coppia(vecchio ? corteo : d.tifosiViali[i])])),
     origineViali: Object.fromEntries(d.idViali.map((id, i) => [id, (vecchio ? corteo : d.tifosiViali[i])?.primario ?? 'neutro'])) };

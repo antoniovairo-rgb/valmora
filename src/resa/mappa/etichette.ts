@@ -13,6 +13,7 @@ const VERA = 100; // una sovrapposizione vera pesa molto più di un distacco man
 const LONTANO = 0; // C23-02: px² di stelline che vale un px di distanza in più dal proprio disco. 0 = nessuna sovrapposizione (nomi fino a 55 px dal disco a 360); 400 = nomi entro 11 px ma 7/36 su stelline altrui. La scelta è del PO (rapporto C23).
 const NOMI = ['sotto', 'sopra', 'destra', 'sinistra', 'sotto-sx', 'sotto-dx', 'sopra-sx', 'sopra-dx'] as const;
 const UNITA = ['sopra', 'destra', 'sinistra', 'destra-alto', 'sinistra-alto', 'sotto'] as const;
+const UNITA_PIU = ['destra-basso', 'sinistra-basso'] as const; // C28-14 / D-136
 
 const area = (a: Rett, b: Rett) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
 const fuori = (r: Rett, m: Rett) => {
@@ -79,7 +80,9 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const nuovo = !spento('C77E01');
     // il centro di OGNI pulsante di tocco (almeno 44 px, la pastiglia in basso), non dell'unione
     const sottoDisco = () => (nuovo && [...(s.querySelector('.settore-unita')?.children ?? [])].some((c) => { const u = c.getBoundingClientRect(), x = (u.left + u.right) / 2, y = (u.top + u.bottom) / 2;
-      return punti.some((p, j) => j !== i && x >= p.left && x <= p.right && y >= p.top && y <= p.bottom); }) ? VERA * 1e6 : 0);
+      // C28-14: con i posti nuovi il centro poteva finire sotto il tocco di un'altra pastiglia (e31 ondata 2)
+      const altriTocchi = !spento('C94N01') ? settori.filter((x) => x !== s).flatMap((x) => [...(x.querySelector('.settore-unita')?.children ?? [])].map((c) => c.getBoundingClientRect())) : [];
+      return [...punti.filter((_, j) => j !== i), ...altriTocchi].some((p) => x >= p.left && x <= p.right && y >= p.top && y <= p.bottom); }) ? VERA * 1e6 : 0);
     const nomiSopra = (n: Rett) => (nuovo ? presenti(altri.map(nomeDi)).reduce((c, o) => c + VERA * 5 * area(n, o), 0) : 0);
     // C27-06: una pastiglia sopra un nome (il suo o di un altro settore) lo rende illeggibile (e19 «MAGA… DELLE
     // FONDERIE»): costa VERA × 5 in più, e così un nome sotto le pastiglie altrui. Perché questo non sposti i nomi uno
@@ -93,16 +96,26 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const toccoFuori = () => [...(s.querySelector('.settore-unita')?.children ?? [])].some((c) => { const u = c.getBoundingClientRect(), x = (u.left + u.right) / 2, y = (u.top + u.bottom) / 2;
       return x < mappa.left + MARGINE || x > mappa.right - MARGINE || y < mappa.top + MARGINE || y > mappa.bottom - MARGINE; }) ? VERA * 1e6 : 0;
     const bordoUnita = (u: Rett) => (c27 ? VERA * 10 * fuori(pastiglie() ?? u, mappa) + toccoFuori() : VERA * 10 * fuori(u, mappa));
-    let migliore = { nome: NOMI[0] as string, unita: UNITA[0] as string, costo: Infinity };
-    cerca: for (const nome of NOMI) for (const unita of conUnita ? UNITA : [UNITA[0]]) {
+    // C28-14 / D-136: con le pastiglie sui nomi rimaste (e05, e13, e16, e35) si provano anche due posti in più per le
+    // unità (destra-basso, sinistra-basso) e, se il posto migliore costa ancora, il nome più stretto su più righe (80%,
+    // 60% di --nome-max), come nella città. Rosso C94N01: posti e larghezza di prima.
+    const d136 = !spento('C94N01'), el = s.querySelector<HTMLElement>('.settore-nome');
+    const posti = d136 ? [...UNITA, ...UNITA_PIU] : UNITA;
+    let migliore = { nome: NOMI[0] as string, unita: UNITA[0] as string, costo: Infinity, largo: '' };
+    cerca: for (const largo of d136 ? ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.6)'] : ['']) {
+    if (largo && migliore.costo === 0) break;
+    if (el) el.style.maxWidth = largo;
+    for (const nome of NOMI) for (const unita of conUnita ? posti : [UNITA[0]]) {
       s.setAttribute('data-nome', nome); s.setAttribute('data-unita', unita);
       const n = nomeDi(s), u = conUnita ? unitaDi(s) : null;
       if (!n || (conUnita && !u)) continue;
       const costo = costoDi(n, perNome) + VERA * (c27 ? 1e4 : 10) * fuori(n, mappa) + nomiSopra(n) * (c27 ? 2e3 : 1) + sottoPastiglie(n) + (u ? sottoDisco() : 0)
         + (u ? costoDi(u, perUnita) + VERA * area(n, u) + bordoUnita(u) + suNomi(pastiglie() ?? u, n) : 0);
-      if (costo < migliore.costo) migliore = { nome, unita, costo };
+      if (costo < migliore.costo - (largo ? 0.5 : 0)) migliore = { nome, unita, costo, largo };
       if (costo === 0) break cerca;
     }
+    }
+    if (el) el.style.maxWidth = migliore.largo;
     s.setAttribute('data-nome', migliore.nome); s.setAttribute('data-unita', migliore.unita);
   }
 }
