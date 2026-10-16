@@ -111,6 +111,10 @@
                 "$ref": "comune.schema.json#/$defs/id",
                 "description": "club della curva (D-086): ne prende i colori sulla mappa"
               },
+              "meta": {
+                "$ref": "comune.schema.json#/$defs/id",
+                "description": "C27-02: settore dove finisce il viale di questa strada (municipio, stazione); se manca, lo stadio o il centro"
+              },
               "pos": {
                 "type": "object",
                 "required": [
@@ -219,6 +223,10 @@
           },
           "titolo": {
             "$ref": "comune.schema.json#/$defs/testo"
+          },
+          "fase": {
+            "enum": ["prima", "partita", "dopo"],
+            "description": "C27-04: fase della partita detta dai testi dell'ondata; se manca, la decidono gli eventi «curva»"
           },
           "eventi": {
             "type": "array",

@@ -118,6 +118,7 @@
     {
       "n": 1,
       "titolo": "testi:e27.ondata1",
+      "fase": "prima",
       "eventi": [
         {
           "id": "treno_gemellati",
@@ -591,6 +592,7 @@
     {
       "n": 4,
       "titolo": "testi:e27.ondata4",
+      "fase": "dopo",
       "eventi": [
         {
           "id": "ritorno_gemellati",
