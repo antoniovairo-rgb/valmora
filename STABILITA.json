@@ -58412,6 +58412,863 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-16T09:05:38.588Z",
+      "commit": "7e28ab4",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-16T08:54:29.179Z",
+      "commit": "36fe894",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "360px: home: versione «0.29.0» invece di «0.27.0»",
+            "360px: titolo: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: crediti: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: genere: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: conferma: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: conferma: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: titolo: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: titolo: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: titolo: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "360px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: home: versione «0.29.0» invece di «0.27.0»",
+            "375px: titolo: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: crediti: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: genere: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: conferma: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "375px: conferma: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: home: versione «0.29.0» invece di «0.27.0»",
+            "412px: titolo: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: crediti: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: genere: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: guida: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: sala: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: briefing: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiamata: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: risposta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: chiusura: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: rapporto: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: schieramento: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: verbale: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: citta: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: conferma: versione «v0.29.0» invece di «v0.27.0» (PO-097)",
+            "412px: conferma: versione «v0.29.0» invece di «v0.27.0» (PO-097)"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-16T10:04:21.039Z",
+      "commit": "7e28ab4",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "completa",
+      "data": "2026-10-16T10:48:34.700Z",
+      "commit": "7e28ab4",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
     }
   ]
 }
