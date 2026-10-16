@@ -1,0 +1,152 @@
+360×760: ondate 142, pastiglie sopra i nomi 0, nomi su nomi 0, centro coperto 0, fuori mappa 0, nomi fuori 0, non aperte 0
+  tocco su tocco (aree) 4, centro sotto un altro tocco 0, pastiglie su dischi altrui 7, nomi stretti 45 ondate (57 nomi), testo che esce 10, righe max 3, scorrimento 0
+  testo fuori dal riquadro: 10 ondate, max 13.1 px; testo fuori riquadro sopra pastiglie/nomi/bordo: 1
+  e13 o2: testo «Parcheggi» fuori riquadro × pastiglia «1» di piazza_concerto 43 px²
+  posti delle unità {"sopra":281,"sotto":77,"destra":28,"destra-alto":23,"sinistra":12,"destra-basso":14,"sinistra-basso":10,"sinistra-alto":12}
+  stretto e02 o3: Curva ospiti (×0.8, 2 righe)
+  stretto e02 o4: Viale della stazione (×0.8, 3 righe)
+  stretto e06 o3: Viale fra stadio e piazza (×0.8, 3 righe)
+  stretto e06 o4: Viale fra stadio e piazza (×0.8, 3 righe)
+  stretto e07 o1: Viale della stazione (×0.6, 3 righe, ESCE)
+  stretto e10 o4: Piazzale dello stadio (×0.6, 3 righe, ESCE)
+  stretto e12 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e13 o1: Viale fra stadio e piazza (×0.8, 3 righe); Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e13 o2: Viale fra stadio e piazza (×0.8, 3 righe); Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e13 o4: Viale fra stadio e piazza (×0.8, 3 righe); Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e14 o3: Tornelli (×0.6, 1 righe, ESCE)
+  stretto e14 o4: Tornelli (×0.6, 1 righe, ESCE)
+  stretto e16 o1: Magazzino delle fonderie (×0.8, 3 righe); Strada da Kiln (×0.6, 2 righe)
+  stretto e16 o2: Magazzino delle fonderie (×0.8, 3 righe); Strada da Kiln (×0.6, 2 righe)
+  stretto e16 o3: Magazzino delle fonderie (×0.8, 3 righe); Strada da Kiln (×0.6, 2 righe)
+  stretto e16 o4: Magazzino delle fonderie (×0.8, 3 righe); Strada da Kiln (×0.8, 2 righe)
+  stretto e17 o4: Piazzale dello stadio (×0.6, 3 righe, ESCE)
+  stretto e18 o2: Curva ospiti (×0.8, 2 righe)
+  stretto e18 o4: Curva ospiti (×0.8, 2 righe)
+  stretto e19 o1: Strada da Kiln (×0.8, 2 righe); Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e19 o2: Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e19 o3: Strada da Kiln (×0.6, 2 righe); Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e19 o4: Strada da Kiln (×0.6, 2 righe); Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e20 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e22 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e25 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e25 o2: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e25 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e26 o4: Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e29 o1: Banchine del porto (×0.8, 2 righe)
+  stretto e29 o2: Banchine del porto (×0.8, 2 righe)
+  stretto e30 o1: Strada da Kiln (×0.8, 2 righe)
+  stretto e30 o2: Strada da Kiln (×0.8, 2 righe)
+  stretto e30 o3: Vie del quartiere (×0.6, 2 righe, ESCE)
+  stretto e31 o1: Piazzale dello stadio (×0.8, 3 righe); Viale della stazione (×0.8, 3 righe)
+  stretto e31 o2: Piazzale dello stadio (×0.8, 3 righe); Curva ospiti (×0.8, 2 righe)
+  stretto e31 o3: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e31 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e32 o1: Strada da Kiln (×0.8, 2 righe)
+  stretto e33 o1: Curva Skyfield (×0.8, 2 righe)
+  stretto e33 o2: Curva Skyfield (×0.8, 2 righe)
+  stretto e33 o3: Curva Skyfield (×0.8, 2 righe)
+  stretto e33 o4: Curva Skyfield (×0.8, 2 righe)
+  stretto e34 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e34 o4: Piazzale dello stadio (×0.8, 3 righe)
+  posto nuovo e04 o2: {"destra-basso":1,"sopra":3}
+  posto nuovo e05 o1: {"sinistra-basso":1,"sopra":2}
+  posto nuovo e05 o4: {"sotto":2,"sinistra-basso":1,"destra":1}
+  posto nuovo e06 o1: {"destra":1,"sinistra-basso":1,"sopra":1}
+  posto nuovo e18 o4: {"destra-basso":1,"sopra":1,"sinistra-alto":1}
+  posto nuovo e20 o3: {"destra-basso":1,"destra":1,"sopra":1}
+  posto nuovo e21 o2: {"destra-basso":1,"sopra":1}
+  posto nuovo e24 o2: {"destra-basso":1,"sinistra-alto":1,"destra-alto":1}
+  posto nuovo e25 o1: {"sopra":3,"destra-basso":1}
+  posto nuovo e27 o2: {"sotto":1,"destra-basso":1,"sopra":1}
+  posto nuovo e27 o3: {"sotto":1,"destra-basso":1,"sopra":1}
+  posto nuovo e28 o1: {"destra-basso":1,"sotto":2,"sopra":1}
+  posto nuovo e28 o2: {"destra-basso":1,"sopra":1,"sotto":1}
+  posto nuovo e28 o3: {"destra-basso":1,"sopra":1,"sotto":1}
+  posto nuovo e30 o2: {"sinistra-alto":1,"destra-basso":1,"sotto":1,"sopra":1}
+  posto nuovo e31 o1: {"sinistra-basso":1,"sopra":2,"destra-basso":1}
+  posto nuovo e33 o1: {"sinistra-basso":1,"sopra":2,"sotto":1}
+  posto nuovo e33 o2: {"sinistra-basso":1,"sopra":1,"destra-alto":1}
+  posto nuovo e33 o3: {"sinistra-basso":1,"sopra":2}
+  posto nuovo e33 o4: {"sopra":2,"sinistra-basso":1,"destra-alto":1}
+  posto nuovo e34 o1: {"sopra":2,"sinistra-basso":1}
+  posto nuovo e34 o4: {"sopra":2,"sinistra-basso":1}
+  posto nuovo e35 o2: {"destra-basso":1,"sopra":1,"sinistra":1}
+375×667: ondate 142, pastiglie sopra i nomi 0, nomi su nomi 0, centro coperto 0, fuori mappa 0, nomi fuori 0, non aperte 0
+  tocco su tocco (aree) 3, centro sotto un altro tocco 0, pastiglie su dischi altrui 4, nomi stretti 37 ondate (40 nomi), testo che esce 5, righe max 3, scorrimento 0
+  testo fuori dal riquadro: 5 ondate, max 14.6 px; testo fuori riquadro sopra pastiglie/nomi/bordo: 1
+  e35 o2: testo «Perimetro della banca» fuori riquadro × nome Banchine del porto
+  posti delle unità {"sopra":305,"sinistra":15,"destra":20,"destra-alto":22,"sinistra-basso":14,"sotto":60,"destra-basso":6,"sinistra-alto":15}
+  stretto e01 o3: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e02 o3: Curva ospiti (×0.8, 2 righe)
+  stretto e02 o4: Viale della stazione (×0.8, 3 righe)
+  stretto e03 o3: Curva Skyfield (×0.6, 2 righe, ESCE)
+  stretto e03 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e07 o1: Viale della stazione (×0.6, 3 righe, ESCE)
+  stretto e10 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e12 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e13 o1: Viale fra stadio e piazza (×0.8, 3 righe)
+  stretto e13 o2: Viale fra stadio e piazza (×0.8, 3 righe)
+  stretto e13 o4: Viale fra stadio e piazza (×0.8, 3 righe)
+  stretto e16 o1: Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e16 o2: Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e16 o3: Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e16 o4: Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e18 o4: Retro della tribuna (×0.6, 3 righe)
+  stretto e19 o1: Strada da Kiln (×0.8, 2 righe); Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e19 o2: Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e19 o3: Strada da Kiln (×0.8, 2 righe); Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e19 o4: Strada da Kiln (×0.8, 2 righe); Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e20 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e22 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e22 o4: Piazzale dello stadio (×0.6, 3 righe, ESCE)
+  stretto e25 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e25 o2: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e26 o4: Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e29 o2: Banchine del porto (×0.8, 2 righe)
+  stretto e30 o1: Strada da Kiln (×0.8, 2 righe)
+  stretto e31 o2: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e31 o3: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e31 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e32 o1: Strada da Kiln (×0.8, 2 righe)
+  stretto e32 o3: Strada da Skyfield (×0.8, 2 righe)
+  stretto e32 o4: Strada da Skyfield (×0.8, 2 righe)
+  stretto e33 o1: Curva Skyfield (×0.8, 2 righe)
+  stretto e33 o2: Curva Skyfield (×0.8, 2 righe)
+  stretto e35 o2: Perimetro della banca (×0.6, 3 righe, ESCE)
+  posto nuovo e02 o4: {"sopra":1,"sinistra-basso":1,"destra-alto":1}
+  posto nuovo e03 o1: {"sotto":2,"sinistra-basso":1}
+  posto nuovo e03 o3: {"destra-basso":1,"sopra":2,"sinistra":1}
+  posto nuovo e03 o4: {"destra-basso":1,"sopra":1,"sinistra-alto":1}
+  posto nuovo e04 o2: {"destra-basso":1,"sopra":3}
+  posto nuovo e05 o3: {"sinistra-alto":1,"destra-basso":1,"sopra":2}
+  posto nuovo e06 o4: {"sotto":1,"destra-alto":1,"sinistra-basso":1}
+  posto nuovo e09 o1: {"sotto":1,"sinistra-basso":1,"destra-alto":1}
+  posto nuovo e09 o3: {"sopra":2,"sinistra-basso":1,"sinistra":1}
+  posto nuovo e12 o1: {"sopra":3,"sinistra-basso":1}
+  posto nuovo e16 o2: {"sopra":2,"sinistra-basso":1,"sinistra-alto":1}
+  posto nuovo e18 o1: {"sopra":1,"sinistra-basso":1,"sinistra-alto":1}
+  posto nuovo e18 o2: {"sopra":2,"sinistra-basso":1}
+  posto nuovo e21 o2: {"destra-basso":1,"sopra":1}
+  posto nuovo e30 o2: {"destra-alto":2,"sopra":1,"sinistra-basso":1}
+  posto nuovo e31 o1: {"sopra":2,"sinistra-basso":1,"destra-alto":1}
+  posto nuovo e33 o3: {"sotto":1,"sopra":1,"sinistra-basso":1}
+  posto nuovo e33 o4: {"sopra":3,"sinistra-basso":1}
+  posto nuovo e35 o2: {"destra-basso":1,"sopra":2}
+  posto nuovo e35 o3: {"sinistra-basso":1,"sopra":1}
+412×915: ondate 142, pastiglie sopra i nomi 0, nomi su nomi 0, centro coperto 0, fuori mappa 0, nomi fuori 0, non aperte 0
+  tocco su tocco (aree) 0, centro sotto un altro tocco 0, pastiglie su dischi altrui 1, nomi stretti 2 ondate (2 nomi), testo che esce 0, righe max 3, scorrimento 0
+  testo fuori dal riquadro: 0 ondate, max 0 px; testo fuori riquadro sopra pastiglie/nomi/bordo: 0
+  posti delle unità {"sopra":352,"destra":7,"sotto":43,"sinistra":14,"destra-basso":5,"sinistra-alto":11,"destra-alto":20,"sinistra-basso":5}
+  stretto e16 o4: Strada da Kiln (×0.8, 2 righe)
+  stretto e35 o2: Perimetro della banca (×0.8, 3 righe)
+  posto nuovo e03 o3: {"destra-basso":1,"sopra":2,"sinistra":1}
+  posto nuovo e03 o4: {"destra-basso":1,"sopra":1,"sinistra-alto":1}
+  posto nuovo e06 o4: {"sotto":1,"destra-alto":1,"sinistra-basso":1}
+  posto nuovo e07 o4: {"destra-basso":1,"destra-alto":1,"sopra":1}
+  posto nuovo e09 o1: {"sotto":1,"sinistra-basso":1,"sopra":1}
+  posto nuovo e09 o4: {"sotto":1,"sinistra-basso":1,"sopra":1}
+  posto nuovo e11 o3: {"sopra":2,"sinistra-basso":1}
+  posto nuovo e21 o2: {"destra-basso":1,"sopra":1}
+  posto nuovo e30 o3: {"sopra":2,"sinistra-basso":1}
+  posto nuovo e35 o2: {"destra-basso":1,"sopra":2}
+errori 0 []

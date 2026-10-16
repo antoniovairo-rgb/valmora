@@ -1,0 +1,10 @@
+cortei abbinati 229 (0.28.0 231, 0.29.0 231); cambiati di classe 9
+e17 o2 chiamata-ci_vediamo_dopo | chiamata corteo:strada_cinderwick: 0.28.0 26 verso / 13 via → 0.29.0 25 verso / 14 via (verso → misto)
+e30 o2 schieramento-2 | ondata strada_cinderwick>entra: 0.28.0 56 verso / 13 via → 0.29.0 0 verso / 69 via (verso → via)
+e30 o2 chiamata-silenzio_totale | ondata strada_cinderwick>entra: 0.28.0 58 verso / 11 via → 0.29.0 0 verso / 69 via (verso → via)
+e30 o2 chiamata-silenzio_totale | chiamata corteo:strada_cinderwick: 0.28.0 31 verso / 8 via → 0.29.0 0 verso / 40 via (verso → via)
+e30 o2 chiamata-clacson | ondata strada_cinderwick>entra: 0.28.0 57 verso / 12 via → 0.29.0 0 verso / 69 via (verso → via)
+e30 o3 schieramento-3 | ondata strada_cinderwick>entra: 0.28.0 60 verso / 10 via → 0.29.0 0 verso / 69 via (verso → via)
+e30 o3 chiamata-saluto_larkspire | ondata strada_cinderwick>entra: 0.28.0 58 verso / 11 via → 0.29.0 0 verso / 70 via (verso → via)
+e30 o3 chiamata-saluto_larkspire | chiamata corteo:strada_cinderwick: 0.28.0 32 verso / 8 via → 0.29.0 0 verso / 40 via (verso → via)
+e30 o4 chiamata-fiaccolata | chiamata corteo:strada_cinderwick: 0.28.0 20 verso / 20 via → 0.29.0 0 verso / 39 via (misto → via)

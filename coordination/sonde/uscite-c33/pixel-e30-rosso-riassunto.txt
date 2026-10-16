@@ -1,0 +1,10 @@
+e30 o1 schieramento-1 | ondata: – | chiamata: –
+e30 o1 chiamata-autobus_sera | ondata: – | chiamata: corteo:viale_stazione stadio 39/0 rif 39/0
+e30 o2 schieramento-2 | ondata: strada_cinderwick>entra stadio 58/11 rif 69/0 | chiamata: –
+e30 o2 chiamata-silenzio_totale | ondata: strada_cinderwick>entra stadio 57/12 rif 69/0 | chiamata: corteo:strada_cinderwick stadio 31/8 rif 39/0
+e30 o2 chiamata-clacson | ondata: strada_cinderwick>entra stadio 57/11 rif 68/0 | chiamata: corteo:viale_stazione stadio 40/0 rif 40/0
+e30 o3 schieramento-3 | ondata: strada_cinderwick>entra stadio 58/11 rif 69/0 | chiamata: –
+e30 o3 chiamata-saluto_larkspire | ondata: strada_cinderwick>entra stadio 58/12 rif 70/0 | chiamata: corteo:strada_cinderwick stadio 30/10 rif 40/0
+e30 o4 schieramento-4 | ondata: strada_cinderwick>esce stadio 12/57 rif 0/69 | chiamata: –
+e30 o4 chiamata-fiaccolata | ondata: strada_cinderwick>esce stadio 12/58 rif 0/70 | chiamata: corteo:strada_cinderwick stadio 18/21 rif 0/39
+(numeri: si avvicinano / si allontanano)

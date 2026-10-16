@@ -1,0 +1,101 @@
+360×760: ondate 142, pastiglie sopra i nomi 8, nomi su nomi 0, centro coperto 0, fuori mappa 0, nomi fuori 0, non aperte 0
+  tocco su tocco (aree) 8, centro sotto un altro tocco 1, pastiglie su dischi altrui 11, nomi stretti 0 ondate (0 nomi), testo che esce 0, righe max 3, scorrimento 0
+  testo fuori dal riquadro: 0 ondate, max 0 px; testo fuori riquadro sopra pastiglie/nomi/bordo: 0
+  gruppi di pastiglie più vicini al disco di un altro settore: 37 ondate (38 gruppi)
+  ambiguo e02 o4: viale_stazione (sinistra-alto): proprio disco 67 px, curva_ospiti 65 px
+  ambiguo e03 o4: piazzale (destra-alto): proprio disco 67 px, parcheggi 52 px
+  ambiguo e04 o1: mercato (destra-alto): proprio disco 88 px, piazzale 68 px
+  ambiguo e06 o1: piazza_concerto (destra): proprio disco 89 px, viale_concerto 14 px
+  ambiguo e09 o1: tangenziale (sotto): proprio disco 70 px, strada_larkspire 59 px; strada_larkspire (destra-alto): proprio disco 46 px, tangenziale 45 px
+  ambiguo e10 o2: curva_cinderwick (destra): proprio disco 67 px, piazzale 59 px
+  ambiguo e10 o3: curva_cinderwick (destra): proprio disco 66 px, piazzale 59 px
+  ambiguo e13 o3: curva_cinderwick (destra-alto): proprio disco 68 px, piazzale 65 px
+  ambiguo e13 o4: parcheggi (destra-alto): proprio disco 68 px, piazza_concerto 42 px
+  ambiguo e14 o1: tornelli (destra-alto): proprio disco 67 px, curva_larkspire 52 px
+  ambiguo e14 o2: tornelli (destra-alto): proprio disco 66 px, curva_larkspire 52 px
+  ambiguo e15 o4: viale_stazione (sotto): proprio disco 54 px, curva_ospiti 46 px
+  ambiguo e16 o1: magazzino (sinistra-alto): proprio disco 89 px, strada_cinderwick 46 px
+  ambiguo e16 o2: magazzino (sinistra-alto): proprio disco 89 px, strada_cinderwick 45 px
+  ambiguo e17 o2: quartiere (destra-alto): proprio disco 67 px, piazzale 64 px
+  ambiguo e17 o4: quartiere (destra-alto): proprio disco 67 px, piazzale 64 px
+  ambiguo e18 o4: retro_tribuna (destra): proprio disco 67 px, curva_larkspire 56 px
+  ambiguo e19 o2: curva_cinderwick (sotto): proprio disco 70 px, tornelli 29 px
+  ambiguo e21 o2: curva_cinderwick (sotto): proprio disco 70 px, piazzale 68 px
+  ambiguo e22 o4: piazzale (destra-alto): proprio disco 67 px, curva_larkspire 52 px
+  ambiguo e23 o1: parcheggi (destra): proprio disco 67 px, casello 66 px
+  ambiguo e23 o3: curva_cinderwick (sotto): proprio disco 70 px, piazzale 56 px
+  ambiguo e24 o2: curva_larkspire (sinistra): proprio disco 66 px, tornelli 43 px
+  ambiguo e25 o2: curva_cinderwick (sotto): proprio disco 70 px, piazza_municipio 44 px
+  ambiguo e27 o1: curva_cinderwick (destra): proprio disco 89 px, curva_gemellati 67 px
+  ambiguo e27 o2: curva_cinderwick (sotto): proprio disco 69 px, strada_cinderwick 61 px
+  ambiguo e27 o3: curva_cinderwick (sotto): proprio disco 69 px, strada_cinderwick 61 px
+  ambiguo e29 o1: curva_cinderwick (sotto): proprio disco 58 px, strada_cinderwick 56 px
+  ambiguo e29 o2: curva_cinderwick (sotto): proprio disco 70 px, strada_cinderwick 63 px
+  ambiguo e30 o3: piazza_municipio (sotto): proprio disco 70 px, quartiere 69 px
+  ambiguo e31 o2: piazzale (sinistra-alto): proprio disco 89 px, tribuna_autorita 50 px
+  ambiguo e31 o3: piazzale (sinistra-alto): proprio disco 89 px, tribuna_autorita 50 px
+  ambiguo e33 o2: curva_larkspire (sotto): proprio disco 70 px, tornelli 32 px
+  ambiguo e33 o3: curva_larkspire (sotto): proprio disco 70 px, tornelli 31 px
+  ambiguo e34 o2: curva_ospiti (sotto): proprio disco 58 px, parcheggi 54 px
+  ambiguo e34 o3: curva_ospiti (sotto): proprio disco 58 px, parcheggi 54 px
+  ambiguo e35 o2: perimetro_banca (destra): proprio disco 88 px, stazione 68 px
+  posti delle unità {"sopra":280,"sotto":97,"destra":31,"destra-alto":25,"sinistra-alto":14,"sinistra":10}
+  e05 o3: suNomi [«2» di piazzale × Curva Skyfield 11 px²] coperte [] centroSottoAltro []
+  e13 o1: suNomi [«1» di parcheggi × Viale fra stadio e piazza 164 px²] coperte [] centroSottoAltro []
+  e13 o2: suNomi [«1» di piazza_concerto × Viale fra stadio e piazza 35 px²] coperte [] centroSottoAltro []
+  e13 o4: suNomi [«1» di parcheggi × Viale fra stadio e piazza 164 px²] coperte [] centroSottoAltro []
+  e14 o2: suNomi [«2» di curva_larkspire × Curva Skyfield 252 px²] coperte [] centroSottoAltro []
+  e16 o1: suNomi [«1» di magazzino × Magazzino delle fonderie 208 px²] coperte [] centroSottoAltro []
+  e16 o2: suNomi [«1» di magazzino × Magazzino delle fonderie 208 px²] coperte [] centroSottoAltro []
+  e31 o2: suNomi [] coperte [] centroSottoAltro [piazzale/squadre@piazzale sotto curva_ospiti/steward@curva_ospiti; curva_ospiti/steward@curva_ospiti sotto piazzale/squadre@piazzale]
+  e35 o2: suNomi [«2» di perimetro_banca × Perimetro della banca 149 px²] coperte [] centroSottoAltro []
+375×667: ondate 142, pastiglie sopra i nomi 3, nomi su nomi 0, centro coperto 0, fuori mappa 0, nomi fuori 0, non aperte 0
+  tocco su tocco (aree) 7, centro sotto un altro tocco 0, pastiglie su dischi altrui 7, nomi stretti 0 ondate (0 nomi), testo che esce 0, righe max 3, scorrimento 0
+  testo fuori dal riquadro: 0 ondate, max 0 px; testo fuori riquadro sopra pastiglie/nomi/bordo: 0
+  gruppi di pastiglie più vicini al disco di un altro settore: 27 ondate (28 gruppi)
+  ambiguo e04 o1: mercato (destra-alto): proprio disco 88 px, piazzale 75 px; strada_cinderwick (destra-alto): proprio disco 66 px, mercato 57 px
+  ambiguo e04 o2: mercato (sinistra): proprio disco 67 px, strada_cinderwick 59 px
+  ambiguo e09 o1: tangenziale (sotto): proprio disco 70 px, strada_larkspire 62 px
+  ambiguo e10 o4: piazzale (destra): proprio disco 67 px, strada_larkspire 63 px
+  ambiguo e11 o3: strada_cinderwick (sinistra): proprio disco 67 px, quartiere 61 px
+  ambiguo e13 o4: parcheggi (destra-alto): proprio disco 68 px, piazza_concerto 47 px
+  ambiguo e14 o1: biglietteria (sotto): proprio disco 69 px, tornelli 61 px
+  ambiguo e14 o4: biglietteria (sotto): proprio disco 70 px, tornelli 60 px
+  ambiguo e15 o4: viale_stazione (sotto): proprio disco 54 px, curva_ospiti 52 px
+  ambiguo e16 o1: magazzino (sinistra): proprio disco 89 px, strada_cinderwick 26 px
+  ambiguo e16 o2: magazzino (sinistra): proprio disco 89 px, strada_cinderwick 26 px
+  ambiguo e16 o3: magazzino (sinistra): proprio disco 67 px, strada_cinderwick 22 px
+  ambiguo e19 o2: curva_cinderwick (sotto): proprio disco 70 px, tornelli 35 px
+  ambiguo e22 o4: piazzale (destra-alto): proprio disco 67 px, curva_larkspire 57 px
+  ambiguo e23 o3: curva_cinderwick (sotto): proprio disco 70 px, piazzale 63 px
+  ambiguo e24 o2: curva_larkspire (sinistra): proprio disco 66 px, tornelli 47 px
+  ambiguo e25 o2: curva_cinderwick (sotto): proprio disco 70 px, piazza_municipio 51 px
+  ambiguo e27 o1: curva_cinderwick (sotto): proprio disco 70 px, strada_cinderwick 67 px
+  ambiguo e27 o2: curva_cinderwick (sotto): proprio disco 69 px, strada_cinderwick 66 px
+  ambiguo e27 o3: curva_cinderwick (sotto): proprio disco 69 px, strada_cinderwick 66 px
+  ambiguo e29 o2: curva_cinderwick (sotto): proprio disco 70 px, strada_cinderwick 69 px
+  ambiguo e31 o2: piazzale (sinistra-alto): proprio disco 89 px, tribuna_autorita 55 px
+  ambiguo e31 o3: piazzale (sinistra-alto): proprio disco 89 px, tribuna_autorita 55 px
+  ambiguo e33 o2: curva_larkspire (sotto): proprio disco 70 px, tornelli 37 px
+  ambiguo e33 o3: curva_larkspire (sotto): proprio disco 70 px, tornelli 37 px
+  ambiguo e34 o2: tribuna_autorita (destra-alto): proprio disco 88 px, curva_ospiti 84 px
+  ambiguo e35 o2: perimetro_banca (destra): proprio disco 88 px, stazione 73 px
+  posti delle unità {"sopra":289,"sinistra":17,"sotto":77,"destra":30,"destra-alto":26,"sinistra-alto":18}
+  e13 o1: suNomi [«1» di parcheggi × Viale fra stadio e piazza 116 px²] coperte [] centroSottoAltro []
+  e13 o4: suNomi [«1» di parcheggi × Viale fra stadio e piazza 116 px²] coperte [] centroSottoAltro []
+  e35 o2: suNomi [«2» di perimetro_banca × Perimetro della banca 149 px²] coperte [] centroSottoAltro []
+412×915: ondate 142, pastiglie sopra i nomi 0, nomi su nomi 0, centro coperto 0, fuori mappa 0, nomi fuori 0, non aperte 0
+  tocco su tocco (aree) 0, centro sotto un altro tocco 0, pastiglie su dischi altrui 1, nomi stretti 0 ondate (0 nomi), testo che esce 0, righe max 3, scorrimento 0
+  testo fuori dal riquadro: 0 ondate, max 0 px; testo fuori riquadro sopra pastiglie/nomi/bordo: 0
+  gruppi di pastiglie più vicini al disco di un altro settore: 9 ondate (9 gruppi)
+  ambiguo e04 o1: strada_cinderwick (destra-alto): proprio disco 66 px, mercato 65 px
+  ambiguo e18 o4: retro_tribuna (sinistra): proprio disco 67 px, curva_ospiti 64 px
+  ambiguo e19 o2: curva_cinderwick (sotto): proprio disco 70 px, tornelli 48 px
+  ambiguo e23 o1: parcheggi (destra-alto): proprio disco 67 px, casello 58 px
+  ambiguo e25 o2: curva_cinderwick (sotto): proprio disco 70 px, piazza_municipio 68 px
+  ambiguo e31 o2: piazzale (sotto): proprio disco 70 px, viale_stazione 65 px
+  ambiguo e31 o3: piazzale (sotto): proprio disco 70 px, viale_stazione 65 px
+  ambiguo e33 o2: curva_larkspire (sinistra): proprio disco 89 px, curva_ospiti 76 px
+  ambiguo e33 o3: curva_larkspire (sotto): proprio disco 70 px, tornelli 50 px
+  posti delle unità {"sopra":353,"destra":7,"sotto":47,"destra-alto":23,"sinistra":15,"sinistra-alto":12}
+errori 0 []

@@ -1,0 +1,11 @@
+tipi di coppia solo prima: SPAN.settore-nome × SPAN.pastiglia (16)
+tipi di coppia solo dopo: nessuno
+schermate abbinate: con più tipi di sovrapposizione 97, con meno 106, uguali 1713
+  e01/chiamata-rinforzi: +SPAN.segno-effetto × SPAN.pastiglia
+  e01/risposta-pareggio: +SPAN.segno-effetto × SPAN.pastiglia
+  e01/chiusura-3: +SPAN.segno-effetto × SPAN.pastiglia
+  e02/chiamata-corteo_viale: +SPAN.segno-effetto × SPAN.pastiglia
+  e02/chiamata-comitato_quartiere: +SPAN.segno-effetto × SPAN.settore-nome
+  e02/chiamata-caldo_casa: +SPAN.segno-effetto × SPAN.pastiglia
+  e02/chiusura-3: +SPAN.segno-effetto × SPAN.pastiglia
+  e02/chiusura-4: +SPAN.segno-effetto × SPAN.settore-nome

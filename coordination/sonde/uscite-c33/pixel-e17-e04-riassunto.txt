@@ -1,0 +1,15 @@
+e04 o1 schieramento-1 | ondata: strada_cinderwick>entra stadio 70/0 rif –; parcheggi>entra stadio 70/0 rif – | chiamata: –
+e04 o1 chiamata-corteo_fonderie | ondata: strada_cinderwick>entra stadio 69/0 rif –; parcheggi>entra stadio 69/0 rif – | chiamata: corteo:strada_cinderwick stadio 39/0 rif –
+e04 o2 schieramento-2 | ondata: parcheggi>entra stadio 69/0 rif – | chiamata: –
+e04 o2 chiamata-coro_fonderie | ondata: parcheggi>entra stadio 69/0 rif – | chiamata: corteo:parcheggi stadio 40/0 rif –
+e04 o3 schieramento-3 | ondata: strada_cinderwick>esce stadio 0/69 rif – | chiamata: –
+e04 o3 chiamata-angolo | ondata: strada_cinderwick>esce stadio 0/69 rif – | chiamata: corteo:strada_cinderwick stadio 0/39 rif –
+e17 o1 schieramento-1 | ondata: strada_cinderwick>entra stadio 48/21 rif 69/0 | chiamata: –
+e17 o1 chiamata-schermo_comizi | ondata: strada_cinderwick>entra stadio 49/20 rif 69/0 | chiamata: corteo:piazza_municipio stadio 40/0 rif 18/22
+e17 o2 schieramento-2 | ondata: – | chiamata: –
+e17 o2 chiamata-ci_vediamo_dopo | ondata: – | chiamata: corteo:strada_cinderwick stadio 25/14 rif 39/0
+e17 o3 schieramento-3 | ondata: piazza_municipio>entra stadio 70/0 rif 35/35 | chiamata: –
+e17 o4 schieramento-4 | ondata: strada_cinderwick>esce stadio 21/48 rif 0/69; piazza_municipio>esce stadio 0/69 rif 35/34 | chiamata: –
+e17 o4 chiamata-me_lo_dovete | ondata: strada_cinderwick>esce stadio 22/47 rif 0/69; piazza_municipio>esce stadio 0/69 rif 35/34 | chiamata: corteo:strada_cinderwick stadio 24/16 rif 0/40
+e17 o4 chiamata-fine_corteo | ondata: strada_cinderwick>esce stadio 21/48 rif 0/69; piazza_municipio>esce stadio 0/69 rif 36/33 | chiamata: corteo:piazza_municipio stadio 0/39 rif 32/7
+(numeri: si avvicinano / si allontanano)

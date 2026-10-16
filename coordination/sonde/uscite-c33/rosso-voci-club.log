@@ -1,0 +1,48 @@
+
+ RUN  v5.0.3 /tmp/claude-0/-home-user-valmora/a78dc403-54c3-5e47-9dae-3e4853d7f472/scratchpad/rosso
+
+ ❯ tests/voci-club.test.ts (2 tests | 2 failed) 15ms
+   ❯ C32-03 offerte di steward dai club (2)
+     × e07 immagine_club: parla la sicurezza del club 10ms
+     × e08 consiglio_presidente: parla la sicurezza del club 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/voci-club.test.ts > C32-03 offerte di steward dai club > e07 immagine_club: parla la sicurezza del club
+AssertionError: expected 'vice' to be 'ufficio_sicurezza_larkspire' // Object.is equality
+
+Expected: "ufficio_sicurezza_larkspire"
+Received: "vice"
+
+ ❯ tests/voci-club.test.ts:17:57
+     15|     ['e08', 'consiglio_presidente', 'ufficio_sicurezza_cinderwick'],
+     16|   ])('%s %s: parla la sicurezza del club', (e, c, fonte) => {
+     17|     expect((chiamata(e, c) as { fonte: string }).fonte).toBe(fonte);
+       |                                                         ^
+     18|   });
+     19| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/voci-club.test.ts > C32-03 offerte di steward dai club > e08 consiglio_presidente: parla la sicurezza del club
+AssertionError: expected 'vice' to be 'ufficio_sicurezza_cinderwick' // Object.is equality
+
+Expected: "ufficio_sicurezza_cinderwick"
+Received: "vice"
+
+ ❯ tests/voci-club.test.ts:17:57
+     15|     ['e08', 'consiglio_presidente', 'ufficio_sicurezza_cinderwick'],
+     16|   ])('%s %s: parla la sicurezza del club', (e, c, fonte) => {
+     17|     expect((chiamata(e, c) as { fonte: string }).fonte).toBe(fonte);
+       |                                                         ^
+     18|   });
+     19| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  17:29:02
+   Duration  471ms (transform 56%, tests 19%, import 18%, worker 7%)
+

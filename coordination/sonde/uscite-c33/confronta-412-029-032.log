@@ -1,0 +1,11 @@
+tipi di coppia solo prima: nessuno
+tipi di coppia solo dopo: nessuno
+schermate abbinate: con più tipi di sovrapposizione 51, con meno 105, uguali 1760
+  e01/risposta-corteo_partito: +DIV.chi-nome × P.
+  e03/risposta-rigori_curve: +SPAN.settore-nome × SPAN.segno-effetto
+  e04/risposta-corteo_fonderie: +SPAN.settore-nome × SPAN.segno-effetto
+  e04/chiamata-kebab_chiuso: +SPAN.settore-nome × SPAN.segno-effetto, SPAN.segno-effetto × SPAN.pastiglia
+  e04/chiusura-2: +SPAN.segno-effetto × SPAN.pastiglia
+  e05/chiamata-domattina: +SPAN.segno-effetto × SPAN.settore-nome
+  e05/chiusura-4: +SPAN.segno-effetto × SPAN.pastiglia, SPAN.segno-effetto × SPAN.settore-nome
+  e06/chiamata-fumo_viola: +SPAN.segno-effetto × SPAN.pastiglia

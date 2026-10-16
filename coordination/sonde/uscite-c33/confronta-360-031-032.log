@@ -1,0 +1,11 @@
+tipi di coppia solo prima: SPAN.pastiglia × SPAN.settore-nome (6); SPAN.settore-nome × SPAN.pastiglia (40); SPAN.pastiglia × SPAN.pastiglia (8)
+tipi di coppia solo dopo: DIV.chi-nome × P. (2)
+schermate abbinate: con più tipi di sovrapposizione 33, con meno 224, uguali 1659
+  e01/risposta-capo_curva: +DIV.chi-nome × P.
+  e03/risposta-auto_in_sosta: +SPAN.segno-effetto × SPAN.pastiglia
+  e03/risposta-cartelloni: +SPAN.segno-effetto × SPAN.pastiglia
+  e06/risposta-palco: +SPAN.segno-effetto × SPAN.pastiglia
+  e06/risposta-sponsor: +SPAN.segno-effetto × SPAN.pastiglia
+  e06/risposta-ospiti_concerto: +SPAN.segno-effetto × SPAN.pastiglia
+  e09/chiamata-corsia_unica: +SPAN.segno-effetto × SPAN.pastiglia
+  e18/risposta-con_o_senza: +SPAN.settore-nome × SPAN.segno-effetto
