@@ -230,4 +230,11 @@
 //   uomo e donna, DPR 1 e 2.
 //   guardiano: tests/espressioni.test.ts (soglie, un'espressione per tono), controllo data-tono ↔ vignetta nel giro foto
 //   (rosso C96P01: 29 righe).
-export const GAME_VERSION = '0.33.0';
+// 0.34.0 – «?» nella barra fissa (D-139), fuoco della tastiera (C32-01), versione su tablet e PC (C32-06), e17 (C32-02).
+//   causa: C30-04 il «?» finiva sotto la barra fissa a 375×667 e 1366×768; C32-01 il fuoco recuperato andava in cima alla
+//   scena (18 Tab per conferma-passo invece di 2); C32-06 su tablet e PC la versione toccava i pulsanti (8/21 scene);
+//   C32-02 in e17 la strada di Kiln senza meta: «me_lo_dovete» 23 verso / 16 via lo stadio.
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (56f8fe2); «?» libero a 360/375/412/1366, «Conferma» ≥ 44 px;
+//   e17 me_lo_dovete 28-29 via / 10-11 verso lo stadio, ondata 4 51-52/17-18 (rosso C95S01 69/0 via dal municipio).
+//   guardiano: rossi C96A01 («?»), C97F01 (fuoco), C98V01 (versione); guardiano C17 rifatto; tests/meta-fase.test.ts (e17).
+export const GAME_VERSION = '0.34.0';
