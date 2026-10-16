@@ -127,7 +127,8 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
         const posti = () => q6.evaluate(() => [...document.querySelectorAll('.mappa:not(.citta) [data-settore]')].map((x) => `${x.dataset.settore}:${x.dataset.nome}/${x.dataset.unita}/${x.querySelector('.settore-nome')?.style.maxWidth ?? ''}`).join(' '));
         const prima = await posti();
         await q6.evaluate(() => { for (const x of document.querySelectorAll('.mappa:not(.citta) [data-settore]')) { x.setAttribute('data-unita', 'sotto'); x.querySelector('.settore-nome')?.style.setProperty('max-width', 'calc(var(--nome-max) * 0.6)'); } });
-        await q6.setViewportSize({ width: w + 1, height: h }); await q6.waitForTimeout(80); await q6.setViewportSize({ width: w, height: h }); await q6.waitForTimeout(120);
+        await q6.setViewportSize({ width: w + 24, height: h + 24 }); await q6.waitForTimeout(120); // la mappa deve cambiare misura (w+1: in 25 ondate non cambiava)
+         await q6.setViewportSize({ width: w, height: h }); await q6.waitForTimeout(120);
         const dopo = await posti();
         atteso(`${dove}: la disposizione cambia ripartendo da un altro stato (C33-04): ${prima === dopo ? '' : dopo.split(' ').filter((x, i) => x !== prima.split(' ')[i]).join(' ')}`, prima === dopo);
       }
