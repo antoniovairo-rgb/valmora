@@ -1,0 +1,1656 @@
+[
+ {
+  "ep": "e01",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra",
+   "strada_larkspire>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra",
+   "strada_larkspire>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "arrivo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e01",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e01",
+  "ondata": 3,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce",
+   "strada_larkspire>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>esce",
+   "strada_cinderwick>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "deflusso:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e02",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione>entra"
+  ],
+  "chiamateSuStrada": [
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e02",
+  "ondata": 2,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione>entra"
+  ],
+  "chiamateSuStrada": [
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e02",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e02",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_stazione>esce"
+  ],
+  "chiamateSuStrada": [
+   "viale_stazione>esce"
+  ],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e03",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "parcheggi>entra"
+  ],
+  "eventiStrada": [
+   "sosta:parcheggi"
+  ]
+ },
+ {
+  "ep": "e03",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "parcheggi>entra"
+  ],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e03",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "sosta:parcheggi"
+  ]
+ },
+ {
+  "ep": "e03",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "parcheggi>esce"
+  ],
+  "chiamateSuStrada": [
+   "parcheggi>esce"
+  ],
+  "eventiStrada": [
+   "folla:parcheggi"
+  ]
+ },
+ {
+  "ep": "e04",
+  "ondata": 1,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick>entra",
+   "parcheggi>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "arrivo:parcheggi"
+  ]
+ },
+ {
+  "ep": "e04",
+  "ondata": 2,
+  "spalti": "vuoti",
+  "cortei": [
+   "parcheggi>entra"
+  ],
+  "chiamateSuStrada": [
+   "parcheggi>entra"
+  ],
+  "eventiStrada": [
+   "arrivo:parcheggi"
+  ]
+ },
+ {
+  "ep": "e04",
+  "ondata": 3,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e05",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_larkspire>entra"
+  ],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "arrivo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e05",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e05",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e05",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>esce"
+  ],
+  "eventiStrada": [
+   "deflusso:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e06",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_concerto>entra@cinderwick_united"
+  ],
+  "chiamateSuStrada": [
+   "viale_concerto>entra"
+  ],
+  "eventiStrada": [
+   "corteo:viale_concerto"
+  ]
+ },
+ {
+  "ep": "e06",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e06",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "folla:viale_concerto"
+  ]
+ },
+ {
+  "ep": "e06",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_concerto>esce"
+  ],
+  "chiamateSuStrada": [
+   "viale_concerto>esce"
+  ],
+  "eventiStrada": [
+   "deflusso:viale_concerto"
+  ]
+ },
+ {
+  "ep": "e07",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "parcheggi>entra"
+  ],
+  "chiamateSuStrada": [
+   "parcheggi>entra",
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": [
+   "festa:viale_stazione",
+   "arrivo:parcheggi"
+  ]
+ },
+ {
+  "ep": "e07",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "strada_larkspire>entra"
+  ],
+  "eventiStrada": [
+   "raduno:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e07",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "strada_larkspire>entra"
+  ],
+  "eventiStrada": [
+   "raduno:strada_larkspire",
+   "festa:parcheggi"
+  ]
+ },
+ {
+  "ep": "e07",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "viale_stazione>esce",
+   "parcheggi>esce"
+  ],
+  "eventiStrada": [
+   "festa:viale_stazione",
+   "festa:parcheggi"
+  ]
+ },
+ {
+  "ep": "e08",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e08",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e08",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e08",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e09",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "tangenziale>entra",
+   "strada_larkspire>entra"
+  ],
+  "chiamateSuStrada": [
+   "tangenziale>entra",
+   "strada_larkspire>entra"
+  ],
+  "eventiStrada": [
+   "arrivo:tangenziale",
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e09",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "tangenziale>entra"
+  ],
+  "eventiStrada": [
+   "rissa:tangenziale"
+  ]
+ },
+ {
+  "ep": "e09",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "tangenziale>entra"
+  ],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e09",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire>esce",
+   "tangenziale>esce"
+  ],
+  "chiamateSuStrada": [
+   "tangenziale>esce"
+  ],
+  "eventiStrada": [
+   "deflusso:strada_larkspire",
+   "folla:tangenziale"
+  ]
+ },
+ {
+  "ep": "e10",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra",
+   "strada_larkspire>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>entra",
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e10",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e10",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e10",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce",
+   "strada_larkspire>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>esce",
+   "strada_larkspire>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "deflusso:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e11",
+  "ondata": 1,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "assembramento:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e11",
+  "ondata": 2,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "folla:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e11",
+  "ondata": 3,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "incendio:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e11",
+  "ondata": 4,
+  "spalti": "vuoti",
+  "cortei": [
+   "viale_stazione>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra",
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": [
+   "incendio:strada_cinderwick",
+   "folla:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e12",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e12",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e12",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e12",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce"
+  ],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e13",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_concerto>entra"
+  ],
+  "chiamateSuStrada": [
+   "viale_concerto>entra",
+   "parcheggi>entra"
+  ],
+  "eventiStrada": [
+   "arrivo:viale_concerto",
+   "sosta:parcheggi"
+  ]
+ },
+ {
+  "ep": "e13",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e13",
+  "ondata": 3,
+  "spalti": "deflusso",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e13",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "parcheggi>esce",
+   "viale_concerto>esce@tramway_borough"
+  ],
+  "chiamateSuStrada": [
+   "parcheggi>esce",
+   "viale_concerto>esce"
+  ],
+  "eventiStrada": [
+   "deflusso:parcheggi",
+   "corteo:viale_concerto"
+  ]
+ },
+ {
+  "ep": "e14",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e14",
+  "ondata": 2,
+  "spalti": "arrivo",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e14",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e14",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e15",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione>entra@cinderwick_united"
+  ],
+  "chiamateSuStrada": [
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e15",
+  "ondata": 2,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione>entra@cinderwick_united"
+  ],
+  "chiamateSuStrada": [
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e15",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e15",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_stazione>esce@railhead_county"
+  ],
+  "chiamateSuStrada": [
+   "viale_stazione>esce"
+  ],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e16",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e16",
+  "ondata": 2,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra"
+  ],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e16",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e16",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e17",
+  "ondata": 1,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick>entra"
+  ],
+  "chiamateSuStrada": [
+   "piazza_municipio>entra"
+  ],
+  "eventiStrada": [
+   "raduno:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e17",
+  "ondata": 2,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e17",
+  "ondata": 3,
+  "spalti": "vuoti",
+  "cortei": [
+   "piazza_municipio>entra"
+  ],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "folla:piazza_municipio"
+  ]
+ },
+ {
+  "ep": "e17",
+  "ondata": 4,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick>esce@cinderwick_united",
+   "piazza_municipio>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra",
+   "piazza_municipio>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick/dallo_stadio",
+   "folla:piazza_municipio/dallo_stadio"
+  ]
+ },
+ {
+  "ep": "e18",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_larkspire>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e18",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e18",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e18",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e19",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e19",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e19",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e19",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e20",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra",
+   "strada_larkspire>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra",
+   "strada_larkspire>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "corteo:strada_larkspire",
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e20",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e20",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "fuga:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e20",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce",
+   "strada_larkspire>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>esce",
+   "strada_larkspire>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e21",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e21",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e21",
+  "ondata": 3,
+  "spalti": "deflusso",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e21",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e22",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e22",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e22",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e22",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e23",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "casello>entra"
+  ],
+  "chiamateSuStrada": [
+   "casello>entra",
+   "parcheggi>entra"
+  ],
+  "eventiStrada": [
+   "arrivo:casello",
+   "sosta:parcheggi"
+  ]
+ },
+ {
+  "ep": "e23",
+  "ondata": 2,
+  "spalti": "arrivo",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "parcheggi>entra"
+  ],
+  "eventiStrada": [
+   "sosta:parcheggi"
+  ]
+ },
+ {
+  "ep": "e23",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "casello>entra"
+  ],
+  "eventiStrada": [
+   "arrivo:casello"
+  ]
+ },
+ {
+  "ep": "e23",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "casello>esce"
+  ],
+  "chiamateSuStrada": [
+   "casello>esce",
+   "parcheggi>esce"
+  ],
+  "eventiStrada": [
+   "arrivo:casello",
+   "sosta:parcheggi"
+  ]
+ },
+ {
+  "ep": "e24",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_larkspire>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e24",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e24",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e24",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e25",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e25",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e25",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e25",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e26",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "parcheggi>entra"
+  ],
+  "chiamateSuStrada": [
+   "parcheggi>entra"
+  ],
+  "eventiStrada": [
+   "arrivo:parcheggi"
+  ]
+ },
+ {
+  "ep": "e26",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "parcheggi>entra"
+  ],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e26",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e26",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "parcheggi>esce"
+  ],
+  "chiamateSuStrada": [
+   "parcheggi>esce"
+  ],
+  "eventiStrada": [
+   "arrivo:parcheggi"
+  ]
+ },
+ {
+  "ep": "e27",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e27",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e27",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e27",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e28",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra@mossgarth_town"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "arrivo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e28",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e28",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e28",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e29",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e29",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e29",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e29",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "corteo:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e30",
+  "ondata": 1,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": [
+   "traffico:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e30",
+  "ondata": 2,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick>esce@cinderwick_united"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra",
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick/dallo_stadio",
+   "traffico:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e30",
+  "ondata": 3,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick>entra@cinderwick_united"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "folla:strada_cinderwick"
+  ]
+ },
+ {
+  "ep": "e30",
+  "ondata": 4,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick>esce@cinderwick_united"
+  ],
+  "chiamateSuStrada": [
+   "strada_cinderwick>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick/dallo_stadio"
+  ]
+ },
+ {
+  "ep": "e31",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione>entra"
+  ],
+  "chiamateSuStrada": [
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e31",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e31",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e31",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_stazione>esce"
+  ],
+  "chiamateSuStrada": [
+   "viale_stazione>esce"
+  ],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e32",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick>entra",
+   "strada_larkspire>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e32",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e32",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e32",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick>esce",
+   "strada_larkspire>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_cinderwick",
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e33",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione>entra"
+  ],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e33",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "viale_stazione>entra"
+  ],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e33",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e33",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_stazione>esce"
+  ],
+  "chiamateSuStrada": [
+   "viale_stazione>esce"
+  ],
+  "eventiStrada": [
+   "corteo:viale_stazione"
+  ]
+ },
+ {
+  "ep": "e34",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "parcheggi>entra"
+  ],
+  "chiamateSuStrada": [
+   "parcheggi>entra"
+  ],
+  "eventiStrada": [
+   "arrivo:parcheggi"
+  ]
+ },
+ {
+  "ep": "e34",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e34",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e34",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "parcheggi>esce"
+  ],
+  "chiamateSuStrada": [
+   "parcheggi>esce"
+  ],
+  "eventiStrada": [
+   "corteo:parcheggi"
+  ]
+ },
+ {
+  "ep": "e35",
+  "ondata": 1,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamateSuStrada": [
+   "corso_centro>entra"
+  ],
+  "eventiStrada": [
+   "traffico:corso_centro"
+  ]
+ },
+ {
+  "ep": "e35",
+  "ondata": 2,
+  "spalti": "vuoti",
+  "cortei": [
+   "corso_centro>entra"
+  ],
+  "chiamateSuStrada": [
+   "corso_centro>entra"
+  ],
+  "eventiStrada": [
+   "folla:corso_centro"
+  ]
+ },
+ {
+  "ep": "e35",
+  "ondata": 3,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e35",
+  "ondata": 4,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e36",
+  "ondata": 1,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_larkspire>entra"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>entra"
+  ],
+  "eventiStrada": [
+   "corteo:strada_larkspire"
+  ]
+ },
+ {
+  "ep": "e36",
+  "ondata": 2,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e36",
+  "ondata": 3,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamateSuStrada": [],
+  "eventiStrada": []
+ },
+ {
+  "ep": "e36",
+  "ondata": 4,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire>esce"
+  ],
+  "chiamateSuStrada": [
+   "strada_larkspire>esce"
+  ],
+  "eventiStrada": [
+   "corteo:strada_larkspire"
+  ]
+ }
+]

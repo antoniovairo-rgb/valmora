@@ -1,0 +1,1017 @@
+[
+ {
+  "ep": "e01",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio",
+   "strada_larkspire entra → stadio"
+  ],
+  "chiamate": [
+   "corteo_partito@strada_cinderwick entra → stadio",
+   "pullman@strada_larkspire entra → stadio"
+  ]
+ },
+ {
+  "ep": "e01",
+  "ondata": 3,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso",
+   "strada_larkspire esce → bordo basso"
+  ],
+  "chiamate": [
+   "incrocio@strada_larkspire esce → bordo basso",
+   "sciarpe@strada_cinderwick esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e02",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione entra → stadio"
+  ],
+  "chiamate": [
+   "responsabile@viale_stazione entra → stadio"
+  ]
+ },
+ {
+  "ep": "e02",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione entra → stadio"
+  ],
+  "chiamate": [
+   "corteo_viale@viale_stazione entra → stadio"
+  ]
+ },
+ {
+  "ep": "e02",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_stazione esce → stazione(stazione)"
+  ],
+  "chiamate": [
+   "responsabile_saluta@viale_stazione esce → stazione(stazione)",
+   "vetrine@viale_stazione esce → stazione(stazione)"
+  ]
+ },
+ {
+  "ep": "e03",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [],
+  "chiamate": [
+   "ospiti_arrivano@parcheggi entra → stadio"
+  ]
+ },
+ {
+  "ep": "e03",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "furgone_parcheggi@parcheggi entra → stadio"
+  ]
+ },
+ {
+  "ep": "e03",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "parcheggi esce → bordo basso"
+  ],
+  "chiamate": [
+   "risultato@parcheggi esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e04",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick entra → centro (stadio vuoto)",
+   "parcheggi entra → centro (stadio vuoto)"
+  ],
+  "chiamate": [
+   "corteo_fonderie@strada_cinderwick entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e04",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "parcheggi entra → centro (stadio vuoto)"
+  ],
+  "chiamate": [
+   "coro_fonderie@parcheggi entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e04",
+  "ondata": 3,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": [
+   "angolo@strada_cinderwick esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e05",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_larkspire entra → stadio"
+  ],
+  "chiamate": []
+ },
+ {
+  "ep": "e05",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire esce → bordo basso"
+  ],
+  "chiamate": [
+   "fondo_strada@strada_larkspire esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e06",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_concerto entra → stadio"
+  ],
+  "chiamate": [
+   "corteo_cinderwick@viale_concerto entra → stadio"
+  ]
+ },
+ {
+  "ep": "e06",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_concerto esce → bordo basso"
+  ],
+  "chiamate": [
+   "furgone_palco@viale_concerto esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e07",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "parcheggi entra → centro (stadio vuoto)"
+  ],
+  "chiamate": [
+   "quaranta_pulmini@parcheggi entra → centro (stadio vuoto)",
+   "foto_ricordo@viale_stazione entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e07",
+  "ondata": 2,
+  "fase": "partita",
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "coro_imparato@strada_larkspire entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e07",
+  "ondata": 3,
+  "fase": "partita",
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "pareggio_casa@strada_larkspire entra → centro (stadio vuoto)",
+   "immagine_club@strada_larkspire entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e07",
+  "ondata": 4,
+  "fase": "dopo",
+  "spalti": "deflusso",
+  "cortei": [],
+  "chiamate": [
+   "capodanno@viale_stazione esce → bordo basso",
+   "batteria@parcheggi esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e08",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio"
+  ],
+  "chiamate": [
+   "dessi_chiama@strada_cinderwick entra → stadio",
+   "facce_nuove@strada_cinderwick entra → stadio"
+  ]
+ },
+ {
+  "ep": "e08",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": [
+   "sedile@strada_cinderwick esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e09",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "tangenziale entra → stadio",
+   "strada_larkspire entra → stadio"
+  ],
+  "chiamate": [
+   "furgone_coinvolto@tangenziale entra → stadio",
+   "a_piedi@strada_larkspire entra → stadio",
+   "pullman_fermi@tangenziale entra → stadio",
+   "passaggio@tangenziale entra → stadio"
+  ]
+ },
+ {
+  "ep": "e09",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "lite_coda@tangenziale entra → stadio",
+   "immagini_club@tangenziale entra → stadio"
+  ]
+ },
+ {
+  "ep": "e09",
+  "ondata": 3,
+  "fase": null,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "corsia_unica@tangenziale entra → stadio"
+  ]
+ },
+ {
+  "ep": "e09",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire esce → bordo basso",
+   "tangenziale esce → bordo basso"
+  ],
+  "chiamate": [
+   "furgone_sparito@tangenziale esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e10",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio",
+   "strada_larkspire entra → stadio"
+  ],
+  "chiamate": [
+   "collina_risponde@strada_larkspire entra → stadio",
+   "ragazzo_ricorda@strada_cinderwick entra → stadio",
+   "ragazzo_offeso@strada_cinderwick entra → stadio"
+  ]
+ },
+ {
+  "ep": "e10",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso",
+   "strada_larkspire esce → bordo basso"
+  ],
+  "chiamate": [
+   "furgone_derby@strada_cinderwick esce → bordo basso",
+   "ponte_ritorno@strada_larkspire esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e11",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick entra → centro"
+  ],
+  "chiamate": [
+   "dirette@strada_cinderwick entra → centro"
+  ]
+ },
+ {
+  "ep": "e11",
+  "ondata": 3,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamate": [
+   "autoscala@strada_cinderwick entra → centro",
+   "contromano@strada_cinderwick entra → centro"
+  ]
+ },
+ {
+  "ep": "e11",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "viale_stazione entra → centro"
+  ],
+  "chiamate": [
+   "ultimo_fuoco@strada_cinderwick entra → centro",
+   "chiudete_stadio@viale_stazione entra → centro"
+  ]
+ },
+ {
+  "ep": "e12",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio"
+  ],
+  "chiamate": [
+   "ultimo_corteo@strada_cinderwick entra → stadio"
+  ]
+ },
+ {
+  "ep": "e12",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": []
+ },
+ {
+  "ep": "e13",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_concerto entra → centro (stadio vuoto)"
+  ],
+  "chiamate": [
+   "viale_pieno@viale_concerto entra → centro (stadio vuoto)",
+   "parcheggi_riservati@parcheggi entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e13",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "parcheggi esce → bordo basso",
+   "viale_concerto esce → bordo basso"
+  ],
+  "chiamate": [
+   "coda_auto@parcheggi esce → bordo basso",
+   "corteo_rovers@viale_concerto esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e15",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione entra → stadio"
+  ],
+  "chiamate": [
+   "fratelli@viale_stazione entra → stadio"
+  ]
+ },
+ {
+  "ep": "e15",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione entra → stadio"
+  ],
+  "chiamate": [
+   "mille@viale_stazione entra → stadio"
+  ]
+ },
+ {
+  "ep": "e15",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_stazione esce → stazione(stazione)"
+  ],
+  "chiamate": [
+   "fondo_viale@viale_stazione esce → stazione(stazione)"
+  ]
+ },
+ {
+  "ep": "e16",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio"
+  ],
+  "chiamate": [
+   "corteo_fonderie@strada_cinderwick entra → stadio"
+  ]
+ },
+ {
+  "ep": "e16",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio"
+  ],
+  "chiamate": []
+ },
+ {
+  "ep": "e16",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": [
+   "ritorno16@strada_cinderwick esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e17",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick entra → centro (stadio vuoto)"
+  ],
+  "chiamate": [
+   "schermo_comizi@piazza_municipio entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e17",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamate": [
+   "ci_vediamo_dopo@strada_cinderwick entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e17",
+  "ondata": 3,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "piazza_municipio entra → centro (stadio vuoto)"
+  ],
+  "chiamate": []
+ },
+ {
+  "ep": "e17",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso",
+   "piazza_municipio esce → bordo basso"
+  ],
+  "chiamate": [
+   "me_lo_dovete@strada_cinderwick esce → bordo basso",
+   "fine_corteo@piazza_municipio esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e18",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_larkspire entra → stadio"
+  ],
+  "chiamate": [
+   "collina18@strada_larkspire entra → stadio"
+  ]
+ },
+ {
+  "ep": "e18",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire esce → bordo basso"
+  ],
+  "chiamate": [
+   "deflusso18@strada_larkspire esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e19",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio"
+  ],
+  "chiamate": [
+   "ora_prima@strada_cinderwick entra → stadio"
+  ]
+ },
+ {
+  "ep": "e19",
+  "ondata": 3,
+  "fase": null,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "festa_davanti@strada_cinderwick entra → stadio"
+  ]
+ },
+ {
+  "ep": "e19",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": [
+   "consiglio@strada_cinderwick esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e20",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio",
+   "strada_larkspire entra → stadio"
+  ],
+  "chiamate": [
+   "viso_scoperto@strada_cinderwick entra → stadio",
+   "vederli_passare@strada_larkspire entra → stadio"
+  ]
+ },
+ {
+  "ep": "e20",
+  "ondata": 3,
+  "fase": null,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "fari_spenti20@strada_cinderwick entra → stadio"
+  ]
+ },
+ {
+  "ep": "e20",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso",
+   "strada_larkspire esce → bordo basso"
+  ],
+  "chiamate": [
+   "lo_avete_preso@strada_cinderwick esce → bordo basso",
+   "festa_strada@strada_larkspire esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e22",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio"
+  ],
+  "chiamate": [
+   "ridateci@strada_cinderwick entra → stadio"
+  ]
+ },
+ {
+  "ep": "e22",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": [
+   "salutare_presidio@strada_cinderwick esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e23",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "casello entra → stadio"
+  ],
+  "chiamate": [
+   "traslochi@casello entra → stadio",
+   "traghetto_extra@casello entra → stadio",
+   "dieci_pullman@parcheggi entra → stadio",
+   "barca@casello entra → stadio"
+  ]
+ },
+ {
+  "ep": "e23",
+  "ondata": 2,
+  "fase": "prima",
+  "spalti": "arrivo",
+  "cortei": [],
+  "chiamate": [
+   "in_tondo@parcheggi entra → stadio"
+  ]
+ },
+ {
+  "ep": "e23",
+  "ondata": 3,
+  "fase": null,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "camion_targa@casello entra → stadio"
+  ]
+ },
+ {
+  "ep": "e23",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "casello esce → bordo basso"
+  ],
+  "chiamate": [
+   "imbarco@casello esce → bordo basso",
+   "ripartire@parcheggi esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e24",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_larkspire entra → stadio"
+  ],
+  "chiamate": [
+   "ci_crede@strada_larkspire entra → stadio"
+  ]
+ },
+ {
+  "ep": "e24",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire esce → bordo basso"
+  ],
+  "chiamate": [
+   "delusi@strada_larkspire esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e26",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "parcheggi entra → stadio"
+  ],
+  "chiamate": [
+   "pullman_sparsi@parcheggi entra → stadio"
+  ]
+ },
+ {
+  "ep": "e26",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "parcheggi_ritardatari@parcheggi entra → stadio"
+  ]
+ },
+ {
+  "ep": "e26",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "parcheggi esce → bordo basso"
+  ],
+  "chiamate": [
+   "pullman_sconfitti@parcheggi esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e27",
+  "ondata": 1,
+  "fase": "prima",
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio"
+  ],
+  "chiamate": [
+   "fermata_prima@strada_cinderwick entra → stadio"
+  ]
+ },
+ {
+  "ep": "e27",
+  "ondata": 4,
+  "fase": "dopo",
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → stazione(stazione)"
+  ],
+  "chiamate": [
+   "abbraccio@strada_cinderwick esce → stazione(stazione)"
+  ]
+ },
+ {
+  "ep": "e28",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → centro (stadio vuoto)"
+  ],
+  "chiamate": [
+   "ospiti_in_auto@strada_cinderwick entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e28",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": [
+   "corteo_capo@strada_cinderwick esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e29",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": [
+   "corteo_al_porto@strada_cinderwick esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e30",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamate": [
+   "autobus_sera@viale_stazione entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e30",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": [
+   "silenzio_totale@strada_cinderwick esce → bordo basso",
+   "clacson@viale_stazione entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e30",
+  "ondata": 3,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick entra → meta:piazza_municipio"
+  ],
+  "chiamate": [
+   "saluto_larkspire@strada_cinderwick entra → meta:piazza_municipio"
+  ]
+ },
+ {
+  "ep": "e30",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso"
+  ],
+  "chiamate": [
+   "fiaccolata@strada_cinderwick esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e31",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione entra → centro (stadio vuoto)"
+  ],
+  "chiamate": [
+   "viale_lavori@viale_stazione entra → centro (stadio vuoto)"
+  ]
+ },
+ {
+  "ep": "e31",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_stazione esce → stazione(stazione)"
+  ],
+  "chiamate": [
+   "ritorno_rovers@viale_stazione esce → stazione(stazione)"
+  ]
+ },
+ {
+  "ep": "e32",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_cinderwick entra → stadio",
+   "strada_larkspire entra → stadio"
+  ],
+  "chiamate": [
+   "due_cortei@strada_larkspire entra → stadio"
+  ]
+ },
+ {
+  "ep": "e32",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_cinderwick esce → bordo basso",
+   "strada_larkspire esce → bordo basso"
+  ],
+  "chiamate": [
+   "collina@strada_larkspire esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e33",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "viale_stazione entra → stadio"
+  ],
+  "chiamate": []
+ },
+ {
+  "ep": "e33",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "pieni",
+  "cortei": [],
+  "chiamate": [
+   "parcheggio_vuoto@viale_stazione entra → stadio"
+  ]
+ },
+ {
+  "ep": "e33",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "viale_stazione esce → stazione(stazione)"
+  ],
+  "chiamate": [
+   "viale_ritorno@viale_stazione esce → stazione(stazione)"
+  ]
+ },
+ {
+  "ep": "e34",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "parcheggi entra → stadio"
+  ],
+  "chiamate": [
+   "pullman_quillhaven@parcheggi entra → stadio"
+  ]
+ },
+ {
+  "ep": "e34",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "parcheggi esce → bordo basso"
+  ],
+  "chiamate": [
+   "pullman_ritorno@parcheggi esce → bordo basso"
+  ]
+ },
+ {
+  "ep": "e35",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [],
+  "chiamate": [
+   "corso_chiuso@corso_centro entra → centro"
+  ]
+ },
+ {
+  "ep": "e35",
+  "ondata": 2,
+  "fase": null,
+  "spalti": "vuoti",
+  "cortei": [
+   "corso_centro entra → centro"
+  ],
+  "chiamate": [
+   "familiari@corso_centro entra → centro"
+  ]
+ },
+ {
+  "ep": "e36",
+  "ondata": 1,
+  "fase": null,
+  "spalti": "arrivo",
+  "cortei": [
+   "strada_larkspire entra → stadio"
+  ],
+  "chiamate": [
+   "coreografia_collina@strada_larkspire entra → stadio"
+  ]
+ },
+ {
+  "ep": "e36",
+  "ondata": 4,
+  "fase": null,
+  "spalti": "deflusso",
+  "cortei": [
+   "strada_larkspire esce → bordo basso"
+  ],
+  "chiamate": [
+   "ritorno_collina@strada_larkspire esce → bordo basso"
+  ]
+ }
+]
