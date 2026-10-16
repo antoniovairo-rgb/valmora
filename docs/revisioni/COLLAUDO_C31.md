@@ -26,7 +26,7 @@ Convenzioni: **FATTO MISURATO** (comando, campione, esito) · **FATTO (codice/da
 | Bot, 1000 semi | **0 blocchi** in 156/156 righe; «chiamate mai comparse» `[]` in 36/36 |
 | Test e tipi | `npx vitest run`: 42/42 file, **229/229** test; `npx tsc --noEmit -p .`: uscita 0 |
 | Salvataggi veri | **12/12 della 0.27.0** (fra cui e21, e24, e30, e35) e 12/12 della 0.25.0 ripresi sulla stessa chiamata; R1 6/6; R2 3/3; 0 errori |
-| Schermate | SCHERMATE_RIGA |
+| Schermate | 360×760, 375×667, 412×915, 1366×768: 1916 schermate ciascuna, 0 scorrimenti orizzontali, 0 tagli, 0 nomi vecchi, **0 errori di console**, 0 blocchi; comandi coperti 0 / 142 / 1 / 142 come nel C-030 |
 
 # 1. Le novità della 0.28.0
 
@@ -135,10 +135,10 @@ Questi contrasti non sono nuovi e non sono fra i rilievi da riverificare: li rip
 | **C28-11** versione lontana dalla colonna | **sì** | `c29-versione.mjs`: −16 px a 360 e 412; +128 (768), +256 (1024), **+427 (1366)**, +704 (1920) | uguale |
 | **C28-14** nomi sotto le pastiglie | **sì** | `c28-c2611.mjs` su `schermate-360.json`: e13 «Viale fra stadio e piazza» × pastiglia 15,8×10,4 px in 24 schermate; e16 «Magazzino delle fonderie» 34,6×6,0 in 16 | uguale |
 | **C29-02** e04 o2 «entra» che va via dallo stadio | **sì** | `coro_fonderie`: ondata **11 verso / 59 via**, chiamata **9 / 30** | 12/57, 7/32 |
-| **C29-04** «Urgente!» non spiegato nella guida | **sì** | urgenti a schermo URGENTI_RIGA; 0 righe con «urgent» in `data/testi/it/comune.json`; commento «D-126 c» in `src/resa/schermate/Ondata.tsx:24` | 211/422 |
+| **C29-04** «Urgente!» non spiegato nella guida | **sì** | urgenti a schermo 211/422 a 360, 375, 412 e 1366; 0 righe con «urgent» in `data/testi/it/comune.json`; commento «D-126 c» in `src/resa/schermate/Ondata.tsx:24` | 211/422 |
 | **C29-05** alias e piano con gli id vecchi | **sì** | `src/resa/stemma.tsx:67` e `:85` (`VECCHI_ID`) invariati; `tools/foto-stemmi.mjs:15-16` ha ancora `calderone` e `penna` | uguale |
 | **C29-06** scaglie della pigna sotto il pixel | **sì** | `c29-stemmi.mjs`: scaglie **0,76 px CSS** in 6/6 casi della pigna, 24/24 stemmi `@D-128`; 0 errori | uguale |
-| **C30-04** 1366×768: vignetta della sala e «?» coperto | **sì** | C3004_RIGA | 5/36; 142/142 |
+| **C30-04** 1366×768: vignetta della sala e «?» coperto | **sì** | `c29-schermate.mjs` a 1366×768: vignetta della sala mostrata **5/36**; «?» (`BUTTON.aiuto`) coperto da `BUTTON.pulsante` in **142/142** schermate «info» | 5/36; 142/142 |
 | **C30-05** 10 incoerenze e 6 difetti di forma nei testi | **sì** | 16/16 testi identici alla 0.27.0 (lettura dei valori attuali; solo e24 ed e35 sono cambiati). Es.: «Due biglietti a posto» (`e14.ch.doppioni`), «Skyfield-Lookout» col trattino corto (`e18.ch.dessi_tribuna`), «Radio: banca chiusa, si tratta» (`e35.ch.perimetro`) | — |
 
 Uscite: `uscite-c31/{mouse-*,tastiera-1366,versione,stemmi,pixel-e17-e04,grandi-360}.{log,json}`.
@@ -171,11 +171,20 @@ Uscite: `uscite-c31/{mouse-*,tastiera-1366,versione,stemmi,pixel-e17-e04,grandi-
 - Limite: i salvataggi sono a metà dell'**ondata 1**. Un salvataggio della 0.27.0 dentro e30 ondata 2 o e21 ondata 3 non l'ho provato.
 - `EP=e01,e08,e17,e21,e30,e33 node coordination/sonde/c25-ripresa.mjs . <uscita>`: R1 6/6, R2 3/3 (salvataggi della 0.4.0 in `tests/salvataggi-reali/`), 0 errori (`ripresa.log`).
 
-**Console.** 0 errori in tutte le corse con browser: pixel (12 corse), mouse (3), tastiera, stemmi, salvataggi, ripresa, schermate (SCHERMATE_ERRORI).
+**Console.** 0 errori in tutte le corse con browser: pixel (12 corse), mouse (3), tastiera, stemmi, salvataggi, ripresa, schermate (7664 schermate a 4 misure).
 
 **Schermate.** `W=… [H=…] [FOTO=1] node coordination/sonde/c29-schermate.mjs . docs/foto/c31/s<W> <uscita>`, 36 episodi, piano del bot attento, seme 1, asset veri; analisi `node coordination/sonde/c28-schermate-analisi.mjs <uscita>`.
 
-TABELLA_SCHERMATE
+| misura | schermate | scorr. orizz. | tagli | nomi vecchi | comandi coperti | errori | vignetta sala / verbale |
+|---|---|---|---|---|---|---|---|
+| 360×760 | 1916 | 0 | 0 | 0 | 0 | 0 | 36/36, 36/36 |
+| 375×667 | 1916 | 0 | 0 | 0 | 142 («?» sotto la barra, come C-026…C-030) | 0 | 0/36, 0/36 (D-126 d) |
+| 412×915 | 1916 | 0 | 0 | 0 | 1 (e01 `presidente`, C27-07) | 0 | 36/36, 36/36 |
+| 1366×768 | 1916 | 0 | 0 | 0 | 142 («?» sotto la barra, C30-04) | 0 | 5/36, 36/36 |
+
+- Urgenti a schermo 211/422 a ogni misura (C29-04).
+- Uscite `uscite-c31/schermate-{360,375,412,1366}.{json,log}`. Foto: tutte a 360 in `docs/foto/c31/s360/`; a 375 e 412 la selezione di e21, e24, e30, e35; a 1366 la corsa era senza foto.
+- Il processo a 375 è partito dalla prima coda, che ho fermato per lanciare 412 e 1366 in parallelo: per questo in `coda-b.fine` la riga di 375 non ha il codice d'uscita. Il log finisce con la riga di riepilogo (1916 schermate, 0 errori/blocchi).
 
 # 6. Usabilità e realismo (GIUDIZIO, marcato)
 
@@ -218,7 +227,7 @@ Nessuno di nuovo. Restano aperti, come Medi dei collaudi precedenti, i rilievi d
 | **C30-01** e30 ondata 2 via dal municipio | ondata 0/69 → 69/69 verso il municipio, chiamata 1/39 → 39/39, a 360, 375, 412; o4 resta 69/69 via. Residuo minore in C31-02 |
 | **C30-02** e21 ondata 3 spalti che si svuotano | `pieni` a schermo a 360, 375, 412; discordanze 1 → 0 su 98 ondate (rosso C84F01: 9). Guardiano mancante in C31-01 |
 | **C30-03** `e24.ch.busta`, `e35.ch.fine_trattativa` | nome nella busta e chi si è arreso detti di nuovo; coerenti con e24, e25, e31, e33, e35, e36; 100 e 99 caratteri (limite 100). Residuo di forma in C31-03 |
-| Regressioni | bot 0 blocchi 156/156 × 1000 semi; 229/229 test; tipi 0; salvataggi 12/12 (0.27.0) + 12/12 (0.25.0) + 6/6 + 3/3; schermate a 4 misure SCHERMATE_CHIUSI |
+| Regressioni | bot 0 blocchi 156/156 × 1000 semi; 229/229 test; tipi 0; salvataggi 12/12 (0.27.0) + 12/12 (0.25.0) + 6/6 + 3/3; schermate a 4 misure (7664) con 0 scorrimenti, 0 tagli, 0 errori |
 
 # Note di metodo e limiti
 
