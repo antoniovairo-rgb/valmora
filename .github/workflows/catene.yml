@@ -1,6 +1,10 @@
 name: catene
 on:
   push:
+    # PO 16/10: i rami dei collaudi contengono solo rapporti e sonde, mai codice di gioco, e non si uniscono:
+    # la CI lì produceva solo mail «Run failed» (C-030, controllo «modello» sui commit della collaudatrice).
+    branches-ignore:
+      - 'claude/valmora-collaudo-*'
   pull_request:
 jobs:
   governo:

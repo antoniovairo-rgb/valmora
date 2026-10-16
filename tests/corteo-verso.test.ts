@@ -11,25 +11,27 @@ const ep = (id: string) => JSON.parse(readFileSync(`data/missioni/${id}.json`, '
 const verso = (id: string, n: number) => follaDellOndata(ep(id), n).cortei.find((c) => c.settore === 'strada_cinderwick')?.verso;
 
 describe('D-127 verso del corteo dai dati', () => {
-  it('e30 ondate 2 e 4 e e17 ondata 4: via dallo stadio', () => {
-    expect(verso('e30', 2)).toBe('esce');
+  // C30-01: con la «meta» sul municipio (C27-02) il viale finisce lì: l'ondata 2 («dallo stadio verso il municipio») va
+  // nel verso del viale, cioè «entra» verso la meta; l'ondata 4 (fiaccolata dal municipio al porto) se ne allontana.
+  it('e30 ondata 2 verso la meta (municipio), ondata 4 ed e17 ondata 4 via', () => {
+    expect(verso('e30', 2)).toBe('entra');
     expect(verso('e30', 4)).toBe('esce');
     expect(verso('e17', 4)).toBe('esce');
   });
   it('senza campo verso non cambia (e01 ondata 1: verso lo stadio)', () => {
     for (const c of follaDellOndata(ep('e01'), 1).cortei) expect(c.verso).toBe('entra');
   });
-  it('braccio rosso __NO_C73V01: e30 ondata 2 verso lo stadio, il difetto del collaudo', () => {
+  it('braccio rosso __NO_C73V01: e30 ondata 4 verso lo stadio, il difetto del collaudo', () => {
     g.__NO_C73V01 = true;
-    expect(verso('e30', 2)).toBe('entra');
+    expect(verso('e30', 4)).toBe('entra');
   });
 });
 
 // C27-01: il corteo della chiamata (dinamica PO-089) andava verso lo stadio mentre quello dell'ondata ne usciva.
 describe('C27-01 il corteo della chiamata va col corteo dell\'ondata', () => {
   const esce = (id: string, n: number, settore: string) => esceDinamica(follaDellOndata(ep(id), n), settore);
-  it('e30 ondate 2 e 4, e17 ondata 4: via dallo stadio anche la chiamata', () => {
-    expect(esce('e30', 2, 'strada_cinderwick')).toBe(true);
+  it('e30 ondata 2 verso il municipio come l\'ondata; ondata 4 ed e17 ondata 4 via', () => {
+    expect(esce('e30', 2, 'strada_cinderwick')).toBe(false);
     expect(esce('e30', 4, 'strada_cinderwick')).toBe(true);
     expect(esce('e17', 4, 'strada_cinderwick')).toBe(true);
     expect(esce('e17', 4, 'piazza_municipio')).toBe(true);
@@ -37,8 +39,8 @@ describe('C27-01 il corteo della chiamata va col corteo dell\'ondata', () => {
   it('senza corteo dell\'ondata decide la partita, come prima (e01 ondata 1: verso lo stadio)', () => {
     for (const s of ep('e01').mappa.settori) expect(esce('e01', 1, s.id)).toBe(false);
   });
-  it('braccio rosso __NO_C74D01: e30 ondata 2, la chiamata torna verso lo stadio (il difetto del collaudo)', () => {
+  it('braccio rosso __NO_C74D01: e30 ondata 4, la chiamata torna verso lo stadio (il difetto del collaudo)', () => {
     g.__NO_C74D01 = true;
-    expect(esce('e30', 2, 'strada_cinderwick')).toBe(false);
+    expect(esce('e30', 4, 'strada_cinderwick')).toBe(false);
   });
 });
