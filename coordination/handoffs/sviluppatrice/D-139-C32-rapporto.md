@@ -31,6 +31,7 @@ Ramo `claude/valmora-resa-v2`, unito alla principale (0.32.0). Foto in `d139/` e
 - **Guardiano** `controllaFuoco`: se la scena ha comandi, il fuoco non sta sulla scena.
   - Esentato il titolo: si apre anche al caricamento, quando non c'è un comando perso. Misurato con una sonda: dopo «Torna al titolo» il fuoco va a un comando (BUTTON[idee]).
 - **Giro foto:** rosso 76 righe, per esempio «crediti: il fuoco recuperato sta sulla scena»; verde 0 (a parte il titolo, ora esentato).
+- Il primo giro di catena era rosso a 375: in una chiamata il fuoco restava sulla scena. IPOTESI: il comando più vicino si cercava solo nella scena, dove al montaggio c'erano solo le opzioni (escluse), mentre casa e «i» stanno nella testata. Ora la ricerca è su tutta la pagina del gioco (`main`): il giro foto a 375 esce con exit 0.
 - Non ho rifatto il conto dei Tab con le sonde c32 del collaudo: non so di quanto scendono.
 
 ## C32-06 – la versione non tocca i pulsanti su tablet e PC

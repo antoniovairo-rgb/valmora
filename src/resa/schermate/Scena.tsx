@@ -35,7 +35,8 @@ export function Scena(p: { nome: string; missione?: string; children: ReactNode 
     const torna = () => { cancelAnimationFrame(id); id = requestAnimationFrame(() => {
       const s = el.current, a = document.activeElement;
       if (!s?.isConnected || (a && a !== document.body)) return;
-      const c = spento('C97F01') || !ultimo ? null : vicino(s, ultimo);
+      // in tutta la pagina del gioco: casa e «i» stanno nella testata, e nella chiamata «Rispondi» arriva dopo
+      const c = spento('C97F01') || !ultimo ? null : vicino(s.closest('main') ?? s, ultimo);
       (c ?? s).focus({ preventScroll: true });
     }); };
     const segna = (e: FocusEvent) => { const t = e.target as HTMLElement | null; if (t && t !== el.current && t.getBoundingClientRect) { const r = t.getBoundingClientRect(); ultimo = { x: r.left + r.width / 2, y: r.top + r.height / 2 }; } };
