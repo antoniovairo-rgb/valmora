@@ -61,4 +61,4 @@ Con la meta, C31-02 vale anche per e17. FATTO MISURATO con la sonda `c27-pixel.m
 | chiamata ci_vediamo_dopo | 28/11, 2/37 | 22/17, 0/39 |
 | piazza_municipio (ondate 3-4) | invariata | invariata |
 
-- La catena va rifatta sul merge (2db7d42).
+- FATTO MISURATO: catena completa 3/3 verde su 56f8fe2, dopo il merge della 0.33.0.
