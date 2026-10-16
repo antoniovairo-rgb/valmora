@@ -1,0 +1,45 @@
+{
+ "W": 1366,
+ "H": 768,
+ "RIS": [
+  {
+   "ep": "e01",
+   "passo": 1,
+   "prima": {
+    "rett": [
+     459,
+     640.4,
+     448,
+     51
+    ],
+    "dentro": true,
+    "inCima": "il pulsante",
+    "catena": [],
+    "scrollY": 0,
+    "altezzaPagina": 768,
+    "testo": "Avanti"
+   },
+   "esito": "ok"
+  },
+  {
+   "ep": "e01",
+   "passo": 2,
+   "prima": {
+    "rett": [
+     599.9,
+     669.6,
+     307.1,
+     51
+    ],
+    "dentro": true,
+    "inCima": "il pulsante",
+    "catena": [],
+    "scrollY": 0,
+    "altezzaPagina": 768,
+    "testo": "Avanti"
+   },
+   "esito": "ok"
+  }
+ ],
+ "errori": []
+}

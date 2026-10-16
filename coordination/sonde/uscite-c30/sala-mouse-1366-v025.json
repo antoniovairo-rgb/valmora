@@ -1,0 +1,26 @@
+{
+ "W": 1366,
+ "H": 768,
+ "RIS": [
+  {
+   "ep": "e01",
+   "passo": 1,
+   "prima": {
+    "rett": [
+     459,
+     693,
+     448,
+     51
+    ],
+    "dentro": true,
+    "inCima": "il pulsante",
+    "catena": [],
+    "scrollY": 0,
+    "altezzaPagina": 822,
+    "testo": "Avanti"
+   },
+   "esito": "    2 × waiting for element to be visible, enabled and stable /       - element is not stable /     - retrying click action /     2 × waiting for element to be visible, enabled and stable"
+  }
+ ],
+ "errori": []
+}
