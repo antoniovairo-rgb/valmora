@@ -80,6 +80,11 @@ export async function controllaStemmiTutti(pagina, atteso, dove) {
   // il PO sulle foto; qui si controlla che il disegno sia quello nuovo. Rosso VALMORA_ROSSI=C83S01: i disegni di prima.
   const vecchi = await pagina.evaluate((ids) => ids.filter((id) => !document.querySelector(`figure[data-club="${id}"] [data-simbolo]`)?.getAttribute('data-simbolo')?.endsWith('@D-128')), D128_CLUB);
   atteso(`${dove}: stemmi col disegno di prima (D-128): ${vecchi.join(', ')}`, !vecchi.length);
+  // C29-06: ogni tratto di un simbolo è largo almeno 1 px a schermo (a DPR 1 un tratto più sottile non si vede).
+  // Rosso VALMORA_ROSSI=C92P01: le scaglie della pigna a 0,76 px.
+  const sottili = await pagina.evaluate(() => [...document.querySelectorAll('figure[data-club] [data-simbolo] [stroke-width], figure[data-club] [data-simbolo] [stroke]')].filter((e) => e.getAttribute('fill') === 'none')
+    .map((e) => ({ id: e.closest('figure').dataset.club, px: parseFloat(getComputedStyle(e).strokeWidth) * e.getScreenCTM().a })).filter((x) => x.px < 1).map((x) => `${x.id} ${x.px.toFixed(2)} px`));
+  atteso(`${dove}: tratti dei simboli sotto 1 px: ${[...new Set(sottili)].join(', ')} (C29-06)`, !sottili.length);
   await controllaStemmi(pagina, atteso, dove);
 }
 

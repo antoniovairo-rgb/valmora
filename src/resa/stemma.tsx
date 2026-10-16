@@ -75,8 +75,10 @@ const D128: Record<string, ReactNode> = {
   // ovale liscio a punta in basso col gambo corto, niente ciuffo (sembrava un ananas): le scaglie sono file sfalsate di
   // archi del colore della forma
   pigna: <><path d="M19.3 11H20.7V16.5H19.3Z" /><path d="M20 38.5C13.5 35 12 27 13.6 21C14.8 16.6 25.2 16.6 26.4 21C28 27 26.5 35 20 38.5Z" />
-    <path d={[19, 22.6, 26.2, 29.8, 33.4].map((y, r) => { const n = [3, 4, 4, 3, 2][r]!, w = 3.2; let d = `M${20 - (n * w) / 2} ${y}`; for (let k = 0; k < n; k++) d += `q${w / 2} 2.6 ${w} 0`; return d; }).join('')}
-      fill="none" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" /></>,
+    {/* C29-06: a DPR 1 gli archi da 0,9 unità erano 0,76 px; ora meno file e archi più larghi da 1,4 unità (1,2 px a 42 px).
+        Rosso C92P01: come prima. */}
+    <path d={(spento('C92P01') ? [[19, 3, 3.2], [22.6, 4, 3.2], [26.2, 4, 3.2], [29.8, 3, 3.2], [33.4, 2, 3.2]] : [[20, 3, 4.2], [24.6, 3, 4.2], [29.2, 3, 4.2], [33.8, 2, 4.2]]).map(([y, n, w]) => { let d = `M${20 - (n! * w!) / 2} ${y}`; for (let k = 0; k < n!; k++) d += `q${w! / 2} ${w! * 0.8} ${w} 0`; return d; }).join('')}
+      fill="none" stroke="currentColor" strokeWidth={spento('C92P01') ? 0.9 : 1.4} strokeLinecap="round" /></>,
   // tetto a punta con la gronda, cella con l'arco aperto e la campana, cornice, fusto con l'orologio e la porta
   campanile: <><path d="M12.5 15.5L20 8.5L27.5 15.5Z" /><path fillRule="evenodd" d="M14 15.5H26V22H14ZM16.5 22V18.8A3.5 3.5 0 0 1 23.5 18.8V22Z" />
     <path d="M17.6 21.6Q17.6 17.4 20 17.4Q22.4 17.4 22.4 21.6Z" /><path d="M13 22H27V24H13Z" />
