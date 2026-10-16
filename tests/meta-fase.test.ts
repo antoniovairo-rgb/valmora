@@ -46,6 +46,8 @@ describe('C27-04 la fase dell\'ondata dai dati', () => {
   it('dati veri: e07 ondata 4 e e21 ondata 4 «deflusso», e27 ondata 1 non «pieni» (fasi scritte dai testi)', () => {
     expect(follaDellOndata(ep('e07'), 4).spalti).toBe('deflusso');
     expect(follaDellOndata(ep('e21'), 4).spalti).toBe('deflusso');
+    // C31-01 (C30-02): e21 ondata 3 «Kiln–Pinegrove in corso»: spalti pieni, non in deflusso
+    expect(follaDellOndata(ep('e21'), 3).spalti).toBe('pieni');
     expect(follaDellOndata(ep('e27'), 1).spalti).not.toBe('pieni');
   });
   it('braccio rosso __NO_C84F01: «fase» ignorata, ondata 4 «in arrivo» (il difetto del collaudo)', () => {
