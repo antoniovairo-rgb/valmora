@@ -1,0 +1,1377 @@
+{
+ "W": 360,
+ "H": 760,
+ "D": 200,
+ "ROSSI": [],
+ "RIS": [
+  {
+   "ep": "e17",
+   "ondata": 1,
+   "scena": "schieramento-1",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "strada_cinderwick>entra",
+      "stadio": {
+       "n": 68,
+       "piu": 0,
+       "meno": 68,
+       "media": -3.28
+      },
+      "rif": {
+       "n": 68,
+       "piu": 27,
+       "meno": 41,
+       "media": -0.38
+      },
+      "verso": {
+       "STADIO": "−",
+       "strada_cinderwick": "~",
+       "tornelli": "−",
+       "piazzale": "−",
+       "quartiere": "+",
+       "piazza_municipio": "~"
+      }
+     }
+    ],
+    "dinamica": null
+   },
+   "ms": 964,
+   "folla": "vuoti|strada_cinderwick>entra",
+   "dinamica": "",
+   "dinColori": "",
+   "colori": "strada_cinderwick=neutro,piazza_municipio=neutro",
+   "stadio": "vuoto",
+   "ellisse": "161,45,61,38",
+   "rif": "piazza_municipio",
+   "settori": {
+    "strada_cinderwick": [
+     67,
+     74
+    ],
+    "tornelli": [
+     247,
+     93
+    ],
+    "piazzale": [
+     164,
+     142
+    ],
+    "quartiere": [
+     81,
+     215
+    ],
+    "piazza_municipio": [
+     236,
+     220
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {}
+  },
+  {
+   "ep": "e17",
+   "ondata": 1,
+   "scena": "chiamata-schermo_comizi",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "strada_cinderwick>entra",
+      "stadio": {
+       "n": 70,
+       "piu": 0,
+       "meno": 70,
+       "media": -1.13
+      },
+      "rif": {
+       "n": 70,
+       "piu": 25,
+       "meno": 45,
+       "media": -0.14
+      },
+      "verso": {
+       "STADIO": "−",
+       "strada_cinderwick": "~",
+       "tornelli": "−",
+       "piazzale": "−",
+       "quartiere": "+",
+       "piazza_municipio": "~"
+      }
+     }
+    ],
+    "dinamica": {
+     "quale": "corteo:piazza_municipio",
+     "persone": 40,
+     "stadio": {
+      "n": 40,
+      "piu": 0,
+      "meno": 40,
+      "media": -1.52
+     },
+     "rif": {
+      "n": 40,
+      "piu": 33,
+      "meno": 7,
+      "media": 0.86
+     },
+     "verso": {
+      "STADIO": "−",
+      "strada_cinderwick": "−",
+      "tornelli": "~",
+      "piazzale": "−",
+      "quartiere": "−",
+      "piazza_municipio": "+"
+     }
+    }
+   },
+   "ms": 1531,
+   "folla": "vuoti|strada_cinderwick>entra",
+   "dinamica": "corteo:piazza_municipio",
+   "dinColori": "neutro",
+   "colori": "strada_cinderwick=neutro,piazza_municipio=neutro",
+   "stadio": "vuoto",
+   "ellisse": "161,45,61,38",
+   "rif": "piazza_municipio",
+   "settori": {
+    "strada_cinderwick": [
+     67,
+     74
+    ],
+    "tornelli": [
+     247,
+     93
+    ],
+    "piazzale": [
+     164,
+     142
+    ],
+    "quartiere": [
+     81,
+     215
+    ],
+    "piazza_municipio": [
+     236,
+     220
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {}
+  },
+  {
+   "ep": "e17",
+   "ondata": 2,
+   "scena": "schieramento-2",
+   "pixi": {
+    "scena": 8,
+    "ondata": [],
+    "dinamica": null
+   },
+   "ms": 1016,
+   "folla": "vuoti|",
+   "dinamica": "",
+   "dinColori": "",
+   "colori": "strada_cinderwick=neutro,piazza_municipio=neutro",
+   "stadio": "vuoto",
+   "ellisse": "161,45,61,38",
+   "rif": "piazza_municipio",
+   "settori": {
+    "strada_cinderwick": [
+     67,
+     74
+    ],
+    "tornelli": [
+     247,
+     93
+    ],
+    "piazzale": [
+     164,
+     142
+    ],
+    "quartiere": [
+     81,
+     215
+    ],
+    "piazza_municipio": [
+     236,
+     220
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {}
+  },
+  {
+   "ep": "e17",
+   "ondata": 2,
+   "scena": "chiamata-ci_vediamo_dopo",
+   "pixi": {
+    "scena": 8,
+    "ondata": [],
+    "dinamica": {
+     "quale": "corteo:strada_cinderwick",
+     "persone": 40,
+     "stadio": {
+      "n": 39,
+      "piu": 0,
+      "meno": 39,
+      "media": -3.14
+     },
+     "rif": {
+      "n": 39,
+      "piu": 14,
+      "meno": 25,
+      "media": -0.45
+     },
+     "verso": {
+      "STADIO": "−",
+      "strada_cinderwick": "~",
+      "tornelli": "−",
+      "piazzale": "−",
+      "quartiere": "+",
+      "piazza_municipio": "~"
+     }
+    }
+   },
+   "ms": 957,
+   "folla": "vuoti|",
+   "dinamica": "corteo:strada_cinderwick",
+   "dinColori": "neutro",
+   "colori": "strada_cinderwick=neutro,piazza_municipio=neutro",
+   "stadio": "vuoto",
+   "ellisse": "161,45,61,38",
+   "rif": "piazza_municipio",
+   "settori": {
+    "strada_cinderwick": [
+     67,
+     74
+    ],
+    "tornelli": [
+     247,
+     93
+    ],
+    "piazzale": [
+     164,
+     142
+    ],
+    "quartiere": [
+     81,
+     215
+    ],
+    "piazza_municipio": [
+     236,
+     220
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {}
+  },
+  {
+   "ep": "e17",
+   "ondata": 3,
+   "scena": "schieramento-3",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "piazza_municipio>entra",
+      "stadio": {
+       "n": 70,
+       "piu": 0,
+       "meno": 70,
+       "media": -1.11
+      },
+      "rif": {
+       "n": 70,
+       "piu": 58,
+       "meno": 12,
+       "media": 0.56
+      },
+      "verso": {
+       "STADIO": "−",
+       "strada_cinderwick": "−",
+       "tornelli": "~",
+       "piazzale": "−",
+       "quartiere": "−",
+       "piazza_municipio": "+"
+      }
+     }
+    ],
+    "dinamica": null
+   },
+   "ms": 929,
+   "folla": "vuoti|piazza_municipio>entra",
+   "dinamica": "",
+   "dinColori": "",
+   "colori": "strada_cinderwick=neutro,piazza_municipio=neutro",
+   "stadio": "vuoto",
+   "ellisse": "161,45,61,38",
+   "rif": "piazza_municipio",
+   "settori": {
+    "strada_cinderwick": [
+     67,
+     74
+    ],
+    "tornelli": [
+     247,
+     93
+    ],
+    "piazzale": [
+     164,
+     142
+    ],
+    "quartiere": [
+     81,
+     215
+    ],
+    "piazza_municipio": [
+     236,
+     220
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {}
+  },
+  {
+   "ep": "e17",
+   "ondata": 4,
+   "scena": "schieramento-4",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "strada_cinderwick>esce",
+      "stadio": {
+       "n": 69,
+       "piu": 69,
+       "meno": 0,
+       "media": 1.44
+      },
+      "rif": {
+       "n": 69,
+       "piu": 43,
+       "meno": 26,
+       "media": 0.18
+      },
+      "verso": {
+       "STADIO": "+",
+       "strada_cinderwick": "~",
+       "tornelli": "+",
+       "piazzale": "+",
+       "quartiere": "−",
+       "piazza_municipio": "~"
+      }
+     },
+     {
+      "corteo": "piazza_municipio>esce",
+      "stadio": {
+       "n": 69,
+       "piu": 69,
+       "meno": 0,
+       "media": 1.22
+      },
+      "rif": {
+       "n": 69,
+       "piu": 11,
+       "meno": 58,
+       "media": -0.69
+      },
+      "verso": {
+       "STADIO": "+",
+       "strada_cinderwick": "+",
+       "tornelli": "~",
+       "piazzale": "+",
+       "quartiere": "+",
+       "piazza_municipio": "−"
+      }
+     }
+    ],
+    "dinamica": null
+   },
+   "ms": 586,
+   "folla": "vuoti|strada_cinderwick>esce,piazza_municipio>esce",
+   "dinamica": "",
+   "dinColori": "",
+   "colori": "strada_cinderwick=#ff6a13,piazza_municipio=neutro",
+   "stadio": "vuoto",
+   "ellisse": "161,45,61,38",
+   "rif": "piazza_municipio",
+   "settori": {
+    "strada_cinderwick": [
+     67,
+     74
+    ],
+    "tornelli": [
+     247,
+     93
+    ],
+    "piazzale": [
+     164,
+     142
+    ],
+    "quartiere": [
+     81,
+     215
+    ],
+    "piazza_municipio": [
+     236,
+     220
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {
+    "#ff6a13": {
+     "personeA": 11,
+     "personeZ": 2,
+     "coppie": 0,
+     "stadio": null,
+     "rif": null,
+     "dy": null
+    }
+   }
+  },
+  {
+   "ep": "e17",
+   "ondata": 4,
+   "scena": "chiamata-me_lo_dovete",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "strada_cinderwick>esce",
+      "stadio": {
+       "n": 69,
+       "piu": 69,
+       "meno": 0,
+       "media": 1.62
+      },
+      "rif": {
+       "n": 69,
+       "piu": 43,
+       "meno": 26,
+       "media": 0.2
+      },
+      "verso": {
+       "STADIO": "+",
+       "strada_cinderwick": "~",
+       "tornelli": "+",
+       "piazzale": "+",
+       "quartiere": "−",
+       "piazza_municipio": "~"
+      }
+     },
+     {
+      "corteo": "piazza_municipio>esce",
+      "stadio": {
+       "n": 69,
+       "piu": 69,
+       "meno": 0,
+       "media": 1.35
+      },
+      "rif": {
+       "n": 69,
+       "piu": 11,
+       "meno": 58,
+       "media": -0.73
+      },
+      "verso": {
+       "STADIO": "+",
+       "strada_cinderwick": "+",
+       "tornelli": "~",
+       "piazzale": "+",
+       "quartiere": "+",
+       "piazza_municipio": "−"
+      }
+     }
+    ],
+    "dinamica": {
+     "quale": "corteo:strada_cinderwick",
+     "persone": 40,
+     "stadio": {
+      "n": 40,
+      "piu": 34,
+      "meno": 6,
+      "media": 1.37
+     },
+     "rif": {
+      "n": 40,
+      "piu": 30,
+      "meno": 10,
+      "media": 0.67
+     },
+     "verso": {
+      "STADIO": "+",
+      "strada_cinderwick": "~",
+      "tornelli": "+",
+      "piazzale": "+",
+      "quartiere": "−",
+      "piazza_municipio": "~"
+     }
+    }
+   },
+   "ms": 805,
+   "folla": "vuoti|strada_cinderwick>esce,piazza_municipio>esce",
+   "dinamica": "corteo:strada_cinderwick",
+   "dinColori": "#ff6a13",
+   "colori": "strada_cinderwick=#ff6a13,piazza_municipio=neutro",
+   "stadio": "vuoto",
+   "ellisse": "161,45,61,38",
+   "rif": "piazza_municipio",
+   "settori": {
+    "strada_cinderwick": [
+     67,
+     74
+    ],
+    "tornelli": [
+     247,
+     93
+    ],
+    "piazzale": [
+     164,
+     142
+    ],
+    "quartiere": [
+     81,
+     215
+    ],
+    "piazza_municipio": [
+     236,
+     220
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {
+    "#ff6a13": {
+     "personeA": 31,
+     "personeZ": 18,
+     "coppie": 19,
+     "stadio": {
+      "n": 19,
+      "piu": 10,
+      "meno": 8,
+      "mediana": 0.4,
+      "media": 0.75
+     },
+     "rif": {
+      "n": 19,
+      "piu": 15,
+      "meno": 3,
+      "mediana": 1.09,
+      "media": 0.94
+     },
+     "dy": {
+      "n": 19,
+      "piu": 8,
+      "meno": 11,
+      "mediana": -0.8,
+      "media": -0.01
+     }
+    }
+   }
+  },
+  {
+   "ep": "e17",
+   "ondata": 4,
+   "scena": "chiamata-fine_corteo",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "strada_cinderwick>esce",
+      "stadio": {
+       "n": 69,
+       "piu": 69,
+       "meno": 0,
+       "media": 1.4
+      },
+      "rif": {
+       "n": 69,
+       "piu": 44,
+       "meno": 25,
+       "media": 0.18
+      },
+      "verso": {
+       "STADIO": "+",
+       "strada_cinderwick": "~",
+       "tornelli": "+",
+       "piazzale": "+",
+       "quartiere": "−",
+       "piazza_municipio": "~"
+      }
+     },
+     {
+      "corteo": "piazza_municipio>esce",
+      "stadio": {
+       "n": 69,
+       "piu": 69,
+       "meno": 0,
+       "media": 1.17
+      },
+      "rif": {
+       "n": 69,
+       "piu": 11,
+       "meno": 58,
+       "media": -0.61
+      },
+      "verso": {
+       "STADIO": "+",
+       "strada_cinderwick": "+",
+       "tornelli": "~",
+       "piazzale": "+",
+       "quartiere": "+",
+       "piazza_municipio": "−"
+      }
+     }
+    ],
+    "dinamica": {
+     "quale": "corteo:piazza_municipio",
+     "persone": 40,
+     "stadio": {
+      "n": 40,
+      "piu": 40,
+      "meno": 0,
+      "media": 1.43
+     },
+     "rif": {
+      "n": 40,
+      "piu": 0,
+      "meno": 40,
+      "media": -1.52
+     },
+     "verso": {
+      "STADIO": "+",
+      "strada_cinderwick": "+",
+      "tornelli": "~",
+      "piazzale": "~",
+      "quartiere": "+",
+      "piazza_municipio": "−"
+     }
+    }
+   },
+   "ms": 1148,
+   "folla": "vuoti|strada_cinderwick>esce,piazza_municipio>esce",
+   "dinamica": "corteo:piazza_municipio",
+   "dinColori": "neutro",
+   "colori": "strada_cinderwick=#ff6a13,piazza_municipio=neutro",
+   "stadio": "vuoto",
+   "ellisse": "161,45,61,38",
+   "rif": "piazza_municipio",
+   "settori": {
+    "strada_cinderwick": [
+     67,
+     74
+    ],
+    "tornelli": [
+     247,
+     93
+    ],
+    "piazzale": [
+     164,
+     142
+    ],
+    "quartiere": [
+     81,
+     215
+    ],
+    "piazza_municipio": [
+     236,
+     220
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {
+    "#ff6a13": {
+     "personeA": 14,
+     "personeZ": 18,
+     "coppie": 14,
+     "stadio": {
+      "n": 14,
+      "piu": 6,
+      "meno": 4,
+      "mediana": 0.04,
+      "media": 0.18
+     },
+     "rif": {
+      "n": 14,
+      "piu": 11,
+      "meno": 3,
+      "mediana": 1.03,
+      "media": 0.16
+     },
+     "dy": {
+      "n": 14,
+      "piu": 4,
+      "meno": 9,
+      "mediana": -0.5,
+      "media": -0.04
+     }
+    }
+   }
+  },
+  {
+   "ep": "e04",
+   "ondata": 1,
+   "scena": "schieramento-1",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "strada_cinderwick>entra",
+      "stadio": {
+       "n": 70,
+       "piu": 0,
+       "meno": 70,
+       "media": -0.52
+      },
+      "rif": null,
+      "verso": {
+       "STADIO": "−",
+       "mercato": "~",
+       "strada_cinderwick": "+",
+       "piazza_fonderie": "−",
+       "parcheggi": "−",
+       "piazzale": "−"
+      }
+     },
+     {
+      "corteo": "parcheggi>entra",
+      "stadio": {
+       "n": 70,
+       "piu": 57,
+       "meno": 13,
+       "media": 0.25
+      },
+      "rif": null,
+      "verso": {
+       "STADIO": "+",
+       "mercato": "−",
+       "strada_cinderwick": "~",
+       "piazza_fonderie": "−",
+       "parcheggi": "~",
+       "piazzale": "+"
+      }
+     }
+    ],
+    "dinamica": null
+   },
+   "ms": 695,
+   "folla": "vuoti|strada_cinderwick>entra,parcheggi>entra",
+   "dinamica": "",
+   "dinColori": "",
+   "colori": "strada_cinderwick=#ff6a13,parcheggi=#1e7b4a",
+   "stadio": "vuoto",
+   "ellisse": "189,199,72,45",
+   "rif": null,
+   "settori": {
+    "mercato": [
+     108,
+     176
+    ],
+    "strada_cinderwick": [
+     58,
+     240
+    ],
+    "piazza_fonderie": [
+     75,
+     98
+    ],
+    "parcheggi": [
+     220,
+     98
+    ],
+    "piazzale": [
+     247,
+     208
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {
+    "#ff6a13": {
+     "personeA": 14,
+     "personeZ": 11,
+     "coppie": 5,
+     "stadio": {
+      "n": 5,
+      "piu": 1,
+      "meno": 4,
+      "mediana": -0.94,
+      "media": -0.29
+     },
+     "rif": null,
+     "dy": {
+      "n": 5,
+      "piu": 0,
+      "meno": 5,
+      "mediana": -2.45,
+      "media": -1.98
+     }
+    },
+    "#1e7b4a": {
+     "personeA": 43,
+     "personeZ": 48,
+     "coppie": 14,
+     "stadio": {
+      "n": 14,
+      "piu": 5,
+      "meno": 8,
+      "mediana": -0.24,
+      "media": -0.15
+     },
+     "rif": null,
+     "dy": {
+      "n": 14,
+      "piu": 2,
+      "meno": 12,
+      "mediana": -2.01,
+      "media": -1.75
+     }
+    }
+   }
+  },
+  {
+   "ep": "e04",
+   "ondata": 1,
+   "scena": "chiamata-corteo_fonderie",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "strada_cinderwick>entra",
+      "stadio": {
+       "n": 70,
+       "piu": 0,
+       "meno": 70,
+       "media": -0.67
+      },
+      "rif": null,
+      "verso": {
+       "STADIO": "−",
+       "mercato": "~",
+       "strada_cinderwick": "+",
+       "piazza_fonderie": "−",
+       "parcheggi": "−",
+       "piazzale": "−"
+      }
+     },
+     {
+      "corteo": "parcheggi>entra",
+      "stadio": {
+       "n": 70,
+       "piu": 57,
+       "meno": 13,
+       "media": 0.27
+      },
+      "rif": null,
+      "verso": {
+       "STADIO": "+",
+       "mercato": "−",
+       "strada_cinderwick": "~",
+       "piazza_fonderie": "−",
+       "parcheggi": "~",
+       "piazzale": "+"
+      }
+     }
+    ],
+    "dinamica": {
+     "quale": "corteo:strada_cinderwick",
+     "persone": 40,
+     "stadio": {
+      "n": 40,
+      "piu": 0,
+      "meno": 40,
+      "media": -1.07
+     },
+     "rif": null,
+     "verso": {
+      "STADIO": "−",
+      "mercato": "~",
+      "strada_cinderwick": "+",
+      "piazza_fonderie": "−",
+      "parcheggi": "−",
+      "piazzale": "−"
+     }
+    }
+   },
+   "ms": 908,
+   "folla": "vuoti|strada_cinderwick>entra,parcheggi>entra",
+   "dinamica": "corteo:strada_cinderwick",
+   "dinColori": "#ff6a13",
+   "colori": "strada_cinderwick=#ff6a13,parcheggi=#1e7b4a",
+   "stadio": "vuoto",
+   "ellisse": "189,199,72,45",
+   "rif": null,
+   "settori": {
+    "mercato": [
+     108,
+     176
+    ],
+    "strada_cinderwick": [
+     58,
+     240
+    ],
+    "piazza_fonderie": [
+     75,
+     98
+    ],
+    "parcheggi": [
+     220,
+     98
+    ],
+    "piazzale": [
+     247,
+     208
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {
+    "#ff6a13": {
+     "personeA": 17,
+     "personeZ": 18,
+     "coppie": 11,
+     "stadio": {
+      "n": 11,
+      "piu": 3,
+      "meno": 3,
+      "mediana": -0.08,
+      "media": -0.06
+     },
+     "rif": null,
+     "dy": {
+      "n": 11,
+      "piu": 6,
+      "meno": 5,
+      "mediana": 0.47,
+      "media": 0.28
+     }
+    },
+    "#1e7b4a": {
+     "personeA": 48,
+     "personeZ": 43,
+     "coppie": 16,
+     "stadio": {
+      "n": 16,
+      "piu": 6,
+      "meno": 8,
+      "mediana": 0.07,
+      "media": -0.38
+     },
+     "rif": null,
+     "dy": {
+      "n": 16,
+      "piu": 10,
+      "meno": 4,
+      "mediana": 1.1,
+      "media": 0.88
+     }
+    }
+   }
+  },
+  {
+   "ep": "e04",
+   "ondata": 2,
+   "scena": "schieramento-2",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "parcheggi>entra",
+      "stadio": {
+       "n": 69,
+       "piu": 57,
+       "meno": 12,
+       "media": 0.29
+      },
+      "rif": null,
+      "verso": {
+       "STADIO": "+",
+       "mercato": "−",
+       "strada_cinderwick": "~",
+       "piazza_fonderie": "−",
+       "parcheggi": "~",
+       "piazzale": "+"
+      }
+     }
+    ],
+    "dinamica": null
+   },
+   "ms": 709,
+   "folla": "vuoti|parcheggi>entra",
+   "dinamica": "",
+   "dinColori": "",
+   "colori": "strada_cinderwick=#ff6a13,parcheggi=#1e7b4a",
+   "stadio": "vuoto",
+   "ellisse": "189,199,72,45",
+   "rif": null,
+   "settori": {
+    "mercato": [
+     108,
+     176
+    ],
+    "strada_cinderwick": [
+     58,
+     240
+    ],
+    "piazza_fonderie": [
+     75,
+     98
+    ],
+    "parcheggi": [
+     220,
+     98
+    ],
+    "piazzale": [
+     247,
+     208
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {
+    "#1e7b4a": {
+     "personeA": 37,
+     "personeZ": 36,
+     "coppie": 7,
+     "stadio": {
+      "n": 7,
+      "piu": 3,
+      "meno": 4,
+      "mediana": -0.93,
+      "media": -0.21
+     },
+     "rif": null,
+     "dy": {
+      "n": 7,
+      "piu": 6,
+      "meno": 1,
+      "mediana": 1.59,
+      "media": 1.37
+     }
+    }
+   }
+  },
+  {
+   "ep": "e04",
+   "ondata": 2,
+   "scena": "chiamata-coro_fonderie",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "parcheggi>entra",
+      "stadio": {
+       "n": 69,
+       "piu": 57,
+       "meno": 12,
+       "media": 0.25
+      },
+      "rif": null,
+      "verso": {
+       "STADIO": "+",
+       "mercato": "−",
+       "strada_cinderwick": "~",
+       "piazza_fonderie": "−",
+       "parcheggi": "~",
+       "piazzale": "+"
+      }
+     }
+    ],
+    "dinamica": {
+     "quale": "corteo:parcheggi",
+     "persone": 40,
+     "stadio": {
+      "n": 39,
+      "piu": 32,
+      "meno": 7,
+      "media": 0.42
+     },
+     "rif": null,
+     "verso": {
+      "STADIO": "+",
+      "mercato": "−",
+      "strada_cinderwick": "~",
+      "piazza_fonderie": "−",
+      "parcheggi": "~",
+      "piazzale": "+"
+     }
+    }
+   },
+   "ms": 554,
+   "folla": "vuoti|parcheggi>entra",
+   "dinamica": "corteo:parcheggi",
+   "dinColori": "#1e7b4a",
+   "colori": "strada_cinderwick=#ff6a13,parcheggi=#1e7b4a",
+   "stadio": "vuoto",
+   "ellisse": "189,199,72,45",
+   "rif": null,
+   "settori": {
+    "mercato": [
+     108,
+     176
+    ],
+    "strada_cinderwick": [
+     58,
+     240
+    ],
+    "piazza_fonderie": [
+     75,
+     98
+    ],
+    "parcheggi": [
+     220,
+     98
+    ],
+    "piazzale": [
+     247,
+     208
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {
+    "#1e7b4a": {
+     "personeA": 46,
+     "personeZ": 37,
+     "coppie": 30,
+     "stadio": {
+      "n": 30,
+      "piu": 14,
+      "meno": 14,
+      "mediana": 0.11,
+      "media": -0.08
+     },
+     "rif": null,
+     "dy": {
+      "n": 30,
+      "piu": 21,
+      "meno": 7,
+      "mediana": 2,
+      "media": 0.73
+     }
+    }
+   }
+  },
+  {
+   "ep": "e04",
+   "ondata": 3,
+   "scena": "schieramento-3",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "strada_cinderwick>esce",
+      "stadio": {
+       "n": 69,
+       "piu": 69,
+       "meno": 0,
+       "media": 0.56
+      },
+      "rif": null,
+      "verso": {
+       "STADIO": "+",
+       "mercato": "~",
+       "strada_cinderwick": "−",
+       "piazza_fonderie": "+",
+       "parcheggi": "+",
+       "piazzale": "+"
+      }
+     }
+    ],
+    "dinamica": null
+   },
+   "ms": 481,
+   "folla": "vuoti|strada_cinderwick>esce",
+   "dinamica": "",
+   "dinColori": "",
+   "colori": "strada_cinderwick=#ff6a13,parcheggi=#1e7b4a",
+   "stadio": "vuoto",
+   "ellisse": "189,199,72,45",
+   "rif": null,
+   "settori": {
+    "mercato": [
+     108,
+     176
+    ],
+    "strada_cinderwick": [
+     58,
+     240
+    ],
+    "piazza_fonderie": [
+     75,
+     98
+    ],
+    "parcheggi": [
+     220,
+     98
+    ],
+    "piazzale": [
+     247,
+     208
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {
+    "#ff6a13": {
+     "personeA": 12,
+     "personeZ": 13,
+     "coppie": 7,
+     "stadio": {
+      "n": 7,
+      "piu": 7,
+      "meno": 0,
+      "mediana": 0.75,
+      "media": 1.02
+     },
+     "rif": null,
+     "dy": {
+      "n": 7,
+      "piu": 6,
+      "meno": 1,
+      "mediana": 1.64,
+      "media": 1.33
+     }
+    }
+   }
+  },
+  {
+   "ep": "e04",
+   "ondata": 3,
+   "scena": "chiamata-angolo",
+   "pixi": {
+    "scena": 8,
+    "ondata": [
+     {
+      "corteo": "strada_cinderwick>esce",
+      "stadio": {
+       "n": 69,
+       "piu": 69,
+       "meno": 0,
+       "media": 0.65
+      },
+      "rif": null,
+      "verso": {
+       "STADIO": "+",
+       "mercato": "~",
+       "strada_cinderwick": "−",
+       "piazza_fonderie": "+",
+       "parcheggi": "+",
+       "piazzale": "+"
+      }
+     }
+    ],
+    "dinamica": {
+     "quale": "corteo:strada_cinderwick",
+     "persone": 40,
+     "stadio": {
+      "n": 39,
+      "piu": 39,
+      "meno": 0,
+      "media": 0.76
+     },
+     "rif": null,
+     "verso": {
+      "STADIO": "+",
+      "mercato": "~",
+      "strada_cinderwick": "−",
+      "piazza_fonderie": "~",
+      "parcheggi": "+",
+      "piazzale": "+"
+     }
+    }
+   },
+   "ms": 543,
+   "folla": "vuoti|strada_cinderwick>esce",
+   "dinamica": "corteo:strada_cinderwick",
+   "dinColori": "#ff6a13",
+   "colori": "strada_cinderwick=#ff6a13,parcheggi=#1e7b4a",
+   "stadio": "vuoto",
+   "ellisse": "189,199,72,45",
+   "rif": null,
+   "settori": {
+    "mercato": [
+     108,
+     176
+    ],
+    "strada_cinderwick": [
+     58,
+     240
+    ],
+    "piazza_fonderie": [
+     75,
+     98
+    ],
+    "parcheggi": [
+     220,
+     98
+    ],
+    "piazzale": [
+     247,
+     208
+    ]
+   },
+   "box": [
+    328,
+    328
+   ],
+   "mov": {
+    "#ff6a13": {
+     "personeA": 17,
+     "personeZ": 22,
+     "coppie": 15,
+     "stadio": {
+      "n": 15,
+      "piu": 15,
+      "meno": 0,
+      "mediana": 0.92,
+      "media": 0.86
+     },
+     "rif": null,
+     "dy": {
+      "n": 15,
+      "piu": 15,
+      "meno": 0,
+      "mediana": 1.8,
+      "media": 1.7
+     }
+    }
+   }
+  }
+ ],
+ "errori": []
+}
