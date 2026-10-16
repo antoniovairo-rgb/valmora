@@ -116,6 +116,8 @@ main:not(.rosso-c89c01) :is(.tasto-home, .info, .aiuto, .tocco-pastiglia, .indic
 .settore[data-unita="sotto"] .settore-unita { bottom: auto; top: calc(var(--settore) / 2); }
 .settore[data-unita="destra-alto"] .settore-unita { bottom: 0; top: auto; left: calc(var(--settore) / 2); right: auto; transform: none; }
 .settore[data-unita="sinistra-alto"] .settore-unita { bottom: 0; top: auto; left: auto; right: calc(var(--settore) / 2); transform: none; }
+.settore[data-unita="destra-basso"] .settore-unita { bottom: auto; top: 0; left: calc(var(--settore) / 2); right: auto; transform: none; } /* C28-14 */
+.settore[data-unita="sinistra-basso"] .settore-unita { bottom: auto; top: 0; left: auto; right: calc(var(--settore) / 2); transform: none; }
 .pastiglia { display: inline-flex; align-items: center; gap: var(--spazio-px); min-height: var(--pastiglia); padding: 0 var(--spazio-1); border: var(--bordo-fine) solid var(--nero); background: var(--giallo); color: var(--nero); font: 700 var(--testo-piccolo) var(--font); }
 .pastiglia .icona { width: var(--testo-piccolo); height: var(--testo-piccolo); }
 /* Tensione a colori (D-055) */

@@ -7,9 +7,13 @@ import { bezier, disponi } from '../src/resa/mappa/sfondo.ts';
 import type { Missione } from '../src/logica/tipi.ts';
 
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C93V01; });
+afterEach(() => { delete g.__NO_C93V01; delete g.__NO_C95S01; });
 const ep = (id: string) => JSON.parse(readFileSync(`data/missioni/${id}.json`, 'utf8')) as Missione;
 const L = 322, M = 22, SOTTO = 20; // tela a 360 px; margine = mezzo punto del settore, sotto lo spazio dei nomi (come StratoPixi)
+function disp(id: string) {
+  const m = ep(id);
+  return disponi(L, L, m.mappa.settori.map((s) => ({ id: s.id, tipo: s.tipo, x: M + ((L - 2 * M) * s.pos!.x) / 100, y: M + ((L - 2 * M - SOTTO) * s.pos!.y) / 100, meta: (s as { meta?: string }).meta })));
+}
 /** Quota dei passi del corteo «entra» (parametro 0 → 0,75, come StratoPixi) che si avvicinano allo stadio disegnato. */
 function avvicina(id: string, strada: string) {
   const m = ep(id);
@@ -27,5 +31,20 @@ describe('C29-02 viale dal bordo giusto', () => {
   it('braccio rosso __NO_C93V01: e04 dal bordo basso, il corteo si allontana (il difetto del collaudo)', () => {
     g.__NO_C93V01 = true;
     expect(avvicina('e04', 'parcheggi')).toBeLessThan(0.5);
+  });
+});
+
+// C31-02: e30, strada con meta (municipio) e stadio disegnato: il viale parte dallo stadio e il corteo va verso la meta
+// (via dallo stadio) in ogni ondata. Rosso __NO_C95S01: dal bordo basso, il corteo si avvicina allo stadio (57/69).
+describe('C31-02 viale con la meta che parte dallo stadio', () => {
+  const via = () => { const d = disp('e30'), k = d.idViali.indexOf('strada_cinderwick'), v = d.viali[k]!, c = { x: d.stadio!.cx, y: d.stadio!.cy };
+    const dist = (t: number) => { const p = bezier(v, t); return Math.hypot(p.x - c.x, p.y - c.y); };
+    let si = 0; for (let j = 0; j < 60; j++) if (dist(((j + 1) / 60) * 0.75) > dist((j / 60) * 0.75)) si++;
+    return { quota: si / 60, versoMeta: d.versoMeta[k] }; };
+  it('e30 strada_cinderwick: il corteo in avanti si allontana dallo stadio, verso la meta', () => {
+    const r = via(); expect(r.versoMeta).toBe(true); expect(r.quota).toBeGreaterThanOrEqual(0.9);
+  });
+  it('braccio rosso __NO_C95S01: dal bordo basso, verso fisso spento', () => {
+    g.__NO_C95S01 = true; const r = via(); expect(r.versoMeta).toBe(false); expect(r.quota).toBeLessThan(0.5);
   });
 });
