@@ -27,7 +27,10 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
       // C26 (catena instabile, e25 sala a 360): all'entrata la scena ha la scala della molla (Scena.tsx), quindi il
       // riquadro a schermo non è l'altezza vera e la misura restava sbagliata finita la molla (pagina che scorre di 3 px).
       // L'altezza si legge dall'impaginazione, senza trasformazioni. Rosso C78V01: dal riquadro, come prima.
-      const alta = spento('C78V01') ? svg.getBoundingClientRect().height : parseFloat(css.height) || 0;
+      // C29-01: da nascosta (display: none) la vignetta non occupa spazio, ma l'altezza del CSS vale lo stesso: contarla
+      // raddoppiava lo spazio libero, la vignetta riappariva, non ci stava e si rinascondeva a ogni frame (1366×768,
+      // 360×700). Da nascosta l'altezza è 0. Rosso C89V01: altezza del CSS anche da nascosta, come nella 0.23.0.
+      const alta = nascosta && !spento('C89V01') ? 0 : spento('C78V01') ? svg.getBoundingClientRect().height : parseFloat(css.height) || 0;
       const vuole = alta + libero - (nascosta ? margini : 0);
       // C26-03: a 375×667 il verbale restava a 62-95 px (sopra il minimo): la decisione del PO è «nascoste a 375×667»,
       // quindi conta anche l'altezza della finestra (--vignetta-finestra-min). Rosso C76V01: solo il minimo, come prima.

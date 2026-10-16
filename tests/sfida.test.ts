@@ -34,3 +34,15 @@ describe('C26-06 sfida dal campo partita (D-130)', () => {
     expect(sfidanti(ep('e07'))).toEqual(['southwind_town']);
   });
 });
+
+// C29-03: senza «partita» l'ordine era quello delle curve nei dati, e in e02, e03, e18, e24, e26 lo Skyfield che gioca in
+// casa compariva per secondo («Stoneway contro Skyfield» con il testo «Skyfield–Stoneway»). Ora i dati lo dicono.
+describe('C29-03 la squadra di casa per prima', () => {
+  it('e02, e03, e18, e24, e26: lo Skyfield in casa viene prima', () => {
+    for (const id of ['e02', 'e03', 'e18', 'e24', 'e26']) expect(sfidanti(ep(id))[0], id).toBe('larkspire_athletic');
+  });
+  it('braccio rosso __NO_C79P01: dalle curve, ospiti per primi (il difetto del collaudo)', () => {
+    g.__NO_C79P01 = true;
+    expect(sfidanti(ep('e24'))[0]).toBe('saltmere_wanderers');
+  });
+});

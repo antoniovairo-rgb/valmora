@@ -184,4 +184,11 @@
 //   misura: 0 testi oltre i limiti in e01–e36; campi `meta` (e30 strada da Kiln → piazza del municipio) e `fase`
 //   (e07 o2-3 partita, o4 dopo; e21 o2 partita, o4 dopo; e23 o2 prima; e27 o1 prima, o4 dopo) nei dati.
 //   guardiano: tests/brevita.test.ts esteso a e01–e36; tests/meta-fase.test.ts (rossi C85M01, C84F01) col caso sui dati veri.
-export const GAME_VERSION = '0.26.0';
+// 0.27.0 – correzione urgente dal collaudo C-029.
+//   causa: C29-01 dalla 0.23.0 la vignetta di sala e verbale appariva e spariva a ogni frame in 13–16 finestre su 128
+//   (1366×768, 360×700, 393×720…): pagina che salta, clic a vuoto 5/30. Da nascosta l'altezza veniva letta dal CSS e
+//   lo spazio libero risultava doppio. C29-03 la sfida mostrava gli ospiti per primi in e02, e03, e18, e24, e26.
+//   misura: sonda c29-sala-tremolio 119 → 0 cambi in 120 frame a 1366×768 e 360×700, 0 a 360×760 (vignetta 78,6 px);
+//   giro foto a 360: verde 0 righe, rosso C89V01 19 righe (sala e verbale). Campo `partita` nei 5 episodi.
+//   guardiano: foto-c22.mjs conta i cambi in 30 frame a 1366×768 e 360×700 (rosso C89V01); tests/sfida.test.ts C29-03.
+export const GAME_VERSION = '0.27.0';
