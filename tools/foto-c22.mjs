@@ -141,6 +141,12 @@ export async function controllaFuoco(pagina, atteso, dove) {
   let dove2 = '';
   for (let i = 0; i < 6; i++) { dove2 = await pagina.evaluate(() => { const a = document.activeElement; return !a || a === document.body ? 'body' : ''; }); if (!dove2) break; await pagina.waitForTimeout(40); }
   atteso(`${dove}: il fuoco della tastiera è sul body (C28-09)`, dove2 !== 'body');
+  // C32-01: se la scena ha comandi (opzioni escluse) il fuoco recuperato sta su un comando, non sulla scena (il Tab
+  // ripartirebbe dal primo). Rosso VALMORA_ROSSI=C97F01: sulla scena.
+  const sc = await pagina.evaluate(() => { const a = document.activeElement, s = document.querySelector('.scena'); const C = 'button:not(:disabled):not(.opzione), a[href], [tabindex="0"]';
+    return { sullaScena: a === s, comandi: !!s && [...s.querySelectorAll(C)].some((e) => e.getClientRects().length) }; });
+  // il titolo si apre anche col caricamento della pagina, quando non c'è un comando perso: lì la scena va bene
+  atteso(`${dove}: il fuoco recuperato sta sulla scena e non su un comando (C32-01)`, dove === 'titolo' || !sc.sullaScena || !sc.comandi);
 }
 
 /** C28-09 e C28-11, a 1366×768 (PC): i comandi casa, «i», «?», pastiglie e «Rispondi» col fuoco da tastiera hanno il
@@ -151,9 +157,13 @@ export async function controllaLargo(pagina, atteso, dove) {
   await pagina.setViewportSize({ width: 1366, height: 768 }); await pagina.waitForTimeout(200);
   const r = await pagina.evaluate(() => {
     const v = document.querySelector('[data-versione-angolo]')?.getBoundingClientRect(), app = document.querySelector('#app')?.getBoundingClientRect();
-    return { v: v && app ? { destra: v.right, colonna: app.right } : null };
+    // C32-06: e non tocca nessun comando
+    const tocca = !v ? [] : [...document.querySelectorAll('button, a[href]')].filter((e) => { const b = e.getBoundingClientRect(); return b.width && Math.min(v.right, b.right) - Math.max(v.left, b.left) > 0 && Math.min(v.bottom, b.bottom) - Math.max(v.top, b.top) > 0; }).map((e) => e.dataset.azione ?? e.className.split(' ')[0]);
+    return { v: v && app ? { sinistra: v.left, destra: v.right, colonna: app.right } : null, tocca };
   });
-  if (r.v) atteso(`${dove} a 1366×768: versione col bordo destro a ${(r.v.destra).toFixed(0)} px, colonna fino a ${r.v.colonna.toFixed(0)} px (C28-11)`, r.v.destra <= r.v.colonna + 1 && r.v.destra >= r.v.colonna - 16);
+  // C28-11 accanto alla colonna; C32-06 subito fuori, nei 16 px oltre il bordo (rossi C90V01 e C98V01)
+  if (r.v) atteso(`${dove} a 1366×768: versione da ${r.v.sinistra.toFixed(0)} a ${r.v.destra.toFixed(0)} px, colonna fino a ${r.v.colonna.toFixed(0)} px (C28-11, C32-06)`, r.v.sinistra >= r.v.colonna - 1 && r.v.destra <= r.v.colonna + 17);
+  atteso(`${dove} a 1366×768: la versione tocca ${r.tocca.join(', ')} (C32-06)`, !r.tocca.length);
   await pagina.keyboard.press('Shift'); // da qui il fuoco è «da tastiera» (:focus-visible)
   const contorni = await pagina.evaluate(() => [...document.querySelectorAll('.tasto-home, .info, .aiuto, .tocco-pastiglia, .indicatore')].filter((e) => e.getClientRects().length && e.matches('button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])')).map((e) => { // solo i comandi (la pastiglia fissa è un'immagine)
     e.focus({ preventScroll: true }); const c = getComputedStyle(e); const out = `${e.className.split(' ')[0]} ${c.outlineStyle} ${c.outlineColor}`, ok = c.outlineStyle === 'solid'; // letto prima del blur (stile vivo)

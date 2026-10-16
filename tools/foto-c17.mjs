@@ -101,16 +101,15 @@ export async function controllaRispondi(pagina, atteso, dove) {
 }
 
 /** PO-096: nello schieramento la riga «in mano» non è troncata e il «?» è grande (tocco ≥ 44 px, icona ≥ 24 px). */
-export async function controllaRigaAiuto(pagina, atteso, nome) {
-  const r = await pagina.evaluate(() => {
-    const p = document.querySelector('.riga-in-mano .in-mano'), b = document.querySelector('.riga-in-mano .aiuto');
-    if (!p || !b) return null;
-    const i = b.querySelector('svg')?.getBoundingClientRect();
-    return { tagliata: p.scrollWidth > p.clientWidth + 1 || getComputedStyle(p).textOverflow === 'ellipsis', tocco: Math.min(b.offsetWidth, b.offsetHeight), icona: i ? Math.min(i.width, i.height) : 0 };
-  });
+export async function controllaRigaAiuto(pagina, atteso, nome) { // PO-096 e D-139: il «?» nella barra fissa, sempre visibile (rosso C96A01: nella riga)
+  const r = await pagina.evaluate(() => { const p = document.querySelector('.riga-in-mano .in-mano'), b = document.querySelector('[data-azione="aiuto"]'), c = document.querySelector('[data-barra] [data-azione="conferma"]'); if (!p || !b) return null;
+    const i = b.querySelector('svg')?.getBoundingClientRect(), q = b.getBoundingClientRect(), t = document.elementFromPoint(q.left + q.width / 2, q.top + q.height / 2);
+    return { tagliata: p.scrollWidth > p.clientWidth + 1 || getComputedStyle(p).textOverflow === 'ellipsis', tocco: Math.min(b.offsetWidth, b.offsetHeight), icona: i ? Math.min(i.width, i.height) : 0, barra: !!b.closest('[data-barra]'), coperto: !(t && (t === b || b.contains(t))), conferma: c ? { w: c.offsetWidth, h: c.offsetHeight, taglio: c.scrollWidth > c.clientWidth + 1 } : null }; });
   if (!r) return;
   atteso(`${nome}: la riga dell'aiuto è troncata coi puntini (PO-096)`, !r.tagliata);
   atteso(`${nome}: il «?» è piccolo (tocco ${r.tocco} px, icona ${Math.round(r.icona)} px) (PO-096)`, r.tocco >= 44 && r.icona >= 24);
+  atteso(`${nome}: il «?» non è nella barra fissa (${r.barra ? 'nella barra' : 'nella riga'}) o è coperto (D-139)`, r.barra && !r.coperto);
+  atteso(`${nome}: «Conferma» ${r.conferma?.w}×${r.conferma?.h} px${r.conferma?.taglio ? ', testo tagliato' : ''} (D-139: leggibile e ≥44 px)`, !!r.conferma && r.conferma.w >= 44 && r.conferma.h >= 44 && !r.conferma.taglio);
 }
 
 /** PO-097: la versione c'è su ogni schermata, è quella del gioco e non tocca nessun comando. */
