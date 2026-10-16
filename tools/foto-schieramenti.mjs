@@ -162,7 +162,8 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
       const barra = document.querySelector('[data-barra]')?.getBoundingClientRect();
       return [...document.querySelectorAll('.vassoio .unita, [data-azione="aiuto"], [data-aiuto]')].filter((e) => {
         const r = e.getBoundingClientRect();
-        return r.top < 0 || r.bottom > innerHeight || (barra && r.bottom > barra.top + 1 && r.top < barra.bottom);
+        // D-139: il «?» sta nella barra fissa: per lui conta solo che sia nella finestra
+        return r.top < 0 || r.bottom > innerHeight || (!e.closest('[data-barra]') && barra && r.bottom > barra.top + 1 && r.top < barra.bottom);
       }).map((e) => e.dataset.risorsa ?? e.dataset.azione ?? 'aiuto');
     });
     atteso(`schieramento ${id} ${w}×${h} col «?» aperto: fuori vista o sotto la barra ${male.join(', ')} (C18-07, C20-04)`, male.length === 0);

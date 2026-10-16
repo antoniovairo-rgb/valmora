@@ -96,6 +96,9 @@ export function Schieramento(p: {
   // S-24 (PO, «Compatto», C16-02): sotto la mappa solo la fila delle unità e una riga; le istruzioni dietro «?»;
   // barra fissa in basso con Annulla e Ritira a sola icona e «Conferma» grande. Rosso C27S01: la disposizione di S-12.
   const vecchio = spento('C27S01');
+  // D-139 (C30-04, PO-118): il «?» nella barra fissa accanto ad annulla e ricomincia, sempre visibile: nella riga sotto le
+  // unità finiva sotto la barra con la riga «i» aperta (142/142 a 1366×768). Rosso C96A01: nella riga, come prima.
+  const nellaBarra = !vecchio && !spento('C96A01');
   const fisse = Object.entries(p.m.mappa.risorse).filter(([, x]) => x.fissa).map(([r]) => r);
   // C18-07: aperto col «?», l'aiuto va sotto la riga del «?» e si porta in vista: sopra le unità le spingeva sotto la
   // barra «Conferma» (375×667). Rosso C42A01: sopra le unità, come prima.
@@ -134,11 +137,12 @@ export function Schieramento(p: {
           ? <><strong>{t(`risorsa.${p.scelta}`)}</strong> {libereScelta === 1 ? '(1)' : `(${libereScelta})`}{/* PO-099 (D-116): niente suggerimento «dove rende»: anticipava dove schierare. Rosso C41R01: lo rimette. */}{spento('C41R01') && !spento('C22R01') && <span className="rende" data-rende={p.scelta} title={rende(p.m, p.scelta)}> · {rende(p.m, p.scelta)}</span>}</>
           : <>Tocca un'unità, poi un settore della mappa.</>}
       </p>
-      {!vecchio && <button type="button" className="aiuto" data-azione="aiuto" aria-pressed={aiuto} aria-label="Come si schiera" onClick={() => setAiuto(!aiuto)}><Icona di={CircleHelp} /></button>}
+      {!vecchio && !nellaBarra && <button type="button" className="aiuto" data-azione="aiuto" aria-pressed={aiuto} aria-label="Come si schiera" onClick={() => setAiuto(!aiuto)}><Icona di={CircleHelp} /></button>}
       </div>
       {!sopra && scatola}
       <div className={vecchio ? 'riga azioni tre' : 'barra-schieramento'} data-barra>
         <button className="pulsante secondario" data-azione="annulla" aria-label="Annulla l'ultima mossa" title="Annulla l'ultima mossa" disabled={!p.annulla} onClick={() => p.annulla?.()}><Icona di={Undo2} />{vecchio && 'Annulla'}</button>
+        {nellaBarra && <button type="button" className="pulsante secondario aiuto" data-azione="aiuto" aria-pressed={aiuto} aria-label="Come si schiera" title="Come si schiera" onClick={() => setAiuto(!aiuto)}><Icona di={CircleHelp} /></button>}
         <button className="pulsante secondario" data-azione="azzera" aria-label="Ritira tutte le unità" title="Ritira tutte le unità" onClick={p.azzera}><Icona di={RotateCcw} />{vecchio && 'Ritira tutte'}</button>
         <button className="pulsante" data-azione="conferma" aria-label={tutte ? 'Conferma lo schieramento' : 'Conferma lo schieramento, con unità libere'} onClick={() => (spento('C17C01') ? p.conferma() : setRiepilogo(true))}><Icona di={Check} />Conferma</button>
       </div>
