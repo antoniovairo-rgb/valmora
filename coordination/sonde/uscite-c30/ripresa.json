@@ -1,0 +1,173 @@
+{
+ "R1": [
+  {
+   "ep": "e01",
+   "prima": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-ufficio_insiste"
+   },
+   "dopoRicarica": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-ufficio_insiste"
+   },
+   "fileUgualeAlSalvataggio": true,
+   "importatoUguale": true,
+   "dopoImport": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-ufficio_insiste"
+   },
+   "vecchiNelTesto": false,
+   "ok": true
+  },
+  {
+   "ep": "e08",
+   "prima": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-facce_nuove"
+   },
+   "dopoRicarica": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-facce_nuove"
+   },
+   "fileUgualeAlSalvataggio": true,
+   "importatoUguale": true,
+   "dopoImport": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-facce_nuove"
+   },
+   "vecchiNelTesto": false,
+   "ok": true
+  },
+  {
+   "ep": "e17",
+   "prima": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-schermo_comizi"
+   },
+   "dopoRicarica": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-schermo_comizi"
+   },
+   "fileUgualeAlSalvataggio": true,
+   "importatoUguale": true,
+   "dopoImport": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-schermo_comizi"
+   },
+   "vecchiNelTesto": false,
+   "ok": true
+  },
+  {
+   "ep": "e21",
+   "prima": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-nuovo_capo"
+   },
+   "dopoRicarica": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-nuovo_capo"
+   },
+   "fileUgualeAlSalvataggio": true,
+   "importatoUguale": true,
+   "dopoImport": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-nuovo_capo"
+   },
+   "vecchiNelTesto": false,
+   "ok": true
+  },
+  {
+   "ep": "e30",
+   "prima": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-muri_quartiere"
+   },
+   "dopoRicarica": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-muri_quartiere"
+   },
+   "fileUgualeAlSalvataggio": true,
+   "importatoUguale": true,
+   "dopoImport": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-muri_quartiere"
+   },
+   "vecchiNelTesto": false,
+   "ok": true
+  },
+  {
+   "ep": "e33",
+   "prima": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_mossgarth"
+   },
+   "dopoRicarica": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_mossgarth"
+   },
+   "fileUgualeAlSalvataggio": true,
+   "importatoUguale": true,
+   "dopoImport": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_mossgarth"
+   },
+   "vecchiNelTesto": false,
+   "ok": true
+  }
+ ],
+ "R2": [
+  {
+   "file": "v1-dopo-ondata-1.json",
+   "importato": true,
+   "errore": 0,
+   "dove": {
+    "scena": "citta",
+    "chiamata": null
+   },
+   "fine": {
+    "scena": "briefing",
+    "chiamata": null
+   },
+   "vecchiNelTesto": 0,
+   "nuovi": [
+    "Skyfield"
+   ],
+   "ok": true
+  },
+  {
+   "file": "v1-nuova-partita.json",
+   "importato": true,
+   "errore": 0,
+   "dove": {
+    "scena": "citta",
+    "chiamata": null
+   },
+   "fine": {
+    "scena": "briefing",
+    "chiamata": null
+   },
+   "vecchiNelTesto": 0,
+   "nuovi": [
+    "Skyfield"
+   ],
+   "ok": true
+  },
+  {
+   "file": "v2-0.4.0-e02-in-corso.json",
+   "importato": true,
+   "errore": 0,
+   "dove": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-tornelli_falsi"
+   },
+   "fine": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-tornelli_falsi"
+   },
+   "vecchiNelTesto": 0,
+   "nuovi": [],
+   "ok": true
+  }
+ ],
+ "errori": []
+}
