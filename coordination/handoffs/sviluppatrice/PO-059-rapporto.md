@@ -52,4 +52,4 @@ Ramo `claude/valmora-resa-v2`. Piano approvato dalla principale; il PO ha deciso
 
 ## Esito dei giri
 
-La catena completa è in corso.
+FATTO MISURATO: catena completa 3/3 verde su f0d6257.
