@@ -2,6 +2,7 @@
 // motore (giocatore equilibrato), a 360×760: zero scorrimento e la barra in basso non copre niente. e03 ondata 3
 // anche a 375×812 e 412×915, con foto (è la schermata della foto del PO).
 import { join } from 'node:path';
+import { writeFileSync } from 'node:fs';
 import { leggiDati } from './dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, iniziaMissione, missioneFinita, rispondi, schiera } from '../src/logica/missione.ts';
@@ -47,6 +48,13 @@ export function partenzeAttente(dirDati) {
 /** C26-11: sulla mappa dello schieramento nessun nome di settore sopra un altro, e ogni pastiglia toccabile prende il
  *  tocco al suo centro (non il disco di un altro settore). Le unità si mettono come il bot attento (il caso del
  *  collaudo: e06 a 360, mediatore di Piazza del concerto), con la bozza nel salvataggio. Rosso VALMORA_ROSSI=C77E01. */
+// C33-04: ogni disposizione delle etichette riscrive data-unita su tutti i settori; dopo un caricamento o un cambio di
+// misura il ResizeObserver può arrivare anche dopo 500 ms, quindi un'attesa fissa (120 ms) leggeva uno stato di mezzo.
+// Si contano le scritture e si aspetta che la mappa stia ferma 500 ms (con `almenoUna`, dopo almeno una disposizione).
+export const ascoltaEtichette = (pagina) => pagina.evaluate(() => { const m = document.querySelector('.mappa:not(.citta)'), g = (globalThis.__etichette = { n: 0, ultimo: performance.now() });
+  globalThis.__etichetteO?.disconnect(); if (m) (globalThis.__etichetteO = new MutationObserver(() => { g.n++; g.ultimo = performance.now(); })).observe(m, { attributes: true, subtree: true, attributeFilter: ['data-unita', 'data-nome'] }); });
+export const etichetteFerme = (pagina, almenoUna = false) => pagina.waitForFunction((a) => { const g = globalThis.__etichette; return !!g && (!a || g.n > 0) && performance.now() - g.ultimo > 500; }, almenoUna, { timeout: 8000, polling: 100 }).then(() => true, () => false);
+
 export async function mappaSchieramento(pagina) {
   return pagina.evaluate(() => {
     const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
@@ -69,7 +77,14 @@ export async function mappaSchieramento(pagina) {
     const fuori = !m ? [] : [...document.querySelectorAll('.mappa:not(.citta) .settore-unita .pastiglia')].filter((e) => e.getClientRects().length)
       .filter((e) => { const r = e.getBoundingClientRect(); return r.left < m.left + 1 || r.right > m.right - 1 || r.top < m.top + 1 || r.bottom > m.bottom - 1; })
       .map((e) => `«${e.textContent}» di ${e.closest('[data-settore]')?.dataset.settore}`);
-    return { sopra, coperte, suNomi, fuori };
+    // C33-05: il gruppo di pastiglie di un settore (centro dell'unione) più vicino al disco di un altro settore che al proprio
+    const centro = (r) => [(r.left + r.right) / 2, (r.top + r.bottom) / 2], dist = (p, q) => Math.hypot(p[0] - q[0], p[1] - q[1]);
+    const dischi = [...document.querySelectorAll('.mappa:not(.citta) [data-settore]')].map((x) => [x, centro(x.querySelector('.settore-punto').getBoundingClientRect())]);
+    const vicine = dischi.flatMap(([x, mio]) => { const ps = [...x.querySelectorAll('.settore-unita .pastiglia')].filter((e) => e.getClientRects().length).map((e) => e.getBoundingClientRect()); if (!ps.length) return [];
+      const c = centro({ left: Math.min(...ps.map((r) => r.left)), top: Math.min(...ps.map((r) => r.top)), right: Math.max(...ps.map((r) => r.right)), bottom: Math.max(...ps.map((r) => r.bottom)) });
+      const [altro, d] = dischi.filter(([y]) => y !== x).map(([y, q]) => [y.dataset.settore, dist(c, q)]).sort((u, v) => u[1] - v[1])[0] ?? [null, Infinity];
+      return d < dist(c, mio) ? [`${x.dataset.settore} ${dist(c, mio).toFixed(0)} px dal suo disco, ${d.toFixed(0)} da ${altro}`] : []; });
+    return { sopra, coperte, suNomi, fuori, vicine };
   });
 }
 
@@ -84,6 +99,7 @@ export const copertiDallaBarra = (pagina) => pagina.evaluate(() => {
     .map((e) => (e.dataset.risorsa ?? e.dataset.azione ?? e.textContent.trim().slice(0, 24)));
 });
 
+const VICINE = { 360: 36, 375: 29, 412: 9 }; // C33-05: i valori della 0.31.0 misurati dal collaudo C-033 (0.32.0: 44 / 32 / 14)
 const PASTIGLIE_SU_NOMI = 0; // C27-06: 7 il 15/10; D-136 (C28-14): a 0 col nome su più righe e due posti in più (rosso C94N01: 7)
 
 export async function controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi = []) {
@@ -112,27 +128,33 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   // 375 e 412 (prima solo 360)
   const suNomi = [], attente = partenzeAttente(dirDati);
   for (const [w, h] of [[360, 760], [375, 812], [412, 915]]) {
+    const vicine = [];
     const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); await q6.goto(url);
     for (const st of attente) {
       await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
       await q6.reload(); await q6.getByRole('button', { name: 'Riprendi' }).click();
       if (!(await q6.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) continue;
-      await q6.waitForTimeout(120);
+      await ascoltaEtichette(q6); await etichetteFerme(q6);
       const r = await mappaSchieramento(q6), dove = `${st.m.id} ondata ${st.n} ${w}×${h}`;
       atteso(`${dove} con le unità: nomi sovrapposti ${r.sopra.join('; ')}, pastiglie col centro coperto ${r.coperte.join(', ')} (C26-11)`, !r.sopra.length && !r.coperte.length);
       if (r.suNomi.length) suNomi.push(`${dove}: ${r.suNomi.join('; ')}`);
+      vicine.push(...r.vicine.map((x) => `${st.m.id} o${st.n} ${x}`));
       atteso(`${dove} con le unità: pastiglie sopra i nomi ${r.suNomi.join('; ')} (C27-06, il caso del collaudo)`, st.m.id !== 'e19' || !r.suNomi.length);
       atteso(`${dove} con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
       if (w === 360) { // C33-04: la disposizione non dipende dallo stato del giro prima (rosso VALMORA_ROSSI=C102D01)
         const posti = () => q6.evaluate(() => [...document.querySelectorAll('.mappa:not(.citta) [data-settore]')].map((x) => `${x.dataset.settore}:${x.dataset.nome}/${x.dataset.unita}/${x.querySelector('.settore-nome')?.style.maxWidth ?? ''}`).join(' '));
         const prima = await posti();
+        // la mappa deve cambiare misura (w+1: in 25 ondate non cambiava) e la disposizione finale deve partire dallo stato sporco
+        await ascoltaEtichette(q6); await q6.setViewportSize({ width: w + 24, height: h + 24 }); await etichetteFerme(q6, true);
         await q6.evaluate(() => { for (const x of document.querySelectorAll('.mappa:not(.citta) [data-settore]')) { x.setAttribute('data-unita', 'sotto'); x.querySelector('.settore-nome')?.style.setProperty('max-width', 'calc(var(--nome-max) * 0.6)'); } });
-        await q6.setViewportSize({ width: w + 24, height: h + 24 }); await q6.waitForTimeout(120); // la mappa deve cambiare misura (w+1: in 25 ondate non cambiava)
-         await q6.setViewportSize({ width: w, height: h }); await q6.waitForTimeout(120);
-        const dopo = await posti();
-        atteso(`${dove}: la disposizione cambia ripartendo da un altro stato (C33-04): ${prima === dopo ? '' : dopo.split(' ').filter((x, i) => x !== prima.split(' ')[i]).join(' ')}`, prima === dopo);
+        await ascoltaEtichette(q6); await q6.setViewportSize({ width: w, height: h });
+        const rifatta = await etichetteFerme(q6, true), dopo = await posti();
+        atteso(`${dove}: la disposizione cambia ripartendo da un altro stato (C33-04): ${!rifatta ? 'non ridisposta in 8 s' : prima === dopo ? '' : dopo.split(' ').filter((x, i) => x !== prima.split(' ')[i]).join(' ')}`, rifatta && prima === dopo);
       }
     }
+    // C33-05: non più gruppi vicini al disco di un altro settore che nella 0.31.0 (36 / 29 / 9, collaudo C-033); elenco in cartella
+    writeFileSync(join(cartella, `vicine-${w}.txt`), `${vicine.length}\n${vicine.join('\n')}\n`);
+    atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
     await q6.close();
   }
   // C27-06 / D-136: nessuna ondata con una pastiglia sopra un nome (7 su 142 prima di C28-14, 19 col rosso C81P01).
@@ -147,8 +169,8 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     const male = new Set();
     for (const [ris, posti] of Object.entries(st.d)) for (const [sett, n] of Object.entries(posti)) for (let k = 0; k < n; k++) {
       if ((await qp.getAttribute(`[data-risorsa="${ris}"]`, 'aria-pressed').catch(() => null)) !== 'true') await qp.click(`[data-risorsa="${ris}"]`).catch(() => {});
-      await qp.click(`[data-settore="${sett}"] .settore-punto`, { timeout: 3000 }).catch(() => male.add(`${ris}@${sett} non si tocca`));
-      await qp.waitForTimeout(60);
+      await ascoltaEtichette(qp); await qp.click(`[data-settore="${sett}"] .settore-punto`, { timeout: 3000 }).catch(() => male.add(`${ris}@${sett} non si tocca`));
+      await etichetteFerme(qp, true);
       const r = await mappaSchieramento(qp);
       for (const x of [...r.coperte.map((c) => `tocco ${c} coperto`), ...r.sopra.map((c) => `nomi ${c}`)]) male.add(`dopo ${ris}@${sett}: ${x}`);
     }
