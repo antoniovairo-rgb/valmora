@@ -19,14 +19,17 @@ export function follaDellOndata(m: Missione, n: number): Folla {
   const strade = m.mappa.settori.filter((s) => s.tipo === 'strada').map((s) => s.id);
   if (spento('C11F01')) return { spalti: 'pieni', cortei: strade.slice(0, 1).map((settore) => ({ settore, verso: 'entra' })) };
   const eventi = m.ondate[n - 1]?.eventi ?? [];
-  const partita = (k: number) => (m.ondate[k - 1]?.eventi ?? []).some((e) => e.tipo === 'curva');
+  // C27-04: se i dati dicono la fase dell'ondata («prima», «partita», «dopo»), vale quella; senza, la partita si ricava
+  // dagli eventi «curva» come prima (e07 non ne ha: la partita non c'era mai). Rosso C84F01: «fase» ignorata.
+  const fase = (k: number) => (spento('C84F01') ? undefined : (m.ondate[k - 1] as { fase?: 'prima' | 'partita' | 'dopo' } | undefined)?.fase);
+  const partita = (k: number) => (fase(k) ? fase(k) === 'partita' : (m.ondate[k - 1]?.eventi ?? []).some((e) => e.tipo === 'curva'));
   // C23-01: il club dell'evento vale per ogni gente in strada dell'ondata, anche per il corteo della chiamata. Rosso C53D01.
   const club = spento('C53D01') ? {} : Object.fromEntries(eventi.filter((e) => e.club && strade.includes(e.settore)).map((e) => [e.settore, e.club!]));
   if (partita(n)) return { spalti: 'pieni', cortei: [], club };
   // C24-07: episodio senza curve (e04, e11, e17, e30, e35): lo stadio, se c'è, è disegnato vuoto (S-25); gli spalti non
   // sono «in arrivo». Rosso C67S01: «arrivo», come prima.
   const senzaCurve = !m.mappa.settori.some((s) => s.tipo === 'curva') && !spento('C67S01');
-  const dopo = eventi.some((e) => e.tipo === 'deflusso') || m.ondate.slice(0, n - 1).some((o) => o.eventi.some((e) => e.tipo === 'curva'));
+  const dopo = fase(n) ? fase(n) === 'dopo' : eventi.some((e) => e.tipo === 'deflusso') || m.ondate.slice(0, n - 1).some((_, k) => partita(k + 1));
   const inStrada = eventi.filter((e) => IN_STRADA.has(e.tipo) && strade.includes(e.settore));
   // C-021: se un evento della strada dice di che club sono i tifosi, il corteo è di quel club. Rosso C49E01: no.
   const cortei = [...new Set(inStrada.map((e) => e.settore))]

@@ -68,6 +68,7 @@ export function Mappa(p: MappaProps) {
     id: s.id, tipo: s.tipo, x: s.pos.x, y: s.pos.y, acceso: accesi.has(s.id), livello: p.tensione ? livello(p.tensione[s.id] ?? 0) : null,
     // Curve, folla e corteo coi colori del club della curva (D-086). Rosso C10C01: colori fissi di prima.
     colori: s.club && !spento('C10C01') ? club.get(s.club)?.colori : undefined,
+    meta: (s as { meta?: string }).meta, // C27-02: dove va la strada (campo facoltativo dei dati)
   })), [settori, accesi, p.tensione]);
   // Margine interno = mezzo punto del settore, come nel CSS (.settore), così Pixi e HTML coincidono.
   // e in basso c'è in più lo spazio per i nomi (--margine-nomi): stessi conti di .settore in stile.css.

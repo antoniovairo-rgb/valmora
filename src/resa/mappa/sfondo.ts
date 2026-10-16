@@ -68,7 +68,7 @@ export function stadioVuoto(W: number, H: number, pz: Pt, altri: Pt[]): Stadio {
 }
 
 /** Dove stanno stadio e viali, dalle posizioni (già in pixel) dei settori. */
-export function disponi(W: number, H: number, settori: { id?: string; tipo: string; x: number; y: number; colori?: Colori }[], atm: Atmosfera = {}): Disposizione {
+export function disponi(W: number, H: number, settori: { id?: string; tipo: string; x: number; y: number; colori?: Colori; meta?: string }[], atm: Atmosfera = {}): Disposizione {
   const tutte = settori.filter((s) => s.tipo === 'curva');
   // C21-04: con tre curve (e15, e27) lo stadio è fra le due della PARTITA: il settore o la curva dei gemellati è un
   // ospite in più, non una delle due squadre. Prima: estremità dalle due curve con x minore, ellisse dalle prime due dei
@@ -101,8 +101,12 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
   const st = settori.find((s) => s.tipo === 'stazione');
   const stazione = st ? { x: st.x, y: st.y } : null;
   const strade = settori.filter((s) => s.tipo === 'strada');
+  // C27-02: se i dati dicono dove va la strada («meta», id di un settore: municipio, stazione, stadio vuoto) il viale
+  // finisce lì; senza, come prima (stadio con la partita, altrimenti il centro). Rosso C85M01: «meta» ignorata.
+  const doveVa = (s: (typeof settori)[number]) => (spento('C85M01') || !s.meta ? undefined : settori.find((q) => q.id === s.meta));
   const viali = strade.map((s) => {
-    const fine = { x: meta.x + Math.sign(s.x - meta.x) * (stadio && !stadio.vuoto ? stadio.rx * 0.32 : 0), y: meta.y };
+    const dove = doveVa(s);
+    const fine = dove ? { x: dove.x, y: dove.y } : { x: meta.x + Math.sign(s.x - meta.x) * (stadio && !stadio.vuoto ? stadio.rx * 0.32 : 0), y: meta.y };
     const inizio = stazione ?? { x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 };
     return [inizio, { x: s.x, y: s.y }, { x: s.x + (fine.x - s.x) * 0.55, y: fine.y + (s.y - fine.y) * 0.35 }, fine];
   });
