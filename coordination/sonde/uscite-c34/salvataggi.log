@@ -1,0 +1,20 @@
+e01: ok {"ep":"e01","a":{"scena":"chiamata","chiamata":"chiamata-ufficio_insiste"},"testoA":[],"file":"coordination/sonde/salvataggi-033/0.33.0-e01-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-ufficio_insiste"},"vecchi":0,"testoB":[],"ok":true}
+e04: ok {"ep":"e04","a":{"scena":"chiamata","chiamata":"chiamata-corteo_fonderie"},"testoA":["Kiln"],"file":"coordination/sonde/salvataggi-033/0.33.0-e04-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-corteo_fonderie"},"vecchi":0,"testoB":["Kiln"],"ok":true}
+e07: ok {"ep":"e07","a":{"scena":"chiamata","chiamata":"chiamata-foto_ricordo"},"testoA":["Southwind","Skyfield"],"file":"coordination/sonde/salvataggi-033/0.33.0-e07-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-foto_ricordo"},"vecchi":0,"testoB":["Southwind","Skyfield"],"ok":true}
+e08: ok {"ep":"e08","a":{"scena":"chiamata","chiamata":"chiamata-facce_nuove"},"testoA":["Kiln"],"file":"coordination/sonde/salvataggi-033/0.33.0-e08-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-facce_nuove"},"vecchi":0,"testoB":["Kiln"],"ok":true}
+e09: ok {"ep":"e09","a":{"scena":"chiamata","chiamata":"chiamata-a_piedi"},"testoA":["Skyfield"],"file":"coordination/sonde/salvataggi-033/0.33.0-e09-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-a_piedi"},"vecchi":0,"testoB":["Skyfield"],"ok":true}
+e13: ok {"ep":"e13","a":{"scena":"chiamata","chiamata":"chiamata-parcheggi_riservati"},"testoA":[],"file":"coordination/sonde/salvataggi-033/0.33.0-e13-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-parcheggi_riservati"},"vecchi":0,"testoB":[],"ok":true}
+e17: ok {"ep":"e17","a":{"scena":"chiamata","chiamata":"chiamata-schermo_comizi"},"testoA":[],"file":"coordination/sonde/salvataggi-033/0.33.0-e17-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-schermo_comizi"},"vecchi":0,"testoB":[],"ok":true}
+e19: ok {"ep":"e19","a":{"scena":"chiamata","chiamata":"chiamata-ora_prima"},"testoA":["Kiln"],"file":"coordination/sonde/salvataggi-033/0.33.0-e19-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-ora_prima"},"vecchi":0,"testoB":["Kiln"],"ok":true}
+e21: ok {"ep":"e21","a":{"scena":"chiamata","chiamata":"chiamata-nuovo_capo"},"testoA":[],"file":"coordination/sonde/salvataggi-033/0.33.0-e21-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-nuovo_capo"},"vecchi":0,"testoB":[],"ok":true}
+e25: ok {"ep":"e25","a":{"scena":"chiamata","chiamata":"chiamata-treno_pieno"},"testoA":["Belltower"],"file":"coordination/sonde/salvataggi-033/0.33.0-e25-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-treno_pieno"},"vecchi":0,"testoB":["Belltower"],"ok":true}
+e30: ok {"ep":"e30","a":{"scena":"chiamata","chiamata":"chiamata-muri_quartiere"},"testoA":[],"file":"coordination/sonde/salvataggi-033/0.33.0-e30-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-muri_quartiere"},"vecchi":0,"testoB":[],"ok":true}
+e31: ok {"ep":"e31","a":{"scena":"chiamata","chiamata":"chiamata-comando_vuole"},"testoA":[],"file":"coordination/sonde/salvataggi-033/0.33.0-e31-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-comando_vuole"},"vecchi":0,"testoB":[],"ok":true}
+vecchio 0.32.0-e01-ondata2-rapporto.json: NO {"scena":"rapporto","chiamata":null}
+vecchio 0.32.0-e08-ondata2-rapporto.json: NO {"scena":"rapporto","chiamata":null}
+vecchio 0.32.0-e08-ondata4.json: ok {"scena":"chiamata","chiamata":"chiamata-risultato"}
+vecchio 0.32.0-e17-ondata2-rapporto.json: NO {"scena":"rapporto","chiamata":null}
+vecchio 0.32.0-e30-ondata2-rapporto.json: NO {"scena":"rapporto","chiamata":null}
+vecchio 0.32.0-e30-ondata4.json: ok {"scena":"chiamata","chiamata":"chiamata-fiaccolata"}
+vecchio 0.32.0-e35-ondata2-rapporto.json: NO {"scena":"rapporto","chiamata":null}
+ripresi 12/12; errori di console 0.19.0 0, 0.20.0 0

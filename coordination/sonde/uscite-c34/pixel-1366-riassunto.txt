@@ -1,0 +1,18 @@
+e17 o1 schieramento-1 | ondata: strada_cinderwick>entra stadio 18/51 rif 63/6 | chiamata: –
+e17 o1 chiamata-schermo_comizi | ondata: strada_cinderwick>entra stadio 20/50 rif 64/6 | chiamata: corteo:piazza_municipio stadio 39/0 rif 18/21
+e17 o2 schieramento-2 | ondata: – | chiamata: –
+e17 o2 chiamata-ci_vediamo_dopo | ondata: – | chiamata: corteo:strada_cinderwick stadio 11/27 rif 35/3
+e17 o3 schieramento-3 | ondata: piazza_municipio>entra stadio 69/0 rif 33/36 | chiamata: –
+e17 o4 schieramento-4 | ondata: strada_cinderwick>entra stadio 17/52 rif 62/7; piazza_municipio>esce stadio 0/69 rif 35/34 | chiamata: –
+e17 o4 chiamata-me_lo_dovete | ondata: strada_cinderwick>entra stadio 18/52 rif 64/6; piazza_municipio>esce stadio 0/70 rif 36/34 | chiamata: corteo:strada_cinderwick stadio 10/29 rif 36/3
+e17 o4 chiamata-fine_corteo | ondata: strada_cinderwick>entra stadio 19/51 rif 64/6; piazza_municipio>esce stadio 0/70 rif 37/33 | chiamata: corteo:piazza_municipio stadio 0/39 rif 31/8
+e30 o1 schieramento-1 | ondata: – | chiamata: –
+e30 o1 chiamata-autobus_sera | ondata: – | chiamata: corteo:viale_stazione stadio 39/0 rif 39/0
+e30 o2 schieramento-2 | ondata: strada_cinderwick>entra stadio 0/69 rif 62/7 | chiamata: –
+e30 o2 chiamata-silenzio_totale | ondata: strada_cinderwick>entra stadio 0/69 rif 63/6 | chiamata: corteo:strada_cinderwick stadio 0/39 rif 35/4
+e30 o2 chiamata-clacson | ondata: strada_cinderwick>entra stadio 0/69 rif 62/7 | chiamata: corteo:viale_stazione stadio 39/0 rif 39/0
+e30 o3 schieramento-3 | ondata: strada_cinderwick>entra stadio 0/69 rif 62/7 | chiamata: –
+e30 o3 chiamata-saluto_larkspire | ondata: strada_cinderwick>entra stadio 0/70 rif 62/8 | chiamata: corteo:strada_cinderwick stadio 0/39 rif 35/4
+e30 o4 schieramento-4 | ondata: strada_cinderwick>entra stadio 0/69 rif 62/7 | chiamata: –
+e30 o4 chiamata-fiaccolata | ondata: strada_cinderwick>entra stadio 0/70 rif 63/7 | chiamata: corteo:strada_cinderwick stadio 0/39 rif 35/4
+(numeri: si avvicinano / si allontanano)

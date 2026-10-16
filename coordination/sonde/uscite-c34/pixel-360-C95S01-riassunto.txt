@@ -1,0 +1,18 @@
+e17 o1 schieramento-1 | ondata: strada_cinderwick>entra stadio 33/36 rif 69/0 | chiamata: –
+e17 o1 chiamata-schermo_comizi | ondata: strada_cinderwick>entra stadio 34/35 rif 69/0 | chiamata: corteo:piazza_municipio stadio 40/0 rif 19/21
+e17 o2 schieramento-2 | ondata: – | chiamata: –
+e17 o2 chiamata-ci_vediamo_dopo | ondata: – | chiamata: corteo:strada_cinderwick stadio 19/21 rif 40/0
+e17 o3 schieramento-3 | ondata: piazza_municipio>entra stadio 69/0 rif 34/35 | chiamata: –
+e17 o4 schieramento-4 | ondata: strada_cinderwick>esce stadio 35/34 rif 0/69; piazza_municipio>esce stadio 0/69 rif 35/34 | chiamata: –
+e17 o4 chiamata-me_lo_dovete | ondata: strada_cinderwick>esce stadio 35/34 rif 0/69; piazza_municipio>esce stadio 0/69 rif 34/35 | chiamata: corteo:strada_cinderwick stadio 33/7 rif 0/40
+e17 o4 chiamata-fine_corteo | ondata: strada_cinderwick>esce stadio 35/34 rif 0/69; piazza_municipio>esce stadio 0/69 rif 34/35 | chiamata: corteo:piazza_municipio stadio 0/40 rif 31/9
+e30 o1 schieramento-1 | ondata: – | chiamata: –
+e30 o1 chiamata-autobus_sera | ondata: – | chiamata: corteo:viale_stazione stadio 39/0 rif 39/0
+e30 o2 schieramento-2 | ondata: strada_cinderwick>entra stadio 56/13 rif 69/0 | chiamata: –
+e30 o2 chiamata-silenzio_totale | ondata: strada_cinderwick>entra stadio 57/12 rif 69/0 | chiamata: corteo:strada_cinderwick stadio 31/9 rif 40/0
+e30 o2 chiamata-clacson | ondata: strada_cinderwick>entra stadio 57/12 rif 69/0 | chiamata: corteo:viale_stazione stadio 40/0 rif 40/0
+e30 o3 schieramento-3 | ondata: strada_cinderwick>entra stadio 59/10 rif 69/0 | chiamata: –
+e30 o3 chiamata-saluto_larkspire | ondata: strada_cinderwick>entra stadio 59/10 rif 69/0 | chiamata: corteo:strada_cinderwick stadio 31/8 rif 39/0
+e30 o4 schieramento-4 | ondata: strada_cinderwick>esce stadio 11/58 rif 0/69 | chiamata: –
+e30 o4 chiamata-fiaccolata | ondata: strada_cinderwick>esce stadio 12/58 rif 0/70 | chiamata: corteo:strada_cinderwick stadio 20/19 rif 0/39
+(numeri: si avvicinano / si allontanano)
