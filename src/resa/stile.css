@@ -32,6 +32,9 @@ p { margin: var(--spazio-2) 0; }
 .pulsante { display: flex; align-items: center; justify-content: center; gap: var(--spazio-2); width: 100%; min-height: var(--tocco-min); margin: var(--spazio-4) 0; padding: var(--spazio-3); border: var(--bordo) solid var(--nero); border-radius: 0; background: var(--ciano); color: var(--nero); box-shadow: var(--ombra-1); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; cursor: pointer; text-align: center; text-decoration: none; transition: transform 80ms, box-shadow 80ms; }
 .pulsante.secondario { background: var(--bianco); }
 .pulsante:active, .opzione:active, .unita:active { transform: translate(var(--spinta), var(--spinta)); box-shadow: var(--ombra-premuto); }
+.scena:focus { outline: none; } /* C28-09: la scena prende il fuoco perso, ma non è un comando */
+/* C28-09: casa, «i», «?», pastiglie e «Rispondi» avevano l'anello del browser; ora il contorno del gioco. Rosso C89C01 */
+main:not(.rosso-c89c01) :is(.tasto-home, .info, .aiuto, .tocco-pastiglia, .indicatore):focus-visible { outline: var(--bordo) solid var(--magenta); outline-offset: var(--spazio-1); }
 .pulsante:focus-visible, .opzione:focus-visible, .unita:focus-visible, .settore-punto:focus-visible { outline: var(--bordo) solid var(--magenta); outline-offset: var(--spazio-1); }
 .azioni { display: flex; gap: var(--spazio-3); flex-wrap: nowrap; }
 .azioni .pulsante { margin: var(--spazio-3) 0; }
@@ -55,7 +58,7 @@ p { margin: var(--spazio-2) 0; }
 .opzione { display: flex; align-items: center; gap: var(--spazio-3); width: 100%; min-height: var(--tocco-min); padding: var(--spazio-3); background: var(--bianco); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); color: var(--nero); font: 700 var(--testo-base) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; text-align: left; cursor: pointer; transition: transform 80ms, box-shadow 80ms, background 80ms; }
 .opzione.scelta { background: var(--ciano); }
 /* Solo con un puntatore vero: sui telefoni :hover resta acceso dopo il tocco e sembra una scelta già fatta */
-@media (hover: hover) { .opzione:not(:disabled):hover { background: var(--ciano); } }
+@media (hover: hover) { .opzioni:not([data-fermo]) .opzione:not(:disabled):hover { background: var(--ciano); } } /* C28-02: non col puntatore fermo dall'apertura */
 .opzione:disabled { cursor: default; }
 .opzione-testo { display: block; min-width: 0; }
 .costo { display: block; margin-top: var(--spazio-1); font: 500 var(--testo-piccolo) / var(--linea-stretta) var(--font); text-transform: none; letter-spacing: 0; color: var(--colore-testo-tenue); }
@@ -368,6 +371,9 @@ main:not(.rosso-c40c01) .versione-angolo { padding: var(--spazio-px) var(--spazi
 /* C18-10 (scelta A): sempre nella vista, in basso a destra, in verticale nel margine destro della pagina (dove non ci sono
    testi né comandi), sotto i pulsanti fissi */
 main:not(.rosso-c40c01) .versione-angolo { position: fixed; right: 0; bottom: var(--spazio-2); z-index: 3; writing-mode: vertical-rl; transform: rotate(180deg); padding: var(--spazio-1) 0; line-height: 1; } /* larga al più quanto il margine destro (16 px) */
+/* C28-11: su tablet e PC la versione stava sul bordo della finestra (fino a 704 px dalla colonna): ora nel margine destro
+   della colonna, come sul telefono. Rosso C90V01: sul bordo della finestra */
+main:not(.rosso-c40c01):not(.rosso-c90v01) .versione-angolo { right: max(0px, calc((100vw - var(--larghezza-max)) / 2)); }
 /* C17-22: nel riepilogo dello schieramento i pulsanti stanno sotto l'elenco, non fissi: su schermi bassi coprivano il testo. Rosso C38R01: fissi. */
 main:not(.rosso-c38r01) .scena .azioni.riepilogo-azioni { position: static; }
 /* PO-098: la riga «Fiducia ±N» del rapporto era verde o magenta sul giallo (2,46:1 e 3,32:1): ora nero su fondino bianco,

@@ -78,10 +78,83 @@ export async function controllaVignetta(pagina, prefisso, atteso, dove, dallaCit
     return;
   }
   if (!/^(apertura|esito)-/.test(prefisso)) return;
+  // C28 (catena): a 1366×768 la vignetta della sala appariva e spariva a ogni frame (pagina 822 ↔ 768 px). Venti frame
+  // con la stessa altezza della pagina. Rosso VALMORA_ROSSI=C91V01: oscilla.
+  { const p0 = pagina.viewportSize(); await pagina.setViewportSize({ width: 1366, height: 768 }); await pagina.waitForTimeout(300);
+    const alte = await pagina.evaluate(() => new Promise((ok) => { const v = []; const g = () => { v.push(document.documentElement.scrollHeight); if (v.length < 20) requestAnimationFrame(g); else ok([...new Set(v)]); }; g(); }));
+    atteso(`${dove} a 1366×768: la pagina cambia altezza a ogni frame (${alte.join(' ↔ ')} px): la vignetta «${prefisso}…» appare e sparisce`, alte.length === 1);
+    await pagina.setViewportSize(p0); await pagina.waitForTimeout(150); }
   const prima = pagina.viewportSize();
   await pagina.setViewportSize({ width: 375, height: 667 }); await pagina.waitForTimeout(250);
   const piccola = await misura(); giudica(piccola, `${dove} a 375×667`);
   // C26-03 (D-126 d): a 375×667 sala e verbale senza vignetta, anche se ci starebbe sopra il minimo. Rosso VALMORA_ROSSI=C76V01.
   atteso(`${dove} a 375×667: vignetta «${prefisso}…» mostrata a ${piccola?.h.toFixed(1)} px, va nascosta (C26-03)`, !piccola || piccola.nascosta);
+  await pagina.setViewportSize(prima); await pagina.waitForTimeout(150);
+}
+
+/** C28-01: la tela Pixi copre tutta la mappa (entro 2 px), anche quando la mappa cambia forma senza ridimensionare la
+ *  finestra (sala 4:3 → schieramento 1:1: quarto basso scuro). Si aspetta che la tela smetta di cambiare (rimisura al
+ *  frame successivo). Rosso VALMORA_ROSSI=C86T01: la tela resta della forma di prima. */
+export async function controllaTela(pagina, atteso, dove) {
+  const misura = () => pagina.evaluate(() => [...document.querySelectorAll('.mappa canvas')].filter((c) => c.getClientRects().length).map((c) => {
+    // dentro la cornice della mappa: l'area interna (clientWidth/Height), che è quella che la tela deve coprire
+    const t = c.getBoundingClientRect(), mp = c.closest('.mappa'), m = { width: mp.clientWidth, height: mp.clientHeight };
+    return { t: `${t.width.toFixed(0)}×${t.height.toFixed(0)}`, m: `${m.width}×${m.height}`, ok: Math.abs(t.width - m.width) <= 2 && Math.abs(t.height - m.height) <= 2 };
+  }));
+  let r = await misura();
+  for (let i = 0; i < 10 && r.some((x) => !x.ok); i++) { await pagina.waitForTimeout(50); r = await misura(); }
+  const male = r.filter((x) => !x.ok);
+  atteso(`${dove}: tela della mappa ${male.map((x) => `${x.t} dentro ${x.m}`).join(', ')} (C28-01)`, !male.length);
+}
+
+/** C28-02: col mouse, una chiamata che si apre sotto il puntatore fermo non mostra un'opzione già accesa. Il puntatore
+ *  va sul centro della prima opzione mentre c'è il titolo; «Riprendi» con la tastiera; poi si legge lo sfondo
+ *  dell'opzione sotto il puntatore, che non deve essere quello dell'evidenza. Rosso VALMORA_ROSSI=C87H01: accesa. */
+export async function controllaOpzioneFerma(pagina, atteso, scena) {
+  // finestra alta: dopo la ricarica la pagina è in cima, e a 360×760 le opzioni starebbero sotto il bordo
+  const prima = pagina.viewportSize(); await pagina.setViewportSize({ width: prima.width, height: 1600 });
+  await pagina.evaluate(() => scrollTo(0, 0)); await pagina.waitForTimeout(150);
+  const r = await pagina.locator('.opzione').first().boundingBox(); if (!r) { await pagina.setViewportSize(prima); return; }
+  const x = r.x + r.width / 2, y = r.y + r.height / 2;
+  await pagina.reload(); await scena('titolo');
+  await pagina.mouse.move(x, y);
+  await pagina.getByRole('button', { name: 'Riprendi' }).focus(); await pagina.keyboard.press('Enter');
+  await scena('chiamata'); await pagina.waitForTimeout(150);
+  const [sotto, sfondo, evidenza] = await pagina.evaluate(([x, y]) => {
+    const o = document.elementFromPoint(x, y)?.closest('.opzione'), v = document.createElement('i');
+    v.style.color = 'var(--ciano)'; document.body.append(v); const c = getComputedStyle(v).color; v.remove();
+    return [o?.dataset.opzione ?? '', o ? getComputedStyle(o).backgroundColor : '', c];
+  }, [x, y]);
+  atteso(`chiamata aperta col puntatore fermo sull'opzione «${sotto}»: già accesa (${sfondo}) (C28-02)`, !sotto || sfondo !== evidenza);
+  atteso('C28-02: il puntatore fermo non sta su un\'opzione: il controllo è cieco', !!sotto);
+  await pagina.mouse.move(0, 0); await pagina.setViewportSize(prima); await pagina.waitForTimeout(150);
+}
+
+/** C28-09: dopo un'azione il fuoco non resta sul body (il Tab ripartirebbe dalla testata): in ogni scena del giro, che
+ *  si raggiunge col clic su un comando che poi sparisce, il fuoco sta dentro la pagina del gioco. Rosso C88F01. */
+export async function controllaFuoco(pagina, atteso, dove) {
+  let dove2 = '';
+  for (let i = 0; i < 6; i++) { dove2 = await pagina.evaluate(() => { const a = document.activeElement; return !a || a === document.body ? 'body' : ''; }); if (!dove2) break; await pagina.waitForTimeout(40); }
+  atteso(`${dove}: il fuoco della tastiera è sul body (C28-09)`, dove2 !== 'body');
+}
+
+/** C28-09 e C28-11, a 1366×768 (PC): i comandi casa, «i», «?», pastiglie e «Rispondi» col fuoco da tastiera hanno il
+ *  contorno del gioco (non l'anello del browser); la versione sta nel margine destro della colonna, non sul bordo della
+ *  finestra. Rossi VALMORA_ROSSI=C89C01 (anello del browser) e C90V01 (versione sul bordo). */
+export async function controllaLargo(pagina, atteso, dove) {
+  const prima = pagina.viewportSize();
+  await pagina.setViewportSize({ width: 1366, height: 768 }); await pagina.waitForTimeout(200);
+  const r = await pagina.evaluate(() => {
+    const v = document.querySelector('[data-versione-angolo]')?.getBoundingClientRect(), app = document.querySelector('#app')?.getBoundingClientRect();
+    return { v: v && app ? { destra: v.right, colonna: app.right } : null };
+  });
+  if (r.v) atteso(`${dove} a 1366×768: versione col bordo destro a ${(r.v.destra).toFixed(0)} px, colonna fino a ${r.v.colonna.toFixed(0)} px (C28-11)`, r.v.destra <= r.v.colonna + 1 && r.v.destra >= r.v.colonna - 16);
+  await pagina.keyboard.press('Shift'); // da qui il fuoco è «da tastiera» (:focus-visible)
+  const contorni = await pagina.evaluate(() => [...document.querySelectorAll('.tasto-home, .info, .aiuto, .tocco-pastiglia, .indicatore')].filter((e) => e.getClientRects().length && e.matches('button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])')).map((e) => { // solo i comandi (la pastiglia fissa è un'immagine)
+    e.focus({ preventScroll: true }); const c = getComputedStyle(e); const out = `${e.className.split(' ')[0]} ${c.outlineStyle} ${c.outlineColor}`, ok = c.outlineStyle === 'solid'; // letto prima del blur (stile vivo)
+    e.blur(); return { out, ok };
+  }));
+  const male = contorni.filter((x) => !x.ok).map((x) => x.out);
+  atteso(`${dove} a 1366×768: comandi col contorno del browser col fuoco da tastiera: ${male.join(', ')} (C28-09)`, !male.length);
   await pagina.setViewportSize(prima); await pagina.waitForTimeout(150);
 }

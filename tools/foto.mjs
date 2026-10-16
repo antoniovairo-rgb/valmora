@@ -155,7 +155,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
             return p;
           });
-          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso); await controllaRiempi(pagina, atteso, nome); if (nome === 'schieramento') await controllaRigaAiuto(pagina, atteso, nome); await controllaVersione(pagina, atteso, nome, GAME_VERSION); await controllaContrasto(pagina, atteso, nome); await controllaRiquadri(pagina, atteso, nome); if (nome === 'sala' && (await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === 'webgl') { await controllaNomiSala(pagina, atteso, `sala ${larghezza}`); await controllaLampeggio(pagina, atteso, [], `sala ${larghezza} (C17-17)`); } await controllaHome(pagina, nome, atteso); const coperti = await copertiDallaBarra(pagina); atteso(`${nome}: la barra in basso copre ${coperti.join(', ')} (S-24)`, !coperti.length);
+          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso); await controllaRiempi(pagina, atteso, nome); if (nome === 'schieramento') await controllaRigaAiuto(pagina, atteso, nome); await controllaVersione(pagina, atteso, nome, GAME_VERSION); await controllaContrasto(pagina, atteso, nome); await controllaRiquadri(pagina, atteso, nome); if (nome === 'sala' && (await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === 'webgl') { await controllaNomiSala(pagina, atteso, `sala ${larghezza}`); await controllaLampeggio(pagina, atteso, [], `sala ${larghezza} (C17-17)`); } await controllaHome(pagina, nome, atteso); { const c22 = await import('./foto-c22.mjs'); await c22.controllaTela(pagina, atteso, nome); await c22.controllaFuoco(pagina, atteso, nome); if (nome === 'schieramento' || nome === 'chiamata') await c22.controllaLargo(pagina, atteso, nome); } const coperti = await copertiDallaBarra(pagina); atteso(`${nome}: la barra in basso copre ${coperti.join(', ')} (S-24)`, !coperti.length);
         await pagina.mouse.move(0, 0); // niente :hover rimasto dal clic precedente nelle foto
         await pagina.screenshot({ path: join(cartella, `${larghezza}-${String(++k).padStart(2, '0')}-${nome}.png`), fullPage: true });
         };
@@ -274,7 +274,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             await scena(dopo);
             if (completa && n === 1) { // a metà ondata: ricarico e riprendo
               const prima = await presenze();
-              await ricaricaERiprendi(dopo, 'dopo lo schieramento');
+              await ricaricaERiprendi(dopo, 'dopo lo schieramento'); if (dopo === 'chiamata') await (await import('./foto-c22.mjs')).controllaOpzioneFerma(pagina, atteso, scena);
               atteso(`ripresa: unità sulla mappa ${await presenze()} invece di ${prima}`, (await presenze()) === prima);
             }
             for (const [j, [c, op]] of o.risposte.entries()) {
