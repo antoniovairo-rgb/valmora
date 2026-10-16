@@ -1,0 +1,15 @@
+e33: ok {"ep":"e33","a":{"scena":"chiamata","chiamata":"chiamata-treno_mossgarth"},"testoA":["Arches"],"file":"<scratchpad>/s33/0.28.0-e33-prima-ondata.json","erroreImporta":0,"b":{"scena":"chiamata","chiamata":"chiamata-treno_mossg
+node:fs:1597
+  const result = binding.readdir(
+                         ^
+
+Error: ENOENT: no such file or directory, scandir '/nessuna'
+    at Module.readdirSync (node:fs:1597:26)
+    at file:///home/user/valmora/coordination/sonde/c28-salvataggi.mjs:67:71 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: '/nessuna'
+}
+
+Node.js v22.22.0

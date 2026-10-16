@@ -1,0 +1,8 @@
+e01: finito
+e19: finito
+cambi 40: scena diversa 0, chiamata diversa 0, pastiglie diverse 0, salvataggio diverso 0, scorrimento orizzontale 0, tela ≠ mappa 0
+{"ep":"e01","prova":"ricarica dopo i cambi di finestra → Riprendi","chiamata":"chiamata-ufficio_insiste","attesa":"chiamata-ufficio_insiste"}
+{"ep":"e01","prova":"episodio finito dopo i cambi di finestra","ok":true}
+{"ep":"e19","prova":"ricarica dopo i cambi di finestra → Riprendi","chiamata":"chiamata-ora_prima","attesa":"chiamata-ora_prima"}
+{"ep":"e19","prova":"episodio finito dopo i cambi di finestra","ok":true}
+errori 0

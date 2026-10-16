@@ -1,0 +1,358 @@
+{
+ "RIS": [
+  {
+   "ep": "e01",
+   "punto": "A-schieramento",
+   "finestra": "1024×768",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×330"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "A-schieramento",
+   "finestra": "1366×768",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×330"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "A-schieramento",
+   "finestra": "360×760",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "328×328",
+   "tela": "322×322",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×330"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "A-schieramento",
+   "finestra": "1920×1080",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×330"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "A-schieramento",
+   "finestra": "768×1024",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×330"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "C-risposta",
+   "finestra": "1024×768",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "C-risposta",
+   "finestra": "1366×768",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "C-risposta",
+   "finestra": "360×760",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "328×328",
+   "tela": "322×322",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "C-risposta",
+   "finestra": "1920×1080",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "C-risposta",
+   "finestra": "768×1024",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "B-chiamata",
+   "finestra": "1024×768",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "B-chiamata",
+   "finestra": "1366×768",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "B-chiamata",
+   "finestra": "360×760",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "328×328",
+   "tela": "322×322",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "B-chiamata",
+   "finestra": "1920×1080",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "B-chiamata",
+   "finestra": "768×1024",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "D-rapporto",
+   "finestra": "1024×768",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "D-rapporto",
+   "finestra": "1366×768",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "D-rapporto",
+   "finestra": "360×760",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "328×328",
+   "tela": "322×322",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "D-rapporto",
+   "finestra": "1920×1080",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  },
+  {
+   "ep": "e01",
+   "punto": "D-rapporto",
+   "finestra": "768×1024",
+   "scena": true,
+   "chiamata": true,
+   "pastiglie": true,
+   "salvataggio": true,
+   "oriz": 0,
+   "mappa": "448×448",
+   "tela": "442×442",
+   "telaOk": true,
+   "prima": {
+    "mappa": "448×448",
+    "tela": "442×442"
+   }
+  }
+ ],
+ "FINE": [
+  {
+   "ep": "e01",
+   "prova": "ricarica dopo i cambi di finestra → Riprendi",
+   "chiamata": "chiamata-ufficio_insiste",
+   "attesa": "chiamata-ufficio_insiste"
+  },
+  {
+   "ep": "e01",
+   "prova": "episodio finito dopo i cambi di finestra",
+   "ok": true
+  }
+ ],
+ "errori": []
+}

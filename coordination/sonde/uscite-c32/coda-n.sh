@@ -1,0 +1,1 @@
+W=1366 H=768 node coordination/sonde/c29-schermate.mjs . docs/foto/c32/s1366b coordination/sonde/uscite-c32/schermate-1366b.json > coordination/sonde/uscite-c32/schermate-1366b.log 2>&1; echo "schermate-1366b $?"

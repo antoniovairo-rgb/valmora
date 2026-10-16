@@ -1,0 +1,21 @@
+
+## 360×760 mouse: episodi finiti 36/36, schermate 1881, blocchi 0, errori di console 0
+  scorrimento orizzontale 0 · tagli 0 · sovrapposizioni 754 · fuori schermo 0 · comandi coperti 0 · comandi < 44 px 1270 · tela Pixi ≠ mappa 0/1700
+  caratteri (px): minimo 12, mediana delle mediane 13, massimo delle mediane 16; testi < 12 px in 0 schermate
+  colonna 360 px, fuori colonna 0.0 % · quota vuota: mediana 1.1 %, min 0.0 %, max 1.1 %
+  mappa: 328×260, 328×246, 328×328; quota della finestra mediana 39.3 %
+  versione in basso a destra: x 344, -16 px a destra della colonna
+  | schermata | n | sovrapp. | fuori | coperti | comandi sotto il bordo (schermate) | vuota mediana | carattere mediano |
+  | titolo | 1 | 0 | 0 | 0 | 0 | 1.1 % | 13 |
+  | citta | 36 | 0 | 0 | 0 | 0 | 0.9 % | 13 |
+  | sala | 108 | 0 | 0 | 0 | 0 | 1.1 % | 16 |
+  | briefing | 144 | 0 | 0 | 0 | 0 | 1.1 % | 13 |
+  | vuoto | 142 | 0 | 0 | 0 | 0 | 1.1 % | 12 |
+  | schieramento | 142 | 7 | 0 | 0 | 0 | 1.1 % | 12 |
+  | chiamata | 422 | 111 | 0 | 0 | 420 | 0.0 % | 13 |
+  | risposta | 422 | 400 | 0 | 0 | 0 | 1.1 % | 16 |
+  | chiusura | 142 | 94 | 0 | 0 | 0 | 1.1 % | 13 |
+  | rapporto | 142 | 142 | 0 | 0 | 0 | 0.0 % | 13 |
+  | verbale | 180 | 0 | 0 | 0 | 0 | 1.1 % | 13 |
+  coppie sovrapposte più frequenti: SPAN.segno-effetto × SPAN.pastiglia (567); P. × BUTTON.pulsante (282); SPAN.nome-picco × BUTTON.pulsante (252); SPAN.settore-nome × SPAN.segno-effetto (210); STRONG.bene × BUTTON.pulsante (178); SPAN.segno-effetto × SPAN.settore-nome (77); SPAN.settore-nome × SPAN.pastiglia (40); SPAN.pastiglia × SPAN.segno-effetto (27)
+  comandi < 44 px: BUTTON.info 32×32 (1270)
