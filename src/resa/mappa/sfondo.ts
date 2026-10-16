@@ -67,6 +67,19 @@ export function stadioVuoto(W: number, H: number, pz: Pt, altri: Pt[]): Stadio {
   return meglio!.s;
 }
 
+/** Il punto d'ingresso del viale sul bordo della mappa (12 px fuori): il bordo più vicino alla strada fra quelli verso cui
+ *  la strada si allontana dalla fine del viale; spostato di 18 px dalla parte opposta alla fine, come prima. */
+export function bordoLontano(s: Pt, fine: Pt, W: number, H: number): Pt {
+  const dx = s.x - fine.x, dy = s.y - fine.y;
+  const bordi = [
+    { d: H - s.y, ok: dy >= 0, p: { x: s.x + Math.sign(dx) * 18, y: H + 12 } },
+    { d: s.y, ok: dy <= 0, p: { x: s.x + Math.sign(dx) * 18, y: -12 } },
+    { d: s.x, ok: dx <= 0, p: { x: -12, y: s.y + Math.sign(dy) * 18 } },
+    { d: W - s.x, ok: dx >= 0, p: { x: W + 12, y: s.y + Math.sign(dy) * 18 } },
+  ].filter((b) => b.ok).sort((a, b) => a.d - b.d);
+  return (bordi[0] ?? { p: { x: s.x, y: H + 12 } }).p;
+}
+
 /** Dove stanno stadio e viali, dalle posizioni (già in pixel) dei settori. */
 export function disponi(W: number, H: number, settori: { id?: string; tipo: string; x: number; y: number; colori?: Colori; meta?: string }[], atm: Atmosfera = {}): Disposizione {
   const tutte = settori.filter((s) => s.tipo === 'curva');
@@ -107,7 +120,12 @@ export function disponi(W: number, H: number, settori: { id?: string; tipo: stri
   const viali = strade.map((s) => {
     const dove = doveVa(s);
     const fine = dove ? { x: dove.x, y: dove.y } : { x: meta.x + Math.sign(s.x - meta.x) * (stadio && !stadio.vuoto ? stadio.rx * 0.32 : 0), y: meta.y };
-    const inizio = stazione ?? { x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 };
+    // C29-02 (C28-05): il viale partiva sempre dal bordo basso; per una strada in alto (e04, parcheggi) saliva verso il
+    // settore allontanandosi dallo stadio, e il corteo «entra» si allontanava (62/69). Ora parte dal bordo della mappa più
+    // vicino alla strada fra quelli dalla parte opposta alla fine del viale. Solo per le strade senza «meta»: con la meta
+    // (e30) il viale l'ha tarato la principale coi dati, e col bordo nuovo il corteo di e30 peggiorava (49/21 contro 58/11).
+    // Rosso C93V01: sempre dal bordo basso.
+    const inizio = stazione ?? (spento('C93V01') || dove ? { x: s.x + Math.sign(s.x - meta.x) * 18, y: H + 12 } : bordoLontano(s, fine, W, H));
     return [inizio, { x: s.x, y: s.y }, { x: s.x + (fine.x - s.x) * 0.55, y: fine.y + (s.y - fine.y) * 0.35 }, fine];
   });
   const quartieri = settori.filter((s) => s.tipo === 'quartiere').map((s) => ({ x: s.x, y: s.y }));

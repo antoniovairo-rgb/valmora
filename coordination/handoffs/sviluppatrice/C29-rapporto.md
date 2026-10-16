@@ -27,7 +27,38 @@ Ramo `claude/valmora-resa-v2`. Collaudo: `docs/revisioni/COLLAUDO_C29.md` sul ra
 - **Foto** `c29/d128-*-dpr{1,3}.png`: riga «prima» col rosso C92P01, riga «dopo» col codice nuovo.
 - **GIUDIZIO:** a DPR 1 gli archi ora si vedono come tratti; sul telefono vero non posso confermarlo.
 
-## Ancora da fare
+## C29-02 (e C28-05) – il corteo dei parcheggi di e04 si allontanava dallo stadio
 
-- **C29-02:** geometria del viale in e04, stessa famiglia di C28-05.
-- **C29-04:** riga della guida su «Urgente!»: testo da approvare.
+**Causa** (FATTO, codice e misura):
+- il viale partiva sempre dal bordo basso della mappa (`sfondo.ts`);
+- i parcheggi di e04 stanno in alto (220, 98) e lo stadio vuoto in basso a destra;
+- quindi il corteo «entra» saliva verso il settore e si allontanava dallo stadio.
+
+**Correzione:** `bordoLontano()`, il viale parte dal bordo più vicino alla strada fra quelli dalla parte opposta alla fine del viale.
+- Solo per le strade senza `meta`: con la meta (e30) il viale l'hai tarato tu coi dati, e lì il bordo nuovo peggiorava (49/21 contro 58/11).
+- **Rosso `__NO_C93V01`:** sempre dal bordo basso.
+
+**Guardiano** `tests/viale.test.ts`, coi margini di StratoPixi dichiarati (22 e 20 px):
+- e04 parcheggi «entra» si avvicina allo stadio in almeno il 90% dei passi;
+- e01 invariato;
+- rosso: sotto il 50%.
+
+**Misura** con la tua sonda `c27-pixel.mjs`, 360×760: persone del corteo che si allontanano / avvicinano dallo stadio.
+
+| episodio | corteo | col codice nuovo | rosso C93V01 |
+|---|---|---|---|
+| e04 | parcheggi «entra» | 0/69 | 62/7 |
+| e04 | strada_cinderwick «esce» | 69/0 | 69/0 |
+| e17 | strada_cinderwick «entra» | 20/48 | 33/36 |
+| e17 | strada_cinderwick «esce» | 48/21 | 36/33 |
+| e30 (con meta) | strada_cinderwick «esce» | 57/12 | 58/11 (invariato) |
+
+- e01: tutti e due i cortei 0/69 in «entra» e 70/0 in «esce», come prima.
+- **Restano:**
+  - in e17 e in e30 il corteo della chiamata su strada_cinderwick è ancora misto (16/24, 20/20). È il tratto 0,2-1 del viale percorso dalla chiamata (`dinamica.ts`), il resto di C28-05; non l'ho toccato.
+  - in e30 la misura «distanza dallo stadio» e la `meta` (municipio) dicono due cose diverse: il corteo va dallo stadio al municipio.
+
+## C29-04 – la guida spiega «Urgente!»
+
+- In `guida.5` ho aggiunto il testo approvato, nella versione corta (la riga lunga superava i 150 caratteri): «"Urgente!": nel settore della chiamata, in questa ondata, c'è un evento grave. Vale per il posto, anche se chi chiama parla d'altro.»
+- Guardiano in `tests/urgente.test.ts`. Il controllo d'altezza del giro foto (guida a 360×760) è nella catena.
