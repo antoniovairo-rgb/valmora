@@ -52,7 +52,10 @@ export async function mappaSchieramento(pagina) {
     const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
     // pastiglia su nome come nella sonda del collaudo C-027: più di 1 px in tutte e due le direzioni
     const lati = (A, B) => Math.min(A.right, B.right) - Math.max(A.left, B.left) > 1 && Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top) > 1;
-    const nomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-nome')].filter((n) => n.getClientRects().length).map((n) => [n.textContent, n.getBoundingClientRect()]);
+    // C33-01: il nome col testo vero (riquadro ∪ righe del testo), non solo il riquadro
+    const testo = (n) => { const r = document.createRange(); r.selectNodeContents(n); const rs = [n.getBoundingClientRect(), ...r.getClientRects()].filter((q) => q.width && q.height);
+      return { left: Math.min(...rs.map((q) => q.left)), top: Math.min(...rs.map((q) => q.top)), right: Math.max(...rs.map((q) => q.right)), bottom: Math.max(...rs.map((q) => q.bottom)) }; };
+    const nomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-nome')].filter((n) => n.getClientRects().length).map((n) => [n.textContent, testo(n)]);
     const sopra = nomi.flatMap(([t, r], i) => nomi.slice(0, i).filter(([, q]) => a(r, q) > 0.5).map(([u]) => `${t} × ${u}`));
     const coperte = [...document.querySelectorAll('.mappa button.tocco-pastiglia:enabled')].filter((b) => b.getClientRects().length).filter((b) => {
       const r = b.getBoundingClientRect(), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2; if (y < 0 || y > innerHeight) return false;
@@ -105,23 +108,52 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   await p.goto(url);
   for (const st of stati) await prova(p, st, `${st.m.id} ondata ${st.n} 360×760`, st.m.id === 'e03' && st.n === 3);
   await p.close();
-  // C26-11: ogni ondata di ogni episodio a 360×760 con le unità del bot attento già messe (bozza nel salvataggio)
-  const suNomi = [];
-  const q6 = await nuova({ viewport: { width: 360, height: 760 }, reducedMotion: 'reduce' }); await q6.goto(url);
-  for (const st of partenzeAttente(dirDati)) {
-    await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
-    await q6.reload(); await q6.getByRole('button', { name: 'Riprendi' }).click();
-    if (!(await q6.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) continue;
-    await q6.waitForTimeout(120);
-    const r = await mappaSchieramento(q6);
-    atteso(`${st.m.id} ondata ${st.n} 360×760 con le unità: nomi sovrapposti ${r.sopra.join('; ')}, pastiglie col centro coperto ${r.coperte.join(', ')} (C26-11)`, !r.sopra.length && !r.coperte.length);
-    if (r.suNomi.length) suNomi.push(`${st.m.id} ondata ${st.n}: ${r.suNomi.join('; ')}`);
-    atteso(`${st.m.id} ondata ${st.n} 360×760 con le unità: pastiglie sopra i nomi ${r.suNomi.join('; ')} (C27-06, il caso del collaudo)`, st.m.id !== 'e19' || !r.suNomi.length);
-    atteso(`${st.m.id} ondata ${st.n} 360×760 con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
+  // C26-11: ogni ondata di ogni episodio con le unità del bot attento già messe (bozza nel salvataggio); C33-01: a 360,
+  // 375 e 412 (prima solo 360)
+  const suNomi = [], attente = partenzeAttente(dirDati);
+  for (const [w, h] of [[360, 760], [375, 812], [412, 915]]) {
+    const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); await q6.goto(url);
+    for (const st of attente) {
+      await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
+      await q6.reload(); await q6.getByRole('button', { name: 'Riprendi' }).click();
+      if (!(await q6.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) continue;
+      await q6.waitForTimeout(120);
+      const r = await mappaSchieramento(q6), dove = `${st.m.id} ondata ${st.n} ${w}×${h}`;
+      atteso(`${dove} con le unità: nomi sovrapposti ${r.sopra.join('; ')}, pastiglie col centro coperto ${r.coperte.join(', ')} (C26-11)`, !r.sopra.length && !r.coperte.length);
+      if (r.suNomi.length) suNomi.push(`${dove}: ${r.suNomi.join('; ')}`);
+      atteso(`${dove} con le unità: pastiglie sopra i nomi ${r.suNomi.join('; ')} (C27-06, il caso del collaudo)`, st.m.id !== 'e19' || !r.suNomi.length);
+      atteso(`${dove} con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
+      if (w === 360) { // C33-04: la disposizione non dipende dallo stato del giro prima (rosso VALMORA_ROSSI=C102D01)
+        const posti = () => q6.evaluate(() => [...document.querySelectorAll('.mappa:not(.citta) [data-settore]')].map((x) => `${x.dataset.settore}:${x.dataset.nome}/${x.dataset.unita}/${x.querySelector('.settore-nome')?.style.maxWidth ?? ''}`).join(' '));
+        const prima = await posti();
+        await q6.evaluate(() => { for (const x of document.querySelectorAll('.mappa:not(.citta) [data-settore]')) { x.setAttribute('data-unita', 'sotto'); x.querySelector('.settore-nome')?.style.setProperty('max-width', 'calc(var(--nome-max) * 0.6)'); } });
+        await q6.setViewportSize({ width: w + 1, height: h }); await q6.waitForTimeout(80); await q6.setViewportSize({ width: w, height: h }); await q6.waitForTimeout(120);
+        const dopo = await posti();
+        atteso(`${dove}: la disposizione cambia ripartendo da un altro stato (C33-04): ${prima === dopo ? '' : dopo.split(' ').filter((x, i) => x !== prima.split(' ')[i]).join(' ')}`, prima === dopo);
+      }
+    }
+    await q6.close();
   }
-  await q6.close();
   // C27-06 / D-136: nessuna ondata con una pastiglia sopra un nome (7 su 142 prima di C28-14, 19 col rosso C81P01).
   atteso(`schieramenti con le unità: ${suNomi.length} ondate con pastiglie sopra i nomi (al massimo ${PASTIGLIE_SU_NOMI}): ${suNomi.join(' | ')} (C27-06)`, suNomi.length <= PASTIGLIE_SU_NOMI);
+  // C33-03: le unità messe una alla volta coi tocchi (unità, poi settore), come il giocatore: dopo ogni tocco nessun tocco
+  // coperto né nome su nome (caricando tutto dalla bozza il caso di e06 non si vedeva). Prima ondata di ogni episodio, 360.
+  const qp = await nuova({ viewport: { width: 360, height: 760 }, reducedMotion: 'reduce' }); await qp.goto(url);
+  for (const st of attente.filter((x) => x.n === 1)) {
+    await qp.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s }));
+    await qp.reload(); await qp.getByRole('button', { name: 'Riprendi' }).click();
+    if (!(await qp.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) continue;
+    const male = new Set();
+    for (const [ris, posti] of Object.entries(st.d)) for (const [sett, n] of Object.entries(posti)) for (let k = 0; k < n; k++) {
+      if ((await qp.getAttribute(`[data-risorsa="${ris}"]`, 'aria-pressed').catch(() => null)) !== 'true') await qp.click(`[data-risorsa="${ris}"]`).catch(() => {});
+      await qp.click(`[data-settore="${sett}"] .settore-punto`, { timeout: 3000 }).catch(() => male.add(`${ris}@${sett} non si tocca`));
+      await qp.waitForTimeout(60);
+      const r = await mappaSchieramento(qp);
+      for (const x of [...r.coperte.map((c) => `tocco ${c} coperto`), ...r.sopra.map((c) => `nomi ${c}`)]) male.add(`dopo ${ris}@${sett}: ${x}`);
+    }
+    atteso(`${st.m.id} ondata 1 360×760, unità messe una alla volta: ${[...male].join('; ')} (C33-03)`, !male.size);
+  }
+  await qp.close();
   const e03 = stati.find((x) => x.m.id === 'e03' && x.n === 3);
   for (const [w, h] of [[375, 812], [412, 915]]) {
     const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
