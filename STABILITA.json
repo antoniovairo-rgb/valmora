@@ -60717,6 +60717,189 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-16T14:09:20.153Z",
+      "commit": "f00c88b",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "tests/voci-club.test.ts(9,98): error TS18048: 'x' is possibly 'undefined'."
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-16T14:09:30.095Z",
+      "commit": "f00c88b",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "tests/voci-club.test.ts(9,98): error TS18048: 'x' is possibly 'undefined'."
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-16T14:09:40.120Z",
+      "commit": "f00c88b",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "stagione 1: il casuale fallisce in e08 il 55.6%, meno di e07 (61.9%) oltre la tolleranza di 1 punto (D-108)"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-16T14:15:53.156Z",
+      "commit": "f00c88b",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-16T14:24:10.113Z",
+      "commit": "f00c88b",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
     }
   ]
 }
