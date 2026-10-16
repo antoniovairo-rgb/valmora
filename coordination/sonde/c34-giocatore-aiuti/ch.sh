@@ -1,0 +1,4 @@
+#!/bin/sh
+# ch.sh: stampa la chiamata aperta (intestazione, testo, opzioni con costi), senza mappa
+G=/tmp/claude-0/-home-user-valmora/955726f2-49a9-50d3-b37e-9d621f3b12f3/scratchpad/g.sh
+$G js c="(()=>{const q=s=>document.querySelector(s);const h=q('.ondata-titolo,header')?.innerText;const m=[...document.querySelectorAll('[data-messaggio]')].map(x=>x.dataset.messaggio+': '+x.innerText.replace(/\s+/g,' ')).join('\n');const o=[...document.querySelectorAll('[data-opzione]')].map(x=>'  ['+x.dataset.opzione+'] '+x.innerText.replace(/\s+/g,' ')).join('\n');const a=[...document.querySelectorAll('[data-azione]')].filter(x=>x.offsetParent).map(x=>x.dataset.azione).join(',');return (document.querySelector('.scena')?.dataset.scena)+' | '+(document.querySelector('.testata, .intestazione')?.innerText.replace(/\s+/g,' ')??'')+'\n'+m+'\nOPZIONI:\n'+o+'\nAZIONI: '+a+'\nfiducia '+(document.body.innerText.match(/FIDUCIA\s+(\S+)/)?.[1])})()" | sed 's/^valore: //'

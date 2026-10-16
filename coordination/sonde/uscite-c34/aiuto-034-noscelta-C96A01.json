@@ -1,0 +1,548 @@
+{
+ "ROSSI": [
+  "C96A01"
+ ],
+ "righe": [
+  {
+   "ep": "e01",
+   "W": 375,
+   "H": 667,
+   "info": false,
+   "aperto": false,
+   "aiuto": {
+    "x": 315,
+    "y": 565,
+    "w": 44,
+    "h": 44,
+    "basso": 609,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "barra": false,
+    "tocco": 44,
+    "icona": 26,
+    "premuto": "false"
+   },
+   "conferma": {
+    "x": 120,
+    "y": 608,
+    "w": 239,
+    "h": 51,
+    "basso": 659,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "testo": "Conferma",
+    "taglio": false
+   },
+   "annulla": {
+    "x": 16,
+    "y": 608,
+    "w": 44,
+    "h": 51,
+    "basso": 659,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "azzera": {
+    "x": 68,
+    "y": 608,
+    "w": 44,
+    "h": 51,
+    "basso": 659,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "ordine": [
+    "annulla",
+    "azzera",
+    "conferma"
+   ],
+   "infoAperta": "false",
+   "scatola": null,
+   "scorrimentoX": false,
+   "pagina": 708,
+   "finestra": 667
+  },
+  {
+   "ep": "e01",
+   "W": 375,
+   "H": 667,
+   "info": false,
+   "aperto": true,
+   "aiuto": {
+    "x": 315,
+    "y": 437,
+    "w": 44,
+    "h": 44,
+    "basso": 481,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "barra": false,
+    "tocco": 44,
+    "icona": 26,
+    "premuto": "true"
+   },
+   "conferma": {
+    "x": 120,
+    "y": 608,
+    "w": 239,
+    "h": 51,
+    "basso": 659,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "testo": "Conferma",
+    "taglio": false
+   },
+   "annulla": {
+    "x": 16,
+    "y": 608,
+    "w": 44,
+    "h": 51,
+    "basso": 659,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "azzera": {
+    "x": 68,
+    "y": 608,
+    "w": 44,
+    "h": 51,
+    "basso": 659,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "ordine": [
+    "annulla",
+    "azzera",
+    "conferma"
+   ],
+   "infoAperta": "false",
+   "scatola": {
+    "x": 16,
+    "y": 493,
+    "w": 343,
+    "h": 99,
+    "basso": 592,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "scorrimentoX": false,
+   "pagina": 831,
+   "finestra": 667
+  },
+  {
+   "ep": "e01",
+   "W": 375,
+   "H": 667,
+   "info": true,
+   "aperto": false,
+   "aiuto": {
+    "x": 315,
+    "y": 554,
+    "w": 44,
+    "h": 44,
+    "basso": 598,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "barra": false,
+    "tocco": 44,
+    "icona": 26,
+    "premuto": "false"
+   },
+   "conferma": {
+    "x": 120,
+    "y": 606,
+    "w": 239,
+    "h": 51,
+    "basso": 657,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "testo": "Conferma",
+    "taglio": false
+   },
+   "annulla": {
+    "x": 16,
+    "y": 606,
+    "w": 44,
+    "h": 51,
+    "basso": 657,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "azzera": {
+    "x": 68,
+    "y": 606,
+    "w": 44,
+    "h": 51,
+    "basso": 657,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "ordine": [
+    "annulla",
+    "azzera",
+    "conferma"
+   ],
+   "infoAperta": "true",
+   "scatola": null,
+   "scorrimentoX": false,
+   "pagina": 767,
+   "finestra": 667
+  },
+  {
+   "ep": "e01",
+   "W": 375,
+   "H": 667,
+   "info": true,
+   "aperto": true,
+   "aiuto": {
+    "x": 315,
+    "y": 438,
+    "w": 44,
+    "h": 44,
+    "basso": 482,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "barra": false,
+    "tocco": 44,
+    "icona": 26,
+    "premuto": "true"
+   },
+   "conferma": {
+    "x": 120,
+    "y": 608,
+    "w": 239,
+    "h": 51,
+    "basso": 659,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "testo": "Conferma",
+    "taglio": false
+   },
+   "annulla": {
+    "x": 16,
+    "y": 608,
+    "w": 44,
+    "h": 51,
+    "basso": 659,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "azzera": {
+    "x": 68,
+    "y": 608,
+    "w": 44,
+    "h": 51,
+    "basso": 659,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "ordine": [
+    "annulla",
+    "azzera",
+    "conferma"
+   ],
+   "infoAperta": "false",
+   "scatola": {
+    "x": 16,
+    "y": 494,
+    "w": 343,
+    "h": 99,
+    "basso": 593,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "scorrimentoX": false,
+   "pagina": 831,
+   "finestra": 667
+  },
+  {
+   "ep": "e01",
+   "W": 1366,
+   "H": 768,
+   "info": false,
+   "aperto": false,
+   "aiuto": {
+    "x": 863,
+    "y": 654,
+    "w": 44,
+    "h": 44,
+    "basso": 698,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "barra": false,
+    "tocco": 44,
+    "icona": 26,
+    "premuto": "false"
+   },
+   "conferma": {
+    "x": 563,
+    "y": 706,
+    "w": 344,
+    "h": 51,
+    "basso": 757,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "testo": "Conferma",
+    "taglio": false
+   },
+   "annulla": {
+    "x": 459,
+    "y": 706,
+    "w": 44,
+    "h": 51,
+    "basso": 757,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "azzera": {
+    "x": 511,
+    "y": 706,
+    "w": 44,
+    "h": 51,
+    "basso": 757,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "ordine": [
+    "annulla",
+    "azzera",
+    "conferma"
+   ],
+   "infoAperta": "false",
+   "scatola": null,
+   "scorrimentoX": false,
+   "pagina": 797,
+   "finestra": 768
+  },
+  {
+   "ep": "e01",
+   "W": 1366,
+   "H": 768,
+   "info": false,
+   "aperto": true,
+   "aiuto": {
+    "x": 863,
+    "y": 557,
+    "w": 44,
+    "h": 44,
+    "basso": 601,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "barra": false,
+    "tocco": 44,
+    "icona": 26,
+    "premuto": "true"
+   },
+   "conferma": {
+    "x": 563,
+    "y": 709,
+    "w": 344,
+    "h": 51,
+    "basso": 760,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "testo": "Conferma",
+    "taglio": false
+   },
+   "annulla": {
+    "x": 459,
+    "y": 709,
+    "w": 44,
+    "h": 51,
+    "basso": 760,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "azzera": {
+    "x": 511,
+    "y": 709,
+    "w": 44,
+    "h": 51,
+    "basso": 760,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "ordine": [
+    "annulla",
+    "azzera",
+    "conferma"
+   ],
+   "infoAperta": "false",
+   "scatola": {
+    "x": 459,
+    "y": 613,
+    "w": 448,
+    "h": 80,
+    "basso": 693,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "scorrimentoX": false,
+   "pagina": 901,
+   "finestra": 768
+  },
+  {
+   "ep": "e01",
+   "W": 1366,
+   "H": 768,
+   "info": true,
+   "aperto": false,
+   "aiuto": {
+    "x": 863,
+    "y": 646,
+    "w": 44,
+    "h": 44,
+    "basso": 690,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "barra": false,
+    "tocco": 44,
+    "icona": 26,
+    "premuto": "false"
+   },
+   "conferma": {
+    "x": 563,
+    "y": 698,
+    "w": 344,
+    "h": 51,
+    "basso": 749,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "testo": "Conferma",
+    "taglio": false
+   },
+   "annulla": {
+    "x": 459,
+    "y": 698,
+    "w": 44,
+    "h": 51,
+    "basso": 749,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "azzera": {
+    "x": 511,
+    "y": 698,
+    "w": 44,
+    "h": 51,
+    "basso": 749,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "ordine": [
+    "annulla",
+    "azzera",
+    "conferma"
+   ],
+   "infoAperta": "true",
+   "scatola": null,
+   "scorrimentoX": false,
+   "pagina": 840,
+   "finestra": 768
+  },
+  {
+   "ep": "e01",
+   "W": 1366,
+   "H": 768,
+   "info": true,
+   "aperto": true,
+   "aiuto": {
+    "x": 863,
+    "y": 557,
+    "w": 44,
+    "h": 44,
+    "basso": 601,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "barra": false,
+    "tocco": 44,
+    "icona": 26,
+    "premuto": "true"
+   },
+   "conferma": {
+    "x": 563,
+    "y": 709,
+    "w": 344,
+    "h": 51,
+    "basso": 760,
+    "vista": true,
+    "coperto": false,
+    "sopra": null,
+    "testo": "Conferma",
+    "taglio": false
+   },
+   "annulla": {
+    "x": 459,
+    "y": 709,
+    "w": 44,
+    "h": 51,
+    "basso": 760,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "azzera": {
+    "x": 511,
+    "y": 709,
+    "w": 44,
+    "h": 51,
+    "basso": 760,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "ordine": [
+    "annulla",
+    "azzera",
+    "conferma"
+   ],
+   "infoAperta": "false",
+   "scatola": {
+    "x": 459,
+    "y": 613,
+    "w": 448,
+    "h": 80,
+    "basso": 693,
+    "vista": true,
+    "coperto": false,
+    "sopra": null
+   },
+   "scorrimentoX": false,
+   "pagina": 901,
+   "finestra": 768
+  }
+ ],
+ "errori": []
+}
