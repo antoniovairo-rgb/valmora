@@ -206,4 +206,21 @@
 //   ai rigori»; presidente in e05, e06, e09.
 //   guardiano: rossi C86T01 (tela), C87H01 (evidenza col puntatore fermo), C88F01/C89C01 (fuoco), C90V01 (versione),
 //   C92P01 (pigna); limiti di lunghezza dei testi.
-export const GAME_VERSION = '0.29.0';
+// 0.30.0 – due rilievi del collaudo C-031 sulla 0.28.0.
+//   causa: C31-01 togliendo `fase` da e21 o3 i test restavano verdi (correzione C30-02 senza guardiano); C31-03 in e35
+//   «parenti» contro «familiari».
+//   misura: tests/meta-fase.test.ts verde, e rosso togliendo la fase di e21 o3; e35 fine_trattativa «i familiari aspettano».
+//   guardiano: tests/meta-fase.test.ts (controllo sui dati veri di e21 o3); limiti di lunghezza dei testi.
+// 0.31.0 – due rilievi del collaudo C-029 (sviluppatrice).
+//   causa: C29-02 in e04 il corteo delle strade senza meta partiva dal bordo sbagliato del viale (45/69 «via»);
+//   C29-04 il cartello «Urgente!» non era spiegato nella guida.
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (7e28ab4); viale dal bordo giusto; guida.5 spiega «Urgente!».
+//   guardiano: tests/viale.test.ts (rosso C93V01), tests/urgente.test.ts; limiti di lunghezza dei testi.
+// 0.32.0 – pastiglie a tetto 0 (D-136), corteo di e30 dal bordo dello stadio (C31-02), tre rilievi del collaudo C-032.
+//   causa: C28-14 e 7 casi in cui una pastiglia copriva un nome; C31-02 in e30 il viale con meta partiva dal bordo e il
+//   corteo si avvicinava allo stadio (57/69); C32-03 in e07/e08 l'offerta del club firmata «il vice»; C32-05 e08 ai
+//   rigori senza supplementari, e il vice che «vince la scommessa» dopo aver detto «stavolta non scommetto».
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (1a42d48): pastiglie sopra i nomi 0/142 ondate a 360/375/412
+//   (rosso C94N01: 7); e30 ondate 2-4 via dallo stadio 69/0, verso il municipio 62-64; e07/e08 fonte del club.
+//   guardiano: rossi C94N01, C95S01; tests/voci-club.test.ts (rosso 2/2); limiti di lunghezza dei testi.
+export const GAME_VERSION = '0.32.0';
