@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-16 10:20 Roma – main 0.28.0 (4132fa7), uscita alle 10:16 (verifica 3/3 VERDE su 247b395, CI verde): C30-01/02/03. Decisioni D-133…D-136. Collaudo C-031 sulla 0.28.0. CI rossa solo sul ramo del collaudo C-030 (righe Co-Authored-By nei commit della collaudatrice, controllo «modello»): ramo chiuso, nessun effetto su principale e main. Sviluppatrice: tablet/PC piccole, C30-04, C28-14 + 7 casi, C29-02, poi PO-059.
+Ultimo giro della routine: 2026-10-16 12:20 Roma – main 0.29.0 (5e97c04), uscita alle 12:10 (verifica 3/3 VERDE su 46d0061, CI verde): tablet/PC piccole, C29-05/06, rifinitura e07–e09 (D-138). C-031 consegnato e archiviato (3 bassi; C31-01/03 corretti, 583c0d5). C-032 avviato sulla 0.29.0. Sviluppatrice: C29-02 + C29-04 in catena, poi C31-02, C30-04, C28-14 + 7 casi, PO-059. Rifinitura: 6/33 episodi.
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
