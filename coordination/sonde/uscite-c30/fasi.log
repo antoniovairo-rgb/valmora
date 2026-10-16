@@ -1,0 +1,65 @@
+== e07 La neopromossa — curve: curva_ospiti
+  o1 fase=- → spalti arrivo; cortei parcheggi>entra
+     «Prima volta in città»: Prima della partita: i neopromossi del Southwind arrivano per la prima volta in città.
+     eventi: festa@viale_stazione arrivo@parcheggi festa@piazzale
+  o2 fase=partita → spalti pieni; cortei -
+     «La partita, fuori»: Si gioca: tu non guardi il campo, ma ciò che succede intorno, sugli spalti e nelle strade.
+     eventi: festa@curva_ospiti raduno@strada_larkspire folla@piazzale
+  o3 fase=partita → spalti pieni; cortei -
+     «Il gol della storia»: La partita prosegue: un gol da ricordare cambia l'umore sugli spalti e nelle strade.
+     eventi: festa@curva_ospiti raduno@strada_larkspire festa@parcheggi
+  o4 fase=dopo → spalti deflusso; cortei -
+     «La festa non finisce»: A partita finita, di sera: la festa del Southwind continua per la città.
+     eventi: festa@viale_stazione festa@parcheggi folla@piazzale
+== e21 Senza capo — curve: curva_cinderwick
+  o1 fase=- → spalti arrivo; cortei -
+     «Dall'ex fonderia»: Inizio serata: i giovani della curva sono all'ex fonderia, che rischia lo sgombero.
+     eventi: corteo@ex_fonderia folla@piazzale faida@piazza_fonderie
+  o2 fase=partita → spalti pieni; cortei -
+     «Due curve in una città»: Si gioca: i vecchi sono in curva allo stadio, i giovani restano fuori, in piazza.
+     eventi: faida@curva_cinderwick faida@piazza_fonderie raduno@quartiere
+  o3 fase=- → spalti deflusso; cortei -
+     «La voce dello sgombero»: Kiln–Pinegrove in corso: in città corre la voce dello sgombero dell'ex fonderia.
+     eventi: faida@piazza_fonderie folla@piazzale presidio@ex_fonderia
+  o4 fase=dopo → spalti deflusso; cortei -
+     «Chi comanda adesso»: Dopo la partita, di notte: vecchi e giovani della curva tornano nelle stesse strade.
+     eventi: corteo@ex_fonderia raduno@quartiere folla@piazzale
+== e23 La pista del porto — curve: curva_cinderwick,curva_ospiti
+  o1 fase=- → spalti arrivo; cortei casello>entra
+     «Dal mare»: Prima della partita: dal casello arrivano i pullman del Southwind, tifosi dal mare.
+     eventi: arrivo@casello sosta@parcheggi folla@piazzale
+  o2 fase=prima → spalti arrivo; cortei -
+     «I pullman»: Verso il fischio d'inizio: i pullman cercano posto e i tifosi entrano allo stadio.
+     eventi: sosta@parcheggi arrivo@curva_ospiti curva@curva_cinderwick
+  o3 fase=- → spalti pieni; cortei -
+     «La partita»: Si gioca: le due curve sono sugli spalti, fuori restano parcheggi e casello.
+     eventi: curva@curva_cinderwick curva@curva_ospiti arrivo@casello
+  o4 fase=- → spalti deflusso; cortei casello>esce
+     «Ritorno al mare»: Fine partita: i tifosi del Southwind ripartono verso il casello e il mare.
+     eventi: arrivo@casello sosta@parcheggi folla@piazzale
+== e27 Il ritorno dei gemellati — curve: curva_cinderwick,curva_gemellati,curva_ospiti
+  o1 fase=prima → spalti arrivo; cortei strada_cinderwick>entra
+     «Il treno dei gemellati»: Prima della partita: arrivano in treno i gemellati, tifosi amici della curva Kiln.
+     eventi: arrivo@stazione corteo@strada_cinderwick curva@curva_cinderwick
+  o2 fase=- → spalti pieni; cortei -
+     «Due gruppi, una curva»: Si gioca: in curva Kiln ci sono due gruppi e nessun capo riconosciuto.
+     eventi: curva@curva_cinderwick curva@curva_gemellati curva@curva_ospiti
+  o3 fase=- → spalti pieni; cortei -
+     «Secondo tempo»: Secondo tempo: la partita va avanti e sugli spalti i nervi si fanno tesi.
+     eventi: curva@curva_ospiti curva@curva_cinderwick curva@curva_gemellati
+  o4 fase=dopo → spalti deflusso; cortei strada_cinderwick>esce
+     «Il ritorno in stazione»: Dopo la partita: i gemellati tornano in stazione per prendere il treno di casa.
+     eventi: arrivo@stazione corteo@strada_cinderwick curva@curva_cinderwick
+== e30 Il giorno dopo — curve: nessuna
+  o1 fase=- → spalti vuoti; cortei -
+     «Il raduno»: Il giorno dopo, niente partita: la curva si raduna allo stadio per il corteo al municipio.
+     eventi: corteo@piazzale protesta@quartiere traffico@viale_stazione
+  o2 fase=- → spalti vuoti; cortei strada_cinderwick>esce
+     «Il silenzio in cammino»: Il corteo si muove in silenzio dallo stadio verso il municipio, in mezzo al traffico.
+     eventi: corteo@strada_cinderwick/dallo_stadio traffico@viale_stazione folla@piazza_municipio
+  o3 fase=- → spalti vuoti; cortei strada_cinderwick>entra
+     «Poi parleremo noi»: Il corteo arriva in piazza del municipio: qui la curva vuole farsi sentire.
+     eventi: corteo@piazza_municipio folla@strada_cinderwick protesta@quartiere
+  o4 fase=- → spalti vuoti; cortei strada_cinderwick>esce
+     «La notte della curva»: È sera, dopo il corteo al municipio: la curva resta in strada e la giornata non è finita.
+     eventi: corteo@strada_cinderwick/dallo_stadio folla@piazzale protesta@quartiere

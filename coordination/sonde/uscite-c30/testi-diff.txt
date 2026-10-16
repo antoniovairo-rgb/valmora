@@ -1,0 +1,870 @@
+#1 e13.info_organizzatori [96→76]
+  P: Organizzatori: i parcheggi dello stadio restano liberi, il pubblico del concerto arriva a piedi.
+  D: Organizzatori: parcheggi dello stadio liberi, al concerto si arriva a piedi.
+#2 e13.info_radio [133→78] N#:un
+  P: Centrale radio: dal capolinea di Tramway un trenino pieno, che nessuno aveva annunciato. Settore ospiti chiuso: restano sul piazzale.
+  D: Centrale radio: trenino pieno da Tramway, mai annunciato. Ospiti sul piazzale.
+#3 e13.info_club [118→80]
+  P: Lavezzari, sicurezza del Kiln: la curva viene al completo, Tano Ferrigno compreso. Dopo la partita, tutti al concerto.
+  D: Lavezzari (Kiln): curva completa, Tano Ferrigno compreso. Poi tutti al concerto.
+#4 e13.info_rete [85→79]
+  P: In rete: «al concerto il club apre la prevendita degli abbonamenti, prezzi d'estate».
+  D: In rete: «al concerto il club apre la prevendita abbonamenti, prezzi d'estate».
+#5 e13.ch.parcheggi_riservati [127→97] NP:Gli
+  P: «Gli addetti con la pettorina Varrone mandano via le auto dei tifosi: dicono che i parcheggi sono per gli ospiti dell'impresa.»
+  D: «Pettorine Varrone mandano via le auto dei tifosi: i parcheggi sono per gli ospiti dell'impresa.»
+#6 e13.ch.palco [127→98]
+  P: «Il club presenta la maglia nuova sul palco di Varrone. Il Fabbro vuole salire coi suoi: solo una foto, davanti ai cartelloni.»
+  D: «Maglia nuova sul palco Varrone. Il Fabbro vuole salire coi suoi: una foto davanti ai cartelloni.»
+#7 e13.ch.abbonamenti_voce [137→97]
+  P: «Capo, ai banchi del concerto vendono abbonamenti della nuova stagione a metà prezzo. Stessa carta dei biglietti falsi dell'anno scorso.»
+  D: «Capo, al concerto abbonamenti a metà prezzo. Stessa carta dei biglietti falsi dell'anno scorso.»
+#8 e13.ch.microfono [129→96] NP:Dal
+  P: «Dal maxischermo sul piazzale arrivano le prove del suono: qualcuno saluta «gli amici del Tramway». Il piazzale risponde a cori.»
+  D: «Maxischermo, prove del suono: uno saluta «gli amici del Tramway». Il piazzale risponde a cori.»
+#9 e13.ch.abbonamenti_finti [132→99] N#:uno
+  P: «Organizzatori del concerto: ai banchi c'è la fila per abbonamenti «scontati». Il club dice di non averne mai messo in vendita uno.»
+  D: «Organizzatori: fila ai banchi per abbonamenti «scontati». Il club dice di non averne mai venduti.»
+#10 e13.ch.caldo [110→100] NP:Trentadue
+  P: «Trentadue gradi in curva Kiln, fontanelle chiuse. «Tanto lo stadio vecchio lo buttano giù», dice il custode.»
+  D: «Curva Kiln: trentadue gradi, fontanelle chiuse. Custode: «Tanto lo stadio vecchio lo buttano giù».»
+#11 e13.ch.spintoni [106→98]
+  P: «Spintoni sul piazzale: chi vuole correre al concerto e chi non lo lascia passare. Per ora solo spintoni.»
+  D: «Spintoni sul piazzale: chi corre al concerto e chi non lo lascia passare. Per ora solo spintoni.»
+#12 e13.ch.video [113→94]
+  P: «In rete i video degli spintoni, montati con la musica delle prove. Titolo: «Il nuovo campionato comincia così».»
+  D: «In rete video degli spintoni con la musica delle prove: «Il nuovo campionato comincia così».»
+#13 e13.ch.patto_dessi [109→96]
+  P: «I miei li porto io in piazza, tranquilli, e dal palco li tengo a bada. In cambio, niente nomi nel rapporto.»
+  D: «I miei li porto io in piazza e li tengo a bada dal palco. In cambio, niente nomi nel rapporto.»
+#14 e13.ch.furgone_palco [110→97] NP:Il
+  P: «Il furgone grigio, capo. È dietro il palco, fra i camion della Varrone. Scaricano scatole di carta stampata.»
+  D: «Capo, il furgone grigio è dietro il palco, fra i camion Varrone. Scaricano scatole di stampati.»
+#15 e13.ch.coda_auto [112→91] NP:Finita
+  P: «Finita la partita, i parcheggi si svuotano mentre arrivano le auto del concerto. Una sola uscita, e i clacson.»
+  D: «Fine partita: si esce mentre arrivano le auto del concerto. Una sola uscita, e i clacson.»
+#16 e13.ch.abbonamento_vice [120→98] N#:un
+  P: Malvasi ha in mano un abbonamento falso e un volantino del concertone. «Stessa carta, stessa stampa. O stessa macchina.»
+  D: Malvasi confronta abbonamento falso e volantino: «Stessa carta, stessa stampa. O stessa macchina.»
+#17 e14.info_biglietteria [86→73]
+  P: Biglietteria dello stadio: vendita regolare, sistema nuovo, nessun doppione possibile.
+  D: Biglietteria: vendita regolare, sistema nuovo, nessun doppione possibile.
+#18 e14.info_radio [106→68]
+  P: Centrale radio: già all'alba c'è gente in coda ai tornelli col biglietto in mano, «per prendere il posto».
+  D: Centrale radio: coda ai tornelli dall'alba, «per prendere il posto».
+#19 e14.info_larkspire [87→79]
+  P: Sicurezza dello Skyfield: curva esaurita da ieri. Strano: ieri mattina era mezza vuota.
+  D: Sicurezza dello Skyfield: curva esaurita da ieri. Ieri mattina era mezza vuota.
+#20 e14.ch.doppioni [116→100] NP:Il
+  P: «Il sistema dice curva Skyfield esaurita da ieri, ma da stamattina continuiamo a venderla. Due biglietti per posto.»
+  D: «Per il sistema la curva Skyfield è esaurita da ieri, ma la vendiamo ancora. Due biglietti a posto.»
+#21 e14.ch.cronista [119→100]
+  P: «Stampa locale: è vero che lo stadio è stato venduto due volte? Il titolo l'ho già scritto, mi serve solo la conferma.»
+  D: «Stampa locale: lo stadio è stato venduto due volte? Il titolo è già scritto, mi serve la conferma.»
+#22 e14.ch.stessa_carta [118→96] NP:Capo
+  P: «Capo, i doppioni non sono falsi. Sono veri: stessa carta del club, stesso codice. Qualcuno li ha stampati due volte.»
+  D: «I doppioni sono veri: stessa carta del club, stesso codice. Qualcuno li ha stampati due volte.»
+#23 e14.ch.ospiti_sbagliati [116→97]
+  P: «Centrale radio: quaranta tifosi del Waterline sono finiti in curva Skyfield coi biglietti doppi. Si guardano male.»
+  D: «Centrale radio: quaranta del Waterline in curva Skyfield coi biglietti doppi. Si guardano male.»
+#24 e14.ch.tornelli_codice [109→97] N#:un
+  P: «I tornelli leggono un codice una volta sola. Chi arriva secondo col doppione resta fuori, e la prende male.»
+  D: «Ogni codice passa ai tornelli una volta sola. Chi arriva secondo resta fuori, e la prende male.»
+#25 e14.ch.presidente_rimborsa [138→94] NP:Il
+  P: «Il presidente dello Skyfield al telefono: rimborsa lui i doppioni della curva, di tasca sua. Si ricorda della stretta di mano del derby.»
+  D: «Presidente dello Skyfield: rimborsa lui i doppioni. Si ricorda la stretta di mano del derby.»
+#26 e14.ch.numero_serie [101→94]
+  P: Malvasi confronta due biglietti uguali. «Stesso numero di serie. Stessa tipografia. Quella del club.»
+  D: Malvasi confronta due biglietti: «Stesso numero di serie. Stessa tipografia. Quella del club.»
+#27 e15.info_ferrovie [93→78]
+  P: Ferrovie regionali: da Railhead arriva un treno ordinario, nessun gruppo organizzato a bordo.
+  D: Ferrovie regionali: da Railhead un treno ordinario, nessun gruppo organizzato.
+#28 e15.info_cinderwick [115→79]
+  P: Lavezzari, sicurezza del Kiln: arrivano gli amici di Railhead, gemellati da vent'anni. Abbiamo un settore per loro.
+  D: Lavezzari, Kiln: i gemellati di Railhead, amici da vent'anni, hanno un settore.
+#29 e15.info_radio [112→75] N#:un
+  P: Centrale radio: la curva Kiln ha chiesto il permesso per un corteo dalla stazione. Negato. Lo faranno lo stesso.
+  D: Centrale radio: negato il corteo Kiln dalla stazione. Lo faranno lo stesso.
+#30 e15.ch.treno_amici [127→99]
+  P: «Ferrovie: il treno da Railhead porta duecento tifosi più del previsto. Scendono con sciarpe arancio e nere. Non sono le loro.»
+  D: «Ferrovie: da Railhead duecento tifosi più del previsto. Sciarpe arancio e nere. Non sono le loro.»
+#31 e15.ch.fratelli [115→100]
+  P: «Il Fabbro aspetta gli amici di Railhead all'uscita della stazione, con uno striscione di dieci metri: «Fratelli».»
+  D: «Il Fabbro aspetta gli amici di Railhead in stazione con uno striscione di dieci metri: «Fratelli».»
+#32 e15.ch.mille [107→97]
+  P: «Curva Kiln e gemellati chiedono di arrivare allo stadio in un solo corteo. Mille persone, un solo colore.»
+  D: «Curva Kiln e gemellati vogliono un solo corteo fino allo stadio. Mille persone, un solo colore.»
+#33 e15.ch.settore_pieno [113→96] NP:Il
+  P: «Il settore dei gemellati ha quattrocento posti. Ne arrivano seicento. Gli altri vogliono entrare in curva Kiln.»
+  D: «Settore gemellati: quattrocento posti, ne arrivano seicento. Gli altri vogliono la curva Kiln.»
+#34 e15.ch.salutarli [118→84] NP:Responsabile
+  P: «Responsabile dei Rovers: i miei hanno visto il corteo. Vogliono uscire dal settore per «salutarli». Io non li tengo.»
+  D: «Rovers: i miei hanno visto il corteo, vogliono uscire a «salutarli». Non li tengo.»
+#35 e15.ch.binocolo [125→100]
+  P: Malvasi ti passa il binocolo. Il Fabbro e il capo dei gemellati parlano sottovoce, spalle al campo, per tutto il primo tempo.
+  D: Malvasi ti dà il binocolo: il Fabbro e il capo dei gemellati parlano sottovoce tutto il primo tempo.
+#36 e15.ch.accompagnarli [118→93]
+  P: «Ferrovie: il treno per Railhead parte tra mezz'ora. La curva Kiln vuole accompagnare i gemellati in stazione. Tutta.»
+  D: «Ferrovie: treno per Railhead fra mezz'ora. La curva Kiln vuole scortare i gemellati. Tutta.»
+#37 e16.info_informatore [92→74]
+  P: Informatore di strada: magazzino sette, alle fonderie. Durante la partita arriva il furgone.
+  D: Informatore: magazzino sette, alle fonderie. Il furgone arriva in partita.
+#38 e16.info_comando [92→73]
+  P: Comando: le fonderie sono chiuse da anni, nessuna attività registrata. Pista da non seguire.
+  D: Comando: fonderie chiuse da anni, nessuna attività. Pista da non seguire.
+#39 e16.info_quillhaven [85→78]
+  P: Pinegrove Rangers: quattro pullman, come chiede il comando: niente corteo fra vicini.
+  D: Pinegrove Rangers: quattro pullman, come da comando: niente corteo fra vicini.
+#40 e16.ch.magazzino_sette [114→98]
+  P: «Capo, magazzino sette. Oggi, durante la partita, ci portano qualcosa col furgone grigio. Quello che so vale oro.»
+  D: «Capo, magazzino sette: oggi in partita il furgone grigio porta qualcosa. Quello che so vale oro.»
+#41 e16.ch.foto_benzinaio [114→92]
+  P: Malvasi ha la foto della telecamera di un benzinaio: furgone grigio senza targa davanti, fermo al magazzino sette.
+  D: Malvasi, foto da un benzinaio: furgone grigio senza targa davanti, fermo al magazzino sette.
+#42 e16.ch.pullman_fonderie [125→98]
+  P: «Pinegrove Rangers: arriviamo in quattro pullman. Possiamo parcheggiare vicino alle fonderie? Ci hanno detto che c'è spazio.»
+  D: «Pinegrove Rangers, quattro pullman: parcheggiamo vicino alle fonderie? Ci dicono che c'è spazio.»
+#43 e16.ch.scatole [124→95] NP:Una N#:Una
+  P: «Una pattuglia di passaggio: al magazzino sette tre uomini scaricano scatole dal furgone. Uno ha la sciarpa arancio e nera.»
+  D: «Pattuglia: tre uomini scaricano scatole al magazzino sette. Uno ha la sciarpa arancio e nera.»
+#44 e16.ch.senza_dessi [101→93]
+  P: Malvasi abbassa il binocolo. «Il Fabbro non è in curva. Partita in casa, primo tempo, e lui non c'è.»
+  D: Malvasi abbassa il binocolo: «Il Fabbro non è in curva. In casa, primo tempo, e lui non c'è.»
+#45 e16.ch.proprietario [109→96]
+  P: «Comando: il proprietario del magazzino si lamenta di «gente che guarda». Vuole sapere chi ha dato l'ordine.»
+  D: «Comando: il proprietario del magazzino si lamenta di «gente che guarda». Chi ha dato l'ordine?»
+#46 e17.info_comando [138→79]
+  P: Comando: porte chiuse per sanzione. Sciopero generale, corteo autorizzato in centro, trasporti fermi. Possibili raduni fuori dallo stadio.
+  D: Comando: porte chiuse. Sciopero, corteo in centro, bus fermi: possibili raduni.
+#47 e17.info_club [89→71]
+  P: Lavezzari, sicurezza del Kiln: la curva ha accettato la sanzione. Nessun raduno previsto.
+  D: Lavezzari (Kiln): la curva accetta la sanzione. Nessun raduno previsto.
+#48 e17.info_rete [126→77]
+  P: In rete: «il corteo arriva in piazza del municipio alle cinque, all'ora della partita. Chi vuole esserci, la strada è quella».
+  D: In rete: «corteo in piazza del municipio alle cinque, all'ora della partita».
+#49 e17.info_comitato [100→77]
+  P: Comitato dei residenti: stadio chiuso e autobus fermi, finalmente una sera tranquilla nel quartiere.
+  D: Comitato residenti: stadio chiuso, bus fermi, finalmente una sera tranquilla.
+#50 e17.ch.sanzione [105→94]
+  P: «Comando: porte chiuse, nessuna deroga. Però in piazzale ci sono già trecento sciarpe, arrivate a piedi.»
+  D: «Comando: porte chiuse, nessuna deroga. Ma in piazzale ci sono già trecento sciarpe, a piedi.»
+#51 e17.ch.schermo_comizi [118→100]
+  P: «Servizio d'ordine: vogliono dare il risultato dal palco dei comizi. Metà dei lavoratori in piazza sono anche tifosi.»
+  D: «Servizio d'ordine: vogliono il risultato dal palco dei comizi. Metà dei lavoratori in piazza tifa.»
+#52 e17.ch.sotto_casa [138→100]
+  P: «Comitato dei residenti: stadio chiuso, autobus fermi, e la gente sotto casa lo stesso. Almeno quando giocavate dentro, restavano dentro.»
+  D: «Comitato: stadio chiuso, bus fermi, e gente sotto casa. Quando giocavate dentro, restavano dentro.»
+#53 e17.ch.steward_presidente [125→97]
+  P: «Il presidente dello Skyfield ti presta due steward di turno nello stadio vuoto. In cambio, una buona parola sulla sanzione.»
+  D: «Il presidente dello Skyfield ti presta due steward. In cambio, una buona parola sulla sanzione.»
+#54 e17.ch.cancelli [104→98]
+  P: «Tornelli: un gruppo spinge i cancelli chiusi. Vogliono almeno sentire la partita da dentro il recinto.»
+  D: «Tornelli: un gruppo spinge i cancelli chiusi. Vuole almeno sentire la partita dentro il recinto.»
+#55 e17.ch.radio_bar [118→88]
+  P: «Stampa locale: il bar del piazzale ha messo fuori l'altoparlante. Radiocronaca a tutto volume, e notizie del corteo.»
+  D: «Stampa locale: dal bar del piazzale radiocronaca a tutto volume, e notizie del corteo.»
+#56 e17.ch.dalla_collina [132→97]
+  P: «Sicurezza dello Skyfield: i nostri scendono a piedi dalla collina, per il quartiere. Vogliono il secondo tempo fuori dallo stadio.»
+  D: «Sicurezza Skyfield: i nostri scendono dalla collina, a piedi. Secondo tempo fuori dallo stadio.»
+#57 e17.ch.bandiera [111→92] N#:una
+  P: «Tornelli: tre ragazzi hanno scavalcato e appeso una bandiera in curva, nello stadio vuoto. La tv li inquadra.»
+  D: «Tornelli: tre ragazzi hanno scavalcato, bandiera appesa in curva vuota. La tv li inquadra.»
+#58 e17.ch.me_lo_dovete [111→97] NP:Il
+  P: «Il corteo si scioglie, i miei pure. Li riporto a casa io, tutti insieme, per la strada di Kiln. Me lo dovete.»
+  D: «Corteo sciolto, i miei pure. Li riporto io, tutti insieme, per la strada di Kiln. Me lo dovete.»
+#59 e17.ch.undici [111→96]
+  P: «Comitato dei residenti: sono le undici, autobus ancora fermi, e nel quartiere passa gente a piedi a ogni ora.»
+  D: «Comitato residenti: le undici, autobus ancora fermi, e nel quartiere gente a piedi a ogni ora.»
+#60 e17.ch.fine_corteo [115→98]
+  P: «Servizio d'ordine: il corteo è finito, il palco si smonta. Ma qualcuno ha attaccato la radiocronaca all'impianto.»
+  D: «Servizio d'ordine: corteo finito, palco giù. Qualcuno ha attaccato la radiocronaca all'impianto.»
+#61 e18.info_radio [96→80]
+  P: Centrale radio: da Lookout arrivano in trecento, in metro, molti con biglietti comprati in rete.
+  D: Centrale radio: trecento da Lookout in metro, molti con biglietti presi in rete.
+#62 e18.ch.telefonata [123→98] N#:Una|una
+  P: Una voce: «Lavoro in una tipografia. So chi stampa i biglietti doppi. Parlo, ma voglio protezione. Sono dietro la tribuna».
+  D: Voce: «Lavoro in tipografia, so chi stampa i doppioni. Parlo se mi proteggete. Dietro la tribuna».
+#63 e18.ch.biglietti_rete18 [124→93] NP:Responsabile
+  P: «Responsabile del Lookout: siamo in trecento. Qualcuno dei miei ha comprato i biglietti in rete, a buon prezzo. Sono buoni?»
+  D: «Lookout: siamo in trecento, qualcuno coi biglietti presi in rete a buon prezzo. Sono buoni?»
+#64 e18.ch.collina18 [110→93]
+  P: «Sicurezza dello Skyfield: la curva scende dalla collina in corteo e vuole passare davanti al settore ospiti.»
+  D: «Sicurezza Skyfield: curva in corteo dalla collina, vuole passare davanti al settore ospiti.»
+#65 e18.ch.chi_parla [101→100]
+  P: «Curva Skyfield: cori contro il Lookout. E uno nuovo, contro «chi parla». Qualcuno sa del testimone.»
+  D: «Curva Skyfield: cori contro il Lookout. E uno nuovo contro «chi parla». Qualcuno sa del testimone.»
+#66 e18.ch.via_fonderie [112→97] NP:La
+  P: Il testimone, sottovoce: «La tipografia sta alle fonderie. Il padrone non c'entra. C'entra chi paga il padrone».
+  D: Il testimone, sottovoce: «Tipografia alle fonderie. Il padrone non c'entra. C'entra chi lo paga».
+#67 e18.ch.cappucci [101→86]
+  P: «Due uomini col cappuccio girano dietro la tribuna. Chiedono di «un amico che lavora in tipografia».»
+  D: «Due incappucciati dietro la tribuna chiedono di «un amico che lavora in tipografia».»
+#68 e18.ch.dessi_tribuna [114→100]
+  P: Malvasi: «Il Fabbro è in tribuna, lato ospiti. Skyfield contro Lookout, e lui c'è. Guarda il retro della tribuna.»
+  D: Malvasi: «Il Fabbro è in tribuna ospiti. Skyfield-Lookout e lui c'è. Guarda il retro della tribuna.»
+#69 e19.info_comando [95→77]
+  P: Comando: operazione al magazzino sette, riservata. Nessuno fuori da questa stanza ne sa niente.
+  D: Comando: operazione riservata al magazzino sette. Fuori da qui nessuno ne sa.
+#70 e19.ch.piano [101→94]
+  P: «Comando: si entra al magazzino sette alle nove, durante il primo tempo. Ci servono squadre. Le tue.»
+  D: «Comando: si entra al magazzino sette alle nove, nel primo tempo. Ci servono squadre. Le tue.»
+#71 e19.ch.vuoto [102→86]
+  P: «Comando: siamo entrati. Il magazzino sette è vuoto. Pulito. C'è solo un calendario dell'anno scorso.»
+  D: «Comando: dentro. Magazzino sette vuoto, pulito. Solo un calendario dell'anno scorso.»
+#72 e19.ch.titolo19 [105→85] N#:una
+  P: «Stampa locale: «Retata fallita alle fonderie». Il titolo è già in rete. Vogliamo una sua dichiarazione.»
+  D: «Stampa locale: «Retata fallita alle fonderie» è già in rete. Una sua dichiarazione?»
+#73 e19.ch.chi_sapeva [122→95]
+  P: Malvasi chiude la porta. «Chi sapeva? Noi due, il comando, Lavezzari per i cancelli, e qualcuno in comune che ha firmato.»
+  D: Malvasi: «Chi sapeva? Noi due, il comando, Lavezzari per i cancelli, chi ha firmato in comune.»
+#74 e19.ch.consiglio [111→93]
+  P: Qualcuno in comune: «Brutta serata. Forse le retate il giorno della partita non sono una buona idea. Ci pensi».
+  D: Qualcuno in comune: «Brutta serata. Retata in partita? Forse non è una buona idea. Ci pensi».
+#75 e19.ch.lavezzari_radio [118→100]
+  P: «Lavezzari: che peccato, il magazzino vuoto. Io l'ho saputo adesso dalla radio, giuro. Se posso aiutare con la curva…»
+  D: «Lavezzari: peccato il magazzino vuoto. L'ho saputo ora dalla radio, giuro. Per la curva, se serve…»
+#76 e19.ch.testimone_sicuro [121→94]
+  P: Il testimone, dal posto sicuro: «Ieri sera alle fonderie hanno caricato tutto su un furgone. Qualcuno li aveva avvisati».
+  D: Il testimone: «Ieri sera, fonderie: tutto caricato su un furgone. Qualcuno li aveva avvisati».
+#77 e20.info_comando [110→66]
+  P: Comando: dopo la retata mancata, Tano Ferrigno è sorvegliato. Non può lasciare la città senza che lo sappiamo.
+  D: Comando: Tano Ferrigno sorvegliato. Se esce di città, lo sappiamo.
+#78 e20.info_cinderwick [90→77]
+  P: Lavezzari, sicurezza del Kiln: corteo dalle fonderie, guidato da Tano Ferrigno in persona.
+  D: Lavezzari (Kiln): corteo dalle fonderie, guidato da Tano Ferrigno in persona.
+#79 e20.info_larkspire [86→76]
+  P: Sicurezza dello Skyfield: la curva scende al completo. Vuole vedere passare il corteo.
+  D: Sicurezza dello Skyfield: curva al completo, vuole vedere passare il corteo.
+#80 e20.ch.viso_scoperto [103→93]
+  P: «Lavezzari: il Fabbro guida il corteo dalle fonderie. In testa, a viso scoperto. Saluta le telecamere.»
+  D: «Lavezzari: il Fabbro guida il corteo dalle fonderie, a viso scoperto. Saluta le telecamere.»
+#81 e20.ch.vederli_passare [108→96]
+  P: «Sicurezza dello Skyfield: la curva scende dalla collina all'ora del corteo di Kiln. Per «vederli passare».»
+  D: «Sicurezza Skyfield: curva giù dalla collina all'ora del corteo di Kiln. Per «vederli passare».»
+#82 e20.ch.intervallo_presidente [107→100] NP:Il
+  P: «Il presidente dello Skyfield: «La mia curva la calmo io, all'intervallo. Ma poi, un giorno, mi aiuti tu».»
+  D: «Presidente dello Skyfield: «La mia curva la calmo io all'intervallo. Poi, un giorno, mi aiuti tu».»
+#83 e20.ch.sparito [110→99]
+  P: «Comando: abbiamo perso il Fabbro nel fumo. Non è in curva, non è al bar. La sua auto è ancora al parcheggio.»
+  D: «Comando: perso il Fabbro nel fumo. Non è in curva, né al bar. La sua auto è ancora al parcheggio.»
+#84 e20.ch.lo_avete_preso [107→98]
+  P: «Lavezzari: la curva torna alle fonderie senza capo, e arrabbiata. Dicono che il Fabbro l'avete preso voi.»
+  D: «Lavezzari: curva alle fonderie senza capo, e arrabbiata. Dicono che il Fabbro l'avete preso voi.»
+#85 e20.ch.sotto_gli_occhi [102→95]
+  P: «Stampa locale: «Il Fabbro sparito durante il derby, sotto gli occhi della sicurezza». Cosa risponde?»
+  D: «Stampa locale: «Il Fabbro sparito nel derby, sotto gli occhi della sicurezza». Cosa risponde?»
+#86 e21.info_club [131→78]
+  P: Lavezzari: la curva si è divisa. I vecchi entrano; i giovani guardano la partita in piazza delle fonderie, davanti all'ex fonderia.
+  D: Lavezzari: curva divisa. I vecchi entrano, i giovani in piazza delle fonderie.
+#87 e21.info_centro [139→79]
+  P: Assemblea del centro sociale: stasera c'è l'assemblea contro lo sgombero. I ragazzi della curva li abbiamo accolti, ma non parlano per noi.
+  D: Centro sociale: assemblea anti-sgombero. La curva è accolta, non parla per noi.
+#88 e21.info_comune [88→80]
+  P: Qualcuno in comune: lo sgombero è questione di giorni, stasera l'ex fonderia sarà vuota.
+  D: Qualcuno in comune: sgombero fra pochi giorni, stasera l'ex fonderia sarà vuota.
+#89 e21.ch.corteo_dal_cortile [107→100]
+  P: «Assemblea: i ragazzi vogliono partire in corteo dal nostro cortile. Metà di noi non li vuole. Decida lei.»
+  D: «Assemblea: i ragazzi vogliono partire in corteo dal cortile. Metà di noi non li vuole. Decida lei.»
+#90 e21.ch.nuovo_capo [120→100]
+  P: «In rete un ragazzo della piazza si proclama «nuovo capo». Video girato nel cortile, trecento consensi in dieci minuti.»
+  D: «In rete un ragazzo si proclama «nuovo capo», video dal cortile: trecento consensi in dieci minuti.»
+#91 e21.ch.approfittarne [116→99]
+  P: «In rete: «stasera si va a vedere lo sgombero». Gruppi del quartiere si danno appuntamento davanti all'ex fonderia.»
+  D: «In rete: «stasera si va a vedere lo sgombero». Appuntamento di quartiere davanti all'ex fonderia.»
+#92 e21.ch.furgone_fonderia [122→99]
+  P: Malvasi indica lo schermo: il furgone grigio è al cancello dell'ex fonderia. «Senza il Fabbro, qualcuno fa ancora affari.»
+  D: Furgone grigio al cancello dell'ex fonderia. Malvasi: «Senza il Fabbro, qualcuno fa ancora affari.»
+#93 e21.ch.bottigliette [124→95] NP:Il
+  P: «Il maxischermo in piazza inquadra la curva. I vecchi chiamano i giovani «disertori», la piazza risponde. Poi bottigliette.»
+  D: «Al maxischermo i vecchi chiamano «disertori» i giovani. La piazza risponde. Poi bottigliette.»
+#94 e21.ch.dov_e_il_capo [134→96] NP:Vie
+  P: «Vie del quartiere: dalle finestre qualcuno canta «dov'è il vostro capo?» ai ragazzi che passano. Vecchi e giovani si girano insieme.»
+  D: «Quartiere: dalle finestre cantano «dov'è il vostro capo?». Vecchi e giovani si girano insieme.»
+#95 e21.ch.striscione_sgombero [123→99]
+  P: «Lavezzari: i vecchi vogliono parlarti. I giovani hanno appeso al cancello dello stadio uno striscione contro lo sgombero.»
+  D: «Lavezzari: i vecchi chiedono di te. I giovani appendono al cancello uno striscione anti-sgombero.»
+#96 e21.ch.stanotte_sgombero [114→93]
+  P: «In rete: «stanotte sgomberano l'ex fonderia». In piazza metà dei ragazzi vuole entrare nel cortile a difenderlo.»
+  D: «In rete: «stanotte sgomberano l'ex fonderia». Metà della piazza vuole difendere il cortile.»
+#97 e21.ch.residenti_divisi [116→97]
+  P: «Comitato: siamo in due al telefono. Io voglio lo sgombero, lei vuole salvare il doposcuola. Stanotte cosa succede?»
+  D: «Comitato, siamo in due: io voglio lo sgombero, lei salvare il doposcuola. Stanotte che succede?»
+#98 e21.ch.curva_debole [111→98]
+  P: Qualcuno in comune: «L'ex fonderia è piena di ultrà. Lo scriva nel rapporto, che si veda. E non mandi nessuno».
+  D: Qualcuno in comune: «L'ex fonderia è piena di ultrà. Lo scriva nel rapporto. E non mandi nessuno».
+#99 e21.ch.chi_arriva_primo [126→95]
+  P: «Lavezzari: i vecchi escono e vogliono tornare a casa passando dalla piazza. In piazza ci sono i giovani. Chi passa, comanda.»
+  D: «Lavezzari: i vecchi escono e tornano dalla piazza, dove stanno i giovani. Chi passa, comanda.»
+#100 e21.ch.telefono_anello [128→100] N#:uno
+  P: «Capo, i ragazzi della piazza prendono ordini da un telefono. Non dal centro sociale. Da uno che non si vede. Secondo me è lui.»
+  D: «Capo, la piazza obbedisce a un telefono, non al centro sociale. Uno che non si vede. Per me è lui.»
+#101 e22.info_rete [97→73]
+  P: In rete: presidio in piazza del municipio, «per chiedere chi ha lasciato scappare Tano Ferrigno».
+  D: In rete: presidio al municipio. «Chi ha lasciato scappare Tano Ferrigno?»
+#102 e22.info_larkspire [92→71]
+  P: Sicurezza dello Skyfield: la nostra curva non canterà sul Fabbro, gliel'abbiamo chiesto noi.
+  D: Sicurezza dello Skyfield: chiesto alla curva di non cantare sul Fabbro.
+#103 e22.ch.cartello [121→99]
+  P: «In rete: presidio in piazza del municipio. Lo slogan: «Chi ha lasciato scappare il Fabbro?». Sul cartello, la tua foto.»
+  D: «In rete: presidio al municipio. «Chi ha lasciato scappare il Fabbro?». Sul cartello, la tua foto.»
+#104 e22.ch.ridateci [105→85]
+  P: «Lavezzari: altro che pullman, la curva sale in corteo. Due capi e uno striscione: «RIDATECI IL FABBRO».»
+  D: «Lavezzari: niente pullman, corteo. Due capi e uno striscione: «RIDATECI IL FABBRO».»
+#105 e22.ch.ti_difendo [105→96] NP:Il
+  P: «Il presidente dello Skyfield: «Oggi lo stadio è mio. Se vuole, dico in tv che la fuga non è colpa sua».»
+  D: «Presidente Skyfield: «Oggi lo stadio è mio. Se vuole, dico in tv che la fuga non è colpa sua».»
+#106 e22.ch.coniglio [115→98]
+  P: «Sicurezza dello Skyfield: la curva canta il Fabbro «scappato come un coniglio». La curva ospiti si alza in piedi.»
+  D: «Sicurezza Skyfield: la curva canta il Fabbro «scappato come un coniglio». Curva ospiti in piedi.»
+#107 e22.ch.diretta [109→99]
+  P: «Stampa locale, in diretta dal presidio: un'intervista? Qui dicono che il Fabbro l'ha lasciato scappare lei.»
+  D: «Stampa, diretta dal presidio: un'intervista? Qui dicono che il Fabbro l'ha lasciato scappare lei.»
+#108 e22.ch.stadio_sicuro [126→100]
+  P: Qualcuno in comune, dalla tribuna: «Il sindaco chiede se lo stadio vecchio è sicuro». Accanto al sindaco siede Tullio Varrone.
+  D: Qualcuno in comune: «Il sindaco chiede: lo stadio vecchio è sicuro?». Accanto a lui, Tullio Varrone.
+#109 e22.ch.venduto [112→94]
+  P: «Capo, quelli dei biglietti dicono in giro che il Fabbro te lo sei venduto tu. Lo dicono apposta, per la curva.»
+  D: «Capo, quelli dei biglietti dicono che il Fabbro te lo sei venduto tu. Apposta, per la curva.»
+#110 e22.ch.salutare_presidio [101→99]
+  P: «Lavezzari: la curva scende dalla collina e vuole passare dal municipio, «per salutare il presidio».»
+  D: «Lavezzari: la curva scende dalla collina, vuole passare dal municipio «per salutare il presidio».»
+#111 e23.info_porto [94→75]
+  P: Ufficio del porto di Southwind: traffico serale regolare, più un traghetto chiesto da privati.
+  D: Porto di Southwind: traffico regolare, più un traghetto chiesto da privati.
+#112 e23.info_comando [82→80]
+  P: Comando: Tano Ferrigno è ancora in città, nascosto da qualche parte alle fonderie.
+  D: Comando: Tano Ferrigno ancora in città, nascosto da qualche parte alle fonderie.
+#113 e23.ch.traslochi [125→100] NP:La N#:un
+  P: Malvasi ha un foglio in mano. «La società di traslochi ha un camion. Stasera passa dal casello, fra i pullman del Southwind.»
+  D: Malvasi legge: «Camion della società di traslochi: stasera al casello, fra i pullman del Southwind.»
+#114 e23.ch.traghetto_extra [122→97] NP:Ufficio N#:un
+  P: «Ufficio del porto di Southwind: stanotte parte un traghetto in più, fuori orario. L'ha chiesto una società di traslochi.»
+  D: «Porto di Southwind: stanotte traghetto extra, fuori orario. Lo chiede una società di traslochi.»
+#115 e23.ch.barca [107→91]
+  P: «Capo, il Fabbro non è in città. È a Southwind, su una barca. Me l'ha detto uno che gli porta da mangiare.»
+  D: «Capo, il Fabbro è a Southwind, su una barca. Me l'ha detto uno che gli porta da mangiare.»
+#116 e23.ch.saluto_lontano [107→95]
+  P: «Lavezzari: i giovani della curva dicono che stasera «arriva un saluto da lontano». Non so cosa vuol dire.»
+  D: «Lavezzari: i giovani dicono che stasera «arriva un saluto da lontano». Non so cosa vuol dire.»
+#117 e23.ch.lavezzari_porto [108→93]
+  P: «Lavezzari: la curva non ha nessun contatto al porto, glielo garantisco. Quella foto l'hanno presa in rete.»
+  D: «Lavezzari: la curva non ha contatti al porto, garantito. Quella foto l'hanno presa in rete.»
+#118 e24.info_testimone [105→77]
+  P: Il testimone fa sapere: «Il nome che cercate ve l'ho scritto. Leggetelo, ma state attenti a chi lo dite».
+  D: Il testimone: «Il nome ve l'ho scritto. Leggetelo, ma attenti a chi lo dite».
+#119 e24.ch.busta [116→96] NP:Dentro
+  P: Malvasi ti dà una busta chiusa. «Dentro c'è chi ha avvisato la curva prima della retata. Me l'ha dato il testimone.»
+  D: Malvasi ti dà una busta chiusa del testimone: «C'è chi ha avvisato la curva prima della retata.»
+#120 e24.ch.stessa_carta24 [112→97]
+  P: «Tornelli: biglietti doppi per l'ultima giornata. Stesso codice, stessa carta. La tipografia non ha mai chiuso.»
+  D: «Tornelli: doppioni all'ultima giornata, stesso codice e carta. La tipografia non ha mai chiuso.»
+#121 e24.ch.festa_presidente [119→98]
+  P: «Il presidente dello Skyfield: «Se vinciamo, la festa la voglio in piazza del municipio. Il sindaco è d'accordo. Lei?»»
+  D: «Presidente dello Skyfield: «Se vinciamo, festa in piazza del municipio. Il sindaco ci sta. Lei?»»
+#122 e24.ch.titolo_scappa [114→99]
+  P: «Curva Skyfield: il titolo scappa. Qualcuno se la prende con gli ospiti, qualcuno con l'arbitro, qualcuno con te.»
+  D: «Curva Skyfield, il titolo scappa: chi se la prende con gli ospiti, chi con l'arbitro, chi con te.»
+#123 e24.ch.foglio [110→95] NP:Ho
+  P: Qualcuno in comune, gentilissimo: «Ho saputo che ha in mano un foglio. Certi fogli fanno male a chi li legge».
+  D: Qualcuno in comune, gentilissimo: «So che ha un foglio. Certi fogli fanno male a chi li legge».
+#124 e24.ch.pareggio [112→98] NP:Gol
+  P: «Gol dello Skyfield all'ottantesimo. Pareggio. Il titolo si riapre e lo stadio esplode da tutte e due le parti.»
+  D: «Pari dello Skyfield all'ottantesimo. Titolo riaperto, lo stadio esplode da tutte e due le parti.»
+#125 e24.ch.campioni [119→100] NP:Lo Stoneway|In
+  P: «Lo Stoneway è campione per un punto. I nostri vogliono festeggiare in piazza del municipio. «In faccia alla collina».»
+  D: «Stoneway campione per un punto. I nostri: festa in piazza del municipio, «in faccia alla collina».»
+#126 e24.ch.posta_alzata [116→99]
+  P: Malvasi chiude il registro della stagione. «La scommessa resta aperta. Hai finito una stagione, e io alzo la posta.»
+  D: Malvasi chiude il registro: «La scommessa resta aperta. Hai chiuso una stagione: io alzo la posta.»
+#127 e24.ch.testimone_conferma [102→95]
+  P: Il testimone, dal posto sicuro: «Il nome nella busta è giusto. E chi lo copre telefona dal municipio».
+  D: Il testimone, al sicuro: «Il nome nella busta è giusto. E chi lo copre telefona dal municipio».
+#128 e24.ch.testimone_ritratta [110→92]
+  P: «Stampa locale: il tipografo che vi ha parlato ritratta tutto. Dice di essersi inventato ogni nome. Commenti?»
+  D: «Stampa locale: il tipografo ritratta tutto, dice di essersi inventato ogni nome. Commenti?»
+#129 e25.info_struttura [110→74]
+  P: Struttura di coordinamento: la curva Kiln si autoregola, la garantisce il club. Gli steward servono ai varchi.
+  D: Struttura: curva Kiln autoregolata, garantita dal club. Steward ai varchi.
+#130 e25.info_radio [133→76]
+  P: Centrale radio: il Belltower arriva lo stesso, senza biglietto, col treno urbano. L'uscita principale della stazione è in zona rossa.
+  D: Centrale radio: Belltower in treno, senza biglietto. Stazione in zona rossa.
+#131 e25.info_rete [122→72]
+  P: In rete: corteo autorizzato di associazioni e sindacati contro il vertice, in piazza del municipio. La curva Kiln ci sarà.
+  D: In rete: corteo anti-vertice in piazza del municipio. Con la curva Kiln.
+#132 e25.info_informatore [101→80]
+  P: Il ragazzo delle sciarpe: «Il Fabbro è tornato in città. Stasera lo vedi ai varchi della zona rossa.»
+  D: Ragazzo delle sciarpe: «Il Fabbro è tornato, stasera ai varchi della zona rossa»
+#133 e25.ch.nulla_osta [129→100]
+  P: «Struttura di coordinamento. Per mettere squadre lungo il corteo serve il nulla osta, modulo B. L'ufficio apre alle diciassette.»
+  D: «Struttura: squadre lungo il corteo solo col nulla osta, modulo B. L'ufficio apre alle diciassette.»
+#134 e25.ch.treno_pieno [130→99]
+  P: «Stazione: il treno da Belltower è arrivato. L'uscita principale è chiusa per la zona rossa, quella laterale è una porta di casa.»
+  D: «Stazione: treno da Belltower arrivato. Uscita principale chiusa, la laterale è una porta di casa.»
+#135 e25.ch.club_garantisce [116→97]
+  P: «Lavezzari, sicurezza del Kiln. Con l'ordinanza la curva la garantiamo noi. I suoi steward li mandi pure ai varchi.»
+  D: «Lavezzari, Kiln: con l'ordinanza la curva la garantiamo noi. I suoi steward li mandi ai varchi.»
+#136 e25.ch.striscione_zona [110→99]
+  P: «Curva Kiln: striscione «LO STADIO NON È ZONA ROSSA». Sotto, il nome di qualcuno in comune, a lettere grandi.»
+  D: «Curva Kiln: «LO STADIO NON È ZONA ROSSA». Sotto, a lettere grandi, il nome di qualcuno in comune.»
+#137 e25.ch.permesso_mediatore [122→99]
+  P: «Struttura: il mediatore può andare da quelli di Belltower sul piazzale solo con autorizzazione scritta, articolo dodici.»
+  D: «Struttura: mediatore dal Belltower sul piazzale solo con autorizzazione scritta, articolo dodici.»
+#138 e25.ch.voce_dessi [101→95] N#:mezzo
+  P: «Capo, l'ho visto. Il Fabbro. Ai varchi della zona rossa, col cappuccio, in mezzo ai curiosi. Giuro.»
+  D: «Capo, l'ho visto: il Fabbro. Ai varchi della zona rossa, col cappuccio, fra i curiosi. Giuro.»
+#139 e25.ch.rigore_ospiti [103→98]
+  P: «Rigore per il Belltower al settantesimo. Sul piazzale lo sentono alla radio e festeggiano sui cofani.»
+  D: «Rigore per il Belltower al settantesimo. Il piazzale lo sente alla radio e festeggia sui cofani.»
+#140 e25.ch.uscite_anticipate [133→95]
+  P: «In rete: gruppi di Kiln escono prima per raggiungere il presidio in piazza. «Il vertice ci chiude la città, noi apriamo la piazza».»
+  D: «In rete: gruppi di Kiln escono prima. «Il vertice ci chiude la città, noi apriamo la piazza».»
+#141 e25.ch.treno_orario [125→100] NP:Il
+  P: «Il treno per Belltower riparte fra venti minuti. Le ferrovie chiedono se va trattenuto: l'uscita laterale è ancora l'unica.»
+  D: «Treno per Belltower fra venti minuti. Ferrovie: va trattenuto? L'uscita laterale è ancora l'unica.»
+#142 e25.ch.verbale_ordinanza [115→94]
+  P: «Struttura: a fine serata serve il verbale di rispetto dell'ordinanza, firmato da tutti i responsabili di settore.»
+  D: «Struttura: a fine serata verbale sull'ordinanza, firmato da tutti i responsabili di settore.»
+#143 e25.ch.corteo_ritorno [123→100] NP:Il
+  P: «Il corteo si scioglie, ma una parte vuole tornare verso lo stadio per la strada più corta. Che passa lungo la zona rossa.»
+  D: «Corteo sciolto, ma una parte torna allo stadio dalla via più corta. Che passa lungo la zona rossa.»
+#144 e26.info_cerimoniale [105→77]
+  P: Cerimoniale della finale: premiazione in campo, autorità in tribuna dal primo minuto, diretta televisiva.
+  D: Cerimoniale: premiazione in campo, autorità in tribuna da subito, diretta tv.
+#145 e26.info_quillhaven [100→74]
+  P: Il Domepark Villa comunica: millecinquecento tifosi, tutti in pullman, arrivo compatto un'ora prima.
+  D: Domepark Villa: millecinquecento in pullman, arrivo compatto un'ora prima.
+#146 e26.info_rete [98→76]
+  P: In rete: i pullman del Domepark partono dal parco a gruppi sparsi, «chi prima arriva, prima beve».
+  D: In rete: Domepark a gruppi sparsi dal parco, «chi prima arriva, prima beve».
+#147 e26.info_segreteria [98→78]
+  P: Segreteria del comune: il piazzale è riservato alle auto delle autorità, nessun tifoso ci passerà.
+  D: Segreteria del comune: piazzale riservato alle auto delle autorità. No tifosi.
+#148 e26.ch.pullman_sparsi [120→99] N#:Uno
+  P: «Parcheggi: arrivano i pullman del Domepark. Uno alla volta, ognuno con il suo coro e la sua idea di dove parcheggiare.»
+  D: «Parcheggi: pullman del Domepark, uno alla volta. Ognuno col suo coro e la sua idea di parcheggio.»
+#149 e26.ch.auto_autorita [104→100]
+  P: «Segreteria: le auto delle autorità devono attraversare il piazzale. Serve un corridoio libero, adesso.»
+  D: «Segreteria: le auto delle autorità devono passare dal piazzale. Serve un corridoio libero, adesso.»
+#150 e26.ch.lista_ospiti [124→96] N#:un
+  P: «Cerimoniale: in tribuna mancano tre posti. Sono arrivati ospiti non in lista, con un invito firmato da qualcuno in comune.»
+  D: «Cerimoniale: in tribuna mancano tre posti. Ospiti fuori lista, invitati da qualcuno in comune.»
+#151 e26.ch.cori_tribuna [110→100]
+  P: «Cerimoniale: la curva Skyfield canta contro un ospite in tribuna. Il nome si capisce benissimo, anche in tv.»
+  D: «Cerimoniale: la curva Skyfield canta contro un ospite in tribuna. Il nome si capisce, anche in tv.»
+#152 e26.ch.parcheggi_ritardatari [124→99]
+  P: «Parcheggi: gli ultimi pullman del Domepark sono arrivati a partita iniziata. Vogliono entrare tutti dallo stesso cancello.»
+  D: «Parcheggi: gli ultimi pullman del Domepark arrivano a gara iniziata. Tutti dallo stesso cancello.»
+#153 e26.ch.piazzale_maxischermo [115→95]
+  P: «In rete: davanti al maxischermo del piazzale c'è il doppio della gente prevista. Senza biglietto, con molta voce.»
+  D: «In rete: al maxischermo del piazzale il doppio dei previsti. Senza biglietto, con molta voce.»
+#154 e26.ch.pullman_sconfitti [115→98] NP:Responsabile
+  P: «Responsabile del Domepark. I nostri vogliono ripartire subito, ma i pullman sono chiusi dalle auto del carosello.»
+  D: «Domepark: i nostri vogliono ripartire subito, ma i pullman sono chiusi dalle auto del carosello.»
+#155 e27.info_gemellati [117→76]
+  P: Il responsabile del Railhead County: duecento tifosi, tutti nel settore assegnato, nessun contatto con la curva Kiln.
+  D: Railhead County: duecento nel loro settore, zero contatti con la curva Kiln.
+#156 e27.info_radio [105→79] N#:una
+  P: Centrale radio: i gemellati arrivano in treno, ma una parte scende alla fermata prima e prosegue a piedi.
+  D: Centrale radio: gemellati in treno, alcuni scendono prima e proseguono a piedi.
+#157 e27.info_cinderwick [107→79]
+  P: Gianni Lavezzari, sicurezza del Kiln: in curva due gruppi non si parlano più da quando il Fabbro è sparito.
+  D: Gianni Lavezzari (Kiln): sparito il Fabbro, due gruppi in curva non si parlano.
+#158 e27.info_informatore [111→79]
+  P: Il ragazzo delle sciarpe: «I gemellati portano un messaggio del Fabbro. Lo leggono in strada, davanti a tutti.»
+  D: Ragazzo delle sciarpe: «I gemellati leggono in strada un messaggio del Fabbro.»
+#159 e27.ch.fermata_prima [128→98]
+  P: «Una cinquantina di gemellati è scesa alla fermata prima. Camminano verso la strada di Kiln, cantando cori della curva di casa.»
+  D: «Una cinquantina di gemellati scesi prima: verso la strada di Kiln, coi cori della curva di casa.»
+#160 e27.ch.settore_assegnato [113→96] NP:Responsabile
+  P: «Responsabile del Railhead. I miei vogliono stare in curva Kiln, con gli amici. Il settore separato è un'offesa.»
+  D: «Railhead: i miei vogliono stare in curva Kiln, con gli amici. Il settore separato è un'offesa.»
+#161 e27.ch.treno_affollato [105→100]
+  P: «Stazione: il resto dei gemellati è sceso. Aspettano i ritardatari sotto la pensilina, e intanto bevono.»
+  D: «Stazione: scesi gli altri gemellati. Aspettano i ritardatari sotto la pensilina, e intanto bevono.»
+#162 e27.ch.due_capi [128→100] NP:Kiln
+  P: «Lavezzari, sicurezza del Kiln. I due gruppi si contendono il tamburo. Chi ha il tamburo comanda i cori. Non è una sciocchezza.»
+  D: «Lavezzari: i due gruppi si contendono il tamburo. Chi l'ha, comanda i cori. Non è una sciocchezza.»
+#163 e27.ch.messaggio_dessi [119→99]
+  P: «In rete: un video dal settore dei gemellati. Leggono un messaggio «da parte di un amico lontano». Non dicono il nome.»
+  D: «In rete, video dei gemellati: un messaggio «da parte di un amico lontano». Il nome non lo dicono.»
+#164 e27.ch.rovers_provocati [127→96]
+  P: «Curva ospiti: quelli del Waterline rispondono ai gemellati con un coro sulla loro città. Il settore dei gemellati ha sentito.»
+  D: «Curva ospiti: il Waterline canta ai gemellati un coro sulla loro città. Il settore ha sentito.»
+#165 e27.ch.gemellati_escono [125→100] NP:Responsabile
+  P: «Responsabile del Railhead: i miei vogliono uscire prima, per «salutare» quelli del Waterline all'uscita della curva ospiti.»
+  D: «Railhead: i miei vogliono uscire prima, per «salutare» il Waterline all'uscita della curva ospiti.»
+#166 e27.ch.abbraccio [121→98]
+  P: «Lavezzari: la curva vuole accompagnare i gemellati in stazione. In corteo, tutti e due i gruppi. Per una volta insieme.»
+  D: «Lavezzari: la curva vuole scortare i gemellati in stazione. I due gruppi insieme, per una volta.»
+#167 e27.ch.lettera_gemellati [113→100]
+  P: «Il responsabile del Railhead ti lascia un biglietto. «Non è da parte mia», dice. Sopra, un indirizzo del porto.»
+  D: «Il responsabile del Railhead ti dà un biglietto: «Non è da parte mia». C'è un indirizzo del porto.»
+#168 e28.info_testimone [107→80] N#:un
+  P: Il testimone: «Il Fabbro dorme alle banchine del porto, in un container con la porta verniciata di fresco.»
+  D: Il testimone: «Il Fabbro dorme al porto. Container, porta verniciata di fresco.»
+#169 e28.info_anonimo [88→78]
+  P: Messaggio anonimo: «Stasera il Fabbro è al magazzino delle fonderie, aspetta un carico.»
+  D: Anonimo: «Stasera il Fabbro è al magazzino delle fonderie, aspetta un carico.»
+#170 e28.info_radio [106→80]
+  P: Centrale radio: trasferta vietata, ma i tifosi dell'Arches arrivano lo stesso, in auto, verso il piazzale.
+  D: Centrale radio: trasferta vietata, ma l'Arches arriva in auto verso il piazzale.
+#171 e28.info_cinderwick [108→80] NP:Kiln
+  P: Gianni Lavezzari, sicurezza del Kiln: curva tranquilla, nessuna iniziativa. «Garantisco io», dice, cordiale.
+  D: Gianni Lavezzari, cordiale: curva tranquilla, niente iniziative. «Garantisco io»
+#172 e28.ch.voce_magazzino [124→100] NP:Messaggio
+  P: «Messaggio anonimo, secondo invio: «Il carico arriva al magazzino delle fonderie fra un'ora. Lui ci sarà. Venite in tanti.»»
+  D: «Anonimo, secondo invio: «Il carico arriva alle fonderie fra un'ora. Lui ci sarà. Venite in tanti.»»
+#173 e28.ch.ospiti_in_auto [109→96]
+  P: «Strada da Kiln: le auto dell'Arches cercano parcheggio sotto le case della curva. Clacson e finestrini giù.»
+  D: «Strada da Kiln: l'Arches cerca parcheggio sotto le case della curva. Clacson e finestrini giù.»
+#174 e28.ch.testimone_chiama [127→94] N#:una
+  P: «Sono io. Il container ha una luce accesa. Se mandate qualcuno ora, lo spaventate. Se non mandate nessuno, domani non c'è più.»
+  D: «Sono io. Luce accesa nel container. Se andate ora, lo spaventate. Se no, domani non c'è più.»
+#175 e28.ch.curva_non_tranquilla [101→92]
+  P: «Curva Kiln: striscione «CHI TOCCA IL CAPO TOCCA TUTTI». Lavezzari dice di non averlo visto entrare.»
+  D: «Curva Kiln: striscione «CHI TOCCA IL CAPO TOCCA TUTTI». Lavezzari: non l'ha visto entrare.»
+#176 e28.ch.due_fonti [121→99]
+  P: «Il testimone dice porto, il messaggio dice fonderie. Il comando vuole sapere su quale pista mettere la notte di domani.»
+  D: «Il testimone dice porto, il messaggio fonderie. Il comando chiede che pista coprire domani notte.»
+#177 e28.ch.mossgarth_rumore [107→89] NP:Responsabile
+  P: «Responsabile dell'Arches. I nostri sono tutti sul piazzale, senza biglietto. Ci accendete il maxischermo?»
+  D: «Arches: i nostri sono tutti sul piazzale, senza biglietto. Ci accendete il maxischermo?»
+#178 e28.ch.talpa_sospetto [123→98] NP:Al N#:un
+  P: «Al container è arrivata un'auto. Ne sono scesi due, col telefono in mano. Qualcuno li ha avvisati che li state guardando.»
+  D: «Un'auto al container, scendono due col telefono. Qualcuno li ha avvisati che li state guardando.»
+#179 e28.ch.cronista_voci [117→93] NP:Sono
+  P: «Sono del giornale di Valmora. Gira voce che fra poco prendete il Fabbro. Mi conferma qualcosa, anche a mezza bocca?»
+  D: «Giornale di Valmora: dicono che fra poco prendete il Fabbro. Conferma, anche a mezza bocca?»
+#180 e29.info_comando [131→77]
+  P: Il comando: operazione al porto durante il secondo tempo. Nessuna unità della partita deve avvicinarsi alle banchine prima del via.
+  D: Comando: operazione al porto nel secondo tempo. Prima, nessuno alle banchine.
+#181 e29.info_rete [81→78]
+  P: In rete: «stasera il capo torna in curva». Foto vecchie, ma condivise come nuove.
+  D: In rete: «stasera il capo torna in curva». Foto vecchie, condivise come nuove.
+#182 e29.info_cinderwick [105→77] NP:Kiln
+  P: Gianni Lavezzari, sicurezza del Kiln: «La curva non sa niente, e da noi non saprà niente. Garantisco io.»
+  D: Gianni Lavezzari: «La curva non sa niente e non saprà niente. Garantisco io.»
+#183 e29.ch.foto_vecchie [113→98]
+  P: «In rete: «il capo torna in curva stasera». Al piazzale si radunano in tanti, a guardare l'ingresso della curva.»
+  D: «In rete: «il capo torna in curva stasera». Al piazzale in tanti guardano l'ingresso della curva.»
+#184 e29.ch.ordine_porto [104→93] NP:Il
+  P: «Il comando: le tue unità restino lontane dalle banchine. Ma ai cancelli del porto si radunano curiosi.»
+  D: «Comando: le tue unità lontane dalle banchine. Ma ai cancelli del porto si radunano curiosi.»
+#185 e29.ch.ospiti_tranquilli [118→97] NP:Responsabile
+  P: «Responsabile dello Stoneway. Siamo tranquilli. Però in pullman gira una voce strana, su stasera. Lei ne sa qualcosa?»
+  D: «Stoneway: siamo tranquilli. Ma in pullman gira una voce strana, su stasera. Lei ne sa qualcosa?»
+#186 e29.ch.dove_dorme [108→99]
+  P: «Capo, il ragazzo delle sciarpe. Stanotte non dorme nel container. La barca accanto, quella col telone blu.»
+  D: «Capo, il ragazzo delle sciarpe: stanotte non dorme nel container. Sta nella barca col telone blu.»
+#187 e29.ch.tamburo_curva [102→97]
+  P: «Curva Kiln: qualcuno ha ricevuto un messaggio. Il tamburo si ferma, la curva si gira verso l'uscita.»
+  D: «Curva Kiln: qualcuno riceve un messaggio. Il tamburo si ferma, la curva si gira verso l'uscita.»
+#188 e29.ch.speaker_partita [111→91] NP:Kiln
+  P: «Lavezzari, sicurezza del Kiln: possiamo far leggere un annuncio allo speaker. Mi dica cosa dire, ci penso io.»
+  D: «Lavezzari: possiamo far leggere un annuncio allo speaker. Mi dica cosa dire, ci penso io.»
+#189 e29.ch.radio_operazione [114→100] NP:Il
+  P: «Il comando: operazione in corso al porto. Ci sono curiosi ai cancelli. Ci servono due delle tue squadre, adesso.»
+  D: «Comando: operazione in corso al porto, curiosi ai cancelli. Servono due delle tue squadre, adesso.»
+#190 e29.ch.notizia_in_curva [109→99] NP:In
+  P: «In curva Kiln gira un video: luci blu al porto, un uomo col cappuccio portato via. Il nome lo urlano tutti.»
+  D: «Curva Kiln, un video: luci blu al porto, uomo col cappuccio portato via. Il nome lo urlano tutti.»
+#191 e29.ch.ospiti_spaventati [103→84] NP:Responsabile
+  P: «Responsabile dello Stoneway: i miei vedono la curva di casa che si muove. Vogliono andare via adesso.»
+  D: «Stoneway: i miei vedono la curva di casa che si muove. Vogliono andare via adesso.»
+#192 e29.ch.piazzale_ultimi [105→88]
+  P: «Piazzale: restano duecento persone. Non se ne vanno. Aspettano qualcosa, e non sanno nemmeno loro cosa.»
+  D: «Piazzale: duecento persone restano. Aspettano qualcosa, e non sanno nemmeno loro cosa.»
+#193 e29.ch.radio_porto [110→99] NP:Il
+  P: «Il comando: il container è circondato, lo prendiamo in silenzio. Ci basta una squadra ai cancelli del porto.»
+  D: «Comando: container circondato, lo prendiamo in silenzio. Basta una squadra ai cancelli del porto.»
+#194 e29.ch.radio_soffiata [113→96] NP:Il N#:due
+  P: «Il comando: alle fonderie niente, la soffiata era una trappola. Corriamo al porto. Servono due squadre, subito.»
+  D: «Comando: fonderie vuote, la soffiata era una trappola. Corriamo al porto. Due squadre, subito.»
+#195 e30.info_rete [93→79] N#:un
+  P: In rete: la curva Kiln annuncia «un corteo in silenzio fino al municipio, poi parleremo noi».
+  D: In rete: curva Kiln, «corteo in silenzio fino al municipio, poi parleremo noi».
+#196 e30.info_club [110→71] NP:Kiln|Sarà N#:un
+  P: Gianni Lavezzari, sicurezza del Kiln: «Sarà un corteo piccolo, qualche centinaio di persone, finito per cena.»
+  D: Gianni Lavezzari: «Corteo piccolo, qualche centinaio. Finito per cena.»
+#197 e30.info_residenti [101→75]
+  P: Comitato dei residenti: stanotte ci sono state scritte sui muri del quartiere. Chiediamo un presidio.
+  D: Comitato residenti: nuove scritte sui muri stanotte. Chiediamo un presidio.
+#198 e30.info_ferrovie [101→76]
+  P: Ferrovie regionali: nessun problema per i treni della sera, il corteo passerà lontano dalla stazione.
+  D: Ferrovie: treni della sera regolari, il corteo passa lontano dalla stazione.
+#199 e30.ch.raduno_silenzio [130→95]
+  P: «Piazzale dello stadio: altro che qualche centinaio. Duemila persone vestite di scuro, in silenzio, dietro uno striscione bianco.»
+  D: «Piazzale: altro che centinaia, duemila. Vestiti di scuro, muti, dietro uno striscione bianco.»
+#200 e30.ch.muri_quartiere [115→100]
+  P: «Comitato dei residenti: scritte nuove sui muri. Il nome del Fabbro, e il tuo. Vicini. I bambini chiedono chi sei.»
+  D: «Comitato: scritte nuove sui muri. Il nome del Fabbro e il tuo, vicini. I bambini chiedono chi sei.»
+#201 e30.ch.autobus_sera [128→100]
+  P: «Centrale radio: il percorso annunciato taglia il viale della stazione all'ora di punta. Dodici linee di autobus passano di lì.»
+  D: «Centrale radio: il corteo taglia il viale della stazione in ora di punta. Ci passano dodici linee.»
+#202 e30.ch.silenzio_totale [125→92]
+  P: «Strada da Kiln: silenzio totale, nessun coro. Solo lo striscione bianco: «IL GIORNO DOPO». Le serrande si abbassano a metà.»
+  D: «Strada da Kiln: nessun coro, solo lo striscione bianco: «IL GIORNO DOPO». Serrande a metà.»
+#203 e30.ch.clacson [123→94] N#:una
+  P: «Viale della stazione: auto ferme, qualcuno suona e urla dal finestrino. In coda al corteo una ventina di ragazzi si gira.»
+  D: «Viale della stazione: auto ferme, clacson e urla. In coda al corteo venti ragazzi si girano.»
+#204 e30.ch.giornalisti [121→100] NP:Sono
+  P: «Sono del giornale di Valmora. Sotto il municipio tre troupe aspettano il corteo per intervistare la curva. Lo permette?»
+  D: «Giornale di Valmora: tre troupe aspettano la curva sotto il municipio per intervistarla. Permette?»
+#205 e30.ch.sotto_il_municipio [132→98] NP:Piazza
+  P: «Piazza del municipio: il corteo rompe il silenzio tutto insieme. Un coro solo: il nome del Fabbro, poi il tuo. Con parole diverse.»
+  D: «Municipio: il corteo rompe il silenzio. Un coro: il nome del Fabbro, poi il tuo. Parole diverse.»
+#206 e30.ch.scritte_sera [103→98]
+  P: «Comitato: altri muri scritti. Stavolta davanti alla scuola. I genitori domani mattina vedranno tutto.»
+  D: «Comitato: altri muri scritti, stavolta davanti alla scuola. Domattina i genitori vedranno tutto.»
+#207 e30.ch.saluto_larkspire [127→99] N#:un
+  P: «In rete: un gruppo di Skyfield annuncia che «saluterà» la coda del corteo all'incrocio delle fonderie, mentre torna indietro.»
+  D: «In rete: gruppo di Skyfield «saluterà» la coda del corteo che torna, all'incrocio delle fonderie.»
+#208 e30.ch.lettera_curva [118→98] N#:una|un
+  P: «Lavezzari: la curva ci ha dato una lettera per lei. Chiede un incontro, senza telecamere. Se vuole, lo organizzo io.»
+  D: «Lavezzari: lettera della curva per lei. Un incontro senza telecamere. Se vuole, lo organizzo io.»
+#209 e30.ch.piazzale_ultimi [106→89]
+  P: «Piazzale dello stadio: gruppi sparsi, bottiglie, nessuno che se ne va. La fiaccolata li ha lasciati qui.»
+  D: «Piazzale: gruppi sparsi, bottiglie, nessuno se ne va. La fiaccolata li ha lasciati qui.»
+#210 e31.info_comando [113→67] NP:Figli
+  P: Il comando: in tribuna stasera c'è Tullio Varrone, l'erede della Varrone & Figli, invitato da qualcuno in comune.
+  D: Comando: in tribuna Tullio Varrone, invitato da qualcuno in comune.
+#211 e31.info_segreteria [113→78]
+  P: Segreteria del comune: il viale della stazione è chiuso per lavori, i tifosi passeranno dal percorso alternativo.
+  D: Segreteria del comune: viale della stazione chiuso per lavori, tifosi deviati.
+#212 e31.info_cronista [131→77] NP:Valmora|Sul N#:una
+  P: Il cronista del giornale di Valmora: «Sul piazzale la curva Skyfield prepara una coreografia sul fascicolo. L'ho saputo da dentro.»
+  D: Cronista: «Skyfield, coreografia sul fascicolo al piazzale. Lo so da dentro.»
+#213 e31.ch.viale_lavori [128→96]
+  P: «Viale della stazione: nessun cantiere. I lavori annunciati dal comune non ci sono, e quelli del Railhead ci passano in corteo.»
+  D: «Viale della stazione: lavori del comune inesistenti. Quelli del Railhead ci passano in corteo.»
+#214 e31.ch.costruttore_saluta [117→94]
+  P: «Segreteria del comune: Tullio Varrone vorrebbe salutarti in tribuna. Due parole, all'intervallo. Niente di formale.»
+  D: «Segreteria: Tullio Varrone vuole salutarti in tribuna all'intervallo. Due parole, informali.»
+#215 e31.ch.coreografia [110→97]
+  P: «Piazzale: la curva Skyfield non entra. Coreografia enorme contro lo stadio nuovo, stesa davanti alle uscite.»
+  D: «Piazzale: curva Skyfield fuori. Coreografia enorme contro lo stadio nuovo, davanti alle uscite.»
+#216 e31.ch.rovers_tribuna [127→100]
+  P: «Curva ospiti: quelli del Railhead hanno capito chi c'è in tribuna. Cantano contro lo stadio nuovo. Non sanno perché, ma bene.»
+  D: «Curva ospiti: il Railhead sa chi c'è in tribuna. Cori contro lo stadio nuovo. Senza sapere perché.»
+#217 e31.ch.cronista_cartella [120→92] NP:Valmora
+  P: «Il cronista del giornale di Valmora: «So che il fascicolo esiste. Me lo confermi, e domani nessuno lo può seppellire».»
+  D: «Il cronista: «So che il fascicolo esiste. Me lo confermi e domani nessuno lo seppellisce».»
+#218 e31.ch.offerta [125→98] NP:Messaggio|Una N#:Una
+  P: «Messaggio anonimo: «Una conferma dell'incarico, a tempo pieno, in cambio di una cartella grigia. Pensaci entro il fischio».»
+  D: «Anonimo: «Incarico confermato a tempo pieno, per una cartella grigia. Pensaci entro il fischio».»
+#219 e31.ch.stazione_anticipo [115→98]
+  P: «Stazione: un gruppo del Railhead è già tornato in stazione. Dice che la partita è noiosa. Il bar non è d'accordo.»
+  D: «Stazione: un gruppo del Railhead è già qui: la partita è noiosa, dicono. Il bar non è d'accordo.»
+#220 e31.ch.segreteria_chiede [116→100]
+  P: «Segreteria del comune: qualcuno in comune chiede di «visionare» il fascicolo, prima di tutti. Solo per conoscenza.»
+  D: «Segreteria: qualcuno in comune vuole «visionare» il fascicolo prima di tutti. Solo per conoscenza.»
+#221 e31.ch.ritorno_rovers [128→100] NP:Quelli
+  P: «Quelli del Railhead tornano in stazione in corteo, sul viale. Hanno perso, ma cantano contro lo stadio nuovo ancora più forte.»
+  D: «Railhead in corteo sul viale verso la stazione. Ha perso e canta più forte contro lo stadio nuovo.»
+#222 e32.info_radio [102→73]
+  P: Centrale radio: la curva Skyfield si raduna in collina e scende in corteo, per la prima volta da anni.
+  D: Centrale radio: Skyfield in corteo dalla collina, la prima volta da anni.
+#223 e32.info_cinderwick [102→79] NP:Kiln N#:un
+  P: Gianni Lavezzari, sicurezza del Kiln: la curva ha un nuovo portavoce. Giovane, sconosciuto, ascoltato.
+  D: Gianni Lavezzari: nuovo portavoce della curva. Giovane, sconosciuto, ascoltato.
+#224 e32.info_informatore [94→80] NP:Stavolta Kiln
+  P: Il ragazzo delle sciarpe: «Stavolta Kiln non fa corteo. Entrano alla spicciolata, tranquilli.»
+  D: Ragazzo delle sciarpe: «Kiln senza corteo. Entrano alla spicciolata, tranquilli»
+#225 e32.ch.due_cortei [123→100] NP:Due N#:Due
+  P: «Due cortei: Kiln dalle fonderie, Skyfield dalla collina. Se nessuno li ferma, si incontrano al piazzale fra venti minuti.»
+  D: «Kiln dalle fonderie, Skyfield dalla collina. Senza blocchi, i cortei al piazzale fra venti minuti.»
+#226 e32.ch.portavoce [113→90]
+  P: «Lavezzari: il nuovo portavoce della curva vuole parlarle. Tiene tranquilli i suoi, se lei tiene lontani i suoi.»
+  D: «Lavezzari: il nuovo portavoce vuole parlarle. Calma i suoi, se lei tiene lontani i suoi.»
+#227 e32.ch.piazzale_anonimo [122→97]
+  P: «In rete: «appuntamento al piazzale». Al piazzale ci sono quaranta persone e un furgone dei panini. Nient'altro, per ora.»
+  D: «In rete: «appuntamento al piazzale». Ci sono quaranta persone e un furgone dei panini. Per ora.»
+#228 e32.ch.striscione_dessi [113→96] N#:una
+  P: «Curva Skyfield: striscione sul capo arrestato, con una battuta pesante. La curva Kiln l'ha letto tutta insieme.»
+  D: «Curva Skyfield: striscione pesante sul capo arrestato. La curva Kiln l'ha letto tutta insieme.»
+#229 e32.ch.giornalisti_derby [123→99] NP:Valmora
+  P: «Il cronista del giornale di Valmora: «Fuori c'è un gruppo di Skyfield senza biglietto. Guardano la partita sul piazzale».»
+  D: «Il cronista: «Fuori c'è un gruppo di Skyfield senza biglietto. Guardano la partita sul piazzale».»
+#230 e32.ch.rigore_larkspire [107→100]
+  P: «Rigore per lo Skyfield all'ottantesimo. La curva Kiln spinge sulle vetrate. Il portavoce non si vede più.»
+  D: «Rigore Skyfield all'ottantesimo. La curva Kiln spinge sulle vetrate. Il portavoce non si vede più.»
+#231 e32.ch.festa_larkspire [107→92]
+  P: «In rete: la curva Skyfield prepara l'uscita «a festa» verso il piazzale. Proprio quello che Kiln aspetta.»
+  D: «In rete: curva Skyfield, uscita «a festa» verso il piazzale. Proprio ciò che Kiln aspetta.»
+#232 e32.ch.comando_derby [130→100] NP:Il N#:un
+  P: «Il comando: vogliamo un derby senza immagini. Se serve, chiudi le curve dopo il fischio per mezz'ora. Decidi tu, ma decidi bene.»
+  D: «Comando: derby senza immagini. Se serve, curve chiuse mezz'ora dopo il fischio. Decidi tu, e bene.»
+#233 e33.info_anonimo [91→73] NP:Ai
+  P: Messaggio anonimo: «Ai tornelli nessun problema, i biglietti falsi sono finiti col Fabbro.»
+  D: Anonimo: «Tornelli tranquilli, i biglietti falsi sono finiti col Fabbro.»
+#234 e33.info_mossgarth [83→72]
+  P: L'Arches Town comunica: trasferta tranquilla, nessuna iniziativa dei nostri gruppi.
+  D: Arches Town: trasferta tranquilla, nessuna iniziativa dei nostri gruppi.
+#235 e33.info_rete [104→74]
+  P: In rete: «il viale della stazione stasera è nostro». Firmato con lo stemma dell'Arches disegnato a mano.
+  D: In rete: «il viale della stazione stasera è nostro». Stemma Arches a mano.
+#236 e33.ch.ordini_segnati [122→99] N#:un
+  P: «Pronto. Ogni squadra ha un ordine diverso: viale, porto, tornelli, stazione vecchia. La stazione vecchia non esiste più.»
+  D: «Pronto. Ordini diversi per squadra: viale, porto, tornelli, stazione vecchia. Che non esiste più.»
+#237 e33.ch.parcheggio_vuoto [128→99] NP:Dalla
+  P: «Dalla stazione vecchia: al parcheggio vuoto è arrivata un'auto. Ha girato, ha visto la squadra, se n'è andata. Targa annotata.»
+  D: «Stazione vecchia: un'auto entra nel parcheggio vuoto, vede la squadra e se ne va. Targa annotata.»
+#238 e33.ch.frequenza [109→99] NP:Il
+  P: «Il comando: se c'è una talpa, la frequenza va cambiata adesso. Ma per dieci minuti nessuno sentirà nessuno.»
+  D: «Comando: se c'è una talpa, va cambiata la frequenza. Ma per dieci minuti nessuno sentirà nessuno.»
+#239 e33.ch.nome_talpa [109→97]
+  P: «Targa, ordine finto, turni di stasera. Viene fuori un nome solo: Gianni Lavezzari. Il più gentile di tutti.»
+  D: «Targa, ordine finto, turni di stasera: un nome solo. Gianni Lavezzari. Il più gentile di tutti.»
+#240 e33.ch.gol_ospiti [106→99]
+  P: «Gol dell'Arches. La curva Skyfield se la prende con la sua squadra, poi con lo stadio, poi con il viale.»
+  D: «Gol dell'Arches. La curva Skyfield se la prende con la squadra, poi con lo stadio, poi col viale.»
+#241 e33.ch.talpa_scappa [106→97] NP:Il
+  P: «Il comando: Lavezzari ha lasciato la tribuna. Chiede un'auto del club per uscire dal retro. Lo fermiamo?»
+  D: «Comando: Lavezzari lascia la tribuna, vuole un'auto del club per uscire dal retro. Lo fermiamo?»
+#242 e34.info_comando [92→78]
+  P: Il comando: la commissione arriva un'ora prima e vuole vedere lo schieramento dalla tribuna.
+  D: Comando: commissione un'ora prima, vuole vedere lo schieramento dalla tribuna.
+#243 e34.info_quillhaven [118→80]
+  P: Il Lookout FC comunica: si giocano la salvezza e la metro non basta. Pullman in arrivo ai parcheggi, numeri da finale.
+  D: Lookout FC: salvezza in palio, metro piena. Pullman ai parcheggi come in finale.
+#244 e34.info_segreteria [84→79]
+  P: Segreteria del comune: il piazzale è libero, il mercato del sabato è stato spostato.
+  D: Segreteria del comune: piazzale libero, il mercato del sabato è stato spostato.
+#245 e34.ch.pullman_quillhaven [111→94] NP:Responsabile
+  P: «Responsabile del Lookout: i nostri pullman sono il doppio di quelli annunciati. Ci date un parcheggio in più?»
+  D: «Lookout: i nostri pullman sono il doppio di quelli annunciati. Ci date un parcheggio in più?»
+#246 e34.ch.fiducia_comando [124→97] NP:Un N#:Un|due
+  P: «Un membro della commissione: «Abbiamo letto tre stagioni di rapporti. Le servono due steward in tribuna? Li mandiamo noi».»
+  D: «Commissione: «Abbiamo letto tre stagioni di rapporti. Due steward in tribuna? Li mandiamo noi».»
+#247 e34.ch.curva_ti_canta [124→99]
+  P: «Curva Kiln: coro sul tuo nome. Non è un insulto. È un coro di saluto, quasi affettuoso. La commissione si gira a guardare.»
+  D: «Curva Kiln: un coro sul tuo nome. Un saluto, quasi affettuoso. La commissione si gira a guardare.»
+#248 e34.ch.osservatore [122→100] NP:Il
+  P: «Il comando: la commissione manda un suo osservatore in sala operativa. Siederà accanto a te. Per tutto il secondo tempo.»
+  D: «Comando: un osservatore della commissione in sala operativa, accanto a te, tutto il secondo tempo.»
+#249 e34.ch.domanda_commissione [107→91] NP:Un N#:Un
+  P: «Un membro della commissione, a bassa voce: «Il fascicolo su Varrone & Figli. Dove si trova, esattamente?»»
+  D: «Commissione, a bassa voce: «Il fascicolo su Varrone & Figli. Dove si trova, esattamente?»»
+#250 e34.ch.mercato_fine [102→99]
+  P: «In rete: il mercato chiude e gli ambulanti smontano. Bancali, furgoni, e i tifosi che escono presto.»
+  D: «In rete: il mercato chiude, gli ambulanti smontano. Bancali, furgoni, e tifosi che escono presto.»
+#251 e34.ch.pullman_ritorno [113→96] NP:Responsabile
+  P: «Responsabile del Lookout: abbiamo vinto e vogliamo partire. Ma i pullman sono bloccati dai furgoni del mercato.»
+  D: «Lookout: abbiamo vinto e vogliamo partire. Ma i pullman sono bloccati dai furgoni del mercato.»
+#252 e34.ch.ultimo_coro [113→99] N#:Un|un
+  P: «Piazzale: la curva Kiln esce e si ferma. Un ultimo coro, per te. Non si capisce se è un addio o un arrivederci.»
+  D: «Piazzale: la curva Kiln esce e si ferma. Ultimo coro per te. Addio o arrivederci? Non si capisce.»
+#253 e34.ch.commissione_procura [135→99] NP:Un|La N#:Un
+  P: «Un membro della commissione: «La procura indaga sulla Varrone & Figli grazie al suo fascicolo. Il comune è furioso. Rifarebbe tutto?»»
+  D: «Commissione: «Col suo fascicolo la procura indaga su Varrone & Figli. Comune furioso. Rifarebbe?»»
+#254 e34.ch.commissione_stampa [110→94] NP:Un N#:Un
+  P: «Un membro della commissione: «Il comando ha letto del fascicolo sul giornale, come tutti. Perché non a noi?»»
+  D: «Commissione: «Il comando ha letto del fascicolo sul giornale, come tutti. Perché non a noi?»»
+#255 e34.ch.commissione_comando [127→97] NP:Un N#:Un
+  P: «Un membro della commissione: «Il fascicolo è nella nostra cassaforte. In comune chiedono di lasciarlo lì. Lei che consiglia?»»
+  D: «Commissione: «Il fascicolo è nella nostra cassaforte. Il comune: lasciatelo lì. Che consiglia?»»
+#256 e35.info_comando [119→76]
+  P: Il comando: ingressi dell'una confermati. Il cantiere della Varrone & Figli è il più importante: lì ci sono gli uffici.
+  D: Comando: ingressi all'una. Priorità al cantiere Varrone & Figli: gli uffici.
+#257 e35.info_guardiano [88→71]
+  P: Il guardiano del cantiere: stanotte il cantiere è chiuso, nessuno dentro, nessuno fuori.
+  D: Guardiano del cantiere: stanotte chiuso, nessuno dentro, nessuno fuori.
+#258 e35.info_testimone [99→79]
+  P: Il testimone: al porto stanotte caricano qualcosa su una barca. In fretta, e senza nessuno intorno.
+  D: Il testimone: stanotte al porto caricano una barca. In fretta, nessuno intorno.
+#259 e35.info_rete [90→76] N#:un
+  P: In rete: «In banca sono in cinquanta, è un attacco organizzato, chiudete tutto il centro».
+  D: In rete: «In banca sono cinquanta, attacco organizzato, chiudete il centro».
+#260 e35.ch.perimetro [134→98] NP:Centrale
+  P: «Centrale radio: il comando ha chiuso la banca e tratta. Sul corso si forma la folla: uffici, passanti, telefoni. Il perimetro è tuo.»
+  D: «Radio: banca chiusa, si tratta. Folla sul corso: uffici, passanti, telefoni. Il perimetro è tuo.»
+#261 e35.ch.barca_porto [138→97] NP:Il
+  P: «Il testimone: la barca col telone blu carica scatoloni. Le pattuglie del porto sono andate verso la banca. Se parte, parte con le carte.»
+  D: «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»
+#262 e35.ch.corso_chiuso [134→93] NP:Il
+  P: «Il corso è chiuso davanti alla banca. Autobus fermi, auto in coda fino alla stazione, gente che scende e va a piedi verso il nastro.»
+  D: «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»
+#263 e35.ch.dirette [131→99]
+  P: «Giornale di Valmora: dietro il nastro, tre troupe e cento telefoni. Qualcuno trasmette le finestre della banca. Ci fa avvicinare?»
+  D: «Giornale di Valmora: al nastro tre troupe, cento telefoni, la banca in diretta. Ci fa avvicinare?»
+#264 e35.ch.cantiere_acceso [124→98]
+  P: «Cantiere della Varrone & Figli: luci accese negli uffici. Il guardiano diceva chiuso. Qualcuno lavora, alle dieci di sera.»
+  D: «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici. Il guardiano diceva chiuso.»
+#265 e35.ch.familiari [115→97]
+  P: «Al nastro sul corso arrivano i familiari dei dipendenti della banca. Chiedono notizie, e chiedono di avvicinarsi.»
+  D: «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, e di avvicinarsi.»
+#266 e35.ch.treno_notte [122→92] N#:un
+  P: «Stazione: sul primo treno del mattino è prenotato un posto a nome di una ditta del cantiere. Il treno parte alle cinque.»
+  D: «Stazione: primo treno del mattino, alle cinque. Un posto a nome di una ditta del cantiere.»
+#267 e35.ch.curiosi_notte [126→98]
+  P: «All'una il perimetro è un raduno: curiosi, ragazzi della curva, uno che vende panini. Tutti vogliono esserci quando finisce.»
+  D: «All'una il perimetro è un raduno: curiosi, ultrà, uno coi panini. Tutti vogliono vedere la fine.»
+#268 e35.ch.barca_ritorno [108→89]
+  P: «Il testimone: la barca è tornata. Senza scatoloni. Li hanno buttati, o li hanno lasciati da qualche parte.»
+  D: «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»
+#269 e35.ch.posto_prenotato [111→98] N#:un
+  P: «Stazione, ore cinque: un uomo col cappotto cerca il binario. Ha la valigia, e il viso di chi ha dormito poco.»
+  D: «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.»
+#270 e35.ch.fine_trattativa [132→100] NP:Il
+  P: «Il comando: è finita. Gli ostaggi escono tutti illesi, chi era dentro si è arreso. La folla vuole vedere, i familiari abbracciare.»
+  D: «Comando: è finita, ostaggi illesi, si sono arresi. La folla vuole vedere, i familiari abbracciare.»
+#271 e35.ch.rapporto_notte [136→99] NP:Il N#:una|otto
+  P: «Il comando: la rapina era una copertura, dal cantiere sono spariti i faldoni. Alle otto conferenza. Varrone: nome o «un imprenditore»?»
+  D: «Comando: rapina-copertura, faldoni spariti dal cantiere. Conferenza: Varrone o «un imprenditore»?»
+#272 e36.info_radio [107→77]
+  P: Centrale radio: davanti al cantiere sequestrato si radunano tifosi delle due curve. Insieme, per una volta.
+  D: Centrale radio: le due curve al cantiere sequestrato. Insieme, per una volta.
+#273 e36.info_segreteria [85→77]
+  P: Segreteria del comune: nessuna festa autorizzata sul piazzale, la serata sarà sobria.
+  D: Segreteria del comune: nessuna festa autorizzata sul piazzale. Serata sobria.
+#274 e36.info_rete [92→79] N#:una
+  P: In rete: la curva Skyfield scende dalla collina con una coreografia «per lo stadio vecchio».
+  D: In rete: curva Skyfield giù dalla collina, coreografia «per lo stadio vecchio».
+#275 e36.info_informatore [116→80] NP:Stasera N#:un
+  P: Il ragazzo delle sciarpe: «Stasera il Fabbro manda un messaggio alla curva, dal carcere. Lo leggono a metà partita.»
+  D: Ragazzo delle sciarpe: «Messaggio del Fabbro dal carcere, letto a metà partita.»
+#276 e36.ch.cantiere_festa [132→99] NP:Cantiere
+  P: «Cantiere sequestrato: tifosi delle due curve ai cancelli, cantano per lo stadio vecchio. Qualcuno vuole un cartellone per ricordo.»
+  D: «Al cantiere sequestrato le due curve cantano per lo stadio vecchio. Qualcuno vuole un cartellone.»
+#277 e36.ch.coreografia_collina [121→99] NP:La N#:una
+  P: «La curva Skyfield scende dalla collina con una coreografia arrotolata: cento metri di stoffa. Occupano tutta la strada.»
+  D: «Curva Skyfield giù dalla collina, coreografia arrotolata: cento metri di stoffa. Tutta la strada.»
+#278 e36.ch.festa_vietata [118→93]
+  P: «Segreteria del comune: sul piazzale sono arrivati un palco e una cassa. Non autorizzati. «Serata sobria», ricordate?»
+  D: «Segreteria: sul piazzale un palco e una cassa, non autorizzati. «Serata sobria», ricordate?»
+#279 e36.ch.coreografia_alzata [122→95]
+  P: «Curva Skyfield: la coreografia dice «LO STADIO È NOSTRO». Dall'altra parte la curva Kiln applaude. Nessuno sa cosa fare.»
+  D: «Curva Skyfield: «LO STADIO È NOSTRO». Di fronte la curva Kiln applaude. Nessuno sa cosa fare.»
+#280 e36.ch.messaggio_carcere [125→99] NP:Fabbro N#:una
+  P: «Capo, il messaggio del Fabbro non c'è. Era una voce mia, sbagliata. Ma in curva lo aspettano, e se non arriva lo inventano.»
+  D: «Capo, il messaggio non c'è, ho sbagliato. Ma in curva lo aspettano, e se non arriva lo inventano.»
+#281 e36.ch.piazzale_maxi [121→96] N#:due
+  P: «Piazzale: duemila persone davanti al palco. Tifosi delle due squadre, famiglie, gente che non ha mai visto una partita.»
+  D: «Piazzale: duemila davanti al palco. Due tifoserie, famiglie, chi non ha mai visto una partita.»
+#282 e36.ch.gol_derby [113→100]
+  P: «Gol del Kiln all'ottantesimo. La curva Kiln esplode. La curva Skyfield, per un momento, dimentica gli applausi.»
+  D: «Gol del Kiln all'ottantesimo: esplode la curva. Quella Skyfield per un attimo scorda gli applausi.»
+#283 e36.ch.comando_conti [121→98] NP:Il N#:un
+  P: «Il comando: le carte trovate dopo la rapina portano alla Varrone & Figli. Si apre un'inchiesta. Ci serve una tua frase.»
+  D: «Comando: carte trovate dopo la rapina, portano alla Varrone & Figli. Si indaga. Serve una frase.»
+#284 e36.ch.cantiere_notte [106→93]
+  P: «Il guardiano del cantiere: «Vogliono entrare a scrivere sui muri. Io non mi muovo, sia chiaro. Non più».»
+  D: «Il guardiano: «Vogliono entrare a scrivere sui muri. Io non mi muovo, sia chiaro. Non più».»
+#285 e36.ch.ritorno_collina [120→98]
+  P: «In rete: la curva Skyfield risale la collina, sconfitta, con la coreografia in spalla. Alcuni di Kiln li accompagnano.»
+  D: «In rete: Skyfield battuti, su per la collina con la coreografia. Alcuni di Kiln li accompagnano.»
+#286 e36.ch.piazzale_ultimo [117→94]
+  P: «Segreteria del comune: la festa sul piazzale chiude a mezzanotte. Lo dice l'ordinanza del vertice. Diciotto pagine.»
+  D: «Segreteria: festa sul piazzale fino a mezzanotte, da ordinanza del vertice. Diciotto pagine.»
+#287 e36.ch.busta [130→100] NP:C'è
+  P: «Malvasi ti porge la busta della scommessa. «C'è ancora gente al cantiere e al piazzale. La apriamo adesso o dopo l'ultimo giro?»»
+  D: «Malvasi, con la busta della scommessa: «Gente al cantiere, al piazzale. Ora o dopo l'ultimo giro?»»
+#288 e36.ch.conti_procura [112→87] NP:Il
+  P: «Il comando: la procura ha iscritto Tullio Varrone fra gli indagati, col tuo fascicolo. Vogliono una tua frase.»
+  D: «Comando: la procura indaga Tullio Varrone, col tuo fascicolo. Vogliono una tua frase.»
+#289 e36.ch.conti_stampa [113→99] NP:Il
+  P: «Il comando: il giornale esce con la terza puntata sul fascicolo, Varrone minaccia querele. Serve una tua frase.»
+  D: «Comando: terza puntata del giornale sul fascicolo, Varrone minaccia querele. Serve una tua frase.»
+#290 e36.ch.conti_comando [119→97] NP:Il
+  P: «Il comando: stamattina abbiamo mandato il fascicolo in procura, a nome nostro. Per i giornali ci serve una tua frase.»
+  D: «Comando: fascicolo in procura stamattina, a nome nostro. Per i giornali ci serve una tua frase.»
