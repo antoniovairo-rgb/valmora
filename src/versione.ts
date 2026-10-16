@@ -223,4 +223,11 @@
 //   misura: catena completa 3/3 sul ramo della sviluppatrice (1a42d48): pastiglie sopra i nomi 0/142 ondate a 360/375/412
 //   (rosso C94N01: 7); e30 ondate 2-4 via dallo stadio 69/0, verso il municipio 62-64; e07/e08 fonte del club.
 //   guardiano: rossi C94N01, C95S01; tests/voci-club.test.ts (rosso 2/2); limiti di lunghezza dei testi.
-export const GAME_VERSION = '0.32.0';
+// 0.33.0 – espressioni dalla tensione (PO-059, D-133).
+//   causa: le vignette di fine ondata e del verbale avevano sempre la stessa faccia, qualunque fosse la serata.
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (f0d6257); tono dalla tensione più alta dell'ondata
+//   (fino a 1 calmo, 2-3 teso, da 4 critico), festa a braccia alzate e mano alla nuca nel verbale; foto a 360/412/1024,
+//   uomo e donna, DPR 1 e 2.
+//   guardiano: tests/espressioni.test.ts (soglie, un'espressione per tono), controllo data-tono ↔ vignetta nel giro foto
+//   (rosso C96P01: 29 righe).
+export const GAME_VERSION = '0.33.0';
