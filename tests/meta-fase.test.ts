@@ -56,3 +56,11 @@ describe('C27-04 la fase dell\'ondata dai dati', () => {
     expect(follaDellOndata(conFase(), 2).spalti).toBe('arrivo');
   });
 });
+
+describe('C32-02 e17: la strada di Kiln va verso il centro del corteo', () => {
+  // Senza `meta` il viale finiva al centro e cambiava con l'altezza della tela: «me_lo_dovete» 23 verso/16 via lo
+  // stadio. Con la meta sul municipio («corteo in centro», intro2): 29-30 via su 39-40, ondata 4 52-53/69 (360-412).
+  it('strada_cinderwick ha meta piazza_municipio', () => {
+    expect(ep('e17').mappa.settori.find((s) => s.id === 'strada_cinderwick')?.meta).toBe('piazza_municipio');
+  });
+});
