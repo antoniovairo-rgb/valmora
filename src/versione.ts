@@ -211,4 +211,9 @@
 //   «parenti» contro «familiari».
 //   misura: tests/meta-fase.test.ts verde, e rosso togliendo la fase di e21 o3; e35 fine_trattativa «i familiari aspettano».
 //   guardiano: tests/meta-fase.test.ts (controllo sui dati veri di e21 o3); limiti di lunghezza dei testi.
-export const GAME_VERSION = '0.30.0';
+// 0.31.0 – due rilievi del collaudo C-029 (sviluppatrice).
+//   causa: C29-02 in e04 il corteo delle strade senza meta partiva dal bordo sbagliato del viale (45/69 «via»);
+//   C29-04 il cartello «Urgente!» non era spiegato nella guida.
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (7e28ab4); viale dal bordo giusto; guida.5 spiega «Urgente!».
+//   guardiano: tests/viale.test.ts (rosso C93V01), tests/urgente.test.ts; limiti di lunghezza dei testi.
+export const GAME_VERSION = '0.31.0';
