@@ -338,6 +338,7 @@
     {
       "n": 2,
       "titolo": "testi:e07.ondata2",
+      "fase": "partita",
       "eventi": [
         {
           "id": "festa_curva",
@@ -482,6 +483,7 @@
     {
       "n": 3,
       "titolo": "testi:e07.ondata3",
+      "fase": "partita",
       "eventi": [
         {
           "id": "gol_storia",
@@ -642,6 +644,7 @@
     {
       "n": 4,
       "titolo": "testi:e07.ondata4",
+      "fase": "dopo",
       "eventi": [
         {
           "id": "carovana",

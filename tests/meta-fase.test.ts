@@ -40,7 +40,14 @@ describe('C27-04 la fase dell\'ondata dai dati', () => {
     expect(follaDellOndata(m, 4).spalti).toBe('deflusso');
     expect(follaDellOndata(m, 1).spalti).toBe('arrivo');
   });
-  it('senza «fase» nulla cambia (e07 ondata 4 «in arrivo», come oggi)', () => expect(follaDellOndata(ep('e07'), 4).spalti).toBe('arrivo'));
+  // I dati di e07 ora hanno «fase» (dai testi): il caso «senza» si prova togliendola.
+  const senzaFase = () => { const m = ep('e07'); m.ondate.forEach((o) => { delete (o as { fase?: string }).fase; }); return m; };
+  it('senza «fase» nulla cambia (e07 ondata 4 «in arrivo», come prima)', () => expect(follaDellOndata(senzaFase(), 4).spalti).toBe('arrivo'));
+  it('dati veri: e07 ondata 4 e e21 ondata 4 «deflusso», e27 ondata 1 non «pieni» (fasi scritte dai testi)', () => {
+    expect(follaDellOndata(ep('e07'), 4).spalti).toBe('deflusso');
+    expect(follaDellOndata(ep('e21'), 4).spalti).toBe('deflusso');
+    expect(follaDellOndata(ep('e27'), 1).spalti).not.toBe('pieni');
+  });
   it('braccio rosso __NO_C84F01: «fase» ignorata, ondata 4 «in arrivo» (il difetto del collaudo)', () => {
     g.__NO_C84F01 = true;
     expect(follaDellOndata(conFase(), 4).spalti).toBe('arrivo');

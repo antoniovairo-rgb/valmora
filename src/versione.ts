@@ -177,4 +177,11 @@
 //   misura: con D-129 le chiamate urgenti sono 235/498 (eventi con pressione ≥ 4); stemmi nuovi per Square (fontana),
 //   Garden (albero nel cortile), Pinegrove (pigna), Belltower (campanile), con foto a DPR 1 e 3; id nei dati aggiornati.
 //   guardiano: tests/urgente.test.ts (rosso C82U01), guardiano degli stemmi (rosso C83S01).
-export const GAME_VERSION = '0.25.0';
+// 0.26.0 – lotto «tutto il backlog» (D-131), primo pezzo: testi delle stagioni 2–3, cortei e fasi dai testi.
+//   causa: PO-084/085 in e13–e36 73 fonti oltre 80 caratteri e 217 chiamate oltre 100; C27-02 senza stadio pieno il
+//   viale finiva al centro della mappa e non al municipio (e30); C27-04 fase della partita sbagliata sulla mappa in
+//   e07, e21, e23, e27 (dipendeva solo dagli eventi «curva»).
+//   misura: 0 testi oltre i limiti in e01–e36; campi `meta` (e30 strada da Kiln → piazza del municipio) e `fase`
+//   (e07 o2-3 partita, o4 dopo; e21 o2 partita, o4 dopo; e23 o2 prima; e27 o1 prima, o4 dopo) nei dati.
+//   guardiano: tests/brevita.test.ts esteso a e01–e36; tests/meta-fase.test.ts (rossi C85M01, C84F01) col caso sui dati veri.
+export const GAME_VERSION = '0.26.0';

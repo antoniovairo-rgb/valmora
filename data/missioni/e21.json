@@ -318,6 +318,7 @@
     {
       "n": 2,
       "titolo": "testi:e21.ondata2",
+      "fase": "partita",
       "eventi": [
         {
           "id": "faida_basso",
@@ -646,6 +647,7 @@
     {
       "n": 4,
       "titolo": "testi:e21.ondata4",
+      "fase": "dopo",
       "eventi": [
         {
           "id": "ritorno_fonderia",
