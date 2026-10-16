@@ -1,0 +1,92 @@
+{
+ "ROSSI": [
+  "C97F01"
+ ],
+ "righe": [
+  {
+   "ep": "e01",
+   "W": 1366,
+   "H": 768,
+   "dopo1": {
+    "fuoco": "SECTION[scena]",
+    "dentro": true,
+    "y": 580,
+    "riepilogo": true,
+    "riepilogoY": 580,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  },
+  {
+   "ep": "e01",
+   "W": 1024,
+   "H": 768,
+   "dopo1": {
+    "fuoco": "SECTION[scena]",
+    "dentro": true,
+    "y": 580,
+    "riepilogo": true,
+    "riepilogoY": 580,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  },
+  {
+   "ep": "e01",
+   "W": 360,
+   "H": 760,
+   "dopo1": {
+    "fuoco": "SECTION[scena]",
+    "dentro": true,
+    "y": 476,
+    "riepilogo": true,
+    "riepilogoY": 476,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  },
+  {
+   "ep": "e19",
+   "W": 1366,
+   "H": 768,
+   "dopo1": {
+    "fuoco": "SECTION[scena]",
+    "dentro": true,
+    "y": 580,
+    "riepilogo": true,
+    "riepilogoY": 580,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  },
+  {
+   "ep": "e19",
+   "W": 1024,
+   "H": 768,
+   "dopo1": {
+    "fuoco": "SECTION[scena]",
+    "dentro": true,
+    "y": 580,
+    "riepilogo": true,
+    "riepilogoY": 580,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  },
+  {
+   "ep": "e19",
+   "W": 360,
+   "H": 760,
+   "dopo1": {
+    "fuoco": "SECTION[scena]",
+    "dentro": true,
+    "y": 460,
+    "riepilogo": true,
+    "riepilogoY": 460,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  }
+ ],
+ "errori": []
+}
