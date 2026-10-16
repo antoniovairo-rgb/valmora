@@ -89,7 +89,11 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const sottoDisco = () => (nuovo && [...(s.querySelector('.settore-unita')?.children ?? [])].some((c) => { const u = c.getBoundingClientRect(), x = (u.left + u.right) / 2, y = (u.top + u.bottom) / 2;
       // C28-14: con i posti nuovi il centro poteva finire sotto il tocco di un'altra pastiglia (e31 ondata 2)
       const altriTocchi = !spento('C94N01') ? settori.filter((x) => x !== s).flatMap((x) => [...(x.querySelector('.settore-unita')?.children ?? [])].map((c) => c.getBoundingClientRect())) : [];
-      return [...punti.filter((_, j) => j !== i), ...altriTocchi].some((p) => x >= p.left && x <= p.right && y >= p.top && y <= p.bottom); }) ? VERA * 1e6 : 0);
+      return [...punti.filter((_, j) => j !== i), ...altriTocchi].some((p) => x >= p.left && x <= p.right && y >= p.top && y <= p.bottom); }) ? VERA * 1e6 * (sulDisco() ? 2 : 1) : 0);
+    // C33-05 (e06 ondata 1 a 360): quando ogni posto ha un centro coperto, il centro sotto un disco (fisso) costa il doppio
+    // del centro sotto il tocco di un'altra unità, che si sposta quando tocca a lei. Rosso C103P01: costano uguale.
+    const sulDisco = () => !spento('C103P01') && [...(s.querySelector('.settore-unita')?.children ?? [])].some((c) => { const u = c.getBoundingClientRect(), x = (u.left + u.right) / 2, y = (u.top + u.bottom) / 2;
+      return punti.some((p, j) => j !== i && x >= p.left && x <= p.right && y >= p.top && y <= p.bottom); });
     const nomiSopra = (n: Rett) => (nuovo ? presenti(altri.map(nomeDi)).reduce((c, o) => c + VERA * 5 * area(n, o), 0) : 0);
     // C27-06: una pastiglia sopra un nome (il suo o di un altro settore) lo rende illeggibile (e19 «MAGA… DELLE
     // FONDERIE»): costa VERA × 5 in più, e così un nome sotto le pastiglie altrui. Perché questo non sposti i nomi uno
