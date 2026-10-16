@@ -46,4 +46,4 @@ Ramo `claude/valmora-resa-v2`. Foto in `d136/`.
 
 ## Esito dei giri
 
-La catena completa è in corso.
+FATTO MISURATO: catena completa 3/3 verde su 1a42d48 (un giro rifatto dopo un riavvio del contenitore).
