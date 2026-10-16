@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-16 16:00 Roma – main 0.31.0 (8eb495e), uscita alle 15:58 (verifica 3/3 VERDE su 8ce31ee dopo due riavvii del container, CI verde): C29-02 viale di e04, C29-04 «Urgente!» nella guida. C-032 esteso alle voci di 0.30.0 e 0.31.0. Sviluppatrice: D-136/C28-14 tetto 0 e C31-02 in catena, poi PO-059; C30-04 (vignetta sala su PC, «?» sotto la barra) attende la scelta del PO.
+Ultimo giro della routine: 2026-10-16 18:15 Roma – main 0.32.0 (c15c617), uscita alle 18:12 (verifica 3/3 VERDE su 75cc870, CI verde): D-136 pastiglie a tetto 0, C31-02 e30, C32-03/05. C-032 consegnato e archiviato (C32-01/02/06 riprodotti e assegnati alla sviluppatrice; C32-04 tenuto per D-108). C-033 avviato sulla 0.32.0. Sviluppatrice: PO-059 in catena, poi «?» nella barra (D-139), C32-01, C32-06. Principale: valutare `meta` di e17 (C32-02).
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
