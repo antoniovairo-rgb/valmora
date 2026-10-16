@@ -113,13 +113,15 @@ export async function controllaTela(pagina, atteso, dove) {
 export async function controllaOpzioneFerma(pagina, atteso, scena) {
   // finestra alta: dopo la ricarica la pagina è in cima, e a 360×760 le opzioni starebbero sotto il bordo
   const prima = pagina.viewportSize(); await pagina.setViewportSize({ width: prima.width, height: 1600 });
-  await pagina.evaluate(() => scrollTo(0, 0)); await pagina.waitForTimeout(150);
+  // prima ripresa da tastiera: dove stanno le opzioni dopo la ripresa (la pagina può scorrere all'apertura, C25-08)
+  const riprendi = async () => { await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).focus(); await pagina.keyboard.press('Enter'); await scena('chiamata'); await pagina.waitForTimeout(300); };
+  await riprendi();
   const r = await pagina.locator('.opzione').first().boundingBox(); if (!r) { await pagina.setViewportSize(prima); return; }
   const x = r.x + r.width / 2, y = r.y + r.height / 2;
   await pagina.reload(); await scena('titolo');
   await pagina.mouse.move(x, y);
   await pagina.getByRole('button', { name: 'Riprendi' }).focus(); await pagina.keyboard.press('Enter');
-  await scena('chiamata'); await pagina.waitForTimeout(150);
+  await scena('chiamata'); await pagina.waitForTimeout(300); // come nella prima ripresa
   const [sotto, sfondo, evidenza] = await pagina.evaluate(([x, y]) => {
     const o = document.elementFromPoint(x, y)?.closest('.opzione'), v = document.createElement('i');
     v.style.color = 'var(--ciano)'; document.body.append(v); const c = getComputedStyle(v).color; v.remove();

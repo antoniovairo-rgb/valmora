@@ -24,6 +24,8 @@ Ramo `claude/valmora-resa-v2`. Collaudo: `docs/revisioni/COLLAUDO_C28.md` sul ra
   3. «Riprendi» con la tastiera;
   4. si legge lo sfondo dell'opzione sotto il puntatore.
   - La prima versione era cieca a 360×760 (opzioni sotto il bordo): riparata con la finestra alta.
+  - Nella catena era ancora cieca a 412: dopo la ripresa le opzioni non stavano dove le avevo misurate prima della ricarica. Ora la posizione si misura dopo una prima ripresa da tastiera.
+  - Esito: verde a 375 e 412 exit 0; rosso C87H01 a 412 «già accesa» su «scorta».
 - **Esito:** rosso 3 righe, «già accesa (rgb(0, 194, 255))»; verde 0.
 
 ## C28-09 – fuoco della tastiera
