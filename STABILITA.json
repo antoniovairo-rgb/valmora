@@ -59381,6 +59381,29 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-16T12:00:43.746Z",
+      "commit": "98f6109",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "rosso",
+          "tentativi": 3,
+          "problemi": [
+            "PO-117: stato «APERTA – spunto per la triade successiva (e37+): un corteo non legato alla partita (sciopero degli studenti di Valmora) che incrocia il giorno di gara; trasposto in finzione, violenza fuori campo (cassonetti, bottiglie, fumogeni solo nei rapporti radio). Articolo non leggibile da qui (403): si usa solo il titolo; nessun dettaglio reale nei dati» non ammesso"
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }
