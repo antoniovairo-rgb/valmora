@@ -48,3 +48,17 @@ Ramo `claude/valmora-resa-v2`, unito alla principale (0.32.0). Foto in `d139/` e
 ## Esito dei giri
 
 FATTO MISURATO: catena completa 3/3 verde su 4348ab8 (il primo giro su 3ad010a era rosso a 375 per C32-01, corretto).
+
+## e17 con la tua `meta: piazza_municipio` (C32-02), dopo il merge della 0.33.0
+
+Con la meta, C31-02 vale anche per e17. FATTO MISURATO con la sonda `c27-pixel.mjs`, `RIF=piazza_municipio W=360 EP=e17`; persone via / verso lo stadio, e via / verso il municipio:
+
+| | verde | rosso C95S01 |
+|---|---|---|
+| ondata 1 strada_cinderwick (raduno) | stadio 52/17, municipio 5/64 | 36/33, 0/69 |
+| ondata 4 strada_cinderwick («dallo_stadio») | 51/18, 5/64 | 34/35, 69/0 (via dal municipio) |
+| chiamata me_lo_dovete | 29/10, 3/36 | 7/33, 40/0 |
+| chiamata ci_vediamo_dopo | 28/11, 2/37 | 22/17, 0/39 |
+| piazza_municipio (ondate 3-4) | invariata | invariata |
+
+- La catena va rifatta sul merge (2db7d42).
