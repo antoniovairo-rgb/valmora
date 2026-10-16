@@ -1,11 +1,11 @@
-// PO-084 / PO-085: fonti brevi (≤ 80 caratteri) e chiamate in stile radio (≤ 100), a partire dalla stagione 1
-// (e01–e12). Le altre stagioni entrano nell'elenco man mano che vengono riscritte.
+// PO-084 / PO-085: fonti brevi (≤ 80 caratteri) e chiamate in stile radio (≤ 100) in tutte e tre le stagioni
+// (e01–e36), comprese le varianti al femminile («@f»).
 import { describe, expect, it } from 'vitest';
 import { leggiDati } from '../tools/dati-disco.mjs';
 import type { Missione } from '../src/logica/tipi.ts';
 
 const d = leggiDati() as Record<string, unknown>;
-const RISCRITTI = Array.from({ length: 12 }, (_, i) => `e${String(i + 1).padStart(2, '0')}`);
+const RISCRITTI = Array.from({ length: 36 }, (_, i) => `e${String(i + 1).padStart(2, '0')}`);
 export const FONTE_MAX = 80, CHIAMATA_MAX = 100;
 
 const chiamate = (m: Missione) => m.ondate.flatMap((o) => o.chiamate ?? []);
@@ -21,7 +21,7 @@ export function troppoLunghi(dati: Record<string, unknown>, episodi: string[]) {
 }
 
 describe('fonti e chiamate brevi (PO-084, PO-085)', () => {
-  it('stagione 1: ogni fonte ≤ 80 caratteri, ogni chiamata ≤ 100', () => {
+  it('stagioni 1–3 (e01–e36): ogni fonte ≤ 80 caratteri, ogni chiamata ≤ 100', () => {
     expect(troppoLunghi(d, RISCRITTI)).toEqual([]);
   });
   it('braccio rosso: un testo lungo viene segnalato', () => {
