@@ -206,4 +206,9 @@
 //   ai rigori»; presidente in e05, e06, e09.
 //   guardiano: rossi C86T01 (tela), C87H01 (evidenza col puntatore fermo), C88F01/C89C01 (fuoco), C90V01 (versione),
 //   C92P01 (pigna); limiti di lunghezza dei testi.
-export const GAME_VERSION = '0.29.0';
+// 0.30.0 – due rilievi del collaudo C-031 sulla 0.28.0.
+//   causa: C31-01 togliendo `fase` da e21 o3 i test restavano verdi (correzione C30-02 senza guardiano); C31-03 in e35
+//   «parenti» contro «familiari».
+//   misura: tests/meta-fase.test.ts verde, e rosso togliendo la fase di e21 o3; e35 fine_trattativa «i familiari aspettano».
+//   guardiano: tests/meta-fase.test.ts (controllo sui dati veri di e21 o3); limiti di lunghezza dei testi.
+export const GAME_VERSION = '0.30.0';
