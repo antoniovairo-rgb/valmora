@@ -1,0 +1,31 @@
+
+ RUN  v5.0.3 <scratchpad>/v031
+
+ ❯ tests/meta-fase.test.ts (6 tests | 1 failed) 17ms
+   ❯ C27-04 la fase dell'ondata dai dati (4)
+     × dati veri: e07 ondata 4 e e21 ondata 4 «deflusso», e27 ondata 1 non «pieni» (fasi scritte dai testi) 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/meta-fase.test.ts > C27-04 la fase dell'ondata dai dati > dati veri: e07 ondata 4 e e21 ondata 4 «deflusso», e27 ondata 1 non «pieni» (fasi scritte dai testi)
+AssertionError: expected 'deflusso' to be 'pieni' // Object.is equality
+
+Expected: "pieni"
+Received: "deflusso"
+
+ ❯ tests/meta-fase.test.ts:50:50
+     48|     expect(follaDellOndata(ep('e21'), 4).spalti).toBe('deflusso');
+     49|     // C31-01 (C30-02): e21 ondata 3 «Kiln–Pinegrove in corso»: spalti…
+     50|     expect(follaDellOndata(ep('e21'), 3).spalti).toBe('pieni');
+       |                                                  ^
+     51|     expect(follaDellOndata(ep('e27'), 1).spalti).not.toBe('pieni');
+     52|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  14:09:08
+   Duration  734ms (transform 90%, import 5%, tests 3%, worker 1%)
+

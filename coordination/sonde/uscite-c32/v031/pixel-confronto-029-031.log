@@ -1,0 +1,13 @@
+cortei abbinati 231 (0.29.0 231, 0.31.0 231); cambiati di classe 12  [prima = 0.29.0, dopo = 0.31.0]
+e04 o1 schieramento-1 | ondata parcheggi>entra: 0.29.0 8 verso / 61 via → 0.31.0 70 verso / 0 via (via → verso)
+e04 o1 chiamata-corteo_fonderie | ondata parcheggi>entra: 0.29.0 6 verso / 63 via → 0.31.0 70 verso / 0 via (via → verso)
+e04 o2 schieramento-2 | ondata parcheggi>entra: 0.29.0 8 verso / 62 via → 0.31.0 69 verso / 0 via (via → verso)
+e04 o2 chiamata-coro_fonderie | ondata parcheggi>entra: 0.29.0 7 verso / 62 via → 0.31.0 69 verso / 0 via (via → verso)
+e04 o2 chiamata-coro_fonderie | chiamata corteo:parcheggi: 0.29.0 5 verso / 35 via → 0.31.0 40 verso / 0 via (via → verso)
+e17 o1 schieramento-1 | ondata strada_cinderwick>entra: 0.29.0 36 verso / 33 via → 0.31.0 47 verso / 22 via (misto → verso)
+e17 o1 chiamata-schermo_comizi | ondata strada_cinderwick>entra: 0.29.0 37 verso / 32 via → 0.31.0 48 verso / 21 via (misto → verso)
+e17 o2 chiamata-ci_vediamo_dopo | chiamata corteo:strada_cinderwick: 0.29.0 19 verso / 20 via → 0.31.0 26 verso / 13 via (misto → verso)
+e17 o4 schieramento-4 | ondata strada_cinderwick>esce: 0.29.0 33 verso / 36 via → 0.31.0 21 verso / 48 via (misto → via)
+e17 o4 chiamata-me_lo_dovete | ondata strada_cinderwick>esce: 0.29.0 33 verso / 37 via → 0.31.0 19 verso / 50 via (misto → via)
+e17 o4 chiamata-me_lo_dovete | chiamata corteo:strada_cinderwick: 0.29.0 30 verso / 10 via → 0.31.0 25 verso / 15 via (verso → misto)
+e17 o4 chiamata-fine_corteo | ondata strada_cinderwick>esce: 0.29.0 33 verso / 37 via → 0.31.0 21 verso / 48 via (misto → via)

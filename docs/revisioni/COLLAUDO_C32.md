@@ -30,6 +30,7 @@ Convenzioni: **FATTO MISURATO** (comando, campione, esito) · **FATTO (codice/da
 | Salvataggi veri | **12/12 della 0.28.0** (fra cui e07, e08, e09) e 12/12 della 0.27.0 ripresi sulla stessa chiamata; R1 6/6, R2 3/3; 0 errori. Il primo giro dava 11/12 per un difetto della mia sonda, riparato (§ 5) |
 | Console | **0 errori** in tutte le corse con browser |
 | Schermate con asset veri | 360, 375, 412, 1366: 1916 ciascuna, 0 scorrimenti orizzontali, 0 tagli, 0 nomi vecchi, 0 errori; nessun tipo nuovo di sovrapposizione rispetto alla 0.28.0 |
+| **0.30.0 e 0.31.0** (main a 8eb495e, sezione finale) | C31-01, C31-03, C29-02, C29-04 **chiusi**, con i rossi; C32-02 attenuato in e17 (chiamata `me_lo_dovete` 25/15); 233/233 test, 0 errori |
 
 # 1. Le novità della 0.29.0
 
@@ -234,6 +235,7 @@ Nessuno.
 - Testi di e17 o4: «tutti devono tornare a casa a piedi», «Li riporto io … per la strada di Kiln».
 - Nessun guardiano: `tests/corteo-verso.test.ts` legge il verso nei dati, non le posizioni a schermo, ed è verde. Le misure sui pixel finora erano fatte su una scena schiacciata a 4:3; quelle nuove sono le prime sulla scena giusta.
 - Da decidere se e17 debba avere una `meta` o un riferimento diverso dallo stadio (come e30 col municipio, C30-01).
+- **Nella 0.31.0** (viale dal bordo più vicino, C29-02) e17 migliora ma non torna come prima: la chiamata `me_lo_dovete` fa **25 verso / 15 via** (misto); le ondate o1 sono 47/22 «entra», le o4 19–21/48–50 «esce» (§ «0.30.0 e 0.31.0»).
 
 ## Basso
 
@@ -268,6 +270,10 @@ Nessuno.
 | **C29-06** pigna | scaglie 1,18 px a DPR 1 (rosso C92P01: 0,76) |
 | **C28-07** coppa di e08 senza vincitore | «il Kiln passa ai rigori»; residuo di forma in C32-05 |
 | Presidente in e07/e08 (D-138) | tolto da 4 testi; nessun altro episodio vi fa riferimento; e09 coerente |
+| **C31-01** (0.30.0) e21 o3 senza guardiano | `tests/meta-fase.test.ts:49-50`: togliendo la fase, 1 test rosso su 6 |
+| **C31-03** (0.30.0) «parenti»/«familiari» | `e35.ch.fine_trattativa` «i familiari aspettano» |
+| **C29-02** (0.31.0) e04 o2 «entra» che va via | ondata 69/0, chiamata 40/0 verso lo stadio (rosso C93V01: 8/61, 3/36) |
+| **C29-04** (0.31.0) «Urgente!» nella guida | `guida.5` lo spiega, intero a 360, 375, 412, 1366 |
 | Regressioni | bot 0 blocchi 156/156 × 1000 semi, uguale alla 0.28.0; 229/229 test; tipi 0; salvataggi 12/12 (0.28.0) + 12/12 (0.27.0) + 6/6 + 3/3; 0 errori di console; schermate a 4 misure senza scorrimenti, tagli, nomi vecchi né sovrapposizioni nuove |
 
 # Note di metodo e limiti
@@ -290,4 +296,36 @@ Nessuno.
 | `c32-pixel-confronto.mjs` | due log di `c27-pixel.mjs` su tutti gli episodi: cortei che cambiano classe (verso / via / misto) rispetto allo stadio | `node coordination/sonde/c32-pixel-confronto.mjs <log prima> <log dopo>` |
 | `c32-grandi-var.mjs` | come `c28-grandi.mjs` con variabili iniziali (`VAR=`) e foto di chiamate scelte (`FOTOCH=`) | `W=… H=… EP=… VAR=presidente_incontrato=true FOTOCH=… node coordination/sonde/c32-grandi-var.mjs <radice> <foto> <uscita>` |
 | `c32-salvataggi.mjs` | come `c28-salvataggi.mjs`, con l'attesa vera del «continua» (30 s) | come `c28-salvataggi.mjs` |
+| `c32-guida.mjs` | guida introduttiva da memoria vuota, passo 5: testo, tagli, scorrimenti, pulsanti, foto, a 4 finestre | `node coordination/sonde/c32-guida.mjs <radice> <foto>` |
 | `c32-presidente.mjs` | tentativo a mano di e07/e08 con `presidente_incontrato`: **non usata** (si ferma nelle transizioni); sostituita da `c32-grandi-var.mjs` | — |
+
+# 0.30.0 e 0.31.0 (aggiunta su richiesta della principale)
+
+- **Build:** main a 8eb495e, GAME_VERSION 0.31.0 (`src/versione.ts:219`, commenti `:209-218`); worktree separato, `npm ci` e `npx vite build` verdi.
+- **Cosa è cambiato dalla 0.29.0** (`git diff --stat 5e97c04 8eb495e -- src data schema tools tests`): 7 file, +73/−4: `data/testi/it/comune.json` (`guida.5`), `data/testi/it/e35.json` (`e35.ch.fine_trattativa`), `src/resa/mappa/sfondo.ts` (+20, `bordoLontano`), `src/versione.ts`, `tests/meta-fase.test.ts` (+2), `tests/urgente.test.ts` (+8), `tests/viale.test.ts` (nuovo, 31 righe).
+- Uscite in `coordination/sonde/uscite-c32/v031/`, foto in `docs/foto/c32/v031/`.
+
+| voce | esito | misura |
+|---|---|---|
+| **C31-01** (0.30.0) guardiano della fase di e21 o3 | **chiuso** | `tests/meta-fase.test.ts:49-50` chiede `spalti` = `pieni` in e21 o3. Braccio rosso nel worktree: tolta `"fase": "partita"` da e21 ondata 3 → `npx vitest run tests/meta-fase.test.ts` **rosso**, 1 fallito su 6 («expected 'deflusso' to be 'pieni'», `rosso-c3101-meta-fase.log`); dati veri ripristinati (`git checkout`) → 6/6 verdi |
+| **C31-03** (0.30.0) «parenti» contro «familiari» | **chiuso** | `e35.ch.fine_trattativa` (`data/testi/it/e35.json:106`): «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.», 93 caratteri (limite 100). «Familiari» come in `e35.ch.familiari`, `e35.op.corridoio`, `e35.op.corridoio.r`, `e35.op.steward_familiari.r`, `e35.op.rimanda_comando.r`; nessun «parenti» in e35. GIUDIZIO: «la folla guarda, i familiari aspettano» porta bene alla scelta dopo (corridoio fino ai familiari) |
+| **C29-02** (0.31.0) e04: corteo «entra» che va via dallo stadio | **chiuso** | `W=360 EP=e01,…,e36 RIF=piazza_municipio node coordination/sonde/c27-pixel.mjs`: e04 o2 `coro_fonderie` ondata **69 verso / 0 via**, chiamata **40 / 0**; o1 ondata parcheggi 70 / 0 (0.29.0: 8/61 e 5/35). Rosso `ROSSI=C93V01` (stessa sonda, EP=e04,e17): 8/61 e 3/36, come prima. Guardiano `tests/viale.test.ts` col suo rosso dentro (3/3 verdi) |
+| **C29-04** (0.31.0) «Urgente!» nella guida | **chiuso** | `guida.5` (`data/testi/it/comune.json:105`) spiega il timbro: «nel settore della chiamata, in questa ondata, c'è un evento grave. Vale per il posto, anche se chi chiama parla d'altro»; coerente con la regola D-129 misurata a schermo (urgenti 211/422, 0 diversi dall'atteso). `node coordination/sonde/c32-guida.mjs <radice> <foto>` sulla guida introduttiva, passo 5/6: testo intero, 0 tagli, 0 scorrimenti verticali e orizzontali, pulsanti dentro la finestra, a **360×760, 375×667, 412×915** e 1366×768; 0 errori. Foto `v031/guida/<misura>-guida-5.jpg`; prima `guida-029/…` |
+
+**Effetto del viale nuovo sugli altri cortei (FATTO MISURATO).** `bordoLontano` (`src/resa/mappa/sfondo.ts:72-81`) vale per **tutte** le strade senza `meta` (`:127-128`), non solo per e04. Confronto sui 36 episodi, 0.29.0 contro 0.31.0 (`node coordination/sonde/c32-pixel-confronto.mjs`, `v031/pixel-confronto-029-031.log`): 231 cortei abbinati, **12 cambiano classe**, tutti in e04 (5, quelli corretti) ed e17 (7). Nessun altro episodio cambia.
+
+| e17 (strada da Kiln, senza meta) | 0.28.0 | 0.29.0 | **0.31.0** |
+|---|---|---|---|
+| o1 ondata «entra» | 69 verso / 0 via | 36 / 33 | **47 / 22** |
+| o2 chiamata `ci_vediamo_dopo` | 39 / 0 | 19 / 20 | **26 / 13** |
+| o4 ondata «esce» | 0 / 69–70 | 33 / 36–37 | **19–21 / 48–50** |
+| o4 chiamata `me_lo_dovete` | 6 / 34 | 30 / 10 | **25 / 15** |
+
+C32-02 è quindi **attenuato, non chiuso**: in e17 le ondate tornano in maggioranza nel verso giusto, ma la chiamata `me_lo_dovete` («Li riporto io … per la strada di Kiln») va ancora in maggioranza verso lo stadio (25 su 40).
+
+**Regressioni sulla 0.31.0 (FATTO MISURATO).**
+- `npx vitest run`: **43/43 file, 233/233** test (`v031/vitest.log`); `npx tsc --noEmit -p .`: uscita 0.
+- `node tools/bot.mjs 1000`: 0 blocchi in 156/156, «mai comparse» `[]` 36/36; righe di blocchi ed esiti **identiche** alla 0.29.0 (`v031/bot-1000.log`).
+- `W=360 H=760 node coordination/sonde/c29-schermate.mjs`: 1916 schermate, 0 nomi vecchi, 0 scorrimenti, 0 tagli, 0 tocchi coperti, **0 errori**; urgenti 211/422; C28-14 invariato.
+- Sovrapposizioni: stessi tipi di coppia della 0.29.0, ma in 251 schermate in più c'è un segno ▲▼ transitorio sopra una pastiglia o un nome. Il codice dei segni non è cambiato. Prova con lo stesso carico, e01 ed e02 due volte per build: 0.29.0 53 e 54, 0.31.0 53 e 53 (`v031/segni-*.json`). La differenza viene quindi dal carico durante le corse (la 0.29.0 girava con 4 browser, la 0.31.0 con 2), non dalla build.
+- Non rifatte sulla 0.31.0: misure grandi, mouse, tastiera, rotazione, salvataggi. La 0.31.0 non tocca quei file (diff sopra), ma non posso confermarle con una misura.
