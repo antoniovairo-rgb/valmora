@@ -163,3 +163,18 @@ export async function controllaLargo(pagina, atteso, dove) {
   atteso(`${dove} a 1366×768: comandi col contorno del browser col fuoco da tastiera: ${male.join(', ')} (C28-09)`, !male.length);
   await pagina.setViewportSize(prima); await pagina.waitForTimeout(150);
 }
+
+/** PO-059: nel rapporto di fine ondata protagonista e vice con l'espressione della tensione più alta. Il tono si ricalcola
+ *  qui dalla tensione del motore (livello come in partita.ts: 0 se ≤0, poi ceil(t/2) fino a 5; ≤1 calmo, ≤3 teso, poi
+ *  critico); la vignetta può essere nascosta per mancanza di spazio (D-126 d). Rosso VALMORA_ROSSI=C96P01: niente vignetta. */
+export async function controllaVignettaOndata(pagina, m, rapporto, atteso, dove) {
+  if (!rapporto?.tensione) return;
+  const lv = (t) => (t <= 0 ? 0 : Math.min(5, Math.ceil(t / 2))), max = Math.max(0, ...m.mappa.settori.map((s) => lv(rapporto.tensione[s.id] ?? 0)));
+  const atteso2 = max <= 1 ? 'calmo' : max <= 3 ? 'teso' : 'critico';
+  const r = await pagina.evaluate(() => { const c = document.querySelector('.scena [data-tono]'), v = c?.querySelector('[data-vignetta^="ondata-"]');
+    return { tono: c?.dataset.tono ?? null, vignetta: v?.dataset.vignetta ?? null, nascosta: !!v?.hasAttribute('data-nascosta'), braccia: [...(v?.querySelectorAll('[data-braccia]') ?? [])].map((b) => b.dataset.braccia).join(',') }; });
+  atteso(`${dove}: manca la vignetta di fine ondata (PO-059)`, r.tono !== null);
+  if (r.tono === null) return;
+  atteso(`${dove}: tono «${r.tono}» (vignetta «${r.vignetta}»), la tensione dice «${atteso2}» (PO-059)`, r.tono === atteso2 && r.vignetta === `ondata-${atteso2}`);
+  atteso(`${dove}: tono critico senza la mano alla nuca (PO-059)`, r.nascosta || atteso2 !== 'critico' || r.braccia.includes('nuca'));
+}

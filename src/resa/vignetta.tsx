@@ -52,7 +52,7 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
 
 export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean; evento?: string; ritaglio?: string }) {
   const el = useRef<SVGSVGElement>(null);
-  useRiempi(el, !p.fissa, /^(apertura|esito)-/.test(p.nome)); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
+  useRiempi(el, !p.fissa, /^(apertura|esito|ondata)-/.test(p.nome)); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
   if (spento('C26V01')) return null;
   return (
     <svg ref={el} className="vignetta" viewBox="0 0 320 180" preserveAspectRatio={p.ritaglio ?? 'xMidYMid meet'} role="img" aria-label={p.titolo} data-vignetta={p.nome} data-evento={p.evento}>
@@ -71,13 +71,16 @@ export function Vignetta(p: { nome: string; titolo: string; children: ReactNode;
 
 /** Busto a fumetto in stile C (PO-092, D-114): spalle con la giacca e l'ombra a retino, colletto, collo, testa con
  *  orecchie, sopracciglia, occhi con la luce, naso; capelli lunghi, corti o berretto; espressione dalla bocca. */
-export function Persona(p: { x: number; y: number; s?: number; giacca: string; capelli: 'corti' | 'lunghi' | 'berretto'; bocca?: 'su' | 'giu' | 'dritta'; baffi?: boolean; distintivo?: boolean }) {
+export function Persona(p: { x: number; y: number; s?: number; giacca: string; capelli: 'corti' | 'lunghi' | 'berretto'; bocca?: 'su' | 'giu' | 'dritta'; baffi?: boolean; distintivo?: boolean; sopracciglia?: 'su' | 'giu'; braccia?: 'su' | 'nuca' }) {
   const s = (p.s ?? 1) * 0.8;
   const bocca = p.bocca === 'giu' ? 'M-7 19 Q0 13 7 19' : p.bocca === 'dritta' ? 'M-6 17 L6 17' : 'M-7 15 Q0 22 7 15';
   return (
     <g transform={`translate(${p.x} ${p.y}) scale(${s})`}>
       <path d="M-44 92 Q-46 52 -20 44 L0 52 L20 44 Q46 52 44 92 Z" className={`${p.giacca} v-tratto`} />
       <path d="M10 48 Q40 54 42 92 L18 92 Z" className="v-ombra" />
+      {/* PO-059: braccia alzate (festa) o una mano alla nuca (preoccupazione) */}
+      {p.braccia === 'su' && <g data-braccia="su"><path d="M-40 62 L-58 8 L-47 4 L-30 54 Z M40 62 L58 8 L47 4 L30 54 Z" className={`${p.giacca} v-tratto`} /><circle cx="-53" cy="3" r="6" className="v-pelle v-tratto" /><circle cx="53" cy="3" r="6" className="v-pelle v-tratto" /></g>}
+      {p.braccia === 'nuca' && <g data-braccia="nuca"><path d="M34 58 L46 22 L32 -8 L22 -4 L35 22 L24 52 Z" className={`${p.giacca} v-tratto`} /><circle cx="26" cy="-8" r="6" className="v-pelle v-tratto" /></g>}
       <path d="M-20 44 L-6 70 L0 52 L6 70 L20 44" className="v-bianco v-tratto" />
       {p.distintivo && <path d="M-30 62 l6 -4 l6 4 l-1 8 l-5 3 l-5 -3 Z" className="v-giallo v-tratto" />}
       <path d="M-9 30 L-9 46 Q0 52 9 46 L9 30" className="v-pelle v-tratto" />
@@ -87,7 +90,7 @@ export function Persona(p: { x: number; y: number; s?: number; giacca: string; c
       {p.capelli === 'lunghi' && <path d="M-24 4 Q-30 -36 0 -36 Q30 -36 24 4 L26 36 L14 30 L15 -10 Q0 -20 -15 -10 L-14 30 L-26 36 Z" className="v-capelli v-tratto" />}
       {p.capelli === 'corti' && <path d="M-23 -2 Q-24 -36 0 -35 Q24 -36 23 -2 Q12 -16 -23 -2 Z" className="v-capelli v-tratto" />}
       {p.capelli === 'berretto' && <g><path d="M-24 -6 Q-24 -36 0 -36 Q24 -36 24 -6 Z" className="v-giacca-scura v-tratto" /><path d="M-26 -6 H30 L40 -2 L-24 -1 Z" className="v-nero v-tratto" /><path d="M-6 -30 l6 -4 l6 4 l-1 7 l-5 3 l-5 -3 Z" className="v-giallo v-tratto" /></g>}
-      <path d="M-14 -6 q6 -4 11 0 M3 -6 q6 -4 11 0" className="v-linea" />
+      <path d={p.sopracciglia === 'su' ? 'M-14 -10 q6 -5 11 0 M3 -10 q6 -5 11 0' : p.sopracciglia === 'giu' ? 'M-14 -5 L-3 -9 M3 -9 L14 -5' : 'M-14 -6 q6 -4 11 0 M3 -6 q6 -4 11 0'} className="v-linea" data-sopracciglia={p.sopracciglia ?? ''} />
       <ellipse cx="-8" cy="1" rx="2.4" ry="3" className="v-nero" /><ellipse cx="8" cy="1" rx="2.4" ry="3" className="v-nero" />
       <circle cx="-7.2" cy="0" r="0.9" className="v-bianco" /><circle cx="8.8" cy="0" r="0.9" className="v-bianco" />
       <path d="M0 2 Q-3 10 1 12" className="v-linea" />

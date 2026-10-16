@@ -6,12 +6,16 @@
 import { ChevronRight, FileText, Moon } from 'lucide-react';
 import type { RapportoOndata } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
-import { t, quante } from '../dati.ts';
+import { genereAttuale, t, quante } from '../dati.ts';
+import { tonoOndata } from '../espressioni.ts';
+import { VignettaOndata } from '../vignette-gioco.tsx';
 import { Icona } from '../icone.tsx';
 import { spento } from '../../interruttori.ts';
 import { livello, statoSettore } from '../partita.ts';
 
 export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; prossime: Record<string, number>; avanti: () => void }) {
+  // PO-059: protagonista e vice con l'espressione della tensione più alta a fine ondata. Rosso C96P01: niente vignetta.
+  const tono = tonoOndata(p.m.mappa.settori.map((s) => livello(p.r.tensione[s.id] ?? 0)));
   const riposo = Object.entries(p.r.aRiposo).filter(([, n]) => n > 0);
   // PO-087: «scoperto» dice sempre perché: cosa ha pesato sul settore e quanto lo coprivi
   const causa = (c: NonNullable<RapportoOndata['causa']>[string]) => {
@@ -30,6 +34,7 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
   ) : null;
   return (
     <>
+      {!spento('C96P01') && <div className="vignetta-cornice" data-tono={tono}><VignettaOndata tono={tono} genere={genereAttuale() === 'f' ? 'f' : 'm'} /></div>}
       {/* C18-09: la riga della fiducia prima dei settori: in fondo finiva sotto il pulsante fisso. Rosso C42F01: in fondo. */}
       {!spento('C42F01') && fiducia}
       <div className="scheda">

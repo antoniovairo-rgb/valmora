@@ -306,7 +306,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             // Se la ripresa non torna al rapporto (difetto R04) si è già allo schieramento dopo: si prosegue da lì.
             if (completa && n === 1 && !(await ricaricaERiprendi('rapporto', 'ricarica sul rapporto (C-005 R04)'))) continue;
             const cifre = await pagina.locator('.elenco-settori').textContent();
-            atteso(`rapporto ${n}: la tensione si vede in numeri (D-055): «${cifre}»`, !/\d/.test(cifre ?? '')); await controllaPicco(pagina, p.m, o.rapporto, atteso); await controllaCifreTensione(pagina, atteso, `${p.m.id} rapporto ${n}`); await controllaFiduciaRapporto(pagina, atteso, `${p.m.id} rapporto ${n}`);
+            atteso(`rapporto ${n}: la tensione si vede in numeri (D-055): «${cifre}»`, !/\d/.test(cifre ?? '')); await controllaPicco(pagina, p.m, o.rapporto, atteso); await (await import('./foto-c22.mjs')).controllaVignettaOndata(pagina, p.m, o.rapporto, atteso, `${p.m.id} rapporto ${n}`); await controllaCifreTensione(pagina, atteso, `${p.m.id} rapporto ${n}`); await controllaFiduciaRapporto(pagina, atteso, `${p.m.id} rapporto ${n}`);
             await premi('[data-azione="avanti"]');
           }
           await scena('verbale'); await foto(); await controllaSfida(pagina, p.m, atteso, 'verbale'); await controllaVignetta(pagina, 'esito-', atteso, `${p.m.id} verbale`); await controllaCifreTensione(pagina, atteso, `${p.m.id} verbale`); await controllaSfidaBusti(pagina, atteso, `${p.m.id} verbale`);
