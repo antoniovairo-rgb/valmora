@@ -29,3 +29,11 @@ describe('D-129 urgenza solo con pressione ≥ 4', () => {
     for (const x of chiamate) expect(urgente(x.m, x.c)).toBe(eventi(x).length > 0);
   });
 });
+
+describe('C29-04 la guida spiega «Urgente!»', () => {
+  it('il passo sulle chiamate (guida.5) dice che il timbro vale per il settore dell\'ondata', () => {
+    const t = JSON.parse(readFileSync('data/testi/it/comune.json', 'utf8'))['guida.5'] as string;
+    expect(t).toMatch(/«Urgente!»/);
+    expect(t).toMatch(/settore/);
+  });
+});
