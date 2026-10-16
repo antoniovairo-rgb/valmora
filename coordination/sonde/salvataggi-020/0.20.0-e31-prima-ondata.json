@@ -1,0 +1,1390 @@
+{
+ "save_version": 2,
+ "game_version": "0.20.0",
+ "seme": 1,
+ "caso": 1,
+ "variabili": {
+  "tensione_max": 0,
+  "credito": 5,
+  "informatore_pagato": false,
+  "presidente_incontrato": false,
+  "furgone_visto": false,
+  "rapporto_dessi": "neutro",
+  "testimone": "nessuno",
+  "busta": "nessuna",
+  "pista_cattura": "nessuna",
+  "fascicolo": "nessuno",
+  "sospetti_talpa": 0
+ },
+ "missioni_concluse": [
+  "e01",
+  "e02",
+  "e03",
+  "e04",
+  "e05",
+  "e06",
+  "e07",
+  "e08",
+  "e09",
+  "e10",
+  "e11",
+  "e12",
+  "e13",
+  "e14",
+  "e15",
+  "e16",
+  "e17",
+  "e18",
+  "e19",
+  "e20",
+  "e21",
+  "e22",
+  "e23",
+  "e24",
+  "e25",
+  "e26",
+  "e27",
+  "e28",
+  "e29",
+  "e30",
+  "e31",
+  "e32",
+  "e33",
+  "e34",
+  "e35",
+  "e36"
+ ],
+ "episodi": {
+  "e01": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e02": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e03": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e04": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e05": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e06": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e07": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e08": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e09": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e10": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e11": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e12": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e13": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e14": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e15": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e16": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e17": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e18": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e19": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e20": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e21": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e22": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e23": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e24": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e25": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e26": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e27": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e28": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e29": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e30": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e31": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e32": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e33": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e34": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e35": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  },
+  "e36": {
+   "migliore": {
+    "esito": "confermato",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   },
+   "variabili_dopo": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0
+   }
+  }
+ },
+ "genere": "m",
+ "rapporto_aperto": null,
+ "in_corso": {
+  "missione": "e31",
+  "ondata": 1,
+  "tensione": {
+   "piazzale": 0,
+   "curva_ospiti": 0,
+   "tribuna_autorita": 0,
+   "stazione": 0,
+   "viale_stazione": 0
+  },
+  "riserva": {
+   "squadre": -1,
+   "steward": 0,
+   "mediatore": 0
+  },
+  "riposo": {
+   "squadre": 0,
+   "steward": 0,
+   "mediatore": 0
+  },
+  "disposizione": {
+   "squadre": {
+    "tribuna_autorita": 2,
+    "stazione": 2,
+    "viale_stazione": 1
+   },
+   "steward": {
+    "piazzale": 5,
+    "viale_stazione": 1
+   },
+   "mediatore": {
+    "piazzale": 1
+   }
+  },
+  "modifiche": {
+   "viale_stazione": -2
+  },
+  "risposte": {
+   "viale_lavori": "scorta_viale"
+  },
+  "scelte": [
+   {
+    "ondata": 1,
+    "chiamata": "viale_lavori",
+    "opzione": "scorta_viale"
+   }
+  ],
+  "rapporti": [],
+  "variabili": {
+   "tensione_max": 0,
+   "credito": 5,
+   "informatore_pagato": false,
+   "presidente_incontrato": false,
+   "furgone_visto": false,
+   "rapporto_dessi": "neutro",
+   "testimone": "nessuno",
+   "busta": "nessuna",
+   "pista_cattura": "nessuna",
+   "fascicolo": "nessuno",
+   "sospetti_talpa": 0
+  },
+  "partenze": {
+   "1": {
+    "missione": "e31",
+    "ondata": 1,
+    "tensione": {
+     "piazzale": 0,
+     "curva_ospiti": 0,
+     "tribuna_autorita": 0,
+     "stazione": 0,
+     "viale_stazione": 0
+    },
+    "riserva": {
+     "squadre": 0,
+     "steward": 0,
+     "mediatore": 0
+    },
+    "riposo": {
+     "squadre": 0,
+     "steward": 0,
+     "mediatore": 0
+    },
+    "disposizione": null,
+    "modifiche": {},
+    "risposte": {},
+    "scelte": [],
+    "rapporti": [],
+    "variabili": {
+     "tensione_max": 0,
+     "credito": 5,
+     "informatore_pagato": false,
+     "presidente_incontrato": false,
+     "furgone_visto": false,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0
+    }
+   }
+  }
+ },
+ "bozza": null,
+ "sconfitta": null
+}

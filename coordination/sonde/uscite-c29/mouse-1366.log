@@ -1,0 +1,19 @@
+e01: BLOCCO page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-azione="passo"]')[22m
+[2m    - locator resolved to <button data-c28="6" cla
+e13: BLOCCO page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-azione="passo"]')[22m
+[2m    - locator resolved to <button class="pulsante"
+e19: BLOCCO page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-azione="passo"]')[22m
+[2m    - locator resolved to <button class="pulsante"
+chiamate 0: con un'opzione già accesa sotto il puntatore fermo 0 ()
+comandi attivi 43: senza :hover 43, cursore non «pointer» 0
+comandi disattivati 5: con cursore «pointer» 0, che cambiano sotto il puntatore 0
+{"ep":"e01","prova":"episodio intero col mouse","ok":false,"errore":"page.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-azione=\"passo\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button data-c28=\"6\" class=\"pulsante\" data-azione=\"passo\">…</but"}
+{"ep":"e13","prova":"episodio intero col mouse","ok":false,"errore":"page.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-azione=\"passo\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"pulsante\" data-azione=\"passo\">…</button>\u001b[22m\n\u001b[2"}
+{"ep":"e19","prova":"episodio intero col mouse","ok":false,"errore":"page.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-azione=\"passo\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"pulsante\" data-azione=\"passo\">…</button>\u001b[22m\n\u001b[2"}
+errori 0

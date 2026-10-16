@@ -1,0 +1,16 @@
+W 412: giri 150, completati 150, errori 7
+  giro 43: TypeError: Cannot read properties of undefined (reading 'on')
+    at rd (http://127.0.0.1:39653/assets/sfondo-BWsKIkUm.js:242:8848)
+    at http://127.0.0.1:3965
+  giro 53: TypeError: Cannot read properties of undefined (reading 'on')
+    at rd (http://127.0.0.1:39653/assets/sfondo-BWsKIkUm.js:242:8848)
+    at http://127.0.0.1:3965
+  giro 53: TypeError: Cannot read properties of undefined (reading 'on')
+    at rd (http://127.0.0.1:39653/assets/sfondo-BWsKIkUm.js:242:8848)
+    at http://127.0.0.1:3965
+  giro 59: TypeError: Cannot read properties of undefined (reading 'on')
+    at rd (http://127.0.0.1:39653/assets/sfondo-BWsKIkUm.js:242:8848)
+    at http://127.0.0.1:3965
+  giro 60: TypeError: Cannot read properties of undefined (reading 'on')
+    at rd (http://127.0.0.1:39653/assets/sfondo-BWsKIkUm.js:242:8848)
+    at http://127.0.0.1:3965

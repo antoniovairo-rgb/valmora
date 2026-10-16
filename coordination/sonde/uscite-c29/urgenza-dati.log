@@ -1,0 +1,73 @@
+chiamate 498; senza settore 40; urgenti D-129 235 (47.2 %); D-126 c 415 (83.3 %)
+tipo evento | chiamate sul settore | di cui urgenti
+curva | 98 | 75
+folla | 77 | 28
+corteo | 61 | 51
+arrivo | 43 | 28
+protesta | 16 | 9
+biglietti | 15 | 4
+movimento | 13 | 1
+raduno | 11 | 4
+cerimonia | 10 | 0
+deflusso | 9 | 8
+festa | 9 | 6
+presidio | 8 | 2
+incendio | 6 | 6
+sosta | 5 | 3
+rissa | 5 | 3
+furgone | 5 | 0
+minaccia | 5 | 1
+picchetto | 4 | 0
+retata | 4 | 1
+faida | 4 | 3
+assembramento | 3 | 1
+traffico | 3 | 1
+lite | 2 | 2
+fuga | 1 | 0
+
+chiamate NON urgenti con rissa/incendio/scontro/faida sul settore: 3
+  e09 o2 lite_coda [rissa:3] «testi:e09.ch.lite_coda»
+  e09 o2 immagini_club [rissa:3] «testi:e09.ch.immagini_club»
+  e21 o1 nuovo_capo [faida:3] «testi:e21.ch.nuovo_capo»
+
+chiamate urgenti con soli eventi di gente/traffico/biglietti: 77
+  e02 ritardo [arrivo:4]
+  e02 tornelli_falsi [biglietti:4]
+  e02 presidente_aiuta [biglietti:4]
+  e02 ultimo_treno [arrivo:4]
+  e03 ospiti_arrivano [sosta:5]
+  e03 risultato [folla:6]
+  e04 arance [folla:5]
+  e04 banco_calzini [folla:5]
+  e04 fumo_arancio [raduno:4]
+  e04 coro_fonderie [arrivo:4]
+  e04 casalinghi [deflusso:5]
+  e04 furgone_mercato [deflusso:5]
+  e05 fondo_strada [deflusso:4]
+  e06 bis [folla:4]
+  e06 favore_impresa [folla:4]
+  e06 furgone_palco [deflusso:5]
+  e07 quaranta_pulmini [arrivo:4]
+  e07 coro_imparato [raduno:4]
+  e09 furgone_coinvolto [arrivo:4]
+  e09 pullman_fermi [arrivo:4]
+  e09 passaggio [arrivo:4]
+  e10 ponte_ritorno [deflusso:4]
+  e11 treno_ritorno [arrivo:5]
+  e11 chi_paga [folla:4]
+  e12 targa_davanti [folla:4]
+  e12 rinforzi [folla:5]
+  e13 viale_pieno [arrivo:4]
+  e13 coda_auto [deflusso:5]
+  e14 uscita_ospiti14 [deflusso:5]
+  e14 titolo_domani [deflusso:5]
+  e15 treno_amici [arrivo:4]
+  e15 accompagnarli [arrivo:4]
+  e15 borsa_magazzino [arrivo:4]
+  e17 cancelli [folla:4]
+  e17 radio_bar [raduno:4]
+  e17 undici [raduno:4]
+  e22 sindaco_tribuna [folla:4]
+  e23 traslochi [arrivo:4]
+  e23 traghetto_extra [arrivo:4]
+  e23 barca [arrivo:4]

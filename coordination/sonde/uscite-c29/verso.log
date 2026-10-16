@@ -1,0 +1,13 @@
+== 0.25.0
+e30 o1 chiamata-autobus_sera          dinamica=corteo:viale_stazione          data-folla=vuoti|                               chiamata: 40 verso / 0 via (n 40)    ondata stessa strada: —
+e30 o2 chiamata-silenzio_totale       dinamica=corteo:strada_cinderwick       data-folla=vuoti|strada_cinderwick>esce         chiamata: 13 verso / 27 via (n 40)   ondata stessa strada: 1 verso / 69 via (n 70)
+e30 o2 chiamata-clacson               dinamica=corteo:viale_stazione          data-folla=vuoti|strada_cinderwick>esce         chiamata: 39 verso / 0 via (n 39)    ondata stessa strada: —
+e30 o3 chiamata-saluto_larkspire      dinamica=corteo:strada_cinderwick       data-folla=vuoti|strada_cinderwick>entra        chiamata: 37 verso / 2 via (n 39)    ondata stessa strada: 68 verso / 1 via (n 69)
+e30 o4 chiamata-fiaccolata            dinamica=corteo:strada_cinderwick       data-folla=vuoti|strada_cinderwick>esce         chiamata: 13 verso / 26 via (n 39)   ondata stessa strada: 1 verso / 68 via (n 69)
+e17 o1 chiamata-schermo_comizi        dinamica=corteo:piazza_municipio        data-folla=vuoti|strada_cinderwick>entra        chiamata: 39 verso / 0 via (n 39)    ondata stessa strada: —
+e17 o2 chiamata-ci_vediamo_dopo       dinamica=corteo:strada_cinderwick       data-folla=vuoti|                               chiamata: 40 verso / 0 via (n 40)    ondata stessa strada: —
+e17 o4 chiamata-me_lo_dovete          dinamica=corteo:strada_cinderwick       data-folla=vuoti|strada_cinderwick>esce,piazza_municipio>esce chiamata: 6 verso / 33 via (n 39)    ondata stessa strada: 0 verso / 69 via (n 69)
+e17 o4 chiamata-fine_corteo           dinamica=corteo:piazza_municipio        data-folla=vuoti|strada_cinderwick>esce,piazza_municipio>esce chiamata: 0 verso / 39 via (n 39)    ondata stessa strada: 0 verso / 69 via (n 69)
+e04 o1 chiamata-corteo_fonderie       dinamica=corteo:strada_cinderwick       data-folla=vuoti|strada_cinderwick>entra,parcheggi>entra chiamata: 39 verso / 0 via (n 39)    ondata stessa strada: 69 verso / 0 via (n 69)
+e04 o2 chiamata-coro_fonderie         dinamica=corteo:parcheggi               data-folla=vuoti|parcheggi>entra                chiamata: 8 verso / 32 via (n 40)    ondata stessa strada: 11 verso / 58 via (n 69)
+e04 o3 chiamata-angolo                dinamica=corteo:strada_cinderwick       data-folla=vuoti|strada_cinderwick>esce         chiamata: 0 verso / 39 via (n 39)    ondata stessa strada: 0 verso / 70 via (n 70)
