@@ -9,7 +9,7 @@ import { spento } from '../../interruttori.ts';
 import type { Missione } from '../../logica/tipi.ts';
 
 export type Spalti = 'pieni' | 'arrivo' | 'deflusso' | 'vuoti';
-export interface Corteo { settore: string; verso: 'entra' | 'esce'; /** C-021: club dei tifosi dell'evento (dati), se c'è */ club?: string }
+export interface Corteo { settore: string; verso: 'entra' | 'esce'; /** C-021: club dei tifosi dell'evento (dati), se c'è */ club?: string; /** D-141: il verso scritto nei dati, se c'è */ dato?: string }
 export interface Folla { spalti: Spalti; cortei: Corteo[]; /** C23-01: club dei tifosi per strada, dagli eventi dell'ondata (anche in partita) */ club?: Record<string, string> }
 
 /** Eventi che vogliono dire gente che cammina in strada. */
@@ -38,7 +38,7 @@ export function follaDellOndata(m: Missione, n: number): Folla {
       // D-127 (C24-07): se i dati dicono il verso del corteo, vale quello; altrimenti lo decide la partita. Rosso C73V01: no.
       const scritto = spento('C73V01') ? undefined : inStrada.find((e) => e.settore === settore && e.verso)?.verso;
       const verso = scritto ? (scritto === 'dallo_stadio' ? 'esce' : 'entra') : dopo ? 'esce' : 'entra';
-      return { settore, verso, ...(club ? { club } : {}) };
+      return { settore, verso, ...(club ? { club } : {}), ...(scritto ? { dato: scritto } : {}) };
     });
   return { spalti: senzaCurve ? 'vuoti' : dopo ? 'deflusso' : 'arrivo', cortei, club };
 }

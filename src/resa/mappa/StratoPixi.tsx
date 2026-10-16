@@ -77,8 +77,9 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
       // C-021: club dell'evento → club della strada → curva omonima → neutro grigio (gli ultimi tre in coloriViali)
       const delClub = c.club ? datiClub.get(c.club)?.colori : undefined;
       const colori: [string, string] = delClub ? [colore(delClub.primario)!, colore(delClub.secondario)!] : animati.coloriViali[c.settore] ?? animati.coloriCorteo;
-      // C31-02: dal viale che parte dallo stadio (con la meta) il corteo va verso la meta: via dallo stadio
-      return v ? [{ ...c, verso: v.versoMeta ? 'entra' as const : c.verso, punti: v.punti, colori, origine: delClub?.primario ?? animati.origineViali[c.settore] }] : [];
+      // C31-02: dal viale che parte dallo stadio (con la meta) il corteo va verso la meta: via dallo stadio. D-141 (C33-02):
+      // se i dati dicono «dalla_meta», dalla meta verso lo stadio. Rosso C99M01: sempre verso la meta, come prima.
+      return v ? [{ ...c, verso: v.versoMeta ? (c.dato === 'dalla_meta' && !spento('C99M01') ? 'esce' as const : 'entra' as const) : c.verso, punti: v.punti, colori, origine: delClub?.primario ?? animati.origineViali[c.settore] }] : [];
     });
     const marcia = cortei.flatMap((c) => Array.from({ length: 70 }, (_, i) => {
       const h = gc.alone ? new Particle({ texture: gc.alone.tex, scaleX: gc.alone.scala, scaleY: gc.alone.scala, anchorX: 0.5, anchorY: 0.5 }) : null;
@@ -165,7 +166,7 @@ function Disegno(p: { punti: PuntoMappa[]; margine: Margine; atmosfera: Atmosfer
     // C23-01: club dell'evento dell'ondata → club della strada → curva omonima → neutro (come i cortei dell'ondata)
     const delClub = d && p.folla.club?.[d.settore] ? datiClub.get(p.folla.club[d.settore]!)?.colori : undefined;
     const colori: [string, string] = delClub ? [colore(delClub.primario)!, colore(delClub.secondario)!] : d ? coloriDin.current[d.settore] ?? neutroCorteo().map(token) as [string, string] : ['', ''];
-    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, colori, !vialiDin.current.find((v) => v.id === d.settore)?.versoMeta && esceDinamica(p.folla, d.settore)) : null;
+    muoviDin.current = d && q ? costruisciDinamica(livello, d, q, vialiDin.current.find((v) => v.id === d.settore)?.punti ?? null, colori, (vialiDin.current.find((v) => v.id === d.settore)?.versoMeta ? p.folla.cortei.find((c) => c.settore === d.settore)?.dato === 'dalla_meta' && !spento('C99M01') : esceDinamica(p.folla, d.settore))) : null;
     muoviDin.current?.(0);
     p.contenitore.current?.setAttribute('data-dinamica', d ? `${d.tipo}:${d.settore}` : '');
     p.contenitore.current?.setAttribute('data-dinamica-colori', d?.tipo === 'corteo' ? delClub?.primario ?? origineDin.current[d.settore] ?? 'neutro' : '');

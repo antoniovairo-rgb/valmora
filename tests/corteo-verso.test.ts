@@ -15,15 +15,16 @@ describe('D-127 verso del corteo dai dati', () => {
   // nel verso del viale, cioè «entra» verso la meta; l'ondata 4 (fiaccolata dal municipio al porto) se ne allontana.
   it('e30 ondata 2 verso la meta (municipio), ondata 4 ed e17 ondata 4 via', () => {
     expect(verso('e30', 2)).toBe('entra');
-    expect(verso('e30', 4)).toBe('esce');
+    // D-141 (C33-02): e30 ondata 4 è «dalla_meta» (dal municipio verso lo stadio): rispetto allo stadio entra
+    expect(verso('e30', 4)).toBe('entra');
     expect(verso('e17', 4)).toBe('esce');
   });
   it('senza campo verso non cambia (e01 ondata 1: verso lo stadio)', () => {
     for (const c of follaDellOndata(ep('e01'), 1).cortei) expect(c.verso).toBe('entra');
   });
-  it('braccio rosso __NO_C73V01: e30 ondata 4 verso lo stadio, il difetto del collaudo', () => {
+  it('braccio rosso __NO_C73V01: e17 ondata 4 verso lo stadio, il difetto del collaudo (e30 o4 è ora «dalla_meta», D-141)', () => {
     g.__NO_C73V01 = true;
-    expect(verso('e30', 4)).toBe('entra');
+    expect(verso('e17', 4)).toBe('entra');
   });
 });
 
@@ -32,15 +33,15 @@ describe('C27-01 il corteo della chiamata va col corteo dell\'ondata', () => {
   const esce = (id: string, n: number, settore: string) => esceDinamica(follaDellOndata(ep(id), n), settore);
   it('e30 ondata 2 verso il municipio come l\'ondata; ondata 4 ed e17 ondata 4 via', () => {
     expect(esce('e30', 2, 'strada_cinderwick')).toBe(false);
-    expect(esce('e30', 4, 'strada_cinderwick')).toBe(true);
+    expect(esce('e30', 4, 'strada_cinderwick')).toBe(false); // D-141: «dalla_meta», verso lo stadio
     expect(esce('e17', 4, 'strada_cinderwick')).toBe(true);
     expect(esce('e17', 4, 'piazza_municipio')).toBe(true);
   });
   it('senza corteo dell\'ondata decide la partita, come prima (e01 ondata 1: verso lo stadio)', () => {
     for (const s of ep('e01').mappa.settori) expect(esce('e01', 1, s.id)).toBe(false);
   });
-  it('braccio rosso __NO_C74D01: e30 ondata 4, la chiamata torna verso lo stadio (il difetto del collaudo)', () => {
+  it('braccio rosso __NO_C74D01: e17 ondata 4, la chiamata torna verso lo stadio (il difetto del collaudo)', () => {
     g.__NO_C74D01 = true;
-    expect(esce('e30', 4, 'strada_cinderwick')).toBe(false);
+    expect(esce('e17', 4, 'strada_cinderwick')).toBe(false);
   });
 });

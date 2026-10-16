@@ -64,3 +64,10 @@ describe('C32-02 e17: la strada di Kiln va verso il centro del corteo', () => {
     expect(ep('e17').mappa.settori.find((s) => s.id === 'strada_cinderwick')?.meta).toBe('piazza_municipio');
   });
 });
+
+describe('D-141 (C33-02) verso «dalla_meta» nei dati', () => {
+  it('e30 ondata 4: la fiaccolata porta il verso dei dati «dalla_meta»; e17 ondata 4 resta «dallo_stadio»', () => {
+    expect(follaDellOndata(ep('e30'), 4).cortei.find((c) => c.settore === 'strada_cinderwick')?.dato).toBe('dalla_meta');
+    expect(follaDellOndata(ep('e17'), 4).cortei.find((c) => c.settore === 'strada_cinderwick')?.dato).toBe('dallo_stadio');
+  });
+});

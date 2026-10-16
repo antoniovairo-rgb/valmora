@@ -262,7 +262,7 @@
                   "description": "C-021: club dei tifosi dell'evento in strada (colori del corteo); se manca, quello della strada"
                 },
                 "verso": {
-                  "enum": ["verso_lo_stadio", "dallo_stadio"],
+                  "enum": ["verso_lo_stadio", "dallo_stadio", "dalla_meta"],
                   "description": "D-127 (C24-07): verso del corteo in strada; se manca, lo decide la partita (prima: verso lo stadio, dopo: via)"
                 }
               }
