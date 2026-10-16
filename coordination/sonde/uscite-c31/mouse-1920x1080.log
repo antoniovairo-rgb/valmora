@@ -1,2 +1,28 @@
 e01: finito col mouse
 e13: finito col mouse
+e19: finito col mouse
+chiamate 39: con un'opzione già accesa sotto il puntatore fermo 29 (asseconda, conta, chiedi, lascia, vai, nessuna, scorrere, annota)
+comandi attivi 135: senza :hover 133, cursore non «pointer» 3
+comandi disattivati 64: con cursore «pointer» 0, che cambiano sotto il puntatore 0
+{"ep":"e01","prova":"trascina squadre su curva_cinderwick","prima":0,"dopo":1,"ok":true}
+{"ep":"e01","prova":"ritiro col clic sulla pastiglia","prima":1,"dopo":0,"ok":true}
+{"ep":"e01","prova":"rotella sopra .mappa","sotto":"CANVAS.mappa-tela","scrollY":25,"alto":25}
+{"ep":"e01","prova":"rotella sopra .chiamata-corpo","sotto":"P.vice-a-margine","scrollY":25,"alto":25}
+{"ep":"e01","prova":"rotella sopra .mappa","sotto":"CANVAS.mappa-tela","scrollY":25,"alto":25}
+{"ep":"e01","prova":"rotella sopra .chiamata-corpo","sotto":"P.vice-a-margine","scrollY":25,"alto":25}
+{"ep":"e01","prova":"episodio intero col mouse","ok":true}
+{"ep":"e13","prova":"trascina squadre su viale_concerto","prima":0,"dopo":1,"ok":true}
+{"ep":"e13","prova":"ritiro col clic sulla pastiglia","prima":1,"dopo":0,"ok":true}
+{"ep":"e13","prova":"rotella sopra .mappa","sotto":"CANVAS.mappa-tela","scrollY":48,"alto":48}
+{"ep":"e13","prova":"rotella sopra .chiamata-corpo","sotto":"P.testo-radio","scrollY":48,"alto":48}
+{"ep":"e13","prova":"rotella sopra .mappa","sotto":"CANVAS.mappa-tela","scrollY":48,"alto":48}
+{"ep":"e13","prova":"rotella sopra .chiamata-corpo","sotto":"P.testo-radio","scrollY":48,"alto":48}
+{"ep":"e13","prova":"episodio intero col mouse","ok":true}
+{"ep":"e19","prova":"trascina squadre su curva_cinderwick","prima":0,"dopo":1,"ok":true}
+{"ep":"e19","prova":"ritiro col clic sulla pastiglia","prima":1,"dopo":0,"ok":true}
+{"ep":"e19","prova":"rotella sopra .mappa","sotto":"CANVAS.mappa-tela","scrollY":85,"alto":85}
+{"ep":"e19","prova":"rotella sopra .chiamata-corpo","sotto":"P.vice-a-margine","scrollY":85,"alto":85}
+{"ep":"e19","prova":"rotella sopra .mappa","sotto":"CANVAS.mappa-tela","scrollY":85,"alto":85}
+{"ep":"e19","prova":"rotella sopra .chiamata-corpo","sotto":"P.vice-a-margine","scrollY":85,"alto":85}
+{"ep":"e19","prova":"episodio intero col mouse","ok":true}
+errori 0
