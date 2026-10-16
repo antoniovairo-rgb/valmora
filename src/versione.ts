@@ -216,4 +216,11 @@
 //   C29-04 il cartello «Urgente!» non era spiegato nella guida.
 //   misura: catena completa 3/3 sul ramo della sviluppatrice (7e28ab4); viale dal bordo giusto; guida.5 spiega «Urgente!».
 //   guardiano: tests/viale.test.ts (rosso C93V01), tests/urgente.test.ts; limiti di lunghezza dei testi.
-export const GAME_VERSION = '0.31.0';
+// 0.32.0 – pastiglie a tetto 0 (D-136), corteo di e30 dal bordo dello stadio (C31-02), tre rilievi del collaudo C-032.
+//   causa: C28-14 e 7 casi in cui una pastiglia copriva un nome; C31-02 in e30 il viale con meta partiva dal bordo e il
+//   corteo si avvicinava allo stadio (57/69); C32-03 in e07/e08 l'offerta del club firmata «il vice»; C32-05 e08 ai
+//   rigori senza supplementari, e il vice che «vince la scommessa» dopo aver detto «stavolta non scommetto».
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (1a42d48): pastiglie sopra i nomi 0/142 ondate a 360/375/412
+//   (rosso C94N01: 7); e30 ondate 2-4 via dallo stadio 69/0, verso il municipio 62-64; e07/e08 fonte del club.
+//   guardiano: rossi C94N01, C95S01; tests/voci-club.test.ts (rosso 2/2); limiti di lunghezza dei testi.
+export const GAME_VERSION = '0.32.0';
