@@ -1,0 +1,12 @@
+
+ RUN  v5.0.3 /home/user/valmora
+
+
+ Test Files  46 passed (46)
+      Tests  253 passed (253)
+   Start at  09:33:28
+   Duration  101.55s (tests 84%, import 8%, transform 7%, worker 1%)
+
+    Isolate  46 workers spawned · ~890ms startup each (spawn + environment, per file)
+             at least ~12.76s faster with isolate: false — reuses workers across files instead of one per file
+

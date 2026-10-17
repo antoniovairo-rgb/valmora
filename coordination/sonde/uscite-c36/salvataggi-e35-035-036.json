@@ -1,0 +1,5010 @@
+{
+ "VA": "0.35.0",
+ "VB": "0.36.0",
+ "ris": [
+  {
+   "punto": "blocca_barca-o3x0-o1-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [],
+     "scelte": []
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o1-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [],
+     "scelte": []
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o1-su-perimetro",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-perimetro",
+    "testata": "ONDATA 1/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Radio: banca chiusa, si tratta. Folla sul corso: uffici, passanti, telefoni. Il perimetro è tuo.» IL VICE — «Il perimetro è la parte del lavoro che nessuno vede, finché qualcuno non ci entra.»",
+    "opzioni": [
+     "squadra_perimetro",
+     "rinforzi_porto",
+     "aspetta_perimetro"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [],
+     "scelte": []
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o1-su-perimetro.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-perimetro",
+    "testata": "ONDATA 1/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Radio: banca chiusa, si tratta. Folla sul corso: uffici, passanti, telefoni. Il perimetro è tuo.» IL VICE — «Il perimetro è la parte del lavoro che nessuno vede, finché qualcuno non ci entra.»",
+    "opzioni": [
+     "squadra_perimetro",
+     "rinforzi_porto",
+     "aspetta_perimetro"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [],
+     "scelte": []
+    }
+   },
+   "viste": [
+    "chiamata-perimetro ONDATA 1/4 · CHIAMATA 1/3 [squadra_perimetro,rinforzi_porto,aspetta_perimetro]",
+    "chiamata-barca_porto ONDATA 1/4 · CHIAMATA 2/3 [blocca_barca,segui_barca]",
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o1-dopo-perimetro-squadra_perimetro",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testata": "ONDATA 1/4 · CHIAMATA 2/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o1-dopo-perimetro-squadra_perimetro.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testata": "ONDATA 1/4 · CHIAMATA 2/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-barca_porto ONDATA 1/4 · CHIAMATA 2/3 [blocca_barca,segui_barca]",
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o1-su-barca_porto",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testata": "ONDATA 1/4 · CHIAMATA 2/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o1-su-barca_porto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testata": "ONDATA 1/4 · CHIAMATA 2/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-barca_porto ONDATA 1/4 · CHIAMATA 2/3 [blocca_barca,segui_barca]",
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o1-dopo-barca_porto-blocca_barca",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testata": "ONDATA 1/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o1-dopo-barca_porto-blocca_barca.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testata": "ONDATA 1/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! RISPONDI «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o1-su-corso_chiuso",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testata": "ONDATA 1/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! RISPONDI «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o1-su-corso_chiuso.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testata": "ONDATA 1/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! RISPONDI «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o1-dopo-corso_chiuso-steward_pedoni",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto",
+      "corso_chiuso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o1-dopo-corso_chiuso-steward_pedoni.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto",
+      "corso_chiuso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o2-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o2-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o2-su-dirette",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-dirette",
+    "testata": "ONDATA 2/4 · CHIAMATA 1/3",
+    "testo": "CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cento telefoni, la banca in diretta. Ci fa avvicinare?»",
+    "opzioni": [
+     "sposta_nastro",
+     "stampa_vicina"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o2-su-dirette.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-dirette",
+    "testata": "ONDATA 2/4 · CHIAMATA 1/3",
+    "testo": "CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cento telefoni, la banca in diretta. Ci fa avvicinare?»",
+    "opzioni": [
+     "sposta_nastro",
+     "stampa_vicina"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-dirette ONDATA 2/4 · CHIAMATA 1/3 [sposta_nastro,stampa_vicina]",
+    "chiamata-cantiere_acceso ONDATA 2/4 · CHIAMATA 2/3 [squadra_cantiere,anticipa_comando]",
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o2-dopo-dirette-sposta_nastro",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-cantiere_acceso",
+    "testata": "ONDATA 2/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici. Il guardiano diceva chiuso.» IL VICE — «Nessuno lavora alle dieci in un cantiere. Tranne chi fa sparire il lavoro degli altri mentre tutti guardano altrove.»",
+    "opzioni": [
+     "squadra_cantiere",
+     "anticipa_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o2-dopo-dirette-sposta_nastro.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-cantiere_acceso",
+    "testata": "ONDATA 2/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici. Il guardiano diceva chiuso.» IL VICE — «Nessuno lavora alle dieci in un cantiere. Tranne chi fa sparire il lavoro degli altri mentre tutti guardano altrove.»",
+    "opzioni": [
+     "squadra_cantiere",
+     "anticipa_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-cantiere_acceso ONDATA 2/4 · CHIAMATA 2/3 [squadra_cantiere,anticipa_comando]",
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o2-su-cantiere_acceso",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-cantiere_acceso",
+    "testata": "ONDATA 2/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici. Il guardiano diceva chiuso.» IL VICE — «Nessuno lavora alle dieci in un cantiere. Tranne chi fa sparire il lavoro degli altri mentre tutti guardano altrove.»",
+    "opzioni": [
+     "squadra_cantiere",
+     "anticipa_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o2-su-cantiere_acceso.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-cantiere_acceso",
+    "testata": "ONDATA 2/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici. Il guardiano diceva chiuso.» IL VICE — «Nessuno lavora alle dieci in un cantiere. Tranne chi fa sparire il lavoro degli altri mentre tutti guardano altrove.»",
+    "opzioni": [
+     "squadra_cantiere",
+     "anticipa_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-cantiere_acceso ONDATA 2/4 · CHIAMATA 2/3 [squadra_cantiere,anticipa_comando]",
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o2-dopo-cantiere_acceso-squadra_cantiere",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-familiari",
+    "testata": "ONDATA 2/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, e di avvicinarsi.» IL VICE — «Questa è la parte che nei film non fanno vedere. Per fortuna, perché nei film la sbagliano.»",
+    "opzioni": [
+     "mediatore_familiari",
+     "steward_familiari",
+     "rimanda_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o2-dopo-cantiere_acceso-squadra_cantiere.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-familiari",
+    "testata": "ONDATA 2/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, e di avvicinarsi.» IL VICE — «Questa è la parte che nei film non fanno vedere. Per fortuna, perché nei film la sbagliano.»",
+    "opzioni": [
+     "mediatore_familiari",
+     "steward_familiari",
+     "rimanda_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o2-su-familiari",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-familiari",
+    "testata": "ONDATA 2/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, e di avvicinarsi.» IL VICE — «Questa è la parte che nei film non fanno vedere. Per fortuna, perché nei film la sbagliano.»",
+    "opzioni": [
+     "mediatore_familiari",
+     "steward_familiari",
+     "rimanda_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o2-su-familiari.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-familiari",
+    "testata": "ONDATA 2/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, e di avvicinarsi.» IL VICE — «Questa è la parte che nei film non fanno vedere. Per fortuna, perché nei film la sbagliano.»",
+    "opzioni": [
+     "mediatore_familiari",
+     "steward_familiari",
+     "rimanda_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o2-dopo-familiari-mediatore_familiari",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso",
+      "familiari"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o2-dopo-familiari-mediatore_familiari.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso",
+      "familiari"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o3-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o3-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o3-su-treno_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE URGENTE! «Stazione: primo treno del mattino, alle cinque. Un posto a nome di una ditta del cantiere.»",
+    "opzioni": [
+     "presidia_stazione",
+     "ferrovie_avvisa",
+     "ignora_treno"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o3-su-treno_notte.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE URGENTE! «Stazione: primo treno del mattino, alle cinque. Un posto a nome di una ditta del cantiere.»",
+    "opzioni": [
+     "presidia_stazione",
+     "ferrovie_avvisa",
+     "ignora_treno"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-treno_notte ONDATA 3/4 · CHIAMATA 1/3 [presidia_stazione,ferrovie_avvisa,ignora_treno]",
+    "chiamata-curiosi_notte ONDATA 3/4 · CHIAMATA 2/3 [lascia_guardare,sgombera_centro]",
+    "chiamata-barca_ormeggiata ONDATA 3/4 · CHIAMATA 3/3 [apri_scatoloni,identifica_equipaggio]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o3-dopo-treno_notte-presidia_stazione",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-curiosi_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «All'una il perimetro è un raduno: curiosi, ultrà, uno coi panini. Tutti vogliono vedere la fine.»",
+    "opzioni": [
+     "lascia_guardare",
+     "sgombera_centro"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o3-dopo-treno_notte-presidia_stazione.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-curiosi_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «All'una il perimetro è un raduno: curiosi, ultrà, uno coi panini. Tutti vogliono vedere la fine.»",
+    "opzioni": [
+     "lascia_guardare",
+     "sgombera_centro"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-curiosi_notte ONDATA 3/4 · CHIAMATA 2/3 [lascia_guardare,sgombera_centro]",
+    "chiamata-barca_ormeggiata ONDATA 3/4 · CHIAMATA 3/3 [apri_scatoloni,identifica_equipaggio]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o3-su-curiosi_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-curiosi_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «All'una il perimetro è un raduno: curiosi, ultrà, uno coi panini. Tutti vogliono vedere la fine.»",
+    "opzioni": [
+     "lascia_guardare",
+     "sgombera_centro"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o3-su-curiosi_notte.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-curiosi_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «All'una il perimetro è un raduno: curiosi, ultrà, uno coi panini. Tutti vogliono vedere la fine.»",
+    "opzioni": [
+     "lascia_guardare",
+     "sgombera_centro"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-curiosi_notte ONDATA 3/4 · CHIAMATA 2/3 [lascia_guardare,sgombera_centro]",
+    "chiamata-barca_ormeggiata ONDATA 3/4 · CHIAMATA 3/3 [apri_scatoloni,identifica_equipaggio]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o3-dopo-curiosi_notte-lascia_guardare",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ormeggiata",
+    "testata": "ONDATA 3/4 · CHIAMATA 3/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+    "opzioni": [
+     "apri_scatoloni",
+     "identifica_equipaggio"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o3-dopo-curiosi_notte-lascia_guardare.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ormeggiata",
+    "testata": "ONDATA 3/4 · CHIAMATA 3/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+    "opzioni": [
+     "apri_scatoloni",
+     "identifica_equipaggio"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-barca_ormeggiata ONDATA 3/4 · CHIAMATA 3/3 [apri_scatoloni,identifica_equipaggio]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o3-su-barca_ormeggiata",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ormeggiata",
+    "testata": "ONDATA 3/4 · CHIAMATA 3/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+    "opzioni": [
+     "apri_scatoloni",
+     "identifica_equipaggio"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o3-su-barca_ormeggiata.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ormeggiata",
+    "testata": "ONDATA 3/4 · CHIAMATA 3/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+    "opzioni": [
+     "apri_scatoloni",
+     "identifica_equipaggio"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-barca_ormeggiata ONDATA 3/4 · CHIAMATA 3/3 [apri_scatoloni,identifica_equipaggio]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o3-dopo-barca_ormeggiata-apri_scatoloni",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte",
+      "barca_ormeggiata"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o3-dopo-barca_ormeggiata-apri_scatoloni.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte",
+      "barca_ormeggiata"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o4-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o4-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o4-su-posto_prenotato",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testata": "ONDATA 4/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o4-su-posto_prenotato.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testata": "ONDATA 4/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-posto_prenotato ONDATA 4/4 · CHIAMATA 1/3 [lascia_partire]",
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o4-dopo-posto_prenotato-lascia_partire",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o4-dopo-posto_prenotato-lascia_partire.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o4-su-fine_trattativa",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o4-su-fine_trattativa.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o4-dopo-fine_trattativa-corridoio",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o4-dopo-fine_trattativa-corridoio.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o4-su-rapporto_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o4-su-rapporto_notte.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x0-o4-dopo-rapporto_notte-un_imprenditore",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa",
+      "rapporto_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio",
+      "4:rapporto_notte/un_imprenditore"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x0-o4-dopo-rapporto_notte-un_imprenditore.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa",
+      "rapporto_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/apri_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio",
+      "4:rapporto_notte/un_imprenditore"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x1-o3-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x1-o3-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x1-o3-dopo-barca_ormeggiata-identifica_equipaggio",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte",
+      "barca_ormeggiata"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x1-o3-dopo-barca_ormeggiata-identifica_equipaggio.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte",
+      "barca_ormeggiata"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/identifica_equipaggio"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x1-o4-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x1-o4-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/identifica_equipaggio"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x1-o4-su-posto_prenotato",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testata": "ONDATA 4/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "ferma_uomo",
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x1-o4-su-posto_prenotato.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testata": "ONDATA 4/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "ferma_uomo",
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-posto_prenotato ONDATA 4/4 · CHIAMATA 1/3 [ferma_uomo,lascia_partire]",
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/identifica_equipaggio"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x1-o4-dopo-posto_prenotato-lascia_partire",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x1-o4-dopo-posto_prenotato-lascia_partire.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/identifica_equipaggio"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x1-o4-su-fine_trattativa",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x1-o4-su-fine_trattativa.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/identifica_equipaggio"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x1-o4-dopo-fine_trattativa-corridoio",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x1-o4-dopo-fine_trattativa-corridoio.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/identifica_equipaggio"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x1-o4-su-rapporto_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x1-o4-su-rapporto_notte.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/identifica_equipaggio"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "blocca_barca-o3x1-o4-dopo-rapporto_notte-scrivi_nome",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa",
+      "rapporto_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio",
+      "4:rapporto_notte/scrivi_nome"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-blocca_barca-o3x1-o4-dopo-rapporto_notte-scrivi_nome.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa",
+      "rapporto_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ormeggiata/identifica_equipaggio",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio",
+      "4:rapporto_notte/scrivi_nome"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/identifica_equipaggio"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o1-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [],
+     "scelte": []
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o1-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [],
+     "scelte": []
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o1-su-perimetro",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-perimetro",
+    "testata": "ONDATA 1/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Radio: banca chiusa, si tratta. Folla sul corso: uffici, passanti, telefoni. Il perimetro è tuo.» IL VICE — «Il perimetro è la parte del lavoro che nessuno vede, finché qualcuno non ci entra.»",
+    "opzioni": [
+     "squadra_perimetro",
+     "rinforzi_porto",
+     "aspetta_perimetro"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [],
+     "scelte": []
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o1-su-perimetro.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-perimetro",
+    "testata": "ONDATA 1/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Radio: banca chiusa, si tratta. Folla sul corso: uffici, passanti, telefoni. Il perimetro è tuo.» IL VICE — «Il perimetro è la parte del lavoro che nessuno vede, finché qualcuno non ci entra.»",
+    "opzioni": [
+     "squadra_perimetro",
+     "rinforzi_porto",
+     "aspetta_perimetro"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [],
+     "scelte": []
+    }
+   },
+   "viste": [
+    "chiamata-perimetro ONDATA 1/4 · CHIAMATA 1/3 [squadra_perimetro,rinforzi_porto,aspetta_perimetro]",
+    "chiamata-barca_porto ONDATA 1/4 · CHIAMATA 2/3 [blocca_barca,segui_barca]",
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o1-dopo-perimetro-squadra_perimetro",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testata": "ONDATA 1/4 · CHIAMATA 2/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o1-dopo-perimetro-squadra_perimetro.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testata": "ONDATA 1/4 · CHIAMATA 2/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-barca_porto ONDATA 1/4 · CHIAMATA 2/3 [blocca_barca,segui_barca]",
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o1-su-barca_porto",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testata": "ONDATA 1/4 · CHIAMATA 2/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o1-su-barca_porto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testata": "ONDATA 1/4 · CHIAMATA 2/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-barca_porto ONDATA 1/4 · CHIAMATA 2/3 [blocca_barca,segui_barca]",
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteBarca": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o1-dopo-barca_porto-segui_barca",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testata": "ONDATA 1/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o1-dopo-barca_porto-segui_barca.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testata": "ONDATA 1/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! RISPONDI «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o1-su-corso_chiuso",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testata": "ONDATA 1/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! RISPONDI «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o1-su-corso_chiuso.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testata": "ONDATA 1/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! RISPONDI «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-corso_chiuso ONDATA 1/4 · CHIAMATA 3/3 [steward_pedoni,radio_centro,lascia_coda]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o1-dopo-corso_chiuso-steward_pedoni",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto",
+      "corso_chiuso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o1-dopo-corso_chiuso-steward_pedoni.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 1,
+     "risposte": [
+      "perimetro",
+      "barca_porto",
+      "corso_chiuso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o2-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o2-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o2-su-dirette",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-dirette",
+    "testata": "ONDATA 2/4 · CHIAMATA 1/3",
+    "testo": "CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cento telefoni, la banca in diretta. Ci fa avvicinare?»",
+    "opzioni": [
+     "sposta_nastro",
+     "stampa_vicina"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o2-su-dirette.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-dirette",
+    "testata": "ONDATA 2/4 · CHIAMATA 1/3",
+    "testo": "CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cento telefoni, la banca in diretta. Ci fa avvicinare?»",
+    "opzioni": [
+     "sposta_nastro",
+     "stampa_vicina"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-dirette ONDATA 2/4 · CHIAMATA 1/3 [sposta_nastro,stampa_vicina]",
+    "chiamata-cantiere_acceso ONDATA 2/4 · CHIAMATA 2/3 [squadra_cantiere,anticipa_comando]",
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o2-dopo-dirette-sposta_nastro",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-cantiere_acceso",
+    "testata": "ONDATA 2/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici. Il guardiano diceva chiuso.» IL VICE — «Nessuno lavora alle dieci in un cantiere. Tranne chi fa sparire il lavoro degli altri mentre tutti guardano altrove.»",
+    "opzioni": [
+     "squadra_cantiere",
+     "anticipa_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o2-dopo-dirette-sposta_nastro.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-cantiere_acceso",
+    "testata": "ONDATA 2/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici. Il guardiano diceva chiuso.» IL VICE — «Nessuno lavora alle dieci in un cantiere. Tranne chi fa sparire il lavoro degli altri mentre tutti guardano altrove.»",
+    "opzioni": [
+     "squadra_cantiere",
+     "anticipa_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-cantiere_acceso ONDATA 2/4 · CHIAMATA 2/3 [squadra_cantiere,anticipa_comando]",
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o2-su-cantiere_acceso",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-cantiere_acceso",
+    "testata": "ONDATA 2/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici. Il guardiano diceva chiuso.» IL VICE — «Nessuno lavora alle dieci in un cantiere. Tranne chi fa sparire il lavoro degli altri mentre tutti guardano altrove.»",
+    "opzioni": [
+     "squadra_cantiere",
+     "anticipa_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o2-su-cantiere_acceso.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-cantiere_acceso",
+    "testata": "ONDATA 2/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici. Il guardiano diceva chiuso.» IL VICE — «Nessuno lavora alle dieci in un cantiere. Tranne chi fa sparire il lavoro degli altri mentre tutti guardano altrove.»",
+    "opzioni": [
+     "squadra_cantiere",
+     "anticipa_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-cantiere_acceso ONDATA 2/4 · CHIAMATA 2/3 [squadra_cantiere,anticipa_comando]",
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o2-dopo-cantiere_acceso-squadra_cantiere",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-familiari",
+    "testata": "ONDATA 2/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, e di avvicinarsi.» IL VICE — «Questa è la parte che nei film non fanno vedere. Per fortuna, perché nei film la sbagliano.»",
+    "opzioni": [
+     "mediatore_familiari",
+     "steward_familiari",
+     "rimanda_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o2-dopo-cantiere_acceso-squadra_cantiere.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-familiari",
+    "testata": "ONDATA 2/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, e di avvicinarsi.» IL VICE — «Questa è la parte che nei film non fanno vedere. Per fortuna, perché nei film la sbagliano.»",
+    "opzioni": [
+     "mediatore_familiari",
+     "steward_familiari",
+     "rimanda_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o2-su-familiari",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-familiari",
+    "testata": "ONDATA 2/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, e di avvicinarsi.» IL VICE — «Questa è la parte che nei film non fanno vedere. Per fortuna, perché nei film la sbagliano.»",
+    "opzioni": [
+     "mediatore_familiari",
+     "steward_familiari",
+     "rimanda_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o2-su-familiari.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-familiari",
+    "testata": "ONDATA 2/4 · CHIAMATA 3/3",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, e di avvicinarsi.» IL VICE — «Questa è la parte che nei film non fanno vedere. Per fortuna, perché nei film la sbagliano.»",
+    "opzioni": [
+     "mediatore_familiari",
+     "steward_familiari",
+     "rimanda_comando"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-familiari ONDATA 2/4 · CHIAMATA 3/3 [mediatore_familiari,steward_familiari,rimanda_comando]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o2-dopo-familiari-mediatore_familiari",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso",
+      "familiari"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o2-dopo-familiari-mediatore_familiari.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 2,
+     "risposte": [
+      "dirette",
+      "cantiere_acceso",
+      "familiari"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o3-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o3-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o3-su-treno_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE URGENTE! «Stazione: primo treno del mattino, alle cinque. Un posto a nome di una ditta del cantiere.»",
+    "opzioni": [
+     "presidia_stazione",
+     "ferrovie_avvisa",
+     "ignora_treno"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o3-su-treno_notte.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE URGENTE! «Stazione: primo treno del mattino, alle cinque. Un posto a nome di una ditta del cantiere.»",
+    "opzioni": [
+     "presidia_stazione",
+     "ferrovie_avvisa",
+     "ignora_treno"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-treno_notte ONDATA 3/4 · CHIAMATA 1/3 [presidia_stazione,ferrovie_avvisa,ignora_treno]",
+    "chiamata-curiosi_notte ONDATA 3/4 · CHIAMATA 2/3 [lascia_guardare,sgombera_centro]",
+    "chiamata-barca_ritorno ONDATA 3/4 · CHIAMATA 3/3 [cerca_scatoloni,ferma_barca]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o3-dopo-treno_notte-presidia_stazione",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-curiosi_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «All'una il perimetro è un raduno: curiosi, ultrà, uno coi panini. Tutti vogliono vedere la fine.»",
+    "opzioni": [
+     "lascia_guardare",
+     "sgombera_centro"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o3-dopo-treno_notte-presidia_stazione.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-curiosi_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «All'una il perimetro è un raduno: curiosi, ultrà, uno coi panini. Tutti vogliono vedere la fine.»",
+    "opzioni": [
+     "lascia_guardare",
+     "sgombera_centro"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-curiosi_notte ONDATA 3/4 · CHIAMATA 2/3 [lascia_guardare,sgombera_centro]",
+    "chiamata-barca_ritorno ONDATA 3/4 · CHIAMATA 3/3 [cerca_scatoloni,ferma_barca]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o3-su-curiosi_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-curiosi_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «All'una il perimetro è un raduno: curiosi, ultrà, uno coi panini. Tutti vogliono vedere la fine.»",
+    "opzioni": [
+     "lascia_guardare",
+     "sgombera_centro"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o3-su-curiosi_notte.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-curiosi_notte",
+    "testata": "ONDATA 3/4 · CHIAMATA 2/3",
+    "testo": "CENTRALE RADIO PERIMETRO DELLA BANCA URGENTE! RISPONDI «All'una il perimetro è un raduno: curiosi, ultrà, uno coi panini. Tutti vogliono vedere la fine.»",
+    "opzioni": [
+     "lascia_guardare",
+     "sgombera_centro"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-curiosi_notte ONDATA 3/4 · CHIAMATA 2/3 [lascia_guardare,sgombera_centro]",
+    "chiamata-barca_ritorno ONDATA 3/4 · CHIAMATA 3/3 [cerca_scatoloni,ferma_barca]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o3-dopo-curiosi_notte-lascia_guardare",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ritorno",
+    "testata": "ONDATA 3/4 · CHIAMATA 3/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+    "opzioni": [
+     "cerca_scatoloni",
+     "ferma_barca"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o3-dopo-curiosi_notte-lascia_guardare.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ritorno",
+    "testata": "ONDATA 3/4 · CHIAMATA 3/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+    "opzioni": [
+     "cerca_scatoloni",
+     "ferma_barca"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-barca_ritorno ONDATA 3/4 · CHIAMATA 3/3 [cerca_scatoloni,ferma_barca]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o3-su-barca_ritorno",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ritorno",
+    "testata": "ONDATA 3/4 · CHIAMATA 3/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+    "opzioni": [
+     "cerca_scatoloni",
+     "ferma_barca"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o3-su-barca_ritorno.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ritorno",
+    "testata": "ONDATA 3/4 · CHIAMATA 3/3",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+    "opzioni": [
+     "cerca_scatoloni",
+     "ferma_barca"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-barca_ritorno ONDATA 3/4 · CHIAMATA 3/3 [cerca_scatoloni,ferma_barca]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o3-dopo-barca_ritorno-cerca_scatoloni",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte",
+      "barca_ritorno"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o3-dopo-barca_ritorno-cerca_scatoloni.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte",
+      "barca_ritorno"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o4-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o4-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o4-su-posto_prenotato",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testata": "ONDATA 4/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "ferma_uomo",
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o4-su-posto_prenotato.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testata": "ONDATA 4/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "ferma_uomo",
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-posto_prenotato ONDATA 4/4 · CHIAMATA 1/3 [ferma_uomo,lascia_partire]",
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o4-dopo-posto_prenotato-lascia_partire",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o4-dopo-posto_prenotato-lascia_partire.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o4-su-fine_trattativa",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o4-su-fine_trattativa.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o4-dopo-fine_trattativa-corridoio",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o4-dopo-fine_trattativa-corridoio.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o4-su-rapporto_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o4-su-rapporto_notte.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x0-o4-dopo-rapporto_notte-un_imprenditore",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa",
+      "rapporto_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio",
+      "4:rapporto_notte/un_imprenditore"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x0-o4-dopo-rapporto_notte-un_imprenditore.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa",
+      "rapporto_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio",
+      "4:rapporto_notte/un_imprenditore"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x1-o3-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x1-o3-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x1-o3-dopo-barca_ritorno-ferma_barca",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte",
+      "barca_ritorno"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x1-o3-dopo-barca_ritorno-ferma_barca.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": [
+      "treno_notte",
+      "curiosi_notte",
+      "barca_ritorno"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/ferma_barca"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x1-o4-sala",
+   "a": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x1-o4-sala.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "schieramento",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "schieramento",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/ferma_barca"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x1-o4-su-posto_prenotato",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testata": "ONDATA 4/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "ferma_uomo",
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x1-o4-su-posto_prenotato.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testata": "ONDATA 4/4 · CHIAMATA 1/3",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "ferma_uomo",
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-posto_prenotato ONDATA 4/4 · CHIAMATA 1/3 [ferma_uomo,lascia_partire]",
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/ferma_barca"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x1-o4-dopo-posto_prenotato-lascia_partire",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x1-o4-dopo-posto_prenotato-lascia_partire.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/ferma_barca"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x1-o4-su-fine_trattativa",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x1-o4-su-fine_trattativa.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fine_trattativa",
+    "testata": "ONDATA 4/4 · CHIAMATA 2/3",
+    "testo": "COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i familiari aspettano.» IL VICE — «Tutti fuori, tutti in piedi. È la frase più bella che sentirai stanotte. Adesso facciamo in modo che resti vera fino a casa.»",
+    "opzioni": [
+     "corridoio",
+     "stampa_uscita"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-fine_trattativa ONDATA 4/4 · CHIAMATA 2/3 [corridoio,stampa_uscita]",
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/ferma_barca"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x1-o4-dopo-fine_trattativa-corridoio",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x1-o4-dopo-fine_trattativa-corridoio.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/ferma_barca"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x1-o4-su-rapporto_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x1-o4-su-rapporto_notte.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rapporto_notte",
+    "testata": "ONDATA 4/4 · CHIAMATA 3/3",
+    "testo": "COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «un imprenditore»?» IL VICE — «Il nome lo sappiamo tutti. Scriverlo è un'altra faccenda. Io, a questo punto, lo scriverei. Ma io non ho niente da perdere.»",
+    "opzioni": [
+     "scrivi_nome",
+     "un_imprenditore"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio"
+     ]
+    }
+   },
+   "viste": [
+    "chiamata-rapporto_notte ONDATA 4/4 · CHIAMATA 3/3 [scrivi_nome,un_imprenditore]"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/ferma_barca"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  },
+  {
+   "punto": "segui_barca-o3x1-o4-dopo-rapporto_notte-un_imprenditore",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa",
+      "rapporto_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio",
+      "4:rapporto_notte/un_imprenditore"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-035-e35/0.35.0-e35-segui_barca-o3x1-o4-dopo-rapporto_notte-un_imprenditore.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 4,
+     "risposte": [
+      "posto_prenotato",
+      "fine_trattativa",
+      "rapporto_notte"
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/ferma_barca",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/corridoio",
+      "4:rapporto_notte/un_imprenditore"
+     ]
+    }
+   },
+   "viste": [],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteBarca": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/ferma_barca"
+   ],
+   "doppie": [],
+   "dueBarche": false,
+   "ramoSmentito": false,
+   "attesoDiverso": false,
+   "stessaScena": true,
+   "ok": true
+  }
+ ],
+ "errA": [],
+ "errB": []
+}

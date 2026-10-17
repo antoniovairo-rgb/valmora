@@ -1,0 +1,1197 @@
+{
+ "radice": "/tmp/claude-0/-home-user-valmora/6de52252-8726-5993-b84c-2497c7cf11b3/scratchpad/v034",
+ "semi": 1000,
+ "e35": {
+  "blocca_barca": {
+   "partite": 1000,
+   "barca_in_o1": 1000,
+   "chiamate_o3_banchine": {
+    "barca_ritorno": 1000
+   },
+   "opzioni_o3": {
+    "cerca_scatoloni,ferma_barca": 1000
+   },
+   "esiti": {
+    "degenerato": 703,
+    "contenuto_a_fatica": 286,
+    "contenuto": 11
+   },
+   "smentite": {
+    "/tornata/i ««Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»»": 1000,
+    "/parte\\b/i ««Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»»": 1000,
+    "/lungo la costa/i «Fai cercare lungo la costa»": 1000,
+    "/parte\\b/i «Il treno parte. Il comando dice che lo prenderà alla stazione dopo. Forse.»": 547,
+    "/barca partita/i «La notte è scappata in tre direzioni: calca al nastro, coda sul corso, una barca partita, un cantiere svuotato. Gli ostaggi stanno bene. La rapina ha fatto il suo lavoro.»": 703,
+    "/tornata/i «Una notte lunga davvero: nastro, corso bloccato, stazione, una barca andata e tornata. Ostaggi fuori tutti; le carte, quasi tutte. Malvasi: «Quasi è la nostra parola».»": 286,
+    "/andata e tornata/i «Una notte lunga davvero: nastro, corso bloccato, stazione, una barca andata e tornata. Ostaggi fuori tutti; le carte, quasi tutte. Malvasi: «Quasi è la nostra parola».»": 286,
+    "/parte\\b/i «Il posto prenotato aspetta. Qualcuno, da qualche parte, prepara una valigia.»": 362
+   },
+   "verbali": {
+    "degenerato": "La notte è scappata in tre direzioni: calca al nastro, coda sul corso, una barca partita, un cantiere svuotato. Gli ostaggi stanno bene. La rapina ha fatto il suo lavoro.",
+    "contenuto_a_fatica": "Una notte lunga davvero: nastro, corso bloccato, stazione, una barca andata e tornata. Ostaggi fuori tutti; le carte, quasi tutte. Malvasi: «Quasi è la nostra parola».",
+    "contenuto": "Una rapina, tre ingressi, nessuna città svegliata male. Ostaggi a casa, corso riaperto all'alba, e carte che portano tutte alla Varrone & Figli. Malvasi scrive sul fascicolo: «Fine»."
+   }
+  },
+  "segui_barca": {
+   "partite": 1000,
+   "barca_in_o1": 1000,
+   "chiamate_o3_banchine": {
+    "barca_ritorno": 1000
+   },
+   "opzioni_o3": {
+    "cerca_scatoloni,ferma_barca": 1000
+   },
+   "esiti": {
+    "degenerato": 738,
+    "contenuto_a_fatica": 256,
+    "contenuto": 6
+   },
+   "smentite": {},
+   "verbali": {
+    "degenerato": "La notte è scappata in tre direzioni: calca al nastro, coda sul corso, una barca partita, un cantiere svuotato. Gli ostaggi stanno bene. La rapina ha fatto il suo lavoro.",
+    "contenuto_a_fatica": "Una notte lunga davvero: nastro, corso bloccato, stazione, una barca andata e tornata. Ostaggi fuori tutti; le carte, quasi tutte. Malvasi: «Quasi è la nostra parola».",
+    "contenuto": "Una rapina, tre ingressi, nessuna città svegliata male. Ostaggi a casa, corso riaperto all'alba, e carte che portano tutte alla Varrone & Figli. Malvasi scrive sul fascicolo: «Fine»."
+   }
+  },
+  "faldoni_dopo_ferma_uomo": {
+   "«Comando: rapina-copertura, faldoni spariti dal cantiere. Conferenza: Varrone o «un imprenditore»?»": 300
+  }
+ },
+ "e21": {
+  "attenta/subito21": {
+   "partite": 1000,
+   "viste": 1000,
+   "delta": {
+    "piazzale: pressione 3→5, tensione 0→0": 927,
+    "quartiere: pressione 2→2, tensione 1→1": 269,
+    "quartiere: pressione 2→2, tensione 0→0": 239,
+    "quartiere: pressione 2→2, tensione 3→3": 229,
+    "piazzale: pressione 3→5, tensione 1→1": 73,
+    "quartiere: pressione 2→2, tensione 2→2": 263
+   },
+   "tensione_fine_o4": {
+    "piazzale": {
+     "media": 1.52,
+     "min": 1,
+     "max": 6,
+     "n": 1000
+    },
+    "quartiere": {
+     "media": 3.48,
+     "min": 2,
+     "max": 5,
+     "n": 1000
+    }
+   },
+   "scoperto_o4": {
+    "piazzale": 1000,
+    "quartiere": 1000
+   },
+   "costo": "Il comando ringrazia, ci guadagni fiducia; nel quartiere auto e gente insieme.",
+   "risposta": "Le auto ripartono a passo d'uomo fra i gruppi in strada. Clacson, cori, finestre che si aprono.",
+   "bollino": "quartiere"
+  },
+  "attenta/trattieni21": {
+   "partite": 1000,
+   "viste": 1000,
+   "delta": {
+    "piazzale: pressione 3→1, tensione 0→0": 927,
+    "quartiere: pressione 2→2, tensione 1→2": 269,
+    "quartiere: pressione 2→2, tensione 0→1": 239,
+    "quartiere: pressione 2→2, tensione 3→4": 229,
+    "piazzale: pressione 3→1, tensione 1→1": 73,
+    "quartiere: pressione 2→2, tensione 2→3": 263
+   },
+   "tensione_fine_o4": {
+    "piazzale": {
+     "media": 0.06,
+     "min": 0,
+     "max": 2,
+     "n": 1000
+    },
+    "quartiere": {
+     "media": 4.48,
+     "min": 3,
+     "max": 6,
+     "n": 1000
+    }
+   },
+   "scoperto_o4": {
+    "piazzale": 30,
+    "quartiere": 1000
+   },
+   "costo": "Il quartiere resta sgombro, ma il comando protesta: ti costa fiducia; il piazzale dello stadio si intasa.",
+   "risposta": "Un'ora di vie chiuse. Le auto si accodano nel piazzale dello stadio, e i vigili scrivono al comando.",
+   "bollino": "quartiere"
+  },
+  "casuale/subito21": {
+   "partite": 1000,
+   "viste": 1000,
+   "delta": {
+    "piazzale: pressione 3→5, tensione 0→0": 354,
+    "quartiere: pressione 2→2, tensione 3→3": 198,
+    "piazzale: pressione 3→5, tensione 3→3": 210,
+    "quartiere: pressione 2→2, tensione 0→0": 192,
+    "piazzale: pressione 3→5, tensione 1→1": 328,
+    "quartiere: pressione 2→2, tensione 6→6": 50,
+    "quartiere: pressione 2→2, tensione 1→1": 290,
+    "quartiere: pressione 2→2, tensione 2→2": 209,
+    "quartiere: pressione 2→2, tensione 5→5": 61,
+    "piazzale: pressione 3→5, tensione 4→4": 42,
+    "piazzale: pressione 3→5, tensione 2→2": 59,
+    "piazzale: pressione 3→5, tensione 6→6": 7
+   },
+   "tensione_fine_o4": {
+    "piazzale": {
+     "media": 3.79,
+     "min": 0,
+     "max": 10,
+     "n": 1000
+    },
+    "quartiere": {
+     "media": 3.91,
+     "min": 2,
+     "max": 8,
+     "n": 1000
+    }
+   },
+   "scoperto_o4": {
+    "piazzale": 863,
+    "quartiere": 1000
+   },
+   "costo": "Il comando ringrazia, ci guadagni fiducia; nel quartiere auto e gente insieme.",
+   "risposta": "Le auto ripartono a passo d'uomo fra i gruppi in strada. Clacson, cori, finestre che si aprono.",
+   "bollino": "quartiere"
+  },
+  "casuale/trattieni21": {
+   "partite": 1000,
+   "viste": 1000,
+   "delta": {
+    "piazzale: pressione 3→1, tensione 0→0": 354,
+    "quartiere: pressione 2→2, tensione 3→4": 198,
+    "piazzale: pressione 3→1, tensione 3→3": 210,
+    "quartiere: pressione 2→2, tensione 0→1": 192,
+    "piazzale: pressione 3→1, tensione 1→1": 328,
+    "quartiere: pressione 2→2, tensione 6→7": 50,
+    "quartiere: pressione 2→2, tensione 1→2": 290,
+    "quartiere: pressione 2→2, tensione 2→3": 209,
+    "quartiere: pressione 2→2, tensione 5→6": 61,
+    "piazzale: pressione 3→1, tensione 4→4": 42,
+    "piazzale: pressione 3→1, tensione 2→2": 59,
+    "piazzale: pressione 3→1, tensione 6→6": 7
+   },
+   "tensione_fine_o4": {
+    "piazzale": {
+     "media": 0.87,
+     "min": 0,
+     "max": 7,
+     "n": 1000
+    },
+    "quartiere": {
+     "media": 4.91,
+     "min": 3,
+     "max": 9,
+     "n": 1000
+    }
+   },
+   "scoperto_o4": {
+    "piazzale": 252,
+    "quartiere": 1000
+   },
+   "costo": "Il quartiere resta sgombro, ma il comando protesta: ti costa fiducia; il piazzale dello stadio si intasa.",
+   "risposta": "Un'ora di vie chiuse. Le auto si accodano nel piazzale dello stadio, e i vigili scrivono al comando.",
+   "bollino": "quartiere"
+  },
+  "ondata1_i": "Inizio serata: i giovani della curva sono all'ex fonderia, che rischia lo sgombero.",
+  "info_comune": "Qualcuno in comune: sgombero fra pochi giorni, stasera l'ex fonderia sarà vuota."
+ },
+ "fallimenti": {
+  "e13": {
+   "partite": 1000,
+   "fallite": 553,
+   "verbale": "Spintoni sul piazzale, piazza oltre il limite, concerto interrotto: due ore di caos nei rapporti, nessun ferito grave. Dietro il palco della Varrone nessuno ha visto niente.",
+   "prima_ondata_oltre_6": {
+    "2": 87,
+    "3": 385,
+    "4": 81
+   },
+   "degenerati": {
+    "viale_concerto": 102,
+    "curva_cinderwick": 248,
+    "piazzale": 151,
+    "piazza_concerto": 29,
+    "parcheggi": 1
+   },
+   "senza_settore_degenerato": 106,
+   "tensione_da_risposta": 0,
+   "esempi": [
+    {
+     "seme": 6,
+     "rapporti": [
+      {
+       "n": 1,
+       "scoperto": {
+        "viale_concerto": 2
+       },
+       "tensione": {
+        "viale_concerto": 2,
+        "parcheggi": 0,
+        "piazza_concerto": 0,
+        "curva_cinderwick": 0,
+        "piazzale": 1
+       },
+       "picco": {
+        "viale_concerto": 2,
+        "parcheggi": 1,
+        "piazza_concerto": 0,
+        "curva_cinderwick": 0,
+        "piazzale": 2
+       }
+      },
+      {
+       "n": 2,
+       "scoperto": {
+        "piazza_concerto": 1,
+        "curva_cinderwick": 5
+       },
+       "tensione": {
+        "viale_concerto": 1,
+        "parcheggi": 0,
+        "piazza_concerto": 1,
+        "curva_cinderwick": 6,
+        "piazzale": 0
+       },
+       "picco": {
+        "viale_concerto": 2,
+        "parcheggi": 0,
+        "piazza_concerto": 1,
+        "curva_cinderwick": 6,
+        "piazzale": 1
+       }
+      },
+      {
+       "n": 3,
+       "scoperto": {
+        "piazzale": 2
+       },
+       "tensione": {
+        "viale_concerto": 0,
+        "parcheggi": 0,
+        "piazza_concerto": 0,
+        "curva_cinderwick": 4,
+        "piazzale": 4
+       },
+       "picco": {
+        "viale_concerto": 1,
+        "parcheggi": 0,
+        "piazza_concerto": 1,
+        "curva_cinderwick": 8,
+        "piazzale": 4
+       }
+      },
+      {
+       "n": 4,
+       "scoperto": {
+        "viale_concerto": 1,
+        "parcheggi": 3,
+        "piazza_concerto": 2
+       },
+       "tensione": {
+        "viale_concerto": 1,
+        "parcheggi": 3,
+        "piazza_concerto": 2,
+        "curva_cinderwick": 2,
+        "piazzale": 2
+       },
+       "picco": {
+        "viale_concerto": 1,
+        "parcheggi": 3,
+        "piazza_concerto": 2,
+        "curva_cinderwick": 4,
+        "piazzale": 5
+       }
+      }
+     ],
+     "scelte": [
+      "1:viale_pieno/scorta_strada",
+      "1:parcheggi_riservati/parcheggi_pubblici",
+      "1:palco/palco_si",
+      "2:microfono/sospendi_prove",
+      "2:abbonamenti_finti/steward_banchi",
+      "2:caldo/resistano",
+      "3:spintoni/si_stanchino",
+      "3:video/comunicato13",
+      "3:patto_dessi/accetta_dessi",
+      "4:coda_auto/senso_unico",
+      "4:corteo_rovers/corteo_gruppi",
+      "4:abbonamento_vice/al_club"
+     ]
+    },
+    {
+     "seme": 9,
+     "rapporti": [
+      {
+       "n": 1,
+       "scoperto": {
+        "viale_concerto": 1
+       },
+       "tensione": {
+        "viale_concerto": 1,
+        "parcheggi": 0,
+        "piazza_concerto": 0,
+        "curva_cinderwick": 0,
+        "piazzale": 1
+       },
+       "picco": {
+        "viale_concerto": 1,
+        "parcheggi": 1,
+        "piazza_concerto": 0,
+        "curva_cinderwick": 0,
+        "piazzale": 2
+       }
+      },
+      {
+       "n": 2,
+       "scoperto": {
+        "piazza_concerto": 2,
+        "curva_cinderwick": 3
+       },
+       "tensione": {
+        "viale_concerto": 0,
+        "parcheggi": 0,
+        "piazza_concerto": 2,
+        "curva_cinderwick": 4,
+        "piazzale": 0
+       },
+       "picco": {
+        "viale_concerto": 1,
+        "parcheggi": 0,
+        "piazza_concerto": 2,
+        "curva_cinderwick": 4,
+        "piazzale": 1
+       }
+      },
+      {
+       "n": 3,
+       "scoperto": {},
+       "tensione": {
+        "viale_concerto": 0,
+        "parcheggi": 0,
+        "piazza_concerto": 1,
+        "curva_cinderwick": 3,
+        "piazzale": 0
+       },
+       "picco": {
+        "viale_concerto": 0,
+        "parcheggi": 0,
+        "piazza_concerto": 2,
+        "curva_cinderwick": 7,
+        "piazzale": 0
+       }
+      },
+      {
+       "n": 4,
+       "scoperto": {
+        "parcheggi": 3
+       },
+       "tensione": {
+        "viale_concerto": 0,
+        "parcheggi": 3,
+        "piazza_concerto": 0,
+        "curva_cinderwick": 1,
+        "piazzale": 0
+       },
+       "picco": {
+        "viale_concerto": 0,
+        "parcheggi": 3,
+        "piazza_concerto": 1,
+        "curva_cinderwick": 3,
+        "piazzale": 1
+       }
+      }
+     ],
+     "scelte": [
+      "1:viale_pieno/scorta_strada",
+      "1:parcheggi_riservati/parcheggi_pubblici",
+      "1:palco/palco_si",
+      "2:microfono/sospendi_prove",
+      "2:abbonamenti_finti/foto_venditori",
+      "2:caldo/resistano",
+      "3:spintoni/sospendi13",
+      "3:video/comunicato13",
+      "3:patto_dessi/rifiuta_dessi",
+      "4:coda_auto/senso_unico",
+      "4:corteo_rovers/corteo_gruppi",
+      "4:abbonamento_vice/al_club"
+     ]
+    },
+    {
+     "seme": 18,
+     "rapporti": [
+      {
+       "n": 1,
+       "scoperto": {
+        "viale_concerto": 4
+       },
+       "tensione": {
+        "viale_concerto": 4,
+        "parcheggi": 0,
+        "piazza_concerto": 0,
+        "curva_cinderwick": 0,
+        "piazzale": 1
+       },
+       "picco": {
+        "viale_concerto": 4,
+        "parcheggi": 1,
+        "piazza_concerto": 0,
+        "curva_cinderwick": 0,
+        "piazzale": 2
+       }
+      },
+      {
+       "n": 2,
+       "scoperto": {
+        "piazza_concerto": 2,
+        "curva_cinderwick": 5,
+        "piazzale": 2
+       },
+       "tensione": {
+        "viale_concerto": 2,
+        "parcheggi": 0,
+        "piazza_concerto": 2,
+        "curva_cinderwick": 6,
+        "piazzale": 3
+       },
+       "picco": {
+        "viale_concerto": 4,
+        "parcheggi": 0,
+        "piazza_concerto": 2,
+        "curva_cinderwick": 6,
+        "piazzale": 3
+       }
+      },
+      {
+       "n": 3,
+       "scoperto": {
+        "piazza_concerto": 2,
+        "piazzale": 1
+       },
+       "tensione": {
+        "viale_concerto": 1,
+        "parcheggi": 0,
+        "piazza_concerto": 4,
+        "curva_cinderwick": 3,
+        "piazzale": 4
+       },
+       "picco": {
+        "viale_concerto": 2,
+        "parcheggi": 0,
+        "piazza_concerto": 4,
+        "curva_cinderwick": 7,
+        "piazzale": 4
+       }
+      },
+      {
+       "n": 4,
+       "scoperto": {
+        "viale_concerto": 4,
+        "piazza_concerto": 2
+       },
+       "tensione": {
+        "viale_concerto": 5,
+        "parcheggi": 0,
+        "piazza_concerto": 6,
+        "curva_cinderwick": 3,
+        "piazzale": 2
+       },
+       "picco": {
+        "viale_concerto": 5,
+        "parcheggi": 0,
+        "piazza_concerto": 6,
+        "curva_cinderwick": 3,
+        "piazzale": 5
+       }
+      }
+     ],
+     "scelte": [
+      "1:viale_pieno/aspettino",
+      "1:parcheggi_riservati/parcheggi_pubblici",
+      "1:palco/palco_si",
+      "2:microfono/sospendi_prove",
+      "2:abbonamenti_finti/foto_venditori",
+      "2:caldo/resistano",
+      "3:spintoni/sospendi13",
+      "3:video/comunicato13",
+      "3:patto_dessi/accetta_dessi",
+      "4:coda_auto/senso_unico",
+      "4:corteo_rovers/corteo_gruppi",
+      "4:abbonamento_vice/al_club"
+     ]
+    }
+   ]
+  },
+  "e17": {
+   "partite": 1000,
+   "fallite": 612,
+   "verbale": "Cancelli forzati, tafferugli sulla strada di Kiln, piazza sgomberata a notte fonda, molti fermati. In rete è «la giornata degli scontri», e nessuno ricorda più lo sciopero.",
+   "prima_ondata_oltre_6": {
+    "2": 137,
+    "3": 309,
+    "4": 166
+   },
+   "degenerati": {
+    "piazza_municipio": 119,
+    "quartiere": 102,
+    "strada_cinderwick": 117,
+    "piazzale": 314,
+    "tornelli": 144
+   },
+   "senza_settore_degenerato": 17,
+   "tensione_da_risposta": 0,
+   "esempi": [
+    {
+     "seme": 9,
+     "rapporti": [
+      {
+       "n": 1,
+       "scoperto": {
+        "strada_cinderwick": 2
+       },
+       "tensione": {
+        "strada_cinderwick": 2,
+        "tornelli": 0,
+        "piazzale": 0,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       },
+       "picco": {
+        "strada_cinderwick": 2,
+        "tornelli": 0,
+        "piazzale": 0,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       }
+      },
+      {
+       "n": 2,
+       "scoperto": {
+        "piazzale": 2,
+        "quartiere": 3
+       },
+       "tensione": {
+        "strada_cinderwick": 1,
+        "tornelli": 0,
+        "piazzale": 4,
+        "quartiere": 3,
+        "piazza_municipio": 0
+       },
+       "picco": {
+        "strada_cinderwick": 2,
+        "tornelli": 0,
+        "piazzale": 4,
+        "quartiere": 3,
+        "piazza_municipio": 0
+       }
+      },
+      {
+       "n": 3,
+       "scoperto": {
+        "quartiere": 1,
+        "piazza_municipio": 2
+       },
+       "tensione": {
+        "strada_cinderwick": 0,
+        "tornelli": 0,
+        "piazzale": 2,
+        "quartiere": 6,
+        "piazza_municipio": 2
+       },
+       "picco": {
+        "strada_cinderwick": 1,
+        "tornelli": 0,
+        "piazzale": 4,
+        "quartiere": 6,
+        "piazza_municipio": 2
+       }
+      },
+      {
+       "n": 4,
+       "scoperto": {
+        "strada_cinderwick": 1,
+        "piazza_municipio": 2
+       },
+       "tensione": {
+        "strada_cinderwick": 1,
+        "tornelli": 0,
+        "piazzale": 1,
+        "quartiere": 3,
+        "piazza_municipio": 6
+       },
+       "picco": {
+        "strada_cinderwick": 1,
+        "tornelli": 0,
+        "piazzale": 2,
+        "quartiere": 7,
+        "piazza_municipio": 6
+       }
+      }
+     ],
+     "scelte": [
+      "1:sanzione/presidio17",
+      "1:schermo_comizi/niente_schermo",
+      "1:sotto_casa/squadra_quartiere17",
+      "2:cancelli/apri_recinto",
+      "2:radio_bar/volume_no",
+      "2:ci_vediamo_dopo/pattuglia_dessi",
+      "3:gol_fuori/steward_fumo17",
+      "3:dalla_collina/lascia_collina",
+      "3:bandiera/lasciali_curva",
+      "4:me_lo_dovete/corteo_dessi",
+      "4:undici/aspetta17",
+      "4:fine_corteo/sciogli_piazza"
+     ]
+    },
+    {
+     "seme": 90,
+     "rapporti": [
+      {
+       "n": 1,
+       "scoperto": {
+        "strada_cinderwick": 2,
+        "piazzale": 3
+       },
+       "tensione": {
+        "strada_cinderwick": 2,
+        "tornelli": 0,
+        "piazzale": 5,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       },
+       "picco": {
+        "strada_cinderwick": 2,
+        "tornelli": 0,
+        "piazzale": 5,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       }
+      },
+      {
+       "n": 2,
+       "scoperto": {
+        "quartiere": 1
+       },
+       "tensione": {
+        "strada_cinderwick": 2,
+        "tornelli": 1,
+        "piazzale": 3,
+        "quartiere": 1,
+        "piazza_municipio": 0
+       },
+       "picco": {
+        "strada_cinderwick": 2,
+        "tornelli": 2,
+        "piazzale": 7,
+        "quartiere": 1,
+        "piazza_municipio": 0
+       }
+      },
+      {
+       "n": 3,
+       "scoperto": {
+        "tornelli": 3,
+        "piazza_municipio": 2
+       },
+       "tensione": {
+        "strada_cinderwick": 1,
+        "tornelli": 5,
+        "piazzale": 1,
+        "quartiere": 0,
+        "piazza_municipio": 2
+       },
+       "picco": {
+        "strada_cinderwick": 2,
+        "tornelli": 5,
+        "piazzale": 3,
+        "quartiere": 1,
+        "piazza_municipio": 2
+       }
+      },
+      {
+       "n": 4,
+       "scoperto": {
+        "strada_cinderwick": 1,
+        "piazza_municipio": 3
+       },
+       "tensione": {
+        "strada_cinderwick": 2,
+        "tornelli": 2,
+        "piazzale": 0,
+        "quartiere": 0,
+        "piazza_municipio": 6
+       },
+       "picco": {
+        "strada_cinderwick": 2,
+        "tornelli": 5,
+        "piazzale": 1,
+        "quartiere": 0,
+        "piazza_municipio": 6
+       }
+      }
+     ],
+     "scelte": [
+      "1:sanzione/sgombera",
+      "1:schermo_comizi/niente_schermo",
+      "1:sotto_casa/promessa17",
+      "2:cancelli/spingano",
+      "2:radio_bar/volume_no",
+      "2:ci_vediamo_dopo/pattuglia_dessi",
+      "3:gol_fuori/steward_fumo17",
+      "3:dalla_collina/mediatore17",
+      "3:bandiera/prendili",
+      "4:me_lo_dovete/corteo_dessi",
+      "4:undici/circolare",
+      "4:fine_corteo/lascia_impianto"
+     ]
+    },
+    {
+     "seme": 142,
+     "rapporti": [
+      {
+       "n": 1,
+       "scoperto": {
+        "piazzale": 3
+       },
+       "tensione": {
+        "strada_cinderwick": 0,
+        "tornelli": 0,
+        "piazzale": 5,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       },
+       "picco": {
+        "strada_cinderwick": 0,
+        "tornelli": 0,
+        "piazzale": 5,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       }
+      },
+      {
+       "n": 2,
+       "scoperto": {
+        "tornelli": 1
+       },
+       "tensione": {
+        "strada_cinderwick": 1,
+        "tornelli": 1,
+        "piazzale": 3,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       },
+       "picco": {
+        "strada_cinderwick": 1,
+        "tornelli": 1,
+        "piazzale": 7,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       }
+      },
+      {
+       "n": 3,
+       "scoperto": {
+        "tornelli": 3
+       },
+       "tensione": {
+        "strada_cinderwick": 0,
+        "tornelli": 5,
+        "piazzale": 1,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       },
+       "picco": {
+        "strada_cinderwick": 1,
+        "tornelli": 5,
+        "piazzale": 3,
+        "quartiere": 0,
+        "piazza_municipio": 0
+       }
+      },
+      {
+       "n": 4,
+       "scoperto": {
+        "strada_cinderwick": 4,
+        "piazza_municipio": 3
+       },
+       "tensione": {
+        "strada_cinderwick": 6,
+        "tornelli": 2,
+        "piazzale": 0,
+        "quartiere": 0,
+        "piazza_municipio": 4
+       },
+       "picco": {
+        "strada_cinderwick": 6,
+        "tornelli": 5,
+        "piazzale": 1,
+        "quartiere": 0,
+        "piazza_municipio": 4
+       }
+      }
+     ],
+     "scelte": [
+      "1:sanzione/sgombera",
+      "1:schermo_comizi/niente_schermo",
+      "1:sotto_casa/promessa17",
+      "2:cancelli/steward_cancelli",
+      "2:radio_bar/volume_no",
+      "2:ci_vediamo_dopo/ignora17",
+      "3:gol_fuori/steward_fumo17",
+      "3:dalla_collina/ferma_collina",
+      "3:bandiera/prendili",
+      "4:me_lo_dovete/no_dessi",
+      "4:undici/circolare",
+      "4:fine_corteo/lascia_impianto"
+     ]
+    }
+   ]
+  },
+  "e35": {
+   "partite": 1000,
+   "fallite": 728,
+   "verbale": "La notte è scappata in tre direzioni: calca al nastro, coda sul corso, una barca partita, un cantiere svuotato. Gli ostaggi stanno bene. La rapina ha fatto il suo lavoro.",
+   "prima_ondata_oltre_6": {
+    "1": 46,
+    "2": 186,
+    "3": 216,
+    "4": 280
+   },
+   "degenerati": {
+    "perimetro_banca": 552,
+    "cantiere_stadio_nuovo": 91,
+    "corso_centro": 87,
+    "stazione": 76,
+    "banchine": 101
+   },
+   "senza_settore_degenerato": 5,
+   "tensione_da_risposta": 0,
+   "esempi": [
+    {
+     "seme": 53,
+     "rapporti": [
+      {
+       "n": 1,
+       "scoperto": {
+        "banchine": 5
+       },
+       "tensione": {
+        "perimetro_banca": 0,
+        "corso_centro": 0,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 5,
+        "stazione": 0
+       },
+       "picco": {
+        "perimetro_banca": 0,
+        "corso_centro": 0,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 5,
+        "stazione": 0
+       }
+      },
+      {
+       "n": 2,
+       "scoperto": {
+        "perimetro_banca": 3,
+        "corso_centro": 4
+       },
+       "tensione": {
+        "perimetro_banca": 3,
+        "corso_centro": 4,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 2,
+        "stazione": 0
+       },
+       "picco": {
+        "perimetro_banca": 3,
+        "corso_centro": 4,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 5,
+        "stazione": 0
+       }
+      },
+      {
+       "n": 3,
+       "scoperto": {
+        "perimetro_banca": 2,
+        "stazione": 4
+       },
+       "tensione": {
+        "perimetro_banca": 5,
+        "corso_centro": 2,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 1,
+        "stazione": 4
+       },
+       "picco": {
+        "perimetro_banca": 5,
+        "corso_centro": 4,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 2,
+        "stazione": 4
+       }
+      },
+      {
+       "n": 4,
+       "scoperto": {
+        "cantiere_stadio_nuovo": 3
+       },
+       "tensione": {
+        "perimetro_banca": 3,
+        "corso_centro": 1,
+        "cantiere_stadio_nuovo": 3,
+        "banchine": 0,
+        "stazione": 2
+       },
+       "picco": {
+        "perimetro_banca": 7,
+        "corso_centro": 2,
+        "cantiere_stadio_nuovo": 3,
+        "banchine": 1,
+        "stazione": 4
+       }
+      }
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/radio_centro",
+      "2:dirette/stampa_vicina",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/rimanda_comando",
+      "3:treno_notte/ignora_treno",
+      "3:curiosi_notte/sgombera_centro",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/stampa_uscita",
+      "4:rapporto_notte/un_imprenditore"
+     ]
+    },
+    {
+     "seme": 305,
+     "rapporti": [
+      {
+       "n": 1,
+       "scoperto": {
+        "corso_centro": 2,
+        "banchine": 3
+       },
+       "tensione": {
+        "perimetro_banca": 0,
+        "corso_centro": 2,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 3,
+        "stazione": 0
+       },
+       "picco": {
+        "perimetro_banca": 0,
+        "corso_centro": 2,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 3,
+        "stazione": 0
+       }
+      },
+      {
+       "n": 2,
+       "scoperto": {
+        "perimetro_banca": 4,
+        "corso_centro": 1,
+        "cantiere_stadio_nuovo": 4
+       },
+       "tensione": {
+        "perimetro_banca": 4,
+        "corso_centro": 3,
+        "cantiere_stadio_nuovo": 4,
+        "banchine": 1,
+        "stazione": 0
+       },
+       "picco": {
+        "perimetro_banca": 4,
+        "corso_centro": 3,
+        "cantiere_stadio_nuovo": 4,
+        "banchine": 3,
+        "stazione": 0
+       }
+      },
+      {
+       "n": 3,
+       "scoperto": {
+        "perimetro_banca": 2
+       },
+       "tensione": {
+        "perimetro_banca": 6,
+        "corso_centro": 1,
+        "cantiere_stadio_nuovo": 2,
+        "banchine": 0,
+        "stazione": 0
+       },
+       "picco": {
+        "perimetro_banca": 6,
+        "corso_centro": 3,
+        "cantiere_stadio_nuovo": 4,
+        "banchine": 1,
+        "stazione": 0
+       }
+      },
+      {
+       "n": 4,
+       "scoperto": {
+        "corso_centro": 2,
+        "cantiere_stadio_nuovo": 3
+       },
+       "tensione": {
+        "perimetro_banca": 4,
+        "corso_centro": 3,
+        "cantiere_stadio_nuovo": 5,
+        "banchine": 0,
+        "stazione": 0
+       },
+       "picco": {
+        "perimetro_banca": 8,
+        "corso_centro": 3,
+        "cantiere_stadio_nuovo": 5,
+        "banchine": 0,
+        "stazione": 0
+       }
+      }
+     ],
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/stampa_vicina",
+      "2:cantiere_acceso/anticipa_comando",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/sgombera_centro",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/lascia_partire",
+      "4:fine_trattativa/stampa_uscita",
+      "4:rapporto_notte/un_imprenditore"
+     ]
+    },
+    {
+     "seme": 570,
+     "rapporti": [
+      {
+       "n": 1,
+       "scoperto": {
+        "banchine": 3
+       },
+       "tensione": {
+        "perimetro_banca": 0,
+        "corso_centro": 0,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 3,
+        "stazione": 0
+       },
+       "picco": {
+        "perimetro_banca": 0,
+        "corso_centro": 0,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 3,
+        "stazione": 0
+       }
+      },
+      {
+       "n": 2,
+       "scoperto": {
+        "perimetro_banca": 1,
+        "cantiere_stadio_nuovo": 1
+       },
+       "tensione": {
+        "perimetro_banca": 1,
+        "corso_centro": 0,
+        "cantiere_stadio_nuovo": 1,
+        "banchine": 1,
+        "stazione": 0
+       },
+       "picco": {
+        "perimetro_banca": 1,
+        "corso_centro": 0,
+        "cantiere_stadio_nuovo": 1,
+        "banchine": 3,
+        "stazione": 0
+       }
+      },
+      {
+       "n": 3,
+       "scoperto": {
+        "perimetro_banca": 4
+       },
+       "tensione": {
+        "perimetro_banca": 5,
+        "corso_centro": 0,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 0,
+        "stazione": 0
+       },
+       "picco": {
+        "perimetro_banca": 5,
+        "corso_centro": 0,
+        "cantiere_stadio_nuovo": 1,
+        "banchine": 1,
+        "stazione": 0
+       }
+      },
+      {
+       "n": 4,
+       "scoperto": {
+        "corso_centro": 2,
+        "stazione": 3
+       },
+       "tensione": {
+        "perimetro_banca": 3,
+        "corso_centro": 2,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 0,
+        "stazione": 3
+       },
+       "picco": {
+        "perimetro_banca": 7,
+        "corso_centro": 2,
+        "cantiere_stadio_nuovo": 0,
+        "banchine": 0,
+        "stazione": 3
+       }
+      }
+     ],
+     "scelte": [
+      "1:perimetro/aspetta_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/lascia_coda",
+      "2:dirette/stampa_vicina",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/ferrovie_avvisa",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni",
+      "4:posto_prenotato/ferma_uomo",
+      "4:fine_trattativa/stampa_uscita",
+      "4:rapporto_notte/un_imprenditore"
+     ]
+    }
+   ]
+  }
+ },
+ "e02": {
+  "mediatore_corteo": {
+   "niente: «Non intervenire»": 200
+  },
+  "corteo_scortato": {
+   "mediatore_casa: «Manda il mediatore a parlare con la curva di casa» | niente: «Non intervenire»": 200
+  },
+  "corteo_no": {
+   "mediatore_casa: «Manda il mediatore a parlare con la curva di casa» | niente: «Non intervenire»": 200
+  }
+ }
+}

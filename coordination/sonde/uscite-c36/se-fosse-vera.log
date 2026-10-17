@@ -1,0 +1,6 @@
+e28 o1 voce_magazzino/ignora_anonimo [fonte della chiamata: messaggio_anonimo] «Nessun costo subito; se fosse vero, il magazzino si scalda.» effetti [{"pressione":"magazzino_fonderie","valore":1}]
+   briefing sui settori toccati: messaggio_anonimo magazzino_fonderie vera=false
+e29 o1 ospiti_tranquilli/rassicura [fonte della chiamata: club_saltmere] «La curva ospiti si calma; se la voce è vera, il club se lo ricorda: costa fiducia.» effetti [{"pressione":"curva_ospiti","valore":-1},{"aggiungi":"credito","valore":-1}]
+   briefing sui settori toccati: centrale_radio curva_ospiti vera=true
+e32 o1 piazzale_anonimo/ignora_piazzale [fonte della chiamata: voci_in_rete] «Nessun costo subito; se fosse vera, il piazzale sale.» effetti [{"pressione":"piazzale","valore":2}]
+   briefing sui settori toccati: voci_in_rete piazzale vera=false

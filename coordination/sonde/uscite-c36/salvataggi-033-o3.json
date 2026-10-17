@@ -1,0 +1,300 @@
+{
+ "ris": [
+  {
+   "ep": "e01",
+   "attesa": "pareggio",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-pareggio",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE RISPONDI «Pareggio al novantesimo, nessuno contento: stanno per uscire tutti. Le fonderie tornano in corteo.» IL VICE — «Il pareggio è il risultato peggiore. Lo dico da anni, nessuno mi ascolta.»",
+    "folla": "deflusso|strada_cinderwick>esce,strada_larkspire>esce"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e01-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-pareggio",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE RISPONDI «Pareggio al novantesimo, nessuno contento: stanno per uscire tutti. Le fonderie tornano in corteo.» IL VICE — «Il pareggio è il risultato peggiore. Lo dico da anni, nessuno mi ascolta.»",
+    "folla": "deflusso|strada_cinderwick>esce,strada_larkspire>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e03",
+   "attesa": "supplementari",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-supplementari",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE VIE DEL QUARTIERE URGENTE! RISPONDI «Uno a uno: supplementari, forse rigori. Il comitato ha appena scoperto cosa sono i rigori.»",
+    "folla": "pieni|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e03-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-supplementari",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE VIE DEL QUARTIERE URGENTE! RISPONDI «Uno a uno: supplementari, forse rigori. Il comitato ha appena scoperto cosa sono i rigori.»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e09",
+   "attesa": "due_furgoni",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-due_furgoni",
+    "tono": null,
+    "testo": "VOCI IN RETE PIAZZALE DELLO STADIO RISPONDI «In rete: foto del furgone grigio ammaccato sul fianco. Altra parte della città, dieci minuti fa.» IL VICE — «Il carro attrezzi dice che il furgone è nella piazzola. La rete dice di no. Qualcuno sbaglia, o i furgoni sono due.»",
+    "folla": "pieni|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e09-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-due_furgoni",
+    "tono": null,
+    "testo": "VOCI IN RETE PIAZZALE DELLO STADIO RISPONDI «In rete: foto del furgone grigio ammaccato sul fianco. Altra parte della città, dieci minuti fa.» IL VICE — «Il carro attrezzi dice che il furgone è nella piazzola. La rete dice di no. Qualcuno sbaglia, o i furgoni sono due.»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e13",
+   "attesa": "spintoni",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-spintoni",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO URGENTE! RISPONDI «Spintoni sul piazzale: chi corre al concerto e chi non lo lascia passare. Per ora solo spintoni.»",
+    "folla": "deflusso|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e13-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-spintoni",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO URGENTE! RISPONDI «Spintoni sul piazzale: chi corre al concerto e chi non lo lascia passare. Per ora solo spintoni.»",
+    "folla": "deflusso|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e14",
+   "attesa": "fumo_viola",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fumo_viola",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA OSPITI URGENTE! «Curva ospiti: fumogeni bianchi e blu. Il fumo va dritto verso la tribuna stampa.»",
+    "folla": "pieni|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e14-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fumo_viola",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA OSPITI URGENTE! «Curva ospiti: fumogeni bianchi e blu. Il fumo va dritto verso la tribuna stampa.»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e17",
+   "attesa": "gol_fuori",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-gol_fuori",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO RISPONDI «Gol del Kiln. Fuori dallo stadio vuoto esplode un piazzale intero; qualcuno accende i fumogeni.»",
+    "folla": "vuoti|piazza_municipio>entra"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e17-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-gol_fuori",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO RISPONDI «Gol del Kiln. Fuori dallo stadio vuoto esplode un piazzale intero; qualcuno accende i fumogeni.»",
+    "folla": "vuoti|piazza_municipio>entra"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e21",
+   "attesa": "stanotte_sgombero",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-stanotte_sgombero",
+    "tono": null,
+    "testo": "VOCI IN RETE LE FONDERIE URGENTE! RISPONDI «In rete: «stanotte sgomberano l'ex fonderia». Metà della piazza vuole difendere il cortile.»",
+    "folla": "pieni|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e21-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-stanotte_sgombero",
+    "tono": null,
+    "testo": "VOCI IN RETE LE FONDERIE URGENTE! RISPONDI «In rete: «stanotte sgomberano l'ex fonderia». Metà della piazza vuole difendere il cortile.»",
+    "folla": null
+   },
+   "ok": true
+  },
+  {
+   "ep": "e22",
+   "attesa": "due_striscioni",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-due_striscioni",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA SKYFIELD URGENTE! RISPONDI «Due striscioni. Skyfield: «IL FABBRO SCAPPA, LA CITTÀ PAGA». Kiln: «IL FABBRO TORNERÀ».»",
+    "folla": "pieni|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e22-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-due_striscioni",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA SKYFIELD URGENTE! RISPONDI «Due striscioni. Skyfield: «IL FABBRO SCAPPA, LA CITTÀ PAGA». Kiln: «IL FABBRO TORNERÀ».»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e26",
+   "attesa": "invasione",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-invasione",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA SKYFIELD URGENTE! RISPONDI «Gol dello Skyfield al centodecimo. La curva di casa preme sulle vetrate, vuole entrare in campo.»",
+    "folla": "pieni|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e26-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-invasione",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA SKYFIELD URGENTE! RISPONDI «Gol dello Skyfield al centodecimo. La curva di casa preme sulle vetrate, vuole entrare in campo.»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e28",
+   "attesa": "talpa_sospetto",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-talpa_sospetto",
+    "tono": null,
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Un'auto al container, scendono due col telefono. Qualcuno li ha avvisati che li state guardando.» IL VICE — «Avvisati. Allora qualcuno, da noi, parla. Lo sapevamo. Stasera lo sappiamo un po' di più.»",
+    "folla": "pieni|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e28-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-talpa_sospetto",
+    "tono": null,
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Un'auto al container, scendono due col telefono. Qualcuno li ha avvisati che li state guardando.» IL VICE — «Avvisati. Allora qualcuno, da noi, parla. Lo sapevamo. Stasera lo sappiamo un po' di più.»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e30",
+   "attesa": "sotto_il_municipio",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-sotto_il_municipio",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZA DEL MUNICIPIO URGENTE! RISPONDI «Municipio: il corteo rompe il silenzio. Un coro: il nome del Fabbro, poi il tuo. Parole diverse.» IL VICE — «Sei famoso. Te l'avevo detto che questo lavoro dava visibilità.»",
+    "folla": "vuoti|strada_cinderwick>entra"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e30-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-sotto_il_municipio",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZA DEL MUNICIPIO URGENTE! RISPONDI «Municipio: il corteo rompe il silenzio. Un coro: il nome del Fabbro, poi il tuo. Parole diverse.» IL VICE — «Sei famoso. Te l'avevo detto che questo lavoro dava visibilità.»",
+    "folla": "vuoti|strada_cinderwick>entra"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e32",
+   "attesa": "rigore_larkspire",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rigore_larkspire",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA KILN URGENTE! RISPONDI «Rigore Skyfield all'ottantesimo. La curva Kiln spinge sulle vetrate. Il portavoce non si vede più.»",
+    "folla": "pieni|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e32-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-rigore_larkspire",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA KILN URGENTE! RISPONDI «Rigore Skyfield all'ottantesimo. La curva Kiln spinge sulle vetrate. Il portavoce non si vede più.»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e35",
+   "attesa": "treno_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_notte",
+    "tono": null,
+    "testo": "CENTRALE RADIO STAZIONE URGENTE! «Stazione: primo treno del mattino, alle cinque. Un posto a nome di una ditta del cantiere.»",
+    "folla": "vuoti|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e35-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_notte",
+    "tono": null,
+    "testo": "CENTRALE RADIO STAZIONE URGENTE! «Stazione: primo treno del mattino, alle cinque. Un posto a nome di una ditta del cantiere.»",
+    "folla": "vuoti|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e36",
+   "attesa": "gol_derby",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-gol_derby",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA KILN URGENTE! RISPONDI «Gol del Kiln all'ottantesimo: esplode la curva. Quella Skyfield per un attimo scorda gli applausi.»",
+    "folla": "pieni|"
+   },
+   "file": "/tmp/claude-0/-home-user-valmora/1ab09a1e-ff1b-5166-9de3-59e0267168c2/scratchpad/sv033/0.33.0-e36-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-gol_derby",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA KILN URGENTE! RISPONDI «Gol del Kiln all'ottantesimo: esplode la curva. Quella Skyfield per un attimo scorda gli applausi.»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  }
+ ],
+ "errA": [],
+ "errB": []
+}

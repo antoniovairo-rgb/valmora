@@ -1,0 +1,11 @@
+e02 o1 ritardo/scorta_subito: bollino «· Stazione», effetti su Viale della stazione — «Scorta subito il primo gruppo allo stadio»
+e04 o1 kebab/scorta_ospiti: bollino «· Le fonderie», effetti su Mercato rionale — «Accompagnali allo stadio»
+e15 o1 treno_amici/scorta15: bollino «· Stazione», effetti su Viale della stazione — «Scortali subito allo stadio»
+e16 o2 scatole/entra: bollino «· Magazzino delle fonderie», effetti su Strada da Kiln — «Entra adesso»
+e16 o3 cori_nome/steward_cinder: bollino «· Curva ospiti», effetti su Curva Kiln — «Steward in curva Kiln»
+e16 o3 senza_dessi/cerca_fonderie: bollino «· Curva Kiln», effetti su Magazzino delle fonderie — «Manda qualcuno a cercarlo alle fonderie»
+e22 o3 due_striscioni/steward_str22: bollino «· Curva Skyfield», effetti su Curva Kiln — «Steward sotto lo striscione Kiln»
+e27 o4 lettera_gemellati/consegna_comando: bollino «· Settore dei gemellati», effetti su Stazione — «Fai portare il biglietto al comando, subito»
+e32 o1 due_cortei/ferma_cinderwick: bollino «· Strada da Skyfield», effetti su Strada da Kiln — «Fai aspettare il corteo di Kiln»
+e35 o4 posto_prenotato/ferma_uomo: bollino «· Stazione», effetti su Perimetro della banca — «Fermalo»
+opzioni con unità impegnata e settore: 224; bollino in un settore che l'opzione non tocca: 10

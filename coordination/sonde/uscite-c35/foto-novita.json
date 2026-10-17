@@ -1,0 +1,533 @@
+{
+ "ris": [
+  {
+   "build": "034",
+   "misura": "360x760",
+   "caso": "e02-o3-caldo_casa",
+   "chiamata": "chiamata-caldo_casa",
+   "testo": "ETTORE MALVASI, IL VICE CURVA SKYFIELD «Curva Skyfield risponde ai cori ospiti, il volume sale. Andrei io, ma è il tuo turno.» IL VICE — «Il turno è tuo. Il caffè è mio.»",
+   "opzioni": [
+    "niente: A NON INTERVENIRE Nessun costo, nessun aiuto."
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e02-o3-caldo_casa-360x760-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "360x760",
+   "caso": "e35-o3-banchine-blocca",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-blocca-360x760-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "360x760",
+   "caso": "e35-o3-banchine-segui",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-segui-360x760-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "360x760",
+   "caso": "e21-o4-pullman21",
+   "chiamata": "chiamata-pullman21",
+   "testo": "COMANDO VIE DEL QUARTIERE RISPONDI «Comando: i vigili vogliono riaprire le vie del quartiere al traffico. Subito.»",
+   "opzioni": [
+    "subito21: A RIAPRILE Il comando ringrazia, ci guadagni fiducia; nel quartiere auto e gente insieme. fiducia Piazzale dello stadio",
+    "trattieni21: B TIENILE CHIUSE ANCORA UN'ORA Il quartiere resta sgombro, ma il comando protesta: ti costa fiducia; il piazzale dello stadio si intasa. Piazzale dello stadio V"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e21-o4-pullman21-360x760-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "360x760",
+   "caso": "e21-o1-info",
+   "chiamata": null,
+   "testo": null,
+   "opzioni": [],
+   "info": "Inizio serata: i giovani della curva sono all'ex fonderia, che rischia lo sgombero.",
+   "oriz": 0,
+   "foto": "e21-o1-info-360x760-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "375x667",
+   "caso": "e02-o3-caldo_casa",
+   "chiamata": "chiamata-caldo_casa",
+   "testo": "ETTORE MALVASI, IL VICE CURVA SKYFIELD RISPONDI «Curva Skyfield risponde ai cori ospiti, il volume sale. Andrei io, ma è il tuo turno.» IL VICE — «Il turno è tuo. Il caffè è mio.»",
+   "opzioni": [
+    "niente: A NON INTERVENIRE Nessun costo, nessun aiuto."
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e02-o3-caldo_casa-375x667-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "375x667",
+   "caso": "e35-o3-banchine-blocca",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-blocca-375x667-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "375x667",
+   "caso": "e35-o3-banchine-segui",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-segui-375x667-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "375x667",
+   "caso": "e21-o4-pullman21",
+   "chiamata": "chiamata-pullman21",
+   "testo": "COMANDO VIE DEL QUARTIERE RISPONDI «Comando: i vigili vogliono riaprire le vie del quartiere al traffico. Subito.»",
+   "opzioni": [
+    "subito21: A RIAPRILE Il comando ringrazia, ci guadagni fiducia; nel quartiere auto e gente insieme. fiducia Piazzale dello stadio",
+    "trattieni21: B TIENILE CHIUSE ANCORA UN'ORA Il quartiere resta sgombro, ma il comando protesta: ti costa fiducia; il piazzale dello stadio si intasa. Piazzale dello stadio V"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e21-o4-pullman21-375x667-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "375x667",
+   "caso": "e21-o1-info",
+   "chiamata": null,
+   "testo": null,
+   "opzioni": [],
+   "info": "Inizio serata: i giovani della curva sono all'ex fonderia, che rischia lo sgombero.",
+   "oriz": 0,
+   "foto": "e21-o1-info-375x667-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "412x915",
+   "caso": "e02-o3-caldo_casa",
+   "chiamata": "chiamata-caldo_casa",
+   "testo": "ETTORE MALVASI, IL VICE CURVA SKYFIELD «Curva Skyfield risponde ai cori ospiti, il volume sale. Andrei io, ma è il tuo turno.» IL VICE — «Il turno è tuo. Il caffè è mio.»",
+   "opzioni": [
+    "niente: A NON INTERVENIRE Nessun costo, nessun aiuto."
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e02-o3-caldo_casa-412x915-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "412x915",
+   "caso": "e35-o3-banchine-blocca",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-blocca-412x915-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "412x915",
+   "caso": "e35-o3-banchine-segui",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-segui-412x915-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "412x915",
+   "caso": "e21-o4-pullman21",
+   "chiamata": "chiamata-pullman21",
+   "testo": "COMANDO VIE DEL QUARTIERE «Comando: i vigili vogliono riaprire le vie del quartiere al traffico. Subito.»",
+   "opzioni": [
+    "subito21: A RIAPRILE Il comando ringrazia, ci guadagni fiducia; nel quartiere auto e gente insieme. fiducia Piazzale dello stadio",
+    "trattieni21: B TIENILE CHIUSE ANCORA UN'ORA Il quartiere resta sgombro, ma il comando protesta: ti costa fiducia; il piazzale dello stadio si intasa. Piazzale dello stadio V"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e21-o4-pullman21-412x915-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "412x915",
+   "caso": "e21-o1-info",
+   "chiamata": null,
+   "testo": null,
+   "opzioni": [],
+   "info": "Inizio serata: i giovani della curva sono all'ex fonderia, che rischia lo sgombero.",
+   "oriz": 0,
+   "foto": "e21-o1-info-412x915-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "1366x768",
+   "caso": "e02-o3-caldo_casa",
+   "chiamata": "chiamata-caldo_casa",
+   "testo": "ETTORE MALVASI, IL VICE CURVA SKYFIELD RISPONDI «Curva Skyfield risponde ai cori ospiti, il volume sale. Andrei io, ma è il tuo turno.» IL VICE — «Il turno è tuo. Il caffè è mio.»",
+   "opzioni": [
+    "niente: A NON INTERVENIRE Nessun costo, nessun aiuto."
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e02-o3-caldo_casa-1366x768-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "1366x768",
+   "caso": "e35-o3-banchine-blocca",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-blocca-1366x768-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "1366x768",
+   "caso": "e35-o3-banchine-segui",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-segui-1366x768-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "1366x768",
+   "caso": "e21-o4-pullman21",
+   "chiamata": "chiamata-pullman21",
+   "testo": "COMANDO VIE DEL QUARTIERE RISPONDI «Comando: i vigili vogliono riaprire le vie del quartiere al traffico. Subito.»",
+   "opzioni": [
+    "subito21: A RIAPRILE Il comando ringrazia, ci guadagni fiducia; nel quartiere auto e gente insieme. fiducia Piazzale dello stadio",
+    "trattieni21: B TIENILE CHIUSE ANCORA UN'ORA Il quartiere resta sgombro, ma il comando protesta: ti costa fiducia; il piazzale dello stadio si intasa. Piazzale dello stadio V"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e21-o4-pullman21-1366x768-034.jpg"
+  },
+  {
+   "build": "034",
+   "misura": "1366x768",
+   "caso": "e21-o1-info",
+   "chiamata": null,
+   "testo": null,
+   "opzioni": [],
+   "info": "Inizio serata: i giovani della curva sono all'ex fonderia, che rischia lo sgombero.",
+   "oriz": 0,
+   "foto": "e21-o1-info-1366x768-034.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "360x760",
+   "caso": "e02-o3-caldo_casa",
+   "chiamata": "chiamata-caldo_casa",
+   "testo": "ETTORE MALVASI, IL VICE CURVA SKYFIELD RISPONDI «Curva Skyfield risponde ai cori ospiti, il volume sale. Andrei io, ma è il tuo turno.» IL VICE — «Il turno è tuo. Il caffè è mio.»",
+   "opzioni": [
+    "niente_senza_mediatore: A NON INTERVENIRE: IL MEDIATORE È ANCORA COL CORTEO Nessun costo, nessun aiuto: l'hai mandato col corteo del Railhead."
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e02-o3-caldo_casa-360x760-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "360x760",
+   "caso": "e35-o3-banchine-blocca",
+   "chiamata": "chiamata-barca_ormeggiata",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+   "opzioni": [
+    "apri_scatoloni: A FAI APRIRE GLI SCATOLONI Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "identifica_equipaggio: B FAI IDENTIFICARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-blocca-360x760-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "360x760",
+   "caso": "e35-o3-banchine-segui",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-segui-360x760-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "360x760",
+   "caso": "e21-o4-pullman21",
+   "chiamata": "chiamata-pullman21",
+   "testo": "COMANDO VIE DEL QUARTIERE RISPONDI «Comando: i vigili vogliono riaprire le vie del quartiere al traffico. Subito.»",
+   "opzioni": [
+    "subito21: A RIAPRILE Il comando ringrazia, ci guadagni fiducia; ma chi esce a piedi resta nel piazzale dello stadio, che si intasa. fiducia Piazzale dello stadio",
+    "trattieni21: B TIENILE CHIUSE ANCORA UN'ORA Il piazzale si svuota a piedi per le vie chiuse, ma il comando protesta: ti costa fiducia; e il quartiere si scalda. Piazzale del"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e21-o4-pullman21-360x760-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "360x760",
+   "caso": "e21-o1-info",
+   "chiamata": null,
+   "testo": null,
+   "opzioni": [],
+   "info": "Inizio serata: la curva è divisa, e l'ex fonderia dei giovani rischia lo sgombero.",
+   "oriz": 0,
+   "foto": "e21-o1-info-360x760-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "375x667",
+   "caso": "e02-o3-caldo_casa",
+   "chiamata": "chiamata-caldo_casa",
+   "testo": "ETTORE MALVASI, IL VICE CURVA SKYFIELD RISPONDI «Curva Skyfield risponde ai cori ospiti, il volume sale. Andrei io, ma è il tuo turno.» IL VICE — «Il turno è tuo. Il caffè è mio.»",
+   "opzioni": [
+    "niente_senza_mediatore: A NON INTERVENIRE: IL MEDIATORE È ANCORA COL CORTEO Nessun costo, nessun aiuto: l'hai mandato col corteo del Railhead."
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e02-o3-caldo_casa-375x667-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "375x667",
+   "caso": "e35-o3-banchine-blocca",
+   "chiamata": "chiamata-barca_ormeggiata",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+   "opzioni": [
+    "apri_scatoloni: A FAI APRIRE GLI SCATOLONI Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "identifica_equipaggio: B FAI IDENTIFICARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-blocca-375x667-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "375x667",
+   "caso": "e35-o3-banchine-segui",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-segui-375x667-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "375x667",
+   "caso": "e21-o4-pullman21",
+   "chiamata": "chiamata-pullman21",
+   "testo": "COMANDO VIE DEL QUARTIERE RISPONDI «Comando: i vigili vogliono riaprire le vie del quartiere al traffico. Subito.»",
+   "opzioni": [
+    "subito21: A RIAPRILE Il comando ringrazia, ci guadagni fiducia; ma chi esce a piedi resta nel piazzale dello stadio, che si intasa. fiducia Piazzale dello stadio",
+    "trattieni21: B TIENILE CHIUSE ANCORA UN'ORA Il piazzale si svuota a piedi per le vie chiuse, ma il comando protesta: ti costa fiducia; e il quartiere si scalda. Piazzale del"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e21-o4-pullman21-375x667-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "375x667",
+   "caso": "e21-o1-info",
+   "chiamata": null,
+   "testo": null,
+   "opzioni": [],
+   "info": "Inizio serata: la curva è divisa, e l'ex fonderia dei giovani rischia lo sgombero.",
+   "oriz": 0,
+   "foto": "e21-o1-info-375x667-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "412x915",
+   "caso": "e02-o3-caldo_casa",
+   "chiamata": "chiamata-caldo_casa",
+   "testo": "ETTORE MALVASI, IL VICE CURVA SKYFIELD «Curva Skyfield risponde ai cori ospiti, il volume sale. Andrei io, ma è il tuo turno.» IL VICE — «Il turno è tuo. Il caffè è mio.»",
+   "opzioni": [
+    "niente_senza_mediatore: A NON INTERVENIRE: IL MEDIATORE È ANCORA COL CORTEO Nessun costo, nessun aiuto: l'hai mandato col corteo del Railhead."
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e02-o3-caldo_casa-412x915-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "412x915",
+   "caso": "e35-o3-banchine-blocca",
+   "chiamata": "chiamata-barca_ormeggiata",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+   "opzioni": [
+    "apri_scatoloni: A FAI APRIRE GLI SCATOLONI Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "identifica_equipaggio: B FAI IDENTIFICARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-blocca-412x915-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "412x915",
+   "caso": "e35-o3-banchine-segui",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-segui-412x915-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "412x915",
+   "caso": "e21-o4-pullman21",
+   "chiamata": "chiamata-pullman21",
+   "testo": "COMANDO VIE DEL QUARTIERE «Comando: i vigili vogliono riaprire le vie del quartiere al traffico. Subito.»",
+   "opzioni": [
+    "subito21: A RIAPRILE Il comando ringrazia, ci guadagni fiducia; ma chi esce a piedi resta nel piazzale dello stadio, che si intasa. fiducia Piazzale dello stadio",
+    "trattieni21: B TIENILE CHIUSE ANCORA UN'ORA Il piazzale si svuota a piedi per le vie chiuse, ma il comando protesta: ti costa fiducia; e il quartiere si scalda. Piazzale del"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e21-o4-pullman21-412x915-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "412x915",
+   "caso": "e21-o1-info",
+   "chiamata": null,
+   "testo": null,
+   "opzioni": [],
+   "info": "Inizio serata: la curva è divisa, e l'ex fonderia dei giovani rischia lo sgombero.",
+   "oriz": 0,
+   "foto": "e21-o1-info-412x915-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "1366x768",
+   "caso": "e02-o3-caldo_casa",
+   "chiamata": "chiamata-caldo_casa",
+   "testo": "ETTORE MALVASI, IL VICE CURVA SKYFIELD RISPONDI «Curva Skyfield risponde ai cori ospiti, il volume sale. Andrei io, ma è il tuo turno.» IL VICE — «Il turno è tuo. Il caffè è mio.»",
+   "opzioni": [
+    "niente_senza_mediatore: A NON INTERVENIRE: IL MEDIATORE È ANCORA COL CORTEO Nessun costo, nessun aiuto: l'hai mandato col corteo del Railhead."
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e02-o3-caldo_casa-1366x768-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "1366x768",
+   "caso": "e35-o3-banchine-blocca",
+   "chiamata": "chiamata-barca_ormeggiata",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+   "opzioni": [
+    "apri_scatoloni: A FAI APRIRE GLI SCATOLONI Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "identifica_equipaggio: B FAI IDENTIFICARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-blocca-1366x768-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "1366x768",
+   "caso": "e35-o3-banchine-segui",
+   "chiamata": "chiamata-barca_ritorno",
+   "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+   "opzioni": [
+    "cerca_scatoloni: A FAI CERCARE LUNGO LA COSTA Le banchine si calmano, ma ti costa una squadra. Banchine del porto Squadre · Banchine del porto",
+    "ferma_barca: B FAI FERMARE L'EQUIPAGGIO Guadagni fiducia col comando; ma il porto, svegliato, sale. fiducia Banchine del porto"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e35-o3-banchine-segui-1366x768-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "1366x768",
+   "caso": "e21-o4-pullman21",
+   "chiamata": "chiamata-pullman21",
+   "testo": "COMANDO VIE DEL QUARTIERE RISPONDI «Comando: i vigili vogliono riaprire le vie del quartiere al traffico. Subito.»",
+   "opzioni": [
+    "subito21: A RIAPRILE Il comando ringrazia, ci guadagni fiducia; ma chi esce a piedi resta nel piazzale dello stadio, che si intasa. fiducia Piazzale dello stadio",
+    "trattieni21: B TIENILE CHIUSE ANCORA UN'ORA Il piazzale si svuota a piedi per le vie chiuse, ma il comando protesta: ti costa fiducia; e il quartiere si scalda. Piazzale del"
+   ],
+   "info": "",
+   "oriz": 0,
+   "foto": "e21-o4-pullman21-1366x768-035.jpg"
+  },
+  {
+   "build": "035",
+   "misura": "1366x768",
+   "caso": "e21-o1-info",
+   "chiamata": null,
+   "testo": null,
+   "opzioni": [],
+   "info": "Inizio serata: la curva è divisa, e l'ex fonderia dei giovani rischia lo sgombero.",
+   "oriz": 0,
+   "foto": "e21-o1-info-1366x768-035.jpg"
+  }
+ ],
+ "errori": []
+}
