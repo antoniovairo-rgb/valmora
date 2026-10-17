@@ -94,7 +94,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
       const g = { larghezza, errori: [], scorrimento: [], attesi: [] };
       const atteso = (cosa, ok) => g.attesi.push({ cosa, ok });
       // reducedMotion: transizioni ridotte a dissolvenze e mappa ferma → foto stabili fra un giro e l'altro.
-      const pagina = await browser.newPage({ viewport: { width: larghezza, height: 800 }, reducedMotion: 'reduce' });
+      const pagina = await browser.newPage({ viewport: { width: larghezza, height: 800 }, reducedMotion: 'reduce' }); await pagina.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); // PO-121: niente attese reali (la prova vera è foto-po121)
       // Braccio rosso: VALMORA_ROSSI=C05R01,C05R02,… accende gli interruttori rossi della resa (globalThis.__NO_X).
       const rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean);
       if (rossi.length) await pagina.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);

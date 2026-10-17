@@ -19,6 +19,10 @@ import { EffettiOpzione } from '../effetti-opzione.tsx';
 
 /** PO-121 (D-148): per quanti secondi la risposta a una chiamata si può annullare. */
 export const ANNULLA_SECONDI = 5;
+/** Durata di un «secondo» del conto alla rovescia. Solo per gli strumenti: il giro foto (che risponde a centinaia di
+ *  chiamate) mette globalThis.__VALMORA_SECONDO_MS = 1 per non aspettare il tempo reale; la prova di PO-121
+ *  (tools/foto-po121.mjs) non lo mette e misura i 5 s veri. */
+export const secondoMs = () => (globalThis as { __VALMORA_SECONDO_MS?: number }).__VALMORA_SECONDO_MS ?? 1000;
 
 export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: number; totale: number; rispondi: (opzione: string) => void;
   sospendi?: (opzione: string) => boolean; decidi?: (esito: Decisione) => void }) {
@@ -31,7 +35,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   const { decidi } = p;
   useEffect(() => {
     if (!resta) return;
-    const id = setTimeout(() => { if (resta > 1) setResta(resta - 1); else { setResta(0); decidi?.('confermata'); } }, 1000);
+    const id = setTimeout(() => { if (resta > 1) setResta(resta - 1); else { setResta(0); decidi?.('confermata'); } }, secondoMs());
     return () => clearTimeout(id);
   }, [resta, decidi]);
   const annulla = () => { setResta(0); setScelta(null); decidi?.('annullata'); };

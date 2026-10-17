@@ -35,7 +35,9 @@ describe('C27-01 il corteo della chiamata va col corteo dell\'ondata', () => {
     expect(esce('e30', 2, 'strada_cinderwick')).toBe(false);
     expect(esce('e30', 4, 'strada_cinderwick')).toBe(false); // D-141: «dalla_meta», verso lo stadio
     expect(esce('e17', 4, 'strada_cinderwick')).toBe(true);
-    expect(esce('e17', 4, 'piazza_municipio')).toBe(true);
+    // C34-04 (decisione del PO «Rendili copribili»): la piazza del municipio di e17 è una piazza come in e30, non più un
+    // viale: niente corteo dell'ondata lì (la chiamata ci disegna la folla, src/resa/mappa/dinamica.ts:15).
+    expect(follaDellOndata(ep('e17'), 4).cortei.map((c) => c.settore)).toEqual(['strada_cinderwick']);
   });
   it('senza corteo dell\'ondata decide la partita, come prima (e01 ondata 1: verso lo stadio)', () => {
     for (const s of ep('e01').mappa.settori) expect(esce('e01', 1, s.id)).toBe(false);
