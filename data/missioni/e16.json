@@ -338,7 +338,7 @@
           "id": "ritardatari16",
           "tipo": "corteo",
           "settore": "strada_cinderwick",
-          "pressione": 2
+          "pressione": 3
         }
       ],
       "chiamate": [
@@ -484,7 +484,7 @@
           "id": "cori_nome",
           "fonte": "centrale_radio",
           "testo": "testi:e16.ch.cori_nome",
-          "settore": "curva_ospiti",
+          "settore": "curva_cinderwick",
           "opzioni": [
             {
               "id": "speaker16",
@@ -570,7 +570,7 @@
           "fonte": "vice",
           "testo": "testi:e16.ch.senza_dessi",
           "commento": "testi:e16.ch.senza_dessi.vice",
-          "settore": "curva_cinderwick",
+          "settore": "magazzino",
           "opzioni": [
             {
               "id": "cerca_fonderie",

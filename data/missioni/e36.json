@@ -394,6 +394,7 @@
         },
         {
           "id": "piazzale_maxi",
+          "dopo": {"mai": ["festa_vietata/smonta_palco"]},
           "fonte": "centrale_radio",
           "testo": "testi:e36.ch.piazzale_maxi",
           "settore": "piazzale",

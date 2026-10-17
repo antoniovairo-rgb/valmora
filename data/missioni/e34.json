@@ -823,6 +823,7 @@
         },
         {
           "id": "ultimo_coro",
+          "dopo": {"mai": ["mercato_fine/chiudi_piazzale"]},
           "fonte": "centrale_radio",
           "testo": "testi:e34.ch.ultimo_coro",
           "settore": "piazzale",

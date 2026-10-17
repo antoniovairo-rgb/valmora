@@ -625,6 +625,7 @@
       "chiamate": [
         {
           "id": "abbraccio",
+          "dopo": {"mai": ["gemellati_escono/uscita_scortata"]},
           "fonte": "ufficio_sicurezza_cinderwick",
           "testo": "testi:e27.ch.abbraccio",
           "settore": "strada_cinderwick",
