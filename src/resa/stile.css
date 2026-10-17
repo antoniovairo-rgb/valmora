@@ -386,3 +386,5 @@ main:not(.rosso-c38r01) .scena .azioni.riepilogo-azioni { position: static; }
    col colore come striscia a sinistra. Rosso C40C01: come prima. */
 main:not(.rosso-c40c01) [data-premio-fiducia] { padding: var(--spazio-1) var(--spazio-2); border: var(--bordo-fine) solid var(--nero); border-left: var(--spazio-2) solid var(--colore-bene); background: var(--bianco); color: var(--nero); }
 main:not(.rosso-c40c01) [data-premio-fiducia].male { border-left-color: var(--colore-male); }
+.annulla-risposta { justify-content: center; } /* PO-121: «Annulla» col conto alla rovescia sotto le opzioni */
+.annulla-risposta .conto { font-variant-numeric: tabular-nums; font-weight: 700; }
