@@ -1,4 +1,5 @@
 // Passi della catena «logica» (e «build» per la completa). Ognuno restituisce l'elenco dei problemi.
+import { controllaCrescita, quoteCasuale, quoteDistratto } from './crescita.mjs';
 import { execSync } from 'node:child_process';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { controllaConfini, controllaSalvataggiReali, RIGHE_MAX } from './controlli-logica.mjs';
@@ -57,7 +58,7 @@ export const PASSI_LOGICA = {
   confini: () => controllaConfini(Object.fromEntries(tracciatiENuovi().map((p) => [p, readFileSync(p, 'utf8')]))),
   schema: () => validaDati(leggiSchemi(), leggiDati()),
   test: () => esegui('npx vitest run'),
-  bot: () => { const d = leggiDati(); const r = giraBot(d, 1000); return [...controllaBot(r, d), ...[1, 2, 3].flatMap((st) => controllaDifficolta(r, d, st)), ...controllaScelte(sceltePesano(d), d), ...controllaCampagna(chiamateViste(d)), ...controllaFisse(posizioneConta(d)), ...controllaFiduciaMinima(d)]; },
+  bot: () => { const d = leggiDati(); const r = giraBot(d, 1000); return [...controllaBot(r, d), ...[1, 2, 3].flatMap((st) => controllaDifficolta(r, d, st)), ...controllaCrescita(quoteCasuale(r, d), 'casuale'), ...controllaCrescita(quoteDistratto(d), 'distratto'), ...controllaScelte(sceltePesano(d), d), ...controllaCampagna(chiamateViste(d)), ...controllaFisse(posizioneConta(d)), ...controllaFiduciaMinima(d)]; },
   // PO-068/D-092: testi consolidati (lunghezze, niente bozze, variabili di storia impostate e poi lette) e ritmo della campagna
   storia: () => { const d = leggiDati(); return [...controllaConsolidamento(d), ...controllaRitmo(missioni(d))]; },
   'salvataggi-reali': () => controllaSalvataggiReali(SAVE_VERSION, leggiSalvataggi(), migra),
@@ -104,6 +105,9 @@ export const PASSI_LOGICA = {
     const m9 = structuredClone(d['missioni/e21.json']); for (const e of m9.ondate[1].eventi) if (e.id.startsWith('faida_')) e.pressione -= 1;
     const d9 = { 'stato.json': d['stato.json'], 'missioni/e20.json': d['missioni/e20.json'], 'missioni/e21.json': m9 };
     if (!controllaDifficolta(giraBot(d9, 1000), d9, 2).length) ciechi.push('bot/difficoltà delle stagioni 2-3 è cieco');
+    // D-162: stagione 3 resa più facile della 2 (quote vere, stagione 3 ridotta di 10 punti) → segnalata
+    const q9 = Object.fromEntries(Object.entries(quoteCasuale(giraBot(d, 200), d)).map(([k, [s, q]]) => [k, [s, s === 3 ? q - 10 : q]]));
+    if (!controllaCrescita(q9, 'casuale').length) ciechi.push('bot/crescita fra stagioni è cieco');
     const m3 = structuredClone(d['missioni/e01.json']);
     for (const o of m3.ondate) for (const c of o.chiamate ?? []) for (const x of c.opzioni) x.effetti = [];
     const d3 = { ...d, 'missioni/e01.json': m3 };
