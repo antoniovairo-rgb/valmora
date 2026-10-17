@@ -424,6 +424,29 @@
           "se": {
             "$ref": "comune.schema.json#/$defs/condizione"
           },
+          "dopo": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "D-158: l'esito vale solo se queste scelte («chiamata/opzione») sono già (gia) o mai (mai) state fatte in questa partita",
+            "properties": {
+              "mai": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9_]+/[a-z0-9_]+$"
+                },
+                "minItems": 1
+              },
+              "gia": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9_]+/[a-z0-9_]+$"
+                },
+                "minItems": 1
+              }
+            }
+          },
           "effetti": {
             "type": "array",
             "items": {
