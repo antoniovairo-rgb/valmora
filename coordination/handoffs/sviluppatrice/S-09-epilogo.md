@@ -82,3 +82,19 @@ CATENA_QUI
 ## Commit
 
 COMMIT_QUI
+
+## D-165 (PO-130) · tavole di prova delle parti 2 e 3, per il PO
+
+Ramo di storia: la partita A-Z vera (`tests/salvataggi-reali/v2-0.38.0-fine-campagna.json`): Fabbro «rispetto»,
+testimone «protetto», busta «consegnata», 3 dubbi su Lavezzari, fascicolo «procura», carriera «prorogato».
+Foto in `coordination/handoffs/sviluppatrice/S-09-tavole-prova/` a 360 e 412 px, protagonista uomo (`360-…`) e donna
+(`360-f-…`): una tavola per filo (`*-tavola-fabbro|testimone|busta|talpa|fascicolo.jpg`), il bar (`*-tavola-bar.jpg`) e
+la pagina intera (`*-finale-intero.jpg`). Comando: `node tools/foto-tavole.mjs <cartella> 360,412 [f]` → «verde»
+(niente errori di console, niente scorrimento orizzontale, nessun testo mancante).
+- Disegni: SVG nel codice come le altre vignette (`src/resa/tavole-finale.tsx`, classi `v-*`, stile C), nessun file
+  esterno. Testi: `data/testi/it/finale.json` (didascalie ≤ 82 caratteri, ancora senza guardiano).
+- Nel gioco **non si vedono**: solo con `globalThis.__PROVA_D165 = true` (Epilogo.tsx). Entrano dopo il sì del PO.
+- IPOTESI da far confermare al PO: il Fabbro «dietro il vetro» (in custodia dopo e29); la battuta di chiusura di Malvasi
+  «Doppio o niente sulla prossima?» riprende quella del verbale di e01; le didascalie di busta, fascicolo e bar
+  riprendono le parole dei verbali di e36 (stessi fatti), non li contraddicono.
+- Parte 1 (fischio, città che si svuota, sala che si spegne) non ancora fatta.

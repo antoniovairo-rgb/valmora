@@ -168,7 +168,8 @@ export function App() {
       epilogo={ultimoEpisodio(missioni)?.id === esito.m.id ? () => setSchermata('epilogo') : undefined} />;
   } else if (schermata === 'epilogo' && sal && !ic) {
     // D-161: epilogo della campagna; si torna alla città (e dalla città si rilegge, finché l'ultimo episodio è superato)
-    corpo = <Epilogo e={epilogo(missioni, sal.episodi, sal.variabili, dichiarate.values())} citta={() => alla_citta(sal)} home={home} />;
+    corpo = <Epilogo e={epilogo(missioni, sal.episodi, sal.variabili, dichiarate.values())} citta={() => alla_citta(sal)} home={home}
+      genere={sal.genere} fiducia={Number(sal.variabili.credito ?? 0)} fiduciaMax={Number(dichiarate.get('credito')?.max ?? 10)} />;
   } else if (schermata === 'citta' && sal && !ic) {
     const fine = ultimoEpisodio(missioni);
     corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} home={home}

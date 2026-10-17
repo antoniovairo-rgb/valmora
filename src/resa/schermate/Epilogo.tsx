@@ -6,6 +6,7 @@ import { chiaveFilo, type Epilogo as DatiEpilogo, type FineStagione as DatiFine,
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { Testata } from './Fumetto.tsx';
+import { provaTavole, TAVOLE, TavolaBar, TavolaFilo } from '../tavole-finale.tsx';
 
 const Fili = (p: { fili: Filo[]; nome: string }) => (
   <ul className="scheda fili" data-fili={p.nome}>
@@ -40,7 +41,20 @@ export function PassoFineStagione(p: { f: DatiFine }) {
 }
 
 /** Schermata di epilogo dopo il verbale dell'ultimo episodio: carriera, le sei scelte, le stelle; poi la città. */
-export function Epilogo(p: { e: DatiEpilogo; citta: () => void; home?: () => void }) {
+export function Epilogo(p: { e: DatiEpilogo; citta: () => void; home?: () => void; genere?: 'm' | 'f'; fiducia?: number; fiduciaMax?: number }) {
+  // D-165 (prova): parte 2 a tavole grandi, una per filo, e parte 3 al bar; solo con globalThis.__PROVA_D165
+  if (provaTavole()) {
+    const valore = (id: string) => p.e.scelte.find((f) => f.id === id)?.valore;
+    const superati = p.e.stagioni.reduce((s, x) => s + x.superati, 0), episodi = p.e.stagioni.reduce((s, x) => s + x.episodi, 0);
+    return (
+      <>
+        <Testata numero="★" etichetta={t('epilogo.etichetta')} titolo={t('finale.titolo')} home={p.home} />
+        {TAVOLE.filter(([, id]) => valore(id) !== undefined).map(([tavola, id]) => <TavolaFilo key={tavola} tavola={tavola} valore={valore(id)!} />)}
+        <TavolaBar genere={p.genere ?? 'm'} carriera={p.e.carriera} numeri={[`★ ${p.e.stelle} su ${p.e.massimo}`, `${superati} episodi su ${episodi}`, `Fiducia ${p.fiducia ?? '–'}/${p.fiduciaMax ?? 10}`]} />
+        <button className="pulsante" data-azione="citta" onClick={p.citta}><Icona di={IconaMappa} />Alla mappa della città</button>
+      </>
+    );
+  }
   return (
     <>
       <Testata numero="★" etichetta={t('epilogo.etichetta')} titolo={t('epilogo.titolo')} home={p.home} />

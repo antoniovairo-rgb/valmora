@@ -83,3 +83,9 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 /* C22-10: con le icone a 20 px i due pulsanti del riepilogo uscivano sotto la versione a 360 (PO-097): spazio interno
    più stretto, come nei tre pulsanti dello schieramento */
 .riepilogo-azioni .pulsante { gap: var(--spazio-1); padding-inline: var(--spazio-2); }
+/* D-165 (prova PO-130): tavole grandi del finale, vignetta a tutta larghezza (16:9) con didascalia sotto */
+.tavola { margin: 0 0 var(--spazio-4); }
+.tavola > .vignetta { height: auto; min-height: 0; max-height: none; margin: 0; }
+.didascalia { margin: 0; padding: var(--spazio-2) var(--spazio-3); background: var(--bianco); border: var(--bordo-fine) solid var(--nero); border-top: 0; }
+.numeri-carriera { justify-content: center; gap: var(--spazio-2); margin: var(--spazio-2) 0 0; }
+.vignetta .v-fine { font-size: var(--testo-grande); letter-spacing: var(--spazio-px); }
