@@ -185,7 +185,7 @@ export function App() {
       nuovaBozza(); conIc(iniziaEpisodio(sal, m)); setSchermata('gioco');
     }} />;
   } else if (schermata === 'rapporto' && ic?.rapporti.length && !spento('C110V01') && tonoVisto !== `${m.id}-${ic.rapporti.at(-1)!.n}`) {
-    // C33-06 (D-144): prima del rapporto la scena del tono con la vignetta grande; rosso C110V01: il rapporto subito
+    // C33-06 (D-143): prima del rapporto la scena del tono con la vignetta grande; rosso C110V01: il rapporto subito
     const r = ic.rapporti.at(-1)!, visto = `${m.id}-${r.n}`;
     nome = 'tono';
     corpo = <Tono n={r.n} genere={genereAttuale() === 'f' ? 'f' : 'm'} avanti={() => setTonoVisto(visto)}

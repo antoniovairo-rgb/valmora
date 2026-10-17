@@ -1,4 +1,4 @@
-// C33-06 (D-144): a fine ondata, prima del rapporto, la scena del tono con la vignetta grande. Guardiano del giro foto, a
+// C33-06 (D-143): a fine ondata, prima del rapporto, la scena del tono con la vignetta grande. Guardiano del giro foto, a
 // 360, 375, 412 e 1366 su e01 ondata 1 (bot attento, chiamate già risposte): dopo «Leggi il rapporto» c'è la scena
 // «tono»; la vignetta è VISIBILE (tutta nella finestra, alta più di 0, non nascosta); il fuoco sta sulla scena (D-142);
 // da sola passa al rapporto entro 4 s; a 360 anche con Invio, subito. Foto tono-<larghezza>.png.

@@ -10,7 +10,7 @@ describe('PO-059 espressioni', () => {
   it('tono del rapporto dal livello più alto: ≤1 calmo, 2-3 teso, ≥4 critico', () => {
     expect(tonoOndata([0, 1, 0])).toBe('calmo'); expect(tonoOndata([1, 3])).toBe('teso'); expect(tonoOndata([2, 4])).toBe('critico'); expect(tonoOndata([])).toBe('calmo');
   });
-  it('C33-07 (D-145): un settore scoperto vale almeno «teso»; rosso __NO_C108T01: solo la tensione', () => {
+  it('C33-07 (D-144): un settore scoperto vale almeno «teso»; rosso __NO_C108T01: solo la tensione', () => {
     expect(tonoOndata([0, 1], 1)).toBe('teso'); expect(tonoOndata([0, 1], 0)).toBe('calmo'); expect(tonoOndata([4], 2)).toBe('critico'); expect(tonoOndata([2], 1)).toBe('teso');
     g.__NO_C108T01 = true; expect(tonoOndata([0, 1], 1)).toBe('calmo');
   });

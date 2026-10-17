@@ -125,10 +125,10 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
               const r = n.getBoundingClientRect();
               if (r.left < mappa.left + 5 || r.right > mappa.right - 5 || r.bottom > mappa.bottom - 5 || r.top < mappa.top + 5) p.push(`nome «${n.textContent}» tocca il bordo della mappa`);
             }
-            // C-008: nomi sovrapposti (> 0 px²); aree di tocco sopra i nomi come in D-143, sotto
+            // C-008: nomi sovrapposti (> 0 px²); aree di tocco sopra i nomi come in D-145, sotto
           const inter = (a, b) => Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
           const nomi = [...document.querySelectorAll('.mappa .settore-nome')].map((e) => { const s = e.closest('[data-settore],[data-episodio]'); return [s?.dataset.settore ?? s?.dataset.episodio ?? '?', e.getBoundingClientRect()]; });
-          // D-143 (PO su C33-01): un tocco può coprire un nome ma non «rubarlo» (centro sul nome altrui; tocco colpito toccando il nome)
+          // D-145 (PO su C33-01): un tocco può coprire un nome ma non «rubarlo» (centro sul nome altrui; tocco colpito toccando il nome)
           for (const t of document.querySelectorAll('.mappa [data-presenza]')) { const q = t.getBoundingClientRect(), c = [(q.left + q.right) / 2, (q.top + q.bottom) / 2], mio = t.closest('[data-settore]');
             for (const n of document.querySelectorAll('.mappa .settore-nome')) { if (n.closest('[data-settore]') === mio) continue; const g = document.createRange(); g.selectNodeContents(n);
               if ([...g.getClientRects()].some((z) => c[0] >= z.left && c[0] <= z.right && c[1] >= z.top && c[1] <= z.bottom)) p.push(`centro del tocco ${t.dataset.presenza} sul nome ${n.closest('[data-settore],[data-episodio]')?.dataset.settore}`); } }

@@ -1,4 +1,4 @@
-// C33-09 (D-146): nel verbale il requisito della stella dice anche il numero, non solo il colore: «… Seconda stella: tensione massima 3 su 10
+// C33-09 (D-147): nel verbale il requisito della stella dice anche il numero, non solo il colore: «… Seconda stella: tensione massima 3 su 10
 // (raggiunta: 4).» (D-147) Rosso __NO_C109S01: solo i colori.
 import { afterEach, describe, expect, it } from 'vitest';
 import { requisitoInParole } from '../src/resa/schermate/Bilancio.tsx';

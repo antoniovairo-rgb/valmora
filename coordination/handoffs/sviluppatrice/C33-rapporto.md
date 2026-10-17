@@ -9,14 +9,14 @@ Codice: `src/resa/mappa/etichette.ts`; guardiano: `tools/foto-schieramenti.mjs` 
 - Misura (sonda dei cortei a 360, 69 passi del corteo dell'ondata; «verso» = la distanza scende): e30 o4 verde 69/69 verso lo stadio, 6/69 verso il municipio (63 se ne allontanano); rosso C99M01 0/69 verso lo stadio, 62/69 verso il municipio (il collaudo: 63/69). Il corteo della chiamata «fiaccolata»: verde 39/39 verso lo stadio e 0/39 verso il municipio, rosso 0/39 e 36/39. e17 o4 invariato.
 - Test: `meta-fase.test.ts` (D-141), `corteo-verso.test.ts` adeguato (e30 o4 entra/esce falso; i rossi C73V01 e C74D01 restano provati su e17 o4).
 
-## C33-01 (D-143, decisione del PO: opzione A) – la pastiglia visibile mai sopra un nome; il tocco trasparente sì, ma non «ruba» il nome
+## C33-01 (D-145, decisione del PO: opzione A; prima etichettata per errore D-143) – la pastiglia visibile mai sopra un nome; il tocco trasparente sì, ma non «ruba» il nome
 
 - Consegnato a parte, dopo C34-01/C34-08/C33-02…05 (che erano senza C33-01).
 - Risolutore (`etichette.ts`):
   - il nome si misura col testo vero (riquadro ∪ righe del testo, `Range.getClientRects`); una larghezza in cui il testo non ci sta si salta;
   - la pastiglia visibile sopra un nome pesa × 20 (quasi vincolo, sotto il disco 1e8). Causa misurata in e35 o2 a 360: 98 px² di pastiglia sul nome costavano 49 219 contro 138 516 del posto senza pastiglie sul nome (tocco trasparente sul proprio nome, 1385 px²). **Rosso `__NO_C100N01`** (riquadro e peso × 1, come nella 0.34.0).
   - nessun nome «rubato» da un'area di tocco: il centro di ogni riga di un nome non sta sotto un tocco (toccando il nome si ritirerebbe un'unità) e il centro di un tocco non cade sul nome di un altro settore; VERA × 1e4 per caso. **Rosso `__NO_C106T01`.**
-- Regola C-008 nuova (D-143, proposta mia): un'area di tocco sopra un nome è ammessa; è un errore quando (a) il suo centro cade sul nome di un ALTRO settore, o (b) toccando il centro di una riga di un nome qualsiasi si colpisce un tocco. Nel giro foto (`tools/foto.mjs`) sostituisce «area > 4 px²»; negli schieramenti (`controllaSchieramenti`) è un controllo a tetto 0 a 360, 375 e 412.
+- Regola C-008 nuova (D-145, proposta mia): un'area di tocco sopra un nome è ammessa; è un errore quando (a) il suo centro cade sul nome di un ALTRO settore, o (b) toccando il centro di una riga di un nome qualsiasi si colpisce un tocco. Nel giro foto (`tools/foto.mjs`) sostituisce «area > 4 px²»; negli schieramenti (`controllaSchieramenti`) è un controllo a tetto 0 a 360, 375 e 412.
 - Misura del rischio (prova chiesta dal PO): il caso (b) è proprio «toccando il nome si ritira un'unità». Prima della regola nuova nel risolutore: 1 ondata su 426 (e35 o2 a 360: toccando «Perimetro della banca» si colpisce squadre@perimetro_banca); dopo: 0.
 - Guardiano col testo vero: pastiglie sopra i nomi a 360, 375 e 412, tetto 0 (invariato).
 - Misure (guardiano completo e giro foto, build finale):

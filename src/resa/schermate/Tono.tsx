@@ -1,4 +1,4 @@
-// C33-06 (D-144): a fine ondata, prima del rapporto, una scena breve con la vignetta grande del tono (protagonista e vice,
+// C33-06 (D-143): a fine ondata, prima del rapporto, una scena breve con la vignetta grande del tono (protagonista e vice,
 // PO-059): nel rapporto la vignetta restava quasi sempre nascosta per mancanza di spazio. Avanza da sola dopo TONO_MS,
 // oppure con un tocco o con Invio/Spazio. Il fuoco va sulla scena (D-142), nessun comando da premere per sbaglio.
 // Rosso C110V01: niente scena, il rapporto subito, come prima.

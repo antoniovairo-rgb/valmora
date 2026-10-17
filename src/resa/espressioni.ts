@@ -9,7 +9,7 @@ export type TonoOndata = 'calmo' | 'teso' | 'critico';
 export type TonoEsito = 'bene' | 'medio' | 'male' | 'fallita';
 
 /** Il tono del rapporto dal livello di tensione più alto a fine ondata (0-5, partita.ts): fino a 1 calmo, 2-3 teso, poi critico.
- *  C33-07 (D-145): con almeno un settore scoperto il tono è almeno «teso» (la serata non è «sotto controllo» se un settore
+ *  C33-07 (D-144): con almeno un settore scoperto il tono è almeno «teso» (la serata non è «sotto controllo» se un settore
  *  è rimasto scoperto). Rosso C108T01: conta solo la tensione, come prima. */
 export const tonoOndata = (livelli: number[], scoperti = 0): TonoOndata => {
   const m = Math.max(0, ...livelli), t = m <= 1 ? 'calmo' : m <= 3 ? 'teso' : 'critico';
