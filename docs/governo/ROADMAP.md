@@ -34,6 +34,17 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
 ---
 
 ## Registro delle release
-La più recente in alto.
+La più recente in alto. Hash = commit di main dopo la promozione (catena completa 3/3 + CI «catene» verde, D-115). Dettaglio di causa/misura/guardiano nel commento di GAME_VERSION (src/versione.ts).
 
-Nessuna release.
+| Versione | Data (UTC) | Hash main | Contenuto | Misura principale | Stato |
+|---|---|---|---|---|---|
+| 0.37.0 | 2026-10-17 14:46 | d2fdf88 | Tastiera nei riepiloghi e fra le scene (C34-01, C34-08 / D-142), fiaccolata e30 (C33-02 / D-141), etichette mappa (C33-03…05) | riepilogo 6/6 col fuoco sul titolo; Tab stagione 1 da 10 a 2; e30 o4 69/69 lontano dal municipio | pubblicata; collaudo C-037 |
+| 0.36.0 | 2026-10-17 08:43 | fdad627 | C35-01: salvataggio vecchio in e35 non riapre la chiamata opposta sulla barca | c34-dati 12/12 (11/12 senza correzione) | pubblicata; collaudo C-036 |
+| 0.35.0 | 2026-10-17 05:21 | e7f00cc | Dati e testi coerenti con le scelte (C34-02/03/06/09/10) | c34-dati 11/11 (8/11 coi dati 0.34.0) | pubblicata; collaudo C-035 |
+| 0.34.0 | 2026-10-16 21:51 | acf1151 | «?» nella barra (D-139), fuoco tastiera (C32-01), versione tablet/PC (C32-06), e17 (C32-02) | «Conferma» ≥ 44 px a 360…1366; e17 28-29 via / 10-11 verso | pubblicata; collaudo C-034 |
+| 0.33.0 | 2026-10-16 17:52 | 57229a4 | Espressioni dalla tensione (PO-059, D-133) | rosso C96P01: 29 righe | pubblicata; collaudo C-033 |
+| 0.32.0 | 2026-10-16 16:10 | c15c617 | Pastiglie a tetto 0 (D-136), corteo e30 (C31-02), C32-03/05 | pastiglie sopra i nomi 0/142 (rosso 7) | pubblicata; collaudo C-032 |
+| 0.31.0 | 2026-10-16 13:55 | 8eb495e | Corteo e04 dal bordo giusto (C29-02), «Urgente!» nella guida (C29-04) | catena 3/3 su 7e28ab4 | pubblicata |
+| 0.30.0 | 2026-10-16 11:58 | 98f6109 | C31-01 guardiano fase e21, C31-03 «familiari» in e35 | meta-fase verde, rosso senza fase | pubblicata |
+
+Le release precedenti alla 0.30.0 sono registrate nei commit «STABILITA: … (rilascio x.y.z)» di main e in docs/RELEASE_HISTORY.md.
