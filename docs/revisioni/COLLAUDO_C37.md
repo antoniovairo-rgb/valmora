@@ -300,7 +300,7 @@ Nessuno.
 # Commit
 
 - Build collaudata: main **d2fdf88** (rilascio 78b865e); confronto 0.36.0 **fdad627**.
-- Commit del collaudo: vedi `git log claude/valmora-collaudo-c037` (hash nel messaggio della sessione principale).
+- Commit del collaudo: **bef384c** (rapporto, sonde, uscite, foto, salvataggi 0.36.0); questa riga col suo hash è il commit successivo sullo stesso ramo.
 
 # Note di metodo e limiti
 
