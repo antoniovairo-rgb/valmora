@@ -172,10 +172,6 @@
               "costo": "testi:e36.op.cartellone_regalo.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "cantiere_stadio_nuovo",
                   "valore": 2
                 },
@@ -378,10 +374,6 @@
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e36.op.portavoce_smentisce.r"
@@ -554,10 +546,6 @@
               "costo": "testi:e36.op.frase_dura.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "curva_cinderwick",
                   "valore": -1
                 }
@@ -569,10 +557,6 @@
               "testo": "testi:e36.op.frase_neutra",
               "costo": "testi:e36.op.frase_neutra.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2
@@ -602,10 +586,6 @@
               "costo": "testi:e36.op.frase_dura.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "curva_cinderwick",
                   "valore": -1
                 }
@@ -617,10 +597,6 @@
               "testo": "testi:e36.op.frase_neutra",
               "costo": "testi:e36.op.frase_neutra.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2
@@ -646,10 +622,6 @@
               "costo": "testi:e36.op.frase_dura.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "curva_cinderwick",
                   "valore": -1
                 }
@@ -661,10 +633,6 @@
               "testo": "testi:e36.op.frase_neutra",
               "costo": "testi:e36.op.frase_neutra.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2
@@ -690,10 +658,6 @@
               "costo": "testi:e36.op.frase_dura.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "curva_cinderwick",
                   "valore": -1
                 }
@@ -705,10 +669,6 @@
               "testo": "testi:e36.op.frase_neutra",
               "costo": "testi:e36.op.frase_neutra.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2
@@ -746,10 +706,6 @@
               "testo": "testi:e36.op.muri_liberi",
               "costo": "testi:e36.op.muri_liberi.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "cantiere_stadio_nuovo",
                   "valore": 2
@@ -828,10 +784,6 @@
               "testo": "testi:e36.op.lascia_insieme",
               "costo": "testi:e36.op.lascia_insieme.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "strada_larkspire",
                   "valore": 2
@@ -912,10 +864,6 @@
                 {
                   "pressione": "cantiere_stadio_nuovo",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e36.op.ultimo_giro.r"
@@ -1187,7 +1135,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

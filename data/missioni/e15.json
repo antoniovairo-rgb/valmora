@@ -369,10 +369,6 @@
                   "valore": -1
                 },
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "riserva": "mediatore",
                   "valore": -1
                 }
@@ -440,10 +436,6 @@
                 {
                   "tensione": "curva_ospiti",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e15.op.chiudi_settore.r"
@@ -453,10 +445,6 @@
               "testo": "testi:e15.op.fidati15",
               "costo": "testi:e15.op.fidati15.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "curva_ospiti",
                   "valore": 2
@@ -560,10 +548,6 @@
               "costo": "testi:e15.op.pausa15.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -2
-                },
-                {
                   "pressione": "curva_ospiti",
                   "valore": -3
                 }
@@ -575,10 +559,6 @@
               "testo": "testi:e15.op.lascia_verdi",
               "costo": "testi:e15.op.lascia_verdi.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "curva_ospiti",
                   "valore": 2
@@ -659,10 +639,6 @@
               "costo": "testi:e15.op.corteo_stazione.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "viale_stazione",
                   "valore": 2
                 }
@@ -674,10 +650,6 @@
               "testo": "testi:e15.op.navette15",
               "costo": "testi:e15.op.navette15.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "viale_stazione",
                   "valore": -2
@@ -812,7 +784,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

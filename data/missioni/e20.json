@@ -193,10 +193,6 @@
               "costo": "testi:e20.op.libero20.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "strada_cinderwick",
                   "valore": 2
                 }
@@ -273,10 +269,6 @@
               "costo": "testi:e20.op.agente_dessi.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "riserva": "squadre",
                   "valore": -1
                 }
@@ -287,12 +279,7 @@
               "id": "telecamere20",
               "testo": "testi:e20.op.telecamere20",
               "costo": "testi:e20.op.telecamere20.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e20.op.telecamere20.r"
             }
           ]
@@ -402,10 +389,6 @@
               "testo": "testi:e20.op.lascia_fumo20",
               "costo": "testi:e20.op.lascia_fumo20.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "curva_cinderwick",
                   "valore": 2
@@ -894,7 +877,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

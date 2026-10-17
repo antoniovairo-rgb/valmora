@@ -201,10 +201,6 @@
                 {
                   "pressione": "piazza_concerto",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e06.op.chiama_impresa.r"
@@ -302,10 +298,6 @@
               "testo": "testi:e06.op.salto_concerto",
               "costo": "testi:e06.op.salto_concerto.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazza_concerto",
                   "valore": 2
@@ -1019,7 +1011,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

@@ -339,12 +339,7 @@
               "id": "ignora_coro",
               "testo": "testi:e34.op.ignora_coro",
               "costo": "testi:e34.op.ignora_coro.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e34.op.ignora_coro.r"
             },
             {
@@ -352,10 +347,6 @@
               "testo": "testi:e34.op.ferma_coro",
               "costo": "testi:e34.op.ferma_coro.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "curva_cinderwick",
                   "valore": 2
@@ -511,10 +502,6 @@
               "testo": "testi:e34.op.squadra_tribuna",
               "costo": "testi:e34.op.squadra_tribuna.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "riserva": "squadre",
                   "valore": -1
@@ -819,10 +806,6 @@
               "costo": "testi:e34.op.accompagna_commissione.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "pressione": "piazzale",
                   "valore": 2
                 }
@@ -833,12 +816,7 @@
               "id": "uscita_laterale",
               "testo": "testi:e34.op.uscita_laterale",
               "costo": "testi:e34.op.uscita_laterale.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e34.op.uscita_laterale.r"
             }
           ]
@@ -857,10 +835,6 @@
                 {
                   "pressione": "piazzale",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e34.op.saluta_curva.r"
@@ -932,7 +906,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

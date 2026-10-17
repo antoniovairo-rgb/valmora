@@ -156,10 +156,6 @@
                   "valore": -2
                 },
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "magazzino",
                   "valore": -2
                 }
@@ -913,7 +909,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

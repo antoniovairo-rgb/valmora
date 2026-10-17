@@ -532,10 +532,6 @@
               "costo": "testi:e13.op.sospendi13.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -2
-                },
-                {
                   "pressione": "piazzale",
                   "valore": -3
                 },
@@ -576,10 +572,6 @@
               "costo": "testi:e13.op.comunicato13.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "curva_cinderwick",
                   "valore": 1
                 }
@@ -590,12 +582,7 @@
               "id": "silenzio",
               "testo": "testi:e13.op.silenzio",
               "costo": "testi:e13.op.silenzio.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e13.op.silenzio.r"
             }
           ]
@@ -615,10 +602,6 @@
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e13.op.accetta_dessi.r"
@@ -631,10 +614,6 @@
                 {
                   "tensione": "curva_cinderwick",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e13.op.rifiuta_dessi.r"
@@ -868,7 +847,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

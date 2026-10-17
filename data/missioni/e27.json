@@ -376,10 +376,6 @@
               "costo": "testi:e27.op.acquisisci_video.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_gemellati",
                   "valore": 2
                 }
@@ -390,12 +386,7 @@
               "id": "lascia_video",
               "testo": "testi:e27.op.lascia_video",
               "costo": "testi:e27.op.lascia_video.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e27.op.lascia_video.r"
             }
           ]
@@ -414,10 +405,6 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e27.op.steward_rovers.r"
@@ -498,10 +485,6 @@
               "testo": "testi:e27.op.annuncio",
               "costo": "testi:e27.op.annuncio.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "curva_cinderwick",
                   "valore": 2
@@ -714,10 +697,6 @@
                 {
                   "pressione": "stazione",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e27.op.sala_attesa.r"
@@ -765,10 +744,6 @@
               "costo": "testi:e27.op.tieni_busta.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "stazione",
                   "valore": 2
                 }
@@ -780,10 +755,6 @@
               "testo": "testi:e27.op.consegna_comando",
               "costo": "testi:e27.op.consegna_comando.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "riserva": "steward",
                   "valore": -1
@@ -850,7 +821,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }
