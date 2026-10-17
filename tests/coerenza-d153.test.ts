@@ -2,6 +2,7 @@
 // sono escluse con «dopo» (REGISTRO) o hanno un testo valido in tutti i rami (TESTI). Partite vere coi bot casuale e
 // attento su tutti gli episodi: dopo la scelta, la chiamata o l'opzione che la smentisce non si offre mai.
 // Rosso __NO_C153D01: il test toglie dai dati i «dopo» di D-153 (i dati di prima) e le contraddizioni tornano.
+import { readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it } from 'vitest';
 import { leggiDati } from '../tools/dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
@@ -142,3 +143,26 @@ describe('D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 epi
     }
   });
 });
+
+// C37-05 (D-159 esteso): un'opzione che manda un numero di unità («una squadra», «due steward») o il mediatore impegna
+// davvero quell'unità (effetto «riserva») o dice perché no (variante con «dopo», «ancora», «già», «nessun»). Le forme
+// generiche («Steward in curva ospiti», «le squadre») si leggono come le unità già schierate e restano fuori.
+// Rosso: con i testi di prima (tests/dati/c153-testi-prima.json, presi da 7f1dc07) i 6 casi tornano.
+const UNITA: [RegExp, string][] = [[/\b(una|due|tre|quattro) squadr/i, 'squadre'], [/\b(uno|due|tre|quattro) steward/i, 'steward'], [/\bmanda il mediatore/i, 'mediatore']];
+function nominaSenzaImpegno(testiDi: (ep: string) => Record<string, string>) {
+  const fuori: string[] = [];
+  for (const m of missioni) for (const o of m.ondate) for (const c of o.chiamate ?? []) for (const op of c.opzioni) {
+    const tx = testiDi(m.id)[op.testo.replace(/^testi:/, '')] ?? '';
+    for (const [re, r] of UNITA) if (re.test(tx) && !op.effetti.some((e) => 'riserva' in e && e.riserva === r) && !op.dopo && !/ancora|già|nessun/i.test(tx)) fuori.push(`${m.id} ${c.id}/${op.id}: «${tx}»`);
+  }
+  return fuori;
+}
+describe('C37-05 l\'opzione che manda un\'unità la impegna o dice perché no (tutti i 36 episodi)', () => {
+  it('verde: nessuna opzione nomina un\'unità che non impegna', () => expect(nominaSenzaImpegno(testi)).toEqual([]));
+  it('rosso (testi di prima): i 6 casi C37-05 tornano', () => {
+    const prima = JSON.parse(readFileSync('tests/dati/c153-testi-prima.json', 'utf8')) as Record<string, Record<string, string>>;
+    const x = nominaSenzaImpegno((ep) => ({ ...testi(ep), ...(prima[ep] ?? {}) })); console.log(`C37-05 rosso: ${x.length}`);
+    expect(x.length).toBe(6);
+  });
+});
+
