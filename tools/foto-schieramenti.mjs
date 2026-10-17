@@ -103,7 +103,12 @@ export async function mappaSchieramento(pagina) {
     for (const n of elNomi) { const r = document.createRange(); r.selectNodeContents(n);
       for (const z of r.getClientRects()) { const x = (z.left + z.right) / 2, y = (z.top + z.bottom) / 2; if (y < 0 || y > innerHeight) continue;
         const e = document.elementFromPoint(x, y)?.closest('[data-presenza]'); if (e) rubati.push(`toccando «${n.textContent}» si colpisce ${e.dataset.presenza}`); } }
-    return { sopra, coperte, suNomi, fuori, vicine, tocchiSuNomi, rubati };
+    // C37-03: il nome (bordo più vicino) più vicino al disco di un altro settore che al proprio (e19 a mappa vuota, 16 contro 22 px)
+    const nomiVicini = dischi.flatMap(([x, mio]) => { const n = x.querySelector('.settore-nome'); if (!n || !n.getClientRects().length) return []; const r = n.getBoundingClientRect();
+      const d = (q) => Math.hypot(Math.max(r.left - q[0], 0, q[0] - r.right), Math.max(r.top - q[1], 0, q[1] - r.bottom)), m = d(mio);
+      const [altro, a2] = dischi.filter(([y]) => y !== x).map(([y, q]) => [y.dataset.settore, d(q)]).sort((u, v) => u[1] - v[1])[0] ?? [null, Infinity];
+      return a2 < m ? [`nome ${x.dataset.settore} a ${m.toFixed(0)} px dal suo disco, ${a2.toFixed(0)} da ${altro}`] : []; });
+    return { sopra, coperte, suNomi, fuori, vicine, tocchiSuNomi, rubati, nomiVicini };
   });
 }
 
@@ -132,7 +137,8 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     await pagina.getByRole('button', { name: 'Riprendi' }).click();
     const ok = await pagina.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false);
     if (!ok) { atteso(`${nome}: lo schieramento non si apre`, false); return; }
-    await pagina.waitForTimeout(120);
+    await ascoltaEtichette(pagina); await etichetteFerme(pagina); // C37-03: a mappa vuota ogni nome più vicino al suo disco che agli altri
+    const vuota = await mappaSchieramento(pagina); atteso(`${nome} (mappa vuota): ${vuota.nomiVicini.join('; ')} (C37-03)`, !vuota.nomiVicini.length);
     const [h, alt] = await pagina.evaluate(() => [document.documentElement.scrollHeight, innerHeight]);
     atteso(`${nome}: ${h - alt} px di scorrimento nello schieramento (S-24)`, h <= alt);
     const coperti = await copertiDallaBarra(pagina);
@@ -162,6 +168,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
       rubati.push(...r.rubati.map((x) => `${st.m.id} o${st.n} ${x}`));
       atteso(`${dove} con le unità: pastiglie sopra i nomi ${r.suNomi.join('; ')} (C27-06, il caso del collaudo)`, st.m.id !== 'e19' || !r.suNomi.length);
       atteso(`${dove} con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
+      atteso(`${dove} con le unità: ${r.nomiVicini.join('; ')} (C37-03)`, !r.nomiVicini.length);
       if (w === 360) { // C33-04: la disposizione non dipende dallo stato del giro prima (rosso VALMORA_ROSSI=C102D01)
         const posti = () => q6.evaluate(() => [...document.querySelectorAll('.mappa:not(.citta) [data-settore]')].map((x) => `${x.dataset.settore}:${x.dataset.nome}/${x.dataset.unita}/${x.querySelector('.settore-nome')?.style.maxWidth ?? ''}`).join(' '));
         const prima = await posti();

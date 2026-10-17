@@ -141,7 +141,7 @@ export function disponiEtichette(contenitore: HTMLElement) {
       s.setAttribute('data-nome', nome); s.setAttribute('data-unita', unita);
       const n = nomeDi(s), u = conUnita ? unitaDi(s) : null;
       if (!n || (conUnita && !u)) continue;
-      const costo = costoDi(n, perNome) + VERA * (c27 ? 1e4 : 10) * fuori(n, mappa) + nomiSopra(n) * (c27 ? 2e3 : 1) + sottoPastiglie(n) + (u ? sottoDisco() : 0)
+      const costo = costoDi(n, perNome) + nomeLontano(n, punti, i) + VERA * (c27 ? 1e4 : 10) * fuori(n, mappa) + nomiSopra(n) * (c27 ? 2e3 : 1) + sottoPastiglie(n) + (u ? sottoDisco() : 0)
         + (u ? costoDi(u, perUnita) + VERA * area(n, u) + bordoUnita(u) + suNomi(pastiglie() ?? u, n) * (c33 ? 20 : 1) + lontano(pastiglie() ?? u) + ruba() : 0);
       if (costo < migliore.costo - (largo ? 0.5 : 0)) migliore = { nome, unita, costo, largo };
       if (costo === 0) break cerca;
@@ -223,24 +223,42 @@ export function costoNomi(r: Rett[], punti: Rett[], mappa: Rett): number {
   return c;
 }
 
+/** C37-03: il nome (bordo più vicino) più vicino al disco di un altro settore che al proprio (e19 a mappa vuota: «Magazzino
+ *  delle fonderie» a 16 px dalla Strada da Kiln e a 22 dal proprio disco) costa la differenza × VERA × 10, come le
+ *  pastiglie di C33-05. Rosso C111E01: nessun costo, come prima. */
+export function nomeLontano(r: Rett, punti: Rett[], i: number): number {
+  if (spento('C111E01')) return 0;
+  const d = (p: Rett) => { const x = (p.left + p.right) / 2, y = (p.top + p.bottom) / 2; return Math.hypot(Math.max(r.left - x, 0, x - r.right), Math.max(r.top - y, 0, y - r.bottom)); };
+  const mio = d(punti[i]!), altro = Math.min(...punti.filter((_, j) => j !== i).map(d));
+  return altro < mio ? VERA * 10 * (mio - altro) : 0;
+}
+
 /** Ricerca con taglio (al più 200 000 nodi): per ogni settore la posizione del nome, misurata una volta nel DOM. */
 function migliorCombinazione(settori: HTMLElement[], punti: Rett[], mappa: Rett) {
   const conNome = settori.map((s, i) => [s, i] as const).filter(([s]) => s.querySelector('.settore-nome'));
-  const rett = conNome.map(([s]) => { const prima = s.getAttribute('data-nome'); const rs = NOMI.map((n) => { s.setAttribute('data-nome', n); return s.querySelector('.settore-nome')!.getBoundingClientRect() as Rett; }); if (prima) s.setAttribute('data-nome', prima); return rs; });
-  const solo = conNome.map(([, i], a) => rett[a]!.map((r) => VERA * 10 * fuori(r, mappa) + punti.reduce((c, p, j) => c + (j === i ? 0 : VERA * area(r, p)), 0)));
-  const attuale = conNome.map(([s]) => Math.max(0, NOMI.indexOf(s.getAttribute('data-nome') as typeof NOMI[number])));
-  const costoDi = (sc: number[]) => sc.reduce((c, k, a) => c + solo[a]![k]! + sc.slice(0, a).reduce((d, kk, b) => { const x = rett[a]![k]!, y = rett[b]![kk]!, v = area(x, y); return d + VERA * v + area(x, largo(y, STACCO)) - v; }, 0), 0);
+  // C37-03: anche i nomi più stretti (80 %, 60 % di --nome-max, come nel passo con le unità), se il testo ci sta: a mappa
+  // vuota il nome a tutta larghezza di un settore sul bordo non trovava un posto dentro la mappa. Rosso C111E01: solo
+  // la larghezza piena, come prima.
+  const larghi = spento('C111E01') ? [''] : ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.6)'];
+  const opz = conNome.map(([s]) => { const el = s.querySelector<HTMLElement>('.settore-nome')!, prima = s.getAttribute('data-nome'), pw = el.style.maxWidth, rs: { nome: string; largo: string; r: Rett }[] = [];
+    for (const largo of larghi) { el.style.maxWidth = largo; if (largo && el.scrollWidth > el.clientWidth + 1) continue;
+      for (const n of NOMI) { s.setAttribute('data-nome', n); rs.push({ nome: n, largo, r: el.getBoundingClientRect() as Rett }); } }
+    el.style.maxWidth = pw; if (prima) s.setAttribute('data-nome', prima); return rs; });
+  const solo = conNome.map(([, i], a) => opz[a]!.map(({ r }) => VERA * 10 * fuori(r, mappa) + punti.reduce((c, p, j) => c + (j === i ? 0 : VERA * area(r, p)), 0) + nomeLontano(r, punti, i)));
+  const attuale = conNome.map(([s], a) => Math.max(0, opz[a]!.findIndex((o) => o.nome === s.getAttribute('data-nome') && o.largo === '')));
+  const coppia = (x: Rett, y: Rett) => { const v = area(x, y); return VERA * v + area(x, largo(y, STACCO)) - v; };
+  const costoDi = (sc: number[]) => sc.reduce((c, k, a) => c + solo[a]![k]! + sc.slice(0, a).reduce((d, kk, b) => d + coppia(opz[a]![k]!.r, opz[b]![kk]!.r), 0), 0);
   let migliore = { c: costoDi(attuale), s: attuale }, nodi = 0;
   const scelta: number[] = [];
   const giu = (a: number, c: number) => {
     if (c >= migliore.c || ++nodi > 200000) return;
     if (a === conNome.length) { migliore = { c, s: [...scelta] }; return; }
-    for (let k = 0; k < NOMI.length; k++) {
+    for (let k = 0; k < opz[a]!.length; k++) {
       let d = solo[a]![k]!;
-      for (let b = 0; b < a; b++) { const x = rett[a]![k]!, y = rett[b]![scelta[b]!]!, v = area(x, y); d += VERA * v + area(x, largo(y, STACCO)) - v; }
+      for (let b = 0; b < a; b++) d += coppia(opz[a]![k]!.r, opz[b]![scelta[b]!]!.r);
       scelta[a] = k; giu(a + 1, c + d);
     }
   };
   giu(0, 0);
-  conNome.forEach(([s], a) => s.setAttribute('data-nome', NOMI[migliore.s[a]!]!));
+  conNome.forEach(([s], a) => { const o = opz[a]![migliore.s[a]!]!; s.setAttribute('data-nome', o.nome); s.querySelector<HTMLElement>('.settore-nome')!.style.maxWidth = o.largo; });
 }
