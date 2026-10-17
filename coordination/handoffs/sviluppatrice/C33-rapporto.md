@@ -64,7 +64,7 @@ C99M01 (C33-02), C100N01 e C106T01 (C33-01), C102D01 (C33-04), C103P01 (C33-05 e
 
 - Test 242/242.
 - Guardiano completo (`controllaSchieramenti`) sulla build finale: verde «nessun errore»; rossi come sopra.
-- Catena completa: vedi STABILITA.json.
+- Catena completa verde 3/3 su 8ab0f2e (unione con la 0.37.0). Commit del lavoro: 7e7653e, 9d1f73f (D-143), b7fcf51, 4e68e16 (rapporto).
 
 ## Non verificato
 
