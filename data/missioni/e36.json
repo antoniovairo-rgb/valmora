@@ -528,6 +528,10 @@
                 {
                   "pressione": "curva_larkspire",
                   "valore": 1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e36.op.festa_libera.r"
