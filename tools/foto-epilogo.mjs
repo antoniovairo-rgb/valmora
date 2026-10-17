@@ -2,7 +2,7 @@
 // Si parte dal salvataggio vero della partita A-Z (tests/salvataggi-reali/v2-0.38.0-fine-campagna.json): registro fino
 // all'episodio prima, variabili di partenza dell'episodio dal registro (D-062), episodio giocato fino all'ultimo rapporto
 // dal motore (pianoAttento di foto.mjs) e messo in «in_corso». Poi «Riprendi» → rapporto → verbale, come un giocatore.
-// Rossi: VALMORA_ROSSI=C161E01 (dopo e36 solo la mappa) e VALMORA_ROSSI=C164F01 (nessun passo «Fine stagione»).
+// Rossi: VALMORA_ROSSI=C161E01 (dopo e36 solo la mappa), C164F01 (nessun passo «Fine stagione»), C165F01 (niente fischio).
 // Uso a mano: node tools/foto-epilogo.mjs <cartella-foto> [larghezze]   (build già fatta in dist/)
 import { createServer } from 'node:http';
 import { readFileSync, existsSync, mkdirSync } from 'node:fs';
@@ -98,7 +98,22 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
         const vai = pagina.locator('.passo:not([hidden]) ~ .passi-nav [data-azione="epilogo"], .passi-nav [data-azione="epilogo"]');
         atteso('e36: ultimo passo del verbale senza «Epilogo» (D-161)', (await vai.count()) === 1);
         if (await vai.count()) {
-          await vai.click(); await scena('epilogo');
+          // D-165 parte 1: fischio, col movimento (si spegne un settore alla volta) e salto con Invio. Rosso C165F01: niente.
+          await pagina.emulateMedia({ reducedMotion: 'no-preference' });
+          await vai.click();
+          const fischio = await pagina.waitForSelector('.scena[data-scena="fischio"]', { timeout: 5000 }).then(() => true, () => false);
+          atteso('e36: dopo «Epilogo» manca il fischio dell\'ultimo derby (D-165)', fischio);
+          if (fischio) {
+            const prima = await pagina.evaluate(() => [document.querySelectorAll('.mappa .settore.spento').length, document.querySelectorAll('.mappa .settore').length, document.querySelector('.mappa')?.dataset.vuota]);
+            atteso(`e36 fischio: all'inizio ${prima[0]} settori spenti su ${prima[1]} (si spengono uno alla volta), città vuota «${prima[2]}»`, prima[0] < prima[1] && prima[2] === 'si');
+            const buio = await pagina.waitForSelector('[data-fischio="buio"]', { timeout: 15000 }).then(() => true, () => false);
+            const dopo = await pagina.evaluate(() => [document.querySelectorAll('.mappa .settore.spento').length, !!document.querySelector('.mappa.buio')]);
+            atteso(`e36 fischio: alla fine ${dopo[0]} settori spenti su ${prima[1]}, sala al buio ${dopo[1]}`, buio && dopo[0] === prima[1] && dopo[1]);
+            await misure('e36 fischio'); await foto('e36-fischio');
+            await pagina.evaluate(() => document.querySelector('.scena')?.focus()); await pagina.keyboard.press('Enter');
+          }
+          await pagina.emulateMedia({ reducedMotion: 'reduce' });
+          await scena('epilogo');
           const r = await pagina.evaluate(() => ({ carriera: document.querySelector('[data-carriera]')?.dataset.carriera, scelte: [...document.querySelectorAll('[data-fili="scelte"] [data-filo]')].map((x) => x.dataset.filo).join(','),
             stagioni: document.querySelectorAll('[data-stelle-stagione]').length, fuoco: !!document.activeElement?.closest('.scena') }));
           atteso(`e36 epilogo: carriera «${r.carriera}» (serve confermato, prorogato o sostituito)`, ['confermato', 'prorogato', 'sostituito'].includes(r.carriera));
