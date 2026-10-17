@@ -449,6 +449,7 @@
         },
         {
           "id": "via_fonderie",
+          "dopo": {"mai": ["telefonata/al_comando18"]},
           "fonte": "testimone",
           "testo": "testi:e18.ch.via_fonderie",
           "settore": "retro_tribuna",
@@ -533,6 +534,7 @@
             },
             {
               "id": "tribuna_stampa",
+              "dopo": {"mai": ["telefonata/al_comando18"]},
               "testo": "testi:e18.op.tribuna_stampa",
               "costo": "testi:e18.op.tribuna_stampa.c",
               "effetti": [

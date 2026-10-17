@@ -644,6 +644,7 @@
       "chiamate": [
         {
           "id": "incrocio",
+          "dopo": {"mai": ["festa_larkspire/uscita_collina"]},
           "fonte": "centrale_radio",
           "testo": "testi:e32.ch.incrocio",
           "commento": "testi:e32.ch.incrocio.vice",

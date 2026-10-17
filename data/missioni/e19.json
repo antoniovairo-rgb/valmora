@@ -416,6 +416,7 @@
             },
             {
               "id": "rientra",
+              "dopo": {"mai": ["piano/rimanda"]},
               "testo": "testi:e19.op.rientra",
               "costo": "testi:e19.op.rientra.c",
               "effetti": [
