@@ -254,6 +254,10 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": -1
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e29.op.rassicura.r"

@@ -26,13 +26,13 @@ export function tornate(dati: Record<string, unknown>) {
 }
 
 describe('fiducia nel verso del risultato (D-160)', () => {
-  it('le 156 risposte corrette non toccano la fiducia', () => {
-    expect(Object.keys(tolte)).toHaveLength(156);
+  it('le 155 risposte corrette non toccano la fiducia', () => {
+    expect(Object.keys(tolte)).toHaveLength(155);
     expect(tornate(datiD160(leggiDati(), tolte))).toEqual([]);
   });
   it('rosso __NO_C16001: tornano tutte', () => {
     g.__NO_C16001 = true;
-    expect(tornate(datiD160(leggiDati(), tolte))).toHaveLength(156);
+    expect(tornate(datiD160(leggiDati(), tolte))).toHaveLength(155);
   });
   it(`opzioni nel verso sbagliato ≤ ${SOGLIA} (${SEMI} partite per episodio), rosso sopra`, () => {
     const verde = perverseRapide(datiD160(leggiDati(), tolte), SEMI).length;
