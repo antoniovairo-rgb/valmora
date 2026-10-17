@@ -141,12 +141,15 @@ export async function controllaFuoco(pagina, atteso, dove) {
   let dove2 = '';
   for (let i = 0; i < 6; i++) { dove2 = await pagina.evaluate(() => { const a = document.activeElement; return !a || a === document.body ? 'body' : ''; }); if (!dove2) break; await pagina.waitForTimeout(40); }
   atteso(`${dove}: il fuoco della tastiera è sul body (C28-09)`, dove2 !== 'body');
-  // C32-01: se la scena ha comandi (opzioni escluse) il fuoco recuperato sta su un comando, non sulla scena (il Tab
-  // ripartirebbe dal primo). Rosso VALMORA_ROSSI=C97F01: sulla scena.
-  const sc = await pagina.evaluate(() => { const a = document.activeElement, s = document.querySelector('.scena'); const C = 'button:not(:disabled):not(.opzione), a[href], [tabindex="0"]';
-    return { sullaScena: a === s, comandi: !!s && [...s.querySelectorAll(C)].some((e) => e.getClientRects().length) }; });
-  // il titolo si apre anche col caricamento della pagina, quando non c'è un comando perso: lì la scena va bene
-  atteso(`${dove}: il fuoco recuperato sta sulla scena e non su un comando (C32-01)`, dove === 'titolo' || !sc.sullaScena || !sc.comandi);
+  // C32-01 / D-142 (C34-08): il fuoco perso DENTRO la stessa scena va al comando più vicino, non sulla scena (il Tab
+  // ripartirebbe dal primo). Si prova togliendo il fuoco a un comando della scena, come quando una pastiglia si ritira o
+  // un'opzione si disattiva. All'ingresso di una scena nuova il fuoco sulla scena va bene (C28-09: mai sul body).
+  // Rosso VALMORA_ROSSI=C97F01: sulla scena.
+  const sc = await pagina.evaluate(async () => { const s = document.querySelector('.scena'), C = 'button:not(:disabled):not(.opzione), a[href], [tabindex="0"]';
+    const c = s && [...s.querySelectorAll(C)].find((e) => e.getClientRects().length); if (!c) return null;
+    c.focus({ preventScroll: true }); c.blur(); await new Promise((ok) => requestAnimationFrame(() => requestAnimationFrame(ok)));
+    const a = document.activeElement; return { sullaScena: a === s, body: !a || a === document.body }; });
+  if (sc) atteso(`${dove}: il fuoco perso dentro la scena sta ${sc.body ? 'sul body' : 'sulla scena'} e non su un comando (C32-01)`, !sc.sullaScena && !sc.body);
 }
 
 /** C28-09 e C28-11, a 1366×768 (PC): i comandi casa, «i», «?», pastiglie e «Rispondi» col fuoco da tastiera hanno il

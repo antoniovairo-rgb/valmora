@@ -20,9 +20,8 @@ const fuori = (r: Rett, m: Rett) => {
   const dentro = { left: m.left + MARGINE, top: m.top + MARGINE, right: m.right - MARGINE, bottom: m.bottom - MARGINE };
   return (r.right - r.left) * (r.bottom - r.top) - area(r, dentro);
 };
-const unione = (els: Element[]): Rett | null => unisci(els.map((e) => e.getBoundingClientRect()));
-const unisci = (tutti: DOMRect[]): Rett | null => {
-  const rs = tutti.filter((r) => r.width && r.height);
+const unione = (els: Element[]): Rett | null => {
+  const rs = els.map((e) => e.getBoundingClientRect()).filter((r) => r.width && r.height);
   if (!rs.length) return null;
   return { left: Math.min(...rs.map((r) => r.left)), top: Math.min(...rs.map((r) => r.top)), right: Math.max(...rs.map((r) => r.right)), bottom: Math.max(...rs.map((r) => r.bottom)) };
 };
@@ -52,10 +51,7 @@ export function disponiEtichette(contenitore: HTMLElement) {
   // risultato, che cambiava col numero di giri: 2/426 ondate fra due giri uguali). Rosso C102D01: dallo stato di prima.
   if (!spento('C102D01')) for (const s of settori) { s.setAttribute('data-unita', UNITA[0]); s.querySelector<HTMLElement>('.settore-nome')?.style.removeProperty('max-width'); }
   const punti = settori.map((s) => s.querySelector('.settore-punto')!.getBoundingClientRect() as Rett);
-  // C33-01: il nome si misura col testo vero (riquadro ∪ righe del testo): stretto al 60% il testo usciva dal riquadro e
-  // finiva sotto le pastiglie (10/142 ondate a 360). Rosso C100N01: solo il riquadro, come prima.
-  const nomeDi = (s: HTMLElement) => { const n = s.querySelector('.settore-nome'); if (!n) return null; const b = n.getBoundingClientRect();
-    if (spento('C100N01')) return b; const r = document.createRange(); r.selectNodeContents(n); return unisci([b, ...r.getClientRects()]) ?? b; };
+  const nomeDi = (s: HTMLElement) => s.querySelector('.settore-nome')?.getBoundingClientRect() ?? null;
   const unitaDi = (s: HTMLElement) => { const g = s.querySelector('.settore-unita'); return g ? unione([...g.children]) : null; };
   // 1) i nomi da soli, evitando i punti degli altri settori e i nomi già messi
   const nomi: Rett[] = [];
@@ -112,10 +108,6 @@ export function disponiEtichette(contenitore: HTMLElement) {
     // 60% di --nome-max), come nella città. Rosso C94N01: posti e larghezza di prima.
     const d136 = !spento('C94N01'), el = s.querySelector<HTMLElement>('.settore-nome');
     const posti = d136 ? [...UNITA, ...UNITA_PIU] : UNITA;
-    // C33-01 (e35 ondata 2 a 360): la pastiglia che si vede sopra un nome costava meno del tocco trasparente sopra il
-    // proprio nome nel posto pulito (98 px² → 49 219 contro 1385 px² → 138 516): diventa un quasi vincolo (× 20, sotto
-    // il vincolo del disco). Rosso C100N01: peso di prima.
-    const c33 = !spento('C100N01');
     // C33-05: con i posti nuovi alcune pastiglie finivano più vicine al disco di un altro settore che al proprio (e31
     // ondata 2: 70 px dal Piazzale, 43 dal Viale della stazione) e non si capiva di chi fossero: costa la differenza,
     // in px × VERA × 10 (meno di qualunque sovrapposizione vera). Rosso C103P01: nessun costo, come prima.
@@ -126,13 +118,12 @@ export function disponiEtichette(contenitore: HTMLElement) {
     cerca: for (const largo of d136 ? ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.6)'] : ['']) {
     if (largo && migliore.costo === 0) break;
     if (el) el.style.maxWidth = largo;
-    if (largo && el && el.scrollWidth > el.clientWidth + 1 && !spento('C100N01')) continue; // C33-01: il testo non ci sta
     for (const nome of NOMI) for (const unita of conUnita ? posti : [UNITA[0]]) {
       s.setAttribute('data-nome', nome); s.setAttribute('data-unita', unita);
       const n = nomeDi(s), u = conUnita ? unitaDi(s) : null;
       if (!n || (conUnita && !u)) continue;
       const costo = costoDi(n, perNome) + VERA * (c27 ? 1e4 : 10) * fuori(n, mappa) + nomiSopra(n) * (c27 ? 2e3 : 1) + sottoPastiglie(n) + (u ? sottoDisco() : 0)
-        + (u ? costoDi(u, perUnita) + VERA * area(n, u) + bordoUnita(u) + suNomi(pastiglie() ?? u, n) * (c33 ? 20 : 1) + lontano(pastiglie() ?? u) : 0);
+        + (u ? costoDi(u, perUnita) + VERA * area(n, u) + bordoUnita(u) + suNomi(pastiglie() ?? u, n) + lontano(pastiglie() ?? u) : 0);
       if (costo < migliore.costo - (largo ? 0.5 : 0)) migliore = { nome, unita, costo, largo };
       if (costo === 0) break cerca;
     }

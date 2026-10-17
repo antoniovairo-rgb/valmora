@@ -60,10 +60,7 @@ export async function mappaSchieramento(pagina) {
     const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
     // pastiglia su nome come nella sonda del collaudo C-027: più di 1 px in tutte e due le direzioni
     const lati = (A, B) => Math.min(A.right, B.right) - Math.max(A.left, B.left) > 1 && Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top) > 1;
-    // C33-01: il nome col testo vero (riquadro ∪ righe del testo), non solo il riquadro
-    const testo = (n) => { const r = document.createRange(); r.selectNodeContents(n); const rs = [n.getBoundingClientRect(), ...r.getClientRects()].filter((q) => q.width && q.height);
-      return { left: Math.min(...rs.map((q) => q.left)), top: Math.min(...rs.map((q) => q.top)), right: Math.max(...rs.map((q) => q.right)), bottom: Math.max(...rs.map((q) => q.bottom)) }; };
-    const nomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-nome')].filter((n) => n.getClientRects().length).map((n) => [n.textContent, testo(n)]);
+    const nomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-nome')].filter((n) => n.getClientRects().length).map((n) => [n.textContent, n.getBoundingClientRect()]);
     const sopra = nomi.flatMap(([t, r], i) => nomi.slice(0, i).filter(([, q]) => a(r, q) > 0.5).map(([u]) => `${t} × ${u}`));
     const coperte = [...document.querySelectorAll('.mappa button.tocco-pastiglia:enabled')].filter((b) => b.getClientRects().length).filter((b) => {
       const r = b.getBoundingClientRect(), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2; if (y < 0 || y > innerHeight) return false;

@@ -40,6 +40,10 @@ export function Scena(p: { nome: string; missione?: string; children: ReactNode 
       (c ?? s).focus({ preventScroll: true });
     }); };
     const segna = (e: FocusEvent) => { const t = e.target as HTMLElement | null; if (t && t !== el.current && t.getBoundingClientRect) { const r = t.getBoundingClientRect(); ultimo = { x: r.left + r.width / 2, y: r.top + r.height / 2 }; } };
+    // C34-08: entrando in una scena nuova il punto dell'ultimo comando è della scena di prima (in città il fuoco finiva a
+    // 10 Tab dalla stagione 1, nello schieramento a 10 dalla prima unità): si riparte dalla scena, e il comando più
+    // vicino vale solo per il fuoco perso dentro la stessa scena. Rosso C105S01: il punto della scena di prima.
+    if (!spento('C105S01')) ultimo = null;
     torna();
     document.addEventListener('focusin', segna);
     document.addEventListener('focusout', torna);
