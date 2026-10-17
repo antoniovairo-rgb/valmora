@@ -1,5 +1,5 @@
 {
-  "nota": "D-160: risposte la cui fiducia andava al contrario del risultato (misura S-04/S-05); valore = effetto su credito tolto",
+  "nota": "D-160: risposte la cui fiducia andava al contrario del risultato (misura S-04/S-05); valore = effetto su credito tolto; e29 ospiti_tranquilli/rassicura resta (D-152, fonte vera)",
   "tolte": {
     "e01/corteo_partito/ferma": 1,
     "e01/ufficio_insiste/asseconda": 1,
@@ -100,7 +100,6 @@
     "e28/cronista_voci/lascia_intendere": 1,
     "e28/rapporto_comando/nomi_fonti": 2,
     "e28/rapporto_comando/fonti_protette": -1,
-    "e29/ospiti_tranquilli/rassicura": -1,
     "e29/speaker_partita/annuncio_generico": 1,
     "e29/speaker_partita/niente_annuncio": -1,
     "e29/notizia_in_curva/sospendi_partita": -2,
