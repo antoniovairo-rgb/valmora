@@ -77,10 +77,10 @@ export function VignettaEsito(p: { m: Missione; tono: TonoEsito; genere: 'm' | '
 }
 
 /** PO-059: a fine ondata protagonista e vice in sala operativa, con l'espressione della tensione (espressioni.ts). */
-export function VignettaOndata(p: { tono: TonoOndata; genere: 'm' | 'f' }) {
+export function VignettaOndata(p: { tono: TonoOndata; genere: 'm' | 'f'; fissa?: boolean }) {
   const e = espressioneOndata(p.tono);
   return (
-    <Vignetta nome={`ondata-${p.tono}`} titolo={`Fine ondata: ${e.titolo}`}>
+    <Vignetta nome={`ondata-${p.tono}`} titolo={`Fine ondata: ${e.titolo}`} fissa={p.fissa}>
       <rect x="0" y="118" width="320" height="62" className="v-ombra" />
       <rect x="18" y="22" width="92" height="56" className="v-nero v-tratto" /><rect x="24" y="28" width="80" height="44" className="v-ciano" />
       {p.tono !== 'calmo' && <path d={p.tono === 'critico' ? 'M30 64 L48 40 L62 56 L80 32 L98 46' : 'M30 60 L50 52 L66 56 L84 46 L98 50'} className="v-linea" />}

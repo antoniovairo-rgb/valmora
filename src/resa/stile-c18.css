@@ -83,3 +83,6 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 /* C22-10: con le icone a 20 px i due pulsanti del riepilogo uscivano sotto la versione a 360 (PO-097): spazio interno
    più stretto, come nei tre pulsanti dello schieramento */
 .riepilogo-azioni .pulsante { gap: var(--spazio-1); padding-inline: var(--spazio-2); }
+/* C33-06: la scena del tono a fine ondata, vignetta a tutta larghezza (misura dal rapporto 320×180, mai nascosta) */
+.tono-ondata { display: grid; gap: var(--spazio-2); cursor: pointer; }
+.tono-ondata > .vignetta { display: block; width: 100%; height: auto; min-height: 0; max-height: none; margin: 0; }
