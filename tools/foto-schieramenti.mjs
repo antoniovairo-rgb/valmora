@@ -84,7 +84,9 @@ export async function mappaSchieramento(pagina) {
       const c = centro({ left: Math.min(...ps.map((r) => r.left)), top: Math.min(...ps.map((r) => r.top)), right: Math.max(...ps.map((r) => r.right)), bottom: Math.max(...ps.map((r) => r.bottom)) });
       const [altro, d] = dischi.filter(([y]) => y !== x).map(([y, q]) => [y.dataset.settore, dist(c, q)]).sort((u, v) => u[1] - v[1])[0] ?? [null, Infinity];
       return d < dist(c, mio) ? [`${x.dataset.settore} ${dist(c, mio).toFixed(0)} px dal suo disco, ${d.toFixed(0)} da ${altro}`] : []; });
-    return { sopra, coperte, suNomi, fuori, vicine };
+    // C-008 (come nel giro foto, tools/foto.mjs): area di tocco di un'unità sopra un nome (anche il proprio), più di 4 px²
+    const tocchiSuNomi = [...document.querySelectorAll('.mappa:not(.citta) [data-presenza]')].flatMap((t) => nomi.map(([n, q]) => [n, Math.round(a(t.getBoundingClientRect(), q))]).filter(([, x]) => x > 4).map(([n, x]) => `${t.dataset.presenza} × ${n} ${x} px²`));
+    return { sopra, coperte, suNomi, fuori, vicine, tocchiSuNomi };
   });
 }
 
@@ -128,7 +130,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   // 375 e 412 (prima solo 360)
   const suNomi = [], attente = partenzeAttente(dirDati);
   for (const [w, h] of [[360, 760], [375, 812], [412, 915]]) {
-    const vicine = [];
+    const vicine = [], tocchi = [];
     const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); await q6.goto(url);
     for (const st of attente) {
       await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
@@ -139,6 +141,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
       atteso(`${dove} con le unità: nomi sovrapposti ${r.sopra.join('; ')}, pastiglie col centro coperto ${r.coperte.join(', ')} (C26-11)`, !r.sopra.length && !r.coperte.length);
       if (r.suNomi.length) suNomi.push(`${dove}: ${r.suNomi.join('; ')}`);
       vicine.push(...r.vicine.map((x) => `${st.m.id} o${st.n} ${x}`));
+      tocchi.push(...r.tocchiSuNomi.map((x) => `${st.m.id} o${st.n} ${x}`));
       atteso(`${dove} con le unità: pastiglie sopra i nomi ${r.suNomi.join('; ')} (C27-06, il caso del collaudo)`, st.m.id !== 'e19' || !r.suNomi.length);
       atteso(`${dove} con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
       if (w === 360) { // C33-04: la disposizione non dipende dallo stato del giro prima (rosso VALMORA_ROSSI=C102D01)
@@ -154,6 +157,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     }
     // C33-05: non più gruppi vicini al disco di un altro settore che nella 0.31.0 (36 / 29 / 9, collaudo C-033); elenco in cartella
     writeFileSync(join(cartella, `vicine-${w}.txt`), `${vicine.length}\n${vicine.join('\n')}\n`);
+    writeFileSync(join(cartella, `tocchi-${w}.txt`), `${new Set(tocchi.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${tocchi.join('\n')}\n`); // misura, senza soglia
     atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
     await q6.close();
   }
