@@ -1,6 +1,6 @@
 # Partita dalla A alla Z (PO-126) · sessione S-06
 
-Sola lettura sul gioco: nessun file di gioco, dato o test cambiato. Consegna: pagina `docs/partita-az/index.html` (foto in `docs/partita-az/foto/`).
+Consegna: commit `4217997` (421799726dbccd5410105efc80757605196fe787) sul ramo `claude/valmora-partita-az`. Sola lettura sul gioco: nessun file di gioco, dato o test cambiato. Consegna: pagina `docs/partita-az/index.html` (foto in `docs/partita-az/foto/`).
 
 ## Cosa è stato giocato
 
