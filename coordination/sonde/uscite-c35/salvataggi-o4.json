@@ -1,0 +1,111 @@
+{
+ "ris": [
+  {
+   "ep": "e02",
+   "attesa": "risultato",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-risultato",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE RISPONDI «Uno a zero Railhead al novantesimo. Casa furiosa, ospiti in festa. Indovina chi è peggio.» IL VICE — «Io ho sempre tifato per il pareggio. È il risultato più sicuro. Non mi ascolta nessuno.»",
+    "folla": "deflusso|viale_stazione>esce"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e02-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-risultato",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE RISPONDI «Uno a zero Railhead al novantesimo. Casa furiosa, ospiti in festa. Indovina chi è peggio.» IL VICE — «Io ho sempre tifato per il pareggio. È il risultato più sicuro. Non mi ascolta nessuno.»",
+    "folla": "deflusso|viale_stazione>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e13",
+   "attesa": "coda_auto",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-coda_auto",
+    "tono": null,
+    "testo": "ORGANIZZATORI DEL CONCERTO PARCHEGGI URGENTE! RISPONDI «Fine partita: si esce mentre arrivano le auto del concerto. Una sola uscita, e i clacson.»",
+    "folla": "deflusso|parcheggi>esce,viale_concerto>esce"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e13-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-coda_auto",
+    "tono": null,
+    "testo": "ORGANIZZATORI DEL CONCERTO PARCHEGGI URGENTE! RISPONDI «Fine partita: si esce mentre arrivano le auto del concerto. Una sola uscita, e i clacson.»",
+    "folla": "deflusso|parcheggi>esce,viale_concerto>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e17",
+   "attesa": "me_lo_dovete",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-me_lo_dovete",
+    "tono": null,
+    "testo": "TANO FERRIGNO DETTO «IL FABBRO», CAPO DELLA CURVA KILN STRADA DA KILN URGENTE! RISPONDI «Corteo sciolto, i miei pure. Li riporto io, tutti insieme, per la strada di Kiln. Me lo dovete.» IL VICE — «Il Fabbro che fa il servizio d'ordine. Ne ho viste tante, ma questa le batte.»",
+    "folla": "vuoti|strada_cinderwick>entra,piazza_municipio>esce"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e17-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-me_lo_dovete",
+    "tono": null,
+    "testo": "TANO FERRIGNO DETTO «IL FABBRO», CAPO DELLA CURVA KILN STRADA DA KILN URGENTE! RISPONDI «Corteo sciolto, i miei pure. Li riporto io, tutti insieme, per la strada di Kiln. Me lo dovete.» IL VICE — «Il Fabbro che fa il servizio d'ordine. Ne ho viste tante, ma questa le batte.»",
+    "folla": "vuoti|strada_cinderwick>entra,piazza_municipio>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e21",
+   "attesa": "chi_arriva_primo",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-chi_arriva_primo",
+    "tono": null,
+    "testo": "GIANNI LAVEZZARI, SICUREZZA DEL KILN UNITED EX FONDERIA URGENTE! RISPONDI «Lavezzari: i vecchi escono e tornano dalla piazza, dove stanno i giovani. Chi passa, comanda.»",
+    "folla": "deflusso|"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e21-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-chi_arriva_primo",
+    "tono": null,
+    "testo": "GIANNI LAVEZZARI, SICUREZZA DEL KILN UNITED EX FONDERIA URGENTE! RISPONDI «Lavezzari: i vecchi escono e tornano dalla piazza, dove stanno i giovani. Chi passa, comanda.»",
+    "folla": "deflusso|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e35",
+   "attesa": "posto_prenotato",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "tono": null,
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "folla": "vuoti|"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "tono": null,
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "folla": "vuoti|"
+   },
+   "ok": true
+  }
+ ],
+ "errA": [],
+ "errB": []
+}

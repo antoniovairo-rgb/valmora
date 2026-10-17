@@ -1,0 +1,502 @@
+{
+ "ris": [
+  {
+   "punto": "o1-barca_porto-prima",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": {
+      "perimetro": "squadra_perimetro"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-o1-barca_porto-prima.json",
+   "versioneFile": "save_version,game_version,seme,caso,variabili,missioni_concluse,episodi,genere,rapporto_aperto,in_corso",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_porto",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se parte, ha le carte.»",
+    "opzioni": [
+     "blocca_barca",
+     "segui_barca"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": {
+      "perimetro": "squadra_perimetro"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro"
+     ]
+    }
+   },
+   "stessaChiamata": true,
+   "viste": [
+    "chiamata-barca_porto [blocca_barca,segui_barca] «IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Testimone: barca col telone blu, carica scatoloni. Pattuglie alla banca. Se pa»",
+    "chiamata-corso_chiuso [steward_pedoni,radio_centro,lascia_coda] «CENTRALE RADIO CORSO DEL CENTRO URGENTE! «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi ver»"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteFinali": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "ok": true
+  },
+  {
+   "punto": "o1-dopo-blocca_barca",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": {
+      "perimetro": "squadra_perimetro",
+      "barca_porto": "blocca_barca"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-o1-dopo-blocca_barca.json",
+   "versioneFile": "save_version,game_version,seme,caso,variabili,missioni_concluse,episodi,genere,rapporto_aperto,in_corso,bozza,sconfitta",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corso_chiuso",
+    "testo": "CENTRALE RADIO CORSO DEL CENTRO URGENTE! RISPONDI «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a piedi verso il nastro.»",
+    "opzioni": [
+     "steward_pedoni",
+     "radio_centro",
+     "lascia_coda"
+    ],
+    "salvato": {
+     "ondata": 1,
+     "risposte": {
+      "perimetro": "squadra_perimetro",
+      "barca_porto": "blocca_barca"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca"
+     ]
+    }
+   },
+   "stessaChiamata": true,
+   "viste": [
+    "chiamata-corso_chiuso [steward_pedoni,radio_centro,lascia_coda] «CENTRALE RADIO CORSO DEL CENTRO URGENTE! RISPONDI «Corso chiuso alla banca: bus fermi, coda fino alla stazione. Gente a »"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteFinali": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "ok": true
+  },
+  {
+   "punto": "o2-blocca",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-dirette",
+    "testo": "CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cento telefoni, la banca in diretta. Ci fa avvicinare?»",
+    "opzioni": [
+     "sposta_nastro",
+     "stampa_vicina"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": {},
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-o2-blocca.json",
+   "versioneFile": "save_version,game_version,seme,caso,variabili,missioni_concluse,episodi,genere,rapporto_aperto,in_corso",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-dirette",
+    "testo": "CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cento telefoni, la banca in diretta. Ci fa avvicinare?»",
+    "opzioni": [
+     "sposta_nastro",
+     "stampa_vicina"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": {},
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "stessaChiamata": true,
+   "viste": [
+    "chiamata-dirette [sposta_nastro,stampa_vicina] «CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cen»",
+    "chiamata-cantiere_acceso [squadra_cantiere,anticipa_comando] «CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici»",
+    "chiamata-familiari [mediatore_familiari,steward_familiari,rimanda_comando] «CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, »"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteFinali": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "ok": true
+  },
+  {
+   "punto": "o3-blocca-su-barca_ritorno",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ritorno",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+    "opzioni": [
+     "cerca_scatoloni",
+     "ferma_barca"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": {
+      "treno_notte": "presidia_stazione",
+      "curiosi_notte": "lascia_guardare"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-o3-blocca-su-barca_ritorno.json",
+   "versioneFile": "save_version,game_version,seme,caso,variabili,missioni_concluse,episodi,genere,rapporto_aperto,in_corso",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ormeggiata",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+    "opzioni": [
+     "apri_scatoloni",
+     "identifica_equipaggio"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": {
+      "treno_notte": "presidia_stazione",
+      "curiosi_notte": "lascia_guardare"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "stessaChiamata": false,
+   "viste": [
+    "chiamata-barca_ormeggiata [apri_scatoloni,identifica_equipaggio] «IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vu»"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteFinali": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ormeggiata/apri_scatoloni"
+   ],
+   "ok": true
+  },
+  {
+   "punto": "o3-blocca-dopo-cerca_scatoloni",
+   "a": {
+    "scena": "chiusura",
+    "chiamata": null,
+    "testo": null,
+    "opzioni": [],
+    "salvato": {
+     "ondata": 3,
+     "risposte": {
+      "treno_notte": "presidia_stazione",
+      "curiosi_notte": "lascia_guardare",
+      "barca_ritorno": "cerca_scatoloni"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-o3-blocca-dopo-cerca_scatoloni.json",
+   "versioneFile": "save_version,game_version,seme,caso,variabili,missioni_concluse,episodi,genere,rapporto_aperto,in_corso,bozza,sconfitta",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ormeggiata",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andarsene.»",
+    "opzioni": [
+     "identifica_equipaggio"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": {
+      "treno_notte": "presidia_stazione",
+      "curiosi_notte": "lascia_guardare",
+      "barca_ritorno": "cerca_scatoloni"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "stessaChiamata": false,
+   "viste": [
+    "chiamata-barca_ormeggiata [identifica_equipaggio] «IL TESTIMONE BANCHINE DEL PORTO «Il testimone: la barca è ancora al pontile, scatoloni a bordo. L'equipaggio vuole andar»"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto",
+   "scelteFinali": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ritorno/cerca_scatoloni",
+    "3:barca_ormeggiata/identifica_equipaggio"
+   ],
+   "ok": false
+  },
+  {
+   "punto": "o4-blocca-dopo-barca_ritorno",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": {},
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-o4-blocca-dopo-barca_ritorno.json",
+   "versioneFile": "save_version,game_version,seme,caso,variabili,missioni_concluse,episodi,genere,rapporto_aperto,in_corso",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "opzioni": [
+     "lascia_partire"
+    ],
+    "salvato": {
+     "ondata": 4,
+     "risposte": {},
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/blocca_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare",
+      "3:barca_ritorno/cerca_scatoloni"
+     ]
+    }
+   },
+   "stessaChiamata": true,
+   "viste": [
+    "chiamata-posto_prenotato [lascia_partire] «CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dor»",
+    "chiamata-fine_trattativa [corridoio,stampa_uscita] «COMANDO PERIMETRO DELLA BANCA URGENTE! RISPONDI «Comando: finita. Ostaggi illesi, rapinatori arresi. La folla guarda, i »",
+    "chiamata-rapporto_notte [scrivi_nome,un_imprenditore] «COMANDO CANTIERE DELLO STADIO NUOVO RISPONDI «Comando: la rapina copriva le carte del cantiere. Conferenza: Varrone o «u»"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteFinali": [
+    "1:barca_porto/blocca_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "ok": true
+  },
+  {
+   "punto": "o2-segui",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-dirette",
+    "testo": "CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cento telefoni, la banca in diretta. Ci fa avvicinare?»",
+    "opzioni": [
+     "sposta_nastro",
+     "stampa_vicina"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": {},
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-o2-segui.json",
+   "versioneFile": "save_version,game_version,seme,caso,variabili,missioni_concluse,episodi,genere,rapporto_aperto,in_corso",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-dirette",
+    "testo": "CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cento telefoni, la banca in diretta. Ci fa avvicinare?»",
+    "opzioni": [
+     "sposta_nastro",
+     "stampa_vicina"
+    ],
+    "salvato": {
+     "ondata": 2,
+     "risposte": {},
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni"
+     ]
+    }
+   },
+   "stessaChiamata": true,
+   "viste": [
+    "chiamata-dirette [sposta_nastro,stampa_vicina] «CRONISTA DEL GIORNALE DI VALMORA PERIMETRO DELLA BANCA URGENTE! RISPONDI «Giornale di Valmora: al nastro tre troupe, cen»",
+    "chiamata-cantiere_acceso [squadra_cantiere,anticipa_comando] «CENTRALE RADIO CANTIERE DELLO STADIO NUOVO RISPONDI «Cantiere Varrone & Figli: alle dieci di sera si lavora negli uffici»",
+    "chiamata-familiari [mediatore_familiari,steward_familiari,rimanda_comando] «CENTRALE RADIO CORSO DEL CENTRO RISPONDI «Al nastro sul corso i familiari dei dipendenti della banca. Chiedono notizie, »"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteFinali": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "ok": true
+  },
+  {
+   "punto": "o3-segui-su-barca_ritorno",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ritorno",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+    "opzioni": [
+     "cerca_scatoloni",
+     "ferma_barca"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": {
+      "treno_notte": "presidia_stazione",
+      "curiosi_notte": "lascia_guardare"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-o3-segui-su-barca_ritorno.json",
+   "versioneFile": "save_version,game_version,seme,caso,variabili,missioni_concluse,episodi,genere,rapporto_aperto,in_corso",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-barca_ritorno",
+    "testo": "IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualche parte.»",
+    "opzioni": [
+     "cerca_scatoloni",
+     "ferma_barca"
+    ],
+    "salvato": {
+     "ondata": 3,
+     "risposte": {
+      "treno_notte": "presidia_stazione",
+      "curiosi_notte": "lascia_guardare"
+     },
+     "scelte": [
+      "1:perimetro/squadra_perimetro",
+      "1:barca_porto/segui_barca",
+      "1:corso_chiuso/steward_pedoni",
+      "2:dirette/sposta_nastro",
+      "2:cantiere_acceso/squadra_cantiere",
+      "2:familiari/mediatore_familiari",
+      "3:treno_notte/presidia_stazione",
+      "3:curiosi_notte/lascia_guardare"
+     ]
+    }
+   },
+   "stessaChiamata": true,
+   "viste": [
+    "chiamata-barca_ritorno [cerca_scatoloni,ferma_barca] «IL TESTIMONE BANCHINE DEL PORTO RISPONDI «Il testimone: la barca è tornata senza scatoloni. Buttati, o lasciati da qualc»"
+   ],
+   "fineGiro": "chiusura",
+   "fineMotoreB": "contenuto_a_fatica",
+   "scelteFinali": [
+    "1:barca_porto/segui_barca",
+    "3:barca_ritorno/cerca_scatoloni"
+   ],
+   "ok": true
+  }
+ ],
+ "errA": [],
+ "errB": []
+}

@@ -1,0 +1,23 @@
+chiamate con opzioni nascoste da C17-03 (semi 300 × 2 bot): 22 casi distinti; con una sola opzione rimasta: 9
+e02 o3 caldo_casa: restano 1 (niente_senza_mediatore) di 2, nascoste mediatore_casa · casuale 108/300, attenta 0/300
+e07 o3 primo_gol: restano 2 (cordone_campo,lascia_festa7) di 3, nascoste mediatore_festa · casuale 94/300, attenta 300/300
+e25 o2 permesso_mediatore: restano 2 (scrivi_richiesta,steward_ospiti) di 3, nascoste mediatore_subito · casuale 99/300, attenta 0/300
+e26 o4 carosello: restano 1 (blocca_carosello) di 2, nascoste percorso_carosello · casuale 94/300, attenta 0/300
+e27 o3 gol_ospiti: restano 1 (annuncio) di 2, nascoste mediatore_curva · casuale 98/300, attenta 0/300
+e28 o3 gol_mossgarth: restano 2 (mediatore_curva,niente_cordone) di 3, nascoste separa_curve · casuale 7/300, attenta 300/300
+e28 o4 corteo_capo: restano 1 (lascia_corteo) di 3, nascoste blocca_corteo,devia_corteo · casuale 4/300, attenta 300/300
+e28 o4 corteo_capo: restano 2 (blocca_corteo,lascia_corteo) di 3, nascoste devia_corteo · casuale 92/300, attenta 0/300
+e28 o4 corteo_capo: restano 2 (devia_corteo,lascia_corteo) di 3, nascoste blocca_corteo · casuale 16/300, attenta 0/300
+e29 o3 ospiti_spaventati: restano 1 (ospiti_restano) di 2, nascoste ospiti_via · casuale 13/300, attenta 300/300
+e29 o4 corteo_al_porto: restano 1 (lascia_scendere) di 3, nascoste ferma_strada,mediatore_corteo · casuale 16/300, attenta 300/300
+e29 o4 corteo_al_porto: restano 2 (ferma_strada,lascia_scendere) di 3, nascoste mediatore_corteo · casuale 89/300, attenta 0/300
+e29 o4 corteo_al_porto: restano 2 (mediatore_corteo,lascia_scendere) di 3, nascoste ferma_strada · casuale 26/300, attenta 0/300
+e29 o4 piazzale_ultimi: restano 2 (luci_piazzale,aspetta_alba) di 3, nascoste squadra_ultimi · casuale 83/300, attenta 300/300
+e30 o3 sotto_il_municipio: restano 2 (sanziona,niente_sanzioni) di 3, nascoste mediatore_cori · casuale 86/300, attenta 0/300
+e32 o4 collina: restano 2 (steward_salita,lascia_salire) di 3, nascoste blocca_salita · casuale 4/300, attenta 0/300
+e33 o4 viale_ritorno: restano 2 (chiudi_viale,lascia_viale) di 3, nascoste scorta_ritorno · casuale 7/300, attenta 0/300
+e35 o3 curiosi_notte: restano 2 (lascia_guardare,sgombera_centro) di 3, nascoste mediatore_curiosi · casuale 100/300, attenta 300/300
+e35 o4 fine_trattativa: restano 1 (stampa_uscita) di 2, nascoste corridoio · casuale 39/300, attenta 0/300
+e35 o4 posto_prenotato: restano 1 (lascia_partire) di 2, nascoste ferma_uomo · casuale 2/300, attenta 300/300
+e36 o3 gol_derby: restano 2 (barriera_curve,festa_libera) di 3, nascoste mediatore_derby · casuale 100/300, attenta 0/300
+e36 o4 busta: restano 1 (apri_ora) di 2, nascoste ultimo_giro · casuale 2/300, attenta 0/300

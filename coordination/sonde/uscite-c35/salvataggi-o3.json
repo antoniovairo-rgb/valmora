@@ -1,0 +1,111 @@
+{
+ "ris": [
+  {
+   "ep": "e02",
+   "attesa": "striscione_ospiti",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-striscione_ospiti",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA OSPITI RISPONDI «In curva ospiti uno striscione: «RAILHEAD NON DIMENTICA». Nessuno sa cosa non dimentichi.»",
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e02-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-striscione_ospiti",
+    "tono": null,
+    "testo": "CENTRALE RADIO CURVA OSPITI RISPONDI «In curva ospiti uno striscione: «RAILHEAD NON DIMENTICA». Nessuno sa cosa non dimentichi.»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e13",
+   "attesa": "spintoni",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-spintoni",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO URGENTE! RISPONDI «Spintoni sul piazzale: chi corre al concerto e chi non lo lascia passare. Per ora solo spintoni.»",
+    "folla": "deflusso|"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e13-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-spintoni",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO URGENTE! RISPONDI «Spintoni sul piazzale: chi corre al concerto e chi non lo lascia passare. Per ora solo spintoni.»",
+    "folla": "deflusso|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e17",
+   "attesa": "gol_fuori",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-gol_fuori",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO RISPONDI «Gol del Kiln. Fuori dallo stadio vuoto esplode un piazzale intero; qualcuno accende i fumogeni.»",
+    "folla": "vuoti|piazza_municipio>entra"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e17-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-gol_fuori",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO RISPONDI «Gol del Kiln. Fuori dallo stadio vuoto esplode un piazzale intero; qualcuno accende i fumogeni.»",
+    "folla": "vuoti|piazza_municipio>entra"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e21",
+   "attesa": "stanotte_sgombero",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-stanotte_sgombero",
+    "tono": null,
+    "testo": "VOCI IN RETE LE FONDERIE URGENTE! RISPONDI «In rete: «stanotte sgomberano l'ex fonderia». Metà della piazza vuole difendere il cortile.»",
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e21-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-stanotte_sgombero",
+    "tono": null,
+    "testo": "VOCI IN RETE LE FONDERIE URGENTE! RISPONDI «In rete: «stanotte sgomberano l'ex fonderia». Metà della piazza vuole difendere il cortile.»",
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e35",
+   "attesa": "treno_notte",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_notte",
+    "tono": null,
+    "testo": "CENTRALE RADIO STAZIONE URGENTE! «Stazione: primo treno del mattino, alle cinque. Un posto a nome di una ditta del cantiere.»",
+    "folla": "vuoti|"
+   },
+   "file": "coordination/sonde/salvataggi-034/0.34.0-e35-ondata3.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-treno_notte",
+    "tono": null,
+    "testo": "CENTRALE RADIO STAZIONE URGENTE! «Stazione: primo treno del mattino, alle cinque. Un posto a nome di una ditta del cantiere.»",
+    "folla": "vuoti|"
+   },
+   "ok": true
+  }
+ ],
+ "errA": [],
+ "errB": []
+}

@@ -1,0 +1,131 @@
+{
+ "ris": [
+  {
+   "file": "0.34.0-e02-ondata3.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-striscione_ospiti"
+  },
+  {
+   "file": "0.34.0-e02-ondata4.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-risultato"
+  },
+  {
+   "file": "0.34.0-e13-ondata3.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-spintoni"
+  },
+  {
+   "file": "0.34.0-e13-ondata4.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-coda_auto"
+  },
+  {
+   "file": "0.34.0-e17-ondata3.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-gol_fuori"
+  },
+  {
+   "file": "0.34.0-e17-ondata4.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-me_lo_dovete"
+  },
+  {
+   "file": "0.34.0-e21-ondata3.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-stanotte_sgombero"
+  },
+  {
+   "file": "0.34.0-e21-ondata4.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-chi_arriva_primo"
+  },
+  {
+   "file": "0.34.0-e35-o1-barca_porto-prima.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-barca_porto"
+  },
+  {
+   "file": "0.34.0-e35-o1-dopo-blocca_barca.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-corso_chiuso"
+  },
+  {
+   "file": "0.34.0-e35-o2-blocca.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-dirette"
+  },
+  {
+   "file": "0.34.0-e35-o2-segui.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-dirette"
+  },
+  {
+   "file": "0.34.0-e35-o3-blocca-dopo-cerca_scatoloni.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-barca_ormeggiata"
+  },
+  {
+   "file": "0.34.0-e35-o3-blocca-su-barca_ritorno.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-barca_ormeggiata"
+  },
+  {
+   "file": "0.34.0-e35-o3-segui-su-barca_ritorno.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-barca_ritorno"
+  },
+  {
+   "file": "0.34.0-e35-o4-blocca-dopo-barca_ritorno.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-posto_prenotato"
+  },
+  {
+   "file": "0.34.0-e35-ondata3.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-treno_notte"
+  },
+  {
+   "file": "0.34.0-e35-ondata4.json",
+   "erroreImporta": 0,
+   "riprendi": 1,
+   "scena": "chiamata",
+   "chiamata": "chiamata-posto_prenotato"
+  }
+ ],
+ "errori": []
+}
