@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Salvataggio } from '../../salvataggi/salvataggio.ts';
 import { esporta, importa } from '../archivio.ts';
 import { Icona } from '../icone.tsx';
+import { useFuocoTitolo } from '../fuoco-titolo.ts';
 import { spento } from '../../interruttori.ts';
 
 /** C15-08: il motivo in parole da giocatore, senza nomi tecnici; la partita non cambia. Rosso C34I01: il messaggio tecnico. */
@@ -36,10 +37,12 @@ export function ConfermaImporta(p: { nuova: Salvataggio; esiste: boolean; fatto:
   const [passo, setPasso] = useState(p.esiste ? 1 : 3);
   const { fatto, nuova } = p;
   useEffect(() => { if (passo >= 3) fatto(nuova); }, [passo, fatto, nuova]);
+  const titolo = useRef<HTMLParagraphElement>(null);
+  useFuocoTitolo(titolo, passo); // C34-01
   if (passo >= 3) return null;
   return (
     <div className={`scheda conferma-importa${passo === 2 ? ' grave' : ''}`} data-conferma-importa={passo} role="alertdialog">
-      <p>{passo === 1 ? 'Sostituire la partita sul telefono con quella del file?' : 'Sicuro? La partita che hai adesso sul telefono si perde.'}</p>
+      <p ref={titolo} tabIndex={-1} className="titolo-fuoco">{passo === 1 ? 'Sostituire la partita sul telefono con quella del file?' : 'Sicuro? La partita che hai adesso sul telefono si perde.'}</p>
       <div className="secondari">
         <button type="button" className="pulsante piccolo" data-azione="no-importa" onClick={p.annulla}>No</button>
         <button type="button" className="pulsante piccolo" data-azione="si-importa" onClick={() => setPasso(passo + 1)}>{passo === 1 ? 'Sì' : 'Sì, sostituisci'}</button>

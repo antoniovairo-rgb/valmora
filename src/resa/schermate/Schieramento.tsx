@@ -8,6 +8,7 @@ import { disponibili, type InCorso } from '../../logica/missione.ts';
 import type { Disposizione, Missione } from '../../logica/tipi.ts';
 import { t, quante } from '../dati.ts';
 import { Icona, iconaRisorsa } from '../icone.tsx';
+import { useFuocoTitolo } from '../fuoco-titolo.ts';
 
 /** C14-11 (D-037): dove rende l'unità, coi settori di questa missione: «Rende di più: …; normale: …; qui non serve: …».
  *  Rosso C22R01: nessuna spiegazione. */
@@ -156,10 +157,12 @@ const elenco = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')}
 function Riepilogo(p: { m: Missione; d: Disposizione; restano: (readonly [string, number])[]; indietro: () => void; conferma: () => void }) {
   const righe = p.m.mappa.settori.map((s) => [s.id, Object.entries(p.d).map(([r, ps]) => [r, ps[s.id] ?? 0] as const).filter(([, n]) => n > 0)] as const)
     .filter(([, xs]) => xs.length);
+  const titolo = useRef<HTMLHeadingElement>(null);
+  useFuocoTitolo(titolo); // C34-01
   return (
     <>
       <div className="scheda riepilogo" data-riepilogo={righe.reduce((a, [, xs]) => a + xs.reduce((b, [, n]) => b + n, 0), 0)}>
-        <h3>Il tuo schieramento</h3>
+        <h3 ref={titolo} tabIndex={-1} className="titolo-fuoco">Il tuo schieramento</h3>
         {righe.length ? (
           <ul>{righe.map(([s, xs]) => <li key={s} data-riepilogo-settore={s}><strong>{t(`settore.${s}`)}</strong>: {elenco(xs.map(([r, n]) => quante(n, r)))}</li>)}</ul>
         ) : <p className="tenue">Nessuna unità schierata.</p>}

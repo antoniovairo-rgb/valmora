@@ -223,7 +223,8 @@ export async function controllaTripla(pagina, atteso, cosa, foto = async () => {
   for (;;) {
     atteso(`${cosa}: passo ${passi} senza «No»`, (await pagina.locator('.tripla [data-azione^="annulla-"]').count()) === 1);
     if (!(await pagina.locator('[data-azione="conferma-passo"]').count())) break;
-    await pagina.click('[data-azione="conferma-passo"]'); passi++;
+    await pagina.focus('[data-azione="conferma-passo"]'); await pagina.keyboard.press('Enter'); passi++; await pagina.waitForTimeout(80); // C34-01: con la tastiera, e il fuoco non resta sul «Sì» (rosso C104R01)
+    atteso(`${cosa}: al passo ${passi} il fuoco è ancora su un comando (${await pagina.evaluate(() => document.activeElement?.dataset?.azione ?? document.activeElement?.tagName)}) e non sul testo della conferma (C34-01)`, !(await pagina.evaluate(() => !!document.activeElement?.matches('button, a[href]'))));
     if (passi > 5) break;
   }
   atteso(`${cosa}: ${passi} conferme invece di 3 (PO-066)`, passi === 3);

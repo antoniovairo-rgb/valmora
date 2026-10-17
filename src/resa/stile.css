@@ -33,6 +33,7 @@ p { margin: var(--spazio-2) 0; }
 .pulsante.secondario { background: var(--bianco); }
 .pulsante:active, .opzione:active, .unita:active { transform: translate(var(--spinta), var(--spinta)); box-shadow: var(--ombra-premuto); }
 .scena:focus { outline: none; } /* C28-09: la scena prende il fuoco perso, ma non è un comando */
+.titolo-fuoco:focus { outline: none; } /* C34-01: il titolo di un riepilogo o di una conferma prende il fuoco, ma non è un comando */
 /* C28-09: casa, «i», «?», pastiglie e «Rispondi» avevano l'anello del browser; ora il contorno del gioco. Rosso C89C01 */
 main:not(.rosso-c89c01) :is(.tasto-home, .info, .aiuto, .tocco-pastiglia, .indicatore):focus-visible { outline: var(--bordo) solid var(--magenta); outline-offset: var(--spazio-1); }
 .pulsante:focus-visible, .opzione:focus-visible, .unita:focus-visible, .settore-punto:focus-visible { outline: var(--bordo) solid var(--magenta); outline-offset: var(--spazio-1); }

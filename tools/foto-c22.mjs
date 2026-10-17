@@ -188,3 +188,23 @@ export async function controllaVignettaOndata(pagina, m, rapporto, atteso, dove)
   atteso(`${dove}: tono «${r.tono}» (vignetta «${r.vignetta}»), la tensione dice «${atteso2}» (PO-059)`, r.tono === atteso2 && r.vignetta === `ondata-${atteso2}`);
   atteso(`${dove}: tono critico senza la mano alla nuca (PO-059)`, r.nascosta || atteso2 !== 'critico' || r.braccia.includes('nuca'));
 }
+
+/** C34-01: con la tastiera, Invio su «Conferma» apre il riepilogo col fuoco sul suo titolo, nella finestra; mai su un
+ *  comando che conferma (un secondo Invio confermava senza vedere il riepilogo, fuori dalla finestra a 1024 e 1366).
+ *  Alla misura della schermata e a 1366×768; si torna allo schieramento con «Torna». Rosso VALMORA_ROSSI=C104R01. */
+export async function controllaRiepilogoFuoco(pagina, atteso, dove) {
+  if ((process.env.VALMORA_ROSSI ?? '').includes('C17C01')) return; // senza riepilogo Invio conferma davvero
+  const prima = pagina.viewportSize();
+  for (const [w, h] of [[prima.width, prima.height], [1366, 768]]) {
+    await pagina.setViewportSize({ width: w, height: h }); await pagina.waitForTimeout(150);
+    const c = pagina.locator('[data-barra] [data-azione="conferma"]');
+    if (!(await c.count()) || await c.isDisabled()) break;
+    await c.focus(); await pagina.keyboard.press('Enter');
+    if (!(await pagina.waitForSelector('[data-riepilogo]', { timeout: 3000 }).then(() => true, () => false))) { atteso(`${dove} ${w}×${h}: Invio su «Conferma» non apre il riepilogo (S-12)`, false); break; }
+    await pagina.waitForTimeout(150);
+    const r = await pagina.evaluate(() => { const a = document.activeElement, q = a?.getBoundingClientRect(); return { fuoco: a?.dataset?.azione ?? a?.tagName, comando: !!a?.matches('button, a[href]'), vista: !!q && q.top >= 0 && q.bottom <= innerHeight }; });
+    atteso(`${dove} ${w}×${h}: dopo Invio su «Conferma» il fuoco è su ${r.fuoco}${r.vista ? '' : ', fuori dalla finestra'} e non sul titolo del riepilogo (C34-01)`, !r.comando && r.vista);
+    await pagina.click('[data-azione="modifica"]'); await pagina.waitForSelector('[data-barra]', { timeout: 3000 }).catch(() => {});
+  }
+  await pagina.setViewportSize(prima); await pagina.waitForTimeout(150);
+}
