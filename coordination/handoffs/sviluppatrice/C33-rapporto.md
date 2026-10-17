@@ -1,4 +1,4 @@
-# C-033 (C33-02 … C33-05; C33-01 in attesa del PO) · rapporto della sviluppatrice
+# C-033 (C33-01 … C33-05) · rapporto della sviluppatrice
 
 Ramo `claude/valmora-resa-v2`. Rilievi in `docs/revisioni/COLLAUDO_C33.md` (ramo `claude/valmora-collaudo-c33`). Foto in `c33/`.
 Codice: `src/resa/mappa/etichette.ts`; guardiano: `tools/foto-schieramenti.mjs` (catena grafica, `controllaSchieramenti`).
@@ -9,12 +9,22 @@ Codice: `src/resa/mappa/etichette.ts`; guardiano: `tools/foto-schieramenti.mjs` 
 - Misura (sonda dei cortei a 360, 69 passi del corteo dell'ondata; «verso» = la distanza scende): e30 o4 verde 69/69 verso lo stadio, 6/69 verso il municipio (63 se ne allontanano); rosso C99M01 0/69 verso lo stadio, 62/69 verso il municipio (il collaudo: 63/69). Il corteo della chiamata «fiaccolata»: verde 39/39 verso lo stadio e 0/39 verso il municipio, rosso 0/39 e 36/39. e17 o4 invariato.
 - Test: `meta-fase.test.ts` (D-141), `corteo-verso.test.ts` adeguato (e30 o4 entra/esce falso; i rossi C73V01 e C74D01 restano provati su e17 o4).
 
-## C33-01 – NON in questa consegna (decisione del PO in sospeso)
+## C33-01 (D-143, decisione del PO: opzione A) – la pastiglia visibile mai sopra un nome; il tocco trasparente sì, ma non «ruba» il nome
 
-- Il lavoro (nome misurato col testo vero nel risolutore e nel guardiano, pastiglia visibile sopra un nome × 20, rosso C100N01) è in `C33-01.patch` (si applica sulla testa di questa consegna con `git apply`).
-- FATTO MISURATO che ha portato alla sospensione: la pastiglia visibile sopra un nome (C27-06) e l'area di tocco trasparente sopra un nome (C-008, guardiano del giro foto) sono in conflitto quando la mappa è piena. Con la patch il giro foto va rosso su C-008 (e07 o2 a 360×800, mediatore@parcheggi × «Piazzale dello stadio» 417 px²); in quello stato nessuno dei 192 posti di Parcheggi rispetta tutte e due le regole dentro la mappa. Sulle 142 ondate × 3 larghezze, tocchi sopra i nomi (regola C-008): 0.34.0 12 ondate su 426 (9/2/1), con la patch 8 (7/0/1), ma e35 o2 sale a 677 px².
-- In questa consegna risolutore e guardiano sono come nella 0.34.0 per C33-01 (riquadro del nome, peso × 1). Il guardiano gira ora anche a 375×812 e 412×915 (prima solo 360) col riquadro: verde 0 pastiglie sopra i nomi.
-- Il guardiano registra anche, senza soglia, i tocchi sopra i nomi (regola C-008) in `tocchi-<larghezza>.txt`, per la decisione.
+- Consegnato a parte, dopo C34-01/C34-08/C33-02…05 (che erano senza C33-01).
+- Risolutore (`etichette.ts`):
+  - il nome si misura col testo vero (riquadro ∪ righe del testo, `Range.getClientRects`); una larghezza in cui il testo non ci sta si salta;
+  - la pastiglia visibile sopra un nome pesa × 20 (quasi vincolo, sotto il disco 1e8). Causa misurata in e35 o2 a 360: 98 px² di pastiglia sul nome costavano 49 219 contro 138 516 del posto senza pastiglie sul nome (tocco trasparente sul proprio nome, 1385 px²). **Rosso `__NO_C100N01`** (riquadro e peso × 1, come nella 0.34.0).
+  - nessun nome «rubato» da un'area di tocco: il centro di ogni riga di un nome non sta sotto un tocco (toccando il nome si ritirerebbe un'unità) e il centro di un tocco non cade sul nome di un altro settore; VERA × 1e4 per caso. **Rosso `__NO_C106T01`.**
+- Regola C-008 nuova (D-143, proposta mia): un'area di tocco sopra un nome è ammessa; è un errore quando (a) il suo centro cade sul nome di un ALTRO settore, o (b) toccando il centro di una riga di un nome qualsiasi si colpisce un tocco. Nel giro foto (`tools/foto.mjs`) sostituisce «area > 4 px²»; negli schieramenti (`controllaSchieramenti`) è un controllo a tetto 0 a 360, 375 e 412.
+- Misura del rischio (prova chiesta dal PO): il caso (b) è proprio «toccando il nome si ritira un'unità». Prima della regola nuova nel risolutore: 1 ondata su 426 (e35 o2 a 360: toccando «Perimetro della banca» si colpisce squadre@perimetro_banca); dopo: 0.
+- Guardiano col testo vero: pastiglie sopra i nomi a 360, 375 e 412, tetto 0 (invariato).
+- Misure (guardiano completo e giro foto, build finale):
+  - verde: schieramenti «nessun errore», nomi rubati 0/0/0, C33-05 33/19/8; giro foto verde;
+  - rosso C100N01: ROSSO100;
+  - rosso C106T01: giro foto rosso sul controllo D-143 (e35 o2 a 360, «toccando Perimetro della banca si colpisce squadre»).
+  - e07 o2 a 360×800 (giro foto, tutte le unità a Parcheggi): con la patch di prima il tocco del mediatore copriva «Piazzale dello stadio» per 417 px²; ora nessun tocco sopra un nome. Col rosso C106T01 i 417 px² tornano, ma non «rubano» il nome (né il centro del tocco sul nome né il nome sotto il tocco), quindi la regola nuova non li conta.
+- Il guardiano registra ancora, senza soglia, i tocchi sopra i nomi alla vecchia maniera (area > 4 px²) in `tocchi-<larghezza>.txt`: verde 7/0/1 ondate, 0.34.0 9/2/1.
 
 ## C33-03 – e06 schieramento 1, tocco coperto posando le unità una alla volta
 
@@ -48,7 +58,7 @@ Codice: `src/resa/mappa/etichette.ts`; guardiano: `tools/foto-schieramenti.mjs` 
 
 ## Interruttori
 
-C99M01 (C33-02), C102D01 (C33-04), C103P01 (C33-05 e il pareggio di C33-03). C100N01 solo nella patch C33-01. C101P01 non usato.
+C99M01 (C33-02), C100N01 e C106T01 (C33-01), C102D01 (C33-04), C103P01 (C33-05 e il pareggio di C33-03). C101P01 non usato.
 
 ## Giri
 
