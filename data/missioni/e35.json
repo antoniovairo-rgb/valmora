@@ -587,6 +587,7 @@
         },
         {
           "id": "barca_ritorno",
+          "dopo": {"gia": ["barca_porto/segui_barca"]},
           "fonte": "testimone",
           "testo": "testi:e35.ch.barca_ritorno",
           "settore": "banchine",
@@ -622,6 +623,47 @@
                 }
               ],
               "risposta": "testi:e35.op.ferma_barca.r"
+            }
+          ]
+        },
+        {
+          "id": "barca_ormeggiata",
+          "dopo": {"gia": ["barca_porto/blocca_barca"]},
+          "fonte": "testimone",
+          "testo": "testi:e35.ch.barca_ormeggiata",
+          "settore": "banchine",
+          "opzioni": [
+            {
+              "id": "apri_scatoloni",
+              "testo": "testi:e35.op.apri_scatoloni",
+              "costo": "testi:e35.op.apri_scatoloni.c",
+              "effetti": [
+                {
+                  "pressione": "banchine",
+                  "valore": -2
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e35.op.apri_scatoloni.r"
+            },
+            {
+              "id": "identifica_equipaggio",
+              "testo": "testi:e35.op.identifica_equipaggio",
+              "costo": "testi:e35.op.identifica_equipaggio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "banchine",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e35.op.identifica_equipaggio.r"
             }
           ]
         }
