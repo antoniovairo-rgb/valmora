@@ -1,0 +1,300 @@
+{
+ "ris": [
+  {
+   "ep": "e01",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "deflusso|strada_cinderwick>esce,strada_larkspire>esce"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e01-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "deflusso|strada_cinderwick>esce,strada_larkspire>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e03",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e03-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e09",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e09-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": null
+   },
+   "ok": true
+  },
+  {
+   "ep": "e13",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": null
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e13-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "deflusso|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e14",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e14-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e17",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "vuoti|piazza_municipio>entra"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e17-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "vuoti|piazza_municipio>entra"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e21",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e21-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e22",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e22-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e26",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e26-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e28",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e28-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e30",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "vuoti|strada_cinderwick>entra"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e30-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "vuoti|strada_cinderwick>entra"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e32",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e32-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e35",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "vuoti|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e35-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "vuoti|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e36",
+   "attesa": "rapporto",
+   "a": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e36-ondata3-rapporto.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "rapporto",
+    "chiamata": null,
+    "tono": "calmo",
+    "testo": null,
+    "folla": "pieni|"
+   },
+   "ok": true
+  }
+ ],
+ "errA": [],
+ "errB": []
+}

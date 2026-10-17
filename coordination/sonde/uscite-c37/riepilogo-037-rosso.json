@@ -1,0 +1,78 @@
+{
+ "ROSSI": [
+  "C104R01"
+ ],
+ "righe": [
+  {
+   "ep": "e01",
+   "W": 360,
+   "H": 760,
+   "dopo1": {
+    "fuoco": "BUTTON[conferma-davvero]",
+    "dentro": true,
+    "y": 677,
+    "riepilogo": true,
+    "riepilogoY": 476,
+    "scroll": 0
+   },
+   "scena2": "chiamata"
+  },
+  {
+   "ep": "e01",
+   "W": 360,
+   "H": 640,
+   "dopo1": {
+    "fuoco": "BUTTON[conferma-davvero]",
+    "dentro": false,
+    "y": 677,
+    "riepilogo": true,
+    "riepilogoY": 476,
+    "scroll": 0
+   },
+   "scena2": "chiamata"
+  },
+  {
+   "ep": "e01",
+   "W": 375,
+   "H": 667,
+   "dopo1": {
+    "fuoco": "BUTTON[conferma-davvero]",
+    "dentro": false,
+    "y": 692,
+    "riepilogo": true,
+    "riepilogoY": 491,
+    "scroll": 0
+   },
+   "scena2": "chiamata"
+  },
+  {
+   "ep": "e01",
+   "W": 412,
+   "H": 915,
+   "dopo1": {
+    "fuoco": "BUTTON[conferma-davvero]",
+    "dentro": true,
+    "y": 713,
+    "riepilogo": true,
+    "riepilogoY": 512,
+    "scroll": 0
+   },
+   "scena2": "chiamata"
+  },
+  {
+   "ep": "e01",
+   "W": 1366,
+   "H": 768,
+   "dopo1": {
+    "fuoco": "BUTTON[conferma-davvero]",
+    "dentro": false,
+    "y": 781,
+    "riepilogo": true,
+    "riepilogoY": 580,
+    "scroll": 0
+   },
+   "scena2": "chiamata"
+  }
+ ],
+ "errori": []
+}

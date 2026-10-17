@@ -1,0 +1,76 @@
+{
+ "ROSSI": [],
+ "righe": [
+  {
+   "ep": "e01",
+   "W": 360,
+   "H": 760,
+   "dopo1": {
+    "fuoco": "H3[titolo-fuoco]",
+    "dentro": true,
+    "y": 495,
+    "riepilogo": true,
+    "riepilogoY": 476,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  },
+  {
+   "ep": "e01",
+   "W": 360,
+   "H": 640,
+   "dopo1": {
+    "fuoco": "H3[titolo-fuoco]",
+    "dentro": true,
+    "y": 495,
+    "riepilogo": true,
+    "riepilogoY": 476,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  },
+  {
+   "ep": "e01",
+   "W": 375,
+   "H": 667,
+   "dopo1": {
+    "fuoco": "H3[titolo-fuoco]",
+    "dentro": true,
+    "y": 510,
+    "riepilogo": true,
+    "riepilogoY": 491,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  },
+  {
+   "ep": "e01",
+   "W": 412,
+   "H": 915,
+   "dopo1": {
+    "fuoco": "H3[titolo-fuoco]",
+    "dentro": true,
+    "y": 531,
+    "riepilogo": true,
+    "riepilogoY": 512,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  },
+  {
+   "ep": "e01",
+   "W": 1366,
+   "H": 768,
+   "dopo1": {
+    "fuoco": "H3[titolo-fuoco]",
+    "dentro": true,
+    "y": 599,
+    "riepilogo": true,
+    "riepilogoY": 580,
+    "scroll": 0
+   },
+   "scena2": "schieramento"
+  }
+ ],
+ "errori": []
+}

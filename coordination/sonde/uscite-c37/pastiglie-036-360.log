@@ -1,0 +1,117 @@
+360×760: ondate 142, pastiglie sopra i nomi 0, nomi su nomi 0, centro coperto 0, fuori mappa 0, nomi fuori 0, non aperte 0
+  tocco su tocco (aree) 4, centro sotto un altro tocco 0, pastiglie su dischi altrui 7, nomi stretti 46 ondate (58 nomi), testo che esce 11, righe max 3, scorrimento 0
+  testo fuori dal riquadro: 11 ondate, max 13.1 px; testo fuori riquadro sopra pastiglie/nomi/bordo: 2
+  gruppi di pastiglie più vicini al disco di un altro settore: 40 ondate (44 gruppi)
+  ambiguo e03 o4: piazzale (destra-alto): proprio disco 67 px, parcheggi 52 px
+  ambiguo e04 o1: mercato (destra-alto): proprio disco 88 px, piazzale 68 px
+  ambiguo e04 o2: mercato (destra-basso): proprio disco 73 px, piazzale 73 px
+  ambiguo e05 o4: piazzale (sinistra-basso): proprio disco 73 px, tornelli 71 px
+  ambiguo e06 o1: piazza_concerto (destra): proprio disco 89 px, viale_concerto 14 px
+  ambiguo e07 o1: parcheggi (sinistra): proprio disco 66 px, piazzale 62 px
+  ambiguo e07 o4: viale_stazione (destra): proprio disco 67 px, piazzale 61 px
+  ambiguo e09 o1: tangenziale (sotto): proprio disco 70 px, strada_larkspire 59 px; strada_larkspire (destra-alto): proprio disco 46 px, tangenziale 45 px
+  ambiguo e10 o2: curva_cinderwick (destra): proprio disco 67 px, piazzale 59 px
+  ambiguo e10 o3: curva_cinderwick (destra): proprio disco 66 px, piazzale 59 px
+  ambiguo e13 o3: curva_cinderwick (destra-alto): proprio disco 68 px, piazzale 65 px
+  ambiguo e14 o1: tornelli (destra-alto): proprio disco 67 px, curva_larkspire 52 px
+  ambiguo e14 o2: biglietteria (sotto): proprio disco 58 px, curva_ospiti 52 px
+  ambiguo e15 o4: viale_stazione (sotto): proprio disco 54 px, curva_ospiti 46 px
+  ambiguo e17 o4: quartiere (destra-alto): proprio disco 67 px, piazzale 64 px
+  ambiguo e18 o4: retro_tribuna (destra-basso): proprio disco 73 px, strada_larkspire 66 px
+  ambiguo e19 o2: curva_cinderwick (sotto): proprio disco 70 px, tornelli 29 px
+  ambiguo e20 o3: curva_cinderwick (destra-basso): proprio disco 93 px, piazzale 29 px
+  ambiguo e21 o2: curva_cinderwick (destra-basso): proprio disco 94 px, piazzale 41 px
+  ambiguo e23 o1: parcheggi (destra): proprio disco 67 px, casello 66 px
+  ambiguo e23 o3: curva_cinderwick (sotto): proprio disco 70 px, piazzale 56 px
+  ambiguo e24 o2: curva_ospiti (destra-basso): proprio disco 94 px, tornelli 17 px; curva_larkspire (sinistra-alto): proprio disco 66 px, tornelli 63 px
+  ambiguo e25 o2: curva_cinderwick (sotto): proprio disco 70 px, piazza_municipio 44 px; piazzale (sotto): proprio disco 58 px, stazione 46 px
+  ambiguo e27 o1: curva_cinderwick (destra): proprio disco 89 px, curva_gemellati 67 px
+  ambiguo e27 o2: curva_cinderwick (sotto): proprio disco 69 px, strada_cinderwick 61 px
+  ambiguo e27 o3: curva_cinderwick (sotto): proprio disco 69 px, strada_cinderwick 61 px
+  ambiguo e28 o2: curva_cinderwick (destra-basso): proprio disco 94 px, strada_cinderwick 77 px
+  ambiguo e29 o1: curva_cinderwick (sotto): proprio disco 58 px, strada_cinderwick 56 px
+  ambiguo e29 o2: curva_cinderwick (destra): proprio disco 89 px, piazzale 56 px
+  ambiguo e30 o2: strada_cinderwick (destra-basso): proprio disco 74 px, viale_stazione 61 px
+  ambiguo e30 o3: piazza_municipio (sotto): proprio disco 70 px, quartiere 69 px
+  ambiguo e31 o1: piazzale (sinistra-basso): proprio disco 74 px, viale_stazione 44 px
+  ambiguo e31 o2: piazzale (sotto): proprio disco 70 px, viale_stazione 43 px; curva_ospiti (sotto): proprio disco 59 px, stazione 56 px
+  ambiguo e31 o3: piazzale (sotto): proprio disco 70 px, viale_stazione 43 px
+  ambiguo e33 o1: curva_larkspire (sinistra-basso): proprio disco 74 px, tornelli 59 px
+  ambiguo e33 o2: curva_larkspire (sinistra-basso): proprio disco 94 px, tornelli 71 px
+  ambiguo e33 o3: curva_larkspire (sinistra-basso): proprio disco 94 px, tornelli 71 px
+  ambiguo e34 o2: curva_ospiti (sotto): proprio disco 58 px, parcheggi 54 px
+  ambiguo e34 o3: curva_ospiti (sotto): proprio disco 58 px, parcheggi 54 px
+  ambiguo e35 o2: perimetro_banca (destra-basso): proprio disco 93 px, stazione 46 px
+  e13 o2: testo «Parcheggi» fuori riquadro × pastiglia «1» di piazza_concerto 43 px²
+  e23 o1: testo «Parcheggi» fuori riquadro × pastiglia «1» di parcheggi 34 px²
+  posti delle unità {"sopra":282,"sotto":77,"destra":28,"destra-alto":22,"sinistra":12,"destra-basso":14,"sinistra-basso":10,"sinistra-alto":12}
+  stretto e02 o3: Curva ospiti (×0.8, 2 righe)
+  stretto e02 o4: Viale della stazione (×0.8, 3 righe)
+  stretto e06 o3: Viale fra stadio e piazza (×0.8, 3 righe)
+  stretto e06 o4: Viale fra stadio e piazza (×0.8, 3 righe)
+  stretto e07 o1: Viale della stazione (×0.6, 3 righe, ESCE)
+  stretto e10 o4: Piazzale dello stadio (×0.6, 3 righe, ESCE)
+  stretto e12 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e13 o1: Viale fra stadio e piazza (×0.8, 3 righe); Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e13 o2: Viale fra stadio e piazza (×0.8, 3 righe); Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e13 o4: Viale fra stadio e piazza (×0.8, 3 righe); Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e14 o3: Tornelli (×0.6, 1 righe, ESCE)
+  stretto e14 o4: Tornelli (×0.6, 1 righe, ESCE)
+  stretto e16 o1: Magazzino delle fonderie (×0.8, 3 righe); Strada da Kiln (×0.6, 2 righe)
+  stretto e16 o2: Magazzino delle fonderie (×0.8, 3 righe); Strada da Kiln (×0.6, 2 righe)
+  stretto e16 o3: Magazzino delle fonderie (×0.8, 3 righe); Strada da Kiln (×0.6, 2 righe)
+  stretto e16 o4: Magazzino delle fonderie (×0.8, 3 righe); Strada da Kiln (×0.8, 2 righe)
+  stretto e17 o4: Piazzale dello stadio (×0.6, 3 righe, ESCE)
+  stretto e18 o2: Curva ospiti (×0.8, 2 righe)
+  stretto e18 o4: Curva ospiti (×0.8, 2 righe)
+  stretto e19 o1: Strada da Kiln (×0.8, 2 righe); Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e19 o2: Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e19 o3: Strada da Kiln (×0.6, 2 righe); Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e19 o4: Strada da Kiln (×0.6, 2 righe); Magazzino delle fonderie (×0.8, 3 righe)
+  stretto e20 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e22 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e23 o1: Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e25 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e25 o2: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e25 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e26 o4: Parcheggi (×0.6, 1 righe, ESCE)
+  stretto e29 o1: Banchine del porto (×0.8, 2 righe)
+  stretto e29 o2: Banchine del porto (×0.8, 2 righe)
+  stretto e30 o1: Strada da Kiln (×0.8, 2 righe)
+  stretto e30 o2: Strada da Kiln (×0.8, 2 righe)
+  stretto e30 o3: Vie del quartiere (×0.6, 2 righe, ESCE)
+  stretto e31 o1: Piazzale dello stadio (×0.8, 3 righe); Viale della stazione (×0.8, 3 righe)
+  stretto e31 o2: Piazzale dello stadio (×0.8, 3 righe); Curva ospiti (×0.8, 2 righe)
+  stretto e31 o3: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e31 o4: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e32 o1: Strada da Kiln (×0.8, 2 righe)
+  stretto e33 o1: Curva Skyfield (×0.8, 2 righe)
+  stretto e33 o2: Curva Skyfield (×0.8, 2 righe)
+  stretto e33 o3: Curva Skyfield (×0.8, 2 righe)
+  stretto e33 o4: Curva Skyfield (×0.8, 2 righe)
+  stretto e34 o1: Piazzale dello stadio (×0.8, 3 righe)
+  stretto e34 o4: Piazzale dello stadio (×0.8, 3 righe)
+  posto nuovo e04 o2: {"destra-basso":1,"sopra":3}
+  posto nuovo e05 o1: {"sinistra-basso":1,"sopra":2}
+  posto nuovo e05 o4: {"sotto":2,"sinistra-basso":1,"destra":1}
+  posto nuovo e06 o1: {"destra":1,"sinistra-basso":1,"sopra":1}
+  posto nuovo e18 o4: {"destra-basso":1,"sopra":1,"sinistra-alto":1}
+  posto nuovo e20 o3: {"destra-basso":1,"destra":1,"sopra":1}
+  posto nuovo e21 o2: {"destra-basso":1,"sopra":1}
+  posto nuovo e24 o2: {"destra-basso":1,"sinistra-alto":1,"destra-alto":1}
+  posto nuovo e25 o1: {"sopra":3,"destra-basso":1}
+  posto nuovo e27 o2: {"sotto":1,"destra-basso":1,"sopra":1}
+  posto nuovo e27 o3: {"sotto":1,"destra-basso":1,"sopra":1}
+  posto nuovo e28 o1: {"destra-basso":1,"sotto":2,"sopra":1}
+  posto nuovo e28 o2: {"destra-basso":1,"sopra":1,"sotto":1}
+  posto nuovo e28 o3: {"destra-basso":1,"sopra":1,"sotto":1}
+  posto nuovo e30 o2: {"sinistra-alto":1,"destra-basso":1,"sotto":1,"sopra":1}
+  posto nuovo e31 o1: {"sinistra-basso":1,"sopra":2,"destra-basso":1}
+  posto nuovo e33 o1: {"sinistra-basso":1,"sopra":2,"sotto":1}
+  posto nuovo e33 o2: {"sinistra-basso":1,"sopra":1,"destra-alto":1}
+  posto nuovo e33 o3: {"sinistra-basso":1,"sopra":2}
+  posto nuovo e33 o4: {"sopra":2,"sinistra-basso":1,"destra-alto":1}
+  posto nuovo e34 o1: {"sopra":2,"sinistra-basso":1}
+  posto nuovo e34 o4: {"sopra":2,"sinistra-basso":1}
+  posto nuovo e35 o2: {"destra-basso":1,"sopra":1,"sinistra":1}
+errori 0 []

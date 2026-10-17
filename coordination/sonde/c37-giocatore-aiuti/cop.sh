@@ -1,0 +1,4 @@
+#!/bin/sh
+# cop.sh: per ogni disco di settore, cosa c'è al centro (tocco coperto?) e posizione dell'etichetta
+S=$(dirname $0)
+$S/g.sh js c="[...document.querySelectorAll('.mappa:not(.citta) [data-settore] .settore-punto')].map(b=>{const r=b.getBoundingClientRect();const x=r.x+r.width/2,y=r.y+r.height/2;const e=document.elementFromPoint(x,y);const ok=b.contains(e);const s=b.closest('[data-settore]');const l=s.querySelector('.settore-nome');const lr=l?.getBoundingClientRect();return s.dataset.settore+' disco('+Math.round(x)+','+Math.round(y)+') '+(ok?'libero':'COPERTO da '+(e?.className||e?.tagName)+' '+(e?.closest('[data-settore]')?.dataset.settore??''))+' etichetta('+(lr?Math.round(lr.x)+','+Math.round(lr.y)+' '+Math.round(lr.width)+'x'+Math.round(lr.height):'-')+')'}).join('\n')" | sed 's/^valore: //'

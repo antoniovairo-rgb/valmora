@@ -1,0 +1,283 @@
+{
+ "ris": [
+  {
+   "ep": "e01",
+   "erroreA": "e01: l'ondata 4 non esiste"
+  },
+  {
+   "ep": "e03",
+   "attesa": "risultato",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-risultato",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE PARCHEGGI URGENTE! RISPONDI «Garden vince ai rigori. Seicento in festa fra le case, mezzanotte e mezza. Indovina che fanno.»",
+    "folla": null
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e03-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-risultato",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE PARCHEGGI URGENTE! RISPONDI «Garden vince ai rigori. Seicento in festa fra le case, mezzanotte e mezza. Indovina che fanno.»",
+    "folla": "deflusso|parcheggi>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e09",
+   "attesa": "risultato",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-risultato",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE RISPONDI «Due a zero Skyfield. Ospiti arrabbiati, casa in festa, pullman di Belltower da far ripartire.» IL VICE — «Sono arrivati a modo loro, ripartiranno a modo loro.»",
+    "folla": "deflusso|strada_larkspire>esce,tangenziale>esce"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e09-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-risultato",
+    "tono": null,
+    "testo": "ETTORE MALVASI, IL VICE RISPONDI «Due a zero Skyfield. Ospiti arrabbiati, casa in festa, pullman di Belltower da far ripartire.» IL VICE — «Sono arrivati a modo loro, ripartiranno a modo loro.»",
+    "folla": "deflusso|strada_larkspire>esce,tangenziale>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e13",
+   "attesa": "coda_auto",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-coda_auto",
+    "tono": null,
+    "testo": "ORGANIZZATORI DEL CONCERTO PARCHEGGI URGENTE! RISPONDI «Fine partita: si esce mentre arrivano le auto del concerto. Una sola uscita, e i clacson.»",
+    "folla": "deflusso|parcheggi>esce,viale_concerto>esce"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e13-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-coda_auto",
+    "tono": null,
+    "testo": "ORGANIZZATORI DEL CONCERTO PARCHEGGI URGENTE! RISPONDI «Fine partita: si esce mentre arrivano le auto del concerto. Una sola uscita, e i clacson.»",
+    "folla": null
+   },
+   "ok": true
+  },
+  {
+   "ep": "e14",
+   "attesa": "sportelli",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-sportelli",
+    "tono": null,
+    "testo": "BIGLIETTERIA DELLO STADIO BIGLIETTERIA URGENTE! RISPONDI «Fine partita: duemila persone vogliono indietro i soldi, adesso. Abbiamo due sportelli.»",
+    "folla": "deflusso|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e14-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-sportelli",
+    "tono": null,
+    "testo": "BIGLIETTERIA DELLO STADIO BIGLIETTERIA URGENTE! RISPONDI «Fine partita: duemila persone vogliono indietro i soldi, adesso. Abbiamo due sportelli.»",
+    "folla": "deflusso|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e17",
+   "attesa": "me_lo_dovete",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-me_lo_dovete",
+    "tono": null,
+    "testo": "TANO FERRIGNO DETTO «IL FABBRO», CAPO DELLA CURVA KILN STRADA DA KILN URGENTE! RISPONDI «Corteo sciolto, i miei pure. Li riporto io, tutti insieme, per la strada di Kiln. Me lo dovete.» IL VICE — «Il Fabbro che fa il servizio d'ordine. Ne ho viste tante, ma questa le batte.»",
+    "folla": "vuoti|strada_cinderwick>entra,piazza_municipio>esce"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e17-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-me_lo_dovete",
+    "tono": null,
+    "testo": "TANO FERRIGNO DETTO «IL FABBRO», CAPO DELLA CURVA KILN STRADA DA KILN URGENTE! RISPONDI «Corteo sciolto, i miei pure. Li riporto io, tutti insieme, per la strada di Kiln. Me lo dovete.» IL VICE — «Il Fabbro che fa il servizio d'ordine. Ne ho viste tante, ma questa le batte.»",
+    "folla": "vuoti|strada_cinderwick>entra,piazza_municipio>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e21",
+   "attesa": "chi_arriva_primo",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-chi_arriva_primo",
+    "tono": null,
+    "testo": "GIANNI LAVEZZARI, SICUREZZA DEL KILN UNITED EX FONDERIA URGENTE! RISPONDI «Lavezzari: i vecchi escono e tornano dalla piazza, dove stanno i giovani. Chi passa, comanda.»",
+    "folla": "deflusso|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e21-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-chi_arriva_primo",
+    "tono": null,
+    "testo": "GIANNI LAVEZZARI, SICUREZZA DEL KILN UNITED EX FONDERIA URGENTE! RISPONDI «Lavezzari: i vecchi escono e tornano dalla piazza, dove stanno i giovani. Chi passa, comanda.»",
+    "folla": "deflusso|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e22",
+   "attesa": "salutare_presidio",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-salutare_presidio",
+    "tono": null,
+    "testo": "GIANNI LAVEZZARI, SICUREZZA DEL KILN UNITED STRADA DA KILN URGENTE! RISPONDI «Lavezzari: la curva scende dalla collina, vuole passare dal municipio «per salutare il presidio».»",
+    "folla": "deflusso|strada_cinderwick>esce"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e22-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-salutare_presidio",
+    "tono": null,
+    "testo": "GIANNI LAVEZZARI, SICUREZZA DEL KILN UNITED STRADA DA KILN URGENTE! RISPONDI «Lavezzari: la curva scende dalla collina, vuole passare dal municipio «per salutare il presidio».»",
+    "folla": "deflusso|strada_cinderwick>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e26",
+   "attesa": "carosello",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-carosello",
+    "tono": null,
+    "testo": "VOCI IN RETE PIAZZALE DELLO STADIO URGENTE! RISPONDI «Carosello di auto dal piazzale verso il centro. Clacson, bandiere azzurre, qualcuno sul tettuccio.»",
+    "folla": "deflusso|parcheggi>esce"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e26-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-carosello",
+    "tono": null,
+    "testo": "VOCI IN RETE PIAZZALE DELLO STADIO URGENTE! RISPONDI «Carosello di auto dal piazzale verso il centro. Clacson, bandiere azzurre, qualcuno sul tettuccio.»",
+    "folla": "deflusso|parcheggi>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e28",
+   "attesa": "corteo_capo",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corteo_capo",
+    "tono": null,
+    "testo": "VOCI IN RETE STRADA DA KILN URGENTE! RISPONDI «In rete: la curva Kiln annuncia un corteo «per il capo» dopo la partita. Verso il porto.» IL VICE — «Verso il porto. Allora lo sanno anche loro. Vanno a proteggerlo o a dargli tempo di andarsene?»",
+    "folla": null
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e28-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-corteo_capo",
+    "tono": null,
+    "testo": "VOCI IN RETE STRADA DA KILN URGENTE! RISPONDI «In rete: la curva Kiln annuncia un corteo «per il capo» dopo la partita. Verso il porto.» IL VICE — «Verso il porto. Allora lo sanno anche loro. Vanno a proteggerlo o a dargli tempo di andarsene?»",
+    "folla": "deflusso|strada_cinderwick>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e30",
+   "attesa": "fiaccolata",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fiaccolata",
+    "tono": null,
+    "testo": "VOCI IN RETE STRADA DA KILN URGENTE! RISPONDI «In rete: dopo il municipio, fiaccolata fino al porto. «Dove l'hanno preso, lì lo aspettiamo».»",
+    "folla": "vuoti|strada_cinderwick>entra"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e30-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-fiaccolata",
+    "tono": null,
+    "testo": "VOCI IN RETE STRADA DA KILN URGENTE! RISPONDI «In rete: dopo il municipio, fiaccolata fino al porto. «Dove l'hanno preso, lì lo aspettiamo».»",
+    "folla": "vuoti|strada_cinderwick>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e32",
+   "attesa": "incrocio",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-incrocio",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO RISPONDI «Piazzale: i due deflussi si vedono. Cento metri. Cinquanta.» IL VICE — «Il primo giorno era lo stesso incrocio. Allora sapevi poco. Adesso sai troppo, e non serve a niente.»",
+    "folla": null
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e32-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-incrocio",
+    "tono": null,
+    "testo": "CENTRALE RADIO PIAZZALE DELLO STADIO RISPONDI «Piazzale: i due deflussi si vedono. Cento metri. Cinquanta.» IL VICE — «Il primo giorno era lo stesso incrocio. Allora sapevi poco. Adesso sai troppo, e non serve a niente.»",
+    "folla": "deflusso|strada_cinderwick>esce,strada_larkspire>esce"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e35",
+   "attesa": "posto_prenotato",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "tono": null,
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "folla": "vuoti|"
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e35-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-posto_prenotato",
+    "tono": null,
+    "testo": "CENTRALE RADIO STAZIONE RISPONDI «Stazione, ore cinque: uomo in cappotto cerca il binario. Valigia, faccia di chi ha dormito poco.» IL VICE — «Tullio Varrone non prende treni. Ma chi lavora per lui sì.»",
+    "folla": "vuoti|"
+   },
+   "ok": true
+  },
+  {
+   "ep": "e36",
+   "attesa": "ritorno_collina",
+   "a": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-ritorno_collina",
+    "tono": null,
+    "testo": "VOCI IN RETE STRADA DA SKYFIELD URGENTE! RISPONDI «In rete: Skyfield battuti, su per la collina con la coreografia. Alcuni di Kiln li accompagnano.»",
+    "folla": null
+   },
+   "file": "coordination/sonde/salvataggi-036/0.36.0-e36-ondata4.json",
+   "erroreImporta": 0,
+   "b": {
+    "scena": "chiamata",
+    "chiamata": "chiamata-ritorno_collina",
+    "tono": null,
+    "testo": "VOCI IN RETE STRADA DA SKYFIELD URGENTE! RISPONDI «In rete: Skyfield battuti, su per la collina con la coreografia. Alcuni di Kiln li accompagnano.»",
+    "folla": null
+   },
+   "ok": true
+  }
+ ],
+ "errA": [],
+ "errB": []
+}

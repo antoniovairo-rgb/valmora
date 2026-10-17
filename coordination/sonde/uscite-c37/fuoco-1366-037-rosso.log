@@ -1,0 +1,12 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 15000ms exceeded.
+    at sc (/home/user/valmora/coordination/sonde/c32-fuoco.mjs:15:21)
+    at /home/user/valmora/coordination/sonde/c32-fuoco.mjs:20:99 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.22.0
