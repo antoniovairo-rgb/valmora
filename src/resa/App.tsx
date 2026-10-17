@@ -30,6 +30,9 @@ import { Scena } from './schermate/Scena.tsx';
 import { Schieramento, usate } from './schermate/Schieramento.tsx';
 import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
+import { Epilogo } from './schermate/Epilogo.tsx';
+import { chiudeStagione, epilogo, fineStagione, ultimoEpisodio } from '../logica/epilogo.ts';
+import { superato } from '../logica/episodi.ts';
 import { ondataVincibile } from '../logica/ripartenza.ts';
 import { valutaEpisodio } from '../logica/episodi.ts';
 import { segniDi, type Segno } from './mappa/segni.ts';
@@ -38,7 +41,7 @@ import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
 import { useIndietroApp } from './indietro.ts';
 
-type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
+type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale' | 'epilogo';
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
@@ -160,9 +163,16 @@ export function App() {
   else if (schermata === 'verbale' && esito && sal) {
     corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
       rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} home={home} riparti={ripartenza(esito)}
-      prossimo={prossimoEpisodio(sal) ? () => giocaEpisodio(prossimoEpisodio(sal)!.id) : undefined} />;
+      prossimo={prossimoEpisodio(sal) ? () => giocaEpisodio(prossimoEpisodio(sal)!.id) : undefined}
+      fineStagione={!esito.r.fallita && chiudeStagione(missioni, esito.m) ? fineStagione(missioni, sal.episodi, sal.variabili, dichiarate.values(), esito.m.stagione) : null}
+      epilogo={ultimoEpisodio(missioni)?.id === esito.m.id ? () => setSchermata('epilogo') : undefined} />;
+  } else if (schermata === 'epilogo' && sal && !ic) {
+    // D-161: epilogo della campagna; si torna alla città (e dalla città si rilegge, finché l'ultimo episodio è superato)
+    corpo = <Epilogo e={epilogo(missioni, sal.episodi, sal.variabili, dichiarate.values())} citta={() => alla_citta(sal)} home={home} />;
   } else if (schermata === 'citta' && sal && !ic) {
-    corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} home={home} />;
+    const fine = ultimoEpisodio(missioni);
+    corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} home={home}
+      epilogo={fine && superato(sal.episodi, fine.id) && !spento('C161E01') ? () => setSchermata('epilogo') : undefined} />;
   }
   else if (schermata === 'titolo' || !sal || !m) { nome = 'titolo'; corpo = titolo; }
   else if (schermata === 'sala') {
