@@ -663,6 +663,7 @@
       "chiamate": [
         {
           "id": "con_o_senza",
+          "dopo": {"mai": ["telefonata/al_comando18"]},
           "fonte": "testimone",
           "testo": "testi:e18.ch.con_o_senza",
           "settore": "retro_tribuna",
@@ -702,6 +703,51 @@
                 }
               ],
               "risposta": "testi:e18.op.con_folla.r"
+            }
+          ]
+        },
+        {
+          "id": "con_o_senza_comando",
+          "dopo": {"gia": ["telefonata/al_comando18"]},
+          "fonte": "testimone",
+          "testo": "testi:e18.ch.con_o_senza_comando",
+          "settore": "retro_tribuna",
+          "opzioni": [
+            {
+              "id": "auto_scorta",
+              "testo": "testi:e18.op.auto_scorta_comando",
+              "costo": "testi:e18.op.auto_scorta_comando.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": -3
+                },
+                {
+                  "pressione": "strada_larkspire",
+                  "valore": 2
+                },
+                {
+                  "imposta": "testimone",
+                  "valore": "protetto"
+                }
+              ],
+              "risposta": "testi:e18.op.auto_scorta_comando.r"
+            },
+            {
+              "id": "con_folla",
+              "testo": "testi:e18.op.con_folla_comando",
+              "costo": "testi:e18.op.con_folla_comando.c",
+              "effetti": [
+                {
+                  "pressione": "retro_tribuna",
+                  "valore": 2
+                },
+                {
+                  "imposta": "testimone",
+                  "valore": "esposto"
+                }
+              ],
+              "risposta": "testi:e18.op.con_folla_comando.r"
             }
           ]
         },

@@ -24,7 +24,9 @@ const REGISTRO: [string, string, 'mai' | 'gia', string[]][] = [
   ['e13', 'coda_auto/senso_unico', 'mai', ['viale_pieno/chiudi_strada']],
   ['e18', 'via_fonderie', 'mai', ['telefonata/al_comando18']],
   ['e18', 'cappucci/tribuna_stampa', 'mai', ['telefonata/al_comando18']],
-  ['e19', 'vuoto/rientra', 'mai', ['piano/rimanda']],
+  // D-159: chi ha mandato il testimone al comando riceve la chiamata gemella, con gli stessi esiti (protetto/esposto)
+  ['e18', 'con_o_senza', 'mai', ['telefonata/al_comando18']],
+  ['e18', 'con_o_senza_comando', 'gia', ['telefonata/al_comando18']],
   ['e23', 'in_tondo', 'mai', ['dieci_pullman/parcheggio_ospiti']],
   ['e27', 'abbraccio', 'mai', ['gemellati_escono/uscita_scortata']],
   ['e32', 'incrocio', 'mai', ['festa_larkspire/uscita_collina']],
@@ -44,6 +46,20 @@ const TESTI: [string, string][] = [
   ['e15.ch.fondo_viale', 'aspetta il corteo'], // con le navette (accompagnarli/navette15) non c'è nessun corteo
   ['e15.op.niente_rovers.r', 'Il corteo arriva'],
   ['e28.ch.talpa_sospetto', 'li state guardando'], // dopo aspetta_testimone o pista_fonderie il porto è senza occhi
+  // D-159: i 6 chiari e gli ambigui che affermano un fatto reso falso da una scelta precedente; e19 col testo invece
+  // del «dopo» (il «dopo» faceva salire e19 di 1,2 punti e allargava lo scarto di e20, D-154).
+  ['e19.op.rientra', 'Fai rientrare'], ['e19.op.rientra.r', 'torna allo stadio'], // con piano/rimanda la squadra non è mai partita
+  ['e24.op.caffe.r', 'Il nome nella busta'], ['e24.op.caffe.c', 'sul nome nella busta'], // con dopo_busta + consegna_chiusa il nome non è letto
+  ['e29.ch.radio_porto', 'container circondato'], ['e29.op.una_ai_cancelli.r', 'Il container si apre'], // dopo passa_soffiata il bersaglio è la barca
+  ['e28.op.osserva_banchine.r', 'tutta la sera'], // poi pista_fonderie: «la luce si spegne presto»
+  ['e16.op.aspettino16.r', 'nel piazzale'], // con fonderie_si i pullman sono alle fonderie
+  ['e15.ch.mille', 'un solo corteo'], // con scorta15 i gemellati sono già allo stadio
+  ['e13.ch.patto_dessi', 'dal palco'], ['e13.op.accetta_dessi.r', 'dal palco'], ['e13.op.rifiuta_dessi.r', 'dal palco'], // dopo palco_no
+  ['e18.op.basta18.r', 'Gli agenti'], // agenti solo con telefonata/proteggi
+  ['e23.op.continua23.r', 'resta sorvegliato'], ['e23.op.continua23.c', 'resta un occhio'], ['e23.op.obbedisci.r', 'conta più'], // dopo traslochi/niente23
+  ['e28.ch.ospiti_partono', 'dal corteo'], ['e28.op.ospiti_primi.r', 'Il corteo di casa'], ['e28.op.ospiti_dopo', 'dopo il corteo'], // dopo devia_corteo il corteo è in centro
+  ['e34.op.accompagna_commissione.r', 'Il piazzale ti saluta'], // dopo chiudi_piazzale i tifosi non sono sul piazzale
+  ['e35.op.corridoio.r', 'sala dei familiari'], // la sala c'è solo con familiari/steward_familiari
 ];
 
 /** I dati di prima: senza i «dopo» di D-153 (braccio rosso). */

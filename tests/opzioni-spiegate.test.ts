@@ -55,11 +55,12 @@ describe('C35-02 una sola risposta rimasta: dice perché manca l\'altra', () => 
     const muti = [...new Set(casi.filter((x) => !spiegato(x)).map((x) => x.chiave))];
     expect(muti).toEqual([]);
   });
-  it('e26 carosello ed e27 gol_ospiti si vedono nelle partite e nominano il mediatore', () => {
+  it('e26 carosello ed e27 gol_ospiti si vedono nelle partite e nominano il mediatore (o lo mostrano disattivato)', () => {
     for (const [chiave, ep] of [['e26 o4 carosello', 'e26'], ['e27 o3 gol_ospiti', 'e27']] as const) {
       const visti = casi.filter((x) => x.chiave === chiave);
       expect(visti.length).toBeGreaterThan(0);
-      for (const x of visti) expect(testi(ep)[`${ep}.op.${x.resta.id}`]).toMatch(/mediatore/i);
+      // la risposta rimasta nomina il mediatore, oppure (C35-06: mediatore a riposo) quella del mediatore si vede disattivata
+      for (const x of visti) if (!x.nascoste.every((id) => x.mostrate.includes(id))) expect(testi(ep)[`${ep}.op.${x.resta.id}`]).toMatch(/mediatore/i);
     }
   });
   it('la variante col mediatore assente non compare mai insieme all\'opzione del mediatore, e una sola delle due varianti è offerta (e26, e27: 2 bot × N semi)', () => {

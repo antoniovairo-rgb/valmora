@@ -153,7 +153,14 @@ function coerente(s: InCorso, x?: Dopo): boolean {
 /** C17-03: un'opzione che impegna un'unità (riserva negativa) non si offre se di quell'unità non ne resta nessuna. Rosso __NO_C17R03. */
 function haUnita(m: Missione, s: InCorso, o: Opzione): boolean {
   if (spento('C17R03')) return true;
-  return o.effetti.every((e) => !('riserva' in e) || e.valore >= 0 || (m.mappa.risorse[e.riserva]?.quantita ?? 0) + (s.riserva[e.riserva] ?? 0) > 0);
+  return unitaFinita(m, s, o) === undefined;
+}
+
+/** D-153: la prima risorsa che l'opzione impegna e di cui non resta nessuna unità (per il motivo «nessuna … libera»).
+ *  Conta la riserva (quantità + riserva), come C17-03: contare solo le schierabili (C35-06) apriva violazioni D-154. */
+export function unitaFinita(m: Missione, s: InCorso, o: Opzione): string | undefined {
+  return o.effetti.find((e): e is Extract<EffettoMissione, { riserva: string }> => 'riserva' in e && e.valore < 0
+    && (m.mappa.risorse[e.riserva]?.quantita ?? 0) + (s.riserva[e.riserva] ?? 0) <= 0)?.riserva;
 }
 
 function applicaEffetto(m: Missione, s: InCorso, e: EffettoMissione, d: Dich): InCorso {
