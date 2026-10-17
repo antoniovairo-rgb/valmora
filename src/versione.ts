@@ -269,4 +269,9 @@
 //   (attento), fallite casuale e17 61,4→58,1%, e21 66,9→59,7%; finale e14: indagini → verbale proprio, tipografia → base.
 //   guardiano: rossi C100N01, C106T01; tests/settori-copribili.test.ts, tests/opzioni-spiegate.test.ts,
 //   tests/finale-e14.test.ts (rosso __NO_PO086); esiti con «dopo».
+//   aggiunte prima dell'uscita (prima verifica fermata, CI grafica rossa su e14 o1): coerenza delle scelte D-153/D-159
+//   (S-03: chiamate che smentivano le scelte, risposta esaurita disattivata con l'unità nominata), fonti false senza costo
+//   D-152, curva D-154 senza cali nelle 3 stagioni e C35-06 (S-02), testi C36-03…07 e C37-04/07/09; guardiano degli
+//   schieramenti che aspetta i caratteri (causa del rosso CI: nomi misurati col carattere di riserva; rosso
+//   VALMORA_SENZA_FONT=1 riproduce 158 px² contro 160 in CI).
 export const GAME_VERSION = '0.38.0';
