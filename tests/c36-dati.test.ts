@@ -105,3 +105,46 @@ describe('C36-07 il bollino dell\'unità impegnata sta sul settore che l\'opzion
     expect(fuori.filter((x) => !ACCETTATI.includes(x))).toEqual([]);
   });
 });
+
+describe('D-152 (C36-01) «ignora, se fosse vera…»: con la fonte falsa non costa nulla', () => {
+  // Opzioni il cui costo dice «se fosse vera/o» o «se la voce è vera»: se la fonte della chiamata è dichiarata falsa nel
+  // briefing, l'opzione non aggiunge pressione né tensione. Fonte vera: il costo resta (e29 rassicura). Prima: e32 +2, e28 +1.
+  const casi = EPISODI.flatMap((id) => ep(id).ondate.flatMap((o) => (o.chiamate ?? []).flatMap((c) => c.opzioni
+    .filter((op) => /se (fosse|è|era) ver|se la voce/i.test(t(id, op.costo)))
+    .map((op) => ({ id, c, op, vera: ep(id).briefing.find((b) => b.fonte === c.fonte)?.vera })))));
+  it('trovati i casi della sonda C-036 (e28, e29, e32)', () => expect(casi.map((x) => `${x.id} ${x.op.id}`).sort()).toEqual(['e28 ignora_anonimo', 'e29 rassicura', 'e32 ignora_piazzale']));
+  it('fonte falsa: nessuna pressione o tensione in più', () => {
+    const fuori = casi.filter((x) => x.vera === false && x.op.effetti.some((e) => ('pressione' in e || 'tensione' in e) && e.valore > 0)).map((x) => `${x.id} ${x.op.id}`);
+    expect(fuori).toEqual([]);
+  });
+  it('fonte vera: il costo di oggi resta (e29 rassicura costa fiducia)', () => {
+    const r = casi.find((x) => x.op.id === 'rassicura')!;
+    expect(r.vera).not.toBe(false);
+    expect(r.op.effetti).toEqual(expect.arrayContaining([{ aggiungi: 'credito', valore: -1 }]));
+  });
+});
+
+describe('C36 (messaggio integrale) e03: «lo stadio dei cartelloni» si capisce', () => {
+  it('nomina lo stadio nuovo dei cartelloni', () => expect(t('e03', 'e03.ch.cartelloni')).toMatch(/stadio nuovo dei cartelloni/));
+});
+
+describe('C37-04 (classe C36-04) «viola» solo dove gioca un club viola', () => {
+  // Club con un colore viola nei dati: pinegrove_rangers (#6a1b9a), railhead_county (#b39ddb / #311b92). Prima: e06 (Quillhaven, blu e rosso).
+  const VIOLA = ['pinegrove_rangers', 'railhead_county'];
+  it('e01-e36', () => {
+    const fuori = EPISODI.filter((id) => Object.values(d[`testi/it/${id}.json`] as Record<string, string>).some((x) => /viola/i.test(x))
+      && !ep(id).mappa.settori.some((s) => VIOLA.includes((s as { club?: string }).club ?? '')));
+    expect(fuori).toEqual([]);
+  });
+});
+
+describe('C37-07 (classe C36-03) e33: il verbale «a fatica» non elenca settori', () => {
+  // Il verbale «a fatica» si legge anche dopo una partita in cui la stazione non è mai stata scoperta (collaudo C-037).
+  // Misura (bot casuale, 1000 semi): stazione scoperta in 281 partite «a fatica» su 312; il criterio del 50% di C36-03
+  // non lo vede, perciò qui il controllo è sul testo: nessun settore della mappa nominato.
+  it('nessun viale, stazione, tornelli, curva', () => expect(t('e33', 'e33.verbale_a_fatica')).not.toMatch(/viale|stazione|tornelli|curva/i));
+});
+
+describe('C37-09 e30: la fiaccolata riparte dal municipio (D-141)', () => {
+  it('niente «di nuovo dal piazzale»', () => expect(t('e30', 'e30.op.fiaccolata_libera.r')).not.toMatch(/dal piazzale/i));
+});

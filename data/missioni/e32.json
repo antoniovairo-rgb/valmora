@@ -265,12 +265,7 @@
               "id": "ignora_piazzale",
               "testo": "testi:e32.op.ignora_piazzale",
               "costo": "testi:e32.op.ignora_piazzale.c",
-              "effetti": [
-                {
-                  "pressione": "piazzale",
-                  "valore": 2
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e32.op.ignora_piazzale.r"
             }
           ]
