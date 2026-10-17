@@ -35,6 +35,9 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
     return () => clearTimeout(id);
   }, [resta, decidi]);
   const annulla = () => { setResta(0); setScelta(null); decidi?.('annullata'); };
+  // «Annulla» compare sotto le opzioni: la pagina scorre fin lì (senza dargli il fuoco), così si vede subito
+  const barraAnnulla = useRef<HTMLDivElement>(null), aperto = resta > 0;
+  useLayoutEffect(() => { if (aperto) barraAnnulla.current?.scrollIntoView({ block: 'nearest' }); }, [aperto]);
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
   const urgenteQui = urgente(p.m, p.c, p.ic.variabili); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
@@ -114,7 +117,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
         ))}
       </div>
       {resta > 0 && (
-        <div className="riga annulla-risposta" role="status">
+        <div className="riga annulla-risposta" role="status" ref={barraAnnulla}>
           <button type="button" className="pulsante secondario" data-annulla data-azione="annulla-risposta" onClick={annulla} aria-label={`Annulla la risposta (${resta} secondi)`}>
             <Icona di={Undo2} />Annulla <span className="conto" data-conto={resta}>{resta}</span>
           </button>
