@@ -1,0 +1,563 @@
+{
+ "attento (come nel browser)": {
+  "sbaglio_risposta": 0.15,
+  "sbaglio_schieramento": 0.2,
+  "campagne": 200,
+  "episodi": {
+   "e01": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2
+   },
+   "e02": {
+    "prime_fallite": 0.01,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 1.86
+   },
+   "e03": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 1.96
+   },
+   "e04": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.1
+   },
+   "e05": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.08
+   },
+   "e06": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2
+   },
+   "e07": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 1.81
+   },
+   "e08": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 1.95
+   },
+   "e09": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.52
+   },
+   "e10": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.86
+   },
+   "e11": {
+    "prime_fallite": 0.02,
+    "tentativi_medi": 1.02,
+    "stelle_medie": 2.27
+   },
+   "e12": {
+    "prime_fallite": 0.01,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 1.93
+   },
+   "e13": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.37
+   },
+   "e14": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 2
+   },
+   "e15": {
+    "prime_fallite": 0.015,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2.12
+   },
+   "e16": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.34
+   },
+   "e17": {
+    "prime_fallite": 0.05,
+    "tentativi_medi": 1.05,
+    "stelle_medie": 1.53
+   },
+   "e18": {
+    "prime_fallite": 0.035,
+    "tentativi_medi": 1.03,
+    "stelle_medie": 2.13
+   },
+   "e19": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.01
+   },
+   "e20": {
+    "prime_fallite": 0.02,
+    "tentativi_medi": 1.02,
+    "stelle_medie": 2.02
+   },
+   "e21": {
+    "prime_fallite": 0.01,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2.57
+   },
+   "e22": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.63
+   },
+   "e23": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.27
+   },
+   "e24": {
+    "prime_fallite": 0.015,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2.46
+   },
+   "e25": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.31
+   },
+   "e26": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.37
+   },
+   "e27": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.42
+   },
+   "e28": {
+    "prime_fallite": 0.01,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 1.64
+   },
+   "e29": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.1
+   },
+   "e30": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.13
+   },
+   "e31": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 1.98
+   },
+   "e32": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.19
+   },
+   "e33": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.19
+   },
+   "e34": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.58
+   },
+   "e35": {
+    "prime_fallite": 0.025,
+    "tentativi_medi": 1.02,
+    "stelle_medie": 1.8
+   },
+   "e36": {
+    "prime_fallite": 0.01,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2.21
+   }
+  }
+ },
+ "distratto": {
+  "sbaglio_risposta": 0.4,
+  "sbaglio_schieramento": 0.5,
+  "campagne": 200,
+  "episodi": {
+   "e01": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 1.9
+   },
+   "e02": {
+    "prime_fallite": 0.02,
+    "tentativi_medi": 1.02,
+    "stelle_medie": 1.68
+   },
+   "e03": {
+    "prime_fallite": 0.015,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 1.89
+   },
+   "e04": {
+    "prime_fallite": 0.015,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2
+   },
+   "e05": {
+    "prime_fallite": 0.01,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2.15
+   },
+   "e06": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 2
+   },
+   "e07": {
+    "prime_fallite": 0.04,
+    "tentativi_medi": 1.05,
+    "stelle_medie": 1.63
+   },
+   "e08": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 1.92
+   },
+   "e09": {
+    "prime_fallite": 0.01,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2.33
+   },
+   "e10": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.62
+   },
+   "e11": {
+    "prime_fallite": 0.065,
+    "tentativi_medi": 1.06,
+    "stelle_medie": 2.04
+   },
+   "e12": {
+    "prime_fallite": 0.035,
+    "tentativi_medi": 1.03,
+    "stelle_medie": 1.73
+   },
+   "e13": {
+    "prime_fallite": 0.02,
+    "tentativi_medi": 1.02,
+    "stelle_medie": 2.13
+   },
+   "e14": {
+    "prime_fallite": 0.02,
+    "tentativi_medi": 1.02,
+    "stelle_medie": 1.97
+   },
+   "e15": {
+    "prime_fallite": 0.035,
+    "tentativi_medi": 1.03,
+    "stelle_medie": 1.73
+   },
+   "e16": {
+    "prime_fallite": 0.03,
+    "tentativi_medi": 1.03,
+    "stelle_medie": 1.6
+   },
+   "e17": {
+    "prime_fallite": 0.1,
+    "tentativi_medi": 1.1,
+    "stelle_medie": 1.51
+   },
+   "e18": {
+    "prime_fallite": 0.085,
+    "tentativi_medi": 1.1,
+    "stelle_medie": 2.17
+   },
+   "e19": {
+    "prime_fallite": 0.035,
+    "tentativi_medi": 1.04,
+    "stelle_medie": 2.04
+   },
+   "e20": {
+    "prime_fallite": 0.05,
+    "tentativi_medi": 1.05,
+    "stelle_medie": 1.87
+   },
+   "e21": {
+    "prime_fallite": 0.06,
+    "tentativi_medi": 1.07,
+    "stelle_medie": 2.14
+   },
+   "e22": {
+    "prime_fallite": 0.015,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2.49
+   },
+   "e23": {
+    "prime_fallite": 0.035,
+    "tentativi_medi": 1.04,
+    "stelle_medie": 2
+   },
+   "e24": {
+    "prime_fallite": 0.015,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2.15
+   },
+   "e25": {
+    "prime_fallite": 0.005,
+    "tentativi_medi": 1,
+    "stelle_medie": 2
+   },
+   "e26": {
+    "prime_fallite": 0.015,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 2.25
+   },
+   "e27": {
+    "prime_fallite": 0.045,
+    "tentativi_medi": 1.05,
+    "stelle_medie": 2.23
+   },
+   "e28": {
+    "prime_fallite": 0.08,
+    "tentativi_medi": 1.09,
+    "stelle_medie": 1.56
+   },
+   "e29": {
+    "prime_fallite": 0.015,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 1.96
+   },
+   "e30": {
+    "prime_fallite": 0.035,
+    "tentativi_medi": 1.03,
+    "stelle_medie": 2
+   },
+   "e31": {
+    "prime_fallite": 0.015,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 1.77
+   },
+   "e32": {
+    "prime_fallite": 0.01,
+    "tentativi_medi": 1.01,
+    "stelle_medie": 1.92
+   },
+   "e33": {
+    "prime_fallite": 0.07,
+    "tentativi_medi": 1.07,
+    "stelle_medie": 1.93
+   },
+   "e34": {
+    "prime_fallite": 0,
+    "tentativi_medi": 1,
+    "stelle_medie": 2.21
+   },
+   "e35": {
+    "prime_fallite": 0.055,
+    "tentativi_medi": 1.05,
+    "stelle_medie": 1.49
+   },
+   "e36": {
+    "prime_fallite": 0.045,
+    "tentativi_medi": 1.04,
+    "stelle_medie": 1.86
+   }
+  }
+ },
+ "a caso": {
+  "sbaglio_risposta": 1,
+  "sbaglio_schieramento": 1,
+  "campagne": 200,
+  "episodi": {
+   "e01": {
+    "prime_fallite": 0.635,
+    "tentativi_medi": 2.41,
+    "stelle_medie": 1.07
+   },
+   "e02": {
+    "prime_fallite": 0.605,
+    "tentativi_medi": 2.43,
+    "stelle_medie": 1.09
+   },
+   "e03": {
+    "prime_fallite": 0.515,
+    "tentativi_medi": 2.23,
+    "stelle_medie": 1.17
+   },
+   "e04": {
+    "prime_fallite": 0.595,
+    "tentativi_medi": 2.24,
+    "stelle_medie": 1.03
+   },
+   "e05": {
+    "prime_fallite": 0.57,
+    "tentativi_medi": 2.35,
+    "stelle_medie": 1.04
+   },
+   "e06": {
+    "prime_fallite": 0.67,
+    "tentativi_medi": 2.9,
+    "stelle_medie": 1.04
+   },
+   "e07": {
+    "prime_fallite": 0.625,
+    "tentativi_medi": 2.65,
+    "stelle_medie": 1.01
+   },
+   "e08": {
+    "prime_fallite": 0.63,
+    "tentativi_medi": 2.85,
+    "stelle_medie": 1.09
+   },
+   "e09": {
+    "prime_fallite": 0.57,
+    "tentativi_medi": 2.54,
+    "stelle_medie": 1
+   },
+   "e10": {
+    "prime_fallite": 0.59,
+    "tentativi_medi": 2.52,
+    "stelle_medie": 1.06
+   },
+   "e11": {
+    "prime_fallite": 0.735,
+    "tentativi_medi": 3.58,
+    "stelle_medie": 0.99
+   },
+   "e12": {
+    "prime_fallite": 0.755,
+    "tentativi_medi": 4.14,
+    "stelle_medie": 0.93
+   },
+   "e13": {
+    "prime_fallite": 0.555,
+    "tentativi_medi": 2.19,
+    "stelle_medie": 1.15
+   },
+   "e14": {
+    "prime_fallite": 0.615,
+    "tentativi_medi": 2.46,
+    "stelle_medie": 1.14
+   },
+   "e15": {
+    "prime_fallite": 0.635,
+    "tentativi_medi": 2.54,
+    "stelle_medie": 1.06
+   },
+   "e16": {
+    "prime_fallite": 0.575,
+    "tentativi_medi": 2.31,
+    "stelle_medie": 1.05
+   },
+   "e17": {
+    "prime_fallite": 0.51,
+    "tentativi_medi": 2.25,
+    "stelle_medie": 1.03
+   },
+   "e18": {
+    "prime_fallite": 0.695,
+    "tentativi_medi": 3.17,
+    "stelle_medie": 1.05
+   },
+   "e19": {
+    "prime_fallite": 0.695,
+    "tentativi_medi": 3.13,
+    "stelle_medie": 0.99
+   },
+   "e20": {
+    "prime_fallite": 0.685,
+    "tentativi_medi": 3.31,
+    "stelle_medie": 1.01
+   },
+   "e21": {
+    "prime_fallite": 0.615,
+    "tentativi_medi": 2.6,
+    "stelle_medie": 1.04
+   },
+   "e22": {
+    "prime_fallite": 0.68,
+    "tentativi_medi": 2.81,
+    "stelle_medie": 1.02
+   },
+   "e23": {
+    "prime_fallite": 0.62,
+    "tentativi_medi": 2.62,
+    "stelle_medie": 1.06
+   },
+   "e24": {
+    "prime_fallite": 0.72,
+    "tentativi_medi": 3.25,
+    "stelle_medie": 1.02
+   },
+   "e25": {
+    "prime_fallite": 0.615,
+    "tentativi_medi": 2.44,
+    "stelle_medie": 1.01
+   },
+   "e26": {
+    "prime_fallite": 0.61,
+    "tentativi_medi": 2.53,
+    "stelle_medie": 1.04
+   },
+   "e27": {
+    "prime_fallite": 0.625,
+    "tentativi_medi": 2.96,
+    "stelle_medie": 1.07
+   },
+   "e28": {
+    "prime_fallite": 0.665,
+    "tentativi_medi": 3.02,
+    "stelle_medie": 0.99
+   },
+   "e29": {
+    "prime_fallite": 0.63,
+    "tentativi_medi": 2.81,
+    "stelle_medie": 1.09
+   },
+   "e30": {
+    "prime_fallite": 0.565,
+    "tentativi_medi": 2.43,
+    "stelle_medie": 1.15
+   },
+   "e31": {
+    "prime_fallite": 0.625,
+    "tentativi_medi": 2.69,
+    "stelle_medie": 1.07
+   },
+   "e32": {
+    "prime_fallite": 0.645,
+    "tentativi_medi": 2.86,
+    "stelle_medie": 1.02
+   },
+   "e33": {
+    "prime_fallite": 0.65,
+    "tentativi_medi": 2.74,
+    "stelle_medie": 1.04
+   },
+   "e34": {
+    "prime_fallite": 0.68,
+    "tentativi_medi": 3.33,
+    "stelle_medie": 1.02
+   },
+   "e35": {
+    "prime_fallite": 0.785,
+    "tentativi_medi": 3.92,
+    "stelle_medie": 1
+   },
+   "e36": {
+    "prime_fallite": 0.745,
+    "tentativi_medi": 3.62,
+    "stelle_medie": 0.96
+   }
+  }
+ }
+}
