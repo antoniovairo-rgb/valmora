@@ -15,7 +15,7 @@ import { livello, statoSettore } from '../partita.ts';
 
 export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; prossime: Record<string, number>; avanti: () => void }) {
   // PO-059: protagonista e vice con l'espressione della tensione più alta a fine ondata. Rosso C96P01: niente vignetta.
-  const tono = tonoOndata(p.m.mappa.settori.map((s) => livello(p.r.tensione[s.id] ?? 0)));
+  const tono = tonoOndata(p.m.mappa.settori.map((s) => livello(p.r.tensione[s.id] ?? 0)), Object.values(p.r.scoperto).filter((n) => n > 0).length);
   const riposo = Object.entries(p.r.aRiposo).filter(([, n]) => n > 0);
   // PO-087: «scoperto» dice sempre perché: cosa ha pesato sul settore e quanto lo coprivi
   const causa = (c: NonNullable<RapportoOndata['causa']>[string]) => {

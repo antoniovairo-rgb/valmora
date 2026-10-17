@@ -4,11 +4,15 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { espressioneEsito, espressioneOndata, tonoOndata } from '../src/resa/espressioni.ts';
 
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C96P01; });
+afterEach(() => { delete g.__NO_C96P01; delete g.__NO_C108T01; });
 
 describe('PO-059 espressioni', () => {
   it('tono del rapporto dal livello più alto: ≤1 calmo, 2-3 teso, ≥4 critico', () => {
     expect(tonoOndata([0, 1, 0])).toBe('calmo'); expect(tonoOndata([1, 3])).toBe('teso'); expect(tonoOndata([2, 4])).toBe('critico'); expect(tonoOndata([])).toBe('calmo');
+  });
+  it('C33-07 (D-145): un settore scoperto vale almeno «teso»; rosso __NO_C108T01: solo la tensione', () => {
+    expect(tonoOndata([0, 1], 1)).toBe('teso'); expect(tonoOndata([0, 1], 0)).toBe('calmo'); expect(tonoOndata([4], 2)).toBe('critico'); expect(tonoOndata([2], 1)).toBe('teso');
+    g.__NO_C108T01 = true; expect(tonoOndata([0, 1], 1)).toBe('calmo');
   });
   it('ogni tono ha un\'espressione diversa per il protagonista', () => {
     const o = (['calmo', 'teso', 'critico'] as const).map((t) => JSON.stringify(espressioneOndata(t).tu));
