@@ -60,6 +60,10 @@ const TESTI: [string, string][] = [
   ['e28.ch.ospiti_partono', 'dal corteo'], ['e28.op.ospiti_primi.r', 'Il corteo di casa'], ['e28.op.ospiti_dopo', 'dopo il corteo'], // dopo devia_corteo il corteo è in centro
   ['e34.op.accompagna_commissione.r', 'Il piazzale ti saluta'], // dopo chiudi_piazzale i tifosi non sono sul piazzale
   ['e35.op.corridoio.r', 'sala dei familiari'], // la sala c'è solo con familiari/steward_familiari
+  // C37-05: l'opzione non impegna nessuna unità (nessun effetto «riserva») e la chiamata arriva solo senza steward in curva
+  ['e05.op.squadra_torce', 'Una squadra'],
+  // C37-06: dopo busta/apri_busta la busta non è più chiusa
+  ['e24.ch.consegna', 'consegnarla, chiusa'], ['e24.op.consegna_chiusa', 'Consegnala chiusa'],
 ];
 
 /** I dati di prima: senza i «dopo» di D-153 (braccio rosso). */
