@@ -293,7 +293,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
                   document.querySelector(`[data-opzione="${a}"]`).click();
                   setTimeout(() => { document.querySelector(`[data-opzione="${b}"]`)?.click(); setTimeout(ok, 60); }, 40);
                 }), [op, altra]);
-                const salvata = await pagina.evaluate((k) => JSON.parse(localStorage.getItem('valmora-salvataggio')).in_corso.risposte[k], c);
+                await pagina.waitForFunction(() => !document.querySelector('[data-annulla]'), null, { timeout: 5000 }).catch(() => {}); const salvata = await pagina.evaluate((k) => JSON.parse(localStorage.getItem('valmora-salvataggio')).in_corso.risposte[k], c); // PO-121: si salva alla conferma
                 atteso(`doppio tocco: salvata «${salvata}» invece di «${op}» (C-005 R01)`, salvata === op);
               } else { await controllaVignettaEvento(pagina, p.m.ondate[i], p.m.ondate[i].chiamate.find((x) => x.id === c), atteso, `chiamata «${c}»`); const prima = await statoSalvato(pagina); await premi(`[data-opzione="${op}"]`); await pagina.waitForFunction(() => !document.querySelector('[data-annulla]'), null, { timeout: 5000 }).catch(() => {}); /* PO-121: la risposta vale alla fine del conto */ await controllaVoloRisposta(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `chiamata «${c}»`); await controllaSegni(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `risposta «${op}»`, prima); }
               if (p.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) {
