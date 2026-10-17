@@ -1,6 +1,7 @@
 // C-034 (collaudo): incoerenze fra dati e testi, provate sui dati veri. Ogni blocco è verde coi dati corretti e rosso
 // coi dati di prima (prova: dati vecchi rimessi, test rossi). Nessun codice di gioco toccato: solo data/.
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { leggiDati } from '../tools/dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, DEGENERA, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera, type InCorso } from '../src/logica/missione.ts';
@@ -122,5 +123,15 @@ describe('C34-10 e02 caldo_casa: se resta una sola risposta, il testo dice perch
   it('senza il mediatore col corteo, le due risposte di sempre', () => {
     const v = gioca('e02', { corteo_viale: 'corteo_scortato' }, 1).viste.find((x) => x.c.id === 'caldo_casa')!;
     expect(v.ops.map((o) => o.id)).toEqual(['mediatore_casa', 'niente']);
+  });
+});
+
+describe('C35-01 e35: un salvataggio della 0.34.0 dopo barca_ritorno non riapre barca_ormeggiata', () => {
+  // Nella 0.34.0 barca_ritorno arrivava anche dopo blocca_barca: chi ha già risposto non deve leggere la chiamata opposta.
+  it('barca_ormeggiata esclude chi ha già risposto a barca_ritorno', () => {
+    const m = JSON.parse(readFileSync('data/missioni/e35.json', 'utf8')) as { ondate: { chiamate: { id: string; dopo?: { mai?: string[] }; opzioni: { id: string }[] }[] }[] };
+    const ch = m.ondate.flatMap((o) => o.chiamate);
+    const rit = ch.find((c) => c.id === 'barca_ritorno')!, orm = ch.find((c) => c.id === 'barca_ormeggiata')!;
+    expect(rit.opzioni.map((o) => `barca_ritorno/${o.id}`).every((k) => orm.dopo?.mai?.includes(k))).toBe(true);
   });
 });

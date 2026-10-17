@@ -628,7 +628,7 @@
         },
         {
           "id": "barca_ormeggiata",
-          "dopo": {"gia": ["barca_porto/blocca_barca"]},
+          "dopo": {"gia": ["barca_porto/blocca_barca"], "mai": ["barca_ritorno/cerca_scatoloni", "barca_ritorno/ferma_barca"]},
           "fonte": "testimone",
           "testo": "testi:e35.ch.barca_ormeggiata",
           "settore": "banchine",

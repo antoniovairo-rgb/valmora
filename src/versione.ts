@@ -243,4 +243,9 @@
 //   C34-09 la «i» dell'ondata 1 di e21 smentiva la fonte del comune; C34-10 in e02 un'opzione spariva senza spiegazione.
 //   misura: tests/c34-dati.test.ts 11/11 verdi, 8/11 rossi coi dati della 0.34.0; 252/252 test; catena logica verde.
 //   guardiano: tests/c34-dati.test.ts (racconto della barca nei due rami, costi ↔ effetti, verbali di fallimento).
-export const GAME_VERSION = '0.35.0';
+// 0.36.0 – C35-01: salvataggio vecchio dentro e35 non riapre la chiamata opposta sulla barca.
+//   causa: un salvataggio della 0.34.0 fermo dopo blocca_barca e già risposto a barca_ritorno, ripreso nella 0.35.0,
+//   riceveva anche barca_ormeggiata: due chiamate che si smentiscono ed effetti contati due volte.
+//   misura: tests/c34-dati.test.ts 12/12 verdi, 11/12 senza la correzione; catena logica verde.
+//   guardiano: tests/c34-dati.test.ts (barca_ormeggiata esclude chi ha risposto a barca_ritorno).
+export const GAME_VERSION = '0.36.0';
