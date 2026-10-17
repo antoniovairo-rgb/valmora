@@ -6,7 +6,7 @@ import { Fragment, type ReactNode } from 'react';
 import { bilancio, type Impatto, type Requisito, type VoceScelta } from '../../logica/bilancio.ts';
 import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
-import { t } from '../dati.ts';
+import { dichiarate, t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { livello, sceltaLeggibile } from '../partita.ts';
 import { spento } from '../../interruttori.ts';
@@ -36,8 +36,11 @@ const distanza = (q: Requisito) => (typeof q.soglia === 'number' && typeof q.val
 export function requisitoInParole(q: Requisito, stelle: number): string {
   if (q.var.includes('tensione') && typeof q.soglia === 'number' && typeof q.valore === 'number' && !spento('C12T01')) {
     const limite = COLORI[livello(q.soglia)]!, arrivo = COLORI[livello(q.valore)]!;
-    return q.confronto === 'al_massimo' ? `Per la ${ORDINE[stelle]} stella la tensione non deve passare ${il(limite)}: è arrivata ${al(arrivo)}.`
-      : `Per la ${ORDINE[stelle]} stella la tensione deve arrivare ${al(limite)}: si è fermata ${al(arrivo)}.`;
+    // C33-09 (D-146): il colore da solo non diceva di quanto si era sopra la soglia (due tensioni diverse, stesso colore):
+    // si aggiunge il numero, «(massimo 3 su 10)» e «(4)». Soglie e colori invariati. Rosso C109S01: solo i colori.
+    const max = dichiarate.get(q.var)?.max, num = !spento('C109S01'), su = num && typeof max === 'number' ? ` su ${max}` : '';
+    return q.confronto === 'al_massimo' ? `Per la ${ORDINE[stelle]} stella la tensione non deve passare ${il(limite)}${num ? ` (massimo ${q.soglia}${su})` : ''}: è arrivata ${al(arrivo)}${num ? ` (${q.valore})` : ''}.`
+      : `Per la ${ORDINE[stelle]} stella la tensione deve arrivare ${al(limite)}${num ? ` (almeno ${q.soglia}${su})` : ''}: si è fermata ${al(arrivo)}${num ? ` (${q.valore})` : ''}.`;
   }
   return `${t(`var.${q.var}`)} ${SIMBOLO[q.confronto]} ${String(q.soglia)}: hai ${String(q.valore)}`;
 }
