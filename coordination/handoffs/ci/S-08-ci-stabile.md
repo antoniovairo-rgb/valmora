@@ -1,6 +1,7 @@
 # S-08 · CI stabile (PO-128) · rapporto
 
-Ramo: `claude/valmora-ci-stabile` (da `claude/valmora-l1-setup-schema-xdrbx7` 36d0c0f). Commit: a2b3f00, 31953e3 (+ questo rapporto).
+Ramo: `claude/valmora-ci-stabile` (da `claude/valmora-l1-setup-schema-xdrbx7` 36d0c0f). Commit: a2b3f00 (correzione, guardiano, C, D, B), 31953e3 (braccio rosso solo con 412), f1a3831 (sonda con font in
+ritardo); il resto è rapporto e STABILITA.json.
 Non toccati: `src/resa/mappa/etichette.ts` (solo istrumentato in locale per la misura, poi ripristinato e non committato), `data/`.
 
 ## A. «nome tocca il bordo della mappa» (città, 412 px): causa e correzione
@@ -98,7 +99,9 @@ Effetto misurato (diff col genitore, `node tools/cambi-gioco.mjs <h>~1 <h>`): de
 - Catena completa locale (Chromium 141 di /opt/pw-browsers), 3 giri sulla stessa build:
   giro 1 su 31953e3 VERDE (20:41→21:27 UTC, foto 2290 s, 1 tentativo); giro 2 VERDE (21:27→22:12), marcato «con modifiche
   non committate» perché il rapporto era ancora un file non tracciato in coordination/ (codice e build identici);
-  giro 3: DA_COMPLETARE
+  giro 3 su 7944a22 (stesso codice di gioco e strumenti di 31953e3: in mezzo solo rapporto, sonda e STABILITA) VERDE
+  (22:42→23:25, foto 2171 s, 1 tentativo). Un primo giro 3 (22:12) è stato **interrotto** al passo foto dal limite di 2 h
+  del mio ciclo in background (non un rosso della catena) e rifatto da capo. **Esito: 3/3 verdi, nessun passo instabile.**
 
 ## IPOTESI della principale verificata: font in ritardo (classe di e14 o1)?
 NO. Sonda, stato città 81, WebGL, `.woff2` ritardati di 1500 ms (`SONDA_FONT_MS=1500`), misura a font caricati: 0/5 rossi
