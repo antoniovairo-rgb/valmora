@@ -21,7 +21,7 @@ Codice: `src/resa/mappa/etichette.ts`; guardiano: `tools/foto-schieramenti.mjs` 
 - Guardiano col testo vero: pastiglie sopra i nomi a 360, 375 e 412, tetto 0 (invariato).
 - Misure (guardiano completo e giro foto, build finale):
   - verde: schieramenti «nessun errore», nomi rubati 0/0/0, C33-05 33/19/8; giro foto verde;
-  - rosso C100N01: ROSSO100;
+  - rosso C100N01: 3 ondate con pastiglie sopra i nomi (e13 o2 e e23 o1 a 360, e35 o2 a 412), misurato sulla build con C33-01 e C33-05 prima di C106T01 (vedi «Non verificato»);
   - rosso C106T01: giro foto rosso sul controllo D-143 (e35 o2 a 360, «toccando Perimetro della banca si colpisce squadre»).
   - e07 o2 a 360×800 (giro foto, tutte le unità a Parcheggi): con la patch di prima il tocco del mediatore copriva «Piazzale dello stadio» per 417 px²; ora nessun tocco sopra un nome. Col rosso C106T01 i 417 px² tornano, ma non «rubano» il nome (né il centro del tocco sul nome né il nome sotto il tocco), quindi la regola nuova non li conta.
 - Il guardiano registra ancora, senza soglia, i tocchi sopra i nomi alla vecchia maniera (area > 4 px²) in `tocchi-<larghezza>.txt`: verde 7/0/1 ondate, 0.34.0 9/2/1.
@@ -65,6 +65,12 @@ C99M01 (C33-02), C100N01 e C106T01 (C33-01), C102D01 (C33-04), C103P01 (C33-05 e
 - Test 242/242.
 - Guardiano completo (`controllaSchieramenti`) sulla build finale: verde «nessun errore»; rossi come sopra.
 - Catena completa: vedi STABILITA.json.
+
+## Non verificato
+
+- Il braccio rosso C100N01 non è stato rifatto sulla build finale (con C106T01): il numero (3 ondate) viene dalla build precedente con lo stesso guardiano. Fermato per tempo (PO-122).
+- IPOTESI non provata: che il 2/426 del collaudo C33-04 fosse una misura presa prima dell'ultima disposizione.
+- Il caso (b) di D-143 è provato al centro di ogni riga del nome, non in ogni punto del nome.
 
 ## Ritiro
 
