@@ -89,8 +89,16 @@ Effetto misurato (diff col genitore, `node tools/cambi-gioco.mjs <h>~1 <h>`): de
 (`src/versione.ts`) gira. Sugli ultimi 69 commit in prima linea del ramo principale: 38 senza gioco, 31 con.
 
 ## E. Catene
-- CI su 31953e3 (run 39067814016): cambi, governo, logica, apk, grafica (375), grafica (412) verdi; grafica (360): DA_COMPLETARE
-- Catena completa locale: DA_COMPLETARE
+- CI su 31953e3 (run 39067814016): cambi, governo, logica, apk, grafica (375) 4 min 25 s, grafica (412) 6 min 19 s
+  **verdi**; grafica (360) **rossa SOLO per il difetto noto e14 o1 ereditato** (360×760, «mediatore@biglietteria sul nome
+  Tornelli», pastiglie 160 px²; 3 tentativi 1492 / 1482,7 / 1485,9 s), corretto da S-01 in f7f39e9 sul ramo resa-v2, non
+  toccato qui. Stesso esito su a2b3f00 (run 39065332991), più il mio rosso del braccio a 375 corretto in 31953e3.
+- Prova dal vivo di D: run 39071532401 (bb41479, solo coordination/) e 39071708481 (5570f14, solo STABILITA.json e
+  docs/): governo e cambi verdi, **logica, grafica, apk «skipped»**, run «success» (niente mail).
+- Catena completa locale (Chromium 141 di /opt/pw-browsers), 3 giri sulla stessa build:
+  giro 1 su 31953e3 VERDE (20:41→21:27 UTC, foto 2290 s, 1 tentativo); giro 2 VERDE (21:27→22:12), marcato «con modifiche
+  non committate» perché il rapporto era ancora un file non tracciato in coordination/ (codice e build identici);
+  giro 3: DA_COMPLETARE
 
 ## IPOTESI della principale verificata: font in ritardo (classe di e14 o1)?
 NO. Sonda, stato città 81, WebGL, `.woff2` ritardati di 1500 ms (`SONDA_FONT_MS=1500`), misura a font caricati: 0/5 rossi
