@@ -821,6 +821,21 @@
       "stelle_min": 2
     },
     {
+      "id": "contenuto_a_fatica_indagini",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "dopo": {
+        "gia": [
+          "titolo_domani/indagini"
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e14.verbale_a_fatica_indagini",
+      "stelle_max": 2
+    },
+    {
       "id": "contenuto_a_fatica",
       "se": {
         "var": "tensione_max",

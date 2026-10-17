@@ -264,7 +264,7 @@ export interface EsitoMissione { esito: Esito; variabili: Variabili; rapporti: R
 
 export function concludiMissione(m: Missione, s: InCorso, d: Dich): EsitoMissione {
   if (!missioneFinita(m, s)) throw new Error(`${m.id}: giocate ${s.ondata - 1} ondate su ${m.ondate.length}`);
-  const esito = m.esiti.find((e) => valuta(e.se, s.variabili));
+  const esito = m.esiti.find((e) => valuta(e.se, s.variabili) && coerente(s, e.dopo)); // D-158: un esito può dipendere da scelte fatte
   if (!esito) throw new Error(`${m.id}: nessun esito vero (soft-lock)`);
   let v = s.variabili;
   for (const e of esito.effetti) v = applica(e, v, d);
