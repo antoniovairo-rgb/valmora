@@ -248,4 +248,14 @@
 //   riceveva anche barca_ormeggiata: due chiamate che si smentiscono ed effetti contati due volte.
 //   misura: tests/c34-dati.test.ts 12/12 verdi, 11/12 senza la correzione; catena logica verde.
 //   guardiano: tests/c34-dati.test.ts (barca_ormeggiata esclude chi ha risposto a barca_ritorno).
-export const GAME_VERSION = '0.36.0';
+// 0.37.0 – tastiera nei riepiloghi e fra le scene (C34-01, C34-08 / D-142), fiaccolata di e30 (C33-02 / D-141),
+//   etichette sulla mappa stabili e vicine al proprio disco (C33-03…05).
+//   causa: C34-01 Invio su «Conferma» portava il fuoco su «Sì, conferma» fuori finestra e il secondo Invio confermava senza
+//   riepilogo (6/6); C34-08 entrando in una scena nuova servivano 10 Tab invece di 2; C33-02 in e30 o4 la fiaccolata tornava
+//   al municipio; C33-03 tocco coperto in e06 posando le unità una alla volta; C33-04 etichette diverse fra due giri
+//   (2/426); C33-05 pastiglie più vicine al disco di un altro settore (44 contro 36).
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (a72fdd3); riepilogo 6/6 col fuoco sul titolo; Tab stagione 1
+//   da 10 a 2; e30 o4 69/69 lontano dal municipio; C33-04 0 righe (rosso 95); C33-05 30/18/8.
+//   guardiano: rossi C104R01, C105S01, C99M01, C102D01, C103P01; guardiano C32-01 ristretto al fuoco perso dentro la scena
+//   (rosso C97F01 290 righe).
+export const GAME_VERSION = '0.37.0';
