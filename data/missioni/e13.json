@@ -331,7 +331,7 @@
       "eventi": [
         {
           "id": "cori_ospiti",
-          "tipo": "curva",
+          "tipo": "assembramento",
           "settore": "piazzale",
           "pressione": 4
         },
