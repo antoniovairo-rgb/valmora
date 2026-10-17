@@ -25,6 +25,8 @@ for (let i = 1; i <= prove; i++) {
   const pagina = await browser.newPage({ viewport: { width: larghezza, height: 800 }, reducedMotion: 'reduce' });
   // SONDA_CPU=<n>: CPU rallentata n volte (CDP), come un runner CI carico.
   if (process.env.SONDA_CPU) await (await pagina.context().newCDPSession(pagina)).send('Emulation.setCPUThrottlingRate', { rate: Number(process.env.SONDA_CPU) });
+  // SONDA_FONT_MS=<ms>: i caratteri (.woff2) arrivano in ritardo, come in CI (misura di S-01 su e14 o1).
+  if (process.env.SONDA_FONT_MS) await pagina.route('**/*.woff2', async (r) => { await new Promise((ok) => setTimeout(ok, Number(process.env.SONDA_FONT_MS))); await r.continue(); });
   if (rossi.length) await pagina.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
   const scena = async (nome) => {
     await pagina.waitForSelector(`.scena[data-scena="${nome}"]`, { timeout: 5000 });
@@ -36,6 +38,7 @@ for (let i = 1; i <= prove; i++) {
     await pagina.getByRole('button', { name: 'Nuova partita' }).click(); await scena('genere');
     await pagina.click('[data-genere="m"]'); await scena('guida'); await pagina.click('[data-azione="guida-salta"]'); await scena('citta');
   }
+  if (process.env.SONDA_FONT_MS) await pagina.waitForFunction(() => document.fonts.status === 'loaded' && document.querySelector('.mappa .settore-nome'), null, { timeout: 10000 }).catch(() => {});
   const m = await pagina.evaluate(() => {
     const mappa = document.querySelector('.mappa').getBoundingClientRect(), n = document.querySelector('.settore-nome');
     if (!n) return { nome: null };

@@ -92,6 +92,10 @@ Effetto misurato (diff col genitore, `node tools/cambi-gioco.mjs <h>~1 <h>`): de
 - CI su 31953e3 (run 39067814016): cambi, governo, logica, apk, grafica (375), grafica (412) verdi; grafica (360): DA_COMPLETARE
 - Catena completa locale: DA_COMPLETARE
 
+## IPOTESI della principale verificata: font in ritardo (classe di e14 o1)?
+NO. Sonda, stato città 81, WebGL, `.woff2` ritardati di 1500 ms (`SONDA_FONT_MS=1500`), misura a font caricati: 0/5 rossi
+con la correzione e **0/5 anche col rosso C128N01**. Col font in ritardo il nome compare dopo l'ingresso e va a posto da solo.
+
 ## Non verificato
 - **Perché Pixi a volte è pronto prima della fine dell'animazione sul runner** (velocità del runner, SwiftShader): IPOTESI,
   non misurata; la correzione non dipende da questo.
