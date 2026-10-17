@@ -390,6 +390,7 @@
         },
         {
           "id": "non_centro",
+          "dopo": {"mai": ["per_la_squadra/chiudi_fonderie"]},
           "fonte": "dessi",
           "testo": "testi:e11.ch.non_centro",
           "commento": "testi:e11.ch.non_centro.vice",

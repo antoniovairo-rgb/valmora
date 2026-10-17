@@ -711,6 +711,7 @@
           "opzioni": [
             {
               "id": "senso_unico",
+              "dopo": {"mai": ["viale_pieno/chiudi_strada"]},
               "testo": "testi:e13.op.senso_unico",
               "costo": "testi:e13.op.senso_unico.c",
               "effetti": [
