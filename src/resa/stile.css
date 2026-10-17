@@ -61,6 +61,8 @@ main:not(.rosso-c89c01) :is(.tasto-home, .info, .aiuto, .tocco-pastiglia, .indic
 /* Solo con un puntatore vero: sui telefoni :hover resta acceso dopo il tocco e sembra una scelta già fatta */
 @media (hover: hover) { .opzioni:not([data-fermo]) .opzione:not(:disabled):hover { background: var(--ciano); } } /* C28-02: non col puntatore fermo dall'apertura */
 .opzione:disabled { cursor: default; }
+.opzione.esaurita { background: var(--colore-superficie) var(--retino); background-size: var(--retino-passo); box-shadow: none; border-style: dashed; color: var(--colore-testo-tenue); } /* D-153 */
+.opzione.esaurita .motivo-esaurita { font-weight: 700; color: var(--colore-testo-tenue); }
 .opzione-testo { display: block; min-width: 0; }
 .costo { display: block; margin-top: var(--spazio-1); font: 500 var(--testo-piccolo) / var(--linea-stretta) var(--font); text-transform: none; letter-spacing: 0; color: var(--colore-testo-tenue); }
 .tasto { display: grid; place-items: center; flex: none; width: var(--tasto-lettera); height: var(--tasto-lettera); background: var(--nero); color: var(--giallo); font: 700 var(--testo-base) var(--font-titoli); }

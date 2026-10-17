@@ -138,6 +138,11 @@ function nessuno(s: InCorso, x: NonNullable<Chiamata['senza']>): boolean {
 
 export const opzioniValide = (c: Chiamata, s: InCorso, m: Missione) => c.opzioni.filter((o) => (!o.se || valuta(o.se, s.variabili)) && coerente(s, o.dopo) && haUnita(m, s, o));
 
+/** D-153 (C35-02): le opzioni tolte solo perché l'unità che impegnano è finita (C17-03); la resa le mostra disattivate
+ *  con «nessuna squadra libera» invece di farle sparire. Non si possono scegliere. Rosso __NO_C153A01: spariscono. */
+export const opzioniEsaurite = (c: Chiamata, s: InCorso, m: Missione) =>
+  spento('C153A01') ? [] : c.opzioni.filter((o) => (!o.se || valuta(o.se, s.variabili)) && coerente(s, o.dopo) && !haUnita(m, s, o));
+
 /** PO-086: la chiamata o l'opzione dipende da scelte già fatte («chiamata/opzione»). Rosso __NO_PO086. */
 function coerente(s: InCorso, x?: Dopo): boolean {
   if (!x || spento('PO086')) return true;
@@ -148,7 +153,14 @@ function coerente(s: InCorso, x?: Dopo): boolean {
 /** C17-03: un'opzione che impegna un'unità (riserva negativa) non si offre se di quell'unità non ne resta nessuna. Rosso __NO_C17R03. */
 function haUnita(m: Missione, s: InCorso, o: Opzione): boolean {
   if (spento('C17R03')) return true;
-  return o.effetti.every((e) => !('riserva' in e) || e.valore >= 0 || (m.mappa.risorse[e.riserva]?.quantita ?? 0) + (s.riserva[e.riserva] ?? 0) > 0);
+  return unitaFinita(m, s, o) === undefined;
+}
+
+/** D-153: la prima risorsa che l'opzione impegna e di cui non resta nessuna unità (per il motivo «nessuna … libera»).
+ *  Conta la riserva (quantità + riserva), come C17-03: contare solo le schierabili (C35-06) apriva violazioni D-154. */
+export function unitaFinita(m: Missione, s: InCorso, o: Opzione): string | undefined {
+  return o.effetti.find((e): e is Extract<EffettoMissione, { riserva: string }> => 'riserva' in e && e.valore < 0
+    && (m.mappa.risorse[e.riserva]?.quantita ?? 0) + (s.riserva[e.riserva] ?? 0) <= 0)?.riserva;
 }
 
 function applicaEffetto(m: Missione, s: InCorso, e: EffettoMissione, d: Dich): InCorso {
