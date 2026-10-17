@@ -490,8 +490,34 @@
             },
             {
               "id": "annuncio",
+              "dopo": {
+                "mai": [
+                  "fermata_prima/mediatore_gemellati"
+                ]
+              },
               "testo": "testi:e27.op.annuncio",
               "costo": "testi:e27.op.annuncio.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e27.op.annuncio.r"
+            },
+            {
+              "id": "annuncio_senza_mediatore",
+              "dopo": {
+                "gia": [
+                  "fermata_prima/mediatore_gemellati"
+                ]
+              },
+              "testo": "testi:e27.op.annuncio_senza_mediatore",
+              "costo": "testi:e27.op.annuncio_senza_mediatore.c",
               "effetti": [
                 {
                   "aggiungi": "credito",
