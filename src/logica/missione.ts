@@ -157,10 +157,12 @@ function haUnita(m: Missione, s: InCorso, o: Opzione): boolean {
 }
 
 /** D-153: la prima risorsa che l'opzione impegna e di cui non resta nessuna unità (per il motivo «nessuna … libera»).
- *  Conta la riserva (quantità + riserva), come C17-03: contare solo le schierabili (C35-06) apriva violazioni D-154. */
+ *  Conta le unità schierabili (C35-06, D-159), con la curva D-154 ritarata nei dati.  */
 export function unitaFinita(m: Missione, s: InCorso, o: Opzione): string | undefined {
-  return o.effetti.find((e): e is Extract<EffettoMissione, { riserva: string }> => 'riserva' in e && e.valore < 0
-    && (m.mappa.risorse[e.riserva]?.quantita ?? 0) + (s.riserva[e.riserva] ?? 0) <= 0)?.riserva;
+  // C35-06 (D-159): contano le unità schierabili (disponibili: senza quelle a riposo e le fisse), non tutta la riserva;
+  // prima «costa uno steward» si offriva con 0 steward schierabili. Rosso __NO_C153B01: tutta la riserva, come prima.
+  const resta = (r: string) => (spento('C153B01') ? (m.mappa.risorse[r]?.quantita ?? 0) + (s.riserva[r] ?? 0) : disponibili(m, s)[r] ?? 0);
+  return o.effetti.find((e): e is Extract<EffettoMissione, { riserva: string }> => 'riserva' in e && e.valore < 0 && resta(e.riserva) <= 0)?.riserva;
 }
 
 function applicaEffetto(m: Missione, s: InCorso, e: EffettoMissione, d: Dich): InCorso {
