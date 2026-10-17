@@ -138,6 +138,11 @@ function nessuno(s: InCorso, x: NonNullable<Chiamata['senza']>): boolean {
 
 export const opzioniValide = (c: Chiamata, s: InCorso, m: Missione) => c.opzioni.filter((o) => (!o.se || valuta(o.se, s.variabili)) && coerente(s, o.dopo) && haUnita(m, s, o));
 
+/** D-153 (C35-02): le opzioni tolte solo perché l'unità che impegnano è finita (C17-03); la resa le mostra disattivate
+ *  con «nessuna squadra libera» invece di farle sparire. Non si possono scegliere. Rosso __NO_C153A01: spariscono. */
+export const opzioniEsaurite = (c: Chiamata, s: InCorso, m: Missione) =>
+  spento('C153A01') ? [] : c.opzioni.filter((o) => (!o.se || valuta(o.se, s.variabili)) && coerente(s, o.dopo) && !haUnita(m, s, o));
+
 /** PO-086: la chiamata o l'opzione dipende da scelte già fatte («chiamata/opzione»). Rosso __NO_PO086. */
 function coerente(s: InCorso, x?: Dopo): boolean {
   if (!x || spento('PO086')) return true;
