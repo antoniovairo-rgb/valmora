@@ -22,6 +22,20 @@ Convenzioni: **FATTO MISURATO** (comando, campione, esito) · **FATTO (codice/da
 | Console | **0 errori** in tutte le corse con browser e nei 791 passi della partita |
 | **Partita da giocatore** | 6 episodi mai giocati nei collaudi recenti, a 360 col salvataggio: e03, e09 (sbagliato apposta, poi ripreso dall'ondata 3), e14, e22, e28 (sbagliato apposta), e32; 0 errori; rilievi nuovi C36-01…C36-07 |
 
+## Misure prima/dopo (PO-122)
+
+| misura | prima (0.35.0, e7f00cc) | dopo (0.36.0, fdad627) |
+|---|---|---|
+| salvataggi 0.34.0 dentro e35, ripresi senza difetti (74 punti) | 72/74 (2 × C35-01) | **74/74** |
+| salvataggi 0.35.0 dentro e35, ripresi senza difetti | – (stessa versione) | **74/74** |
+| `tests/c34-dati.test.ts` | 11/12 | **12/12** |
+| `npx vitest run` | 252/252 | 253/253 |
+| bot 1000 semi: righe con blocchi | 0/156 | 0/156 (uscita identica) |
+| schermate 4 finestre (scorr./tagli/errori) | 0/0/0 × 1916 | 0/0/0 × 1916 (riassunto identico) |
+| opzioni sparite (C35-02): casi / con una sola risposta | 22 / 9 | 22 / 9 |
+| e21 quartiere scoperto in o4 (C35-03) | 1000/1000 | 1000/1000 |
+| e35 partite fallite / banchine degenerate (C35-04) | 734 / 88 | 734 / 88 |
+
 # 1. Novità della 0.36.0: C35-01
 
 **FATTO (dati).** `barca_ormeggiata` ora ha `"dopo": {"gia": ["barca_porto/blocca_barca"], "mai": ["barca_ritorno/cerca_scatoloni", "barca_ritorno/ferma_barca"]}` (`data/missioni/e35.json:631`); `coerente()` scarta la chiamata se una delle scelte `mai` è già fatta (`src/logica/missione.ts:142-146`), e `chiamateAperte()` lo applica a ogni ripresa (`:128-131`).
@@ -191,6 +205,10 @@ Nessuno.
   - e28 o1 `voce_magazzino/ignora_anonimo` (`data/missioni/e28.json:176`), «se fosse vero, il magazzino si scalda» (`data/testi/it/e28.json:17`), effetto pressione magazzino **+1**; fonte `messaggio_anonimo` `"vera": false` (`data/missioni/e28.json:31`).
 - A schermo (e32, partita): piazzale «SCOPERTO» in o1 e, nel verbale, «Ignora: è una voce» fra le scelte che **penalizzano**, sulla stessa pagina che dà «Voci in rete — FALSA».
 - GIUDIZIO: media perché tocca il cuore del gioco (credere o no alle fonti) e succede **sempre** a chi sceglie bene.
+- Opzioni (consigliata la prima):
+  1. **Consigliata:** rendere l'effetto condizionato alla verità della fonte (o togliere la pressione quando la fonte è falsa: in e28 ed e32 è sempre falsa, quindi basta togliere l'effetto e cambiare la risposta «Poi arrivano altri quaranta»). Costo: 2 opzioni nei dati e 2 testi.
+  2. Lasciare l'effetto e cambiare il costo in «il piazzale sale comunque»: coerente, ma toglie il premio a chi legge bene le fonti.
+  3. Rendere vere le due fonti: cambia gli episodi e i verbali, sconsigliata.
 
 **C36-02: risposte che il seguito ignora: chiamate senza `dopo` che raccontano il contrario di quello che il giocatore ha appena scelto (la classe di C34-03, in 4 dei 6 episodi giocati).**
 - FATTO (dati; nessuna di queste chiamate ha `dopo`, verificato in riga di comando sui file delle missioni):
@@ -202,6 +220,10 @@ Nessuno.
 - GIUDIZIO: media perché è lo stesso tipo di difetto che la 0.35.0 ha corretto per la barca di e35 (C34-03), e l'ho incontrato in 4 episodi su 6 senza cercarlo. Non ho fatto una scansione di tutti i 36 episodi: **non posso confermare** quanti altri casi ci siano.
 
 ## Basso
+- Opzioni (consigliata la prima):
+  1. **Consigliata:** `dopo.mai` sulle 4 chiamate dei casi chiari (e09 `furgone_sparito`, e28 `talpa_sospetto`, e32 `incrocio`) o una variante del testo per chi ha fatto la scelta, come per la barca di e35; più una scansione di tutti i 36 episodi prima di correggere. Costo: dati e testi, un guardiano in stile `tests/c34-dati.test.ts`.
+  2. Correggere solo i 3 casi chiari, lasciando e14 com'è. Costo minimo, la classe resta senza scansione.
+  3. Riscrivere i testi delle chiamate in modo neutro (senza dipendere dalla scelta). Costo basso, ma il racconto perde reattività.
 
 **C36-03: il difetto di C34-06/C35-04 (verbale di fallimento che nomina luoghi non degenerati) c'è anche in altri episodi.**
 - FATTO MISURATO: `node coordination/sonde/c36-fallimenti-tutti.mjs . 1000` (bot casuale, 1000 semi per episodio, `uscite-c36/fallimenti-tutti.log`): per ogni episodio, partite fallite e in quante ogni settore è degenerato, accanto al testo del verbale. Esempi in cui il verbale nomina un luogo preciso (GIUDIZIO sulla scelta del luogo):
@@ -218,22 +240,30 @@ Nessuno.
 
 - A schermo: e09 (§ 4.2), con la tangenziale «SOTTO CONTROLLO» in tutte le ondate del secondo giro.
 - Stessa classe di C35-04 (aperto, solo e35); il guardiano `tests/c34-dati.test.ts` controlla e13 ed e17.
+- Opzioni (consigliata la prima):
+  1. **Consigliata:** testi di fallimento generici come in e13/e17 (C34-06) per gli episodi della tabella, ed estendere il guardiano a tutte le missioni con la sonda `c36-fallimenti-tutti.mjs` (soglia: un luogo nominato deve degenerare in almeno metà delle partite perse). Costo: testi + un test.
+  2. Verbale composto dai settori davvero degenerati (frase per settore). Costo: codice in `src/resa` e testi per settore; più fedele, più lavoro.
+  3. Lasciare com'è per gli episodi sopra il 25% e correggere solo e29, e31, e09. Costo minimo.
 
 **C36-04: e14, i tifosi del Waterline City sono «viola e oro» nei testi, ma il club è bianco e blu e i loro fumogeni «bianchi e blu».**
 - FATTO: `data/club/waterline_city.json:1` colori `#ffffff` / `#0d47a1`; «viola e oro» / «viola» in `data/testi/it/e14.json:24`, `:55`, `:58`, `:74`; «fumogeni bianchi e blu» `:71` (chiamata `fumo_viola`). Visto a schermo (foto `e14-o1-cambio.jpg`, `e14-o3-fumo.jpg`). Testi presenti uguali anche nella 0.33.0, 0.34.0 e 0.35.0 (5 «viola» in ognuna).
 - IPOTESI: resto di un club precedente; non verificata.
+- Opzioni: 1. **Consigliata:** testi «bianco e blu» in `data/testi/it/e14.json` (4 righe), costo minimo. 2. Cambiare i colori del club in viola e oro: tocca stemma e altri episodi del Waterline, sconsigliata.
 
 **C36-05: e03, la fonte del comitato (VERA nel verbale) parla di «sabato, amichevole», ma la serata è una notte di coppa e «domani c'è scuola».**
 - FATTO: `data/testi/it/e03.json:121` «sabato, amichevole: auto sui passi carrabili fino alle 2», fonte `"vera": true` (`data/missioni/e03.json:24`); titolo «Notte di coppa» (`:118`), sala «Coppa di notte col Garden» (`:119`), chiamata «domani c'è scuola» (`:54`). A schermo nel verbale (foto `e03-verbale-p-*.jpg`).
+- Opzioni: 1. **Consigliata:** togliere «sabato, amichevole» dal testo della fonte (es. «stasera: auto sui passi carrabili fino alle 2»). 2. Rendere la fonte FALSA: cambia il bilancio delle fonti dell'episodio, sconsigliata.
 
 **C36-06: e32, la «i» dell'ondata 1 smentisce la fonte dell'informatore (stesso tipo di C34-09).**
 - FATTO: «Prima del derby: le due tifoserie partono in corteo» (`data/testi/it/e32.json:10`) contro «Kiln senza corteo» (`:8`, fonte `informatore_di_strada` `"vera": false`, `data/missioni/e32.json:41`). A schermo: foto `e32-o1-info.jpg`.
 - GIUDIZIO: la fonte è di affidabilità bassa, quindi il danno è piccolo; ma è la stessa regola che C34-09 ha fatto correggere in e21.
+- Opzioni: 1. **Consigliata:** «i» neutra come in e21 (C34-09), es. «Prima del derby: le tifoserie si muovono, ognuna dalla sua parte di città». 2. Lasciare: la fonte è bassa e la mappa mostra comunque i due cortei.
 
 **C36-07: il bollino dell'unità impegnata nomina il settore della chiamata anche quando il testo la manda altrove.**
 - FATTO (codice): `src/resa/effetti-opzione.tsx:21` scrive «‹unità› · ‹settore della chiamata›»; anche l'unità che vola sulla mappa va al settore della chiamata (`src/resa/App.tsx:254`).
 - FATTO MISURATO: `node coordination/sonde/c36-bollini-unita.mjs .` (`uscite-c36/bollini-unita.log`): 224 opzioni impegnano un'unità in una chiamata con settore; in **10** gli effetti non toccano il settore della chiamata. Con il testo che dice un altro settore (GIUDIZIO): e16 o3 `steward_cinder` «Steward in curva Kiln» → «Steward · Curva ospiti»; e16 o3 `cerca_fonderie` «cercarlo alle fonderie» → «· Curva Kiln»; e22 o3 `steward_str22` «Steward sotto lo striscione Kiln» → «Steward · Curva Skyfield»; e32 o1 `ferma_cinderwick` «Fai aspettare il corteo di Kiln» → «Squadre · Strada da Skyfield». Gli altri 6 (scorte che partono dal settore della chiamata) li leggo come giusti.
 - A schermo: foto `docs/foto/c36/giocatore/e32-o1-due_cortei-bollino.jpg` (pagina intera).
+- Opzioni: 1. **Consigliata:** correggere i 4 casi nei dati (settore della chiamata o testo coerente). Costo minimo. 2. Far indicare al bollino il settore toccato dall'effetto quando diverso da quello della chiamata (`src/resa/effetti-opzione.tsx:21`, `App.tsx:254`). Costo: codice e guardiano, risolve tutta la classe.
 
 # Verificati e chiusi
 
@@ -241,6 +271,22 @@ Nessuno.
 |---|---|
 | **C35-01** e35 salvataggio vecchio | 0.34.0 → 0.36.0 **74/74**, 0.35.0 → 0.36.0 **74/74** punti senza difetti; rosso 0.34.0 → 0.35.0 72/74 con i 2 casi di C35-01; guardiano 12/12, rosso 11/12 |
 | Regressioni | bot identico alla 0.35.0, 0 blocchi; 253/253; tipi 0; schermate 4 × 1916 identiche alla 0.35.0; salvataggi 0.33.0/0.34.0/0.35.0 ripresi; console 0 |
+
+# Non verificato
+
+- Durata della partita in minuti di gioco (il gioco non mostra un orologio).
+- Quanti altri casi di C36-02 ci sono nei 30 episodi non giocati (nessuna scansione completa).
+- Se l'ordine «Kiln contro Skyfield» dell'intestazione di e22 voglia dire casa/fuori.
+- Telefoni, tablet e PC veri; WebView dell'APK; lettori di schermo; tastiera.
+- Salvataggi della 0.32.0 e precedenti.
+- Catena completa (`node tools/catena.mjs`), non lanciata per non scrivere `STABILITA.json`.
+- Variabili di storia degli episodi saltati (segnati a mano), quindi la coerenza fra episodi (es. e32 «capo arrestato»).
+- IPOTESI di C36-04 (resto di un club precedente).
+
+# Commit
+
+- Build collaudata: main **fdad627** (rilascio f6b38b6); confronti: 0.35.0 **e7f00cc**, 0.34.0 **acf1151**, 0.33.0 **c42b155**.
+- Commit del collaudo: **9bada72** (rapporto, sonde, uscite, foto); questo aggiornamento (PO-122: prima/dopo, opzioni, «Non verificato») è il commit successivo sullo stesso ramo.
 
 # Note di metodo e limiti
 
