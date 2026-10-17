@@ -663,8 +663,34 @@
             },
             {
               "id": "blocca_carosello",
+              "dopo": {
+                "mai": [
+                  "lista_ospiti/mediatore_tribuna"
+                ]
+              },
               "testo": "testi:e26.op.blocca_carosello",
               "costo": "testi:e26.op.blocca_carosello.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e26.op.blocca_carosello.r"
+            },
+            {
+              "id": "blocca_carosello_senza_mediatore",
+              "dopo": {
+                "gia": [
+                  "lista_ospiti/mediatore_tribuna"
+                ]
+              },
+              "testo": "testi:e26.op.blocca_carosello_senza_mediatore",
+              "costo": "testi:e26.op.blocca_carosello_senza_mediatore.c",
               "effetti": [
                 {
                   "aggiungi": "credito",

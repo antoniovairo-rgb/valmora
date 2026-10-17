@@ -79,7 +79,7 @@
       },
       {
         "id": "piazza_municipio",
-        "tipo": "strada",
+        "tipo": "piazza",
         "pos": {
           "x": 76,
           "y": 80
@@ -93,7 +93,8 @@
           "strada": 2,
           "piazzale": 2,
           "quartiere": 2,
-          "tornelli": 1
+          "tornelli": 1,
+          "piazza": 2
         }
       },
       "steward": {
@@ -101,7 +102,8 @@
         "efficacia": {
           "tornelli": 2,
           "piazzale": 1,
-          "quartiere": 1
+          "quartiere": 1,
+          "piazza": 1
         }
       },
       "mediatore": {

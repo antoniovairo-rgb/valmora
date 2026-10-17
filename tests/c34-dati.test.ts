@@ -81,6 +81,8 @@ describe('C34-06 verbali di fallimento: non raccontano un settore che non è deg
   const AFFERMA: Record<string, [RegExp, string][]> = {
     e13: [[/piazza oltre il limite|concerto interrotto/i, 'piazza_concerto'], [/spintoni sul piazzale/i, 'piazzale']],
     e17: [[/cancelli forzati/i, 'tornelli'], [/strada di kiln/i, 'strada_cinderwick'], [/piazza sgomberata/i, 'piazza_municipio']],
+    // C35-04: e35 «dal nastro al porto»: le banchine degenerano in 88 partite fallite su 734 (collaudo C-035)
+    e35: [[/nastro|perimetro/i, 'perimetro_banca'], [/corso/i, 'corso_centro'], [/cantiere/i, 'cantiere_stadio_nuovo'], [/porto|banchine/i, 'banchine'], [/stazione/i, 'stazione']],
   };
   const smentiti = (id: string, verbale: string, semi = 120) => {
     const fuori: string[] = [];
@@ -94,13 +96,14 @@ describe('C34-06 verbali di fallimento: non raccontano un settore che non è deg
     }
     return fuori;
   };
-  for (const id of ['e13', 'e17']) {
+  for (const id of ['e13', 'e17', 'e35']) {
     const m = ep(id); const fallito = m.esiti.find((e) => e.fallita)!;
     it(`${id}: il verbale «${fallito.id}» non afferma fatti smentiti dalle partite fallite`, () => expect(smentiti(id, t(id, fallito.verbale))).toEqual([]));
   }
   it('la misura non è cieca: una frase specifica in un verbale viene smentita', () => {
     expect(smentiti('e13', 'Concerto interrotto.', 60).length).toBeGreaterThan(0);
     expect(smentiti('e17', 'Cancelli forzati.', 60).length).toBeGreaterThan(0);
+    expect(smentiti('e35', 'Dal nastro al porto.', 60).length).toBeGreaterThan(0);
   });
 });
 
