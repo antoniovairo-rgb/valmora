@@ -92,3 +92,6 @@ Nessuna anomalia vista nella lettura; restano alla principale.
 `set -o pipefail; node tools/catena.mjs governo` → VERDE (documenti, backlog, segreti, versione, modello, bracci-rossi, governo.html), su 2314252 con le modifiche; rieseguita sul commit finale (vedi sotto).
 
 ## Commit
+
+- f9545f0 – BACKLOG.md (29 stati), governo.html, rapporto
+- commit successivo – STABILITA.json e governo.html della catena governo verde su f9545f0
