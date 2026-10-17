@@ -60,7 +60,10 @@ export async function mappaSchieramento(pagina) {
     const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
     // pastiglia su nome come nella sonda del collaudo C-027: più di 1 px in tutte e due le direzioni
     const lati = (A, B) => Math.min(A.right, B.right) - Math.max(A.left, B.left) > 1 && Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top) > 1;
-    const nomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-nome')].filter((n) => n.getClientRects().length).map((n) => [n.textContent, n.getBoundingClientRect()]);
+    // C33-01: il nome col testo vero (riquadro ∪ righe del testo), non solo il riquadro
+    const testo = (n) => { const r = document.createRange(); r.selectNodeContents(n); const rs = [n.getBoundingClientRect(), ...r.getClientRects()].filter((q) => q.width && q.height);
+      return { left: Math.min(...rs.map((q) => q.left)), top: Math.min(...rs.map((q) => q.top)), right: Math.max(...rs.map((q) => q.right)), bottom: Math.max(...rs.map((q) => q.bottom)) }; };
+    const nomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-nome')].filter((n) => n.getClientRects().length).map((n) => [n.textContent, testo(n)]);
     const sopra = nomi.flatMap(([t, r], i) => nomi.slice(0, i).filter(([, q]) => a(r, q) > 0.5).map(([u]) => `${t} × ${u}`));
     const coperte = [...document.querySelectorAll('.mappa button.tocco-pastiglia:enabled')].filter((b) => b.getClientRects().length).filter((b) => {
       const r = b.getBoundingClientRect(), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2; if (y < 0 || y > innerHeight) return false;
@@ -83,7 +86,17 @@ export async function mappaSchieramento(pagina) {
       return d < dist(c, mio) ? [`${x.dataset.settore} ${dist(c, mio).toFixed(0)} px dal suo disco, ${d.toFixed(0)} da ${altro}`] : []; });
     // C-008 (come nel giro foto, tools/foto.mjs): area di tocco di un'unità sopra un nome (anche il proprio), più di 4 px²
     const tocchiSuNomi = [...document.querySelectorAll('.mappa:not(.citta) [data-presenza]')].flatMap((t) => nomi.map(([n, q]) => [n, Math.round(a(t.getBoundingClientRect(), q))]).filter(([, x]) => x > 4).map(([n, x]) => `${t.dataset.presenza} × ${n} ${x} px²`));
-    return { sopra, coperte, suNomi, fuori, vicine, tocchiSuNomi };
+    // D-143 (C33-01 / C-008): un'area di tocco può stare sopra un nome, ma non lo «ruba»: (a) il suo centro non cade sul
+    // nome di un ALTRO settore; (b) toccando il nome (centro di ogni riga del testo) non si colpisce un tocco: si
+    // ritirerebbe un'unità per sbaglio.
+    const rubati = [];
+    const elNomi = [...document.querySelectorAll('.mappa:not(.citta) .settore-nome')].filter((n) => n.getClientRects().length);
+    for (const t of document.querySelectorAll('.mappa:not(.citta) [data-presenza]')) { const q = t.getBoundingClientRect(), x = (q.left + q.right) / 2, y = (q.top + q.bottom) / 2, mio = t.closest('[data-settore]');
+      for (const n of elNomi) if (n.closest('[data-settore]') !== mio) { const r = document.createRange(); r.selectNodeContents(n); if ([...r.getClientRects()].some((z) => x >= z.left && x <= z.right && y >= z.top && y <= z.bottom)) rubati.push(`centro del tocco ${t.dataset.presenza} sul nome ${n.textContent}`); } }
+    for (const n of elNomi) { const r = document.createRange(); r.selectNodeContents(n);
+      for (const z of r.getClientRects()) { const x = (z.left + z.right) / 2, y = (z.top + z.bottom) / 2; if (y < 0 || y > innerHeight) continue;
+        const e = document.elementFromPoint(x, y)?.closest('[data-presenza]'); if (e) rubati.push(`toccando «${n.textContent}» si colpisce ${e.dataset.presenza}`); } }
+    return { sopra, coperte, suNomi, fuori, vicine, tocchiSuNomi, rubati };
   });
 }
 
@@ -127,7 +140,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   // 375 e 412 (prima solo 360)
   const suNomi = [], attente = partenzeAttente(dirDati);
   for (const [w, h] of [[360, 760], [375, 812], [412, 915]]) {
-    const vicine = [], tocchi = [];
+    const vicine = [], tocchi = [], rubati = [];
     const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); await q6.goto(url);
     for (const st of attente) {
       await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
@@ -139,6 +152,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
       if (r.suNomi.length) suNomi.push(`${dove}: ${r.suNomi.join('; ')}`);
       vicine.push(...r.vicine.map((x) => `${st.m.id} o${st.n} ${x}`));
       tocchi.push(...r.tocchiSuNomi.map((x) => `${st.m.id} o${st.n} ${x}`));
+      rubati.push(...r.rubati.map((x) => `${st.m.id} o${st.n} ${x}`));
       atteso(`${dove} con le unità: pastiglie sopra i nomi ${r.suNomi.join('; ')} (C27-06, il caso del collaudo)`, st.m.id !== 'e19' || !r.suNomi.length);
       atteso(`${dove} con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
       if (w === 360) { // C33-04: la disposizione non dipende dallo stato del giro prima (rosso VALMORA_ROSSI=C102D01)
@@ -155,6 +169,9 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     // C33-05: non più gruppi vicini al disco di un altro settore che nella 0.31.0 (36 / 29 / 9, collaudo C-033); elenco in cartella
     writeFileSync(join(cartella, `vicine-${w}.txt`), `${vicine.length}\n${vicine.join('\n')}\n`);
     writeFileSync(join(cartella, `tocchi-${w}.txt`), `${new Set(tocchi.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${tocchi.join('\n')}\n`); // misura, senza soglia
+    // D-143 (C33-01): nessun nome «rubato» da un'area di tocco, tetto 0 (rosso C106T01: e35 ondata 2 a 360)
+    writeFileSync(join(cartella, `rubati-${w}.txt`), `${new Set(rubati.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${rubati.join('\n')}\n`);
+    atteso(`${w}×${h}: nomi rubati da un'area di tocco: ${rubati.join(' | ')} (D-143, C33-01)`, !rubati.length);
     atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
     await q6.close();
   }
