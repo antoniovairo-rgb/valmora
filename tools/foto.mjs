@@ -295,7 +295,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
                 }), [op, altra]);
                 const salvata = await pagina.evaluate((k) => JSON.parse(localStorage.getItem('valmora-salvataggio')).in_corso.risposte[k], c);
                 atteso(`doppio tocco: salvata «${salvata}» invece di «${op}» (C-005 R01)`, salvata === op);
-              } else { await controllaVignettaEvento(pagina, p.m.ondate[i], p.m.ondate[i].chiamate.find((x) => x.id === c), atteso, `chiamata «${c}»`); const prima = await statoSalvato(pagina); await premi(`[data-opzione="${op}"]`); await controllaVoloRisposta(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `chiamata «${c}»`); await controllaSegni(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `risposta «${op}»`, prima); }
+              } else { await controllaVignettaEvento(pagina, p.m.ondate[i], p.m.ondate[i].chiamate.find((x) => x.id === c), atteso, `chiamata «${c}»`); const prima = await statoSalvato(pagina); await premi(`[data-opzione="${op}"]`); await pagina.waitForFunction(() => !document.querySelector('[data-annulla]'), null, { timeout: 5000 }).catch(() => {}); /* PO-121: la risposta vale alla fine del conto */ await controllaVoloRisposta(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `chiamata «${c}»`); await controllaSegni(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `risposta «${op}»`, prima); }
               if (p.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) {
                 await scena('risposta');
                 if (j === 0) await fotoSe();
