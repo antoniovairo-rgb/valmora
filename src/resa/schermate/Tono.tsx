@@ -5,13 +5,14 @@
 import { useEffect, useRef } from 'react';
 import type { TonoOndata } from '../espressioni.ts';
 import { VignettaOndata } from '../vignette-gioco.tsx';
+import { secondoMs } from './Ondata.tsx';
 
 export const TONO_MS = 2000;
 
 export function Tono(p: { tono: TonoOndata; genere: 'm' | 'f'; n: number; avanti: () => void }) {
   const avanti = useRef(p.avanti); avanti.current = p.avanti; // il conto parte una volta sola, anche se la scena si ridisegna
   useEffect(() => {
-    const vai = () => avanti.current(), id = setTimeout(vai, TONO_MS);
+    const vai = () => avanti.current(), id = setTimeout(vai, (TONO_MS * secondoMs()) / 1000); // il giro foto non aspetta il tempo reale (PO-121)
     const tasto = (e: KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); vai(); } };
     addEventListener('keydown', tasto);
     return () => { clearTimeout(id); removeEventListener('keydown', tasto); };
