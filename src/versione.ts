@@ -237,4 +237,10 @@
 //   misura: catena completa 3/3 sul ramo della sviluppatrice (56f8fe2); «?» libero a 360/375/412/1366, «Conferma» ≥ 44 px;
 //   e17 me_lo_dovete 28-29 via / 10-11 verso lo stadio, ondata 4 51-52/17-18 (rosso C95S01 69/0 via dal municipio).
 //   guardiano: rossi C96A01 («?»), C97F01 (fuoco), C98V01 (versione); guardiano C17 rifatto; tests/meta-fase.test.ts (e17).
-export const GAME_VERSION = '0.34.0';
+// 0.35.0 – dati e testi coerenti con le scelte del giocatore (rilievi del collaudo C-034).
+//   causa: C34-03 in e35 la barca bloccata in ondata 1 risultava «tornata» in ondata 3 e nel verbale; C34-02 in e21 i
+//   costi di pullman21 dicevano il contrario degli effetti; C34-06 verbali di fallimento di e13/e17 con fatti non accaduti;
+//   C34-09 la «i» dell'ondata 1 di e21 smentiva la fonte del comune; C34-10 in e02 un'opzione spariva senza spiegazione.
+//   misura: tests/c34-dati.test.ts 11/11 verdi, 8/11 rossi coi dati della 0.34.0; 252/252 test; catena logica verde.
+//   guardiano: tests/c34-dati.test.ts (racconto della barca nei due rami, costi ↔ effetti, verbali di fallimento).
+export const GAME_VERSION = '0.35.0';

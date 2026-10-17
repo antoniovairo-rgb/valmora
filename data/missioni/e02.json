@@ -729,8 +729,17 @@
             },
             {
               "id": "niente",
+              "dopo": {"mai": ["corteo_viale/mediatore_corteo"]},
               "testo": "testi:e02.op.niente",
               "costo": "testi:e02.op.niente.c",
+              "effetti": [],
+              "risposta": "testi:e02.op.niente.r"
+            },
+            {
+              "id": "niente_senza_mediatore",
+              "dopo": {"gia": ["corteo_viale/mediatore_corteo"]},
+              "testo": "testi:e02.op.niente_senza_mediatore",
+              "costo": "testi:e02.op.niente_senza_mediatore.c",
               "effetti": [],
               "risposta": "testi:e02.op.niente.r"
             }
