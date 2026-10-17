@@ -9,7 +9,7 @@ const molla = { type: 'spring', stiffness: 520, damping: 26 } as const;
 
 /** C32-01: dov'era l'ultimo comando col fuoco (centro, in coordinate della finestra), condiviso fra le scene. */
 let ultimo: { x: number; y: number } | null = null;
-const COMANDI = 'button:not(:disabled):not(.opzione), a[href], [tabindex="0"]';
+const COMANDI = 'button:not(:disabled):not(.opzione):not([data-annulla]), a[href], [tabindex="0"]'; // PO-121: mai da solo su «Annulla»
 /** Il comando visibile della scena più vicino al punto. */
 function vicino(s: HTMLElement, p: { x: number; y: number }): HTMLElement | null {
   let meglio: HTMLElement | null = null, d = Infinity;
