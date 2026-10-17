@@ -53,7 +53,14 @@ export function partenzeAttente(dirDati) {
 // Si contano le scritture e si aspetta che la mappa stia ferma 500 ms (con `almenoUna`, dopo almeno una disposizione).
 export const ascoltaEtichette = (pagina) => pagina.evaluate(() => { const m = document.querySelector('.mappa:not(.citta)'), g = (globalThis.__etichette = { n: 0, ultimo: performance.now() });
   globalThis.__etichetteO?.disconnect(); if (m) (globalThis.__etichetteO = new MutationObserver(() => { g.n++; g.ultimo = performance.now(); })).observe(m, { attributes: true, subtree: true, attributeFilter: ['data-unita', 'data-nome'] }); });
-export const etichetteFerme = (pagina, almenoUna = false) => pagina.waitForFunction((a) => { const g = globalThis.__etichette; return !!g && (!a || g.n > 0) && performance.now() - g.ultimo > 500; }, almenoUna, { timeout: 8000, polling: 100 }).then(() => true, () => false);
+// 0.38.0 (CI rossa su e14 o1 a 360): in CI il carattere arrivava dopo i 500 ms di quiete e il guardiano misurava i nomi
+// col carattere di riserva (stato di passaggio: arrivato il carattere, il gioco ridispone). Ora si aspetta anche che i
+// caratteri siano caricati; la pagina del giro con le unità a 360 li rallenta apposta (CARATTERE_LENTO), così il caso della
+// CI si ripete ovunque. Senza questa attesa (VALMORA_SENZA_FONT=1) il guardiano torna rosso su e14 o1.
+const SENZA_FONT = !!process.env.VALMORA_SENZA_FONT;
+export const etichetteFerme = (pagina, almenoUna = false) => pagina.waitForFunction(([a, f]) => { const g = globalThis.__etichette; return !!g && (!a || g.n > 0) && (f || document.fonts.status === 'loaded') && performance.now() - g.ultimo > 500; }, [almenoUna, SENZA_FONT], { timeout: 8000, polling: 100 }).then(() => true, () => false);
+export const CARATTERE_LENTO = 1500; // ms: con 800 il carattere arrivava già sul titolo e il caso della CI non si ripeteva (sonda c27-ferme, e14 o1); solo a 360 (col routing la cache è spenta: ogni ricarica lo paga)
+const rallentaCaratteri = (p) => p.route('**/*.woff2', async (r) => { await new Promise((ok) => setTimeout(ok, CARATTERE_LENTO)); await r.continue(); });
 
 export async function mappaSchieramento(pagina) {
   return pagina.evaluate(() => {
@@ -141,7 +148,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   const suNomi = [], attente = partenzeAttente(dirDati);
   for (const [w, h] of [[360, 760], [375, 812], [412, 915]]) {
     const vicine = [], tocchi = [], rubati = [];
-    const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); await q6.goto(url);
+    const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); if (w === 360) await rallentaCaratteri(q6); await q6.goto(url);
     for (const st of attente) {
       await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
       await q6.reload(); await q6.getByRole('button', { name: 'Riprendi' }).click();
