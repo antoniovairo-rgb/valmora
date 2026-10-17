@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-16 23:56 Roma – main 0.34.0 (acf1151), uscita alle 23:53 (verifica 3/3 VERDE su 55fa77a, CI verde): D-139 «?» nella barra, C32-01 fuoco, C32-06 versione, C32-02 e17. C-033 (0.32.0/0.33.0) in partita da giocatore; C-034 avviato sulla 0.34.0. Sviluppatrice: rilievi C33-01…05 (D-141 per C33-02), poi seconda bozza PO-119 («Non basta, più cura»).
+Ultimo giro della routine: 2026-10-17 07:26 Roma – main 0.35.0 (e7f00cc), uscita alle 07:23 (verifica 3/3 VERDE su 1f7a724, CI verde): C34-02/03/06/09/10 dati e testi. C-033 e C-034 archiviati; C-035 avviato. Sviluppatrice: C34-01 fatto, C34-08 con D-142, consegna C34-01/08 + C33-02…05 senza C33-01. In attesa del PO: questionario su vignetta del rapporto (C33-06), tono (C33-07), seconda stella (C33-09), etichette sulla mappa (C33-01 contro C-008); seconda bozza dei personaggi (PO-119).
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
