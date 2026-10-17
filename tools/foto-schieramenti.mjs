@@ -169,7 +169,9 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     // C33-05: non più gruppi vicini al disco di un altro settore che nella 0.31.0 (36 / 29 / 9, collaudo C-033); elenco in cartella
     writeFileSync(join(cartella, `vicine-${w}.txt`), `${vicine.length}\n${vicine.join('\n')}\n`);
     writeFileSync(join(cartella, `tocchi-${w}.txt`), `${new Set(tocchi.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${tocchi.join('\n')}\n`); // misura, senza soglia
+    // D-143 (C33-01): nessun nome «rubato» da un'area di tocco, tetto 0 (rosso C106T01: e35 ondata 2 a 360)
     writeFileSync(join(cartella, `rubati-${w}.txt`), `${new Set(rubati.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${rubati.join('\n')}\n`);
+    atteso(`${w}×${h}: nomi rubati da un'area di tocco: ${rubati.join(' | ')} (D-143, C33-01)`, !rubati.length);
     atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
     await q6.close();
   }

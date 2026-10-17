@@ -122,6 +122,16 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const centro = (r: Rett) => [(r.left + r.right) / 2, (r.top + r.bottom) / 2] as const, mio = centro(punti[i]!);
     const lontano = (u: Rett) => { if (spento('C103P01')) return 0; const [x, y] = centro(u), d = (q: readonly [number, number]) => Math.hypot(q[0] - x, q[1] - y);
       const altro = Math.min(...punti.filter((_, j) => j !== i).map((r) => d(centro(r)))); return altro < d(mio) ? VERA * 10 * (d(mio) - altro) : 0; };
+    // D-143 (C33-01): un'area di tocco può coprire un nome ma non «rubarlo»: toccando il nome (centro di ogni riga del
+    // testo) non si deve colpire un tocco, e il centro di un tocco non cade sul nome di un altro settore (e35 ondata 2 a
+    // 360: toccando «Perimetro della banca» si ritirava una squadra). Quasi vincolo, sotto il disco. Rosso C106T01: no.
+    const righe = (x: Element) => { const n = x.querySelector('.settore-nome'); if (!n) return []; const r = document.createRange(); r.selectNodeContents(n); return [...r.getClientRects()] as Rett[]; };
+    const dentro = (p: readonly [number, number], q: Rett) => p[0] >= q.left && p[0] <= q.right && p[1] >= q.top && p[1] <= q.bottom;
+    const tocchiDi = (x: Element) => [...(x.querySelector('.settore-unita')?.children ?? [])].map((c) => c.getBoundingClientRect() as Rett);
+    const ruba = () => { if (spento('C106T01')) return 0; const miei = tocchiDi(s), tutti = [...miei, ...altri.flatMap(tocchiDi)];
+      let k = righe(s).filter((z) => tutti.some((q) => dentro(centro(z), q))).length;
+      for (const x of altri) { const rx = righe(x); k += rx.filter((z) => miei.some((q) => dentro(centro(z), q))).length + miei.filter((q) => rx.some((z) => dentro(centro(q), z))).length; }
+      return VERA * 1e4 * k; };
     let migliore = { nome: NOMI[0] as string, unita: UNITA[0] as string, costo: Infinity, largo: '' };
     cerca: for (const largo of d136 ? ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.6)'] : ['']) {
     if (largo && migliore.costo === 0) break;
@@ -132,7 +142,7 @@ export function disponiEtichette(contenitore: HTMLElement) {
       const n = nomeDi(s), u = conUnita ? unitaDi(s) : null;
       if (!n || (conUnita && !u)) continue;
       const costo = costoDi(n, perNome) + VERA * (c27 ? 1e4 : 10) * fuori(n, mappa) + nomiSopra(n) * (c27 ? 2e3 : 1) + sottoPastiglie(n) + (u ? sottoDisco() : 0)
-        + (u ? costoDi(u, perUnita) + VERA * area(n, u) + bordoUnita(u) + suNomi(pastiglie() ?? u, n) * (c33 ? 20 : 1) + lontano(pastiglie() ?? u) : 0);
+        + (u ? costoDi(u, perUnita) + VERA * area(n, u) + bordoUnita(u) + suNomi(pastiglie() ?? u, n) * (c33 ? 20 : 1) + lontano(pastiglie() ?? u) + ruba() : 0);
       if (costo < migliore.costo - (largo ? 0.5 : 0)) migliore = { nome, unita, costo, largo };
       if (costo === 0) break cerca;
     }
