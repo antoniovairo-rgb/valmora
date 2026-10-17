@@ -176,12 +176,7 @@
               "id": "ignora_anonimo",
               "testo": "testi:e28.op.ignora_anonimo",
               "costo": "testi:e28.op.ignora_anonimo.c",
-              "effetti": [
-                {
-                  "pressione": "magazzino_fonderie",
-                  "valore": 1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e28.op.ignora_anonimo.r"
             }
           ]
