@@ -31,6 +31,7 @@ import { Schieramento, usate } from './schermate/Schieramento.tsx';
 import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
 import { ondataVincibile } from '../logica/ripartenza.ts';
+import { sospendi, valida, type InSospeso } from '../logica/sospesa.ts';
 import { valutaEpisodio } from '../logica/episodi.ts';
 import { segniDi, type Segno } from './mappa/segni.ts';
 import { due, Testata } from './schermate/Fumetto.tsx';
@@ -42,7 +43,7 @@ type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
-const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01', 'C10S03', 'C14T01', 'C35C01', 'C38A01', 'C38R01', 'C40C01', 'C40C02', 'C42V01', 'C44I02', 'C58I01', 'C60I01', 'C89C01', 'C90V01', 'C98V01'];
+const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01', 'C10S03', 'C14T01', 'C35C01', 'C38A01', 'C38R01', 'C40C01', 'C40C02', 'C42V01', 'C44I02', 'C58I01', 'C60I01', 'C89C01', 'C90V01', 'C98V01', 'C113V01'];
 const libera = (m: Missione, ic: InCorso, d: Disposizione, preferita: string | null) => {
   const disp = disponibili(m, ic);
   const ok = (r: string) => (disp[r] ?? 0) - usate(d, r) > 0;
@@ -70,6 +71,7 @@ export function App() {
   const [scelto, setScelto] = useState<string | null>(null); // episodio scelto sulla mappa della città
   // PO-083: l'ondata da cui ripartire si calcola una volta a fine episodio (fino a ~0,7 s misurati su computer), non a ogni disegno
   const nRiparti = useMemo(() => (esito?.r.fallita ? ondataVincibile(esito.m, esito.e, esito.ic, dichiarate) : 1), [esito]);
+  const sospesa = useRef<InSospeso | null>(null); // PO-121: la risposta che si può ancora annullare (mai nel salvataggio)
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
   const [segni, setSegni] = useState<Segno[]>([]); // PO-085: segni dell'ultima risposta sulla mappa, per 1,8 s
   const timerSegni = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -186,7 +188,7 @@ export function App() {
     // Interruttore rosso C10S02: colore dalla sola tensione.
     mappa = { tensione: spento('C10S02') ? r.tensione : Object.fromEntries(Object.entries(r.tensione).map(([k, v]) => [k, (r.scoperto[k] ?? 0) > 0 ? Math.max(v, 3) : v])) };
     testata = { etichetta: `Rapporto · ondata ${r.n} di ${m.ondate.length}`, titolo: `Rapporto dell'ondata ${r.n}` };
-    corpo = <Rapporto m={m} r={r} ultima={fine} prossime={fine ? {} : disponibili(m, ic)} avanti={() => {
+    corpo = <Rapporto m={m} r={r} scelte={ic.scelte} ultima={fine} prossime={fine ? {} : disponibili(m, ic)} avanti={() => {
       const ora = icOra();
       if (!ora) return; // episodio già chiuso (doppio tocco)
       if (!missioneFinita(m, ora)) { conIc(ora, { rapporto_aperto: null }); nuovaBozza(); setSchermata('gioco'); return; }
@@ -242,8 +244,7 @@ export function App() {
         conferma={() => { setAvviso(null); const ora = icOra(); if (ora && !ora.disposizione && ora.ondata === ic.ondata) conIc(schiera(m, ora, bozza)); }} />;
     } else if (f.tipo === 'chiamata') {
       mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, accesi: f.chiamata.settore ? [f.chiamata.settore] : [], citato: f.chiamata.settore };
-      corpo = <Chiamata key={f.chiamata.id} m={m} ic={ic} c={f.chiamata} numero={f.numero} totale={f.totale}
-        rispondi={(o) => {
+      const conferma = (o: string) => {
           const ora = icOra();
           if (!spento('C05R01') && (!ora || !chiamateAperte(m, ora).some((c) => c.id === f.chiamata.id))) return; // già risposta
           if (!ora) return;
@@ -254,7 +255,13 @@ export function App() {
           if (f.chiamata.settore && !spento('C32D01')) for (const e of scelta.effetti) if ('riserva' in e && e.valore < 0) vola(e.riserva, f.chiamata.settore);
           mostraSegni(segniDi(f.chiamata, scelta, ora, dopo)); // PO-085: la conseguenza sulla mappa, subito (C20-07: solo se cambia)
           if (scelta.risposta) setEco(scelta);
-        }} />;
+      };
+      // PO-121 (D-148): la risposta resta in sospeso (sospesa.ts) finché il conto alla rovescia non scade; annullata non
+      // lascia traccia. Rosso C107A01: vale subito, come prima.
+      const chiamata = f.chiamata;
+      corpo = <Chiamata key={chiamata.id} m={m} ic={ic} c={chiamata} numero={f.numero} totale={f.totale} rispondi={conferma}
+        sospendi={spento('C107A01') ? undefined : (o) => { const ora = icOra(); if (!ora || !chiamateAperte(m, ora).some((c) => c.id === chiamata.id)) return false; sospesa.current = sospendi(m, ora, chiamata.id, o); return true; }}
+        decidi={(esito) => { const q = sospesa.current, ora = icOra(); sospesa.current = null; if (esito === 'confermata' && q && ora && valida(ora, q)) conferma(q.opzione); }} />;
     } else if (f.tipo === 'chiusura') {
       mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse };
       corpo = <Chiusura m={m} ic={ic} chiudi={() => {

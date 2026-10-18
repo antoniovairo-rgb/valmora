@@ -162,10 +162,11 @@ export async function controllaLargo(pagina, atteso, dove) {
     const v = document.querySelector('[data-versione-angolo]')?.getBoundingClientRect(), app = document.querySelector('#app')?.getBoundingClientRect();
     // C32-06: e non tocca nessun comando
     const tocca = !v ? [] : [...document.querySelectorAll('button, a[href]')].filter((e) => { const b = e.getBoundingClientRect(); return b.width && Math.min(v.right, b.right) - Math.max(v.left, b.left) > 0 && Math.min(v.bottom, b.bottom) - Math.max(v.top, b.top) > 0; }).map((e) => e.dataset.azione ?? e.className.split(' ')[0]);
-    return { v: v && app ? { sinistra: v.left, destra: v.right, colonna: app.right } : null, tocca };
+    return { v: v && app ? { sinistra: v.left, destra: v.right, colonna: app.right, colonnaSx: app.left } : null, tocca };
   });
   // C28-11 accanto alla colonna; C32-06 subito fuori, nei 16 px oltre il bordo (rossi C90V01 e C98V01)
-  if (r.v) atteso(`${dove} a 1366×768: versione da ${r.v.sinistra.toFixed(0)} a ${r.v.destra.toFixed(0)} px, colonna fino a ${r.v.colonna.toFixed(0)} px (C28-11, C32-06)`, r.v.sinistra >= r.v.colonna - 1 && r.v.destra <= r.v.colonna + 17);
+  // D-168: il lato è il sinistro, subito fuori dalla colonna (rosso C113V01: a destra)
+  if (r.v) atteso(`${dove} a 1366×768: versione da ${r.v.sinistra.toFixed(0)} a ${r.v.destra.toFixed(0)} px, colonna da ${r.v.colonnaSx.toFixed(0)} px (C28-11, C32-06, D-168)`, r.v.destra <= r.v.colonnaSx + 1 && r.v.sinistra >= r.v.colonnaSx - 17);
   atteso(`${dove} a 1366×768: la versione tocca ${r.tocca.join(', ')} (C32-06)`, !r.tocca.length);
   await pagina.keyboard.press('Shift'); // da qui il fuoco è «da tastiera» (:focus-visible)
   const contorni = await pagina.evaluate(() => [...document.querySelectorAll('.tasto-home, .info, .aiuto, .tocco-pastiglia, .indicatore')].filter((e) => e.getClientRects().length && e.matches('button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])')).map((e) => { // solo i comandi (la pastiglia fissa è un'immagine)
@@ -210,4 +211,20 @@ export async function controllaRiepilogoFuoco(pagina, atteso, dove) {
     await pagina.click('[data-azione="modifica"]'); await pagina.waitForSelector('[data-barra]', { timeout: 3000 }).catch(() => {});
   }
   await pagina.setViewportSize(prima); await pagina.waitForTimeout(150);
+}
+
+/** D-168 (S-03, a 360 la versione copriva il bordo destro di un'opzione): con la pagina in cima e in fondo la versione non
+ *  tocca nessun comando, contando anche l'ombra che sporge (box-shadow). Rosso VALMORA_ROSSI=C113V01 (a destra). */
+export async function controllaVersioneOmbra(pagina, atteso, dove) {
+  const y = await pagina.evaluate(() => scrollY), male = [];
+  for (const fine of [false, true]) {
+    await pagina.evaluate((f) => scrollTo(0, f ? document.documentElement.scrollHeight : 0), fine); await pagina.waitForTimeout(60);
+    male.push(...await pagina.evaluate((f) => { const v = document.querySelector('[data-versione-angolo]')?.getBoundingClientRect(); if (!v) return [];
+      return [...document.querySelectorAll('button, a[href], .opzione')].filter((e) => e.getClientRects().length).filter((e) => { const b = e.getBoundingClientRect(), o = (getComputedStyle(e).boxShadow.match(/(-?[\d.]+)px (-?[\d.]+)px/) ?? [0, 0, 0]).slice(1).map(Number);
+        const r = { left: b.left + Math.min(0, o[0]), right: b.right + Math.max(0, o[0]), top: b.top + Math.min(0, o[1]), bottom: b.bottom + Math.max(0, o[1]) };
+        return Math.min(v.right, r.right) - Math.max(v.left, r.left) > 0 && Math.min(v.bottom, r.bottom) - Math.max(v.top, r.top) > 0; })
+        .map((e) => `${e.dataset.opzione ?? e.dataset.azione ?? e.className.split(' ')[0]} (${f ? 'in fondo' : 'in cima'})`); }, fine));
+  }
+  await pagina.evaluate((v) => scrollTo(0, v), y);
+  atteso(`${dove}: la versione copre ${male.join(', ')} contando l'ombra (D-168)`, !male.length);
 }
