@@ -1,6 +1,6 @@
 # PO-119 / D-171 – la seconda bozza dei protagonisti nel gioco (taglio «a busto») · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: COMMIT_PO119. Foto in questa cartella (`prima/` = rosso C114P01, `dopo/`).
+Ramo `claude/valmora-resa-v2`. Commit: 0f063b8. Foto in questa cartella (`prima/` = rosso C114P01, `dopo/`).
 
 ## Cosa cambia
 

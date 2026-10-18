@@ -1,6 +1,6 @@
 # C33-06 (D-143), C33-07 (D-144), C33-09 (D-147) · rapporto della sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: aab4ce6 (C33-07), 2964b23 (C33-09), d12ea98 (C33-06), COMMIT_FINALE. Foto in `c33b/`.
+Ramo `claude/valmora-resa-v2`. Commit: aab4ce6 (C33-07), 2964b23 (C33-09), d12ea98 (C33-06), 540bf1c (guardiani PO-059 e C12-01 allineati), testa provata e2c6df5. Foto in `c33b/`.
 
 ## C33-06 – scena del tono prima del rapporto
 
