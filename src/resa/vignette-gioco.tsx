@@ -67,6 +67,10 @@ export function VignettaApertura(p: { m: Missione }) {
  *  è tranquillo). Rosso C114P01: posizioni della 0.38.0. */
 const nuove = () => !spento('C114P01');
 const quieto = (v: Espressione, tranquillo: boolean) => v.braccia ?? (tranquillo ? 'conserte' as const : undefined);
+/** D-176 (quarta prova): spostamento di peso per tono, in gradi [protagonista, vice], e mano sul cinturone del protagonista
+ *  nel tono calmo, come nelle tavole approvate. Rosso C114P01: niente. */
+const PESO: Record<TonoOndata | TonoEsito, [number, number]> = { calmo: [-3, 2], teso: [1.5, -1], critico: [0, 1], bene: [0, 0], medio: [-2, 2], male: [1, -1], fallita: [2, -2] };
+const tuo = (t: TonoOndata | TonoEsito, e: Espressione) => ({ peso: PESO[t][0], ...e, ...(t === 'calmo' && !e.braccia ? { braccia: 'cinturone' as const } : {}) });
 
 export function VignettaEsito(p: { m: Missione; tono: TonoEsito; genere: 'm' | 'f' }) {
   const e = espressioneEsito(p.tono); // PO-059: anche sopracciglia e braccia
@@ -75,8 +79,8 @@ export function VignettaEsito(p: { m: Missione; tono: TonoEsito; genere: 'm' | '
       <path d="M0 132 L40 104 L70 116 L110 96 L160 112 L210 94 L260 110 L320 98 V180 H0 Z" className="v-ombra" />
       {p.tono === 'bene' && Array.from({ length: 22 }, (_, i) => <rect key={i} x={(i * 41) % 310 + 4} y={(i * 23) % 70 + 6} width="5" height="9" transform={`rotate(${(i * 47) % 180} ${(i * 41) % 310 + 6} ${(i * 23) % 70 + 10})`} className={`${['v-magenta', 'v-ciano', 'v-bianco'][i % 3]} v-tratto`} />)}
       {p.tono === 'fallita' && <path d="M40 30 Q60 10 80 30 Q100 10 120 30 Q140 50 100 50 L50 50 Q20 50 40 30 Z" className="v-nuvola v-tratto" />}
-      {nuove() ? <><Persona x={104} y={72} scala={1.15} giacca="v-ciano" capelli={p.genere === 'f' ? 'lunghi' : 'corti'} {...e.tu} distintivo />
-        <Persona x={222} y={78} s={0.95} scala={1.15} giro={-3} giacca="v-giacca-scura" capelli="berretto" {...e.vice} braccia={quieto(e.vice, p.tono === 'medio')} baffi /></>
+      {nuove() ? <><Persona x={104} y={72} scala={1.15} giacca="v-ciano" capelli={p.genere === 'f' ? 'lunghi' : 'corti'} {...tuo(p.tono, e.tu)} distintivo />
+        <Persona x={222} y={78} s={0.95} scala={1.15} giro={-3} peso={PESO[p.tono][1]} giacca="v-giacca-scura" capelli="berretto" {...e.vice} braccia={quieto(e.vice, p.tono === 'medio')} baffi /></>
         : <><Persona x={112} y={96} giacca="v-ciano" capelli={p.genere === 'f' ? 'lunghi' : 'corti'} {...e.tu} distintivo />
         <Persona x={218} y={100} s={0.92} giacca="v-giacca-scura" capelli="berretto" {...e.vice} baffi /></>}
       {p.tono === 'male' && <path d={nuove() ? 'M130 52 q4 8 0 12 q-4 -4 0 -12 Z' : 'M134 68 q4 8 0 12 q-4 -4 0 -12 Z'} className="v-acqua v-tratto" />}
@@ -92,8 +96,8 @@ export function VignettaOndata(p: { tono: TonoOndata; genere: 'm' | 'f'; fissa?:
       <rect x="0" y="118" width="320" height="62" className="v-ombra" />
       <rect x="18" y="22" width="92" height="56" className="v-nero v-tratto" /><rect x="24" y="28" width="80" height="44" className="v-ciano" />
       {p.tono !== 'calmo' && <path d={p.tono === 'critico' ? 'M30 64 L48 40 L62 56 L80 32 L98 46' : 'M30 60 L50 52 L66 56 L84 46 L98 50'} className="v-linea" />}
-      {nuove() ? <><Persona x={116} y={72} scala={1.15} giacca="v-ciano" capelli={p.genere === 'f' ? 'lunghi' : 'corti'} {...e.tu} distintivo />
-        <Persona x={236} y={78} s={0.95} scala={1.15} giro={-3} giacca="v-giacca-scura" capelli="berretto" {...e.vice} braccia={quieto(e.vice, p.tono !== 'critico')} baffi /></>
+      {nuove() ? <><Persona x={116} y={72} scala={1.15} giacca="v-ciano" capelli={p.genere === 'f' ? 'lunghi' : 'corti'} {...tuo(p.tono, e.tu)} distintivo />
+        <Persona x={236} y={78} s={0.95} scala={1.15} giro={-3} peso={PESO[p.tono][1]} giacca="v-giacca-scura" capelli="berretto" {...e.vice} braccia={quieto(e.vice, p.tono !== 'critico')} baffi /></>
         : <><Persona x={150} y={98} giacca="v-ciano" capelli={p.genere === 'f' ? 'lunghi' : 'corti'} {...e.tu} distintivo />
         <Persona x={250} y={102} s={0.92} giacca="v-giacca-scura" capelli="berretto" {...e.vice} baffi /></>}
     </Vignetta>
