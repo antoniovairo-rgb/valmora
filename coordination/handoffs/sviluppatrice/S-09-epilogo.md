@@ -63,7 +63,18 @@ docs/revisioni/PARTITA_AZ.md. `src/versione.ts` non toccato.
 
 ## Catena completa
 
-CATENA_QUI
+FATTO MISURATO (`node tools/catena.mjs completa`, attesa nel turno, uscita in /tmp senza pipe):
+- bf7adb0 (solo D-161/D-164): giro 1 VERDE (20:29 → 21:36). Giri 2-3 fermati da me: stavo modificando src per D-165,
+  quindi la build non sarebbe stata più quella; non contati.
+- **f6b677d** (D-161, D-164, D-165 parte 1, unita la principale a 221541f): **3/3 VERDE**: 21:46 → 22:53, 22:53 → 23:59,
+  23:59 → 01:04 (STABILITA in 649a3ae). Circa 66 minuti a giro, quasi tutti nel passo foto.
+- Dopo l'unione della principale (1123c81: S-08 città senza WebGL, S-02): tipi ok, `npx vitest run` 53 file / 298 prove
+  passate, `foto-epilogo` 360+1366 «verde», `foto-tavole` «verde». Catena completa su 1123c81 non ancora rifatta.
+
+CI «catene»: su bf7adb0 logica, governo e apk verdi; **grafica rossa per il rosso noto ereditato**: passo foto, «e14 o1
+centro del tocco mediatore@biglietteria sul nome Tornelli» e «pastiglie sopra i nomi … biglietteria × Tornelli» a 360
+(D-143, C27-06), lo stesso di PO-128 corretto da S-01 (f7f39e9 su claude/valmora-resa-v2). Nessun problema dei
+guardiani dell'epilogo in CI. Gli altri giri della CI sul ramo erano ancora in corso quando ho scritto.
 
 ## Non verificato
 
@@ -81,7 +92,12 @@ CATENA_QUI
 
 ## Commit
 
-COMMIT_QUI
+- bf7adb0 epilogo (D-161) e «Fine stagione» (D-164)
+- d2ab4d4 tavole di prova D-165, prima prova
+- ea23eef D-165 parte 1: fischio dell'ultimo derby
+- f6b677d unione della principale; 649a3ae STABILITA 3/3 verde su f6b677d
+- 70729b2 D-167 seconda prova delle tavole
+- 1123c81 unione della principale (S-08, S-02); giraEpilogo segue VALMORA_LARGHEZZE come foto.mjs
 
 ## D-165 (PO-130) · tavole di prova delle parti 2 e 3, per il PO
 
@@ -97,7 +113,12 @@ la pagina intera (`*-finale-intero.jpg`). Comando: `node tools/foto-tavole.mjs <
 - IPOTESI da far confermare al PO: il Fabbro «dietro il vetro» (in custodia dopo e29); la battuta di chiusura di Malvasi
   «Doppio o niente sulla prossima?» riprende quella del verbale di e01; le didascalie di busta, fascicolo e bar
   riprendono le parole dei verbali di e36 (stessi fatti), non li contraddicono.
-- Parte 1 (fischio, città che si svuota, sala che si spegne) non ancora fatta.
+- Parte 1 fatta (ea23eef): dal verbale di e36 «Epilogo» apre la scena `fischio` sulla mappa di e36: città vuota
+  (folla e cortei spenti, `Mappa.tsx` props `vuota`), settori spenti uno ogni 700 ms (`spenti`), poi la sala al buio
+  (`buio`); con la riduzione del movimento tutto spento subito; «Avanti» o Invio salta all'epilogo. Rosso
+  `__NO_C165F01` (dritti all'epilogo). Guardiano in `tools/foto-epilogo.mjs`: all'inizio meno settori spenti del totale,
+  alla fine tutti e la sala al buio, poi Invio porta all'epilogo; col rosso «manca il fischio» (misurato a 360).
+  Foto `*-e36-fischio.jpg` nel giro foto (out/foto).
 
 ### D-167 · seconda prova delle tavole («più cura sui disegni»)
 
