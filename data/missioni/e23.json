@@ -691,10 +691,6 @@
               "costo": "testi:e23.op.chiama_porto.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "casello",
                   "valore": -2
                 }

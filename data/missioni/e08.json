@@ -389,10 +389,6 @@
               "costo": "testi:e08.op.accesso_no.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "curva_cinderwick",
                   "valore": 2
                 }

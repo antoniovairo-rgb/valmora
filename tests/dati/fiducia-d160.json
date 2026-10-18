@@ -1,5 +1,5 @@
 {
-  "nota": "D-160: risposte la cui fiducia andava al contrario del risultato (misura S-04/S-05); valore = effetto su credito tolto; e29 ospiti_tranquilli/rassicura resta (D-152, fonte vera); secondo giro D-169: 10 opzioni",
+  "nota": "D-160: risposte la cui fiducia andava al contrario del risultato (misura S-04/S-05); valore = effetto su credito tolto; e29 ospiti_tranquilli/rassicura resta (D-152, fonte vera); secondo giro D-169: 10 opzioni; terzo giro D-172: 8 opzioni",
   "tolte": {
     "e01/corteo_partito/ferma": 1,
     "e01/ufficio_insiste/asseconda": 1,
@@ -165,6 +165,14 @@
     "e31/costruttore_saluta/manda_vice": -1,
     "e32/due_cortei/ferma_larkspire": -1,
     "e33/nome_talpa/rapporto_subito": 2,
-    "e33/nome_talpa/aspetta_fine": -1
+    "e33/nome_talpa/aspetta_fine": -1,
+    "e08/coreografia/accesso_no": 1,
+    "e10/novantesimo/ripartenza_calma": -2,
+    "e17/cancelli/apri_recinto": -2,
+    "e19/festa_davanti/lascia_festa": 1,
+    "e22/coniglio/club_l22": -1,
+    "e22/coniglio/lascia_l22": 1,
+    "e23/imbarco/chiama_porto": -1,
+    "e29/radio_operazione/una_squadra": -1
   }
 }
