@@ -34,6 +34,7 @@ export async function controllaTono(browser, url, dirDati, cartella, atteso, ros
         return { alta: Math.round(r.height), dentro: r.top >= 0 && r.bottom <= innerHeight + 1, nascosta: e.hasAttribute('data-nascosta') || getComputedStyle(e).display === 'none', fuoco: document.activeElement === document.querySelector('.scena') }; });
       atteso(`${dove}: vignetta del tono ${v ? `alta ${v.alta} px${v.dentro ? '' : ', fuori dalla finestra'}${v.nascosta ? ', nascosta' : ''}` : 'assente'} (deve vedersi tutta)`, !!v && v.alta > 0 && v.dentro && !v.nascosta);
       atteso(`${dove}: il fuoco non è sulla scena del tono (D-142)`, !!v?.fuoco);
+      if (!conInvio) await (await import('./foto-po119.mjs')).controllaPersone(p, atteso, dove);
       if (!conInvio) await p.screenshot({ path: join(cartella, `tono-${w}.png`) });
       if (conInvio) await p.keyboard.press('Enter');
       const dopo = await p.waitForFunction(() => document.querySelector('.scena[data-scena="rapporto"]'), null, { timeout: conInvio ? 1500 : 4000 }).then(() => true, () => false);
