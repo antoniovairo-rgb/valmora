@@ -201,3 +201,20 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
 - FATTO MISURATO: `foto-tavole` 360/375/412 uomo e donna «verde»; `foto-epilogo` 360 «verde»; tipi ok.
 - Non verificato: nelle tavole le figure sono tagliate al petto (bancone, vetro, cornice della foto), quindi delle braccia
   nuove si vedono solo spalle e attacco; le pose `cinturone`/`peso` non le uso.
+
+### C117B01 (PO: «manca un braccio all'uomo - verifica la donna») nelle tavole
+
+- La catena su 6ee5abb l'ho fermata io durante il giro 1, su richiesta della principale: non vale.
+- Le tavole non usano la posa «mano alla nuca». `Figura` (tavole-figure.tsx:39) non passa mai `braccia`, quindi tutte
+  le 6 figure sono a riposo, con due braccia. Il difetto stava però anche nella mia copia (busto.tsx di 6ee5abb, posa
+  `nuca`).
+- `src/resa/busto.tsx` ora copia `persona()` di persona2.ts di S-01 al commit 7c0357f (correzione C117B01, rosso
+  `__NO_C117B01`, attributi data-braccio/data-spalla/data-busto), più divisa/cravatta per i civili.
+- Guardiano nuovo `tests/braccia-tavole.test.ts`: tutte le pose (riposo, su, nuca, conserte, cinturone) per uomo, donna e
+  vice, più le 6 tavole renderizzate: due braccia per busto, entro 6 unità dalla spalla, disegnate dopo il busto.
+  FATTO MISURATO: verde «2 passed»; col rosso `__NO_C117B01` trova «posa nuca corti: 0 braccia sx» e «posa nuca lunghi:
+  braccio dx disegnato prima del busto».
+- Il guardiano del giro foto contava anche il nuovo `data-busto="1"` interno (al bar «corti,1,berretto,1»). Corretto il
+  selettore in tools/foto-epilogo.mjs. Dopo: verde a 360; rosso C165T01 ancora segnalato (3 problemi).
+- `npx vitest run`: 60 file, 316 prove passate. Foto delle tavole rifatte in `S-09-tavole-d176/` (360, 375, 412, m e f),
+  «verde».
