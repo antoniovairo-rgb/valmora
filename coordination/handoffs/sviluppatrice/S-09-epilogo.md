@@ -98,3 +98,19 @@ la pagina intera (`*-finale-intero.jpg`). Comando: `node tools/foto-tavole.mjs <
   «Doppio o niente sulla prossima?» riprende quella del verbale di e01; le didascalie di busta, fascicolo e bar
   riprendono le parole dei verbali di e36 (stessi fatti), non li contraddicono.
 - Parte 1 (fischio, città che si svuota, sala che si spegne) non ancora fatta.
+
+### D-167 · seconda prova delle tavole («più cura sui disegni»)
+
+Foto in `coordination/handoffs/sviluppatrice/S-09-tavole-prova-2/` (360 e 412, uomo e donna «-f-»), stesso ramo di
+storia della prima prova; comando `node tools/foto-tavole.mjs <cartella> 360,412 [f]` → «verde».
+- Tavole più grandi: 4:3 invece di 16:9 (`src/resa/tavole-figure.tsx`, cornice `Tavola`).
+- Volti puliti: figura nuova `Figura` (tavole-figure.tsx) con l'ombra del volto a tono pieno
+  (`--vignetta-pelle-ombra`), occhi con iride e luce, sopracciglia vere; il retino resta solo su vestiti e sfondi.
+  Non tocca `Persona` di vignetta.tsx (usata dal resto del gioco e ridisegnata da S-01 per PO-119).
+- Luce e ombre: coni di luce a gradiente (lampade, fari), colonne e bacheca con l'ombra; prospettiva: pavimento del
+  parlatorio, scrivania, bancone, cartolina e bacheca in scorcio; stadio con folla e fari dalla finestra (busta) e dalla
+  vetrina del bar.
+- Token nuovi in token.css: `--vignetta-sughero`, `--vignetta-legno`, `--vignetta-tramonto`, `--vignetta-vetro`.
+- Non verificato: allineamento alla seconda bozza PO-119 di S-01: non l'ho trovata su origin (ultimo PO-119 su
+  claude/valmora-resa-v2 è 3c605fb, prima bozza); chiesto alla principale. Le figure sono in un componente a parte,
+  quindi si possono sostituire con quelle di S-01 senza toccare le scene.
