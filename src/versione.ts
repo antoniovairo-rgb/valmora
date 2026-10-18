@@ -290,4 +290,17 @@
 //   (C38-06): i testi generici sono D-151, D-162 è la curva crescente fra le stagioni.
 //   guardiano: rossi C161E01, C164F01, C165F01, C165T01 (epilogo e tavole), C107A01 (annullamento), C113V01
 //   (versione), C111E01 e C112R01 (C37-03/08), guardiano fiducia a 165 voci.
-export const GAME_VERSION = '0.39.0';
+//
+// 0.40.0 – correzioni dei collaudi C-038 e C-039, fiducia terzo giro, verbale che confronta le risposte, scena del tono.
+//   causa: C38-01/C39-01 «nessuna unità a coprirlo» col mediatore schierato; C39-02 unità impegnate in un'ondata
+//   precedente non contate; C38-02/C39-04 «non deve passare il giallo: è arrivata al giallo»; C38-03/C39-05 «Cosa ti
+//   ha penalizzato» contro la misura; C38-04/C39-03 fiducia ancora contro il risultato in 6 episodi; C39-06 furgone
+//   «mai annotato»; C39-07 settore degenerato senza nome; C39-08 squadra «sul nastro» mai mandata; C33-06/07/09.
+//   misura: C38-02 72/72 → 0/72 (rosso __NO_C38G01); C38-01 rosso C115M01 2/2 → verde 2/2 («presidiato, ma il
+//   mediatore qui non basta», D-173); C39-02 e25 0 → 2 steward impegnati (rosso __NO_C116R01); C38-03 voci
+//   contraddette 366/4051 → 0/2745, tabelle precalcolate (verbale 498 ms → 0,021 ms in mediana; pacchetto +63 kB);
+//   C38-04 episodi con correlazione fiducia/fallita ≥ 0: 6 → 0, fallite del casuale identiche 36/36; protagonisti
+//   nella seconda bozza PO-119 (la quarta, approvata con D-176, arriva in un rilascio successivo).
+//   guardiano: tests/fiducia-verso.test.ts (per episodio, rosso __NO_C16001), tests/confronto.test.ts (freschezza
+//   delle tabelle), tests/c39-dati.test.ts, rossi __NO_C38B01, __NO_C39R07, C114P01, guardiano foto-po119.
+export const GAME_VERSION = '0.40.0';
