@@ -218,3 +218,13 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
   selettore in tools/foto-epilogo.mjs. Dopo: verde a 360; rosso C165T01 ancora segnalato (3 problemi).
 - `npx vitest run`: 60 file, 316 prove passate. Foto delle tavole rifatte in `S-09-tavole-d176/` (360, 375, 412, m e f),
   «verde».
+
+### PO-137 (braccia smussate, C118S01) nelle tavole
+
+- Catena completa **3/3 VERDE su 2bac5be** (C117B01): 18:03 → 19:12 → 20:20 → 21:29, STABILITA nel commit successivo.
+- `arto()` di `src/resa/busto.tsx` = quello di persona2.ts di S-01 al commit 032ff92 (cappucci arrotondati a polso e
+  spalla, un'unica curva chiusa; attributo `data-arto="1"`; rosso `__NO_C118S01`).
+- Guardiano in `tests/braccia-tavole.test.ts`: la stessa `svoltaMassima` (soglia 30°) di tests/braccia.test.ts di S-01,
+  su tutte le pose di uomo, donna e vice e sul bar. FATTO MISURATO: verde, 0 braccia con spigoli; rosso C118S01, spigoli
+  su tutte le braccia misurate.
+- Verifica secondo D-177 (PO-139): 3 giri di `node tools/catena.mjs governo && node tools/catena.mjs logica`, più la CI.

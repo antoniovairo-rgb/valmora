@@ -3,6 +3,7 @@
 // lungo il fianco). Copia di persona() di src/resa/persona2.ts di S-01 al commit 7c0357f (claude/valmora-resa-v2), senza
 // cambiare una forma: stringa SVG con soli numeri e classi «v-*», con gli attributi data-braccio/data-spalla/data-busto
 // del guardiano tests/braccia.test.ts. Rosso __NO_C117B01: come nella quarta prova (braccio staccato, l'altro assente).
+// PO-137 (C118S01): arto() smussato come in persona2.ts di S-01 al commit 032ff92 (polso e spalla arrotondati); rosso __NO_C118S01.
 // Aggiunte per le tavole: «divisa» (spalline, taschini, cinturone) e «cravatta» si spengono per i civili (Fabbro, testimone,
 // Lavezzari).
 export interface BustoProps {
@@ -26,9 +27,22 @@ function mano(x: number, y: number, r = 0, k = 1) {
 function arto(P: P2[], W: number[], cls: string, braccio?: 'sx' | 'dx', dietro = false) {
   const lato = (s: number): P2[] => P.map((p, i) => { const a = P[Math.max(0, i - 1)]!, b = P[Math.min(P.length - 1, i + 1)]!, n = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
     return [p[0] - s * (b[1] - a[1]) / n * W[i]! / 2, p[1] + s * (b[0] - a[0]) / n * W[i]! / 2]; });
-  const A = lato(1), B = lato(-1).reverse(), a0 = A[0]!, b0 = B[0]!, q = (pts: P2[]) => pts.slice(1).map((p, i) => (i === pts.length - 2 ? `L${f(p[0])} ${f(p[1])}` : `Q${f(p[0])} ${f(p[1])} ${f((p[0] + pts[i + 2]![0]) / 2)} ${f((p[1] + pts[i + 2]![1]) / 2)}`)).join(' ');
-  const d = `M${f(a0[0])} ${f(a0[1])} ${q(A)} L${f(b0[0])} ${f(b0[1])} ${q(B)} Z`, p0 = P[0]!;
-  return braccio ? `<path d="${d}" class="${cls}" data-braccio="${braccio}" data-spalla="${f(p0[0])} ${f(p0[1])}"${dietro ? ' data-dietro="1"' : ''}/>` : path(d, cls);
+  const A = lato(1), B = lato(-1).reverse(), a0 = A[0]!, b0 = B[0]!, p0 = P[0]!;
+  let d: string;
+  if (spento('C118S01')) {
+    const q = (pts: P2[]) => pts.slice(1).map((p, i) => (i === pts.length - 2 ? `L${f(p[0])} ${f(p[1])}` : `Q${f(p[0])} ${f(p[1])} ${f((p[0] + pts[i + 2]![0]) / 2)} ${f((p[1] + pts[i + 2]![1]) / 2)}`)).join(' ');
+    d = `M${f(a0[0])} ${f(a0[1])} ${q(A)} L${f(b0[0])} ${f(b0[1])} ${q(B)} Z`;
+  } else {
+    // PO-137 (C118S01): il contorno aveva quattro spigoli, ai due lati del polso (taglio dritto) e della spalla (chiusura
+    // dritta). Ora il polso e la spalla hanno un cappuccio arrotondato e il contorno è un'unica curva chiusa, raccordata in
+    // ogni punto (quadratiche fra i punti medi): gomiti e spalle senza vertici. Rosso C118S01: il contorno di prima.
+    const cappuccio = (p: P2, verso: P2, w: number): P2 => { const n = Math.hypot(verso[0], verso[1]) || 1; return [p[0] + verso[0] / n * w / 2, p[1] + verso[1] / n * w / 2]; };
+    const u = P[P.length - 1]!, v = P[P.length - 2]!, s1 = P[1]!;
+    const giro: P2[] = [...A, cappuccio(u, [u[0] - v[0], u[1] - v[1]], W[W.length - 1]!), ...B, cappuccio(p0, [p0[0] - s1[0], p0[1] - s1[1]], W[0]!)];
+    const m = (x: P2, y: P2) => `${f((x[0] + y[0]) / 2)} ${f((x[1] + y[1]) / 2)}`;
+    d = `M${m(giro[giro.length - 1]!, giro[0]!)} ${giro.map((x, i) => `Q${f(x[0])} ${f(x[1])} ${m(x, giro[(i + 1) % giro.length]!)}`).join(' ')} Z`;
+  }
+  return `<path d="${d}" class="${cls}" data-arto="1"${braccio ? ` data-braccio="${braccio}" data-spalla="${f(p0[0])} ${f(p0[1])}"${dietro ? ' data-dietro="1"' : ''}` : ''}/>`;
 }
 /** Polsino al polso e mano in asse con l'avambraccio (dita nella direzione gomito → polso). */
 function polso(e: P2, w: P2, k: number, _giacca: string, larg: number) {
