@@ -4,6 +4,7 @@ import { readFileSync, existsSync, writeFileSync } from 'node:fs';
 import { controllaToken, controllaGiro, controllaEmail } from './controlli-grafica.mjs';
 import { readdirSync } from 'node:fs';
 import { giraFoto } from './foto.mjs';
+import { giraEpilogo } from './foto-epilogo.mjs';
 import { giraOffline } from './offline.mjs';
 import { controllaCittaSenzaWebgl } from './foto-c128.mjs';
 
@@ -17,7 +18,8 @@ export const PASSI_GRAFICA = {
   foto: async () => {
     const giri = await giraFoto('out/foto'), stati = giri.flatMap((g) => g.citta);
     writeFileSync('out/foto/citta-stati.json', JSON.stringify(stati));
-    return [...giri.flatMap(controllaGiro), ...(await controllaCittaSenzaWebgl(stati))];
+    // D-161, D-164, D-165: epilogo, «Fine stagione» e fischio (tools/foto-epilogo.mjs)
+    return [...giri.flatMap(controllaGiro), ...(await controllaCittaSenzaWebgl(stati)), ...(await giraEpilogo('out/foto')).flatMap(controllaGiro)];
   },
   // S-22 (C14-01): il gioco installato funziona offline (service worker), su http://localhost
   offline: () => giraOffline('dist'),
@@ -27,6 +29,11 @@ export const PASSI_GRAFICA = {
     for (const r of ['C14O01', 'C14O02', 'C14O03', 'C28W01']) {
       process.env.VALMORA_ROSSI = r;
       try { if (!(await giraOffline('dist')).length) ciechi.push(`offline/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
+    }
+    // D-161, D-164, D-165: senza epilogo, senza «Fine stagione» o senza fischio o senza tavole il giro deve diventare rosso (una larghezza basta)
+    for (const r of ['C161E01', 'C164F01', 'C165F01', 'C165T01']) {
+      process.env.VALMORA_ROSSI = r;
+      try { if (!(await giraEpilogo('out/foto-rossi', 'dist', [360])).flatMap(controllaGiro).length) ciechi.push(`epilogo/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }
     // C128-01: col rosso C128N01 (nessun ricalcolo a ingresso finito) il nome della città deve uscire dal bordo
     const stati = existsSync('out/foto/citta-stati.json') ? JSON.parse(readFileSync('out/foto/citta-stati.json', 'utf8')) : [];

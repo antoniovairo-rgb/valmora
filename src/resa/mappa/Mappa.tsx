@@ -45,6 +45,8 @@ export interface MappaProps {
   /** schieramento: tocco su un settore, e tocco su un'unità già schierata per ritirarla */
   onSettore?: (settore: string) => void;
   onTogli?: (risorsa: string, settore: string) => void;
+  /** D-165 (fischio dell'ultimo derby): settori già spenti, città vuota (niente folla né cortei), sala al buio */
+  spenti?: string[]; vuota?: boolean; buio?: boolean;
 }
 
 /** Posizione del settore in percentuale, passata al CSS come variabili (niente stili in linea). */
@@ -79,7 +81,7 @@ export function Mappa(p: MappaProps) {
 
   // Atmosfera dai dati (campi facoltativi mappa.ora e mappa.dettagli, e03 «Notte di coppa»).
   const extra = p.m.mappa as { ora?: string; dettagli?: string[] };
-  const folla = useMemo(() => follaDellOndata(p.m, p.ondata ?? 1), [p.m, p.ondata]);
+  const folla = useMemo(() => (p.vuota ? { spalti: 'vuoti' as const, cortei: [] } : follaDellOndata(p.m, p.ondata ?? 1)), [p.m, p.ondata, p.vuota]);
   const atmosfera = useMemo(() => ({ notte: extra.ora === 'notte', cartelloni: !!extra.dettagli?.some((x) => x.split('@')[0] === 'cartelloni_stadio_nuovo'), dettagli: extra.dettagli ?? [] }), [extra.ora, extra.dettagli]);
 
   // Nomi e unità al posto che non copre niente (C-008): a ogni disegno, quando la mappa cambia misura e
@@ -95,7 +97,7 @@ export function Mappa(p: MappaProps) {
   }, []);
 
   return (
-    <div className={`mappa${atmosfera.notte ? ' notte' : ''}`} ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
+    <div className={`mappa${atmosfera.notte ? ' notte' : ''}${p.buio ? ' buio' : ''}`} ref={contenitore} data-vuota={p.vuota ? 'si' : undefined} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa tattica">
       {p.home && <TastoHome vai={p.home} angolo={angolo} />}
       {/* C20-07: segni di una chiamata senza settore (squadre dalla centrale), al centro in basso della mappa */}
       {(p.segni ?? []).some((x) => !x.settore) && (
@@ -114,7 +116,7 @@ export function Mappa(p: MappaProps) {
         const nome = t(`settore.${s.id}`);
         return (
           <div key={s.id} ref={posiziona(s.pos.x, s.pos.y)} data-settore={s.id}
-            className={`settore lato-${lato}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}${p.vietati?.includes(s.id) ? ' vietato' : ''}`} data-vietato={p.vietati?.includes(s.id) ? 'si' : undefined}>
+            className={`settore lato-${lato}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}${p.vietati?.includes(s.id) ? ' vietato' : ''}${p.spenti?.includes(s.id) ? ' spento' : ''}`} data-vietato={p.vietati?.includes(s.id) ? 'si' : undefined}>
             <button type="button" className="settore-punto" disabled={!p.onSettore} onClick={() => p.onSettore?.(s.id)}
               aria-label={`${nome}${liv !== null ? `, situazione ${PAROLE[liv]}` : ''}${qui.length ? `, ${qui.map(([r, n]) => quante(n, r)).join(', ')}` : ''}`} />
             <span className="settore-nome" aria-hidden="true">{nome}</span>

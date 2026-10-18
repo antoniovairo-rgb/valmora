@@ -1,5 +1,5 @@
 {
-  "nota": "D-160: risposte la cui fiducia andava al contrario del risultato (misura S-04/S-05); valore = effetto su credito tolto; e29 ospiti_tranquilli/rassicura resta (D-152, fonte vera)",
+  "nota": "D-160: risposte la cui fiducia andava al contrario del risultato (misura S-04/S-05); valore = effetto su credito tolto; e29 ospiti_tranquilli/rassicura resta (D-152, fonte vera); secondo giro D-169: 10 opzioni",
   "tolte": {
     "e01/corteo_partito/ferma": 1,
     "e01/ufficio_insiste/asseconda": 1,
@@ -155,6 +155,16 @@
     "e36/conti_comando/comando_frase_neutra": 1,
     "e36/cantiere_notte/muri_liberi": 1,
     "e36/ritorno_collina/lascia_insieme": 1,
-    "e36/busta/ultimo_giro": -1
+    "e36/busta/ultimo_giro": -1,
+    "e20/vederli_passare/incrocio20": 1,
+    "e20/fumo_arancio/pausa20": -2,
+    "e20/sparito/cerca_tutti": 1,
+    "e20/sparito/prima_derby": -2,
+    "e30/sotto_il_municipio/niente_sanzioni": -1,
+    "e35/treno_notte/ferrovie_avvisa": -1,
+    "e31/costruttore_saluta/manda_vice": -1,
+    "e32/due_cortei/ferma_larkspire": -1,
+    "e33/nome_talpa/rapporto_subito": 2,
+    "e33/nome_talpa/aspetta_fine": -1
   }
 }

@@ -230,6 +230,9 @@ main:not(.rosso-c40c02) .bilancio-scoperti { border-left-color: var(--tensione-5
 .fonti-verbale { margin: 0; padding: var(--spazio-3); list-style: none; display: grid; gap: var(--spazio-3); }
 .fonti-verbale .tenue { margin: var(--spazio-1) 0 0; }
 .fonti-verbale .riga { flex-wrap: nowrap; align-items: flex-start; }
+/* D-161, D-164: fili di storia nell'epilogo e nel passo «Fine stagione», come le fonti del verbale */
+.fili { margin: 0; padding: var(--spazio-3); list-style: none; display: grid; gap: var(--spazio-3); }
+.fili .tenue { margin: var(--spazio-1) 0 0; }
 
 /* Episodi abbozzati (D-087, S-09): segno discreto */
 .episodio.bozza .settore-punto { border-style: dashed; }

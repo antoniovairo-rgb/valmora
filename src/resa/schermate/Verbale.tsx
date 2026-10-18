@@ -1,9 +1,10 @@
 // Verbale: esito e stelle (D-060), fonti vere e false (D-024), le scelte fatte durante le chiamate.
 // Sotto l'esito il bilancio (D-085, PO-036). Esito «fallita» (D-059): l'episodio non è superato e il verbale porta a «Riparti dall'ondata N» (S-17) o «Ricomincia l'episodio».
-import { ChevronRight, Map as IconaMappa, RotateCcw, Share2, StepForward } from 'lucide-react';
+import { BookOpen, ChevronRight, Map as IconaMappa, RotateCcw, Share2, StepForward } from 'lucide-react';
 import { condividi } from '../collegamenti.ts';
 import { Fragment, useState } from 'react';
 import type { Risultato } from '../../logica/episodi.ts';
+import type { FineStagione } from '../../logica/epilogo.ts';
 import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
 import { t, genereAttuale } from '../dati.ts';
@@ -12,12 +13,15 @@ import { spento } from '../../interruttori.ts';
 import { tono } from '../partita.ts';
 import { sezioniBilancio } from './Bilancio.tsx';
 import { Passi } from './Passi.tsx';
+import { PassoFineStagione } from './Epilogo.tsx';
 import { Stelle } from '../stelle.tsx';
 import { VignettaEsito } from '../vignette-gioco.tsx';
 import { Sfida } from '../stemma.tsx';
 import { due, Testata } from './Fumetto.tsx';
 
-export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void; prossimo?: () => void; riparti?: { n: number; vai: () => void } | null; home?: () => void }) {
+export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risultato; migliore: boolean; rigioca: () => void; citta: () => void; prossimo?: () => void; riparti?: { n: number; vai: () => void } | null; home?: () => void;
+  /** D-164: riepilogo della stagione appena chiusa (ultimo episodio di e12, e24); D-161: apre l'epilogo dopo l'ultimo episodio */
+  fineStagione?: FineStagione | null; epilogo?: () => void }) {
   const [passo, setPasso] = useState(0);
   const [condivisione, setCondivisione] = useState<string | null>(null);
   // PO-074: testo + link al gioco, dal pannello del telefono o copiato negli appunti
@@ -71,7 +75,16 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
   // PO-072: a fine verbale si capisce come andare avanti — «Prossimo episodio» in evidenza, la mappa sotto, piccola,
   // con la riga che dice a cosa serve. Rosso C18V01: solo «Alla mappa della città» (difetto originale).
   const mappa = <button className={`pulsante${p.risultato.fallita ? ' secondario' : ''}`} data-azione="citta" onClick={p.citta}><Icona di={IconaMappa} />Alla mappa della città</button>;
-  const fine = spento('C18V01') || !p.prossimo || p.risultato.fallita ? mappa : (
+  // D-161: dopo l'ultimo episodio superato, «Epilogo» in evidenza e la mappa piccola accanto. Rosso C161E01: solo la mappa.
+  const epilogo = p.epilogo && !p.risultato.fallita && !spento('C161E01') ? (
+    <div className="verbale-fine">
+      <div className="verbale-riga">
+        <button className="pulsante secondario icona" data-azione="citta" aria-label="Mappa della città" title="Mappa della città" onClick={p.citta}><Icona di={IconaMappa} /></button>
+        <button className="pulsante" data-azione="epilogo" onClick={p.epilogo}><Icona di={BookOpen} />Epilogo</button>
+      </div>
+    </div>
+  ) : null;
+  const fine = epilogo ?? (spento('C18V01') || !p.prossimo || p.risultato.fallita ? mappa : (
     <div className="verbale-fine">
       <div className="verbale-riga">
         <button className="pulsante secondario icona" data-azione="citta" aria-label="Mappa della città" title="Mappa della città" onClick={p.citta}><Icona di={IconaMappa} /></button>
@@ -79,11 +92,13 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
       </div>
       <p className="tenue" data-spiega="mappa">Mappa: rigioca gli episodi passati.</p>
     </div>
-  );
+  ));
+  // D-164: ultimo passo «Fine stagione N» (stelle, fili aperti), poi «Prossimo episodio» apre la stagione nuova. Rosso C164F01: niente.
+  const stagione = p.fineStagione && !p.risultato.fallita && !spento('C164F01') ? [<PassoFineStagione key="fine-stagione" f={p.fineStagione} />] : [];
   return (
     <>
       <Testata numero={due(p.m.episodio)} etichetta="Verbale" titolo={<span className={tono(p.m, p.esito.esito)} data-esito={p.esito.esito.id}>{t(`esito.${p.esito.esito.id}`)}</span>} home={p.home} />
-      <Passi nome="Verbale" compatto={fine !== mappa} passo={passo} vai={setPasso} passi={[esito, ...bilancio, fonti]}
+      <Passi nome="Verbale" compatto={fine !== mappa} passo={passo} vai={setPasso} passi={[esito, ...bilancio, fonti, ...stagione]}
         fine={fine} />
     </>
   );

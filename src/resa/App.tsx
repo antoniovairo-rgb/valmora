@@ -32,6 +32,10 @@ import { Scena } from './schermate/Scena.tsx';
 import { Schieramento, usate } from './schermate/Schieramento.tsx';
 import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
+import { Epilogo } from './schermate/Epilogo.tsx';
+import { Fischio } from './schermate/Fischio.tsx';
+import { chiudeStagione, epilogo, fineStagione, ultimoEpisodio } from '../logica/epilogo.ts';
+import { superato } from '../logica/episodi.ts';
 import { ondataVincibile } from '../logica/ripartenza.ts';
 import { sospendi, valida, type InSospeso } from '../logica/sospesa.ts';
 import { valutaEpisodio } from '../logica/episodi.ts';
@@ -41,7 +45,7 @@ import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
 import { useIndietroApp } from './indietro.ts';
 
-type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
+type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale' | 'fischio' | 'epilogo';
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
@@ -70,7 +74,8 @@ export function App() {
   const annulla = () => { if (!storia.length || spento('C17C02')) return; setBozza(storia.at(-1)!); salvaBozza(storia.at(-1)!); setStoria(storia.slice(0, -1)); setAvviso(null); };
   const [scelta, setScelta] = useState<string | null>(null);
   const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione; r: Risultato; migliore: boolean; ic: InCorso } | null>(null);
-  const [scelto, setScelto] = useState<string | null>(null); // episodio scelto sulla mappa della città
+  const [scelto, setScelto] = useState<string | null>(null);
+  const [spenti, setSpenti] = useState(0); // D-165: settori spenti dal fischio dell'ultimo derby // episodio scelto sulla mappa della città
   // PO-083: l'ondata da cui ripartire si calcola una volta a fine episodio (fino a ~0,7 s misurati su computer), non a ogni disegno
   const nRiparti = useMemo(() => (esito?.r.fallita ? ondataVincibile(esito.m, esito.e, esito.ic, dichiarate) : 1), [esito]);
   const [tonoVisto, setTonoVisto] = useState<string | null>(null); // C33-06: la scena del tono già vista per «episodio-ondata»
@@ -165,9 +170,23 @@ export function App() {
   else if (schermata === 'verbale' && esito && sal) {
     corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
       rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} home={home} riparti={ripartenza(esito)}
-      prossimo={prossimoEpisodio(sal) ? () => giocaEpisodio(prossimoEpisodio(sal)!.id) : undefined} />;
+      prossimo={prossimoEpisodio(sal) ? () => giocaEpisodio(prossimoEpisodio(sal)!.id) : undefined}
+      fineStagione={!esito.r.fallita && chiudeStagione(missioni, esito.m) ? fineStagione(missioni, sal.episodi, sal.variabili, dichiarate.values(), esito.m.stagione) : null}
+      epilogo={ultimoEpisodio(missioni)?.id === esito.m.id ? () => { setSpenti(0); setScelto(esito.m.id); setSchermata(spento('C165F01') ? 'epilogo' : 'fischio'); } : undefined} />;
+  } else if (schermata === 'epilogo' && sal && !ic) {
+    // D-161: epilogo della campagna; si torna alla città (e dalla città si rilegge, finché l'ultimo episodio è superato)
+    corpo = <Epilogo e={epilogo(missioni, sal.episodi, sal.variabili, dichiarate.values())} citta={() => alla_citta(sal)} home={home}
+      genere={sal.genere} fiducia={Number(sal.variabili.credito ?? 0)} fiduciaMax={Number(dichiarate.get('credito')?.max ?? 10)} />;
+  } else if (schermata === 'fischio' && sal && !ic && m) {
+    // D-165 parte 1: fischio dell'ultimo derby sulla mappa dell'episodio, poi l'epilogo
+    const n = m.mappa.settori.length;
+    mappa = { spenti: m.mappa.settori.slice(0, spenti).map((x) => x.id), vuota: true, buio: spenti > n };
+    testata = { etichetta: t('finale.fischio.etichetta'), titolo: t('finale.fischio.titolo') };
+    corpo = <Fischio settori={n} spenti={spenti} spegni={(k) => setSpenti((x) => Math.min(n + 1, k < 0 ? x + 1 : k))} avanti={() => setSchermata('epilogo')} />;
   } else if (schermata === 'citta' && sal && !ic) {
-    corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} home={home} />;
+    const fine = ultimoEpisodio(missioni);
+    corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} home={home}
+      epilogo={fine && superato(sal.episodi, fine.id) && !spento('C161E01') ? () => setSchermata('epilogo') : undefined} />;
   }
   else if (schermata === 'titolo' || !sal || !m) { nome = 'titolo'; corpo = titolo; }
   else if (schermata === 'sala') {
