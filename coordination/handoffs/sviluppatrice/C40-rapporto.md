@@ -1,6 +1,6 @@
 # C40-03, C40-04 (D-180, collaudo C-040) · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: COMMIT_C40. Base: merge della principale 748aa8dd.
+Ramo `claude/valmora-resa-v2`. Commit: 44079ae. Base: merge della principale 748aa8dd.
 
 ## Riproduzione (prima di correggere)
 
