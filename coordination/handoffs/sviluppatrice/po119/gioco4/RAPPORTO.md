@@ -1,6 +1,6 @@
 # PO-119 / D-176 (PO-133, PO-135) – la quarta prova approvata nel gioco · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: COMMIT_G4.
+Ramo `claude/valmora-resa-v2`. Commit: 91d6826.
 
 ## Cosa cambia
 
