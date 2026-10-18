@@ -2,7 +2,8 @@
 // Si parte dal salvataggio vero della partita A-Z (tests/salvataggi-reali/v2-0.38.0-fine-campagna.json): registro fino
 // all'episodio prima, variabili di partenza dell'episodio dal registro (D-062), episodio giocato fino all'ultimo rapporto
 // dal motore (pianoAttento di foto.mjs) e messo in «in_corso». Poi «Riprendi» → rapporto → verbale, come un giocatore.
-// Rossi: VALMORA_ROSSI=C161E01 (dopo e36 solo la mappa), C164F01 (nessun passo «Fine stagione»), C165F01 (niente fischio).
+// Rossi: VALMORA_ROSSI=C161E01 (dopo e36 solo la mappa), C164F01 (nessun passo «Fine stagione»), C165F01 (niente fischio),
+// C165T01 (epilogo a schede invece delle tavole).
 // Uso a mano: node tools/foto-epilogo.mjs <cartella-foto> [larghezze]   (build già fatta in dist/)
 import { createServer } from 'node:http';
 import { readFileSync, existsSync, mkdirSync } from 'node:fs';
@@ -116,11 +117,16 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
           }
           await pagina.emulateMedia({ reducedMotion: 'reduce' });
           await scena('epilogo');
-          const r = await pagina.evaluate(() => ({ carriera: document.querySelector('[data-carriera]')?.dataset.carriera, scelte: [...document.querySelectorAll('[data-fili="scelte"] [data-filo]')].map((x) => x.dataset.filo).join(','),
-            stagioni: document.querySelectorAll('[data-stelle-stagione]').length, fuoco: !!document.activeElement?.closest('.scena') }));
-          atteso(`e36 epilogo: carriera «${r.carriera}» (serve confermato, prorogato o sostituito)`, ['confermato', 'prorogato', 'sostituito'].includes(r.carriera));
-          atteso(`e36 epilogo: scelte «${r.scelte}»`, r.scelte === 'rapporto_dessi,testimone,busta,pista_cattura,fascicolo,sospetti_talpa');
-          atteso(`e36 epilogo: ${r.stagioni} righe di stelle (3 stagioni + totale)`, r.stagioni === 4);
+          // D-165/D-171: tavole grandi, una per filo coi valori della partita, poi il bar con protagonista e Malvasi (busti PO-119)
+          const v = stati.e36.salvataggio.variabili, genere = stati.e36.salvataggio.genere;
+          const r = await pagina.evaluate(() => ({
+            tavole: [...document.querySelectorAll('.scena [data-tavola]')].map((x) => `${x.dataset.tavola}=${x.dataset.valore ?? x.dataset.carriera}`),
+            busti: [...document.querySelectorAll('[data-tavola="bar"] [data-busto]')].map((x) => x.dataset.busto).join(','),
+            numeri: document.querySelectorAll('[data-tavola="bar"] [data-numeri] .etichetta').length, fuoco: !!document.activeElement?.closest('.scena') }));
+          const attese = [`fabbro=${v.rapporto_dessi}`, `testimone=${v.testimone}`, `busta=${v.busta}`, `talpa=${v.sospetti_talpa}`, `fascicolo=${v.fascicolo}`];
+          atteso(`e36 epilogo: tavole «${r.tavole.join(', ')}» invece di «${attese.join(', ')}, bar» (D-165, D-171)`, r.tavole.slice(0, 5).join() === attese.join() && /^bar=(confermato|prorogato|sostituito)$/.test(r.tavole[5] ?? ''));
+          atteso(`e36 epilogo: al bar i busti «${r.busti}» (servono protagonista ${genere === 'f' ? 'lunghi' : 'corti'} e Malvasi berretto)`, r.busti === `${genere === 'f' ? 'lunghi' : 'corti'},berretto`);
+          atteso(`e36 epilogo: ${r.numeri} numeri della carriera (stelle, episodi, fiducia)`, r.numeri === 3);
           atteso('e36 epilogo: il fuoco non è sulla scena (D-142)', r.fuoco);
           await misure('e36 epilogo'); await foto('e36-epilogo');
           // da tastiera: Tab fino ad «Alla mappa della città», Invio → città

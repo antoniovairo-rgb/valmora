@@ -113,3 +113,4 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .vignetta .v-folla-2 { fill: var(--mappa-folla-2); }
 .vignetta .v-folla-3 { fill: var(--mappa-folla-3); }
 .vignetta .v-scritta-timbro { fill: var(--magenta); }
+.vignetta .v-linea.v-fine { stroke-width: var(--vignetta-tratto-fine); }

@@ -135,3 +135,24 @@ storia della prima prova; comando `node tools/foto-tavole.mjs <cartella> 360,412
 - Non verificato: allineamento alla seconda bozza PO-119 di S-01: non l'ho trovata su origin (ultimo PO-119 su
   claude/valmora-resa-v2 è 3c605fb, prima bozza); chiesto alla principale. Le figure sono in un componente a parte,
   quindi si possono sostituire con quelle di S-01 senza toccare le scene.
+
+## D-171 · le tavole entrano nel gioco, volti dalla seconda bozza PO-119
+
+Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, merge).
+- Volti: `src/resa/busto.tsx` = `persona()` di `bozza-persona-2.mjs` di S-01 (0ec4262) passata da stringa SVG a JSX,
+  stessi tracciati; aggiunte `divisa` e `cravatta` spegnibili per i civili (Fabbro, testimone, Lavezzari).
+  `Figura` delle tavole (`tavole-figure.tsx`) ora disegna il `Busto`, alla misura delle scene. Token nuovo
+  `--vignetta-tratto-fine` (1,1) e classe `.v-linea.v-fine`, come chiedeva il LEGGIMI della bozza.
+  `Persona` di vignetta.tsx (resto del gioco) non è toccata.
+- Nel gioco: tolto `__PROVA_D165`; dopo il fischio l'epilogo è a tavole (5 fili + bar). Rosso `__NO_C165T01`: l'epilogo a
+  schede di D-161, come prima.
+- Guardiano (`tools/foto-epilogo.mjs`, nel passo foto e nei bracci rossi): tavole nell'ordine fabbro, testimone, busta,
+  talpa, fascicolo coi valori del salvataggio, poi il bar con carriera valida; al bar due busti (protagonista del genere
+  della partita + Malvasi col berretto); 3 numeri della carriera.
+  FATTO MISURATO: verde a 360/375/412 («verde»); rosso `VALMORA_ROSSI=C165T01` → 3 problemi per larghezza («tavole «» invece
+  di «fabbro=rispetto, …»», «al bar i busti «»», «0 numeri della carriera»).
+- Foto: prima/dopo dell'epilogo in `coordination/handoffs/sviluppatrice/S-09-foto-d171/{prima,dopo}/` (360, 375, 412);
+  tavole una per una, uomo e donna, in `coordination/handoffs/sviluppatrice/S-09-tavole-gioco/` (360, 375, 412).
+- Test: `npx vitest run` 54 file / 301 prove passate; controllo dei token su src/resa: nessun problema.
+- Non verificato: i busti di S-01 sono una bozza «a busto» approvata solo per le tavole; se S-01 cambia ancora i tracciati,
+  `busto.tsx` va riallineato a mano (copia, non import). Le mani e le pose (braccia) non sono usate nelle tavole.

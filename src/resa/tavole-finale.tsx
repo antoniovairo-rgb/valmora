@@ -1,13 +1,14 @@
 // Finale in tre tempi (D-165), parti 2 e 3: tavole grandi (4:3), una per filo della partita, poi il bar con Malvasi.
 // Seconda prova (D-167, «più cura sui disegni»): prospettiva, luce e ombre, stadio e folla sullo sfondo, volti puliti
 // (tavole-figure.tsx). Violenza fuori campo: il Fabbro è già dietro il vetro, il testimone è già al sicuro o lontano.
-// PROVA (PO-130): finché il PO non approva le tavole si vedono solo con globalThis.__PROVA_D165 (tools/foto-tavole.mjs).
+// Approvate dal PO (D-171): sono l'epilogo. Rosso __NO_C165T01: l'epilogo a schede di D-161, come prima delle tavole.
 import type { ReactNode } from 'react';
+import { spento } from '../interruttori.ts';
 import type { Valore } from '../logica/tipi.ts';
 import { t } from './dati.ts';
 import { A, Figura, Folla, L, Retino, Tavola } from './tavole-figure.tsx';
 
-export const provaTavole = () => Boolean((globalThis as Record<string, unknown>).__PROVA_D165);
+export const conTavole = () => !spento('C165T01');
 type Genere = 'm' | 'f';
 
 /** I fili delle tavole: la variabile che decide la didascalia (data/stato.json) e il nome della tavola nei testi. */
@@ -45,7 +46,7 @@ function Fabbro(p: { v: Valore }) {
       <Retino d={`M0 0 H${L} V40 H0 Z`} />
       <path d="M160 0 V18 M140 18 H180 L172 28 H148 Z" className="v-nero v-tratto" />
       <path d="M148 28 L60 170 H260 L172 28 Z" fill="url(#t-luce)" />
-      <Figura x={160} y={104} s={1.15} giacca="v-nero" capelli="rasati" baffi {...umore} />
+      <Figura x={160} y={104} s={1.15} giacca="v-nero" capelli="rasati" baffi civile {...umore} />
       <rect x="40" y="30" width="240" height="146" className="v-vetro" />
       <path d="M70 40 L110 40 L60 120 L40 120 Z M230 40 L250 40 L200 130 L190 130 Z" className="v-riflesso" />
       <rect x="40" y="30" width="240" height="146" className="v-telaio" />
@@ -82,7 +83,7 @@ function Testimone(p: { v: Valore }) {
       <rect x="0" y="154" width={L} height="86" className="v-cemento v-tratto" />
       {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M0 ${160 + i * 16} H${L}`} className="v-linea" />)}
       {p.v === 'protetto'
-        ? <><Figura x={128} y={150} s={0.9} giacca="v-bianco" capelli="corti" bocca="dritta" ciglia="su" /><Figura x={214} y={156} s={0.86} giacca="v-ciano" capelli="berretto" bocca="dritta" distintivo /></>
+        ? <><Figura x={128} y={150} s={0.9} giacca="v-bianco" capelli="corti" bocca="dritta" ciglia="su" civile /><Figura x={214} y={156} s={0.86} giacca="v-ciano" capelli="berretto" bocca="dritta" distintivo /></>
         : <path d="M90 170 h140 v12 h-140 Z" className="v-giacca-scura v-tratto" />}
     </>
   );
@@ -120,7 +121,7 @@ function Talpa(p: { v: Valore }) {
       <path d="M14 14 L306 6 L300 230 L20 222 Z" className="v-sughero v-tratto" />
       <Retino d="M230 8 L306 6 L300 230 L246 228 Z" />
       <rect x="112" y="44" width="96" height="124" className="v-bianco v-tratto" />
-      <svg x="116" y="48" width="88" height="116" viewBox="-60 -60 120 160"><rect x="-60" y="-60" width="120" height="160" className="v-cemento" /><Figura x={0} y={0} giacca="v-ciano" capelli="corti" bocca="dritta" cravatta /></svg>
+      <svg x="116" y="48" width="88" height="116" viewBox="-60 -60 120 160"><rect x="-60" y="-60" width="120" height="160" className="v-cemento" /><Figura x={0} y={0} giacca="v-ciano" capelli="corti" bocca="dritta" cravatta civile /></svg>
       {foto.map(([x, y], i) => <g key={i}>
         <rect x={x - 28} y={y - 18} width="56" height="36" className="v-bianco v-tratto" transform={`rotate(${(i % 2 ? 4 : -5)} ${x} ${y})`} />
         <path d={`M${x - 18} ${y - 4} h36 M${x - 18} ${y + 6} h26`} className="v-linea-fine" />
@@ -193,14 +194,14 @@ export function TavolaBar(p: { genere: Genere; carriera: string | null; numeri: 
         <rect x="14" y="14" width="292" height="104" className="v-notte v-tratto" />
         <svg x="16" y="16" width="288" height="100" viewBox="0 0 320 112" preserveAspectRatio="xMidYMax slice"><Stadio y={70} folla /></svg>
         <path d="M14 66 H306 M160 14 V118" className="v-telaio" />
-        <Figura x={100} y={114} s={1.05} giacca="v-ciano" capelli={p.genere === 'f' ? 'lunghi' : 'corti'} bocca={p.carriera === 'sostituito' ? 'dritta' : 'sorriso'} distintivo />
-        <Figura x={228} y={118} s={1} giacca="v-giacca-scura" capelli="berretto" bocca="sorriso" ciglia="su" baffi rughe cravatta />
+        <Figura x={100} y={96} s={1.05} giacca="v-ciano" capelli={p.genere === 'f' ? 'lunghi' : 'corti'} bocca={p.carriera === 'sostituito' ? 'dritta' : 'sorriso'} distintivo />
+        <Figura x={232} y={102} s={1} giacca="v-giacca-scura" capelli="berretto" bocca="sorriso" ciglia="su" baffi rughe cravatta />
         {/* bancone in prospettiva, due tazzine */}
         <path d="M0 194 L320 186 L320 240 L0 240 Z" className="v-legno v-tratto" />
         <path d="M0 194 L320 186 L320 192 L0 200 Z" className="v-luce" />
         <path d="M140 188 v-12 h16 v12 Z M176 187 v-12 h16 v12 Z" className="v-bianco v-tratto" />
-        <path d="M150 8 h150 a8 8 0 0 1 8 8 v28 a8 8 0 0 1 -8 8 h-50 l-14 12 l2 -12 h-86 a8 8 0 0 1 -8 -8 v-28 a8 8 0 0 1 8 -8 Z" className="v-bianco v-tratto" />
-        <text x="226" y="27" className="v-scritta">{righe[0]}</text><text x="226" y="44" className="v-scritta">{righe[1]}</text>
+        <path d="M150 6 h150 a8 8 0 0 1 8 8 v20 a8 8 0 0 1 -8 8 h-40 l-14 10 l2 -10 h-96 a8 8 0 0 1 -8 -8 v-20 a8 8 0 0 1 8 -8 Z" className="v-bianco v-tratto" />
+        <text x="226" y="22" className="v-scritta">{righe[0]}</text><text x="226" y="37" className="v-scritta">{righe[1]}</text>
         <text x="160" y="228" className="v-scritta v-fine">{t('finale.fine').toUpperCase()}</text>
       </Tavola>
       <figcaption className="didascalia"><strong>{t('finale.bar')}</strong> {t(`finale.bar.${p.carriera ?? 'ignota'}`)}</figcaption>

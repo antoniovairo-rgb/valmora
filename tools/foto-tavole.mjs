@@ -1,6 +1,6 @@
 // Tavole di prova del finale D-165 (parti 2 e 3) per il PO (PO-130), prima che entrino nel gioco.
 // Salvataggio vero della partita A-Z (tests/salvataggi-reali/v2-0.38.0-fine-campagna.json) → città → «Rileggi l'epilogo»
-// con globalThis.__PROVA_D165. Uso: node tools/foto-tavole.mjs <cartella> [larghezze] [genere m|f]   (build in dist/)
+// (tavole nel gioco da D-171). Uso: node tools/foto-tavole.mjs <cartella> [larghezze] [genere m|f]   (build in dist/)
 import { createServer } from 'node:http';
 import { readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
@@ -18,7 +18,6 @@ const problemi = [];
 for (const w of lar.split(',').map(Number)) {
   const pg = await b.newPage({ viewport: { width: w, height: 800 }, reducedMotion: 'reduce' });
   pg.on('pageerror', (e) => problemi.push(`${w}: ${e.message}`)); pg.on('console', (m) => { if (m.type() === 'error') problemi.push(`${w}: ${m.text()}`); });
-  await pg.addInitScript(() => { globalThis.__PROVA_D165 = true; });
   await pg.goto(`http://127.0.0.1:${srv.address().port}/`);
   await pg.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify(sal));
   await pg.reload(); await pg.getByRole('button', { name: 'Riprendi' }).click(); await pg.waitForSelector('[data-scena="citta"]');

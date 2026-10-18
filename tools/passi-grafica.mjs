@@ -30,8 +30,8 @@ export const PASSI_GRAFICA = {
       process.env.VALMORA_ROSSI = r;
       try { if (!(await giraOffline('dist')).length) ciechi.push(`offline/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }
-    // D-161, D-164, D-165: senza epilogo, senza «Fine stagione» o senza fischio il giro deve diventare rosso (una larghezza basta)
-    for (const r of ['C161E01', 'C164F01', 'C165F01']) {
+    // D-161, D-164, D-165: senza epilogo, senza «Fine stagione» o senza fischio o senza tavole il giro deve diventare rosso (una larghezza basta)
+    for (const r of ['C161E01', 'C164F01', 'C165F01', 'C165T01']) {
       process.env.VALMORA_ROSSI = r;
       try { if (!(await giraEpilogo('out/foto-rossi', 'dist', [360])).flatMap(controllaGiro).length) ciechi.push(`epilogo/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }

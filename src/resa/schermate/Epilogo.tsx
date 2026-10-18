@@ -1,12 +1,13 @@
 // Epilogo della campagna (D-161) e passo «Fine stagione» del verbale (D-164). I conti sono in src/logica/epilogo.ts;
 // qui solo parole dai testi (data/testi/it/epilogo.json). Dall'epilogo si torna sempre alla città (nessun soft-lock).
-// Rossi: __NO_C161E01 (dopo e36 solo «Alla mappa della città», come prima), __NO_C164F01 (verbale di e12/e24 senza passo).
+// Rossi: __NO_C161E01 (dopo e36 solo «Alla mappa della città», come prima), __NO_C164F01 (verbale di e12/e24 senza passo),
+// __NO_C165T01 (epilogo a schede invece delle tavole del finale).
 import { Map as IconaMappa } from 'lucide-react';
 import { chiaveFilo, type Epilogo as DatiEpilogo, type FineStagione as DatiFine, type Filo } from '../../logica/epilogo.ts';
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { Testata } from './Fumetto.tsx';
-import { provaTavole, TAVOLE, TavolaBar, TavolaFilo } from '../tavole-finale.tsx';
+import { conTavole, TAVOLE, TavolaBar, TavolaFilo } from '../tavole-finale.tsx';
 
 const Fili = (p: { fili: Filo[]; nome: string }) => (
   <ul className="scheda fili" data-fili={p.nome}>
@@ -42,8 +43,8 @@ export function PassoFineStagione(p: { f: DatiFine }) {
 
 /** Schermata di epilogo dopo il verbale dell'ultimo episodio: carriera, le sei scelte, le stelle; poi la città. */
 export function Epilogo(p: { e: DatiEpilogo; citta: () => void; home?: () => void; genere?: 'm' | 'f'; fiducia?: number; fiduciaMax?: number }) {
-  // D-165 (prova): parte 2 a tavole grandi, una per filo, e parte 3 al bar; solo con globalThis.__PROVA_D165
-  if (provaTavole()) {
+  // D-165, D-171: parte 2 a tavole grandi, una per filo, e parte 3 al bar. Rosso C165T01: l'epilogo a schede di D-161.
+  if (conTavole()) {
     const valore = (id: string) => p.e.scelte.find((f) => f.id === id)?.valore;
     const superati = p.e.stagioni.reduce((s, x) => s + x.superati, 0), episodi = p.e.stagioni.reduce((s, x) => s + x.episodi, 0);
     return (
