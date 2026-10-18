@@ -1,12 +1,12 @@
 /* PO-140 (D-179): home della proposta A approvata dal PO. Vignetta di sala e stadio, frase-obiettivo, premessa,
-   azioni secondarie nel menu «Altro». Solo token. La vignetta tiene il 16:9 della larghezza finché la finestra è
-   alta almeno --home-vignetta-riserva + la sua altezza (700 px a 360), poi si abbassa e si ritaglia (slice). */
+   azioni secondarie nel menu «Altro». Solo token. La vignetta prende lo spazio libero (PO-092, useRiempi) fra il
+   minimo e il massimo: sulle finestre basse si abbassa e si ritaglia (slice). */
 .home-logo { margin: var(--spazio-3) 0; }
 .home-logo .logo-icona { width: var(--home-logo-icona); height: var(--home-logo-icona); }
 .home-logo .logo-nome { font-size: var(--testo-numero); }
 .home-logo .logo-sotto { margin-top: var(--spazio-2); font-size: var(--testo-base); }
 .home-vignetta { position: relative; margin: var(--spazio-4) 0 0; border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-2); background: var(--nero); }
-.home-vignetta > .vignetta { display: block; width: 100%; height: auto; aspect-ratio: var(--home-vignetta-proporzione); min-height: var(--home-vignetta-min); max-height: calc(100dvh - var(--home-vignetta-riserva)); margin: 0; }
+.home-vignetta > .vignetta { display: block; width: 100%; height: var(--home-vignetta-min); min-height: var(--home-vignetta-min); max-height: var(--home-vignetta-max); margin: 0; }
 .home-didascalia { position: absolute; left: calc(var(--spazio-2) * -1); top: calc(var(--spazio-2) * -1); background: var(--giallo); border: var(--bordo-fine) solid var(--nero); padding: var(--spazio-px) var(--spazio-2); font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; }
 .home-obiettivo { margin: var(--spazio-4) 0 var(--spazio-2); background: var(--nero); color: var(--giallo); padding: var(--spazio-2) var(--spazio-3); font: 700 var(--testo-grande) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; transform: skew(var(--inclinazione)); }
 .home-premessa { margin: 0 0 var(--spazio-2); font-size: var(--testo-piccolo); }

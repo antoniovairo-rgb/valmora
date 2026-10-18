@@ -1,7 +1,7 @@
 // Vignetta della home (PO-140, D-179, proposta A approvata dal PO): sala operativa di notte, dalla finestra lo stadio
 // con i fari, le curve nei colori dei club del derby di e01 (dati, D-086) e il fumo; davanti protagonista e Malvasi
-// (seconda bozza approvata, D-171/D-176). Colori solo dalle classi «v-*». Si ritaglia (slice) quando la finestra è
-// bassa: l'altezza la decide il CSS (stile-home.css).
+// (seconda bozza approvata, D-171/D-176). Colori solo dalle classi «v-*». Come le altre vignette (PO-092) prende lo
+// spazio libero della pagina fra --home-vignetta-min e --home-vignetta-max (useRiempi) e si ritaglia (slice).
 import { club } from './dati.ts';
 import { Persona, Vignetta } from './vignetta.tsx';
 
@@ -39,7 +39,7 @@ const Fumo = (p: { x: number; y: number; k: number }) => (
 export function VignettaHome(p: { genere: 'm' | 'f'; didascalia: string }) {
   const sx = club.get('cinderwick_united')?.colori?.primario, dx = club.get('larkspire_athletic')?.colori?.primario;
   return (
-    <Vignetta nome="home" titolo={`${p.didascalia}: tu e il vice Malvasi, dalla finestra lo stadio di notte`} fissa ritaglio="xMidYMin slice">
+    <Vignetta nome="home" titolo={`${p.didascalia}: tu e il vice Malvasi, dalla finestra lo stadio di notte`} ritaglio="xMidYMin slice">
       <rect x="0" y="0" width="320" height="120" className="v-notte" />
       {[[22, 14], [70, 26], [150, 10], [262, 18], [300, 30]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="1.6" className="v-giallo" />)}
       <path d="M0 96 L30 80 L52 88 L80 70 L96 84 L130 74 V120 H0 Z" className="v-giacca-scura v-tratto" />

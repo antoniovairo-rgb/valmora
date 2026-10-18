@@ -10,8 +10,8 @@
 import { join } from 'node:path';
 import { GAME_VERSION } from '../src/versione.ts';
 
-// Misurato il 18/10 (PO-140): il fondo di «La città e il gioco» resta sopra il bordo della finestra di 106/117/96 px a
-// 760 e di 43/62/62 px a 640 (360/375/412). Soglia: 0 px, nessuno scorrimento. Mai alzarla per far passare una modifica.
+// Misurato il 18/10 (PO-140, vignetta che riempie lo spazio libero, PO-092): il fondo di «La città e il gioco» resta
+// sopra il bordo della finestra di 105/105/105 px a 760 e di 71/90/90 px a 640 (360/375/412). Soglia: 0 px, nessuno scorrimento. Mai alzarla per far passare una modifica.
 export const SOGLIA_SCORRIMENTO = 0;
 const ALTEZZE = [760, 640];
 const salvataggio = JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: {}, missioni_concluse: [], episodi: {}, genere: 'm', rapporto_aperto: null, in_corso: null });
