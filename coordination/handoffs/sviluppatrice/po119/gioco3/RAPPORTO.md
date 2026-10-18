@@ -1,6 +1,6 @@
 # PO-119 / D-174 (PO-131, PO-132) – la terza prova approvata nel gioco · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: 0f588a8. Base: merge della principale 05f98de (b64f437).
+Ramo `claude/valmora-resa-v2`. Commit: COMMIT_GIOCO3. Base: merge della principale 05f98de (b64f437).
 
 ## Cosa cambia
 
