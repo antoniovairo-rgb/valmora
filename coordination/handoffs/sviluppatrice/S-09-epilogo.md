@@ -189,3 +189,15 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
 - La catena 3/3 su 46db1d6, partita alle 13:08, l'ho fermata io durante il giro 1: non vale. Rifatta sul commit del revert.
 - Le foto in `S-09-tavole-d174/` mostrano la terza prova, non più in gioco: restano solo come documentazione.
 - FATTO MISURATO dopo il revert: tipi ok; `foto-epilogo` 360 «verde»; `foto-tavole` 360 donna «verde».
+
+## D-176 · quarta prova dei protagonisti nelle tavole (PO-133 braccia, PO-135 figura femminile)
+
+- `src/resa/busto.tsx` = `persona()` di `po119/bozza4/bozza-persona-4.mjs` (S-01, d35cedb) copiata senza cambiare una
+  forma (stringa SVG, come persona2.ts); tenute `divisa` (ora anche il cinturone) e `cravatta` per i civili.
+- La catena su 563d906 (seconda bozza) l'ho fermata io durante il giro 2, dopo che il giro 1 era verde (14:08 → 15:17):
+  superata da questa consegna, non la conto come 3/3.
+- Foto dopo: `coordination/handoffs/sviluppatrice/S-09-tavole-d176/` (360, 375, 412, uomo e donna); prima = seconda
+  bozza in `S-09-tavole-gioco/`.
+- FATTO MISURATO: `foto-tavole` 360/375/412 uomo e donna «verde»; `foto-epilogo` 360 «verde»; tipi ok.
+- Non verificato: nelle tavole le figure sono tagliate al petto (bancone, vetro, cornice della foto), quindi delle braccia
+  nuove si vedono solo spalle e attacco; le pose `cinturone`/`peso` non le uso.
