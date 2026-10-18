@@ -53,6 +53,12 @@ const ondataDi = (m: Missione, s: InCorso) => {
   return o;
 };
 
+/** Settori che degenerano in un'ondata (tensione ≥ DEGENERA e scoperti), nell'ordine della mappa. C39-07: il rapporto li nomina. */
+export function settoriDegenerati(m: Missione, r: Pick<RapportoOndata, 'tensione' | 'scoperto'>): string[] {
+  // C17-05: degenera solo un settore SCOPERTO in quest'ondata (il rapporto lo dice «scoperto»); rosso __NO_C17R05: anche se coperto
+  return m.mappa.settori.filter(({ id }) => (r.tensione[id] ?? 0) >= DEGENERA && (spento('C17R05') || (r.scoperto[id] ?? 0) > 0)).map(({ id }) => id);
+}
+
 /** Fiducia minima a inizio episodio (D-105); solo se lo stato dichiara la variabile. */
 export function fiduciaMinima(v: Variabili, d: Dich): Variabili {
   const f = v[VAR_FIDUCIA];
@@ -226,8 +232,7 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
   const picco = Object.fromEntries(m.mappa.settori.map(({ id }) => [id, Math.max(s.tensione[id] ?? 0, tensione[id] ?? 0)]));
   // PO-094 (D-113): la fiducia premia il risultato dell'ondata: +1 se nessun settore è scoperto, −1 per ogni settore che degenera.
   // Prima la davano solo le scelte, e chi proteggeva la città la perdeva. Rosso __NO_PO094.
-  // C17-05: degenera solo un settore SCOPERTO in quest'ondata (il rapporto lo dice «scoperto»); rosso __NO_C17R05: anche se coperto
-  const degenerati = m.mappa.settori.filter(({ id }) => (tensione[id] ?? 0) >= DEGENERA && (spento('C17R05') || (scoperto[id] ?? 0) > 0)).length;
+  const degenerati = settoriDegenerati(m, { tensione, scoperto }).length;
   const premio = spento('PO094') || !d.has(VAR_FIDUCIA) ? 0 : degenerati ? -degenerati : Object.values(scoperto).every((x) => x === 0) ? 1 : 0;
   const base: RapportoOndata = spento('C10P01') ? { n: s.ondata, scoperto, tensione, aRiposo } : { n: s.ondata, scoperto, tensione, aRiposo, picco };
   const conCausa: RapportoOndata = Object.keys(causa).length ? { ...base, causa } : base;
