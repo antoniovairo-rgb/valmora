@@ -63,7 +63,21 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
   const punti: PuntoCitta[] = useMemo(() => voci.map((v) => ({ id: v.m.id, x: v.pos.x, y: v.pos.y, acceso: v.stato !== 'futuro' && v.stato !== 'superato' })), [voci]);
   // C17-12: il nome dell'episodio scelto al posto che non copre altri dischi, a ogni disegno, quando la mappa cambia
   // misura e quando arrivano i caratteri. Rosso C42N01: sempre sotto il disco, come prima.
-  const disponi = () => { if (contenitore.current && !spento('C42N01')) disponiNomeCitta(contenitore.current); };
+  const disponi = () => { if (contenitore.current && !spento('C42N01')) disponiNomeCitta(contenitore.current); assesta(); };
+  // C128-01 (PO-128, CI instabile «Il mercato del sabato» a 412): la scena entra scalata e ruotata (Scena.tsx) e il calcolo
+  // fatto durante l'ingresso, corretto solo per la scala, lasciava il nome 6 px fuori dalla mappa se nessun disegno
+  // arrivava dopo (senza WebGL sempre, con WebGL se Pixi era pronto prima della fine). Finché la mappa è trasformata si
+  // guarda a ogni fotogramma e, a ingresso finito, si rifà il calcolo una volta. Rosso C128N01: no.
+  const attesa = useRef(0);
+  const assesta = () => {
+    const el = contenitore.current;
+    if (!el || spento('C128N01')) return;
+    cancelAnimationFrame(attesa.current);
+    const mossa = () => { const r = el.getBoundingClientRect(); return Math.abs(r.width - el.offsetWidth) > 0.1 || Math.abs(r.height - el.offsetHeight) > 0.1; };
+    if (!mossa()) return;
+    const guarda = () => { if (!el.isConnected) return; if (mossa()) attesa.current = requestAnimationFrame(guarda); else disponi(); };
+    attesa.current = requestAnimationFrame(guarda);
+  };
   useLayoutEffect(disponi);
   useLayoutEffect(() => {
     const el = contenitore.current;
@@ -74,7 +88,7 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
     // nome calcolato col carattere di riserva restava largo e sul bordo. Si rifà a ogni carattere caricato.
     const caratteri = spento('C47N02') ? null : document.fonts;
     caratteri?.addEventListener?.('loadingdone', disponi);
-    return () => { ro.disconnect(); caratteri?.removeEventListener?.('loadingdone', disponi); };
+    return () => { ro.disconnect(); caratteri?.removeEventListener?.('loadingdone', disponi); cancelAnimationFrame(attesa.current); };
   }, []);
   // ...e quando cambia la misura del nome scelto (carattere arrivato, testo diverso). Rosso C47N02: no.
   useLayoutEffect(() => {

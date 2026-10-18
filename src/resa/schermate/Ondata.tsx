@@ -4,7 +4,7 @@
 import { ChevronDown, ChevronRight, Coffee, FileText, Radio, Undo2 } from 'lucide-react';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { spento } from '../../interruttori.ts';
-import { opzioniValide, type InCorso } from '../../logica/missione.ts';
+import { opzioniEsaurite, opzioniValide, unitaFinita, type InCorso } from '../../logica/missione.ts';
 import type { Chiamata as TChiamata, Missione, Opzione } from '../../logica/tipi.ts';
 import type { Decisione } from '../../logica/sospesa.ts';
 import { t } from '../dati.ts';
@@ -116,6 +116,17 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
               {/* Accenno di costo in parole (D-078); interruttore rosso C05S05 lo nasconde */}
               {o.costo && !spento('C05S05') && <small className="costo" data-costo={o.id}>{t(o.costo)}</small>}
               <EffettiOpzione c={p.c} o={o} />
+            </span>
+          </button>
+        ))}
+        {/* D-153 (C35-02): la risposta che impegna un'unità finita resta in vista, disattivata, col motivo che nomina l'unità
+            (testi «esaurita.<risorsa>»; data-costo per il controllo D-078). Rosso C153A01: sparisce */}
+        {opzioniEsaurite(p.c, p.ic, p.m).map((o, i) => (
+          <button key={o.id} className="opzione esaurita" data-opzione={o.id} data-esaurita="" disabled aria-disabled="true">
+            <span className="tasto" aria-hidden="true">{LETTERE[opzioniValide(p.c, p.ic, p.m).length + i]}</span>
+            <span className="opzione-testo">
+              {t(o.testo)}
+              <small className="costo motivo-esaurita" data-costo={o.id}>{t(`esaurita.${unitaFinita(p.m, p.ic, o) ?? 'squadre'}`)}</small>
             </span>
           </button>
         ))}

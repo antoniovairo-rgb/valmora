@@ -265,12 +265,7 @@
               "id": "ignora_piazzale",
               "testo": "testi:e32.op.ignora_piazzale",
               "costo": "testi:e32.op.ignora_piazzale.c",
-              "effetti": [
-                {
-                  "pressione": "piazzale",
-                  "valore": 2
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e32.op.ignora_piazzale.r"
             }
           ]
@@ -297,7 +292,7 @@
           "id": "piazzale_tardi",
           "tipo": "folla",
           "settore": "piazzale",
-          "pressione": 2
+          "pressione": 3
         }
       ],
       "chiamate": [
@@ -644,6 +639,7 @@
       "chiamate": [
         {
           "id": "incrocio",
+          "dopo": {"mai": ["festa_larkspire/uscita_collina"]},
           "fonte": "centrale_radio",
           "testo": "testi:e32.ch.incrocio",
           "commento": "testi:e32.ch.incrocio.vice",
