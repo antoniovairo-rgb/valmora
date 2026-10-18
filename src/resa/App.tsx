@@ -188,7 +188,7 @@ export function App() {
     // Interruttore rosso C10S02: colore dalla sola tensione.
     mappa = { tensione: spento('C10S02') ? r.tensione : Object.fromEntries(Object.entries(r.tensione).map(([k, v]) => [k, (r.scoperto[k] ?? 0) > 0 ? Math.max(v, 3) : v])) };
     testata = { etichetta: `Rapporto · ondata ${r.n} di ${m.ondate.length}`, titolo: `Rapporto dell'ondata ${r.n}` };
-    corpo = <Rapporto m={m} r={r} ultima={fine} prossime={fine ? {} : disponibili(m, ic)} avanti={() => {
+    corpo = <Rapporto m={m} r={r} scelte={ic.scelte} ultima={fine} prossime={fine ? {} : disponibili(m, ic)} avanti={() => {
       const ora = icOra();
       if (!ora) return; // episodio già chiuso (doppio tocco)
       if (!missioneFinita(m, ora)) { conIc(ora, { rapporto_aperto: null }); nuovaBozza(); setSchermata('gioco'); return; }
