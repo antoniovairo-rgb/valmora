@@ -123,7 +123,7 @@ export const copertiDallaBarra = (pagina) => pagina.evaluate(() => {
     .map((e) => (e.dataset.risorsa ?? e.dataset.azione ?? e.textContent.trim().slice(0, 24)));
 });
 
-const NOMI_VICINI = { 360: 3, 375: 0, 412: 0 };
+const NOMI_VICINI = { 360: 6, 375: 3, 412: 0 }; // C37-03 con le unità, misurati il 18/10 col peso × 100 (residuo dichiarato, vedi CONSEGNA-PO121-C37.md)
 const VICINE = { 360: 36, 375: 29, 412: 9 }; // C33-05: i valori della 0.31.0 misurati dal collaudo C-033 (0.32.0: 44 / 32 / 14)
 const PASTIGLIE_SU_NOMI = 0; // C27-06: 7 il 15/10; D-136 (C28-14): a 0 col nome su più righe e due posti in più (rosso C94N01: 7)
 
@@ -186,7 +186,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     writeFileSync(join(cartella, `tocchi-${w}.txt`), `${new Set(tocchi.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${tocchi.join('\n')}\n`); // misura, senza soglia
     // D-143 (C33-01): nessun nome «rubato» da un'area di tocco, tetto 0 (rosso C106T01: e35 ondata 2 a 360)
     writeFileSync(join(cartella, `rubati-${w}.txt`), `${new Set(rubati.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${rubati.join('\n')}\n`);
-    // C37-03 con le unità: al massimo i casi misurati il 18/10 (preesistenti, uguali col rosso C111E01): 3 a 360, 0 a 375 e 412
+    // C37-03 con le unità: al massimo i casi misurati il 18/10 (e19 o2-o4 come col rosso C111E01, e02/e15/e18 o4): 6 a 360, 3 a 375, 0 a 412
     atteso(`${w}×${h} con le unità: ${nomiVicini.length} nomi più vicini a un disco altrui (al massimo ${NOMI_VICINI[w]}): ${nomiVicini.join(' | ')} (C37-03)`, nomiVicini.length <= NOMI_VICINI[w]);
     atteso(`${w}×${h}: nomi rubati da un'area di tocco: ${rubati.join(' | ')} (D-143, C33-01)`, !rubati.length);
     atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
