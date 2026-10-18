@@ -228,3 +228,4 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
   su tutte le pose di uomo, donna e vice e sul bar. FATTO MISURATO: verde, 0 braccia con spigoli; rosso C118S01, spigoli
   su tutte le braccia misurate.
 - Verifica secondo D-177 (PO-139): 3 giri di `node tools/catena.mjs governo && node tools/catena.mjs logica`, più la CI.
+- FATTO MISURATO (D-177): su b01a346, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
