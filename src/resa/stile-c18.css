@@ -84,3 +84,33 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 /* C22-10: con le icone a 20 px i due pulsanti del riepilogo uscivano sotto la versione a 360 (PO-097): spazio interno
    più stretto, come nei tre pulsanti dello schieramento */
 .riepilogo-azioni .pulsante { gap: var(--spazio-1); padding-inline: var(--spazio-2); }
+/* D-165 (prova PO-130): tavole grandi del finale, vignetta a tutta larghezza (16:9) con didascalia sotto */
+.tavola { margin: 0 0 var(--spazio-4); }
+.tavola > .vignetta { height: auto; min-height: 0; max-height: none; margin: 0; }
+.didascalia { margin: 0; padding: var(--spazio-2) var(--spazio-3); background: var(--bianco); border: var(--bordo-fine) solid var(--nero); border-top: 0; }
+.numeri-carriera { justify-content: center; gap: var(--spazio-2); margin: var(--spazio-2) 0 0; }
+.vignetta .v-fine { font-size: var(--testo-grande); letter-spacing: var(--spazio-px); }
+/* D-165 parte 1: fischio dell'ultimo derby, i settori si spengono uno alla volta e la sala va al buio */
+.settore.spento .settore-punto, .settore.spento .settore-nome { opacity: var(--opaco); filter: grayscale(1); transition: opacity 0.5s, filter 0.5s; }
+.mappa.buio::after { content: ''; position: absolute; inset: 0; background: var(--nero); opacity: var(--opaco); pointer-events: none; transition: opacity 1s; }
+@media (prefers-reduced-motion: reduce) { .settore.spento .settore-punto, .settore.spento .settore-nome, .mappa.buio::after { transition: none; } }
+/* D-167: seconda prova delle tavole del finale (tavole-figure.tsx): tavole 4:3, volti a toni pieni, luce a gradiente */
+.tavola > .tavola-svg { aspect-ratio: 4 / 3; }
+.vignetta .v-stop-luce { stop-color: var(--vignetta-luce); stop-opacity: var(--opaco-tenue); }
+.vignetta .v-stop-vuoto { stop-color: var(--vignetta-luce); stop-opacity: 0; }
+.vignetta .v-ciglia { fill: none; stroke: var(--vignetta-capelli); stroke-width: var(--vignetta-tratto); stroke-linecap: round; }
+.vignetta .v-linea-chiara { fill: none; stroke: var(--bianco); stroke-width: var(--bordo-fine); stroke-linecap: round; opacity: var(--opaco-tenue); }
+.vignetta .v-linea-fine { fill: none; stroke: var(--nero); stroke-width: var(--spazio-px); opacity: var(--opaco); }
+.vignetta .v-vetro { fill: var(--vignetta-vetro); opacity: var(--opaco); }
+.vignetta .v-riflesso { fill: var(--bianco); opacity: var(--opaco-tenue); }
+.vignetta .v-telaio { fill: none; stroke: var(--nero); stroke-width: var(--bordo); }
+.vignetta .v-tramonto { fill: var(--vignetta-tramonto); }
+.vignetta .v-ombra-colonna { fill: var(--vignetta-cemento-ombra); }
+.vignetta .v-sughero { fill: var(--vignetta-sughero); }
+.vignetta .v-legno { fill: var(--vignetta-legno); }
+.vignetta .v-filo { fill: none; stroke: var(--magenta); stroke-width: var(--bordo-fine); }
+.vignetta .v-folla-1 { fill: var(--mappa-folla-1); }
+.vignetta .v-folla-2 { fill: var(--mappa-folla-2); }
+.vignetta .v-folla-3 { fill: var(--mappa-folla-3); }
+.vignetta .v-scritta-timbro { fill: var(--magenta); }
+.vignetta .v-linea.v-fine { stroke-width: var(--vignetta-tratto-fine); }

@@ -114,6 +114,12 @@
   --vignetta-pelle-ombra: #d9a27a;
   --vignetta-giacca-scura: #2b2b33;
   --vignetta-luce: #fff6c2;
+  /* D-167: tavole del finale (sughero della bacheca, legno del bancone, cielo al tramonto, vetro del parlatorio) */
+  --vignetta-sughero: #b07a4a;
+  --vignetta-legno: #6b3f26;
+  --vignetta-tramonto: #f08a4b;
+  --vignetta-vetro: #9fc6d8;
+  --vignetta-tratto-fine: 1.1px; /* PO-119 seconda bozza: dettagli del volto (occhi, naso, labbra); col tratto normale a 3× gli occhi diventavano macchie */
   --vignetta-prato-chiaro: #59bd63;
   --vignetta-fumo: rgba(60, 60, 60, 0.55);
   --vignetta-riserva: 420px; /* spazio della pagina fuori dalla vignetta: sotto questa soglia la vignetta si stringe */
