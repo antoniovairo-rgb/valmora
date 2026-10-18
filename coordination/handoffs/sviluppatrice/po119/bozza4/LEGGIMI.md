@@ -2,7 +2,7 @@
 
 Il codice del gioco **non** cambia. Il disegno è in `bozza-persona-4.mjs`, una stringa SVG con la stessa firma della terza prova più due novità: `peso` (in gradi) e la posa `braccia: 'cinturone'`. Le tavole le fa `tavole-4.mjs`: dalla radice del repository, `node coordination/handoffs/sviluppatrice/po119/bozza4/tavole-4.mjs <cartella>`. Il taglio a busto resta invariato.
 
-Commit: 1280934 (ramo `claude/valmora-resa-v2`).
+Commit: 1280934 (PO-133), d35cedb (PO-135) (ramo `claude/valmora-resa-v2`).
 
 ## File
 
