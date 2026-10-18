@@ -6,6 +6,7 @@
 export interface PersonaDati { x: number; y: number; s?: number; scala?: number; giro?: number; peso?: number; giacca: string; capelli: 'corti' | 'lunghi' | 'berretto';
   bocca?: 'su' | 'giu' | 'dritta'; baffi?: boolean; distintivo?: boolean; sopracciglia?: 'su' | 'giu'; braccia?: 'su' | 'nuca' | 'conserte' | 'cinturone' }
 type P2 = [number, number];
+import { spento } from '../interruttori.ts';
 const T = 'v-tratto', L = 'v-linea', FINE = 'v-linea v-fine';
 const path = (d: string, c: string) => `<path d="${d}" class="${c}"/>`;
 const f = (n: number) => Math.round(n * 10) / 10;
@@ -16,17 +17,22 @@ function mano(x: number, y: number, r = 0, k = 1) {
   return `<g transform="translate(${f(x)} ${f(y)}) rotate(${f(r)}) scale(${k})">${path(d, `v-pelle ${T}`)}${path(pollice, `v-pelle ${T}`)}${path('M-2.4 -4 L-2.4 1 M1.2 -4.5 L1.2 1.5 M4.8 -2 L4.8 2', L)}</g>`;
 }
 /** Arto che si assottiglia lungo i punti P (spalla, gomito, polso) con le larghezze W: contorno morbido, gomito arrotondato. */
-function arto(P: P2[], W: number[], cls: string) {
+/** C117B01: `braccio` ('sx' | 'dx') segna il braccio e il punto in cui parte (data-spalla), per il guardiano. */
+function arto(P: P2[], W: number[], cls: string, braccio?: 'sx' | 'dx', dietro = false) {
   const lato = (s: number): P2[] => P.map((p, i) => { const a = P[Math.max(0, i - 1)]!, b = P[Math.min(P.length - 1, i + 1)]!, n = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
     return [p[0] - s * (b[1] - a[1]) / n * W[i]! / 2, p[1] + s * (b[0] - a[0]) / n * W[i]! / 2]; });
   const A = lato(1), B = lato(-1).reverse(), a0 = A[0]!, b0 = B[0]!, q = (pts: P2[]) => pts.slice(1).map((p, i) => (i === pts.length - 2 ? `L${f(p[0])} ${f(p[1])}` : `Q${f(p[0])} ${f(p[1])} ${f((p[0] + pts[i + 2]![0]) / 2)} ${f((p[1] + pts[i + 2]![1]) / 2)}`)).join(' ');
-  return path(`M${f(a0[0])} ${f(a0[1])} ${q(A)} L${f(b0[0])} ${f(b0[1])} ${q(B)} Z`, cls);
+  const d = `M${f(a0[0])} ${f(a0[1])} ${q(A)} L${f(b0[0])} ${f(b0[1])} ${q(B)} Z`, p0 = P[0]!;
+  return braccio ? `<path d="${d}" class="${cls}" data-braccio="${braccio}" data-spalla="${f(p0[0])} ${f(p0[1])}"${dietro ? ' data-dietro="1"' : ''}/>` : path(d, cls);
 }
 /** Polsino al polso e mano in asse con l'avambraccio (dita nella direzione gomito → polso). */
 function polso(e: P2, w: P2, k: number, _giacca: string, larg: number) {
   const a = Math.atan2(w[1] - e[1], w[0] - e[0]), r = a * 180 / Math.PI + 90, nx = -Math.sin(a), ny = Math.cos(a), h = larg / 2;
   return path(`M${f(w[0] + nx * h)} ${f(w[1] + ny * h)} L${f(w[0] - nx * h)} ${f(w[1] - ny * h)}`, L) + mano(w[0] + Math.cos(a) * 6 * k, w[1] + Math.sin(a) * 6 * k, r, k);
 }
+
+/** Spalla da cui parte il braccio del lato k (−1 sinistro, +1 destro), per il guardiano C117B01. */
+export const spallaDi = (capelli: PersonaDati['capelli'], k: number): P2 => [k * ((capelli === 'lunghi' ? 27 : 33) + 3), 43];
 
 export function persona(p: PersonaDati): string {
   const s = (p.s ?? 1) * (p.scala ?? 1.32), vice = p.capelli === 'berretto', donna = p.capelli === 'lunghi';
@@ -35,15 +41,20 @@ export function persona(p: PersonaDati): string {
   const mezzo = (y: number) => (donna ? (y < 92 ? 27 : 25) : (y < 92 ? 34 : 32));
   // festa: gomiti aperti all'altezza delle spalle, avambracci in su, palmi aperti (dietro il busto: la spalla si attacca)
   if (p.braccia === 'su') {
-    g.push(arto([[-sp + 4, 46], [-sp - 24, 18], [-sp - 20, -22]], [19, 15, 11], G), polso([-sp - 24, 18], [-sp - 20, -22], 1.05, giacca, 11));
-    g.push(arto([[sp - 4, 44], [sp + 24, 14], [sp + 22, -26]], [19, 15, 11], G), polso([sp + 24, 14], [sp + 22, -26], 1.05, giacca, 11));
+    g.push(arto([[-sp + 4, 46], [-sp - 24, 18], [-sp - 20, -22]], [19, 15, 11], G, 'sx', true), polso([-sp - 24, 18], [-sp - 20, -22], 1.05, giacca, 11));
+    g.push(arto([[sp - 4, 44], [sp + 24, 14], [sp + 22, -26]], [19, 15, 11], G, 'dx', true), polso([sp + 24, 14], [sp + 22, -26], 1.05, giacca, 11));
   }
   // mano alla nuca: braccio destro col gomito alto e in fuori, avambraccio dietro la testa (la mano si disegna dopo i capelli)
   const nuca: { e: P2; w: P2 } | null = p.braccia === 'nuca' ? { e: [sp + 18, -6], w: [14, -30] } : null;
-  if (nuca) g.push(arto([[sp - 4, 44], nuca.e, nuca.w], [19, 15, 11], G));
+  // C117B01 (PO: «manca un braccio all'uomo»): disegnato prima del busto, il braccio alzato non si attaccava alla spalla
+  // (si vedeva un anello staccato) e l'altro braccio non c'era. Ora si disegna dopo il busto, dalla spalla, e l'altro
+  // braccio resta a riposo lungo il fianco. Rosso C117B01: come nella quarta prova.
+  const c117 = !spento('C117B01');
+  if (nuca && !c117) g.push(arto([[sp - 4, 44], nuca.e, nuca.w], [19, 15, 11], G, 'dx'));
   // busto fino ai fianchi: petto, vita (segnata nella figura femminile), cinturone; lato destro in ombra
   g.push(path(donna ? 'M-25 132 L-25 106 Q-25.5 94 -27.5 80 Q-31.5 60 -25 42 L-10 31 L0 42 L10 30 L24 36 Q31.5 50 28 63 Q25.5 82 26.5 94 Q25.5 100 24 106 L24 132 Z'
     : 'M-32 132 L-32 106 Q-35 82 -34 62 Q-36 46 -30 39 L-11 29 L0 41 L11 27 L29 34 Q36 44 34 62 Q35 82 31 106 L31 132 Z', G));
+  g[g.length - 1] = g[g.length - 1]!.replace('<path ', '<path data-busto="1" '); // C117B01: le braccia si disegnano dopo
   g.push(path(donna ? 'M14 34 Q28 46 26 64 Q23 84 25 96 L24 132 L16 132 Q20 70 14 34 Z' : 'M17 31 Q35 44 33 64 Q34 84 31 106 L31 132 L21 132 Q26 70 17 31 Z', 'v-ombra'));
   g.push(path(donna ? 'M-14 71 Q-11 86 -13 100 M14 71 Q11 86 12 100' : 'M-24 64 q6 9 2 20 M22 62 q-5 11 0 22', L));
   // PO-135: seno appena accennato dalla linea della giacca (curva sotto il petto da cui partono le pinces, ombra morbida),
@@ -62,14 +73,15 @@ export function persona(p: PersonaDati): string {
   g.push(path(`M${-mezzo(100) - 0.5} 100 H${mezzo(100) - 0.5} V107 H${-mezzo(100) - 0.5} Z`, `${vice ? 'v-nero' : 'v-giacca-scura'} ${T}`), path('M-4 99.5 h8 v8 h-8 Z', `v-giallo ${T}`));
   // braccia: sagome proprie sopra il busto, con lo spazio dal fianco; gomito un po' piegato, avambraccio in avanti
   const riposo = (lato: number) => { const k = lato, e: P2 = [k * (tw + 19), 88], w: P2 = [k * (tw + 13), 118];
-    return arto([[k * (tw + 3), 42], e, w], [18, 15, 12], G) + polso(e, w, 1, giacca, 12) + path(`M${k * (tw + 14)} 86 q${k * 4} 3 ${k * 9} 2`, L); };
+    return arto([[k * (tw + 3), 42], e, w], [18, 15, 12], G, k < 0 ? 'sx' : 'dx') + polso(e, w, 1, giacca, 12) + path(`M${k * (tw + 14)} 86 q${k * 4} 3 ${k * 9} 2`, L); };
   const cinturone = (lato: number) => { const k = lato, e: P2 = [k * (tw + 22), 78], w: P2 = [k * (tw - 3), 100];
-    return arto([[k * (tw + 2), 42], e, w], [19, 16, 12], G) + polso(e, w, 1, giacca, 12); };
+    return arto([[k * (tw + 2), 42], e, w], [19, 16, 12], G, k < 0 ? 'sx' : 'dx') + polso(e, w, 1, giacca, 12); };
   if (!p.braccia) g.push(riposo(-1), riposo(1));
   if (p.braccia === 'cinturone') g.push(riposo(-1), cinturone(1));
+  if (nuca && c117) g.push(riposo(-1), arto([[tw + 3, 42], nuca.e, nuca.w], [19, 15, 11], G, 'dx'));
   // braccia conserte: braccia staccate dai fianchi fino al gomito, avambracci incrociati a X, mani sul braccio opposto
   if (p.braccia === 'conserte') {
-    g.push(arto([[-(tw + 3), 42], [-(tw + 15), 90]], [18, 16], G), arto([[tw + 3, 42], [tw + 15, 88]], [18, 16], G));
+    g.push(arto([[-(tw + 3), 42], [-(tw + 15), 90]], [18, 16], G, 'sx'), arto([[tw + 3, 42], [tw + 15, 88]], [18, 16], G, 'dx'));
     g.push(arto([[tw + 13, 92], [-tw + 2, 74]], [17, 13], G), mano(-tw - 2, 72, -60, 0.95));
     g.push(arto([[-tw - 13, 94], [tw - 4, 76]], [17, 13], G), path(`M${-tw - 6} 102 Q0 94 ${tw - 4} 84 L${tw - 4} 88 Q0 98 ${-tw - 4} 104 Z`, 'v-ombra'), mano(tw, 74, 62, 0.95));
   }
