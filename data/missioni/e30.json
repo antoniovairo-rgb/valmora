@@ -497,10 +497,6 @@
               "costo": "testi:e30.op.niente_sanzioni.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "piazza_municipio",
                   "valore": -1
                 }

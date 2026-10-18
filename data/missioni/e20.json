@@ -245,10 +245,6 @@
               "costo": "testi:e20.op.incrocio20.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "strada_larkspire",
                   "valore": 2
                 }
@@ -373,10 +369,6 @@
               "testo": "testi:e20.op.pausa20",
               "costo": "testi:e20.op.pausa20.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
-                },
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -3
@@ -534,10 +526,6 @@
                   "valore": -1
                 },
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "curva_cinderwick",
                   "valore": 1
                 }
@@ -565,10 +553,6 @@
               "testo": "testi:e20.op.prima_derby",
               "costo": "testi:e20.op.prima_derby.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
-                },
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -1

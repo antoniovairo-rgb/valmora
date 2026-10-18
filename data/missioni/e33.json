@@ -449,10 +449,6 @@
               "costo": "testi:e33.op.rapporto_subito.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "pressione": "curva_larkspire",
                   "valore": 2
                 }
@@ -463,12 +459,7 @@
               "id": "aspetta_fine",
               "testo": "testi:e33.op.aspetta_fine",
               "costo": "testi:e33.op.aspetta_fine.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e33.op.aspetta_fine.r"
             },
             {

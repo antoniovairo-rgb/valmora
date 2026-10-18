@@ -352,10 +352,6 @@
               "costo": "testi:e31.op.manda_vice.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "tribuna_autorita",
                   "valore": -1
                 }

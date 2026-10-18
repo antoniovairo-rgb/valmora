@@ -1,0 +1,164 @@
+{
+ "oggi": {
+  "perverse": 19,
+  "conEffetto": 371,
+  "corr": {
+   "n": 36,
+   "media": -0.2,
+   "mediana": -0.21200000000000002,
+   "ds": 0.15,
+   "min": -0.452,
+   "max": 0.07
+  },
+  "corrPositive": 6,
+  "falliteGeRiuscite": 6,
+  "falliteGuadagnano": 11,
+  "fiducia": {
+   "attenta": {
+    "n": 36,
+    "media": 5.97,
+    "mediana": 6,
+    "ds": 2.17,
+    "min": 1,
+    "max": 9
+   },
+   "equilibrata": {
+    "n": 36,
+    "media": 8.92,
+    "mediana": 9,
+    "ds": 1.23,
+    "min": 6,
+    "max": 10
+   },
+   "peggiore": {
+    "n": 36,
+    "media": 2.14,
+    "mediana": 2.5,
+    "ds": 1.91,
+    "min": 0,
+    "max": 6
+   }
+  },
+  "peggioreGeAttenta": [
+   "e08",
+   "e14",
+   "e17",
+   "e19",
+   "e23"
+  ],
+  "attentaSotto3": [
+   "e03",
+   "e08",
+   "e20"
+  ],
+  "tre": {
+   "attenta": 14,
+   "equilibrata": 33,
+   "peggiore": 0
+  },
+  "treAttentoCaso": {
+   "n": 36,
+   "media": 20.64,
+   "mediana": 17.25,
+   "ds": 11.7,
+   "min": 5.9,
+   "max": 56.7
+  },
+  "treCasuale": {
+   "n": 36,
+   "media": 0.44,
+   "mediana": 0.25,
+   "ds": 0.63,
+   "min": 0,
+   "max": 3.6
+  },
+  "attentaTreEp": [
+   "e04",
+   "e09",
+   "e11",
+   "e13",
+   "e15",
+   "e16",
+   "e22",
+   "e27",
+   "e28",
+   "e31",
+   "e32",
+   "e34",
+   "e35",
+   "e36"
+  ],
+  "fallite": {
+   "e01": 56.7,
+   "e02": 56,
+   "e03": 55.7,
+   "e04": 55.2,
+   "e05": 60.4,
+   "e06": 61.7,
+   "e07": 63.2,
+   "e08": 63.8,
+   "e09": 64.7,
+   "e10": 67.8,
+   "e11": 70.6,
+   "e12": 73,
+   "e13": 50.4,
+   "e14": 59,
+   "e15": 60.5,
+   "e16": 60.8,
+   "e17": 60.6,
+   "e18": 65,
+   "e19": 68.4,
+   "e20": 67.9,
+   "e21": 69.2,
+   "e22": 69.6,
+   "e23": 68.8,
+   "e24": 70.4,
+   "e25": 60.9,
+   "e26": 61.5,
+   "e27": 67.4,
+   "e28": 67.2,
+   "e29": 67.3,
+   "e30": 67,
+   "e31": 66.5,
+   "e32": 66.5,
+   "e33": 69.6,
+   "e34": 70.5,
+   "e35": 74,
+   "e36": 76.5
+  },
+  "violazioni": [],
+  "fiduciaMinima": [],
+  "collaudo": {
+   "e03": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 2,
+    "tensione": 2,
+    "f0": 5,
+    "fFine": 3,
+    "daScelte": -3,
+    "daOndate": 1,
+    "daEsito": 0,
+    "scoperti": 3,
+    "degenerati": 0,
+    "ripieghi": [],
+    "nonUsate": []
+   },
+   "e28": {
+    "esito": "degenerato",
+    "fallita": true,
+    "stelle": 0,
+    "tensione": 10,
+    "f0": 5,
+    "fFine": 5,
+    "daScelte": 2,
+    "daOndate": -2,
+    "daEsito": 0,
+    "scoperti": 10,
+    "degenerati": 2,
+    "ripieghi": [],
+    "nonUsate": []
+   }
+  }
+ }
+}
