@@ -37,7 +37,7 @@ export function requisitoInParole(q: Requisito, stelle: number): string {
   if (q.var.includes('tensione') && typeof q.soglia === 'number' && typeof q.valore === 'number' && !spento('C12T01')) {
     const limite = COLORI[livello(q.soglia)]!, arrivo = COLORI[livello(q.valore)]!;
     // C33-09 (D-147): il colore da solo non diceva di quanto si era sopra la soglia (due tensioni diverse, stesso colore):
-    // si aggiunge il numero, «(massimo 3 su 10)» e «(4)». Soglie e colori invariati. Rosso C109S01: solo i colori.
+    // si aggiunge il numero, «Seconda stella: tensione massima 3 su 10 (raggiunta: 4).». Soglie e colori invariati. Rosso C109S01: solo i colori.
     const max = dichiarate.get(q.var)?.max, su = typeof max === 'number' ? ` su ${max}` : '';
     const numero = spento('C109S01') ? '' : ` ${ORDINE[stelle]!.charAt(0).toUpperCase()}${ORDINE[stelle]!.slice(1)} stella: tensione ${q.confronto === 'al_massimo' ? 'massima' : 'minima'} ${q.soglia}${su} (raggiunta: ${q.valore}).`;
     return (q.confronto === 'al_massimo' ? `Per la ${ORDINE[stelle]} stella la tensione non deve passare ${il(limite)}: è arrivata ${al(arrivo)}.`

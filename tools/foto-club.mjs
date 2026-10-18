@@ -114,7 +114,8 @@ export async function avanzaFino(pagina, sel, dopo) {
 export async function controllaCifreTensione(pagina, atteso, dove) {
   const frasi = await pagina.evaluate(() => [...document.querySelectorAll('.scena *')]
     .filter((el) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())).map((el) => el.textContent));
-  const male = frasi.flatMap((x) => x.split(/[·,:;]/)).filter((x) => /tension/i.test(x) && /\d/.test(x));
+  // D-147: unica eccezione, il requisito della stella nel verbale («… stella: tensione massima 3 su 10 (raggiunta: 4).»)
+  const male = frasi.map((x) => x.replace(/stella: tensione (?:massima|minima) \d+(?: su \d+)? \(raggiunta: \d+\)\./g, '')).flatMap((x) => x.split(/[·,:;]/)).filter((x) => /tension/i.test(x) && /\d/.test(x));
   atteso(`${dove}: tensione in cifre «${male.slice(0, 2).join(' | ')}» (C12-01, D-055)`, male.length === 0);
 }
 

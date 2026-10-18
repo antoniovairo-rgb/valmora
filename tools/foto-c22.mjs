@@ -184,7 +184,9 @@ export async function controllaLargo(pagina, atteso, dove) {
 export async function controllaVignettaOndata(pagina, m, rapporto, atteso, dove) {
   if (!rapporto?.tensione) return;
   const lv = (t) => (t <= 0 ? 0 : Math.min(5, Math.ceil(t / 2))), max = Math.max(0, ...m.mappa.settori.map((s) => lv(rapporto.tensione[s.id] ?? 0)));
-  const atteso2 = max <= 1 ? 'calmo' : max <= 3 ? 'teso' : 'critico';
+  // C33-07 (D-144): con un settore scoperto il tono è almeno «teso»; rosso C108T01: solo la tensione
+  const scop = Object.values(rapporto.scoperto ?? {}).some((x) => x > 0) && !process.env.VALMORA_ROSSI?.includes('C108T01');
+  const atteso2 = max <= 1 ? (scop ? 'teso' : 'calmo') : max <= 3 ? 'teso' : 'critico';
   const r = await pagina.evaluate(() => { const c = document.querySelector('.scena [data-tono]'), v = c?.querySelector('[data-vignetta^="ondata-"]');
     return { tono: c?.dataset.tono ?? null, vignetta: v?.dataset.vignetta ?? null, nascosta: !!v?.hasAttribute('data-nascosta'), braccia: [...(v?.querySelectorAll('[data-braccia]') ?? [])].map((b) => b.dataset.braccia).join(',') }; });
   atteso(`${dove}: manca la vignetta di fine ondata (PO-059)`, r.tono !== null);

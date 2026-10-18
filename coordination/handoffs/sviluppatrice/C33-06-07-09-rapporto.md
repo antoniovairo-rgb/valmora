@@ -21,12 +21,14 @@ Ramo `claude/valmora-resa-v2`. Commit: aab4ce6 (C33-07), 2964b23 (C33-09), d12ea
 - `src/resa/espressioni.ts`: `tonoOndata(livelli, scoperti)`: se il tono dalla tensione è «calmo» e almeno un settore è scoperto, il tono è «teso». Usato dal rapporto e dalla scena del tono.
 - **Rosso `__NO_C108T01`:** solo la tensione, come prima.
 - Test `tests/espressioni.test.ts`: calmo + 1 scoperto → teso; calmo + 0 → calmo; critico resta critico; rosso → calmo.
+- Guardiano PO-059 (`foto-c22.mjs`, tono del rapporto ricalcolato dalla tensione): ora segue D-144 (calmo + settore scoperto → teso; con VALMORA_ROSSI=C108T01 solo la tensione). Il giro 1 su e9c1917 era ROSSO per questo (e02/e03 o1, e13 o4: 7 righe).
 
 ## C33-09 – la seconda stella col numero
 
-- È nella resa (`src/resa/schermate/Bilancio.tsx`, `requisitoInParole`), quindi mio. Al colore si aggiunge il numero: «Per la seconda stella la tensione non deve passare il giallo (massimo 3 su 10): è arrivata all'arancione (4).» La scala («su 10») viene dalla dichiarazione della variabile (`tensione_max`, max 10). Soglie e colori invariati.
+- È nella resa (`src/resa/schermate/Bilancio.tsx`, `requisitoInParole`), quindi mio. Dopo la frase coi colori si aggiunge il numero, come in D-147: «Per la seconda stella la tensione non deve passare il giallo: è arrivata all'arancione. Seconda stella: tensione massima 3 su 10 (raggiunta: 4).» La scala («su 10») viene dalla dichiarazione della variabile (`tensione_max`, max 10). Soglie e colori invariati.
 - **Rosso `__NO_C109S01`:** solo i colori.
-- Test `tests/stella-numero.test.ts`: verde «(massimo 3 su 10)» e «(4)»; rosso nessuna cifra.
+- Test `tests/stella-numero.test.ts`: verde «Seconda stella: tensione massima 3 su 10 (raggiunta: 4).»; rosso nessuna cifra.
+- Guardiano C12-01 (D-055, `foto-club.mjs`, cifre di tensione vietate): corretto con l'unica eccezione di D-147, la frase esatta qui sopra; ogni altra cifra della tensione resta un errore. Il giro 1 su e9c1917 era ROSSO per questo (e01/e07 verbale, 5 righe).
 
 ## Giri
 
