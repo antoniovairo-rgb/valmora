@@ -1,11 +1,12 @@
 // Passi della catena «grafica». Ognuno restituisce l'elenco dei problemi.
 import { execSync } from 'node:child_process';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, writeFileSync } from 'node:fs';
 import { controllaToken, controllaGiro, controllaEmail } from './controlli-grafica.mjs';
 import { readdirSync } from 'node:fs';
 import { giraFoto } from './foto.mjs';
 import { giraEpilogo } from './foto-epilogo.mjs';
 import { giraOffline } from './offline.mjs';
+import { controllaCittaSenzaWebgl } from './foto-c128.mjs';
 
 const fileResa = () => execSync('git ls-files --cached --others --exclude-standard src/resa', { encoding: 'utf8' })
   .split('\n').filter((p) => p && existsSync(p));
@@ -13,8 +14,13 @@ const fileResa = () => execSync('git ls-files --cached --others --exclude-standa
 export const PASSI_GRAFICA = {
   token: () => controllaToken(Object.fromEntries(fileResa().map((p) => [p, readFileSync(p, 'utf8')]))),
   email: () => controllaEmail(Object.fromEntries(['dist/index.html', ...readdirSync('dist/assets').filter((f) => /\.(js|css|html)$/.test(f)).map((f) => `dist/assets/${f}`)].map((p) => [p, readFileSync(p, 'utf8')]))),
-  // D-161, D-164: epilogo dopo e36 e «Fine stagione» in e12/e24, a 360/375/412/1366 (tools/foto-epilogo.mjs)
-  foto: async () => [...(await giraFoto('out/foto')).flatMap(controllaGiro), ...(await giraEpilogo('out/foto')).flatMap(controllaGiro)],
+  // C128-01: le città con un nome si rigiocano senza WebGL; gli stati restano in out/foto per il braccio rosso
+  foto: async () => {
+    const giri = await giraFoto('out/foto'), stati = giri.flatMap((g) => g.citta);
+    writeFileSync('out/foto/citta-stati.json', JSON.stringify(stati));
+    // D-161, D-164, D-165: epilogo, «Fine stagione» e fischio (tools/foto-epilogo.mjs)
+    return [...giri.flatMap(controllaGiro), ...(await controllaCittaSenzaWebgl(stati)), ...(await giraEpilogo('out/foto')).flatMap(controllaGiro)];
+  },
   // S-22 (C14-01): il gioco installato funziona offline (service worker), su http://localhost
   offline: () => giraOffline('dist'),
   'bracci-rossi-grafica': async () => {
@@ -29,6 +35,12 @@ export const PASSI_GRAFICA = {
       process.env.VALMORA_ROSSI = r;
       try { if (!(await giraEpilogo('out/foto-rossi', 'dist', [360])).flatMap(controllaGiro).length) ciechi.push(`epilogo/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }
+    // C128-01: col rosso C128N01 (nessun ricalcolo a ingresso finito) il nome della città deve uscire dal bordo
+    const stati = existsSync('out/foto/citta-stati.json') ? JSON.parse(readFileSync('out/foto/citta-stati.json', 'utf8')) : [];
+    // i nomi sulla mappa della città ci sono solo a 412 (D-123): un giro a 360 o 375 da solo (CI per larghezza) non ne ha
+    const con412 = !process.env.VALMORA_LARGHEZZE || process.env.VALMORA_LARGHEZZE.split(',').includes('412');
+    if (!stati.length) { if (con412) ciechi.push('foto/città senza WebGL: nessuno stato con un nome dal giro foto'); }
+    else if (!(await controllaCittaSenzaWebgl(stati, 'dist', ['C128N01'])).some((x) => x.includes('tocca il bordo'))) ciechi.push('foto/città senza WebGL (C128N01) è cieco');
     if (!controllaToken({ 'src/resa/x.css': '.a { color: #fff; }' }).length) ciechi.push('token/colore è cieco');
     if (!controllaToken({ 'src/resa/x.css': '.a { margin: 3px; }' }).length) ciechi.push('token/misura è cieco');
     if (!controllaToken({ 'src/resa/X.tsx': '<div style={{ color: "red" }} />' }).length) ciechi.push('token/stile in linea è cieco');

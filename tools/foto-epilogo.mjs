@@ -31,7 +31,9 @@ export function salvataggioAlRapporto(id, dirDati = 'data') {
   };
 }
 
-export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghezze = LARGHEZZE_EPILOGO) {
+// VALMORA_LARGHEZZE (CI divisa per larghezza) limita anche questo giro, come quello di foto.mjs
+const daAmbiente = () => (process.env.VALMORA_LARGHEZZE ? process.env.VALMORA_LARGHEZZE.split(',').map(Number) : LARGHEZZE_EPILOGO);
+export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghezze = daAmbiente()) {
   mkdirSync(cartella, { recursive: true });
   const srv = await new Promise((ok) => { const s = createServer((q, r) => { const u = decodeURIComponent(q.url.split('?')[0]); const p = join(build, u === '/' ? 'index.html' : u);
     if (!existsSync(p)) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'content-type': TIPI[extname(p)] ?? 'application/octet-stream' }); r.end(readFileSync(p)); }); s.listen(0, '127.0.0.1', () => ok(s)); });

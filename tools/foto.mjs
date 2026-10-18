@@ -10,7 +10,7 @@ import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, controllaVerbaleBasso, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta, controllaChiIcona } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaContrasto, controllaRiquadri } from './foto-contrasto.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione, controllaFiduciaRapporto, controllaSfidaBusti, controllaSegni, controllaIconeEffetti, controllaColoriCortei, statoSalvato, controllaVignettaEvento, controllaRitiroSingolo } from './foto-c17.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta, controllaChiIcona } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaContrasto, controllaRiquadri } from './foto-contrasto.mjs'; import { statoCitta } from './foto-c128.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione, controllaFiduciaRapporto, controllaSfidaBusti, controllaSegni, controllaIconeEffetti, controllaColoriCortei, statoSalvato, controllaVignettaEvento, controllaRitiroSingolo } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -22,7 +22,7 @@ export const LARGHEZZE = [360, 375, 412]; // VALMORA_LARGHEZZE=360 le limita (mi
 const larghezze = () => (process.env.VALMORA_LARGHEZZE ? process.env.VALMORA_LARGHEZZE.split(',').map(Number) : LARGHEZZE);
 const TIPI = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml' };
 
-function servi(dir) {
+export function servi(dir) {
   const srv = createServer((req, res) => {
     const u = decodeURIComponent((req.url ?? '/').split('?')[0]);
     const p = join(dir, u === '/' ? 'index.html' : u);
@@ -91,7 +91,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
   const giri = [];
   try {
     for (const larghezza of larghezze()) {
-      const g = { larghezza, errori: [], scorrimento: [], attesi: [] };
+      const g = { larghezza, errori: [], scorrimento: [], attesi: [], citta: [] };
       const atteso = (cosa, ok) => g.attesi.push({ cosa, ok });
       // reducedMotion: transizioni ridotte a dissolvenze e mappa ferma → foto stabili fra un giro e l'altro.
       const pagina = await browser.newPage({ viewport: { width: larghezza, height: 800 }, reducedMotion: 'reduce' });
@@ -108,7 +108,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             && [...document.querySelectorAll('[data-messaggio]')].every((x) => getComputedStyle(x).opacity === '1') && [...document.querySelectorAll('.mappa')].every((x) => x.dataset.pronta === 'si'), null, { timeout: 5000 });
         };
         const foto = async () => {
-          const nome = await pagina.getAttribute('.scena', 'data-scena');
+          const nome = await pagina.getAttribute('.scena', 'data-scena'); if (nome === 'citta') { const c = await statoCitta(pagina); if (c) g.citta.push(c); } // C128-01
           const [contenuto, finestra] = await pagina.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
           if (contenuto > finestra) g.scorrimento.push({ schermata: nome, contenuto, finestra });
           // C-005 R06/R07: niente testo sotto i 12 px, nomi dei settori dentro la mappa con margine, etichetta
