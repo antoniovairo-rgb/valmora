@@ -7,8 +7,9 @@
 .elenco-settori .caldo small { display: block; font-weight: 400; font-size: var(--testo-mini); }
 /* C17-22: all'ultimo passo del verbale i pulsanti stanno sotto il testo, non fissi: a 375×667 coprivano «Voci in rete». Rosso C42V01: fissi. */
 main:not(.rosso-c42v01)[data-schermata="verbale"] .passi-nav[data-ultimo] { position: static; }
-/* C17-12: spostamento del nome dell'episodio scelto verso l'interno della mappa, misurato da etichette.ts */
-.mappa.citta .settore-nome { translate: var(--nome-dx, 0) var(--nome-dy, 0); }
+/* C17-12: spostamento del nome dell'episodio scelto verso l'interno della mappa, misurato da etichette.ts; C128-02: anche
+   i nomi dei settori (schieramento, sala), di pochi pixel quando entrano nel margine dal bordo */
+.mappa .settore-nome { translate: var(--nome-dx, 0) var(--nome-dy, 0); }
 /* C18-07: l'aiuto aperto si porta in vista sopra la barra fissa «Conferma», non sotto */
 .compatto .aiuto-schieramento { scroll-margin-bottom: calc(var(--tocco-min) + var(--spazio-5)); }
 /* C18-08: nel verbale la sfida sta sulla riga delle stelle, a soli stemmi, non sopra i busti (si leggevano come i due club) */

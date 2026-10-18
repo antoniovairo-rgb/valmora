@@ -51,6 +51,7 @@ export function disponiEtichette(contenitore: HTMLElement) {
   // C33-04: si riparte sempre dallo stesso stato (posto delle unità e larghezza dei nomi del giro prima pesavano sul
   // risultato, che cambiava col numero di giri: 2/426 ondate fra due giri uguali). Rosso C102D01: dallo stato di prima.
   if (!spento('C102D01')) for (const s of settori) { s.setAttribute('data-unita', UNITA[0]); s.querySelector<HTMLElement>('.settore-nome')?.style.removeProperty('max-width'); }
+  for (const s of settori) { const n = s.querySelector<HTMLElement>('.settore-nome'); n?.style.removeProperty('--nome-dx'); n?.style.removeProperty('--nome-dy'); } // C128-02
   const punti = settori.map((s) => s.querySelector('.settore-punto')!.getBoundingClientRect() as Rett);
   // C33-01: il nome si misura col testo vero (riquadro ∪ righe del testo): stretto al 60% il testo usciva dal riquadro e
   // finiva sotto le pastiglie (10/142 ondate a 360). Rosso C100N01: solo il riquadro, come prima.
@@ -132,23 +133,35 @@ export function disponiEtichette(contenitore: HTMLElement) {
       let k = righe(s).filter((z) => tutti.some((q) => dentro(centro(z), q))).length;
       for (const x of altri) { const rx = righe(x); k += rx.filter((z) => miei.some((q) => dentro(centro(z), q))).length + miei.filter((q) => rx.some((z) => dentro(centro(q), z))).length; }
       return VERA * 1e4 * k; };
-    let migliore = { nome: NOMI[0] as string, unita: UNITA[0] as string, costo: Infinity, largo: '' };
+    // C128-02 (PO-128, CI rossa su e14 o1 a 360): in Chrome 156 «Biglietteria» è largo 84 px invece di 82,5 e al posto
+    // pulito (sopra-sx) entrava 0,31 px nel margine dal bordo: quasi vincolo (5 milioni), e vinceva la pastiglia sopra
+    // Tornelli con due nomi rubati (4,2 milioni). Come nella città (C20-03), un nome che entra nel margine di poco (fino a
+    // un ottavo di disco) si sposta verso l'interno di quanto basta e il costo si conta già spostato. Rosso C128E01: no.
+    const passo = (punti[i]!.right - punti[i]!.left) / 8, c128 = !spento('C128E01');
+    const rientra = (a: number, b: number, min: number, max: number) => (a < min ? min - a : b > max ? max - b : 0);
+    const spingi = (dx: number, dy: number) => { el?.style.setProperty('--nome-dx', `${dx}px`); el?.style.setProperty('--nome-dy', `${dy}px`); };
+    const sposta = () => { if (!c128 || !el) return [0, 0] as const; spingi(0, 0); const n = nomeDi(s); if (!n) return [0, 0] as const;
+      const b = MARGINE + 0.5, dx = rientra(n.left, n.right, mappa.left + b, mappa.right - b), dy = rientra(n.top, n.bottom, mappa.top + b, mappa.bottom - b);
+      if (Math.abs(dx) > passo || Math.abs(dy) > passo || (!dx && !dy)) return [0, 0] as const;
+      spingi(dx, dy); return [dx, dy] as const; };
+    let migliore = { nome: NOMI[0] as string, unita: UNITA[0] as string, costo: Infinity, largo: '', dx: 0, dy: 0 };
     cerca: for (const largo of d136 ? ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.6)'] : ['']) {
     if (largo && migliore.costo === 0) break;
     if (el) el.style.maxWidth = largo;
     if (largo && el && el.scrollWidth > el.clientWidth + 1 && !spento('C100N01')) continue; // C33-01: il testo non ci sta
     for (const nome of NOMI) for (const unita of conUnita ? posti : [UNITA[0]]) {
       s.setAttribute('data-nome', nome); s.setAttribute('data-unita', unita);
+      const [dx, dy] = sposta();
       const n = nomeDi(s), u = conUnita ? unitaDi(s) : null;
       if (!n || (conUnita && !u)) continue;
       const costo = costoDi(n, perNome) + VERA * (c27 ? 1e4 : 10) * fuori(n, mappa) + nomiSopra(n) * (c27 ? 2e3 : 1) + sottoPastiglie(n) + (u ? sottoDisco() : 0)
         + (u ? costoDi(u, perUnita) + VERA * area(n, u) + bordoUnita(u) + suNomi(pastiglie() ?? u, n) * (c33 ? 20 : 1) + lontano(pastiglie() ?? u) + ruba() : 0);
-      if (costo < migliore.costo - (largo ? 0.5 : 0)) migliore = { nome, unita, costo, largo };
+      if (costo < migliore.costo - (largo ? 0.5 : 0)) migliore = { nome, unita, costo, largo, dx, dy };
       if (costo === 0) break cerca;
     }
     }
     if (el) el.style.maxWidth = migliore.largo;
-    s.setAttribute('data-nome', migliore.nome); s.setAttribute('data-unita', migliore.unita);
+    s.setAttribute('data-nome', migliore.nome); s.setAttribute('data-unita', migliore.unita); if (c128) spingi(migliore.dx, migliore.dy);
   }
 }
 

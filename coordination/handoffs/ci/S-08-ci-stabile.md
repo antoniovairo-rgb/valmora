@@ -49,6 +49,43 @@ C128N01 deve trovare «tocca il bordo». Misura sugli stati 53/66/81: verde `[]`
 Errore mio corretto in 31953e3: a 375 da solo (CI per larghezza) non ci sono nomi e il braccio rosso si dichiarava cieco
 (job «grafica (375)» rosso su a2b3f00): ora il braccio vale quando il giro comprende 412.
 
+## A2. e14 o1 a 360×760 (rosso CI della 0.38.0), C128-02, richiesta della principale del 18/10 (D-169)
+
+### FATTO MISURATO
+1. Su 91ea00e, `tools/sonda-schieramento.mjs` (stato del bot attento, bozza nel salvataggio, stessa attesa di
+   `foto-schieramenti.mjs`): Chrome Headless Shell 156.0.8078.4 **9 rossi su 9** (4 coi caratteri rallentati di 1,5 s,
+   5 senza; anche ridisponendo a scena ferma con un cambio di misura); Chromium 141 locale **0 su 4**. Quindi non dipende
+   dai tempi né dai font: f7f39e9 non poteva bastare.
+2. Misure dei nomi: Biglietteria 84,0 px (156) contro 82,5 (141), Tornelli 63,0 contro 61,3; mappa 328×328 in entrambi.
+3. Costi (registro temporaneo in `disponiEtichette`, poi tolto): in 141 biglietteria sceglie sopra-sx/sotto (costo
+   64 961); in 156 lo stesso posto ha il riquadro del nome a **4,69 px** dal bordo sinistro (in 141 6,16): 0,31 px dentro il
+   margine di 5 px, che pesa VERA·1e4 per px² (circa 5,1 milioni) e vince destra/sotto (4 235 601) con la pastiglia «1» sopra
+   Tornelli (160 px²) e due nomi rubati: è il rosso della CI, identico.
+
+### Correzione (D-169)
+`src/resa/mappa/etichette.ts` (passo «nome e unità insieme»): un nome che entra nel margine di poco (fino a un ottavo
+di disco, 5,5 px a 44 px) si sposta verso l'interno con `--nome-dx/--nome-dy` e il costo si conta già spostato, come
+nella città (C20-03); all'inizio di ogni disposizione gli spostamenti si azzerano (C33-04). `src/resa/stile-c18.css:11`:
+la translate vale per `.mappa .settore-nome` (prima solo la città). Rosso `globalThis.__NO_C128E01`. Margine e soglie
+invariati.
+
+| e14 o1, 360×760, sonda | prove | rossi |
+|---|---|---|
+| Chrome 156, rosso C128E01 (= prima) | 10 | 10 |
+| Chrome 156, dopo | 10 | 0 |
+| Chrome 156, caratteri +1,5 s, dopo | 3 | 0 |
+| Chromium 141, dopo | 3 | 0 |
+
+Guardiano: `foto-schieramenti.mjs` (rubati e pastiglie sui nomi, soglia 0) in CI col browser 156; braccio rosso
+dimostrato con la sonda (C128E01 → 10/10). In locale col Chromium 141 il guardiano non vede questo caso: per
+riprodurlo `VALMORA_CHROME=$(node tools/chrome-ci.mjs)`.
+CI su 9e892c29 (run 39083225279): **7 job verdi, 1 tentativo ciascuno** (grafica 360 27 min 42 s, 375 5 min 51 s,
+412 6 min 19 s): nessun altro episodio peggiorato col browser della CI.
+
+Catena completa locale dopo C128-02: giro 1 su 9e892c29 VERDE (foto 2421,1 s), giro 2 su 9abcafed VERDE (2387,3 s),
+giro 3 su 5f15d924 VERDE; fra i tre commit cambiano solo STABILITA.json e il rapporto. **3/3 verdi, nessun passo
+instabile.**
+
 ## B. Il browser della CI in locale
 FATTO: la rete lo consente. `node tools/chrome-ci.mjs` scarica (una volta, ~13 s) Chrome Headless Shell **156.0.8078.4**
 (playwright v1248, la stessa versione del log CI) in `~/.cache/valmora-browser-ci` e stampa il percorso. Uso:
