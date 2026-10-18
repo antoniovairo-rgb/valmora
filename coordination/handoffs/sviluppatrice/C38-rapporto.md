@@ -21,13 +21,21 @@ Ramo `claude/valmora-resa-v2`. Commit: 382e8fb (C38-02 e test), 8df2a18 (rapport
 ## C38-01 – verifica sulla build integrata
 
 - Caso C37-08 del collaudo (e17 o2, «Steward ai cancelli», nessuno steward posato ai tornelli): CHIUSO. Sulla principale integrata (d155487, merge e4f50d1) c'è il codice di C37-08 (`Rapporto.tsx:29-30`, `App.tsx:191` passa le scelte). Test nuovo in `tests/causa-risposte.test.ts` col caso esatto del collaudo: «le tue risposte non bastano», 1 steward impegnato.
-- Casi del mediatore (e14 o1 biglietteria, e17 o3 piazza del municipio): NON chiusi da C37-08. Il mediatore è schierato, non impegnato da una risposta, e non ha efficacia (`missione.ts:215` somma solo le efficacie; `e14.json`: `efficacia: {}`), quindi il rapporto dice ancora «nessuna unità a coprirlo». Non l'ho cambiato: non è nel compito e serve una scelta.
+- Casi del mediatore (e14 o1 biglietteria, e17 o3 piazza del municipio): non li chiudeva C37-08 (il mediatore è schierato, non impegnato da una risposta, e ha `efficacia: {}`). Chiusi con D-173, sotto.
+
+## C38-01 – mediatore che presidia (D-173, opzione A)
+
+- `missione.ts` (motore): la causa di un settore scoperto porta anche `presenti`, le unità schierate lì (anche senza efficacia). Campo facoltativo: nessun numero di gioco cambia; i vecchi salvataggi non lo hanno e il testo resta quello di prima.
+- `Rapporto.tsx`: copertura 0 e solo il mediatore sul settore → «presidiato, ma il mediatore qui non basta»; altre unità senza efficacia → «presidiato, ma le unità qui non bastano». **Rosso `__NO_C115M01`.**
+- Test `tests/rapporto-mediatore.test.ts`, partita vera del motore sui casi esatti del collaudo: e14 ondata 1, mediatore alla biglietteria; e17 ondata 3, mediatore alla piazza del municipio (ondate prima col bot attento, le altre unità mai su quel settore). Il settore è scoperto, `presenti` = mediatore.
+
+| caso del collaudo | prima (rosso C115M01) | dopo |
+|---|---|---|
+| e14 o1 biglietteria | «nessuna unità a coprirlo» | «presidiato, ma il mediatore qui non basta» |
+| e17 o3 piazza del municipio | «nessuna unità a coprirlo» | «presidiato, ma il mediatore qui non basta» |
 
 ## Non verificato
 
 - Il testo «è salita troppo dentro il giallo» non l'ho visto nel verbale a schermo (360/375/412): è provato dal test e dall'uscita della funzione, non con una foto.
-- Il caso e17 o2 l'ho provato col rapporto costruito nel test, non giocando la partita.
-
-## Opzioni per la principale (non scelte da me)
-
-- Mediatore nel rapporto (C38-01, resto): A) testo che distingue «presidiato, ma il mediatore qui non basta» (consigliata, come opzione 1 del collaudo: una condizione in `Rapporto.tsx`, test sui due casi); B) contare il mediatore come presidio solo nel testo (non spiega perché resta scoperto); C) spiegarlo solo nella guida (il rapporto resta in contraddizione con la mappa).
+- Il caso e17 o2 l'ho provato col rapporto costruito nel test, non giocando la partita; i casi del mediatore con la partita del motore e il bot, non con la stessa disposizione del collaudatore.
+- I testi nuovi del rapporto non li ho visti a schermo (360/375/412).
