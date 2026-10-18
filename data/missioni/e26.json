@@ -323,10 +323,6 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e26.op.steward_fumogeni.r"
@@ -339,10 +335,6 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": 3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 2
                 }
               ],
               "risposta": "testi:e26.op.lascia_fumo.r"
@@ -498,10 +490,6 @@
                 {
                   "pressione": "curva_larkspire",
                   "valore": -1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e26.op.speaker.r"
@@ -533,10 +521,6 @@
               "costo": "testi:e26.op.premiazione_campo.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "tensione": "curva_ospiti",
                   "valore": 2
                 }
@@ -548,10 +532,6 @@
               "testo": "testi:e26.op.premiazione_tribuna",
               "costo": "testi:e26.op.premiazione_tribuna.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "curva_ospiti",
                   "valore": -1
@@ -671,10 +651,6 @@
               "testo": "testi:e26.op.blocca_carosello",
               "costo": "testi:e26.op.blocca_carosello.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "curva_larkspire",
                   "valore": 2
@@ -835,7 +811,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

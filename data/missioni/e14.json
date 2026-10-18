@@ -526,10 +526,6 @@
               "costo": "testi:e14.op.lascia_fumo14.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_ospiti",
                   "valore": 2
                 }
@@ -550,10 +546,6 @@
               "costo": "testi:e14.op.rimborsa_ora.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "biglietteria",
                   "valore": -2
                 }
@@ -565,10 +557,6 @@
               "testo": "testi:e14.op.dopo_partita",
               "costo": "testi:e14.op.dopo_partita.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "biglietteria",
                   "valore": 2
@@ -866,7 +854,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

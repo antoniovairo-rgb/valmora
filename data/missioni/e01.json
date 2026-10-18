@@ -165,10 +165,6 @@
                 {
                   "tensione": "curva_cinderwick",
                   "valore": 1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e01.op.ferma.r"
@@ -200,10 +196,6 @@
               "costo": "testi:e01.op.asseconda.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "piazzale",
                   "valore": 2
                 }
@@ -214,12 +206,7 @@
               "id": "ignora",
               "testo": "testi:e01.op.ignora",
               "costo": "testi:e01.op.ignora.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e01.op.ignora.r"
             }
           ]
@@ -274,10 +261,6 @@
                 {
                   "riserva": "squadre",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e01.op.chiedi.r"
@@ -396,10 +379,6 @@
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e01.op.sospendi.r"
@@ -500,12 +479,7 @@
               "id": "aspetti",
               "testo": "testi:e01.op.aspetti",
               "costo": "testi:e01.op.aspetti.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e01.op.aspetti.r"
             }
           ]
@@ -713,10 +687,6 @@
               "costo": "testi:e01.op.intervista.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "piazzale",
                   "valore": 2
                 }
@@ -727,12 +697,7 @@
               "id": "niente",
               "testo": "testi:e01.op.niente",
               "costo": "testi:e01.op.niente.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e01.op.niente.r"
             }
           ]
@@ -836,7 +801,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }
