@@ -30,7 +30,14 @@ function gioca(m: Missione, n: number, dove: string) {
       d.mediatore = { [dove]: Math.min(1, disponibili(m, s).mediatore ?? 0) };
     }
     s = schiera(m, s, d);
-    for (let c = chiamateAperte(m, s)[0]; c; c = chiamateAperte(m, s)[0]) s = rispondi(m, s, c.id, b.scegli(m, s, c), dich as never);
+    // C40-04 (D-180): qui si prova il mediatore da solo; una risposta che impegna unità sullo stesso settore rende giusto
+    // «le unità qui non bastano» (test in rapporto-c40.test.ts), quindi nell'ondata n il bot non la sceglie
+    const impegna = (c: { settore?: string }, id: string) => c.settore === dove && (m.ondate[o - 1]?.chiamate?.find((x) => x === c)?.opzioni.find((x) => x.id === id)?.effetti ?? []).some((e) => 'riserva' in e && e.valore < 0);
+    for (let c = chiamateAperte(m, s)[0]; c; c = chiamateAperte(m, s)[0]) {
+      let x = b.scegli(m, s, c);
+      if (o === n && impegna(c, x)) x = c.opzioni.find((y) => !impegna(c, y.id))?.id ?? x;
+      s = rispondi(m, s, c.id, x, dich as never);
+    }
     s = chiudiOndata(m, s, dich as never);
   }
   const r = s.rapporti[n - 1]!;

@@ -79,6 +79,13 @@ describe('epilogo e fine stagione (D-161, D-164)', () => {
     expect(crudo.aperti.map((f) => f.id)).toEqual(['informatore_pagato']);
   });
 
+  it('C40-05: la busta consegnata non si dice «chiusa» (in e24/e36 si può aprire prima, «Aprila adesso»); braccio rosso', () => {
+    const chiusa = (t: Record<string, string>) => Object.entries(t).filter(([k, v]) => /busta\.consegnata$/.test(k) && /chius/i.test(v)).map(([k]) => k);
+    const f = d['testi/it/finale.json'] as Record<string, string>;
+    expect([...chiusa(testi), ...chiusa(f)]).toEqual([]);
+    expect(chiusa({ 'epilogo.busta.consegnata': 'Consegnata chiusa al comando.' })).toEqual(['epilogo.busta.consegnata']);
+  });
+
   it('testi del finale (D-165): una didascalia per ogni valore delle tavole, ≤ 90 caratteri; braccio rosso', () => {
     const f = d['testi/it/finale.json'] as Record<string, string>;
     expect(testiFinale(f, dichiarate)).toEqual([]);
