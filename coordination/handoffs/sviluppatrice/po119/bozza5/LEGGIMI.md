@@ -2,7 +2,7 @@
 
 Il codice del gioco **non** cambia. La figura femminile (PO-135) e i volti sono quelli della quarta prova approvata; cambiano solo le braccia. Disegno: `bozza-persona-5.mjs`, con il parametro `variante` 'v1' | 'v2' | 'v3'. Tavole: dalla radice del repository, `node coordination/handoffs/sviluppatrice/po119/bozza5/tavole-5.mjs <cartella>`. Il taglio a busto resta invariato (opzione A).
 
-Commit: COMMIT_B5 (ramo `claude/valmora-resa-v2`).
+Commit: dc79b02 (ramo `claude/valmora-resa-v2`).
 
 ## File
 
