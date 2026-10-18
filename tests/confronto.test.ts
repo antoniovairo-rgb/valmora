@@ -7,7 +7,9 @@ import { giocaMissione, opzioniValide } from '../src/logica/missione.ts';
 import { STRATEGIE, attenta, casuale } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { bilancio } from '../src/logica/bilancio.ts';
-import { confrontoScelte } from '../src/logica/confronto.ts';
+import { confrontoScelte, daTabella, inRighe, type TabellaConfronti } from '../src/logica/confronto.ts';
+import { tabellaConfronti } from '../tools/confronti.mjs';
+import { readFileSync } from 'node:fs';
 import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
 
 const d = leggiDati() as Record<string, unknown>;
@@ -58,5 +60,13 @@ describe('bilancio contro le altre risposte (C38-03)', () => {
       .filter(([, r]) => r.scelte.length).filter(([, r]) => { const b = bilancio(m, r, 3, confrontoScelte(m, dich)); return !b.aiuti.length && !b.pesi.length; })
       .map(([n]) => `${m.id} ${n}`));
     expect(vuoti).toEqual([]);
+  }, 180_000);
+  it('D-174: la tabella precalcolata è uguale al calcolo sui dati di oggi; rosso: dati cambiati', () => {
+    const file = JSON.parse(readFileSync('src/logica/confronti.json', 'utf8')) as TabellaConfronti;
+    expect(file).toEqual(tabellaConfronti(d));
+    expect(daTabella(file, 'e14')!.get('seduti/in_piedi')).toEqual(confrontoScelte(ms.find((m) => m.id === 'e14')!, dich).get('seduti/in_piedi'));
+    const x = structuredClone(ms.find((m) => m.id === 'e14')!);
+    x.ondate.flatMap((o) => o.chiamate ?? []).find((c) => c.id === 'seduti')!.opzioni.find((o) => o.id === 'in_piedi')!.effetti.push({ tensione: 'curva_larkspire', valore: 5 } as never);
+    expect(inRighe(confrontoScelte(x, dich, undefined, false))).not.toEqual(file.episodi.e14);
   }, 180_000);
 });

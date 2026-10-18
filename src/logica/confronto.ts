@@ -9,15 +9,19 @@ import type { Dichiarazione, Missione } from './tipi.ts';
 
 export interface Confronto { n: number; nAltre: number; falliteSe: number; falliteAltre: number; tensioneSe: number; tensioneAltre: number; saldo: number }
 export const SEMI_CONFRONTO = 200;
+/** D-174: tabelle precalcolate (src/logica/confronti.json, `node tools/confronti.mjs`): per episodio, per `chiamata/opzione`,
+ *  [n, nAltre, falliteSe, falliteAltre, tensioneSe, tensioneAltre, saldo]. Un guardiano le confronta col calcolo. */
+export interface TabellaConfronti { semi: number; episodi: Record<string, Record<string, number[]>> }
+const tondo = (x: number) => Math.round(x * 100) / 100;
 
 interface Conta { n: number; ko: number; tens: number }
 const cache = new Map<string, Map<string, Confronto>>();
 
 /** Per ogni `chiamata/opzione` vista: fallite (%) e tensione finale media se la scegli e se scegli le altre.
  *  saldo = (fallite altre − fallite se) in punti + (tensione altre − tensione se): positivo = ti ha aiutato. */
-export function confrontoScelte(m: Missione, dich: Map<string, Dichiarazione>, semi = SEMI_CONFRONTO): Map<string, Confronto> {
+export function confrontoScelte(m: Missione, dich: Map<string, Dichiarazione>, semi = SEMI_CONFRONTO, inCache = true): Map<string, Confronto> {
   const chiave = `${m.id}:${semi}`;
-  const pronto = cache.get(chiave); if (pronto) return pronto;
+  const pronto = inCache ? cache.get(chiave) : undefined; if (pronto) return pronto;
   const iniziali = variabiliIniziali(dich.values());
   const tab = new Map<string, Conta>(); const perChiamata = new Map<string, string[]>();
   for (let s = 1; s <= semi; s++) {
@@ -36,8 +40,19 @@ export function confrontoScelte(m: Missione, dich: Map<string, Dichiarazione>, s
     const nAltre = altre.reduce((a, u) => a + u.n, 0); if (!nAltre) continue;
     const falliteSe = (100 * t.ko) / t.n, falliteAltre = (100 * altre.reduce((a, u) => a + u.ko, 0)) / nAltre;
     const tensioneSe = t.tens / t.n, tensioneAltre = altre.reduce((a, u) => a + u.tens, 0) / nAltre;
-    out.set(k, { n: t.n, nAltre, falliteSe, falliteAltre, tensioneSe, tensioneAltre, saldo: (falliteAltre - falliteSe) + (tensioneAltre - tensioneSe) });
+    out.set(k, { n: t.n, nAltre, falliteSe: tondo(falliteSe), falliteAltre: tondo(falliteAltre), tensioneSe: tondo(tensioneSe), tensioneAltre: tondo(tensioneAltre),
+      saldo: tondo((falliteAltre - falliteSe) + (tensioneAltre - tensioneSe)) });
   }
-  cache.set(chiave, out);
+  if (inCache) cache.set(chiave, out);
   return out;
+}
+
+/** Tabella di un episodio in righe (per il file precalcolato). */
+export const inRighe = (c: Map<string, Confronto>): Record<string, number[]> =>
+  Object.fromEntries([...c].sort(([a], [b]) => a.localeCompare(b)).map(([k, x]) => [k, [x.n, x.nAltre, x.falliteSe, x.falliteAltre, x.tensioneSe, x.tensioneAltre, x.saldo]]));
+/** Il confronto di un episodio dalla tabella precalcolata; null se l'episodio non c'è (allora si calcola). */
+export function daTabella(tab: TabellaConfronti, id: string): Map<string, Confronto> | null {
+  const e = tab.episodi[id]; if (!e) return null;
+  return new Map(Object.entries(e).map(([k, [n, nAltre, falliteSe, falliteAltre, tensioneSe, tensioneAltre, saldo]]) =>
+    [k, { n: n!, nAltre: nAltre!, falliteSe: falliteSe!, falliteAltre: falliteAltre!, tensioneSe: tensioneSe!, tensioneAltre: tensioneAltre!, saldo: saldo! }]));
 }

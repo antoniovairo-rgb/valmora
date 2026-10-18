@@ -4,7 +4,8 @@
 import { ThumbsDown, ThumbsUp, ShieldAlert, Star } from 'lucide-react';
 import { Fragment, type ReactNode } from 'react';
 import { bilancio, type Impatto, type Requisito, type VoceScelta } from '../../logica/bilancio.ts';
-import { confrontoScelte } from '../../logica/confronto.ts';
+import { confrontoScelte, daTabella, type TabellaConfronti } from '../../logica/confronto.ts';
+import tabella from '../../logica/confronti.json';
 import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
 import { dichiarate, t } from '../dati.ts';
@@ -68,7 +69,8 @@ function Voce(p: { m: Missione; v: VoceScelta }) {
 
 /** Le sezioni del bilancio, una per passo del verbale (S-10): aiuti, pesi, scoperti con la stella dopo. */
 export function sezioniBilancio(p: { m: Missione; esito: EsitoMissione; stelle: number }): ReactNode[] {
-  const b = bilancio(p.m, p.esito, 3, confrontoScelte(p.m, dichiarate)); // C38-03: contro le altre risposte
+  // C38-03: contro le altre risposte; D-174: dalla tabella precalcolata (tools/confronti.mjs), calcolo solo se manca
+  const b = bilancio(p.m, p.esito, 3, daTabella(tabella as TabellaConfronti, p.m.id) ?? confrontoScelte(p.m, dichiarate));
   const lista = p.stelle >= 3 ? null : p.stelle === 2 ? b.stelle.tre : b.stelle.due;
   const manca = lista && prossimoRequisito(lista);
   return [

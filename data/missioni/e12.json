@@ -210,6 +210,10 @@
                 {
                   "pressione": "piazzale",
                   "valore": 2
+                },
+                {
+                  "imposta": "furgone_visto",
+                  "valore": true
                 }
               ],
               "risposta": "testi:e12.op.tutto_rapporto.r"
