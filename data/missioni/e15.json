@@ -174,10 +174,6 @@
               "costo": "testi:e15.op.lasciali15.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "viale_stazione",
                   "valore": 2
                 }
@@ -210,10 +206,6 @@
               "testo": "testi:e15.op.striscione_no",
               "costo": "testi:e15.op.striscione_no.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "viale_stazione",
                   "valore": 2
@@ -349,10 +341,6 @@
               "costo": "testi:e15.op.due_cortei.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "viale_stazione",
                   "valore": 2
                 }
@@ -404,10 +392,6 @@
               "testo": "testi:e15.op.fuori15",
               "costo": "testi:e15.op.fuori15.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "settore_gemellati",
                   "valore": 2
@@ -677,10 +661,6 @@
                 {
                   "tensione": "curva_ospiti",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e15.op.trattieni_rovers.r"

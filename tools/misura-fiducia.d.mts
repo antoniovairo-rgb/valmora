@@ -2,3 +2,4 @@ export interface Opzione { chiave: string; n: number; nAltre: number; nominale: 
 export function perverseRapide(dati: Record<string, unknown>, semi?: number): Opzione[];
 export function datiD160(dati: Record<string, unknown>, tolte: Record<string, number>): Record<string, unknown>;
 export function correlazioniCasuale(dati: Record<string, unknown>, semi?: number): Record<string, number | null>;
+export function deltaFallite(dati: Record<string, unknown>, semi?: number): Record<string, number | null>;

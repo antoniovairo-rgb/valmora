@@ -354,10 +354,6 @@
               "costo": "testi:e10.op.lascia_coreografie.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_cinderwick",
                   "valore": 2
                 }

@@ -131,7 +131,7 @@
   "e02.op.ignora_rete.c": "Se non sono chiacchiere, Skyfield si scalda.",
   "e02.op.sequestra.c": "Toglie lavoro ai tornelli.",
   "e02.op.lascia_vendere.c": "Nessun costo, nessun aiuto.",
-  "e02.op.accoglienza.c": "Stazione sotto controllo, ma costa fiducia.",
+  "e02.op.accoglienza.c": "Stazione sotto controllo.",
   "e02.op.binario_lontano.c": "Meno gente in stazione, più sul viale.",
   "e02.op.normale.c": "Nessun costo subito, la stazione si carica.",
   "e02.op.respingi.c": "Il comando approva; la coda ai tornelli si arrabbia.",
@@ -160,7 +160,7 @@
   "e02.op.trattieni_treno.c": "Stazione più calma, ma le ferrovie non gradiscono.",
   "e02.op.parte.c": "Nessun costo subito, chi resta a terra si arrabbia.",
   "e02.op.saluta.c": "Bella figura in tv; Skyfield non perdona.",
-  "e02.op.rifiuta_saluto.c": "Gli ospiti ci restano male.",
+  "e02.op.rifiuta_saluto.c": "Gli ospiti ci restano male; sul campo non cambia nulla.",
   "e02.op.indaga.c": "Il comando apprezza; due steward davanti agli schermi.",
   "e02.op.chiudi_viale.c": "Viale chiuso; la stazione si affolla."
 }

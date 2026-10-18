@@ -698,10 +698,6 @@
               "costo": "testi:e14.op.modulo.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "biglietteria",
                   "valore": 2
                 }

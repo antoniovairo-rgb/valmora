@@ -184,10 +184,6 @@
                 {
                   "pressione": "viale_concerto",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e13.op.aspettino.r"
@@ -262,10 +258,6 @@
               "testo": "testi:e13.op.palco_si",
               "costo": "testi:e13.op.palco_si.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "piazzale",
                   "valore": 2
@@ -379,10 +371,6 @@
                 {
                   "pressione": "piazzale",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e13.op.lascia_cori.r"
@@ -713,10 +701,6 @@
                 {
                   "pressione": "parcheggi",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e13.op.vigili_urbani.r"
@@ -734,10 +718,6 @@
               "testo": "testi:e13.op.corteo_si",
               "costo": "testi:e13.op.corteo_si.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "viale_concerto",
                   "valore": 2
@@ -782,10 +762,6 @@
               "testo": "testi:e13.op.al_club",
               "costo": "testi:e13.op.al_club.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazza_concerto",
                   "valore": 1
