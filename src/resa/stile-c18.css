@@ -89,7 +89,7 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .tavola > .vignetta { height: auto; min-height: 0; max-height: none; margin: 0; }
 .didascalia { margin: 0; padding: var(--spazio-2) var(--spazio-3); background: var(--bianco); border: var(--bordo-fine) solid var(--nero); border-top: 0; }
 .numeri-carriera { justify-content: center; gap: var(--spazio-2); margin: var(--spazio-2) 0 0; }
-.vignetta .v-fine { font-size: var(--testo-grande); letter-spacing: var(--spazio-px); }
+.vignetta .v-scritta-fine { font-size: var(--testo-grande); letter-spacing: var(--spazio-px); }
 /* D-165 parte 1: fischio dell'ultimo derby, i settori si spengono uno alla volta e la sala va al buio */
 .settore.spento .settore-punto, .settore.spento .settore-nome { opacity: var(--opaco); filter: grayscale(1); transition: opacity 0.5s, filter 0.5s; }
 .mappa.buio::after { content: ''; position: absolute; inset: 0; background: var(--nero); opacity: var(--opaco); pointer-events: none; transition: opacity 1s; }

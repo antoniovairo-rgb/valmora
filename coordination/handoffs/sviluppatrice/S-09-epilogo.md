@@ -166,3 +166,66 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
 - Aperto: PO-131 (braccia poco naturali) e PO-132 (il personaggio coi capelli lunghi non sembra una donna) sulla seconda
   bozza PO-119; le tavole entrano coi volti di oggi. Quando S-01 passa i tracciati della terza prova li porto in
   `src/resa/busto.tsx` e rifaccio le foto delle tavole a 360/375/412.
+
+## D-174 · terza prova dei protagonisti nelle tavole (PO-131 braccia, PO-132 figura femminile)
+
+- Principale 05f98de unita (fast-forward: conteneva già la mia consegna e quella di S-01).
+- `src/resa/busto.tsx` ora è `persona()` di `po119/bozza3/bozza-persona-3.mjs` (S-01, cc454bc) copiata senza cambiare
+  una forma: stringa SVG montata come fa `Persona` in vignetta.tsx (persona2.ts di S-01). Tenute le mie opzioni
+  `divisa`/`cravatta` per i civili. Braccia a riposo lungo i fianchi (nessuna posa nelle tavole).
+- Corretto un nome in conflitto: la mia scritta «FINE» usava la classe `v-fine`, che S-01 usa per il tratto sottile del
+  volto; ora è `v-scritta-fine`.
+- Foto: dopo in `coordination/handoffs/sviluppatrice/S-09-tavole-d174/` (360, 375, 412, uomo e donna); prima = seconda
+  bozza in `S-09-tavole-gioco/`.
+- FATTO MISURATO: `foto-tavole` 360/375/412 m e f «verde»; `foto-epilogo` 360 «verde»; tipi ok; vitest e token: vedi sotto.
+- Non verificato: le tavole usano solo la posa a riposo; le pose `su`/`nuca`/`conserte` della terza prova non le ho
+  guardate nelle tavole. `persona2.ts` di S-01 nel resto del gioco è ancora la seconda bozza: tocca a S-01 portarci la terza.
+
+### PO-133: terza prova annullata nelle tavole (scelta B della principale)
+
+- Il PO ha rimandato la terza prova (PO-133: «Le braccia continuano ad essere incollate al busto fermo») e S-01 l'ha
+  annullata nel gioco (d5b0dcc su resa-v2). Qui `src/resa/busto.tsx` torna alla seconda bozza (quella di 3186061), con
+  un commit di revert, senza force push; resta il nuovo nome `v-scritta-fine` della scritta «FINE».
+- La catena 3/3 su 46db1d6, partita alle 13:08, l'ho fermata io durante il giro 1: non vale. Rifatta sul commit del revert.
+- Le foto in `S-09-tavole-d174/` mostrano la terza prova, non più in gioco: restano solo come documentazione.
+- FATTO MISURATO dopo il revert: tipi ok; `foto-epilogo` 360 «verde»; `foto-tavole` 360 donna «verde».
+
+## D-176 · quarta prova dei protagonisti nelle tavole (PO-133 braccia, PO-135 figura femminile)
+
+- `src/resa/busto.tsx` = `persona()` di `po119/bozza4/bozza-persona-4.mjs` (S-01, d35cedb) copiata senza cambiare una
+  forma (stringa SVG, come persona2.ts); tenute `divisa` (ora anche il cinturone) e `cravatta` per i civili.
+- La catena su 563d906 (seconda bozza) l'ho fermata io durante il giro 2, dopo che il giro 1 era verde (14:08 → 15:17):
+  superata da questa consegna, non la conto come 3/3.
+- Foto dopo: `coordination/handoffs/sviluppatrice/S-09-tavole-d176/` (360, 375, 412, uomo e donna); prima = seconda
+  bozza in `S-09-tavole-gioco/`.
+- FATTO MISURATO: `foto-tavole` 360/375/412 uomo e donna «verde»; `foto-epilogo` 360 «verde»; tipi ok.
+- Non verificato: nelle tavole le figure sono tagliate al petto (bancone, vetro, cornice della foto), quindi delle braccia
+  nuove si vedono solo spalle e attacco; le pose `cinturone`/`peso` non le uso.
+
+### C117B01 (PO: «manca un braccio all'uomo - verifica la donna») nelle tavole
+
+- La catena su 6ee5abb l'ho fermata io durante il giro 1, su richiesta della principale: non vale.
+- Le tavole non usano la posa «mano alla nuca». `Figura` (tavole-figure.tsx:39) non passa mai `braccia`, quindi tutte
+  le 6 figure sono a riposo, con due braccia. Il difetto stava però anche nella mia copia (busto.tsx di 6ee5abb, posa
+  `nuca`).
+- `src/resa/busto.tsx` ora copia `persona()` di persona2.ts di S-01 al commit 7c0357f (correzione C117B01, rosso
+  `__NO_C117B01`, attributi data-braccio/data-spalla/data-busto), più divisa/cravatta per i civili.
+- Guardiano nuovo `tests/braccia-tavole.test.ts`: tutte le pose (riposo, su, nuca, conserte, cinturone) per uomo, donna e
+  vice, più le 6 tavole renderizzate: due braccia per busto, entro 6 unità dalla spalla, disegnate dopo il busto.
+  FATTO MISURATO: verde «2 passed»; col rosso `__NO_C117B01` trova «posa nuca corti: 0 braccia sx» e «posa nuca lunghi:
+  braccio dx disegnato prima del busto».
+- Il guardiano del giro foto contava anche il nuovo `data-busto="1"` interno (al bar «corti,1,berretto,1»). Corretto il
+  selettore in tools/foto-epilogo.mjs. Dopo: verde a 360; rosso C165T01 ancora segnalato (3 problemi).
+- `npx vitest run`: 60 file, 316 prove passate. Foto delle tavole rifatte in `S-09-tavole-d176/` (360, 375, 412, m e f),
+  «verde».
+
+### PO-137 (braccia smussate, C118S01) nelle tavole
+
+- Catena completa **3/3 VERDE su 2bac5be** (C117B01): 18:03 → 19:12 → 20:20 → 21:29, STABILITA nel commit successivo.
+- `arto()` di `src/resa/busto.tsx` = quello di persona2.ts di S-01 al commit 032ff92 (cappucci arrotondati a polso e
+  spalla, un'unica curva chiusa; attributo `data-arto="1"`; rosso `__NO_C118S01`).
+- Guardiano in `tests/braccia-tavole.test.ts`: la stessa `svoltaMassima` (soglia 30°) di tests/braccia.test.ts di S-01,
+  su tutte le pose di uomo, donna e vice e sul bar. FATTO MISURATO: verde, 0 braccia con spigoli; rosso C118S01, spigoli
+  su tutte le braccia misurate.
+- Verifica secondo D-177 (PO-139): 3 giri di `node tools/catena.mjs governo && node tools/catena.mjs logica`, più la CI.
+- FATTO MISURATO (D-177): su b01a346, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).

@@ -121,7 +121,7 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
           const v = stati.e36.salvataggio.variabili, genere = stati.e36.salvataggio.genere;
           const r = await pagina.evaluate(() => ({
             tavole: [...document.querySelectorAll('.scena [data-tavola]')].map((x) => `${x.dataset.tavola}=${x.dataset.valore ?? x.dataset.carriera}`),
-            busti: [...document.querySelectorAll('[data-tavola="bar"] [data-busto]')].map((x) => x.dataset.busto).join(','),
+            busti: [...document.querySelectorAll('[data-tavola="bar"] [data-busto]:not([data-busto="1"])')].map((x) => x.dataset.busto).join(','),
             numeri: document.querySelectorAll('[data-tavola="bar"] [data-numeri] .etichetta').length, fuoco: !!document.activeElement?.closest('.scena') }));
           const attese = [`fabbro=${v.rapporto_dessi}`, `testimone=${v.testimone}`, `busta=${v.busta}`, `talpa=${v.sospetti_talpa}`, `fascicolo=${v.fascicolo}`];
           atteso(`e36 epilogo: tavole «${r.tavole.join(', ')}» invece di «${attese.join(', ')}, bar» (D-165, D-171)`, r.tavole.slice(0, 5).join() === attese.join() && /^bar=(confermato|prorogato|sostituito)$/.test(r.tavole[5] ?? ''));
