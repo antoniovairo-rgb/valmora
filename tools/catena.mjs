@@ -61,7 +61,8 @@ const commit = git('rev-parse --short HEAD');
 const PRODOTTI = ['STABILITA.json', 'docs/governo/governo.html'];
 // Niente trim qui: la prima colonna di --porcelain può essere uno spazio.
 const sporco = execSync('git status --porcelain', { encoding: 'utf8' }).split('\n').filter((r) => r && !PRODOTTI.includes(r.slice(3))).length > 0;
-const giro = { catena: nome, data: new Date().toISOString(), commit, modifiche_non_committate: sporco, passi: [] };
+// PO-128: in CI la grafica gira una larghezza per job (VALMORA_LARGHEZZE): il giro lo dice, così non passa per completo.
+const giro = { catena: nome, data: new Date().toISOString(), commit, modifiche_non_committate: sporco, ...(process.env.VALMORA_LARGHEZZE ? { larghezze: process.env.VALMORA_LARGHEZZE } : {}), passi: [] };
 let rosso = false;
 
 for (const passo of CATENE[nome]) {
@@ -70,14 +71,18 @@ for (const passo of CATENE[nome]) {
   // 2026-10-15: un passo «instabile» non lasciava traccia del tentativo fallito, quindi la causa non si poteva
   // cercare. Ora i problemi dei tentativi falliti restano nel giro (precedenti) e vengono stampati.
   const precedenti = [];
+  // PO-128: secondi di ogni tentativo, per sapere dove va il tempo dei job (prima non si registrava).
+  const secondi = [];
   do {
     tentativi++;
+    const t0 = Date.now();
     try { problemi = await PASSI[passo](); } catch (e) { problemi = [`eccezione: ${e.message}`]; }
+    secondi.push(Math.round((Date.now() - t0) / 100) / 10);
     if (problemi.length) precedenti.push(problemi.slice(0, 20));
   } while (problemi.length && tentativi < 3);
   const esito = problemi.length ? 'rosso' : tentativi > 1 ? 'instabile' : 'verde';
-  giro.passi.push({ passo, esito, tentativi, problemi, ...(esito === 'instabile' ? { precedenti } : {}) });
-  console.log(`${esito === 'verde' ? '✔' : esito === 'instabile' ? '≈' : '✘'} ${passo}${tentativi > 1 ? ` (${tentativi} tentativi)` : ''}`);
+  giro.passi.push({ passo, esito, tentativi, secondi, problemi, ...(esito === 'instabile' ? { precedenti } : {}) });
+  console.log(`${esito === 'verde' ? '✔' : esito === 'instabile' ? '≈' : '✘'} ${passo}${tentativi > 1 ? ` (${tentativi} tentativi)` : ''} [${secondi.join(' + ')} s]`);
   for (const p of problemi) console.log(`    ${p}`);
   if (esito === 'instabile') for (const [i, ps] of precedenti.entries()) for (const p of ps) console.log(`    [tentativo ${i + 1} fallito] ${p}`);
   if (esito === 'rosso') { rosso = true; break; }
