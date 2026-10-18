@@ -123,6 +123,7 @@ export const copertiDallaBarra = (pagina) => pagina.evaluate(() => {
     .map((e) => (e.dataset.risorsa ?? e.dataset.azione ?? e.textContent.trim().slice(0, 24)));
 });
 
+const NOMI_VICINI = { 360: 3, 375: 0, 412: 0 };
 const VICINE = { 360: 36, 375: 29, 412: 9 }; // C33-05: i valori della 0.31.0 misurati dal collaudo C-033 (0.32.0: 44 / 32 / 14)
 const PASTIGLIE_SU_NOMI = 0; // C27-06: 7 il 15/10; D-136 (C28-14): a 0 col nome su più righe e due posti in più (rosso C94N01: 7)
 
@@ -153,7 +154,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   // 375 e 412 (prima solo 360)
   const suNomi = [], attente = partenzeAttente(dirDati);
   for (const [w, h] of [[360, 760], [375, 812], [412, 915]]) {
-    const vicine = [], tocchi = [], rubati = [];
+    const vicine = [], tocchi = [], rubati = [], nomiVicini = [];
     const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); if (w === 360) await rallentaCaratteri(q6); await q6.goto(url);
     for (const st of attente) {
       await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
@@ -168,7 +169,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
       rubati.push(...r.rubati.map((x) => `${st.m.id} o${st.n} ${x}`));
       atteso(`${dove} con le unità: pastiglie sopra i nomi ${r.suNomi.join('; ')} (C27-06, il caso del collaudo)`, st.m.id !== 'e19' || !r.suNomi.length);
       atteso(`${dove} con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
-      atteso(`${dove} con le unità: ${r.nomiVicini.join('; ')} (C37-03)`, !r.nomiVicini.length);
+      nomiVicini.push(...r.nomiVicini.map((x) => `${st.m.id} o${st.n} ${x}`));
       if (w === 360) { // C33-04: la disposizione non dipende dallo stato del giro prima (rosso VALMORA_ROSSI=C102D01)
         const posti = () => q6.evaluate(() => [...document.querySelectorAll('.mappa:not(.citta) [data-settore]')].map((x) => `${x.dataset.settore}:${x.dataset.nome}/${x.dataset.unita}/${x.querySelector('.settore-nome')?.style.maxWidth ?? ''}`).join(' '));
         const prima = await posti();
@@ -185,6 +186,8 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     writeFileSync(join(cartella, `tocchi-${w}.txt`), `${new Set(tocchi.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${tocchi.join('\n')}\n`); // misura, senza soglia
     // D-143 (C33-01): nessun nome «rubato» da un'area di tocco, tetto 0 (rosso C106T01: e35 ondata 2 a 360)
     writeFileSync(join(cartella, `rubati-${w}.txt`), `${new Set(rubati.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${rubati.join('\n')}\n`);
+    // C37-03 con le unità: al massimo i casi misurati il 18/10 (preesistenti, uguali col rosso C111E01): 3 a 360, 0 a 375 e 412
+    atteso(`${w}×${h} con le unità: ${nomiVicini.length} nomi più vicini a un disco altrui (al massimo ${NOMI_VICINI[w]}): ${nomiVicini.join(' | ')} (C37-03)`, nomiVicini.length <= NOMI_VICINI[w]);
     atteso(`${w}×${h}: nomi rubati da un'area di tocco: ${rubati.join(' | ')} (D-143, C33-01)`, !rubati.length);
     atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
     await q6.close();

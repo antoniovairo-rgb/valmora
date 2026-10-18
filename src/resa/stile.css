@@ -382,6 +382,9 @@ main:not(.rosso-c40c01):not(.rosso-c90v01) .versione-angolo { right: max(0%, cal
 /* C32-06: dentro i 16 px del margine della colonna toccava i pulsanti su tablet e PC (8 scene su 21): dove c'è spazio sta
    subito fuori dalla colonna; sui telefoni non c'è e resta com'era. Rosso C98V01: dentro il margine */
 main:not(.rosso-c40c01):not(.rosso-c90v01):not(.rosso-c98v01) .versione-angolo { right: max(0%, calc((100% - var(--larghezza-max)) / 2 - var(--spazio-4))); } /* fixed: le percentuali sono della finestra */
+/* D-168 (S-03 a 360: copriva l'ombra delle opzioni, che sporge a destra di 5-7 px): nel margine SINISTRO, dove le ombre non
+   arrivano; su tablet e PC subito fuori dalla colonna a sinistra. Rosso C113V01: a destra, come prima */
+main:not(.rosso-c40c01):not(.rosso-c90v01):not(.rosso-c98v01):not(.rosso-c113v01) .versione-angolo { right: auto; left: max(0%, calc((100% - var(--larghezza-max)) / 2 - var(--spazio-4))); }
 /* C17-22: nel riepilogo dello schieramento i pulsanti stanno sotto l'elenco, non fissi: su schermi bassi coprivano il testo. Rosso C38R01: fissi. */
 main:not(.rosso-c38r01) .scena .azioni.riepilogo-azioni { position: static; }
 /* PO-098: la riga «Fiducia ±N» del rapporto era verde o magenta sul giallo (2,46:1 e 3,32:1): ora nero su fondino bianco,
