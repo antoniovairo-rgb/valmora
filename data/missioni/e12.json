@@ -174,10 +174,6 @@
                 {
                   "pressione": "piazza_comune",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e12.op.chiudi_portone.r"
@@ -211,10 +207,6 @@
               "testo": "testi:e12.op.tutto_rapporto",
               "costo": "testi:e12.op.tutto_rapporto.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2
@@ -392,10 +384,6 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e12.op.cordone12.r"
@@ -405,10 +393,6 @@
               "testo": "testi:e12.op.fiducia12",
               "costo": "testi:e12.op.fiducia12.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "curva_ospiti",
                   "valore": 2
@@ -729,10 +713,6 @@
               "costo": "testi:e12.op.festa_pista.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_ospiti",
                   "valore": 2
                 }
@@ -820,10 +800,6 @@
               "costo": "testi:e12.op.sgombera12.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "piazza_comune",
                   "valore": 2
                 }
@@ -837,10 +813,6 @@
               "effetti": [
                 {
                   "pressione": "piazza_comune",
-                  "valore": -1
-                },
-                {
-                  "aggiungi": "credito",
                   "valore": -1
                 }
               ],
@@ -878,10 +850,6 @@
                 {
                   "pressione": "piazzale",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e12.op.chiudi_cancelli.r"
@@ -941,7 +909,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

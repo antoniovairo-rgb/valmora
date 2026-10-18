@@ -581,10 +581,6 @@
                 {
                   "pressione": "ex_fonderia",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e21.op.rassicura21.r"
@@ -616,10 +612,6 @@
               "costo": "testi:e21.op.ascolta21.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "ex_fonderia",
                   "valore": 1
                 }
@@ -631,10 +623,6 @@
               "testo": "testi:e21.op.ignora_comune",
               "costo": "testi:e21.op.ignora_comune.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "ex_fonderia",
                   "valore": -1
@@ -840,7 +828,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

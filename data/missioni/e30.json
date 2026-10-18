@@ -351,10 +351,6 @@
                 {
                   "pressione": "strada_cinderwick",
                   "valore": -1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e30.op.parla_club.r"
@@ -375,10 +371,6 @@
                 {
                   "pressione": "viale_stazione",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e30.op.corsia_auto.r"
@@ -493,10 +485,6 @@
               "costo": "testi:e30.op.sanziona.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "piazza_municipio",
                   "valore": 2
                 }
@@ -589,10 +577,6 @@
               "costo": "testi:e30.op.percorso_fermo.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "strada_cinderwick",
                   "valore": 2
                 }
@@ -657,10 +641,6 @@
               "costo": "testi:e30.op.vieta_fiaccolata.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "strada_cinderwick",
                   "valore": 2
                 }
@@ -697,10 +677,6 @@
               "costo": "testi:e30.op.accetta_incontro.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "piazzale",
                   "valore": -1
                 },
@@ -716,10 +692,6 @@
               "testo": "testi:e30.op.rifiuta_incontro",
               "costo": "testi:e30.op.rifiuta_incontro.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "piazzale",
                   "valore": 2
@@ -834,7 +806,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

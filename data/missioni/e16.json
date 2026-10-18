@@ -434,10 +434,6 @@
               "costo": "testi:e16.op.avvisa_ospiti.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_ospiti",
                   "valore": 1
                 }
@@ -449,10 +445,6 @@
               "testo": "testi:e16.op.oscura",
               "costo": "testi:e16.op.oscura.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "magazzino",
                   "valore": -1
@@ -601,10 +593,6 @@
               "testo": "testi:e16.op.chiedi_curva",
               "costo": "testi:e16.op.chiedi_curva.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "curva_cinderwick",
                   "valore": 2
@@ -850,7 +838,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }
