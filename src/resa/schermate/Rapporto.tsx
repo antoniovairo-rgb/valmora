@@ -22,16 +22,21 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
   // PO-087: «scoperto» dice sempre perché: cosa ha pesato sul settore e quanto lo coprivi
   const causa = (c: NonNullable<RapportoOndata['causa']>[string], settore: string) => {
     const cosa = [...new Set(c.eventi)].map((e) => t(`evento.${e}`));
-    if (c.risposte > 0) cosa.push('le tue risposte');
-    const testo = cosa.join(', ');
+    const impegnate = impegnateDaRisposte(p.m, p.scelte ?? [], p.r.n, settore);
     // D-055: niente numeri, il confronto fra pressione e copertura in parole. Rosso C34P01: i numeri, come in 09ff232.
     const quanto = spento('C34P01') ? `pressione ${c.pressione}, copertura ${c.copertura}`
       // C38-01 (D-173, collaudo C-038): il mediatore schierato presidia ma non copre (efficacia nulla): «nessuna unità a
       // coprirlo» contraddiceva la mappa (e14 o1, e17 o3). Rosso C115M01: come prima.
-      : c.copertura <= 0 && !spento('C115M01') && c.presenti?.length ? (c.presenti.every((x) => x === 'mediatore') ? 'presidiato, ma il mediatore qui non basta' : 'presidiato, ma le unità qui non bastano')
+      : c.copertura <= 0 && !spento('C115M01') && c.presenti?.length ? (c.presenti.every((x) => x === 'mediatore') && (spento('C120U01') || impegnate === 0) ? 'presidiato, ma il mediatore qui non basta' : 'presidiato, ma le unità qui non bastano')
+      // C40-04 (D-180): col mediatore ci sono anche unità mandate lì da una risposta: «le unità», non «il mediatore» (e36 o3).
+      // Rosso C120U01: come prima.
       // C37-08 (D-166): unità mandate lì da una risposta, ma il settore resta scoperto (non coprono). Rosso C112R01: come prima.
-      : c.copertura <= 0 && !spento('C112R01') && impegnateDaRisposte(p.m, p.scelte ?? [], p.r.n, settore) > 0 ? 'le tue risposte non bastano'
+      : c.copertura <= 0 && !spento('C112R01') && impegnate > 0 ? 'le tue risposte non bastano'
       : c.copertura <= 0 ? 'nessuna unità a coprirlo' : c.copertura * 2 < c.pressione ? 'unità troppo poche' : 'unità non abbastanza';
+    // C40-03 (D-180): se la copertura dice già «le tue risposte non bastano», le cause non le ripetono (e25 o3: «Folla, le tue
+    // risposte: le tue risposte non bastano»). Rosso C119R01: come prima.
+    if (c.risposte > 0 && (spento('C119R01') || quanto !== 'le tue risposte non bastano')) cosa.push('le tue risposte');
+    const testo = cosa.join(', ');
     return `${testo.charAt(0).toUpperCase()}${testo.slice(1)}: ${quanto}`;
   };
   const fiducia = p.r.fiducia ? (
