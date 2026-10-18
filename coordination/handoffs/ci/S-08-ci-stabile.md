@@ -82,6 +82,10 @@ riprodurlo `VALMORA_CHROME=$(node tools/chrome-ci.mjs)`.
 CI su 9e892c29 (run 39083225279): **7 job verdi, 1 tentativo ciascuno** (grafica 360 27 min 42 s, 375 5 min 51 s,
 412 6 min 19 s): nessun altro episodio peggiorato col browser della CI.
 
+Catena completa locale dopo C128-02: giro 1 su 9e892c29 VERDE (foto 2421,1 s), giro 2 su 9abcafed VERDE (2387,3 s),
+giro 3 su 5f15d924 VERDE; fra i tre commit cambiano solo STABILITA.json e il rapporto. **3/3 verdi, nessun passo
+instabile.**
+
 ## B. Il browser della CI in locale
 FATTO: la rete lo consente. `node tools/chrome-ci.mjs` scarica (una volta, ~13 s) Chrome Headless Shell **156.0.8078.4**
 (playwright v1248, la stessa versione del log CI) in `~/.cache/valmora-browser-ci` e stampa il percorso. Uso:
