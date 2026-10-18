@@ -107,6 +107,7 @@
   --vignetta-capelli: #3a2a20;
   /* PO-092 (D-114): stile C «pop retinato» per tutte le vignette: ombre a retino, contorno spesso */
   --vignetta-tratto: 2.4px;
+  --vignetta-tratto-fine: 1.1px; /* PO-119 / D-171: dettagli del volto (occhi, naso, labbra) */
   --vignetta-contorno: 4px; /* C22-02: contorno dei pallini delle persone (unità del disegno) */
   --vignetta-margine: 4px; /* PO-092: spazio lasciato libero sotto la pagina quando la vignetta la riempie (arrotondamenti) */
   --vignetta-cemento: #b9bcc4;
@@ -119,7 +120,6 @@
   --vignetta-legno: #6b3f26;
   --vignetta-tramonto: #f08a4b;
   --vignetta-vetro: #9fc6d8;
-  --vignetta-tratto-fine: 1.1px; /* PO-119 seconda bozza: dettagli del volto (occhi, naso, labbra); col tratto normale a 3× gli occhi diventavano macchie */
   --vignetta-prato-chiaro: #59bd63;
   --vignetta-fumo: rgba(60, 60, 60, 0.55);
   --vignetta-riserva: 420px; /* spazio della pagina fuori dalla vignetta: sotto questa soglia la vignetta si stringe */

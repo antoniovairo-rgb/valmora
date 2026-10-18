@@ -4,6 +4,7 @@
 // Rosso C26V01: nessuna vignetta.
 import { useLayoutEffect, useRef, type ReactNode, type RefObject } from 'react';
 import { spento } from '../interruttori.ts';
+import { persona, type PersonaDati } from './persona2.ts';
 
 /** PO-092: la vignetta prende lo spazio che resta libero nella pagina (fra il minimo e il massimo dei token), senza
  *  farla scorrere: la riserva fissa era tarata sul testo più lungo e lasciava vignette minuscole. Rosso C36V01: no. */
@@ -71,7 +72,10 @@ export function Vignetta(p: { nome: string; titolo: string; children: ReactNode;
 
 /** Busto a fumetto in stile C (PO-092, D-114): spalle con la giacca e l'ombra a retino, colletto, collo, testa con
  *  orecchie, sopracciglia, occhi con la luce, naso; capelli lunghi, corti o berretto; espressione dalla bocca. */
-export function Persona(p: { x: number; y: number; s?: number; giacca: string; capelli: 'corti' | 'lunghi' | 'berretto'; bocca?: 'su' | 'giu' | 'dritta'; baffi?: boolean; distintivo?: boolean; sopracciglia?: 'su' | 'giu'; braccia?: 'su' | 'nuca' }) {
+export function Persona(p: PersonaDati) {
+  // PO-119 / D-171: la seconda bozza approvata (persona2.ts); fuori dalle vignette di fine ondata ed episodio la scala 0,9
+  // tiene le figure grandi come prima (guida, chiamata del vice). Rosso C114P01: il disegno della 0.38.0.
+  if (!spento('C114P01')) return <g data-persona="2" dangerouslySetInnerHTML={{ __html: persona({ scala: 0.9, ...p }) }} />;
   const s = (p.s ?? 1) * 0.8;
   const bocca = p.bocca === 'giu' ? 'M-7 19 Q0 13 7 19' : p.bocca === 'dritta' ? 'M-6 17 L6 17' : 'M-7 15 Q0 22 7 15';
   return (

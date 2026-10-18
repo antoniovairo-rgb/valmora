@@ -11,7 +11,7 @@ import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
 import { carica, guidaVista, segnaGuidaVista, nuovoSeme, salva, ultimoAvviso } from './archivio.ts';
-import { dichiarate, impostaGenere, missione, missioni, testoSe } from './dati.ts';
+import { dichiarate, genereAttuale, impostaGenere, missione, missioni, testoSe } from './dati.ts';
 import type { Genere } from '../dati/testi.ts';
 import { ConfermaNuova, SceltaGenere } from './schermate/SceltaGenere.tsx';
 import { Guida } from './schermate/Guida.tsx';
@@ -19,12 +19,14 @@ import { chiudiEpisodio, iniziaEpisodio, prossimoEpisodio } from './episodi.ts';
 import type { Risultato } from '../logica/episodi.ts';
 import { Mappa, type MappaProps } from './mappa/Mappa.tsx';
 import { centro, Voli, type Volo } from './mappa/Volo.tsx';
-import { faseDi, infoOndata } from './partita.ts';
+import { faseDi, infoOndata, livello } from './partita.ts';
 import { Briefing } from './schermate/Briefing.tsx';
 import { Citta } from './schermate/Citta.tsx';
 import { Crediti } from './schermate/Crediti.tsx';
 import { Chiamata, Chiusura, Risposta } from './schermate/Ondata.tsx';
 import { Rapporto } from './schermate/Rapporto.tsx';
+import { Tono } from './schermate/Tono.tsx';
+import { tonoOndata } from './espressioni.ts';
 import { Sala } from './schermate/Sala.tsx';
 import { Scena } from './schermate/Scena.tsx';
 import { Schieramento, usate } from './schermate/Schieramento.tsx';
@@ -76,6 +78,7 @@ export function App() {
   const [spenti, setSpenti] = useState(0); // D-165: settori spenti dal fischio dell'ultimo derby // episodio scelto sulla mappa della città
   // PO-083: l'ondata da cui ripartire si calcola una volta a fine episodio (fino a ~0,7 s misurati su computer), non a ogni disegno
   const nRiparti = useMemo(() => (esito?.r.fallita ? ondataVincibile(esito.m, esito.e, esito.ic, dichiarate) : 1), [esito]);
+  const [tonoVisto, setTonoVisto] = useState<string | null>(null); // C33-06: la scena del tono già vista per «episodio-ondata»
   const sospesa = useRef<InSospeso | null>(null); // PO-121: la risposta che si può ancora annullare (mai nel salvataggio)
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
   const [segni, setSegni] = useState<Segno[]>([]); // PO-085: segni dell'ultima risposta sulla mappa, per 1,8 s
@@ -200,6 +203,12 @@ export function App() {
       if (icOra()) return; // già iniziata (doppio tocco)
       nuovaBozza(); conIc(iniziaEpisodio(sal, m)); setSchermata('gioco');
     }} />;
+  } else if (schermata === 'rapporto' && ic?.rapporti.length && !spento('C110V01') && tonoVisto !== `${m.id}-${ic.rapporti.at(-1)!.n}`) {
+    // C33-06 (D-143): prima del rapporto la scena del tono con la vignetta grande; rosso C110V01: il rapporto subito
+    const r = ic.rapporti.at(-1)!, visto = `${m.id}-${r.n}`;
+    nome = 'tono';
+    corpo = <Tono n={r.n} genere={genereAttuale() === 'f' ? 'f' : 'm'} avanti={() => setTonoVisto(visto)}
+      tono={tonoOndata(m.mappa.settori.map((x) => livello(r.tensione[x.id] ?? 0)), Object.values(r.scoperto).filter((x) => x > 0).length)} />;
   } else if (schermata === 'rapporto' && ic?.rapporti.length) {
     const r = ic.rapporti.at(-1)!;
     const fine = missioneFinita(m, ic);
