@@ -238,3 +238,4 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
   mia: va oltre la riga segnalata, ma il difetto è lo stesso.
 - Guardiano in `tests/epilogo.test.ts`: nessun testo `*.busta.consegnata` dice «chius…», in epilogo.json e in finale.json;
   braccio rosso sul testo di prima. FATTO MISURATO: 7 prove passate.
+- FATTO MISURATO (D-177): su 1758ee9, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
