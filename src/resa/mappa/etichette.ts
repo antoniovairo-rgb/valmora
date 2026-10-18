@@ -67,7 +67,7 @@ export function disponiEtichette(contenitore: HTMLElement) {
   }
   // 1b) C15-04: i nomi insieme, cercando la combinazione migliore fra tutte (la ricerca uno alla volta si ferma
   //     in un minimo locale, e25 a 360). Rosso C34N01: niente, come prima.
-  if (!spento('C34N01')) migliorCombinazione(settori, punti, mappa);
+  if (!spento('C34N01')) migliorCombinazione(settori, punti, mappa, !contenitore.querySelector('.settore-unita'));
   // con nessuna unità sulla mappa (sala, briefing) la combinazione migliore è già quella finale
   if (!contenitore.querySelector('.settore-unita') && !spento('C34N01')) return;
   // 2) nome e unità insieme (6 × 6 combinazioni; solo il nome per i settori senza unità), si tiene quella che costa meno
@@ -230,16 +230,17 @@ export function nomeLontano(r: Rett, punti: Rett[], i: number): number {
   if (spento('C111E01')) return 0;
   const d = (p: Rett) => { const x = (p.left + p.right) / 2, y = (p.top + p.bottom) / 2; return Math.hypot(Math.max(r.left - x, 0, x - r.right), Math.max(r.top - y, 0, y - r.bottom)); };
   const mio = d(punti[i]!), altro = Math.min(...punti.filter((_, j) => j !== i).map(d));
-  return altro < mio ? VERA * 10 * (mio - altro) : 0;
+  return altro < mio ? VERA * 100 * (mio - altro) : 0;
 }
 
 /** Ricerca con taglio (al più 200 000 nodi): per ogni settore la posizione del nome, misurata una volta nel DOM. */
-function migliorCombinazione(settori: HTMLElement[], punti: Rett[], mappa: Rett) {
+function migliorCombinazione(settori: HTMLElement[], punti: Rett[], mappa: Rett, vuota: boolean) {
   const conNome = settori.map((s, i) => [s, i] as const).filter(([s]) => s.querySelector('.settore-nome'));
   // C37-03: anche i nomi più stretti (80 %, 60 % di --nome-max, come nel passo con le unità), se il testo ci sta: a mappa
   // vuota il nome a tutta larghezza di un settore sul bordo non trovava un posto dentro la mappa. Rosso C111E01: solo
   // la larghezza piena, come prima.
-  const larghi = spento('C111E01') ? [''] : ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.6)'];
+  // Solo a mappa vuota: con le unità le larghezze le sceglie il passo 2 (lasciate qui, cambiavano il passo 2: e19 o1).
+  const larghi = spento('C111E01') || !vuota ? [''] : ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.6)'];
   const opz = conNome.map(([s]) => { const el = s.querySelector<HTMLElement>('.settore-nome')!, prima = s.getAttribute('data-nome'), pw = el.style.maxWidth, rs: { nome: string; largo: string; r: Rett }[] = [];
     for (const largo of larghi) { el.style.maxWidth = largo; if (largo && el.scrollWidth > el.clientWidth + 1) continue;
       for (const n of NOMI) { s.setAttribute('data-nome', n); rs.push({ nome: n, largo, r: el.getBoundingClientRect() as Rett }); } }
