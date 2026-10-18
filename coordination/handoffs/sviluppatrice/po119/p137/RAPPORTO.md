@@ -1,6 +1,6 @@
 # PO-137 – braccia smussate in tutte le immagini (PO: «riesci a smussare gli angoli delle braccia in tutte le immagini?») · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: COMMIT_P137. Base: quarta prova (D-176) + C117B01.
+Ramo `claude/valmora-resa-v2`. Commit: 032ff92. Base: quarta prova (D-176) + C117B01.
 
 ## Causa (FATTO, dal codice)
 
