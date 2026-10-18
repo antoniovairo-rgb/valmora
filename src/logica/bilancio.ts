@@ -49,6 +49,14 @@ export function bilancio(m: Missione, r: EsitoMissione, quante = 3, confronto?: 
     const c = confronto.get(`${s.chiamata}/${s.opzione}`); // senza alternative giocate: né aiuto né peso
     return { ...s, impatti, saldo: c?.saldo ?? 0, ...(c ? { confronto: c } : {}) };
   });
+  if (conConfronto && !spento('C40B01')) { // C40-01 (D-180): il confronto non smentisce la partita giocata. Rosso __NO_C40B01.
+    for (const x of voci) {
+      const colpiti = new Set(r.rapporti.filter((o) => o.n >= x.ondata).flatMap((o) => Object.entries(o.scoperto).filter(([, n]) => n > 0).map(([k]) => k)));
+      const sui = x.impatti.filter((i) => (i.tipo === 'pressione' || i.tipo === 'tensione') && i.dove && colpiti.has(i.dove));
+      // ha caricato un settore poi scoperto (o degenerato): non è un aiuto; l'ha scaricato: non è un peso
+      if ((x.saldo > 0 && sui.some((i) => i.valore > 0)) || (x.saldo < 0 && sui.some((i) => i.valore < 0))) x.saldo = 0;
+    }
+  }
   if (conConfronto) { // sotto soglia né aiuto né peso; se non resta nulla, la sola risposta col confronto più forte (D-085)
     const forte = voci.reduce<VoceScelta | null>((a, x) => (Math.abs(x.saldo) > Math.abs(a?.saldo ?? 0) ? x : a), null);
     for (const x of voci) if (Math.abs(x.saldo) < SOGLIA_CONFRONTO && (x !== forte || Math.abs(x.saldo) === 0 || voci.some((y) => Math.abs(y.saldo) >= SOGLIA_CONFRONTO))) x.saldo = 0;

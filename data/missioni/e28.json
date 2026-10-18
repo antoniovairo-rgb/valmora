@@ -225,10 +225,6 @@
               "costo": "testi:e28.op.lascia_auto.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "pressione": "strada_cinderwick",
                   "valore": 3
                 }
@@ -327,10 +323,6 @@
               "testo": "testi:e28.op.chiedi_club",
               "costo": "testi:e28.op.chiedi_club.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -1

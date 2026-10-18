@@ -421,10 +421,6 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e09.op.steward9.r"
@@ -512,10 +508,6 @@
               "costo": "testi:e09.op.lascia_torce9.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_larkspire",
                   "valore": 2
                 }
@@ -562,10 +554,6 @@
               "testo": "testi:e09.op.verifica_foto",
               "costo": "testi:e09.op.verifica_foto.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2
@@ -736,10 +724,6 @@
               "testo": "testi:e09.op.chiudi_servizio",
               "costo": "testi:e09.op.chiudi_servizio.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "tangenziale",
                   "valore": 2

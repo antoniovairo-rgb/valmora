@@ -523,10 +523,6 @@
               "costo": "testi:e17.op.festa17.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "piazzale",
                   "valore": 2
                 }

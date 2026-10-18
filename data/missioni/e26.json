@@ -194,10 +194,6 @@
               "costo": "testi:e26.op.corridoio.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "piazzale",
                   "valore": 2
                 }
@@ -209,10 +205,6 @@
               "testo": "testi:e26.op.ingresso_laterale",
               "costo": "testi:e26.op.ingresso_laterale.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": -1
@@ -370,10 +362,6 @@
               "costo": "testi:e26.op.zittisci_curva.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "curva_larkspire",
                   "valore": 2
                 }
@@ -385,10 +373,6 @@
               "testo": "testi:e26.op.sposta_ospite",
               "costo": "testi:e26.op.sposta_ospite.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "tribuna_autorita",
                   "valore": -1
@@ -555,10 +539,6 @@
                 {
                   "pressione": "piazzale",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e26.op.spegni_schermo.r"
@@ -711,10 +691,6 @@
                 {
                   "pressione": "parcheggi",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e26.op.pullman_aspettano.r"
@@ -734,10 +710,6 @@
               "costo": "testi:e26.op.fai_foto.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "pressione": "tribuna_autorita",
                   "valore": 3
                 }
@@ -748,12 +720,7 @@
               "id": "niente_foto",
               "testo": "testi:e26.op.niente_foto",
               "costo": "testi:e26.op.niente_foto.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e26.op.niente_foto.r"
             }
           ]

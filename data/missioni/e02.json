@@ -326,10 +326,6 @@
                 {
                   "pressione": "stazione",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e02.op.accoglienza.r"
@@ -379,10 +375,6 @@
                 {
                   "tensione": "tornelli",
                   "valore": 3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.respingi.r"
@@ -610,10 +602,6 @@
                 {
                   "tensione": "curva_ospiti",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.rimuovi_str.r"
@@ -833,10 +821,6 @@
               "costo": "testi:e02.op.trattieni_treno.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "stazione",
                   "valore": -2
                 }
@@ -869,10 +853,6 @@
               "costo": "testi:e02.op.saluta.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "tensione": "curva_larkspire",
                   "valore": 3
                 }
@@ -883,12 +863,7 @@
               "id": "rifiuta_saluto",
               "testo": "testi:e02.op.rifiuta_saluto",
               "costo": "testi:e02.op.rifiuta_saluto.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e02.op.rifiuta_saluto.r"
             }
           ]
