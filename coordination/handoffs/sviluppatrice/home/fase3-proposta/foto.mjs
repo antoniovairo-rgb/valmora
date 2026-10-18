@@ -11,19 +11,21 @@ const server = await createServer({ server: { port: 5197, strictPort: true }, lo
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const sal = JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: {}, missioni_concluse: [], episodi: {}, genere: 'm', rapporto_aperto: null, in_corso: null });
 const righe = [];
-for (const w of [360, 375, 412]) for (const dove of ['citta', 'guida']) {
+for (const w of [360, 375, 412]) for (const dove of (process.env.VARIANTE ? ['striscia', 'guida2'] : ['citta', 'guida'])) {
   const p = await browser.newPage({ viewport: { width: w, height: 760 }, deviceScaleFactor: 2, reducedMotion: 'reduce' });
   await p.goto('http://localhost:5197/'); await p.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), sal); await p.reload();
   await p.waitForSelector('[data-home-vignetta]'); await p.evaluate(() => document.fonts.ready);
   const vignetta = await p.evaluate(() => document.querySelector('[data-home-vignetta]').outerHTML);
-  if (dove === 'citta') { await p.getByRole('button', { name: 'Riprendi' }).click(); await p.waitForSelector('main[data-schermata="citta"]'); }
+  if (dove === 'citta' || dove === 'striscia') { await p.getByRole('button', { name: 'Riprendi' }).click(); await p.waitForSelector('main[data-schermata="citta"]'); }
   else { await p.click('[data-azione="guida"]'); await p.waitForSelector('.vignetta'); }
   await p.waitForTimeout(1500);
+  if (dove === 'guida2') { await p.getByRole('button', { name: 'Avanti' }).click(); await p.waitForTimeout(800); await p.screenshot({ path: `${qui}/guida-passo2-${w}.png`, fullPage: true }); righe.push({ dove, w, prima: 0, dopo: await p.evaluate(() => document.documentElement.scrollHeight), piu: 0 }); await p.close(); continue; }
   const alta = () => p.evaluate(() => document.documentElement.scrollHeight);
   const prima = await alta(); await p.screenshot({ path: `${qui}/${dove}-prima-${w}.png`, fullPage: true });
   await p.evaluate(([html, dove]) => {
     const t = document.createElement('div'); t.innerHTML = html; const f = t.firstElementChild; f.classList.add('testata-proposta');
-    f.querySelector('figcaption').textContent = dove === 'citta' ? 'La città · stasera si gioca' : 'La città e il gioco';
+    if (dove === 'striscia') f.querySelector('svg').style.maxHeight = 'var(--home-vignetta-min)';
+    f.querySelector('figcaption').textContent = dove !== 'guida' ? 'La città · stasera si gioca' : 'La città e il gioco';
     if (dove === 'guida') document.querySelector('main .scena .vignetta')?.remove(); // la vignetta del passo lascia il posto alla testata
     const s = document.querySelector('main .scena'); s.insertBefore(f, s.firstChild);
   }, [vignetta, dove]);

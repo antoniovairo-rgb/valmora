@@ -44,7 +44,7 @@ Errori di pagina: 0 in tutte le 12 foto. Larghezza = finestra in tutte (nessuno 
 - Versione: resta verticale a sinistra nel margine di 16 px, leggibile, 0 sovrapposizioni.
 
 ## B · Mappa della città come fondo
-- La metà alta è una mappa stilizzata: fonderie di Cinderwick col fumo, collina di Larkspire, fiume, viali, lo stadio
+- La metà alta è una mappa stilizzata: fonderie di Kiln col fumo, collina di Skyfield, fiume, viali, lo stadio
   della serata cerchiato in magenta con «Stasera: derby». Sotto, la scheda «Stasera · episodio 1 — Derby allo stadio:
   fonderie contro collina» col titolo vero dell'episodio, cosa fai e i busti dei due protagonisti; frase-obiettivo
   «Tieni Valmora calma, una partita alla volta.»
@@ -72,6 +72,6 @@ A: dice in un colpo d'occhio dove (sala, stadio, notte di partita), chi (tu e Ma
 scorre meno (18 px a 360), costa meno di B. Da C si può prendere la battuta di Malvasi come riga sotto la vignetta.
 
 ## Finzione e regole
-Nessun club, luogo, persona o forza di polizia reale: Cinderwick, Larkspire e i club sono quelli di D-032/D-033.
+Nessun club, luogo, persona o forza di polizia reale: quartieri e club sono quelli del gioco (Kiln, Skyfield; id cinderwick/larkspire, D-124). Nota: le foto di B mostrano ancora le etichette «Cinderwick» e «Larkspire», nomi superati (B non scelta).
 Nessuna violenza in scena (fumo e fari, nessuno scontro). Colori, raggi e spaziature da token (proposte.css);
 nella pagina di prova restano due spessori di tratto scritti a mano (mappa di B), da portare a token se B passa.
