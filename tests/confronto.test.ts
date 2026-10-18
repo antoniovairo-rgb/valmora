@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { leggiDati } from '../tools/dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { giocaMissione, opzioniValide } from '../src/logica/missione.ts';
-import { attenta, casuale } from '../src/logica/bot.ts';
+import { STRATEGIE, attenta, casuale } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { bilancio } from '../src/logica/bilancio.ts';
 import { confrontoScelte } from '../src/logica/confronto.ts';
@@ -52,5 +52,11 @@ describe('bilancio contro le altre risposte (C38-03)', () => {
     expect(contraddizioni()).toEqual([]);
     g.__NO_C38B01 = true;
     expect(contraddizioni().length).toBeGreaterThan(0);
+  }, 180_000);
+  it('D-085: una partita con scelte non ha mai il bilancio vuoto (36 episodi, bot deterministici)', () => {
+    const vuoti = ms.flatMap((m) => ['attenta', 'equilibrata', 'peggiore'].map((n) => [n, giocaMissione(m, v0, dich, STRATEGIE[n]!(creaCaso(1), dich))] as const)
+      .filter(([, r]) => r.scelte.length).filter(([, r]) => { const b = bilancio(m, r, 3, confrontoScelte(m, dich)); return !b.aiuti.length && !b.pesi.length; })
+      .map(([n]) => `${m.id} ${n}`));
+    expect(vuoti).toEqual([]);
   }, 180_000);
 });

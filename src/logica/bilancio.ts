@@ -47,9 +47,12 @@ export function bilancio(m: Missione, r: EsitoMissione, quante = 3, confronto?: 
     const impatti = (opzioni.get(`${s.chiamata}/${s.opzione}`)?.effetti ?? []).map(impatto).filter((x): x is Impatto => !!x);
     if (!conConfronto) return { ...s, impatti, saldo: impatti.reduce((t, i) => t + punti(i), 0) };
     const c = confronto.get(`${s.chiamata}/${s.opzione}`); // senza alternative giocate: né aiuto né peso
-    const saldo = c && Math.abs(c.saldo) >= SOGLIA_CONFRONTO ? c.saldo : 0;
-    return { ...s, impatti, saldo, ...(c ? { confronto: c } : {}) };
+    return { ...s, impatti, saldo: c?.saldo ?? 0, ...(c ? { confronto: c } : {}) };
   });
+  if (conConfronto) { // sotto soglia né aiuto né peso; se non resta nulla, la sola risposta col confronto più forte (D-085)
+    const forte = voci.reduce<VoceScelta | null>((a, x) => (Math.abs(x.saldo) > Math.abs(a?.saldo ?? 0) ? x : a), null);
+    for (const x of voci) if (Math.abs(x.saldo) < SOGLIA_CONFRONTO && (x !== forte || Math.abs(x.saldo) === 0 || voci.some((y) => Math.abs(y.saldo) >= SOGLIA_CONFRONTO))) x.saldo = 0;
+  }
   const scoperti = r.rapporti.flatMap((x) => Object.entries(x.scoperto).filter(([, n]) => n > 0)
     .map(([settore, n]) => ({ ondata: x.n, settore, scoperto: n, tensione: x.tensione[settore] ?? 0 })));
   return {
