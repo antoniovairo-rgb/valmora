@@ -172,6 +172,14 @@ export function perverseRapide(dati, semi = 200) {
   }
   return out;
 }
+/** D-172 (C38-04): r(fiducia finale, episodio fallito) per episodio, bot casuale con i semi di tools/bot.mjs. */
+export function correlazioniCasuale(dati, semi = 1000) {
+  const { dich, iniziali, missioni } = contesto(dati);
+  return Object.fromEntries(missioni.map((m) => {
+    const p = []; for (let s = 1; s <= semi; s++) p.push(giocaTracciata(m, iniziali, dich, BOT.casuale(m, s, dich)));
+    return [m.id, pearson(p.map((x) => x.fFine), p.map((x) => +x.fallita))];
+  }));
+}
 /** D-160: le risposte corrette non toccano più la fiducia. Rosso __NO_C16001: rimette gli effetti tolti (tolte: chiave → valore). */
 export function datiD160(dati, tolte) {
   if (!globalThis.__NO_C16001) return dati;

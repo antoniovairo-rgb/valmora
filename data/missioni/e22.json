@@ -416,10 +416,6 @@
                 {
                   "pressione": "curva_larkspire",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e22.op.club_l22.r"
@@ -429,10 +425,6 @@
               "testo": "testi:e22.op.lascia_l22",
               "costo": "testi:e22.op.lascia_l22.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "curva_larkspire",
                   "valore": 2

@@ -366,10 +366,6 @@
               "costo": "testi:e17.op.apri_recinto.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -2
-                },
-                {
                   "pressione": "tornelli",
                   "valore": -3
                 }

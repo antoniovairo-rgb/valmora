@@ -709,10 +709,6 @@
               "costo": "testi:e19.op.lascia_festa.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "strada_cinderwick",
                   "valore": 2
                 }
