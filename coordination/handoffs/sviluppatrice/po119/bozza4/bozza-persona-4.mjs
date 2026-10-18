@@ -2,7 +2,8 @@
 // Le braccia a riposo sono sagome separate dal busto: contorno proprio, spazio fra braccio e fianco, gomito un po' piegato e
 // avambraccio in avanti (verso il centro, scorciato). Il busto si inclina sui fianchi (spostamento di peso, `peso` in gradi,
 // diverso per tono e per figura). Posa nuova `cinturone`: una mano sul cinturone. Busto più stretto fino alla vita, col
-// cinturone; la figura femminile più stretta e con la vita segnata. Volti come nella terza prova.
+// cinturone; la figura femminile più stretta, vita appena segnata come nella terza prova, seno appena accennato dalla
+// linea della giacca (PO-135). Volti come nella terza prova.
 const T = 'v-tratto', L = 'v-linea', FINE = 'v-linea v-fine';
 const path = (d, c) => `<path d="${d}" class="${c}"/>`;
 const f = (n) => Math.round(n * 10) / 10;
@@ -39,10 +40,13 @@ export function persona(p) {
   const nuca = p.braccia === 'nuca' ? { e: [sp + 18, -6], w: [14, -30] } : null;
   if (nuca) g.push(arto([[sp - 4, 44], nuca.e, nuca.w], [19, 15, 11], G));
   // busto fino ai fianchi: petto, vita (segnata nella figura femminile), cinturone; lato destro in ombra
-  g.push(path(donna ? 'M-25 132 L-25 106 Q-24 94 -27 80 Q-30 58 -25 42 L-10 31 L0 42 L10 30 L24 36 Q30 48 27 62 Q24 82 26 94 Q25 100 24 106 L24 132 Z'
+  g.push(path(donna ? 'M-25 132 L-25 106 Q-25.5 94 -27.5 80 Q-31.5 60 -25 42 L-10 31 L0 42 L10 30 L24 36 Q31.5 50 28 63 Q25.5 82 26.5 94 Q25.5 100 24 106 L24 132 Z'
     : 'M-32 132 L-32 106 Q-35 82 -34 62 Q-36 46 -30 39 L-11 29 L0 41 L11 27 L29 34 Q36 44 34 62 Q35 82 31 106 L31 132 Z', G));
   g.push(path(donna ? 'M14 34 Q28 46 26 64 Q23 84 25 96 L24 132 L16 132 Q20 70 14 34 Z' : 'M17 31 Q35 44 33 64 Q34 84 31 106 L31 132 L21 132 Q26 70 17 31 Z', 'v-ombra'));
-  g.push(path(donna ? 'M-16 58 Q-12 80 -14 100 M15 56 Q11 80 13 100' : 'M-24 64 q6 9 2 20 M22 62 q-5 11 0 22', L));
+  g.push(path(donna ? 'M-14 71 Q-11 86 -13 100 M14 71 Q11 86 12 100' : 'M-24 64 q6 9 2 20 M22 62 q-5 11 0 22', L));
+  // PO-135: seno appena accennato dalla linea della giacca (curva sotto il petto da cui partono le pinces, ombra morbida),
+  // senza scollature né forme marcate
+  if (donna) g.push(path('M-23 66 Q-14 74 -6 68.5 Q-14 71 -23 66 Z M6 68.5 Q14 74 23 66 Q14 71 6 68.5 Z', 'v-ombra'), path('M-24 64.5 Q-14 74 -6 68.5 M6 68.5 Q14 74 24 64.5', L));
   // camicia e cravatta (più sottile nella divisa femminile; il vice senza cravatta)
   const c = donna ? 0.8 : 1;
   g.push(path(`M${-11 * c} ${29 + 2 * (1 - c)} L0 54 L${11 * c} 27 Z`, `${vice ? 'v-giacca-scura' : 'v-bianco'} ${T}`));
@@ -51,7 +55,7 @@ export function persona(p) {
   g.push(path(`M${-12 * c} 27 L${-20 * c} 41 L-3 44 L${-6 * c} 34 Z`, `${lembo} ${T}`), path(`M${-12 * c} 28 L${-16 * c} 37 L${-8 * c} 36 Z`, 'v-ombra'));
   g.push(path(`M${12 * c} 26 L${20 * c} 40 L3 44 L${6 * c} 33 Z`, `${lembo} ${T}`), path(`M${12 * c} 27 L${16 * c} 36 L${8 * c} 35 Z`, 'v-ombra'));
   if (p.distintivo) { const bx = donna ? -22 : -27; g.push(path(`M${bx} 54 l7 -4 l7 4 l-1 9 l-6 4 l-6 -4 Z`, `v-giallo ${T}`), path(`M${bx + 7} 55.5 l1.2 2.5 2.7 0.3 -2 1.8 0.6 2.7 -2.5 -1.4 -2.5 1.4 0.6 -2.7 -2 -1.8 2.7 -0.3 Z`, 'v-nero')); }
-  g.push(path(`M${-tw + 4} 76 h${tw - 10} v5 h${10 - tw} Z M${6} 74 h${tw - 10} v5 h${10 - tw} Z`, L));
+  const ty = donna ? 81 : 76; g.push(path(`M${-tw + 4} ${ty} h${tw - 10} v5 h${10 - tw} Z M${6} ${ty - 2} h${tw - 10} v5 h${10 - tw} Z`, L));
   // cinturone con la fibbia
   g.push(path(`M${-mezzo(100) - 0.5} 100 H${mezzo(100) - 0.5} V107 H${-mezzo(100) - 0.5} Z`, `${vice ? 'v-nero' : 'v-giacca-scura'} ${T}`), path('M-4 99.5 h8 v8 h-8 Z', `v-giallo ${T}`));
   // braccia: sagome proprie sopra il busto, con lo spazio dal fianco; gomito un po' piegato, avambraccio in avanti
