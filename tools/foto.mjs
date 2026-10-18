@@ -189,7 +189,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso(`home: versione «${versione}» invece di «${GAME_VERSION}»`, versione === GAME_VERSION);
         atteso(`home: build non valida in «${riga}»`, /build \S+/.test(riga) && !/build sviluppo/.test(riga));
         await foto();
-        await premi('[data-azione="crediti"]'); await scena('crediti'); await foto();
+        const fh = await import('./foto-home.mjs'); await fh.controllaHomeA(browser, url, cartella, atteso, rossi, larghezza); await fh.apriAltro(pagina); await premi('[data-azione="crediti"]'); await scena('crediti'); await foto(); // PO-140
         await pagina.getByRole('button', { name: 'Torna al titolo' }).click(); await scena('titolo');
         // Genere (D-063): a 375 px la protagonista è donna, alle altre larghezze uomo.
         const genere = larghezza === 375 ? 'f' : 'm';

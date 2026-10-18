@@ -177,7 +177,7 @@ export async function controllaArchivio(pagina, { atteso, scena, foto }) {
   await pagina.reload(); await scena('titolo');
   const prima = await leggi();
   if (!prima) { atteso('archivio: nessun salvataggio da esportare', false); return; }
-  const [scarico] = await Promise.all([pagina.waitForEvent('download'), pagina.click('[data-azione="esporta"]')]);
+  await (await import('./foto-home.mjs')).apriAltro(pagina); const [scarico] = await Promise.all([pagina.waitForEvent('download'), pagina.click('[data-azione="esporta"]')]); // PO-140: nel menu «Altro»
   atteso(`archivio: il file si chiama «${scarico.suggestedFilename()}», non valmora-AAAA-MM-GG.json`, /^valmora-\d{4}-\d{2}-\d{2}\.json$/.test(scarico.suggestedFilename()));
   const percorso = await scarico.path();
   const { readFileSync } = await import('node:fs');

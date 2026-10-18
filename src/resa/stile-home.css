@@ -1,0 +1,21 @@
+/* PO-140 (D-179): home della proposta A approvata dal PO. Vignetta di sala e stadio, frase-obiettivo, premessa,
+   azioni secondarie nel menu «Altro». Solo token. La vignetta tiene il 16:9 della larghezza finché la finestra è
+   alta almeno --home-vignetta-riserva + la sua altezza (700 px a 360), poi si abbassa e si ritaglia (slice). */
+.home-logo { margin: var(--spazio-3) 0; }
+.home-logo .logo-icona { width: var(--home-logo-icona); height: var(--home-logo-icona); }
+.home-logo .logo-nome { font-size: var(--testo-numero); }
+.home-logo .logo-sotto { margin-top: var(--spazio-2); font-size: var(--testo-base); }
+.home-vignetta { position: relative; margin: var(--spazio-4) 0 0; border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-2); background: var(--nero); }
+.home-vignetta > .vignetta { display: block; width: 100%; height: auto; aspect-ratio: var(--home-vignetta-proporzione); min-height: var(--home-vignetta-min); max-height: calc(100dvh - var(--home-vignetta-riserva)); margin: 0; }
+.home-didascalia { position: absolute; left: calc(var(--spazio-2) * -1); top: calc(var(--spazio-2) * -1); background: var(--giallo); border: var(--bordo-fine) solid var(--nero); padding: var(--spazio-px) var(--spazio-2); font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; }
+.home-obiettivo { margin: var(--spazio-4) 0 var(--spazio-2); background: var(--nero); color: var(--giallo); padding: var(--spazio-2) var(--spazio-3); font: 700 var(--testo-grande) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; transform: skew(var(--inclinazione)); }
+.home-premessa { margin: 0 0 var(--spazio-2); font-size: var(--testo-piccolo); }
+.home-premessa ~ .pulsante { margin: var(--spazio-3) 0; }
+.home-riga { display: flex; gap: var(--spazio-2); align-items: center; margin: var(--spazio-3) 0; }
+.home-riga > .pulsante { margin: 0; }
+.home-riga > [data-azione="guida"] { flex: 1; }
+.home-riga > .home-tasto-altro { flex: none; width: auto; padding: var(--spazio-1) var(--spazio-3); }
+.home-altro { margin: var(--spazio-3) 0; padding: var(--spazio-3); background: var(--bianco); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); }
+.home-altro[hidden] { display: none; }
+.home-altro .secondari { margin: 0 0 var(--spazio-2); }
+.home-altro .tenue { margin: 0; }
