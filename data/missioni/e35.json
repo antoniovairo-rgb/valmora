@@ -265,10 +265,6 @@
                 {
                   "pressione": "corso_centro",
                   "valore": -1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e35.op.radio_centro.r"
@@ -507,10 +503,6 @@
                 {
                   "pressione": "stazione",
                   "valore": -1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e35.op.ferrovie_avvisa.r"
@@ -556,10 +548,6 @@
               "testo": "testi:e35.op.lascia_guardare",
               "costo": "testi:e35.op.lascia_guardare.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "perimetro_banca",
                   "valore": 2
@@ -873,7 +861,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

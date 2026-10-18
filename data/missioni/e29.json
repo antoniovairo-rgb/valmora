@@ -447,10 +447,6 @@
               "costo": "testi:e29.op.annuncio_generico.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_cinderwick",
                   "valore": 2
                 }
@@ -461,12 +457,7 @@
               "id": "niente_annuncio",
               "testo": "testi:e29.op.niente_annuncio",
               "costo": "testi:e29.op.niente_annuncio.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e29.op.niente_annuncio.r"
             }
           ]
@@ -697,10 +688,6 @@
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e29.op.sospendi_partita.r"
@@ -904,10 +891,6 @@
               "costo": "testi:e29.op.prima_fila.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "tensione": "curva_cinderwick",
                   "valore": 2
                 }
@@ -918,12 +901,7 @@
               "id": "in_fondo",
               "testo": "testi:e29.op.in_fondo",
               "costo": "testi:e29.op.in_fondo.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e29.op.in_fondo.r"
             }
           ]
@@ -1033,7 +1011,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

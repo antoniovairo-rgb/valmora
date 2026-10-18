@@ -272,6 +272,11 @@
 //   aggiunte prima dell'uscita (prima verifica fermata, CI grafica rossa su e14 o1): coerenza delle scelte D-153/D-159
 //   (S-03: chiamate che smentivano le scelte, risposta esaurita disattivata con l'unità nominata), fonti false senza costo
 //   D-152, curva D-154 senza cali nelle 3 stagioni e C35-06 (S-02), testi C36-03…07 e C37-04/07/09; guardiano degli
-//   schieramenti che aspetta i caratteri (causa del rosso CI: nomi misurati col carattere di riserva; rosso
-//   VALMORA_SENZA_FONT=1 riproduce 158 px² contro 160 in CI).
+//   schieramenti che aspetta i caratteri (rosso VALMORA_SENZA_FONT=1). RITIRATO: non era la causa del rosso CI.
+//   seconda verifica fermata dopo le aggiunte: fiducia coerente col risultato D-160/D-163 (S-05, primo giro;
+//   il secondo giro D-169 entra in un rilascio successivo), testi generici D-162 (S-02), stabilità della CI PO-128 (S-08):
+//   C128-02 vera causa di e14 o1 – nomi 1-2 px più larghi in Chrome 156 superavano una soglia di costo (D-169);
+//   C128-01 città ruotata durante l'animazione d'ingresso; job della CI saltati sui push di soli documenti
+//   (meno e-mail «Run failed»). misura: CI su 9e892c29 7 job su 7 verdi al primo tentativo; catena completa 3/3 di
+//   S-08 (02:08→02:56). guardiano: foto-c128, tests/fiducia-verso.test.ts, grafica in matrice per larghezza.
 export const GAME_VERSION = '0.38.0';

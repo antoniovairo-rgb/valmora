@@ -153,10 +153,6 @@
                 {
                   "pressione": "strada_larkspire",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e32.op.ferma_larkspire.r"
@@ -383,10 +379,6 @@
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e32.op.sospendi.r"
@@ -436,10 +428,6 @@
               "testo": "testi:e32.op.lasciali_piazzale",
               "costo": "testi:e32.op.lasciali_piazzale.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2
@@ -673,10 +661,6 @@
                 {
                   "pressione": "piazzale",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e32.op.luci.r"
@@ -774,10 +758,6 @@
               "costo": "testi:e32.op.nome_larkspire.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "strada_larkspire",
                   "valore": 2
                 }
@@ -788,12 +768,7 @@
               "id": "nessun_nome",
               "testo": "testi:e32.op.nessun_nome",
               "costo": "testi:e32.op.nessun_nome.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e32.op.nessun_nome.r"
             }
           ]
@@ -851,7 +826,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

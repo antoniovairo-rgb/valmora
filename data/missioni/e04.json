@@ -159,10 +159,6 @@
                 {
                   "pressione": "mercato",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e04.op.chiudi_mercato.r"
@@ -463,10 +459,6 @@
                 {
                   "pressione": "piazzale",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e04.op.occhio_chiuso.r"
@@ -502,10 +494,6 @@
               "costo": "testi:e04.op.rassicura.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "mercato",
                   "valore": 1
                 }
@@ -532,10 +520,6 @@
                 {
                   "tensione": "piazza_fonderie",
                   "valore": 1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e04.op.steward_fumo4.r"
@@ -565,10 +549,6 @@
               "testo": "testi:e04.op.permetti_coro",
               "costo": "testi:e04.op.permetti_coro.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "piazza_fonderie",
                   "valore": 2
@@ -901,7 +881,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

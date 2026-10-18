@@ -155,10 +155,6 @@
                 {
                   "riserva": "squadre",
                   "valore": -1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e33.op.ordini_veri.r"
@@ -167,12 +163,7 @@
               "id": "ordini_puliti",
               "testo": "testi:e33.op.ordini_puliti",
               "costo": "testi:e33.op.ordini_puliti.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e33.op.ordini_puliti.r"
             },
             {
@@ -292,10 +283,6 @@
                 {
                   "pressione": "tornelli",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e33.op.chiudi_occhio.r"
@@ -356,12 +343,7 @@
               "id": "annota_targa",
               "testo": "testi:e33.op.annota_targa",
               "costo": "testi:e33.op.annota_targa.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e33.op.annota_targa.r"
             }
           ]
@@ -380,10 +362,6 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e33.op.steward_fumo_ospiti.r"
@@ -393,10 +371,6 @@
               "testo": "testi:e33.op.lascia_fumo_ospiti",
               "costo": "testi:e33.op.lascia_fumo_ospiti.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "curva_ospiti",
                   "valore": 2
@@ -424,10 +398,6 @@
                 {
                   "pressione": "curva_larkspire",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e33.op.cambia_ora.r"
@@ -436,12 +406,7 @@
               "id": "cambia_dopo",
               "testo": "testi:e33.op.cambia_dopo",
               "costo": "testi:e33.op.cambia_dopo.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e33.op.cambia_dopo.r"
             }
           ]
@@ -484,10 +449,6 @@
               "costo": "testi:e33.op.rapporto_subito.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "pressione": "curva_larkspire",
                   "valore": 2
                 }
@@ -498,12 +459,7 @@
               "id": "aspetta_fine",
               "testo": "testi:e33.op.aspetta_fine",
               "costo": "testi:e33.op.aspetta_fine.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e33.op.aspetta_fine.r"
             },
             {
@@ -768,10 +724,6 @@
                 {
                   "pressione": "stazione",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e33.op.trattieni_mezzanotte.r"
@@ -843,7 +795,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }
