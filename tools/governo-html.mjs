@@ -21,19 +21,21 @@ export function generaGoverno() {
 
   const conta = {};
   for (const v of voci) { const s = /^IN (CODA|CORSO)/.test(v[4]) ? v[4].match(/^IN (CODA|CORSO)/)[0] : v[4].split(/[ –(]/)[0]; conta[s] = (conta[s] || 0) + 1; }
-  const aperte = voci.filter((v) => /^(IN CODA|IN CORSO|PARZIALE)/.test(v[4]));
-  const chiuse = voci.filter((v) => !/^(IN CODA|IN CORSO|PARZIALE)/.test(v[4]));
+  const aperte = voci.filter((v) => /^(IN CODA|IN CORSO|PARZIALE|ATTENDE IL PO)/.test(v[4]));
+  const chiuse = voci.filter((v) => !/^(IN CODA|IN CORSO|PARZIALE|ATTENDE IL PO)/.test(v[4]));
 
   const perCatena = {};
   for (const g of giri) (perCatena[g.catena] ||= []).push(g);
 
   // PO-104: una sola tabella, filtrabile per testo, stato, tipo e lotto (script in pagina, nessuna libreria).
-  const gruppo = (stato) => (/^IN (CODA|CORSO)/.test(stato) ? stato.match(/^IN (CODA|CORSO)/)[0] : stato.split(/[ –(]/)[0]);
+  const gruppo = (stato) => (/^(IN (CODA|CORSO)|ATTENDE IL PO)/.test(stato) ? stato.match(/^(IN (CODA|CORSO)|ATTENDE IL PO)/)[0] : stato.split(/[ –(]/)[0]);
   // PO-104 (14/10, «manca lo stato di avanzamento»): passo del percorso dedotto da stato e versione, con chi ci lavora.
   const PASSI = ['da iniziare', 'in lavorazione', 'in parte fatta', 'pronta, da rilasciare', 'rilasciata'];
   function avanzamento(v) {
     const g = gruppo(v[4]);
     if (g === 'DOPPIONE' || g === 'REVOCATA') return { passo: -1, testo: g === 'DOPPIONE' ? 'unita ad altra voce' : 'revocata' };
+    if (g === 'REGOLA') return { passo: -1, testo: 'regola sempre attiva' };
+    if (g === 'ATTENDE IL PO') return { passo: 2, testo: 'aspetta il PO' };
     const ver = (v[6] && v[6] !== '–' ? v[6] : (v[4].match(/\b0\.\d+\.\d+\b/) || [''])[0]);
     const passo = g === 'IN CODA' ? 0 : g === 'IN CORSO' ? 1 : g === 'PARZIALE' ? 2 : /^FATTO sul ramo/.test(v[4]) ? 3 : 4;
     return { passo, testo: PASSI[passo] + (passo === 4 && ver ? ' in ' + ver : '') };
@@ -93,7 +95,7 @@ td,th{padding:7px 10px;border-bottom:1px solid var(--bordo);text-align:left;vert
 (() => {
   const $ = (id) => document.getElementById(id);
   const righe = [...document.querySelectorAll('#voci tbody tr')];
-  const APERTI = ['IN CODA', 'IN CORSO', 'PARZIALE'];
+  const APERTI = ['IN CODA', 'IN CORSO', 'PARZIALE', 'ATTENDE IL PO'];
   function filtra() {
     const parole = $('cerca').value.toLowerCase().split(/\s+/).filter(Boolean);
     const pa = $('f-passo').value, st = $('f-stato').value, ti = $('f-tipo').value, lo = $('f-lotto').value;
