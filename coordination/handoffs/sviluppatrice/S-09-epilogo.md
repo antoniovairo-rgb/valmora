@@ -229,3 +229,13 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
   su tutte le braccia misurate.
 - Verifica secondo D-177 (PO-139): 3 giri di `node tools/catena.mjs governo && node tools/catena.mjs logica`, più la CI.
 - FATTO MISURATO (D-177): su b01a346, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
+
+### C40-05 (D-180, opzione 1): busta «chiusa» dopo «Aprila adesso»
+
+- `data/testi/it/epilogo.json` `epilogo.busta.consegnata`: «Consegnata chiusa al comando.» → «Consegnata al comando.».
+- Stesso contrasto anche nella tavola del finale, quella che il gioco mostra (D-171): `finale.busta.consegnata`, «… col
+  timbro sopra. Chiusa, come l'hai data.» → «È nell'archivio del comando, col timbro sopra.». La scelta di correggerla è
+  mia: va oltre la riga segnalata, ma il difetto è lo stesso.
+- Guardiano in `tests/epilogo.test.ts`: nessun testo `*.busta.consegnata` dice «chius…», in epilogo.json e in finale.json;
+  braccio rosso sul testo di prima. FATTO MISURATO: 7 prove passate.
+- FATTO MISURATO (D-177): su 1758ee9, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
