@@ -30,3 +30,15 @@ describe('C37-08 unità impegnate da una risposta', () => {
     expect(testo()).toContain('nessuna unità a coprirlo');
   });
 });
+
+// C38-01 (collaudo C-038, e17 o2): «Steward ai cancelli» senza steward posato ai tornelli; sulla build integrata il
+// rapporto deve dire «le tue risposte non bastano» (il caso C37-08 del collaudo)
+describe('C38-01 caso e17 o2', () => {
+  const m17 = JSON.parse(readFileSync('data/missioni/e17.json', 'utf8')) as Missione;
+  const s17 = [{ ondata: 2, chiamata: 'cancelli', opzione: 'steward_cancelli' }];
+  const r17 = { n: 2, scoperto: { tornelli: 1 }, tensione: { tornelli: 4 }, aRiposo: {}, causa: { tornelli: { pressione: 1, copertura: 0, eventi: [], risposte: 0 } } } as RapportoOndata;
+  it('«le tue risposte non bastano»', () => {
+    expect(impegnateDaRisposte(m17, s17, 2, 'tornelli')).toBe(1);
+    expect(renderToStaticMarkup(createElement(Rapporto, { m: m17, r: r17, scelte: s17, ultima: false, prossime: {}, avanti: () => {} }))).toContain('le tue risposte non bastano');
+  });
+});
