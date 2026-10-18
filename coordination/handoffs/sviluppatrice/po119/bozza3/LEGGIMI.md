@@ -2,6 +2,8 @@
 
 Il codice del gioco **non** cambia: il disegno è in `bozza-persona-3.mjs` (stringa SVG, stessa forma della seconda bozza); le tavole le fa `tavole-3.mjs` (dalla radice del repository: `node coordination/handoffs/sviluppatrice/po119/bozza3/tavole-3.mjs <cartella>`). Taglio a busto (D-171) invariato.
 
+Commit: 07c48c5 (ramo `claude/valmora-resa-v2`).
+
 ## File
 
 - `tavola-{m,f}-{360,375,412}.png` (DPR 2): a sinistra PRIMA (seconda bozza), a destra DOPO (terza prova); righe: rapporto calmo, teso, critico; verbale bene, medio, male, fallita.

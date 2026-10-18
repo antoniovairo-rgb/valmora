@@ -1,6 +1,6 @@
 # C38-02 (D-172) e verifica di C38-01 · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: dbb5ad8.
+Ramo `claude/valmora-resa-v2`. Commit: 382e8fb (C38-02 e test), 8df2a18 (rapporto).
 
 ## C38-02 – «non deve passare il giallo: è arrivata al giallo»
 
