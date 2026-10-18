@@ -202,7 +202,7 @@ export function TavolaBar(p: { genere: Genere; carriera: string | null; numeri: 
         <path d="M140 188 v-12 h16 v12 Z M176 187 v-12 h16 v12 Z" className="v-bianco v-tratto" />
         <path d="M150 6 h150 a8 8 0 0 1 8 8 v20 a8 8 0 0 1 -8 8 h-40 l-14 10 l2 -10 h-96 a8 8 0 0 1 -8 -8 v-20 a8 8 0 0 1 8 -8 Z" className="v-bianco v-tratto" />
         <text x="226" y="22" className="v-scritta">{righe[0]}</text><text x="226" y="37" className="v-scritta">{righe[1]}</text>
-        <text x="160" y="228" className="v-scritta v-fine">{t('finale.fine').toUpperCase()}</text>
+        <text x="160" y="228" className="v-scritta v-scritta-fine">{t('finale.fine').toUpperCase()}</text>
       </Tavola>
       <figcaption className="didascalia"><strong>{t('finale.bar')}</strong> {t(`finale.bar.${p.carriera ?? 'ignota'}`)}</figcaption>
       <p className="riga numeri-carriera" data-numeri>{p.numeri.map((n) => <span key={n} className="etichetta">{n}</span>)}</p>

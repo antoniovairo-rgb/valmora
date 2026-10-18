@@ -166,3 +166,17 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
 - Aperto: PO-131 (braccia poco naturali) e PO-132 (il personaggio coi capelli lunghi non sembra una donna) sulla seconda
   bozza PO-119; le tavole entrano coi volti di oggi. Quando S-01 passa i tracciati della terza prova li porto in
   `src/resa/busto.tsx` e rifaccio le foto delle tavole a 360/375/412.
+
+## D-174 · terza prova dei protagonisti nelle tavole (PO-131 braccia, PO-132 figura femminile)
+
+- Principale 05f98de unita (fast-forward: conteneva già la mia consegna e quella di S-01).
+- `src/resa/busto.tsx` ora è `persona()` di `po119/bozza3/bozza-persona-3.mjs` (S-01, cc454bc) copiata senza cambiare
+  una forma: stringa SVG montata come fa `Persona` in vignetta.tsx (persona2.ts di S-01). Tenute le mie opzioni
+  `divisa`/`cravatta` per i civili. Braccia a riposo lungo i fianchi (nessuna posa nelle tavole).
+- Corretto un nome in conflitto: la mia scritta «FINE» usava la classe `v-fine`, che S-01 usa per il tratto sottile del
+  volto; ora è `v-scritta-fine`.
+- Foto: dopo in `coordination/handoffs/sviluppatrice/S-09-tavole-d174/` (360, 375, 412, uomo e donna); prima = seconda
+  bozza in `S-09-tavole-gioco/`.
+- FATTO MISURATO: `foto-tavole` 360/375/412 m e f «verde»; `foto-epilogo` 360 «verde»; tipi ok; vitest e token: vedi sotto.
+- Non verificato: le tavole usano solo la posa a riposo; le pose `su`/`nuca`/`conserte` della terza prova non le ho
+  guardate nelle tavole. `persona2.ts` di S-01 nel resto del gioco è ancora la seconda bozza: tocca a S-01 portarci la terza.
