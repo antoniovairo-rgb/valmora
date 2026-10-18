@@ -1,6 +1,6 @@
 # C117B01 – braccio mancante nella posa «mano alla nuca» (PO: «manca un braccio all'uomo - verifica la donna») · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: COMMIT_C117.
+Ramo `claude/valmora-resa-v2`. Commit: 7c0357f.
 
 ## Riproduzione (FATTO, dal codice e dal guardiano)
 
