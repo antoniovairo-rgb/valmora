@@ -123,7 +123,7 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const centro = (r: Rett) => [(r.left + r.right) / 2, (r.top + r.bottom) / 2] as const, mio = centro(punti[i]!);
     const lontano = (u: Rett) => { if (spento('C103P01')) return 0; const [x, y] = centro(u), d = (q: readonly [number, number]) => Math.hypot(q[0] - x, q[1] - y);
       const altro = Math.min(...punti.filter((_, j) => j !== i).map((r) => d(centro(r)))); return altro < d(mio) ? VERA * 10 * (d(mio) - altro) : 0; };
-    // D-143 (C33-01): un'area di tocco può coprire un nome ma non «rubarlo»: toccando il nome (centro di ogni riga del
+    // D-145 (C33-01): un'area di tocco può coprire un nome ma non «rubarlo»: toccando il nome (centro di ogni riga del
     // testo) non si deve colpire un tocco, e il centro di un tocco non cade sul nome di un altro settore (e35 ondata 2 a
     // 360: toccando «Perimetro della banca» si ritirava una squadra). Quasi vincolo, sotto il disco. Rosso C106T01: no.
     const righe = (x: Element) => { const n = x.querySelector('.settore-nome'); if (!n) return []; const r = document.createRange(); r.selectNodeContents(n); return [...r.getClientRects()] as Rett[]; };

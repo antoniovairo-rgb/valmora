@@ -93,7 +93,7 @@ export async function mappaSchieramento(pagina) {
       return d < dist(c, mio) ? [`${x.dataset.settore} ${dist(c, mio).toFixed(0)} px dal suo disco, ${d.toFixed(0)} da ${altro}`] : []; });
     // C-008 (come nel giro foto, tools/foto.mjs): area di tocco di un'unità sopra un nome (anche il proprio), più di 4 px²
     const tocchiSuNomi = [...document.querySelectorAll('.mappa:not(.citta) [data-presenza]')].flatMap((t) => nomi.map(([n, q]) => [n, Math.round(a(t.getBoundingClientRect(), q))]).filter(([, x]) => x > 4).map(([n, x]) => `${t.dataset.presenza} × ${n} ${x} px²`));
-    // D-143 (C33-01 / C-008): un'area di tocco può stare sopra un nome, ma non lo «ruba»: (a) il suo centro non cade sul
+    // D-145 (C33-01 / C-008): un'area di tocco può stare sopra un nome, ma non lo «ruba»: (a) il suo centro non cade sul
     // nome di un ALTRO settore; (b) toccando il nome (centro di ogni riga del testo) non si colpisce un tocco: si
     // ritirerebbe un'unità per sbaglio.
     const rubati = [];
@@ -184,11 +184,11 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     // C33-05: non più gruppi vicini al disco di un altro settore che nella 0.31.0 (36 / 29 / 9, collaudo C-033); elenco in cartella
     writeFileSync(join(cartella, `vicine-${w}.txt`), `${vicine.length}\n${vicine.join('\n')}\n`);
     writeFileSync(join(cartella, `tocchi-${w}.txt`), `${new Set(tocchi.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${tocchi.join('\n')}\n`); // misura, senza soglia
-    // D-143 (C33-01): nessun nome «rubato» da un'area di tocco, tetto 0 (rosso C106T01: e35 ondata 2 a 360)
+    // D-145 (C33-01): nessun nome «rubato» da un'area di tocco, tetto 0 (rosso C106T01: e35 ondata 2 a 360)
     writeFileSync(join(cartella, `rubati-${w}.txt`), `${new Set(rubati.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${rubati.join('\n')}\n`);
     // C37-03 con le unità: al massimo i casi misurati il 18/10 (e19 o2-o4 come col rosso C111E01, e02/e15/e18 o4): 6 a 360, 3 a 375, 0 a 412
     atteso(`${w}×${h} con le unità: ${nomiVicini.length} nomi più vicini a un disco altrui (al massimo ${NOMI_VICINI[w]}): ${nomiVicini.join(' | ')} (C37-03)`, nomiVicini.length <= NOMI_VICINI[w]);
-    atteso(`${w}×${h}: nomi rubati da un'area di tocco: ${rubati.join(' | ')} (D-143, C33-01)`, !rubati.length);
+    atteso(`${w}×${h}: nomi rubati da un'area di tocco: ${rubati.join(' | ')} (D-145, C33-01)`, !rubati.length);
     atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
     await q6.close();
   }

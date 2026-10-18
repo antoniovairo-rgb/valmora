@@ -37,8 +37,16 @@ const distanza = (q: Requisito) => (typeof q.soglia === 'number' && typeof q.val
 export function requisitoInParole(q: Requisito, stelle: number): string {
   if (q.var.includes('tensione') && typeof q.soglia === 'number' && typeof q.valore === 'number' && !spento('C12T01')) {
     const limite = COLORI[livello(q.soglia)]!, arrivo = COLORI[livello(q.valore)]!;
-    return q.confronto === 'al_massimo' ? `Per la ${ORDINE[stelle]} stella la tensione non deve passare ${il(limite)}: è arrivata ${al(arrivo)}.`
-      : `Per la ${ORDINE[stelle]} stella la tensione deve arrivare ${al(limite)}: si è fermata ${al(arrivo)}.`;
+    // C33-09 (D-147): il colore da solo non diceva di quanto si era sopra la soglia (due tensioni diverse, stesso colore):
+    // si aggiunge il numero, «Seconda stella: tensione massima 3 su 10 (raggiunta: 4).». Soglie e colori invariati. Rosso C109S01: solo i colori.
+    const max = dichiarate.get(q.var)?.max, su = typeof max === 'number' ? ` su ${max}` : '';
+    const numero = spento('C109S01') ? '' : ` ${ORDINE[stelle]!.charAt(0).toUpperCase()}${ORDINE[stelle]!.slice(1)} stella: tensione ${q.confronto === 'al_massimo' ? 'massima' : 'minima'} ${q.soglia}${su} (raggiunta: ${q.valore}).`;
+    // C38-02 (D-172): soglia 3 e tensione 4 hanno lo stesso colore (livello ceil(t/2)): «non deve passare il giallo: è
+    // arrivata al giallo» si contraddiceva (72/72 soglie dei dati). Si dice che è salita troppo dentro quel colore, senza
+    // cifre (D-055). Rosso C38G01: la frase di prima.
+    const dentro = limite === arrivo && !spento('C38G01');
+    return (q.confronto === 'al_massimo' ? `Per la ${ORDINE[stelle]} stella la tensione non deve passare ${il(limite)}: ${dentro ? `è salita troppo dentro ${il(arrivo)}` : `è arrivata ${al(arrivo)}`}.`
+      : `Per la ${ORDINE[stelle]} stella la tensione deve arrivare ${al(limite)}: si è fermata ${al(arrivo)}.`) + numero;
   }
   return `${t(`var.${q.var}`)} ${SIMBOLO[q.confronto]} ${String(q.soglia)}: hai ${String(q.valore)}`;
 }

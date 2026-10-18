@@ -1,5 +1,5 @@
 // Mappa della città degli episodi (D-061): scegli un episodio sulla mappa e lo avvii o lo rigiochi.
-import { Play, RotateCcw } from 'lucide-react';
+import { BookOpen, Play, RotateCcw } from 'lucide-react';
 import { useState } from 'react';
 import type { Missione } from '../../logica/tipi.ts';
 import type { Salvataggio } from '../../salvataggi/salvataggio.ts';
@@ -23,7 +23,7 @@ const DESCRIZIONE: Record<StatoEpisodio, string> = {
   futuro: 'Non ancora disponibile.',
 };
 
-export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (id: string) => void; avvia: (m: Missione) => void; home?: () => void }) {
+export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (id: string) => void; avvia: (m: Missione) => void; home?: () => void; epilogo?: () => void }) {
   const [rigioca, setRigioca] = useState<string | null>(null);
   const tutte = missioni.map((m) => ({ m, stato: statoEpisodio(p.sal, m), stelle: p.sal.episodi[m.id]?.migliore?.stelle ?? null }));
   // PO-044: una stagione alla volta (quella dell'episodio scelto, cambiabile); rosso __NO_C13M01 = tutte insieme
@@ -65,6 +65,8 @@ export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (i
           )}
         </div>
       ) : <Invito sal={p.sal} stagione={stagione} voci={voci} scegli={(id) => { setStagione(missioni.find((x) => x.id === id)?.stagione ?? stagione); p.scegli(id); }} />}
+      {/* D-161: campagna finita → l'epilogo si rilegge dalla città */}
+      {p.epilogo && <button className="pulsante secondario" data-azione="epilogo" onClick={p.epilogo}><Icona di={BookOpen} />Rileggi l'epilogo</button>}
     </>
   );
 }

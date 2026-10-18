@@ -29,7 +29,7 @@ type Dich = Map<string, Dichiarazione>;
 // per le stelle, quindi il rapporto la mostra (C09-01). Assente nei rapporti salvati prima; rosso __NO_C10P01.
 export interface RapportoOndata { n: number; scoperto: Record<string, number>; tensione: Record<string, number>; aRiposo: Record<string, number>; picco?: Record<string, number>; fiducia?: number;
   /** PO-087: per ogni settore scoperto, perché: pressione (eventi dell'ondata + effetto delle risposte) contro copertura */
-  causa?: Record<string, { pressione: number; copertura: number; eventi: string[]; risposte: number }> }
+  causa?: Record<string, { pressione: number; copertura: number; eventi: string[]; risposte: number; presenti?: string[] }> }
 
 export interface InCorso {
   missione: string;
@@ -216,7 +216,7 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
     const sc = Math.max(0, pressione - copertura);
     const prima = s.tensione[settore.id] ?? 0;
     scoperto[settore.id] = sc;
-    if (sc > 0 && !spento('PO087')) causa[settore.id] = { pressione, copertura, eventi, risposte: s.modifiche[settore.id] ?? 0 };
+    if (sc > 0 && !spento('PO087')) causa[settore.id] = { pressione, copertura, eventi, risposte: s.modifiche[settore.id] ?? 0, presenti: unita.map((u) => u.r) }; // D-173: chi c'era (anche senza efficacia)
     // qualunque unità presidia, anche il mediatore (C02-N05); rossi: C01O01 = sempre, C02N05 = solo con copertura
     const presidiato = spento('C01O01') || (spento('C02N05') ? copertura > 0 : unita.length > 0);
     tensione[settore.id] = lim(sc > 0 ? prima + sc : presidiato ? Math.floor(prima / 2) : prima);

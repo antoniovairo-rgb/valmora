@@ -279,4 +279,15 @@
 //   C128-01 città ruotata durante l'animazione d'ingresso; job della CI saltati sui push di soli documenti
 //   (meno e-mail «Run failed»). misura: CI su 9e892c29 7 job su 7 verdi al primo tentativo; catena completa 3/3 di
 //   S-08 (02:08→02:56). guardiano: foto-c128, tests/fiducia-verso.test.ts, grafica in matrice per larghezza.
-export const GAME_VERSION = '0.38.0';
+//
+// 0.39.0 – finale in tre tempi ed epilogo (D-161, D-164, D-165, D-171), annullare una risposta toccata per sbaglio
+//   (PO-121), fiducia coerente col risultato secondo giro (D-169, D-170), versione nel margine sinistro (D-168).
+//   causa: PO-129/PO-130 (dopo e36 solo «Alla mappa della città», da e12 dritti a e13, finale poco epico); PO-121
+//   tocchi involontari sulle risposte; C38-04 opzioni che muovono la fiducia contro il risultato; C37-01/03/08.
+//   misura: S-09 catena 3/3 su 3186061 e CI verde (epilogo, Fine stagione a e12/e24, fischio e tavole coi busti
+//   della seconda bozza PO-119); S-05 opzioni nel verso sbagliato 19/371 → 9/361, fallite del casuale identiche
+//   36/36, curva D-154 0 cadute; S-01 catena 3/3 su 4d98e9e e CI 7/7 su 11e7e8b. Correzione del commento 0.38.0
+//   (C38-06): i testi generici sono D-151, D-162 è la curva crescente fra le stagioni.
+//   guardiano: rossi C161E01, C164F01, C165F01, C165T01 (epilogo e tavole), C107A01 (annullamento), C113V01
+//   (versione), C111E01 e C112R01 (C37-03/08), guardiano fiducia a 165 voci.
+export const GAME_VERSION = '0.39.0';

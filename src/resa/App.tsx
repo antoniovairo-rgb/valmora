@@ -11,7 +11,7 @@ import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
 import { carica, guidaVista, segnaGuidaVista, nuovoSeme, salva, ultimoAvviso } from './archivio.ts';
-import { dichiarate, impostaGenere, missione, missioni, testoSe } from './dati.ts';
+import { dichiarate, genereAttuale, impostaGenere, missione, missioni, testoSe } from './dati.ts';
 import type { Genere } from '../dati/testi.ts';
 import { ConfermaNuova, SceltaGenere } from './schermate/SceltaGenere.tsx';
 import { Guida } from './schermate/Guida.tsx';
@@ -19,17 +19,23 @@ import { chiudiEpisodio, iniziaEpisodio, prossimoEpisodio } from './episodi.ts';
 import type { Risultato } from '../logica/episodi.ts';
 import { Mappa, type MappaProps } from './mappa/Mappa.tsx';
 import { centro, Voli, type Volo } from './mappa/Volo.tsx';
-import { faseDi, infoOndata } from './partita.ts';
+import { faseDi, infoOndata, livello } from './partita.ts';
 import { Briefing } from './schermate/Briefing.tsx';
 import { Citta } from './schermate/Citta.tsx';
 import { Crediti } from './schermate/Crediti.tsx';
 import { Chiamata, Chiusura, Risposta } from './schermate/Ondata.tsx';
 import { Rapporto } from './schermate/Rapporto.tsx';
+import { Tono } from './schermate/Tono.tsx';
+import { tonoOndata } from './espressioni.ts';
 import { Sala } from './schermate/Sala.tsx';
 import { Scena } from './schermate/Scena.tsx';
 import { Schieramento, usate } from './schermate/Schieramento.tsx';
 import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
+import { Epilogo } from './schermate/Epilogo.tsx';
+import { Fischio } from './schermate/Fischio.tsx';
+import { chiudeStagione, epilogo, fineStagione, ultimoEpisodio } from '../logica/epilogo.ts';
+import { superato } from '../logica/episodi.ts';
 import { ondataVincibile } from '../logica/ripartenza.ts';
 import { sospendi, valida, type InSospeso } from '../logica/sospesa.ts';
 import { valutaEpisodio } from '../logica/episodi.ts';
@@ -39,7 +45,7 @@ import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
 import { useIndietroApp } from './indietro.ts';
 
-type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale';
+type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale' | 'fischio' | 'epilogo';
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
@@ -68,9 +74,11 @@ export function App() {
   const annulla = () => { if (!storia.length || spento('C17C02')) return; setBozza(storia.at(-1)!); salvaBozza(storia.at(-1)!); setStoria(storia.slice(0, -1)); setAvviso(null); };
   const [scelta, setScelta] = useState<string | null>(null);
   const [esito, setEsito] = useState<{ m: Missione; e: EsitoMissione; r: Risultato; migliore: boolean; ic: InCorso } | null>(null);
-  const [scelto, setScelto] = useState<string | null>(null); // episodio scelto sulla mappa della città
+  const [scelto, setScelto] = useState<string | null>(null);
+  const [spenti, setSpenti] = useState(0); // D-165: settori spenti dal fischio dell'ultimo derby // episodio scelto sulla mappa della città
   // PO-083: l'ondata da cui ripartire si calcola una volta a fine episodio (fino a ~0,7 s misurati su computer), non a ogni disegno
   const nRiparti = useMemo(() => (esito?.r.fallita ? ondataVincibile(esito.m, esito.e, esito.ic, dichiarate) : 1), [esito]);
+  const [tonoVisto, setTonoVisto] = useState<string | null>(null); // C33-06: la scena del tono già vista per «episodio-ondata»
   const sospesa = useRef<InSospeso | null>(null); // PO-121: la risposta che si può ancora annullare (mai nel salvataggio)
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
   const [segni, setSegni] = useState<Segno[]>([]); // PO-085: segni dell'ultima risposta sulla mappa, per 1,8 s
@@ -162,9 +170,23 @@ export function App() {
   else if (schermata === 'verbale' && esito && sal) {
     corpo = <Verbale m={esito.m} esito={esito.e} risultato={esito.r} migliore={esito.migliore}
       rigioca={() => giocaEpisodio(esito.m.id)} citta={() => alla_citta(sal)} home={home} riparti={ripartenza(esito)}
-      prossimo={prossimoEpisodio(sal) ? () => giocaEpisodio(prossimoEpisodio(sal)!.id) : undefined} />;
+      prossimo={prossimoEpisodio(sal) ? () => giocaEpisodio(prossimoEpisodio(sal)!.id) : undefined}
+      fineStagione={!esito.r.fallita && chiudeStagione(missioni, esito.m) ? fineStagione(missioni, sal.episodi, sal.variabili, dichiarate.values(), esito.m.stagione) : null}
+      epilogo={ultimoEpisodio(missioni)?.id === esito.m.id ? () => { setSpenti(0); setScelto(esito.m.id); setSchermata(spento('C165F01') ? 'epilogo' : 'fischio'); } : undefined} />;
+  } else if (schermata === 'epilogo' && sal && !ic) {
+    // D-161: epilogo della campagna; si torna alla città (e dalla città si rilegge, finché l'ultimo episodio è superato)
+    corpo = <Epilogo e={epilogo(missioni, sal.episodi, sal.variabili, dichiarate.values())} citta={() => alla_citta(sal)} home={home}
+      genere={sal.genere} fiducia={Number(sal.variabili.credito ?? 0)} fiduciaMax={Number(dichiarate.get('credito')?.max ?? 10)} />;
+  } else if (schermata === 'fischio' && sal && !ic && m) {
+    // D-165 parte 1: fischio dell'ultimo derby sulla mappa dell'episodio, poi l'epilogo
+    const n = m.mappa.settori.length;
+    mappa = { spenti: m.mappa.settori.slice(0, spenti).map((x) => x.id), vuota: true, buio: spenti > n };
+    testata = { etichetta: t('finale.fischio.etichetta'), titolo: t('finale.fischio.titolo') };
+    corpo = <Fischio settori={n} spenti={spenti} spegni={(k) => setSpenti((x) => Math.min(n + 1, k < 0 ? x + 1 : k))} avanti={() => setSchermata('epilogo')} />;
   } else if (schermata === 'citta' && sal && !ic) {
-    corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} home={home} />;
+    const fine = ultimoEpisodio(missioni);
+    corpo = <Citta sal={sal} scelto={m} scegli={setScelto} avvia={(x) => giocaEpisodio(x.id)} home={home}
+      epilogo={fine && superato(sal.episodi, fine.id) && !spento('C161E01') ? () => setSchermata('epilogo') : undefined} />;
   }
   else if (schermata === 'titolo' || !sal || !m) { nome = 'titolo'; corpo = titolo; }
   else if (schermata === 'sala') {
@@ -181,6 +203,12 @@ export function App() {
       if (icOra()) return; // già iniziata (doppio tocco)
       nuovaBozza(); conIc(iniziaEpisodio(sal, m)); setSchermata('gioco');
     }} />;
+  } else if (schermata === 'rapporto' && ic?.rapporti.length && !spento('C110V01') && tonoVisto !== `${m.id}-${ic.rapporti.at(-1)!.n}`) {
+    // C33-06 (D-143): prima del rapporto la scena del tono con la vignetta grande; rosso C110V01: il rapporto subito
+    const r = ic.rapporti.at(-1)!, visto = `${m.id}-${r.n}`;
+    nome = 'tono';
+    corpo = <Tono n={r.n} genere={genereAttuale() === 'f' ? 'f' : 'm'} avanti={() => setTonoVisto(visto)}
+      tono={tonoOndata(m.mappa.settori.map((x) => livello(r.tensione[x.id] ?? 0)), Object.values(r.scoperto).filter((x) => x > 0).length)} />;
   } else if (schermata === 'rapporto' && ic?.rapporti.length) {
     const r = ic.rapporti.at(-1)!;
     const fine = missioneFinita(m, ic);
