@@ -180,3 +180,12 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
 - FATTO MISURATO: `foto-tavole` 360/375/412 m e f «verde»; `foto-epilogo` 360 «verde»; tipi ok; vitest e token: vedi sotto.
 - Non verificato: le tavole usano solo la posa a riposo; le pose `su`/`nuca`/`conserte` della terza prova non le ho
   guardate nelle tavole. `persona2.ts` di S-01 nel resto del gioco è ancora la seconda bozza: tocca a S-01 portarci la terza.
+
+### PO-133: terza prova annullata nelle tavole (scelta B della principale)
+
+- Il PO ha rimandato la terza prova (PO-133: «Le braccia continuano ad essere incollate al busto fermo») e S-01 l'ha
+  annullata nel gioco (d5b0dcc su resa-v2). Qui `src/resa/busto.tsx` torna alla seconda bozza (quella di 3186061), con
+  un commit di revert, senza force push; resta il nuovo nome `v-scritta-fine` della scritta «FINE».
+- La catena 3/3 su 46db1d6, partita alle 13:08, l'ho fermata io durante il giro 1: non vale. Rifatta sul commit del revert.
+- Le foto in `S-09-tavole-d174/` mostrano la terza prova, non più in gioco: restano solo come documentazione.
+- FATTO MISURATO dopo il revert: tipi ok; `foto-epilogo` 360 «verde»; `foto-tavole` 360 donna «verde».
