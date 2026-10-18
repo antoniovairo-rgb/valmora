@@ -156,3 +156,13 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
 - Test: `npx vitest run` 54 file / 301 prove passate; controllo dei token su src/resa: nessun problema.
 - Non verificato: i busti di S-01 sono una bozza «a busto» approvata solo per le tavole; se S-01 cambia ancora i tracciati,
   `busto.tsx` va riallineato a mano (copia, non import). Le mani e le pose (braccia) non sono usate nelle tavole.
+
+### Esito finale su 3186061 (D-161, D-164, D-165, D-171)
+
+- FATTO MISURATO: catena completa **3/3 VERDE** su 3186061: 06:45 → 07:32, 07:32 → 08:20, 08:20 → 09:09 (STABILITA nel
+  commit successivo).
+- CI «catene» su 3186061: **verde** (run 703, tutti i job). Il rosso noto di e14 o1 non c'è più dopo l'unione della
+  principale.
+- Aperto: PO-131 (braccia poco naturali) e PO-132 (il personaggio coi capelli lunghi non sembra una donna) sulla seconda
+  bozza PO-119; le tavole entrano coi volti di oggi. Quando S-01 passa i tracciati della terza prova li porto in
+  `src/resa/busto.tsx` e rifaccio le foto delle tavole a 360/375/412.
