@@ -330,6 +330,7 @@
       "chiamate": [
         {
           "id": "parcheggio_vuoto",
+          "dopo": {"gia": ["ordini_segnati/ordini_veri"]},
           "fonte": "centrale_radio",
           "testo": "testi:e33.ch.parcheggio_vuoto",
           "commento": "testi:e33.ch.parcheggio_vuoto.vice",
