@@ -12,18 +12,22 @@ import { VignettaOndata } from '../vignette-gioco.tsx';
 import { Icona } from '../icone.tsx';
 import { spento } from '../../interruttori.ts';
 import { livello, statoSettore } from '../partita.ts';
+import { impegnateDaRisposte } from '../causa.ts';
+import type { InCorso } from '../../logica/missione.ts';
 
-export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; prossime: Record<string, number>; avanti: () => void }) {
+export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; prossime: Record<string, number>; avanti: () => void; scelte?: InCorso['scelte'] }) {
   // PO-059: protagonista e vice con l'espressione della tensione più alta a fine ondata. Rosso C96P01: niente vignetta.
   const tono = tonoOndata(p.m.mappa.settori.map((s) => livello(p.r.tensione[s.id] ?? 0)), Object.values(p.r.scoperto).filter((n) => n > 0).length);
   const riposo = Object.entries(p.r.aRiposo).filter(([, n]) => n > 0);
   // PO-087: «scoperto» dice sempre perché: cosa ha pesato sul settore e quanto lo coprivi
-  const causa = (c: NonNullable<RapportoOndata['causa']>[string]) => {
+  const causa = (c: NonNullable<RapportoOndata['causa']>[string], settore: string) => {
     const cosa = [...new Set(c.eventi)].map((e) => t(`evento.${e}`));
     if (c.risposte > 0) cosa.push('le tue risposte');
     const testo = cosa.join(', ');
     // D-055: niente numeri, il confronto fra pressione e copertura in parole. Rosso C34P01: i numeri, come in 09ff232.
     const quanto = spento('C34P01') ? `pressione ${c.pressione}, copertura ${c.copertura}`
+      // C37-08 (D-166): unità mandate lì da una risposta, ma il settore resta scoperto (non coprono). Rosso C112R01: come prima.
+      : c.copertura <= 0 && !spento('C112R01') && impegnateDaRisposte(p.m, p.scelte ?? [], p.r.n, settore) > 0 ? 'le tue risposte non bastano'
       : c.copertura <= 0 ? 'nessuna unità a coprirlo' : c.copertura * 2 < c.pressione ? 'unità troppo poche' : 'unità non abbastanza';
     return `${testo.charAt(0).toUpperCase()}${testo.slice(1)}: ${quanto}`;
   };
@@ -48,7 +52,7 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
             <li key={s.id} className="riga" data-esito-settore={s.id}>
               <span className="riga-sx"><span className={`campione liv-${scoperto && !spento('C10S02') ? Math.max(2, livello(p.r.tensione[s.id] ?? 0)) : livello(p.r.tensione[s.id] ?? 0)}`} aria-hidden="true" /><span className="nome-picco">{t(`settore.${s.id}`)}
                 {salita && <small className="picco" data-picco={s.id}><span className={`campione liv-${picco}`} aria-hidden="true" />salita, poi calmata</small>}
-                {p.r.causa?.[s.id] && <small className="causa" data-causa={s.id}>{causa(p.r.causa[s.id]!)}</small>}</span></span>
+                {p.r.causa?.[s.id] && <small className="causa" data-causa={s.id}>{causa(p.r.causa[s.id]!, s.id)}</small>}</span></span>
               {/* C17-05: coperto ma ancora a tensione da degenerato: nero con la striscia del colore della tensione */}
               <strong className={stato === 'scoperto' ? 'male' : stato === 'caldo' ? 'caldo' : 'bene'} data-stato-settore={stato}>
                 {stato === 'scoperto' ? 'scoperto' : stato === 'caldo' ? <>sotto controllo<small>ma ancora caldo</small></> : 'sotto controllo'}</strong>

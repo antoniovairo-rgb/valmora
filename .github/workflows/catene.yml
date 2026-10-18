@@ -7,6 +7,22 @@ on:
       - 'claude/valmora-collaudo-*'
   pull_request:
 jobs:
+  # PO-128: i commit che toccano SOLO docs/**, coordination/** o STABILITA.json non fanno girare logica, grafica e apk
+  # (erano la maggior parte delle mail «Run failed»: rosso instabile della grafica su commit senza gioco). «governo»
+  # gira sempre: controlla proprio i documenti. Ramo nuovo o diff non calcolabile: gira tutto. D-115 resta valido:
+  # il commit della versione tocca sempre src/versione.ts.
+  cambi:
+    runs-on: ubuntu-latest
+    outputs:
+      gioco: ${{ steps.diff.outputs.gioco }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: diff
+        env:
+          PRIMA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: node tools/cambi-gioco.mjs "$PRIMA" "$GITHUB_SHA" >> "$GITHUB_OUTPUT"
   governo:
     runs-on: ubuntu-latest
     steps:
@@ -18,6 +34,8 @@ jobs:
           node-version: 24
       - run: node tools/catena.mjs governo
   logica:
+    needs: cambi
+    if: needs.cambi.outputs.gioco != 'false'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,8 +45,18 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node tools/catena.mjs logica
+  # PO-128: una larghezza per job, in parallelo. Stessa copertura (le larghezze sono giri indipendenti di tools/foto.mjs),
+  # tempo del job circa un terzo: misura del 17/10, foto 3 larghezze = ~28 min per tentativo su un solo job.
   grafica:
+    needs: cambi
+    if: needs.cambi.outputs.gioco != 'false'
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        larghezza: [360, 375, 412]
+    env:
+      VALMORA_LARGHEZZE: ${{ matrix.larghezza }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -41,9 +69,11 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: foto
+          name: foto-${{ matrix.larghezza }}
           path: out/foto
   apk:
+    needs: cambi
+    if: needs.cambi.outputs.gioco != 'false'
     runs-on: ubuntu-latest
     permissions:
       contents: write

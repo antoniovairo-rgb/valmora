@@ -512,7 +512,7 @@
           "id": "due_striscioni",
           "fonte": "centrale_radio",
           "testo": "testi:e22.ch.due_striscioni",
-          "settore": "curva_larkspire",
+          "settore": "curva_cinderwick",
           "opzioni": [
             {
               "id": "rimuovi_entrambi",
@@ -839,7 +839,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

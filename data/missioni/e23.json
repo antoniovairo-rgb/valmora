@@ -329,6 +329,7 @@
       "chiamate": [
         {
           "id": "in_tondo",
+          "dopo": {"mai": ["dieci_pullman/parcheggio_ospiti"]},
           "fonte": "centrale_radio",
           "testo": "testi:e23.ch.in_tondo",
           "settore": "parcheggi",
@@ -843,7 +844,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

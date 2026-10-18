@@ -258,4 +258,20 @@
 //   da 10 a 2; e30 o4 69/69 lontano dal municipio; C33-04 0 righe (rosso 95); C33-05 30/18/8.
 //   guardiano: rossi C104R01, C105S01, C99M01, C102D01, C103P01; guardiano C32-01 ristretto al fuoco perso dentro la scena
 //   (rosso C97F01 290 righe).
-export const GAME_VERSION = '0.37.0';
+// 0.38.0 – nomi sulla mappa mai coperti (C33-01 / D-145), settori copribili (D-146) e dati coerenti (C35-02/04/05),
+//   finale di e14 legato alla scelta (D-158).
+//   causa: C33-01 pastiglie sopra i nomi e tocchi che «rubano» il nome di un altro settore (e35 o2 a 360: toccando
+//   «Perimetro della banca» si ritirava un'unità); C34-04/C35-03 e17 piazza e e21 quartiere scoperti per forza
+//   (1000/1000 in o4); C35-02 risposte sparite senza spiegazione in e26/e27; C35-04 verbale di e35 col porto (88/734);
+//   C35-05 «curva agitata» sul piazzale di e13; C-036 finale di e14 troppo neutro.
+//   misura: catena completa 3/3 sul ramo della sviluppatrice (8ab0f2e): nomi rubati 0/0/0 a 360/375/412 (rosso C106T01),
+//   pastiglie sui nomi 0 (rosso C100N01: 3 ondate); dati S-02 catena 3/3 su e261e8c: e21 quartiere scoperto 1000→364
+//   (attento), fallite casuale e17 61,4→58,1%, e21 66,9→59,7%; finale e14: indagini → verbale proprio, tipografia → base.
+//   guardiano: rossi C100N01, C106T01; tests/settori-copribili.test.ts, tests/opzioni-spiegate.test.ts,
+//   tests/finale-e14.test.ts (rosso __NO_PO086); esiti con «dopo».
+//   aggiunte prima dell'uscita (prima verifica fermata, CI grafica rossa su e14 o1): coerenza delle scelte D-153/D-159
+//   (S-03: chiamate che smentivano le scelte, risposta esaurita disattivata con l'unità nominata), fonti false senza costo
+//   D-152, curva D-154 senza cali nelle 3 stagioni e C35-06 (S-02), testi C36-03…07 e C37-04/07/09; guardiano degli
+//   schieramenti che aspetta i caratteri (causa del rosso CI: nomi misurati col carattere di riserva; rosso
+//   VALMORA_SENZA_FONT=1 riproduce 158 px² contro 160 in CI).
+export const GAME_VERSION = '0.38.0';

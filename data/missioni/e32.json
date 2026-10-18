@@ -143,7 +143,7 @@
           "fonte": "centrale_radio",
           "testo": "testi:e32.ch.due_cortei",
           "commento": "testi:e32.ch.due_cortei.vice",
-          "settore": "strada_larkspire",
+          "settore": "strada_cinderwick",
           "opzioni": [
             {
               "id": "ferma_larkspire",
@@ -265,12 +265,7 @@
               "id": "ignora_piazzale",
               "testo": "testi:e32.op.ignora_piazzale",
               "costo": "testi:e32.op.ignora_piazzale.c",
-              "effetti": [
-                {
-                  "pressione": "piazzale",
-                  "valore": 2
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e32.op.ignora_piazzale.r"
             }
           ]
@@ -297,7 +292,7 @@
           "id": "piazzale_tardi",
           "tipo": "folla",
           "settore": "piazzale",
-          "pressione": 2
+          "pressione": 3
         }
       ],
       "chiamate": [
@@ -388,10 +383,6 @@
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e32.op.sospendi.r"
@@ -441,10 +432,6 @@
               "testo": "testi:e32.op.lasciali_piazzale",
               "costo": "testi:e32.op.lasciali_piazzale.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2
@@ -644,6 +631,7 @@
       "chiamate": [
         {
           "id": "incrocio",
+          "dopo": {"mai": ["festa_larkspire/uscita_collina"]},
           "fonte": "centrale_radio",
           "testo": "testi:e32.ch.incrocio",
           "commento": "testi:e32.ch.incrocio.vice",
@@ -677,10 +665,6 @@
                 {
                   "pressione": "piazzale",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e32.op.luci.r"
@@ -778,10 +762,6 @@
               "costo": "testi:e32.op.nome_larkspire.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "strada_larkspire",
                   "valore": 2
                 }
@@ -792,12 +772,7 @@
               "id": "nessun_nome",
               "testo": "testi:e32.op.nessun_nome",
               "costo": "testi:e32.op.nessun_nome.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e32.op.nessun_nome.r"
             }
           ]
@@ -855,7 +830,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

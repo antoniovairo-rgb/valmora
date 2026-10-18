@@ -53,7 +53,14 @@ export function partenzeAttente(dirDati) {
 // Si contano le scritture e si aspetta che la mappa stia ferma 500 ms (con `almenoUna`, dopo almeno una disposizione).
 export const ascoltaEtichette = (pagina) => pagina.evaluate(() => { const m = document.querySelector('.mappa:not(.citta)'), g = (globalThis.__etichette = { n: 0, ultimo: performance.now() });
   globalThis.__etichetteO?.disconnect(); if (m) (globalThis.__etichetteO = new MutationObserver(() => { g.n++; g.ultimo = performance.now(); })).observe(m, { attributes: true, subtree: true, attributeFilter: ['data-unita', 'data-nome'] }); });
-export const etichetteFerme = (pagina, almenoUna = false) => pagina.waitForFunction((a) => { const g = globalThis.__etichette; return !!g && (!a || g.n > 0) && performance.now() - g.ultimo > 500; }, almenoUna, { timeout: 8000, polling: 100 }).then(() => true, () => false);
+// 0.38.0 (CI rossa su e14 o1 a 360): in CI il carattere arrivava dopo i 500 ms di quiete e il guardiano misurava i nomi
+// col carattere di riserva (stato di passaggio: arrivato il carattere, il gioco ridispone). Ora si aspetta anche che i
+// caratteri siano caricati; la pagina del giro con le unità a 360 li rallenta apposta (CARATTERE_LENTO), così il caso della
+// CI si ripete ovunque. Senza questa attesa (VALMORA_SENZA_FONT=1) il guardiano torna rosso su e14 o1.
+const SENZA_FONT = !!process.env.VALMORA_SENZA_FONT;
+export const etichetteFerme = (pagina, almenoUna = false) => pagina.waitForFunction(([a, f]) => { const g = globalThis.__etichette; return !!g && (!a || g.n > 0) && (f || document.fonts.status === 'loaded') && performance.now() - g.ultimo > 500; }, [almenoUna, SENZA_FONT], { timeout: 8000, polling: 100 }).then(() => true, () => false);
+export const CARATTERE_LENTO = 1500; // ms: con 800 il carattere arrivava già sul titolo e il caso della CI non si ripeteva (sonda c27-ferme, e14 o1); solo a 360 (col routing la cache è spenta: ogni ricarica lo paga)
+const rallentaCaratteri = (p) => p.route('**/*.woff2', async (r) => { await new Promise((ok) => setTimeout(ok, CARATTERE_LENTO)); await r.continue(); });
 
 export async function mappaSchieramento(pagina) {
   return pagina.evaluate(() => {
@@ -96,7 +103,12 @@ export async function mappaSchieramento(pagina) {
     for (const n of elNomi) { const r = document.createRange(); r.selectNodeContents(n);
       for (const z of r.getClientRects()) { const x = (z.left + z.right) / 2, y = (z.top + z.bottom) / 2; if (y < 0 || y > innerHeight) continue;
         const e = document.elementFromPoint(x, y)?.closest('[data-presenza]'); if (e) rubati.push(`toccando «${n.textContent}» si colpisce ${e.dataset.presenza}`); } }
-    return { sopra, coperte, suNomi, fuori, vicine, tocchiSuNomi, rubati };
+    // C37-03: il nome (bordo più vicino) più vicino al disco di un altro settore che al proprio (e19 a mappa vuota, 16 contro 22 px)
+    const nomiVicini = dischi.flatMap(([x, mio]) => { const n = x.querySelector('.settore-nome'); if (!n || !n.getClientRects().length) return []; const r = n.getBoundingClientRect();
+      const d = (q) => Math.hypot(Math.max(r.left - q[0], 0, q[0] - r.right), Math.max(r.top - q[1], 0, q[1] - r.bottom)), m = d(mio);
+      const [altro, a2] = dischi.filter(([y]) => y !== x).map(([y, q]) => [y.dataset.settore, d(q)]).sort((u, v) => u[1] - v[1])[0] ?? [null, Infinity];
+      return a2 < m ? [`nome ${x.dataset.settore} a ${m.toFixed(0)} px dal suo disco, ${a2.toFixed(0)} da ${altro}`] : []; });
+    return { sopra, coperte, suNomi, fuori, vicine, tocchiSuNomi, rubati, nomiVicini };
   });
 }
 
@@ -111,6 +123,7 @@ export const copertiDallaBarra = (pagina) => pagina.evaluate(() => {
     .map((e) => (e.dataset.risorsa ?? e.dataset.azione ?? e.textContent.trim().slice(0, 24)));
 });
 
+const NOMI_VICINI = { 360: 6, 375: 3, 412: 0 }; // C37-03 con le unità, misurati il 18/10 col peso × 100 (residuo dichiarato, vedi CONSEGNA-PO121-C37.md)
 const VICINE = { 360: 36, 375: 29, 412: 9 }; // C33-05: i valori della 0.31.0 misurati dal collaudo C-033 (0.32.0: 44 / 32 / 14)
 const PASTIGLIE_SU_NOMI = 0; // C27-06: 7 il 15/10; D-136 (C28-14): a 0 col nome su più righe e due posti in più (rosso C94N01: 7)
 
@@ -125,7 +138,8 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     await pagina.getByRole('button', { name: 'Riprendi' }).click();
     const ok = await pagina.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false);
     if (!ok) { atteso(`${nome}: lo schieramento non si apre`, false); return; }
-    await pagina.waitForTimeout(120);
+    await ascoltaEtichette(pagina); await etichetteFerme(pagina); // C37-03: a mappa vuota ogni nome più vicino al suo disco che agli altri
+    const vuota = await mappaSchieramento(pagina); atteso(`${nome} (mappa vuota): ${vuota.nomiVicini.join('; ')} (C37-03)`, !vuota.nomiVicini.length);
     const [h, alt] = await pagina.evaluate(() => [document.documentElement.scrollHeight, innerHeight]);
     atteso(`${nome}: ${h - alt} px di scorrimento nello schieramento (S-24)`, h <= alt);
     const coperti = await copertiDallaBarra(pagina);
@@ -140,8 +154,8 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   // 375 e 412 (prima solo 360)
   const suNomi = [], attente = partenzeAttente(dirDati);
   for (const [w, h] of [[360, 760], [375, 812], [412, 915]]) {
-    const vicine = [], tocchi = [], rubati = [];
-    const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); await q6.goto(url);
+    const vicine = [], tocchi = [], rubati = [], nomiVicini = [];
+    const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); if (w === 360) await rallentaCaratteri(q6); await q6.goto(url);
     for (const st of attente) {
       await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
       await q6.reload(); await q6.getByRole('button', { name: 'Riprendi' }).click();
@@ -155,6 +169,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
       rubati.push(...r.rubati.map((x) => `${st.m.id} o${st.n} ${x}`));
       atteso(`${dove} con le unità: pastiglie sopra i nomi ${r.suNomi.join('; ')} (C27-06, il caso del collaudo)`, st.m.id !== 'e19' || !r.suNomi.length);
       atteso(`${dove} con le unità: pastiglie fuori dalla mappa ${r.fuori.join('; ')} (C27-06)`, !r.fuori.length);
+      nomiVicini.push(...r.nomiVicini.map((x) => `${st.m.id} o${st.n} ${x}`));
       if (w === 360) { // C33-04: la disposizione non dipende dallo stato del giro prima (rosso VALMORA_ROSSI=C102D01)
         const posti = () => q6.evaluate(() => [...document.querySelectorAll('.mappa:not(.citta) [data-settore]')].map((x) => `${x.dataset.settore}:${x.dataset.nome}/${x.dataset.unita}/${x.querySelector('.settore-nome')?.style.maxWidth ?? ''}`).join(' '));
         const prima = await posti();
@@ -171,6 +186,8 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     writeFileSync(join(cartella, `tocchi-${w}.txt`), `${new Set(tocchi.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${tocchi.join('\n')}\n`); // misura, senza soglia
     // D-145 (C33-01): nessun nome «rubato» da un'area di tocco, tetto 0 (rosso C106T01: e35 ondata 2 a 360)
     writeFileSync(join(cartella, `rubati-${w}.txt`), `${new Set(rubati.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${rubati.join('\n')}\n`);
+    // C37-03 con le unità: al massimo i casi misurati il 18/10 (e19 o2-o4 come col rosso C111E01, e02/e15/e18 o4): 6 a 360, 3 a 375, 0 a 412
+    atteso(`${w}×${h} con le unità: ${nomiVicini.length} nomi più vicini a un disco altrui (al massimo ${NOMI_VICINI[w]}): ${nomiVicini.join(' | ')} (C37-03)`, nomiVicini.length <= NOMI_VICINI[w]);
     atteso(`${w}×${h}: nomi rubati da un'area di tocco: ${rubati.join(' | ')} (D-145, C33-01)`, !rubati.length);
     atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
     await q6.close();

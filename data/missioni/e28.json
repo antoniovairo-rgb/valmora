@@ -176,12 +176,7 @@
               "id": "ignora_anonimo",
               "testo": "testi:e28.op.ignora_anonimo",
               "costo": "testi:e28.op.ignora_anonimo.c",
-              "effetti": [
-                {
-                  "pressione": "magazzino_fonderie",
-                  "valore": 1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e28.op.ignora_anonimo.r"
             }
           ]
@@ -421,10 +416,6 @@
                   "valore": -1
                 },
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "imposta": "pista_cattura",
                   "valore": "nessuna"
                 }
@@ -445,10 +436,6 @@
               "costo": "testi:e28.op.apri_settore.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "piazzale",
                   "valore": 2
                 }
@@ -460,10 +447,6 @@
               "testo": "testi:e28.op.niente_settore",
               "costo": "testi:e28.op.niente_settore.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": -1
@@ -566,12 +549,7 @@
               "id": "smentisci",
               "testo": "testi:e28.op.smentisci",
               "costo": "testi:e28.op.smentisci.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e28.op.smentisci.r"
             },
             {
@@ -591,10 +569,6 @@
               "testo": "testi:e28.op.lascia_intendere",
               "costo": "testi:e28.op.lascia_intendere.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "banchine",
                   "valore": 2
@@ -766,10 +740,6 @@
               "costo": "testi:e28.op.nomi_fonti.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "pressione": "banchine",
                   "valore": 2
                 }
@@ -780,12 +750,7 @@
               "id": "fonti_protette",
               "testo": "testi:e28.op.fonti_protette",
               "costo": "testi:e28.op.fonti_protette.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e28.op.fonti_protette.r"
             }
           ]
@@ -883,7 +848,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

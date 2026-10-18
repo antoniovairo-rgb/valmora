@@ -172,10 +172,6 @@
               "costo": "testi:e07.op.indicazioni_rete.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "parcheggi",
                   "valore": 2
                 }
@@ -390,10 +386,6 @@
               "costo": "testi:e07.op.lascia_pupazzo.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_ospiti",
                   "valore": 2
                 }
@@ -416,10 +408,6 @@
                 {
                   "pressione": "strada_larkspire",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e07.op.spiega_coro.r"
@@ -521,10 +509,6 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e07.op.cordone_campo.r"
@@ -534,10 +518,6 @@
               "testo": "testi:e07.op.lascia_festa7",
               "costo": "testi:e07.op.lascia_festa7.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "curva_ospiti",
                   "valore": 2
@@ -577,10 +557,6 @@
                 {
                   "pressione": "strada_larkspire",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e07.op.squadra_larkspire7.r"
@@ -855,7 +831,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

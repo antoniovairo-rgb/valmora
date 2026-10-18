@@ -1,6 +1,6 @@
 # PO-121 (D-148) – annullare la risposta a una chiamata entro 5 secondi · rapporto della sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: COMMIT. Foto in `po121/`.
+Ramo `claude/valmora-resa-v2`. Commit: 43ae998, 51b1ffe, 684ef17 (rapporto e foto), 1dffc7b (il giro foto aspetta la conferma), 4a3bdea (doppio tocco); ultimi giri: vedi `CONSEGNA-PO121-C37.md`. Foto in `po121/`.
 
 ## Cosa fa
 
@@ -33,6 +33,8 @@ Ramo `claude/valmora-resa-v2`. Commit: COMMIT. Foto in `po121/`.
 - Guardiano permanente `tools/foto-po121.mjs` (`controllaAnnulla`), nel giro foto (catena grafica): verde 0 righe; rosso C107A01 4 righe («dopo la risposta manca Annulla»).
 
 ## Non verificato
+
+- Manopola di prova `globalThis.__VALMORA_SECONDO_MS` (solo strumenti): il giro foto la mette a 1 per non aspettare 5 s a ogni risposta; la prova vera (`foto-po121`) non la mette e misura i 5 s.
 
 - Il conto alla rovescia usa il tempo reale (5 s): le prove lo misurano a 5,6 s, non a ogni secondo.
 - Lettori di schermo: «Annulla» sta in una zona `role="status"` col conto nell'etichetta; non l'ho provato con un lettore vero.

@@ -338,7 +338,7 @@
           "id": "ritardatari16",
           "tipo": "corteo",
           "settore": "strada_cinderwick",
-          "pressione": 2
+          "pressione": 3
         }
       ],
       "chiamate": [
@@ -434,10 +434,6 @@
               "costo": "testi:e16.op.avvisa_ospiti.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_ospiti",
                   "valore": 1
                 }
@@ -449,10 +445,6 @@
               "testo": "testi:e16.op.oscura",
               "costo": "testi:e16.op.oscura.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "magazzino",
                   "valore": -1
@@ -492,7 +484,7 @@
           "id": "cori_nome",
           "fonte": "centrale_radio",
           "testo": "testi:e16.ch.cori_nome",
-          "settore": "curva_ospiti",
+          "settore": "curva_cinderwick",
           "opzioni": [
             {
               "id": "speaker16",
@@ -578,7 +570,7 @@
           "fonte": "vice",
           "testo": "testi:e16.ch.senza_dessi",
           "commento": "testi:e16.ch.senza_dessi.vice",
-          "settore": "curva_cinderwick",
+          "settore": "magazzino",
           "opzioni": [
             {
               "id": "cerca_fonderie",
@@ -601,10 +593,6 @@
               "testo": "testi:e16.op.chiedi_curva",
               "costo": "testi:e16.op.chiedi_curva.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "curva_cinderwick",
                   "valore": 2
@@ -850,7 +838,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

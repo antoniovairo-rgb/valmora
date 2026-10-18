@@ -353,7 +353,7 @@
           "id": "clacson",
           "tipo": "protesta",
           "settore": "quartiere",
-          "pressione": 2
+          "pressione": 3
         }
       ],
       "chiamate": [
@@ -948,7 +948,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

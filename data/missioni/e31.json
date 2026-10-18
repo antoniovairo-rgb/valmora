@@ -139,7 +139,7 @@
           "id": "viale_aperto",
           "tipo": "corteo",
           "settore": "viale_stazione",
-          "pressione": 3
+          "pressione": 4
         },
         {
           "id": "ospiti_tribuna",
@@ -222,10 +222,6 @@
               "costo": "testi:e31.op.consegna_comando.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "riserva": "steward",
                   "valore": -1
                 },
@@ -240,12 +236,7 @@
               "id": "copia_prima",
               "testo": "testi:e31.op.copia_prima",
               "costo": "testi:e31.op.copia_prima.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e31.op.copia_prima.r"
             }
           ]
@@ -534,10 +525,6 @@
               "costo": "testi:e31.op.dai_cronista.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -2
-                },
-                {
                   "pressione": "piazzale",
                   "valore": -2
                 }
@@ -549,10 +536,6 @@
               "testo": "testi:e31.op.niente_cronista",
               "costo": "testi:e31.op.niente_cronista.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2
@@ -712,12 +695,7 @@
               "id": "rifiuta_segreteria",
               "testo": "testi:e31.op.rifiuta_segreteria",
               "costo": "testi:e31.op.rifiuta_segreteria.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e31.op.rifiuta_segreteria.r"
             },
             {
@@ -725,10 +703,6 @@
               "testo": "testi:e31.op.mostra_indice",
               "costo": "testi:e31.op.mostra_indice.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "tribuna_autorita",
                   "valore": 2
@@ -820,10 +794,6 @@
                 {
                   "pressione": "stazione",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e31.op.trattieni_treno.r"
@@ -874,10 +844,6 @@
               "costo": "testi:e31.op.a_stampa.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -2
-                },
-                {
                   "imposta": "fascicolo",
                   "valore": "stampa"
                 }
@@ -909,10 +875,6 @@
               "testo": "testi:e31.op.tieni_fascicolo",
               "costo": "testi:e31.op.tieni_fascicolo.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "imposta": "fascicolo",
                   "valore": "nessuno"
@@ -975,7 +937,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

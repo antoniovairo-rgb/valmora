@@ -38,6 +38,7 @@ La più recente in alto. Hash = commit di main dopo la promozione (catena comple
 
 | Versione | Data (UTC) | Hash main | Contenuto | Misura principale | Stato |
 |---|---|---|---|---|---|
+| 0.38.0 | — | — (ramo 4d309bd) | Nomi sulla mappa (C33-01 / D-145), settori copribili e dati C35 (D-146, D-150), finale di e14 (D-158) | catena completa giri 1-2 verdi su 4d309bd; CI «grafica» rossa su C33-01 (e14 o1 a 360×760: tocco del mediatore sul nome «Tornelli», pastiglie 160 px²) | NON pubblicata (D-115). Seconda verifica su 91ea00e (con dati S-02/S-03 e guardiano che aspetta i caratteri): giri 1-2 verdi in locale, CI grafica di nuovo rossa con lo stesso errore (e14 o1, 160 px²): la correzione di S-01 non basta; indagine a S-08 col browser della CI |
 | 0.37.0 | 2026-10-17 14:46 | d2fdf88 | Tastiera nei riepiloghi e fra le scene (C34-01, C34-08 / D-142), fiaccolata e30 (C33-02 / D-141), etichette mappa (C33-03…05) | riepilogo 6/6 col fuoco sul titolo; Tab stagione 1 da 10 a 2; e30 o4 69/69 lontano dal municipio | pubblicata; collaudo C-037 |
 | 0.36.0 | 2026-10-17 08:43 | fdad627 | C35-01: salvataggio vecchio in e35 non riapre la chiamata opposta sulla barca | c34-dati 12/12 (11/12 senza correzione) | pubblicata; collaudo C-036 |
 | 0.35.0 | 2026-10-17 05:21 | e7f00cc | Dati e testi coerenti con le scelte (C34-02/03/06/09/10) | c34-dati 11/11 (8/11 coi dati 0.34.0) | pubblicata; collaudo C-035 |

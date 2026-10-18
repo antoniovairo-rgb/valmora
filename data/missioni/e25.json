@@ -407,10 +407,6 @@
                   "valore": -2
                 },
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "riserva": "mediatore",
                   "valore": -1
                 }
@@ -512,10 +508,6 @@
                 {
                   "pressione": "piazzale",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e25.op.steward_sedie.r"
@@ -528,10 +520,6 @@
                 {
                   "pressione": "piazzale",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e25.op.lascia_festeggiare.r"
@@ -551,10 +539,6 @@
               "costo": "testi:e25.op.mostra_regole.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_cinderwick",
                   "valore": 2
                 }
@@ -566,10 +550,6 @@
               "testo": "testi:e25.op.spiega_ispettore",
               "costo": "testi:e25.op.spiega_ispettore.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -1
@@ -655,10 +635,6 @@
                 {
                   "pressione": "stazione",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e25.op.trattieni_treno.r"
@@ -752,10 +728,6 @@
                 {
                   "pressione": "piazza_municipio",
                   "valore": -1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e25.op.percorso_corto.r"
@@ -827,7 +799,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

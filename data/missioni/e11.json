@@ -390,6 +390,7 @@
         },
         {
           "id": "non_centro",
+          "dopo": {"mai": ["per_la_squadra/chiudi_fonderie"]},
           "fonte": "dessi",
           "testo": "testi:e11.ch.non_centro",
           "commento": "testi:e11.ch.non_centro.vice",
@@ -403,10 +404,6 @@
                 {
                   "pressione": "piazza_fonderie",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e11.op.accetta_dessi11.r"
@@ -416,10 +413,6 @@
               "testo": "testi:e11.op.rifiuta_dessi11",
               "costo": "testi:e11.op.rifiuta_dessi11.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "piazza_fonderie",
                   "valore": 2
@@ -441,10 +434,6 @@
               "costo": "testi:e11.op.comunicato11.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "strada_cinderwick",
                   "valore": 2
                 }
@@ -459,10 +448,6 @@
                 {
                   "pressione": "strada_cinderwick",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e11.op.allontana_curiosi.r"
@@ -551,10 +536,6 @@
                 {
                   "pressione": "quartiere",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e11.op.posti_blocco.r"
@@ -691,10 +672,6 @@
                 {
                   "pressione": "quartiere",
                   "valore": -2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e11.op.paga_comune.r"
@@ -847,7 +824,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }

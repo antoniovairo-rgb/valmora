@@ -117,11 +117,16 @@ describe('C34-09 e21: la «i» dell\'ondata 1 non svela quale fonte mente', () =
 
 describe('C34-10 e02 caldo_casa: se resta una sola risposta, il testo dice perché', () => {
   it('dopo il mediatore col corteo (o2), in o3 l\'unica risposta nomina il mediatore', () => {
+    // C35-06: se il mediatore è a riposo in o2, mediatore_corteo non si offre e la partita non conta (seme 5).
+    let viste = 0;
     for (let seme = 1; seme <= 5; seme++) {
-      const v = gioca('e02', { corteo_viale: 'mediatore_corteo' }, seme).viste.find((x) => x.c.id === 'caldo_casa')!;
+      const r = gioca('e02', { corteo_viale: 'mediatore_corteo' }, seme);
+      if (!r.s.scelte.some((x) => x.opzione === 'mediatore_corteo')) continue;
+      const v = r.viste.find((x) => x.c.id === 'caldo_casa')!; viste++;
       expect(v.ops.length).toBe(1);
       expect(t('e02', v.ops[0]!.testo)).toMatch(/mediatore/i);
     }
+    expect(viste).toBeGreaterThanOrEqual(3);
   });
   it('senza il mediatore col corteo, le due risposte di sempre', () => {
     const v = gioca('e02', { corteo_viale: 'corteo_scortato' }, 1).viste.find((x) => x.c.id === 'caldo_casa')!;

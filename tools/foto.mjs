@@ -10,7 +10,7 @@ import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
 import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, controllaVerbaleBasso, provaProssimo } from './foto-verbale.mjs';
-import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta, controllaChiIcona } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaContrasto, controllaRiquadri } from './foto-contrasto.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione, controllaFiduciaRapporto, controllaSfidaBusti, controllaSegni, controllaIconeEffetti, controllaColoriCortei, statoSalvato, controllaVignettaEvento, controllaRitiroSingolo } from './foto-c17.mjs';
+import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta, controllaChiIcona } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaContrasto, controllaRiquadri } from './foto-contrasto.mjs'; import { statoCitta } from './foto-c128.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione, controllaFiduciaRapporto, controllaSfidaBusti, controllaSegni, controllaIconeEffetti, controllaColoriCortei, statoSalvato, controllaVignettaEvento, controllaRitiroSingolo } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { attenta, equilibrata, peggiore } from '../src/logica/bot.ts';
@@ -22,7 +22,7 @@ export const LARGHEZZE = [360, 375, 412]; // VALMORA_LARGHEZZE=360 le limita (mi
 const larghezze = () => (process.env.VALMORA_LARGHEZZE ? process.env.VALMORA_LARGHEZZE.split(',').map(Number) : LARGHEZZE);
 const TIPI = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml' };
 
-function servi(dir) {
+export function servi(dir) {
   const srv = createServer((req, res) => {
     const u = decodeURIComponent((req.url ?? '/').split('?')[0]);
     const p = join(dir, u === '/' ? 'index.html' : u);
@@ -91,7 +91,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
   const giri = [];
   try {
     for (const larghezza of larghezze()) {
-      const g = { larghezza, errori: [], scorrimento: [], attesi: [] };
+      const g = { larghezza, errori: [], scorrimento: [], attesi: [], citta: [] };
       const atteso = (cosa, ok) => g.attesi.push({ cosa, ok });
       // reducedMotion: transizioni ridotte a dissolvenze e mappa ferma → foto stabili fra un giro e l'altro.
       const pagina = await browser.newPage({ viewport: { width: larghezza, height: 800 }, reducedMotion: 'reduce' }); await pagina.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); // PO-121: niente attese reali (la prova vera è foto-po121)
@@ -108,7 +108,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             && [...document.querySelectorAll('[data-messaggio]')].every((x) => getComputedStyle(x).opacity === '1') && [...document.querySelectorAll('.mappa')].every((x) => x.dataset.pronta === 'si'), null, { timeout: 5000 });
         };
         const foto = async () => {
-          const nome = await pagina.getAttribute('.scena', 'data-scena');
+          const nome = await pagina.getAttribute('.scena', 'data-scena'); if (nome === 'citta') { const c = await statoCitta(pagina); if (c) g.citta.push(c); } // C128-01
           const [contenuto, finestra] = await pagina.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
           if (contenuto > finestra) g.scorrimento.push({ schermata: nome, contenuto, finestra });
           // C-005 R06/R07: niente testo sotto i 12 px, nomi dei settori dentro la mappa con margine, etichetta
@@ -157,7 +157,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             if (et && et.scrollWidth > et.clientWidth + 1) p.push(`etichetta della testata tagliata: «${et.textContent}»`);
             return p;
           });
-          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso); await controllaRiempi(pagina, atteso, nome); if (nome === 'schieramento') await controllaRigaAiuto(pagina, atteso, nome); await controllaVersione(pagina, atteso, nome, GAME_VERSION); await controllaContrasto(pagina, atteso, nome); await controllaRiquadri(pagina, atteso, nome); if (nome === 'sala' && (await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === 'webgl') { await controllaNomiSala(pagina, atteso, `sala ${larghezza}`); await controllaLampeggio(pagina, atteso, [], `sala ${larghezza} (C17-17)`); } await controllaHome(pagina, nome, atteso); { const c22 = await import('./foto-c22.mjs'); await c22.controllaTela(pagina, atteso, nome); await c22.controllaFuoco(pagina, atteso, nome); if (nome === 'schieramento' || nome === 'chiamata') await c22.controllaLargo(pagina, atteso, nome); if (nome === 'schieramento') await c22.controllaRiepilogoFuoco(pagina, atteso, nome); } const coperti = await copertiDallaBarra(pagina); atteso(`${nome}: la barra in basso copre ${coperti.join(', ')} (S-24)`, !coperti.length);
+          for (const x of leggibile) atteso(`${nome}: ${x}`, false); await controllaAltezza(pagina, larghezza, nome, atteso); await controllaFiducia(pagina, nome, atteso); await controllaRiempi(pagina, atteso, nome); if (nome === 'schieramento') await controllaRigaAiuto(pagina, atteso, nome); await controllaVersione(pagina, atteso, nome, GAME_VERSION); await controllaContrasto(pagina, atteso, nome); await controllaRiquadri(pagina, atteso, nome); if (nome === 'sala' && (await pagina.getAttribute('.mappa', 'data-mappa').catch(() => null)) === 'webgl') { await controllaNomiSala(pagina, atteso, `sala ${larghezza}`); await controllaLampeggio(pagina, atteso, [], `sala ${larghezza} (C17-17)`); } await controllaHome(pagina, nome, atteso); { const c22 = await import('./foto-c22.mjs'); await c22.controllaTela(pagina, atteso, nome); await c22.controllaFuoco(pagina, atteso, nome); await c22.controllaVersioneOmbra(pagina, atteso, nome); if (nome === 'schieramento' || nome === 'chiamata') await c22.controllaLargo(pagina, atteso, nome); if (nome === 'schieramento') await c22.controllaRiepilogoFuoco(pagina, atteso, nome); } const coperti = await copertiDallaBarra(pagina); atteso(`${nome}: la barra in basso copre ${coperti.join(', ')} (S-24)`, !coperti.length);
         await pagina.mouse.move(0, 0); // niente :hover rimasto dal clic precedente nelle foto
         await pagina.screenshot({ path: join(cartella, `${larghezza}-${String(++k).padStart(2, '0')}-${nome}.png`), fullPage: true });
         };
@@ -293,7 +293,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
                   document.querySelector(`[data-opzione="${a}"]`).click();
                   setTimeout(() => { document.querySelector(`[data-opzione="${b}"]`)?.click(); setTimeout(ok, 60); }, 40);
                 }), [op, altra]);
-                const salvata = await pagina.evaluate((k) => JSON.parse(localStorage.getItem('valmora-salvataggio')).in_corso.risposte[k], c);
+                await pagina.waitForFunction(() => !document.querySelector('[data-annulla]'), null, { timeout: 5000 }).catch(() => {}); const salvata = await pagina.evaluate((k) => JSON.parse(localStorage.getItem('valmora-salvataggio')).in_corso.risposte[k], c); // PO-121: si salva alla conferma
                 atteso(`doppio tocco: salvata «${salvata}» invece di «${op}» (C-005 R01)`, salvata === op);
               } else { await controllaVignettaEvento(pagina, p.m.ondate[i], p.m.ondate[i].chiamate.find((x) => x.id === c), atteso, `chiamata «${c}»`); const prima = await statoSalvato(pagina); await premi(`[data-opzione="${op}"]`); await pagina.waitForFunction(() => !document.querySelector('[data-annulla]'), null, { timeout: 5000 }).catch(() => {}); /* PO-121: la risposta vale alla fine del conto */ await controllaVoloRisposta(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `chiamata «${c}»`); await controllaSegni(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `risposta «${op}»`, prima); }
               if (p.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) {

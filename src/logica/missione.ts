@@ -138,6 +138,11 @@ function nessuno(s: InCorso, x: NonNullable<Chiamata['senza']>): boolean {
 
 export const opzioniValide = (c: Chiamata, s: InCorso, m: Missione) => c.opzioni.filter((o) => (!o.se || valuta(o.se, s.variabili)) && coerente(s, o.dopo) && haUnita(m, s, o));
 
+/** D-153 (C35-02): le opzioni tolte solo perché l'unità che impegnano è finita (C17-03); la resa le mostra disattivate
+ *  con «nessuna squadra libera» invece di farle sparire. Non si possono scegliere. Rosso __NO_C153A01: spariscono. */
+export const opzioniEsaurite = (c: Chiamata, s: InCorso, m: Missione) =>
+  spento('C153A01') ? [] : c.opzioni.filter((o) => (!o.se || valuta(o.se, s.variabili)) && coerente(s, o.dopo) && !haUnita(m, s, o));
+
 /** PO-086: la chiamata o l'opzione dipende da scelte già fatte («chiamata/opzione»). Rosso __NO_PO086. */
 function coerente(s: InCorso, x?: Dopo): boolean {
   if (!x || spento('PO086')) return true;
@@ -148,7 +153,16 @@ function coerente(s: InCorso, x?: Dopo): boolean {
 /** C17-03: un'opzione che impegna un'unità (riserva negativa) non si offre se di quell'unità non ne resta nessuna. Rosso __NO_C17R03. */
 function haUnita(m: Missione, s: InCorso, o: Opzione): boolean {
   if (spento('C17R03')) return true;
-  return o.effetti.every((e) => !('riserva' in e) || e.valore >= 0 || (m.mappa.risorse[e.riserva]?.quantita ?? 0) + (s.riserva[e.riserva] ?? 0) > 0);
+  return unitaFinita(m, s, o) === undefined;
+}
+
+/** D-153: la prima risorsa che l'opzione impegna e di cui non resta nessuna unità (per il motivo «nessuna … libera»).
+ *  Conta le unità schierabili (C35-06, D-159), con la curva D-154 ritarata nei dati.  */
+export function unitaFinita(m: Missione, s: InCorso, o: Opzione): string | undefined {
+  // C35-06 (D-159): contano le unità schierabili (disponibili: senza quelle a riposo e le fisse), non tutta la riserva;
+  // prima «costa uno steward» si offriva con 0 steward schierabili. Rosso __NO_C153B01: tutta la riserva, come prima.
+  const resta = (r: string) => (spento('C153B01') ? (m.mappa.risorse[r]?.quantita ?? 0) + (s.riserva[r] ?? 0) : disponibili(m, s)[r] ?? 0);
+  return o.effetti.find((e): e is Extract<EffettoMissione, { riserva: string }> => 'riserva' in e && e.valore < 0 && resta(e.riserva) <= 0)?.riserva;
 }
 
 function applicaEffetto(m: Missione, s: InCorso, e: EffettoMissione, d: Dich): InCorso {
@@ -264,7 +278,7 @@ export interface EsitoMissione { esito: Esito; variabili: Variabili; rapporti: R
 
 export function concludiMissione(m: Missione, s: InCorso, d: Dich): EsitoMissione {
   if (!missioneFinita(m, s)) throw new Error(`${m.id}: giocate ${s.ondata - 1} ondate su ${m.ondate.length}`);
-  const esito = m.esiti.find((e) => valuta(e.se, s.variabili));
+  const esito = m.esiti.find((e) => valuta(e.se, s.variabili) && coerente(s, e.dopo)); // D-158: un esito può dipendere da scelte fatte
   if (!esito) throw new Error(`${m.id}: nessun esito vero (soft-lock)`);
   let v = s.variabili;
   for (const e of esito.effetti) v = applica(e, v, d);

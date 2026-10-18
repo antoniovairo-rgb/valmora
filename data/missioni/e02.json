@@ -203,10 +203,6 @@
               "costo": "testi:e02.op.fidati.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "viale_stazione",
                   "valore": 3
                 }
@@ -217,12 +213,7 @@
               "id": "non_fidarti",
               "testo": "testi:e02.op.non_fidarti",
               "costo": "testi:e02.op.non_fidarti.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e02.op.non_fidarti.r"
             }
           ]
@@ -424,10 +415,6 @@
                 {
                   "pressione": "tornelli",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e02.op.chiudi_occhio.r"
@@ -609,10 +596,6 @@
               "costo": "testi:e02.op.chiedi.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_ospiti",
                   "valore": 2
                 }
@@ -662,10 +645,6 @@
                 {
                   "tensione": "curva_ospiti",
                   "valore": 1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e02.op.steward_fumo.r"
@@ -678,10 +657,6 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": -3
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e02.op.sospendi2.r"
@@ -694,10 +669,6 @@
                 {
                   "pressione": "curva_ospiti",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.lascia_fumo2.r"
@@ -1015,7 +986,7 @@
         },
         {
           "var": "credito",
-          "almeno": 5
+          "almeno": 7
         }
       ]
     }
