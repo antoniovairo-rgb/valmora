@@ -1,6 +1,6 @@
 # Protagonisti della quarta prova in ogni vignetta (segnalazione di S-11, IPOTESI) · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: COMMIT_OV.
+Ramo `claude/valmora-resa-v2`. Commit: 23aa116.
 
 ## Verifica
 
