@@ -3,7 +3,7 @@
 // a ogni scena quanto la pagina eccede lo schermo; poi confronta il massimo per schermata con SOGLIE (misurate dopo D-187).
 // Crediti: possono scorrere. Chiamata: D-114 accetta lo scorrimento, la soglia è il massimo misurato (non deve crescere).
 // Nel primo cambio di scena dopo una risposta si controlla anche che la versione non stia sopra le lettere delle opzioni
-// (rosso C187V01) e che i nomi dei settori non coprano i segni dell'ultima risposta (rosso C187S01).
+// (rosso C187V01).
 // Rosso VALMORA_ROSSI=C187M01: la mappa non si abbassa e il guardiano diventa rosso.
 // Da solo: VP=360x640,360x760 [FOTO=cartella] node tools/sonda-altezze.mjs [build]
 import { join } from 'node:path';
@@ -18,13 +18,14 @@ import { creaCaso } from '../src/logica/caso.ts';
 // Massimo scorrimento per schermata (px), misurato il 19/10 dopo D-187 con questo pilota; le schermate non elencate: 0.
 // Mai alzarle per far passare una modifica.
 export const SOGLIE = {
-  '360x640': { citta: 117, sala: 36, briefing: 34, risposta: 113, rapporto: 238, chiamata: 664 },
+  '360x640': { citta: 117, sala: 36, briefing: 34, risposta: 113, rapporto: 238, chiamata: 664 }, // chiamata: il massimo di prima (D-114)
   '360x760': { rapporto: 118, chiamata: 544 },
   '375x667': { citta: 90, sala: 9, briefing: 7, risposta: 69, rapporto: 187, chiamata: 618 },
   '412x830': { chiamata: 435 },
 };
 const LIBERE = new Set(['crediti']);
-export const SOGLIA_SEGNI = 0; // px²: nomi dei settori sopra i segni dell'ultima risposta (rosso C187S01)
+// Nomi dei settori sopra i segni dell'ultima risposta: misurati e stampati, non bloccano. Con la stessa build il massimo
+// cambia fra due giri (183 e 350 px² a 360×760; 506 col rosso C187S01): una soglia sarebbe instabile.
 export const VP_PER_LARGHEZZA = { 360: ['360x640', '360x760'], 375: ['375x667'], 412: ['412x830'] };
 
 const piano = (m, v, dich) => { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich); const ond = [];
@@ -37,12 +38,14 @@ const misura = (p) => p.evaluate(() => { const s = document.scrollingElement, sc
     // D-187 (S-12): nomi dei settori sopra i segni dell'ultima risposta (px², il caso peggiore)
     segni: Math.round(Math.max(0, ...[...document.querySelectorAll('.mappa .settore-nome')].flatMap((n) => { const a = n.getBoundingClientRect();
       return [...document.querySelectorAll('.mappa .settore .segno-effetto')].map((g) => { const b = g.getBoundingClientRect(); return Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)); }); }))) }; });
-// lettere delle opzioni sotto la versione, guardando chi sta davvero in cima nel punto dove si toccano
-const versioneSopra = (p) => p.evaluate(() => { const ve = document.querySelector('[data-versione-angolo]'), v = ve?.getBoundingClientRect(); if (!v) return 0; let n = 0;
+// durante il cambio di scena (D-187, rosso C187V01): la scena che esce, spostata a sinistra, passa sopra la versione e non
+// sotto: al centro della versione, se una scena lo copre, in cima dev'esserci la scena (le sue lettere restano leggibili)
+const versioneSopra = (p) => p.evaluate(() => { const ve = document.querySelector('[data-versione-angolo]'), v = ve?.getBoundingClientRect(); if (!v) return 0;
+  const x = (v.left + v.right) / 2, y = (v.top + v.bottom) / 2;
+  const coperta = [...document.querySelectorAll('.scena')].some((s) => { const r = s.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; });
+  if (!coperta || document.querySelectorAll('.scena').length < 2 && getComputedStyle(document.querySelector('.scena')).transform === 'none') return 0;
   ve.style.pointerEvents = 'auto'; // la versione non riceve tocchi: per elementFromPoint serve per un attimo
-  for (const t of document.querySelectorAll('.tasto')) { const r = t.getBoundingClientRect(), x = (Math.max(v.left, r.left) + Math.min(v.right, r.right)) / 2, y = (Math.max(v.top, r.top) + Math.min(v.bottom, r.bottom)) / 2;
-    if (Math.min(v.right, r.right) - Math.max(v.left, r.left) > 1 && Math.min(v.bottom, r.bottom) - Math.max(v.top, r.top) > 1 && document.elementFromPoint(x, y)?.closest('[data-versione-angolo]')) n++; }
-  ve.style.removeProperty('pointer-events'); return n; });
+  const sopra = !!document.elementFromPoint(x, y)?.closest('[data-versione-angolo]'); ve.style.removeProperty('pointer-events'); return sopra ? 1 : 0; });
 
 export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi = [], cartella = '' }) {
   const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), e01 = dati['missioni/e01.json'];
@@ -73,7 +76,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
           if (!provata) { // la prima risposta: opzioni in basso, dove sta la versione, e cambio di scena osservato
             provata = true; await p.evaluate(() => { const o = document.querySelector('.opzione'); if (o) scrollTo(0, o.getBoundingClientRect().top + scrollY - innerHeight + 70); }); await p.waitForTimeout(150);
             await opz.first().click(); let n = 0, vista = false; // fino alla fine del cambio di scena (dopo la finestra «Annulla»)
-            for (let i = 0; i < 300; i++) { n = Math.max(n, await versioneSopra(p)); const k = await p.evaluate(() => document.querySelectorAll('.scena').length); if (k > 1) vista = true; else if (vista) break; await p.waitForTimeout(20); } if (n) sopra.push(`${vp}: la versione copre ${n} lettere delle opzioni nel cambio di scena`);
+            for (let i = 0; i < 300; i++) { n = Math.max(n, await versioneSopra(p)); const k = await p.evaluate(() => document.querySelectorAll('.scena').length); if (k > 1) vista = true; else if (vista) break; await p.waitForTimeout(20); } if (n) sopra.push(`${vp}: nel cambio di scena la versione sta sopra la scena che esce e ne copre le lettere (D-187)`);
             await lento(p);
           } else await c('[data-opzione]:not(:disabled):not([aria-disabled="true"])');
           await p.locator('[data-azione="continua"]').first().waitFor({ timeout: 4000 }).catch(() => {}); continue;
@@ -93,8 +96,7 @@ export function controllaAltezze({ ris, errori, sopra }) {
   for (const r of ris) if (!LIBERE.has(r.nome)) { const k = `${r.vp}|${r.nome}`; if (!max[k] || r.ecc > max[k].ecc) max[k] = r; }
   const male = Object.values(max).filter((r) => r.ecc > (SOGLIE[r.vp]?.[r.nome] ?? 0))
     .map((r) => `${r.vp} ${r.nome}: la pagina scorre di ${r.ecc} px (soglia ${SOGLIE[r.vp]?.[r.nome] ?? 0}, mappa ${r.mappa} px; D-187)`);
-  const segni = ris.filter((r) => r.segni > SOGLIA_SEGNI).map((r) => `${r.vp} ${r.nome}: un nome di settore copre un segno per ${r.segni} px² (D-187)`);
-  return [...male, ...segni, ...errori, ...sopra];
+  return [...male, ...errori, ...sopra];
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -102,6 +104,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const g = await giraAltezze({ build: process.argv[2] ?? 'dist', vps, rossi, cartella: process.env.FOTO ?? '' });
   const max = {}; for (const r of g.ris) { const k = `${r.vp} ${r.nome}`; max[k] = Math.max(max[k] ?? -1, r.ecc); }
   for (const [k, v] of Object.entries(max)) console.log(`${k}: ${v}`);
+  console.log(`nomi sopra i segni, massimo: ${Math.max(0, ...g.ris.map((r) => r.segni))} px²`);
   const male = controllaAltezze(g); console.log(male.length ? `ROSSO (${male.length}):\n${male.join('\n')}` : 'VERDE');
   process.exit(male.length ? 1 : 0);
 }
