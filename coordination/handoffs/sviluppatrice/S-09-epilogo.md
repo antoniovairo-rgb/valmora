@@ -263,3 +263,4 @@ Non verificato:
 - C41-06: il guardiano dei passi ≤ 760 (S-10) e gli altri controlli del giro foto girano solo nella CI «grafica»; il verbale
   fallito ora è più alto di 35 px, e a 375×667 la vignetta non si nasconde più.
 - C41-07: il colore del titolo del verbale segue il tono: per l'esito più basso non fallito ora è quello di «male».
+- FATTO MISURATO (D-177): su 227ff1f, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
