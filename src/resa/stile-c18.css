@@ -152,3 +152,6 @@ main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .vignetta-cornic
 main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] { padding-block: var(--spazio-1); }
 /* D-191: senza mappa le righe della scheda dei settori si stringono, perché a 360×640 e 375×667 il rapporto non scorra */
 main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .elenco-settori li { padding-block: var(--spazio-1); }
+/* D-193: nella risposta esito e conseguenza in un solo blocco: la scelta in testa, come striscia ciano */
+.messaggio.risposta-unica .scelta-riga { margin: 0 0 var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); background: var(--ciano); border: var(--bordo-fine) solid var(--nero); border-radius: var(--raggio-1); font-weight: 700; }
+.scena[data-scena="risposta"] .messaggio.risposta-unica { margin: var(--spazio-4) 0 var(--spazio-2); padding: var(--spazio-3); }

@@ -144,6 +144,17 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
 }
 
 export function Risposta(p: { m: Missione; ic: InCorso; o: Opzione; avanti: () => void }) {
+  // D-193 (PO-052): esito e conseguenza in un solo blocco, così a 360×640 e 375×667 la pagina non scorre. Rosso C193R01: due
+  // messaggi, come prima.
+  if (!spento('C193R01')) return (
+    <>
+      <Messaggio classe="vice risposta-unica" dati="risposta">
+        <p className="testo-radio scelta-riga" data-scelta>{t(p.o.testo)}</p>
+        {p.o.risposta && <><Mittente icona={Coffee} nome="Intanto…" vice /><p>{t(p.o.risposta)}</p></>}
+      </Messaggio>
+      <button className="pulsante" data-azione="continua" onClick={p.avanti}>Avanti<Icona di={ChevronRight} /></button>
+    </>
+  );
   return (
     <>
       <Messaggio classe="scelta" dati="scelta"><p className="testo-radio">{t(p.o.testo)}</p></Messaggio>
