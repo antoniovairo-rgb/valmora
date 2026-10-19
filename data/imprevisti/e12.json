@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "piazza_comune",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e12.imp.piccioni.ferma_mangime.r"
           },
           {
-            "id": "verso_piazzale",
-            "testo": "testi:e12.imp.piccioni.verso_piazzale",
-            "costo": "testi:e12.imp.piccioni.verso_piazzale.c",
+            "id": "ombrelli",
+            "testo": "testi:e12.imp.piccioni.ombrelli",
+            "costo": "testi:e12.imp.piccioni.ombrelli.c",
             "effetti": [
               {
                 "pressione": "piazza_comune",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "piazza_comune",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e12.imp.piccioni.verso_piazzale.r"
+            "risposta": "testi:e12.imp.piccioni.ombrelli.r"
           },
           {
             "id": "lascia_piccioni",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "curva_cinderwick",
@@ -80,20 +80,20 @@
             "risposta": "testi:e12.imp.tamburo.ritmo_altoparlanti.r"
           },
           {
-            "id": "tamburo_prestito",
-            "testo": "testi:e12.imp.tamburo.tamburo_prestito",
-            "costo": "testi:e12.imp.tamburo.tamburo_prestito.c",
+            "id": "battimani",
+            "testo": "testi:e12.imp.tamburo.battimani",
+            "costo": "testi:e12.imp.tamburo.battimani.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "curva_cinderwick",
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e12.imp.tamburo.tamburo_prestito.r"
+            "risposta": "testi:e12.imp.tamburo.battimani.r"
           },
           {
             "id": "senza_ritmo",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -132,20 +132,20 @@
             "risposta": "testi:e12.imp.maxischermo.telefona_regia.r"
           },
           {
-            "id": "spegni_tutti",
-            "testo": "testi:e12.imp.maxischermo.spegni_tutti",
-            "costo": "testi:e12.imp.maxischermo.spegni_tutti.c",
+            "id": "schermo_spento",
+            "testo": "testi:e12.imp.maxischermo.schermo_spento",
+            "costo": "testi:e12.imp.maxischermo.schermo_spento.c",
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "curva_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e12.imp.maxischermo.spegni_tutti.r"
+            "risposta": "testi:e12.imp.maxischermo.schermo_spento.r"
           },
           {
             "id": "lascia_replay",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "piazza_comune",
@@ -184,20 +184,20 @@
             "risposta": "testi:e12.imp.trasloco.ferma_manovra.r"
           },
           {
-            "id": "verso_piazza",
-            "testo": "testi:e12.imp.trasloco.verso_piazza",
-            "costo": "testi:e12.imp.trasloco.verso_piazza.c",
+            "id": "accanto_camion",
+            "testo": "testi:e12.imp.trasloco.accanto_camion",
+            "costo": "testi:e12.imp.trasloco.accanto_camion.c",
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazza_comune",
+                "tensione": "strada_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e12.imp.trasloco.verso_piazza.r"
+            "risposta": "testi:e12.imp.trasloco.accanto_camion.r"
           },
           {
             "id": "finisca_manovra",

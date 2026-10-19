@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e10.imp.cantiere.chiama_cantiere.r"
           },
           {
-            "id": "corteo_piazzale",
-            "testo": "testi:e10.imp.cantiere.corteo_piazzale",
-            "costo": "testi:e10.imp.cantiere.corteo_piazzale.c",
+            "id": "stringi_corteo",
+            "testo": "testi:e10.imp.cantiere.stringi_corteo",
+            "costo": "testi:e10.imp.cantiere.stringi_corteo.c",
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "strada_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e10.imp.cantiere.corteo_piazzale.r"
+            "risposta": "testi:e10.imp.cantiere.stringi_corteo.r"
           },
           {
             "id": "lascia_transenne",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "curva_cinderwick",
@@ -89,7 +89,7 @@
                 "valore": -1
               },
               {
-                "pressione": "curva_cinderwick",
+                "tensione": "curva_larkspire",
                 "valore": 1
               }
             ],
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -132,20 +132,20 @@
             "risposta": "testi:e10.imp.cane.chiama_padrone.r"
           },
           {
-            "id": "cancello_piazzale",
-            "testo": "testi:e10.imp.cane.cancello_piazzale",
-            "costo": "testi:e10.imp.cane.cancello_piazzale.c",
+            "id": "cancelletto",
+            "testo": "testi:e10.imp.cane.cancelletto",
+            "costo": "testi:e10.imp.cane.cancelletto.c",
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "curva_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e10.imp.cane.cancello_piazzale.r"
+            "risposta": "testi:e10.imp.cane.cancelletto.r"
           },
           {
             "id": "lascialo_correre",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -184,20 +184,20 @@
             "risposta": "testi:e10.imp.lampioni.fari_servizio.r"
           },
           {
-            "id": "devia_kiln",
-            "testo": "testi:e10.imp.lampioni.devia_kiln",
-            "costo": "testi:e10.imp.lampioni.devia_kiln.c",
+            "id": "sotto_vetrine",
+            "testo": "testi:e10.imp.lampioni.sotto_vetrine",
+            "costo": "testi:e10.imp.lampioni.sotto_vetrine.c",
             "effetti": [
               {
                 "pressione": "strada_larkspire",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "strada_larkspire",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e10.imp.lampioni.devia_kiln.r"
+            "risposta": "testi:e10.imp.lampioni.sotto_vetrine.r"
           },
           {
             "id": "torce_telefoni",

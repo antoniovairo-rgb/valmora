@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "viale_stazione",
@@ -28,20 +28,20 @@
             "risposta": "testi:e11.imp.scale_mobili.annuncio_scale.r"
           },
           {
-            "id": "uscita_viale",
-            "testo": "testi:e11.imp.scale_mobili.uscita_viale",
-            "costo": "testi:e11.imp.scale_mobili.uscita_viale.c",
+            "id": "scala_servizio",
+            "testo": "testi:e11.imp.scale_mobili.scala_servizio",
+            "costo": "testi:e11.imp.scale_mobili.scala_servizio.c",
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -1
               },
               {
-                "pressione": "viale_stazione",
+                "tensione": "stazione",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e11.imp.scale_mobili.uscita_viale.r"
+            "risposta": "testi:e11.imp.scale_mobili.scala_servizio.r"
           },
           {
             "id": "lascia_ferrovie",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -80,20 +80,20 @@
             "risposta": "testi:e11.imp.doppia_fila.citofoni.r"
           },
           {
-            "id": "giro_kiln",
-            "testo": "testi:e11.imp.doppia_fila.giro_kiln",
-            "costo": "testi:e11.imp.doppia_fila.giro_kiln.c",
+            "id": "sul_marciapiede",
+            "testo": "testi:e11.imp.doppia_fila.sul_marciapiede",
+            "costo": "testi:e11.imp.doppia_fila.sul_marciapiede.c",
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "quartiere",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e11.imp.doppia_fila.giro_kiln.r"
+            "risposta": "testi:e11.imp.doppia_fila.sul_marciapiede.r"
           },
           {
             "id": "aspetta_carro",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "piazza_fonderie",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "quartiere",
@@ -132,20 +132,20 @@
             "risposta": "testi:e11.imp.acquazzone.tutti_a_casa.r"
           },
           {
-            "id": "verso_quartiere",
-            "testo": "testi:e11.imp.acquazzone.verso_quartiere",
-            "costo": "testi:e11.imp.acquazzone.verso_quartiere.c",
+            "id": "stringetevi",
+            "testo": "testi:e11.imp.acquazzone.stringetevi",
+            "costo": "testi:e11.imp.acquazzone.stringetevi.c",
             "effetti": [
               {
                 "pressione": "piazza_fonderie",
-                "valore": -2
+                "valore": -1
               },
               {
-                "pressione": "quartiere",
+                "tensione": "piazza_fonderie",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e11.imp.acquazzone.verso_quartiere.r"
+            "risposta": "testi:e11.imp.acquazzone.stringetevi.r"
           },
           {
             "id": "lascia_piovere",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "quartiere",
@@ -184,20 +184,20 @@
             "risposta": "testi:e11.imp.spazzatrice.dirigi_traffico.r"
           },
           {
-            "id": "taglia_quartiere",
-            "testo": "testi:e11.imp.spazzatrice.taglia_quartiere",
-            "costo": "testi:e11.imp.spazzatrice.taglia_quartiere.c",
+            "id": "senso_alternato",
+            "testo": "testi:e11.imp.spazzatrice.senso_alternato",
+            "costo": "testi:e11.imp.spazzatrice.senso_alternato.c",
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -2
+                "valore": -1
               },
               {
-                "pressione": "quartiere",
+                "tensione": "viale_stazione",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e11.imp.spazzatrice.taglia_quartiere.r"
+            "risposta": "testi:e11.imp.spazzatrice.senso_alternato.r"
           },
           {
             "id": "aspetta_meccanico",

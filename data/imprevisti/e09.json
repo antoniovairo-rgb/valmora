@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e09.imp.gregge.ferma_tutti.r"
           },
           {
-            "id": "giro_piazzale",
-            "testo": "testi:e09.imp.gregge.giro_piazzale",
-            "costo": "testi:e09.imp.gregge.giro_piazzale.c",
+            "id": "fra_le_pecore",
+            "testo": "testi:e09.imp.gregge.fra_le_pecore",
+            "costo": "testi:e09.imp.gregge.fra_le_pecore.c",
             "effetti": [
               {
                 "pressione": "strada_larkspire",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "strada_larkspire",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e09.imp.gregge.giro_piazzale.r"
+            "risposta": "testi:e09.imp.gregge.fra_le_pecore.r"
           },
           {
             "id": "aspetta_pastore",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "tangenziale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "curva_ospiti",
@@ -80,20 +80,20 @@
             "risposta": "testi:e09.imp.malore_coda.spingi_auto.r"
           },
           {
-            "id": "rampa_stadio",
-            "testo": "testi:e09.imp.malore_coda.rampa_stadio",
-            "costo": "testi:e09.imp.malore_coda.rampa_stadio.c",
+            "id": "corsia_unica",
+            "testo": "testi:e09.imp.malore_coda.corsia_unica",
+            "costo": "testi:e09.imp.malore_coda.corsia_unica.c",
             "effetti": [
               {
                 "pressione": "tangenziale",
                 "valore": -1
               },
               {
-                "pressione": "curva_ospiti",
+                "tensione": "tangenziale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e09.imp.malore_coda.rampa_stadio.r"
+            "risposta": "testi:e09.imp.malore_coda.corsia_unica.r"
           },
           {
             "id": "aspetta_soccorso",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "curva_ospiti",
@@ -132,20 +132,20 @@
             "risposta": "testi:e09.imp.pallone.sgonfia_pallone.r"
           },
           {
-            "id": "verso_ospiti",
-            "testo": "testi:e09.imp.pallone.verso_ospiti",
-            "costo": "testi:e09.imp.pallone.verso_ospiti.c",
+            "id": "rimanda_su",
+            "testo": "testi:e09.imp.pallone.rimanda_su",
+            "costo": "testi:e09.imp.pallone.rimanda_su.c",
             "effetti": [
               {
                 "pressione": "curva_larkspire",
                 "valore": -1
               },
               {
-                "pressione": "curva_ospiti",
+                "tensione": "curva_larkspire",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e09.imp.pallone.verso_ospiti.r"
+            "risposta": "testi:e09.imp.pallone.rimanda_su.r"
           },
           {
             "id": "lascia_arbitro",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_larkspire",
@@ -184,20 +184,20 @@
             "risposta": "testi:e09.imp.cancello.apri_forza.r"
           },
           {
-            "id": "porta_laterale",
-            "testo": "testi:e09.imp.cancello.porta_laterale",
-            "costo": "testi:e09.imp.cancello.porta_laterale.c",
+            "id": "uno_alla_volta",
+            "testo": "testi:e09.imp.cancello.uno_alla_volta",
+            "costo": "testi:e09.imp.cancello.uno_alla_volta.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "strada_larkspire",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e09.imp.cancello.porta_laterale.r"
+            "risposta": "testi:e09.imp.cancello.uno_alla_volta.r"
           },
           {
             "id": "aspetta_manutentore",

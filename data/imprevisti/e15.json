@@ -28,20 +28,20 @@
             "risposta": "testi:e15.imp.tabellone.correggi_annuncio.r"
           },
           {
-            "id": "attesa_viale",
-            "testo": "testi:e15.imp.tabellone.attesa_viale",
-            "costo": "testi:e15.imp.tabellone.attesa_viale.c",
+            "id": "tabellone_spento",
+            "testo": "testi:e15.imp.tabellone.tabellone_spento",
+            "costo": "testi:e15.imp.tabellone.tabellone_spento.c",
             "effetti": [
               {
                 "pressione": "stazione",
                 "valore": -1
               },
               {
-                "pressione": "viale_stazione",
+                "tensione": "stazione",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e15.imp.tabellone.attesa_viale.r"
+            "risposta": "testi:e15.imp.tabellone.tabellone_spento.r"
           },
           {
             "id": "lascia_tabellone",
@@ -80,20 +80,20 @@
             "risposta": "testi:e15.imp.autobus.guida_tu.r"
           },
           {
-            "id": "attesa_stazione",
-            "testo": "testi:e15.imp.autobus.attesa_stazione",
-            "costo": "testi:e15.imp.autobus.attesa_stazione.c",
+            "id": "fila_accanto",
+            "testo": "testi:e15.imp.autobus.fila_accanto",
+            "costo": "testi:e15.imp.autobus.fila_accanto.c",
             "effetti": [
               {
                 "pressione": "viale_stazione",
                 "valore": -1
               },
               {
-                "pressione": "stazione",
+                "tensione": "viale_stazione",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e15.imp.autobus.attesa_stazione.r"
+            "risposta": "testi:e15.imp.autobus.fila_accanto.r"
           },
           {
             "id": "giro_isola",
@@ -132,20 +132,20 @@
             "risposta": "testi:e15.imp.balaustra.nastro_fila.r"
           },
           {
-            "id": "in_curva_kiln",
-            "testo": "testi:e15.imp.balaustra.in_curva_kiln",
-            "costo": "testi:e15.imp.balaustra.in_curva_kiln.c",
+            "id": "indietro_tutti",
+            "testo": "testi:e15.imp.balaustra.indietro_tutti",
+            "costo": "testi:e15.imp.balaustra.indietro_tutti.c",
             "effetti": [
               {
                 "pressione": "settore_gemellati",
                 "valore": -1
               },
               {
-                "pressione": "curva_cinderwick",
+                "tensione": "settore_gemellati",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e15.imp.balaustra.in_curva_kiln.r"
+            "risposta": "testi:e15.imp.balaustra.indietro_tutti.r"
           },
           {
             "id": "lascia_gemellati",
@@ -184,20 +184,20 @@
             "risposta": "testi:e15.imp.vagone.un_vagone_alla_volta.r"
           },
           {
-            "id": "meta_viale",
-            "testo": "testi:e15.imp.vagone.meta_viale",
-            "costo": "testi:e15.imp.vagone.meta_viale.c",
+            "id": "nei_corridoi",
+            "testo": "testi:e15.imp.vagone.nei_corridoi",
+            "costo": "testi:e15.imp.vagone.nei_corridoi.c",
             "effetti": [
               {
                 "pressione": "stazione",
                 "valore": -1
               },
               {
-                "pressione": "viale_stazione",
+                "tensione": "stazione",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e15.imp.vagone.meta_viale.r"
+            "risposta": "testi:e15.imp.vagone.nei_corridoi.r"
           },
           {
             "id": "si_stringano",

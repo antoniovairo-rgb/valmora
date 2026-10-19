@@ -28,20 +28,20 @@
             "risposta": "testi:e13.imp.sedie.prendi_sedia.r"
           },
           {
-            "id": "auto_parcheggi",
-            "testo": "testi:e13.imp.sedie.auto_parcheggi",
-            "costo": "testi:e13.imp.sedie.auto_parcheggi.c",
+            "id": "mucchi",
+            "testo": "testi:e13.imp.sedie.mucchi",
+            "costo": "testi:e13.imp.sedie.mucchi.c",
             "effetti": [
               {
                 "pressione": "viale_concerto",
                 "valore": -1
               },
               {
-                "pressione": "parcheggi",
+                "tensione": "viale_concerto",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e13.imp.sedie.auto_parcheggi.r"
+            "risposta": "testi:e13.imp.sedie.mucchi.r"
           },
           {
             "id": "lascia_organizzatori",
@@ -80,20 +80,20 @@
             "risposta": "testi:e13.imp.tubo.chiama_acquedotto.r"
           },
           {
-            "id": "verso_piazza",
-            "testo": "testi:e13.imp.tubo.verso_piazza",
-            "costo": "testi:e13.imp.tubo.verso_piazza.c",
+            "id": "transenna_getto",
+            "testo": "testi:e13.imp.tubo.transenna_getto",
+            "costo": "testi:e13.imp.tubo.transenna_getto.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "piazza_concerto",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e13.imp.tubo.verso_piazza.r"
+            "risposta": "testi:e13.imp.tubo.transenna_getto.r"
           },
           {
             "id": "lasciali_giocare",
@@ -132,20 +132,20 @@
             "risposta": "testi:e13.imp.vespe.spray_custode.r"
           },
           {
-            "id": "fila_piazzale",
-            "testo": "testi:e13.imp.vespe.fila_piazzale",
-            "costo": "testi:e13.imp.vespe.fila_piazzale.c",
+            "id": "svuota_fila",
+            "testo": "testi:e13.imp.vespe.svuota_fila",
+            "costo": "testi:e13.imp.vespe.svuota_fila.c",
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "curva_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e13.imp.vespe.fila_piazzale.r"
+            "risposta": "testi:e13.imp.vespe.svuota_fila.r"
           },
           {
             "id": "si_arrangino",
@@ -184,20 +184,20 @@
             "risposta": "testi:e13.imp.allarmi.ferma_basso.r"
           },
           {
-            "id": "esci_viale",
-            "testo": "testi:e13.imp.allarmi.esci_viale",
-            "costo": "testi:e13.imp.allarmi.esci_viale.c",
+            "id": "leggi_targhe",
+            "testo": "testi:e13.imp.allarmi.leggi_targhe",
+            "costo": "testi:e13.imp.allarmi.leggi_targhe.c",
             "effetti": [
               {
                 "pressione": "parcheggi",
                 "valore": -1
               },
               {
-                "pressione": "viale_concerto",
+                "tensione": "parcheggi",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e13.imp.allarmi.esci_viale.r"
+            "risposta": "testi:e13.imp.allarmi.leggi_targhe.r"
           },
           {
             "id": "lascia_suonare",

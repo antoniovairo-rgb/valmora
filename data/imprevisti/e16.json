@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e16.imp.buca.coni_buca.r"
           },
           {
-            "id": "dal_piazzale",
-            "testo": "testi:e16.imp.buca.dal_piazzale",
-            "costo": "testi:e16.imp.buca.dal_piazzale.c",
+            "id": "tavola",
+            "testo": "testi:e16.imp.buca.tavola",
+            "costo": "testi:e16.imp.buca.tavola.c",
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
-                "valore": 2
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e16.imp.buca.dal_piazzale.r"
+            "risposta": "testi:e16.imp.buca.tavola.r"
           },
           {
             "id": "scavalchi",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -80,20 +80,20 @@
             "risposta": "testi:e16.imp.chiavi.lista_club.r"
           },
           {
-            "id": "attesa_piazzale",
-            "testo": "testi:e16.imp.chiavi.attesa_piazzale",
-            "costo": "testi:e16.imp.chiavi.attesa_piazzale.c",
+            "id": "dopo_gli_altri",
+            "testo": "testi:e16.imp.chiavi.dopo_gli_altri",
+            "costo": "testi:e16.imp.chiavi.dopo_gli_altri.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
-                "valore": 2
+                "tensione": "curva_ospiti",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e16.imp.chiavi.attesa_piazzale.r"
+            "risposta": "testi:e16.imp.chiavi.dopo_gli_altri.r"
           },
           {
             "id": "col_club",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "curva_ospiti",
@@ -132,20 +132,20 @@
             "risposta": "testi:e16.imp.nebbia.luci_curva.r"
           },
           {
-            "id": "posti_bassi",
-            "testo": "testi:e16.imp.nebbia.posti_bassi",
-            "costo": "testi:e16.imp.nebbia.posti_bassi.c",
+            "id": "spazi_liberi",
+            "testo": "testi:e16.imp.nebbia.spazi_liberi",
+            "costo": "testi:e16.imp.nebbia.spazi_liberi.c",
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "curva_ospiti",
-                "valore": 2
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e16.imp.nebbia.posti_bassi.r"
+            "risposta": "testi:e16.imp.nebbia.spazi_liberi.r"
           },
           {
             "id": "aspetta_nebbia",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -184,20 +184,20 @@
             "risposta": "testi:e16.imp.portiera.portellone.r"
           },
           {
-            "id": "verso_kiln",
-            "testo": "testi:e16.imp.portiera.verso_kiln",
-            "costo": "testi:e16.imp.portiera.verso_kiln.c",
+            "id": "pullman_unico",
+            "testo": "testi:e16.imp.portiera.pullman_unico",
+            "costo": "testi:e16.imp.portiera.pullman_unico.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
-                "valore": 2
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e16.imp.portiera.verso_kiln.r"
+            "risposta": "testi:e16.imp.portiera.pullman_unico.r"
           },
           {
             "id": "aspetta_autista",

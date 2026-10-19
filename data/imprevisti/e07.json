@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e07.imp.sbarra.alza_sbarra.r"
           },
           {
-            "id": "sosta_piazzale",
-            "testo": "testi:e07.imp.sbarra.sosta_piazzale",
-            "costo": "testi:e07.imp.sbarra.sosta_piazzale.c",
+            "id": "sbarra_alzata",
+            "testo": "testi:e07.imp.sbarra.sbarra_alzata",
+            "costo": "testi:e07.imp.sbarra.sbarra_alzata.c",
             "effetti": [
               {
                 "pressione": "parcheggi",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "parcheggi",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e07.imp.sbarra.sosta_piazzale.r"
+            "risposta": "testi:e07.imp.sbarra.sbarra_alzata.r"
           },
           {
             "id": "aspetta_tecnico",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -80,20 +80,20 @@
             "risposta": "testi:e07.imp.sole.annuncio_posti.r"
           },
           {
-            "id": "cerca_ombra",
-            "testo": "testi:e07.imp.sole.cerca_ombra",
-            "costo": "testi:e07.imp.sole.cerca_ombra.c",
+            "id": "visiere",
+            "testo": "testi:e07.imp.sole.visiere",
+            "costo": "testi:e07.imp.sole.visiere.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e07.imp.sole.cerca_ombra.r"
+            "risposta": "testi:e07.imp.sole.visiere.r"
           },
           {
             "id": "aspetta_sole",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "parcheggi",
@@ -132,20 +132,20 @@
             "risposta": "testi:e07.imp.idrante.chiudi_valvola.r"
           },
           {
-            "id": "giro_parcheggi",
-            "testo": "testi:e07.imp.idrante.giro_parcheggi",
-            "costo": "testi:e07.imp.idrante.giro_parcheggi.c",
+            "id": "fila_marciapiede",
+            "testo": "testi:e07.imp.idrante.fila_marciapiede",
+            "costo": "testi:e07.imp.idrante.fila_marciapiede.c",
             "effetti": [
               {
                 "pressione": "strada_larkspire",
                 "valore": -1
               },
               {
-                "pressione": "parcheggi",
+                "tensione": "strada_larkspire",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e07.imp.idrante.giro_parcheggi.r"
+            "risposta": "testi:e07.imp.idrante.fila_marciapiede.r"
           },
           {
             "id": "aspetta_acquedotto",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -184,20 +184,20 @@
             "risposta": "testi:e07.imp.semaforo.incrocio_mano.r"
           },
           {
-            "id": "giro_piazzale",
-            "testo": "testi:e07.imp.semaforo.giro_piazzale",
-            "costo": "testi:e07.imp.semaforo.giro_piazzale.c",
+            "id": "uno_per_volta",
+            "testo": "testi:e07.imp.semaforo.uno_per_volta",
+            "costo": "testi:e07.imp.semaforo.uno_per_volta.c",
             "effetti": [
               {
                 "pressione": "viale_stazione",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "viale_stazione",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e07.imp.semaforo.giro_piazzale.r"
+            "risposta": "testi:e07.imp.semaforo.uno_per_volta.r"
           },
           {
             "id": "lascia_lampeggiare",
