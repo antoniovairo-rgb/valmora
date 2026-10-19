@@ -1,6 +1,6 @@
 # C42-01 (resa), C42-02, C42-06 (D-185, collaudo C-042) · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: COMMIT_C42. Base: merge della principale b52efe2.
+Ramo `claude/valmora-resa-v2`. Commit: 76995c7. Base: merge della principale b52efe2.
 
 ## C42-01 – «dalla prossima ondata» all'ultima ondata (parte della resa)
 
