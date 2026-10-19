@@ -51,10 +51,18 @@ export async function giraC41(cartella = 'out/foto', build = 'dist', larghezze =
           const svg = document.querySelector('.passo:not([hidden]) svg.vignetta'), r = svg?.getBoundingClientRect(), vb = svg?.viewBox.baseVal;
           const disegno = r && vb ? Math.min(r.width, r.height * vb.width / vb.height) : 0; // il disegno 320×180 sta dentro il riquadro («meet»)
           const sotto = [...document.querySelectorAll('[data-fallita], [data-azione="riparti"], [data-azione="rigioca"]')].map((e) => e.getBoundingClientRect().bottom);
-          return { w: Math.round(r?.width ?? 0), h: Math.round(r?.height ?? 0), disegno: Math.round(disegno), contenitore: Math.round(svg?.parentElement?.getBoundingClientRect().width ?? 0), fondo: Math.round(Math.max(0, ...sotto)), finestra: innerHeight, nascosta: svg?.hasAttribute('data-nascosta') };
+          return { w: Math.round(r?.width ?? 0), h: Math.round(r?.height ?? 0), disegno: Math.round(disegno), contenitore: Math.round(svg?.parentElement?.getBoundingClientRect().width ?? 0), fondo: Math.round(Math.max(0, ...sotto)), finestra: innerHeight, nascosta: svg?.hasAttribute('data-nascosta'),
+            // pagina: altezza vera; libero: lo spazio che vede useRiempi (fondo di main + margini e padding, come in vignetta.tsx)
+            pagina: document.documentElement.scrollHeight, libero: (() => { const m = document.querySelector('main'), px = (e, k) => parseFloat(getComputedStyle(e)[k]) || 0;
+              return Math.round(innerHeight - m.getBoundingClientRect().bottom - px(m, 'marginBottom') - px(m.parentElement, 'paddingBottom') - (m.parentElement === document.body ? 0 : px(document.body, 'paddingBottom')) - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-margine')) || 0) - (Number(svg?.dataset.margini) || 0)); })(),
+            minimo: parseFloat(svg ? getComputedStyle(svg).minHeight : '0') || 0 };
         });
         g.misure.c41_06 = v;
-        atteso(`${larghezza}×760 verbale fallito: disegno largo ${v.disegno} px su ${v.contenitore} (serve ≥ 2/3, C41-06)`, !v.nascosta && (larghezza !== 360 || v.disegno * 3 >= v.contenitore * 2)); // la decisione vale a 360 px; alle altre larghezze si misura soltanto
+        // D-182 (aggiunta del 19/10): il minimo dei 2/3 vale solo se ci sta senza scorrere; se non ci sta la vignetta si
+        // nasconde (D-126 d), e allora lo spazio libero deve essere davvero sotto il minimo
+        if (v.nascosta) atteso(`${larghezza}×760 verbale fallito: vignetta nascosta con ${v.libero} px liberi, minimo ${v.minimo} (ci stava: va mostrata, C41-06)`, v.libero < v.minimo);
+        else atteso(`${larghezza}×760 verbale fallito: disegno largo ${v.disegno} px su ${v.contenitore} (serve ≥ 2/3, C41-06)`, larghezza !== 360 || v.disegno * 3 >= v.contenitore * 2); // la decisione vale a 360 px; alle altre larghezze si misura soltanto
+        atteso(`${larghezza}×760 verbale fallito: pagina alta ${v.pagina} px, si scorre (D-182, PO-045)`, v.pagina <= v.finestra);
         atteso(`${larghezza}×760 verbale fallito: «Episodio fallito» e ripartenza finiscono a ${v.fondo} px, finestra ${v.finestra} (C41-06)`, v.fondo > 0 && v.fondo <= v.finestra);
         await pagina.screenshot({ path: join(cartella, `${larghezza}-c41-06-verbale-fallito.jpg`), type: 'jpeg', quality: 75 });
         // C41-08: guida 2/6, testo dentro il fumetto con margine
