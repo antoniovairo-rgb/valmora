@@ -19,10 +19,6 @@
               {
                 "riserva": "steward",
                 "valore": -1
-              },
-              {
-                "pressione": "piazza_concerto",
-                "valore": -3
               }
             ],
             "risposta": "testi:e06.imp.allarme.steward_banca.r"
@@ -33,11 +29,7 @@
             "costo": "testi:e06.imp.allarme.spegni_prova.c",
             "effetti": [
               {
-                "pressione": "piazza_concerto",
-                "valore": -1
-              },
-              {
-                "pressione": "viale_concerto",
+                "tensione": "piazza_concerto",
                 "valore": 1
               }
             ],
@@ -74,7 +66,7 @@
               },
               {
                 "pressione": "curva_cinderwick",
-                "valore": -3
+                "valore": -2
               }
             ],
             "risposta": "testi:e06.imp.palloncini.raccogli.r"
@@ -89,7 +81,7 @@
                 "valore": -1
               },
               {
-                "pressione": "piazza_concerto",
+                "tensione": "curva_cinderwick",
                 "valore": 1
               }
             ],
@@ -126,7 +118,7 @@
               },
               {
                 "pressione": "piazza_concerto",
-                "valore": -3
+                "valore": -2
               }
             ],
             "risposta": "testi:e06.imp.corrente.squadra_palco.r"
@@ -141,7 +133,7 @@
                 "valore": -1
               },
               {
-                "pressione": "viale_concerto",
+                "tensione": "piazza_concerto",
                 "valore": 1
               }
             ],
@@ -179,7 +171,7 @@
             "effetti": [
               {
                 "pressione": "viale_concerto",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -194,7 +186,11 @@
             "costo": "testi:e06.imp.metro.al_piazzale.c",
             "effetti": [
               {
-                "pressione": "piazzale",
+                "pressione": "viale_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_concerto",
                 "valore": 1
               }
             ],

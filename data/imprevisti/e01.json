@@ -37,7 +37,7 @@
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "strada_larkspire",
                 "valore": 1
               }
             ],
@@ -94,7 +94,7 @@
                 "valore": -1
               },
               {
-                "tensione": "curva_cinderwick",
+                "tensione": "curva_larkspire",
                 "valore": 1
               }
             ],
@@ -151,7 +151,7 @@
                 "valore": -1
               },
               {
-                "pressione": "strada_larkspire",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],

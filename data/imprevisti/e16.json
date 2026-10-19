@@ -18,11 +18,11 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e16.imp.buca.coni_buca.r"
@@ -70,11 +70,11 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e16.imp.chiavi.lista_club.r"
@@ -122,11 +122,11 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "curva_ospiti",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e16.imp.nebbia.luci_curva.r"
@@ -174,11 +174,11 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e16.imp.portiera.portellone.r"

@@ -18,11 +18,11 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e08.imp.lettore.passa_a_vista.r"
@@ -70,11 +70,11 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e08.imp.bagni.chiama_custode.r"
@@ -122,11 +122,11 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "tornelli",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e08.imp.grandine.fermi_in_curva.r"
@@ -174,11 +174,11 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e08.imp.navetta.spingi_navetta.r"

@@ -37,7 +37,7 @@
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "mercato",
                 "valore": 1
               }
             ],
@@ -94,7 +94,7 @@
                 "valore": -1
               },
               {
-                "pressione": "parcheggi",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
@@ -151,7 +151,7 @@
                 "valore": -1
               },
               {
-                "pressione": "mercato",
+                "tensione": "strada_cinderwick",
                 "valore": 1
               }
             ],

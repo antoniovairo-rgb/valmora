@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "tornelli",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "tornelli",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_larkspire",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -2
+                "valore": 1
               },
               {
                 "tensione": "piazza_municipio",
@@ -188,10 +188,6 @@
             "testo": "testi:e24.imp.bidone.ferma_piede",
             "costo": "testi:e24.imp.bidone.ferma_piede.c",
             "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": -1
-              },
               {
                 "tensione": "strada_larkspire",
                 "valore": 1

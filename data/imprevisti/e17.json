@@ -173,10 +173,6 @@
             "costo": "testi:e17.imp.lampioni.fari_accesi.c",
             "effetti": [
               {
-                "pressione": "quartiere",
-                "valore": -2
-              },
-              {
                 "tensione": "strada_cinderwick",
                 "valore": 1
               }
@@ -188,10 +184,6 @@
             "testo": "testi:e17.imp.lampioni.torce_telefono",
             "costo": "testi:e17.imp.lampioni.torce_telefono.c",
             "effetti": [
-              {
-                "pressione": "quartiere",
-                "valore": -1
-              },
               {
                 "tensione": "quartiere",
                 "valore": 1

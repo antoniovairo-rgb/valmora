@@ -69,10 +69,6 @@
             "costo": "testi:e30.imp.mercatino.corridoio.c",
             "effetti": [
               {
-                "pressione": "piazza_municipio",
-                "valore": -2
-              },
-              {
                 "tensione": "strada_cinderwick",
                 "valore": 1
               }
@@ -84,10 +80,6 @@
             "testo": "testi:e30.imp.mercatino.stringi_banchi",
             "costo": "testi:e30.imp.mercatino.stringi_banchi.c",
             "effetti": [
-              {
-                "pressione": "piazza_municipio",
-                "valore": -1
-              },
               {
                 "tensione": "piazza_municipio",
                 "valore": 1

@@ -17,10 +17,6 @@
             "costo": "testi:e10.imp.cantiere.chiama_cantiere.c",
             "effetti": [
               {
-                "pressione": "strada_cinderwick",
-                "valore": -2
-              },
-              {
                 "tensione": "piazzale",
                 "valore": 1
               }
@@ -32,10 +28,6 @@
             "testo": "testi:e10.imp.cantiere.stringi_corteo",
             "costo": "testi:e10.imp.cantiere.stringi_corteo.c",
             "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": -1
-              },
               {
                 "tensione": "strada_cinderwick",
                 "valore": 1

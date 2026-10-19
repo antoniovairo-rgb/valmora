@@ -37,7 +37,7 @@
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "tornelli",
                 "valore": 1
               }
             ],
@@ -85,7 +85,7 @@
                 "valore": -1
               },
               {
-                "tensione": "curva_larkspire",
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
@@ -137,7 +137,7 @@
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "curva_larkspire",
                 "valore": 1
               }
             ],
@@ -189,7 +189,7 @@
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "strada_larkspire",
                 "valore": 1
               }
             ],

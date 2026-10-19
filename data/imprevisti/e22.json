@@ -18,11 +18,11 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.turisti.megafono_turisti.r"
@@ -70,11 +70,11 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "curva_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.pannello.tecnici_tetto.r"
@@ -122,11 +122,11 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore.r"
@@ -174,11 +174,11 @@
             "effetti": [
               {
                 "pressione": "piazza_municipio",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.matrimonio.corridoio_sposi.r"

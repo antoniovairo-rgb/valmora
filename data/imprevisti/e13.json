@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "viale_concerto",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "parcheggi",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazza_concerto",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -2
+                "valore": 1
               },
               {
                 "tensione": "viale_concerto",
@@ -188,10 +188,6 @@
             "testo": "testi:e13.imp.allarmi.leggi_targhe",
             "costo": "testi:e13.imp.allarmi.leggi_targhe.c",
             "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": -1
-              },
               {
                 "tensione": "parcheggi",
                 "valore": 1

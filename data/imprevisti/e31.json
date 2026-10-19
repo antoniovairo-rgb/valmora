@@ -18,11 +18,11 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "viale_stazione",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e31.imp.tabellone_arrivi.guida.r"
@@ -70,11 +70,11 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "viale_stazione",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e31.imp.telone.ferma_telone.r"
@@ -122,11 +122,11 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e31.imp.spina.acqua.r"
@@ -174,11 +174,11 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "stazione",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e31.imp.tubatura.marciapiede.r"

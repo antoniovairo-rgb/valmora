@@ -69,10 +69,6 @@
             "costo": "testi:e35.imp.gelati.allontana.c",
             "effetti": [
               {
-                "pressione": "perimetro_banca",
-                "valore": -2
-              },
-              {
                 "tensione": "corso_centro",
                 "valore": 1
               }
@@ -84,10 +80,6 @@
             "testo": "testi:e35.imp.gelati.distanza",
             "costo": "testi:e35.imp.gelati.distanza.c",
             "effetti": [
-              {
-                "pressione": "perimetro_banca",
-                "valore": -1
-              },
               {
                 "tensione": "perimetro_banca",
                 "valore": 1
@@ -121,10 +113,6 @@
             "costo": "testi:e35.imp.allarme.sala.c",
             "effetti": [
               {
-                "pressione": "stazione",
-                "valore": -2
-              },
-              {
                 "tensione": "corso_centro",
                 "valore": 1
               }
@@ -136,10 +124,6 @@
             "testo": "testi:e35.imp.allarme.silenzia",
             "costo": "testi:e35.imp.allarme.silenzia.c",
             "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": -1
-              },
               {
                 "tensione": "stazione",
                 "valore": 1

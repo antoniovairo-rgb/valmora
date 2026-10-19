@@ -121,10 +121,6 @@
             "costo": "testi:e21.imp.pallone.sequestro.c",
             "effetti": [
               {
-                "pressione": "piazzale",
-                "valore": -2
-              },
-              {
                 "tensione": "curva_cinderwick",
                 "valore": 1
               }
@@ -136,10 +132,6 @@
             "testo": "testi:e21.imp.pallone.pallone_bimbo",
             "costo": "testi:e21.imp.pallone.pallone_bimbo.c",
             "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": -1
-              },
               {
                 "tensione": "piazzale",
                 "valore": 1

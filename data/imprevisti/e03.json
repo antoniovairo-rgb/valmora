@@ -37,7 +37,7 @@
                 "valore": -2
               },
               {
-                "pressione": "parcheggi",
+                "tensione": "quartiere",
                 "valore": 1
               }
             ],
@@ -89,7 +89,7 @@
                 "valore": -2
               },
               {
-                "tensione": "curva_larkspire",
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
@@ -146,7 +146,7 @@
                 "valore": -2
               },
               {
-                "pressione": "parcheggi",
+                "tensione": "quartiere",
                 "valore": 1
               }
             ],
@@ -198,7 +198,7 @@
                 "valore": -2
               },
               {
-                "pressione": "piazzale",
+                "tensione": "parcheggi",
                 "valore": 1
               }
             ],
