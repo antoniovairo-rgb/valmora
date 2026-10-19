@@ -1,6 +1,6 @@
 # D-187 · scorrimenti e sovrapposizioni (PO-052, PO-058) — S-11
 
-Nota: le foto «dopo» sono della prova con il minimo a 200 px (8 px più bassa della versione finale).
+Nota: le foto «dopo» sono della prova senza il controllo di «Home» (mappa fino a 200 px, 8 px più bassa della versione finale dove la casa toccava la curva). Le misure della tabella sono quelle finali (due giri uguali).
 
 Ramo `claude/valmora-home`, merge (non rebase) della principale `0908c2fa`. Build 0.42.0.
 Metodo: riproduci (sonda di S-12), patch minima, rosso, guardiano. Misure con `tools/sonda-altezze.mjs` (nuova, dalla sonda
@@ -26,7 +26,7 @@ stati che vede): per questo le soglie sono il massimo misurato.
 
 Cosa è cambiato:
 - `src/resa/mappa/adatta.ts` (nuovo) + `Mappa.tsx`: nelle schermate di gioco la mappa si abbassa quanto basta perché la
-  pagina non scorra, fino a `--mappa-altezza-min` (208 px) e mai sotto l'altezza a cui il pulsante «Home» tocca un punto o un nome dei settori (S-21: con 200 px la CI era rossa a 375, «Home» sopra la curva).
+  pagina non scorra, fino a `--mappa-altezza-min` (200 px) e mai sotto l'altezza a cui il pulsante «Home» tocca un punto o un nome dei settori (si rialza di 8 px alla volta; S-21: senza, la CI era rossa a 375, «Home» sopra la curva di Kiln). In e01 questo porta la mappa a 208 px dove serve.
   La chiamata è esclusa (D-114). Le vignette nascondibili (D-126 d) cedono per prime. Rosso `__NO_C187M01`.
 - Città: `--citta-riserva` 500 → 516 e `--citta-altezza-min` 260 → 244 (la scheda è cresciuta di 13 px). Rosso `C187C01`.
 - Home: il margine dell'ultimo paragrafo usciva da `main` e la vignetta lo ignorava (4 px). Rosso `C187C01`.
