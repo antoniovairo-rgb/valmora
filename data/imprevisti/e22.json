@@ -69,10 +69,6 @@
             "costo": "testi:e22.imp.pannello.tecnici_tetto.c",
             "effetti": [
               {
-                "pressione": "curva_larkspire",
-                "valore": -2
-              },
-              {
                 "tensione": "curva_cinderwick",
                 "valore": 1
               }
@@ -86,7 +82,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "curva_cinderwick",
@@ -121,10 +117,6 @@
             "costo": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore.c",
             "effetti": [
               {
-                "pressione": "piazzale",
-                "valore": -2
-              },
-              {
                 "tensione": "strada_cinderwick",
                 "valore": 1
               }
@@ -138,7 +130,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "strada_cinderwick",

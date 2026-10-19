@@ -121,10 +121,6 @@
             "costo": "testi:e20.imp.gatto.speaker_gatto.c",
             "effetti": [
               {
-                "pressione": "curva_larkspire",
-                "valore": -2
-              },
-              {
                 "tensione": "piazzale",
                 "valore": 1
               }
@@ -138,7 +134,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "piazzale",

@@ -17,10 +17,6 @@
             "costo": "testi:e24.imp.tamburo_largo.smonta_transenna.c",
             "effetti": [
               {
-                "pressione": "curva_ospiti",
-                "valore": -2
-              },
-              {
                 "tensione": "tornelli",
                 "valore": 1
               }
@@ -34,7 +30,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "tornelli",
@@ -173,10 +169,6 @@
             "costo": "testi:e24.imp.bidone.ferma_bidone.c",
             "effetti": [
               {
-                "pressione": "strada_larkspire",
-                "valore": -2
-              },
-              {
                 "tensione": "piazza_municipio",
                 "valore": 1
               }
@@ -190,7 +182,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "piazza_municipio",

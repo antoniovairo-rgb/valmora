@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "biglietteria",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "tornelli",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "biglietteria",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "tornelli",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "piazzale",
@@ -86,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",
@@ -121,10 +121,6 @@
             "costo": "testi:e14.imp.seggiolini.corrimano.c",
             "effetti": [
               {
-                "pressione": "curva_larkspire",
-                "valore": -2
-              },
-              {
                 "tensione": "curva_ospiti",
                 "valore": 1
               }
@@ -138,7 +134,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "curva_ospiti",
@@ -173,10 +169,6 @@
             "costo": "testi:e14.imp.gomma.spinta_pullman.c",
             "effetti": [
               {
-                "pressione": "piazzale",
-                "valore": -2
-              },
-              {
                 "tensione": "biglietteria",
                 "valore": 1
               }
@@ -190,7 +182,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "biglietteria",
