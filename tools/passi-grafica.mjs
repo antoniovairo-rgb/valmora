@@ -8,6 +8,7 @@ import { giraEpilogo } from './foto-epilogo.mjs';
 import { giraOffline } from './offline.mjs';
 import { controllaCittaSenzaWebgl } from './foto-c128.mjs';
 
+const larghezzeGiro = () => (process.env.VALMORA_LARGHEZZE ?? '360,375,412').split(',').map(Number);
 const fileResa = () => execSync('git ls-files --cached --others --exclude-standard src/resa', { encoding: 'utf8' })
   .split('\n').filter((p) => p && existsSync(p));
 
@@ -21,6 +22,8 @@ export const PASSI_GRAFICA = {
     // D-161, D-164, D-165: epilogo, «Fine stagione» e fischio (tools/foto-epilogo.mjs)
     return [...giri.flatMap(controllaGiro), ...(await controllaCittaSenzaWebgl(stati)), ...(await giraEpilogo('out/foto')).flatMap(controllaGiro)];
   },
+  // D-187 (PO-052, PO-058): scorrimento di ogni schermata di e01 alle altezze dei telefoni della larghezza del giro
+  altezze: async () => { const a = await import('./sonda-altezze.mjs'); return a.controllaAltezze(await a.giraAltezze({ vps: larghezzeGiro().flatMap((w) => a.VP_PER_LARGHEZZA[w] ?? []) })); },
   // S-22 (C14-01): il gioco installato funziona offline (service worker), su http://localhost
   offline: () => giraOffline('dist'),
   'bracci-rossi-grafica': async () => {
@@ -42,6 +45,9 @@ export const PASSI_GRAFICA = {
     if (!stati.length) { if (con412) ciechi.push('foto/città senza WebGL: nessuno stato con un nome dal giro foto'); }
     else if (!(await controllaCittaSenzaWebgl(stati, 'dist', ['C128N01'])).some((x) => x.includes('tocca il bordo'))) ciechi.push('foto/città senza WebGL (C128N01) è cieco');
     if (!(await (await import('./foto-home.mjs')).homeRossaVista('dist'))) ciechi.push('foto/home (C140H01, PO-140) è cieco');
+    // D-187: con la mappa che non si abbassa, la versione sopra le lettere o i nomi sopra i segni il guardiano diventa rosso (360×760)
+    if (larghezzeGiro().includes(360)) { const a = await import('./sonda-altezze.mjs');
+      for (const r of ['C187M01', 'C187V01', 'C187S01']) if (!a.controllaAltezze(await a.giraAltezze({ vps: ['360x760'], rossi: [r] })).length) ciechi.push(`altezze/${r} è cieco`); }
     if (!controllaToken({ 'src/resa/x.css': '.a { color: #fff; }' }).length) ciechi.push('token/colore è cieco');
     if (!controllaToken({ 'src/resa/x.css': '.a { margin: 3px; }' }).length) ciechi.push('token/misura è cieco');
     if (!controllaToken({ 'src/resa/X.tsx': '<div style={{ color: "red" }} />' }).length) ciechi.push('token/stile in linea è cieco');

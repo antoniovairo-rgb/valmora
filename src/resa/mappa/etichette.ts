@@ -71,6 +71,9 @@ export function disponiEtichette(contenitore: HTMLElement) {
   if (!spento('C34N01')) migliorCombinazione(settori, punti, mappa, !contenitore.querySelector('.settore-unita'));
   // con nessuna unità sulla mappa (sala, briefing) la combinazione migliore è già quella finale
   if (!contenitore.querySelector('.settore-unita') && !spento('C34N01')) return;
+  // D-187 (S-12): nella chiamata i segni dell'ultima risposta (▲/▼, +⚑) finivano sotto i nomi (fino a 506 px² a 360):
+  // per i nomi sono ostacoli. Rosso C187S01: no, come prima.
+  const segni = spento('C187S01') ? [] : [...contenitore.querySelectorAll('.settore .segni-effetto')].map((e) => e.getBoundingClientRect() as Rett);
   // 2) nome e unità insieme (6 × 6 combinazioni; solo il nome per i settori senza unità), si tiene quella che costa meno
   //    (due passate, così anche i primi settori vedono dove sono finiti gli ultimi).
   //    Nome contro: punti, nomi e unità degli altri settori. Unità contro: tutti i punti (anche il proprio),
@@ -80,7 +83,7 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const conUnita = !!s.querySelector('.settore-unita');
     const altri = settori.filter((x) => x !== s);
     const presenti = (rs: (Rett | null)[]) => rs.filter((r): r is Rett => !!r);
-    const perNome = [...punti.filter((_, j) => j !== i).map((r) => ostacolo(r)), ...presenti(altri.map(nomeDi)).map((n) => ostacolo(n, STACCO)), ...presenti(altri.map(unitaDi)).map((r) => ostacolo(r))];
+    const perNome = [...punti.filter((_, j) => j !== i).map((r) => ostacolo(r)), ...presenti(altri.map(nomeDi)).map((n) => ostacolo(n, STACCO)), ...presenti(altri.map(unitaDi)).map((r) => ostacolo(r)), ...segni.map((r) => ostacolo(r))];
     const perUnita = [...punti, ...presenti(altri.map(nomeDi)), ...presenti(altri.map(unitaDi))].map((r) => ostacolo(r));
     const costoDi = (r: Rett, os: Ostacolo[]) => os.reduce((a, o) => a + VERA * area(r, o.vero) + area(r, o.largo) - area(r, o.vero), 0);
     // C26-11: una pastiglia col centro sotto il disco di un altro settore non si può toccare (e06 a 360), e due nomi

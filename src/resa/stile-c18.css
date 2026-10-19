@@ -120,3 +120,8 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .vignetta .v-linea.v-fine { stroke-width: var(--vignetta-tratto-fine); }
 /* C41-03 (D-183): nota sotto le unità dello schieramento: le risposte che costano unità le tolgono dalla prossima ondata */
 .nota-unita { margin: var(--spazio-1) 0 0; font-size: var(--testo-mini); line-height: var(--linea-stretta); }
+/* D-187: mappa abbassata perché la pagina non scorra (src/resa/mappa/adatta.ts) */
+main .mappa[data-adatta] { aspect-ratio: auto; height: var(--mappa-alta); }
+/* D-187 (S-12): uscendo, la scena si sposta di 40 px a sinistra (Scena.tsx) e le lettere delle opzioni passavano sotto la
+   versione (fino a 576 px²): la versione resta sotto la scena che si muove (z-index auto, ordine del documento). Rosso C187V01. */
+main:not(.rosso-c187v01):not(.rosso-c40c01) .versione-angolo { z-index: auto; }

@@ -18,6 +18,7 @@ import type { PuntoMappa } from './StratoPixi.tsx';
 import { webglDisponibile } from './webgl.ts';
 import { follaDellOndata } from './folla.ts';
 import { parolaSegno, simboloSegno, type Segno } from './segni.ts';
+import { useAdatta } from './adatta.ts';
 
 // PixiJS pesa: si carica a parte, dopo il titolo, e solo se WebGL c'è.
 const StratoPixi = lazy(() => import('./StratoPixi.tsx').then((x) => ({ default: x.StratoPixi })));
@@ -87,6 +88,7 @@ export function Mappa(p: MappaProps) {
   // Nomi e unità al posto che non copre niente (C-008): a ogni disegno, quando la mappa cambia misura e
   // quando arrivano i caratteri.
   useLayoutEffect(() => { if (contenitore.current) disponi(contenitore.current); });
+  useAdatta(contenitore); // D-187
   useLayoutEffect(() => {
     const el = contenitore.current;
     if (!el) return;
