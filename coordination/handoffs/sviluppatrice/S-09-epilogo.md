@@ -277,3 +277,15 @@ Non verificato:
 - FATTO MISURATO: giro foto completo a 375 in locale (`VALMORA_LARGHEZZE=375`, giraFoto + controllaGiro) → «verde»;
   `tools/foto-c41.mjs` 360/375/412 → «verde», 360×760: vignetta 290×110, disegno 196.
 - FATTO MISURATO (D-177): su 8fc00a3, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
+
+### C41-06, seconda correzione dopo la CI rossa su 8fc00a3 (run 39224132365)
+
+- FATTO (log CI, job «grafica (360)» 117966283894, passo foto, 3 tentativi su 3, ~2050 s ciascuno): «360px: verbale 1/5:
+  793 px di pagina, a 360×760 si scorre (PO-045)» (terzo tentativo 784 px). Stesso esito nel giro locale
+  `VALMORA_LARGHEZZE=360` (2231 s). Gli altri 6 job erano verdi.
+- Causa: la modalità «bassa» di 8fc00a3 teneva la vignetta al minimo di 110 px anche a 360×760 quando non ci stava,
+  quindi la pagina scorreva. Questo contraddice la decisione D-182 («il minimo vale solo se ci sta senza scorrere»).
+  Errore mio: su 8fc00a3 avevo girato la foto completa solo a 375.
+- Patch (`src/resa/vignetta.tsx`): tolta la modalità «bassa». La vignetta «esito-fallita» segue la regola comune: si
+  nasconde se lo spazio libero è sotto il minimo o se lo schermo è basso. Resta il suo minimo di 110 px
+  (`--vignetta-min-fallita`, classe `.fallita`). Rosso `__NO_C41V06` invariato (toglie la classe, minimo di prima).
