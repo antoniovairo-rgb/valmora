@@ -125,3 +125,12 @@ main .mappa[data-adatta] { aspect-ratio: auto; height: var(--mappa-alta); }
 /* D-187 (S-12): uscendo, la scena si sposta di 40 px a sinistra (Scena.tsx) e le lettere delle opzioni passavano sotto la
    versione (fino a 576 px²): la versione resta sotto la scena che si muove (z-index auto, ordine del documento). Rosso C187V01. */
 main:not(.rosso-c187v01):not(.rosso-c40c01) .versione-angolo { z-index: auto; }
+/* C41-06: nel verbale fallito la vignetta non scende sotto i due terzi della larghezza a 360 px */
+.verbale.fallita .vignetta-cornice .vignetta { --vignetta-min: var(--vignetta-min-fallita); }
+/* D-185 (C41-06, opzione C): nel verbale fallito si recuperano ~44 px di spaziature, così la vignetta a 110 px ci sta a
+   360×760 senza far scorrere (e10: 75 px liberi). Rosso C185V01: senza la classe .compatta, spaziature di prima. */
+.verbale.compatta { padding-block: var(--spazio-3); margin-bottom: var(--spazio-2); }
+.verbale.compatta > p:last-child { margin-bottom: 0; }
+.verbale.compatta ~ .avviso { margin-block: var(--spazio-2) var(--spazio-1); }
+.verbale.compatta ~ .condividi { margin-bottom: var(--spazio-2); }
+.verbale.compatta ~ .ripartenza .pulsante { margin-block: 0; }

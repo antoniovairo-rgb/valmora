@@ -8,11 +8,13 @@ import { quante } from '../src/resa/dati.ts';
 import type { Missione } from '../src/logica/tipi.ts';
 
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C183Q01; });
+afterEach(() => { delete g.__NO_C183Q01; delete g.__NO_C42U01; });
 const d = leggiDati() as Record<string, unknown>;
 const missioni = Object.entries(d).filter(([k]) => /^missioni\/e\d+\.json$/.test(k)).map(([, m]) => m as Missione);
-const conCosto = missioni.flatMap((m) => m.ondate.flatMap((o) => (o.chiamate ?? []).flatMap((c) => c.opzioni.filter((x) => x.effetti.some((e) => 'riserva' in e && e.valore < 0)).map((x) => ({ id: `${m.id} ${c.id}/${x.id}`, o: x })))));
-const male = () => conCosto.filter(({ o }) => { const s = quandoCosta(o);
+const conCosto = missioni.flatMap((m) => m.ondate.flatMap((o, i) => (o.chiamate ?? []).flatMap((c) => c.opzioni.filter((x) => x.effetti.some((e) => 'riserva' in e && e.valore < 0)).map((x) => ({ id: `${m.id} ${c.id}/${x.id}`, o: x, ultima: i === m.ondate.length - 1 })))));
+// C42-01 (D-185): all'ultima ondata non c'è una prossima: «Le unità restano impegnate fino a fine serata»
+const male = () => conCosto.filter(({ o, ultima }) => { const s = quandoCosta(o, ultima);
+  if (ultima) return !s || s.includes('dalla prossima ondata') || !s.includes('fino a fine serata');
   return !s || !s.includes('dalla prossima ondata') || o.effetti.some((e) => 'riserva' in e && e.valore < 0 && !s.includes(quante(-e.valore, e.riserva))); }).map((x) => x.id);
 
 describe('C41-03 il costo in unità dice da quando vale', () => {
@@ -21,4 +23,9 @@ describe('C41-03 il costo in unità dice da quando vale', () => {
     expect(conCosto.length).toBeGreaterThan(100); expect(male()).toEqual([]);
   });
   it('rosso C183Q01: nessuna', () => { g.__NO_C183Q01 = true; expect(male().length).toBe(conCosto.length); });
+});
+
+describe('C42-01 all\'ultima ondata niente «dalla prossima ondata»', () => {
+  it('27 risposte con costo nell\'ultima ondata', () => { expect(conCosto.filter((x) => x.ultima).length).toBe(27); });
+  it('rosso C42U01: le 27 dicono «dalla prossima ondata», come prima', () => { g.__NO_C42U01 = true; expect(male().length).toBe(27); });
 });

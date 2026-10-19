@@ -41,9 +41,14 @@ export function tono(m: Missione, e: Esito): 'bene' | 'medio' | 'male' {
   // versione = id dell'esito + «_» + un valore che la sua condizione confronta con «uguale» (es. fascicolo = procura)
   const valori = (c: Condizione): string[] => ('tutte' in c ? c.tutte.flatMap(valori) : 'almeno_una' in c ? c.almeno_una.flatMap(valori)
     : 'uguale' in c && typeof c.uguale === 'string' ? [c.uguale] : []);
-  const v = spento('C24T01') ? undefined : valori(e.se).find((x) => e.id.endsWith(`_${x}`) && m.esiti.some((q) => q.id === e.id.slice(0, -x.length - 1)));
-  const i = m.esiti.findIndex((x) => x.id === (v ? e.id.slice(0, -v.length - 1) : e.id));
-  return e.fallita || i === m.esiti.length - 1 ? 'male' : i === 0 ? 'bene' : 'medio';
+  const base = (q: Esito) => { const v = spento('C24T01') ? undefined : valori(q.se).find((x) => q.id.endsWith(`_${x}`) && m.esiti.some((z) => z.id === q.id.slice(0, -x.length - 1)));
+    return m.esiti.findIndex((x) => x.id === (v ? q.id.slice(0, -v.length - 1) : q.id)); };
+  const i = base(e);
+  // C41-07: «male» è anche l'esito più basso fra quelli non falliti (l'ultimo esito dei dati è sempre il fallito, 36/36),
+  // così la posa «male» del verbale compare in partita. Rosso C41T07: solo il fallito e l'ultimo, come prima.
+  const peggiore = spento('C41T07') ? m.esiti.length - 1 : Math.max(...m.esiti.filter((x) => !x.fallita).map(base));
+  if (e.fallita || i === m.esiti.length - 1) return 'male';
+  return i === 0 ? 'bene' : i === peggiore ? 'male' : 'medio';
 }
 
 /**

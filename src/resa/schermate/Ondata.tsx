@@ -115,7 +115,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
               {t(o.testo)}
               {/* Accenno di costo in parole (D-078); interruttore rosso C05S05 lo nasconde */}
               {o.costo && !spento('C05S05') && <small className="costo" data-costo={o.id}>{t(o.costo)}</small>}
-              {quandoCosta(o) && <small className="costo costo-quando" data-quando={o.id}>{quandoCosta(o)}</small>}
+              {quandoCosta(o, p.ic.ondata >= p.m.ondate.length) && <small className="costo costo-quando" data-quando={o.id}>{quandoCosta(o, p.ic.ondata >= p.m.ondate.length)}</small>}
               <EffettiOpzione c={p.c} o={o} />
             </span>
           </button>

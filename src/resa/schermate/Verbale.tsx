@@ -30,7 +30,7 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
   const condividiVerbale = () => condividi(testoCondiviso).then((r) => setCondivisione(r === 'copiato' ? 'Copiato: incollalo dove vuoi.' : r === 'errore' ? 'Condivisione non riuscita.' : null));
   const esito = (
     <>
-      <div className="scheda verbale">
+      <div className={`scheda verbale${p.risultato.fallita && !spento('C41V06') ? ` fallita${spento('C185V01') ? '' : ' compatta'}` : ''}`}>
         <div className="vignetta-cornice">
           <VignettaEsito m={p.m} tono={p.risultato.fallita ? 'fallita' : tono(p.m, p.esito.esito)} genere={genereAttuale() === 'f' ? 'f' : 'm'} />
           {spento('C42S01') && <Sfida m={p.m} />}

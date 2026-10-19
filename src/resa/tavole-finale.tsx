@@ -103,9 +103,11 @@ function Busta(p: { v: Valore }) {
       <path d="M62 56 L10 200 L210 200 L92 50 Z" fill="url(#t-luce)" />
       {p.v === 'tenuta' && <path d="M60 150 L260 142 L276 200 L52 210 Z" className="v-nero v-tratto" />}
       {p.v !== 'nessuna' && <g transform={p.v === 'tenuta' ? 'translate(0 14)' : ''}>
-        <path d="M92 120 L232 112 L244 172 L86 180 Z" className="v-bianco v-tratto" />
-        <path d="M92 120 L166 150 L232 112" className="v-linea" />
-        <circle cx="166" cy="150" r="11" className="v-magenta v-tratto" />
+        {/* C41-05: la busta consegnata ha la patta aperta e niente sigillo, uguale per chi l'ha aperta in e24 («Aprila
+            adesso») e per chi no; la busta tenuta resta sigillata. Rosso C41B05: sigillata anche consegnata, come prima. */}
+        {p.v === 'consegnata' && !spento('C41B05')
+          ? <><path d="M92 120 L160 96 L232 112 Z" className="v-bianco v-tratto" data-patta="aperta" /><path d="M92 120 L232 112 L244 172 L86 180 Z" className="v-bianco v-tratto" /><path d="M92 120 L166 140 L232 112" className="v-linea" /></>
+          : <><path d="M92 120 L232 112 L244 172 L86 180 Z" className="v-bianco v-tratto" /><path d="M92 120 L166 150 L232 112" className="v-linea" /><circle cx="166" cy="150" r="11" className="v-magenta v-tratto" data-sigillo /></>}
       </g>}
       {p.v === 'consegnata' && <g transform="rotate(-10 164 96)"><rect x="104" y="80" width="122" height="30" className="v-timbro" /><text x="165" y="101" className="v-scritta v-scritta-timbro">ARCHIVIO</text></g>}
     </>
