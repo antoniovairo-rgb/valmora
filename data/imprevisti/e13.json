@@ -1,0 +1,233 @@
+{
+  "id": "e13",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_sedie",
+        "fonte": "organizzatori_concerto",
+        "testo": "testi:e13.imp.sedie",
+        "commento": "testi:e13.imp.sedie.vice",
+        "settore": "viale_concerto",
+        "opzioni": [
+          {
+            "id": "sgombra_sedie",
+            "testo": "testi:e13.imp.sedie.sgombra_sedie",
+            "costo": "testi:e13.imp.sedie.sgombra_sedie.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "viale_concerto",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e13.imp.sedie.sgombra_sedie.r"
+          },
+          {
+            "id": "auto_parcheggi",
+            "testo": "testi:e13.imp.sedie.auto_parcheggi",
+            "costo": "testi:e13.imp.sedie.auto_parcheggi.c",
+            "effetti": [
+              {
+                "pressione": "viale_concerto",
+                "valore": -2
+              },
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.sedie.auto_parcheggi.r"
+          },
+          {
+            "id": "lascia_organizzatori",
+            "testo": "testi:e13.imp.sedie.lascia_organizzatori",
+            "costo": "testi:e13.imp.sedie.lascia_organizzatori.c",
+            "effetti": [
+              {
+                "pressione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.sedie.lascia_organizzatori.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_tubo",
+        "fonte": "centrale_radio",
+        "testo": "testi:e13.imp.tubo",
+        "commento": "testi:e13.imp.tubo.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "chiudi_valvola",
+            "testo": "testi:e13.imp.tubo.chiudi_valvola",
+            "costo": "testi:e13.imp.tubo.chiudi_valvola.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e13.imp.tubo.chiudi_valvola.r"
+          },
+          {
+            "id": "verso_piazza",
+            "testo": "testi:e13.imp.tubo.verso_piazza",
+            "costo": "testi:e13.imp.tubo.verso_piazza.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "pressione": "piazza_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.tubo.verso_piazza.r"
+          },
+          {
+            "id": "lasciali_giocare",
+            "testo": "testi:e13.imp.tubo.lasciali_giocare",
+            "costo": "testi:e13.imp.tubo.lasciali_giocare.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.tubo.lasciali_giocare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_vespe",
+        "fonte": "centrale_radio",
+        "testo": "testi:e13.imp.vespe",
+        "commento": "testi:e13.imp.vespe.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "chiudi_fila",
+            "testo": "testi:e13.imp.vespe.chiudi_fila",
+            "costo": "testi:e13.imp.vespe.chiudi_fila.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e13.imp.vespe.chiudi_fila.r"
+          },
+          {
+            "id": "fila_piazzale",
+            "testo": "testi:e13.imp.vespe.fila_piazzale",
+            "costo": "testi:e13.imp.vespe.fila_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.vespe.fila_piazzale.r"
+          },
+          {
+            "id": "si_arrangino",
+            "testo": "testi:e13.imp.vespe.si_arrangino",
+            "costo": "testi:e13.imp.vespe.si_arrangino.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.vespe.si_arrangino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_allarmi",
+        "fonte": "organizzatori_concerto",
+        "testo": "testi:e13.imp.allarmi",
+        "commento": "testi:e13.imp.allarmi.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "ferma_basso",
+            "testo": "testi:e13.imp.allarmi.ferma_basso",
+            "costo": "testi:e13.imp.allarmi.ferma_basso.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -4
+              },
+              {
+                "tensione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.allarmi.ferma_basso.r"
+          },
+          {
+            "id": "esci_viale",
+            "testo": "testi:e13.imp.allarmi.esci_viale",
+            "costo": "testi:e13.imp.allarmi.esci_viale.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              },
+              {
+                "pressione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.allarmi.esci_viale.r"
+          },
+          {
+            "id": "lascia_suonare",
+            "testo": "testi:e13.imp.allarmi.lascia_suonare",
+            "costo": "testi:e13.imp.allarmi.lascia_suonare.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.allarmi.lascia_suonare.r"
+          }
+        ]
+      }
+    }
+  ]
+}

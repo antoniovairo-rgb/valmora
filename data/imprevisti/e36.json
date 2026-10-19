@@ -1,0 +1,233 @@
+{
+  "id": "e36",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_rotolo",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e36.imp.rotolo",
+        "commento": "testi:e36.imp.rotolo.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "spingi",
+            "testo": "testi:e36.imp.rotolo.spingi",
+            "costo": "testi:e36.imp.rotolo.spingi.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e36.imp.rotolo.spingi.r"
+          },
+          {
+            "id": "dal_piazzale",
+            "testo": "testi:e36.imp.rotolo.dal_piazzale",
+            "costo": "testi:e36.imp.rotolo.dal_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.rotolo.dal_piazzale.r"
+          },
+          {
+            "id": "se_la_vedano",
+            "testo": "testi:e36.imp.rotolo.se_la_vedano",
+            "costo": "testi:e36.imp.rotolo.se_la_vedano.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.rotolo.se_la_vedano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_gabbiano",
+        "fonte": "centrale_radio",
+        "testo": "testi:e36.imp.gabbiano",
+        "commento": "testi:e36.imp.gabbiano.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "prime_file",
+            "testo": "testi:e36.imp.gabbiano.prime_file",
+            "costo": "testi:e36.imp.gabbiano.prime_file.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e36.imp.gabbiano.prime_file.r"
+          },
+          {
+            "id": "sirena",
+            "testo": "testi:e36.imp.gabbiano.sirena",
+            "costo": "testi:e36.imp.gabbiano.sirena.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.gabbiano.sirena.r"
+          },
+          {
+            "id": "se_ne_vada",
+            "testo": "testi:e36.imp.gabbiano.se_ne_vada",
+            "costo": "testi:e36.imp.gabbiano.se_ne_vada.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.gabbiano.se_ne_vada.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_recinto_buio",
+        "fonte": "centrale_radio",
+        "testo": "testi:e36.imp.recinto_buio",
+        "commento": "testi:e36.imp.recinto_buio.vice",
+        "settore": "cantiere_stadio_nuovo",
+        "opzioni": [
+          {
+            "id": "torce",
+            "testo": "testi:e36.imp.recinto_buio.torce",
+            "costo": "testi:e36.imp.recinto_buio.torce.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e36.imp.recinto_buio.torce.r"
+          },
+          {
+            "id": "collina",
+            "testo": "testi:e36.imp.recinto_buio.collina",
+            "costo": "testi:e36.imp.recinto_buio.collina.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": -2
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.recinto_buio.collina.r"
+          },
+          {
+            "id": "luce",
+            "testo": "testi:e36.imp.recinto_buio.luce",
+            "costo": "testi:e36.imp.recinto_buio.luce.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.recinto_buio.luce.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_cassa",
+        "fonte": "centrale_radio",
+        "testo": "testi:e36.imp.cassa",
+        "commento": "testi:e36.imp.cassa.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "chiudi_festa",
+            "testo": "testi:e36.imp.cassa.chiudi_festa",
+            "costo": "testi:e36.imp.cassa.chiudi_festa.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -3
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.cassa.chiudi_festa.r"
+          },
+          {
+            "id": "in_collina",
+            "testo": "testi:e36.imp.cassa.in_collina",
+            "costo": "testi:e36.imp.cassa.in_collina.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.cassa.in_collina.r"
+          },
+          {
+            "id": "riserva",
+            "testo": "testi:e36.imp.cassa.riserva",
+            "costo": "testi:e36.imp.cassa.riserva.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.cassa.riserva.r"
+          }
+        ]
+      }
+    }
+  ]
+}

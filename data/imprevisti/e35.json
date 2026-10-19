@@ -1,0 +1,233 @@
+{
+  "id": "e35",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tram_chiuso",
+        "fonte": "centrale_radio",
+        "testo": "testi:e35.imp.tram_chiuso",
+        "commento": "testi:e35.imp.tram_chiuso.vice",
+        "settore": "corso_centro",
+        "opzioni": [
+          {
+            "id": "porte",
+            "testo": "testi:e35.imp.tram_chiuso.porte",
+            "costo": "testi:e35.imp.tram_chiuso.porte.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "corso_centro",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e35.imp.tram_chiuso.porte.r"
+          },
+          {
+            "id": "indietro",
+            "testo": "testi:e35.imp.tram_chiuso.indietro",
+            "costo": "testi:e35.imp.tram_chiuso.indietro.c",
+            "effetti": [
+              {
+                "pressione": "corso_centro",
+                "valore": -2
+              },
+              {
+                "pressione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.tram_chiuso.indietro.r"
+          },
+          {
+            "id": "riapriranno",
+            "testo": "testi:e35.imp.tram_chiuso.riapriranno",
+            "costo": "testi:e35.imp.tram_chiuso.riapriranno.c",
+            "effetti": [
+              {
+                "pressione": "corso_centro",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.tram_chiuso.riapriranno.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_gelati",
+        "fonte": "centrale_radio",
+        "testo": "testi:e35.imp.gelati",
+        "commento": "testi:e35.imp.gelati.vice",
+        "settore": "perimetro_banca",
+        "opzioni": [
+          {
+            "id": "allontana",
+            "testo": "testi:e35.imp.gelati.allontana",
+            "costo": "testi:e35.imp.gelati.allontana.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "perimetro_banca",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e35.imp.gelati.allontana.r"
+          },
+          {
+            "id": "sul_corso",
+            "testo": "testi:e35.imp.gelati.sul_corso",
+            "costo": "testi:e35.imp.gelati.sul_corso.c",
+            "effetti": [
+              {
+                "pressione": "perimetro_banca",
+                "valore": -2
+              },
+              {
+                "pressione": "corso_centro",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.gelati.sul_corso.r"
+          },
+          {
+            "id": "vendano",
+            "testo": "testi:e35.imp.gelati.vendano",
+            "costo": "testi:e35.imp.gelati.vendano.c",
+            "effetti": [
+              {
+                "pressione": "perimetro_banca",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.gelati.vendano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_allarme",
+        "fonte": "centrale_radio",
+        "testo": "testi:e35.imp.allarme",
+        "commento": "testi:e35.imp.allarme.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "sala",
+            "testo": "testi:e35.imp.allarme.sala",
+            "costo": "testi:e35.imp.allarme.sala.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "stazione",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e35.imp.allarme.sala.r"
+          },
+          {
+            "id": "fuori",
+            "testo": "testi:e35.imp.allarme.fuori",
+            "costo": "testi:e35.imp.allarme.fuori.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -2
+              },
+              {
+                "pressione": "corso_centro",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.allarme.fuori.r"
+          },
+          {
+            "id": "suoni",
+            "testo": "testi:e35.imp.allarme.suoni",
+            "costo": "testi:e35.imp.allarme.suoni.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.allarme.suoni.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cane_cantiere",
+        "fonte": "centrale_radio",
+        "testo": "testi:e35.imp.cane_cantiere",
+        "commento": "testi:e35.imp.cane_cantiere.vice",
+        "settore": "cantiere_stadio_nuovo",
+        "opzioni": [
+          {
+            "id": "cancello",
+            "testo": "testi:e35.imp.cane_cantiere.cancello",
+            "costo": "testi:e35.imp.cane_cantiere.cancello.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": -4
+              },
+              {
+                "tensione": "perimetro_banca",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.cane_cantiere.cancello.r"
+          },
+          {
+            "id": "passanti",
+            "testo": "testi:e35.imp.cane_cantiere.passanti",
+            "costo": "testi:e35.imp.cane_cantiere.passanti.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": -2
+              },
+              {
+                "pressione": "perimetro_banca",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.cane_cantiere.passanti.r"
+          },
+          {
+            "id": "tornera",
+            "testo": "testi:e35.imp.cane_cantiere.tornera",
+            "costo": "testi:e35.imp.cane_cantiere.tornera.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.cane_cantiere.tornera.r"
+          }
+        ]
+      }
+    }
+  ]
+}

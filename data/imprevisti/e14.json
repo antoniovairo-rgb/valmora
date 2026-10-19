@@ -1,0 +1,233 @@
+{
+  "id": "e14",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_corrente",
+        "fonte": "biglietteria",
+        "testo": "testi:e14.imp.corrente",
+        "commento": "testi:e14.imp.corrente.vice",
+        "settore": "biglietteria",
+        "opzioni": [
+          {
+            "id": "ordina_fila",
+            "testo": "testi:e14.imp.corrente.ordina_fila",
+            "costo": "testi:e14.imp.corrente.ordina_fila.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "biglietteria",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e14.imp.corrente.ordina_fila.r"
+          },
+          {
+            "id": "ai_tornelli",
+            "testo": "testi:e14.imp.corrente.ai_tornelli",
+            "costo": "testi:e14.imp.corrente.ai_tornelli.c",
+            "effetti": [
+              {
+                "pressione": "biglietteria",
+                "valore": -2
+              },
+              {
+                "pressione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.corrente.ai_tornelli.r"
+          },
+          {
+            "id": "aspetta_corrente",
+            "testo": "testi:e14.imp.corrente.aspetta_corrente",
+            "costo": "testi:e14.imp.corrente.aspetta_corrente.c",
+            "effetti": [
+              {
+                "pressione": "biglietteria",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.corrente.aspetta_corrente.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_ombrelli",
+        "fonte": "centrale_radio",
+        "testo": "testi:e14.imp.ombrelli",
+        "commento": "testi:e14.imp.ombrelli.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "chiudi_ombrelli",
+            "testo": "testi:e14.imp.ombrelli.chiudi_ombrelli",
+            "costo": "testi:e14.imp.ombrelli.chiudi_ombrelli.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "tornelli",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e14.imp.ombrelli.chiudi_ombrelli.r"
+          },
+          {
+            "id": "sotto_tettoia",
+            "testo": "testi:e14.imp.ombrelli.sotto_tettoia",
+            "costo": "testi:e14.imp.ombrelli.sotto_tettoia.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.ombrelli.sotto_tettoia.r"
+          },
+          {
+            "id": "lascia_pioggia",
+            "testo": "testi:e14.imp.ombrelli.lascia_pioggia",
+            "costo": "testi:e14.imp.ombrelli.lascia_pioggia.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.ombrelli.lascia_pioggia.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_seggiolini",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e14.imp.seggiolini",
+        "commento": "testi:e14.imp.seggiolini.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "sistema_fila",
+            "testo": "testi:e14.imp.seggiolini.sistema_fila",
+            "costo": "testi:e14.imp.seggiolini.sistema_fila.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_larkspire",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e14.imp.seggiolini.sistema_fila.r"
+          },
+          {
+            "id": "posti_ospiti",
+            "testo": "testi:e14.imp.seggiolini.posti_ospiti",
+            "costo": "testi:e14.imp.seggiolini.posti_ospiti.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -2
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.seggiolini.posti_ospiti.r"
+          },
+          {
+            "id": "si_arrangino",
+            "testo": "testi:e14.imp.seggiolini.si_arrangino",
+            "costo": "testi:e14.imp.seggiolini.si_arrangino.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.seggiolini.si_arrangino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_gomma",
+        "fonte": "centrale_radio",
+        "testo": "testi:e14.imp.gomma",
+        "commento": "testi:e14.imp.gomma.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "spinta_pullman",
+            "testo": "testi:e14.imp.gomma.spinta_pullman",
+            "costo": "testi:e14.imp.gomma.spinta_pullman.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -4
+              },
+              {
+                "tensione": "biglietteria",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.gomma.spinta_pullman.r"
+          },
+          {
+            "id": "lato_biglietteria",
+            "testo": "testi:e14.imp.gomma.lato_biglietteria",
+            "costo": "testi:e14.imp.gomma.lato_biglietteria.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "pressione": "biglietteria",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.gomma.lato_biglietteria.r"
+          },
+          {
+            "id": "aspetta_gommista",
+            "testo": "testi:e14.imp.gomma.aspetta_gommista",
+            "costo": "testi:e14.imp.gomma.aspetta_gommista.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.gomma.aspetta_gommista.r"
+          }
+        ]
+      }
+    }
+  ]
+}

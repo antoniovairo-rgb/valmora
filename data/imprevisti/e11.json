@@ -1,0 +1,233 @@
+{
+  "id": "e11",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_scale_mobili",
+        "fonte": "ferrovie",
+        "testo": "testi:e11.imp.scale_mobili",
+        "commento": "testi:e11.imp.scale_mobili.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "guida_discesa",
+            "testo": "testi:e11.imp.scale_mobili.guida_discesa",
+            "costo": "testi:e11.imp.scale_mobili.guida_discesa.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "stazione",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e11.imp.scale_mobili.guida_discesa.r"
+          },
+          {
+            "id": "uscita_viale",
+            "testo": "testi:e11.imp.scale_mobili.uscita_viale",
+            "costo": "testi:e11.imp.scale_mobili.uscita_viale.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -2
+              },
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.scale_mobili.uscita_viale.r"
+          },
+          {
+            "id": "lascia_ferrovie",
+            "testo": "testi:e11.imp.scale_mobili.lascia_ferrovie",
+            "costo": "testi:e11.imp.scale_mobili.lascia_ferrovie.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.scale_mobili.lascia_ferrovie.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_doppia_fila",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e11.imp.doppia_fila",
+        "commento": "testi:e11.imp.doppia_fila.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "trova_proprietario",
+            "testo": "testi:e11.imp.doppia_fila.trova_proprietario",
+            "costo": "testi:e11.imp.doppia_fila.trova_proprietario.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "quartiere",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e11.imp.doppia_fila.trova_proprietario.r"
+          },
+          {
+            "id": "giro_kiln",
+            "testo": "testi:e11.imp.doppia_fila.giro_kiln",
+            "costo": "testi:e11.imp.doppia_fila.giro_kiln.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.doppia_fila.giro_kiln.r"
+          },
+          {
+            "id": "aspetta_carro",
+            "testo": "testi:e11.imp.doppia_fila.aspetta_carro",
+            "costo": "testi:e11.imp.doppia_fila.aspetta_carro.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.doppia_fila.aspetta_carro.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_acquazzone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e11.imp.acquazzone",
+        "commento": "testi:e11.imp.acquazzone.vice",
+        "settore": "piazza_fonderie",
+        "opzioni": [
+          {
+            "id": "squadra_portici",
+            "testo": "testi:e11.imp.acquazzone.squadra_portici",
+            "costo": "testi:e11.imp.acquazzone.squadra_portici.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "piazza_fonderie",
+                "valore": -4
+              }
+            ],
+            "risposta": "testi:e11.imp.acquazzone.squadra_portici.r"
+          },
+          {
+            "id": "verso_quartiere",
+            "testo": "testi:e11.imp.acquazzone.verso_quartiere",
+            "costo": "testi:e11.imp.acquazzone.verso_quartiere.c",
+            "effetti": [
+              {
+                "pressione": "piazza_fonderie",
+                "valore": -2
+              },
+              {
+                "pressione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.acquazzone.verso_quartiere.r"
+          },
+          {
+            "id": "lascia_piovere",
+            "testo": "testi:e11.imp.acquazzone.lascia_piovere",
+            "costo": "testi:e11.imp.acquazzone.lascia_piovere.c",
+            "effetti": [
+              {
+                "pressione": "piazza_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.acquazzone.lascia_piovere.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_spazzatrice",
+        "fonte": "centrale_radio",
+        "testo": "testi:e11.imp.spazzatrice",
+        "commento": "testi:e11.imp.spazzatrice.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "dirigi_traffico",
+            "testo": "testi:e11.imp.spazzatrice.dirigi_traffico",
+            "costo": "testi:e11.imp.spazzatrice.dirigi_traffico.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -4
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.spazzatrice.dirigi_traffico.r"
+          },
+          {
+            "id": "taglia_quartiere",
+            "testo": "testi:e11.imp.spazzatrice.taglia_quartiere",
+            "costo": "testi:e11.imp.spazzatrice.taglia_quartiere.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -2
+              },
+              {
+                "pressione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.spazzatrice.taglia_quartiere.r"
+          },
+          {
+            "id": "aspetta_meccanico",
+            "testo": "testi:e11.imp.spazzatrice.aspetta_meccanico",
+            "costo": "testi:e11.imp.spazzatrice.aspetta_meccanico.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.spazzatrice.aspetta_meccanico.r"
+          }
+        ]
+      }
+    }
+  ]
+}

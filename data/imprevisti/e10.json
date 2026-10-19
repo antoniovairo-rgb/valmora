@@ -1,0 +1,233 @@
+{
+  "id": "e10",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_cantiere",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.imp.cantiere",
+        "commento": "testi:e10.imp.cantiere.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "sgombra_transenne",
+            "testo": "testi:e10.imp.cantiere.sgombra_transenne",
+            "costo": "testi:e10.imp.cantiere.sgombra_transenne.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e10.imp.cantiere.sgombra_transenne.r"
+          },
+          {
+            "id": "corteo_piazzale",
+            "testo": "testi:e10.imp.cantiere.corteo_piazzale",
+            "costo": "testi:e10.imp.cantiere.corteo_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.cantiere.corteo_piazzale.r"
+          },
+          {
+            "id": "lascia_transenne",
+            "testo": "testi:e10.imp.cantiere.lascia_transenne",
+            "costo": "testi:e10.imp.cantiere.lascia_transenne.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.cantiere.lascia_transenne.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 4,
+      "chiamata": {
+        "id": "imp_telone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.imp.telone",
+        "commento": "testi:e10.imp.telone.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "libera_telone",
+            "testo": "testi:e10.imp.telone.libera_telone",
+            "costo": "testi:e10.imp.telone.libera_telone.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_larkspire",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e10.imp.telone.libera_telone.r"
+          },
+          {
+            "id": "taglia_telone",
+            "testo": "testi:e10.imp.telone.taglia_telone",
+            "costo": "testi:e10.imp.telone.taglia_telone.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.telone.taglia_telone.r"
+          },
+          {
+            "id": "lascia_tirare",
+            "testo": "testi:e10.imp.telone.lascia_tirare",
+            "costo": "testi:e10.imp.telone.lascia_tirare.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.telone.lascia_tirare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cane",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.imp.cane",
+        "commento": "testi:e10.imp.cane.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "recupera_cane",
+            "testo": "testi:e10.imp.cane.recupera_cane",
+            "costo": "testi:e10.imp.cane.recupera_cane.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e10.imp.cane.recupera_cane.r"
+          },
+          {
+            "id": "cancello_piazzale",
+            "testo": "testi:e10.imp.cane.cancello_piazzale",
+            "costo": "testi:e10.imp.cane.cancello_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.cane.cancello_piazzale.r"
+          },
+          {
+            "id": "lascialo_correre",
+            "testo": "testi:e10.imp.cane.lascialo_correre",
+            "costo": "testi:e10.imp.cane.lascialo_correre.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.cane.lascialo_correre.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_lampioni",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.imp.lampioni",
+        "commento": "testi:e10.imp.lampioni.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "fari_servizio",
+            "testo": "testi:e10.imp.lampioni.fari_servizio",
+            "costo": "testi:e10.imp.lampioni.fari_servizio.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -3
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.lampioni.fari_servizio.r"
+          },
+          {
+            "id": "devia_kiln",
+            "testo": "testi:e10.imp.lampioni.devia_kiln",
+            "costo": "testi:e10.imp.lampioni.devia_kiln.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.lampioni.devia_kiln.r"
+          },
+          {
+            "id": "torce_telefoni",
+            "testo": "testi:e10.imp.lampioni.torce_telefoni",
+            "costo": "testi:e10.imp.lampioni.torce_telefoni.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.lampioni.torce_telefoni.r"
+          }
+        ]
+      }
+    }
+  ]
+}

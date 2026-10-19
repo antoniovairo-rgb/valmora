@@ -1,0 +1,233 @@
+{
+  "id": "e28",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_doppia_fila",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.doppia_fila",
+        "commento": "testi:e28.imp.doppia_fila.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "sposta_auto",
+            "testo": "testi:e28.imp.doppia_fila.sposta_auto",
+            "costo": "testi:e28.imp.doppia_fila.sposta_auto.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e28.imp.doppia_fila.sposta_auto.r"
+          },
+          {
+            "id": "al_piazzale",
+            "testo": "testi:e28.imp.doppia_fila.al_piazzale",
+            "costo": "testi:e28.imp.doppia_fila.al_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.doppia_fila.al_piazzale.r"
+          },
+          {
+            "id": "clacson",
+            "testo": "testi:e28.imp.doppia_fila.clacson",
+            "costo": "testi:e28.imp.doppia_fila.clacson.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.doppia_fila.clacson.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cane",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.cane",
+        "commento": "testi:e28.imp.cane.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "panino",
+            "testo": "testi:e28.imp.cane.panino",
+            "costo": "testi:e28.imp.cane.panino.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e28.imp.cane.panino.r"
+          },
+          {
+            "id": "verso_strada",
+            "testo": "testi:e28.imp.cane.verso_strada",
+            "costo": "testi:e28.imp.cane.verso_strada.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.cane.verso_strada.r"
+          },
+          {
+            "id": "si_stanchera",
+            "testo": "testi:e28.imp.cane.si_stanchera",
+            "costo": "testi:e28.imp.cane.si_stanchera.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.cane.si_stanchera.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tabellone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.tabellone",
+        "commento": "testi:e28.imp.tabellone.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "cronometro",
+            "testo": "testi:e28.imp.tabellone.cronometro",
+            "costo": "testi:e28.imp.tabellone.cronometro.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e28.imp.tabellone.cronometro.r"
+          },
+          {
+            "id": "speaker",
+            "testo": "testi:e28.imp.tabellone.speaker",
+            "costo": "testi:e28.imp.tabellone.speaker.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.tabellone.speaker.r"
+          },
+          {
+            "id": "tecnico",
+            "testo": "testi:e28.imp.tabellone.tecnico",
+            "costo": "testi:e28.imp.tabellone.tecnico.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.tabellone.tecnico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_lampione",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e28.imp.lampione",
+        "commento": "testi:e28.imp.lampione.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "apri_corsia",
+            "testo": "testi:e28.imp.lampione.apri_corsia",
+            "costo": "testi:e28.imp.lampione.apri_corsia.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -3
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.lampione.apri_corsia.r"
+          },
+          {
+            "id": "trattieni",
+            "testo": "testi:e28.imp.lampione.trattieni",
+            "costo": "testi:e28.imp.lampione.trattieni.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.lampione.trattieni.r"
+          },
+          {
+            "id": "comune",
+            "testo": "testi:e28.imp.lampione.comune",
+            "costo": "testi:e28.imp.lampione.comune.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.lampione.comune.r"
+          }
+        ]
+      }
+    }
+  ]
+}

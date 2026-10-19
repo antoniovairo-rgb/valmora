@@ -50,7 +50,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e22.imp.turisti.lascia_foto.r"
@@ -107,7 +107,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.pannello.lascia_sbattere.r"
@@ -164,7 +164,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.pallone_sponsor.vola_via.r"
@@ -221,7 +221,7 @@
             "effetti": [
               {
                 "pressione": "piazza_municipio",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.matrimonio.fotografo.r"

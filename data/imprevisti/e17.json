@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e17.imp.paninaro.sposta_furgone.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "strada_cinderwick",
@@ -79,7 +79,7 @@
               },
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e17.imp.cane.prendi_cane.r"
@@ -91,7 +91,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",
@@ -136,7 +136,7 @@
               },
               {
                 "pressione": "tornelli",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e17.imp.cancello_elettrico.manovella.r"
@@ -148,7 +148,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",
@@ -189,7 +189,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -4
               },
               {
                 "tensione": "strada_cinderwick",
@@ -205,7 +205,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "strada_cinderwick",

@@ -1,0 +1,233 @@
+{
+  "id": "e09",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_gregge",
+        "fonte": "centrale_radio",
+        "testo": "testi:e09.imp.gregge",
+        "commento": "testi:e09.imp.gregge.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "accompagna_gregge",
+            "testo": "testi:e09.imp.gregge.accompagna_gregge",
+            "costo": "testi:e09.imp.gregge.accompagna_gregge.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e09.imp.gregge.accompagna_gregge.r"
+          },
+          {
+            "id": "giro_piazzale",
+            "testo": "testi:e09.imp.gregge.giro_piazzale",
+            "costo": "testi:e09.imp.gregge.giro_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e09.imp.gregge.giro_piazzale.r"
+          },
+          {
+            "id": "aspetta_pastore",
+            "testo": "testi:e09.imp.gregge.aspetta_pastore",
+            "costo": "testi:e09.imp.gregge.aspetta_pastore.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e09.imp.gregge.aspetta_pastore.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_malore_coda",
+        "fonte": "viabilita",
+        "testo": "testi:e09.imp.malore_coda",
+        "commento": "testi:e09.imp.malore_coda.vice",
+        "settore": "tangenziale",
+        "opzioni": [
+          {
+            "id": "porta_acqua",
+            "testo": "testi:e09.imp.malore_coda.porta_acqua",
+            "costo": "testi:e09.imp.malore_coda.porta_acqua.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "tangenziale",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e09.imp.malore_coda.porta_acqua.r"
+          },
+          {
+            "id": "rampa_stadio",
+            "testo": "testi:e09.imp.malore_coda.rampa_stadio",
+            "costo": "testi:e09.imp.malore_coda.rampa_stadio.c",
+            "effetti": [
+              {
+                "pressione": "tangenziale",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e09.imp.malore_coda.rampa_stadio.r"
+          },
+          {
+            "id": "aspetta_soccorso",
+            "testo": "testi:e09.imp.malore_coda.aspetta_soccorso",
+            "costo": "testi:e09.imp.malore_coda.aspetta_soccorso.c",
+            "effetti": [
+              {
+                "pressione": "tangenziale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e09.imp.malore_coda.aspetta_soccorso.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pallone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e09.imp.pallone",
+        "commento": "testi:e09.imp.pallone.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "recupera_pallone",
+            "testo": "testi:e09.imp.pallone.recupera_pallone",
+            "costo": "testi:e09.imp.pallone.recupera_pallone.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_larkspire",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e09.imp.pallone.recupera_pallone.r"
+          },
+          {
+            "id": "verso_ospiti",
+            "testo": "testi:e09.imp.pallone.verso_ospiti",
+            "costo": "testi:e09.imp.pallone.verso_ospiti.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e09.imp.pallone.verso_ospiti.r"
+          },
+          {
+            "id": "lascia_arbitro",
+            "testo": "testi:e09.imp.pallone.lascia_arbitro",
+            "costo": "testi:e09.imp.pallone.lascia_arbitro.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e09.imp.pallone.lascia_arbitro.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cancello",
+        "fonte": "centrale_radio",
+        "testo": "testi:e09.imp.cancello",
+        "commento": "testi:e09.imp.cancello.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "apri_forza",
+            "testo": "testi:e09.imp.cancello.apri_forza",
+            "costo": "testi:e09.imp.cancello.apri_forza.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e09.imp.cancello.apri_forza.r"
+          },
+          {
+            "id": "porta_laterale",
+            "testo": "testi:e09.imp.cancello.porta_laterale",
+            "costo": "testi:e09.imp.cancello.porta_laterale.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e09.imp.cancello.porta_laterale.r"
+          },
+          {
+            "id": "aspetta_manutentore",
+            "testo": "testi:e09.imp.cancello.aspetta_manutentore",
+            "costo": "testi:e09.imp.cancello.aspetta_manutentore.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e09.imp.cancello.aspetta_manutentore.r"
+          }
+        ]
+      }
+    }
+  ]
+}

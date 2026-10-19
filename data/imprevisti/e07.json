@@ -1,0 +1,233 @@
+{
+  "id": "e07",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_sbarra",
+        "fonte": "centrale_radio",
+        "testo": "testi:e07.imp.sbarra",
+        "commento": "testi:e07.imp.sbarra.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "alza_sbarra",
+            "testo": "testi:e07.imp.sbarra.alza_sbarra",
+            "costo": "testi:e07.imp.sbarra.alza_sbarra.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "parcheggi",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e07.imp.sbarra.alza_sbarra.r"
+          },
+          {
+            "id": "sosta_piazzale",
+            "testo": "testi:e07.imp.sbarra.sosta_piazzale",
+            "costo": "testi:e07.imp.sbarra.sosta_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.sbarra.sosta_piazzale.r"
+          },
+          {
+            "id": "aspetta_tecnico",
+            "testo": "testi:e07.imp.sbarra.aspetta_tecnico",
+            "costo": "testi:e07.imp.sbarra.aspetta_tecnico.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.sbarra.aspetta_tecnico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_sole",
+        "fonte": "club_southwind",
+        "testo": "testi:e07.imp.sole",
+        "commento": "testi:e07.imp.sole.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "steward_scale",
+            "testo": "testi:e07.imp.sole.steward_scale",
+            "costo": "testi:e07.imp.sole.steward_scale.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e07.imp.sole.steward_scale.r"
+          },
+          {
+            "id": "cerca_ombra",
+            "testo": "testi:e07.imp.sole.cerca_ombra",
+            "costo": "testi:e07.imp.sole.cerca_ombra.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.sole.cerca_ombra.r"
+          },
+          {
+            "id": "aspetta_sole",
+            "testo": "testi:e07.imp.sole.aspetta_sole",
+            "costo": "testi:e07.imp.sole.aspetta_sole.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.sole.aspetta_sole.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_idrante",
+        "fonte": "centrale_radio",
+        "testo": "testi:e07.imp.idrante",
+        "commento": "testi:e07.imp.idrante.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "devia_passaggio",
+            "testo": "testi:e07.imp.idrante.devia_passaggio",
+            "costo": "testi:e07.imp.idrante.devia_passaggio.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e07.imp.idrante.devia_passaggio.r"
+          },
+          {
+            "id": "giro_parcheggi",
+            "testo": "testi:e07.imp.idrante.giro_parcheggi",
+            "costo": "testi:e07.imp.idrante.giro_parcheggi.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              },
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.idrante.giro_parcheggi.r"
+          },
+          {
+            "id": "aspetta_acquedotto",
+            "testo": "testi:e07.imp.idrante.aspetta_acquedotto",
+            "costo": "testi:e07.imp.idrante.aspetta_acquedotto.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.idrante.aspetta_acquedotto.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_semaforo",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e07.imp.semaforo",
+        "commento": "testi:e07.imp.semaforo.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "incrocio_mano",
+            "testo": "testi:e07.imp.semaforo.incrocio_mano",
+            "costo": "testi:e07.imp.semaforo.incrocio_mano.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -3
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.semaforo.incrocio_mano.r"
+          },
+          {
+            "id": "giro_piazzale",
+            "testo": "testi:e07.imp.semaforo.giro_piazzale",
+            "costo": "testi:e07.imp.semaforo.giro_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.semaforo.giro_piazzale.r"
+          },
+          {
+            "id": "lascia_lampeggiare",
+            "testo": "testi:e07.imp.semaforo.lascia_lampeggiare",
+            "costo": "testi:e07.imp.semaforo.lascia_lampeggiare.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.semaforo.lascia_lampeggiare.r"
+          }
+        ]
+      }
+    }
+  ]
+}

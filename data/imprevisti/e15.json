@@ -1,0 +1,233 @@
+{
+  "id": "e15",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tabellone",
+        "fonte": "ferrovie",
+        "testo": "testi:e15.imp.tabellone",
+        "commento": "testi:e15.imp.tabellone.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "cartello_mano",
+            "testo": "testi:e15.imp.tabellone.cartello_mano",
+            "costo": "testi:e15.imp.tabellone.cartello_mano.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "stazione",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e15.imp.tabellone.cartello_mano.r"
+          },
+          {
+            "id": "attesa_viale",
+            "testo": "testi:e15.imp.tabellone.attesa_viale",
+            "costo": "testi:e15.imp.tabellone.attesa_viale.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.tabellone.attesa_viale.r"
+          },
+          {
+            "id": "lascia_tabellone",
+            "testo": "testi:e15.imp.tabellone.lascia_tabellone",
+            "costo": "testi:e15.imp.tabellone.lascia_tabellone.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e15.imp.tabellone.lascia_tabellone.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_autobus",
+        "fonte": "centrale_radio",
+        "testo": "testi:e15.imp.autobus",
+        "commento": "testi:e15.imp.autobus.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "guida_manovra",
+            "testo": "testi:e15.imp.autobus.guida_manovra",
+            "costo": "testi:e15.imp.autobus.guida_manovra.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "viale_stazione",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e15.imp.autobus.guida_manovra.r"
+          },
+          {
+            "id": "attesa_stazione",
+            "testo": "testi:e15.imp.autobus.attesa_stazione",
+            "costo": "testi:e15.imp.autobus.attesa_stazione.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "pressione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.autobus.attesa_stazione.r"
+          },
+          {
+            "id": "giro_isola",
+            "testo": "testi:e15.imp.autobus.giro_isola",
+            "costo": "testi:e15.imp.autobus.giro_isola.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.autobus.giro_isola.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_balaustra",
+        "fonte": "centrale_radio",
+        "testo": "testi:e15.imp.balaustra",
+        "commento": "testi:e15.imp.balaustra.vice",
+        "settore": "settore_gemellati",
+        "opzioni": [
+          {
+            "id": "nastro_fila",
+            "testo": "testi:e15.imp.balaustra.nastro_fila",
+            "costo": "testi:e15.imp.balaustra.nastro_fila.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "settore_gemellati",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e15.imp.balaustra.nastro_fila.r"
+          },
+          {
+            "id": "in_curva_kiln",
+            "testo": "testi:e15.imp.balaustra.in_curva_kiln",
+            "costo": "testi:e15.imp.balaustra.in_curva_kiln.c",
+            "effetti": [
+              {
+                "pressione": "settore_gemellati",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.balaustra.in_curva_kiln.r"
+          },
+          {
+            "id": "solo_annuncio",
+            "testo": "testi:e15.imp.balaustra.solo_annuncio",
+            "costo": "testi:e15.imp.balaustra.solo_annuncio.c",
+            "effetti": [
+              {
+                "pressione": "settore_gemellati",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.balaustra.solo_annuncio.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_vagone",
+        "fonte": "ferrovie",
+        "testo": "testi:e15.imp.vagone",
+        "commento": "testi:e15.imp.vagone.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "un_vagone_alla_volta",
+            "testo": "testi:e15.imp.vagone.un_vagone_alla_volta",
+            "costo": "testi:e15.imp.vagone.un_vagone_alla_volta.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -2
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.vagone.un_vagone_alla_volta.r"
+          },
+          {
+            "id": "meta_viale",
+            "testo": "testi:e15.imp.vagone.meta_viale",
+            "costo": "testi:e15.imp.vagone.meta_viale.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.vagone.meta_viale.r"
+          },
+          {
+            "id": "si_stringano",
+            "testo": "testi:e15.imp.vagone.si_stringano",
+            "costo": "testi:e15.imp.vagone.si_stringano.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.vagone.si_stringano.r"
+          }
+        ]
+      }
+    }
+  ]
+}

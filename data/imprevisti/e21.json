@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e21.imp.irrigazione.chiudi_aiuole.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "quartiere",
@@ -79,7 +79,7 @@
               },
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e21.imp.scuola_guida.guida_fuori.r"
@@ -91,7 +91,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazza_fonderie",
@@ -136,7 +136,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e21.imp.pallone.recupera_pallone.r"
@@ -148,7 +148,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "curva_cinderwick",
@@ -189,7 +189,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -4
               },
               {
                 "tensione": "piazzale",
@@ -205,7 +205,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",

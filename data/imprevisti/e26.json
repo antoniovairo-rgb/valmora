@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "parcheggi",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e26.imp.auto_blu.staffetta.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",
@@ -79,7 +79,7 @@
               },
               {
                 "pressione": "tribuna_autorita",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e26.imp.microfono.spegni_microfono.r"
@@ -91,7 +91,7 @@
             "effetti": [
               {
                 "pressione": "tribuna_autorita",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "curva_larkspire",
@@ -136,7 +136,7 @@
               },
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e26.imp.bandiera_cavi.libera_bandiera.r"
@@ -148,7 +148,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",
@@ -189,7 +189,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -2
+                "valore": -4
               },
               {
                 "tensione": "piazzale",
@@ -205,7 +205,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",

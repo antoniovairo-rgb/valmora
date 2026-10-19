@@ -1,0 +1,233 @@
+{
+  "id": "e12",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_piccioni",
+        "fonte": "centrale_radio",
+        "testo": "testi:e12.imp.piccioni",
+        "commento": "testi:e12.imp.piccioni.vice",
+        "settore": "piazza_comune",
+        "opzioni": [
+          {
+            "id": "ferma_mangime",
+            "testo": "testi:e12.imp.piccioni.ferma_mangime",
+            "costo": "testi:e12.imp.piccioni.ferma_mangime.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "piazza_comune",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e12.imp.piccioni.ferma_mangime.r"
+          },
+          {
+            "id": "verso_piazzale",
+            "testo": "testi:e12.imp.piccioni.verso_piazzale",
+            "costo": "testi:e12.imp.piccioni.verso_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "piazza_comune",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e12.imp.piccioni.verso_piazzale.r"
+          },
+          {
+            "id": "lascia_piccioni",
+            "testo": "testi:e12.imp.piccioni.lascia_piccioni",
+            "costo": "testi:e12.imp.piccioni.lascia_piccioni.c",
+            "effetti": [
+              {
+                "pressione": "piazza_comune",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e12.imp.piccioni.lascia_piccioni.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tamburo",
+        "fonte": "club_southwind",
+        "testo": "testi:e12.imp.tamburo",
+        "commento": "testi:e12.imp.tamburo.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "nastro_adesivo",
+            "testo": "testi:e12.imp.tamburo.nastro_adesivo",
+            "costo": "testi:e12.imp.tamburo.nastro_adesivo.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e12.imp.tamburo.nastro_adesivo.r"
+          },
+          {
+            "id": "tamburo_prestito",
+            "testo": "testi:e12.imp.tamburo.tamburo_prestito",
+            "costo": "testi:e12.imp.tamburo.tamburo_prestito.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e12.imp.tamburo.tamburo_prestito.r"
+          },
+          {
+            "id": "senza_ritmo",
+            "testo": "testi:e12.imp.tamburo.senza_ritmo",
+            "costo": "testi:e12.imp.tamburo.senza_ritmo.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e12.imp.tamburo.senza_ritmo.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_maxischermo",
+        "fonte": "centrale_radio",
+        "testo": "testi:e12.imp.maxischermo",
+        "commento": "testi:e12.imp.maxischermo.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "steward_regia",
+            "testo": "testi:e12.imp.maxischermo.steward_regia",
+            "costo": "testi:e12.imp.maxischermo.steward_regia.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -3
+              }
+            ],
+            "risposta": "testi:e12.imp.maxischermo.steward_regia.r"
+          },
+          {
+            "id": "spegni_tutti",
+            "testo": "testi:e12.imp.maxischermo.spegni_tutti",
+            "costo": "testi:e12.imp.maxischermo.spegni_tutti.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e12.imp.maxischermo.spegni_tutti.r"
+          },
+          {
+            "id": "lascia_replay",
+            "testo": "testi:e12.imp.maxischermo.lascia_replay",
+            "costo": "testi:e12.imp.maxischermo.lascia_replay.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e12.imp.maxischermo.lascia_replay.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_trasloco",
+        "fonte": "centrale_radio",
+        "testo": "testi:e12.imp.trasloco",
+        "commento": "testi:e12.imp.trasloco.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "ferma_manovra",
+            "testo": "testi:e12.imp.trasloco.ferma_manovra",
+            "costo": "testi:e12.imp.trasloco.ferma_manovra.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -3
+              },
+              {
+                "tensione": "piazza_comune",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e12.imp.trasloco.ferma_manovra.r"
+          },
+          {
+            "id": "verso_piazza",
+            "testo": "testi:e12.imp.trasloco.verso_piazza",
+            "costo": "testi:e12.imp.trasloco.verso_piazza.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "piazza_comune",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e12.imp.trasloco.verso_piazza.r"
+          },
+          {
+            "id": "finisca_manovra",
+            "testo": "testi:e12.imp.trasloco.finisca_manovra",
+            "costo": "testi:e12.imp.trasloco.finisca_manovra.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e12.imp.trasloco.finisca_manovra.r"
+          }
+        ]
+      }
+    }
+  ]
+}

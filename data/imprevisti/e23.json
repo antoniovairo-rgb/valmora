@@ -50,7 +50,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e23.imp.foratura.ruota_scorta.r"
@@ -107,7 +107,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e23.imp.gabbiano.gabbiano_tifosi.r"
@@ -164,7 +164,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e23.imp.seggiolini.sulle_scale.r"

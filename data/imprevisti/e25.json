@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e25.imp.scala_mobile.regola_salita.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",
@@ -79,7 +79,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e25.imp.furgone_transenne.sposta_furgone25.r"
@@ -91,7 +91,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "curva_cinderwick",
@@ -136,7 +136,7 @@
               },
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -4
               }
             ],
             "risposta": "testi:e25.imp.tettoia.file_bagnate.r"
@@ -148,7 +148,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",
@@ -189,7 +189,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -4
               },
               {
                 "tensione": "zona_rossa",
@@ -205,7 +205,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "zona_rossa",

@@ -50,7 +50,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e18.imp.gregge.ultima_pecora.r"
@@ -164,7 +164,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e18.imp.fontanella.idraulico.r"
