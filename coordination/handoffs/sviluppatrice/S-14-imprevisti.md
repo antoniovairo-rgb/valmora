@@ -140,7 +140,7 @@ Esito misurato:
 - Il run 849 (76887cf) era rosso nella catena grafica a 375 e 412 px, per due cause:
   - D-129: l'imprevisto cambiava timbro e spicchio d'orologio. Tolto: lo spicchio suggerisce il tempo.
   - PO-085: il guardiano delle icone contava anche le opzioni spente di D-153, che mostrano il motivo e non gli effetti.
-    Ora le salta (`tools/foto-c17.mjs:196`). È una scelta dichiarata, da confermare.
+    Ora le salta (`tools/foto-c17.mjs:197-198`). È una scelta dichiarata, da confermare.
 - Catena grafica in locale: non girata (l'ha girata la CI, verde).
 
 ## 8. Non verificato
