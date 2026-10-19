@@ -31,32 +31,45 @@ Ramo `claude/valmora-resa-v2`. Commit: 09c1240. Base: merge della principale (a7
 
 - **Test:** 345 su 345 verdi.
 
-## C41-03 – risposte che costano un'unità con tutte le unità schierate: RIPRODOTTO, NON corretto (serve una decisione)
+## C41-03 – risposte che costano un'unità con tutte le unità schierate: RIPRODOTTO, corretto con D-183 (opzione A)
 
 - **Riproduzione (FATTO MISURATO):** script `c41-03-misura.ts`. Bot su 36 episodi, 4 strategie, la casuale con 5 semi: 1620 offerte su 3355 chiamate con unità non libere (disponibili − schierate ≤ 0), 216 casi distinti. Sono compresi e02 o2 `corteo_scortato`, e02 o4 `indaga`, e24 o2 `steward_bal`.
-- **Patch minima provata:** `c41-03-patch.diff`, `unitaFinita`: le schierate dell'ondata non sono libere; rosso `__NO_C41U01`. Dopo: 0 offerte; rosso: 1620.
-- **Effetto della patch:** 19 test rossi e catena logica rossa. Fra questi i guardiani di bilanciamento:
-  - D-160, fiducia nel verso del risultato: e08 più altri 7 episodi;
-  - PO-083, ripartenza vincibile: 5 ondate sotto una possibilità su tre;
+- **Patch provata e scartata:** `c41-03-patch.diff` (in `unitaFinita` le unità schierate dell'ondata non erano libere; rosso `__NO_C41U01`). Portava le offerte a 0, ma faceva diventare rossi 19 test e la catena logica, compresi i guardiani di bilanciamento:
+  - D-160, fiducia nel verso del risultato;
+  - PO-083, ripartenza vincibile;
   - C36-03, verbali di fallimento;
   - D-174, tabella di confronto;
-  - catene narrative C34-03 (e35) e C34-10 (e02);
-  - C14-03: e10 non si gioca più fino al verbale, possibile soft-lock da verificare.
+  - C34-03 e C34-10, catene narrative di e35 ed e02;
+  - C14-03, aggiornamento: e10 non si gioca più fino al verbale.
 
-  La causa è che il bot schiera quasi sempre tutte le unità, e allora le risposte con costo si spengono quasi sempre.
-- **Stato:** la patch non è nel ramo. Le opzioni sono state mandate alla principale:
-  - **A) (consigliata)** scrivere nel costo il significato attuale: «dalla prossima ondata». Nessun cambio di equilibrio.
-  - **B)** D-182 alla lettera, con ritaratura dei dati.
-  - **C)** la risposta toglie un'unità dalla mappa.
+  Per D-183 la patch NON entra.
+- **D-183 (opzione A):** il meccanismo resta com'è (le unità della serata escono dalla prossima ondata) e ora il gioco lo dice.
+  - **Costo:** sotto il costo di ogni risposta che impegna unità c'è una riga generata dagli effetti, per esempio «Ti costa 1 squadra dalla prossima ondata» (`effetti-opzione.tsx`, `quandoCosta`; `Ondata.tsx`). **Rosso `__NO_C183Q01`.**
+  - **Pannello delle unità** (schieramento): «Le risposte che costano unità le tolgono dalla prossima ondata.» (`Schieramento.tsx`). **Rosso `__NO_C183P01`.**
+  - Testi in `data/testi/it/comune.json` (`costo.*`). Nessun numero di gioco cambia.
+- **Guardiano:** `tests/costo-quando.test.ts`. Su tutti i 36 episodi, 230 risposte con costo in unità.
+  - Verde: tutte dicono «dalla prossima ondata», con tutte le unità che impegnano.
+  - Rosso C183Q01: 230 su 230 segnalate.
+
+| misura | prima (rosso C183Q01, C183P01) | dopo |
+|---|---|---|
+| risposte con costo in unità che dicono da quando vale | 0 su 230 | 230 su 230 |
+| e02 o2, chiamata del corteo, 360/375/412 | nessuna riga | «Ti costa 1 squadra dalla prossima ondata», «Ti costa 1 mediatore dalla prossima ondata» |
+| pannello dello schieramento, 360/375/412 | nessuna nota | nota presente |
+| altezza della pagina dello schieramento (360×760, 375×812, 412×915) | 760, 812, 915 | 760, 812, 915 (non scorre) |
+
+- **Foto:** `c41/prima/` e `c41/dopo/`, schieramento e chiamata, a 360/375/412 (sonda `c41/c41-foto.mjs`).
 
 ## Errori miei dichiarati
 
 - Tornando indietro con `git checkout` ho scartato da STABILITA due giri non committati:
-  - la catena «logica» ROSSA su a76301a, con la patch C41-03;
-  - poi la catena «governo» VERDE su a76301a, con i testi C41-04.
+  - **giro «logica» ROSSO** su a76301a, con le modifiche non committate della patch C41-03 (`unitaFinita`). Causa del rosso: i 19 test elencati sopra. È stato perso col checkout e non l'ho riscritto a mano;
+  - **giro «governo» VERDE** su a76301a, con i testi C41-04 non committati; perso allo stesso modo.
 
 ## Non verificato
 
 - **Testi a schermo:** i testi nuovi non li ho visti a 360/375/412.
 - **Residuo:** le stesse formule («resta scoperto/a», «tolta dal …», «scortata/o») compaiono in circa 25 altri testi fuori dai 5 casi (`grep` su `data/testi/it`). Non li ho toccati: il collaudo non li segnala e potrebbero essere veri nel loro contesto. Da decidere se allargare la regola.
-- **Soft-lock in e10:** con la patch C41-03 l'ho visto solo come test rosso, non l'ho analizzato.
+- **Soft-lock in e10:** con la patch scartata di C41-03 l'ho visto solo come test rosso, non l'ho analizzato.
+- **Leggibilità:** la nota del pannello a 360 sta su due righe; contrasto e leggibilità li ho giudicati a occhio.
+- **Altre chiamate:** la riga «dalla prossima ondata» l'ho vista a schermo solo nella chiamata del corteo di e02; per le altre 229 risposte la prova è il test sulla funzione, non una foto.

@@ -118,3 +118,5 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .tono-ondata > .vignetta { display: block; width: 100%; height: auto; min-height: 0; max-height: none; margin: 0; }
 /* PO-119 / D-171: tratto sottile dei dettagli del volto della seconda bozza (col tratto normale gli occhi a 3× erano macchie) */
 .vignetta .v-linea.v-fine { stroke-width: var(--vignetta-tratto-fine); }
+/* C41-03 (D-183): nota sotto le unità dello schieramento: le risposte che costano unità le tolgono dalla prossima ondata */
+.nota-unita { margin: var(--spazio-1) 0 0; font-size: var(--testo-mini); line-height: var(--linea-stretta); }
