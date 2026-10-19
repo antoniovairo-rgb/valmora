@@ -76,7 +76,7 @@ catene sotto.
 
 ## Catene (D-177)
 
-Vedi la sezione finale, scritta dopo i giri.
+3 giri di `node tools/catena.mjs governo && node tools/catena.mjs logica` su **c858edc**: governo 0/0/0, logica 0/0/0 (uscite: «Catena «logica» su c858edc: VERDE»). Le catene logica comprendono tests/fiducia-verso.test.ts e tests/confronto.test.ts (C41/C42). Questo commit aggiunge solo il rapporto e i prodotti della catena (STABILITA.json, governo.html), nessun dato di gioco.
 
 ## Non verificato
 - Perché gli esiti aggregati di e11 con le variabili a `true` restano identici togliendo due chiamate con effetti
