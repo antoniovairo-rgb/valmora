@@ -132,6 +132,8 @@ export function Schieramento(p: {
           );
         })}
       </div>
+      {/* C41-03 (D-183): il pannello dice da quando contano le unità impegnate dalle risposte. Rosso C183P01: niente */}
+      {!spento('C183P01') && <p className="nota-unita" data-nota-unita="">{t('costo.nota_pannello')}</p>}
       <div className="riga-in-mano">
       <p className="in-mano" data-in-mano={p.scelta ?? ''} role="status">
         {p.scelta

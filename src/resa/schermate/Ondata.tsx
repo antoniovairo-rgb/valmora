@@ -14,7 +14,7 @@ import { Messaggio } from './Scena.tsx';
 import { iconaChi, VignettaChiamata } from '../vignette-chiamata.tsx';
 import { urgente } from '../vignette-evento.tsx';
 import { altoNellaPagina, scorriPerIntero } from '../vista.ts';
-import { EffettiOpzione } from '../effetti-opzione.tsx';
+import { EffettiOpzione, quandoCosta } from '../effetti-opzione.tsx';
 
 
 /** PO-121 (D-148): per quanti secondi la risposta a una chiamata si può annullare. */
@@ -115,6 +115,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
               {t(o.testo)}
               {/* Accenno di costo in parole (D-078); interruttore rosso C05S05 lo nasconde */}
               {o.costo && !spento('C05S05') && <small className="costo" data-costo={o.id}>{t(o.costo)}</small>}
+              {quandoCosta(o) && <small className="costo costo-quando" data-quando={o.id}>{quandoCosta(o)}</small>}
               <EffettiOpzione c={p.c} o={o} />
             </span>
           </button>
