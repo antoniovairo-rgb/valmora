@@ -92,7 +92,7 @@ function perFormula(): string[] {
 
 describe('C42-02 testi neutri sullo schieramento, per formula su tutti i testi', () => {
   it('verde: nessuna formula', () => { expect(perFormula()).toEqual([]); });
-  it('rosso C42T01: i residui di prima', () => { g.__NO_C42T01 = true; const n = perFormula().length; if (process.env.MOSTRA) console.log(`rosso C42T01: ${n}`); expect(n).toBe(37); }); // i 37 testi di prima dei residui (e25 scorta_ritorno.r compreso)
+  it('rosso C42T01: i residui di prima', () => { g.__NO_C42T01 = true; const n = perFormula().length; if (process.env.MOSTRA) console.log(`rosso C42T01: ${n}`); expect(n).toBe(36); }); // i 36 testi di prima dei residui ancora esistenti (e25 scorta_ritorno.r compreso; e11.op.ferma11.c non c'è più: chiamata «contromano» tolta da e11 con D-186)
   // «la tiene breve» e «con squadre e steward» non sono formule: li sorveglia il test per chiave di C41-04 qui sotto
   it('rosso C41T01: 4 dei 5 casi di C41-04 tornano con la ricerca per formula', () => { g.__NO_C41T01 = true; expect(perFormula().length).toBe(4); });
 });
