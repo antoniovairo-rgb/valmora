@@ -88,7 +88,7 @@ export function Mappa(p: MappaProps) {
   // Nomi e unità al posto che non copre niente (C-008): a ogni disegno, quando la mappa cambia misura e
   // quando arrivano i caratteri.
   useLayoutEffect(() => { if (contenitore.current) disponi(contenitore.current); });
-  useAdatta(contenitore); // D-187
+  useAdatta(contenitore, disponi); // D-187
   useLayoutEffect(() => {
     const el = contenitore.current;
     if (!el) return;

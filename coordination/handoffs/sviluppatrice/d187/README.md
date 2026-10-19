@@ -1,5 +1,7 @@
 # D-187 · scorrimenti e sovrapposizioni (PO-052, PO-058) — S-11
 
+Nota: le foto «dopo» sono della prova con il minimo a 200 px (8 px più bassa della versione finale).
+
 Ramo `claude/valmora-home`, merge (non rebase) della principale `0908c2fa`. Build 0.42.0.
 Metodo: riproduci (sonda di S-12), patch minima, rosso, guardiano. Misure con `tools/sonda-altezze.mjs` (nuova, dalla sonda
 `coordination/sonde/s12-altezze.mjs` di S-12): partita e01 intera col piano del bot attento, a ogni scena eccedenza della
@@ -13,18 +15,18 @@ stati che vede): per questo le soglie sono il massimo misurato.
 |---|---|---|---|---|---|
 | titolo (home) | 4 → **0** | 0 → 0 | 4 → **0** | 0 → 0 | 0 → 0 |
 | città | 133 → 117 | 13 → **0** | 106 → 90 | 13 → **0** | 1 → **0** |
-| sala | 82 → 36 | 0 → 0 | 66 → 9 | 0 → 0 | 0 → 0 |
-| briefing | 80 → 34 | 0 → 0 | 64 → 7 | 0 → 0 | 0 → 0 |
+| sala | 82 → 44 | 0 → 0 | 66 → 17 | 0 → 0 | 0 → 0 |
+| briefing | 80 → 42 | 0 → 0 | 64 → 15 | 0 → 0 | 0 → 0 |
 | schieramento | 53 → **0** | 0 → 0 | 41 → **0** | 0 → 0 | 0 → 0 |
-| risposta | 241 → 113 | 104 → **0** | 212 → 69 | 67 → **0** | 86 → **0** |
+| risposta | 241 → 113 | 104 → **0** | 212 → 77 | 67 → **0** | 86 → **0** |
 | chiusura | 95 → **0** | 0 → 0 | 83 → **0** | 0 → 0 | 0 → 0 |
-| rapporto | 366 → 238 | 246 → 118 | 330 → 187 | 185 → **0** | 166 → **0** |
+| rapporto | 366 → 246 | 246 → 126 | 330 → 195 | 185 → **0** | 166 → **0** |
 | chiamata (D-114) | invariata: mappa 328/343/380 px come prima | | | | |
 | crediti | possono scorrere (invariati) | | | | |
 
 Cosa è cambiato:
 - `src/resa/mappa/adatta.ts` (nuovo) + `Mappa.tsx`: nelle schermate di gioco la mappa si abbassa quanto basta perché la
-  pagina non scorra, fino a `--mappa-altezza-min` (200 px: sotto, a 360, i nomi in alto finiscono sotto il tasto casa).
+  pagina non scorra, fino a `--mappa-altezza-min` (208 px) e mai sotto l'altezza a cui il pulsante «Home» tocca un punto o un nome dei settori (S-21: con 200 px la CI era rossa a 375, «Home» sopra la curva).
   La chiamata è esclusa (D-114). Le vignette nascondibili (D-126 d) cedono per prime. Rosso `__NO_C187M01`.
 - Città: `--citta-riserva` 500 → 516 e `--citta-altezza-min` 260 → 244 (la scheda è cresciuta di 13 px). Rosso `C187C01`.
 - Home: il margine dell'ultimo paragrafo usciva da `main` e la vignetta lo ignorava (4 px). Rosso `C187C01`.
@@ -56,15 +58,16 @@ a 150 ms ho letto ancora bianco con `data-fermo` già tolto, a 300 ms ciano in t
 ## 6. rev-schermate.mjs
 Sostituita come guardiano da `tools/sonda-altezze.mjs`, nella catena grafica (passo `altezze`, per larghezza:
 360 → 360×640 e 360×760, 375 → 375×667, 412 → 412×830), con le soglie misurate e i rossi C187M01 e C187V01 nei bracci
-rossi (a 360×760).
+rossi (a 360×760). Controlla anche che il pulsante «Home» della mappa abbassata non copra settori (S-21), e imposta
+`__VALMORA_SECONDO_MS = 1` come foto.mjs (senza, in CI a 412 «bloccato su chiamata» nella finestra «Annulla»).
 
 ## Opzioni (decide il PO, tramite la principale)
-- Rapporto (238/118/187 px a 360×640, 360×760, 375×667):
+- Rapporto (246/126/195 px a 360×640, 360×760, 375×667):
   A) a schermo basso il rapporto mostra la mappa piccola sopra la scheda solo se ci sta, altrimenti la scheda dei settori
      da sola (i colori dei settori dicono già lo stato) — 0 px a 360×760, ~24 px a 360×640; costo basso; cambia l'aspetto.
   B) pulsante «Prossima ondata» non fisso nel rapporto: niente copertura, ma per arrivarci si scorre.
   C) com'è (scorre, il pulsante copre le righe finché non si scorre).
-- Risposta a 360×640 e 375×667 (113/69 px), sala e briefing a 360×640 (36/34 px): mappa più bassa (160 px) nelle schermate
+- Risposta a 360×640 e 375×667 (113/77 px), sala e briefing a 360×640 (44/42 px) e 375×667 (17/15 px): mappa più bassa (160 px) nelle schermate
   senza tocchi sulla mappa; i nomi in alto rischiano il tasto casa. Da provare con foto.
 - Città a 360×640 e 375×667 (117/90 px): sotto 244 px i dischi degli episodi si coprono (C17-12): serve una scheda più
   compatta o a comparsa. Cambia l'aspetto.

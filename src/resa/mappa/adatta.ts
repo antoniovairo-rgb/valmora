@@ -9,6 +9,8 @@ import { spento } from '../../interruttori.ts';
 const ESCLUSE = new Set(['chiamata']);
 const NASCONDIBILE = /^(apertura|esito|ondata)-/;
 
+let ridisponi: (m: HTMLElement) => void = () => {};
+
 function adatta(m: HTMLElement) {
   const main = m.closest('main');
   m.removeAttribute('data-adatta'); m.style.removeProperty('--mappa-alta');
@@ -23,12 +25,24 @@ function adatta(m: HTMLElement) {
   }
   if (ecc <= 0) return;
   const min = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--mappa-altezza-min')) || 0;
-  const alta = Math.max(min, m.getBoundingClientRect().height - ecc);
-  m.style.setProperty('--mappa-alta', `${Math.round(alta)}px`); m.setAttribute('data-adatta', '');
+  const nat = m.getBoundingClientRect().height;
+  let alta = Math.max(min, nat - ecc);
+  // S-21: il pulsante «Home» nell'angolo non deve coprire punti o nomi dei settori (CI rossa a 375: il rapporto abbassato
+  // portava la curva sotto la casa). Si rialza di un passo finché non li tocca, al più fino all'altezza naturale.
+  const casa = m.querySelector(':scope > .tasto-home'), passo = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--spazio-2')) || 8;
+  const tocca = () => { if (!casa) return false; ridisponi(m); const h = casa.getBoundingClientRect();
+    return [...m.querySelectorAll('.settore-punto, .settore-nome')].some((e) => { const r = e.getBoundingClientRect(); return Math.min(h.right, r.right) - Math.max(h.left, r.left) > 2 && Math.min(h.bottom, r.bottom) - Math.max(h.top, r.top) > 2; }); };
+  for (;;) {
+    m.style.setProperty('--mappa-alta', `${Math.round(alta)}px`); m.setAttribute('data-adatta', '');
+    if (alta >= nat || !tocca()) break;
+    alta = Math.min(nat, alta + passo);
+  }
+  if (alta >= nat) { m.removeAttribute('data-adatta'); m.style.removeProperty('--mappa-alta'); ridisponi(m); }
 }
 
 /** Si rifà quando la pagina cambia (passi, testi, caratteri) e quando cambia la finestra. */
-export function useAdatta(el: RefObject<HTMLDivElement | null>) {
+export function useAdatta(el: RefObject<HTMLDivElement | null>, disponi: (m: HTMLElement) => void) {
+  ridisponi = disponi;
   useLayoutEffect(() => {
     const m = el.current, main = m?.closest('main');
     if (!m || !main) return;

@@ -192,7 +192,7 @@
   --nome-max: 7.5em;
   --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */
   --mappa-proporzione: 1 / 1;
-  --mappa-altezza-min: 200px; /* D-187: sotto, a 360 i nomi dei settori non stanno più senza coprirsi */
+  --mappa-altezza-min: 208px; /* D-187: sotto, il pulsante «Home» copre la curva di e01 (S-21, CI rossa a 375 con 200) */
   --mappa-proporzione-passi: 4 / 3; /* sala e briefing a passi (S-10): mappa più bassa, niente scorrimento */
   --citta-proporzione: 4 / 5;
   --citta-riserva: 516px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine; D-187: 513 px dopo la scheda nuova, 13 px di scorrimento a 360×760) */

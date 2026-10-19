@@ -18,9 +18,9 @@ import { creaCaso } from '../src/logica/caso.ts';
 // Massimo scorrimento per schermata (px), misurato il 19/10 dopo D-187 con questo pilota; le schermate non elencate: 0.
 // Mai alzarle per far passare una modifica.
 export const SOGLIE = {
-  '360x640': { citta: 117, sala: 36, briefing: 34, risposta: 113, rapporto: 238, chiamata: 664 }, // chiamata: il massimo di prima (D-114)
-  '360x760': { rapporto: 118, chiamata: 544 },
-  '375x667': { citta: 90, sala: 9, briefing: 7, risposta: 69, rapporto: 187, chiamata: 618 },
+  '360x640': { citta: 117, sala: 44, briefing: 42, risposta: 113, rapporto: 246, chiamata: 664 }, // chiamata: il massimo di prima (D-114)
+  '360x760': { rapporto: 126, chiamata: 544 },
+  '375x667': { citta: 90, sala: 17, briefing: 15, risposta: 77, rapporto: 195, chiamata: 618 },
   '412x830': { chiamata: 435 },
 };
 const LIBERE = new Set(['crediti']);
@@ -35,6 +35,9 @@ async function schiera(p, d) { for (const [r, ps] of Object.entries(d)) for (con
 const lento = (p) => p.waitForFunction(() => { const s = document.querySelectorAll('.scena'); return s.length === 1 && getComputedStyle(s[0]).opacity === '1'; }, null, { timeout: 8000 }).catch(() => {});
 const misura = (p) => p.evaluate(() => { const s = document.scrollingElement, sc = document.querySelector('.scena');
   return { pagina: s.scrollHeight, ecc: s.scrollHeight - innerHeight, scena: sc?.dataset.scena ?? '?', mappa: Math.round(document.querySelector('.mappa')?.getBoundingClientRect().height ?? 0), testo: sc?.innerText.length ?? 0, titolo: (sc?.querySelector('h1,h2,h3,p')?.textContent ?? '').trim().slice(0, 40),
+    // S-21: il pulsante «Home» della mappa abbassata non copre punti o nomi dei settori
+    casa: (() => { const h = document.querySelector('.mappa > .tasto-home')?.getBoundingClientRect(); if (!h) return 0;
+      return [...document.querySelectorAll('.mappa .settore-punto, .mappa .settore-nome')].filter((e) => { const r = e.getBoundingClientRect(); return Math.max(0, Math.min(h.right, r.right) - Math.max(h.left, r.left)) * Math.max(0, Math.min(h.bottom, r.bottom) - Math.max(h.top, r.top)) > 4; }).length; })(),
     // D-187 (S-12): nomi dei settori sopra i segni dell'ultima risposta (px², il caso peggiore)
     segni: Math.round(Math.max(0, ...[...document.querySelectorAll('.mappa .settore-nome')].flatMap((n) => { const a = n.getBoundingClientRect();
       return [...document.querySelectorAll('.mappa .settore .segno-effetto')].map((g) => { const b = g.getBoundingClientRect(); return Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)); }); }))) }; });
@@ -57,6 +60,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
       const [w, h] = vp.split('x').map(Number);
       const p = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
       if (rossi.length) await p.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
+      await p.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); // come foto.mjs (PO-121): niente attese reali; senza, in CI «bloccato su chiamata» a 412
       p.on('pageerror', (e) => errori.push(`${vp}: ${e.message}`));
       const c = async (sel) => { if (await p.locator(sel).count()) { await p.locator(sel).first().click(); await p.waitForTimeout(120); await lento(p); return true; } return false; };
       const rileva = async (nome) => { const x = await misura(p); ris.push({ vp, nome, ...x }); if (cartella) await p.screenshot({ path: join(cartella, `${vp}-${nome}-${ris.filter((r) => r.vp === vp && r.nome === nome).length}.png`), fullPage: true }); };
@@ -96,7 +100,8 @@ export function controllaAltezze({ ris, errori, sopra }) {
   for (const r of ris) if (!LIBERE.has(r.nome)) { const k = `${r.vp}|${r.nome}`; if (!max[k] || r.ecc > max[k].ecc) max[k] = r; }
   const male = Object.values(max).filter((r) => r.ecc > (SOGLIE[r.vp]?.[r.nome] ?? 0))
     .map((r) => `${r.vp} ${r.nome}: la pagina scorre di ${r.ecc} px (soglia ${SOGLIE[r.vp]?.[r.nome] ?? 0}, mappa ${r.mappa} px; D-187)`);
-  return [...male, ...errori, ...sopra];
+  const casa = ris.filter((r) => r.casa).map((r) => `${r.vp} ${r.nome}: il pulsante «Home» copre ${r.casa} fra punti e nomi dei settori (S-21, mappa ${r.mappa} px)`);
+  return [...male, ...casa, ...errori, ...sopra];
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
