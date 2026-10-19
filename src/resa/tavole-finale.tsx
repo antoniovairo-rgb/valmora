@@ -12,7 +12,11 @@ export const conTavole = () => !spento('C165T01');
 type Genere = 'm' | 'f';
 
 /** I fili delle tavole: la variabile che decide la didascalia (data/stato.json) e il nome della tavola nei testi. */
-export const TAVOLE = [['fabbro', 'rapporto_dessi'], ['testimone', 'testimone'], ['busta', 'busta'], ['talpa', 'sospetti_talpa'], ['fascicolo', 'fascicolo']] as const;
+// C43-01 (D-196): «carte» (D-189, i faldoni di e35) ha la sua tavola, dopo il fascicolo. «pista_cattura» resta senza
+// tavola: D-165 nomina cinque tavole (Fabbro, testimone, busta, talpa, fascicolo). Rosso __NO_C4301: senza «carte», come prima.
+export const TAVOLE = [['fabbro', 'rapporto_dessi'], ['testimone', 'testimone'], ['busta', 'busta'], ['talpa', 'sospetti_talpa'], ['fascicolo', 'fascicolo'], ['carte', 'carte']] as const;
+/** Le tavole che l'epilogo disegna (rosso C4301: senza «carte»). */
+export const tavoleFinale = () => (spento('C4301') ? TAVOLE.filter(([x]) => x !== 'carte') : TAVOLE);
 
 /** Stadio di notte sullo sfondo: anello degli spalti, folla, due torri faro con i coni di luce. */
 function Stadio(p: { y: number; folla?: boolean }) {
@@ -170,7 +174,32 @@ function Fascicolo(p: { v: Valore }) {
   );
 }
 
-const DISEGNI: Record<string, (p: { v: Valore }) => ReactNode> = { fabbro: Fabbro, testimone: Testimone, busta: Busta, talpa: Talpa, fascicolo: Fascicolo };
+function Carte(p: { v: Valore }) {
+  return (
+    <>
+      {/* C43-01: binario della stazione all'alba, pensilina e orologio sulle cinque; i faldoni fermati o il treno già lontano */}
+      <rect x="0" y="0" width={L} height={A} className="v-tramonto" />
+      <path d="M0 26 L320 18 L320 34 L0 42 Z" className="v-asfalto v-tratto" />
+      {[40, 150, 260].map((x) => <rect key={x} x={x} y="34" width="8" height="120" className="v-asfalto v-tratto" />)}
+      <circle cx="96" cy="70" r="16" className="v-bianco v-tratto" /><path d="M96 70 V58 M96 70 L106 76" className="v-linea" />
+      <path d="M0 154 L320 146 L320 176 L0 184 Z" className="v-cemento v-tratto" />
+      <path d="M0 184 L320 176 L320 240 L0 240 Z" className="v-giacca-scura v-tratto" />
+      <path d="M0 204 L320 192 M0 226 L320 210" className="v-linea-chiara" />
+      {p.v === 'fermate' && <g data-faldoni="fermati">
+        <path d="M150 112 L262 108 L266 150 L146 154 Z" className="v-nero v-tratto" />
+        <path d="M162 92 L196 90 L198 112 L164 114 Z M200 90 L236 88 L238 110 L202 112 Z" className="v-giallo v-tratto" />
+        <g transform="rotate(-8 206 130)"><rect x="160" y="118" width="96" height="24" className="v-timbro" /><text x="208" y="136" className="v-scritta v-scritta-timbro">FERMATI</text></g>
+      </g>}
+      {p.v === 'perse' && <g data-faldoni="persi">
+        <path d="M250 150 L300 146 L300 120 L258 122 Z" className="v-asfalto v-tratto" />
+        <circle cx="290" cy="134" r="4" className="v-magenta v-tratto" />
+        <path d="M40 176 L250 150" className="v-linea" />
+      </g>}
+    </>
+  );
+}
+
+const DISEGNI: Record<string, (p: { v: Valore }) => ReactNode> = { fabbro: Fabbro, testimone: Testimone, busta: Busta, talpa: Talpa, fascicolo: Fascicolo, carte: Carte };
 
 /** Una tavola grande con la didascalia scritta sulla scelta del giocatore. */
 export function TavolaFilo(p: { tavola: string; valore: Valore }) {

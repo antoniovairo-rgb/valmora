@@ -571,8 +571,62 @@
             }
           ],
           "se": {
-            "var": "fascicolo",
-            "uguale": "nessuno"
+            "tutte": [
+              {
+                "var": "fascicolo",
+                "uguale": "nessuno"
+              },
+              {
+                "non": {
+                  "var": "carte",
+                  "uguale": "perse"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "conti_perse",
+          "fonte": "comando",
+          "testo": "testi:e36.ch.conti_perse",
+          "commento": "testi:e36.ch.comando_conti.vice",
+          "opzioni": [
+            {
+              "id": "perse_frase_dura",
+              "testo": "testi:e36.op.frase_dura",
+              "costo": "testi:e36.op.frase_dura.c",
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.frase_dura.r"
+            },
+            {
+              "id": "perse_frase_neutra",
+              "testo": "testi:e36.op.frase_neutra",
+              "costo": "testi:e36.op.frase_neutra.c",
+              "effetti": [
+                {
+                  "pressione": "piazzale",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e36.op.frase_neutra.r"
+            }
+          ],
+          "se": {
+            "tutte": [
+              {
+                "var": "fascicolo",
+                "uguale": "nessuno"
+              },
+              {
+                "var": "carte",
+                "uguale": "perse"
+              }
+            ]
           }
         },
         {
@@ -1033,11 +1087,42 @@
           {
             "var": "fascicolo",
             "uguale": "nessuno"
+          },
+          {
+            "non": {
+              "var": "carte",
+              "uguale": "perse"
+            }
           }
         ]
       },
       "effetti": [],
       "verbale": "testi:e36.verbale_confermato"
+    },
+    {
+      "id": "confermato_perse",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          },
+          {
+            "var": "credito",
+            "almeno": 6
+          },
+          {
+            "var": "fascicolo",
+            "uguale": "nessuno"
+          },
+          {
+            "var": "carte",
+            "uguale": "perse"
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e36.verbale_confermato_perse"
     },
     {
       "id": "confermato_procura",
