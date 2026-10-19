@@ -7,9 +7,10 @@ import { completaVariabili } from './aggiornamento.ts';
 import type { Registro } from './episodi.ts';
 import type { Dichiarazione, Missione, Valore, Variabili } from './tipi.ts';
 
-/** Fili di storia nell'ordine in cui si mostrano; EPILOGO = le sei scelte di D-100 nominate da D-161. */
-export const FILI = ['informatore_pagato', 'presidente_incontrato', 'furgone_visto', 'rapporto_dessi', 'testimone', 'busta', 'pista_cattura', 'fascicolo', 'sospetti_talpa'] as const;
-export const EPILOGO = ['rapporto_dessi', 'testimone', 'busta', 'pista_cattura', 'fascicolo', 'sospetti_talpa'] as const;
+/** Fili di storia nell'ordine in cui si mostrano; EPILOGO = le sei scelte di D-100 nominate da D-161, più «carte» (D-189). */
+export const FILI = ['informatore_pagato', 'presidente_incontrato', 'furgone_visto', 'rapporto_dessi', 'testimone', 'busta', 'pista_cattura', 'fascicolo', 'sospetti_talpa', 'carte'] as const;
+// D-189: «carte» (e35, i faldoni fermati o no) si aggiunge alle sei di D-161, letta da e36 e dall'epilogo
+export const EPILOGO = ['rapporto_dessi', 'testimone', 'busta', 'pista_cattura', 'fascicolo', 'sospetti_talpa', 'carte'] as const;
 export const CARRIERE = ['confermato', 'prorogato', 'sostituito'] as const;
 
 export interface Filo { id: string; valore: Valore; aperto: boolean; /** episodio di una stagione dopo che lo legge */ pesa_su: string | null }

@@ -32,6 +32,10 @@ const REGISTRO: [string, string, 'mai' | 'gia', string[]][] = [
   ['e27', 'abbraccio', 'mai', ['gemellati_escono/uscita_scortata']],
   ['e32', 'incrocio', 'mai', ['festa_larkspire/uscita_collina']],
   ['e33', 'parcheggio_vuoto', 'gia', ['ordini_segnati/ordini_veri']],
+  // D-189: il nome della talpa e la sua fuga solo con una prova (la trappola; con la busta tenuta ci sono le chiamate gemelle)
+  ['e33', 'nome_talpa', 'mai', ['ordini_segnati/ordini_puliti']],
+  ['e33', 'sospetto_talpa', 'gia', ['ordini_segnati/ordini_puliti']],
+  ['e33', 'talpa_scappa', 'mai', ['ordini_segnati/ordini_puliti']],
   ['e34', 'ultimo_coro', 'mai', ['mercato_fine/chiudi_piazzale']],
   ['e36', 'piazzale_maxi', 'mai', ['festa_vietata/smonta_palco']],
 ];
@@ -65,6 +69,11 @@ const TESTI: [string, string][] = [
   ['e05.op.squadra_torce', 'Una squadra'],
   // C37-06: dopo busta/apri_busta la busta non è più chiusa
   ['e24.ch.consegna', 'consegnarla, chiusa'], ['e24.op.consegna_chiusa', 'Consegnala chiusa'],
+  // D-189: testi neutri dove la scelta non è un filo importante
+  ['e27.verbale_contenuto', 'il biglietto del porto in un cassetto'], // con lettera_gemellati/consegna_comando il biglietto parte con uno steward
+  ['e29.verbale_contenuto', 'non è uscita'], // con tamburo_curva/lascia_uscire e corteo_al_porto/lascia_scendere la curva esce
+  ['e26.intro1', 'Non l\'ha mai avuta'], // e24.intro1: «Malvasi ha messo la cravatta»
+  ['e36.op.apri_ora.r', 'Non dura'], // D-189: la busta si rivela nel verbale, non prima
 ];
 
 /** I dati di prima: senza i «dopo» di D-153 (braccio rosso). */
