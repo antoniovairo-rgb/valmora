@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e34.imp.sbarra.verso_piazzale.r"
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": 1
               },
               {
                 "tensione": "piazzale",
@@ -85,12 +85,8 @@
             "costo": "testi:e34.imp.bagni.al_piazzale.c",
             "effetti": [
               {
-                "pressione": "curva_ospiti",
-                "valore": -1
-              },
-              {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e34.imp.bagni.al_piazzale.r"
@@ -142,7 +138,7 @@
               },
               {
                 "pressione": "parcheggi",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e34.imp.pollo.ai_parcheggi.r"
@@ -194,7 +190,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e34.imp.arance.dal_piazzale.r"

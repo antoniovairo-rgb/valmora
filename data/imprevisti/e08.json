@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e08.imp.lettore.varco_piazzale.r"
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e08.imp.bagni.bagni_piazzale.r"
@@ -121,10 +121,6 @@
             "costo": "testi:e08.imp.grandine.fermi_in_curva.c",
             "effetti": [
               {
-                "pressione": "curva_cinderwick",
-                "valore": -1
-              },
-              {
                 "tensione": "tornelli",
                 "valore": 1
               }
@@ -137,12 +133,8 @@
             "costo": "testi:e08.imp.grandine.riparo_atrio.c",
             "effetti": [
               {
-                "pressione": "curva_cinderwick",
-                "valore": -1
-              },
-              {
                 "pressione": "tornelli",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e08.imp.grandine.riparo_atrio.r"
@@ -174,7 +166,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",

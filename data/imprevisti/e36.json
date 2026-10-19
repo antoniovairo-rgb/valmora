@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e36.imp.rotolo.dal_piazzale.r"
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e36.imp.gabbiano.sirena.r"
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "strada_larkspire",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e36.imp.recinto_buio.collina.r"
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "strada_larkspire",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e36.imp.cassa.in_collina.r"

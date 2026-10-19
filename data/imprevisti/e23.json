@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -1
+                "valore": 1
               },
               {
                 "tensione": "piazzale",
@@ -32,10 +32,6 @@
             "testo": "testi:e23.imp.foratura.scarica_piazzale",
             "costo": "testi:e23.imp.foratura.scarica_piazzale.c",
             "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": -1
-              },
               {
                 "pressione": "piazzale",
                 "valore": 2
@@ -188,10 +184,6 @@
             "testo": "testi:e23.imp.sbarra.varco_mezzi",
             "costo": "testi:e23.imp.sbarra.varco_mezzi.c",
             "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": 1
-              },
               {
                 "pressione": "casello",
                 "valore": 2

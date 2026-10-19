@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -3
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -3
+                "valore": -1
               },
               {
                 "tensione": "curva_cinderwick",
@@ -138,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": 1
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -3
+                "valore": -1
               },
               {
                 "tensione": "zona_rossa",

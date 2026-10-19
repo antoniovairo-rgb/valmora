@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e16.imp.buca.dal_piazzale.r"
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": 1
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -86,11 +86,11 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": 1
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e16.imp.chiavi.attesa_piazzale.r"
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "curva_ospiti",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e16.imp.nebbia.posti_bassi.r"
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "strada_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e16.imp.portiera.verso_kiln.r"

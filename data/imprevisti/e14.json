@@ -121,6 +121,10 @@
             "costo": "testi:e14.imp.seggiolini.corrimano.c",
             "effetti": [
               {
+                "pressione": "curva_larkspire",
+                "valore": -3
+              },
+              {
                 "tensione": "curva_ospiti",
                 "valore": 1
               }
@@ -134,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": 1
+                "valore": -2
               },
               {
                 "pressione": "curva_ospiti",
@@ -169,6 +173,10 @@
             "costo": "testi:e14.imp.gomma.spinta_pullman.c",
             "effetti": [
               {
+                "pressione": "piazzale",
+                "valore": -3
+              },
+              {
                 "tensione": "biglietteria",
                 "valore": 1
               }
@@ -182,7 +190,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": -2
               },
               {
                 "pressione": "biglietteria",

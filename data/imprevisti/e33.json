@@ -33,10 +33,6 @@
             "costo": "testi:e33.imp.bus_panne.ai_tornelli.c",
             "effetti": [
               {
-                "pressione": "viale_stazione",
-                "valore": 1
-              },
-              {
                 "pressione": "tornelli",
                 "valore": 2
               }

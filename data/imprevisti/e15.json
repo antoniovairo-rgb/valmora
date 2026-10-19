@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "viale_stazione",
@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "viale_stazione",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e15.imp.tabellone.attesa_viale.r"
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "stazione",
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "stazione",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e15.imp.autobus.attesa_stazione.r"
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "settore_gemellati",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "curva_cinderwick",
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "curva_cinderwick",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e15.imp.balaustra.in_curva_kiln.r"
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "viale_stazione",
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "viale_stazione",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e15.imp.vagone.meta_viale.r"

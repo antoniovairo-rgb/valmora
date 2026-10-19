@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": 1
               },
               {
                 "tensione": "strada_cinderwick",
@@ -84,10 +84,6 @@
             "testo": "testi:e20.imp.radio_chiosco.bar_kiln",
             "costo": "testi:e20.imp.radio_chiosco.bar_kiln.c",
             "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": -1
-              },
               {
                 "pressione": "strada_cinderwick",
                 "valore": 1
@@ -121,6 +117,10 @@
             "costo": "testi:e20.imp.gatto.speaker_gatto.c",
             "effetti": [
               {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
                 "tensione": "piazzale",
                 "valore": 1
               }
@@ -134,7 +134,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": 1
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -170,7 +170,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_larkspire",

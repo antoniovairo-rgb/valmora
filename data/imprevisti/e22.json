@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.turisti.parcheggia_piazzale.r"
@@ -69,6 +69,10 @@
             "costo": "testi:e22.imp.pannello.tecnici_tetto.c",
             "effetti": [
               {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
                 "tensione": "curva_cinderwick",
                 "valore": 1
               }
@@ -82,11 +86,11 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": 1
+                "valore": -1
               },
               {
                 "pressione": "curva_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.pannello.speaker_pannello.r"
@@ -117,6 +121,10 @@
             "costo": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore.c",
             "effetti": [
               {
+                "pressione": "piazzale",
+                "valore": 1
+              },
+              {
                 "tensione": "strada_cinderwick",
                 "valore": 1
               }
@@ -129,12 +137,8 @@
             "costo": "testi:e22.imp.pallone_sponsor.auto_strada.c",
             "effetti": [
               {
-                "pressione": "piazzale",
-                "valore": 1
-              },
-              {
                 "pressione": "strada_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.pallone_sponsor.auto_strada.r"
@@ -166,7 +170,7 @@
             "effetti": [
               {
                 "pressione": "piazza_municipio",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_cinderwick",
@@ -186,7 +190,7 @@
               },
               {
                 "pressione": "strada_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e22.imp.matrimonio.sposi_strada.r"

@@ -17,6 +17,10 @@
             "costo": "testi:e24.imp.tamburo_largo.smonta_transenna.c",
             "effetti": [
               {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
                 "tensione": "tornelli",
                 "valore": 1
               }
@@ -30,11 +34,11 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": 1
+                "valore": -1
               },
               {
                 "pressione": "tornelli",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e24.imp.tamburo_largo.dai_tornelli.r"
@@ -66,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "tornelli",
@@ -86,7 +90,7 @@
               },
               {
                 "pressione": "tornelli",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e24.imp.capogiro.curiosi_tornelli.r"
@@ -118,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_larkspire",
@@ -138,7 +142,7 @@
               },
               {
                 "pressione": "strada_larkspire",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e24.imp.tornello_rovescio.coda_strada24.r"
@@ -169,6 +173,10 @@
             "costo": "testi:e24.imp.bidone.ferma_bidone.c",
             "effetti": [
               {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              },
+              {
                 "tensione": "piazza_municipio",
                 "valore": 1
               }
@@ -181,12 +189,8 @@
             "costo": "testi:e24.imp.bidone.verso_municipio.c",
             "effetti": [
               {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              },
-              {
                 "pressione": "piazza_municipio",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e24.imp.bidone.verso_municipio.r"

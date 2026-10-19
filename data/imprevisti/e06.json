@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "piazza_concerto",
-                "valore": -1
+                "valore": -3
               }
             ],
             "risposta": "testi:e06.imp.allarme.steward_banca.r"
@@ -74,7 +74,7 @@
               },
               {
                 "pressione": "curva_cinderwick",
-                "valore": -1
+                "valore": -3
               }
             ],
             "risposta": "testi:e06.imp.palloncini.raccogli.r"
@@ -126,7 +126,7 @@
               },
               {
                 "pressione": "piazza_concerto",
-                "valore": -1
+                "valore": -3
               }
             ],
             "risposta": "testi:e06.imp.corrente.squadra_palco.r"
@@ -179,7 +179,7 @@
             "effetti": [
               {
                 "pressione": "viale_concerto",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -193,10 +193,6 @@
             "testo": "testi:e06.imp.metro.al_piazzale",
             "costo": "testi:e06.imp.metro.al_piazzale.c",
             "effetti": [
-              {
-                "pressione": "viale_concerto",
-                "valore": -1
-              },
               {
                 "pressione": "piazzale",
                 "valore": 1

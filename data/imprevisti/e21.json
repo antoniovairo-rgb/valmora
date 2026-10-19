@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "quartiere",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "quartiere",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "piazza_fonderie",
@@ -86,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazza_fonderie",
@@ -133,10 +133,6 @@
             "costo": "testi:e21.imp.pallone.riporta_curva.c",
             "effetti": [
               {
-                "pressione": "piazzale",
-                "valore": 1
-              },
-              {
                 "pressione": "curva_cinderwick",
                 "valore": 1
               }
@@ -170,7 +166,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -186,7 +182,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",

@@ -85,10 +85,6 @@
             "costo": "testi:e18.imp.tabellone.speaker_errore.c",
             "effetti": [
               {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              },
-              {
                 "pressione": "curva_larkspire",
                 "valore": 1
               }
@@ -174,7 +170,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -1
+                "valore": 1
               },
               {
                 "tensione": "piazzale",
@@ -188,10 +184,6 @@
             "testo": "testi:e18.imp.pullman_panne.curva_piazzale",
             "costo": "testi:e18.imp.pullman_panne.curva_piazzale.c",
             "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": -1
-              },
               {
                 "pressione": "piazzale",
                 "valore": 1

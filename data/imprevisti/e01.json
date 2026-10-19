@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "strada_larkspire",
-                "valore": -1
+                "valore": -3
               }
             ],
             "risposta": "testi:e01.imp.ambulanza.apri_varco.r"
@@ -79,7 +79,7 @@
               },
               {
                 "pressione": "curva_larkspire",
-                "valore": -2
+                "valore": -3
               }
             ],
             "risposta": "testi:e01.imp.buio.torce.r"
@@ -132,7 +132,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "strada_larkspire",
