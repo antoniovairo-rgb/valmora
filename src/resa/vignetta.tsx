@@ -8,7 +8,7 @@ import { persona, type PersonaDati } from './persona2.ts';
 
 /** PO-092: la vignetta prende lo spazio che resta libero nella pagina (fra il minimo e il massimo dei token), senza
  *  farla scorrere: la riserva fissa era tarata sul testo più lungo e lasciava vignette minuscole. Rosso C36V01: no. */
-function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascondibile: boolean | 'bassa' = false) {
+function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascondibile = false) {
   useLayoutEffect(() => {
     const svg = el.current;
     if (!svg || !attivo || spento('C36V01')) return;
@@ -36,8 +36,9 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
       // C26-03: a 375×667 il verbale restava a 62-95 px (sopra il minimo): la decisione del PO è «nascoste a 375×667»,
       // quindi conta anche l'altezza della finestra (--vignetta-finestra-min). Rosso C76V01: solo il minimo, come prima.
       const bassa = !spento('C76V01') && innerHeight < (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-finestra-min')) || 0);
-      // C41-06: «bassa» = si nasconde solo sugli schermi bassi (D-126 d, C26-03); altrove resta al suo minimo
-      if (nascondibile && !spento('C66V01') && ((nascondibile !== 'bassa' && vuole < min) || bassa)) { svg.dataset.margini = String(margini); svg.setAttribute('data-nascosta', ''); svg.style.setProperty('display', 'none'); return; }
+      // C41-06 (D-182): il verbale fallito ha il minimo più alto (2/3 della larghezza a 360), ma vale solo se ci sta:
+      // altrimenti si nasconde come le altre (D-126 d, C26-03; su 8fc00a3 restava al minimo e a 360×760 si scorreva)
+      if (nascondibile && !spento('C66V01') && (vuole < min || bassa)) { svg.dataset.margini = String(margini); svg.setAttribute('data-nascosta', ''); svg.style.setProperty('display', 'none'); return; }
       svg.removeAttribute('data-nascosta'); svg.style.removeProperty('display');
       svg.style.setProperty('height', `${Math.max(min, Math.min(max, vuole))}px`);
     };
@@ -54,9 +55,8 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
 
 export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean; evento?: string; ritaglio?: string }) {
   const el = useRef<SVGSVGElement>(null);
-  // C41-06: la vignetta del verbale fallito resta al suo minimo (--vignetta-min-fallita) invece di nascondersi, salvo sugli
-  // schermi bassi, dove D-126 d e C26-03 la vogliono nascosta. Rosso C41V06: come prima.
-  const nasconde = !/^(apertura|esito|ondata)-/.test(p.nome) ? false : p.nome === 'esito-fallita' && !spento('C41V06') ? 'bassa' : true;
+  // C41-06: il verbale fallito ha il suo minimo (--vignetta-min-fallita, classe .fallita in Verbale.tsx); rosso C41V06
+  const nasconde = /^(apertura|esito|ondata)-/.test(p.nome);
   useRiempi(el, !p.fissa, nasconde); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
   if (spento('C26V01')) return null;
   return (
