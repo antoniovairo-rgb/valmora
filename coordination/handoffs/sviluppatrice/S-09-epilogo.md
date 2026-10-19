@@ -289,3 +289,21 @@ Non verificato:
 - Patch (`src/resa/vignetta.tsx`): tolta la modalità «bassa». La vignetta «esito-fallita» segue la regola comune: si
   nasconde se lo spazio libero è sotto il minimo o se lo schermo è basso. Resta il suo minimo di 110 px
   (`--vignetta-min-fallita`, classe `.fallita`). Rosso `__NO_C41V06` invariato (toglie la classe, minimo di prima).
+- RITIRATA (misura mia): «a 360×760 la vignetta 290×110, avviso e pulsanti finiscono a 676 di 760, senza scorrere». Il
+  guardiano guardava solo i pulsanti: con la vignetta a 110 px la pagina era alta 791 px (360, 375) e 768 px (412).
+- Su 7f8fc70 la vignetta del verbale fallito di e10 risultava nascosta a 360/375/412×760 (75/75/98 px liberi).
+
+### D-185 (C41-06, opzione C del PO): spazio nel verbale fallito
+
+- Patch: classe `.compatta` sulla scheda del verbale fallito (`src/resa/schermate/Verbale.tsx`). Le regole in
+  `src/resa/stile-c18.css`, solo con token, tolgono 44 px: padding della scheda, ultimo paragrafo, avviso, «Condividi»,
+  margini dei pulsanti di ripartenza. Rosso `__NO_C185V01` (spaziature di prima).
+- FATTO MISURATO (finestra 760 px, giocatore peggiore): e10 ed e33 a 360/375/412, vignetta visibile, pagina alta 760 px.
+  e10 a 360: vignetta 290×110, disegno 196 px su 290. Foto in `S-09-c41/prima-d185/` e `S-09-c41/dopo-d185/`.
+- Guardiani:
+  - `tools/foto-c41.mjs` su e10 ed e33: vignetta visibile, ≥ 2/3 a 360, pagina che non scorre.
+  - `controllaVerbaleBasso` (`tools/foto-verbale.mjs`) sul verbale perso di ogni episodio a 760 px.
+  - Rossi in `bracci-rossi-grafica`: C41V06, C185V01, C185V01+C66V01 (pagina 791 px), C41G08. Tutti rossi a 360.
+  - C66V01 da solo non mostra più il difetto e non è più tra i rossi.
+- FATTO MISURATO (D-177): su 3ba5c7d, 3 giri governo + logica VERDI. Grafica a 360 verde in locale (foto 2183 s).
+  CI run 827 verde 7/7 (cambi, governo, logica, apk, grafica 360/375/412).
