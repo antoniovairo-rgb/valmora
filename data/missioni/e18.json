@@ -874,6 +874,36 @@
       "stelle_max": 2
     },
     {
+      "id": "degenerato_protetto",
+      "se": {},
+      "dopo": {
+        "gia": [
+          "con_o_senza/auto_scorta"
+        ],
+        "mai": [
+          "qualcuno_ha_parlato/conferma18"
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e18.verbale_degenerato_protetto",
+      "fallita": true
+    },
+    {
+      "id": "degenerato_protetto_comando",
+      "se": {},
+      "dopo": {
+        "gia": [
+          "con_o_senza_comando/auto_scorta"
+        ],
+        "mai": [
+          "qualcuno_ha_parlato/conferma18"
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e18.verbale_degenerato_protetto",
+      "fallita": true
+    },
+    {
       "id": "degenerato",
       "se": {},
       "effetti": [],

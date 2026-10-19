@@ -453,47 +453,6 @@
               "risposta": "testi:e11.op.allontana_curiosi.r"
             }
           ]
-        },
-        {
-          "id": "fra_vicini",
-          "fonte": "vice",
-          "testo": "testi:e11.ch.fra_vicini",
-          "commento": "testi:e11.ch.fra_vicini.vice",
-          "settore": "quartiere",
-          "se": {
-            "var": "presidente_incontrato",
-            "uguale": true
-          },
-          "opzioni": [
-            {
-              "id": "accetta11",
-              "testo": "testi:e11.op.accetta11",
-              "costo": "testi:e11.op.accetta11.c",
-              "effetti": [
-                {
-                  "riserva": "steward",
-                  "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ],
-              "risposta": "testi:e11.op.accetta11.r"
-            },
-            {
-              "id": "declina11",
-              "testo": "testi:e11.op.declina11",
-              "costo": "testi:e11.op.declina11.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                }
-              ],
-              "risposta": "testi:e11.op.declina11.r"
-            }
-          ]
         }
       ]
     },
@@ -587,47 +546,6 @@
                 }
               ],
               "risposta": "testi:e11.op.strada_dopo.r"
-            }
-          ]
-        },
-        {
-          "id": "contromano",
-          "fonte": "informatore_di_strada",
-          "testo": "testi:e11.ch.contromano",
-          "commento": "testi:e11.ch.contromano.vice",
-          "settore": "strada_cinderwick",
-          "se": {
-            "var": "furgone_visto",
-            "uguale": true
-          },
-          "opzioni": [
-            {
-              "id": "ferma11",
-              "testo": "testi:e11.op.ferma11",
-              "costo": "testi:e11.op.ferma11.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
-                  "tensione": "strada_cinderwick",
-                  "valore": 1
-                }
-              ],
-              "risposta": "testi:e11.op.ferma11.r"
-            },
-            {
-              "id": "annota11",
-              "testo": "testi:e11.op.annota11",
-              "costo": "testi:e11.op.annota11.c",
-              "effetti": [
-                {
-                  "pressione": "strada_cinderwick",
-                  "valore": 1
-                }
-              ],
-              "risposta": "testi:e11.op.annota11.r"
             }
           ]
         }

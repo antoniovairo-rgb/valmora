@@ -113,8 +113,8 @@
   "e18.op.con_folla_comando.c": "Nessun costo; ma il retro della tribuna resta il punto più caldo.",
   "e18.op.con_folla_comando.r": "Esce dal comando a piedi, col bavero alzato. In città la sua faccia la conoscono in tanti.",
   "e18.ch.deflusso18": "«La curva Skyfield risale la collina cantando. Quelli del Lookout escono dall'altra parte.»",
-  "e18.op.separa18": "Prima il Lookout",
-  "e18.op.separa18.c": "La strada è più sicura, ma il club di casa protesta e la curva brontola.",
+  "e18.op.separa18": "Prima il Lookout, scortato",
+  "e18.op.separa18.c": "La strada è più sicura, ma la curva brontola. Nessun costo in fiducia.",
   "e18.op.separa18.r": "Quelli del Lookout escono per primi. La curva Skyfield li guarda andar via, e il club scrive al comando.",
   "e18.op.insieme18": "Tutti insieme, è tardi",
   "e18.op.insieme18.c": "Il club apprezza i tempi rapidi; la strada da Skyfield si carica.",
@@ -129,7 +129,8 @@
   "e18.op.nega18": "Nessun commento",
   "e18.op.nega18.c": "Prudente, ma ti costa fiducia con la stampa.",
   "e18.op.nega18.r": "«Nessun commento.» Il cronista scrive che qualcuno ha parlato lo stesso.",
-  "e18.verbale_contenuto": "Il testimone ha lasciato un indirizzo: una tipografia alle fonderie. Malvasi lo scrive su un foglio nuovo. «Il primo che parla. Vediamo chi lo ascolta, oltre a noi.»",
+  "e18.verbale_contenuto": "Il testimone ha lasciato un nome: la tipografia dove lavora. Malvasi lo scrive su un foglio nuovo. «Il primo che parla. Vediamo chi lo ascolta, oltre a noi.»",
   "e18.verbale_a_fatica": "La partita è passata, il testimone pure, spaventato. Ha detto poco, ma ha detto «tipografia». Malvasi dice che per oggi basta.",
-  "e18.verbale_degenerato": "Nella confusione il testimone è sparito, prima di dire tutto. I rapporti parlano di cori, fumo e due uomini col cappuccio che nessuno ha fermato. Nessun ferito, ma nessun nome."
+  "e18.verbale_degenerato": "Nella confusione il testimone è sparito, prima di dire tutto. I rapporti parlano di cori, fumo e due uomini col cappuccio che nessuno ha fermato. Nessun ferito, ma nessun nome.",
+  "e18.verbale_degenerato_protetto": "Nella confusione il testimone è uscito sotto scorta, prima di dire tutto. I rapporti parlano di cori, fumo e due uomini col cappuccio che nessuno ha fermato. Nessun ferito, ma nessun nome."
 }

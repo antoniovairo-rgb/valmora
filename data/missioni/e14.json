@@ -299,7 +299,12 @@
               "id": "tieni_per_te",
               "testo": "testi:e14.op.tieni_per_te",
               "costo": "testi:e14.op.tieni_per_te.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "biglietteria",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e14.op.tieni_per_te.r"
             }
           ]
