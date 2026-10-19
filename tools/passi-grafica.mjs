@@ -36,8 +36,9 @@ export const PASSI_GRAFICA = {
       process.env.VALMORA_ROSSI = r;
       try { if (!(await giraEpilogo('out/foto-rossi', 'dist', [360])).flatMap(controllaGiro).length) ciechi.push(`epilogo/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }
-    // C41-06, C41-08 (collaudo C-041): senza la vignetta minima del verbale fallito o col fumetto stretto il giro è rosso
-    for (const r of ['C41V06', 'C41G08']) {
+    // C41-06, C41-08 (collaudo C-041), D-185: senza la vignetta minima del verbale fallito, con le spaziature di prima,
+    // con le spaziature di prima e la vignetta forzata al minimo (pagina che scorre) o col fumetto stretto il giro è rosso
+    for (const r of ['C41V06', 'C185V01', 'C185V01,C66V01', 'C41G08']) {
       process.env.VALMORA_ROSSI = r;
       try { if (!(await giraC41('out/foto-rossi', 'dist', [360])).flatMap(controllaGiro).length) ciechi.push(`c41/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }

@@ -1,7 +1,8 @@
 // Guardiani nel browser del collaudo C-041 (D-182): C41-06 (vignetta del verbale fallito a 360×760) e C41-08 (guida 2/6,
-// «Quanto dura?» dentro il fumetto). Si parte dal salvataggio vero della partita A-Z, episodio e10 giocato dal motore
+// «Quanto dura?» dentro il fumetto). Si parte dal salvataggio vero della partita A-Z, episodi e10 ed e33 giocati dal motore
 // col giocatore peggiore fino all'ultimo rapporto (fallito), poi «Riprendi» → rapporto → verbale, come in foto-epilogo.mjs.
-// Rossi: VALMORA_ROSSI=C41V06 (vignetta minima di prima), C41G08 (fumetto stretto di prima).
+// Rossi: VALMORA_ROSSI=C41V06 (vignetta minima di prima), C185V01 (spaziature di prima), C185V01,C66V01 (con la vignetta forzata al
+// minimo), C41G08 (fumetto stretto di prima).
 // Uso a mano: node tools/foto-c41.mjs <cartella-foto> [larghezze]   (build già fatta in dist/)
 import { createServer } from 'node:http';
 import { readFileSync, existsSync, mkdirSync } from 'node:fs';
@@ -10,7 +11,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { pianoAttento } from './foto.mjs';
 
-export const LARGHEZZE_C41 = [360, 375, 412];
+export const LARGHEZZE_C41 = [360, 375, 412], EPISODI_C41 = ['e10', 'e33']; // D-185: verbali falliti di e10 ed e33
 const FINALE = 'tests/salvataggi-reali/v2-0.38.0-fine-campagna.json';
 const TIPI = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.webp': 'image/webp', '.jpg': 'image/jpeg' };
 
@@ -29,7 +30,7 @@ export async function giraC41(cartella = 'out/foto', build = 'dist', larghezze =
   const srv = await new Promise((ok) => { const s = createServer((q, r) => { const u = decodeURIComponent(q.url.split('?')[0]); const p = join(build, u === '/' ? 'index.html' : u);
     if (!existsSync(p)) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'content-type': TIPI[extname(p)] ?? 'application/octet-stream' }); r.end(readFileSync(p)); }); s.listen(0, '127.0.0.1', () => ok(s)); });
   const browser = await chromium.launch({ executablePath: process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
-  const stato = salvataggioFallito('e10'), rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean), giri = [];
+  const stati = EPISODI_C41.map((id) => [id, salvataggioFallito(id)]), rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean), giri = [];
   try {
     for (const larghezza of larghezze) {
       const g = { larghezza, errori: [], scorrimento: [], attesi: [], misure: {} };
@@ -40,8 +41,10 @@ export async function giraC41(cartella = 'out/foto', build = 'dist', larghezze =
       const scena = async (nome) => { await pagina.waitForSelector(`.scena[data-scena="${nome}"]`, { timeout: 5000 }); await pagina.waitForFunction(() => document.querySelectorAll('.scena').length === 1 && getComputedStyle(document.querySelector('.scena')).opacity === '1', null, { timeout: 5000 }); };
       try {
         await pagina.goto(`http://127.0.0.1:${srv.address().port}/`); await scena('titolo');
-        // C41-06: verbale di e10 perso, primo passo, finestra 760 px
-        atteso(`e10 giocato dal peggiore non è fallito, il controllo non si può fare`, stato.fallita);
+        // C41-06: verbale di e10 ed e33 perso, primo passo, finestra 760 px
+        for (const [id, stato] of stati) {
+        const dove = `${id} ${larghezza}×760 verbale fallito`;
+        atteso(`${id} giocato dal peggiore non è fallito, il controllo non si può fare`, stato.fallita);
         await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify(stato.salvataggio));
         await pagina.reload(); await scena('titolo');
         await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('rapporto');
@@ -57,14 +60,15 @@ export async function giraC41(cartella = 'out/foto', build = 'dist', larghezze =
               return Math.round(innerHeight - m.getBoundingClientRect().bottom - px(m, 'marginBottom') - px(m.parentElement, 'paddingBottom') - (m.parentElement === document.body ? 0 : px(document.body, 'paddingBottom')) - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-margine')) || 0) - (Number(svg?.dataset.margini) || 0)); })(),
             minimo: parseFloat(svg ? getComputedStyle(svg).minHeight : '0') || 0 };
         });
-        g.misure.c41_06 = v;
-        // D-182 (aggiunta del 19/10): il minimo dei 2/3 vale solo se ci sta senza scorrere; se non ci sta la vignetta si
-        // nasconde (D-126 d), e allora lo spazio libero deve essere davvero sotto il minimo
-        if (v.nascosta) atteso(`${larghezza}×760 verbale fallito: vignetta nascosta con ${v.libero} px liberi, minimo ${v.minimo} (ci stava: va mostrata, C41-06)`, v.libero < v.minimo);
-        else atteso(`${larghezza}×760 verbale fallito: disegno largo ${v.disegno} px su ${v.contenitore} (serve ≥ 2/3, C41-06)`, larghezza !== 360 || v.disegno * 3 >= v.contenitore * 2); // la decisione vale a 360 px; alle altre larghezze si misura soltanto
-        atteso(`${larghezza}×760 verbale fallito: pagina alta ${v.pagina} px, si scorre (D-182, PO-045)`, v.pagina <= v.finestra);
-        atteso(`${larghezza}×760 verbale fallito: «Episodio fallito» e ripartenza finiscono a ${v.fondo} px, finestra ${v.finestra} (C41-06)`, v.fondo > 0 && v.fondo <= v.finestra);
-        await pagina.screenshot({ path: join(cartella, `${larghezza}-c41-06-verbale-fallito.jpg`), type: 'jpeg', quality: 75 });
+        g.misure[`c41_06_${id}`] = v;
+        // D-185: a 760 px la vignetta del verbale fallito si vede sempre (spaziature ridotte), ≥ 2/3 a 360, e la pagina
+        // non scorre (D-182). Rossi: C185V01 (spaziature di prima: nascosta), C185V01,C66V01 (forzata al minimo: si scorre).
+        atteso(`${dove}: vignetta nascosta con ${v.libero} px liberi, minimo ${v.minimo} (D-185)`, !v.nascosta);
+        atteso(`${dove}: disegno largo ${v.disegno} px su ${v.contenitore} (serve ≥ 2/3, C41-06)`, v.nascosta || larghezza !== 360 || v.disegno * 3 >= v.contenitore * 2); // la decisione vale a 360 px; alle altre larghezze si misura soltanto
+        atteso(`${dove}: pagina alta ${v.pagina} px, si scorre (D-182, PO-045)`, v.pagina <= v.finestra);
+        atteso(`${dove}: «Episodio fallito» e ripartenza finiscono a ${v.fondo} px, finestra ${v.finestra} (C41-06)`, v.fondo > 0 && v.fondo <= v.finestra);
+        await pagina.screenshot({ path: join(cartella, `${larghezza}-c41-06-verbale-fallito-${id}.jpg`), type: 'jpeg', quality: 75 });
+        }
         // C41-08: guida 2/6, testo dentro il fumetto con margine
         await pagina.evaluate(() => localStorage.clear()); await pagina.reload(); await scena('titolo');
         await pagina.getByRole('button', { name: /Nuova partita/ }).click();
