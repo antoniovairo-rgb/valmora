@@ -16,6 +16,7 @@ const SENZA_MAPPA = new Set(['rapporto']);
 const NASCONDIBILE = /^(apertura|esito|ondata)-/;
 
 let avvisa: (nascosta: boolean) => void = () => {};
+let ridisponi: (m: HTMLElement) => void = () => {};
 
 function adatta(m: HTMLElement) {
   const main = m.closest('main');
@@ -42,25 +43,26 @@ function adatta(m: HTMLElement) {
   const min = parseFloat(radice.getPropertyValue(LETTURA.has(schermata) && !spento('C191L01') ? '--mappa-altezza-min-lettura' : '--mappa-altezza-min')) || 0;
   const nat = m.getBoundingClientRect().height;
   let alta = Math.max(min, nat - ecc);
-  // S-21: il pulsante «Home» nell'angolo non deve coprire i punti dei settori (CI rossa a 375: il rapporto abbassato portava
+  // S-21: il pulsante «Home» nell'angolo non deve coprire punti e nomi dei settori (CI rossa a 375: il rapporto abbassato portava
   // la curva sotto la casa). Si rialza di un passo finché non li tocca, al più fino all'altezza naturale. Solo i punti
-  // (posizione fissa, nessun ricalcolo): i nomi evitano «Home» da soli (etichette.ts, D-191). Ridisporre i nomi a ogni
-  // passo rallentava ogni disegno e in CI i segni della risposta (1,8 s) sparivano prima del controllo (PO-085 a 375).
+  // e i nomi dove stanno (si spostano col loro punto): i nomi si ridispongono una volta sola alla fine, non a ogni passo
+  // (rallentava ogni disegno; IPOTESI: in CI a 375 i segni della risposta, 1,8 s, sparivano prima del controllo PO-085).
   const casa = m.querySelector(':scope > .tasto-home'), passo = parseFloat(radice.getPropertyValue('--spazio-2')) || 8;
   const tocca = () => { if (!casa) return false; const h = casa.getBoundingClientRect();
-    return [...m.querySelectorAll('.settore-punto')].some((e) => { const r = e.getBoundingClientRect(); return Math.max(0, Math.min(h.right, r.right) - Math.max(h.left, r.left)) * Math.max(0, Math.min(h.bottom, r.bottom) - Math.max(h.top, r.top)) > 4; }); }; // come S-21 (px²)
+    return [...m.querySelectorAll('.settore-punto, .settore-nome')].some((e) => { const r = e.getBoundingClientRect(); return Math.max(0, Math.min(h.right, r.right) - Math.max(h.left, r.left)) * Math.max(0, Math.min(h.bottom, r.bottom) - Math.max(h.top, r.top)) > 4; }); }; // come S-21 (px²)
   for (;;) {
     m.style.setProperty('--mappa-alta', `${Math.round(alta)}px`); m.setAttribute('data-adatta', '');
     if (alta >= nat || !tocca()) break;
     alta = Math.min(nat, alta + passo);
   }
   if (alta >= nat) { m.removeAttribute('data-adatta'); m.style.removeProperty('--mappa-alta'); }
+  ridisponi(m);
   fine(SENZA_MAPPA.has(schermata) && !spento('C191R01') && eccedenza() > 0);
 }
 
 /** Si rifà quando la pagina cambia (passi, testi, caratteri) e quando cambia la finestra. */
-export function useAdatta(el: RefObject<HTMLDivElement | null>, nascosta?: (si: boolean) => void) {
-  avvisa = nascosta ?? (() => {});
+export function useAdatta(el: RefObject<HTMLDivElement | null>, disponi: (m: HTMLElement) => void, nascosta?: (si: boolean) => void) {
+  ridisponi = disponi; avvisa = nascosta ?? (() => {});
   useLayoutEffect(() => {
     const m = el.current, main = m?.closest('main');
     if (!m || !main) return;
