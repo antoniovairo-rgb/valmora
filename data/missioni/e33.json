@@ -478,6 +478,85 @@
                 "uguale": "tenuta"
               }
             }
+          ],
+          "dopo": {"mai": ["ordini_segnati/ordini_puliti"]}
+        },
+        {
+          "id": "nome_busta",
+          "dopo": {"gia": ["ordini_segnati/ordini_puliti"]},
+          "fonte": "vice",
+          "testo": "testi:e33.ch.nome_busta",
+          "commento": "testi:e33.ch.nome_busta.vice",
+          "se": {
+            "var": "busta",
+            "uguale": "tenuta"
+          },
+          "opzioni": [
+            {
+              "id": "busta_rapporto",
+              "testo": "testi:e33.op.busta_rapporto",
+              "costo": "testi:e33.op.busta_rapporto.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.busta_rapporto.r"
+            },
+            {
+              "id": "busta_aspetta",
+              "testo": "testi:e33.op.busta_aspetta",
+              "costo": "testi:e33.op.busta_aspetta.c",
+              "effetti": [],
+              "risposta": "testi:e33.op.busta_aspetta.r"
+            },
+            {
+              "id": "busta_malvasi",
+              "testo": "testi:e33.op.busta_malvasi",
+              "costo": "testi:e33.op.busta_malvasi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.busta_malvasi.r"
+            }
+          ]
+        },
+        {
+          "id": "sospetto_talpa",
+          "dopo": {"gia": ["ordini_segnati/ordini_puliti"]},
+          "fonte": "vice",
+          "testo": "testi:e33.ch.sospetto_talpa",
+          "commento": "testi:e33.ch.sospetto_talpa.vice",
+          "se": {
+            "non": {
+              "var": "busta",
+              "uguale": "tenuta"
+            }
+          },
+          "opzioni": [
+            {
+              "id": "segnala_sospetto",
+              "testo": "testi:e33.op.segnala_sospetto",
+              "costo": "testi:e33.op.segnala_sospetto.c",
+              "effetti": [
+                {
+                  "pressione": "curva_larkspire",
+                  "valore": 2
+                }
+              ],
+              "risposta": "testi:e33.op.segnala_sospetto.r"
+            },
+            {
+              "id": "tieni_sospetto",
+              "testo": "testi:e33.op.tieni_sospetto",
+              "costo": "testi:e33.op.tieni_sospetto.c",
+              "effetti": [],
+              "risposta": "testi:e33.op.tieni_sospetto.r"
+            }
           ]
         },
         {
@@ -656,7 +735,53 @@
                 "uguale": "consegnata"
               }
             }
-          ]
+          ],
+          "dopo": {"mai": ["ordini_segnati/ordini_puliti"]}
+        },
+        {
+          "id": "talpa_scappa_busta",
+          "fonte": "comando",
+          "testo": "testi:e33.ch.talpa_scappa",
+          "commento": "testi:e33.ch.talpa_scappa.vice",
+          "opzioni": [
+            {
+              "id": "nega_auto_busta",
+              "testo": "testi:e33.op.nega_auto",
+              "costo": "testi:e33.op.nega_auto.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                },
+                {
+                  "riserva": "squadre",
+                  "valore": -1
+                },
+                {
+                  "pressione": "stazione",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e33.op.nega_auto.r"
+            },
+            {
+              "id": "lascia_andare_busta",
+              "testo": "testi:e33.op.lascia_andare",
+              "costo": "testi:e33.op.lascia_andare.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e33.op.lascia_andare.r"
+            }
+          ],
+          "dopo": {"gia": ["ordini_segnati/ordini_puliti"]},
+          "se": {
+            "var": "busta",
+            "uguale": "tenuta"
+          }
         },
         {
           "id": "viale_ritorno",
@@ -711,41 +836,110 @@
           ]
         },
         {
-          "id": "treno_mezzanotte",
+          "id": "varchi_stazione",
           "fonte": "centrale_radio",
-          "testo": "testi:e33.ch.treno_mezzanotte",
+          "testo": "testi:e33.ch.varchi_stazione",
           "settore": "stazione",
           "opzioni": [
             {
-              "id": "trattieni_mezzanotte",
-              "testo": "testi:e33.op.trattieni_mezzanotte",
-              "costo": "testi:e33.op.trattieni_mezzanotte.c",
+              "id": "copri_varchi",
+              "testo": "testi:e33.op.copri_varchi",
+              "costo": "testi:e33.op.copri_varchi.c",
               "effetti": [
                 {
                   "pressione": "stazione",
                   "valore": -2
                 }
               ],
-              "risposta": "testi:e33.op.trattieni_mezzanotte.r"
+              "risposta": "testi:e33.op.copri_varchi.r"
             },
             {
-              "id": "parte_mezzanotte",
-              "testo": "testi:e33.op.parte_mezzanotte",
-              "costo": "testi:e33.op.parte_mezzanotte.c",
+              "id": "varchi_vuoti",
+              "testo": "testi:e33.op.varchi_vuoti",
+              "costo": "testi:e33.op.varchi_vuoti.c",
               "effetti": [
                 {
                   "pressione": "stazione",
                   "valore": 2
                 }
               ],
-              "risposta": "testi:e33.op.parte_mezzanotte.r"
+              "risposta": "testi:e33.op.varchi_vuoti.r"
             }
-          ]
+          ],
+          "commento": "testi:e33.ch.varchi_stazione.vice"
         }
       ]
     }
   ],
   "esiti": [
+    {
+      "id": "contenuto_sospetto",
+      "se": {
+        "tutte": [
+          {
+            "non": {
+              "var": "busta",
+              "uguale": "tenuta"
+            }
+          },
+          {
+            "tutte": [
+              {
+                "var": "tensione_max",
+                "al_massimo": 3
+              },
+              {
+                "var": "credito",
+                "almeno": 3
+              }
+            ]
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e33.verbale_contenuto_sospetto",
+      "stelle_min": 2,
+      "dopo": {"gia": ["ordini_segnati/ordini_puliti"]}
+    },
+    {
+      "id": "contenuto_a_fatica_sospetto",
+      "se": {
+        "tutte": [
+          {
+            "non": {
+              "var": "busta",
+              "uguale": "tenuta"
+            }
+          },
+          {
+            "var": "tensione_max",
+            "al_massimo": 6
+          }
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e33.verbale_a_fatica_sospetto",
+      "stelle_max": 2,
+      "dopo": {"gia": ["ordini_segnati/ordini_puliti"]}
+    },
+    {
+      "id": "degenerato_sospetto",
+      "se": {
+        "tutte": [
+          {
+            "non": {
+              "var": "busta",
+              "uguale": "tenuta"
+            }
+          },
+          {}
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e33.verbale_degenerato_sospetto",
+      "fallita": true,
+      "dopo": {"gia": ["ordini_segnati/ordini_puliti"]}
+    },
     {
       "id": "contenuto",
       "se": {
