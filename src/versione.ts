@@ -303,4 +303,15 @@
 //   nella seconda bozza PO-119 (la quarta, approvata con D-176, arriva in un rilascio successivo).
 //   guardiano: tests/fiducia-verso.test.ts (per episodio, rosso __NO_C16001), tests/confronto.test.ts (freschezza
 //   delle tabelle), tests/c39-dati.test.ts, rossi __NO_C38B01, __NO_C39R07, C114P01, guardiano foto-po119.
-export const GAME_VERSION = '0.40.0';
+//
+// 0.41.0 – protagonisti della quarta prova nel gioco, correzioni del collaudo C-040, terza stella ricalibrata.
+//   causa: PO-119/PO-133/PO-135 (protagonista femminile poco riconoscibile, braccia incollate al busto: quarta prova
+//   approvata con D-176); PO-136 braccio mancante nella mano alla nuca (C117B01); PO-137 spigoli delle braccia (D-178);
+//   C40-01 il confronto smentiva la partita giocata; C40-02 fiducia in salita nelle partite fallite; C40-03 «le tue
+//   risposte» ripetuto; C40-04 mediatore con unità impegnate senza spiegazione; C40-05 busta consegnata detta «chiusa».
+//   misura: D-180 episodi con Δ fiducia media > 0 nelle fallite 13 → 0, voci del confronto contraddette 598 → 0;
+//   D-181 terza stella con fiducia ≥ 8 in e02/e10/e18/e26/e33 (episodi con 3★ alla strategia attenta 19 → 17);
+//   quarta prova in ogni vignetta (guardiano persona-ovunque); governo+logica 3/3 verdi sulle consegne (D-177).
+//   guardiano: tests/persona-ovunque.test.ts, tests/braccia.test.ts (rosso C117B01), guardiano degli spigoli (rosso
+//   C118S01), foto-po119, tests/fiducia-verso.test.ts per episodio, rossi C119R01 e C120U01 (C40-03/04).
+export const GAME_VERSION = '0.41.0';
