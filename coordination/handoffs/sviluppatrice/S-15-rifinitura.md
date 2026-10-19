@@ -113,3 +113,12 @@ con fiducia alta (≥ 8), quindi ±2 dei fili non le sposta; il peso dei fili si
 - e28 «quattro voci» contro tre chiamate (nota minore della scheda): non toccato.
 - Corteo di ritorno di e33 (M e33 viale_ritorno), simile a e31: la scheda lo cita, D-189 nomina solo il treno; non toccato.
 - La ricerca delle promesse è per parole chiave: una promessa scritta con altre parole può essere sfuggita.
+
+## 6. CI: rosso di «grafica (412)» su afbdc6b, corretto
+
+FATTO: job «grafica (412)», passo «foto», 3 tentativi: `eccezione: variabile «carte» senza valore`. Causa:
+`tools/foto-epilogo.mjs` giocava e36 con le variabili del salvataggio reale v2-0.38.0 senza completarle, mentre il gioco le
+completa al caricamento (C14-03, `src/logica/aggiornamento.ts`). Correzione nello strumento: `completaVariabili` sulle
+variabili di partenza. Misura: `node tools/foto-epilogo.mjs <cartella> 412` → verde (prima: eccezione).
+Nota: le tavole grandi dell'epilogo (`src/resa/tavole-finale.tsx:15`) restano cinque; «carte» compare nell'elenco delle
+scelte (`src/resa/schermate/Epilogo.tsx:67`), non ha una tavola disegnata. Non verificato a schermo.
