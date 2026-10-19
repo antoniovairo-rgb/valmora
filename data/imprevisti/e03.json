@@ -156,12 +156,7 @@
             "id": "musica",
             "testo": "testi:e03.imp.balconi.musica",
             "costo": "testi:e03.imp.balconi.musica.c",
-            "effetti": [
-              {
-                "pressione": "quartiere",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e03.imp.balconi.musica.r"
           }
         ]

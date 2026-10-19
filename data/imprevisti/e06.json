@@ -47,12 +47,7 @@
             "id": "sirena",
             "testo": "testi:e06.imp.allarme.sirena",
             "costo": "testi:e06.imp.allarme.sirena.c",
-            "effetti": [
-              {
-                "pressione": "piazza_concerto",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e06.imp.allarme.sirena.r"
           }
         ]
@@ -104,12 +99,7 @@
             "id": "vento",
             "testo": "testi:e06.imp.palloncini.vento",
             "costo": "testi:e06.imp.palloncini.vento.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e06.imp.palloncini.vento.r"
           }
         ]

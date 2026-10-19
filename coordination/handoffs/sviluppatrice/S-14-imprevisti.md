@@ -46,8 +46,9 @@ Il prototipo dei tempi (modi a/b/c) è **tolto** dal codice (era in b0c1710; res
   - **lascia correre**: nessuno impegnato, da 0 a +2 di pressione.
 - Testi nei file `data/testi/it/e01…e06.json` (chiavi `eXX.imp.*`). Chiamate ≤ 100 caratteri (guardiano PO-084/085 verde).
   Coerenti con la trama: Varrone, Lavezzari e il Fabbro non vengono toccati. Nessun riferimento reale, nessuna violenza in scena.
-- Fiducia: nessuna risposta la dà. Una sola la toglie: e02 «treno soppresso / Fai annunciare e basta», −1 fiducia, col costo
-  scritto («il comando non gradisce»). Serve a D-160: senza, la fiducia media nelle partite perse di e02 saliva (+0,10).
+- Fiducia: nessuna risposta la dà. Due risposte di e02 la tolgono (−1), entrambe «lascia correre» in stazione, col costo
+  scritto: «Lasciali cercare» per la sciarpa e «Fai annunciare e basta» per il treno soppresso. Servono a D-160: senza, la
+  fiducia media nelle partite perse di e02 saliva (+0,10).
 
 ## 3. Misure prima/dopo (FATTO MISURATO)
 
@@ -57,25 +58,32 @@ completa in `s14/misura-imprevisti-blocco1.md`.
 | ep | casuale: fallite prima → dopo | stelle medie del casuale | attenta (stelle) | equilibrata (stelle) | peggiore |
 |---|---|---|---|---|---|
 | e01 | 56,7% → 57,0% | 0,45 → 0,45 | 2 → 2 | 3 → 3 | 0 → 0 |
-| e02 | 56,0% → 63,2% | 0,47 → 0,40 | 3 → 3 | 3 → 3 | 0 → 0 |
-| e03 | 55,7% → 63,4% | 0,50 → 0,40 | 2 → 2 | 3 → 3 | 0 → 0 |
-| e04 | 55,2% → 62,7% | 0,47 → 0,38 | 3 → 3 | 3 → 3 | 0 → 0 |
-| e05 | 60,4% → 62,1% | 0,41 → 0,39 | 2 → 2 | 1 → 1 | 0 → 0 |
-| e06 | 61,7% → 63,8% | 0,40 → 0,39 | 2 → 2 | 3 → 3 | 0 → 0 |
+| e02 | 56,0% → 61,3% | 0,47 → 0,42 | 3 → 3 | 3 → 3 | 0 → 0 |
+| e03 | 55,7% → 61,4% | 0,50 → 0,42 | 2 → 2 | 3 → 3 | 0 → 0 |
+| e04 | 55,2% → 60,6% | 0,47 → 0,41 | 3 → 3 | 3 → 3 | 0 → 0 |
+| e05 | 60,4% → 60,0% | 0,41 → 0,41 | 2 → 2 | 1 → 1 | 0 → 0 |
+| e06 | 61,7% → 59,8% | 0,40 → 0,44 | 2 → 2 | 3 → 3 | 0 → 0 |
 | e07 (senza imprevisti) | 63,2% | 0,39 | 2 | 3 | 0 |
 
-- **Curva D-154/D-108** (fallite del casuale, mai giù di oltre 1 punto fra episodi consecutivi): 57,0 · 63,2 · 63,4 · 62,7 ·
-  62,1 · 63,8 · 63,2 → verde. Margini stretti: e04 contro e03 0,3 punti, e05 contro e04 0,4, e07 contro e06 0,4.
-  Prima della ritaratura gli imprevisti alzavano le fallite di 10 punti e la curva era rossa fra e06 ed e07. Ritarato coi dati,
-  mai con le soglie.
+- **Curva D-154/D-108** (fallite del casuale, mai giù di oltre 1 punto fra episodi consecutivi):
+  - valori: 57,0 · 61,3 · 61,4 · 60,6 · 60,0 · 59,8 · 63,2 → verde;
+  - margini stretti: e04 contro e03 0,2 punti, e05 contro e04 0,4, e06 contro e05 0,8;
+  - prima della ritaratura gli imprevisti alzavano le fallite fino a 10 punti, e la curva era rossa fra e06 ed e07;
+  - ritarato coi dati, mai con le soglie.
+- **Crescita fra stagioni D-162** (media delle fallite del casuale per stagione), prima → dopo:
+  - stagione 1: 62,64 → 63,84; stagione 2: 64,22 → 64,22; stagione 3: 67,91 → 67,91;
+  - verde, ma la stagione 1 è sotto la 2 di soli 0,38 punti;
+  - un primo giro della catena era rosso qui (stagione 1 a 64,9). Per questo e05 ed e06 ora sono un po' più facili per il
+    casuale (−0,4 e −1,9 punti), mentre i bot attento ed equilibrato non cambiano;
+  - quando le stagioni 2 e 3 avranno i loro imprevisti, la media va rimisurata.
 - **Stelle D-181:** i bot attento, equilibrato e peggiore hanno le stesse stelle in tutti e 6 gli episodi. Le 3★ non si
   gonfiano: e05 «attenta» saliva a 3★ con il primo «tabellone», corretto togliendo la pressione a quella risposta.
 - **Fiducia D-160:** Δ medio nelle partite perse, prima → dopo (`deltaFallite`, 1000 semi):
-  e01 −0,80 → −0,88 · e02 −0,10 → −0,25 · e03 −1,51 → −1,80 · e04 −0,27 → −0,39 · e05 −0,97 → −0,81 · e06 −3,06 → −3,12.
+  e01 −0,80 → −0,88 · e02 −0,10 → −0,54 · e03 −1,51 → −1,75 · e04 −0,27 → −0,34 · e05 −0,97 → −0,72 · e06 −3,06 → −3,06.
   Tutti ≤ 0.
 - **Bilancio del verbale (C36-03):** quota di partite perse in cui degenera il luogo nominato dal verbale:
-  - e02 stazione: 52,4% → 53,8%;
-  - e03 quartiere: 54,9% → 54,7%;
+  - e02 stazione: 52,4% → 52,4%;
+  - e03 quartiere: 54,9% → 53,6%;
   - tutti ≥ 50% (`tests/c36-dati.test.ts` verde).
 - **Bilancio del verbale C38-03:** la tabella precalcolata `src/logica/confronti.json` è rigenerata (`node tools/confronti.mjs`),
   e il test D-174 è verde.
@@ -134,7 +142,7 @@ Esito misurato:
 - Prova sul telefono vero e tempo della ripartenza sul telefono.
 - Giudizio del PO sui testi degli imprevisti.
 - La sensazione di «tensione» in una partita vera.
-- I margini stretti della curva (0,3-0,4 punti) dopo i blocchi successivi: vanno rimisurati a ogni blocco.
+- I margini stretti (curva 0,2-0,8 punti, D-162 0,38 punti) dopo i blocchi successivi: vanno rimisurati a ogni blocco.
 
 ## 9. Blocchi successivi (proposta)
 

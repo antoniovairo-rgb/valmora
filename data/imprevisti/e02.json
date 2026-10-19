@@ -47,12 +47,7 @@
             "id": "altoparlante",
             "testo": "testi:e02.imp.binario.altoparlante",
             "costo": "testi:e02.imp.binario.altoparlante.c",
-            "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e02.imp.binario.altoparlante.r"
           }
         ]
@@ -108,6 +103,10 @@
               {
                 "pressione": "stazione",
                 "valore": 2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
               }
             ],
             "risposta": "testi:e02.imp.sciarpa.lascia_cercare.r"

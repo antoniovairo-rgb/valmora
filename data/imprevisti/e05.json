@@ -147,12 +147,7 @@
             "id": "confusione",
             "testo": "testi:e05.imp.pettorine.confusione",
             "costo": "testi:e05.imp.pettorine.confusione.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e05.imp.pettorine.confusione.r"
           }
         ]
