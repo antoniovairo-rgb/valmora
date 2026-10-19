@@ -1,4 +1,4 @@
-// PO-022 (D-190): foto di tre imprevisti (e01 ondata 1, e02 ondata 2, e05 ondata 2) a 360, 375 e 412 px, e il braccio
+// PO-022 (D-190, D-194): foto di tre imprevisti (e01 ondata 1, e17 ondata 4 «trappola», e30 ondata 2) a 360, 375 e 412 px, e il braccio
 // rosso C190I01 (l'imprevisto come una chiamata qualsiasi). Stato: bot attento fino all'imprevisto. Controlli: l'avviso
 // «Imprevisto» c'è e si vede, nessun conto alla rovescia, nessuno scorrimento orizzontale. Timbro e spicchio seguono D-129.
 // Uso: npx vite build && node tools/foto-imprevisti.mjs [cartella]
@@ -28,7 +28,7 @@ function fino(ep, n, id) {
   if (chiamateAperte(st.m, s)[0]?.id !== id) throw new Error(`${ep}: ${id} non arriva`);
   return JSON.stringify({ ...salvataggioTutti(missioni, v0), in_corso: s });
 }
-const CASI = [['e01', 1, 'imp_ambulanza'], ['e02', 2, 'imp_sciarpa'], ['e05', 2, 'imp_tabellone']];
+const CASI = [['e01', 1, 'imp_ambulanza'], ['e17', 4, 'imp_lampioni'], ['e30', 2, 'imp_mercatino']];
 const srv = await servi('dist'), url = `http://127.0.0.1:${srv.address().port}/`;
 const browser = await chromium.launch({ executablePath: existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined });
 const esiti = []; let rossi = 0;
