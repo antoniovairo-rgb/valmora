@@ -4,7 +4,7 @@ Partenza: `claude/valmora-l1-setup-schema-xdrbx7` @ 4f09545. Ramo: `claude/valmo
 File di dati toccati: solo e25–e36 (missioni e testi), `data/stato.json`, `data/testi/it/epilogo.json`,
 `data/testi/it/cons_s3.json` (titoli dei 3 esiti nuovi di e33). Nessun file di e10–e24 (blocco di S-13).
 
-## 1. Blocco da decidere: la regola 1 si scontra con D-160 (riferito, NON applicato)
+## 1. La regola 1 contro D-160: misura, e applicazione di D-190
 
 **FATTO MISURATO.** Delle opzioni dove il testo promette protesta/costo/apprezzamento non applicato, tutte quelle
 delle schede e25–e36 (43, elenco sotto) sono fra le 224 risposte da cui D-160/D-169 ha **tolto** la fiducia
@@ -27,14 +27,19 @@ e32 ferma_larkspire, luci, nessun_nome; e35 ferma_uomo +1, lascia_partire, ferma
 procura/stampa/comando_frase_dura.
 Nota: anche due patti della regola 2 sono fra le 224 (e30 parla_club, accetta_incontro) e la frase dura di e36.
 
-Opzioni per la principale (non decido io):
-- **A (consigliata) · Testo onesto, D-160 intatto.** Le ~43 righe di costo smettono di promettere la conseguenza
-  («nessun costo», o la conseguenza vera che c'è). Costo: ~43 righe di testo, nessun guardiano toccato, nessuna rimisura
-  dell'equilibrio; la promessa del PO (prezzo promesso) resta non mantenuta nei numeri.
-- **B · Prezzo solo dove non fa danni.** ±1 sulle 22 non perverse, testo onesto sulle 21 perverse. Costo: va tolto
-  dal registro statico delle 224 un gruppo di voci (decisione su un guardiano: serve il via), e35 va ritarata per D-180.
-- **C · Prezzo ovunque (regola 1 alla lettera).** Costo: tre guardiani di D-160/D-180 rossi; servirebbe una decisione
-  del PO che superi D-160 (soglia o registro), che io non posso prendere.
+**Esito (D-190, scelta del PO trasmessa dalla principale il 2026-10-19):** dove la risposta è nell'elenco D-160 non si
+mette il ±1, si corregge il testo del costo perché non prometta più un prezzo in fiducia; dove non è nell'elenco il ±1 si
+applica. Fatto:
+- **50 righe di costo riscritte** (e25 3, e26 10, e27 3, e28 4, e29 3, e30 5, e31 6, e32 3, e33 1, e34 3, e35 7, e36 2),
+  tutte su risposte dell'elenco D-160; la protesta resta racconto («protesta a voce, e finisce lì») o il testo dice cosa
+  succede. Ricerca: `node tools/misura-s15-promesse.mjs` (regex su fiducia/apprezza/gradisce/protesta/perdona/offende/annota/
+  conto/favore/ricorda nelle righe di costo di risposte senza effetto sulla fiducia): restano solo testi dove la
+  conseguenza è la pressione o tensione («si offende e sale») o dove il conto arriva davvero più avanti (e31 a_stampa →
+  e36 conto_stampa −1).
+- e35 ferma_uomo / lascia_partire: il costo non promette più l'apprezzamento del comando; il seguito vero è in e36
+  (faldoni_fermati +1, faldoni_persi −1).
+- Fuori dall'elenco D-160 il ±1 si applica: e29 parola_fabbro e e34 accetta_steward (−1, §2). Altre risposte fuori
+  dall'elenco con un prezzo promesso e non applicato in e25–e36: nessuna trovata dalla ricerca sopra.
 
 ## 2. Modifiche fatte (file:riga prima → dopo)
 
@@ -107,4 +112,4 @@ con fiducia alta (≥ 8), quindi ±2 dei fili non le sposta; il peso dei fili si
   di e35–e36), ma nessun testo lo dice. Non corretto (fuori dalle schede).
 - e28 «quattro voci» contro tre chiamate (nota minore della scheda): non toccato.
 - Corteo di ritorno di e33 (M e33 viale_ritorno), simile a e31: la scheda lo cita, D-189 nomina solo il treno; non toccato.
-- §1 resta aperto: nessuna delle ~43 promesse di costo di e25–e36 è stata applicata né riscritta.
+- La ricerca delle promesse è per parole chiave: una promessa scritta con altre parole può essere sfuggita.
