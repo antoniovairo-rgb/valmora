@@ -10,7 +10,7 @@ import type { EsitoMissione } from './missione.ts';
 import type { Condizione, EffettoMissione, Missione, Valore, Variabili } from './tipi.ts';
 
 export interface Impatto { tipo: 'credito' | 'pressione' | 'tensione' | 'riserva'; dove?: string; valore: number; buono: boolean }
-export interface VoceScelta { ondata: number; chiamata: string; opzione: string; impatti: Impatto[]; saldo: number; confronto?: Confronto }
+export interface VoceScelta { ondata: number; chiamata: string; opzione: string; impatti: Impatto[]; saldo: number; confronto?: Confronto; caricaColpito?: boolean }
 export interface Scoperto { ondata: number; settore: string; scoperto: number; tensione: number }
 export interface Requisito { var: string; confronto: 'almeno' | 'al_massimo' | 'uguale' | 'altro'; soglia?: Valore; valore?: Valore; ok: boolean }
 export interface Bilancio { aiuti: VoceScelta[]; pesi: VoceScelta[]; scoperti: Scoperto[]; stelle: { due: Requisito[]; tre: Requisito[] } }
@@ -55,6 +55,12 @@ export function bilancio(m: Missione, r: EsitoMissione, quante = 3, confronto?: 
       const sui = x.impatti.filter((i) => (i.tipo === 'pressione' || i.tipo === 'tensione') && i.dove && colpiti.has(i.dove));
       // ha caricato un settore poi scoperto (o degenerato): non è un aiuto; l'ha scaricato: non è un peso
       if ((x.saldo > 0 && sui.some((i) => i.valore > 0)) || (x.saldo < 0 && sui.some((i) => i.valore < 0))) x.saldo = 0;
+      // C41-01 (D-182): mai un peso che tocca solo settori rimasti sotto controllo. Rosso __NO_C41B01.
+      const settori = x.impatti.filter((i) => (i.tipo === 'pressione' || i.tipo === 'tensione') && i.dove);
+      if (!spento('C41B01') && x.saldo < 0 && settori.length && !sui.length) x.saldo = 0;
+      // C41-02 (D-182): una risposta senza effetti visibili non è né aiuto né peso. Rosso __NO_C41B02.
+      if (!spento('C41B02') && !x.impatti.length) x.saldo = 0;
+      if (!spento('C41B01')) x.caricaColpito = sui.some((i) => i.valore > 0);
     }
   }
   if (conConfronto) { // sotto soglia né aiuto né peso; se non resta nulla, la sola risposta col confronto più forte (D-085)
@@ -65,7 +71,8 @@ export function bilancio(m: Missione, r: EsitoMissione, quante = 3, confronto?: 
     .map(([settore, n]) => ({ ondata: x.n, settore, scoperto: n, tensione: x.tensione[settore] ?? 0 })));
   return {
     aiuti: voci.filter((x) => x.saldo > 0).sort((a, b) => b.saldo - a.saldo).slice(0, quante),
-    pesi: voci.filter((x) => x.saldo < 0).sort((a, b) => a.saldo - b.saldo).slice(0, quante),
+    // C41-01: prima i pesi che hanno caricato un settore poi scoperto o degenerato, poi gli altri; dentro, per saldo
+    pesi: voci.filter((x) => x.saldo < 0).sort((a, b) => Number(!!b.caricaColpito) - Number(!!a.caricaColpito) || a.saldo - b.saldo).slice(0, quante),
     scoperti: scoperti.sort((a, b) => b.scoperto - a.scoperto || a.ondata - b.ondata).slice(0, quante),
     stelle,
   };
