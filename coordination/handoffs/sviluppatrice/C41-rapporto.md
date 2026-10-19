@@ -1,6 +1,6 @@
 # C41-03, C41-04 (D-182, collaudo C-041) · sviluppatrice
 
-Ramo `claude/valmora-resa-v2`. Commit: COMMIT_C41. Base: merge della principale (a76301a).
+Ramo `claude/valmora-resa-v2`. Commit: 09c1240. Base: merge della principale (a76301a).
 
 ## C41-04 – testi che affermano fatti di schieramento falsi: CORRETTO
 
