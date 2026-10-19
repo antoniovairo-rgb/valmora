@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "piazzale",
@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e25.imp.scala_mobile.altra_via.r"
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "curva_cinderwick",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -138,11 +138,11 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e25.imp.tettoia.fradici_piazzale.r"
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "zona_rossa",

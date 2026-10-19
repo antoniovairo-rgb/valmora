@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 3
+                "valore": 1
               }
             ],
             "risposta": "testi:e28.imp.doppia_fila.al_piazzale.r"
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": 1
               },
               {
                 "tensione": "strada_cinderwick",
@@ -86,11 +86,11 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "strada_cinderwick",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e28.imp.cane.verso_strada.r"
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 3
+                "valore": 1
               }
             ],
             "risposta": "testi:e28.imp.tabellone.speaker.r"
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 2
+                "valore": 1
               }
             ],
             "risposta": "testi:e28.imp.lampione.trattieni.r"

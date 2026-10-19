@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -2
+                "valore": 1
               },
               {
                 "tensione": "tornelli",
@@ -34,11 +34,11 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "tornelli",
-                "valore": 3
+                "valore": 2
               }
             ],
             "risposta": "testi:e33.imp.bus_panne.ai_tornelli.r"
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "tornelli",
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "tornelli",
-                "valore": 3
+                "valore": 2
               }
             ],
             "risposta": "testi:e33.imp.tamburo_ospiti.responsabile.r"
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "viale_stazione",
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "viale_stazione",
-                "valore": 3
+                "valore": 2
               }
             ],
             "risposta": "testi:e33.imp.pallone.sul_viale.r"
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "viale_stazione",

@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": 1
               },
               {
                 "tensione": "piazzale",
@@ -34,11 +34,11 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": 1
               },
               {
                 "pressione": "piazzale",
-                "valore": 3
+                "valore": 2
               }
             ],
             "risposta": "testi:e29.imp.tornelli_ospiti.sul_piazzale.r"
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_cinderwick",
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "strada_cinderwick",
-                "valore": 3
+                "valore": 2
               }
             ],
             "risposta": "testi:e29.imp.tubo.in_strada.r"
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 3
+                "valore": 2
               }
             ],
             "risposta": "testi:e29.imp.ponte_basso.verso_piazzale.r"
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "strada_cinderwick",
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "strada_cinderwick",
-                "valore": 3
+                "valore": 2
               }
             ],
             "risposta": "testi:e29.imp.irrigatori.verso_strada.r"
