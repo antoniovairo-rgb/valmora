@@ -239,3 +239,71 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
 - Guardiano in `tests/epilogo.test.ts`: nessun testo `*.busta.consegnata` dice «chius…», in epilogo.json e in finale.json;
   braccio rosso sul testo di prima. FATTO MISURATO: 7 prove passate.
 - FATTO MISURATO (D-177): su 1758ee9, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
+
+## C-041 (D-182): C41-05…08
+
+Principale unita (fast-forward). Foto prima/dopo con gli asset veri: `coordination/handoffs/sviluppatrice/S-09-c41/{prima,dopo}/`
+a 360, 375 e 412 (`*-c41-05-tavola-busta.jpg`, `*-c41-06-verbale-fallito.jpg`, `*-c41-08-guida2.jpg`).
+Strumento nuovo `tools/foto-c41.mjs` (C41-06 e C41-08 nel browser, e10 perso dal giocatore peggiore del motore, partendo
+dal salvataggio vero A-Z), nel passo foto e nei bracci rossi della catena grafica.
+
+| rilievo | riprodotto | prima | dopo | patch | rosso | guardiano |
+|---|---|---|---|---|---|---|
+| C41-05 busta sigillata | sì (codice: `tavole-finale.tsx`, consegnata col tondo del sigillo) | sigillo, patta chiusa | patta aperta, niente sigillo (tenuta: sigillo) | `tavole-finale.tsx` | `__NO_C41B05` | `tests/c41.test.ts` |
+| C41-06 vignetta del verbale fallito | sì, **290×75 px** a 360×760 (disegno 133 px su 290) come nel collaudo; 305×75 a 375, 342×98 a 412 | 290×75, disegno 133 (0,46) | **290×110**, disegno 196 (0,68 ≥ 2/3); «Episodio fallito» e «Ricomincia» finiscono a 676 px su 760, senza scorrere | `vignetta.tsx` (non si nasconde), `Verbale.tsx` (classe `fallita`), token `--vignetta-min-fallita: 110px` | `__NO_C41V06` | `tools/foto-c41.mjs` (2/3 a 360; ripartenza dentro i 760 a ogni larghezza) |
+| C41-07 posa «male» mai in partita | sì (codice: `partita.ts`, «male» solo per il fallito/l'ultimo, che è fallito in 36/36) | e01 contenuto_a_fatica «medio» | «male» per l'esito più basso non fallito (e01 contenuto_a_fatica, e36 sostituito*) | `partita.ts` | `__NO_C41T07` | `tests/tono.test.ts` (ogni episodio con più di un esito non fallito ne ha uno «male») |
+| C41-08 «Quanto dura?» sul bordo | sì: testo 85 in un fumetto di 86, margini 0 e 0 | 86 unità | **102** unità, margini 8 e 8 | `vignette-guida.tsx` | `__NO_C41G08` | `tools/foto-c41.mjs` (≥ 6 unità per lato) |
+
+FATTO MISURATO: `node tools/foto-c41.mjs … 360,375,412` → «verde»; rosso C41V06 a 360 → «disegno largo 133 px su 290»;
+rosso C41G08 → «margini 0 e 0». `npx vitest run`: 66 file, 347 prove passate (c41 2, tono 5).
+
+Non verificato:
+- C41-05: l'epilogo dopo un e24 giocato davvero con «Aprila adesso» non l'ho giocato; ho controllato la tavola con
+  busta = consegnata, che è lo stesso disegno per i due casi.
+- C41-06: il guardiano dei passi ≤ 760 (S-10) e gli altri controlli del giro foto girano solo nella CI «grafica»; il verbale
+  fallito ora è più alto di 35 px, e a 375×667 la vignetta non si nasconde più.
+- C41-07: il colore del titolo del verbale segue il tono: per l'esito più basso non fallito ora è quello di «male».
+- FATTO MISURATO (D-177): su 227ff1f, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
+
+### C41-06, correzione dopo la CI rossa su 227ff1f (run 802)
+
+- FATTO (log CI, job «grafica (375)» e «grafica (412)», passo foto, 3 tentativi su 3): «e01 verbale a 375×667: vignetta
+  «esito-…» alta 110 px (minimo 110) con la pagina che scorre di 107 px: va nascosta (D-126 d)» e «… mostrata a 110.0 px,
+  va nascosta (C26-03)». Causa: con C41-06 la vignetta del verbale fallito non si nascondeva più, neanche sugli schermi
+  bassi. Errore mio: non avevo girato il passo foto completo prima di consegnare.
+- Decisione della principale (D-182): resta D-126 d. Patch: `useRiempi` accetta `nascondibile = 'bassa'`; la vignetta
+  «esito-fallita» si nasconde solo sugli schermi bassi (sotto `--vignetta-finestra-min`), altrove resta al minimo di
+  110 px (`src/resa/vignetta.tsx`). Rosso `__NO_C41V06` invariato.
+- FATTO MISURATO: giro foto completo a 375 in locale (`VALMORA_LARGHEZZE=375`, giraFoto + controllaGiro) → «verde»;
+  `tools/foto-c41.mjs` 360/375/412 → «verde», 360×760: vignetta 290×110, disegno 196.
+- FATTO MISURATO (D-177): su 8fc00a3, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
+
+### C41-06, seconda correzione dopo la CI rossa su 8fc00a3 (run 39224132365)
+
+- FATTO (log CI, job «grafica (360)» 117966283894, passo foto, 3 tentativi su 3, ~2050 s ciascuno): «360px: verbale 1/5:
+  793 px di pagina, a 360×760 si scorre (PO-045)» (terzo tentativo 784 px). Stesso esito nel giro locale
+  `VALMORA_LARGHEZZE=360` (2231 s). Gli altri 6 job erano verdi.
+- Causa: la modalità «bassa» di 8fc00a3 teneva la vignetta al minimo di 110 px anche a 360×760 quando non ci stava,
+  quindi la pagina scorreva. Questo contraddice la decisione D-182 («il minimo vale solo se ci sta senza scorrere»).
+  Errore mio: su 8fc00a3 avevo girato la foto completa solo a 375.
+- Patch (`src/resa/vignetta.tsx`): tolta la modalità «bassa». La vignetta «esito-fallita» segue la regola comune: si
+  nasconde se lo spazio libero è sotto il minimo o se lo schermo è basso. Resta il suo minimo di 110 px
+  (`--vignetta-min-fallita`, classe `.fallita`). Rosso `__NO_C41V06` invariato (toglie la classe, minimo di prima).
+- RITIRATA (misura mia): «a 360×760 la vignetta 290×110, avviso e pulsanti finiscono a 676 di 760, senza scorrere». Il
+  guardiano guardava solo i pulsanti: con la vignetta a 110 px la pagina era alta 791 px (360, 375) e 768 px (412).
+- Su 7f8fc70 la vignetta del verbale fallito di e10 risultava nascosta a 360/375/412×760 (75/75/98 px liberi).
+
+### D-185 (C41-06, opzione C del PO): spazio nel verbale fallito
+
+- Patch: classe `.compatta` sulla scheda del verbale fallito (`src/resa/schermate/Verbale.tsx`). Le regole in
+  `src/resa/stile-c18.css`, solo con token, tolgono 44 px: padding della scheda, ultimo paragrafo, avviso, «Condividi»,
+  margini dei pulsanti di ripartenza. Rosso `__NO_C185V01` (spaziature di prima).
+- FATTO MISURATO (finestra 760 px, giocatore peggiore): e10 ed e33 a 360/375/412, vignetta visibile, pagina alta 760 px.
+  e10 a 360: vignetta 290×110, disegno 196 px su 290. Foto in `S-09-c41/prima-d185/` e `S-09-c41/dopo-d185/`.
+- Guardiani:
+  - `tools/foto-c41.mjs` su e10 ed e33: vignetta visibile, ≥ 2/3 a 360, pagina che non scorre.
+  - `controllaVerbaleBasso` (`tools/foto-verbale.mjs`) sul verbale perso di ogni episodio a 760 px.
+  - Rossi in `bracci-rossi-grafica`: C41V06, C185V01, C185V01+C66V01 (pagina 791 px), C41G08. Tutti rossi a 360.
+  - C66V01 da solo non mostra più il difetto e non è più tra i rossi.
+- FATTO MISURATO (D-177): su 3ba5c7d, 3 giri governo + logica VERDI. Grafica a 360 verde in locale (foto 2183 s).
+  CI run 827 verde 7/7 (cambi, governo, logica, apk, grafica 360/375/412).

@@ -50,6 +50,14 @@ export async function provaProssimo(pagina, piano, atteso, scena, premi) {
  *  stanno sopra nessun testo. Rosso VALMORA_ROSSI=C42V01: pulsanti fissi in basso, come prima. */
 export async function controllaVerbaleBasso(pagina, atteso, dove) {
   const finestra = pagina.viewportSize();
+  // D-185 (C41-06): a 760 px di altezza, primo passo, la vignetta del verbale perso si vede sempre e la pagina non
+  // scorre (ogni episodio, giocatore peggiore). Rossi: C185V01 (spaziature di prima), C185V01,C66V01 (forzata al minimo).
+  await pagina.setViewportSize({ width: finestra.width, height: 760 });
+  await pagina.evaluate(() => new Promise((ok) => { scrollTo(0, 0); requestAnimationFrame(() => requestAnimationFrame(ok)); })); await pagina.waitForTimeout(100);
+  const [nascosta, alta] = await pagina.evaluate(() => [!!document.querySelector('.passo:not([hidden]) svg.vignetta[data-nascosta]'), document.documentElement.scrollHeight]);
+  atteso(`${dove} ${finestra.width}×760: vignetta nascosta (D-185)`, !nascosta);
+  atteso(`${dove} ${finestra.width}×760: pagina alta ${alta} px, si scorre (D-182)`, alta <= 760);
+  await pagina.setViewportSize(finestra);
   await avanzaFino(pagina, '.passi-nav[data-ultimo]', async () => {});
   await pagina.setViewportSize({ width: finestra.width, height: 667 });
   await pagina.evaluate(() => new Promise((ok) => { scrollTo(0, 0); requestAnimationFrame(() => requestAnimationFrame(ok)); })); await pagina.waitForTimeout(100);

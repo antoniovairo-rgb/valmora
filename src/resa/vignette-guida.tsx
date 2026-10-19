@@ -1,6 +1,7 @@
 // Le 6 vignette della guida «La città e il gioco» (S-23, PO-078): skyline di Valmora con fonderie e collina di
 // Skyfield; protagonista col vice Malvasi; mappa con le squadre; sala operativa; barra della fiducia; verbale con
 // le stelle. Città e persone inventate.
+import { spento } from '../interruttori.ts';
 import { Persona, Vignetta } from './vignetta.tsx';
 
 function Skyline() {
@@ -23,8 +24,10 @@ function ChiSei(p: { genere: 'm' | 'f' }) {
       <rect x="0" y="130" width="320" height="50" className="v-grigio" />
       <Persona x={110} y={84} giacca="v-ciano" capelli={p.genere === 'f' ? 'lunghi' : 'corti'} bocca="dritta" />
       <Persona x={220} y={88} s={0.95} giacca="v-nero" capelli="berretto" bocca="su" baffi />
-      <path d="M232 22 h70 a8 8 0 0 1 8 8 v22 a8 8 0 0 1 -8 8 h-50 l-14 12 l2 -12 h-8 a8 8 0 0 1 -8 -8 v-22 a8 8 0 0 1 8 -8 Z" className="v-bianco v-tratto" />
-      <text x="267" y="46" className="v-scritta">Quanto dura?</text>
+      {/* C41-08: fumetto più largo di 16 unità verso sinistra (il testo, 85 unità, toccava i bordi). Rosso C41G08: come prima. */}
+      {spento('C41G08') ? <path d="M232 22 h70 a8 8 0 0 1 8 8 v22 a8 8 0 0 1 -8 8 h-50 l-14 12 l2 -12 h-8 a8 8 0 0 1 -8 -8 v-22 a8 8 0 0 1 8 -8 Z" className="v-bianco v-tratto" />
+        : <path d="M216 22 h86 a8 8 0 0 1 8 8 v22 a8 8 0 0 1 -8 8 h-50 l-14 12 l2 -12 h-24 a8 8 0 0 1 -8 -8 v-22 a8 8 0 0 1 8 -8 Z" className="v-bianco v-tratto" />}
+      <text x={spento('C41G08') ? 267 : 259} y="46" className="v-scritta">Quanto dura?</text>
     </Vignetta>
   );
 }
