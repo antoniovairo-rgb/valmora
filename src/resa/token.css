@@ -198,9 +198,9 @@
   --stemma-compatto: 32px; /* D-191: stemmi nella scheda compatta della città */
   --mappa-proporzione-passi: 4 / 3; /* sala e briefing a passi (S-10): mappa più bassa, niente scorrimento */
   --citta-proporzione: 4 / 5;
-  --citta-riserva: 516px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine; D-187: 513 px dopo la scheda nuova, 13 px di scorrimento a 360×760) */
+  --citta-riserva: 500px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine) */
   --citta-larghezza-min: 208px;
-  --citta-altezza-min: 244px; /* C17-12: altezza minima della mappa della città (quella a 760 px; D-187: 244 con la scheda di oggi) */
+  --citta-altezza-min: 260px; /* C17-12: altezza minima della mappa della città (quella di oggi a 760 px); D-187 l'aveva portata a 244: dischi sovrapposti per 587 px² a 360×760 (CI), tornata a 260 */
   --citta-altezza-max: 460px; /* C17-12: oltre, la mappa diventerebbe più alta che larga */
   --citta-nome-da: 400px; /* D-123: sotto questa larghezza della finestra il nome dell'episodio scelto non sta sulla mappa */
   --logo-icona: 72px;      /* PO-065 */
@@ -222,4 +222,3 @@
 main.rosso-c10s03 .scena .pulsante[data-azione], main.rosso-c10s03 .scena .azioni { position: static; }
 .rosso-c10s03 .indicatore { display: none; }
 .rosso-c40c01 { --colore-bene: #0f9d4f; } /* C19-04: rosso, il verde di prima */
-.rosso-c187c01 { --citta-riserva: 500px; --citta-altezza-min: 260px; } /* D-187: misure di prima della città */
