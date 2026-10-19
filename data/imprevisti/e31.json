@@ -17,12 +17,12 @@
             "costo": "testi:e31.imp.tabellone_arrivi.guida.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "stazione",
                 "valore": -2
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
               }
             ],
             "risposta": "testi:e31.imp.tabellone_arrivi.guida.r"
@@ -47,12 +47,7 @@
             "id": "corrente",
             "testo": "testi:e31.imp.tabellone_arrivi.corrente",
             "costo": "testi:e31.imp.tabellone_arrivi.corrente.c",
-            "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e31.imp.tabellone_arrivi.corrente.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e31.imp.telone.ferma_telone.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "piazzale",
                 "valore": -2
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
               }
             ],
             "risposta": "testi:e31.imp.telone.ferma_telone.r"
@@ -104,12 +99,7 @@
             "id": "vento",
             "testo": "testi:e31.imp.telone.vento",
             "costo": "testi:e31.imp.telone.vento.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e31.imp.telone.vento.r"
           }
         ]
@@ -131,12 +121,12 @@
             "costo": "testi:e31.imp.spina.acqua.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_ospiti",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e31.imp.spina.acqua.r"
@@ -161,12 +151,7 @@
             "id": "riparazione",
             "testo": "testi:e31.imp.spina.riparazione",
             "costo": "testi:e31.imp.spina.riparazione.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e31.imp.spina.riparazione.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "acquedotto",
             "testo": "testi:e31.imp.tubatura.acquedotto",
             "costo": "testi:e31.imp.tubatura.acquedotto.c",
-            "effetti": [
-              {
-                "pressione": "viale_stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e31.imp.tubatura.acquedotto.r"
           }
         ]

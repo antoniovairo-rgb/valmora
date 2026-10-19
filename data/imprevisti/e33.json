@@ -17,12 +17,12 @@
             "costo": "testi:e33.imp.bus_panne.traffico.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "viale_stazione",
                 "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
               }
             ],
             "risposta": "testi:e33.imp.bus_panne.traffico.r"
@@ -47,12 +47,7 @@
             "id": "carro",
             "testo": "testi:e33.imp.bus_panne.carro",
             "costo": "testi:e33.imp.bus_panne.carro.c",
-            "effetti": [
-              {
-                "pressione": "viale_stazione",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e33.imp.bus_panne.carro.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e33.imp.tamburo_ospiti.riporta.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_ospiti",
                 "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
               }
             ],
             "risposta": "testi:e33.imp.tamburo_ospiti.riporta.r"
@@ -104,12 +99,7 @@
             "id": "niente_tamburo",
             "testo": "testi:e33.imp.tamburo_ospiti.niente_tamburo",
             "costo": "testi:e33.imp.tamburo_ospiti.niente_tamburo.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e33.imp.tamburo_ospiti.niente_tamburo.r"
           }
         ]
@@ -131,12 +121,12 @@
             "costo": "testi:e33.imp.pallone.tratta.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_larkspire",
                 "valore": -2
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
               }
             ],
             "risposta": "testi:e33.imp.pallone.tratta.r"
@@ -161,12 +151,7 @@
             "id": "se_lo_tengano",
             "testo": "testi:e33.imp.pallone.se_lo_tengano",
             "costo": "testi:e33.imp.pallone.se_lo_tengano.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e33.imp.pallone.se_lo_tengano.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "acqua_cala",
             "testo": "testi:e33.imp.sottopasso.acqua_cala",
             "costo": "testi:e33.imp.sottopasso.acqua_cala.c",
-            "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e33.imp.sottopasso.acqua_cala.r"
           }
         ]

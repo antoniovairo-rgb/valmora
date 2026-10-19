@@ -17,12 +17,12 @@
             "costo": "testi:e32.imp.cisterna.varco.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "strada_larkspire",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e32.imp.cisterna.varco.r"
@@ -47,12 +47,7 @@
             "id": "ripartira",
             "testo": "testi:e32.imp.cisterna.ripartira",
             "costo": "testi:e32.imp.cisterna.ripartira.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e32.imp.cisterna.ripartira.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e32.imp.cancelletto.sedia.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_larkspire",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e32.imp.cancelletto.sedia.r"
@@ -104,12 +99,7 @@
             "id": "manutenzione",
             "testo": "testi:e32.imp.cancelletto.manutenzione",
             "costo": "testi:e32.imp.cancelletto.manutenzione.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e32.imp.cancelletto.manutenzione.r"
           }
         ]
@@ -131,12 +121,12 @@
             "costo": "testi:e32.imp.maxischermo.fotoelettriche.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "piazzale",
                 "valore": -2
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
               }
             ],
             "risposta": "testi:e32.imp.maxischermo.fotoelettriche.r"
@@ -161,12 +151,7 @@
             "id": "al_buio",
             "testo": "testi:e32.imp.maxischermo.al_buio",
             "costo": "testi:e32.imp.maxischermo.al_buio.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e32.imp.maxischermo.al_buio.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "ferrovie",
             "testo": "testi:e32.imp.passaggio_livello.ferrovie",
             "costo": "testi:e32.imp.passaggio_livello.ferrovie.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e32.imp.passaggio_livello.ferrovie.r"
           }
         ]

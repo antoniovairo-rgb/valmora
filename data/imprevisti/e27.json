@@ -17,12 +17,12 @@
             "costo": "testi:e27.imp.scala_mobile.scala_servizio.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "stazione",
+                "valore": -2
               },
               {
-                "pressione": "stazione",
-                "valore": -3
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
             "risposta": "testi:e27.imp.scala_mobile.scala_servizio.r"
@@ -47,12 +47,7 @@
             "id": "tecnico",
             "testo": "testi:e27.imp.scala_mobile.tecnico",
             "costo": "testi:e27.imp.scala_mobile.tecnico.c",
-            "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e27.imp.scala_mobile.tecnico.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e27.imp.bandierone.slega.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_gemellati",
                 "valore": -2
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
             "risposta": "testi:e27.imp.bandierone.slega.r"
@@ -104,12 +99,7 @@
             "id": "tirate",
             "testo": "testi:e27.imp.bandierone.tirate",
             "costo": "testi:e27.imp.bandierone.tirate.c",
-            "effetti": [
-              {
-                "pressione": "curva_gemellati",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e27.imp.bandierone.tirate.r"
           }
         ]
@@ -131,12 +121,12 @@
             "costo": "testi:e27.imp.grondaia.nastro.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_cinderwick",
                 "valore": -2
+              },
+              {
+                "tensione": "curva_gemellati",
+                "valore": 1
               }
             ],
             "risposta": "testi:e27.imp.grondaia.nastro.r"
@@ -161,12 +151,7 @@
             "id": "smettera",
             "testo": "testi:e27.imp.grondaia.smettera",
             "costo": "testi:e27.imp.grondaia.smettera.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e27.imp.grondaia.smettera.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "finisca_giro",
             "testo": "testi:e27.imp.camion_rifiuti.finisca_giro",
             "costo": "testi:e27.imp.camion_rifiuti.finisca_giro.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e27.imp.camion_rifiuti.finisca_giro.r"
           }
         ]

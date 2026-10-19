@@ -17,12 +17,12 @@
             "costo": "testi:e36.imp.rotolo.spingi.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "strada_larkspire",
+                "valore": -2
               },
               {
-                "pressione": "strada_larkspire",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e36.imp.rotolo.spingi.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -47,12 +47,7 @@
             "id": "se_la_vedano",
             "testo": "testi:e36.imp.rotolo.se_la_vedano",
             "costo": "testi:e36.imp.rotolo.se_la_vedano.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e36.imp.rotolo.se_la_vedano.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e36.imp.gabbiano.prime_file.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "curva_cinderwick",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e36.imp.gabbiano.prime_file.r"
@@ -104,12 +99,7 @@
             "id": "se_ne_vada",
             "testo": "testi:e36.imp.gabbiano.se_ne_vada",
             "costo": "testi:e36.imp.gabbiano.se_ne_vada.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e36.imp.gabbiano.se_ne_vada.r"
           }
         ]
@@ -131,12 +121,12 @@
             "costo": "testi:e36.imp.recinto_buio.torce.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": -2
               },
               {
-                "pressione": "cantiere_stadio_nuovo",
-                "valore": -3
+                "tensione": "strada_larkspire",
+                "valore": 1
               }
             ],
             "risposta": "testi:e36.imp.recinto_buio.torce.r"
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "cantiere_stadio_nuovo",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "strada_larkspire",
@@ -161,12 +151,7 @@
             "id": "luce",
             "testo": "testi:e36.imp.recinto_buio.luce",
             "costo": "testi:e36.imp.recinto_buio.luce.c",
-            "effetti": [
-              {
-                "pressione": "cantiere_stadio_nuovo",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e36.imp.recinto_buio.luce.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "strada_larkspire",
@@ -218,12 +203,7 @@
             "id": "riserva",
             "testo": "testi:e36.imp.cassa.riserva",
             "costo": "testi:e36.imp.cassa.riserva.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e36.imp.cassa.riserva.r"
           }
         ]

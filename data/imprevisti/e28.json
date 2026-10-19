@@ -17,12 +17,12 @@
             "costo": "testi:e28.imp.doppia_fila.sposta_auto.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "strada_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "strada_cinderwick",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e28.imp.doppia_fila.sposta_auto.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -47,12 +47,7 @@
             "id": "clacson",
             "testo": "testi:e28.imp.doppia_fila.clacson",
             "costo": "testi:e28.imp.doppia_fila.clacson.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e28.imp.doppia_fila.clacson.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e28.imp.cane.panino.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "piazzale",
+                "valore": -2
               },
               {
-                "pressione": "piazzale",
-                "valore": -3
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
             "risposta": "testi:e28.imp.cane.panino.r"
@@ -104,12 +99,7 @@
             "id": "si_stanchera",
             "testo": "testi:e28.imp.cane.si_stanchera",
             "costo": "testi:e28.imp.cane.si_stanchera.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e28.imp.cane.si_stanchera.r"
           }
         ]
@@ -131,12 +121,12 @@
             "costo": "testi:e28.imp.tabellone.cronometro.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "curva_cinderwick",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e28.imp.tabellone.cronometro.r"
@@ -161,12 +151,7 @@
             "id": "tecnico",
             "testo": "testi:e28.imp.tabellone.tecnico",
             "costo": "testi:e28.imp.tabellone.tecnico.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e28.imp.tabellone.tecnico.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -218,12 +203,7 @@
             "id": "comune",
             "testo": "testi:e28.imp.lampione.comune",
             "costo": "testi:e28.imp.lampione.comune.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e28.imp.lampione.comune.r"
           }
         ]

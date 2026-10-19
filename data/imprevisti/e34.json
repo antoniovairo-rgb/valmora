@@ -17,12 +17,12 @@
             "costo": "testi:e34.imp.sbarra.regola.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "parcheggi",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e34.imp.sbarra.regola.r"
@@ -47,12 +47,7 @@
             "id": "chi_entra",
             "testo": "testi:e34.imp.sbarra.chi_entra",
             "costo": "testi:e34.imp.sbarra.chi_entra.c",
-            "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e34.imp.sbarra.chi_entra.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e34.imp.bagni.bagni_personale.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_ospiti",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e34.imp.bagni.bagni_personale.r"
@@ -104,12 +99,7 @@
             "id": "idraulico",
             "testo": "testi:e34.imp.bagni.idraulico",
             "costo": "testi:e34.imp.bagni.idraulico.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e34.imp.bagni.idraulico.r"
           }
         ]
@@ -131,12 +121,12 @@
             "costo": "testi:e34.imp.pollo.cassetta.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "piazzale",
                 "valore": -2
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
               }
             ],
             "risposta": "testi:e34.imp.pollo.cassetta.r"
@@ -161,12 +151,7 @@
             "id": "trovi_strada",
             "testo": "testi:e34.imp.pollo.trovi_strada",
             "costo": "testi:e34.imp.pollo.trovi_strada.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e34.imp.pollo.trovi_strada.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "ambulanti",
             "testo": "testi:e34.imp.arance.ambulanti",
             "costo": "testi:e34.imp.arance.ambulanti.c",
-            "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e34.imp.arance.ambulanti.r"
           }
         ]

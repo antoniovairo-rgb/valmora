@@ -17,12 +17,12 @@
             "costo": "testi:e29.imp.tornelli_ospiti.a_mano.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_ospiti",
+                "valore": -2
               },
               {
-                "pressione": "curva_ospiti",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e29.imp.tornelli_ospiti.a_mano.r"
@@ -47,12 +47,7 @@
             "id": "si_riprendono",
             "testo": "testi:e29.imp.tornelli_ospiti.si_riprendono",
             "costo": "testi:e29.imp.tornelli_ospiti.si_riprendono.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e29.imp.tornelli_ospiti.si_riprendono.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e29.imp.tubo.valvola.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_cinderwick",
                 "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
             "risposta": "testi:e29.imp.tubo.valvola.r"
@@ -104,12 +99,7 @@
             "id": "idraulico",
             "testo": "testi:e29.imp.tubo.idraulico",
             "costo": "testi:e29.imp.tubo.idraulico.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e29.imp.tubo.idraulico.r"
           }
         ]
@@ -131,12 +121,12 @@
             "costo": "testi:e29.imp.ponte_basso.devia.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "strada_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "strada_cinderwick",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e29.imp.ponte_basso.devia.r"
@@ -161,12 +151,7 @@
             "id": "carro",
             "testo": "testi:e29.imp.ponte_basso.carro",
             "costo": "testi:e29.imp.ponte_basso.carro.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e29.imp.ponte_basso.carro.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "si_spegne",
             "testo": "testi:e29.imp.irrigatori.si_spegne",
             "costo": "testi:e29.imp.irrigatori.si_spegne.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e29.imp.irrigatori.si_spegne.r"
           }
         ]
