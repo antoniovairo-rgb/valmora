@@ -112,3 +112,30 @@ Foto D-191: `d191/<vp>-<schermata>-<n>.png`.
 
 Non verificato: telefono vero; episodi diversi da e01 (in altri episodi i settori in alto possono fermare la mappa più in
 alto); passi del verbale oltre il primo; lettore di schermo (la testata con «Home» nel rapporto senza mappa).
+
+---
+
+# D-193 (risposta in un solo blocco) e chiusura di D-191 · S-11
+
+FATTO MISURATO (`tools/sonda-altezze.mjs`, build finale): **0 px di scorrimento su tutte le schermate a 360×640, 360×760,
+375×667 e 412×830**, tranne la chiamata (D-114, invariata) e i crediti (liberi).
+
+| schermata | 360×640 | 375×667 |
+|---|---|---|
+| risposta | 104 → **0** | 77 → **0** |
+| sala / briefing | 16 → **0** (mappa ≥ 176 px) | 0 |
+
+1. Risposta (`Ondata.tsx`, rosso `C193R01`): esito e conseguenza in un solo fumetto: la scelta in testa come striscia
+   ciano, poi «☕ Intanto…» in linea col testo della conseguenza. La mappa resta.
+2. Sala e briefing (rosso `C193S01`): 8 px in meno sopra il passo e 4+4 attorno ai pulsanti dei passi; la mappa non scende
+   sotto i 176 px (S-21).
+3. Controllo di «Home» (`adatta.ts`): prima i punti (fermi), poi i nomi ridisposti solo quando i punti sono liberi; una
+   ridisposizione per passo rallentava ogni disegno (IPOTESI sulla CI rossa a 375, segni della risposta spariti prima del
+   controllo PO-085: non riprodotta in locale).
+4. Guardiano R06 di `tools/foto.mjs`: col rapporto senza mappa misurava i nomi contro una mappa nascosta (rettangolo 0×0):
+   ora salta la mappa nascosta (CI locale a 375, 20 rossi falsi).
+
+Bracci rossi verificati rossi (360×640 o 360×760): C187M01, C187V01, C191R01, C191L01, C191C01, C191H01, C193R01, C193S01.
+Guardiani di brevità e C42-02 (testi): non toccati, i testi sono gli stessi (Non verificato in catena finché non passa la CI).
+
+Foto dopo: `d193/dopo-<vp>-<schermata>.png`; prima: le foto `prima-*` in cima a questa cartella.

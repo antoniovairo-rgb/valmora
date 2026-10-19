@@ -150,7 +150,7 @@ export function Risposta(p: { m: Missione; ic: InCorso; o: Opzione; avanti: () =
     <>
       <Messaggio classe="vice risposta-unica" dati="risposta">
         <p className="testo-radio scelta-riga" data-scelta>{t(p.o.testo)}</p>
-        {p.o.risposta && <><Mittente icona={Coffee} nome="Intanto…" vice /><p>{t(p.o.risposta)}</p></>}
+        {p.o.risposta && <p className="intanto"><strong><Icona di={Coffee} />Intanto…</strong> {t(p.o.risposta)}</p>}
       </Messaggio>
       <button className="pulsante" data-azione="continua" onClick={p.avanti}>Avanti<Icona di={ChevronRight} /></button>
     </>

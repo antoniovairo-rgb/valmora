@@ -153,5 +153,12 @@ main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] {
 /* D-191: senza mappa le righe della scheda dei settori si stringono, perché a 360×640 e 375×667 il rapporto non scorra */
 main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .elenco-settori li { padding-block: var(--spazio-1); }
 /* D-193: nella risposta esito e conseguenza in un solo blocco: la scelta in testa, come striscia ciano */
-.messaggio.risposta-unica .scelta-riga { margin: 0 0 var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); background: var(--ciano); border: var(--bordo-fine) solid var(--nero); border-radius: var(--raggio-1); font-weight: 700; }
+.messaggio.risposta-unica .scelta-riga { margin: 0 0 var(--spazio-1); padding: var(--spazio-1) var(--spazio-3); background: var(--ciano); border: var(--bordo-fine) solid var(--nero); border-radius: var(--raggio-1); font-weight: 700; }
 .scena[data-scena="risposta"] .messaggio.risposta-unica { margin: var(--spazio-4) 0 var(--spazio-2); padding: var(--spazio-3); }
+.messaggio.risposta-unica .intanto { margin: 0; }
+.messaggio.risposta-unica .intanto strong { display: inline-flex; align-items: center; gap: var(--spazio-1); margin-right: var(--spazio-1); color: var(--magenta); font-family: var(--font-titoli); text-transform: uppercase; }
+.scena[data-scena="risposta"] .messaggio.risposta-unica { margin-top: var(--spazio-2); }
+/* D-193: a 360×640 sala e briefing scorrevano di 16 px con la mappa ferma a 176 px («Home», S-21): 8 px in meno sopra il
+   passo e 4+4 attorno ai pulsanti dei passi. Rosso C193S01. */
+main:not(.rosso-c193s01):is([data-schermata="sala"], [data-schermata="briefing"]) .passo > .messaggio:first-child { margin-top: var(--spazio-2); }
+main:not(.rosso-c193s01):is([data-schermata="sala"], [data-schermata="briefing"]) .passi-nav .pulsante { margin: var(--spazio-2) 0; }

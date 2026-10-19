@@ -45,18 +45,19 @@ function adatta(m: HTMLElement) {
   let alta = Math.max(min, nat - ecc);
   // S-21: il pulsante «Home» nell'angolo non deve coprire punti e nomi dei settori (CI rossa a 375: il rapporto abbassato portava
   // la curva sotto la casa). Si rialza di un passo finché non li tocca, al più fino all'altezza naturale. Solo i punti
-  // e i nomi dove stanno (si spostano col loro punto): i nomi si ridispongono una volta sola alla fine, non a ogni passo
-  // (rallentava ogni disegno; IPOTESI: in CI a 375 i segni della risposta, 1,8 s, sparivano prima del controllo PO-085).
+  // (fermi) e, quando sono liberi, i nomi appena ridisposti: la ridisposizione costa, si fa solo lì (a ogni passo rallentava
+  // ogni disegno; IPOTESI: in CI a 375 i segni della risposta, 1,8 s, sparivano prima del controllo PO-085).
   const casa = m.querySelector(':scope > .tasto-home'), passo = parseFloat(radice.getPropertyValue('--spazio-2')) || 8;
-  const tocca = () => { if (!casa) return false; const h = casa.getBoundingClientRect();
-    return [...m.querySelectorAll('.settore-punto, .settore-nome')].some((e) => { const r = e.getBoundingClientRect(); return Math.max(0, Math.min(h.right, r.right) - Math.max(h.left, r.left)) * Math.max(0, Math.min(h.bottom, r.bottom) - Math.max(h.top, r.top)) > 4; }); }; // come S-21 (px²)
+  const sotto = (sel: string) => { if (!casa) return false; const h = casa.getBoundingClientRect();
+    return [...m.querySelectorAll(sel)].some((e) => { const r = e.getBoundingClientRect(); return Math.max(0, Math.min(h.right, r.right) - Math.max(h.left, r.left)) * Math.max(0, Math.min(h.bottom, r.bottom) - Math.max(h.top, r.top)) > 4; }); }; // come S-21 (px²)
+  // prima i punti (fermi); i nomi si ridispongono e si controllano solo quando i punti sono liberi
   for (;;) {
     m.style.setProperty('--mappa-alta', `${Math.round(alta)}px`); m.setAttribute('data-adatta', '');
-    if (alta >= nat || !tocca()) break;
+    if (alta >= nat) break;
+    if (!sotto('.settore-punto')) { ridisponi(m); if (!sotto('.settore-nome')) break; }
     alta = Math.min(nat, alta + passo);
   }
-  if (alta >= nat) { m.removeAttribute('data-adatta'); m.style.removeProperty('--mappa-alta'); }
-  ridisponi(m);
+  if (alta >= nat) { m.removeAttribute('data-adatta'); m.style.removeProperty('--mappa-alta'); ridisponi(m); }
   fine(SENZA_MAPPA.has(schermata) && !spento('C191R01') && eccedenza() > 0);
 }
 

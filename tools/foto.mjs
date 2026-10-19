@@ -120,7 +120,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
               const fs = parseFloat(getComputedStyle(el).fontSize);
               if (fs < 12 && el.getClientRects().length) p.push(`«${el.textContent.trim().slice(0, 30)}» a ${fs}px`);
             }
-            const mappa = document.querySelector('.mappa')?.getBoundingClientRect();
+            const mappa = document.querySelector('.mappa:not([data-nascosta])')?.getBoundingClientRect(); // D-191: il rapporto può non mostrarla
             if (mappa) for (const n of document.querySelectorAll('.settore-nome')) {
               const r = n.getBoundingClientRect();
               if (r.left < mappa.left + 5 || r.right > mappa.right - 5 || r.bottom > mappa.bottom - 5 || r.top < mappa.top + 5) p.push(`nome «${n.textContent}» tocca il bordo della mappa`);
