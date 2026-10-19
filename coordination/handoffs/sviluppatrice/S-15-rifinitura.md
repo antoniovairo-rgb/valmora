@@ -51,7 +51,7 @@ Opzioni per la principale (non decido io):
 | e33 treno di mezzanotte (doppione di e31) | M e33:714 treno_mezzanotte | M e33:839 varchi_stazione: gli steward dell'agenzia del Kiln lasciano i varchi; stessi effetti (−2/+2 P stazione); ondata 4 «La fuga» |
 | e34 steward della commissione (regola 2) | M e34:285 accetta_steward +2 steward | M e34:285 +2 steward, **−1 fiducia**; T e34:39 |
 | e35 variabile «carte» | — | `data/stato.json:102` enum nessuna/fermate/perse; M e35:684 ferma_uomo → fermate, M e35:704 lascia_partire → perse |
-| e36 fili sulla carriera | M e36: varianti su Varrone con effetti identici | M e36:843 conto_procura (+1), :879 conto_stampa (−1, il «conto» promesso da T e31:130), :915 faldoni_fermati (+1), :951 faldoni_persi (−1); solo fiducia, nessuna pressione |
+| e36 fili sulla carriera | M e36: varianti su Varrone con effetti identici | M e36:843 conto_procura (+1 testimoniando, 0 lasciando le carte: con +1 su tutte e due «sostituito_procura» non era più raggiungibile dai bot, rosso del passo «bot» al pre-push), :879 conto_stampa (−1, il «conto» promesso da T e31:130), :915 faldoni_fermati (+1), :951 faldoni_persi (−1); solo fiducia, nessuna pressione |
 | e36 busta | T e36:119 la risposta rivela «Non dura» | T e36:119 «Te lo dico a verbale»; 13 verbali (T e36:123-135) svelano «Non dura» con la battuta (perde e paga / vince e paga lo stesso / degenerato senza «resta chiusa») |
 | Epilogo | `src/logica/epilogo.ts:11-13` sei scelte | + `carte` (FILI, EPILOGO); testi `epilogo.json:54-57` |
 
@@ -71,7 +71,7 @@ Scelte tecniche dichiarate:
   e26 intro, e36 apri_ora.r. Braccio rosso esistente (__NO_C153D01).
 - `tests/rifinitura-s15.test.ts` (nuovo): e33 nome solo con prova (verde: smentite 0; rosso __NO_S15T01 > 10);
   carte impostata/letta/epilogo; salvataggi reali completati (rosso __NO_C14V01); fiducia di e36 spostata dai fili di
-  ±2 (rosso __NO_S15C01: uguale); busta solo nei verbali; patti e29/e34 a pagamento.
+  ±2 con l'attenta (rosso __NO_S15C01: uguale); busta solo nei verbali; patti e29/e34 a pagamento.
 - `tests/epilogo.test.ts:51`: la partita A-Z vera ora mostra anche `['carte', 'nessuna']`.
 - `src/logica/confronti.json` rigenerato (`node tools/confronti.mjs`, D-174).
 
@@ -93,7 +93,7 @@ correlazione fiducia/fallita ≥ 0: nessun episodio prima e dopo.
 Carriere (campagna e01→e36, 300 campagne per strategia, episodio fallito rigiocato fino a 5 volte):
 | strategia | prima | dopo |
 |---|---|---|
-| casuale | confermato 208, ad interim 11, sostituito 0, degenerato 81 | confermato 205, ad interim 20, sostituito 1, degenerato 74 |
+| casuale | confermato 208, ad interim 11, sostituito 0, degenerato 81 | confermato 204, ad interim 21, sostituito 1, degenerato 74 |
 | attenta | confermato 300 | confermato 300 |
 | equilibrata | confermato 300 | confermato 300 |
 | peggiore | degenerato 300 | degenerato 300 |

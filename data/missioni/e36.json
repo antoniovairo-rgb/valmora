@@ -865,12 +865,7 @@
               "id": "carte_parlano",
               "testo": "testi:e36.op.carte_parlano",
               "costo": "testi:e36.op.carte_parlano.c",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                }
-              ],
+              "effetti": [],
               "risposta": "testi:e36.op.carte_parlano.r"
             }
           ]
