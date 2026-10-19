@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e29.imp.tornelli_ospiti.sul_piazzale.r"
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "strada_cinderwick",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e29.imp.tubo.in_strada.r"
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e29.imp.ponte_basso.verso_piazzale.r"
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "strada_cinderwick",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e29.imp.irrigatori.verso_strada.r"

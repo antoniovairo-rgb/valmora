@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "strada_cinderwick",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e27.imp.scala_mobile.lato_strada.r"
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "curva_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e27.imp.bandierone.passalo.r"
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "curva_gemellati",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e27.imp.grondaia.verso_gemellati.r"
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "stazione",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e27.imp.camion_rifiuti.vicoli.r"

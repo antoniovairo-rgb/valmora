@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e32.imp.cisterna.scalinata.r"
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e32.imp.cancelletto.giro_piazzale.r"
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "strada_larkspire",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e32.imp.maxischermo.bar_collina.r"
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e32.imp.passaggio_livello.indietro.r"

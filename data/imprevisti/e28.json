@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e28.imp.doppia_fila.al_piazzale.r"
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "strada_cinderwick",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e28.imp.cane.verso_strada.r"
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e28.imp.tabellone.speaker.r"
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e28.imp.lampione.trattieni.r"

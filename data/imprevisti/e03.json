@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -3
               }
             ],
             "risposta": "testi:e03.imp.carro.sblocca.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "parcheggi",
@@ -74,7 +74,7 @@
               },
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -3
               }
             ],
             "risposta": "testi:e03.imp.cane.steward_cane.r"
@@ -86,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "curva_larkspire",
@@ -131,7 +131,7 @@
               },
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -3
               }
             ],
             "risposta": "testi:e03.imp.balconi.mediatore_balconi.r"
@@ -143,7 +143,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "parcheggi",
@@ -179,7 +179,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "quartiere",
@@ -195,7 +195,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "piazzale",

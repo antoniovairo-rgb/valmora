@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "piazza_concerto",
-                "valore": -2
+                "valore": -1
               }
             ],
             "risposta": "testi:e06.imp.allarme.steward_banca.r"
@@ -74,7 +74,7 @@
               },
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               }
             ],
             "risposta": "testi:e06.imp.palloncini.raccogli.r"
@@ -126,7 +126,7 @@
               },
               {
                 "pressione": "piazza_concerto",
-                "valore": -2
+                "valore": -1
               }
             ],
             "risposta": "testi:e06.imp.corrente.squadra_palco.r"

@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "viale_stazione",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e31.imp.tabellone_arrivi.sul_viale.r"
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "viale_stazione",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e31.imp.telone.sul_viale.r"
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e31.imp.spina.bar_piazzale.r"
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "stazione",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e31.imp.tubatura.di_corsa.r"

@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "stazione",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e35.imp.tram_chiuso.indietro.r"
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "corso_centro",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e35.imp.gelati.sul_corso.r"
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "corso_centro",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e35.imp.allarme.fuori.r"

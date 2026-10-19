@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "viale_stazione",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "viale_stazione",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "strada_cinderwick",
@@ -86,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "strada_cinderwick",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "piazza_fonderie",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "quartiere",
@@ -138,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "piazza_fonderie",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "quartiere",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -2
+                "valore": -3
               },
               {
                 "tensione": "quartiere",
@@ -190,7 +190,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "pressione": "quartiere",

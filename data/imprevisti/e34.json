@@ -38,7 +38,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 3
               }
             ],
             "risposta": "testi:e34.imp.sbarra.verso_piazzale.r"
@@ -90,7 +90,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e34.imp.bagni.al_piazzale.r"
@@ -142,7 +142,7 @@
               },
               {
                 "pressione": "parcheggi",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e34.imp.pollo.ai_parcheggi.r"
@@ -194,7 +194,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e34.imp.arance.dal_piazzale.r"
