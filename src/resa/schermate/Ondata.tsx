@@ -44,8 +44,8 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   useLayoutEffect(() => { if (aperto) barraAnnulla.current?.scrollIntoView({ block: 'nearest' }); }, [aperto]);
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
-  const urgenteQui = urgente(p.m, p.c, p.ic.variabili);
-  const imprevistoQui = !!p.c.imprevisto && !spento('C190I01'); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
+  const urgenteQui = urgente(p.m, p.c, p.ic.variabili); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
+  const imprevistoQui = !!p.c.imprevisto && !spento('C190I01'); // PO-022 (D-190)
   // C28-02: col mouse, alla nuova chiamata l'opzione sotto il puntatore fermo appariva già accesa (106/156): l'evidenza
   // al passaggio vale solo dopo che il puntatore si è mosso. Rosso C87H01: subito, come prima.
   const [fermo, setFermo] = useState(true);
