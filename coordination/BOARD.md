@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-19 19:50 Roma – integrate le rifiniture S-13 (e10–e24) e S-15 (e25–e36). Principale 378b6f99: vitest 375/375, governo+logica verdi. Prossimo: rilascio delle 23:00. D-191 (mappa solo se entra) passata a S-11. S-11 ha riparato la CI rossa in 6bf2f1f, verifica in corso. S-14 ha consegnato il blocco 1 (fcfd9ed, CI 7/7); le scelte tecniche sono decise in D-192; ora unisce il principale e prosegue con e07–e36. Archiviate S-13 e S-15. Attive: S-11, S-14. main 7286c6c1.
+Ultimo giro della routine: 2026-10-19 21:20 Roma. D-193 (risposta in un blocco) passata a S-11, che sta lavorando su 898e126 a D-191 e D-193. Modello degli imprevisti deciso in D-194: S-14 ha unito il principale (378b6f9) e ha 120 imprevisti per e07–e36 in taratura. Principale 5d67df8f; prossimo passo il rilascio delle 23:00. Attive: S-11, S-14. main 7286c6c1.
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
