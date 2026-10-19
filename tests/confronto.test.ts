@@ -3,7 +3,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { leggiDati } from '../tools/dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
-import { giocaMissione, opzioniValide } from '../src/logica/missione.ts';
+import { giocaMissione, opzioniValide, settoriDegenerati } from '../src/logica/missione.ts';
 import { STRATEGIE, attenta, casuale, peggiore } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { bilancio } from '../src/logica/bilancio.ts';
@@ -17,7 +17,7 @@ const dich = new Map((d['stato.json'] as { variabili: Dichiarazione[] }).variabi
 const v0 = variabiliIniziali(dich.values());
 const ms = Object.entries(d).filter(([k]) => k.startsWith('missioni/')).map(([, m]) => m as Missione);
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C38B01; delete g.__NO_C40B01; delete g.__NO_C41B01; delete g.__NO_C41B02; });
+afterEach(() => { delete g.__NO_C38B01; delete g.__NO_C40B01; delete g.__NO_C41B01; delete g.__NO_C41B02; for (const k of ['C42B01', 'C42B03', 'C42B04', 'C42B05']) delete g[`__NO_${k}`]; });
 
 /** Partita con schieramento attento che sceglie `voluta` quando è offerta (le altre risposte a caso). */
 const partita = (m: Missione, voluta: string, seme = 1) => {
@@ -125,5 +125,48 @@ describe('bilancio contro le altre risposte (C38-03)', () => {
       if (/Ondata \d+(<!-- -->)? · (<!-- -->)?<\/small>/.test(rosso)) { visto = true; expect(html(e02, r)).not.toMatch(/Ondata \d+(<!-- -->)? · (<!-- -->)?<\/small>/); }
     }
     expect(visto).toBe(true);
+  });
+  // C42 (D-185): 36 episodi × 20 partite del casuale. Conta le violazioni di ogni regola.
+  const c42 = () => {
+    const n = { aiutoScoperto: 0, taciuti: 0, riservaUltima: 0 };
+    for (const m of ms) for (let s = 1; s <= 20; s++) {
+      const r = giocaMissione(m, v0, dich, casuale(creaCaso(`c42:${m.id}:${s}`), dich)); const b = bilancio(m, r, 3, confrontoScelte(m, dich));
+      for (const v of b.aiuti) { const scop = new Set(Object.entries(r.rapporti.find((o) => o.n === v.ondata)?.scoperto ?? {}).filter(([, x]) => x > 0).map(([k]) => k));
+        if (v.impatti.some((i) => (i.tipo === 'pressione' || i.tipo === 'tensione') && scop.has(i.dove!))) n.aiutoScoperto++; }
+      const tutti = new Set(r.rapporti.flatMap((o) => Object.entries(o.scoperto).filter(([, x]) => x > 0).map(([k]) => k)));
+      const taciuti = [...tutti].filter((k) => !b.scoperti.some((x) => x.settore === k)).length; if (taciuti !== (b.altriScoperti ?? 0)) n.taciuti++;
+      for (const v of [...b.aiuti, ...b.pesi]) if (v.ondata === m.ondate.length && v.impatti.some((i) => i.tipo === 'riserva' && i.valore < 0)) n.riservaUltima++;
+    }
+    return n;
+  };
+  it('C42-01/04/05: nessun aiuto su un settore scoperto in quell\'ondata, settori taciuti contati, niente riserva spesa all\'ultima ondata; rossi', () => {
+    expect(c42()).toEqual({ aiutoScoperto: 0, taciuti: 0, riservaUltima: 0 });
+    g.__NO_C42B05 = true; expect(c42().aiutoScoperto).toBeGreaterThan(0); delete g.__NO_C42B05;
+    g.__NO_C42B04 = true; expect(c42().taciuti).toBeGreaterThan(0); delete g.__NO_C42B04;
+    g.__NO_C42B01 = true; expect(c42().riservaUltima).toBeGreaterThan(0);
+  }, 180_000);
+  it('C42-03 e10 (caso del collaudo): nelle partite fallite le risposte che hanno caricato un settore degenerato entrano fra i pesi; rosso C42B03', () => {
+    const e10 = ms.find((m) => m.id === 'e10')!; const giochi: ReturnType<typeof giocaMissione>[] = [];
+    for (let s = 1; giochi.length < 50 && s < 1000; s++) { const r = giocaMissione(e10, v0, dich, casuale(creaCaso(`e10c42:${s}`), dich)); if (r.esito.fallita) giochi.push(r); }
+    const pochi = () => giochi.filter((r) => bilancio(e10, r, 3, confrontoScelte(e10, dich)).pesi.length <= 1).length;
+    expect(pochi()).toBeLessThanOrEqual(10); // misurato: 5/50
+    g.__NO_C42B03 = true; expect(pochi()).toBeGreaterThan(40); // misurato: 50/50
+    // ogni peso forzato ha davvero caricato un settore che poi degenera
+    delete g.__NO_C42B03;
+    for (const r of giochi) for (const v of bilancio(e10, r, 3, confrontoScelte(e10, dich)).pesi) if (Math.abs(v.saldo) < 1) {
+      const deg = new Set(r.rapporti.filter((o) => o.n >= v.ondata).flatMap((o) => settoriDegenerati(e10, o)));
+      expect(v.impatti.some((i) => i.valore > 0 && deg.has(i.dove!))).toBe(true);
+    }
+  });
+  it('C42-04 resa: la riga «e altri N settori»; rosso C42B04: nessuna riga', async () => {
+    const { createElement } = await import('react'); const { renderToStaticMarkup } = await import('react-dom/server');
+    const { sezioniBilancio } = await import('../src/resa/schermate/Bilancio.tsx');
+    const e25 = ms.find((m) => m.id === 'e25')!;
+    for (let s = 1; s <= 100; s++) { const r = giocaMissione(e25, v0, dich, casuale(creaCaso(`c42r:${s}`), dich));
+      const b = bilancio(e25, r, 3, confrontoScelte(e25, dich)); if (!b.altriScoperti) continue;
+      const html = () => renderToStaticMarkup(createElement('div', null, ...sezioniBilancio({ m: e25, esito: r, stelle: 0 })));
+      expect(html()).toMatch(/e (un altro settore|altri \d+ settori)/);
+      g.__NO_C42B04 = true; expect(html()).not.toMatch(/data-altri-scoperti/); return; }
+    throw new Error('nessuna partita di e25 con settori taciuti');
   });
 });

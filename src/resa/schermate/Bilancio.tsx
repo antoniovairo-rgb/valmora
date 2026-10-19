@@ -87,7 +87,9 @@ export function sezioniBilancio(p: { m: Missione; esito: EsitoMissione; stelle: 
       <section className="scheda bilancio bilancio-scoperti" data-sezione="scoperti">
         <h3><Icona di={ShieldAlert} />{t('bilancio.scoperti')}</h3>
         {b.scoperti.length
-          ? <ul>{b.scoperti.map((s, i) => <li key={i} data-scoperto={`${s.ondata}:${s.settore}`}>Ondata {s.ondata} · {t(`settore.${s.settore}`)}</li>)}</ul>
+          ? <ul>{b.scoperti.map((s, i) => <li key={i} data-scoperto={`${s.ondata}:${s.settore}`}>Ondata {s.ondata} · {t(`settore.${s.settore}`)}</li>)}
+            {/* C42-04: la lista tagliata dice quanti settori tace */}
+            {b.altriScoperti ? <li className="tenue" data-altri-scoperti={b.altriScoperti}>{b.altriScoperti === 1 ? 'e un altro settore' : `e altri ${b.altriScoperti} settori`}</li> : null}</ul>
           : <p className="tenue">Nessun settore scoperto.</p>}
       </section>
       <section className="scheda bilancio bilancio-stelle" data-sezione="stelle">
