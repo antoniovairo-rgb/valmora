@@ -80,3 +80,35 @@ schermo; la scheda della città con episodi già giocati (stelle, tentativi) a 3
 `prima-<vp>-<schermata>.png` e `dopo-<vp>-<schermata>.png` per 360×640, 360×760, 375×667, 375×812, 412×830 (titolo,
 città, sala, briefing, schierato, risposta, rapporto). Il primo campione di ogni schermata: prima e dopo possono essere
 ondate diverse (es. rapporto dell'ondata 1 prima, dell'ondata 2 dopo).
+
+---
+
+# D-191 (decisione del PO sull'opzione consigliata) · S-11
+
+Merge (non rebase) dalla principale `e8bf9c6` (S-13, S-15). FATTO MISURATO con `tools/sonda-altezze.mjs`, due giri uguali.
+
+| schermata | 360×640 | 360×760 | 375×667 | 375×812 | 412×830 |
+|---|---|---|---|---|---|
+| città | 117 → **0** | 0 | 90 → **0** | 0 | 0 |
+| sala / briefing | 44/42 → 16/16 | 0 | 17/15 → **0** | 0 | 0 |
+| risposta | 113 → 104 | 0 | 77 → 77 | 0 | 0 |
+| rapporto | 246 → **0** | 126 → **0** | 195 → **0** | 0 | 0 |
+(prima = dopo D-187; chiamata invariata per D-114; crediti liberi; le altre schermate 0)
+
+1. Rapporto (`adatta.ts`, rosso `C191R01`): se con la mappa al minimo la pagina scorre ancora, la mappa non si mostra; resta
+   la scheda dei settori (righe un po' più strette) e «Home» passa nella testata (`App.tsx`, `Testata home`). Senza mappa
+   si nasconde anche la vignetta di fine ondata (già vista nella scena del tono, D-143): prendeva il posto della mappa e
+   sforava di 12 px a 375×812.
+2. Risposta, sala, briefing: la mappa scende fino a `--mappa-altezza-min-lettura` 160 px (rosso `C191L01`); i nomi dei
+   settori evitano il pulsante «Home» come i punti (`etichette.ts`, rosso `C191H01`). A 360×640 sala e briefing restano a
+   16 px: sotto 176 px «Home» tocca la curva di Kiln (S-21) e la mappa si ferma lì. La risposta a 360×640 (104 px) e
+   375×667 (77 px) non ci sta neanche a 160 px: servirebbe un'altra decisione (per esempio i due messaggi in uno).
+3. Città: scheda dell'episodio più compatta (stemmi piccoli accanto ai nomi, margini ridotti; rosso `C191C01`).
+
+Guardiano: `tools/sonda-altezze.mjs` con le soglie nuove; bracci rossi C191R01, C191L01, C191C01, C191H01 verificati
+(rapporto 118 px, sala 36, città 117, sala 40 col rispettivo rosso).
+
+Foto D-191: `d191/<vp>-<schermata>-<n>.png`.
+
+Non verificato: telefono vero; episodi diversi da e01 (in altri episodi i settori in alto possono fermare la mappa più in
+alto); passi del verbale oltre il primo; lettore di schermo (la testata con «Home» nel rapporto senza mappa).

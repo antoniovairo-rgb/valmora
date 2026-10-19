@@ -134,3 +134,21 @@ main:not(.rosso-c187v01):not(.rosso-c40c01) .versione-angolo { z-index: auto; }
 .verbale.compatta ~ .avviso { margin-block: var(--spazio-2) var(--spazio-1); }
 .verbale.compatta ~ .condividi { margin-bottom: var(--spazio-2); }
 .verbale.compatta ~ .ripartenza .pulsante { margin-block: 0; }
+/* D-191: nel rapporto la mappa che non ci sta senza scorrere non si mostra (adatta.ts) */
+main .mappa[data-nascosta] { display: none; }
+/* D-191 (PO-052): scheda dell'episodio nella città più compatta, perché a 360×640 e 375×667 la pagina non scorra.
+   Rosso C191C01: la scheda di prima. */
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] { padding: var(--spazio-2) var(--spazio-3); margin: var(--spazio-2) 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] h2 { margin: var(--spazio-1) 0; font-size: var(--testo-grande); }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] .sfida { margin: var(--spazio-1) 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] .sfida-club { display: flex; align-items: center; justify-content: center; gap: var(--spazio-1); }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] .stemma { width: var(--stemma-compatto); height: var(--stemma-compatto); }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] > p { margin: var(--spazio-1) 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] > .pulsante { margin: var(--spazio-2) 0 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] :is(h2, .sfida, > p) { margin-block: 0; }
+/* D-191: senza mappa il rapporto mostra la sola scheda dei settori: la vignetta di fine ondata (già vista nella scena del
+   tono, D-143) non prende il posto della mappa (a 375×812 sforava di 12 px) */
+main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .vignetta-cornice { display: none; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] { padding-block: var(--spazio-1); }
+/* D-191: senza mappa le righe della scheda dei settori si stringono, perché a 360×640 e 375×667 il rapporto non scorra */
+main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .elenco-settori li { padding-block: var(--spazio-1); }

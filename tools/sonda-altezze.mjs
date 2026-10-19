@@ -15,12 +15,13 @@ import * as M from '../src/logica/missione.ts';
 import { attenta } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 
-// Massimo scorrimento per schermata (px), misurato il 19/10 dopo D-187 con questo pilota; le schermate non elencate: 0.
-// Mai alzarle per far passare una modifica.
+// Massimo scorrimento per schermata (px), misurato il 19/10 dopo D-191 con questo pilota (due giri uguali); le schermate
+// non elencate: 0. Restano sala e briefing a 360×640 (la mappa si ferma a 176 px perché «Home» non copra la curva) e la
+// risposta a 360×640 e 375×667 (anche a 160 px non ci sta). Mai alzarle per far passare una modifica.
 export const SOGLIE = {
-  '360x640': { citta: 117, sala: 44, briefing: 42, risposta: 113, rapporto: 246, chiamata: 664 }, // chiamata: il massimo di prima (D-114)
-  '360x760': { rapporto: 126, chiamata: 544 },
-  '375x667': { citta: 90, sala: 17, briefing: 15, risposta: 77, rapporto: 195, chiamata: 618 },
+  '360x640': { sala: 16, briefing: 16, risposta: 104, chiamata: 664 }, // chiamata: il massimo di prima (D-114)
+  '360x760': { chiamata: 544 },
+  '375x667': { risposta: 77, chiamata: 618 },
   '412x830': { chiamata: 435 },
 };
 const LIBERE = new Set(['crediti']);

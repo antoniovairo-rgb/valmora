@@ -54,7 +54,9 @@ export const PASSI_GRAFICA = {
     if (!(await (await import('./foto-home.mjs')).homeRossaVista('dist'))) ciechi.push('foto/home (C140H01, PO-140) è cieco');
     // D-187: con la mappa che non si abbassa o la versione sopra la scena che esce il guardiano diventa rosso (360×760)
     if (larghezzeGiro().includes(360)) { const a = await import('./sonda-altezze.mjs');
-      for (const r of ['C187M01', 'C187V01']) if (!a.controllaAltezze(await a.giraAltezze({ vps: ['360x760'], rossi: [r] })).length) ciechi.push(`altezze/${r} è cieco`); }
+      // D-191: rapporto senza mappa (R01), minimo a 160 px (L01), scheda compatta della città (C01), nomi lontani da «Home» (H01)
+      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640']])
+        if (!a.controllaAltezze(await a.giraAltezze({ vps: [vp], rossi: [r] })).length) ciechi.push(`altezze/${r} è cieco`); }
     if (!controllaToken({ 'src/resa/x.css': '.a { color: #fff; }' }).length) ciechi.push('token/colore è cieco');
     if (!controllaToken({ 'src/resa/x.css': '.a { margin: 3px; }' }).length) ciechi.push('token/misura è cieco');
     if (!controllaToken({ 'src/resa/X.tsx': '<div style={{ color: "red" }} />' }).length) ciechi.push('token/stile in linea è cieco');

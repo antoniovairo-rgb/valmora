@@ -53,6 +53,10 @@ export function disponiEtichette(contenitore: HTMLElement) {
   if (!spento('C102D01')) for (const s of settori) { s.setAttribute('data-unita', UNITA[0]); s.querySelector<HTMLElement>('.settore-nome')?.style.removeProperty('max-width'); }
   for (const s of settori) { const n = s.querySelector<HTMLElement>('.settore-nome'); n?.style.removeProperty('--nome-dx'); n?.style.removeProperty('--nome-dy'); } // C128-02
   const punti = settori.map((s) => s.querySelector('.settore-punto')!.getBoundingClientRect() as Rett);
+  // D-191: con la mappa abbassata (fino a 160 px) i nomi in alto finivano sotto il pulsante «Home» dell'angolo: per i nomi
+  // e le unità è un ostacolo come i punti (in coda, così gli indici dei settori restano gli stessi). Rosso C191H01: no.
+  const casa = contenitore.querySelector(':scope > .tasto-home');
+  if (casa && !spento('C191H01')) punti.push(casa.getBoundingClientRect() as Rett);
   // C33-01: il nome si misura col testo vero (riquadro ∪ righe del testo): stretto al 60% il testo usciva dal riquadro e
   // finiva sotto le pastiglie (10/142 ondate a 360). Rosso C100N01: solo il riquadro, come prima.
   const nomeDi = (s: HTMLElement) => { const n = s.querySelector('.settore-nome'); if (!n) return null; const b = n.getBoundingClientRect();
