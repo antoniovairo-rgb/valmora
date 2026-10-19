@@ -1,0 +1,213 @@
+{
+  "id": "e08",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_lettore",
+        "fonte": "centrale_radio",
+        "testo": "testi:e08.imp.lettore",
+        "commento": "testi:e08.imp.lettore.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "passa_a_vista",
+            "testo": "testi:e08.imp.lettore.passa_a_vista",
+            "costo": "testi:e08.imp.lettore.passa_a_vista.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.imp.lettore.passa_a_vista.r"
+          },
+          {
+            "id": "strappa_biglietti",
+            "testo": "testi:e08.imp.lettore.strappa_biglietti",
+            "costo": "testi:e08.imp.lettore.strappa_biglietti.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.imp.lettore.strappa_biglietti.r"
+          },
+          {
+            "id": "riavvia",
+            "testo": "testi:e08.imp.lettore.riavvia",
+            "costo": "testi:e08.imp.lettore.riavvia.c",
+            "effetti": [],
+            "risposta": "testi:e08.imp.lettore.riavvia.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_bagni",
+        "fonte": "club_ospite",
+        "testo": "testi:e08.imp.bagni",
+        "commento": "testi:e08.imp.bagni.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "chiama_custode",
+            "testo": "testi:e08.imp.bagni.chiama_custode",
+            "costo": "testi:e08.imp.bagni.chiama_custode.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.imp.bagni.chiama_custode.r"
+          },
+          {
+            "id": "bagno_servizio",
+            "testo": "testi:e08.imp.bagni.bagno_servizio",
+            "costo": "testi:e08.imp.bagni.bagno_servizio.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.imp.bagni.bagno_servizio.r"
+          },
+          {
+            "id": "aspetta_custode",
+            "testo": "testi:e08.imp.bagni.aspetta_custode",
+            "costo": "testi:e08.imp.bagni.aspetta_custode.c",
+            "effetti": [],
+            "risposta": "testi:e08.imp.bagni.aspetta_custode.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_grandine",
+        "fonte": "centrale_radio",
+        "testo": "testi:e08.imp.grandine",
+        "commento": "testi:e08.imp.grandine.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "fermi_in_curva",
+            "testo": "testi:e08.imp.grandine.fermi_in_curva",
+            "costo": "testi:e08.imp.grandine.fermi_in_curva.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.imp.grandine.fermi_in_curva.r"
+          },
+          {
+            "id": "sotto_striscioni",
+            "testo": "testi:e08.imp.grandine.sotto_striscioni",
+            "costo": "testi:e08.imp.grandine.sotto_striscioni.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.imp.grandine.sotto_striscioni.r"
+          },
+          {
+            "id": "aspetta_passi",
+            "testo": "testi:e08.imp.grandine.aspetta_passi",
+            "costo": "testi:e08.imp.grandine.aspetta_passi.c",
+            "effetti": [],
+            "risposta": "testi:e08.imp.grandine.aspetta_passi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_navetta",
+        "fonte": "centrale_radio",
+        "testo": "testi:e08.imp.navetta",
+        "commento": "testi:e08.imp.navetta.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "spingi_navetta",
+            "testo": "testi:e08.imp.navetta.spingi_navetta",
+            "costo": "testi:e08.imp.navetta.spingi_navetta.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.imp.navetta.spingi_navetta.r"
+          },
+          {
+            "id": "di_lato",
+            "testo": "testi:e08.imp.navetta.di_lato",
+            "costo": "testi:e08.imp.navetta.di_lato.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.imp.navetta.di_lato.r"
+          },
+          {
+            "id": "carro_attrezzi",
+            "testo": "testi:e08.imp.navetta.carro_attrezzi",
+            "costo": "testi:e08.imp.navetta.carro_attrezzi.c",
+            "effetti": [],
+            "risposta": "testi:e08.imp.navetta.carro_attrezzi.r"
+          }
+        ]
+      }
+    }
+  ]
+}

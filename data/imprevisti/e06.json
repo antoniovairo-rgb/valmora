@@ -1,0 +1,223 @@
+{
+  "id": "e06",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_allarme",
+        "fonte": "organizzatori_concerto",
+        "testo": "testi:e06.imp.allarme",
+        "commento": "testi:e06.imp.allarme.vice",
+        "settore": "piazza_concerto",
+        "opzioni": [
+          {
+            "id": "steward_banca",
+            "testo": "testi:e06.imp.allarme.steward_banca",
+            "costo": "testi:e06.imp.allarme.steward_banca.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e06.imp.allarme.steward_banca.r"
+          },
+          {
+            "id": "spegni_prova",
+            "testo": "testi:e06.imp.allarme.spegni_prova",
+            "costo": "testi:e06.imp.allarme.spegni_prova.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.allarme.spegni_prova.r"
+          },
+          {
+            "id": "sirena",
+            "testo": "testi:e06.imp.allarme.sirena",
+            "costo": "testi:e06.imp.allarme.sirena.c",
+            "effetti": [],
+            "risposta": "testi:e06.imp.allarme.sirena.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_palloncini",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e06.imp.palloncini",
+        "commento": "testi:e06.imp.palloncini.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "raccogli",
+            "testo": "testi:e06.imp.palloncini.raccogli",
+            "costo": "testi:e06.imp.palloncini.raccogli.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e06.imp.palloncini.raccogli.r"
+          },
+          {
+            "id": "annuncio_piazza",
+            "testo": "testi:e06.imp.palloncini.annuncio_piazza",
+            "costo": "testi:e06.imp.palloncini.annuncio_piazza.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.palloncini.annuncio_piazza.r"
+          },
+          {
+            "id": "vento",
+            "testo": "testi:e06.imp.palloncini.vento",
+            "costo": "testi:e06.imp.palloncini.vento.c",
+            "effetti": [],
+            "risposta": "testi:e06.imp.palloncini.vento.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_corrente",
+        "fonte": "organizzatori_concerto",
+        "testo": "testi:e06.imp.corrente",
+        "commento": "testi:e06.imp.corrente.vice",
+        "settore": "piazza_concerto",
+        "opzioni": [
+          {
+            "id": "squadra_palco",
+            "testo": "testi:e06.imp.corrente.squadra_palco",
+            "costo": "testi:e06.imp.corrente.squadra_palco.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e06.imp.corrente.squadra_palco.r"
+          },
+          {
+            "id": "chiudi_presto",
+            "testo": "testi:e06.imp.corrente.chiudi_presto",
+            "costo": "testi:e06.imp.corrente.chiudi_presto.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.corrente.chiudi_presto.r"
+          },
+          {
+            "id": "aspetta_corrente",
+            "testo": "testi:e06.imp.corrente.aspetta_corrente",
+            "costo": "testi:e06.imp.corrente.aspetta_corrente.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.corrente.aspetta_corrente.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 4,
+      "chiamata": {
+        "id": "imp_metro",
+        "fonte": "centrale_radio",
+        "testo": "testi:e06.imp.metro",
+        "commento": "testi:e06.imp.metro.vice",
+        "settore": "viale_concerto",
+        "opzioni": [
+          {
+            "id": "squadra_viale",
+            "testo": "testi:e06.imp.metro.squadra_viale",
+            "costo": "testi:e06.imp.metro.squadra_viale.c",
+            "effetti": [
+              {
+                "pressione": "viale_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.metro.squadra_viale.r"
+          },
+          {
+            "id": "al_piazzale",
+            "testo": "testi:e06.imp.metro.al_piazzale",
+            "costo": "testi:e06.imp.metro.al_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "viale_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.metro.al_piazzale.r"
+          },
+          {
+            "id": "riapra",
+            "testo": "testi:e06.imp.metro.riapra",
+            "costo": "testi:e06.imp.metro.riapra.c",
+            "effetti": [
+              {
+                "pressione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.metro.riapra.r"
+          }
+        ]
+      }
+    }
+  ]
+}

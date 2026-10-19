@@ -129,3 +129,7 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .verbale.compatta ~ .avviso { margin-block: var(--spazio-2) var(--spazio-1); }
 .verbale.compatta ~ .condividi { margin-bottom: var(--spazio-2); }
 .verbale.compatta ~ .ripartenza .pulsante { margin-block: 0; }
+
+/* PO-022 (D-190): l'imprevisto interrompe le chiamate. Nessun conto alla rovescia. */
+.avviso-imprevisto { margin: 0 0 var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); box-shadow: var(--ombra-1); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; letter-spacing: var(--spaziatura-maiuscolo); }
+.messaggio.imprevisto { background: var(--rosa-tenue); }

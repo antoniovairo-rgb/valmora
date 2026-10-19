@@ -45,6 +45,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
   const urgenteQui = urgente(p.m, p.c, p.ic.variabili); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
+  const imprevistoQui = !!p.c.imprevisto && !spento('C190I01'); // PO-022 (D-190)
   // C28-02: col mouse, alla nuova chiamata l'opzione sotto il puntatore fermo appariva già accesa (106/156): l'evidenza
   // al passaggio vale solo dopo che il puntatore si è mosso. Rosso C87H01: subito, come prima.
   const [fermo, setFermo] = useState(true);
@@ -90,7 +91,9 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   );
   return (
     <>
-      <Messaggio key={p.c.id} classe="radio ultimo" dati={`chiamata-${p.c.id}`}>
+      {/* PO-022 (D-190): l'imprevisto interrompe la sequenza; nessun conto alla rovescia. Rosso C190I01: chiamata come le altre */}
+      {imprevistoQui && <p className="avviso-imprevisto" data-imprevisto={p.c.id} role="status">Imprevisto: interrompe le chiamate</p>}
+      <Messaggio key={p.c.id} classe={`radio ultimo${imprevistoQui ? ' imprevisto' : ''}`} dati={`chiamata-${p.c.id}`}>
         {/* C22-09: l'avatar segue la stessa regola dell'icona accanto alla vignetta (prima: 222/498 chiamate con l'icona generica). Rosso C59A01 */}
         <Mittente icona={(!spento('C59A01') && iconaChi(p.c.fonte)) || iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro={urgenteQui ? 'Urgente!' : undefined} urgenza={urgenteQui && !spento('C51O01')} />
         {/* C18-05: «Rispondi» dentro il fumetto, sotto il mittente: fisso in basso copriva il testo. Rosso C42R01: fisso. */}

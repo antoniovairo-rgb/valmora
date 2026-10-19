@@ -1,0 +1,205 @@
+{
+  "id": "e30",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_semaforo",
+        "fonte": "centrale_radio",
+        "testo": "testi:e30.imp.semaforo",
+        "commento": "testi:e30.imp.semaforo.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "a_mano",
+            "testo": "testi:e30.imp.semaforo.a_mano",
+            "costo": "testi:e30.imp.semaforo.a_mano.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -2
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.semaforo.a_mano.r"
+          },
+          {
+            "id": "vigile_volante",
+            "testo": "testi:e30.imp.semaforo.vigile_volante",
+            "costo": "testi:e30.imp.semaforo.vigile_volante.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.semaforo.vigile_volante.r"
+          },
+          {
+            "id": "tecnici",
+            "testo": "testi:e30.imp.semaforo.tecnici",
+            "costo": "testi:e30.imp.semaforo.tecnici.c",
+            "effetti": [],
+            "risposta": "testi:e30.imp.semaforo.tecnici.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_mercatino",
+        "fonte": "centrale_radio",
+        "testo": "testi:e30.imp.mercatino",
+        "commento": "testi:e30.imp.mercatino.vice",
+        "settore": "piazza_municipio",
+        "opzioni": [
+          {
+            "id": "corridoio",
+            "testo": "testi:e30.imp.mercatino.corridoio",
+            "costo": "testi:e30.imp.mercatino.corridoio.c",
+            "effetti": [
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.mercatino.corridoio.r"
+          },
+          {
+            "id": "stringi_banchi",
+            "testo": "testi:e30.imp.mercatino.stringi_banchi",
+            "costo": "testi:e30.imp.mercatino.stringi_banchi.c",
+            "effetti": [
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.mercatino.stringi_banchi.r"
+          },
+          {
+            "id": "si_incontrino",
+            "testo": "testi:e30.imp.mercatino.si_incontrino",
+            "costo": "testi:e30.imp.mercatino.si_incontrino.c",
+            "effetti": [],
+            "risposta": "testi:e30.imp.mercatino.si_incontrino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_gatto",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e30.imp.gatto",
+        "commento": "testi:e30.imp.gatto.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "pompieri",
+            "testo": "testi:e30.imp.gatto.pompieri",
+            "costo": "testi:e30.imp.gatto.pompieri.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.gatto.pompieri.r"
+          },
+          {
+            "id": "nastro",
+            "testo": "testi:e30.imp.gatto.nastro",
+            "costo": "testi:e30.imp.gatto.nastro.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.gatto.nastro.r"
+          },
+          {
+            "id": "scendera",
+            "testo": "testi:e30.imp.gatto.scendera",
+            "costo": "testi:e30.imp.gatto.scendera.c",
+            "effetti": [],
+            "risposta": "testi:e30.imp.gatto.scendera.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_camion_bottiglie",
+        "fonte": "centrale_radio",
+        "testo": "testi:e30.imp.camion_bottiglie",
+        "commento": "testi:e30.imp.camion_bottiglie.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "apri_passaggio",
+            "testo": "testi:e30.imp.camion_bottiglie.apri_passaggio",
+            "costo": "testi:e30.imp.camion_bottiglie.apri_passaggio.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.camion_bottiglie.apri_passaggio.r"
+          },
+          {
+            "id": "meta",
+            "testo": "testi:e30.imp.camion_bottiglie.meta",
+            "costo": "testi:e30.imp.camion_bottiglie.meta.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.camion_bottiglie.meta.r"
+          },
+          {
+            "id": "domattina",
+            "testo": "testi:e30.imp.camion_bottiglie.domattina",
+            "costo": "testi:e30.imp.camion_bottiglie.domattina.c",
+            "effetti": [],
+            "risposta": "testi:e30.imp.camion_bottiglie.domattina.r"
+          }
+        ]
+      }
+    }
+  ]
+}

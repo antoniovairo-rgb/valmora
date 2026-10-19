@@ -2,6 +2,7 @@
 import { spento } from '../interruttori.ts';
 import { scegliTesto, type Genere } from '../dati/testi.ts';
 import type { Dichiarazione, Missione } from '../logica/tipi.ts';
+import { innestaMissione, type FileImprevisti } from '../dati/imprevisti.ts';
 
 // «@dati» = data/ (alias in vite.config.ts). Le chiavi arrivano come «/data/missioni/e01.json».
 const file = import.meta.glob('@dati/**/*.json', { eager: true, import: 'default' }) as Record<string, unknown>;
@@ -37,7 +38,9 @@ export interface Club { id: string; nome: string; colori?: Colori; stemma?: { fo
 export const club = new Map((perPercorso('club/') as Club[]).map((c) => [c.id, c]));
 
 // Gli abbozzi (bozza: true, D-087) si vedono e si giocano, col segno «bozza» sulla città (S-09: tolto il filtro D-090).
-export const missioni = (perPercorso('missioni/') as Missione[]).sort((a, b) => a.episodio - b.episodio);
+// PO-022 (D-190): gli imprevisti di data/imprevisti/ entrano nelle chiamate delle ondate
+const imprevisti = perPercorso('imprevisti/') as FileImprevisti[];
+export const missioni = (perPercorso('missioni/') as Missione[]).map((m) => innestaMissione(m, imprevisti.find((f) => f.id === m.id))).sort((a, b) => a.episodio - b.episodio);
 export const missione = (id: string): Missione => {
   const m = missioni.find((x) => x.id === id);
   if (!m) throw new Error(`missione «${id}» non trovata`);

@@ -1,0 +1,213 @@
+{
+  "id": "e25",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_scala_mobile",
+        "fonte": "centrale_radio",
+        "testo": "testi:e25.imp.scala_mobile",
+        "commento": "testi:e25.imp.scala_mobile.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "annuncio_laterale",
+            "testo": "testi:e25.imp.scala_mobile.annuncio_laterale",
+            "costo": "testi:e25.imp.scala_mobile.annuncio_laterale.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.scala_mobile.annuncio_laterale.r"
+          },
+          {
+            "id": "scala_fissa",
+            "testo": "testi:e25.imp.scala_mobile.scala_fissa",
+            "costo": "testi:e25.imp.scala_mobile.scala_fissa.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.scala_mobile.scala_fissa.r"
+          },
+          {
+            "id": "salgano_piedi",
+            "testo": "testi:e25.imp.scala_mobile.salgano_piedi",
+            "costo": "testi:e25.imp.scala_mobile.salgano_piedi.c",
+            "effetti": [],
+            "risposta": "testi:e25.imp.scala_mobile.salgano_piedi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_furgone_transenne",
+        "fonte": "centrale_radio",
+        "testo": "testi:e25.imp.furgone_transenne",
+        "commento": "testi:e25.imp.furgone_transenne.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "rimozione",
+            "testo": "testi:e25.imp.furgone_transenne.rimozione",
+            "costo": "testi:e25.imp.furgone_transenne.rimozione.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.furgone_transenne.rimozione.r"
+          },
+          {
+            "id": "aggira_furgone",
+            "testo": "testi:e25.imp.furgone_transenne.aggira_furgone",
+            "costo": "testi:e25.imp.furgone_transenne.aggira_furgone.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.furgone_transenne.aggira_furgone.r"
+          },
+          {
+            "id": "aspetta_autista",
+            "testo": "testi:e25.imp.furgone_transenne.aspetta_autista",
+            "costo": "testi:e25.imp.furgone_transenne.aspetta_autista.c",
+            "effetti": [],
+            "risposta": "testi:e25.imp.furgone_transenne.aspetta_autista.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_tettoia",
+        "fonte": "centrale_radio",
+        "testo": "testi:e25.imp.tettoia",
+        "commento": "testi:e25.imp.tettoia.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "teli",
+            "testo": "testi:e25.imp.tettoia.teli",
+            "costo": "testi:e25.imp.tettoia.teli.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.tettoia.teli.r"
+          },
+          {
+            "id": "stringi_asciutto",
+            "testo": "testi:e25.imp.tettoia.stringi_asciutto",
+            "costo": "testi:e25.imp.tettoia.stringi_asciutto.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.tettoia.stringi_asciutto.r"
+          },
+          {
+            "id": "lascia_piovere",
+            "testo": "testi:e25.imp.tettoia.lascia_piovere",
+            "costo": "testi:e25.imp.tettoia.lascia_piovere.c",
+            "effetti": [],
+            "risposta": "testi:e25.imp.tettoia.lascia_piovere.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_tabellone_partenze",
+        "fonte": "centrale_radio",
+        "testo": "testi:e25.imp.tabellone_partenze",
+        "commento": "testi:e25.imp.tabellone_partenze.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "binari_voce",
+            "testo": "testi:e25.imp.tabellone_partenze.binari_voce",
+            "costo": "testi:e25.imp.tabellone_partenze.binari_voce.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "zona_rossa",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.tabellone_partenze.binari_voce.r"
+          },
+          {
+            "id": "cartello_binari",
+            "testo": "testi:e25.imp.tabellone_partenze.cartello_binari",
+            "costo": "testi:e25.imp.tabellone_partenze.cartello_binari.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.tabellone_partenze.cartello_binari.r"
+          },
+          {
+            "id": "tabellone_riprenda",
+            "testo": "testi:e25.imp.tabellone_partenze.tabellone_riprenda",
+            "costo": "testi:e25.imp.tabellone_partenze.tabellone_riprenda.c",
+            "effetti": [],
+            "risposta": "testi:e25.imp.tabellone_partenze.tabellone_riprenda.r"
+          }
+        ]
+      }
+    }
+  ]
+}

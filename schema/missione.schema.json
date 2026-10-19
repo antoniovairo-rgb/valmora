@@ -292,6 +292,10 @@
                 "settore": {
                   "$ref": "comune.schema.json#/$defs/id"
                 },
+                "imprevisto": {
+                  "const": true,
+                  "description": "PO-022 (D-190): chiamata che arriva fuori ordine e interrompe; si scrive in data/imprevisti/, non qui"
+                },
                 "se": {
                   "$ref": "comune.schema.json#/$defs/condizione"
                 },

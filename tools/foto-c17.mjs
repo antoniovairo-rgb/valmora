@@ -194,7 +194,8 @@ export async function controllaSegni(pagina, atteso, c, op, dove, prima) {
 /** PO-085: sotto ogni opzione, le icone d'effetto sono quelle dei dati (settore, fiducia, unità), senza numeri. */
 export async function controllaIconeEffetti(pagina, atteso, c, dove) {
   const c22 = await import('./foto-c22.mjs'); await c22.controllaIconePiccole(pagina, atteso, dove); await c22.controllaAvatarChi(pagina, atteso, dove); await c22.controllaIconePulsanti(pagina, atteso, dove); // C22-05, C22-09, C22-10
-  const viste = await pagina.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-opzione]')].map((b) =>
+  // le opzioni spente perché l'unità è finita (D-153) mostrano il motivo, non gli effetti: le controlla D-153 (data-esaurita)
+  const viste = await pagina.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-opzione]:not([data-esaurita])')].map((b) =>
     [b.dataset.opzione, [...b.querySelectorAll('[data-effetto]')].map((x) => x.dataset.effetto).sort().join(',') + (/\d/.test(b.querySelector('.effetti-opzione')?.textContent ?? '') ? ' CON NUMERI' : '')])));
   for (const [id, v] of Object.entries(viste)) {
     const o = c.opzioni.find((x) => x.id === id), k = new Set();

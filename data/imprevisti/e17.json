@@ -1,0 +1,205 @@
+{
+  "id": "e17",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_paninaro",
+        "fonte": "centrale_radio",
+        "testo": "testi:e17.imp.paninaro",
+        "commento": "testi:e17.imp.paninaro.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "megafono_panini",
+            "testo": "testi:e17.imp.paninaro.megafono_panini",
+            "costo": "testi:e17.imp.paninaro.megafono_panini.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.paninaro.megafono_panini.r"
+          },
+          {
+            "id": "coda_unica",
+            "testo": "testi:e17.imp.paninaro.coda_unica",
+            "costo": "testi:e17.imp.paninaro.coda_unica.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.paninaro.coda_unica.r"
+          },
+          {
+            "id": "aspetta_gommista",
+            "testo": "testi:e17.imp.paninaro.aspetta_gommista",
+            "costo": "testi:e17.imp.paninaro.aspetta_gommista.c",
+            "effetti": [],
+            "risposta": "testi:e17.imp.paninaro.aspetta_gommista.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cane",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e17.imp.cane",
+        "commento": "testi:e17.imp.cane.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "chiama_canile",
+            "testo": "testi:e17.imp.cane.chiama_canile",
+            "costo": "testi:e17.imp.cane.chiama_canile.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.cane.chiama_canile.r"
+          },
+          {
+            "id": "chiudi_portoni",
+            "testo": "testi:e17.imp.cane.chiudi_portoni",
+            "costo": "testi:e17.imp.cane.chiudi_portoni.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.cane.chiudi_portoni.r"
+          },
+          {
+            "id": "tornera",
+            "testo": "testi:e17.imp.cane.tornera",
+            "costo": "testi:e17.imp.cane.tornera.c",
+            "effetti": [],
+            "risposta": "testi:e17.imp.cane.tornera.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cancello_elettrico",
+        "fonte": "centrale_radio",
+        "testo": "testi:e17.imp.cancello_elettrico",
+        "commento": "testi:e17.imp.cancello_elettrico.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "stacca_quadro",
+            "testo": "testi:e17.imp.cancello_elettrico.stacca_quadro",
+            "costo": "testi:e17.imp.cancello_elettrico.stacca_quadro.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.cancello_elettrico.stacca_quadro.r"
+          },
+          {
+            "id": "nastro",
+            "testo": "testi:e17.imp.cancello_elettrico.nastro",
+            "costo": "testi:e17.imp.cancello_elettrico.nastro.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.cancello_elettrico.nastro.r"
+          },
+          {
+            "id": "cancello_cosi",
+            "testo": "testi:e17.imp.cancello_elettrico.cancello_cosi",
+            "costo": "testi:e17.imp.cancello_elettrico.cancello_cosi.c",
+            "effetti": [],
+            "risposta": "testi:e17.imp.cancello_elettrico.cancello_cosi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_lampioni",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e17.imp.lampioni",
+        "commento": "testi:e17.imp.lampioni.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "fari_accesi",
+            "testo": "testi:e17.imp.lampioni.fari_accesi",
+            "costo": "testi:e17.imp.lampioni.fari_accesi.c",
+            "effetti": [
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.lampioni.fari_accesi.r"
+          },
+          {
+            "id": "torce_telefono",
+            "testo": "testi:e17.imp.lampioni.torce_telefono",
+            "costo": "testi:e17.imp.lampioni.torce_telefono.c",
+            "effetti": [
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.lampioni.torce_telefono.r"
+          },
+          {
+            "id": "aspetta_luce",
+            "testo": "testi:e17.imp.lampioni.aspetta_luce",
+            "costo": "testi:e17.imp.lampioni.aspetta_luce.c",
+            "effetti": [],
+            "risposta": "testi:e17.imp.lampioni.aspetta_luce.r"
+          }
+        ]
+      }
+    }
+  ]
+}

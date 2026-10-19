@@ -1,0 +1,213 @@
+{
+  "id": "e18",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_gregge",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e18.imp.gregge",
+        "commento": "testi:e18.imp.gregge.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "ferma_corteo",
+            "testo": "testi:e18.imp.gregge.ferma_corteo",
+            "costo": "testi:e18.imp.gregge.ferma_corteo.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e18.imp.gregge.ferma_corteo.r"
+          },
+          {
+            "id": "stringi_corteo",
+            "testo": "testi:e18.imp.gregge.stringi_corteo",
+            "costo": "testi:e18.imp.gregge.stringi_corteo.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.gregge.stringi_corteo.r"
+          },
+          {
+            "id": "ultima_pecora",
+            "testo": "testi:e18.imp.gregge.ultima_pecora",
+            "costo": "testi:e18.imp.gregge.ultima_pecora.c",
+            "effetti": [],
+            "risposta": "testi:e18.imp.gregge.ultima_pecora.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_tabellone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e18.imp.tabellone",
+        "commento": "testi:e18.imp.tabellone.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "spegni_tabellone",
+            "testo": "testi:e18.imp.tabellone.spegni_tabellone",
+            "costo": "testi:e18.imp.tabellone.spegni_tabellone.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e18.imp.tabellone.spegni_tabellone.r"
+          },
+          {
+            "id": "telo_tabellone",
+            "testo": "testi:e18.imp.tabellone.telo_tabellone",
+            "costo": "testi:e18.imp.tabellone.telo_tabellone.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.tabellone.telo_tabellone.r"
+          },
+          {
+            "id": "tabellone_sbagliato",
+            "testo": "testi:e18.imp.tabellone.tabellone_sbagliato",
+            "costo": "testi:e18.imp.tabellone.tabellone_sbagliato.c",
+            "effetti": [],
+            "risposta": "testi:e18.imp.tabellone.tabellone_sbagliato.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_fontanella",
+        "fonte": "centrale_radio",
+        "testo": "testi:e18.imp.fontanella",
+        "commento": "testi:e18.imp.fontanella.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "chiudi_centrale",
+            "testo": "testi:e18.imp.fontanella.chiudi_centrale",
+            "costo": "testi:e18.imp.fontanella.chiudi_centrale.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e18.imp.fontanella.chiudi_centrale.r"
+          },
+          {
+            "id": "gradini_turni",
+            "testo": "testi:e18.imp.fontanella.gradini_turni",
+            "costo": "testi:e18.imp.fontanella.gradini_turni.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.fontanella.gradini_turni.r"
+          },
+          {
+            "id": "idraulico",
+            "testo": "testi:e18.imp.fontanella.idraulico",
+            "costo": "testi:e18.imp.fontanella.idraulico.c",
+            "effetti": [],
+            "risposta": "testi:e18.imp.fontanella.idraulico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_pullman_panne",
+        "fonte": "club_lookout",
+        "testo": "testi:e18.imp.pullman_panne",
+        "commento": "testi:e18.imp.pullman_panne.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "sgombera_sirene",
+            "testo": "testi:e18.imp.pullman_panne.sgombera_sirene",
+            "costo": "testi:e18.imp.pullman_panne.sgombera_sirene.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e18.imp.pullman_panne.sgombera_sirene.r"
+          },
+          {
+            "id": "passo_singolo",
+            "testo": "testi:e18.imp.pullman_panne.passo_singolo",
+            "costo": "testi:e18.imp.pullman_panne.passo_singolo.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.pullman_panne.passo_singolo.r"
+          },
+          {
+            "id": "carro_attrezzi",
+            "testo": "testi:e18.imp.pullman_panne.carro_attrezzi",
+            "costo": "testi:e18.imp.pullman_panne.carro_attrezzi.c",
+            "effetti": [],
+            "risposta": "testi:e18.imp.pullman_panne.carro_attrezzi.r"
+          }
+        ]
+      }
+    }
+  ]
+}

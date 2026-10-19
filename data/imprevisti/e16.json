@@ -1,0 +1,213 @@
+{
+  "id": "e16",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_buca",
+        "fonte": "centrale_radio",
+        "testo": "testi:e16.imp.buca",
+        "commento": "testi:e16.imp.buca.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "coni_buca",
+            "testo": "testi:e16.imp.buca.coni_buca",
+            "costo": "testi:e16.imp.buca.coni_buca.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e16.imp.buca.coni_buca.r"
+          },
+          {
+            "id": "tavola",
+            "testo": "testi:e16.imp.buca.tavola",
+            "costo": "testi:e16.imp.buca.tavola.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e16.imp.buca.tavola.r"
+          },
+          {
+            "id": "scavalchi",
+            "testo": "testi:e16.imp.buca.scavalchi",
+            "costo": "testi:e16.imp.buca.scavalchi.c",
+            "effetti": [],
+            "risposta": "testi:e16.imp.buca.scavalchi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_chiavi",
+        "fonte": "club_pinegrove",
+        "testo": "testi:e16.imp.chiavi",
+        "commento": "testi:e16.imp.chiavi.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "lista_club",
+            "testo": "testi:e16.imp.chiavi.lista_club",
+            "costo": "testi:e16.imp.chiavi.lista_club.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e16.imp.chiavi.lista_club.r"
+          },
+          {
+            "id": "dopo_gli_altri",
+            "testo": "testi:e16.imp.chiavi.dopo_gli_altri",
+            "costo": "testi:e16.imp.chiavi.dopo_gli_altri.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e16.imp.chiavi.dopo_gli_altri.r"
+          },
+          {
+            "id": "col_club",
+            "testo": "testi:e16.imp.chiavi.col_club",
+            "costo": "testi:e16.imp.chiavi.col_club.c",
+            "effetti": [],
+            "risposta": "testi:e16.imp.chiavi.col_club.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_nebbia",
+        "fonte": "centrale_radio",
+        "testo": "testi:e16.imp.nebbia",
+        "commento": "testi:e16.imp.nebbia.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "luci_curva",
+            "testo": "testi:e16.imp.nebbia.luci_curva",
+            "costo": "testi:e16.imp.nebbia.luci_curva.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e16.imp.nebbia.luci_curva.r"
+          },
+          {
+            "id": "spazi_liberi",
+            "testo": "testi:e16.imp.nebbia.spazi_liberi",
+            "costo": "testi:e16.imp.nebbia.spazi_liberi.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e16.imp.nebbia.spazi_liberi.r"
+          },
+          {
+            "id": "aspetta_nebbia",
+            "testo": "testi:e16.imp.nebbia.aspetta_nebbia",
+            "costo": "testi:e16.imp.nebbia.aspetta_nebbia.c",
+            "effetti": [],
+            "risposta": "testi:e16.imp.nebbia.aspetta_nebbia.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_portiera",
+        "fonte": "centrale_radio",
+        "testo": "testi:e16.imp.portiera",
+        "commento": "testi:e16.imp.portiera.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "portellone",
+            "testo": "testi:e16.imp.portiera.portellone",
+            "costo": "testi:e16.imp.portiera.portellone.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e16.imp.portiera.portellone.r"
+          },
+          {
+            "id": "pullman_unico",
+            "testo": "testi:e16.imp.portiera.pullman_unico",
+            "costo": "testi:e16.imp.portiera.pullman_unico.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e16.imp.portiera.pullman_unico.r"
+          },
+          {
+            "id": "aspetta_autista",
+            "testo": "testi:e16.imp.portiera.aspetta_autista",
+            "costo": "testi:e16.imp.portiera.aspetta_autista.c",
+            "effetti": [],
+            "risposta": "testi:e16.imp.portiera.aspetta_autista.r"
+          }
+        ]
+      }
+    }
+  ]
+}
