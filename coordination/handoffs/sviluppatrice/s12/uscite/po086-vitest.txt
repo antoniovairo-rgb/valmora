@@ -1,0 +1,44 @@
+ RUN  v5.0.3 /home/user/valmora
+stdout | tests/coerenza-d153.test.ts > D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 episodi) > partite vere (2 bot × 40 semi): le scelte del registro si fanno e la chiamata che le smentisce non arriva mai
+D-153 verde: scelte del registro fatte 285, smentite 0
+ ✓ tests/coerenza-d153.test.ts > D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 episodi) > ogni voce del registro punta a dati che esistono e porta il suo «dopo» 6ms
+stdout | tests/coerenza-d153.test.ts > D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 episodi) > braccio rosso __NO_C153D01 (dati di prima): le smentite tornano in quasi tutte le voci
+D-153 rosso: smentite 133 in 12/12 voci
+ ✓ tests/coerenza-d153.test.ts > D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 episodi) > partite vere (2 bot × 40 semi): le scelte del registro si fanno e la chiamata che le smentisce non arriva mai 7611ms
+ ✓ tests/coerenza-d153.test.ts > D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 episodi) > braccio rosso __NO_C153D01 (dati di prima): le smentite tornano in quasi tutte le voci 3574ms
+ ✓ tests/coerenza-d153.test.ts > D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 episodi) > i testi riscritti non contengono più la frase che smentiva un ramo (rosso: i testi di prima la contengono) 2ms
+stdout | tests/coerenza-d153.test.ts > C37-05 l'opzione che manda un'unità la impegna o dice perché no (tutti i 36 episodi) > rosso (testi di prima): i 6 casi C37-05 tornano
+C37-05 rosso: 6
+ ✓ tests/coerenza-d153.test.ts > D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 episodi) > tutti i 36 episodi giocati dai bot senza errori dopo le nuove condizioni (nessuna ondata senza uscita) 331ms
+ ✓ tests/coerenza-d153.test.ts > C37-05 l'opzione che manda un'unità la impegna o dice perché no (tutti i 36 episodi) > verde: nessuna opzione nomina un'unità che non impegna 4ms
+ ✓ tests/coerenza-d153.test.ts > C37-05 l'opzione che manda un'unità la impegna o dice perché no (tutti i 36 episodi) > rosso (testi di prima): i 6 casi C37-05 tornano 233ms
+stdout | tests/dopo-scelte.test.ts > le scelte fatte cambiano ciò che succede dopo (PO-086) > dopo la scelta, nessuna chiamata o opzione che la contraddice
+PO-086: scelte forzate 701, contraddizioni viste dopo 0
+ ✓ tests/c34-dati.test.ts > C34-03 e35: la barca bloccata o seguita resta nel racconto > blocca_barca + ferma_uomo: nessuna frase smentita, e in ondata 3 una chiamata sulle banchine 35ms
+ ✓ tests/c34-dati.test.ts > C34-03 e35: la barca bloccata o seguita resta nel racconto > blocca_barca + lascia_partire: nessuna frase smentita, e in ondata 3 una chiamata sulle banchine 13ms
+ ✓ tests/c34-dati.test.ts > C34-03 e35: la barca bloccata o seguita resta nel racconto > segui_barca + ferma_uomo: nessuna frase smentita, e in ondata 3 una chiamata sulle banchine 16ms
+ ✓ tests/c34-dati.test.ts > C34-03 e35: la barca bloccata o seguita resta nel racconto > segui_barca + lascia_partire: nessuna frase smentita, e in ondata 3 una chiamata sulle banchine 35ms
+ ✓ tests/c34-dati.test.ts > C34-02 e21 pullman21: il testo del costo dice dove sale la pressione > ogni settore che sale è nominato; nessun settore che scende è detto in salita 1ms
+ ✓ tests/c34-dati.test.ts > C34-06 verbali di fallimento: non raccontano un settore che non è degenerato > e13: il verbale «degenerato» non afferma fatti smentiti dalle partite fallite 1ms
+ ✓ tests/c34-dati.test.ts > C34-06 verbali di fallimento: non raccontano un settore che non è degenerato > e17: il verbale «degenerato» non afferma fatti smentiti dalle partite fallite 1ms
+ ✓ tests/c34-dati.test.ts > C34-06 verbali di fallimento: non raccontano un settore che non è degenerato > e35: il verbale «degenerato» non afferma fatti smentiti dalle partite fallite 0ms
+ ✓ tests/c34-dati.test.ts > C34-06 verbali di fallimento: non raccontano un settore che non è degenerato > la misura non è cieca: una frase specifica in un verbale viene smentita 24ms
+ ✓ tests/c34-dati.test.ts > C34-09 e21: la «i» dell'ondata 1 non svela quale fonte mente > non afferma che stasera i giovani sono all'ex fonderia (la fonte del comune, falsa, dice che sarà vuota) 1ms
+ ✓ tests/c34-dati.test.ts > C34-10 e02 caldo_casa: se resta una sola risposta, il testo dice perché > dopo il mediatore col corteo (o2), in o3 l'unica risposta nomina il mediatore 27ms
+ ✓ tests/c34-dati.test.ts > C34-10 e02 caldo_casa: se resta una sola risposta, il testo dice perché > senza il mediatore col corteo, le due risposte di sempre 1ms
+ ✓ tests/c34-dati.test.ts > C35-01 e35: un salvataggio della 0.34.0 dopo barca_ritorno non riapre barca_ormeggiata > barca_ormeggiata esclude chi ha già risposto a barca_ritorno 1ms
+ ✓ tests/dopo-scelte.test.ts > le scelte fatte cambiano ciò che succede dopo (PO-086) > dopo la scelta, nessuna chiamata o opzione che la contraddice 12339ms
+ ✓ tests/dopo-scelte.test.ts > le scelte fatte cambiano ciò che succede dopo (PO-086) > braccio rosso __NO_PO086 + __NO_C17R03: tornano le contraddizioni 1093ms
+ ✓ tests/dopo-scelte.test.ts > le scelte fatte cambiano ciò che succede dopo (PO-086) > ogni «dopo» punta a una chiamata e un'opzione che esistono in un'ondata precedente o nella stessa 6ms
+ ✓ tests/opzioni-spiegate.test.ts > C35-02 una sola risposta rimasta: dice perché manca l'altra > la risposta rimasta è sempre spiegata: variante con «dopo» o le altre disattivate (nessun caso aperto) 3ms
+ ✓ tests/opzioni-spiegate.test.ts > C35-02 una sola risposta rimasta: dice perché manca l'altra > e26 carosello ed e27 gol_ospiti si vedono nelle partite e nominano il mediatore (o lo mostrano disattivato) 1ms
+stdout | tests/opzioni-spiegate.test.ts > C35-02 una sola risposta rimasta: dice perché manca l'altra > braccio rosso __NO_C153A01: i casi ex aperti tornano muti
+C153A01 rosso: casi muti e28 o4 corteo_capo, e28 o3 gol_mossgarth, e29 o3 ospiti_spaventati, e29 o4 corteo_al_porto, e35 o4 fine_trattativa, e35 o3 barca_ormeggiata, e35 o4 posto_prenotato
+ ✓ tests/opzioni-spiegate.test.ts > C35-02 una sola risposta rimasta: dice perché manca l'altra > la variante col mediatore assente non compare mai insieme all'opzione del mediatore, e una sola delle due varianti è offerta (e26, e27: 2 bot × N semi) 840ms
+ ✓ tests/opzioni-spiegate.test.ts > C35-02 una sola risposta rimasta: dice perché manca l'altra > D-153: i 6 casi ex aperti si vedono nelle partite e la risposta tolta è mostrata disattivata 8ms
+ ✓ tests/opzioni-spiegate.test.ts > C35-02 una sola risposta rimasta: dice perché manca l'altra > braccio rosso __NO_C153A01: i casi ex aperti tornano muti 561ms
+ Test Files  4 passed (4)
+      Tests  28 passed (28)
+   Start at  13:54:32
+   Duration  31.42s (import 50%, tests 46%, transform 4%)
+EXIT 0
