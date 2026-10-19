@@ -1,0 +1,233 @@
+{
+  "id": "e26",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_auto_blu",
+        "fonte": "centrale_radio",
+        "testo": "testi:e26.imp.auto_blu",
+        "commento": "testi:e26.imp.auto_blu.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "staffetta",
+            "testo": "testi:e26.imp.auto_blu.staffetta",
+            "costo": "testi:e26.imp.auto_blu.staffetta.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e26.imp.auto_blu.staffetta.r"
+          },
+          {
+            "id": "scarica_pullman",
+            "testo": "testi:e26.imp.auto_blu.scarica_pullman",
+            "costo": "testi:e26.imp.auto_blu.scarica_pullman.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.auto_blu.scarica_pullman.r"
+          },
+          {
+            "id": "si_arrangino",
+            "testo": "testi:e26.imp.auto_blu.si_arrangino",
+            "costo": "testi:e26.imp.auto_blu.si_arrangino.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.auto_blu.si_arrangino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_microfono",
+        "fonte": "cerimoniale",
+        "testo": "testi:e26.imp.microfono",
+        "commento": "testi:e26.imp.microfono.vice",
+        "settore": "tribuna_autorita",
+        "opzioni": [
+          {
+            "id": "spegni_microfono",
+            "testo": "testi:e26.imp.microfono.spegni_microfono",
+            "costo": "testi:e26.imp.microfono.spegni_microfono.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e26.imp.microfono.spegni_microfono.r"
+          },
+          {
+            "id": "musica_stadio",
+            "testo": "testi:e26.imp.microfono.musica_stadio",
+            "costo": "testi:e26.imp.microfono.musica_stadio.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.microfono.musica_stadio.r"
+          },
+          {
+            "id": "lascia_acceso",
+            "testo": "testi:e26.imp.microfono.lascia_acceso",
+            "costo": "testi:e26.imp.microfono.lascia_acceso.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.microfono.lascia_acceso.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_bandiera_cavi",
+        "fonte": "centrale_radio",
+        "testo": "testi:e26.imp.bandiera_cavi",
+        "commento": "testi:e26.imp.bandiera_cavi.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "libera_bandiera",
+            "testo": "testi:e26.imp.bandiera_cavi.libera_bandiera",
+            "costo": "testi:e26.imp.bandiera_cavi.libera_bandiera.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e26.imp.bandiera_cavi.libera_bandiera.r"
+          },
+          {
+            "id": "bandiera_fuori",
+            "testo": "testi:e26.imp.bandiera_cavi.bandiera_fuori",
+            "costo": "testi:e26.imp.bandiera_cavi.bandiera_fuori.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.bandiera_cavi.bandiera_fuori.r"
+          },
+          {
+            "id": "lascia_cavi",
+            "testo": "testi:e26.imp.bandiera_cavi.lascia_cavi",
+            "costo": "testi:e26.imp.bandiera_cavi.lascia_cavi.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.bandiera_cavi.lascia_cavi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_batteria",
+        "fonte": "club_domepark",
+        "testo": "testi:e26.imp.batteria",
+        "commento": "testi:e26.imp.batteria.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "spinta_sirene",
+            "testo": "testi:e26.imp.batteria.spinta_sirene",
+            "costo": "testi:e26.imp.batteria.spinta_sirene.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.batteria.spinta_sirene.r"
+          },
+          {
+            "id": "attesa_piazzale",
+            "testo": "testi:e26.imp.batteria.attesa_piazzale",
+            "costo": "testi:e26.imp.batteria.attesa_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.batteria.attesa_piazzale.r"
+          },
+          {
+            "id": "soccorso",
+            "testo": "testi:e26.imp.batteria.soccorso",
+            "costo": "testi:e26.imp.batteria.soccorso.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.batteria.soccorso.r"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "id": "e17",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_paninaro",
+        "fonte": "centrale_radio",
+        "testo": "testi:e17.imp.paninaro",
+        "commento": "testi:e17.imp.paninaro.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "sposta_furgone",
+            "testo": "testi:e17.imp.paninaro.sposta_furgone",
+            "costo": "testi:e17.imp.paninaro.sposta_furgone.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e17.imp.paninaro.sposta_furgone.r"
+          },
+          {
+            "id": "coda_strada",
+            "testo": "testi:e17.imp.paninaro.coda_strada",
+            "costo": "testi:e17.imp.paninaro.coda_strada.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.paninaro.coda_strada.r"
+          },
+          {
+            "id": "aspetta_gommista",
+            "testo": "testi:e17.imp.paninaro.aspetta_gommista",
+            "costo": "testi:e17.imp.paninaro.aspetta_gommista.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.paninaro.aspetta_gommista.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cane",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e17.imp.cane",
+        "commento": "testi:e17.imp.cane.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "prendi_cane",
+            "testo": "testi:e17.imp.cane.prendi_cane",
+            "costo": "testi:e17.imp.cane.prendi_cane.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e17.imp.cane.prendi_cane.r"
+          },
+          {
+            "id": "via_piazzale",
+            "testo": "testi:e17.imp.cane.via_piazzale",
+            "costo": "testi:e17.imp.cane.via_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.cane.via_piazzale.r"
+          },
+          {
+            "id": "tornera",
+            "testo": "testi:e17.imp.cane.tornera",
+            "costo": "testi:e17.imp.cane.tornera.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.cane.tornera.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cancello_elettrico",
+        "fonte": "centrale_radio",
+        "testo": "testi:e17.imp.cancello_elettrico",
+        "commento": "testi:e17.imp.cancello_elettrico.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "manovella",
+            "testo": "testi:e17.imp.cancello_elettrico.manovella",
+            "costo": "testi:e17.imp.cancello_elettrico.manovella.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e17.imp.cancello_elettrico.manovella.r"
+          },
+          {
+            "id": "indietro_piazzale",
+            "testo": "testi:e17.imp.cancello_elettrico.indietro_piazzale",
+            "costo": "testi:e17.imp.cancello_elettrico.indietro_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.cancello_elettrico.indietro_piazzale.r"
+          },
+          {
+            "id": "cancello_cosi",
+            "testo": "testi:e17.imp.cancello_elettrico.cancello_cosi",
+            "costo": "testi:e17.imp.cancello_elettrico.cancello_cosi.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.cancello_elettrico.cancello_cosi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_lampioni",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e17.imp.lampioni",
+        "commento": "testi:e17.imp.lampioni.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "fari_accesi",
+            "testo": "testi:e17.imp.lampioni.fari_accesi",
+            "costo": "testi:e17.imp.lampioni.fari_accesi.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.lampioni.fari_accesi.r"
+          },
+          {
+            "id": "strada_illuminata",
+            "testo": "testi:e17.imp.lampioni.strada_illuminata",
+            "costo": "testi:e17.imp.lampioni.strada_illuminata.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.lampioni.strada_illuminata.r"
+          },
+          {
+            "id": "aspetta_luce",
+            "testo": "testi:e17.imp.lampioni.aspetta_luce",
+            "costo": "testi:e17.imp.lampioni.aspetta_luce.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.lampioni.aspetta_luce.r"
+          }
+        ]
+      }
+    }
+  ]
+}

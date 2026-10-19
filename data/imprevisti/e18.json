@@ -1,0 +1,233 @@
+{
+  "id": "e18",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_gregge",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e18.imp.gregge",
+        "commento": "testi:e18.imp.gregge.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "apri_passo",
+            "testo": "testi:e18.imp.gregge.apri_passo",
+            "costo": "testi:e18.imp.gregge.apri_passo.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e18.imp.gregge.apri_passo.r"
+          },
+          {
+            "id": "gira_corteo",
+            "testo": "testi:e18.imp.gregge.gira_corteo",
+            "costo": "testi:e18.imp.gregge.gira_corteo.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.gregge.gira_corteo.r"
+          },
+          {
+            "id": "ultima_pecora",
+            "testo": "testi:e18.imp.gregge.ultima_pecora",
+            "costo": "testi:e18.imp.gregge.ultima_pecora.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.gregge.ultima_pecora.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_tabellone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e18.imp.tabellone",
+        "commento": "testi:e18.imp.tabellone.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "libera_tabellone",
+            "testo": "testi:e18.imp.tabellone.libera_tabellone",
+            "costo": "testi:e18.imp.tabellone.libera_tabellone.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e18.imp.tabellone.libera_tabellone.r"
+          },
+          {
+            "id": "speaker_errore",
+            "testo": "testi:e18.imp.tabellone.speaker_errore",
+            "costo": "testi:e18.imp.tabellone.speaker_errore.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.tabellone.speaker_errore.r"
+          },
+          {
+            "id": "tabellone_sbagliato",
+            "testo": "testi:e18.imp.tabellone.tabellone_sbagliato",
+            "costo": "testi:e18.imp.tabellone.tabellone_sbagliato.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.tabellone.tabellone_sbagliato.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_fontanella",
+        "fonte": "centrale_radio",
+        "testo": "testi:e18.imp.fontanella",
+        "commento": "testi:e18.imp.fontanella.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "chiudi_acqua",
+            "testo": "testi:e18.imp.fontanella.chiudi_acqua",
+            "costo": "testi:e18.imp.fontanella.chiudi_acqua.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e18.imp.fontanella.chiudi_acqua.r"
+          },
+          {
+            "id": "verso_collina",
+            "testo": "testi:e18.imp.fontanella.verso_collina",
+            "costo": "testi:e18.imp.fontanella.verso_collina.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.fontanella.verso_collina.r"
+          },
+          {
+            "id": "idraulico",
+            "testo": "testi:e18.imp.fontanella.idraulico",
+            "costo": "testi:e18.imp.fontanella.idraulico.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.fontanella.idraulico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_pullman_panne",
+        "fonte": "club_lookout",
+        "testo": "testi:e18.imp.pullman_panne",
+        "commento": "testi:e18.imp.pullman_panne.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "sgombera_sirene",
+            "testo": "testi:e18.imp.pullman_panne.sgombera_sirene",
+            "costo": "testi:e18.imp.pullman_panne.sgombera_sirene.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.pullman_panne.sgombera_sirene.r"
+          },
+          {
+            "id": "curva_piazzale",
+            "testo": "testi:e18.imp.pullman_panne.curva_piazzale",
+            "costo": "testi:e18.imp.pullman_panne.curva_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.pullman_panne.curva_piazzale.r"
+          },
+          {
+            "id": "carro_attrezzi",
+            "testo": "testi:e18.imp.pullman_panne.carro_attrezzi",
+            "costo": "testi:e18.imp.pullman_panne.carro_attrezzi.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.pullman_panne.carro_attrezzi.r"
+          }
+        ]
+      }
+    }
+  ]
+}

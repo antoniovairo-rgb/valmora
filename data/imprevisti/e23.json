@@ -1,0 +1,233 @@
+{
+  "id": "e23",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_foratura",
+        "fonte": "club_southwind",
+        "testo": "testi:e23.imp.foratura",
+        "commento": "testi:e23.imp.foratura.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "ingresso_riserva",
+            "testo": "testi:e23.imp.foratura.ingresso_riserva",
+            "costo": "testi:e23.imp.foratura.ingresso_riserva.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e23.imp.foratura.ingresso_riserva.r"
+          },
+          {
+            "id": "scarica_piazzale",
+            "testo": "testi:e23.imp.foratura.scarica_piazzale",
+            "costo": "testi:e23.imp.foratura.scarica_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.foratura.scarica_piazzale.r"
+          },
+          {
+            "id": "ruota_scorta",
+            "testo": "testi:e23.imp.foratura.ruota_scorta",
+            "costo": "testi:e23.imp.foratura.ruota_scorta.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.foratura.ruota_scorta.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_gabbiano",
+        "fonte": "centrale_radio",
+        "testo": "testi:e23.imp.gabbiano",
+        "commento": "testi:e23.imp.gabbiano.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "fuori_gabbiano",
+            "testo": "testi:e23.imp.gabbiano.fuori_gabbiano",
+            "costo": "testi:e23.imp.gabbiano.fuori_gabbiano.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e23.imp.gabbiano.fuori_gabbiano.r"
+          },
+          {
+            "id": "uscite_parcheggi",
+            "testo": "testi:e23.imp.gabbiano.uscite_parcheggi",
+            "costo": "testi:e23.imp.gabbiano.uscite_parcheggi.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.gabbiano.uscite_parcheggi.r"
+          },
+          {
+            "id": "gabbiano_tifosi",
+            "testo": "testi:e23.imp.gabbiano.gabbiano_tifosi",
+            "costo": "testi:e23.imp.gabbiano.gabbiano_tifosi.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.gabbiano.gabbiano_tifosi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_seggiolini",
+        "fonte": "centrale_radio",
+        "testo": "testi:e23.imp.seggiolini",
+        "commento": "testi:e23.imp.seggiolini.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "ricolloca",
+            "testo": "testi:e23.imp.seggiolini.ricolloca",
+            "costo": "testi:e23.imp.seggiolini.ricolloca.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e23.imp.seggiolini.ricolloca.r"
+          },
+          {
+            "id": "maxischermo",
+            "testo": "testi:e23.imp.seggiolini.maxischermo",
+            "costo": "testi:e23.imp.seggiolini.maxischermo.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.seggiolini.maxischermo.r"
+          },
+          {
+            "id": "sulle_scale",
+            "testo": "testi:e23.imp.seggiolini.sulle_scale",
+            "costo": "testi:e23.imp.seggiolini.sulle_scale.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.seggiolini.sulle_scale.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_sbarra",
+        "fonte": "centrale_radio",
+        "testo": "testi:e23.imp.sbarra",
+        "commento": "testi:e23.imp.sbarra.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "alza_mano",
+            "testo": "testi:e23.imp.sbarra.alza_mano",
+            "costo": "testi:e23.imp.sbarra.alza_mano.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              },
+              {
+                "tensione": "casello",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.sbarra.alza_mano.r"
+          },
+          {
+            "id": "varco_mezzi",
+            "testo": "testi:e23.imp.sbarra.varco_mezzi",
+            "costo": "testi:e23.imp.sbarra.varco_mezzi.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "pressione": "casello",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.sbarra.varco_mezzi.r"
+          },
+          {
+            "id": "tecnico_sbarra",
+            "testo": "testi:e23.imp.sbarra.tecnico_sbarra",
+            "costo": "testi:e23.imp.sbarra.tecnico_sbarra.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.sbarra.tecnico_sbarra.r"
+          }
+        ]
+      }
+    }
+  ]
+}

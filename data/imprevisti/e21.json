@@ -1,0 +1,233 @@
+{
+  "id": "e21",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_irrigazione",
+        "fonte": "centrale_radio",
+        "testo": "testi:e21.imp.irrigazione",
+        "commento": "testi:e21.imp.irrigazione.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "chiudi_aiuole",
+            "testo": "testi:e21.imp.irrigazione.chiudi_aiuole",
+            "costo": "testi:e21.imp.irrigazione.chiudi_aiuole.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e21.imp.irrigazione.chiudi_aiuole.r"
+          },
+          {
+            "id": "via_quartiere",
+            "testo": "testi:e21.imp.irrigazione.via_quartiere",
+            "costo": "testi:e21.imp.irrigazione.via_quartiere.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.irrigazione.via_quartiere.r"
+          },
+          {
+            "id": "asciugare",
+            "testo": "testi:e21.imp.irrigazione.asciugare",
+            "costo": "testi:e21.imp.irrigazione.asciugare.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.irrigazione.asciugare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_scuola_guida",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e21.imp.scuola_guida",
+        "commento": "testi:e21.imp.scuola_guida.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "guida_fuori",
+            "testo": "testi:e21.imp.scuola_guida.guida_fuori",
+            "costo": "testi:e21.imp.scuola_guida.guida_fuori.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e21.imp.scuola_guida.guida_fuori.r"
+          },
+          {
+            "id": "verso_fonderie",
+            "testo": "testi:e21.imp.scuola_guida.verso_fonderie",
+            "costo": "testi:e21.imp.scuola_guida.verso_fonderie.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "pressione": "piazza_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.scuola_guida.verso_fonderie.r"
+          },
+          {
+            "id": "trovi_marcia",
+            "testo": "testi:e21.imp.scuola_guida.trovi_marcia",
+            "costo": "testi:e21.imp.scuola_guida.trovi_marcia.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.scuola_guida.trovi_marcia.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pallone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e21.imp.pallone",
+        "commento": "testi:e21.imp.pallone.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "recupera_pallone",
+            "testo": "testi:e21.imp.pallone.recupera_pallone",
+            "costo": "testi:e21.imp.pallone.recupera_pallone.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e21.imp.pallone.recupera_pallone.r"
+          },
+          {
+            "id": "riporta_curva",
+            "testo": "testi:e21.imp.pallone.riporta_curva",
+            "costo": "testi:e21.imp.pallone.riporta_curva.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.pallone.riporta_curva.r"
+          },
+          {
+            "id": "contendano",
+            "testo": "testi:e21.imp.pallone.contendano",
+            "costo": "testi:e21.imp.pallone.contendano.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.pallone.contendano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_allarme_negozio",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e21.imp.allarme_negozio",
+        "commento": "testi:e21.imp.allarme_negozio.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "negoziante",
+            "testo": "testi:e21.imp.allarme_negozio.negoziante",
+            "costo": "testi:e21.imp.allarme_negozio.negoziante.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.allarme_negozio.negoziante.r"
+          },
+          {
+            "id": "defluire_piazzale",
+            "testo": "testi:e21.imp.allarme_negozio.defluire_piazzale",
+            "costo": "testi:e21.imp.allarme_negozio.defluire_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.allarme_negozio.defluire_piazzale.r"
+          },
+          {
+            "id": "lascia_allarme",
+            "testo": "testi:e21.imp.allarme_negozio.lascia_allarme",
+            "costo": "testi:e21.imp.allarme_negozio.lascia_allarme.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.allarme_negozio.lascia_allarme.r"
+          }
+        ]
+      }
+    }
+  ]
+}

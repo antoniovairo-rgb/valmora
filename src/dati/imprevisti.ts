@@ -22,9 +22,17 @@ export function innestaMissione(m: Missione, f?: FileImprevisti): Missione {
   return { ...m, ondate };
 }
 
-/** Su una mappa «percorso relativo a data/ → contenuto»: le missioni con i loro imprevisti innestati. */
+/** Su una mappa «percorso relativo a data/ → contenuto»: le missioni con i loro imprevisti innestati, e i testi degli
+ *  imprevisti (D-192: testi/it/imp_eNN.json, fuori dai testi rifiniti) uniti a quelli dell'episodio, così ogni guardiano
+ *  che legge «testi/it/eNN.json» li vede. */
 export function innesta(file: Record<string, unknown>): Record<string, unknown> {
   const out = { ...file };
+  for (const [k, v] of Object.entries(file)) {
+    const ep = /^testi\/it\/imp_(e\d+)\.json$/.exec(k)?.[1];
+    if (!ep) continue;
+    out[`testi/it/${ep}.json`] = { ...(out[`testi/it/${ep}.json`] as object | undefined), ...(v as object) };
+    delete out[k];
+  }
   for (const [k, v] of Object.entries(file)) {
     const id = /^imprevisti\/([a-z0-9_]+)\.json$/.exec(k)?.[1];
     const m = id && out[`missioni/${id}.json`];

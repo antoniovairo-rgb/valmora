@@ -1,0 +1,233 @@
+{
+  "id": "e19",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_lettore",
+        "fonte": "centrale_radio",
+        "testo": "testi:e19.imp.lettore",
+        "commento": "testi:e19.imp.lettore.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "controllo_mano",
+            "testo": "testi:e19.imp.lettore.controllo_mano",
+            "costo": "testi:e19.imp.lettore.controllo_mano.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e19.imp.lettore.controllo_mano.r"
+          },
+          {
+            "id": "attesa_strada",
+            "testo": "testi:e19.imp.lettore.attesa_strada",
+            "costo": "testi:e19.imp.lettore.attesa_strada.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.lettore.attesa_strada.r"
+          },
+          {
+            "id": "lascia_suonare",
+            "testo": "testi:e19.imp.lettore.lascia_suonare",
+            "costo": "testi:e19.imp.lettore.lascia_suonare.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.lettore.lascia_suonare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_bagni",
+        "fonte": "club_ollerbrook",
+        "testo": "testi:e19.imp.bagni",
+        "commento": "testi:e19.imp.bagni.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "passe_partout",
+            "testo": "testi:e19.imp.bagni.passe_partout",
+            "costo": "testi:e19.imp.bagni.passe_partout.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e19.imp.bagni.passe_partout.r"
+          },
+          {
+            "id": "bagni_casa",
+            "testo": "testi:e19.imp.bagni.bagni_casa",
+            "costo": "testi:e19.imp.bagni.bagni_casa.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.bagni.bagni_casa.r"
+          },
+          {
+            "id": "aspetta_custode",
+            "testo": "testi:e19.imp.bagni.aspetta_custode",
+            "costo": "testi:e19.imp.bagni.aspetta_custode.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.bagni.aspetta_custode.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_camion_rifiuti",
+        "fonte": "centrale_radio",
+        "testo": "testi:e19.imp.camion_rifiuti",
+        "commento": "testi:e19.imp.camion_rifiuti.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "cerca_autista",
+            "testo": "testi:e19.imp.camion_rifiuti.cerca_autista",
+            "costo": "testi:e19.imp.camion_rifiuti.cerca_autista.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e19.imp.camion_rifiuti.cerca_autista.r"
+          },
+          {
+            "id": "verso_tornelli",
+            "testo": "testi:e19.imp.camion_rifiuti.verso_tornelli",
+            "costo": "testi:e19.imp.camion_rifiuti.verso_tornelli.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.camion_rifiuti.verso_tornelli.r"
+          },
+          {
+            "id": "finisca_caffe",
+            "testo": "testi:e19.imp.camion_rifiuti.finisca_caffe",
+            "costo": "testi:e19.imp.camion_rifiuti.finisca_caffe.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.camion_rifiuti.finisca_caffe.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_scala_lavori",
+        "fonte": "club_ollerbrook",
+        "testo": "testi:e19.imp.scala_lavori",
+        "commento": "testi:e19.imp.scala_lavori.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "scala_servizio",
+            "testo": "testi:e19.imp.scala_lavori.scala_servizio",
+            "costo": "testi:e19.imp.scala_lavori.scala_servizio.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.scala_lavori.scala_servizio.r"
+          },
+          {
+            "id": "uscita_kiln",
+            "testo": "testi:e19.imp.scala_lavori.uscita_kiln",
+            "costo": "testi:e19.imp.scala_lavori.uscita_kiln.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.scala_lavori.uscita_kiln.r"
+          },
+          {
+            "id": "porta_sola",
+            "testo": "testi:e19.imp.scala_lavori.porta_sola",
+            "costo": "testi:e19.imp.scala_lavori.porta_sola.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.scala_lavori.porta_sola.r"
+          }
+        ]
+      }
+    }
+  ]
+}

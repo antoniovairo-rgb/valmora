@@ -1,0 +1,233 @@
+{
+  "id": "e20",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tamburo",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e20.imp.tamburo",
+        "commento": "testi:e20.imp.tamburo.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "gira_carretto",
+            "testo": "testi:e20.imp.tamburo.gira_carretto",
+            "costo": "testi:e20.imp.tamburo.gira_carretto.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e20.imp.tamburo.gira_carretto.r"
+          },
+          {
+            "id": "corteo_piazzale",
+            "testo": "testi:e20.imp.tamburo.corteo_piazzale",
+            "costo": "testi:e20.imp.tamburo.corteo_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.tamburo.corteo_piazzale.r"
+          },
+          {
+            "id": "smontino",
+            "testo": "testi:e20.imp.tamburo.smontino",
+            "costo": "testi:e20.imp.tamburo.smontino.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.tamburo.smontino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_radio_chiosco",
+        "fonte": "centrale_radio",
+        "testo": "testi:e20.imp.radio_chiosco",
+        "commento": "testi:e20.imp.radio_chiosco.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "riattacca",
+            "testo": "testi:e20.imp.radio_chiosco.riattacca",
+            "costo": "testi:e20.imp.radio_chiosco.riattacca.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e20.imp.radio_chiosco.riattacca.r"
+          },
+          {
+            "id": "bar_kiln",
+            "testo": "testi:e20.imp.radio_chiosco.bar_kiln",
+            "costo": "testi:e20.imp.radio_chiosco.bar_kiln.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.radio_chiosco.bar_kiln.r"
+          },
+          {
+            "id": "senza_cronaca",
+            "testo": "testi:e20.imp.radio_chiosco.senza_cronaca",
+            "costo": "testi:e20.imp.radio_chiosco.senza_cronaca.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.radio_chiosco.senza_cronaca.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_gatto",
+        "fonte": "centrale_radio",
+        "testo": "testi:e20.imp.gatto",
+        "commento": "testi:e20.imp.gatto.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "recupera_gatto",
+            "testo": "testi:e20.imp.gatto.recupera_gatto",
+            "costo": "testi:e20.imp.gatto.recupera_gatto.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_larkspire",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e20.imp.gatto.recupera_gatto.r"
+          },
+          {
+            "id": "varco_piazzale",
+            "testo": "testi:e20.imp.gatto.varco_piazzale",
+            "costo": "testi:e20.imp.gatto.varco_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.gatto.varco_piazzale.r"
+          },
+          {
+            "id": "gatto_balaustra",
+            "testo": "testi:e20.imp.gatto.gatto_balaustra",
+            "costo": "testi:e20.imp.gatto.gatto_balaustra.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.gatto.gatto_balaustra.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_clacson",
+        "fonte": "centrale_radio",
+        "testo": "testi:e20.imp.clacson",
+        "commento": "testi:e20.imp.clacson.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "rimozione",
+            "testo": "testi:e20.imp.clacson.rimozione",
+            "costo": "testi:e20.imp.clacson.rimozione.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.clacson.rimozione.r"
+          },
+          {
+            "id": "pedoni_collina",
+            "testo": "testi:e20.imp.clacson.pedoni_collina",
+            "costo": "testi:e20.imp.clacson.pedoni_collina.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.clacson.pedoni_collina.r"
+          },
+          {
+            "id": "batteria",
+            "testo": "testi:e20.imp.clacson.batteria",
+            "costo": "testi:e20.imp.clacson.batteria.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.clacson.batteria.r"
+          }
+        ]
+      }
+    }
+  ]
+}

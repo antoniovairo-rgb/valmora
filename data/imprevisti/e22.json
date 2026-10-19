@@ -1,0 +1,233 @@
+{
+  "id": "e22",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_turisti",
+        "fonte": "ufficio_sicurezza_cinderwick",
+        "testo": "testi:e22.imp.turisti",
+        "commento": "testi:e22.imp.turisti.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "guida_pullman",
+            "testo": "testi:e22.imp.turisti.guida_pullman",
+            "costo": "testi:e22.imp.turisti.guida_pullman.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e22.imp.turisti.guida_pullman.r"
+          },
+          {
+            "id": "parcheggia_piazzale",
+            "testo": "testi:e22.imp.turisti.parcheggia_piazzale",
+            "costo": "testi:e22.imp.turisti.parcheggia_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.turisti.parcheggia_piazzale.r"
+          },
+          {
+            "id": "lascia_foto",
+            "testo": "testi:e22.imp.turisti.lascia_foto",
+            "costo": "testi:e22.imp.turisti.lascia_foto.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.turisti.lascia_foto.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pannello",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e22.imp.pannello",
+        "commento": "testi:e22.imp.pannello.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "chiudi_fila",
+            "testo": "testi:e22.imp.pannello.chiudi_fila",
+            "costo": "testi:e22.imp.pannello.chiudi_fila.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_larkspire",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e22.imp.pannello.chiudi_fila.r"
+          },
+          {
+            "id": "speaker_pannello",
+            "testo": "testi:e22.imp.pannello.speaker_pannello",
+            "costo": "testi:e22.imp.pannello.speaker_pannello.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.pannello.speaker_pannello.r"
+          },
+          {
+            "id": "lascia_sbattere",
+            "testo": "testi:e22.imp.pannello.lascia_sbattere",
+            "costo": "testi:e22.imp.pannello.lascia_sbattere.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.pannello.lascia_sbattere.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pallone_sponsor",
+        "fonte": "centrale_radio",
+        "testo": "testi:e22.imp.pallone_sponsor",
+        "commento": "testi:e22.imp.pallone_sponsor.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "ripiega",
+            "testo": "testi:e22.imp.pallone_sponsor.ripiega",
+            "costo": "testi:e22.imp.pallone_sponsor.ripiega.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e22.imp.pallone_sponsor.ripiega.r"
+          },
+          {
+            "id": "auto_strada",
+            "testo": "testi:e22.imp.pallone_sponsor.auto_strada",
+            "costo": "testi:e22.imp.pallone_sponsor.auto_strada.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.pallone_sponsor.auto_strada.r"
+          },
+          {
+            "id": "vola_via",
+            "testo": "testi:e22.imp.pallone_sponsor.vola_via",
+            "costo": "testi:e22.imp.pallone_sponsor.vola_via.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.pallone_sponsor.vola_via.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_matrimonio",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e22.imp.matrimonio",
+        "commento": "testi:e22.imp.matrimonio.vice",
+        "settore": "piazza_municipio",
+        "opzioni": [
+          {
+            "id": "corridoio_sposi",
+            "testo": "testi:e22.imp.matrimonio.corridoio_sposi",
+            "costo": "testi:e22.imp.matrimonio.corridoio_sposi.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.matrimonio.corridoio_sposi.r"
+          },
+          {
+            "id": "sposi_strada",
+            "testo": "testi:e22.imp.matrimonio.sposi_strada",
+            "costo": "testi:e22.imp.matrimonio.sposi_strada.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.matrimonio.sposi_strada.r"
+          },
+          {
+            "id": "fotografo",
+            "testo": "testi:e22.imp.matrimonio.fotografo",
+            "costo": "testi:e22.imp.matrimonio.fotografo.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.matrimonio.fotografo.r"
+          }
+        ]
+      }
+    }
+  ]
+}
