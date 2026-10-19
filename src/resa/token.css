@@ -200,6 +200,9 @@
   --citta-altezza-max: 460px; /* C17-12: oltre, la mappa diventerebbe più alta che larga */
   --citta-nome-da: 400px; /* D-123: sotto questa larghezza della finestra il nome dell'episodio scelto non sta sulla mappa */
   --logo-icona: 72px;      /* PO-065 */
+  --home-logo-icona: 48px; /* PO-140: logo più compatto per far posto alla vignetta */
+  --home-vignetta-max: 210px; /* PO-140: oltre, a 360 il ritaglio taglierebbe Malvasi (vignetta 320×180 in slice) */
+  --home-vignetta-min: 96px;
 
   --font-titoli: "Space Grotesk", system-ui, sans-serif;
   --font: Inter, system-ui, sans-serif;
