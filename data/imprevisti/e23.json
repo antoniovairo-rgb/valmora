@@ -12,20 +12,20 @@
         "settore": "parcheggi",
         "opzioni": [
           {
-            "id": "ingresso_riserva",
-            "testo": "testi:e23.imp.foratura.ingresso_riserva",
-            "costo": "testi:e23.imp.foratura.ingresso_riserva.c",
+            "id": "apri_cancello",
+            "testo": "testi:e23.imp.foratura.apri_cancello",
+            "costo": "testi:e23.imp.foratura.apri_cancello.c",
             "effetti": [
-              {
-                "riserva": "squadre",
-                "valore": -1
-              },
               {
                 "pressione": "parcheggi",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e23.imp.foratura.ingresso_riserva.r"
+            "risposta": "testi:e23.imp.foratura.apri_cancello.r"
           },
           {
             "id": "scarica_piazzale",
@@ -47,12 +47,7 @@
             "id": "ruota_scorta",
             "testo": "testi:e23.imp.foratura.ruota_scorta",
             "costo": "testi:e23.imp.foratura.ruota_scorta.c",
-            "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e23.imp.foratura.ruota_scorta.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "curva_ospiti",
         "opzioni": [
           {
-            "id": "fuori_gabbiano",
-            "testo": "testi:e23.imp.gabbiano.fuori_gabbiano",
-            "costo": "testi:e23.imp.gabbiano.fuori_gabbiano.c",
+            "id": "tromba",
+            "testo": "testi:e23.imp.gabbiano.tromba",
+            "costo": "testi:e23.imp.gabbiano.tromba.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_ospiti",
                 "valore": -2
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e23.imp.gabbiano.fuori_gabbiano.r"
+            "risposta": "testi:e23.imp.gabbiano.tromba.r"
           },
           {
             "id": "uscite_parcheggi",
@@ -104,12 +99,7 @@
             "id": "gabbiano_tifosi",
             "testo": "testi:e23.imp.gabbiano.gabbiano_tifosi",
             "costo": "testi:e23.imp.gabbiano.gabbiano_tifosi.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e23.imp.gabbiano.gabbiano_tifosi.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_cinderwick",
         "opzioni": [
           {
-            "id": "ricolloca",
-            "testo": "testi:e23.imp.seggiolini.ricolloca",
-            "costo": "testi:e23.imp.seggiolini.ricolloca.c",
+            "id": "posti_annuncio",
+            "testo": "testi:e23.imp.seggiolini.posti_annuncio",
+            "costo": "testi:e23.imp.seggiolini.posti_annuncio.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_cinderwick",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e23.imp.seggiolini.ricolloca.r"
+            "risposta": "testi:e23.imp.seggiolini.posti_annuncio.r"
           },
           {
             "id": "maxischermo",
@@ -161,12 +151,7 @@
             "id": "sulle_scale",
             "testo": "testi:e23.imp.seggiolini.sulle_scale",
             "costo": "testi:e23.imp.seggiolini.sulle_scale.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e23.imp.seggiolini.sulle_scale.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "tecnico_sbarra",
             "testo": "testi:e23.imp.sbarra.tecnico_sbarra",
             "costo": "testi:e23.imp.sbarra.tecnico_sbarra.c",
-            "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e23.imp.sbarra.tecnico_sbarra.r"
           }
         ]

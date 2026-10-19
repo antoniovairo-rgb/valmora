@@ -12,20 +12,20 @@
         "settore": "parcheggi",
         "opzioni": [
           {
-            "id": "staffetta",
-            "testo": "testi:e26.imp.auto_blu.staffetta",
-            "costo": "testi:e26.imp.auto_blu.staffetta.c",
+            "id": "retromarcia",
+            "testo": "testi:e26.imp.auto_blu.retromarcia",
+            "costo": "testi:e26.imp.auto_blu.retromarcia.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "parcheggi",
+                "valore": -2
               },
               {
-                "pressione": "parcheggi",
-                "valore": -4
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e26.imp.auto_blu.staffetta.r"
+            "risposta": "testi:e26.imp.auto_blu.retromarcia.r"
           },
           {
             "id": "scarica_pullman",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -47,12 +47,7 @@
             "id": "si_arrangino",
             "testo": "testi:e26.imp.auto_blu.si_arrangino",
             "costo": "testi:e26.imp.auto_blu.si_arrangino.c",
-            "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e26.imp.auto_blu.si_arrangino.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "tribuna_autorita",
         "opzioni": [
           {
-            "id": "spegni_microfono",
-            "testo": "testi:e26.imp.microfono.spegni_microfono",
-            "costo": "testi:e26.imp.microfono.spegni_microfono.c",
+            "id": "stacca_audio",
+            "testo": "testi:e26.imp.microfono.stacca_audio",
+            "costo": "testi:e26.imp.microfono.stacca_audio.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "tribuna_autorita",
+                "valore": -2
               },
               {
-                "pressione": "tribuna_autorita",
-                "valore": -4
+                "tensione": "curva_larkspire",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e26.imp.microfono.spegni_microfono.r"
+            "risposta": "testi:e26.imp.microfono.stacca_audio.r"
           },
           {
             "id": "musica_stadio",
@@ -91,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "tribuna_autorita",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "curva_larkspire",
@@ -104,12 +99,7 @@
             "id": "lascia_acceso",
             "testo": "testi:e26.imp.microfono.lascia_acceso",
             "costo": "testi:e26.imp.microfono.lascia_acceso.c",
-            "effetti": [
-              {
-                "pressione": "tribuna_autorita",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e26.imp.microfono.lascia_acceso.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_ospiti",
         "opzioni": [
           {
-            "id": "libera_bandiera",
-            "testo": "testi:e26.imp.bandiera_cavi.libera_bandiera",
-            "costo": "testi:e26.imp.bandiera_cavi.libera_bandiera.c",
+            "id": "regia_telefono",
+            "testo": "testi:e26.imp.bandiera_cavi.regia_telefono",
+            "costo": "testi:e26.imp.bandiera_cavi.regia_telefono.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_ospiti",
+                "valore": -2
               },
               {
-                "pressione": "curva_ospiti",
-                "valore": -4
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e26.imp.bandiera_cavi.libera_bandiera.r"
+            "risposta": "testi:e26.imp.bandiera_cavi.regia_telefono.r"
           },
           {
             "id": "bandiera_fuori",
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -161,12 +151,7 @@
             "id": "lascia_cavi",
             "testo": "testi:e26.imp.bandiera_cavi.lascia_cavi",
             "costo": "testi:e26.imp.bandiera_cavi.lascia_cavi.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e26.imp.bandiera_cavi.lascia_cavi.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -4
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -205,7 +190,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -218,12 +203,7 @@
             "id": "soccorso",
             "testo": "testi:e26.imp.batteria.soccorso",
             "costo": "testi:e26.imp.batteria.soccorso.c",
-            "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e26.imp.batteria.soccorso.r"
           }
         ]

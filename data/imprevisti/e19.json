@@ -12,20 +12,20 @@
         "settore": "tornelli",
         "opzioni": [
           {
-            "id": "controllo_mano",
-            "testo": "testi:e19.imp.lettore.controllo_mano",
-            "costo": "testi:e19.imp.lettore.controllo_mano.c",
+            "id": "spegni_lettori",
+            "testo": "testi:e19.imp.lettore.spegni_lettori",
+            "costo": "testi:e19.imp.lettore.spegni_lettori.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "tornelli",
+                "valore": -2
               },
               {
-                "pressione": "tornelli",
-                "valore": -4
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e19.imp.lettore.controllo_mano.r"
+            "risposta": "testi:e19.imp.lettore.spegni_lettori.r"
           },
           {
             "id": "attesa_strada",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "strada_cinderwick",
@@ -47,12 +47,7 @@
             "id": "lascia_suonare",
             "testo": "testi:e19.imp.lettore.lascia_suonare",
             "costo": "testi:e19.imp.lettore.lascia_suonare.c",
-            "effetti": [
-              {
-                "pressione": "tornelli",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e19.imp.lettore.lascia_suonare.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "curva_ospiti",
         "opzioni": [
           {
-            "id": "passe_partout",
-            "testo": "testi:e19.imp.bagni.passe_partout",
-            "costo": "testi:e19.imp.bagni.passe_partout.c",
+            "id": "telefona_custode",
+            "testo": "testi:e19.imp.bagni.telefona_custode",
+            "costo": "testi:e19.imp.bagni.telefona_custode.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_ospiti",
+                "valore": -2
               },
               {
-                "pressione": "curva_ospiti",
-                "valore": -4
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e19.imp.bagni.passe_partout.r"
+            "risposta": "testi:e19.imp.bagni.telefona_custode.r"
           },
           {
             "id": "bagni_casa",
@@ -91,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "curva_cinderwick",
@@ -104,12 +99,7 @@
             "id": "aspetta_custode",
             "testo": "testi:e19.imp.bagni.aspetta_custode",
             "costo": "testi:e19.imp.bagni.aspetta_custode.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e19.imp.bagni.aspetta_custode.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "strada_cinderwick",
         "opzioni": [
           {
-            "id": "cerca_autista",
-            "testo": "testi:e19.imp.camion_rifiuti.cerca_autista",
-            "costo": "testi:e19.imp.camion_rifiuti.cerca_autista.c",
+            "id": "chiama_ditta",
+            "testo": "testi:e19.imp.camion_rifiuti.chiama_ditta",
+            "costo": "testi:e19.imp.camion_rifiuti.chiama_ditta.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "strada_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "strada_cinderwick",
-                "valore": -4
+                "tensione": "tornelli",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e19.imp.camion_rifiuti.cerca_autista.r"
+            "risposta": "testi:e19.imp.camion_rifiuti.chiama_ditta.r"
           },
           {
             "id": "verso_tornelli",
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "tornelli",
@@ -161,12 +151,7 @@
             "id": "finisca_caffe",
             "testo": "testi:e19.imp.camion_rifiuti.finisca_caffe",
             "costo": "testi:e19.imp.camion_rifiuti.finisca_caffe.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e19.imp.camion_rifiuti.finisca_caffe.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -4
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -205,7 +190,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "strada_cinderwick",
@@ -218,12 +203,7 @@
             "id": "porta_sola",
             "testo": "testi:e19.imp.scala_lavori.porta_sola",
             "costo": "testi:e19.imp.scala_lavori.porta_sola.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e19.imp.scala_lavori.porta_sola.r"
           }
         ]

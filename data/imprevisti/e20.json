@@ -12,20 +12,20 @@
         "settore": "strada_larkspire",
         "opzioni": [
           {
-            "id": "gira_carretto",
-            "testo": "testi:e20.imp.tamburo.gira_carretto",
-            "costo": "testi:e20.imp.tamburo.gira_carretto.c",
+            "id": "sgonfia_ruote",
+            "testo": "testi:e20.imp.tamburo.sgonfia_ruote",
+            "costo": "testi:e20.imp.tamburo.sgonfia_ruote.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "strada_larkspire",
+                "valore": -2
               },
               {
-                "pressione": "strada_larkspire",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e20.imp.tamburo.gira_carretto.r"
+            "risposta": "testi:e20.imp.tamburo.sgonfia_ruote.r"
           },
           {
             "id": "corteo_piazzale",
@@ -47,12 +47,7 @@
             "id": "smontino",
             "testo": "testi:e20.imp.tamburo.smontino",
             "costo": "testi:e20.imp.tamburo.smontino.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e20.imp.tamburo.smontino.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "piazzale",
         "opzioni": [
           {
-            "id": "riattacca",
-            "testo": "testi:e20.imp.radio_chiosco.riattacca",
-            "costo": "testi:e20.imp.radio_chiosco.riattacca.c",
+            "id": "radio_auto",
+            "testo": "testi:e20.imp.radio_chiosco.radio_auto",
+            "costo": "testi:e20.imp.radio_chiosco.radio_auto.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "piazzale",
                 "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e20.imp.radio_chiosco.riattacca.r"
+            "risposta": "testi:e20.imp.radio_chiosco.radio_auto.r"
           },
           {
             "id": "bar_kiln",
@@ -104,12 +99,7 @@
             "id": "senza_cronaca",
             "testo": "testi:e20.imp.radio_chiosco.senza_cronaca",
             "costo": "testi:e20.imp.radio_chiosco.senza_cronaca.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e20.imp.radio_chiosco.senza_cronaca.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_larkspire",
         "opzioni": [
           {
-            "id": "recupera_gatto",
-            "testo": "testi:e20.imp.gatto.recupera_gatto",
-            "costo": "testi:e20.imp.gatto.recupera_gatto.c",
+            "id": "speaker_gatto",
+            "testo": "testi:e20.imp.gatto.speaker_gatto",
+            "costo": "testi:e20.imp.gatto.speaker_gatto.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_larkspire",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e20.imp.gatto.recupera_gatto.r"
+            "risposta": "testi:e20.imp.gatto.speaker_gatto.r"
           },
           {
             "id": "varco_piazzale",
@@ -161,12 +151,7 @@
             "id": "gatto_balaustra",
             "testo": "testi:e20.imp.gatto.gatto_balaustra",
             "costo": "testi:e20.imp.gatto.gatto_balaustra.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e20.imp.gatto.gatto_balaustra.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "batteria",
             "testo": "testi:e20.imp.clacson.batteria",
             "costo": "testi:e20.imp.clacson.batteria.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e20.imp.clacson.batteria.r"
           }
         ]

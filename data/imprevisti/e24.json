@@ -12,20 +12,20 @@
         "settore": "curva_ospiti",
         "opzioni": [
           {
-            "id": "cancello_carrabile",
-            "testo": "testi:e24.imp.tamburo_largo.cancello_carrabile",
-            "costo": "testi:e24.imp.tamburo_largo.cancello_carrabile.c",
+            "id": "smonta_transenna",
+            "testo": "testi:e24.imp.tamburo_largo.smonta_transenna",
+            "costo": "testi:e24.imp.tamburo_largo.smonta_transenna.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_ospiti",
                 "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e24.imp.tamburo_largo.cancello_carrabile.r"
+            "risposta": "testi:e24.imp.tamburo_largo.smonta_transenna.r"
           },
           {
             "id": "dai_tornelli",
@@ -47,12 +47,7 @@
             "id": "tamburo_fuori",
             "testo": "testi:e24.imp.tamburo_largo.tamburo_fuori",
             "costo": "testi:e24.imp.tamburo_largo.tamburo_fuori.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e24.imp.tamburo_largo.tamburo_fuori.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "curva_larkspire",
         "opzioni": [
           {
-            "id": "acqua_barella",
-            "testo": "testi:e24.imp.capogiro.acqua_barella",
-            "costo": "testi:e24.imp.capogiro.acqua_barella.c",
+            "id": "punto_medico",
+            "testo": "testi:e24.imp.capogiro.punto_medico",
+            "costo": "testi:e24.imp.capogiro.punto_medico.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_larkspire",
                 "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e24.imp.capogiro.acqua_barella.r"
+            "risposta": "testi:e24.imp.capogiro.punto_medico.r"
           },
           {
             "id": "curiosi_tornelli",
@@ -104,12 +99,7 @@
             "id": "vicini_posto",
             "testo": "testi:e24.imp.capogiro.vicini_posto",
             "costo": "testi:e24.imp.capogiro.vicini_posto.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e24.imp.capogiro.vicini_posto.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "tornelli",
         "opzioni": [
           {
-            "id": "blocca_tornello",
-            "testo": "testi:e24.imp.tornello_rovescio.blocca_tornello",
-            "costo": "testi:e24.imp.tornello_rovescio.blocca_tornello.c",
+            "id": "blocco_centrale",
+            "testo": "testi:e24.imp.tornello_rovescio.blocco_centrale",
+            "costo": "testi:e24.imp.tornello_rovescio.blocco_centrale.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "tornelli",
                 "valore": -2
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e24.imp.tornello_rovescio.blocca_tornello.r"
+            "risposta": "testi:e24.imp.tornello_rovescio.blocco_centrale.r"
           },
           {
             "id": "coda_strada24",
@@ -161,12 +151,7 @@
             "id": "lascia_girare",
             "testo": "testi:e24.imp.tornello_rovescio.lascia_girare",
             "costo": "testi:e24.imp.tornello_rovescio.lascia_girare.c",
-            "effetti": [
-              {
-                "pressione": "tornelli",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e24.imp.tornello_rovescio.lascia_girare.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "lascia_rotolare",
             "testo": "testi:e24.imp.bidone.lascia_rotolare",
             "costo": "testi:e24.imp.bidone.lascia_rotolare.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e24.imp.bidone.lascia_rotolare.r"
           }
         ]

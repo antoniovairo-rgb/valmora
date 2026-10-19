@@ -12,20 +12,20 @@
         "settore": "piazzale",
         "opzioni": [
           {
-            "id": "chiudi_aiuole",
-            "testo": "testi:e21.imp.irrigazione.chiudi_aiuole",
-            "costo": "testi:e21.imp.irrigazione.chiudi_aiuole.c",
+            "id": "stacca_acqua",
+            "testo": "testi:e21.imp.irrigazione.stacca_acqua",
+            "costo": "testi:e21.imp.irrigazione.stacca_acqua.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "piazzale",
+                "valore": -2
               },
               {
-                "pressione": "piazzale",
-                "valore": -4
+                "tensione": "quartiere",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e21.imp.irrigazione.chiudi_aiuole.r"
+            "risposta": "testi:e21.imp.irrigazione.stacca_acqua.r"
           },
           {
             "id": "via_quartiere",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "quartiere",
@@ -47,12 +47,7 @@
             "id": "asciugare",
             "testo": "testi:e21.imp.irrigazione.asciugare",
             "costo": "testi:e21.imp.irrigazione.asciugare.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e21.imp.irrigazione.asciugare.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "quartiere",
         "opzioni": [
           {
-            "id": "guida_fuori",
-            "testo": "testi:e21.imp.scuola_guida.guida_fuori",
-            "costo": "testi:e21.imp.scuola_guida.guida_fuori.c",
+            "id": "istruttore",
+            "testo": "testi:e21.imp.scuola_guida.istruttore",
+            "costo": "testi:e21.imp.scuola_guida.istruttore.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "quartiere",
+                "valore": -2
               },
               {
-                "pressione": "quartiere",
-                "valore": -4
+                "tensione": "piazza_fonderie",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e21.imp.scuola_guida.guida_fuori.r"
+            "risposta": "testi:e21.imp.scuola_guida.istruttore.r"
           },
           {
             "id": "verso_fonderie",
@@ -91,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazza_fonderie",
@@ -104,12 +99,7 @@
             "id": "trovi_marcia",
             "testo": "testi:e21.imp.scuola_guida.trovi_marcia",
             "costo": "testi:e21.imp.scuola_guida.trovi_marcia.c",
-            "effetti": [
-              {
-                "pressione": "quartiere",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e21.imp.scuola_guida.trovi_marcia.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "piazzale",
         "opzioni": [
           {
-            "id": "recupera_pallone",
-            "testo": "testi:e21.imp.pallone.recupera_pallone",
-            "costo": "testi:e21.imp.pallone.recupera_pallone.c",
+            "id": "sequestro",
+            "testo": "testi:e21.imp.pallone.sequestro",
+            "costo": "testi:e21.imp.pallone.sequestro.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "piazzale",
+                "valore": -2
               },
               {
-                "pressione": "piazzale",
-                "valore": -4
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e21.imp.pallone.recupera_pallone.r"
+            "risposta": "testi:e21.imp.pallone.sequestro.r"
           },
           {
             "id": "riporta_curva",
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "curva_cinderwick",
@@ -161,12 +151,7 @@
             "id": "contendano",
             "testo": "testi:e21.imp.pallone.contendano",
             "costo": "testi:e21.imp.pallone.contendano.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e21.imp.pallone.contendano.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -4
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -205,7 +190,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -218,12 +203,7 @@
             "id": "lascia_allarme",
             "testo": "testi:e21.imp.allarme_negozio.lascia_allarme",
             "costo": "testi:e21.imp.allarme_negozio.lascia_allarme.c",
-            "effetti": [
-              {
-                "pressione": "quartiere",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e21.imp.allarme_negozio.lascia_allarme.r"
           }
         ]

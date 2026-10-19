@@ -12,20 +12,20 @@
         "settore": "stazione",
         "opzioni": [
           {
-            "id": "regola_salita",
-            "testo": "testi:e25.imp.scala_mobile.regola_salita",
-            "costo": "testi:e25.imp.scala_mobile.regola_salita.c",
+            "id": "annuncio_laterale",
+            "testo": "testi:e25.imp.scala_mobile.annuncio_laterale",
+            "costo": "testi:e25.imp.scala_mobile.annuncio_laterale.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "stazione",
+                "valore": -2
               },
               {
-                "pressione": "stazione",
-                "valore": -4
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e25.imp.scala_mobile.regola_salita.r"
+            "risposta": "testi:e25.imp.scala_mobile.annuncio_laterale.r"
           },
           {
             "id": "altra_via",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -47,12 +47,7 @@
             "id": "salgano_piedi",
             "testo": "testi:e25.imp.scala_mobile.salgano_piedi",
             "costo": "testi:e25.imp.scala_mobile.salgano_piedi.c",
-            "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e25.imp.scala_mobile.salgano_piedi.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "piazzale",
         "opzioni": [
           {
-            "id": "sposta_furgone25",
-            "testo": "testi:e25.imp.furgone_transenne.sposta_furgone25",
-            "costo": "testi:e25.imp.furgone_transenne.sposta_furgone25.c",
+            "id": "rimozione",
+            "testo": "testi:e25.imp.furgone_transenne.rimozione",
+            "costo": "testi:e25.imp.furgone_transenne.rimozione.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "piazzale",
+                "valore": -2
               },
               {
-                "pressione": "piazzale",
-                "valore": -4
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e25.imp.furgone_transenne.sposta_furgone25.r"
+            "risposta": "testi:e25.imp.furgone_transenne.rimozione.r"
           },
           {
             "id": "varco_curva",
@@ -91,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "curva_cinderwick",
@@ -104,12 +99,7 @@
             "id": "aspetta_autista",
             "testo": "testi:e25.imp.furgone_transenne.aspetta_autista",
             "costo": "testi:e25.imp.furgone_transenne.aspetta_autista.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e25.imp.furgone_transenne.aspetta_autista.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_cinderwick",
         "opzioni": [
           {
-            "id": "file_bagnate",
-            "testo": "testi:e25.imp.tettoia.file_bagnate",
-            "costo": "testi:e25.imp.tettoia.file_bagnate.c",
+            "id": "teli",
+            "testo": "testi:e25.imp.tettoia.teli",
+            "costo": "testi:e25.imp.tettoia.teli.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "curva_cinderwick",
-                "valore": -4
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e25.imp.tettoia.file_bagnate.r"
+            "risposta": "testi:e25.imp.tettoia.teli.r"
           },
           {
             "id": "fradici_piazzale",
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -161,12 +151,7 @@
             "id": "lascia_piovere",
             "testo": "testi:e25.imp.tettoia.lascia_piovere",
             "costo": "testi:e25.imp.tettoia.lascia_piovere.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e25.imp.tettoia.lascia_piovere.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -4
+                "valore": -2
               },
               {
                 "tensione": "zona_rossa",
@@ -205,7 +190,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "zona_rossa",
@@ -218,12 +203,7 @@
             "id": "tabellone_riprenda",
             "testo": "testi:e25.imp.tabellone_partenze.tabellone_riprenda",
             "costo": "testi:e25.imp.tabellone_partenze.tabellone_riprenda.c",
-            "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e25.imp.tabellone_partenze.tabellone_riprenda.r"
           }
         ]

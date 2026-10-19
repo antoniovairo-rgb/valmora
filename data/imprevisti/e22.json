@@ -12,20 +12,20 @@
         "settore": "strada_cinderwick",
         "opzioni": [
           {
-            "id": "guida_pullman",
-            "testo": "testi:e22.imp.turisti.guida_pullman",
-            "costo": "testi:e22.imp.turisti.guida_pullman.c",
+            "id": "megafono_turisti",
+            "testo": "testi:e22.imp.turisti.megafono_turisti",
+            "costo": "testi:e22.imp.turisti.megafono_turisti.c",
             "effetti": [
-              {
-                "riserva": "squadre",
-                "valore": -1
-              },
               {
                 "pressione": "strada_cinderwick",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e22.imp.turisti.guida_pullman.r"
+            "risposta": "testi:e22.imp.turisti.megafono_turisti.r"
           },
           {
             "id": "parcheggia_piazzale",
@@ -47,12 +47,7 @@
             "id": "lascia_foto",
             "testo": "testi:e22.imp.turisti.lascia_foto",
             "costo": "testi:e22.imp.turisti.lascia_foto.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 3
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e22.imp.turisti.lascia_foto.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "curva_larkspire",
         "opzioni": [
           {
-            "id": "chiudi_fila",
-            "testo": "testi:e22.imp.pannello.chiudi_fila",
-            "costo": "testi:e22.imp.pannello.chiudi_fila.c",
+            "id": "tecnici_tetto",
+            "testo": "testi:e22.imp.pannello.tecnici_tetto",
+            "costo": "testi:e22.imp.pannello.tecnici_tetto.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_larkspire",
                 "valore": -2
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e22.imp.pannello.chiudi_fila.r"
+            "risposta": "testi:e22.imp.pannello.tecnici_tetto.r"
           },
           {
             "id": "speaker_pannello",
@@ -104,12 +99,7 @@
             "id": "lascia_sbattere",
             "testo": "testi:e22.imp.pannello.lascia_sbattere",
             "costo": "testi:e22.imp.pannello.lascia_sbattere.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e22.imp.pannello.lascia_sbattere.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "piazzale",
         "opzioni": [
           {
-            "id": "ripiega",
-            "testo": "testi:e22.imp.pallone_sponsor.ripiega",
-            "costo": "testi:e22.imp.pallone_sponsor.ripiega.c",
+            "id": "stacca_gonfiatore",
+            "testo": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore",
+            "costo": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore.c",
             "effetti": [
-              {
-                "riserva": "squadre",
-                "valore": -1
-              },
               {
                 "pressione": "piazzale",
                 "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e22.imp.pallone_sponsor.ripiega.r"
+            "risposta": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore.r"
           },
           {
             "id": "auto_strada",
@@ -161,12 +151,7 @@
             "id": "vola_via",
             "testo": "testi:e22.imp.pallone_sponsor.vola_via",
             "costo": "testi:e22.imp.pallone_sponsor.vola_via.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e22.imp.pallone_sponsor.vola_via.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "fotografo",
             "testo": "testi:e22.imp.matrimonio.fotografo",
             "costo": "testi:e22.imp.matrimonio.fotografo.c",
-            "effetti": [
-              {
-                "pressione": "piazza_municipio",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e22.imp.matrimonio.fotografo.r"
           }
         ]

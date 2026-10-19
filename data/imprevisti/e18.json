@@ -12,20 +12,20 @@
         "settore": "strada_larkspire",
         "opzioni": [
           {
-            "id": "apri_passo",
-            "testo": "testi:e18.imp.gregge.apri_passo",
-            "costo": "testi:e18.imp.gregge.apri_passo.c",
+            "id": "ferma_corteo",
+            "testo": "testi:e18.imp.gregge.ferma_corteo",
+            "costo": "testi:e18.imp.gregge.ferma_corteo.c",
             "effetti": [
-              {
-                "riserva": "squadre",
-                "valore": -1
-              },
               {
                 "pressione": "strada_larkspire",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e18.imp.gregge.apri_passo.r"
+            "risposta": "testi:e18.imp.gregge.ferma_corteo.r"
           },
           {
             "id": "gira_corteo",
@@ -47,12 +47,7 @@
             "id": "ultima_pecora",
             "testo": "testi:e18.imp.gregge.ultima_pecora",
             "costo": "testi:e18.imp.gregge.ultima_pecora.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e18.imp.gregge.ultima_pecora.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "curva_ospiti",
         "opzioni": [
           {
-            "id": "libera_tabellone",
-            "testo": "testi:e18.imp.tabellone.libera_tabellone",
-            "costo": "testi:e18.imp.tabellone.libera_tabellone.c",
+            "id": "spegni_tabellone",
+            "testo": "testi:e18.imp.tabellone.spegni_tabellone",
+            "costo": "testi:e18.imp.tabellone.spegni_tabellone.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_ospiti",
                 "valore": -2
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e18.imp.tabellone.libera_tabellone.r"
+            "risposta": "testi:e18.imp.tabellone.spegni_tabellone.r"
           },
           {
             "id": "speaker_errore",
@@ -104,12 +99,7 @@
             "id": "tabellone_sbagliato",
             "testo": "testi:e18.imp.tabellone.tabellone_sbagliato",
             "costo": "testi:e18.imp.tabellone.tabellone_sbagliato.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e18.imp.tabellone.tabellone_sbagliato.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "piazzale",
         "opzioni": [
           {
-            "id": "chiudi_acqua",
-            "testo": "testi:e18.imp.fontanella.chiudi_acqua",
-            "costo": "testi:e18.imp.fontanella.chiudi_acqua.c",
+            "id": "chiudi_centrale",
+            "testo": "testi:e18.imp.fontanella.chiudi_centrale",
+            "costo": "testi:e18.imp.fontanella.chiudi_centrale.c",
             "effetti": [
-              {
-                "riserva": "squadre",
-                "valore": -1
-              },
               {
                 "pressione": "piazzale",
                 "valore": -2
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e18.imp.fontanella.chiudi_acqua.r"
+            "risposta": "testi:e18.imp.fontanella.chiudi_centrale.r"
           },
           {
             "id": "verso_collina",
@@ -161,12 +151,7 @@
             "id": "idraulico",
             "testo": "testi:e18.imp.fontanella.idraulico",
             "costo": "testi:e18.imp.fontanella.idraulico.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e18.imp.fontanella.idraulico.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "carro_attrezzi",
             "testo": "testi:e18.imp.pullman_panne.carro_attrezzi",
             "costo": "testi:e18.imp.pullman_panne.carro_attrezzi.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e18.imp.pullman_panne.carro_attrezzi.r"
           }
         ]
