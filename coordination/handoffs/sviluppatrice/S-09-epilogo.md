@@ -276,3 +276,4 @@ Non verificato:
   110 px (`src/resa/vignetta.tsx`). Rosso `__NO_C41V06` invariato.
 - FATTO MISURATO: giro foto completo a 375 in locale (`VALMORA_LARGHEZZE=375`, giraFoto + controllaGiro) → «verde»;
   `tools/foto-c41.mjs` 360/375/412 → «verde», 360×760: vignetta 290×110, disegno 196.
+- FATTO MISURATO (D-177): su 8fc00a3, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
