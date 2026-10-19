@@ -80,13 +80,19 @@ describe('bilancio contro le altre risposte (C38-03)', () => {
     }
     return fuori;
   };
-  const casoCollaudo = (id: string) => { const m = ms.find((x) => x.id === id)!; const b = peggiore(creaCaso(1), dich);
+  // D-194: i casi del collaudo C-040 si rigiocano sulle missioni di allora, senza imprevisti (rosso __NO_S14I01): con gli
+  // imprevisti il bilancio ha altre scelte fra cui scegliere le tre voci, e il caso del collaudo non sarebbe più lo stesso.
+  g.__NO_S14I01 = true; const senzaImprevisti = Object.entries(leggiDati() as Record<string, unknown>).filter(([k]) => k.startsWith('missioni/')).map(([, m]) => m as Missione); delete g.__NO_S14I01;
+  const casoCollaudo = (id: string) => { const m = senzaImprevisti.find((x) => x.id === id)!; const b = peggiore(creaCaso(1), dich);
     return [m, giocaMissione(m, v0, dich, { schiera: b.schiera, scegli: (mm, s, c) => { const o = opzioniValide(c, s, mm); return (o.find((x) => CASI[id]!.includes(x.id)) ?? o[0]!).id; } })] as const; };
   it('C40-01 e12, e13, e35 del collaudo: nessuna voce smentita dalla partita; rosso __NO_C40B01: le voci del collaudo', () => {
     for (const id of Object.keys(CASI)) { const [m, r] = casoCollaudo(id); expect(smentite(m, r)).toEqual([]); }
     g.__NO_C40B01 = true;
     const rosso = Object.keys(CASI).flatMap((id) => { const [m, r] = casoCollaudo(id); return smentite(m, r); });
-    expect(rosso).toEqual(expect.arrayContaining(['e35 aiuto segui_barca', 'e35 aiuto stampa_vicina', 'e13 aiuto palco_si', 'e13 aiuto lascia_cori', 'e12 peso rinforzi12']));
+    // D-194: con la tabella dei confronti dei dati di oggi (imprevisti compresi) cambiano le altre voci del bilancio; resta,
+    // per ognuno dei tre casi, una voce smentita su una risposta scelta nel collaudo (prima: anche segui_barca, stampa_vicina,
+    // lascia_cori). Misurato con tests/confronto.test.ts su c7aedc4.
+    expect(rosso).toEqual(expect.arrayContaining(['e35 aiuto lascia_coda', 'e13 aiuto palco_si', 'e12 peso rinforzi12']));
   });
   it('C40-01 36 episodi × 20 partite del casuale: nessuna voce smentita dalla partita', () => {
     const fuori = ms.flatMap((m) => Array.from({ length: 20 }, (_, s) => smentite(m, giocaMissione(m, v0, dich, casuale(creaCaso(`c40:${m.id}:${s}`), dich)))).flat());
