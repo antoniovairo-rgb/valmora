@@ -38,10 +38,11 @@ const misura = (p) => p.evaluate(() => { const s = document.scrollingElement, sc
     segni: Math.round(Math.max(0, ...[...document.querySelectorAll('.mappa .settore-nome')].flatMap((n) => { const a = n.getBoundingClientRect();
       return [...document.querySelectorAll('.mappa .settore .segno-effetto')].map((g) => { const b = g.getBoundingClientRect(); return Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)); }); }))) }; });
 // lettere delle opzioni sotto la versione, guardando chi sta davvero in cima nel punto dove si toccano
-const versioneSopra = (p) => p.evaluate(() => { const v = document.querySelector('[data-versione-angolo]')?.getBoundingClientRect(); if (!v) return 0; let n = 0;
+const versioneSopra = (p) => p.evaluate(() => { const ve = document.querySelector('[data-versione-angolo]'), v = ve?.getBoundingClientRect(); if (!v) return 0; let n = 0;
+  ve.style.pointerEvents = 'auto'; // la versione non riceve tocchi: per elementFromPoint serve per un attimo
   for (const t of document.querySelectorAll('.tasto')) { const r = t.getBoundingClientRect(), x = (Math.max(v.left, r.left) + Math.min(v.right, r.right)) / 2, y = (Math.max(v.top, r.top) + Math.min(v.bottom, r.bottom)) / 2;
     if (Math.min(v.right, r.right) - Math.max(v.left, r.left) > 1 && Math.min(v.bottom, r.bottom) - Math.max(v.top, r.top) > 1 && document.elementFromPoint(x, y)?.closest('[data-versione-angolo]')) n++; }
-  return n; });
+  ve.style.removeProperty('pointer-events'); return n; });
 
 export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi = [], cartella = '' }) {
   const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), e01 = dati['missioni/e01.json'];
@@ -71,7 +72,8 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         if (await opz.count()) {
           if (!provata) { // la prima risposta: opzioni in basso, dove sta la versione, e cambio di scena osservato
             provata = true; await p.evaluate(() => { const o = document.querySelector('.opzione'); if (o) scrollTo(0, o.getBoundingClientRect().top + scrollY - innerHeight + 70); }); await p.waitForTimeout(150);
-            await opz.first().click(); let n = 0; for (let i = 0; i < 10; i++) { n = Math.max(n, await versioneSopra(p)); await p.waitForTimeout(25); } if (n) sopra.push(`${vp}: la versione copre ${n} lettere delle opzioni nel cambio di scena`);
+            await opz.first().click(); let n = 0, vista = false; // fino alla fine del cambio di scena (dopo la finestra «Annulla»)
+            for (let i = 0; i < 300; i++) { n = Math.max(n, await versioneSopra(p)); const k = await p.evaluate(() => document.querySelectorAll('.scena').length); if (k > 1) vista = true; else if (vista) break; await p.waitForTimeout(20); } if (n) sopra.push(`${vp}: la versione copre ${n} lettere delle opzioni nel cambio di scena`);
             await lento(p);
           } else await c('[data-opzione]:not(:disabled):not([aria-disabled="true"])');
           await p.locator('[data-azione="continua"]').first().waitFor({ timeout: 4000 }).catch(() => {}); continue;

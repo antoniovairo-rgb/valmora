@@ -203,7 +203,7 @@
   --logo-icona: 72px;      /* PO-065 */
   --home-logo-icona: 48px; /* PO-140: logo più compatto per far posto alla vignetta */
   --home-vignetta-max: 210px; /* PO-140: oltre, a 360 il ritaglio taglierebbe Malvasi (vignetta 320×180 in slice) */
-  --home-vignetta-min: 88px; /* D-187: con 96 la home scorreva di 4 px a 360×640 e 375×667 */
+  --home-vignetta-min: 96px;
 
   --font-titoli: "Space Grotesk", system-ui, sans-serif;
   --font: Inter, system-ui, sans-serif;
@@ -219,4 +219,4 @@
 main.rosso-c10s03 .scena .pulsante[data-azione], main.rosso-c10s03 .scena .azioni { position: static; }
 .rosso-c10s03 .indicatore { display: none; }
 .rosso-c40c01 { --colore-bene: #0f9d4f; } /* C19-04: rosso, il verde di prima */
-.rosso-c187c01 { --citta-riserva: 500px; --citta-altezza-min: 260px; --home-vignetta-min: 96px; } /* D-187: misure di prima di città e home */
+.rosso-c187c01 { --citta-riserva: 500px; --citta-altezza-min: 260px; } /* D-187: misure di prima della città */
