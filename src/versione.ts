@@ -314,4 +314,15 @@
 //   quarta prova in ogni vignetta (guardiano persona-ovunque); governo+logica 3/3 verdi sulle consegne (D-177).
 //   guardiano: tests/persona-ovunque.test.ts, tests/braccia.test.ts (rosso C117B01), guardiano degli spigoli (rosso
 //   C118S01), foto-po119, tests/fiducia-verso.test.ts per episodio, rossi C119R01 e C120U01 (C40-03/04).
-export const GAME_VERSION = '0.41.0';
+//
+// 0.42.0 – correzioni del collaudo C-041 (bilancio del verbale, costo delle unità, testi dello schieramento).
+//   causa: C41-01 «Cosa ti ha penalizzato» con risposte su settori rimasti sotto controllo e la risposta decisiva
+//   esclusa dal limite di 3; C41-02 «Cosa ti ha aiutato» con risposte senza effetti e righe vuote «Ondata N ·»;
+//   C41-03 risposte con costo in unità offerte con tutte le unità schierate (D-183: si dichiara il costo, l'equilibrio
+//   non cambia); C41-04 testi che smentivano lo schieramento.
+//   misura: su 828 partite pesi su settori sotto controllo 222 → 0, righe vuote 199 → 0, pesi decisivi esclusi 37 → 0,
+//   voci contraddette 0/2114; risposte con costo che dicono «dalla prossima ondata» 0/230 → 230/230; testi che
+//   smentiscono lo schieramento nei 5 casi del collaudo 5 → 0.
+//   guardiano: tests/confronto.test.ts (rossi __NO_C41B01, __NO_C41B02), tests/costo-quando.test.ts (rossi C183Q01,
+//   C183P01), tests/testi-schieramento.test.ts (rosso C41T01).
+export const GAME_VERSION = '0.42.0';
