@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-19 14:55 Roma – Pubblicato 0.42.0 (main 7286c6c1): governo+logica 3/3 verdi su 39b2b686, CI 7/7 verde, Pages servono 0.42.0 (rilascio delle 13:30 uscito in ritardo per il riavvio della sessione). Collaudo C-042 avviato (session_01UaKJxENg7o4Zqurpqr2c9k, claude/valmora-collaudo-c42). S-09 (claude/valmora-epilogo): C41-05…08 con CI rossa su 8fc00a3, sessione limitata dal tetto settimanale; non integrata. S-01 e S-05 ferme. S-11 home (PO-140) attende l'ok del PO. S-10 triade 2: domande D-T2 da portare al PO.
+Ultimo giro della routine: 2026-10-19 15:00 Roma – su richiesta del PO archiviate le figlie che hanno consegnato: S-01, S-05, S-08, S-10 (domande D-T2 restano sul ramo claude/valmora-triade2). Attive: S-09 (session_01C49VAhsDVXVxFJuRu1PvGJ, claude/valmora-epilogo: C41-05…08, correzione 7f8fc70 in verifica), S-11 (session_01XNPUWFmtvncxMLPMEVZNXX, claude/valmora-home: home PO-140, attende l'ok del PO), collaudo C-042 (session_01UaKJxENg7o4Zqurpqr2c9k). Main 0.42.0 (7286c6c1).
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
