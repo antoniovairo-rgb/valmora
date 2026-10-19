@@ -26,6 +26,6 @@ describe('C41-03 il costo in unità dice da quando vale', () => {
 });
 
 describe('C42-01 all\'ultima ondata niente «dalla prossima ondata»', () => {
-  it('27 risposte con costo nell\'ultima ondata', () => { expect(conCosto.filter((x) => x.ultima).length).toBe(27); });
-  it('rosso C42U01: le 27 dicono «dalla prossima ondata», come prima', () => { g.__NO_C42U01 = true; expect(male().length).toBe(27); });
+  it('28 risposte con costo nell\'ultima ondata', () => { expect(conCosto.filter((x) => x.ultima).length).toBe(28); }); // +1 con D-189: e33 talpa_scappa_busta/nega_auto_busta (S-15)
+  it('rosso C42U01: le 28 dicono «dalla prossima ondata», come prima', () => { g.__NO_C42U01 = true; expect(male().length).toBe(28); });
 });
