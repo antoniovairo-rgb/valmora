@@ -12,6 +12,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { avanzaFino } from './foto-club.mjs';
 import { pianoAttento } from './foto.mjs';
+import { completaVariabili } from '../src/logica/aggiornamento.ts';
 
 export const LARGHEZZE_EPILOGO = [360, 375, 412, 1366];
 const FINALE = 'tests/salvataggi-reali/v2-0.38.0-fine-campagna.json';
@@ -22,7 +23,8 @@ export function salvataggioAlRapporto(id, dirDati = 'data') {
   const fine = JSON.parse(readFileSync(FINALE, 'utf8'));
   const missioni = Object.entries(leggiDati(dirDati)).filter(([k]) => k.startsWith('missioni/')).map(([, m]) => m).sort((a, b) => a.episodio - b.episodio);
   const i = missioni.findIndex((m) => m.id === id), prima = missioni.slice(0, i).map((m) => m.id);
-  const v0 = fine.episodi[id].variabili_prima;
+  // come il gioco al caricamento (C14-03): le variabili dichiarate dopo il salvataggio (es. «carte», D-189) al valore iniziale
+  const v0 = completaVariabili(fine.episodi[id].variabili_prima, leggiDati(dirDati)['stato.json'].variabili);
   const piano = pianoAttento(dirDati, i, v0);
   return {
     piano, salvataggio: {

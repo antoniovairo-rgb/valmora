@@ -162,3 +162,7 @@ main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .elenco-settori 
    passo e 4+4 attorno ai pulsanti dei passi. Rosso C193S01. */
 main:not(.rosso-c193s01):is([data-schermata="sala"], [data-schermata="briefing"]) .passo > .messaggio:first-child { margin-top: var(--spazio-2); }
 main:not(.rosso-c193s01):is([data-schermata="sala"], [data-schermata="briefing"]) .passi-nav .pulsante { margin: var(--spazio-2) 0; }
+
+/* PO-022 (D-190): l'imprevisto interrompe le chiamate. Nessun conto alla rovescia. */
+.avviso-imprevisto { margin: 0 0 var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); box-shadow: var(--ombra-1); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; letter-spacing: var(--spaziatura-maiuscolo); }
+.messaggio.imprevisto { background: var(--rosa-tenue); }

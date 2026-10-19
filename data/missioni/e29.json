@@ -38,7 +38,7 @@
       "testo": "testi:e29.info_cinderwick",
       "fonte": "ufficio_sicurezza_cinderwick",
       "affidabilita": "media",
-      "vera": false,
+      "vera": true,
       "settore": "curva_cinderwick"
     }
   ],
@@ -865,6 +865,10 @@
                 {
                   "pressione": "strada_cinderwick",
                   "valore": -3
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e29.op.parola_fabbro.r",

@@ -6,7 +6,7 @@ import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { DEGENERA, giocaMissione } from '../src/logica/missione.ts';
 import { casuale } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
-import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
+import type { Chiamata, Dichiarazione, Missione } from '../src/logica/tipi.ts';
 
 const d = leggiDati() as Record<string, unknown>;
 const dich = new Map((d['stato.json'] as { variabili: Dichiarazione[] }).variabili.map((x) => [x.id, x]));
@@ -48,27 +48,32 @@ describe('C36-03 verbali di fallimento: un luogo nominato degenera in almeno met
   const N = 400;
   /** Quota di partite fallite in cui ogni settore degenera (come la sonda del collaudo). */
   const quote = new Map<string, Record<string, number>>();
-  const quota = (id: string) => {
-    if (quote.has(id)) return quote.get(id)!;
+  // D-194: «collaudo» rigioca le partite del collaudo C-036 sul percorso di oggi, con gli imprevisti presenti ma risolti con
+  // la risposta senza effetti e senza consumare il caso: la partita del collaudo resta quella di allora.
+  const quota = (id: string, collaudo = false) => {
+    const chiave = `${id}${collaudo ? ':collaudo' : ''}`;
+    if (quote.has(chiave)) return quote.get(chiave)!;
     const m = ep(id); const conta: Record<string, number> = {}; let fallite = 0;
     for (let s = 1; s <= N; s++) {
-      const e = giocaMissione(m, v0, dich, casuale(creaCaso(`c36f:${id}:${s}`), dich));
+      const b = casuale(creaCaso(`c36f:${id}:${s}`), dich);
+      const g = collaudo ? { ...b, scegli: (mm: Missione, st: Parameters<typeof b.scegli>[1], c: Chiamata) => (c.imprevisto ? c.opzioni.find((o) => !o.effetti.length)!.id : b.scegli(mm, st, c)) } : b;
+      const e = giocaMissione(m, v0, dich, g);
       if (!e.esito.fallita) continue; fallite++;
       for (const q of new Set(e.rapporti.flatMap((x) => Object.keys(x.tensione).filter((k) => x.tensione[k]! >= DEGENERA && x.scoperto[k]! > 0)))) conta[q] = (conta[q] ?? 0) + 1;
     }
     const r = Object.fromEntries(Object.keys(conta).map((k) => [k, conta[k]! / Math.max(1, fallite)]));
-    quote.set(id, r); return r;
+    quote.set(chiave, r); return r;
   };
-  const smentiti = (id: string, verbale: string) => (AFFERMA[id] ?? []).filter(([re]) => re.test(verbale))
-    .map(([re, sett]) => [re, sett, quota(id)[sett] ?? 0] as const).filter(([, , q]) => q < 0.5).map(([re, sett, q]) => `${id} ${re}: ${sett} degenera nel ${Math.round(q * 100)}% delle fallite`);
+  const smentiti = (id: string, verbale: string, collaudo = false) => (AFFERMA[id] ?? []).filter(([re]) => re.test(verbale))
+    .map(([re, sett]) => [re, sett, quota(id, collaudo)[sett] ?? 0] as const).filter(([, , q]) => q < 0.5).map(([re, sett, q]) => `${id} ${re}: ${sett} degenera nel ${Math.round(q * 100)}% delle fallite`);
   it('e01-e36: nessun verbale di fallimento nomina un luogo che degenera in meno di metà delle partite perse', () => {
     const fuori = EPISODI.flatMap((id) => ep(id).esiti.filter((e) => e.fallita).flatMap((e) => smentiti(id, t(id, e.verbale))));
     expect(fuori).toEqual([]);
   });
   it('la misura non è cieca: frasi del collaudo vengono segnalate', () => {
-    expect(smentiti('e29', 'Strada piena fino al porto, piazzale fuori controllo.').length).toBe(2);
-    expect(smentiti('e31', 'viale occupato, stazione piena fino a notte').length).toBe(2);
-    expect(smentiti('e08', 'La curva ha mostrato cosa fa').length).toBe(0);
+    expect(smentiti('e29', 'Strada piena fino al porto, piazzale fuori controllo.', true).length).toBe(2);
+    expect(smentiti('e31', 'viale occupato, stazione piena fino a notte', true).length).toBe(2);
+    expect(smentiti('e08', 'La curva ha mostrato cosa fa', true).length).toBe(0);
   });
 });
 

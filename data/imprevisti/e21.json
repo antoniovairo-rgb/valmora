@@ -1,0 +1,205 @@
+{
+  "id": "e21",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_irrigazione",
+        "fonte": "centrale_radio",
+        "testo": "testi:e21.imp.irrigazione",
+        "commento": "testi:e21.imp.irrigazione.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "stacca_acqua",
+            "testo": "testi:e21.imp.irrigazione.stacca_acqua",
+            "costo": "testi:e21.imp.irrigazione.stacca_acqua.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.irrigazione.stacca_acqua.r"
+          },
+          {
+            "id": "lato_asciutto",
+            "testo": "testi:e21.imp.irrigazione.lato_asciutto",
+            "costo": "testi:e21.imp.irrigazione.lato_asciutto.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.irrigazione.lato_asciutto.r"
+          },
+          {
+            "id": "asciugare",
+            "testo": "testi:e21.imp.irrigazione.asciugare",
+            "costo": "testi:e21.imp.irrigazione.asciugare.c",
+            "effetti": [],
+            "risposta": "testi:e21.imp.irrigazione.asciugare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_scuola_guida",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e21.imp.scuola_guida",
+        "commento": "testi:e21.imp.scuola_guida.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "istruttore",
+            "testo": "testi:e21.imp.scuola_guida.istruttore",
+            "costo": "testi:e21.imp.scuola_guida.istruttore.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "tensione": "piazza_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.scuola_guida.istruttore.r"
+          },
+          {
+            "id": "spingi_auto",
+            "testo": "testi:e21.imp.scuola_guida.spingi_auto",
+            "costo": "testi:e21.imp.scuola_guida.spingi_auto.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.scuola_guida.spingi_auto.r"
+          },
+          {
+            "id": "trovi_marcia",
+            "testo": "testi:e21.imp.scuola_guida.trovi_marcia",
+            "costo": "testi:e21.imp.scuola_guida.trovi_marcia.c",
+            "effetti": [],
+            "risposta": "testi:e21.imp.scuola_guida.trovi_marcia.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pallone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e21.imp.pallone",
+        "commento": "testi:e21.imp.pallone.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "sequestro",
+            "testo": "testi:e21.imp.pallone.sequestro",
+            "costo": "testi:e21.imp.pallone.sequestro.c",
+            "effetti": [
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.pallone.sequestro.r"
+          },
+          {
+            "id": "pallone_bimbo",
+            "testo": "testi:e21.imp.pallone.pallone_bimbo",
+            "costo": "testi:e21.imp.pallone.pallone_bimbo.c",
+            "effetti": [
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.pallone.pallone_bimbo.r"
+          },
+          {
+            "id": "contendano",
+            "testo": "testi:e21.imp.pallone.contendano",
+            "costo": "testi:e21.imp.pallone.contendano.c",
+            "effetti": [],
+            "risposta": "testi:e21.imp.pallone.contendano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_allarme_negozio",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e21.imp.allarme_negozio",
+        "commento": "testi:e21.imp.allarme_negozio.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "negoziante",
+            "testo": "testi:e21.imp.allarme_negozio.negoziante",
+            "costo": "testi:e21.imp.allarme_negozio.negoziante.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.allarme_negozio.negoziante.r"
+          },
+          {
+            "id": "passare_oltre",
+            "testo": "testi:e21.imp.allarme_negozio.passare_oltre",
+            "costo": "testi:e21.imp.allarme_negozio.passare_oltre.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.allarme_negozio.passare_oltre.r"
+          },
+          {
+            "id": "lascia_allarme",
+            "testo": "testi:e21.imp.allarme_negozio.lascia_allarme",
+            "costo": "testi:e21.imp.allarme_negozio.lascia_allarme.c",
+            "effetti": [],
+            "risposta": "testi:e21.imp.allarme_negozio.lascia_allarme.r"
+          }
+        ]
+      }
+    }
+  ]
+}

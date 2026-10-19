@@ -54,7 +54,7 @@ export function possibilita(m: Missione, s: InCorso, d: Dich): number {
   return vinte / PARTITE;
 }
 /** C17-06: oltre LIMITE stati distinti il calcolo esatto si ferma e si stima con PARTITE partite (tetto al tempo sul telefono). */
-const LIMITE = 1000, PARTITE = 60, TROPPI = new Error('troppi stati');
+const LIMITE = 1000, PARTITE = 150, TROPPI = new Error('troppi stati');
 
 /** Ondata da proporre dopo una sconfitta: la più recente, a partire da quella che ha deciso l'esito (C16-01) e andando
  *  indietro, da cui la possibilità è almeno POSSIBILITA_MIN; 1 se nessuna (= «Ricomincia»). Rosso __NO_PO083: la regola

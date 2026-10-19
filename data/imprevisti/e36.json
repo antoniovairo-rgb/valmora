@@ -1,0 +1,209 @@
+{
+  "id": "e36",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_rotolo",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e36.imp.rotolo",
+        "commento": "testi:e36.imp.rotolo.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "spingi",
+            "testo": "testi:e36.imp.rotolo.spingi",
+            "costo": "testi:e36.imp.rotolo.spingi.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.rotolo.spingi.r"
+          },
+          {
+            "id": "srotola",
+            "testo": "testi:e36.imp.rotolo.srotola",
+            "costo": "testi:e36.imp.rotolo.srotola.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.rotolo.srotola.r"
+          },
+          {
+            "id": "se_la_vedano",
+            "testo": "testi:e36.imp.rotolo.se_la_vedano",
+            "costo": "testi:e36.imp.rotolo.se_la_vedano.c",
+            "effetti": [],
+            "risposta": "testi:e36.imp.rotolo.se_la_vedano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_gabbiano",
+        "fonte": "centrale_radio",
+        "testo": "testi:e36.imp.gabbiano",
+        "commento": "testi:e36.imp.gabbiano.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "prime_file",
+            "testo": "testi:e36.imp.gabbiano.prime_file",
+            "costo": "testi:e36.imp.gabbiano.prime_file.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.gabbiano.prime_file.r"
+          },
+          {
+            "id": "pallone",
+            "testo": "testi:e36.imp.gabbiano.pallone",
+            "costo": "testi:e36.imp.gabbiano.pallone.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.gabbiano.pallone.r"
+          },
+          {
+            "id": "se_ne_vada",
+            "testo": "testi:e36.imp.gabbiano.se_ne_vada",
+            "costo": "testi:e36.imp.gabbiano.se_ne_vada.c",
+            "effetti": [],
+            "risposta": "testi:e36.imp.gabbiano.se_ne_vada.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_recinto_buio",
+        "fonte": "centrale_radio",
+        "testo": "testi:e36.imp.recinto_buio",
+        "commento": "testi:e36.imp.recinto_buio.vice",
+        "settore": "cantiere_stadio_nuovo",
+        "opzioni": [
+          {
+            "id": "torce",
+            "testo": "testi:e36.imp.recinto_buio.torce",
+            "costo": "testi:e36.imp.recinto_buio.torce.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.recinto_buio.torce.r"
+          },
+          {
+            "id": "fari_auto",
+            "testo": "testi:e36.imp.recinto_buio.fari_auto",
+            "costo": "testi:e36.imp.recinto_buio.fari_auto.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": -1
+              },
+              {
+                "tensione": "cantiere_stadio_nuovo",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.recinto_buio.fari_auto.r"
+          },
+          {
+            "id": "luce",
+            "testo": "testi:e36.imp.recinto_buio.luce",
+            "costo": "testi:e36.imp.recinto_buio.luce.c",
+            "effetti": [],
+            "risposta": "testi:e36.imp.recinto_buio.luce.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_cassa",
+        "fonte": "centrale_radio",
+        "testo": "testi:e36.imp.cassa",
+        "commento": "testi:e36.imp.cassa.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "chiudi_festa",
+            "testo": "testi:e36.imp.cassa.chiudi_festa",
+            "costo": "testi:e36.imp.cassa.chiudi_festa.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.cassa.chiudi_festa.r"
+          },
+          {
+            "id": "a_cappella",
+            "testo": "testi:e36.imp.cassa.a_cappella",
+            "costo": "testi:e36.imp.cassa.a_cappella.c",
+            "effetti": [
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.cassa.a_cappella.r"
+          },
+          {
+            "id": "riserva",
+            "testo": "testi:e36.imp.cassa.riserva",
+            "costo": "testi:e36.imp.cassa.riserva.c",
+            "effetti": [],
+            "risposta": "testi:e36.imp.cassa.riserva.r"
+          }
+        ]
+      }
+    }
+  ]
+}

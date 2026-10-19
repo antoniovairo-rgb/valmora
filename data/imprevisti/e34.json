@@ -1,0 +1,213 @@
+{
+  "id": "e34",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_sbarra",
+        "fonte": "centrale_radio",
+        "testo": "testi:e34.imp.sbarra",
+        "commento": "testi:e34.imp.sbarra.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "regola",
+            "testo": "testi:e34.imp.sbarra.regola",
+            "costo": "testi:e34.imp.sbarra.regola.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e34.imp.sbarra.regola.r"
+          },
+          {
+            "id": "cartello",
+            "testo": "testi:e34.imp.sbarra.cartello",
+            "costo": "testi:e34.imp.sbarra.cartello.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e34.imp.sbarra.cartello.r"
+          },
+          {
+            "id": "chi_entra",
+            "testo": "testi:e34.imp.sbarra.chi_entra",
+            "costo": "testi:e34.imp.sbarra.chi_entra.c",
+            "effetti": [],
+            "risposta": "testi:e34.imp.sbarra.chi_entra.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_bagni",
+        "fonte": "club_lookout",
+        "testo": "testi:e34.imp.bagni",
+        "commento": "testi:e34.imp.bagni.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "bagni_personale",
+            "testo": "testi:e34.imp.bagni.bagni_personale",
+            "costo": "testi:e34.imp.bagni.bagni_personale.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e34.imp.bagni.bagni_personale.r"
+          },
+          {
+            "id": "turni",
+            "testo": "testi:e34.imp.bagni.turni",
+            "costo": "testi:e34.imp.bagni.turni.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e34.imp.bagni.turni.r"
+          },
+          {
+            "id": "idraulico",
+            "testo": "testi:e34.imp.bagni.idraulico",
+            "costo": "testi:e34.imp.bagni.idraulico.c",
+            "effetti": [],
+            "risposta": "testi:e34.imp.bagni.idraulico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pollo",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e34.imp.pollo",
+        "commento": "testi:e34.imp.pollo.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "cassetta",
+            "testo": "testi:e34.imp.pollo.cassetta",
+            "costo": "testi:e34.imp.pollo.cassetta.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e34.imp.pollo.cassetta.r"
+          },
+          {
+            "id": "telefoni",
+            "testo": "testi:e34.imp.pollo.telefoni",
+            "costo": "testi:e34.imp.pollo.telefoni.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e34.imp.pollo.telefoni.r"
+          },
+          {
+            "id": "trovi_strada",
+            "testo": "testi:e34.imp.pollo.trovi_strada",
+            "costo": "testi:e34.imp.pollo.trovi_strada.c",
+            "effetti": [],
+            "risposta": "testi:e34.imp.pollo.trovi_strada.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_arance",
+        "fonte": "centrale_radio",
+        "testo": "testi:e34.imp.arance",
+        "commento": "testi:e34.imp.arance.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "rampa",
+            "testo": "testi:e34.imp.arance.rampa",
+            "costo": "testi:e34.imp.arance.rampa.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e34.imp.arance.rampa.r"
+          },
+          {
+            "id": "scavalca",
+            "testo": "testi:e34.imp.arance.scavalca",
+            "costo": "testi:e34.imp.arance.scavalca.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e34.imp.arance.scavalca.r"
+          },
+          {
+            "id": "ambulanti",
+            "testo": "testi:e34.imp.arance.ambulanti",
+            "costo": "testi:e34.imp.arance.ambulanti.c",
+            "effetti": [],
+            "risposta": "testi:e34.imp.arance.ambulanti.r"
+          }
+        ]
+      }
+    }
+  ]
+}

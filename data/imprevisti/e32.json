@@ -1,0 +1,209 @@
+{
+  "id": "e32",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_cisterna",
+        "fonte": "centrale_radio",
+        "testo": "testi:e32.imp.cisterna",
+        "commento": "testi:e32.imp.cisterna.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "varco",
+            "testo": "testi:e32.imp.cisterna.varco",
+            "costo": "testi:e32.imp.cisterna.varco.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.cisterna.varco.r"
+          },
+          {
+            "id": "di_lato",
+            "testo": "testi:e32.imp.cisterna.di_lato",
+            "costo": "testi:e32.imp.cisterna.di_lato.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.cisterna.di_lato.r"
+          },
+          {
+            "id": "ripartira",
+            "testo": "testi:e32.imp.cisterna.ripartira",
+            "costo": "testi:e32.imp.cisterna.ripartira.c",
+            "effetti": [],
+            "risposta": "testi:e32.imp.cisterna.ripartira.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cancelletto",
+        "fonte": "centrale_radio",
+        "testo": "testi:e32.imp.cancelletto",
+        "commento": "testi:e32.imp.cancelletto.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "sedia",
+            "testo": "testi:e32.imp.cancelletto.sedia",
+            "costo": "testi:e32.imp.cancelletto.sedia.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.cancelletto.sedia.r"
+          },
+          {
+            "id": "scavalca",
+            "testo": "testi:e32.imp.cancelletto.scavalca",
+            "costo": "testi:e32.imp.cancelletto.scavalca.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.cancelletto.scavalca.r"
+          },
+          {
+            "id": "manutenzione",
+            "testo": "testi:e32.imp.cancelletto.manutenzione",
+            "costo": "testi:e32.imp.cancelletto.manutenzione.c",
+            "effetti": [],
+            "risposta": "testi:e32.imp.cancelletto.manutenzione.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_maxischermo",
+        "fonte": "centrale_radio",
+        "testo": "testi:e32.imp.maxischermo",
+        "commento": "testi:e32.imp.maxischermo.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "fotoelettriche",
+            "testo": "testi:e32.imp.maxischermo.fotoelettriche",
+            "costo": "testi:e32.imp.maxischermo.fotoelettriche.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.maxischermo.fotoelettriche.r"
+          },
+          {
+            "id": "radio",
+            "testo": "testi:e32.imp.maxischermo.radio",
+            "costo": "testi:e32.imp.maxischermo.radio.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.maxischermo.radio.r"
+          },
+          {
+            "id": "al_buio",
+            "testo": "testi:e32.imp.maxischermo.al_buio",
+            "costo": "testi:e32.imp.maxischermo.al_buio.c",
+            "effetti": [],
+            "risposta": "testi:e32.imp.maxischermo.al_buio.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_passaggio_livello",
+        "fonte": "centrale_radio",
+        "testo": "testi:e32.imp.passaggio_livello",
+        "commento": "testi:e32.imp.passaggio_livello.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "alza_sbarre",
+            "testo": "testi:e32.imp.passaggio_livello.alza_sbarre",
+            "costo": "testi:e32.imp.passaggio_livello.alza_sbarre.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.passaggio_livello.alza_sbarre.r"
+          },
+          {
+            "id": "sottopasso",
+            "testo": "testi:e32.imp.passaggio_livello.sottopasso",
+            "costo": "testi:e32.imp.passaggio_livello.sottopasso.c",
+            "effetti": [
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.passaggio_livello.sottopasso.r"
+          },
+          {
+            "id": "ferrovie",
+            "testo": "testi:e32.imp.passaggio_livello.ferrovie",
+            "costo": "testi:e32.imp.passaggio_livello.ferrovie.c",
+            "effetti": [],
+            "risposta": "testi:e32.imp.passaggio_livello.ferrovie.r"
+          }
+        ]
+      }
+    }
+  ]
+}

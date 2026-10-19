@@ -840,6 +840,145 @@
           ]
         },
         {
+          "id": "conto_procura",
+          "fonte": "comando",
+          "testo": "testi:e36.ch.conto_procura",
+          "commento": "testi:e36.ch.conto_procura.vice",
+          "se": {
+            "var": "fascicolo",
+            "uguale": "procura"
+          },
+          "opzioni": [
+            {
+              "id": "testimonia_lunedi",
+              "testo": "testi:e36.op.testimonia_lunedi",
+              "costo": "testi:e36.op.testimonia_lunedi.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e36.op.testimonia_lunedi.r"
+            },
+            {
+              "id": "carte_parlano",
+              "testo": "testi:e36.op.carte_parlano",
+              "costo": "testi:e36.op.carte_parlano.c",
+              "effetti": [],
+              "risposta": "testi:e36.op.carte_parlano.r"
+            }
+          ]
+        },
+        {
+          "id": "conto_stampa",
+          "fonte": "comando",
+          "testo": "testi:e36.ch.conto_stampa",
+          "commento": "testi:e36.ch.conto_stampa.vice",
+          "se": {
+            "var": "fascicolo",
+            "uguale": "stampa"
+          },
+          "opzioni": [
+            {
+              "id": "metti_faccia",
+              "testo": "testi:e36.op.metti_faccia",
+              "costo": "testi:e36.op.metti_faccia.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.metti_faccia.r"
+            },
+            {
+              "id": "scarica_giornale",
+              "testo": "testi:e36.op.scarica_giornale",
+              "costo": "testi:e36.op.scarica_giornale.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.scarica_giornale.r"
+            }
+          ]
+        },
+        {
+          "id": "faldoni_fermati",
+          "fonte": "comando",
+          "testo": "testi:e36.ch.faldoni_fermati",
+          "commento": "testi:e36.ch.faldoni_fermati.vice",
+          "se": {
+            "var": "carte",
+            "uguale": "fermate"
+          },
+          "opzioni": [
+            {
+              "id": "merito_squadra",
+              "testo": "testi:e36.op.merito_squadra",
+              "costo": "testi:e36.op.merito_squadra.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e36.op.merito_squadra.r"
+            },
+            {
+              "id": "merito_comando",
+              "testo": "testi:e36.op.merito_comando",
+              "costo": "testi:e36.op.merito_comando.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": 1
+                }
+              ],
+              "risposta": "testi:e36.op.merito_comando.r"
+            }
+          ]
+        },
+        {
+          "id": "faldoni_persi",
+          "fonte": "comando",
+          "testo": "testi:e36.ch.faldoni_persi",
+          "commento": "testi:e36.ch.faldoni_persi.vice",
+          "se": {
+            "var": "carte",
+            "uguale": "perse"
+          },
+          "opzioni": [
+            {
+              "id": "ammetti_faldoni",
+              "testo": "testi:e36.op.ammetti_faldoni",
+              "costo": "testi:e36.op.ammetti_faldoni.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.ammetti_faldoni.r"
+            },
+            {
+              "id": "colpa_ferrovie",
+              "testo": "testi:e36.op.colpa_ferrovie",
+              "costo": "testi:e36.op.colpa_ferrovie.c",
+              "effetti": [
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
+                }
+              ],
+              "risposta": "testi:e36.op.colpa_ferrovie.r"
+            }
+          ]
+        },
+        {
           "id": "busta",
           "fonte": "vice",
           "testo": "testi:e36.ch.busta",

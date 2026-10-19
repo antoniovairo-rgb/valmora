@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "imprevisti.schema.json",
+  "title": "data/imprevisti/<episodio>.json: gli imprevisti di un episodio (PO-022, D-190). Uno per ondata al massimo; arriva fuori ordine, dopo «dopo» chiamate dell'ondata, e va risolto subito, senza tempo. File separati dalle missioni: si innestano al caricamento (src/dati/imprevisti.ts)",
+  "type": "object",
+  "required": ["id", "imprevisti"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "comune.schema.json#/$defs/id" },
+    "imprevisti": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["ondata", "dopo", "chiamata"],
+        "additionalProperties": false,
+        "properties": {
+          "ondata": { "type": "integer", "minimum": 1 },
+          "dopo": { "type": "integer", "minimum": 1, "description": "quante chiamate dell'ondata (nell'ordine dei dati) vengono prima dell'imprevisto" },
+          "chiamata": { "$ref": "missione.schema.json#/properties/ondate/items/properties/chiamate/items" }
+        }
+      }
+    }
+  }
+}

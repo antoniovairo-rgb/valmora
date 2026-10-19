@@ -325,4 +325,14 @@
 //   smentiscono lo schieramento nei 5 casi del collaudo 5 → 0.
 //   guardiano: tests/confronto.test.ts (rossi __NO_C41B01, __NO_C41B02), tests/costo-quando.test.ts (rossi C183Q01,
 //   C183P01), tests/testi-schieramento.test.ts (rosso C41T01).
-export const GAME_VERSION = '0.42.0';
+// 0.43.0 – home rinnovata, correzioni del collaudo C-042 e C41-05…08, rifinitura dei testi di tutti i 36 episodi.
+//   causa: PO-140 fase 1 (home, D-179); C-042 (aiuti su settori scoperti, «dalla prossima ondata» all'ultima ondata,
+//   testi sullo schieramento cercati per chiave e non per formula); C41-05…08 (verbale fallito senza spazio, D-185);
+//   schede di rifinitura e10–e36 (D-186, D-189: costi promessi applicati, patti −1, doppioni tolti, testi che
+//   smentivano le scelte resi neutri; D-190: dove tocca D-160 si correggono i testi, non la fiducia).
+//   misura: scorrimento a 360 px (S-12 su 0.42.0 → ora) home 122 → 0, sala 538 → 0, briefing 817 → 0, verbale
+//   1395 → 0; formule di schieramento su tutti i testi → 0; 28/28 risposte con costo all'ultima ondata dicono
+//   «fino a fine serata»; vitest 375/375.
+//   guardiano: tests/testi-schieramento.test.ts (rossi C41T01, C42T01), tests/costo-quando.test.ts (rosso C42U01),
+//   tests/coerenza-d153.test.ts (testi neutri D-189), guardiani di altezza della catena grafica in CI.
+export const GAME_VERSION = '0.43.0';

@@ -1,0 +1,209 @@
+{
+  "id": "e27",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_scala_mobile",
+        "fonte": "centrale_radio",
+        "testo": "testi:e27.imp.scala_mobile",
+        "commento": "testi:e27.imp.scala_mobile.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "scala_servizio",
+            "testo": "testi:e27.imp.scala_mobile.scala_servizio",
+            "costo": "testi:e27.imp.scala_mobile.scala_servizio.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.scala_mobile.scala_servizio.r"
+          },
+          {
+            "id": "a_piedi",
+            "testo": "testi:e27.imp.scala_mobile.a_piedi",
+            "costo": "testi:e27.imp.scala_mobile.a_piedi.c",
+            "effetti": [
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.scala_mobile.a_piedi.r"
+          },
+          {
+            "id": "tecnico",
+            "testo": "testi:e27.imp.scala_mobile.tecnico",
+            "costo": "testi:e27.imp.scala_mobile.tecnico.c",
+            "effetti": [],
+            "risposta": "testi:e27.imp.scala_mobile.tecnico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_bandierone",
+        "fonte": "gemellati",
+        "testo": "testi:e27.imp.bandierone",
+        "commento": "testi:e27.imp.bandierone.vice",
+        "settore": "curva_gemellati",
+        "opzioni": [
+          {
+            "id": "slega",
+            "testo": "testi:e27.imp.bandierone.slega",
+            "costo": "testi:e27.imp.bandierone.slega.c",
+            "effetti": [
+              {
+                "pressione": "curva_gemellati",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.bandierone.slega.r"
+          },
+          {
+            "id": "taglia",
+            "testo": "testi:e27.imp.bandierone.taglia",
+            "costo": "testi:e27.imp.bandierone.taglia.c",
+            "effetti": [
+              {
+                "pressione": "curva_gemellati",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_gemellati",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.bandierone.taglia.r"
+          },
+          {
+            "id": "tirate",
+            "testo": "testi:e27.imp.bandierone.tirate",
+            "costo": "testi:e27.imp.bandierone.tirate.c",
+            "effetti": [],
+            "risposta": "testi:e27.imp.bandierone.tirate.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_grondaia",
+        "fonte": "centrale_radio",
+        "testo": "testi:e27.imp.grondaia",
+        "commento": "testi:e27.imp.grondaia.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "nastro",
+            "testo": "testi:e27.imp.grondaia.nastro",
+            "costo": "testi:e27.imp.grondaia.nastro.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_gemellati",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.grondaia.nastro.r"
+          },
+          {
+            "id": "stringi",
+            "testo": "testi:e27.imp.grondaia.stringi",
+            "costo": "testi:e27.imp.grondaia.stringi.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.grondaia.stringi.r"
+          },
+          {
+            "id": "smettera",
+            "testo": "testi:e27.imp.grondaia.smettera",
+            "costo": "testi:e27.imp.grondaia.smettera.c",
+            "effetti": [],
+            "risposta": "testi:e27.imp.grondaia.smettera.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_camion_rifiuti",
+        "fonte": "centrale_radio",
+        "testo": "testi:e27.imp.camion_rifiuti",
+        "commento": "testi:e27.imp.camion_rifiuti.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "libera_via",
+            "testo": "testi:e27.imp.camion_rifiuti.libera_via",
+            "costo": "testi:e27.imp.camion_rifiuti.libera_via.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.camion_rifiuti.libera_via.r"
+          },
+          {
+            "id": "marciapiede",
+            "testo": "testi:e27.imp.camion_rifiuti.marciapiede",
+            "costo": "testi:e27.imp.camion_rifiuti.marciapiede.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.camion_rifiuti.marciapiede.r"
+          },
+          {
+            "id": "finisca_giro",
+            "testo": "testi:e27.imp.camion_rifiuti.finisca_giro",
+            "costo": "testi:e27.imp.camion_rifiuti.finisca_giro.c",
+            "effetti": [],
+            "risposta": "testi:e27.imp.camion_rifiuti.finisca_giro.r"
+          }
+        ]
+      }
+    }
+  ]
+}

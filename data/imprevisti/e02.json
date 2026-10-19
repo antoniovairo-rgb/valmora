@@ -1,0 +1,236 @@
+{
+  "id": "e02",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_binario",
+        "fonte": "ferrovie",
+        "testo": "testi:e02.imp.binario",
+        "commento": "testi:e02.imp.binario.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "sottopasso",
+            "testo": "testi:e02.imp.binario.sottopasso",
+            "costo": "testi:e02.imp.binario.sottopasso.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "stazione",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e02.imp.binario.sottopasso.r"
+          },
+          {
+            "id": "uscita_merci",
+            "testo": "testi:e02.imp.binario.uscita_merci",
+            "costo": "testi:e02.imp.binario.uscita_merci.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.binario.uscita_merci.r"
+          },
+          {
+            "id": "altoparlante",
+            "testo": "testi:e02.imp.binario.altoparlante",
+            "costo": "testi:e02.imp.binario.altoparlante.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.binario.altoparlante.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 3,
+      "chiamata": {
+        "id": "imp_sciarpa",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e02.imp.sciarpa",
+        "commento": "testi:e02.imp.sciarpa.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "recupera",
+            "testo": "testi:e02.imp.sciarpa.recupera",
+            "costo": "testi:e02.imp.sciarpa.recupera.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "stazione",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e02.imp.sciarpa.recupera.r"
+          },
+          {
+            "id": "scorta_tornelli",
+            "testo": "testi:e02.imp.sciarpa.scorta_tornelli",
+            "costo": "testi:e02.imp.sciarpa.scorta_tornelli.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.sciarpa.scorta_tornelli.r"
+          },
+          {
+            "id": "lascia_cercare",
+            "testo": "testi:e02.imp.sciarpa.lascia_cercare",
+            "costo": "testi:e02.imp.sciarpa.lascia_cercare.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e02.imp.sciarpa.lascia_cercare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_acquazzone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e02.imp.acquazzone",
+        "commento": "testi:e02.imp.acquazzone.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "teli",
+            "testo": "testi:e02.imp.acquazzone.teli",
+            "costo": "testi:e02.imp.acquazzone.teli.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e02.imp.acquazzone.teli.r"
+          },
+          {
+            "id": "settore_coperto",
+            "testo": "testi:e02.imp.acquazzone.settore_coperto",
+            "costo": "testi:e02.imp.acquazzone.settore_coperto.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.acquazzone.settore_coperto.r"
+          },
+          {
+            "id": "pioggia",
+            "testo": "testi:e02.imp.acquazzone.pioggia",
+            "costo": "testi:e02.imp.acquazzone.pioggia.c",
+            "effetti": [],
+            "risposta": "testi:e02.imp.acquazzone.pioggia.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_soppresso",
+        "fonte": "ferrovie",
+        "testo": "testi:e02.imp.soppresso",
+        "commento": "testi:e02.imp.soppresso.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "pullman",
+            "testo": "testi:e02.imp.soppresso.pullman",
+            "costo": "testi:e02.imp.soppresso.pullman.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -2
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.soppresso.pullman.r"
+          },
+          {
+            "id": "sala_attesa",
+            "testo": "testi:e02.imp.soppresso.sala_attesa",
+            "costo": "testi:e02.imp.soppresso.sala_attesa.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.soppresso.sala_attesa.r"
+          },
+          {
+            "id": "annuncio",
+            "testo": "testi:e02.imp.soppresso.annuncio",
+            "costo": "testi:e02.imp.soppresso.annuncio.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e02.imp.soppresso.annuncio.r"
+          }
+        ]
+      }
+    }
+  ]
+}

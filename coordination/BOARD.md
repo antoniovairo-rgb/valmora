@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-19 17:55 Roma – integrati C41-05…08 (S-09), C42 (S-01, S-05): principale 552083d8, governo+logica verdi, vitest 363/363, pronta per il rilascio delle 23:00. D-190 (imprevisti senza timer; D-160 tenuta, testi corretti). Archiviate S-01, S-05, S-09 (consegnato). Attive: S-11 (session_01XNPUWFmtvncxMLPMEVZNXX, claude/valmora-home: scorrimenti D-187), S-13 (session_01WwPi5JiGo4fAkBDRUtwNDc, claude/valmora-rifinitura: e10–e24 in verifica), S-14 (session_01NC1pA8j3z9yucVgjskYrWH, claude/valmora-tempo-reale: imprevisti, logica prima e dati dopo l'integrazione della rifinitura), S-15 (session_01NWUw8Xe7wVvdp9JqLuZWJC, claude/valmora-rifinitura-s3: e25–e36 in verifica).
+Ultimo giro della routine: 2026-10-20 00:00 Roma. C-043 consegnato: 10 rilievi, tutti riprodotti (D-196); archiviata C-043. Nuova S-16 (session_01GxBucdtUpqJVcDrmmvnsjW, ramo claude/valmora-c43) per C43-01…05 e 08…10. A S-11 vanno C43-06/07, la lentezza di grafica 360 e D-191+D-193. Principale 7b0273a7. Attive: S-11, S-16.
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)

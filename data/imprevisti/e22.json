@@ -1,0 +1,213 @@
+{
+  "id": "e22",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_turisti",
+        "fonte": "ufficio_sicurezza_cinderwick",
+        "testo": "testi:e22.imp.turisti",
+        "commento": "testi:e22.imp.turisti.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "megafono_turisti",
+            "testo": "testi:e22.imp.turisti.megafono_turisti",
+            "costo": "testi:e22.imp.turisti.megafono_turisti.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e22.imp.turisti.megafono_turisti.r"
+          },
+          {
+            "id": "foto_veloce",
+            "testo": "testi:e22.imp.turisti.foto_veloce",
+            "costo": "testi:e22.imp.turisti.foto_veloce.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.turisti.foto_veloce.r"
+          },
+          {
+            "id": "lascia_foto",
+            "testo": "testi:e22.imp.turisti.lascia_foto",
+            "costo": "testi:e22.imp.turisti.lascia_foto.c",
+            "effetti": [],
+            "risposta": "testi:e22.imp.turisti.lascia_foto.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pannello",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e22.imp.pannello",
+        "commento": "testi:e22.imp.pannello.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "tecnici_tetto",
+            "testo": "testi:e22.imp.pannello.tecnici_tetto",
+            "costo": "testi:e22.imp.pannello.tecnici_tetto.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e22.imp.pannello.tecnici_tetto.r"
+          },
+          {
+            "id": "speaker_pannello",
+            "testo": "testi:e22.imp.pannello.speaker_pannello",
+            "costo": "testi:e22.imp.pannello.speaker_pannello.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.pannello.speaker_pannello.r"
+          },
+          {
+            "id": "lascia_sbattere",
+            "testo": "testi:e22.imp.pannello.lascia_sbattere",
+            "costo": "testi:e22.imp.pannello.lascia_sbattere.c",
+            "effetti": [],
+            "risposta": "testi:e22.imp.pannello.lascia_sbattere.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pallone_sponsor",
+        "fonte": "centrale_radio",
+        "testo": "testi:e22.imp.pallone_sponsor",
+        "commento": "testi:e22.imp.pallone_sponsor.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "stacca_gonfiatore",
+            "testo": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore",
+            "costo": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore.r"
+          },
+          {
+            "id": "solleva_lembo",
+            "testo": "testi:e22.imp.pallone_sponsor.solleva_lembo",
+            "costo": "testi:e22.imp.pallone_sponsor.solleva_lembo.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.pallone_sponsor.solleva_lembo.r"
+          },
+          {
+            "id": "vola_via",
+            "testo": "testi:e22.imp.pallone_sponsor.vola_via",
+            "costo": "testi:e22.imp.pallone_sponsor.vola_via.c",
+            "effetti": [],
+            "risposta": "testi:e22.imp.pallone_sponsor.vola_via.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_matrimonio",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e22.imp.matrimonio",
+        "commento": "testi:e22.imp.matrimonio.vice",
+        "settore": "piazza_municipio",
+        "opzioni": [
+          {
+            "id": "corridoio_sposi",
+            "testo": "testi:e22.imp.matrimonio.corridoio_sposi",
+            "costo": "testi:e22.imp.matrimonio.corridoio_sposi.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e22.imp.matrimonio.corridoio_sposi.r"
+          },
+          {
+            "id": "sposi_scalinata",
+            "testo": "testi:e22.imp.matrimonio.sposi_scalinata",
+            "costo": "testi:e22.imp.matrimonio.sposi_scalinata.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.matrimonio.sposi_scalinata.r"
+          },
+          {
+            "id": "fotografo",
+            "testo": "testi:e22.imp.matrimonio.fotografo",
+            "costo": "testi:e22.imp.matrimonio.fotografo.c",
+            "effetti": [],
+            "risposta": "testi:e22.imp.matrimonio.fotografo.r"
+          }
+        ]
+      }
+    }
+  ]
+}

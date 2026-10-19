@@ -97,6 +97,17 @@
       "max": 4,
       "iniziale": 0,
       "descrizione": "Indizi notati su Gianni Lavezzari (e01, e16, e19, e23); in e33 decide quanto presto lo smascheri (D-100)"
+    },
+    {
+      "id": "carte",
+      "tipo": "enum",
+      "valori": [
+        "nessuna",
+        "fermate",
+        "perse"
+      ],
+      "iniziale": "nessuna",
+      "descrizione": "I faldoni dell'uomo con la valigia in e35: fermati o partiti col treno; pesa su e36 e sull'epilogo (D-189)"
     }
   ]
 }

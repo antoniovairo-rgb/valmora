@@ -43,12 +43,12 @@ describe('epilogo e fine stagione (D-161, D-164)', () => {
     expect(ultimoEpisodio(missioni)?.id).toBe('e36');
   });
 
-  it('partita A-Z vera (0.38.0, fine campagna): le sei scelte, la carriera e le stelle', () => {
+  it('partita A-Z vera (0.38.0, fine campagna): le sette scelte (D-189), la carriera e le stelle', () => {
     const s = reale('v2-0.38.0-fine-campagna.json');
     const e = epilogo(missioni, s.episodi, s.variabili, dichiarate.values());
     expect(e.esito).toBe('prorogato_procura');
     expect(e.carriera).toBe('prorogato');
-    expect(e.scelte.map((f) => [f.id, f.valore])).toEqual([['rapporto_dessi', 'rispetto'], ['testimone', 'protetto'], ['busta', 'consegnata'], ['pista_cattura', 'nessuna'], ['fascicolo', 'procura'], ['sospetti_talpa', 3]]);
+    expect(e.scelte.map((f) => [f.id, f.valore])).toEqual([['rapporto_dessi', 'rispetto'], ['testimone', 'protetto'], ['busta', 'consegnata'], ['pista_cattura', 'nessuna'], ['fascicolo', 'procura'], ['sospetti_talpa', 3], ['carte', 'nessuna']]); // D-189: «carte» completata al valore iniziale
     // stelle lette dal registro: S1 2+2+2+2+3+2+2+2+3+3+3+2, S2 3+2+1+3+3+3+1+3+1+3+3+1, S3 1+3+3+2+2+2+2+2+2+3+3+3
     expect(e.stagioni.map((x) => [x.stelle, x.massimo, x.superati])).toEqual([[28, 36, 12], [27, 36, 12], [28, 36, 12]]);
     expect([e.stelle, e.massimo]).toEqual([83, 108]);
