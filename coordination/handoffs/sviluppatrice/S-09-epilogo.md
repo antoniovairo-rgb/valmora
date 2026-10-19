@@ -264,3 +264,15 @@ Non verificato:
   fallito ora è più alto di 35 px, e a 375×667 la vignetta non si nasconde più.
 - C41-07: il colore del titolo del verbale segue il tono: per l'esito più basso non fallito ora è quello di «male».
 - FATTO MISURATO (D-177): su 227ff1f, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
+
+### C41-06, correzione dopo la CI rossa su 227ff1f (run 802)
+
+- FATTO (log CI, job «grafica (375)» e «grafica (412)», passo foto, 3 tentativi su 3): «e01 verbale a 375×667: vignetta
+  «esito-…» alta 110 px (minimo 110) con la pagina che scorre di 107 px: va nascosta (D-126 d)» e «… mostrata a 110.0 px,
+  va nascosta (C26-03)». Causa: con C41-06 la vignetta del verbale fallito non si nascondeva più, neanche sugli schermi
+  bassi. Errore mio: non avevo girato il passo foto completo prima di consegnare.
+- Decisione della principale (D-182): resta D-126 d. Patch: `useRiempi` accetta `nascondibile = 'bassa'`; la vignetta
+  «esito-fallita» si nasconde solo sugli schermi bassi (sotto `--vignetta-finestra-min`), altrove resta al minimo di
+  110 px (`src/resa/vignetta.tsx`). Rosso `__NO_C41V06` invariato.
+- FATTO MISURATO: giro foto completo a 375 in locale (`VALMORA_LARGHEZZE=375`, giraFoto + controllaGiro) → «verde»;
+  `tools/foto-c41.mjs` 360/375/412 → «verde», 360×760: vignetta 290×110, disegno 196.
