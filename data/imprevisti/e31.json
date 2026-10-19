@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "viale_stazione",
@@ -28,20 +28,20 @@
             "risposta": "testi:e31.imp.tabellone_arrivi.guida.r"
           },
           {
-            "id": "sul_viale",
-            "testo": "testi:e31.imp.tabellone_arrivi.sul_viale",
-            "costo": "testi:e31.imp.tabellone_arrivi.sul_viale.c",
+            "id": "a_voce",
+            "testo": "testi:e31.imp.tabellone_arrivi.a_voce",
+            "costo": "testi:e31.imp.tabellone_arrivi.a_voce.c",
             "effetti": [
               {
                 "pressione": "stazione",
                 "valore": -1
               },
               {
-                "pressione": "viale_stazione",
-                "valore": 2
+                "tensione": "stazione",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e31.imp.tabellone_arrivi.sul_viale.r"
+            "risposta": "testi:e31.imp.tabellone_arrivi.a_voce.r"
           },
           {
             "id": "corrente",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "viale_stazione",
@@ -80,20 +80,20 @@
             "risposta": "testi:e31.imp.telone.ferma_telone.r"
           },
           {
-            "id": "sul_viale",
-            "testo": "testi:e31.imp.telone.sul_viale",
-            "costo": "testi:e31.imp.telone.sul_viale.c",
+            "id": "abbassa",
+            "testo": "testi:e31.imp.telone.abbassa",
+            "costo": "testi:e31.imp.telone.abbassa.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "viale_stazione",
-                "valore": 2
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e31.imp.telone.sul_viale.r"
+            "risposta": "testi:e31.imp.telone.abbassa.r"
           },
           {
             "id": "vento",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -132,20 +132,20 @@
             "risposta": "testi:e31.imp.spina.acqua.r"
           },
           {
-            "id": "bar_piazzale",
-            "testo": "testi:e31.imp.spina.bar_piazzale",
-            "costo": "testi:e31.imp.spina.bar_piazzale.c",
+            "id": "bottiglie",
+            "testo": "testi:e31.imp.spina.bottiglie",
+            "costo": "testi:e31.imp.spina.bottiglie.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
-                "valore": 2
+                "tensione": "curva_ospiti",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e31.imp.spina.bar_piazzale.r"
+            "risposta": "testi:e31.imp.spina.bottiglie.r"
           },
           {
             "id": "riparazione",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "stazione",
@@ -184,20 +184,20 @@
             "risposta": "testi:e31.imp.tubatura.marciapiede.r"
           },
           {
-            "id": "di_corsa",
-            "testo": "testi:e31.imp.tubatura.di_corsa",
-            "costo": "testi:e31.imp.tubatura.di_corsa.c",
+            "id": "fila",
+            "testo": "testi:e31.imp.tubatura.fila",
+            "costo": "testi:e31.imp.tubatura.fila.c",
             "effetti": [
               {
                 "pressione": "viale_stazione",
                 "valore": -1
               },
               {
-                "pressione": "stazione",
-                "valore": 2
+                "tensione": "viale_stazione",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e31.imp.tubatura.di_corsa.r"
+            "risposta": "testi:e31.imp.tubatura.fila.r"
           },
           {
             "id": "acquedotto",

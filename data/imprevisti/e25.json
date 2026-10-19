@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e25.imp.scala_mobile.annuncio_laterale.r"
           },
           {
-            "id": "altra_via",
-            "testo": "testi:e25.imp.scala_mobile.altra_via",
-            "costo": "testi:e25.imp.scala_mobile.altra_via.c",
+            "id": "scala_fissa",
+            "testo": "testi:e25.imp.scala_mobile.scala_fissa",
+            "costo": "testi:e25.imp.scala_mobile.scala_fissa.c",
             "effetti": [
               {
                 "pressione": "stazione",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "stazione",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e25.imp.scala_mobile.altra_via.r"
+            "risposta": "testi:e25.imp.scala_mobile.scala_fissa.r"
           },
           {
             "id": "salgano_piedi",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "curva_cinderwick",
@@ -80,20 +80,20 @@
             "risposta": "testi:e25.imp.furgone_transenne.rimozione.r"
           },
           {
-            "id": "varco_curva",
-            "testo": "testi:e25.imp.furgone_transenne.varco_curva",
-            "costo": "testi:e25.imp.furgone_transenne.varco_curva.c",
+            "id": "aggira_furgone",
+            "testo": "testi:e25.imp.furgone_transenne.aggira_furgone",
+            "costo": "testi:e25.imp.furgone_transenne.aggira_furgone.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "curva_cinderwick",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e25.imp.furgone_transenne.varco_curva.r"
+            "risposta": "testi:e25.imp.furgone_transenne.aggira_furgone.r"
           },
           {
             "id": "aspetta_autista",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -132,20 +132,20 @@
             "risposta": "testi:e25.imp.tettoia.teli.r"
           },
           {
-            "id": "fradici_piazzale",
-            "testo": "testi:e25.imp.tettoia.fradici_piazzale",
-            "costo": "testi:e25.imp.tettoia.fradici_piazzale.c",
+            "id": "stringi_asciutto",
+            "testo": "testi:e25.imp.tettoia.stringi_asciutto",
+            "costo": "testi:e25.imp.tettoia.stringi_asciutto.c",
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "curva_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e25.imp.tettoia.fradici_piazzale.r"
+            "risposta": "testi:e25.imp.tettoia.stringi_asciutto.r"
           },
           {
             "id": "lascia_piovere",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "zona_rossa",
@@ -184,20 +184,20 @@
             "risposta": "testi:e25.imp.tabellone_partenze.binari_voce.r"
           },
           {
-            "id": "viale_zona",
-            "testo": "testi:e25.imp.tabellone_partenze.viale_zona",
-            "costo": "testi:e25.imp.tabellone_partenze.viale_zona.c",
+            "id": "cartello_binari",
+            "testo": "testi:e25.imp.tabellone_partenze.cartello_binari",
+            "costo": "testi:e25.imp.tabellone_partenze.cartello_binari.c",
             "effetti": [
               {
                 "pressione": "stazione",
                 "valore": -1
               },
               {
-                "pressione": "zona_rossa",
+                "tensione": "stazione",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e25.imp.tabellone_partenze.viale_zona.r"
+            "risposta": "testi:e25.imp.tabellone_partenze.cartello_binari.r"
           },
           {
             "id": "tabellone_riprenda",

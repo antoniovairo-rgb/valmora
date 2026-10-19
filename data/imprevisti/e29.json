@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e29.imp.tornelli_ospiti.a_mano.r"
           },
           {
-            "id": "sul_piazzale",
-            "testo": "testi:e29.imp.tornelli_ospiti.sul_piazzale",
-            "costo": "testi:e29.imp.tornelli_ospiti.sul_piazzale.c",
+            "id": "fila_unica",
+            "testo": "testi:e29.imp.tornelli_ospiti.fila_unica",
+            "costo": "testi:e29.imp.tornelli_ospiti.fila_unica.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e29.imp.tornelli_ospiti.sul_piazzale.r"
+            "risposta": "testi:e29.imp.tornelli_ospiti.fila_unica.r"
           },
           {
             "id": "si_riprendono",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -80,20 +80,20 @@
             "risposta": "testi:e29.imp.tubo.valvola.r"
           },
           {
-            "id": "in_strada",
-            "testo": "testi:e29.imp.tubo.in_strada",
-            "costo": "testi:e29.imp.tubo.in_strada.c",
+            "id": "sedili",
+            "testo": "testi:e29.imp.tubo.sedili",
+            "costo": "testi:e29.imp.tubo.sedili.c",
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "curva_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e29.imp.tubo.in_strada.r"
+            "risposta": "testi:e29.imp.tubo.sedili.r"
           },
           {
             "id": "idraulico",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": 1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -132,16 +132,20 @@
             "risposta": "testi:e29.imp.ponte_basso.devia.r"
           },
           {
-            "id": "verso_piazzale",
-            "testo": "testi:e29.imp.ponte_basso.verso_piazzale",
-            "costo": "testi:e29.imp.ponte_basso.verso_piazzale.c",
+            "id": "senso_unico",
+            "testo": "testi:e29.imp.ponte_basso.senso_unico",
+            "costo": "testi:e29.imp.ponte_basso.senso_unico.c",
             "effetti": [
               {
-                "pressione": "piazzale",
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e29.imp.ponte_basso.verso_piazzale.r"
+            "risposta": "testi:e29.imp.ponte_basso.senso_unico.r"
           },
           {
             "id": "carro",
@@ -170,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -180,20 +184,20 @@
             "risposta": "testi:e29.imp.irrigatori.sgombera.r"
           },
           {
-            "id": "verso_strada",
-            "testo": "testi:e29.imp.irrigatori.verso_strada",
-            "costo": "testi:e29.imp.irrigatori.verso_strada.c",
+            "id": "allarga",
+            "testo": "testi:e29.imp.irrigatori.allarga",
+            "costo": "testi:e29.imp.irrigatori.allarga.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e29.imp.irrigatori.verso_strada.r"
+            "risposta": "testi:e29.imp.irrigatori.allarga.r"
           },
           {
             "id": "si_spegne",

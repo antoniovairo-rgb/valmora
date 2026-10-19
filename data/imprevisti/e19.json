@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -28,20 +28,20 @@
             "risposta": "testi:e19.imp.lettore.spegni_lettori.r"
           },
           {
-            "id": "attesa_strada",
-            "testo": "testi:e19.imp.lettore.attesa_strada",
-            "costo": "testi:e19.imp.lettore.attesa_strada.c",
+            "id": "un_lettore",
+            "testo": "testi:e19.imp.lettore.un_lettore",
+            "costo": "testi:e19.imp.lettore.un_lettore.c",
             "effetti": [
               {
                 "pressione": "tornelli",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "tornelli",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e19.imp.lettore.attesa_strada.r"
+            "risposta": "testi:e19.imp.lettore.un_lettore.r"
           },
           {
             "id": "lascia_suonare",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "curva_cinderwick",
@@ -80,20 +80,20 @@
             "risposta": "testi:e19.imp.bagni.telefona_custode.r"
           },
           {
-            "id": "bagni_casa",
-            "testo": "testi:e19.imp.bagni.bagni_casa",
-            "costo": "testi:e19.imp.bagni.bagni_casa.c",
+            "id": "bagno_tribuna",
+            "testo": "testi:e19.imp.bagni.bagno_tribuna",
+            "costo": "testi:e19.imp.bagni.bagno_tribuna.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "curva_cinderwick",
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e19.imp.bagni.bagni_casa.r"
+            "risposta": "testi:e19.imp.bagni.bagno_tribuna.r"
           },
           {
             "id": "aspetta_custode",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "tornelli",
@@ -132,20 +132,20 @@
             "risposta": "testi:e19.imp.camion_rifiuti.chiama_ditta.r"
           },
           {
-            "id": "verso_tornelli",
-            "testo": "testi:e19.imp.camion_rifiuti.verso_tornelli",
-            "costo": "testi:e19.imp.camion_rifiuti.verso_tornelli.c",
+            "id": "passaggio_lato",
+            "testo": "testi:e19.imp.camion_rifiuti.passaggio_lato",
+            "costo": "testi:e19.imp.camion_rifiuti.passaggio_lato.c",
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "tornelli",
+                "tensione": "strada_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e19.imp.camion_rifiuti.verso_tornelli.r"
+            "risposta": "testi:e19.imp.camion_rifiuti.passaggio_lato.r"
           },
           {
             "id": "finisca_caffe",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -184,20 +184,20 @@
             "risposta": "testi:e19.imp.scala_lavori.scala_servizio.r"
           },
           {
-            "id": "uscita_kiln",
-            "testo": "testi:e19.imp.scala_lavori.uscita_kiln",
-            "costo": "testi:e19.imp.scala_lavori.uscita_kiln.c",
+            "id": "turni_uscita",
+            "testo": "testi:e19.imp.scala_lavori.turni_uscita",
+            "costo": "testi:e19.imp.scala_lavori.turni_uscita.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e19.imp.scala_lavori.uscita_kiln.r"
+            "risposta": "testi:e19.imp.scala_lavori.turni_uscita.r"
           },
           {
             "id": "porta_sola",

@@ -17,6 +17,10 @@
             "costo": "testi:e32.imp.cisterna.varco.c",
             "effetti": [
               {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              },
+              {
                 "tensione": "piazzale",
                 "valore": 1
               }
@@ -24,16 +28,20 @@
             "risposta": "testi:e32.imp.cisterna.varco.r"
           },
           {
-            "id": "scalinata",
-            "testo": "testi:e32.imp.cisterna.scalinata",
-            "costo": "testi:e32.imp.cisterna.scalinata.c",
+            "id": "di_lato",
+            "testo": "testi:e32.imp.cisterna.di_lato",
+            "costo": "testi:e32.imp.cisterna.di_lato.c",
             "effetti": [
               {
-                "pressione": "piazzale",
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e32.imp.cisterna.scalinata.r"
+            "risposta": "testi:e32.imp.cisterna.di_lato.r"
           },
           {
             "id": "ripartira",
@@ -61,6 +69,10 @@
             "costo": "testi:e32.imp.cancelletto.sedia.c",
             "effetti": [
               {
+                "pressione": "curva_larkspire",
+                "valore": -2
+              },
+              {
                 "tensione": "piazzale",
                 "valore": 1
               }
@@ -68,16 +80,20 @@
             "risposta": "testi:e32.imp.cancelletto.sedia.r"
           },
           {
-            "id": "giro_piazzale",
-            "testo": "testi:e32.imp.cancelletto.giro_piazzale",
-            "costo": "testi:e32.imp.cancelletto.giro_piazzale.c",
+            "id": "scavalca",
+            "testo": "testi:e32.imp.cancelletto.scavalca",
+            "costo": "testi:e32.imp.cancelletto.scavalca.c",
             "effetti": [
               {
-                "pressione": "piazzale",
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e32.imp.cancelletto.giro_piazzale.r"
+            "risposta": "testi:e32.imp.cancelletto.scavalca.r"
           },
           {
             "id": "manutenzione",
@@ -116,20 +132,20 @@
             "risposta": "testi:e32.imp.maxischermo.fotoelettriche.r"
           },
           {
-            "id": "bar_collina",
-            "testo": "testi:e32.imp.maxischermo.bar_collina",
-            "costo": "testi:e32.imp.maxischermo.bar_collina.c",
+            "id": "radio",
+            "testo": "testi:e32.imp.maxischermo.radio",
+            "costo": "testi:e32.imp.maxischermo.radio.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "strada_larkspire",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e32.imp.maxischermo.bar_collina.r"
+            "risposta": "testi:e32.imp.maxischermo.radio.r"
           },
           {
             "id": "al_buio",
@@ -168,20 +184,20 @@
             "risposta": "testi:e32.imp.passaggio_livello.alza_sbarre.r"
           },
           {
-            "id": "indietro",
-            "testo": "testi:e32.imp.passaggio_livello.indietro",
-            "costo": "testi:e32.imp.passaggio_livello.indietro.c",
+            "id": "sottopasso",
+            "testo": "testi:e32.imp.passaggio_livello.sottopasso",
+            "costo": "testi:e32.imp.passaggio_livello.sottopasso.c",
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "strada_cinderwick",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e32.imp.passaggio_livello.indietro.r"
+            "risposta": "testi:e32.imp.passaggio_livello.sottopasso.r"
           },
           {
             "id": "ferrovie",

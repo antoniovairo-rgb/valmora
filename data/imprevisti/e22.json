@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e22.imp.turisti.megafono_turisti.r"
           },
           {
-            "id": "parcheggia_piazzale",
-            "testo": "testi:e22.imp.turisti.parcheggia_piazzale",
-            "costo": "testi:e22.imp.turisti.parcheggia_piazzale.c",
+            "id": "foto_veloce",
+            "testo": "testi:e22.imp.turisti.foto_veloce",
+            "costo": "testi:e22.imp.turisti.foto_veloce.c",
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
-                "valore": 2
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e22.imp.turisti.parcheggia_piazzale.r"
+            "risposta": "testi:e22.imp.turisti.foto_veloce.r"
           },
           {
             "id": "lascia_foto",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "curva_cinderwick",
@@ -89,8 +89,8 @@
                 "valore": -1
               },
               {
-                "pressione": "curva_cinderwick",
-                "valore": 2
+                "tensione": "curva_larkspire",
+                "valore": 1
               }
             ],
             "risposta": "testi:e22.imp.pannello.speaker_pannello.r"
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": 1
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -132,16 +132,20 @@
             "risposta": "testi:e22.imp.pallone_sponsor.stacca_gonfiatore.r"
           },
           {
-            "id": "auto_strada",
-            "testo": "testi:e22.imp.pallone_sponsor.auto_strada",
-            "costo": "testi:e22.imp.pallone_sponsor.auto_strada.c",
+            "id": "solleva_lembo",
+            "testo": "testi:e22.imp.pallone_sponsor.solleva_lembo",
+            "costo": "testi:e22.imp.pallone_sponsor.solleva_lembo.c",
             "effetti": [
               {
-                "pressione": "strada_cinderwick",
-                "valore": 2
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e22.imp.pallone_sponsor.auto_strada.r"
+            "risposta": "testi:e22.imp.pallone_sponsor.solleva_lembo.r"
           },
           {
             "id": "vola_via",
@@ -170,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "piazza_municipio",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -180,20 +184,20 @@
             "risposta": "testi:e22.imp.matrimonio.corridoio_sposi.r"
           },
           {
-            "id": "sposi_strada",
-            "testo": "testi:e22.imp.matrimonio.sposi_strada",
-            "costo": "testi:e22.imp.matrimonio.sposi_strada.c",
+            "id": "sposi_scalinata",
+            "testo": "testi:e22.imp.matrimonio.sposi_scalinata",
+            "costo": "testi:e22.imp.matrimonio.sposi_scalinata.c",
             "effetti": [
               {
                 "pressione": "piazza_municipio",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
-                "valore": 2
+                "tensione": "piazza_municipio",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e22.imp.matrimonio.sposi_strada.r"
+            "risposta": "testi:e22.imp.matrimonio.sposi_scalinata.r"
           },
           {
             "id": "fotografo",

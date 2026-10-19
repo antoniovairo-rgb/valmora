@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e28.imp.doppia_fila.sposta_auto.r"
           },
           {
-            "id": "al_piazzale",
-            "testo": "testi:e28.imp.doppia_fila.al_piazzale",
-            "costo": "testi:e28.imp.doppia_fila.al_piazzale.c",
+            "id": "spinta",
+            "testo": "testi:e28.imp.doppia_fila.spinta",
+            "costo": "testi:e28.imp.doppia_fila.spinta.c",
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
-                "valore": 2
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e28.imp.doppia_fila.al_piazzale.r"
+            "risposta": "testi:e28.imp.doppia_fila.spinta.r"
           },
           {
             "id": "clacson",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -80,20 +80,20 @@
             "risposta": "testi:e28.imp.cane.panino.r"
           },
           {
-            "id": "verso_strada",
-            "testo": "testi:e28.imp.cane.verso_strada",
-            "costo": "testi:e28.imp.cane.verso_strada.c",
+            "id": "cerchio",
+            "testo": "testi:e28.imp.cane.cerchio",
+            "costo": "testi:e28.imp.cane.cerchio.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
-                "valore": 2
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e28.imp.cane.verso_strada.r"
+            "risposta": "testi:e28.imp.cane.cerchio.r"
           },
           {
             "id": "si_stanchera",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -132,20 +132,20 @@
             "risposta": "testi:e28.imp.tabellone.cronometro.r"
           },
           {
-            "id": "speaker",
-            "testo": "testi:e28.imp.tabellone.speaker",
-            "costo": "testi:e28.imp.tabellone.speaker.c",
+            "id": "lavagna",
+            "testo": "testi:e28.imp.tabellone.lavagna",
+            "costo": "testi:e28.imp.tabellone.lavagna.c",
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
-                "valore": 2
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e28.imp.tabellone.speaker.r"
+            "risposta": "testi:e28.imp.tabellone.lavagna.r"
           },
           {
             "id": "tecnico",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -184,20 +184,20 @@
             "risposta": "testi:e28.imp.lampione.apri_corsia.r"
           },
           {
-            "id": "trattieni",
-            "testo": "testi:e28.imp.lampione.trattieni",
-            "costo": "testi:e28.imp.lampione.trattieni.c",
+            "id": "alternato",
+            "testo": "testi:e28.imp.lampione.alternato",
+            "costo": "testi:e28.imp.lampione.alternato.c",
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
-                "valore": 2
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e28.imp.lampione.trattieni.r"
+            "risposta": "testi:e28.imp.lampione.alternato.r"
           },
           {
             "id": "comune",

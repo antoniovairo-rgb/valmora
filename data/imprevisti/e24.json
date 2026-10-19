@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "tornelli",
@@ -28,20 +28,20 @@
             "risposta": "testi:e24.imp.tamburo_largo.smonta_transenna.r"
           },
           {
-            "id": "dai_tornelli",
-            "testo": "testi:e24.imp.tamburo_largo.dai_tornelli",
-            "costo": "testi:e24.imp.tamburo_largo.dai_tornelli.c",
+            "id": "tamburo_traverso",
+            "testo": "testi:e24.imp.tamburo_largo.tamburo_traverso",
+            "costo": "testi:e24.imp.tamburo_largo.tamburo_traverso.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "tornelli",
-                "valore": 2
+                "tensione": "curva_ospiti",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e24.imp.tamburo_largo.dai_tornelli.r"
+            "risposta": "testi:e24.imp.tamburo_largo.tamburo_traverso.r"
           },
           {
             "id": "tamburo_fuori",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "tornelli",
@@ -80,20 +80,20 @@
             "risposta": "testi:e24.imp.capogiro.punto_medico.r"
           },
           {
-            "id": "curiosi_tornelli",
-            "testo": "testi:e24.imp.capogiro.curiosi_tornelli",
-            "costo": "testi:e24.imp.capogiro.curiosi_tornelli.c",
+            "id": "aria_fila",
+            "testo": "testi:e24.imp.capogiro.aria_fila",
+            "costo": "testi:e24.imp.capogiro.aria_fila.c",
             "effetti": [
               {
                 "pressione": "curva_larkspire",
                 "valore": -1
               },
               {
-                "pressione": "tornelli",
-                "valore": 2
+                "tensione": "curva_larkspire",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e24.imp.capogiro.curiosi_tornelli.r"
+            "risposta": "testi:e24.imp.capogiro.aria_fila.r"
           },
           {
             "id": "vicini_posto",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_larkspire",
@@ -132,20 +132,20 @@
             "risposta": "testi:e24.imp.tornello_rovescio.blocco_centrale.r"
           },
           {
-            "id": "coda_strada24",
-            "testo": "testi:e24.imp.tornello_rovescio.coda_strada24",
-            "costo": "testi:e24.imp.tornello_rovescio.coda_strada24.c",
+            "id": "cartello",
+            "testo": "testi:e24.imp.tornello_rovescio.cartello",
+            "costo": "testi:e24.imp.tornello_rovescio.cartello.c",
             "effetti": [
               {
                 "pressione": "tornelli",
                 "valore": -1
               },
               {
-                "pressione": "strada_larkspire",
-                "valore": 2
+                "tensione": "tornelli",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e24.imp.tornello_rovescio.coda_strada24.r"
+            "risposta": "testi:e24.imp.tornello_rovescio.cartello.r"
           },
           {
             "id": "lascia_girare",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": 1
+                "valore": -2
               },
               {
                 "tensione": "piazza_municipio",
@@ -184,16 +184,20 @@
             "risposta": "testi:e24.imp.bidone.ferma_bidone.r"
           },
           {
-            "id": "verso_municipio",
-            "testo": "testi:e24.imp.bidone.verso_municipio",
-            "costo": "testi:e24.imp.bidone.verso_municipio.c",
+            "id": "ferma_piede",
+            "testo": "testi:e24.imp.bidone.ferma_piede",
+            "costo": "testi:e24.imp.bidone.ferma_piede.c",
             "effetti": [
               {
-                "pressione": "piazza_municipio",
-                "valore": 2
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e24.imp.bidone.verso_municipio.r"
+            "risposta": "testi:e24.imp.bidone.ferma_piede.r"
           },
           {
             "id": "lascia_rotolare",

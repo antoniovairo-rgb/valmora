@@ -28,20 +28,20 @@
             "risposta": "testi:e26.imp.auto_blu.retromarcia.r"
           },
           {
-            "id": "scarica_pullman",
-            "testo": "testi:e26.imp.auto_blu.scarica_pullman",
-            "costo": "testi:e26.imp.auto_blu.scarica_pullman.c",
+            "id": "auto_attesa",
+            "testo": "testi:e26.imp.auto_blu.auto_attesa",
+            "costo": "testi:e26.imp.auto_blu.auto_attesa.c",
             "effetti": [
               {
                 "pressione": "parcheggi",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "parcheggi",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e26.imp.auto_blu.scarica_pullman.r"
+            "risposta": "testi:e26.imp.auto_blu.auto_attesa.r"
           },
           {
             "id": "si_arrangino",
@@ -89,7 +89,7 @@
                 "valore": -1
               },
               {
-                "pressione": "curva_larkspire",
+                "tensione": "tribuna_autorita",
                 "valore": 1
               }
             ],
@@ -132,20 +132,20 @@
             "risposta": "testi:e26.imp.bandiera_cavi.regia_telefono.r"
           },
           {
-            "id": "bandiera_fuori",
-            "testo": "testi:e26.imp.bandiera_cavi.bandiera_fuori",
-            "costo": "testi:e26.imp.bandiera_cavi.bandiera_fuori.c",
+            "id": "tira_piano",
+            "testo": "testi:e26.imp.bandiera_cavi.tira_piano",
+            "costo": "testi:e26.imp.bandiera_cavi.tira_piano.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e26.imp.bandiera_cavi.bandiera_fuori.r"
+            "risposta": "testi:e26.imp.bandiera_cavi.tira_piano.r"
           },
           {
             "id": "lascia_cavi",
@@ -184,20 +184,20 @@
             "risposta": "testi:e26.imp.batteria.spinta_sirene.r"
           },
           {
-            "id": "attesa_piazzale",
-            "testo": "testi:e26.imp.batteria.attesa_piazzale",
-            "costo": "testi:e26.imp.batteria.attesa_piazzale.c",
+            "id": "cavi_pullman",
+            "testo": "testi:e26.imp.batteria.cavi_pullman",
+            "costo": "testi:e26.imp.batteria.cavi_pullman.c",
             "effetti": [
               {
                 "pressione": "parcheggi",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "parcheggi",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e26.imp.batteria.attesa_piazzale.r"
+            "risposta": "testi:e26.imp.batteria.cavi_pullman.r"
           },
           {
             "id": "soccorso",

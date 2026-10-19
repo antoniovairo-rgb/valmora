@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "quartiere",
@@ -28,20 +28,20 @@
             "risposta": "testi:e30.imp.semaforo.a_mano.r"
           },
           {
-            "id": "nel_quartiere",
-            "testo": "testi:e30.imp.semaforo.nel_quartiere",
-            "costo": "testi:e30.imp.semaforo.nel_quartiere.c",
+            "id": "vigile_volante",
+            "testo": "testi:e30.imp.semaforo.vigile_volante",
+            "costo": "testi:e30.imp.semaforo.vigile_volante.c",
             "effetti": [
               {
                 "pressione": "viale_stazione",
                 "valore": -1
               },
               {
-                "pressione": "quartiere",
+                "tensione": "viale_stazione",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e30.imp.semaforo.nel_quartiere.r"
+            "risposta": "testi:e30.imp.semaforo.vigile_volante.r"
           },
           {
             "id": "tecnici",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "piazza_municipio",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -80,20 +80,20 @@
             "risposta": "testi:e30.imp.mercatino.corridoio.r"
           },
           {
-            "id": "ferma_corteo",
-            "testo": "testi:e30.imp.mercatino.ferma_corteo",
-            "costo": "testi:e30.imp.mercatino.ferma_corteo.c",
+            "id": "stringi_banchi",
+            "testo": "testi:e30.imp.mercatino.stringi_banchi",
+            "costo": "testi:e30.imp.mercatino.stringi_banchi.c",
             "effetti": [
               {
                 "pressione": "piazza_municipio",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "piazza_municipio",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e30.imp.mercatino.ferma_corteo.r"
+            "risposta": "testi:e30.imp.mercatino.stringi_banchi.r"
           },
           {
             "id": "si_incontrino",
@@ -122,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -132,20 +132,20 @@
             "risposta": "testi:e30.imp.gatto.pompieri.r"
           },
           {
-            "id": "verso_strada",
-            "testo": "testi:e30.imp.gatto.verso_strada",
-            "costo": "testi:e30.imp.gatto.verso_strada.c",
+            "id": "nastro",
+            "testo": "testi:e30.imp.gatto.nastro",
+            "costo": "testi:e30.imp.gatto.nastro.c",
             "effetti": [
               {
                 "pressione": "quartiere",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "quartiere",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e30.imp.gatto.verso_strada.r"
+            "risposta": "testi:e30.imp.gatto.nastro.r"
           },
           {
             "id": "scendera",
@@ -174,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -184,20 +184,20 @@
             "risposta": "testi:e30.imp.camion_bottiglie.apri_passaggio.r"
           },
           {
-            "id": "giro_lungo",
-            "testo": "testi:e30.imp.camion_bottiglie.giro_lungo",
-            "costo": "testi:e30.imp.camion_bottiglie.giro_lungo.c",
+            "id": "meta",
+            "testo": "testi:e30.imp.camion_bottiglie.meta",
+            "costo": "testi:e30.imp.camion_bottiglie.meta.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e30.imp.camion_bottiglie.giro_lungo.r"
+            "risposta": "testi:e30.imp.camion_bottiglie.meta.r"
           },
           {
             "id": "domattina",

@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": 1
+                "valore": -2
               },
               {
                 "tensione": "tornelli",
@@ -28,16 +28,20 @@
             "risposta": "testi:e33.imp.bus_panne.traffico.r"
           },
           {
-            "id": "ai_tornelli",
-            "testo": "testi:e33.imp.bus_panne.ai_tornelli",
-            "costo": "testi:e33.imp.bus_panne.ai_tornelli.c",
+            "id": "una_corsia",
+            "testo": "testi:e33.imp.bus_panne.una_corsia",
+            "costo": "testi:e33.imp.bus_panne.una_corsia.c",
             "effetti": [
               {
-                "pressione": "tornelli",
-                "valore": 2
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e33.imp.bus_panne.ai_tornelli.r"
+            "risposta": "testi:e33.imp.bus_panne.una_corsia.r"
           },
           {
             "id": "carro",
@@ -66,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "tornelli",
@@ -76,20 +80,20 @@
             "risposta": "testi:e33.imp.tamburo_ospiti.riporta.r"
           },
           {
-            "id": "responsabile",
-            "testo": "testi:e33.imp.tamburo_ospiti.responsabile",
-            "costo": "testi:e33.imp.tamburo_ospiti.responsabile.c",
+            "id": "promessa",
+            "testo": "testi:e33.imp.tamburo_ospiti.promessa",
+            "costo": "testi:e33.imp.tamburo_ospiti.promessa.c",
             "effetti": [
               {
                 "pressione": "curva_ospiti",
                 "valore": -1
               },
               {
-                "pressione": "tornelli",
-                "valore": 2
+                "tensione": "curva_ospiti",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e33.imp.tamburo_ospiti.responsabile.r"
+            "risposta": "testi:e33.imp.tamburo_ospiti.promessa.r"
           },
           {
             "id": "niente_tamburo",
@@ -118,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "viale_stazione",
@@ -128,20 +132,20 @@
             "risposta": "testi:e33.imp.pallone.tratta.r"
           },
           {
-            "id": "sul_viale",
-            "testo": "testi:e33.imp.pallone.sul_viale",
-            "costo": "testi:e33.imp.pallone.sul_viale.c",
+            "id": "nuovo",
+            "testo": "testi:e33.imp.pallone.nuovo",
+            "costo": "testi:e33.imp.pallone.nuovo.c",
             "effetti": [
               {
                 "pressione": "curva_larkspire",
                 "valore": -1
               },
               {
-                "pressione": "viale_stazione",
-                "valore": 2
+                "tensione": "curva_larkspire",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e33.imp.pallone.sul_viale.r"
+            "risposta": "testi:e33.imp.pallone.nuovo.r"
           },
           {
             "id": "se_lo_tengano",
@@ -170,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "viale_stazione",
@@ -180,20 +184,20 @@
             "risposta": "testi:e33.imp.sottopasso.servizio.r"
           },
           {
-            "id": "sul_viale",
-            "testo": "testi:e33.imp.sottopasso.sul_viale",
-            "costo": "testi:e33.imp.sottopasso.sul_viale.c",
+            "id": "scalini",
+            "testo": "testi:e33.imp.sottopasso.scalini",
+            "costo": "testi:e33.imp.sottopasso.scalini.c",
             "effetti": [
               {
                 "pressione": "stazione",
                 "valore": -1
               },
               {
-                "pressione": "viale_stazione",
-                "valore": 2
+                "tensione": "stazione",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e33.imp.sottopasso.sul_viale.r"
+            "risposta": "testi:e33.imp.sottopasso.scalini.r"
           },
           {
             "id": "acqua_cala",

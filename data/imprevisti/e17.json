@@ -28,20 +28,20 @@
             "risposta": "testi:e17.imp.paninaro.megafono_panini.r"
           },
           {
-            "id": "coda_strada",
-            "testo": "testi:e17.imp.paninaro.coda_strada",
-            "costo": "testi:e17.imp.paninaro.coda_strada.c",
+            "id": "coda_unica",
+            "testo": "testi:e17.imp.paninaro.coda_unica",
+            "costo": "testi:e17.imp.paninaro.coda_unica.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "strada_cinderwick",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e17.imp.paninaro.coda_strada.r"
+            "risposta": "testi:e17.imp.paninaro.coda_unica.r"
           },
           {
             "id": "aspetta_gommista",
@@ -80,20 +80,20 @@
             "risposta": "testi:e17.imp.cane.chiama_canile.r"
           },
           {
-            "id": "via_piazzale",
-            "testo": "testi:e17.imp.cane.via_piazzale",
-            "costo": "testi:e17.imp.cane.via_piazzale.c",
+            "id": "chiudi_portoni",
+            "testo": "testi:e17.imp.cane.chiudi_portoni",
+            "costo": "testi:e17.imp.cane.chiudi_portoni.c",
             "effetti": [
               {
                 "pressione": "quartiere",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "quartiere",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e17.imp.cane.via_piazzale.r"
+            "risposta": "testi:e17.imp.cane.chiudi_portoni.r"
           },
           {
             "id": "tornera",
@@ -132,20 +132,20 @@
             "risposta": "testi:e17.imp.cancello_elettrico.stacca_quadro.r"
           },
           {
-            "id": "indietro_piazzale",
-            "testo": "testi:e17.imp.cancello_elettrico.indietro_piazzale",
-            "costo": "testi:e17.imp.cancello_elettrico.indietro_piazzale.c",
+            "id": "nastro",
+            "testo": "testi:e17.imp.cancello_elettrico.nastro",
+            "costo": "testi:e17.imp.cancello_elettrico.nastro.c",
             "effetti": [
               {
                 "pressione": "tornelli",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "tornelli",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e17.imp.cancello_elettrico.indietro_piazzale.r"
+            "risposta": "testi:e17.imp.cancello_elettrico.nastro.r"
           },
           {
             "id": "cancello_cosi",
@@ -173,6 +173,10 @@
             "costo": "testi:e17.imp.lampioni.fari_accesi.c",
             "effetti": [
               {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
                 "tensione": "strada_cinderwick",
                 "valore": 1
               }
@@ -180,16 +184,20 @@
             "risposta": "testi:e17.imp.lampioni.fari_accesi.r"
           },
           {
-            "id": "strada_illuminata",
-            "testo": "testi:e17.imp.lampioni.strada_illuminata",
-            "costo": "testi:e17.imp.lampioni.strada_illuminata.c",
+            "id": "torce_telefono",
+            "testo": "testi:e17.imp.lampioni.torce_telefono",
+            "costo": "testi:e17.imp.lampioni.torce_telefono.c",
             "effetti": [
               {
-                "pressione": "strada_cinderwick",
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e17.imp.lampioni.strada_illuminata.r"
+            "risposta": "testi:e17.imp.lampioni.torce_telefono.r"
           },
           {
             "id": "aspetta_luce",

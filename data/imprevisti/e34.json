@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e34.imp.sbarra.regola.r"
           },
           {
-            "id": "verso_piazzale",
-            "testo": "testi:e34.imp.sbarra.verso_piazzale",
-            "costo": "testi:e34.imp.sbarra.verso_piazzale.c",
+            "id": "cartello",
+            "testo": "testi:e34.imp.sbarra.cartello",
+            "costo": "testi:e34.imp.sbarra.cartello.c",
             "effetti": [
               {
                 "pressione": "parcheggi",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "parcheggi",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e34.imp.sbarra.verso_piazzale.r"
+            "risposta": "testi:e34.imp.sbarra.cartello.r"
           },
           {
             "id": "chi_entra",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": 1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -80,16 +80,20 @@
             "risposta": "testi:e34.imp.bagni.bagni_personale.r"
           },
           {
-            "id": "al_piazzale",
-            "testo": "testi:e34.imp.bagni.al_piazzale",
-            "costo": "testi:e34.imp.bagni.al_piazzale.c",
+            "id": "turni",
+            "testo": "testi:e34.imp.bagni.turni",
+            "costo": "testi:e34.imp.bagni.turni.c",
             "effetti": [
               {
-                "pressione": "piazzale",
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e34.imp.bagni.al_piazzale.r"
+            "risposta": "testi:e34.imp.bagni.turni.r"
           },
           {
             "id": "idraulico",
@@ -118,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "parcheggi",
@@ -128,20 +132,20 @@
             "risposta": "testi:e34.imp.pollo.cassetta.r"
           },
           {
-            "id": "ai_parcheggi",
-            "testo": "testi:e34.imp.pollo.ai_parcheggi",
-            "costo": "testi:e34.imp.pollo.ai_parcheggi.c",
+            "id": "telefoni",
+            "testo": "testi:e34.imp.pollo.telefoni",
+            "costo": "testi:e34.imp.pollo.telefoni.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "parcheggi",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e34.imp.pollo.ai_parcheggi.r"
+            "risposta": "testi:e34.imp.pollo.telefoni.r"
           },
           {
             "id": "trovi_strada",
@@ -170,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -180,20 +184,20 @@
             "risposta": "testi:e34.imp.arance.rampa.r"
           },
           {
-            "id": "dal_piazzale",
-            "testo": "testi:e34.imp.arance.dal_piazzale",
-            "costo": "testi:e34.imp.arance.dal_piazzale.c",
+            "id": "scavalca",
+            "testo": "testi:e34.imp.arance.scavalca",
+            "costo": "testi:e34.imp.arance.scavalca.c",
             "effetti": [
               {
                 "pressione": "parcheggi",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "parcheggi",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e34.imp.arance.dal_piazzale.r"
+            "risposta": "testi:e34.imp.arance.scavalca.r"
           },
           {
             "id": "ambulanti",

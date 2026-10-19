@@ -28,20 +28,20 @@
             "risposta": "testi:e21.imp.irrigazione.stacca_acqua.r"
           },
           {
-            "id": "via_quartiere",
-            "testo": "testi:e21.imp.irrigazione.via_quartiere",
-            "costo": "testi:e21.imp.irrigazione.via_quartiere.c",
+            "id": "lato_asciutto",
+            "testo": "testi:e21.imp.irrigazione.lato_asciutto",
+            "costo": "testi:e21.imp.irrigazione.lato_asciutto.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "quartiere",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e21.imp.irrigazione.via_quartiere.r"
+            "risposta": "testi:e21.imp.irrigazione.lato_asciutto.r"
           },
           {
             "id": "asciugare",
@@ -80,20 +80,20 @@
             "risposta": "testi:e21.imp.scuola_guida.istruttore.r"
           },
           {
-            "id": "verso_fonderie",
-            "testo": "testi:e21.imp.scuola_guida.verso_fonderie",
-            "costo": "testi:e21.imp.scuola_guida.verso_fonderie.c",
+            "id": "spingi_auto",
+            "testo": "testi:e21.imp.scuola_guida.spingi_auto",
+            "costo": "testi:e21.imp.scuola_guida.spingi_auto.c",
             "effetti": [
               {
                 "pressione": "quartiere",
                 "valore": -1
               },
               {
-                "pressione": "piazza_fonderie",
+                "tensione": "quartiere",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e21.imp.scuola_guida.verso_fonderie.r"
+            "risposta": "testi:e21.imp.scuola_guida.spingi_auto.r"
           },
           {
             "id": "trovi_marcia",
@@ -121,6 +121,10 @@
             "costo": "testi:e21.imp.pallone.sequestro.c",
             "effetti": [
               {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
                 "tensione": "curva_cinderwick",
                 "valore": 1
               }
@@ -128,16 +132,20 @@
             "risposta": "testi:e21.imp.pallone.sequestro.r"
           },
           {
-            "id": "riporta_curva",
-            "testo": "testi:e21.imp.pallone.riporta_curva",
-            "costo": "testi:e21.imp.pallone.riporta_curva.c",
+            "id": "pallone_bimbo",
+            "testo": "testi:e21.imp.pallone.pallone_bimbo",
+            "costo": "testi:e21.imp.pallone.pallone_bimbo.c",
             "effetti": [
               {
-                "pressione": "curva_cinderwick",
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e21.imp.pallone.riporta_curva.r"
+            "risposta": "testi:e21.imp.pallone.pallone_bimbo.r"
           },
           {
             "id": "contendano",
@@ -176,20 +184,20 @@
             "risposta": "testi:e21.imp.allarme_negozio.negoziante.r"
           },
           {
-            "id": "defluire_piazzale",
-            "testo": "testi:e21.imp.allarme_negozio.defluire_piazzale",
-            "costo": "testi:e21.imp.allarme_negozio.defluire_piazzale.c",
+            "id": "passare_oltre",
+            "testo": "testi:e21.imp.allarme_negozio.passare_oltre",
+            "costo": "testi:e21.imp.allarme_negozio.passare_oltre.c",
             "effetti": [
               {
                 "pressione": "quartiere",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "quartiere",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e21.imp.allarme_negozio.defluire_piazzale.r"
+            "risposta": "testi:e21.imp.allarme_negozio.passare_oltre.r"
           },
           {
             "id": "lascia_allarme",

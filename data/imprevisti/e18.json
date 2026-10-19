@@ -18,7 +18,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -28,20 +28,20 @@
             "risposta": "testi:e18.imp.gregge.ferma_corteo.r"
           },
           {
-            "id": "gira_corteo",
-            "testo": "testi:e18.imp.gregge.gira_corteo",
-            "costo": "testi:e18.imp.gregge.gira_corteo.c",
+            "id": "stringi_corteo",
+            "testo": "testi:e18.imp.gregge.stringi_corteo",
+            "costo": "testi:e18.imp.gregge.stringi_corteo.c",
             "effetti": [
               {
                 "pressione": "strada_larkspire",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
+                "tensione": "strada_larkspire",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e18.imp.gregge.gira_corteo.r"
+            "risposta": "testi:e18.imp.gregge.stringi_corteo.r"
           },
           {
             "id": "ultima_pecora",
@@ -70,7 +70,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": 1
+                "valore": -2
               },
               {
                 "tensione": "curva_larkspire",
@@ -80,16 +80,20 @@
             "risposta": "testi:e18.imp.tabellone.spegni_tabellone.r"
           },
           {
-            "id": "speaker_errore",
-            "testo": "testi:e18.imp.tabellone.speaker_errore",
-            "costo": "testi:e18.imp.tabellone.speaker_errore.c",
+            "id": "telo_tabellone",
+            "testo": "testi:e18.imp.tabellone.telo_tabellone",
+            "costo": "testi:e18.imp.tabellone.telo_tabellone.c",
             "effetti": [
               {
-                "pressione": "curva_larkspire",
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e18.imp.tabellone.speaker_errore.r"
+            "risposta": "testi:e18.imp.tabellone.telo_tabellone.r"
           },
           {
             "id": "tabellone_sbagliato",
@@ -118,7 +122,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -1
+                "valore": -2
               },
               {
                 "tensione": "strada_larkspire",
@@ -128,20 +132,20 @@
             "risposta": "testi:e18.imp.fontanella.chiudi_centrale.r"
           },
           {
-            "id": "verso_collina",
-            "testo": "testi:e18.imp.fontanella.verso_collina",
-            "costo": "testi:e18.imp.fontanella.verso_collina.c",
+            "id": "gradini_turni",
+            "testo": "testi:e18.imp.fontanella.gradini_turni",
+            "costo": "testi:e18.imp.fontanella.gradini_turni.c",
             "effetti": [
               {
                 "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "strada_larkspire",
+                "tensione": "piazzale",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e18.imp.fontanella.verso_collina.r"
+            "risposta": "testi:e18.imp.fontanella.gradini_turni.r"
           },
           {
             "id": "idraulico",
@@ -170,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": 1
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -180,16 +184,20 @@
             "risposta": "testi:e18.imp.pullman_panne.sgombera_sirene.r"
           },
           {
-            "id": "curva_piazzale",
-            "testo": "testi:e18.imp.pullman_panne.curva_piazzale",
-            "costo": "testi:e18.imp.pullman_panne.curva_piazzale.c",
+            "id": "passo_singolo",
+            "testo": "testi:e18.imp.pullman_panne.passo_singolo",
+            "costo": "testi:e18.imp.pullman_panne.passo_singolo.c",
             "effetti": [
               {
-                "pressione": "piazzale",
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
                 "valore": 1
               }
             ],
-            "risposta": "testi:e18.imp.pullman_panne.curva_piazzale.r"
+            "risposta": "testi:e18.imp.pullman_panne.passo_singolo.r"
           },
           {
             "id": "carro_attrezzi",
