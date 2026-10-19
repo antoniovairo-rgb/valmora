@@ -166,3 +166,14 @@ main:not(.rosso-c193s01):is([data-schermata="sala"], [data-schermata="briefing"]
 /* PO-022 (D-190): l'imprevisto interrompe le chiamate. Nessun conto alla rovescia. */
 .avviso-imprevisto { margin: 0 0 var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); box-shadow: var(--ombra-1); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; letter-spacing: var(--spaziatura-maiuscolo); }
 .messaggio.imprevisto { background: var(--rosa-tenue); }
+/* C43-06 (D-196): il passo «Fine stagione» del verbale (e24: stagione, 6 fili aperti, 1 chiuso) scorreva di 250 px a 360×760 e
+   «Prossimo episodio» stava sotto la piega; i pulsanti restano sotto il testo (C17-22). Più compatto: ogni filo «nome — esito»
+   in un paragrafo, spaziature strette. Rosso C196V01: il passo di prima. */
+main:not(.rosso-c196v01) [data-fine-stagione] h2 { margin: var(--spazio-3) 0 var(--spazio-1); font-size: var(--testo-base); }
+main:not(.rosso-c196v01) [data-fine-stagione] .scheda { margin: var(--spazio-1) 0; padding: var(--spazio-2) var(--spazio-3); }
+main:not(.rosso-c196v01) [data-fine-stagione] .scheda .tenue { margin: 0; }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili { gap: var(--spazio-1); }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili li { font-size: var(--testo-piccolo); line-height: var(--linea-stretta); }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili li > strong::after { content: " — "; font-weight: 400; }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili li > .tenue { display: inline; margin: 0; }
+main:not(.rosso-c196v01) [data-fine-stagione] [data-poi] { margin: var(--spazio-1) 0 0; }
