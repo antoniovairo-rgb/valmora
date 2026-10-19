@@ -62,7 +62,8 @@ function Voce(p: { m: Missione; v: VoceScelta }) {
   return (
     <li data-scelta={`${p.v.chiamata}:${p.v.opzione}`}>
       <span>{opzione ? t(opzione.testo) : p.v.opzione}</span>
-      <small className="tenue">Ondata {p.v.ondata} · {p.v.impatti.map(impattoInParole).join(', ')}</small>
+      {/* C41-02: niente «Ondata N ·» vuoto (rosso C41B02: come prima) */}
+      <small className="tenue">Ondata {p.v.ondata}{p.v.impatti.length || spento('C41B02') ? ` · ${p.v.impatti.map(impattoInParole).join(', ')}` : ''}</small>
     </li>
   );
 }
