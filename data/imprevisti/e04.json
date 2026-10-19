@@ -1,0 +1,176 @@
+{
+  "id": "e04",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_ghiaccio",
+        "fonte": "commercianti",
+        "testo": "testi:e04.imp.ghiaccio",
+        "commento": "testi:e04.imp.ghiaccio.vice",
+        "settore": "mercato",
+        "opzioni": [
+          {
+            "id": "steward_ghiaccio",
+            "testo": "testi:e04.imp.ghiaccio.steward_ghiaccio",
+            "costo": "testi:e04.imp.ghiaccio.steward_ghiaccio.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "mercato",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e04.imp.ghiaccio.steward_ghiaccio.r"
+          },
+          {
+            "id": "chiudi_corsia",
+            "testo": "testi:e04.imp.ghiaccio.chiudi_corsia",
+            "costo": "testi:e04.imp.ghiaccio.chiudi_corsia.c",
+            "effetti": [
+              {
+                "pressione": "mercato",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.imp.ghiaccio.chiudi_corsia.r"
+          },
+          {
+            "id": "pattinino",
+            "testo": "testi:e04.imp.ghiaccio.pattinino",
+            "costo": "testi:e04.imp.ghiaccio.pattinino.c",
+            "effetti": [
+              {
+                "pressione": "mercato",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e04.imp.ghiaccio.pattinino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_bambino",
+        "fonte": "centrale_radio",
+        "testo": "testi:e04.imp.bambino",
+        "commento": "testi:e04.imp.bambino.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "squadra_bambino",
+            "testo": "testi:e04.imp.bambino.squadra_bambino",
+            "costo": "testi:e04.imp.bambino.squadra_bambino.c",
+            "effetti": [
+              {
+                "riserva": "squadre",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e04.imp.bambino.squadra_bambino.r"
+          },
+          {
+            "id": "altoparlanti",
+            "testo": "testi:e04.imp.bambino.altoparlanti",
+            "costo": "testi:e04.imp.bambino.altoparlanti.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "pressione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.imp.bambino.altoparlanti.r"
+          },
+          {
+            "id": "varchi",
+            "testo": "testi:e04.imp.bambino.varchi",
+            "costo": "testi:e04.imp.bambino.varchi.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.imp.bambino.varchi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 3,
+      "chiamata": {
+        "id": "imp_tendone",
+        "fonte": "commercianti",
+        "testo": "testi:e04.imp.tendone",
+        "commento": "testi:e04.imp.tendone.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "riprendi_tendone",
+            "testo": "testi:e04.imp.tendone.riprendi_tendone",
+            "costo": "testi:e04.imp.tendone.riprendi_tendone.c",
+            "effetti": [
+              {
+                "riserva": "steward",
+                "valore": -1
+              },
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e04.imp.tendone.riprendi_tendone.r"
+          },
+          {
+            "id": "devia_mercato",
+            "testo": "testi:e04.imp.tendone.devia_mercato",
+            "costo": "testi:e04.imp.tendone.devia_mercato.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "pressione": "mercato",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.imp.tendone.devia_mercato.r"
+          },
+          {
+            "id": "bandiera",
+            "testo": "testi:e04.imp.tendone.bandiera",
+            "costo": "testi:e04.imp.tendone.bandiera.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.imp.tendone.bandiera.r"
+          }
+        ]
+      }
+    }
+  ]
+}

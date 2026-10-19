@@ -120,3 +120,7 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .vignetta .v-linea.v-fine { stroke-width: var(--vignetta-tratto-fine); }
 /* C41-03 (D-183): nota sotto le unità dello schieramento: le risposte che costano unità le tolgono dalla prossima ondata */
 .nota-unita { margin: var(--spazio-1) 0 0; font-size: var(--testo-mini); line-height: var(--linea-stretta); }
+
+/* PO-022 (D-190): l'imprevisto interrompe le chiamate. Nessun conto alla rovescia. */
+.avviso-imprevisto { margin: 0 0 var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); box-shadow: var(--ombra-1); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; letter-spacing: var(--spaziatura-maiuscolo); }
+.messaggio.imprevisto { background: var(--rosa-tenue); }

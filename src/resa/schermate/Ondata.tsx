@@ -15,8 +15,6 @@ import { iconaChi, VignettaChiamata } from '../vignette-chiamata.tsx';
 import { urgente } from '../vignette-evento.tsx';
 import { altoNellaPagina, scorriPerIntero } from '../vista.ts';
 import { EffettiOpzione, quandoCosta } from '../effetti-opzione.tsx';
-import { modoTempo } from '../../logica/tempo.ts';
-import { TempoReale } from '../tempo-reale.tsx';
 
 
 /** PO-121 (D-148): per quanti secondi la risposta a una chiamata si può annullare. */
@@ -27,8 +25,7 @@ export const ANNULLA_SECONDI = 5;
 export const secondoMs = () => (globalThis as { __VALMORA_SECONDO_MS?: number }).__VALMORA_SECONDO_MS ?? 1000;
 
 export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: number; totale: number; rispondi: (opzione: string) => void;
-  sospendi?: (opzione: string) => boolean; decidi?: (esito: Decisione) => void;
-  /** PROTOTIPO S-14: tempo reale (solo con un modo attivo, src/logica/tempo.ts) */ scadi?: () => void; peggiora?: (trascorsi: number) => void }) {
+  sospendi?: (opzione: string) => boolean; decidi?: (esito: Decisione) => void }) {
   // Al primo tocco le opzioni si bloccano: un secondo tocco non cambia la scelta (C-005 R01).
   const [scelta, setScelta] = useState<string | null>(null);
   // PO-121 (D-148): la scelta resta in sospeso ANNULLA_SECONDI secondi con «Annulla» e il conto alla rovescia; scaduti,
@@ -47,7 +44,8 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   useLayoutEffect(() => { if (aperto) barraAnnulla.current?.scrollIntoView({ block: 'nearest' }); }, [aperto]);
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
-  const urgenteQui = urgente(p.m, p.c, p.ic.variabili); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
+  const urgenteQui = urgente(p.m, p.c, p.ic.variabili);
+  const imprevistoQui = !!p.c.imprevisto && !spento('C190I01'); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
   // C28-02: col mouse, alla nuova chiamata l'opzione sotto il puntatore fermo appariva già accesa (106/156): l'evidenza
   // al passaggio vale solo dopo che il puntatore si è mosso. Rosso C87H01: subito, come prima.
   const [fermo, setFermo] = useState(true);
@@ -93,10 +91,11 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   );
   return (
     <>
-      {modoTempo(p.m) && p.scadi && p.peggiora && <TempoReale m={p.m} ic={p.ic} c={p.c} ferma={scelta !== null} scadi={p.scadi} peggiora={p.peggiora} />}
-      <Messaggio key={p.c.id} classe="radio ultimo" dati={`chiamata-${p.c.id}`}>
+      {/* PO-022 (D-190): l'imprevisto interrompe la sequenza; nessun conto alla rovescia. Rosso C190I01: chiamata come le altre */}
+      {imprevistoQui && <p className="avviso-imprevisto" data-imprevisto={p.c.id} role="status">Imprevisto: interrompe le chiamate</p>}
+      <Messaggio key={p.c.id} classe={`radio ultimo${imprevistoQui ? ' imprevisto' : ''}`} dati={`chiamata-${p.c.id}`}>
         {/* C22-09: l'avatar segue la stessa regola dell'icona accanto alla vignetta (prima: 222/498 chiamate con l'icona generica). Rosso C59A01 */}
-        <Mittente icona={(!spento('C59A01') && iconaChi(p.c.fonte)) || iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro={urgenteQui ? 'Urgente!' : undefined} urgenza={urgenteQui && !spento('C51O01')} />
+        <Mittente icona={(!spento('C59A01') && iconaChi(p.c.fonte)) || iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro={imprevistoQui ? 'Imprevisto!' : urgenteQui ? 'Urgente!' : undefined} urgenza={(imprevistoQui || urgenteQui) && !spento('C51O01')} />
         {/* C18-05: «Rispondi» dentro il fumetto, sotto il mittente: fisso in basso copriva il testo. Rosso C42R01: fisso. */}
         {serve && !spento('C42R01') && indicatore}
         {/* PO-089 (scelta A del PO): vignetta piccola a sinistra del testo, dentro il fumetto */}

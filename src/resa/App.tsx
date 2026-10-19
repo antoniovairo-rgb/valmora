@@ -38,7 +38,6 @@ import { chiudeStagione, epilogo, fineStagione, ultimoEpisodio } from '../logica
 import { superato } from '../logica/episodi.ts';
 import { ondataVincibile } from '../logica/ripartenza.ts';
 import { sospendi, valida, type InSospeso } from '../logica/sospesa.ts';
-import { peggiora, scadi } from '../logica/tempo.ts';
 import { valutaEpisodio } from '../logica/episodi.ts';
 import { segniDi, type Segno } from './mappa/segni.ts';
 import { due, Testata } from './schermate/Fumetto.tsx';
@@ -290,9 +289,7 @@ export function App() {
       const chiamata = f.chiamata;
       corpo = <Chiamata key={chiamata.id} m={m} ic={ic} c={chiamata} numero={f.numero} totale={f.totale} rispondi={conferma}
         sospendi={spento('C107A01') ? undefined : (o) => { const ora = icOra(); if (!ora || !chiamateAperte(m, ora).some((c) => c.id === chiamata.id)) return false; sospesa.current = sospendi(m, ora, chiamata.id, o); return true; }}
-        decidi={(esito) => { const q = sospesa.current, ora = icOra(); sospesa.current = null; if (esito === 'confermata' && q && ora && valida(ora, q)) conferma(q.opzione); }}
-        scadi={() => { const ora = icOra(); if (ora && chiamateAperte(m, ora).some((c) => c.id === chiamata.id)) conIc(scadi(m, ora, chiamata.id, dichiarate)); }}
-        peggiora={(trascorsi) => { const ora = icOra(); if (ora?.disposizione) conIc(peggiora(m, ora, trascorsi, 1, chiamata.settore)); }} />;
+        decidi={(esito) => { const q = sospesa.current, ora = icOra(); sospesa.current = null; if (esito === 'confermata' && q && ora && valida(ora, q)) conferma(q.opzione); }} />;
     } else if (f.tipo === 'chiusura') {
       mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse };
       corpo = <Chiusura m={m} ic={ic} chiudi={() => {
