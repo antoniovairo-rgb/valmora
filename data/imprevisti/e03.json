@@ -178,12 +178,12 @@
             "costo": "testi:e03.imp.bus_notte.scorta_notte.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "parcheggi",
                 "valore": -2
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
               }
             ],
             "risposta": "testi:e03.imp.bus_notte.scorta_notte.r"

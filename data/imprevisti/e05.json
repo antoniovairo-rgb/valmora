@@ -169,12 +169,12 @@
             "costo": "testi:e05.imp.strada_sbagliata.scorta_pullman.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "strada_larkspire",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e05.imp.strada_sbagliata.scorta_pullman.r"

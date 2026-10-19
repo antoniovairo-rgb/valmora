@@ -52,7 +52,10 @@ export function controllaImprevisti(file: Record<string, unknown>): string[] {
       if (x.chiamata.se || x.chiamata.dopo || x.chiamata.senza) p.push(`${dove}: l'imprevisto arriva sempre (niente «se», «dopo», «senza»)`);
       if (m.ondate.some((y) => (y.chiamate ?? []).some((c) => c.id === x.chiamata.id && !(c.imprevisto && y.n === x.ondata)))) p.push(`${dove}: id «${x.chiamata.id}» già usato da una chiamata di ${f.id}`);
       // «risposte senza fiducia gratuita» (D-190, D-160): un imprevisto non dà mai fiducia; può toglierla (a chi lascia correre)
+      // C42-01/05: all'ultima ondata non c'è una prossima, un'unità impegnata non costerebbe nulla
+      const ultima = x.ondata === Math.max(...m.ondate.map((y) => y.n));
       x.chiamata.opzioni.forEach((o2, h) => {
+        if (ultima && o2.effetti.some((e) => 'riserva' in e && e.valore < 0)) p.push(`${dove}.opzioni[${h}]: all'ultima ondata un imprevisto non impegna unità (C42-01)`);
         if (o2.effetti.some((e) => ('imposta' in e && e.imposta === 'credito') || ('aggiungi' in e && e.aggiungi === 'credito' && e.valore > 0))) p.push(`${dove}.opzioni[${h}]: un imprevisto non dà fiducia (D-190)`);
         if (o2.se) p.push(`${dove}.opzioni[${h}]: le opzioni di un imprevisto non hanno condizioni (uscita sempre garantita)`);
       });

@@ -48,6 +48,7 @@ describe('imprevisti (PO-022, D-190)', () => {
     expect(rotto((y) => { y.imprevisti[0]!.chiamata.opzioni[0]!.effetti.push({ aggiungi: 'credito', valore: -1 }); })).toEqual([]); // toglierla si può
     expect(rotto((y) => { y.imprevisti.push(structuredClone(y.imprevisti[0]!)); }).join()).toMatch(/un solo imprevisto/);
     expect(rotto((y) => { y.imprevisti[0]!.dopo = 99; }).join()).toMatch(/interrompere/);
+    expect(rotto((y) => { const u = y.imprevisti.at(-1)!; u.chiamata.opzioni[0]!.effetti.push({ riserva: 'steward', valore: -1 }); }).join()).toMatch(/ultima ondata/);
     expect(rotto((y) => { y.imprevisti[0]!.chiamata.id = grezza(f.id).ondate[0]!.chiamate![0]!.id; }).join()).toMatch(/già usato/);
     expect(rotto((y) => { y.imprevisti[0]!.chiamata.opzioni[0]!.se = {}; }).join()).toMatch(/condizioni/);
     expect(x.ondata).toBe(1);

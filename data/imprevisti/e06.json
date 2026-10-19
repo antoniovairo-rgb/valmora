@@ -178,12 +178,12 @@
             "costo": "testi:e06.imp.metro.squadra_viale.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "viale_concerto",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e06.imp.metro.squadra_viale.r"

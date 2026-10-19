@@ -182,12 +182,12 @@
             "costo": "testi:e02.imp.soppresso.pullman.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "stazione",
                 "valore": -2
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
               }
             ],
             "risposta": "testi:e02.imp.soppresso.pullman.r"
