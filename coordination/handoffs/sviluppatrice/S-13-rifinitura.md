@@ -191,3 +191,10 @@ più un prezzo in fiducia. Ho seguito la forma già usata nei dati, «Nessun cos
 Non toccato: e20 pausa20 «Fumo spento, la curva si calma.» (non promette nessun prezzo).
 Verifica: `npx vitest run` su fiducia-verso, coerenza-d153, brevita, testi, opzioni-spiegate, costo-quando, c36-dati → 35/35;
 controllo storia (`controllaConsolidamento`) → []. Gli effetti non cambiano, quindi le misure del bot sopra restano valide.
+
+## Catene del blocco e13–e24 + D-190 (D-177)
+
+3 giri di `node tools/catena.mjs governo && node tools/catena.mjs logica` su **79bf454**: governo 0/0/0, logica 0/0/0
+(«Catena «logica» su 79bf454: VERDE» tre volte). Giri precedenti rossi e ritirati: 4710a90 (schema: mancavano le
+etichette `esito.*` dei 5 esiti nuovi) e 4cbec99 (storia: verbale e24 di 222 caratteri, max 220); corretti nei dati,
+nessuna soglia toccata. Questo commit aggiunge solo il rapporto e i prodotti della catena.
