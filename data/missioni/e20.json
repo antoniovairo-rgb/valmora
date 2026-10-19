@@ -211,6 +211,10 @@
                 {
                   "pressione": "strada_cinderwick",
                   "valore": -2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e20.op.patto_fabbro20.r"

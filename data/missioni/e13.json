@@ -310,7 +310,12 @@
               "id": "dopo_banco",
               "testo": "testi:e13.op.dopo_banco",
               "costo": "testi:e13.op.dopo_banco.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e13.op.dopo_banco.r"
             }
           ]
@@ -638,7 +643,12 @@
               "id": "lascia_furgone",
               "testo": "testi:e13.op.lascia_furgone",
               "costo": "testi:e13.op.lascia_furgone.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e13.op.lascia_furgone.r"
             }
           ]
@@ -754,7 +764,12 @@
               "id": "agli_atti",
               "testo": "testi:e13.op.agli_atti",
               "costo": "testi:e13.op.agli_atti.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "piazza_concerto",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e13.op.agli_atti.r"
             },
             {

@@ -65,6 +65,12 @@ const TESTI: [string, string][] = [
   ['e05.op.squadra_torce', 'Una squadra'],
   // C37-06: dopo busta/apri_busta la busta non è più chiusa
   ['e24.ch.consegna', 'consegnarla, chiusa'], ['e24.op.consegna_chiusa', 'Consegnala chiusa'],
+  // D-189 regola 3 (S-13): testi neutri dove la scelta non è un filo importante; i verbali di e18/e24 in finale-scelte-d189
+  ['e15.verbale_contenuto', 'la foto di Tano'], // la foto c'è solo con binocolo/fotografa15
+  ['e16.verbale_contenuto', 'targhe, orari, facce'], // senza sorveglianza il magazzino non ha un fascicolo
+  ['e18.verbale_contenuto', 'alle fonderie'], // dopo telefonata/al_comando18 la chiamata via_fonderie non arriva
+  ['e23.intro1', 'telefono dei giovani'], // il numero si scopre solo con informatore_pagato e passa il numero in e21
+  ['e24.info_testimone', 'Leggetelo'], // col testimone esposto, in e24 ritratta
 ];
 
 /** I dati di prima: senza i «dopo» di D-153 (braccio rosso). */
