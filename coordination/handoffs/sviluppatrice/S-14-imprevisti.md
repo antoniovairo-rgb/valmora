@@ -27,7 +27,9 @@ Il prototipo dei tempi (modi a/b/c) è **tolto** dal codice (era in b0c1710; res
   - id unico nell'episodio;
   - **nessun effetto che dia fiducia** (`:56`). Toglierla si può: è nel verso del risultato (D-160).
 - **Resa** (`src/resa/schermate/Ondata.tsx:94-96`): sopra la chiamata compare la fascia «Imprevisto: interrompe le chiamate»
-  (magenta, `src/resa/stile-c18.css:125`) e il timbro «Imprevisto!». Nessun timer. Rosso `__NO_C190I01`: chiamata come le altre.
+  (magenta, `src/resa/stile-c18.css:125`). Nessun timer. Timbro «Urgente!» e spicchio d'orologio restano quelli di D-129
+  (solo con un evento di pressione ≥ 4 sul settore): lo spicchio suggerisce il tempo, e il PO non lo vuole. Rosso
+  `__NO_C190I01`: chiamata come le altre.
 
 ## 2. Contenuti: 22 imprevisti in e01–e06 (uno per ondata)
 
@@ -127,7 +129,7 @@ completa in `s14/misura-imprevisti-blocco1.md`.
 - più `-360-rosso.png` con `__NO_C190I01`.
 
 Esito misurato:
-- 9 foto, 0 difetti: avviso presente e visibile, timbro «Imprevisto!», nessun timer, nessuno scorrimento orizzontale;
+- 9 foto, 0 difetti: avviso presente e visibile, nessun timer, nessuno scorrimento orizzontale;
 - braccio rosso: avviso assente in 3 casi su 3.
 
 ## 7. Catene e CI

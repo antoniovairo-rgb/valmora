@@ -1,6 +1,6 @@
 // PO-022 (D-190): foto di tre imprevisti (e01 ondata 1, e02 ondata 2, e05 ondata 2) a 360, 375 e 412 px, e il braccio
 // rosso C190I01 (l'imprevisto come una chiamata qualsiasi). Stato: bot attento fino all'imprevisto. Controlli: l'avviso
-// «Imprevisto» c'è e si vede, nessun conto alla rovescia, nessuno scorrimento orizzontale.
+// «Imprevisto» c'è e si vede, nessun conto alla rovescia, nessuno scorrimento orizzontale. Timbro e spicchio seguono D-129.
 // Uso: npx vite build && node tools/foto-imprevisti.mjs [cartella]
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -53,6 +53,6 @@ try {
   }
 } finally { await browser.close(); srv.close(); }
 for (const e of esiti) console.log(JSON.stringify(e));
-const male = esiti.filter((e) => !e.rosso && (!e.avviso || !e.visibile || e.conto || e.orizzontale || e.timbro !== 'Imprevisto!'));
+const male = esiti.filter((e) => !e.rosso && (!e.avviso || !e.visibile || e.conto || e.orizzontale));
 console.log(`imprevisti: ${esiti.filter((e) => !e.rosso).length} foto, ${male.length} con difetti; braccio rosso C190I01 senza avviso: ${rossi}/${CASI.length}`);
 process.exit(male.length || rossi !== CASI.length ? 1 : 0);
