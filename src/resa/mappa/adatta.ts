@@ -18,8 +18,16 @@ const NASCONDIBILE = /^(apertura|esito|ondata)-/;
 let avvisa: (nascosta: boolean) => void = () => {};
 let ridisponi: (m: HTMLElement) => void = () => {};
 
+// Ultima situazione misurata: schermata, finestra e altezza di ciò che sta fuori dalla mappa. Se non cambia, il risultato è
+// lo stesso: niente rifacimento (il ResizeObserver risponde anche al cambio d'altezza fatto da qui; ogni giro in più
+// rallentava i disegni e in CI a 375 i segni della risposta, 1,8 s di tempo vero, sparivano prima del controllo PO-085).
+const ultima = new WeakMap<HTMLElement, string>();
+
 function adatta(m: HTMLElement) {
   const main = m.closest('main');
+  const chiave = `${main?.dataset.schermata}|${innerHeight}|${Math.round((main?.getBoundingClientRect().height ?? 0) - m.getBoundingClientRect().height)}`;
+  if (ultima.get(m) === chiave) return;
+  ultima.set(m, chiave);
   const era = m.hasAttribute('data-nascosta');
   m.removeAttribute('data-adatta'); m.removeAttribute('data-nascosta'); m.style.removeProperty('--mappa-alta');
   const schermata = main?.dataset.schermata ?? '';
@@ -50,14 +58,14 @@ function adatta(m: HTMLElement) {
   const casa = m.querySelector(':scope > .tasto-home'), passo = parseFloat(radice.getPropertyValue('--spazio-2')) || 8;
   const sotto = (sel: string) => { if (!casa) return false; const h = casa.getBoundingClientRect();
     return [...m.querySelectorAll(sel)].some((e) => { const r = e.getBoundingClientRect(); return Math.max(0, Math.min(h.right, r.right) - Math.max(h.left, r.left)) * Math.max(0, Math.min(h.bottom, r.bottom) - Math.max(h.top, r.top)) > 4; }); }; // come S-21 (px²)
-  // prima i punti (fermi); i nomi si ridispongono e si controllano solo quando i punti sono liberi
+  // prima i punti (fermi), poi i nomi dove stanno; si ridispongono (costa) solo se uno tocca «Home»
   for (;;) {
     m.style.setProperty('--mappa-alta', `${Math.round(alta)}px`); m.setAttribute('data-adatta', '');
     if (alta >= nat) break;
-    if (!sotto('.settore-punto')) { ridisponi(m); if (!sotto('.settore-nome')) break; }
+    if (!sotto('.settore-punto') && (!sotto('.settore-nome') || (ridisponi(m), !sotto('.settore-nome')))) break;
     alta = Math.min(nat, alta + passo);
   }
-  if (alta >= nat) { m.removeAttribute('data-adatta'); m.style.removeProperty('--mappa-alta'); ridisponi(m); }
+  if (alta >= nat) { m.removeAttribute('data-adatta'); m.style.removeProperty('--mappa-alta'); }
   fine(SENZA_MAPPA.has(schermata) && !spento('C191R01') && eccedenza() > 0);
 }
 

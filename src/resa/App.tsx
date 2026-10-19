@@ -3,7 +3,7 @@
 // sotto. La resa legge e mostra; i calcoli stanno in src/logica. Si salva dopo ogni passo (D-040):
 // la scena dentro l'ondata si ricava dal salvataggio (partita.ts), quindi una ricarica riprende lì.
 import { AnimatePresence, MotionConfig } from 'motion/react';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { spento } from '../interruttori.ts';
 import { variabiliIniziali } from '../logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFinita, riprendiDallOndata, rispondi, schiera, settoriAmmessi, type EsitoMissione, type InCorso } from '../logica/missione.ts';
@@ -84,8 +84,13 @@ export function App() {
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
   const [segni, setSegni] = useState<Segno[]>([]); // PO-085: segni dell'ultima risposta sulla mappa, per 1,8 s
   const timerSegni = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => { if (!segni.length || spento('C193T01')) return; const id = setTimeout(() => setSegni([]), 1800); timerSegni.current = id; return () => clearTimeout(id); }, [segni]);
   const mostraSegni = (xs: Segno[]) => {
-    if (timerSegni.current) clearTimeout(timerSegni.current); setSegni(xs); timerSegni.current = setTimeout(() => setSegni([]), 1800);
+    if (timerSegni.current) clearTimeout(timerSegni.current); setSegni(xs);
+    // D-193: il conto di 1,8 s parte quando i segni sono sulla pagina (effetto qui sotto), non al tocco: con la mappa che
+    // cambia altezza fra chiamata e risposta (D-187) il disegno arrivava dopo e i segni potevano scadere prima di vedersi
+    // (CI a 375, PO-085). Rosso C193T01: dal tocco, come prima.
+    if (spento('C193T01')) timerSegni.current = setTimeout(() => setSegni([]), 1800);
     // C20-07: se la mappa è scorsa via (opzione toccata in fondo alla pagina), torna in vista. Rosso C44E04: no.
     const mappa = document.querySelector('.mappa');
     if (xs.length && mappa && !spento('C44E04') && mappa.getBoundingClientRect().top < 0) mappa.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
