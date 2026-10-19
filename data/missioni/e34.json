@@ -289,6 +289,10 @@
                 {
                   "riserva": "steward",
                   "valore": 2
+                },
+                {
+                  "aggiungi": "credito",
+                  "valore": -1
                 }
               ],
               "risposta": "testi:e34.op.accetta_steward.r"

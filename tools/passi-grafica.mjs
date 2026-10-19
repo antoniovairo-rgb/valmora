@@ -5,6 +5,7 @@ import { controllaToken, controllaGiro, controllaEmail } from './controlli-grafi
 import { readdirSync } from 'node:fs';
 import { giraFoto } from './foto.mjs';
 import { giraEpilogo } from './foto-epilogo.mjs';
+import { giraC41 } from './foto-c41.mjs';
 import { giraOffline } from './offline.mjs';
 import { controllaCittaSenzaWebgl } from './foto-c128.mjs';
 
@@ -19,7 +20,7 @@ export const PASSI_GRAFICA = {
     const giri = await giraFoto('out/foto'), stati = giri.flatMap((g) => g.citta);
     writeFileSync('out/foto/citta-stati.json', JSON.stringify(stati));
     // D-161, D-164, D-165: epilogo, «Fine stagione» e fischio (tools/foto-epilogo.mjs)
-    return [...giri.flatMap(controllaGiro), ...(await controllaCittaSenzaWebgl(stati)), ...(await giraEpilogo('out/foto')).flatMap(controllaGiro)];
+    return [...giri.flatMap(controllaGiro), ...(await controllaCittaSenzaWebgl(stati)), ...(await giraEpilogo('out/foto')).flatMap(controllaGiro), ...(await giraC41('out/foto')).flatMap(controllaGiro)];
   },
   // S-22 (C14-01): il gioco installato funziona offline (service worker), su http://localhost
   offline: () => giraOffline('dist'),
@@ -34,6 +35,12 @@ export const PASSI_GRAFICA = {
     for (const r of ['C161E01', 'C164F01', 'C165F01', 'C165T01']) {
       process.env.VALMORA_ROSSI = r;
       try { if (!(await giraEpilogo('out/foto-rossi', 'dist', [360])).flatMap(controllaGiro).length) ciechi.push(`epilogo/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
+    }
+    // C41-06, C41-08 (collaudo C-041), D-185: senza la vignetta minima del verbale fallito, con le spaziature di prima,
+    // con le spaziature di prima e la vignetta forzata al minimo (pagina che scorre) o col fumetto stretto il giro è rosso
+    for (const r of ['C41V06', 'C185V01', 'C185V01,C66V01', 'C41G08']) {
+      process.env.VALMORA_ROSSI = r;
+      try { if (!(await giraC41('out/foto-rossi', 'dist', [360])).flatMap(controllaGiro).length) ciechi.push(`c41/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }
     // C128-01: col rosso C128N01 (nessun ricalcolo a ingresso finito) il nome della città deve uscire dal bordo
     const stati = existsSync('out/foto/citta-stati.json') ? JSON.parse(readFileSync('out/foto/citta-stati.json', 'utf8')) : [];

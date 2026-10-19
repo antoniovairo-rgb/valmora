@@ -692,6 +692,10 @@
                 {
                   "pressione": "perimetro_banca",
                   "valore": 1
+                },
+                {
+                  "imposta": "carte",
+                  "valore": "fermate"
                 }
               ],
               "risposta": "testi:e35.op.ferma_uomo.r"
@@ -704,6 +708,10 @@
                 {
                   "pressione": "stazione",
                   "valore": -1
+                },
+                {
+                  "imposta": "carte",
+                  "valore": "perse"
                 }
               ],
               "risposta": "testi:e35.op.lascia_partire.r"

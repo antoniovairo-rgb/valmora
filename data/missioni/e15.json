@@ -281,7 +281,12 @@
               "id": "lascia_borsa",
               "testo": "testi:e15.op.lascia_borsa",
               "costo": "testi:e15.op.lascia_borsa.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "settore_gemellati",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e15.op.lascia_borsa.r"
             }
           ]
@@ -579,7 +584,12 @@
               "id": "guarda_partita",
               "testo": "testi:e15.op.guarda_partita",
               "costo": "testi:e15.op.guarda_partita.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e15.op.guarda_partita.r"
             }
           ]
@@ -706,7 +716,12 @@
               "id": "lascia15",
               "testo": "testi:e15.op.lascia15",
               "costo": "testi:e15.op.lascia15.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e15.op.lascia15.r"
             }
           ]

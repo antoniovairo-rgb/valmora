@@ -32,6 +32,10 @@ const REGISTRO: [string, string, 'mai' | 'gia', string[]][] = [
   ['e27', 'abbraccio', 'mai', ['gemellati_escono/uscita_scortata']],
   ['e32', 'incrocio', 'mai', ['festa_larkspire/uscita_collina']],
   ['e33', 'parcheggio_vuoto', 'gia', ['ordini_segnati/ordini_veri']],
+  // D-189: il nome della talpa e la sua fuga solo con una prova (la trappola; con la busta tenuta ci sono le chiamate gemelle)
+  ['e33', 'nome_talpa', 'mai', ['ordini_segnati/ordini_puliti']],
+  ['e33', 'sospetto_talpa', 'gia', ['ordini_segnati/ordini_puliti']],
+  ['e33', 'talpa_scappa', 'mai', ['ordini_segnati/ordini_puliti']],
   ['e34', 'ultimo_coro', 'mai', ['mercato_fine/chiudi_piazzale']],
   ['e36', 'piazzale_maxi', 'mai', ['festa_vietata/smonta_palco']],
 ];
@@ -65,6 +69,17 @@ const TESTI: [string, string][] = [
   ['e05.op.squadra_torce', 'Una squadra'],
   // C37-06: dopo busta/apri_busta la busta non è più chiusa
   ['e24.ch.consegna', 'consegnarla, chiusa'], ['e24.op.consegna_chiusa', 'Consegnala chiusa'],
+  // D-189 regola 3 (S-13): testi neutri dove la scelta non è un filo importante; i verbali di e18/e24 in finale-scelte-d189
+  ['e15.verbale_contenuto', 'la foto di Tano'], // la foto c'è solo con binocolo/fotografa15
+  ['e16.verbale_contenuto', 'targhe, orari, facce'], // senza sorveglianza il magazzino non ha un fascicolo
+  ['e18.verbale_contenuto', 'alle fonderie'], // dopo telefonata/al_comando18 la chiamata via_fonderie non arriva
+  ['e23.intro1', 'telefono dei giovani'], // il numero si scopre solo con informatore_pagato e passa il numero in e21
+  ['e24.info_testimone', 'Leggetelo'], // col testimone esposto, in e24 ritratta
+  // D-189 (S-15): testi neutri in e25–e36
+  ['e27.verbale_contenuto', 'il biglietto del porto in un cassetto'], // con lettera_gemellati/consegna_comando il biglietto parte con uno steward
+  ['e29.verbale_contenuto', 'non è uscita'], // con tamburo_curva/lascia_uscire e corteo_al_porto/lascia_scendere la curva esce
+  ['e26.intro1', 'Non l\'ha mai avuta'], // e24.intro1: «Malvasi ha messo la cravatta»
+  ['e36.op.apri_ora.r', 'Non dura'], // D-189: la busta si rivela nel verbale, non prima
 ];
 
 /** I dati di prima: senza i «dopo» di D-153 (braccio rosso). */
