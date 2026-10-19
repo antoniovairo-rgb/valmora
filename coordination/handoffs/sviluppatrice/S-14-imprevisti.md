@@ -135,8 +135,13 @@ Esito misurato:
 ## 7. Catene e CI
 
 - `npx vitest run`: 68 file, 355 test verdi.
-- Catene governo + logica, 3 giri: vedi messaggio di consegna (esito e hash).
-- CI 7/7: vedi messaggio di consegna.
+- Catene governo + logica, 3 giri sulla build fcfd9ed: 6/6 VERDE (`STABILITA.json`).
+- CI su fcfd9ed: run 853, esito «success» (https://github.com/antoniovairo-rgb/valmora/actions/runs/39285819743).
+- Il run 849 (76887cf) era rosso nella catena grafica a 375 e 412 px, per due cause:
+  - D-129: l'imprevisto cambiava timbro e spicchio d'orologio. Tolto: lo spicchio suggerisce il tempo.
+  - PO-085: il guardiano delle icone contava anche le opzioni spente di D-153, che mostrano il motivo e non gli effetti.
+    Ora le salta (`tools/foto-c17.mjs:196`). È una scelta dichiarata, da confermare.
+- Catena grafica in locale: non girata (l'ha girata la CI, verde).
 
 ## 8. Non verificato
 
