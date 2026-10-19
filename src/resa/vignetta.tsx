@@ -53,7 +53,8 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
 
 export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean; evento?: string; ritaglio?: string }) {
   const el = useRef<SVGSVGElement>(null);
-  useRiempi(el, !p.fissa, /^(apertura|esito|ondata)-/.test(p.nome)); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
+  // C41-06: la vignetta del verbale fallito non si nasconde (ha un minimo suo, --vignetta-min-fallita). Rosso C41V06: come prima.
+  useRiempi(el, !p.fissa, /^(apertura|esito|ondata)-/.test(p.nome) && (p.nome !== 'esito-fallita' || spento('C41V06'))); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
   if (spento('C26V01')) return null;
   return (
     <svg ref={el} className="vignetta" viewBox="0 0 320 180" preserveAspectRatio={p.ritaglio ?? 'xMidYMid meet'} role="img" aria-label={p.titolo} data-vignetta={p.nome} data-evento={p.evento}>

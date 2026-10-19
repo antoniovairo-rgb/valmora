@@ -239,3 +239,27 @@ Il PO ha scelto la seconda prova (D-171); principale 1fee029 unita (d822cf1, mer
 - Guardiano in `tests/epilogo.test.ts`: nessun testo `*.busta.consegnata` dice «chius…», in epilogo.json e in finale.json;
   braccio rosso sul testo di prima. FATTO MISURATO: 7 prove passate.
 - FATTO MISURATO (D-177): su 1758ee9, 3 giri di governo + logica, tutti VERDI (STABILITA nel commit successivo).
+
+## C-041 (D-182): C41-05…08
+
+Principale unita (fast-forward). Foto prima/dopo con gli asset veri: `coordination/handoffs/sviluppatrice/S-09-c41/{prima,dopo}/`
+a 360, 375 e 412 (`*-c41-05-tavola-busta.jpg`, `*-c41-06-verbale-fallito.jpg`, `*-c41-08-guida2.jpg`).
+Strumento nuovo `tools/foto-c41.mjs` (C41-06 e C41-08 nel browser, e10 perso dal giocatore peggiore del motore, partendo
+dal salvataggio vero A-Z), nel passo foto e nei bracci rossi della catena grafica.
+
+| rilievo | riprodotto | prima | dopo | patch | rosso | guardiano |
+|---|---|---|---|---|---|---|
+| C41-05 busta sigillata | sì (codice: `tavole-finale.tsx`, consegnata col tondo del sigillo) | sigillo, patta chiusa | patta aperta, niente sigillo (tenuta: sigillo) | `tavole-finale.tsx` | `__NO_C41B05` | `tests/c41.test.ts` |
+| C41-06 vignetta del verbale fallito | sì, **290×75 px** a 360×760 (disegno 133 px su 290) come nel collaudo; 305×75 a 375, 342×98 a 412 | 290×75, disegno 133 (0,46) | **290×110**, disegno 196 (0,68 ≥ 2/3); «Episodio fallito» e «Ricomincia» finiscono a 676 px su 760, senza scorrere | `vignetta.tsx` (non si nasconde), `Verbale.tsx` (classe `fallita`), token `--vignetta-min-fallita: 110px` | `__NO_C41V06` | `tools/foto-c41.mjs` (2/3 a 360; ripartenza dentro i 760 a ogni larghezza) |
+| C41-07 posa «male» mai in partita | sì (codice: `partita.ts`, «male» solo per il fallito/l'ultimo, che è fallito in 36/36) | e01 contenuto_a_fatica «medio» | «male» per l'esito più basso non fallito (e01 contenuto_a_fatica, e36 sostituito*) | `partita.ts` | `__NO_C41T07` | `tests/tono.test.ts` (ogni episodio con più di un esito non fallito ne ha uno «male») |
+| C41-08 «Quanto dura?» sul bordo | sì: testo 85 in un fumetto di 86, margini 0 e 0 | 86 unità | **102** unità, margini 8 e 8 | `vignette-guida.tsx` | `__NO_C41G08` | `tools/foto-c41.mjs` (≥ 6 unità per lato) |
+
+FATTO MISURATO: `node tools/foto-c41.mjs … 360,375,412` → «verde»; rosso C41V06 a 360 → «disegno largo 133 px su 290»;
+rosso C41G08 → «margini 0 e 0». `npx vitest run`: 66 file, 347 prove passate (c41 2, tono 5).
+
+Non verificato:
+- C41-05: l'epilogo dopo un e24 giocato davvero con «Aprila adesso» non l'ho giocato; ho controllato la tavola con
+  busta = consegnata, che è lo stesso disegno per i due casi.
+- C41-06: il guardiano dei passi ≤ 760 (S-10) e gli altri controlli del giro foto girano solo nella CI «grafica»; il verbale
+  fallito ora è più alto di 35 px, e a 375×667 la vignetta non si nasconde più.
+- C41-07: il colore del titolo del verbale segue il tono: per l'esito più basso non fallito ora è quello di «male».

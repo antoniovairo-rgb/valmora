@@ -118,3 +118,5 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .tono-ondata > .vignetta { display: block; width: 100%; height: auto; min-height: 0; max-height: none; margin: 0; }
 /* PO-119 / D-171: tratto sottile dei dettagli del volto della seconda bozza (col tratto normale gli occhi a 3× erano macchie) */
 .vignetta .v-linea.v-fine { stroke-width: var(--vignetta-tratto-fine); }
+/* C41-06: nel verbale fallito la vignetta non scende sotto i due terzi della larghezza a 360 px */
+.verbale.fallita .vignetta-cornice .vignetta { --vignetta-min: var(--vignetta-min-fallita); }
