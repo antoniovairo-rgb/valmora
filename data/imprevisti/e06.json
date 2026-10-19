@@ -19,6 +19,10 @@
               {
                 "riserva": "steward",
                 "valore": -1
+              },
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
               }
             ],
             "risposta": "testi:e06.imp.allarme.steward_banca.r"
@@ -28,6 +32,10 @@
             "testo": "testi:e06.imp.allarme.spegni_prova",
             "costo": "testi:e06.imp.allarme.spegni_prova.c",
             "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
               {
                 "tensione": "piazza_concerto",
                 "valore": 1
@@ -66,7 +74,7 @@
               },
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               }
             ],
             "risposta": "testi:e06.imp.palloncini.raccogli.r"
@@ -118,7 +126,7 @@
               },
               {
                 "pressione": "piazza_concerto",
-                "valore": -2
+                "valore": -1
               }
             ],
             "risposta": "testi:e06.imp.corrente.squadra_palco.r"
@@ -171,7 +179,7 @@
             "effetti": [
               {
                 "pressione": "viale_concerto",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "piazzale",

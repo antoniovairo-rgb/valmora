@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "stazione",
-                "valore": -3
+                "valore": -2
               }
             ],
             "risposta": "testi:e02.imp.binario.sottopasso.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "stazione",
@@ -47,7 +47,12 @@
             "id": "altoparlante",
             "testo": "testi:e02.imp.binario.altoparlante",
             "costo": "testi:e02.imp.binario.altoparlante.c",
-            "effetti": [],
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 1
+              }
+            ],
             "risposta": "testi:e02.imp.binario.altoparlante.r"
           }
         ]
@@ -74,7 +79,7 @@
               },
               {
                 "pressione": "stazione",
-                "valore": -3
+                "valore": -2
               }
             ],
             "risposta": "testi:e02.imp.sciarpa.recupera.r"
@@ -86,7 +91,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "stazione",
@@ -183,7 +188,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "viale_stazione",
@@ -199,7 +204,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "stazione",

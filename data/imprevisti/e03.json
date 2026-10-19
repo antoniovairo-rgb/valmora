@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "quartiere",
@@ -86,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "curva_ospiti",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "curva_ospiti",
@@ -131,7 +131,7 @@
               },
               {
                 "pressione": "quartiere",
-                "valore": -3
+                "valore": -1
               }
             ],
             "risposta": "testi:e03.imp.balconi.mediatore_balconi.r"
@@ -141,10 +141,6 @@
             "testo": "testi:e03.imp.balconi.promessa",
             "costo": "testi:e03.imp.balconi.promessa.c",
             "effetti": [
-              {
-                "pressione": "quartiere",
-                "valore": -2
-              },
               {
                 "tensione": "quartiere",
                 "valore": 1
@@ -195,7 +191,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -2
+                "valore": -1
               },
               {
                 "tensione": "parcheggi",

@@ -22,7 +22,7 @@
               },
               {
                 "pressione": "mercato",
-                "valore": -3
+                "valore": -1
               }
             ],
             "risposta": "testi:e04.imp.ghiaccio.steward_ghiaccio.r"
@@ -79,7 +79,7 @@
               },
               {
                 "pressione": "piazzale",
-                "valore": -3
+                "valore": -1
               }
             ],
             "risposta": "testi:e04.imp.bambino.squadra_bambino.r"
@@ -132,7 +132,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -3
+                "valore": -1
               },
               {
                 "tensione": "mercato",
