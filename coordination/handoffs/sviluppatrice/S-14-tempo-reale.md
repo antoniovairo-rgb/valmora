@@ -123,7 +123,7 @@ D-154/D-160/D-181 su 36 episodi (cambia la pressione di tutte le ondate).
 - `node tools/misura-tempo.mjs e02` → `s14/misura-e02.md` (attento, equilibrato, casuale × a/b/c, 200 semi per riga).
 - `npx vite build && node tools/foto-s14.mjs` → foto e controlli: barra presente a 360/375/412, nessuno scorrimento
   orizzontale, tasti ≥ 44 px, pausa che ferma il tempo, scadenza che passa alla chiamata dopo.
-- Catena logica sul ramo: vedi messaggio di consegna (esito e hash).
+- Catena logica: VERDE (tipi, confini, schema, test, bot, storia, salvataggi-reali, bracci-rossi-logica), giro su 51188cd con le modifiche di questo prototipo non ancora committate (STABILITA.json). La catena grafica non è stata girata: **Non verificata**.
 
 ## 5. Cosa NON è verificato
 
