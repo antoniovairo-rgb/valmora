@@ -12,20 +12,20 @@
         "settore": "strada_larkspire",
         "opzioni": [
           {
-            "id": "accompagna_gregge",
-            "testo": "testi:e09.imp.gregge.accompagna_gregge",
-            "costo": "testi:e09.imp.gregge.accompagna_gregge.c",
+            "id": "ferma_tutti",
+            "testo": "testi:e09.imp.gregge.ferma_tutti",
+            "costo": "testi:e09.imp.gregge.ferma_tutti.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "strada_larkspire",
+                "valore": -2
               },
               {
-                "pressione": "strada_larkspire",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e09.imp.gregge.accompagna_gregge.r"
+            "risposta": "testi:e09.imp.gregge.ferma_tutti.r"
           },
           {
             "id": "giro_piazzale",
@@ -47,12 +47,7 @@
             "id": "aspetta_pastore",
             "testo": "testi:e09.imp.gregge.aspetta_pastore",
             "costo": "testi:e09.imp.gregge.aspetta_pastore.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e09.imp.gregge.aspetta_pastore.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "tangenziale",
         "opzioni": [
           {
-            "id": "porta_acqua",
-            "testo": "testi:e09.imp.malore_coda.porta_acqua",
-            "costo": "testi:e09.imp.malore_coda.porta_acqua.c",
+            "id": "spingi_auto",
+            "testo": "testi:e09.imp.malore_coda.spingi_auto",
+            "costo": "testi:e09.imp.malore_coda.spingi_auto.c",
             "effetti": [
-              {
-                "riserva": "squadre",
-                "valore": -1
-              },
               {
                 "pressione": "tangenziale",
                 "valore": -2
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e09.imp.malore_coda.porta_acqua.r"
+            "risposta": "testi:e09.imp.malore_coda.spingi_auto.r"
           },
           {
             "id": "rampa_stadio",
@@ -104,12 +99,7 @@
             "id": "aspetta_soccorso",
             "testo": "testi:e09.imp.malore_coda.aspetta_soccorso",
             "costo": "testi:e09.imp.malore_coda.aspetta_soccorso.c",
-            "effetti": [
-              {
-                "pressione": "tangenziale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e09.imp.malore_coda.aspetta_soccorso.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_larkspire",
         "opzioni": [
           {
-            "id": "recupera_pallone",
-            "testo": "testi:e09.imp.pallone.recupera_pallone",
-            "costo": "testi:e09.imp.pallone.recupera_pallone.c",
+            "id": "sgonfia_pallone",
+            "testo": "testi:e09.imp.pallone.sgonfia_pallone",
+            "costo": "testi:e09.imp.pallone.sgonfia_pallone.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_larkspire",
+                "valore": -2
               },
               {
-                "pressione": "curva_larkspire",
-                "valore": -3
+                "tensione": "curva_ospiti",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e09.imp.pallone.recupera_pallone.r"
+            "risposta": "testi:e09.imp.pallone.sgonfia_pallone.r"
           },
           {
             "id": "verso_ospiti",
@@ -161,12 +151,7 @@
             "id": "lascia_arbitro",
             "testo": "testi:e09.imp.pallone.lascia_arbitro",
             "costo": "testi:e09.imp.pallone.lascia_arbitro.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e09.imp.pallone.lascia_arbitro.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "aspetta_manutentore",
             "testo": "testi:e09.imp.cancello.aspetta_manutentore",
             "costo": "testi:e09.imp.cancello.aspetta_manutentore.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e09.imp.cancello.aspetta_manutentore.r"
           }
         ]

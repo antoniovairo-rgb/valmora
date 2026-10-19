@@ -17,12 +17,12 @@
             "costo": "testi:e12.imp.piccioni.ferma_mangime.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "piazza_comune",
+                "valore": -2
               },
               {
-                "pressione": "piazza_comune",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e12.imp.piccioni.ferma_mangime.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "piazza_comune",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -47,12 +47,7 @@
             "id": "lascia_piccioni",
             "testo": "testi:e12.imp.piccioni.lascia_piccioni",
             "costo": "testi:e12.imp.piccioni.lascia_piccioni.c",
-            "effetti": [
-              {
-                "pressione": "piazza_comune",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e12.imp.piccioni.lascia_piccioni.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "curva_ospiti",
         "opzioni": [
           {
-            "id": "nastro_adesivo",
-            "testo": "testi:e12.imp.tamburo.nastro_adesivo",
-            "costo": "testi:e12.imp.tamburo.nastro_adesivo.c",
+            "id": "ritmo_altoparlanti",
+            "testo": "testi:e12.imp.tamburo.ritmo_altoparlanti",
+            "costo": "testi:e12.imp.tamburo.ritmo_altoparlanti.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_ospiti",
+                "valore": -2
               },
               {
-                "pressione": "curva_ospiti",
-                "valore": -3
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e12.imp.tamburo.nastro_adesivo.r"
+            "risposta": "testi:e12.imp.tamburo.ritmo_altoparlanti.r"
           },
           {
             "id": "tamburo_prestito",
@@ -104,12 +99,7 @@
             "id": "senza_ritmo",
             "testo": "testi:e12.imp.tamburo.senza_ritmo",
             "costo": "testi:e12.imp.tamburo.senza_ritmo.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e12.imp.tamburo.senza_ritmo.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_cinderwick",
         "opzioni": [
           {
-            "id": "steward_regia",
-            "testo": "testi:e12.imp.maxischermo.steward_regia",
-            "costo": "testi:e12.imp.maxischermo.steward_regia.c",
+            "id": "telefona_regia",
+            "testo": "testi:e12.imp.maxischermo.telefona_regia",
+            "costo": "testi:e12.imp.maxischermo.telefona_regia.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "curva_cinderwick",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e12.imp.maxischermo.steward_regia.r"
+            "risposta": "testi:e12.imp.maxischermo.telefona_regia.r"
           },
           {
             "id": "spegni_tutti",
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -161,12 +151,7 @@
             "id": "lascia_replay",
             "testo": "testi:e12.imp.maxischermo.lascia_replay",
             "costo": "testi:e12.imp.maxischermo.lascia_replay.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e12.imp.maxischermo.lascia_replay.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_cinderwick",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "piazza_comune",
@@ -218,12 +203,7 @@
             "id": "finisca_manovra",
             "testo": "testi:e12.imp.trasloco.finisca_manovra",
             "costo": "testi:e12.imp.trasloco.finisca_manovra.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e12.imp.trasloco.finisca_manovra.r"
           }
         ]

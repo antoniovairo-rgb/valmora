@@ -17,12 +17,12 @@
             "costo": "testi:e07.imp.sbarra.alza_sbarra.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "parcheggi",
+                "valore": -2
               },
               {
-                "pressione": "parcheggi",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e07.imp.sbarra.alza_sbarra.r"
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -47,12 +47,7 @@
             "id": "aspetta_tecnico",
             "testo": "testi:e07.imp.sbarra.aspetta_tecnico",
             "costo": "testi:e07.imp.sbarra.aspetta_tecnico.c",
-            "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e07.imp.sbarra.aspetta_tecnico.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "curva_ospiti",
         "opzioni": [
           {
-            "id": "steward_scale",
-            "testo": "testi:e07.imp.sole.steward_scale",
-            "costo": "testi:e07.imp.sole.steward_scale.c",
+            "id": "annuncio_posti",
+            "testo": "testi:e07.imp.sole.annuncio_posti",
+            "costo": "testi:e07.imp.sole.annuncio_posti.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_ospiti",
+                "valore": -2
               },
               {
-                "pressione": "curva_ospiti",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e07.imp.sole.steward_scale.r"
+            "risposta": "testi:e07.imp.sole.annuncio_posti.r"
           },
           {
             "id": "cerca_ombra",
@@ -104,12 +99,7 @@
             "id": "aspetta_sole",
             "testo": "testi:e07.imp.sole.aspetta_sole",
             "costo": "testi:e07.imp.sole.aspetta_sole.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e07.imp.sole.aspetta_sole.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "strada_larkspire",
         "opzioni": [
           {
-            "id": "devia_passaggio",
-            "testo": "testi:e07.imp.idrante.devia_passaggio",
-            "costo": "testi:e07.imp.idrante.devia_passaggio.c",
+            "id": "chiudi_valvola",
+            "testo": "testi:e07.imp.idrante.chiudi_valvola",
+            "costo": "testi:e07.imp.idrante.chiudi_valvola.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "strada_larkspire",
+                "valore": -2
               },
               {
-                "pressione": "strada_larkspire",
-                "valore": -3
+                "tensione": "parcheggi",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e07.imp.idrante.devia_passaggio.r"
+            "risposta": "testi:e07.imp.idrante.chiudi_valvola.r"
           },
           {
             "id": "giro_parcheggi",
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "parcheggi",
@@ -161,12 +151,7 @@
             "id": "aspetta_acquedotto",
             "testo": "testi:e07.imp.idrante.aspetta_acquedotto",
             "costo": "testi:e07.imp.idrante.aspetta_acquedotto.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e07.imp.idrante.aspetta_acquedotto.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "piazzale",
@@ -218,12 +203,7 @@
             "id": "lascia_lampeggiare",
             "testo": "testi:e07.imp.semaforo.lascia_lampeggiare",
             "costo": "testi:e07.imp.semaforo.lascia_lampeggiare.c",
-            "effetti": [
-              {
-                "pressione": "viale_stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e07.imp.semaforo.lascia_lampeggiare.r"
           }
         ]

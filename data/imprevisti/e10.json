@@ -12,20 +12,20 @@
         "settore": "strada_cinderwick",
         "opzioni": [
           {
-            "id": "sgombra_transenne",
-            "testo": "testi:e10.imp.cantiere.sgombra_transenne",
-            "costo": "testi:e10.imp.cantiere.sgombra_transenne.c",
+            "id": "chiama_cantiere",
+            "testo": "testi:e10.imp.cantiere.chiama_cantiere",
+            "costo": "testi:e10.imp.cantiere.chiama_cantiere.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "strada_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "strada_cinderwick",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e10.imp.cantiere.sgombra_transenne.r"
+            "risposta": "testi:e10.imp.cantiere.chiama_cantiere.r"
           },
           {
             "id": "corteo_piazzale",
@@ -47,12 +47,7 @@
             "id": "lascia_transenne",
             "testo": "testi:e10.imp.cantiere.lascia_transenne",
             "costo": "testi:e10.imp.cantiere.lascia_transenne.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e10.imp.cantiere.lascia_transenne.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "curva_larkspire",
         "opzioni": [
           {
-            "id": "libera_telone",
-            "testo": "testi:e10.imp.telone.libera_telone",
-            "costo": "testi:e10.imp.telone.libera_telone.c",
+            "id": "abbassa_telone",
+            "testo": "testi:e10.imp.telone.abbassa_telone",
+            "costo": "testi:e10.imp.telone.abbassa_telone.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_larkspire",
+                "valore": -2
               },
               {
-                "pressione": "curva_larkspire",
-                "valore": -3
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e10.imp.telone.libera_telone.r"
+            "risposta": "testi:e10.imp.telone.abbassa_telone.r"
           },
           {
             "id": "taglia_telone",
@@ -104,12 +99,7 @@
             "id": "lascia_tirare",
             "testo": "testi:e10.imp.telone.lascia_tirare",
             "costo": "testi:e10.imp.telone.lascia_tirare.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e10.imp.telone.lascia_tirare.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_cinderwick",
         "opzioni": [
           {
-            "id": "recupera_cane",
-            "testo": "testi:e10.imp.cane.recupera_cane",
-            "costo": "testi:e10.imp.cane.recupera_cane.c",
+            "id": "chiama_padrone",
+            "testo": "testi:e10.imp.cane.chiama_padrone",
+            "costo": "testi:e10.imp.cane.chiama_padrone.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "curva_cinderwick",
-                "valore": -3
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e10.imp.cane.recupera_cane.r"
+            "risposta": "testi:e10.imp.cane.chiama_padrone.r"
           },
           {
             "id": "cancello_piazzale",
@@ -161,12 +151,7 @@
             "id": "lascialo_correre",
             "testo": "testi:e10.imp.cane.lascialo_correre",
             "costo": "testi:e10.imp.cane.lascialo_correre.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e10.imp.cane.lascialo_correre.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "strada_larkspire",
-                "valore": -3
+                "valore": -2
               },
               {
                 "tensione": "strada_cinderwick",
@@ -218,12 +203,7 @@
             "id": "torce_telefoni",
             "testo": "testi:e10.imp.lampioni.torce_telefoni",
             "costo": "testi:e10.imp.lampioni.torce_telefoni.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e10.imp.lampioni.torce_telefoni.r"
           }
         ]

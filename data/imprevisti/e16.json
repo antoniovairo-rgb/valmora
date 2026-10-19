@@ -12,20 +12,20 @@
         "settore": "strada_cinderwick",
         "opzioni": [
           {
-            "id": "transenna_buca",
-            "testo": "testi:e16.imp.buca.transenna_buca",
-            "costo": "testi:e16.imp.buca.transenna_buca.c",
+            "id": "coni_buca",
+            "testo": "testi:e16.imp.buca.coni_buca",
+            "costo": "testi:e16.imp.buca.coni_buca.c",
             "effetti": [
-              {
-                "riserva": "squadre",
-                "valore": -1
-              },
               {
                 "pressione": "strada_cinderwick",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e16.imp.buca.transenna_buca.r"
+            "risposta": "testi:e16.imp.buca.coni_buca.r"
           },
           {
             "id": "dal_piazzale",
@@ -47,12 +47,7 @@
             "id": "scavalchi",
             "testo": "testi:e16.imp.buca.scavalchi",
             "costo": "testi:e16.imp.buca.scavalchi.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e16.imp.buca.scavalchi.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e16.imp.chiavi.lista_club.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_ospiti",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
             "risposta": "testi:e16.imp.chiavi.lista_club.r"
@@ -104,12 +99,7 @@
             "id": "col_club",
             "testo": "testi:e16.imp.chiavi.col_club",
             "costo": "testi:e16.imp.chiavi.col_club.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e16.imp.chiavi.col_club.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_cinderwick",
         "opzioni": [
           {
-            "id": "steward_rampe",
-            "testo": "testi:e16.imp.nebbia.steward_rampe",
-            "costo": "testi:e16.imp.nebbia.steward_rampe.c",
+            "id": "luci_curva",
+            "testo": "testi:e16.imp.nebbia.luci_curva",
+            "costo": "testi:e16.imp.nebbia.luci_curva.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_cinderwick",
                 "valore": -2
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e16.imp.nebbia.steward_rampe.r"
+            "risposta": "testi:e16.imp.nebbia.luci_curva.r"
           },
           {
             "id": "posti_bassi",
@@ -161,12 +151,7 @@
             "id": "aspetta_nebbia",
             "testo": "testi:e16.imp.nebbia.aspetta_nebbia",
             "costo": "testi:e16.imp.nebbia.aspetta_nebbia.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e16.imp.nebbia.aspetta_nebbia.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "aspetta_autista",
             "testo": "testi:e16.imp.portiera.aspetta_autista",
             "costo": "testi:e16.imp.portiera.aspetta_autista.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e16.imp.portiera.aspetta_autista.r"
           }
         ]

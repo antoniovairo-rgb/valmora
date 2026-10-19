@@ -12,20 +12,20 @@
         "settore": "stazione",
         "opzioni": [
           {
-            "id": "guida_discesa",
-            "testo": "testi:e11.imp.scale_mobili.guida_discesa",
-            "costo": "testi:e11.imp.scale_mobili.guida_discesa.c",
+            "id": "annuncio_scale",
+            "testo": "testi:e11.imp.scale_mobili.annuncio_scale",
+            "costo": "testi:e11.imp.scale_mobili.annuncio_scale.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "stazione",
+                "valore": -2
               },
               {
-                "pressione": "stazione",
-                "valore": -4
+                "tensione": "viale_stazione",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e11.imp.scale_mobili.guida_discesa.r"
+            "risposta": "testi:e11.imp.scale_mobili.annuncio_scale.r"
           },
           {
             "id": "uscita_viale",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "viale_stazione",
@@ -47,12 +47,7 @@
             "id": "lascia_ferrovie",
             "testo": "testi:e11.imp.scale_mobili.lascia_ferrovie",
             "costo": "testi:e11.imp.scale_mobili.lascia_ferrovie.c",
-            "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e11.imp.scale_mobili.lascia_ferrovie.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "quartiere",
         "opzioni": [
           {
-            "id": "trova_proprietario",
-            "testo": "testi:e11.imp.doppia_fila.trova_proprietario",
-            "costo": "testi:e11.imp.doppia_fila.trova_proprietario.c",
+            "id": "citofoni",
+            "testo": "testi:e11.imp.doppia_fila.citofoni",
+            "costo": "testi:e11.imp.doppia_fila.citofoni.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "quartiere",
+                "valore": -2
               },
               {
-                "pressione": "quartiere",
-                "valore": -4
+                "tensione": "strada_cinderwick",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e11.imp.doppia_fila.trova_proprietario.r"
+            "risposta": "testi:e11.imp.doppia_fila.citofoni.r"
           },
           {
             "id": "giro_kiln",
@@ -91,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "quartiere",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "strada_cinderwick",
@@ -104,12 +99,7 @@
             "id": "aspetta_carro",
             "testo": "testi:e11.imp.doppia_fila.aspetta_carro",
             "costo": "testi:e11.imp.doppia_fila.aspetta_carro.c",
-            "effetti": [
-              {
-                "pressione": "quartiere",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e11.imp.doppia_fila.aspetta_carro.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "piazza_fonderie",
         "opzioni": [
           {
-            "id": "squadra_portici",
-            "testo": "testi:e11.imp.acquazzone.squadra_portici",
-            "costo": "testi:e11.imp.acquazzone.squadra_portici.c",
+            "id": "tutti_a_casa",
+            "testo": "testi:e11.imp.acquazzone.tutti_a_casa",
+            "costo": "testi:e11.imp.acquazzone.tutti_a_casa.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "piazza_fonderie",
+                "valore": -2
               },
               {
-                "pressione": "piazza_fonderie",
-                "valore": -4
+                "tensione": "quartiere",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e11.imp.acquazzone.squadra_portici.r"
+            "risposta": "testi:e11.imp.acquazzone.tutti_a_casa.r"
           },
           {
             "id": "verso_quartiere",
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "piazza_fonderie",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "quartiere",
@@ -161,12 +151,7 @@
             "id": "lascia_piovere",
             "testo": "testi:e11.imp.acquazzone.lascia_piovere",
             "costo": "testi:e11.imp.acquazzone.lascia_piovere.c",
-            "effetti": [
-              {
-                "pressione": "piazza_fonderie",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e11.imp.acquazzone.lascia_piovere.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -4
+                "valore": -2
               },
               {
                 "tensione": "quartiere",
@@ -205,7 +190,7 @@
             "effetti": [
               {
                 "pressione": "viale_stazione",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "quartiere",
@@ -218,12 +203,7 @@
             "id": "aspetta_meccanico",
             "testo": "testi:e11.imp.spazzatrice.aspetta_meccanico",
             "costo": "testi:e11.imp.spazzatrice.aspetta_meccanico.c",
-            "effetti": [
-              {
-                "pressione": "viale_stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e11.imp.spazzatrice.aspetta_meccanico.r"
           }
         ]

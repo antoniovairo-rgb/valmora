@@ -12,20 +12,20 @@
         "settore": "stazione",
         "opzioni": [
           {
-            "id": "cartello_mano",
-            "testo": "testi:e15.imp.tabellone.cartello_mano",
-            "costo": "testi:e15.imp.tabellone.cartello_mano.c",
+            "id": "correggi_annuncio",
+            "testo": "testi:e15.imp.tabellone.correggi_annuncio",
+            "costo": "testi:e15.imp.tabellone.correggi_annuncio.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "stazione",
                 "valore": -2
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e15.imp.tabellone.cartello_mano.r"
+            "risposta": "testi:e15.imp.tabellone.correggi_annuncio.r"
           },
           {
             "id": "attesa_viale",
@@ -47,12 +47,7 @@
             "id": "lascia_tabellone",
             "testo": "testi:e15.imp.tabellone.lascia_tabellone",
             "costo": "testi:e15.imp.tabellone.lascia_tabellone.c",
-            "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e15.imp.tabellone.lascia_tabellone.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "viale_stazione",
         "opzioni": [
           {
-            "id": "guida_manovra",
-            "testo": "testi:e15.imp.autobus.guida_manovra",
-            "costo": "testi:e15.imp.autobus.guida_manovra.c",
+            "id": "guida_tu",
+            "testo": "testi:e15.imp.autobus.guida_tu",
+            "costo": "testi:e15.imp.autobus.guida_tu.c",
             "effetti": [
-              {
-                "riserva": "squadre",
-                "valore": -1
-              },
               {
                 "pressione": "viale_stazione",
                 "valore": -2
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e15.imp.autobus.guida_manovra.r"
+            "risposta": "testi:e15.imp.autobus.guida_tu.r"
           },
           {
             "id": "attesa_stazione",
@@ -104,12 +99,7 @@
             "id": "giro_isola",
             "testo": "testi:e15.imp.autobus.giro_isola",
             "costo": "testi:e15.imp.autobus.giro_isola.c",
-            "effetti": [
-              {
-                "pressione": "viale_stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e15.imp.autobus.giro_isola.r"
           }
         ]
@@ -131,12 +121,12 @@
             "costo": "testi:e15.imp.balaustra.nastro_fila.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "settore_gemellati",
                 "valore": -2
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
               }
             ],
             "risposta": "testi:e15.imp.balaustra.nastro_fila.r"
@@ -158,16 +148,11 @@
             "risposta": "testi:e15.imp.balaustra.in_curva_kiln.r"
           },
           {
-            "id": "solo_annuncio",
-            "testo": "testi:e15.imp.balaustra.solo_annuncio",
-            "costo": "testi:e15.imp.balaustra.solo_annuncio.c",
-            "effetti": [
-              {
-                "pressione": "settore_gemellati",
-                "valore": 1
-              }
-            ],
-            "risposta": "testi:e15.imp.balaustra.solo_annuncio.r"
+            "id": "lascia_gemellati",
+            "testo": "testi:e15.imp.balaustra.lascia_gemellati",
+            "costo": "testi:e15.imp.balaustra.lascia_gemellati.c",
+            "effetti": [],
+            "risposta": "testi:e15.imp.balaustra.lascia_gemellati.r"
           }
         ]
       }
@@ -218,12 +203,7 @@
             "id": "si_stringano",
             "testo": "testi:e15.imp.vagone.si_stringano",
             "costo": "testi:e15.imp.vagone.si_stringano.c",
-            "effetti": [
-              {
-                "pressione": "stazione",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e15.imp.vagone.si_stringano.r"
           }
         ]

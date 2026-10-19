@@ -12,20 +12,20 @@
         "settore": "tornelli",
         "opzioni": [
           {
-            "id": "controllo_vista",
-            "testo": "testi:e08.imp.lettore.controllo_vista",
-            "costo": "testi:e08.imp.lettore.controllo_vista.c",
+            "id": "passa_a_vista",
+            "testo": "testi:e08.imp.lettore.passa_a_vista",
+            "costo": "testi:e08.imp.lettore.passa_a_vista.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "tornelli",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e08.imp.lettore.controllo_vista.r"
+            "risposta": "testi:e08.imp.lettore.passa_a_vista.r"
           },
           {
             "id": "varco_piazzale",
@@ -47,12 +47,7 @@
             "id": "riavvia",
             "testo": "testi:e08.imp.lettore.riavvia",
             "costo": "testi:e08.imp.lettore.riavvia.c",
-            "effetti": [
-              {
-                "pressione": "tornelli",
-                "valore": 2
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e08.imp.lettore.riavvia.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "curva_ospiti",
         "opzioni": [
           {
-            "id": "prendi_chiave",
-            "testo": "testi:e08.imp.bagni.prendi_chiave",
-            "costo": "testi:e08.imp.bagni.prendi_chiave.c",
+            "id": "chiama_custode",
+            "testo": "testi:e08.imp.bagni.chiama_custode",
+            "costo": "testi:e08.imp.bagni.chiama_custode.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_ospiti",
                 "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e08.imp.bagni.prendi_chiave.r"
+            "risposta": "testi:e08.imp.bagni.chiama_custode.r"
           },
           {
             "id": "bagni_piazzale",
@@ -104,12 +99,7 @@
             "id": "aspetta_custode",
             "testo": "testi:e08.imp.bagni.aspetta_custode",
             "costo": "testi:e08.imp.bagni.aspetta_custode.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e08.imp.bagni.aspetta_custode.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_cinderwick",
         "opzioni": [
           {
-            "id": "teli_scale",
-            "testo": "testi:e08.imp.grandine.teli_scale",
-            "costo": "testi:e08.imp.grandine.teli_scale.c",
+            "id": "fermi_in_curva",
+            "testo": "testi:e08.imp.grandine.fermi_in_curva",
+            "costo": "testi:e08.imp.grandine.fermi_in_curva.c",
             "effetti": [
-              {
-                "riserva": "steward",
-                "valore": -1
-              },
               {
                 "pressione": "curva_cinderwick",
                 "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e08.imp.grandine.teli_scale.r"
+            "risposta": "testi:e08.imp.grandine.fermi_in_curva.r"
           },
           {
             "id": "riparo_atrio",
@@ -161,12 +151,7 @@
             "id": "aspetta_passi",
             "testo": "testi:e08.imp.grandine.aspetta_passi",
             "costo": "testi:e08.imp.grandine.aspetta_passi.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e08.imp.grandine.aspetta_passi.r"
           }
         ]
@@ -218,12 +203,7 @@
             "id": "carro_attrezzi",
             "testo": "testi:e08.imp.navetta.carro_attrezzi",
             "costo": "testi:e08.imp.navetta.carro_attrezzi.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e08.imp.navetta.carro_attrezzi.r"
           }
         ]

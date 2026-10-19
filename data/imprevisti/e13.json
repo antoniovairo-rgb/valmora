@@ -12,20 +12,20 @@
         "settore": "viale_concerto",
         "opzioni": [
           {
-            "id": "sgombra_sedie",
-            "testo": "testi:e13.imp.sedie.sgombra_sedie",
-            "costo": "testi:e13.imp.sedie.sgombra_sedie.c",
+            "id": "prendi_sedia",
+            "testo": "testi:e13.imp.sedie.prendi_sedia",
+            "costo": "testi:e13.imp.sedie.prendi_sedia.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
+                "pressione": "viale_concerto",
+                "valore": -2
               },
               {
-                "pressione": "viale_concerto",
-                "valore": -4
+                "tensione": "parcheggi",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e13.imp.sedie.sgombra_sedie.r"
+            "risposta": "testi:e13.imp.sedie.prendi_sedia.r"
           },
           {
             "id": "auto_parcheggi",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "viale_concerto",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "parcheggi",
@@ -47,12 +47,7 @@
             "id": "lascia_organizzatori",
             "testo": "testi:e13.imp.sedie.lascia_organizzatori",
             "costo": "testi:e13.imp.sedie.lascia_organizzatori.c",
-            "effetti": [
-              {
-                "pressione": "viale_concerto",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e13.imp.sedie.lascia_organizzatori.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "piazzale",
         "opzioni": [
           {
-            "id": "chiudi_valvola",
-            "testo": "testi:e13.imp.tubo.chiudi_valvola",
-            "costo": "testi:e13.imp.tubo.chiudi_valvola.c",
+            "id": "chiama_acquedotto",
+            "testo": "testi:e13.imp.tubo.chiama_acquedotto",
+            "costo": "testi:e13.imp.tubo.chiama_acquedotto.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "piazzale",
+                "valore": -2
               },
               {
-                "pressione": "piazzale",
-                "valore": -4
+                "tensione": "piazza_concerto",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e13.imp.tubo.chiudi_valvola.r"
+            "risposta": "testi:e13.imp.tubo.chiama_acquedotto.r"
           },
           {
             "id": "verso_piazza",
@@ -91,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazza_concerto",
@@ -104,12 +99,7 @@
             "id": "lasciali_giocare",
             "testo": "testi:e13.imp.tubo.lasciali_giocare",
             "costo": "testi:e13.imp.tubo.lasciali_giocare.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e13.imp.tubo.lasciali_giocare.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_cinderwick",
         "opzioni": [
           {
-            "id": "chiudi_fila",
-            "testo": "testi:e13.imp.vespe.chiudi_fila",
-            "costo": "testi:e13.imp.vespe.chiudi_fila.c",
+            "id": "spray_custode",
+            "testo": "testi:e13.imp.vespe.spray_custode",
+            "costo": "testi:e13.imp.vespe.spray_custode.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_cinderwick",
+                "valore": -2
               },
               {
-                "pressione": "curva_cinderwick",
-                "valore": -4
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e13.imp.vespe.chiudi_fila.r"
+            "risposta": "testi:e13.imp.vespe.spray_custode.r"
           },
           {
             "id": "fila_piazzale",
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "curva_cinderwick",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -161,12 +151,7 @@
             "id": "si_arrangino",
             "testo": "testi:e13.imp.vespe.si_arrangino",
             "costo": "testi:e13.imp.vespe.si_arrangino.c",
-            "effetti": [
-              {
-                "pressione": "curva_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e13.imp.vespe.si_arrangino.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -4
+                "valore": -2
               },
               {
                 "tensione": "viale_concerto",
@@ -205,7 +190,7 @@
             "effetti": [
               {
                 "pressione": "parcheggi",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "viale_concerto",
@@ -218,12 +203,7 @@
             "id": "lascia_suonare",
             "testo": "testi:e13.imp.allarmi.lascia_suonare",
             "costo": "testi:e13.imp.allarmi.lascia_suonare.c",
-            "effetti": [
-              {
-                "pressione": "parcheggi",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e13.imp.allarmi.lascia_suonare.r"
           }
         ]

@@ -12,20 +12,20 @@
         "settore": "biglietteria",
         "opzioni": [
           {
-            "id": "ordina_fila",
-            "testo": "testi:e14.imp.corrente.ordina_fila",
-            "costo": "testi:e14.imp.corrente.ordina_fila.c",
+            "id": "soldi_contati",
+            "testo": "testi:e14.imp.corrente.soldi_contati",
+            "costo": "testi:e14.imp.corrente.soldi_contati.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "biglietteria",
+                "valore": -2
               },
               {
-                "pressione": "biglietteria",
-                "valore": -4
+                "tensione": "tornelli",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e14.imp.corrente.ordina_fila.r"
+            "risposta": "testi:e14.imp.corrente.soldi_contati.r"
           },
           {
             "id": "ai_tornelli",
@@ -34,7 +34,7 @@
             "effetti": [
               {
                 "pressione": "biglietteria",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "tornelli",
@@ -47,12 +47,7 @@
             "id": "aspetta_corrente",
             "testo": "testi:e14.imp.corrente.aspetta_corrente",
             "costo": "testi:e14.imp.corrente.aspetta_corrente.c",
-            "effetti": [
-              {
-                "pressione": "biglietteria",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e14.imp.corrente.aspetta_corrente.r"
           }
         ]
@@ -69,20 +64,20 @@
         "settore": "tornelli",
         "opzioni": [
           {
-            "id": "chiudi_ombrelli",
-            "testo": "testi:e14.imp.ombrelli.chiudi_ombrelli",
-            "costo": "testi:e14.imp.ombrelli.chiudi_ombrelli.c",
+            "id": "annuncio_ombrelli",
+            "testo": "testi:e14.imp.ombrelli.annuncio_ombrelli",
+            "costo": "testi:e14.imp.ombrelli.annuncio_ombrelli.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "tornelli",
+                "valore": -2
               },
               {
-                "pressione": "tornelli",
-                "valore": -4
+                "tensione": "piazzale",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e14.imp.ombrelli.chiudi_ombrelli.r"
+            "risposta": "testi:e14.imp.ombrelli.annuncio_ombrelli.r"
           },
           {
             "id": "sotto_tettoia",
@@ -91,7 +86,7 @@
             "effetti": [
               {
                 "pressione": "tornelli",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "piazzale",
@@ -104,12 +99,7 @@
             "id": "lascia_pioggia",
             "testo": "testi:e14.imp.ombrelli.lascia_pioggia",
             "costo": "testi:e14.imp.ombrelli.lascia_pioggia.c",
-            "effetti": [
-              {
-                "pressione": "tornelli",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e14.imp.ombrelli.lascia_pioggia.r"
           }
         ]
@@ -126,20 +116,20 @@
         "settore": "curva_larkspire",
         "opzioni": [
           {
-            "id": "sistema_fila",
-            "testo": "testi:e14.imp.seggiolini.sistema_fila",
-            "costo": "testi:e14.imp.seggiolini.sistema_fila.c",
+            "id": "corrimano",
+            "testo": "testi:e14.imp.seggiolini.corrimano",
+            "costo": "testi:e14.imp.seggiolini.corrimano.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
+                "pressione": "curva_larkspire",
+                "valore": -2
               },
               {
-                "pressione": "curva_larkspire",
-                "valore": -4
+                "tensione": "curva_ospiti",
+                "valore": 1
               }
             ],
-            "risposta": "testi:e14.imp.seggiolini.sistema_fila.r"
+            "risposta": "testi:e14.imp.seggiolini.corrimano.r"
           },
           {
             "id": "posti_ospiti",
@@ -148,7 +138,7 @@
             "effetti": [
               {
                 "pressione": "curva_larkspire",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "curva_ospiti",
@@ -161,12 +151,7 @@
             "id": "si_arrangino",
             "testo": "testi:e14.imp.seggiolini.si_arrangino",
             "costo": "testi:e14.imp.seggiolini.si_arrangino.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e14.imp.seggiolini.si_arrangino.r"
           }
         ]
@@ -189,7 +174,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -4
+                "valore": -2
               },
               {
                 "tensione": "biglietteria",
@@ -205,7 +190,7 @@
             "effetti": [
               {
                 "pressione": "piazzale",
-                "valore": -2
+                "valore": -1
               },
               {
                 "pressione": "biglietteria",
@@ -218,12 +203,7 @@
             "id": "aspetta_gommista",
             "testo": "testi:e14.imp.gomma.aspetta_gommista",
             "costo": "testi:e14.imp.gomma.aspetta_gommista.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e14.imp.gomma.aspetta_gommista.r"
           }
         ]
