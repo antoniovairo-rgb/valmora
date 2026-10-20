@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { genereAttuale, t } from '../dati.ts';
 import { VignettaGuida } from '../vignette-guida.tsx';
+import { VignettaHome } from '../vignette-home.tsx';
+import { spento } from '../../interruttori.ts';
 import { Icona } from '../icone.tsx';
 
 const PASSI = 6;
@@ -13,7 +15,11 @@ export function Guida(p: { chiudi: () => void; introduttiva?: boolean }) {
   const [n, setN] = useState(1);
   return (
     <div className="guida" data-guida={n}>
-      <VignettaGuida n={n} genere={genereAttuale() === 'f' ? 'f' : 'm'} />
+      {/* D-210 (PO-140 fase 2): al primo passo la vignetta della home in testa alla guida. Rosso C210G01: la vignetta del passo */}
+      {n === 1 && !spento('C210G01') ? <figure className="home-vignetta guida-testata" data-guida-testata>
+        <VignettaHome genere={genereAttuale() === 'f' ? 'f' : 'm'} didascalia={t('guida.titolo')} fissa />
+        <figcaption className="home-didascalia">{t('guida.titolo')}</figcaption>
+      </figure> : <VignettaGuida n={n} genere={genereAttuale() === 'f' ? 'f' : 'm'} />}
       <div className="scheda">
         <span className="etichetta">{t('guida.titolo')} · {n}/{PASSI}</span>
         <h2>{t(`guida.${n}.t`)}</h2>

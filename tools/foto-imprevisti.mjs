@@ -1,6 +1,8 @@
 // PO-022 (D-190, D-194): foto di tre imprevisti (e01 ondata 1, e17 ondata 4 «trappola», e30 ondata 2) a 360, 375 e 412 px, e il braccio
 // rosso C190I01 (l'imprevisto come una chiamata qualsiasi). Stato: bot attento fino all'imprevisto. Controlli: l'avviso
 // «Imprevisto» c'è e si vede, nessun conto alla rovescia, nessuno scorrimento orizzontale. Timbro e spicchio seguono D-129.
+// D-206: la riga «Imprevisto» e la vignetta non ci sono più: si controlla il fumetto dell'imprevisto. PRIMA=1: come prima di D-206
+// (rosso C206I01), per le foto «prima».
 // Uso: npx vite build && node tools/foto-imprevisti.mjs [cartella]
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -30,20 +32,20 @@ function fino(ep, n, id) {
 }
 const CASI = [['e01', 1, 'imp_ambulanza'], ['e17', 4, 'imp_lampioni'], ['e30', 2, 'imp_mercatino']];
 const srv = await servi('dist'), url = `http://127.0.0.1:${srv.address().port}/`;
-const browser = await chromium.launch({ executablePath: existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined });
+const browser = await chromium.launch({ executablePath: process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
 const esiti = []; let rossi = 0;
 try {
   for (const [ep, n, id] of CASI) for (const w of [360, 375, 412]) for (const rosso of [false, true]) {
     if (rosso && w !== 360) continue;
     const p = await browser.newPage({ viewport: { width: w, height: 800 }, reducedMotion: 'reduce' });
-    await p.addInitScript((r) => { globalThis.__VALMORA_SECONDO_MS = 1; if (r) globalThis.__NO_C190I01 = true; }, rosso);
+    await p.addInitScript(([r, prima]) => { globalThis.__VALMORA_SECONDO_MS = 1; if (r) globalThis.__NO_C190I01 = true; if (prima) globalThis.__NO_C206I01 = true; }, [rosso, !!process.env.PRIMA]);
     await p.goto(url); await p.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, fino(ep, n, id)]); await p.reload();
     await p.getByRole('button', { name: 'Riprendi' }).click();
     await p.waitForSelector(`[data-messaggio="chiamata-${id}"]`, { timeout: 15000 }); await p.waitForTimeout(600);
     // l'avviso in cima alla chiamata: la pagina lo porta in vista come fa con la chiamata
-    await p.evaluate(() => document.querySelector('[data-imprevisto]')?.scrollIntoView({ block: 'start' }));
+    await p.evaluate(() => document.querySelector('[data-imprevisto], .messaggio.imprevisto')?.scrollIntoView({ block: 'start' }));
     await p.waitForTimeout(200);
-    const x = await p.evaluate(() => { const a = document.querySelector('[data-imprevisto]'); const r = a?.getBoundingClientRect();
+    const x = await p.evaluate(() => { const a = document.querySelector('[data-imprevisto]') ?? document.querySelector('.messaggio.imprevisto'); const r = a?.getBoundingClientRect();
       return { avviso: a?.textContent ?? null, visibile: !!r && r.top >= 0 && r.bottom <= innerHeight, timbro: document.querySelector('.timbro')?.textContent ?? null,
         conto: !!document.querySelector('[data-conto], [role="timer"]'), orizzontale: document.documentElement.scrollWidth > innerWidth }; });
     await p.screenshot({ path: join(cartella, `${ep}-${id}-${w}${rosso ? '-rosso' : ''}.png`) });

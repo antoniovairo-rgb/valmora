@@ -46,6 +46,8 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   const opzioni = useRef<HTMLDivElement>(null);
   const urgenteQui = urgente(p.m, p.c, p.ic.variabili); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
   const imprevistoQui = !!p.c.imprevisto && !spento('C190I01'); // PO-022 (D-190)
+  // D-206 (C45-05, scelta del PO): nell'imprevisto niente vignetta e niente riga «Imprevisto», opzioni strette. Rosso C206I01
+  const asciutto = imprevistoQui && !spento('C206I01');
   // C28-02: col mouse, alla nuova chiamata l'opzione sotto il puntatore fermo appariva già accesa (106/156): l'evidenza
   // al passaggio vale solo dopo che il puntatore si è mosso. Rosso C87H01: subito, come prima.
   const [fermo, setFermo] = useState(true);
@@ -92,7 +94,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   return (
     <>
       {/* PO-022 (D-190): l'imprevisto interrompe la sequenza; nessun conto alla rovescia. Rosso C190I01: chiamata come le altre */}
-      {imprevistoQui && <p className="avviso-imprevisto" data-imprevisto={p.c.id} role="status">Imprevisto: interrompe le chiamate</p>}
+      {imprevistoQui && !asciutto && <p className="avviso-imprevisto" data-imprevisto={p.c.id} role="status">Imprevisto: interrompe le chiamate</p>}
       <Messaggio key={p.c.id} classe={`radio ultimo${imprevistoQui ? ' imprevisto' : ''}`} dati={`chiamata-${p.c.id}`}>
         {/* C22-09: l'avatar segue la stessa regola dell'icona accanto alla vignetta (prima: 222/498 chiamate con l'icona generica). Rosso C59A01 */}
         <Mittente icona={(!spento('C59A01') && iconaChi(p.c.fonte)) || iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro={urgenteQui ? 'Urgente!' : undefined} urgenza={urgenteQui && !spento('C51O01')} />
@@ -100,7 +102,7 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
         {serve && !spento('C42R01') && indicatore}
         {/* PO-089 (scelta A del PO): vignetta piccola a sinistra del testo, dentro il fumetto */}
         <div className="chiamata-corpo">
-          <VignettaChiamata m={p.m} c={p.c} variabili={p.ic.variabili} chiFuori />
+          {!asciutto && <VignettaChiamata m={p.m} c={p.c} variabili={p.ic.variabili} chiFuori />}
           <div>
             <p className="testo-radio">{t(p.c.testo)}</p>
             {p.c.commento && <p className="vice-a-margine"><span className="chi-vice">Il vice — </span>{t(p.c.commento)}</p>}
