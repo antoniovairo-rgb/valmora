@@ -327,18 +327,18 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
 const GRUPPI_EVENTO = { folla: 'gente', raduno: 'gente', assembramento: 'gente', movimento: 'gente', arrivo: 'gente', deflusso: 'gente', fuga: 'gente', cerimonia: 'gente', minaccia: 'gente', lite: 'gente', faida: 'gente', curva: 'tifo', festa: 'tifo', corteo: 'corteo', protesta: 'corteo', picchetto: 'corteo', presidio: 'corteo', furgone: 'veicoli', sosta: 'veicoli', traffico: 'veicoli', retata: 'veicoli', rissa: 'scontro', biglietti: 'biglietti', incendio: 'fumo' };
 export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
   const visto = await pagina.getAttribute('.chiamata-corpo svg.vignetta', 'data-evento').catch(() => null);
-  if (visto === null) return;
+  if (visto === null && !c.imprevisto) return; // D-206: l'imprevisto non ha vignetta, ma spicchio e «Urgente!» (D-129) sì
   // C21-09: un evento con «se» conta solo se è vero con le variabili della partita (dal salvataggio)
   const variabili = (await statoSalvato(pagina))?.variabili ?? {};
   const gruppi = new Set((ondata.eventi ?? []).filter((e) => c.settore && e.settore === c.settore && (!e.se || valuta(e.se, variabili))).map((e) => GRUPPI_EVENTO[e.tipo]));
   const voluto = ['scontro', 'fumo', 'corteo', 'tifo', 'veicoli', 'biglietti', 'gente'].find((g) => gruppi.has(g)) ?? 'nessuno';
-  atteso(`${dove}: la vignetta mostra «${visto}», i dati dicono «${voluto}» (D-112 punto 5)`, visto === voluto);
+  if (visto !== null) atteso(`${dove}: la vignetta mostra «${visto}», i dati dicono «${voluto}» (D-112 punto 5)`, visto === voluto); else atteso(`${dove}: l'imprevisto «${c.id}» mostra una vignetta (D-206)`, !(await pagina.locator('.chiamata-corpo svg').count()));
   // D-129 (era D-126 c): spicchio e «Urgente!» solo se sul settore un evento in corso nell'ondata ha pressione ≥ 4.
   // Rossi VALMORA_ROSSI=C82U01 (D-126 c: un evento qualsiasi), C64U01 (urgenti tutte) e C51O01 (niente spicchio).
   const [spicchio, timbro] = await pagina.evaluate(() => { const m = document.querySelector('[data-messaggio^="chiamata-"]'); return [!!m?.querySelector('[data-urgenza]'), m?.querySelector('.timbro')?.textContent ?? '']; });
   const urge = (ondata.eventi ?? []).some((e) => c.settore && e.settore === c.settore && (!e.se || valuta(e.se, variabili)) && e.pressione >= 4);
   atteso(`${dove}: ${urge ? 'urgente' : 'non urgente'} per i dati, ma spicchio ${spicchio ? 'sì' : 'no'} e timbro «${timbro}» (D-129)`, spicchio === urge && (timbro === 'Urgente!') === urge); // D-129
-  // PO-103: le persone sono pallini piatti, niente omini con testa e braccia; i gruppi con gente ne mostrano.
+  if (visto === null) return; // D-206: senza vignetta (imprevisto) non ci sono figure da controllare. PO-103: le persone sono pallini piatti, niente omini con testa e braccia; i gruppi con gente ne mostrano.
   // Rosso VALMORA_ROSSI=C48P01: gli omini di prima.
   const [omini, pallini] = await pagina.evaluate(() => ['omino', 'pallino'].map((f) => document.querySelectorAll(`.chiamata-corpo svg.vignetta [data-figura="${f}"]`).length));
   const conGente = ['gente', 'tifo', 'corteo', 'biglietti'].includes(voluto);

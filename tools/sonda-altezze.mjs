@@ -91,7 +91,9 @@ const versioneSopra = (p) => p.evaluate(() => { const ve = document.querySelecto
   ve.style.pointerEvents = 'auto'; // la versione non riceve tocchi: per elementFromPoint serve per un attimo
   const sopra = !!document.elementFromPoint(x, y)?.closest('[data-versione-angolo]'); ve.style.removeProperty('pointer-events'); return sopra ? 1 : 0; });
 
-export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi = [], cartella = '' }) {
+// D-207: parti = quali misure; i bracci rossi girano solo la parte che deve vederli rossi (prima 40 min di bracci)
+export const PARTI = ['e01', 'citta36', 'chiamate', 'rapporti'];
+export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi = [], cartella = '', parti = PARTI }) {
   const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), e01 = dati['missioni/e01.json'];
   const srv = await servi(build), url = `http://127.0.0.1:${srv.address().port}/`;
   const percorso = process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
@@ -99,6 +101,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
   try {
     for (const vp of vps) {
       const [w, h] = vp.split('x').map(Number);
+      if (parti.includes('e01')) { // la partita e01 intera
       const p = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
       if (rossi.length) await p.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
       await p.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); // come foto.mjs (PO-121): niente attese reali; senza, in CI «bloccato su chiamata» a 412
@@ -130,7 +133,8 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         if (!fatto) { await p.waitForTimeout(400); if (++fermi > 20) { errori.push(`${vp}: bloccato su ${q}`); break; } } else fermi = 0;
       }
       await p.close();
-      if (h === 760) { // C44-09 (D-201): città con tutti i 36 episodi conclusi («Rileggi l'epilogo» in più). Rosso C201C01.
+      }
+      if (h === 760 && parti.includes('citta36')) { // C44-09 (D-201): città con tutti i 36 episodi conclusi («Rileggi l'epilogo» in più). Rosso C201C01.
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
         await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), tutti(dati, dich)); await q.reload();
@@ -138,7 +142,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         ris.push({ vp, nome: 'citta36', ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-citta36.png`), fullPage: true });
         await q.close();
       }
-      if (vp === '360x760') { const coda = chiamateCostruite(dati, dich); // D-206: 4 pagine insieme
+      if (vp === '360x760' && parti.includes('chiamate')) { const coda = chiamateCostruite(dati, dich); // D-206: 4 pagine insieme
         await Promise.all(Array.from({ length: 4 }, async () => { const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
           if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
           await q.goto(url);
@@ -147,7 +151,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
             chiamate.push({ vp, ep: c.ep, id: c.id, imprevisto: c.imprevisto, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) });
             if (cartella && c.imprevisto) await q.screenshot({ path: join(cartella, `${vp}-chiamata-${c.ep}-${c.id}.png`), fullPage: true }); }
           await q.close(); })); }
-      if (vp === '360x760') for (const c of rapportiCostruiti(dati, dich)) { // C45-06 (D-203)
+      if (vp === '360x760' && parti.includes('rapporti')) for (const c of rapportiCostruiti(dati, dich)) { // C45-06 (D-203)
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
         await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), c.sal); await q.reload();
