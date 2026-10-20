@@ -42,7 +42,7 @@ const PASSI = {
 const CATENE = {
   governo: ['documenti', 'backlog', 'segreti', 'versione', 'modello', 'bracci-rossi', 'governo.html'],
   logica: ['tipi', 'confini', 'schema', 'test', 'bot', 'storia', 'salvataggi-reali', 'bracci-rossi-logica'],
-  grafica: ['token', 'build', 'email', 'foto', 'offline', 'altezze', 'bracci-rossi-grafica'],
+  grafica: ['token', 'build', 'email', 'foto', 'schieramenti', 'offline', 'altezze', 'bracci-rossi-grafica'],
 };
 CATENE.completa = [...CATENE.governo, ...CATENE.logica, ...CATENE.grafica];
 
@@ -56,16 +56,19 @@ if (!CATENE[nome]) {
 if (CATENE[nome].some((p) => !(p in PASSI))) Object.assign(PASSI, (await import('./passi-logica.mjs')).PASSI_LOGICA);
 if (CATENE[nome].some((p) => !(p in PASSI))) Object.assign(PASSI, (await import('./passi-grafica.mjs')).PASSI_GRAFICA);
 
+// D-202: in CI la grafica a 360 si divide su più job (VALMORA_PASSI, sottoinsieme dei passi): il giro lo dice, così non passa per completo.
+const scelti = process.env.VALMORA_PASSI ? process.env.VALMORA_PASSI.split(',') : null;
+if (scelti && scelti.some((p) => !CATENE[nome].includes(p))) { console.error(`VALMORA_PASSI: passi non della catena «${nome}»: ${scelti.filter((p) => !CATENE[nome].includes(p)).join(', ')}`); process.exit(2); }
 const commit = git('rev-parse --short HEAD');
 // I file scritti dalla catena stessa non rendono «sporca» la build.
 const PRODOTTI = ['STABILITA.json', 'docs/governo/governo.html'];
 // Niente trim qui: la prima colonna di --porcelain può essere uno spazio.
 const sporco = execSync('git status --porcelain', { encoding: 'utf8' }).split('\n').filter((r) => r && !PRODOTTI.includes(r.slice(3))).length > 0;
 // PO-128: in CI la grafica gira una larghezza per job (VALMORA_LARGHEZZE): il giro lo dice, così non passa per completo.
-const giro = { catena: nome, data: new Date().toISOString(), commit, modifiche_non_committate: sporco, ...(process.env.VALMORA_LARGHEZZE ? { larghezze: process.env.VALMORA_LARGHEZZE } : {}), passi: [] };
+const giro = { catena: nome, data: new Date().toISOString(), commit, modifiche_non_committate: sporco, ...(process.env.VALMORA_LARGHEZZE ? { larghezze: process.env.VALMORA_LARGHEZZE } : {}), ...(scelti ? { passi_scelti: scelti.join(',') } : {}), passi: [] };
 let rosso = false;
 
-for (const passo of CATENE[nome]) {
+for (const passo of CATENE[nome].filter((p) => !scelti || scelti.includes(p))) {
   let tentativi = 0;
   let problemi;
   // 2026-10-15: un passo «instabile» non lasciava traccia del tentativo fallito, quindi la causa non si poteva

@@ -47,16 +47,26 @@ jobs:
       - run: node tools/catena.mjs logica
   # PO-128: una larghezza per job, in parallelo. Stessa copertura (le larghezze sono giri indipendenti di tools/foto.mjs),
   # tempo del job circa un terzo: misura del 17/10, foto 3 larghezze = ~28 min per tentativo su un solo job.
+  # D-202: la 360 ha in più apriTutte, ripartenze e i bracci rossi (41 min su un job): si divide in tre job con
+  # VALMORA_PASSI (stessi passi, stessi controlli, ognuno su un runner). Il runner è limitato dalla CPU (Chrome disegna
+  # le mappe WebGL in software): più pagine sullo stesso job rendono poco, più job sì.
   grafica:
+    name: grafica (${{ matrix.larghezza }}${{ matrix.parte && format(' {0}', matrix.parte) || '' }})
     needs: cambi
     if: needs.cambi.outputs.gioco != 'false'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        larghezza: [360, 375, 412]
+        include:
+          - { larghezza: 360, parte: foto, passi: 'token,build,email,foto' }
+          - { larghezza: 360, parte: schieramenti, passi: 'build,schieramenti,offline,altezze' }
+          - { larghezza: 360, parte: bracci, passi: 'build,bracci-rossi-grafica' }
+          - { larghezza: 375 }
+          - { larghezza: 412 }
     env:
       VALMORA_LARGHEZZE: ${{ matrix.larghezza }}
+      VALMORA_PASSI: ${{ matrix.passi }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -69,7 +79,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: foto-${{ matrix.larghezza }}
+          name: foto-${{ matrix.larghezza }}${{ matrix.parte && format('-{0}', matrix.parte) || '' }}
           path: out/foto
   apk:
     needs: cambi
