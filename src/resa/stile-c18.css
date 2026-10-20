@@ -195,3 +195,12 @@ main:not(.rosso-c203r01):has(> .mappa[data-nascosta]) .scena[data-scena="rapport
 main:not(.rosso-c203r01):has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] > :is(.riposo, .tenue) { margin-block: var(--spazio-1); }
 main:not(.rosso-c203r01):has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] > .pulsante { margin-block: var(--spazio-2); }
 #app:has(main:not(.rosso-c203r01) > .mappa[data-nascosta]):has(.scena[data-scena="rapporto"]) { padding-bottom: var(--spazio-3); }
+/* D-206 (C45-05, scelta del PO): nella chiamata d'imprevisto opzioni più strette (con vignetta e riga «Imprevisto» tolte in
+   Ondata.tsx: mediana 466 → 308 px a 360×760 su 142 imprevisti). Rosso C206I01. */
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzioni { gap: var(--spazio-1); }
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzione { padding-block: var(--spazio-1); }
+/* D-207 (C45-05): in più, solo spaziature: effetti, testo delle opzioni e fumetto dell'imprevisto più stretti. Rosso C206I01. */
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .effetti-opzione { margin-top: var(--spazio-px); gap: var(--spazio-px); }
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzione { gap: var(--spazio-2); }
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzione-testo :is(small, .tenue) { line-height: var(--linea-stretta); }
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"] .messaggio.imprevisto { padding-block: var(--spazio-2); margin-block: var(--spazio-2); }

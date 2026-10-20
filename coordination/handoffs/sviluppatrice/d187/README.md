@@ -271,3 +271,25 @@ Peggiori in tutte le varianti: e06 `imp_corrente`, e13 `imp_sedie` (545 oggi). F
 Nota: oggi 545 px (e06, e13) supera di 1 px la soglia della chiamata a 360×760 (544), che il guardiano misura solo su e01; le
 chiamate normali di altri episodi arrivano a 664. D-114 accetta lo scorrimento della chiamata: segnalo, non tocco la soglia.
 A e B cambiano il prodotto (PO-089, D-190); C è solo spaziatura.
+
+## D-206 + D-207 (C45-05): chiamata d'imprevisto più corta — S-11, 20/10
+
+Base: ramo della principale fino a 701045f3 (merge 382bb11c). Scelta del PO A+B+C (D-206) più strette di solo stile (D-207,
+la principale; «Rispondi ↓» resta). Correzione dichiarata: avevo scritto che A+B+C portava la mediana «come le normali»: 308 contro 271, ritirata.
+- `Ondata.tsx`: nell'imprevisto niente vignetta nel fumetto e niente riga «Imprevisto: interrompe le chiamate» (rosso `C206I01`).
+- `stile-c18.css` (solo token, stesso rosso): opzioni con `--spazio-1` di padding e spazio, effetti a `--spazio-px`, testo
+  delle opzioni a `--linea-stretta`, fumetto dell'imprevisto a `--spazio-2`. Prove della sonda con 2 px: 346/291; coi token: 339/285.
+
+FATTO MISURATO, Chrome 156, 360×760, tutte le 594 chiamate (142 imprevisti) aperte da salvataggio sulla partita attenta:
+
+| | imprevisti max | imprevisti mediana | normali max / mediana |
+|---|---|---|---|
+| prima (rosso C206I01) | 545 (e06 imp_corrente, e13 imp_sedie) | 466 | 664 / 271 |
+| A+B+C | 384 | 308 | 664 / 271 |
+| A+B+C + D-207 (applicato) | 339 | 285 | 664 / 271 |
+
+Guardiano (`tools/sonda-altezze.mjs`, a 360×760): imprevisti ≤ 339 e mediana ≤ 285 (valori misurati, D-207), soglia storica
+544 invariata, normali ≤ 664 (massimo misurato, D-114). Verde sulle sei misure; col rosso C206I01: 5+ imprevisti oltre 339
+(e01 imp_tram 489 px). Braccio rosso C206I01 nella catena grafica.
+Foto: `c45/d206/prima` (rosso C206I01) e `c45/d206/dopo`, e01 imp_ambulanza, e17 imp_lampioni, e30 imp_mercatino a 360, 375, 412
+(`tools/foto-imprevisti.mjs`, adeguato: controlla il fumetto dell'imprevisto; PRIMA=1 per le foto di prima).

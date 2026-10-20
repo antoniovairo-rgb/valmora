@@ -53,6 +53,22 @@ export function rapportiCostruiti(dati, dich) {
   }
   return out;
 }
+// D-206 (C45-05): tutte le chiamate di tutti gli episodi, aperte da salvataggio sulla partita attenta (594, di cui 142
+// imprevisti, misura del 20/10). A 360×760 ogni imprevisto sta nella soglia della chiamata (544, D-114, non alzata) e, D-207,
+// sotto il massimo e la mediana misurati con D-207 (339 e 285 px; prima 545 e 466); le normali non oltre il massimo misurato.
+// Rosso C206I01. Mai alzarle per far passare una modifica.
+export const CHIAMATE_NORMALI_MAX = 664, IMPREVISTI_MAX = 339, IMPREVISTI_MEDIANA = 285;
+export function chiamateCostruite(dati, dich) {
+  const ms = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio), out = [];
+  let v = variabiliIniziali(dich.values());
+  for (const [i, m] of ms.entries()) { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich);
+    while (!M.missioneFinita(m, s)) { s = M.schiera(m, s, g.schiera(m, s)); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) {
+      out.push({ ep: m.id, id: c.id, imprevisto: !!c.imprevisto, sal: JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: v, missioni_concluse: ms.slice(0, i).map((x) => x.id), episodi: {}, genere: 'm', in_corso: s, rapporto_aperto: null }) });
+      s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); } s = M.chiudiOndata(m, s, dich); }
+    v = M.concludiMissione(m, s, dich).variabili; }
+  return out;
+}
+const mediana = (xs) => { const a = [...xs].sort((p, q) => p - q); return a.length ? a[a.length >> 1] : 0; };
 const piano = (m, v, dich) => { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich); const ond = [];
   while (!M.missioneFinita(m, s)) { const d = g.schiera(m, s); s = M.schiera(m, s, d); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); ond.push({ d }); s = M.chiudiOndata(m, s, dich); }
   return ond; };
@@ -79,7 +95,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
   const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), e01 = dati['missioni/e01.json'];
   const srv = await servi(build), url = `http://127.0.0.1:${srv.address().port}/`;
   const percorso = process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
-  const b = await chromium.launch({ executablePath: percorso }); const ris = [], errori = [], sopra = [];
+  const b = await chromium.launch({ executablePath: percorso }); const ris = [], errori = [], sopra = [], chiamate = [];
   try {
     for (const vp of vps) {
       const [w, h] = vp.split('x').map(Number);
@@ -122,6 +138,15 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         ris.push({ vp, nome: 'citta36', ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-citta36.png`), fullPage: true });
         await q.close();
       }
+      if (vp === '360x760') { const coda = chiamateCostruite(dati, dich); // D-206: 4 pagine insieme
+        await Promise.all(Array.from({ length: 4 }, async () => { const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
+          if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
+          await q.goto(url);
+          while (coda.length) { const c = coda.shift(); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), c.sal); await q.reload();
+            await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector(`[data-messaggio="chiamata-${c.id}"]`, { timeout: 8000 }).catch(() => errori.push(`${vp}: chiamata ${c.ep} ${c.id} non si apre`)); await lento(q);
+            chiamate.push({ vp, ep: c.ep, id: c.id, imprevisto: c.imprevisto, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) });
+            if (cartella && c.imprevisto) await q.screenshot({ path: join(cartella, `${vp}-chiamata-${c.ep}-${c.id}.png`), fullPage: true }); }
+          await q.close(); })); }
       if (vp === '360x760') for (const c of rapportiCostruiti(dati, dich)) { // C45-06 (D-203)
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
@@ -132,11 +157,11 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
       }
     }
   } finally { await b.close(); srv.close(); }
-  return { ris, errori, sopra };
+  return { ris, errori, sopra, chiamate };
 }
 
 /** Problemi: scorrimento oltre la soglia per schermata, errori di pagina, blocchi, versione sopra le lettere. */
-export function controllaAltezze({ ris, errori, sopra }) {
+export function controllaAltezze({ ris, errori, sopra, chiamate = [] }) {
   const max = {};
   for (const r of ris) if (!LIBERE.has(r.nome)) { const k = `${r.vp}|${r.nome}`; if (!max[k] || r.ecc > max[k].ecc) max[k] = r; }
   const male = Object.values(max).filter((r) => r.ecc > (SOGLIE[r.vp]?.[r.nome] ?? 0))
@@ -145,7 +170,12 @@ export function controllaAltezze({ ris, errori, sopra }) {
   // D-197 (opzione A): nella risposta la mappa è alta come nella chiamata prima (niente ridisegno fra le due). Rosso C197R01.
   const salti = [];
   for (const [k, r] of ris.entries()) if (r.nome === 'risposta') { const c = ris.slice(0, k).reverse().find((x) => x.vp === r.vp && x.nome === 'chiamata'); if (c && Math.abs(c.mappa - r.mappa) > 1) salti.push(`${r.vp} risposta: mappa ${r.mappa} px dopo ${c.mappa} px nella chiamata (D-197)`); }
-  return [...male, ...casa, ...salti.slice(0, 3), ...errori, ...sopra];
+  // D-206: chiamate costruite di tutti gli episodi
+  const imp = chiamate.filter((c) => c.imprevisto), norm = chiamate.filter((c) => !c.imprevisto), lim = SOGLIE['360x760'].chiamata;
+  const lunghe = [...imp.filter((c) => c.ecc > Math.min(lim, IMPREVISTI_MAX)).map((c) => `${c.vp} imprevisto ${c.ep} ${c.id}: la chiamata scorre di ${c.ecc} px (soglia ${Math.min(lim, IMPREVISTI_MAX)}, D-207)`),
+    ...norm.filter((c) => c.ecc > CHIAMATE_NORMALI_MAX).map((c) => `${c.vp} chiamata ${c.ep} ${c.id}: scorre di ${c.ecc} px (massimo misurato ${CHIAMATE_NORMALI_MAX}, D-114)`)];
+  if (imp.length && mediana(imp.map((c) => c.ecc)) > IMPREVISTI_MEDIANA) lunghe.push(`360x760: mediana degli imprevisti ${mediana(imp.map((c) => c.ecc))} px (soglia ${IMPREVISTI_MEDIANA}, D-207)`);
+  return [...male, ...casa, ...salti.slice(0, 3), ...lunghe.slice(0, 5), ...errori, ...sopra];
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -154,6 +184,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const max = {}; for (const r of g.ris) { const k = `${r.vp} ${r.nome}`; max[k] = Math.max(max[k] ?? -1, r.ecc); }
   for (const [k, v] of Object.entries(max)) console.log(`${k}: ${v}`);
   console.log(`nomi sopra i segni, massimo: ${Math.max(0, ...g.ris.map((r) => r.segni))} px²`);
+  for (const [k, xs] of [['imprevisti', g.chiamate.filter((c) => c.imprevisto)], ['normali', g.chiamate.filter((c) => !c.imprevisto)]]) if (xs.length) console.log(`chiamate ${k}: ${xs.length}, massimo ${Math.max(...xs.map((c) => c.ecc))} px, mediana ${mediana(xs.map((c) => c.ecc))} px`);
   const male = controllaAltezze(g); console.log(male.length ? `ROSSO (${male.length}):\n${male.join('\n')}` : 'VERDE');
   process.exit(male.length ? 1 : 0);
 }
