@@ -335,4 +335,18 @@
 //   «fino a fine serata»; vitest 375/375.
 //   guardiano: tests/testi-schieramento.test.ts (rossi C41T01, C42T01), tests/costo-quando.test.ts (rosso C42U01),
 //   tests/coerenza-d153.test.ts (testi neutri D-189), guardiani di altezza della catena grafica in CI.
-export const GAME_VERSION = '0.43.0';
+// 0.44.0 – imprevisti senza timer su tutti i 36 episodi, correzioni del collaudo C-043, schermi bassi, «Annulla» a 3 s.
+//   causa: PO-022 (D-190, D-194, D-195: un imprevisto per ondata da risolvere subito, senza conto alla rovescia);
+//   C-043 (D-196, D-197: tavola «carte» e riga della pista della cattura nell'epilogo, testi neutri sullo schieramento,
+//   prima stella nel verbale fallito, «il comando approva» senza fiducia, «Chiudi un occhio» −2 pressione +1 tensione,
+//   virgolette annidate, e13 e e36 coerenti con i dati); PO-052/058 (D-187, D-191, D-193, D-197: mappa solo se entra
+//   nel rapporto, blocco unico nella risposta con mappa piena, città compatta, «Fine stagione» e home senza scorrimento);
+//   PO-142 (D-198: «Annulla» da 5 a 3 s).
+//   misura: 142 imprevisti, 0 blocchi, 3★ del bot attento 17 → 17, perse del casuale per stagione +2 punti circa, margine
+//   D-162 fra stagione 1 e 2 da 0,38 a 1,52; testi «resta coperto/calmo» 44 → 0, citazioni annidate 74 → 0, «comando
+//   approva» senza fiducia 11 → 0; scorrimento a 360×760: «Fine stagione» 250 → 0 px, home con salvataggio 764 → 760;
+//   risposta a 360×640 116 px (mappa piena, D-197); vitest 393/393.
+//   guardiano: tests/imprevisti.test.ts (rossi S14I01, C190I01), tests/testi-c43.test.ts (rossi C4301P, C4305),
+//   tests/testi-schieramento.test.ts (formule C43-02), tools/sonda-altezze.mjs (rosso C197R01), tools/foto-epilogo.mjs
+//   (rosso C196V01), tools/foto-home.mjs (rosso C187C01), tools/foto-po121.mjs (rosso C198A01).
+export const GAME_VERSION = '0.44.0';
