@@ -109083,6 +109083,465 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-20T20:09:29.607Z",
+      "commit": "ee8a4909",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-20T20:09:36.867Z",
+      "commit": "ee8a4909",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            6.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            94.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            107.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1070.7
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-20T20:30:57.542Z",
+      "commit": "ee8a4909",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-20T20:30:57.964Z",
+      "commit": "ee8a4909",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            6.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            88.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            99.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            994.8
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-20T20:50:48.874Z",
+      "commit": "ee8a4909",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-20T20:50:49.278Z",
+      "commit": "ee8a4909",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            84.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            94.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            956.8
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
     }
   ]
 }
