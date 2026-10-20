@@ -8,7 +8,7 @@ import { join, extname } from 'node:path';
 import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
-import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
+import { copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, controllaVerbaleBasso, provaProssimo } from './foto-verbale.mjs';
 import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta, controllaChiIcona } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaContrasto, controllaRiquadri } from './foto-contrasto.mjs'; import { statoCitta } from './foto-c128.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione, controllaFiduciaRapporto, controllaSfidaBusti, controllaSegni, controllaIconeEffetti, controllaColoriCortei, statoSalvato, controllaVignettaEvento, controllaRitiroSingolo } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
@@ -98,7 +98,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
       // Braccio rosso: VALMORA_ROSSI=C05R01,C05R02,… accende gli interruttori rossi della resa (globalThis.__NO_X).
       const rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean);
       if (rossi.length) await pagina.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-      const schieramenti = controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi, larghezza).catch((e) => atteso(`schieramenti interrotti: ${e.message.split('\n')[0]}`, false)); pagina.on('console', (m) => { if (m.type() === 'error') g.errori.push(m.text()); }); // D-202: schieramenti su pagine proprie, insieme al giro
+      pagina.on('console', (m) => { if (m.type() === 'error') g.errori.push(m.text()); }); // D-202: gli schieramenti sono un passo a sé della catena (passi-grafica.mjs)
       pagina.on('pageerror', (e) => g.errori.push(e.message));
       try {
         let k = 0;
@@ -381,7 +381,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso('«No, tieni la partita» ha cambiato il salvataggio', (await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'))) === prima);
         if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); await controllaSalvataggiPersi(pagina, { atteso, scena }); await controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }); await controllaIndietro(pagina, { atteso, scena }); await (await import('./foto-po121.mjs')).controllaAnnulla(browser, url, dirDati, cartella, atteso, rossi); await (await import('./foto-c33.mjs')).controllaTono(browser, url, dirDati, cartella, atteso, rossi); await controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori, cartella }); } // S-09
       } catch (e) { atteso(`giro interrotto: ${e.message.split('\n')[0]}`, false); }
-      await schieramenti; await pagina.close();
+      await pagina.close();
       giri.push(g);
     }
   } finally { await browser.close(); srv.close(); }

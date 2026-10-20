@@ -26,6 +26,16 @@ export const PASSI_GRAFICA = {
     writeFileSync('out/foto/citta-stati.json', JSON.stringify(stati));
     return [...giri.flatMap(controllaGiro), ...(await controllaCittaSenzaWebgl(stati)), ...epilogo.flatMap(controllaGiro), ...c41.flatMap(controllaGiro)];
   },
+  // D-202: schieramenti (tools/foto-schieramenti.mjs), prima dentro il giro foto: passo a sé, così in CI può girare su un altro job
+  schieramenti: async () => {
+    const { servi } = await import('./foto.mjs'), { controllaSchieramenti } = await import('./foto-schieramenti.mjs'), { chromium } = await import('playwright-core');
+    const srv = await servi('dist'), url = `http://127.0.0.1:${srv.address().port}/`, rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean);
+    const browser = await chromium.launch({ executablePath: process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
+    const giri = larghezzeGiro().map((larghezza) => ({ larghezza, errori: [], scorrimento: [], attesi: [] }));
+    try { await Promise.all(giri.map((g) => controllaSchieramenti(browser, url, 'data', 'out/foto', (cosa, ok) => g.attesi.push({ cosa, ok }), rossi, g.larghezza))); }
+    finally { await browser.close(); srv.close(); }
+    return giri.flatMap(controllaGiro);
+  },
   // D-187 (PO-052, PO-058): scorrimento di ogni schermata di e01 alle altezze dei telefoni della larghezza del giro
   altezze: async () => { const a = await import('./sonda-altezze.mjs'); return a.controllaAltezze(await a.giraAltezze({ vps: larghezzeGiro().flatMap((w) => a.VP_PER_LARGHEZZA[w] ?? []) })); },
   // S-22 (C14-01): il gioco installato funziona offline (service worker), su http://localhost
