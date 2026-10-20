@@ -139,3 +139,45 @@ Bracci rossi verificati rossi (360×640 o 360×760): C187M01, C187V01, C191R01, 
 Guardiani di brevità e C42-02 (testi): non toccati, i testi sono gli stessi (Non verificato in catena finché non passa la CI).
 
 Foto dopo: `d193/dopo-<vp>-<schermata>.png`; prima: le foto `prima-*` in cima a questa cartella.
+
+---
+
+# D-197 (opzione A del PO), job grafica 360, C43-06, C43-07 · S-11
+
+Merge (non rebase) dalla principale `5d57e29` (imprevisti di S-14, D-190).
+
+## D-197: nella risposta la mappa resta piena
+- Perché (FATTO MISURATO, Chrome 156 della CI in locale): con la mappa abbassata solo nella risposta, a ogni risposta la
+  mappa cambiava altezza due volte; la scena di Pixi e i nomi si rifacevano (lavori lunghi sul thread principale: a CPU 4×
+  1,6–4,6 s in più senza WebGL) e i segni di PO-085, che durano 1,8 s di tempo vero, potevano scadere prima del controllo
+  (CI rossa a 375 e 360 su ae4545f).
+- Correzione: `adatta.ts` non adatta la risposta (rosso `C197R01`). Il blocco unico di D-193 resta.
+- Scorrimento della risposta (FATTO MISURATO, `tools/sonda-altezze.mjs`): **116 px a 360×640, 104 px a 375×667**; 0 a
+  360×760, 375×812 e 412×830. Soglie del guardiano solo per queste due; le altre invariate.
+- Guardiano nuovo: nella risposta la mappa è alta come nella chiamata prima (col rosso C197R01: 218–242 px contro 328).
+- Segni PO-085 su Chrome 156: sonda a 375×800, 32 risposte (16 a CPU normale, 16 a CPU 4×): 0 senza segni al momento del
+  controllo. Guardiano `foto` con Chrome 156: vedi la consegna (due giri a 375, uno a 360).
+
+## Job grafica 360 (35–38 minuti)
+- Misura (Chrome 156 in locale, passo «foto» a 360 = 2830 s): `controllaSchieramenti` 1626 s, `apriTutte` 391,
+  `controllaRipartiTesto` 153, `controllaRipartenza` 147.
+- Causa: `controllaSchieramenti` stava solo nel giro a 360 ma faceva anche 375 e 412; e a 360 ricarica ogni ondata di ogni
+  episodio col carattere rallentato di 1,5 s (CARATTERE_LENTO) e 500 ms di quiete: quasi tutto attesa.
+- Correzioni: ogni job fa la sua larghezza (`sola`); gli stati con le unità su 3 pagine insieme (contesti separati).
+  Soglie invariate (PASTIGLIE_SU_NOMI resta 0). In locale: `controllaSchieramenti` 1626 → 778 s, «foto» 2830 → 1969 s,
+  verde. CI su 057502a (solo la divisione): «foto» 2045 → 1891 s.
+
+## C43-06: passo «Fine stagione»
+- Riprodotto (Chrome 156): e24 a 360×760 scorre 250 px, «Prossimo episodio» top 896; e12 51 px.
+- Correzione: passo più compatto (filo «nome — esito» in un paragrafo, spaziature strette; i pulsanti restano sotto il
+  testo per C17-22). Rosso `C196V01`. Dopo: 0 px a 360×760, 375×812, 412×915 (e24 passo 744 → 460, «Prossimo» top 592).
+- Guardiano in `foto-epilogo.mjs` (verde; rosso: e24 210 px, «Prossimo» 147 px sotto la piega). Foto `c43/`.
+
+## C43-07: home 764 su 760
+- Già corretto da D-187 (margine dell'ultima nota che usciva da main): 764 → 760 a 360, 375 e 412 (Chrome 156).
+- Guardiano `foto-home.mjs`: scrollHeight a 760, rosso `C187C01` nei bracci rossi. Dichiarato: a 640 px d'altezza con un
+  salvataggio la home scorre 29/10/10 px (vignetta già al minimo di 96 px). Foto `c43/`.
+
+## Altro trovato dalla CI
+- Città: col minimo a 244 px (D-187) i dischi degli episodi si sovrapponevano per 587 px² a 360×760 (C17-12): tornato a
+  260 px; a 360×640 i pulsanti delle stagioni più vicini alla mappa (0 px).
