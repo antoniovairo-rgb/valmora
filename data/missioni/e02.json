@@ -326,6 +326,10 @@
                 {
                   "pressione": "stazione",
                   "valore": -2
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.accoglienza.r"
@@ -508,47 +512,6 @@
               "risposta": "testi:e02.op.comunicato.r"
             }
           ]
-        },
-        {
-          "id": "presidente_aiuta",
-          "fonte": "vice",
-          "testo": "testi:e02.ch.presidente_aiuta",
-          "settore": "tornelli",
-          "se": {
-            "var": "presidente_incontrato",
-            "uguale": true
-          },
-          "commento": "testi:e02.ch.presidente_aiuta.vice",
-          "opzioni": [
-            {
-              "id": "accetta_aiuto",
-              "testo": "testi:e02.op.accetta_aiuto",
-              "costo": "testi:e02.op.accetta_aiuto.c",
-              "risposta": "testi:e02.op.accetta_aiuto.r",
-              "effetti": [
-                {
-                  "riserva": "steward",
-                  "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                }
-              ]
-            },
-            {
-              "id": "declina_aiuto",
-              "testo": "testi:e02.op.declina_aiuto",
-              "costo": "testi:e02.op.declina_aiuto.c",
-              "risposta": "testi:e02.op.declina_aiuto.r",
-              "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                }
-              ]
-            }
-          ]
         }
       ]
     },
@@ -612,54 +575,6 @@
               "costo": "testi:e02.op.ignora_str.c",
               "effetti": [],
               "risposta": "testi:e02.op.ignora_str.r"
-            }
-          ]
-        },
-        {
-          "id": "fumogeni_ospiti",
-          "fonte": "centrale_radio",
-          "testo": "testi:e02.ch.fumogeni_ospiti",
-          "settore": "curva_ospiti",
-          "opzioni": [
-            {
-              "id": "steward_fumo",
-              "testo": "testi:e02.op.steward_fumo",
-              "costo": "testi:e02.op.steward_fumo.c",
-              "effetti": [
-                {
-                  "pressione": "curva_ospiti",
-                  "valore": -2
-                },
-                {
-                  "tensione": "curva_ospiti",
-                  "valore": 1
-                }
-              ],
-              "risposta": "testi:e02.op.steward_fumo.r"
-            },
-            {
-              "id": "sospendi2",
-              "testo": "testi:e02.op.sospendi2",
-              "costo": "testi:e02.op.sospendi2.c",
-              "effetti": [
-                {
-                  "pressione": "curva_ospiti",
-                  "valore": -3
-                }
-              ],
-              "risposta": "testi:e02.op.sospendi2.r"
-            },
-            {
-              "id": "lascia_fumo2",
-              "testo": "testi:e02.op.lascia_fumo2",
-              "costo": "testi:e02.op.lascia_fumo2.c",
-              "effetti": [
-                {
-                  "pressione": "curva_ospiti",
-                  "valore": 2
-                }
-              ],
-              "risposta": "testi:e02.op.lascia_fumo2.r"
             }
           ]
         },
@@ -823,6 +738,10 @@
                 {
                   "pressione": "stazione",
                   "valore": -2
+                },
+                {
+                  "pressione": "viale_stazione",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.trattieni_treno.r"

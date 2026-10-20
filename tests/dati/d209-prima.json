@@ -1,0 +1,178 @@
+{
+ "testi": {
+  "e02.imp.soppresso": "«Ferrovie: ultimo treno soppresso per guasto. Il prossimo domattina. Lo diciamo agli ospiti?»",
+  "e02.imp.soppresso.vice": "«Notte a Valmora per trecento ospiti. Che ospitalità.»",
+  "e02.imp.soppresso.pullman": "Chiedi i pullman del comune",
+  "e02.imp.soppresso.pullman.c": "Partono stanotte; nel viale chi aspetta si innervosisce.",
+  "e02.imp.soppresso.pullman.r": "Tre pullman del comune, fila nel viale. Gli ultimi aspettano un'ora e lo dicono a tutti.",
+  "e02.imp.soppresso.sala_attesa": "Apri la sala d'attesa e il bar",
+  "e02.imp.soppresso.sala_attesa.c": "Stazione più ordinata; la notte lì dentro sarà lunga e nervosa.",
+  "e02.imp.soppresso.sala_attesa.r": "Bar aperto, panini finiti in venti minuti. La sala d'attesa si riempie di gente che non dorme.",
+  "e02.imp.soppresso.annuncio": "Fai annunciare e basta",
+  "e02.imp.soppresso.annuncio.c": "Nessuno impegnato; la notizia la dà l'altoparlante.",
+  "e02.imp.soppresso.annuncio.r": "L'annuncio dura sei secondi. Le proteste un po' di più, poi gli ospiti si sistemano sulle panchine.",
+  "e03.imp.bus_notte": "«Il bus notturno salta la fermata dei parcheggi: troppa gente. Seicento ospiti a piedi.»",
+  "e03.imp.bus_notte.vice": "«A piedi, di notte, fra le case. Il sogno del comitato.»",
+  "e03.imp.bus_notte.scorta_notte": "Mandali ai pullman per le vie del quartiere",
+  "e03.imp.bus_notte.scorta_notte.c": "Parcheggi più calmi; il quartiere li sente passare.",
+  "e03.imp.bus_notte.scorta_notte.r": "In fila fino ai pullman, per le vie del quartiere. Nessun clacson, ma il comitato prende appunti.",
+  "e03.imp.bus_notte.secondo_bus": "Fai salire più gente possibile sul bus",
+  "e03.imp.bus_notte.secondo_bus.c": "Coda più corta; sul bus pigiati e scontenti.",
+  "e03.imp.bus_notte.secondo_bus.r": "Il bus parte pieno fino ai finestrini. Chi è sopra non è contento, chi resta nemmeno.",
+  "e03.imp.bus_notte.a_piedi_notte": "Lasciali andare a piedi",
+  "e03.imp.bus_notte.a_piedi_notte.c": "Nessuno impegnato; seicento persone fra le case.",
+  "e03.imp.bus_notte.a_piedi_notte.r": "Seicento persone fra le case, all'una. Stanchi, per fortuna. Il comitato prende appunti lo stesso.",
+  "e01.ch.rinforzi": "«Due squadre dal comando per la prossima fase: le chiedo? Se lo ricorderanno a lungo.»",
+  "e01.op.chiedi.r": "Due squadre in arrivo per la prossima fase. Al comando qualcuno scrive il tuo nome su un quaderno.",
+  "e02.op.trattieni_treno.r": "Il treno aspetta. Le ferrovie annotano il favore.",
+  "e01.op.accetta.r": "Arrivano sei pettorine arancioni. Lavezzari ti stringe la mano due volte.",
+  "e03.op.presidio_balcone.r": "Una squadra sotto il balcone. Il residente dice che era una bottiglia vuota, come se cambiasse qualcosa.",
+  "e01.op.sospendi.c": "Fumo spento, la curva si svuota di tensione.",
+  "e02.op.accoglienza.c": "Stazione sotto controllo.",
+  "e02.op.trattieni_treno.c": "Stazione più calma, ma le ferrovie non gradiscono.",
+  "e02.ch.presidente_aiuta": "«Il presidente dello Skyfield ricorda la stretta di mano: due steward del club per la fase dopo.»",
+  "e02.ch.presidente_aiuta.vice": "«Una stretta di mano vale due steward. Il listino dei presidenti è sempre interessante.»",
+  "e02.op.accetta_aiuto": "Accetta gli steward del club",
+  "e02.op.accetta_aiuto.c": "Due steward in più, ma ora sei in debito.",
+  "e02.op.accetta_aiuto.r": "Due steward con la sciarpa dello Skyfield sotto la pettorina. Nessuno farà domande, per ora.",
+  "e02.op.declina_aiuto": "Ringrazia e declina",
+  "e02.op.declina_aiuto.c": "Il comando apprezza l'indipendenza.",
+  "e02.op.declina_aiuto.r": "«Indipendente, eh?» Il presidente sorride. Al comando apprezzano.",
+  "e02.ch.fumogeni_ospiti": "«Fumogeni in curva ospiti. Vento verso la tribuna.»",
+  "e02.op.steward_fumo": "Steward in curva ospiti",
+  "e02.op.steward_fumo.c": "Fumo ridotto, ma la curva se lo ricorda.",
+  "e02.op.steward_fumo.r": "Gli steward entrano. I fumogeni escono. Le parole volano, e qualcuno le registra col telefono.",
+  "e02.op.sospendi2": "Chiedi una pausa all'arbitro",
+  "e02.op.sospendi2.c": "Fumo spento, la curva ospiti si calma.",
+  "e02.op.sospendi2.r": "Due minuti di fischi da entrambe le curve. Una rara unità.",
+  "e02.op.lascia_fumo2": "Lascia correre",
+  "e02.op.lascia_fumo2.c": "La curva ospiti si infiamma.",
+  "e02.op.lascia_fumo2.r": "Il vento fa il resto. La tribuna tossisce in coro, ma nessuno è entrato in curva: il club ospite ringrazia.",
+  "e02.ch.risultato.vice": "«Io ho sempre tifato per il pareggio. È il risultato più sicuro. Non mi ascolta nessuno.»",
+  "e03.intro2": "«Il comune ci presta delle transenne. Una volta montate restano lì fino a fine serata: pensaci prima, dopo non si spostano.»",
+  "e01.intro2": "«Oggi c'è il derby: fonderie contro collina. Le fonti chiamano già. Ascoltale tutte, fidati di poche.»"
+ },
+ "effetti": {
+  "e01/fumogeni/sospendi": [
+   {
+    "pressione": "curva_cinderwick",
+    "valore": -3
+   }
+  ],
+  "e02/secondo_treno/accoglienza": [
+   {
+    "pressione": "stazione",
+    "valore": -2
+   }
+  ],
+  "e02/ultimo_treno/trattieni_treno": [
+   {
+    "pressione": "stazione",
+    "valore": -2
+   }
+  ]
+ },
+ "dopo": {
+  "e01/imp_ambulanza": 2,
+  "e02/imp_acquazzone": 2
+ },
+ "chiamate": {
+  "e02/presidente_aiuta": {
+   "ondata": 2,
+   "indice": 4,
+   "chiamata": {
+    "id": "presidente_aiuta",
+    "fonte": "vice",
+    "testo": "testi:e02.ch.presidente_aiuta",
+    "settore": "tornelli",
+    "se": {
+     "var": "presidente_incontrato",
+     "uguale": true
+    },
+    "commento": "testi:e02.ch.presidente_aiuta.vice",
+    "opzioni": [
+     {
+      "id": "accetta_aiuto",
+      "testo": "testi:e02.op.accetta_aiuto",
+      "costo": "testi:e02.op.accetta_aiuto.c",
+      "risposta": "testi:e02.op.accetta_aiuto.r",
+      "effetti": [
+       {
+        "riserva": "steward",
+        "valore": 2
+       },
+       {
+        "aggiungi": "credito",
+        "valore": -1
+       }
+      ]
+     },
+     {
+      "id": "declina_aiuto",
+      "testo": "testi:e02.op.declina_aiuto",
+      "costo": "testi:e02.op.declina_aiuto.c",
+      "risposta": "testi:e02.op.declina_aiuto.r",
+      "effetti": [
+       {
+        "aggiungi": "credito",
+        "valore": 1
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "e02/fumogeni_ospiti": {
+   "ondata": 3,
+   "indice": 1,
+   "chiamata": {
+    "id": "fumogeni_ospiti",
+    "fonte": "centrale_radio",
+    "testo": "testi:e02.ch.fumogeni_ospiti",
+    "settore": "curva_ospiti",
+    "opzioni": [
+     {
+      "id": "steward_fumo",
+      "testo": "testi:e02.op.steward_fumo",
+      "costo": "testi:e02.op.steward_fumo.c",
+      "effetti": [
+       {
+        "pressione": "curva_ospiti",
+        "valore": -2
+       },
+       {
+        "tensione": "curva_ospiti",
+        "valore": 1
+       }
+      ],
+      "risposta": "testi:e02.op.steward_fumo.r"
+     },
+     {
+      "id": "sospendi2",
+      "testo": "testi:e02.op.sospendi2",
+      "costo": "testi:e02.op.sospendi2.c",
+      "effetti": [
+       {
+        "pressione": "curva_ospiti",
+        "valore": -3
+       }
+      ],
+      "risposta": "testi:e02.op.sospendi2.r"
+     },
+     {
+      "id": "lascia_fumo2",
+      "testo": "testi:e02.op.lascia_fumo2",
+      "costo": "testi:e02.op.lascia_fumo2.c",
+      "effetti": [
+       {
+        "pressione": "curva_ospiti",
+        "valore": 2
+       }
+      ],
+      "risposta": "testi:e02.op.lascia_fumo2.r"
+     }
+    ]
+   }
+  }
+ }
+}
