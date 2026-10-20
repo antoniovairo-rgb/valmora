@@ -293,3 +293,31 @@ Guardiano (`tools/sonda-altezze.mjs`, a 360×760): imprevisti ≤ 339 e mediana 
 (e01 imp_tram 489 px). Braccio rosso C206I01 nella catena grafica.
 Foto: `c45/d206/prima` (rosso C206I01) e `c45/d206/dopo`, e01 imp_ambulanza, e17 imp_lampioni, e30 imp_mercatino a 360, 375, 412
 (`tools/foto-imprevisti.mjs`, adeguato: controlla il fumetto dell'imprevisto; PRIMA=1 per le foto di prima).
+
+## D-208 + D-210 (PO-140 fase 2, opzione 1 del PO): striscia della home nella città, vignetta della home nella guida — S-11, 20/10
+
+- `Citta.tsx`: in testa la vignetta della home (96 px, `fissa`) con «La città · stasera si gioca» al posto della testata
+  («S1 · Stagione 1 · mappa della città / Valmora»); il titolo resta per il lettore di schermo (`h1.solo-lettore`
+  «Valmora · stagione N · mappa della città»). Rosso `C210C01`: la testata di prima. Sotto `--vignetta-finestra-min` (700 px,
+  la stessa soglia delle vignette di sala e verbale) resta la testata di prima, perché a 360×640 la striscia faceva scorrere
+  la città con pochi episodi di 21 px (scelta tecnica, dichiarata).
+- `Guida.tsx`: al primo passo la vignetta della home con «La città e il gioco» al posto della vignetta del passo. Rosso `C210G01`.
+- Token: `--citta-riserva` 500 → 508 e `--citta-altezza-min` 260 → 252 (sopra i 244 di C17-12) con la striscia; con la testata
+  di prima tornano 500/260. Sotto la striscia `--spazio-1`; con la striscia «Rileggi l'epilogo» e la scheda sopra a `--spazio-1`.
+
+FATTO MISURATO, Chrome 156, scorrimento px. Correzione dichiarata: avevo stimato 0 a 360 con la mappa a 252, la misura dava 11
+(e 4 con 0 episodi, per la vignetta che si allungava): con `fissa` e gli spazi sopra, 0.
+
+| | 360×760 | 375×760 | 412×760 | 360×640 | 375×667 |
+|---|---|---|---|---|---|
+| città, 0 episodi | 0 | 0 | 0 | 0 (testata) | 0 (testata) |
+| città, 36 episodi | 0 | 0 | 0 | 99 (testata, come prima) | 53 (testata, come prima) |
+| guida, passo 1 | 0 | 0 | 0 | 0 | — |
+
+Lettore di schermo (albero di accessibilità di Chromium, città a 360×760): «heading Valmora · stagione 3 · mappa della città
+[level 1]», poi la figura, «Torna alla home», «Stagione 1», «Stagione 2», «Stagione 3 [pressed]»; dopo il tocco su Stagione 2
+il titolo dice «stagione 2» e «Stagione 2 [pressed]». I tasti dicono la stagione anche senza la testata.
+Guardiano (`tools/sonda-altezze.mjs`, a ogni 760): città36 con la striscia (≥ 96 px) e senza scorrere; primo passo della guida
+con la vignetta della home e senza scorrere. Bracci rossi C210C01 (manca la striscia) e C210G01 (manca la vignetta) visti.
+Foto: `home/d210/prima-*` (rossi) e `home/d210/dopo-*`, città con 0 e 36 episodi e guida, a 360, 375 e 412 × 760.
+Non verificato: la sovrapposizione dei dischi della città a 252 px (guardiano C17-12 nel giro foto): la dice la CI.

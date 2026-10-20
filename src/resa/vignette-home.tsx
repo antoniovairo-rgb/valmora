@@ -36,10 +36,10 @@ const Fumo = (p: { x: number; y: number; k: number }) => (
   <path transform={`translate(${p.x} ${p.y}) scale(${p.k})`} d="M0 0 Q-6 -14 8 -16 Q12 -30 28 -24 Q40 -34 50 -20 Q64 -20 60 -6 Q66 4 52 6 L4 6 Q-8 6 0 0 Z" className="v-fumo v-tratto" />
 );
 
-export function VignettaHome(p: { genere: 'm' | 'f'; didascalia: string }) {
+export function VignettaHome(p: { genere: 'm' | 'f'; didascalia: string; fissa?: boolean }) {
   const sx = club.get('cinderwick_united')?.colori?.primario, dx = club.get('larkspire_athletic')?.colori?.primario;
   return (
-    <Vignetta nome="home" titolo={`${p.didascalia}: tu e il vice Malvasi, dalla finestra lo stadio di notte`} ritaglio="xMidYMin slice">
+    <Vignetta nome="home" titolo={`${p.didascalia}: tu e il vice Malvasi, dalla finestra lo stadio di notte`} ritaglio="xMidYMin slice" fissa={p.fissa}>
       <rect x="0" y="0" width="320" height="120" className="v-notte" />
       {[[22, 14], [70, 26], [150, 10], [262, 18], [300, 30]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="1.6" className="v-giallo" />)}
       <path d="M0 96 L30 80 L52 88 L80 70 L96 84 L130 74 V120 H0 Z" className="v-giacca-scura v-tratto" />

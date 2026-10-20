@@ -10,7 +10,7 @@ import { giraOffline } from './offline.mjs';
 import { controllaCittaSenzaWebgl } from './foto-c128.mjs';
 
 // D-202: quanti giri di browser insieme (bracci rossi, foto); le attese dominano sul calcolo
-const PARTE_ROSSO = { C201C01: ['citta36'], C203R01: ['rapporti'], C206I01: ['chiamate'] };
+const PARTE_ROSSO = { C201C01: ['citta36'], C203R01: ['rapporti'], C206I01: ['chiamate'], C210C01: ['citta36'], C210G01: ['citta36'] };
 export const PARALLELI = Number(process.env.VALMORA_PARALLELI ?? 5);
 export async function insieme(compiti, n) { const coda = [...compiti]; await Promise.all(Array.from({ length: Math.min(n, coda.length) }, async () => { while (coda.length) await coda.shift()(); })); }
 const larghezzeGiro = () => (process.env.VALMORA_LARGHEZZE ?? '360,375,412').split(',').map(Number);
@@ -63,7 +63,7 @@ export const PASSI_GRAFICA = {
     if (larghezzeGiro().includes(360)) { const a = await import('./sonda-altezze.mjs');
       // D-191: rapporto senza mappa (R01), minimo a 160 px (L01), scheda compatta della città (C01), nomi lontani da «Home» (H01);
       // D-193: risposta in un blocco (R01), spaziature di sala e briefing (S01)
-      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640'], ['C201R01', '412x760'], ['C201C01', '360x760'], ['C203R01', '360x760'], ['C206I01', '360x760']])
+      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640'], ['C201R01', '412x760'], ['C201C01', '360x760'], ['C203R01', '360x760'], ['C206I01', '360x760'], ['C210C01', '360x760'], ['C210G01', '360x760']])
         compiti.push(async () => { if (!a.controllaAltezze(await a.giraAltezze({ vps: [vp], rossi: [r], parti: PARTE_ROSSO[r] ?? ['e01'] })).length) ciechi.push(`altezze/${r} è cieco`); }); }
     // D-207: ogni braccio delle altezze gira solo la parte dove il suo rosso si vede
     // D-202: i bracci sono indipendenti (rossi come parametro, cartelle separate): PARALLELI insieme, ognuno col suo browser

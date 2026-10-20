@@ -139,7 +139,11 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
         await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), tutti(dati, dich)); await q.reload();
         await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="citta"]'); await lento(q); await q.waitForTimeout(300);
-        ris.push({ vp, nome: 'citta36', ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-citta36.png`), fullPage: true });
+        const striscia = await q.evaluate(() => Math.round(document.querySelector('[data-citta-striscia]')?.getBoundingClientRect().height ?? 0)); // D-210, rosso C210C01
+        ris.push({ vp, nome: 'citta36', striscia, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-citta36.png`), fullPage: true });
+        // D-210: il primo passo della guida («La città e il gioco» dalla home) ha la vignetta della home e non scorre. Rosso C210G01
+        await q.click('[data-azione="home"]'); await q.waitForSelector('[data-azione="guida"]'); await q.click('[data-azione="guida"]'); await q.waitForSelector('[data-guida="1"]'); await lento(q);
+        ris.push({ vp, nome: 'guida1', testataGuida: await q.locator('[data-guida-testata]').count(), ...(await misura(q)) });
         await q.close();
       }
       if (vp === '360x760' && parti.includes('chiamate')) { const coda = chiamateCostruite(dati, dich); // D-206: 4 pagine insieme
@@ -170,6 +174,7 @@ export function controllaAltezze({ ris, errori, sopra, chiamate = [] }) {
   for (const r of ris) if (!LIBERE.has(r.nome)) { const k = `${r.vp}|${r.nome}`; if (!max[k] || r.ecc > max[k].ecc) max[k] = r; }
   const male = Object.values(max).filter((r) => r.ecc > (SOGLIE[r.vp]?.[r.nome] ?? 0))
     .map((r) => `${r.vp} ${r.nome}: la pagina scorre di ${r.ecc} px (soglia ${SOGLIE[r.vp]?.[r.nome] ?? 0}, mappa ${r.mappa} px; D-187)`);
+  const d210 = ris.flatMap((r) => r.nome === 'citta36' && r.striscia < 96 ? [`${r.vp} città: manca la striscia della home in testa (${r.striscia} px, D-210)`] : r.nome === 'guida1' && !r.testataGuida ? [`${r.vp} guida: il primo passo non ha la vignetta della home (D-210)`] : []);
   const casa = ris.filter((r) => r.casa).map((r) => `${r.vp} ${r.nome}: il pulsante «Home» copre ${r.casa} fra punti e nomi dei settori (S-21, mappa ${r.mappa} px)`);
   // D-197 (opzione A): nella risposta la mappa è alta come nella chiamata prima (niente ridisegno fra le due). Rosso C197R01.
   const salti = [];
@@ -179,7 +184,7 @@ export function controllaAltezze({ ris, errori, sopra, chiamate = [] }) {
   const lunghe = [...imp.filter((c) => c.ecc > Math.min(lim, IMPREVISTI_MAX)).map((c) => `${c.vp} imprevisto ${c.ep} ${c.id}: la chiamata scorre di ${c.ecc} px (soglia ${Math.min(lim, IMPREVISTI_MAX)}, D-207)`),
     ...norm.filter((c) => c.ecc > CHIAMATE_NORMALI_MAX).map((c) => `${c.vp} chiamata ${c.ep} ${c.id}: scorre di ${c.ecc} px (massimo misurato ${CHIAMATE_NORMALI_MAX}, D-114)`)];
   if (imp.length && mediana(imp.map((c) => c.ecc)) > IMPREVISTI_MEDIANA) lunghe.push(`360x760: mediana degli imprevisti ${mediana(imp.map((c) => c.ecc))} px (soglia ${IMPREVISTI_MEDIANA}, D-207)`);
-  return [...male, ...casa, ...salti.slice(0, 3), ...lunghe.slice(0, 5), ...errori, ...sopra];
+  return [...male, ...d210, ...casa, ...salti.slice(0, 3), ...lunghe.slice(0, 5), ...errori, ...sopra];
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

@@ -204,3 +204,6 @@ main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto
 main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzione { gap: var(--spazio-2); }
 main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzione-testo :is(small, .tenue) { line-height: var(--linea-stretta); }
 main:not(.rosso-c206i01) .scena[data-scena="chiamata"] .messaggio.imprevisto { padding-block: var(--spazio-2); margin-block: var(--spazio-2); }
+/* D-210: con la striscia della home a 360×760 e 36 episodi «Rileggi l'epilogo» un po' più vicino (3 px oltre). Rosso C210C01. */
+main:not(.rosso-c210c01)[data-schermata="citta"]:has([data-citta-striscia]) [data-azione="epilogo"] { margin-top: var(--spazio-1); }
+main:not(.rosso-c210c01)[data-schermata="citta"]:has([data-citta-striscia]) .scheda[data-scheda-episodio]:has(+ [data-azione="epilogo"]) { margin-bottom: var(--spazio-1); }
