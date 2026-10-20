@@ -240,3 +240,15 @@ Cosa è cambiato (stesse verifiche, stesse soglie, nessun controllo tolto):
   software), per questo più pagine nello stesso job rendevano poco (foto 1537 → 1387 s) e più job sì.
 
 Bracci rossi: tutti visti rossi in CI (passo verde = nessun braccio cieco), locale verde due volte (1712 s e 1832 s di catena 360).
+
+## C45-06 (D-203): rapporto che scorre a 360×760 — S-11, 20/10
+
+Base: 0.45.0 (merge c1685a62). FATTO MISURATO con Chrome 156, 360×760: 742 rapporti costruiti col motore (tutti gli episodi,
+strategie attenta, equilibrata, peggiore, casuale semi 1-4, variabili della partita attenta), aperti da salvataggio
+(`rapporto_aperto`). Prima: 7 scorrevano (e35 casuale4 o3 34 px, e30 casuale1 o3 32, e35 casuale1 o3 21, e22 casuale3 o2 11,
+e36 peggiore o3 10, e36 casuale1 o3 7, e16 casuale1 o3 2). Dopo: 0 px in tutti quelli aperti.
+Correzione (`stile-c18.css`, solo token, rosso `C203R01`): nel rapporto senza mappa la scheda, «A riposo», «Disponibili» e
+«Prossima ondata» più vicini, margine sotto la pagina `--spazio-3`.
+Guardiano: `tools/sonda-altezze.mjs` apre i 7 rapporti a 360×760 (soglia 0); col rosso C203R01 tornano 34/32/21/11/10/7/2 px
+(visto); braccio rosso nella catena grafica. Foto: `c45/prima-360x760-rapporto-e35.png`, `c45/dopo-<w>x760-rapporto-e35.png`.
+Non verificato: il caso esatto del collaudo (e31 o3 con le sue scelte, che il file del collaudo non registra come comandi).
