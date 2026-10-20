@@ -349,4 +349,13 @@
 //   guardiano: tests/imprevisti.test.ts (rossi S14I01, C190I01), tests/testi-c43.test.ts (rossi C4301P, C4305),
 //   tests/testi-schieramento.test.ts (formule C43-02), tools/sonda-altezze.mjs (rosso C197R01), tools/foto-epilogo.mjs
 //   (rosso C196V01), tools/foto-home.mjs (rosso C187C01), tools/foto-po121.mjs (rosso C198A01).
-export const GAME_VERSION = '0.44.0';
+// 0.45.0 – correzioni del collaudo C-044: imprevisti di e01–e06 col modello degli altri episodi, testi, schermi a 760.
+//   causa: C44-01 (e01–e06 tenevano unità impegnate e «lascia correre» con effetto, D-201; e02 D-202), C44-03/04/05/07
+//   (scadenze nel testo, settore sbagliato in e31, «il comando apprezza» senza fiducia, costi ripetuti), C44-08/09
+//   (risposta a 375/412×760 e città con 36 episodi che scorrevano).
+//   misura: unità impegnate dagli imprevisti 16 → 0, «lascia correre» con effetto 13 → 0, stelle dei bot invariate in
+//   e01–e06, D-180 su e02 −0,266, D-160 21 → 20 (soglia 30); costi di «lascia correre» ripetuti 43 → 0; risposta a
+//   412×760 24 → 0 px, a 360×640 116 → 68 px; città con 36 episodi 3 → 0 px; vitest 398/398.
+//   guardiano: modelloImprevisto (src/dati/imprevisti.ts, rosso C4401), rossi C4403, C4404, C4405, C4407,
+//   tools/sonda-altezze.mjs a 375/412×760 e città36 (rossi C201R01, C201C01).
+export const GAME_VERSION = '0.45.0';
