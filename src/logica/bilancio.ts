@@ -10,7 +10,7 @@ import { settoriDegenerati, type EsitoMissione } from './missione.ts';
 import type { Condizione, EffettoMissione, Missione, Valore, Variabili } from './tipi.ts';
 
 export interface Impatto { tipo: 'credito' | 'pressione' | 'tensione' | 'riserva'; dove?: string; valore: number; buono: boolean }
-export interface VoceScelta { ondata: number; chiamata: string; opzione: string; impatti: Impatto[]; saldo: number; confronto?: Confronto; caricaColpito?: boolean; caricaDegenerato?: boolean }
+export interface VoceScelta { ondata: number; chiamata: string; opzione: string; impatti: Impatto[]; saldo: number; confronto?: Confronto; caricaColpito?: boolean; caricaDegenerato?: boolean; controcorrente?: boolean }
 export interface Scoperto { ondata: number; settore: string; scoperto: number; tensione: number }
 export interface Requisito { var: string; confronto: 'almeno' | 'al_massimo' | 'uguale' | 'altro'; soglia?: Valore; valore?: Valore; ok: boolean }
 export interface Bilancio { aiuti: VoceScelta[]; pesi: VoceScelta[]; scoperti: Scoperto[]; altriScoperti?: number; stelle: { due: Requisito[]; tre: Requisito[] } }
@@ -87,6 +87,14 @@ export function bilancio(m: Missione, r: EsitoMissione, quante = 3, confronto?: 
   const scoperti = r.rapporti.flatMap((x) => Object.entries(x.scoperto).filter(([, n]) => n > 0)
     .map(([settore, n]) => ({ ondata: x.n, settore, scoperto: n, tensione: x.tensione[settore] ?? 0 })));
   const ordinati = scoperti.sort((a, b) => b.scoperto - a.scoperto || a.ondata - b.ondata); const mostrati = ordinati.slice(0, quante);
+  // C45-03 (D-203, D-205): un aiuto con TUTTI gli effetti contro il giocatore (e36 «+2 pressione») o un peso con tutti gli
+  // effetti a favore sta nella lista per il confronto con le altre risposte (D-172): la resa lo dice. Le voci miste (e05
+  // «+1 fiducia, +1 pressione» fra i pesi) restano senza dicitura (D-205). Rosso __NO_C4503.
+  if (conConfronto && !spento('C4503')) for (const x of voci) {
+    // solo se la lista viene davvero dal confronto (non dal peso C42-03 di chi ha caricato un settore degenerato)
+    const dalConfronto = !!x.confronto && Math.sign(x.confronto.saldo) === Math.sign(x.saldo);
+    if (dalConfronto && x.impatti.length && x.saldo !== 0 && x.impatti.every((i) => i.buono === x.saldo < 0)) x.controcorrente = true;
+  }
   return {
     aiuti: voci.filter((x) => x.saldo > 0).sort((a, b) => b.saldo - a.saldo).slice(0, quante),
     // C41-01: prima i pesi che hanno caricato un settore poi scoperto o degenerato, poi gli altri; dentro, per saldo

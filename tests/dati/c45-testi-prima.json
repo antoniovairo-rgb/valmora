@@ -1,0 +1,45 @@
+{
+ "_": "Testi di prima (ea1c158d…d276114) per i bracci rossi di tests/c45.test.ts: per rilievo, per file di testi (eNN = testi/it/eNN.json con gli imprevisti innestati).",
+ "C45-01": {
+  "e01": {
+   "e01.imp.buio.torce": "Steward con le torce sulle scale",
+   "e01.imp.buio.torce.r": "Le torce girano sulle scale. Qualcuno applaude lo steward, qualcuno gli chiede l'autografo."
+  },
+  "e02": {
+   "e02.imp.binario.sottopasso": "Steward nel sottopasso",
+   "e02.imp.binario.sottopasso.r": "Lo steward indica la scala giusta per mezz'ora. Ha la voce di chi lo fa da anni.",
+   "e02.imp.acquazzone.teli": "Steward con i teli"
+  },
+  "e03": {
+   "e03.imp.balconi.mediatore_balconi": "Fai parlare il mediatore col comitato",
+   "e03.imp.balconi.mediatore_balconi.r": "Il mediatore sale al terzo piano. Torna con un caffè e il silenzio; il comitato scende ai parcheggi a farsi sentire."
+  },
+  "e04": {
+   "e04.imp.ghiaccio.steward_ghiaccio": "Steward a fare da argine",
+   "e04.imp.ghiaccio.steward_ghiaccio.r": "Lo steward ferma i tamburi davanti al ghiaccio. Il corteo gira largo, di malavoglia.",
+   "e04.imp.bambino.varchi": "Lascia fare agli steward dei varchi",
+   "e04.imp.bambino.varchi.c": "Nessuno impegnato; ci pensano gli steward dei varchi.",
+   "e04.imp.bambino.varchi.r": "Gli steward dei varchi ci mettono mezz'ora. La coda resta ferma con loro."
+  },
+  "e05": {
+   "e05.imp.tabellone.spiega": "Il mediatore va a spiegare",
+   "e05.imp.tabellone.spiega.r": "Il mediatore spiega l'errore. La curva ospiti lo ascolta e festeggia lo stesso; la curva Skyfield intona il coro del gol fantasma."
+  },
+  "e06": {
+   "e06.imp.allarme.steward_banca": "Steward davanti alla banca",
+   "e06.imp.allarme.steward_banca.r": "Lo steward si piazza davanti alla banca. La gente smette di filmare la sirena.",
+   "e06.imp.palloncini.raccogli": "Steward a raccoglierli",
+   "e06.imp.palloncini.raccogli.r": "Gli steward rincorrono palloncini per cinque minuti. La curva Kiln li incita come centravanti."
+  }
+ },
+ "C45-02": {
+  "comune": {
+   "guida.4": "Leggi il briefing: le fonti non dicono tutte il vero. Poi schieri squadre, steward e mediatore sui settori della mappa. Le transenne, una volta montate, restano fino a fine serata: mettile solo dove servono."
+  }
+ },
+ "C45-04": {
+  "e36": {
+   "e36.imp.cassa": "«Piazzale: la cassa del palco salta con un botto. Musica spenta, duemila persone in silenzio.»"
+  }
+ }
+}

@@ -63,7 +63,9 @@ function Voce(p: { m: Missione; v: VoceScelta }) {
     <li data-scelta={`${p.v.chiamata}:${p.v.opzione}`}>
       <span>{opzione ? t(opzione.testo) : p.v.opzione}</span>
       {/* C41-02: niente «Ondata N ·» vuoto (rosso C41B02: come prima) */}
-      <small className="tenue">Ondata {p.v.ondata}{p.v.impatti.length || spento('C41B02') ? ` · ${p.v.impatti.map(impattoInParole).join(', ')}` : ''}</small>
+      <small className="tenue">Ondata {p.v.ondata}{p.v.impatti.length || spento('C41B02') ? ` · ${p.v.impatti.map(impattoInParole).join(', ')}` : ''}
+        {/* C45-03: gli effetti dicono il contrario della lista; la lista viene dal confronto con le altre risposte (D-172) */}
+        {p.v.controcorrente ? ` · ${t(p.v.saldo > 0 ? 'bilancio.controcorrente.aiuto' : 'bilancio.controcorrente.peso')}` : ''}</small>
     </li>
   );
 }

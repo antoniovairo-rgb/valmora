@@ -12,7 +12,7 @@ import { creaCaso } from '../src/logica/caso.ts';
 import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
 
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C153D01; });
+afterEach(() => { delete g.__NO_C153D01; delete g.__NO_C4501; });
 const d = leggiDati() as Record<string, unknown>;
 const dich = new Map((d['stato.json'] as { variabili: Dichiarazione[] }).variabili.map((x) => [x.id, x]));
 const v0 = variabiliIniziali(dich.values());
@@ -163,21 +163,41 @@ describe('D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 epi
 // davvero quell'unità (effetto «riserva») o dice perché no (variante con «dopo», «ancora», «già», «nessun»). Le forme
 // generiche («Steward in curva ospiti», «le squadre») si leggono come le unità già schierate e restano fuori.
 // Rosso: con i testi di prima (tests/dati/c153-testi-prima.json, presi da 7f1dc07) i 6 casi tornano.
-const UNITA: [RegExp, string][] = [[/\b(una|due|tre|quattro) squadr/i, 'squadre'], [/\b(uno|due|tre|quattro) steward/i, 'steward'], [/\bmanda il mediatore/i, 'mediatore']];
-function nominaSenzaImpegno(testiDi: (ep: string) => Record<string, string>) {
+// C45-01 (D-203): «il mediatore …» in ogni forma (non solo «manda il mediatore»); negli imprevisti, che non impegnano mai
+// unità (D-194), anche le forme generiche «Steward …» e «le squadre» («la squadra del comune» non è un'unità tua).
+// Rosso __NO_C4501: i 9 testi di prima (tests/dati/c45-testi-prima.json) tornano; con la regex di prima erano invisibili.
+const UNITA_PRIMA: [RegExp, string][] = [[/\b(una|due|tre|quattro) squadr/i, 'squadre'], [/\b(uno|due|tre|quattro) steward/i, 'steward'], [/\bmanda il mediatore/i, 'mediatore']];
+const UNITA: [RegExp, string][] = [...UNITA_PRIMA.slice(0, 2), [/\bmediatore\b/i, 'mediatore']];
+const UNITA_IMPREVISTO: [RegExp, string][] = [[/\bsteward\b/i, 'steward'], [/\bsquadr[ae]\b(?!\s+del\b)/i, 'squadre']];
+function nominaSenzaImpegno(testiDi: (ep: string) => Record<string, string>, prima = false) {
   const fuori: string[] = [];
   for (const m of missioni) for (const o of m.ondate) for (const c of o.chiamate ?? []) for (const op of c.opzioni) {
     const tx = testiDi(m.id)[op.testo.replace(/^testi:/, '')] ?? '';
-    for (const [re, r] of UNITA) if (re.test(tx) && !op.effetti.some((e) => 'riserva' in e && e.riserva === r) && !op.dopo && !/ancora|già|nessun/i.test(tx)) fuori.push(`${m.id} ${c.id}/${op.id}: «${tx}»`);
+    const forme = prima ? UNITA_PRIMA : c.imprevisto ? [...UNITA, ...UNITA_IMPREVISTO] : UNITA;
+    if (forme.some(([re, r]) => re.test(tx) && !op.effetti.some((e) => 'riserva' in e && e.riserva === r)) && !op.dopo && !/ancora|già|nessun/i.test(tx)) fuori.push(`${m.id} ${c.id}/${op.id}: «${tx}»`);
   }
   return fuori;
 }
+const c45prima = (JSON.parse(readFileSync('tests/dati/c45-testi-prima.json', 'utf8')) as Record<string, Record<string, Record<string, string>>>)['C45-01']!;
+const testiC4501 = (ep: string) => (g.__NO_C4501 ? { ...testi(ep), ...(c45prima[ep] ?? {}) } : testi(ep));
 describe('C37-05 l\'opzione che manda un\'unità la impegna o dice perché no (tutti i 36 episodi)', () => {
   it('verde: nessuna opzione nomina un\'unità che non impegna', () => expect(nominaSenzaImpegno(testi)).toEqual([]));
   it('rosso (testi di prima): i 6 casi C37-05 tornano', () => {
     const prima = JSON.parse(readFileSync('tests/dati/c153-testi-prima.json', 'utf8')) as Record<string, Record<string, string>>;
     const x = nominaSenzaImpegno((ep) => ({ ...testi(ep), ...(prima[ep] ?? {}) })); console.log(`C37-05 rosso: ${x.length}`);
     expect(x.length).toBe(6);
+  });
+  it('C45-01: scorre anche gli imprevisti innestati (142 chiamate, come data/imprevisti)', () => {
+    const file = Object.entries(d).filter(([k]) => k.startsWith('imprevisti/')).flatMap(([, f]) => (f as { imprevisti: unknown[] }).imprevisti);
+    const innestati = missioni.flatMap((m) => m.ondate.flatMap((o) => (o.chiamate ?? []).filter((c) => c.imprevisto)));
+    expect(file.length).toBe(142); expect(innestati.length).toBe(file.length);
+  });
+  it('C45-01 verde: nessuna etichetta d\'imprevisto nomina steward, squadre o mediatore', () => expect(nominaSenzaImpegno(testiC4501).filter((x) => x.includes(' imp_'))).toEqual([]));
+  it('C45-01 rosso __NO_C4501: le 9 etichette di prima tornano; la regex di prima non ne vedeva nessuna', () => {
+    g.__NO_C4501 = true;
+    const x = nominaSenzaImpegno(testiC4501); console.log(`C45-01 rosso: ${x.length}`);
+    expect(x.length).toBe(9);
+    expect(nominaSenzaImpegno(testiC4501, true).filter((y) => y.includes(' imp_'))).toEqual([]);
   });
 });
 
