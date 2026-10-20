@@ -14,22 +14,30 @@ import { leggiDati } from './dati-disco.mjs';
 import * as M from '../src/logica/missione.ts';
 import { attenta } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
+import { variabiliIniziali } from '../src/logica/condizioni.ts';
+import { GAME_VERSION } from '../src/versione.ts';
 
 // Massimo scorrimento per schermata (px), misurato il 19/10 dopo D-191 e D-193 con questo pilota; le schermate non
 // elencate: 0 (crediti liberi). Restano la chiamata, che D-114 lascia scorrere (soglia: il massimo di prima), e la risposta a
 // 360×640 e 375×667, che D-197 lascia con la mappa piena (misurata il 20/10: 116 e 104 px).
 // Mai alzarle per far passare una modifica.
 export const SOGLIE = {
-  '360x640': { risposta: 116, chiamata: 664 }, // risposta: D-197, mappa piena come nella chiamata (scelta del PO)
+  '360x640': { risposta: 68, chiamata: 664 }, // risposta: D-197, mappa piena come nella chiamata (scelta del PO); 116 → 68 con C44-08
   '360x760': { chiamata: 544 },
-  '375x667': { risposta: 104, chiamata: 618 },
+  '375x667': { risposta: 56, chiamata: 618 }, // risposta 104 → 56 con C44-08
   '412x830': { chiamata: 435 },
+  // C44-08 (D-201): a 760 di altezza anche a 375 e 412 la risposta non scorre (prima 11 e 24 px); chiamata: D-114, il massimo misurato
+  '375x760': { chiamata: 512 },
+  '412x760': { chiamata: 473 },
 };
 const LIBERE = new Set(['crediti']);
 // Nomi dei settori sopra i segni dell'ultima risposta: misurati e stampati, non bloccano. Con la stessa build il massimo
 // cambia fra due giri (183 e 350 px² a 360×760; 506 col rosso C187S01): una soglia sarebbe instabile.
-export const VP_PER_LARGHEZZA = { 360: ['360x640', '360x760'], 375: ['375x667'], 412: ['412x830'] };
+export const VP_PER_LARGHEZZA = { 360: ['360x640', '360x760'], 375: ['375x667', '375x760'], 412: ['412x830', '412x760'] };
 
+const tutti = (dati, dich) => { const v0 = variabiliIniziali(dich.values()), ms = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x);
+  return JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: v0, missioni_concluse: ms.map((m) => m.id), genere: 'm', rapporto_aperto: null, in_corso: null,
+    episodi: Object.fromEntries(ms.map((m) => [m.id, { migliore: { esito: m.esiti[0].id, fallita: false, stelle: 1 }, tentativi: 1, variabili_prima: v0, variabili_dopo: v0 }])) }); };
 const piano = (m, v, dich) => { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich); const ond = [];
   while (!M.missioneFinita(m, s)) { const d = g.schiera(m, s); s = M.schiera(m, s, d); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); ond.push({ d }); s = M.chiudiOndata(m, s, dich); }
   return ond; };
@@ -91,6 +99,14 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         if (!fatto) { await p.waitForTimeout(400); if (++fermi > 20) { errori.push(`${vp}: bloccato su ${q}`); break; } } else fermi = 0;
       }
       await p.close();
+      if (h === 760) { // C44-09 (D-201): città con tutti i 36 episodi conclusi («Rileggi l'epilogo» in più). Rosso C201C01.
+        const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
+        if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
+        await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), tutti(dati, dich)); await q.reload();
+        await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="citta"]'); await lento(q); await q.waitForTimeout(300);
+        ris.push({ vp, nome: 'citta36', ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-citta36.png`), fullPage: true });
+        await q.close();
+      }
     }
   } finally { await b.close(); srv.close(); }
   return { ris, errori, sopra };

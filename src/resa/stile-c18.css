@@ -180,3 +180,11 @@ main:not(.rosso-c196v01) [data-fine-stagione] [data-poi] { margin: var(--spazio-
 /* D-191: con la mappa della città di nuovo a 260 px di minimo (C17-12) a 360×640 la città scorreva di 13 px: pulsanti delle
    stagioni più vicini alla mappa */
 main:not(.rosso-c191c01)[data-schermata="citta"] .stagioni .pulsante { margin-bottom: var(--spazio-1); padding-block: var(--spazio-1); }
+/* C44-08 (D-201): con la mappa piena (D-197) la risposta scorreva a 760 di altezza (11 px a 375, 24 a 412, imprevisti fino a
+   30): testata e mappa strette come nella chiamata, «Avanti» più vicino al blocco e meno margine sotto la pagina. Rosso C201R01. */
+main:not(.rosso-c201r01):has(.scena[data-scena="risposta"]) .testata { margin: var(--spazio-1) 0 var(--spazio-2); }
+main:not(.rosso-c201r01):has(.scena[data-scena="risposta"]) .mappa { margin-bottom: var(--spazio-2); }
+main:not(.rosso-c201r01) .scena[data-scena="risposta"] > .pulsante[data-azione="continua"] { margin: var(--spazio-2) 0; }
+#app:has(main:not(.rosso-c201r01) .scena[data-scena="risposta"]) { padding-bottom: var(--spazio-3); }
+/* C44-09 (D-201): a 36 episodi conclusi «Rileggi l'epilogo» si aggiunge sotto la scheda: 3 px oltre a 360×760. Più vicino. Rosso C201C01. */
+main:not(.rosso-c201c01)[data-schermata="citta"] [data-azione="epilogo"] { margin: var(--spazio-2) 0 0; }
