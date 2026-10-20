@@ -25,12 +25,12 @@ export function salvataggioFallito(id, dirDati = 'data') {
     episodi: Object.fromEntries(prima.map((x) => [x, fine.episodi[x]])), in_corso: f.ic, rapporto_aperto: f.ic.rapporti.at(-1).n, sconfitta: null, bozza: null } };
 }
 
-export async function giraC41(cartella = 'out/foto', build = 'dist', larghezze = process.env.VALMORA_LARGHEZZE ? process.env.VALMORA_LARGHEZZE.split(',').map(Number) : LARGHEZZE_C41) {
+export async function giraC41(cartella = 'out/foto', build = 'dist', larghezze = process.env.VALMORA_LARGHEZZE ? process.env.VALMORA_LARGHEZZE.split(',').map(Number) : LARGHEZZE_C41, rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean)) {
   mkdirSync(cartella, { recursive: true });
   const srv = await new Promise((ok) => { const s = createServer((q, r) => { const u = decodeURIComponent(q.url.split('?')[0]); const p = join(build, u === '/' ? 'index.html' : u);
     if (!existsSync(p)) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'content-type': TIPI[extname(p)] ?? 'application/octet-stream' }); r.end(readFileSync(p)); }); s.listen(0, '127.0.0.1', () => ok(s)); });
   const browser = await chromium.launch({ executablePath: process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
-  const stati = EPISODI_C41.map((id) => [id, salvataggioFallito(id)]), rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean), giri = [];
+  const stati = EPISODI_C41.map((id) => [id, salvataggioFallito(id)]), giri = [];
   try {
     for (const larghezza of larghezze) {
       const g = { larghezza, errori: [], scorrimento: [], attesi: [], misure: {} };
