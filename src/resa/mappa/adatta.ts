@@ -7,9 +7,13 @@ import { useLayoutEffect, type RefObject } from 'react';
 import { spento } from '../../interruttori.ts';
 
 const ESCLUSE = new Set(['chiamata']);
+// D-197 (opzione A del PO): nella risposta la mappa resta piena come nella chiamata: cambiare altezza fra le due rifaceva la
+// scena di Pixi e i nomi a ogni risposta (secondi di lavoro a CPU lenta) e in CI i segni di PO-085 scadevano prima del
+// controllo. Rosso C197R01: la risposta si adatta come prima (D-193).
+const ESCLUSE_D197 = new Set(['risposta']);
 // D-191: dove la mappa non si tocca (risposta, sala, briefing) può scendere fino a --mappa-altezza-min-lettura (160 px).
 // Rosso C191L01: il minimo di sempre.
-const LETTURA = new Set(['risposta', 'sala', 'briefing']);
+const LETTURA = new Set(['risposta', 'sala', 'briefing']); // «risposta» vale solo col rosso C197R01
 // D-191: nel rapporto, se la pagina scorre anche con la mappa al minimo, la mappa non si mostra (resta la scheda dei
 // settori, che dice lo stato di ognuno) e «Home» passa nella testata. Rosso C191R01: la mappa resta.
 const SENZA_MAPPA = new Set(['rapporto']);
@@ -32,7 +36,7 @@ function adatta(m: HTMLElement) {
   m.removeAttribute('data-adatta'); m.removeAttribute('data-nascosta'); m.style.removeProperty('--mappa-alta');
   const schermata = main?.dataset.schermata ?? '';
   const fine = (nascosta: boolean) => { if (nascosta) m.setAttribute('data-nascosta', ''); if (nascosta !== era) avvisa(nascosta); };
-  if (spento('C187M01') || !main || ESCLUSE.has(schermata)) return fine(false);
+  if (spento('C187M01') || !main || ESCLUSE.has(schermata) || (ESCLUSE_D197.has(schermata) && !spento('C197R01'))) return fine(false);
   // eccedenza della pagina, con le vignette nascondibili come nascoste e quelle che si riempiono al loro minimo
   const eccedenza = () => {
     let e = (document.scrollingElement ?? document.documentElement).scrollHeight - innerHeight;

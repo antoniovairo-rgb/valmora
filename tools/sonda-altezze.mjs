@@ -16,12 +16,13 @@ import { attenta } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 
 // Massimo scorrimento per schermata (px), misurato il 19/10 dopo D-191 e D-193 con questo pilota; le schermate non
-// elencate: 0 (crediti liberi). Resta solo la chiamata, che D-114 lascia scorrere: la soglia è il massimo di prima.
+// elencate: 0 (crediti liberi). Restano la chiamata, che D-114 lascia scorrere (soglia: il massimo di prima), e la risposta a
+// 360×640 e 375×667, che D-197 lascia con la mappa piena (misurata il 20/10: 116 e 104 px).
 // Mai alzarle per far passare una modifica.
 export const SOGLIE = {
-  '360x640': { chiamata: 664 },
+  '360x640': { risposta: 116, chiamata: 664 }, // risposta: D-197, mappa piena come nella chiamata (scelta del PO)
   '360x760': { chiamata: 544 },
-  '375x667': { chiamata: 618 },
+  '375x667': { risposta: 104, chiamata: 618 },
   '412x830': { chiamata: 435 },
 };
 const LIBERE = new Set(['crediti']);
@@ -102,7 +103,10 @@ export function controllaAltezze({ ris, errori, sopra }) {
   const male = Object.values(max).filter((r) => r.ecc > (SOGLIE[r.vp]?.[r.nome] ?? 0))
     .map((r) => `${r.vp} ${r.nome}: la pagina scorre di ${r.ecc} px (soglia ${SOGLIE[r.vp]?.[r.nome] ?? 0}, mappa ${r.mappa} px; D-187)`);
   const casa = ris.filter((r) => r.casa).map((r) => `${r.vp} ${r.nome}: il pulsante «Home» copre ${r.casa} fra punti e nomi dei settori (S-21, mappa ${r.mappa} px)`);
-  return [...male, ...casa, ...errori, ...sopra];
+  // D-197 (opzione A): nella risposta la mappa è alta come nella chiamata prima (niente ridisegno fra le due). Rosso C197R01.
+  const salti = [];
+  for (const [k, r] of ris.entries()) if (r.nome === 'risposta') { const c = ris.slice(0, k).reverse().find((x) => x.vp === r.vp && x.nome === 'chiamata'); if (c && Math.abs(c.mappa - r.mappa) > 1) salti.push(`${r.vp} risposta: mappa ${r.mappa} px dopo ${c.mappa} px nella chiamata (D-197)`); }
+  return [...male, ...casa, ...salti.slice(0, 3), ...errori, ...sopra];
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
