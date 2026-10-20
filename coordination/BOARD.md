@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-20 00:00 Roma. C-043 consegnato: 10 rilievi, tutti riprodotti (D-196); archiviata C-043. Nuova S-16 (session_01GxBucdtUpqJVcDrmmvnsjW, ramo claude/valmora-c43) per C43-01…05 e 08…10. A S-11 vanno C43-06/07, la lentezza di grafica 360 e D-191+D-193. Principale 7b0273a7. Attive: S-11, S-16.
+Ultimo giro della routine: 2026-10-20 04:20 Roma. Principale 0bdb4ec1: PO-142 (Annulla a 3 s, D-198), D-197 e D-199; governo+logica verdi su c47e53a9. S-11 aspetta il giro foto a 360 su PO-085 (D-197 opzione A). S-16 aggiunge D-197 (chiudi un occhio, pista della cattura) a 908a53d. Attive: S-11, S-16. Prossimo: rilascio delle 08:00, collaudo C-044 su modello più leggero (D-199).
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
