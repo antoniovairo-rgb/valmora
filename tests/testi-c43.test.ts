@@ -1,6 +1,8 @@
 // Collaudo C-043 (D-196), rilievi di S-16. Ogni guardiano ha il suo braccio rosso globalThis.__NO_C43xx.
-// - C43-01 epilogo a tavole: ogni filo di EPILOGO ha la sua tavola nella RESA (non solo nella logica), salvo «pista_cattura»
-//   (D-165 nomina cinque tavole; in attesa di decisione). Rosso C4301: senza la tavola «carte».
+// - C43-01 epilogo a tavole: ogni filo di EPILOGO si vede nella RESA (non solo nella logica): una tavola, o una riga sotto
+//   una tavola (D-197: «pista_cattura» sotto il Fabbro). Rossi C4301: senza la tavola «carte»; C4301P: senza la riga.
+// - C43-05 (D-197, opzione A): «Chiudi un occhio» in e02, e24, e33 uguale (−2 pressione, +1 tensione ai tornelli), senza
+//   fiducia e non più efficace dell'alternativa controllata (stesso sollievo, con un costo). Rosso C4305: gli effetti di prima.
 // - C43-03 verbale di un episodio fallito (0 stelle): il requisito parla della prima stella. Rosso C4303: «seconda».
 // - C43-04 nessuna risposta dice «il comando approva/apprezza/gradisce/ringrazia» senza muovere la fiducia (D-190). Rosso C4304.
 // - C43-08 citazioni interne con le virgolette alte “…”: nessun testo con «…«…»…». Rosso C4308: i 74 testi di prima.
@@ -18,12 +20,12 @@ import { giocaMissione } from '../src/logica/missione.ts';
 import { casuale } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import type { Condizione, Dichiarazione, Missione, Valore, Variabili } from '../src/logica/tipi.ts';
-import { TAVOLE } from '../src/resa/tavole-finale.tsx';
+import { RIGHE, TAVOLE } from '../src/resa/tavole-finale.tsx';
 import { Epilogo } from '../src/resa/schermate/Epilogo.tsx';
 import { sezioniBilancio } from '../src/resa/schermate/Bilancio.tsx';
 
 const g = globalThis as Record<string, unknown>;
-const ROSSI = ['C4301', 'C4303', 'C4304', 'C4308', 'C4309', 'C4310'];
+const ROSSI = ['C4301', 'C4301P', 'C4305', 'C4303', 'C4304', 'C4308', 'C4309', 'C4310'];
 afterEach(() => { for (const x of ROSSI) delete g[`__NO_${x}`]; });
 const d = leggiDati() as Record<string, unknown>;
 const dich = new Map((d['stato.json'] as { variabili: Dichiarazione[] }).variabili.map((x) => [x.id, x]));
@@ -39,16 +41,25 @@ const testo = (k: string, rosso?: string) => {
 const opzioni = (m: Missione) => m.ondate.flatMap((o) => (o.chiamate ?? []).flatMap((c) => c.opzioni.map((x) => ({ o: o.n, c, x }))));
 
 describe('C43-01 epilogo a tavole: i fili di EPILOGO nella resa', () => {
-  // «pista_cattura»: D-165 nomina cinque tavole (Fabbro, testimone, busta, talpa, fascicolo); D-196 chiede di verificarla
-  const SENZA_TAVOLA = ['pista_cattura'];
-  const tavole = (carte: Valore) => {
-    const scelte = EPILOGO.map((id) => ({ id, valore: id === 'carte' ? carte : id === 'sospetti_talpa' ? 2 : id === 'rapporto_dessi' ? 'rispetto' : id === 'testimone' ? 'protetto' : id === 'busta' ? 'consegnata' : id === 'fascicolo' ? 'procura' : 'nessuna', aperto: false, pesa_su: null }));
-    const html = renderToStaticMarkup(createElement(Epilogo, { e: { carriera: 'confermato', esito: 'confermato', scelte, stagioni: [], stelle: 0, massimo: 0 }, citta: () => {} }));
-    return [...html.matchAll(/data-tavola="([a-z_]+)" data-valore="([^"]*)"/g)].map((x) => `${x[1]}=${x[2]}`);
+  const html = (carte: Valore, pista: Valore = 'nessuna') => {
+    const scelte = EPILOGO.map((id) => ({ id, valore: id === 'carte' ? carte : id === 'pista_cattura' ? pista : id === 'sospetti_talpa' ? 2 : id === 'rapporto_dessi' ? 'rispetto' : id === 'testimone' ? 'protetto' : id === 'busta' ? 'consegnata' : id === 'fascicolo' ? 'procura' : 'nessuna', aperto: false, pesa_su: null }));
+    return renderToStaticMarkup(createElement(Epilogo, { e: { carriera: 'confermato', esito: 'confermato', scelte, stagioni: [], stelle: 0, massimo: 0 }, citta: () => {} }));
   };
-  it('ogni filo di EPILOGO ha una tavola, salvo «pista_cattura» (D-165)', () => {
-    const fili = new Set<string>(TAVOLE.map(([, id]) => id));
-    expect(EPILOGO.filter((id) => !fili.has(id))).toEqual(SENZA_TAVOLA);
+  const tavole = (carte: Valore) => [...html(carte).matchAll(/data-tavola="([a-z_]+)" data-valore="([^"]*)"/g)].map((x) => `${x[1]}=${x[2]}`);
+  it('ogni filo di EPILOGO ha una tavola o una riga sotto una tavola (D-165, D-197)', () => {
+    const fili = new Set<string>([...TAVOLE.map(([, id]) => id), ...Object.keys(RIGHE)]);
+    expect(EPILOGO.filter((id) => !fili.has(id))).toEqual([]);
+    expect(RIGHE).toEqual({ pista_cattura: 'fabbro' });
+  });
+  it('D-197: «pista_cattura» come riga sotto la tavola del Fabbro, col testo di epilogo.json; rosso C4301P: manca', () => {
+    for (const v of dich.get('pista_cattura')!.valori!) {
+      const h = html('nessuna', v);
+      const fabbro = h.slice(h.indexOf('data-tavola="fabbro"'), h.indexOf('data-tavola="testimone"'));
+      expect(fabbro).toContain(`data-riga="pista_cattura" data-valore="${v}"`);
+      expect(fabbro).toContain(testo(`epilogo.pista_cattura.${v}`).replace(/'/g, '&#x27;'));
+    }
+    g.__NO_C4301P = true;
+    expect(html('nessuna', 'porto')).not.toContain('data-riga'); // misurato prima: nessuna riga
   });
   it('la resa disegna la tavola «carte» con la didascalia del valore della partita; rosso C4301: manca', () => {
     for (const v of dich.get('carte')!.valori!) {
@@ -155,5 +166,34 @@ describe('C43-10 e36: «carte» letta dalla chiamata del comando e dal verbale c
   });
   it('la variante di «confermato» resta «confermato» (carriera e tono)', () => {
     for (const id of ['confermato_perse']) { expect(mis('e36').esiti.some((e) => e.id === id)).toBe(true); expect(testo(`esito.${id}`)).toBe('Confermato'); }
+  });
+});
+
+describe('C43-05 «Chiudi un occhio» (D-197, opzione A)', () => {
+  const CASI = [['e02', 'tornelli_falsi', 'chiudi_occhio'], ['e24', 'stessa_carta24', 'chiudi_occhio24'], ['e33', 'tornelli_falsi', 'chiudi_occhio']] as const;
+  // effetti della 0.43.0, per il rosso
+  const PRIMA05: Record<string, unknown[]> = { e02: [{ pressione: 'tornelli', valore: -3 }], e24: [{ aggiungi: 'credito', valore: -1 }, { pressione: 'tornelli', valore: -2 }], e33: [{ pressione: 'tornelli', valore: -2 }] };
+  type Eff = { pressione?: string; tensione?: string; aggiungi?: string; riserva?: string; valore: number };
+  const effetti = (ep: string, ch: string, op: string) => (g.__NO_C4305 ? PRIMA05[ep] : opzioni(mis(ep)).find(({ c, x }) => c.id === ch && x.id === op)!.x.effetti) as Eff[];
+  const sollievo = (e: Eff[]) => -e.filter((x) => x.pressione === 'tornelli').reduce((a, x) => a + x.valore, 0);
+  const problemi = () => {
+    const p: string[] = [];
+    const forme = new Set(CASI.map(([ep, ch, op]) => JSON.stringify(effetti(ep, ch, op))));
+    if (forme.size !== 1) p.push(`${forme.size} forme diverse`);
+    for (const [ep, ch, op] of CASI) {
+      const e = effetti(ep, ch, op);
+      if (e.some((x) => x.aggiungi === 'credito')) p.push(`${ep}: muove la fiducia`);
+      if (!e.some((x) => x.tensione === 'tornelli' && x.valore > 0)) p.push(`${ep}: nessun costo`);
+      // l'alternativa controllata: le altre risposte della stessa chiamata che tolgono pressione ai tornelli
+      const altre = opzioni(mis(ep)).filter(({ c, x }) => c.id === ch && x.id !== op).map(({ x }) => sollievo(x.effetti as Eff[])).filter((s) => s > 0);
+      if (sollievo(e) > Math.max(...altre)) p.push(`${ep}: più sollievo dell'alternativa controllata`);
+    }
+    return p;
+  };
+  it('verde: stessa forma, nessuna fiducia, un costo, non più efficace; rosso C4305: i problemi del collaudo', () => {
+    expect(problemi()).toEqual([]);
+    for (const [ep, , op] of CASI) expect(testo(`${ep}.op.${op}.c`)).toBe('I tornelli scorrono, ma la coda si scalda.');
+    g.__NO_C4305 = true;
+    expect(problemi()).toEqual(['3 forme diverse', 'e02: nessun costo', "e02: più sollievo dell'alternativa controllata", 'e24: muove la fiducia', 'e24: nessun costo', 'e33: nessun costo']);
   });
 });

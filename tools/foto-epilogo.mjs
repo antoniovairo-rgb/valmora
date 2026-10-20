@@ -124,12 +124,15 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
           const r = await pagina.evaluate(() => ({
             tavole: [...document.querySelectorAll('.scena [data-tavola]')].map((x) => `${x.dataset.tavola}=${x.dataset.valore ?? x.dataset.carriera}`),
             busti: [...document.querySelectorAll('[data-tavola="bar"] [data-busto]:not([data-busto="1"])')].map((x) => x.dataset.busto).join(','),
-            numeri: document.querySelectorAll('[data-tavola="bar"] [data-numeri] .etichetta').length, fuoco: !!document.activeElement?.closest('.scena') }));
+            numeri: document.querySelectorAll('[data-tavola="bar"] [data-numeri] .etichetta').length, fuoco: !!document.activeElement?.closest('.scena'),
+            riga: document.querySelector('[data-tavola="fabbro"] [data-riga="pista_cattura"]')?.dataset.valore ?? null }));
           // C43-01 (D-196): anche la tavola «carte» (D-189). Rosso VALMORA_ROSSI=C4301: manca
           const attese = [`fabbro=${v.rapporto_dessi}`, `testimone=${v.testimone}`, `busta=${v.busta}`, `talpa=${v.sospetti_talpa}`, `fascicolo=${v.fascicolo}`, `carte=${v.carte}`];
           atteso(`e36 epilogo: tavole «${r.tavole.join(', ')}» invece di «${attese.join(', ')}, bar» (D-165, D-171, D-189)`, r.tavole.slice(0, attese.length).join() === attese.join() && /^bar=(confermato|prorogato|sostituito)$/.test(r.tavole[attese.length] ?? ''));
           atteso(`e36 epilogo: al bar i busti «${r.busti}» (servono protagonista ${genere === 'f' ? 'lunghi' : 'corti'} e Malvasi berretto)`, r.busti === `${genere === 'f' ? 'lunghi' : 'corti'},berretto`);
           atteso(`e36 epilogo: ${r.numeri} numeri della carriera (stelle, episodi, fiducia)`, r.numeri === 3);
+          // D-197: «pista_cattura» come riga sotto la tavola del Fabbro. Rosso VALMORA_ROSSI=C4301P: manca
+          atteso(`e36 epilogo: sotto il Fabbro la riga «pista_cattura» = ${r.riga} invece di ${v.pista_cattura}`, r.riga === String(v.pista_cattura));
           atteso('e36 epilogo: il fuoco non è sulla scena (D-142)', r.fuoco);
           await misure('e36 epilogo'); await foto('e36-epilogo');
           // da tastiera: Tab fino ad «Alla mappa della città», Invio → città

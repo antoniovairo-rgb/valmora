@@ -17,6 +17,9 @@ type Genere = 'm' | 'f';
 export const TAVOLE = [['fabbro', 'rapporto_dessi'], ['testimone', 'testimone'], ['busta', 'busta'], ['talpa', 'sospetti_talpa'], ['fascicolo', 'fascicolo'], ['carte', 'carte']] as const;
 /** Le tavole che l'epilogo disegna (rosso C4301: senza «carte»). */
 export const tavoleFinale = () => (spento('C4301') ? TAVOLE.filter(([x]) => x !== 'carte') : TAVOLE);
+/** D-197: i fili senza tavola, come riga sotto una tavola (filo → tavola). Rosso __NO_C4301P: nessuna riga, come prima. */
+export const RIGHE: Record<string, string> = { pista_cattura: 'fabbro' };
+export const righeFinale = () => (spento('C4301P') ? {} : RIGHE);
 
 /** Stadio di notte sullo sfondo: anello degli spalti, folla, due torri faro con i coni di luce. */
 function Stadio(p: { y: number; folla?: boolean }) {
@@ -201,13 +204,15 @@ function Carte(p: { v: Valore }) {
 
 const DISEGNI: Record<string, (p: { v: Valore }) => ReactNode> = { fabbro: Fabbro, testimone: Testimone, busta: Busta, talpa: Talpa, fascicolo: Fascicolo, carte: Carte };
 
-/** Una tavola grande con la didascalia scritta sulla scelta del giocatore. */
-export function TavolaFilo(p: { tavola: string; valore: Valore }) {
+/** Una tavola grande con la didascalia scritta sulla scelta del giocatore; «riga»: un filo senza tavola, sotto la didascalia
+ *  (D-197: «pista_cattura» sotto la tavola del Fabbro). */
+export function TavolaFilo(p: { tavola: string; valore: Valore; riga?: { id: string; valore: Valore } }) {
   const D = DISEGNI[p.tavola]!;
   return (
     <figure className="tavola" data-tavola={p.tavola} data-valore={String(p.valore)}>
       <Tavola nome={`finale-${p.tavola}`} titolo={t(`finale.${p.tavola}`)}><D v={p.valore} /></Tavola>
       <figcaption className="didascalia"><strong>{t(`finale.${p.tavola}`)}</strong> {t(`finale.${p.tavola}.${String(p.valore)}`)}</figcaption>
+      {p.riga && <p className="didascalia" data-riga={p.riga.id} data-valore={String(p.riga.valore)}><strong>{t(`epilogo.${p.riga.id}.nome`)}</strong> {t(`epilogo.${p.riga.id}.${String(p.riga.valore)}`)}</p>}
     </figure>
   );
 }

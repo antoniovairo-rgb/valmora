@@ -283,6 +283,10 @@
                 {
                   "pressione": "tornelli",
                   "valore": -2
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e33.op.chiudi_occhio.r"

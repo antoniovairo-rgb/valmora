@@ -1,5 +1,5 @@
 {
-  "nota": "C43 (D-196): testi di prima (0.43.0), per i bracci rossi di tests/testi-c43.test.ts. «testi»: C43-02, C43-04, C43-09, C43-10; «virgolette»: C43-08.",
+  "nota": "C43 (D-196): testi di prima (0.43.0), per i bracci rossi di tests/testi-c43.test.ts. «testi»: C43-02, C43-04, C43-09, C43-10, C43-05 (D-197); «virgolette»: C43-08.",
   "testi": {
     "e02.op.scorta_subito.c": "Il viale resta tranquillo, ma ti costa una squadra.",
     "e02.op.respingi.c": "Il comando approva; la coda ai tornelli si arrabbia.",
@@ -57,7 +57,12 @@
     "e04.op.respingi_falsi.c": "Il comando approva; il piazzale si scalda molto.",
     "e13.op.aspettino.c": "Il comando approva; il viale si carica.",
     "e13.op.sospendi13.c": "Stadio e piazzale si svuotano verso la piazza.",
-    "e13.op.sospendi13.r": "L'arbitro fischia, i giocatori rientrano. Mezzo stadio va al concerto in anticipo."
+    "e13.op.sospendi13.r": "L'arbitro fischia, i giocatori rientrano. Mezzo stadio va al concerto in anticipo.",
+    "e02.op.chiudi_occhio.c": "Tornelli liberi, la coda si scioglie.",
+    "e02.op.chiudi_occhio.r": "Tornelli sbloccati. Domani qualcuno chiederà chi ha deciso.",
+    "e24.op.chiudi_occhio24.c": "I tornelli scorrono, ma ti costa fiducia.",
+    "e24.op.chiudi_occhio24.r": "Tornelli aperti. Il comando segna anche questo, alla voce «fine stagione».",
+    "e33.op.chiudi_occhio.c": "Tornelli liberi, la coda si scioglie."
   },
   "virgolette": {
     "e02.ch.selfie": "«In rete: ospiti che chiedono la strada per il quartiere di Skyfield. «Per un giro turistico».»",

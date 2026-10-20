@@ -7,7 +7,7 @@ import { chiaveFilo, type Epilogo as DatiEpilogo, type FineStagione as DatiFine,
 import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { Testata } from './Fumetto.tsx';
-import { conTavole, tavoleFinale, TavolaBar, TavolaFilo } from '../tavole-finale.tsx';
+import { conTavole, righeFinale, tavoleFinale, TavolaBar, TavolaFilo } from '../tavole-finale.tsx';
 
 const Fili = (p: { fili: Filo[]; nome: string }) => (
   <ul className="scheda fili" data-fili={p.nome}>
@@ -50,7 +50,11 @@ export function Epilogo(p: { e: DatiEpilogo; citta: () => void; home?: () => voi
     return (
       <>
         <Testata numero="★" etichetta={t('epilogo.etichetta')} titolo={t('finale.titolo')} home={p.home} />
-        {tavoleFinale().filter(([, id]) => valore(id) !== undefined).map(([tavola, id]) => <TavolaFilo key={tavola} tavola={tavola} valore={valore(id)!} />)}
+        {tavoleFinale().filter(([, id]) => valore(id) !== undefined).map(([tavola, id]) => {
+          // D-197: un filo senza tavola (pista_cattura) va come riga sotto la sua tavola
+          const riga = Object.entries(righeFinale()).find(([f, x]) => x === tavola && valore(f) !== undefined);
+          return <TavolaFilo key={tavola} tavola={tavola} valore={valore(id)!} riga={riga ? { id: riga[0], valore: valore(riga[0])! } : undefined} />;
+        })}
         <TavolaBar genere={p.genere ?? 'm'} carriera={p.e.carriera} numeri={[`★ ${p.e.stelle} su ${p.e.massimo}`, `${superati} episodi su ${episodi}`, `Fiducia ${p.fiducia ?? '–'}/${p.fiduciaMax ?? 10}`]} />
         <button className="pulsante" data-azione="citta" onClick={p.citta}><Icona di={IconaMappa} />Alla mappa della città</button>
       </>

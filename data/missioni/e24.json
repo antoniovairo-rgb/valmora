@@ -204,12 +204,12 @@
               "costo": "testi:e24.op.chiudi_occhio24.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "tornelli",
                   "valore": -2
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e24.op.chiudi_occhio24.r"
