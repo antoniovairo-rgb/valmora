@@ -106,7 +106,7 @@ describe('D-189 e36: la carriera pesa i fili di e31–e35', () => {
     const t = testi('e36'); const m = mis('e36');
     expect(t['e36.op.apri_ora.r']).not.toContain('Non dura');
     const senza = m.esiti.filter((e) => !t[e.verbale.replace('testi:', '')]!.includes('«Non dura»')).map((e) => e.id);
-    expect(m.esiti).toHaveLength(13); expect(senza).toEqual([]);
+    expect(m.esiti).toHaveLength(14); expect(senza).toEqual([]); // C43-10: + confermato_perse
     expect(t['e36.verbale_degenerato']).not.toContain('resta chiusa');
     for (const e of m.esiti.filter((x) => x.id.startsWith('sostituito'))) expect(t[e.verbale.replace('testi:', '')]).not.toContain('non la scommessa');
   });

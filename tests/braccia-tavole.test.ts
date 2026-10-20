@@ -64,7 +64,7 @@ function tutte() {
   const male: string[] = [];
   for (const capelli of CAPELLI) for (const posa of POSE) male.push(...braccia(`posa ${posa ?? 'riposo'}`, svg(createElement(Busto, { x: 0, y: 0, giacca: 'v-ciano', capelli, braccia: posa }))));
   for (const genere of ['m', 'f'] as const) male.push(...braccia(`tavola bar ${genere}`, renderToStaticMarkup(createElement(TavolaBar, { genere, carriera: 'prorogato', numeri: [] }))));
-  for (const [tavola] of TAVOLE) male.push(...braccia(`tavola ${tavola}`, renderToStaticMarkup(createElement(TavolaFilo, { tavola, valore: tavola === 'fabbro' ? 'rispetto' : tavola === 'testimone' ? 'protetto' : tavola === 'talpa' ? 3 : 'procura' }))));
+  for (const [tavola] of TAVOLE) male.push(...braccia(`tavola ${tavola}`, renderToStaticMarkup(createElement(TavolaFilo, { tavola, valore: tavola === 'fabbro' ? 'rispetto' : tavola === 'testimone' ? 'protetto' : tavola === 'talpa' ? 3 : tavola === 'carte' ? 'fermate' : 'procura' }))));
   return male;
 }
 

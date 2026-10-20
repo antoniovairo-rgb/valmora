@@ -3,10 +3,11 @@
 // «squadre e steward» senza costo in unità). Ora sono neutri sullo schieramento; gli effetti non cambiano.
 // Rosso __NO_C41T01: il test rimette i testi di prima e la misura li segnala (5 casi del collaudo).
 import { afterEach, describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { leggiDati } from '../tools/dati-disco.mjs';
 
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C41T01; delete g.__NO_C42T01; });
+afterEach(() => { delete g.__NO_C41T01; delete g.__NO_C42T01; delete g.__NO_C4302; });
 const d = leggiDati() as Record<string, unknown>;
 
 /** I 5 casi del collaudo: chiave del testo → affermazione sullo schieramento che non deve comparire. */
@@ -79,13 +80,18 @@ const PRIMA42: Record<string, string> = {
  *  dice che il settore si carica). Rosso __NO_C42T01: il test rimette i testi di prima dei residui. */
 const FORMULE: [string, RegExp][] = [['resta scoperto/presidiato', /\brest(a|ano) (scopert|presidiat)/i], ['tolta da', /\btolt[aoie] (da|dal|dalla|dallo|dai|dalle|al|alla|allo)\b/i],
   ['unità che lascia', /\b(squadr[ae]|steward|pattugli[ae]|mediatore) (lascia|lasciano)\b/i], ['sposta dal', /\bsposta (una|due|tre) \w+ dal\b/i], ['intanto nessuno', /intanto, nessuno\.$/i],
-  ['presidiata assoluto', /^\w+ presidiat[ao];/i], ['scortata senza costo', /scortat[aoie]/i]];
+  ['presidiata assoluto', /^\w+ presidiat[ao];/i], ['scortata senza costo', /scortat[aoie]/i],
+  // C43-02 (D-196): la versione positiva di «resta scoperto» («il viale resta coperto / calmo / tranquillo / senza una squadra»)
+  ['resta calmo/coperto', /\brest(a|ano) (copert|calm|tranquill|senza (una|un|controllo|squadr|unità)|sotto controllo|in ordine|allegr)/i]];
+/** C43-02: testi di prima (0.43.0), per il braccio rosso C4302 (tests/dati/testi-c43-prima.json). */
+const PRIMA43 = (JSON.parse(readFileSync('tests/dati/testi-c43-prima.json', 'utf8')) as { testi: Record<string, string> }).testi;
 const costa = new Map<string, boolean>();
 for (const [k, m] of Object.entries(d)) if (/^missioni\/e\d+\.json$/.test(k)) for (const o of (m as { ondate: { chiamate?: { opzioni: { id: string; effetti: { riserva?: string; valore: number }[] }[] }[] }[]; id: string }).ondate) for (const c of o.chiamate ?? []) for (const x of c.opzioni) costa.set(`${(m as { id: string }).id}.op.${x.id}`, x.effetti.some((e) => 'riserva' in e && e.valore < 0));
 function perFormula(): string[] {
   const male: string[] = [];
-  for (const [f, testi] of Object.entries(d)) { if (!/^testi\/it\/e\d+\.json$/.test(f)) continue;
-    for (const [k, v0] of Object.entries(testi as Record<string, string>)) { const v = (g.__NO_C42T01 ? PRIMA42[k] : undefined) ?? (g.__NO_C41T01 ? PRIMA[k] : undefined) ?? v0, base = k.replace(/\.(c|r)$/, '');
+  // C43-02: anche i testi degli imprevisti (imp_eNN, D-192)
+  for (const [f, testi] of Object.entries(d)) { if (!/^testi\/it\/(imp_)?e\d+\.json$/.test(f)) continue;
+    for (const [k, v0] of Object.entries(testi as Record<string, string>)) { const v = (g.__NO_C42T01 ? PRIMA42[k] : undefined) ?? (g.__NO_C41T01 ? PRIMA[k] : undefined) ?? (g.__NO_C4302 ? PRIMA43[k] : undefined) ?? v0, base = k.replace(/\.(c|r)$/, '');
       for (const [nome, re] of FORMULE) { if (!re.test(v)) continue; if (nome === 'scortata senza costo' && (!costa.has(base) || costa.get(base))) continue; male.push(`${k} (${nome})`); } } }
   return male;
 }
@@ -95,6 +101,12 @@ describe('C42-02 testi neutri sullo schieramento, per formula su tutti i testi',
   it('rosso C42T01: i residui di prima', () => { g.__NO_C42T01 = true; const n = perFormula().length; if (process.env.MOSTRA) console.log(`rosso C42T01: ${n}`); expect(n).toBe(36); }); // i 36 testi di prima dei residui ancora esistenti (e25 scorta_ritorno.r compreso; e11.op.ferma11.c non c'è più: chiamata «contromano» tolta da e11 con D-186)
   // «la tiene breve» e «con squadre e steward» non sono formule: li sorveglia il test per chiave di C41-04 qui sotto
   it('rosso C41T01: 4 dei 5 casi di C41-04 tornano con la ricerca per formula', () => { g.__NO_C41T01 = true; expect(perFormula().length).toBe(4); });
+  // C43-02: i 44 testi «resta coperto/calmo/tranquillo/senza una squadra» del collaudo C-043 (e33: 4 smentiti dalla mappa)
+  it('rosso C4302: i 44 testi di prima', () => { g.__NO_C4302 = true; expect(perFormula().filter((x) => x.endsWith('(resta calmo/coperto)')).length).toBe(44); });
+  // leggiDati innesta i testi imp_eNN.json (D-192) in testi/it/eNN.json: la ricerca li legge già; misurato 2026-10-19: 1320 chiavi «eNN.imp.*» (grep -c sui 30 file)
+  it('C43-02: la ricerca per formula legge anche i testi degli imprevisti (imp_eNN)', () => {
+    expect(Object.entries(d).filter(([f]) => /^testi\/it\/e\d+\.json$/.test(f)).flatMap(([, t]) => Object.keys(t as object)).filter((k) => /^e\d+\.imp\./.test(k)).length).toBeGreaterThan(1000);
+  });
 });
 
 describe('C41-04 testi neutri sullo schieramento', () => {

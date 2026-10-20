@@ -94,8 +94,10 @@ export function sezioniBilancio(p: { m: Missione; esito: EsitoMissione; stelle: 
       </section>
       <section className="scheda bilancio bilancio-stelle" data-sezione="stelle">
         <h3><Icona di={Star} />{t('bilancio.stelle')}</h3>
-        <p data-requisito={manca ? manca.var : 'nessuno'}>
+        <p data-requisito={p.stelle === 0 && !spento('C4303') ? 'esito' : manca ? manca.var : 'nessuno'}>
           {!lista ? 'Hai tutte e tre le stelle.'
+            // C43-03 (D-196): con 0 stelle (episodio fallito) manca la prima, non la seconda. Rosso C4303: «Per la seconda stella».
+            : p.stelle === 0 && !spento('C4303') ? 'Per la prima stella porta a termine la serata senza perderla.'
             : manca ? (manca.confronto === 'altro' ? 'Serve un altro esito della serata.' : requisitoInParole(manca, p.stelle >= 2 ? 3 : 2))
             : 'I numeri ci sono: la stella in più dipende da come finisce la serata.'}
         </p>

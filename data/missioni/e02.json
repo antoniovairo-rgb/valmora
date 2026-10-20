@@ -406,7 +406,11 @@
               "effetti": [
                 {
                   "pressione": "tornelli",
-                  "valore": -3
+                  "valore": -2
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e02.op.chiudi_occhio.r"
