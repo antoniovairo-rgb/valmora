@@ -13,7 +13,7 @@ import { chromium } from 'playwright-core';
 
 const TIPI = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.woff': 'font/woff', '.webmanifest': 'application/manifest+json' };
 
-export async function giraOffline(build = 'dist') {
+export async function giraOffline(build = 'dist', rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean)) {
   const radice = resolve(build);
   let rete = true, versioneFinta = null, sparito = null; // sparito: file che il server non ha più (rilascio nuovo)
   const srv = createServer((q, r) => {
@@ -29,7 +29,6 @@ export async function giraOffline(build = 'dist') {
   const URL = `http://localhost:${srv.address().port}/`;
   const percorso = process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
   const browser = await chromium.launch({ executablePath: percorso });
-  const rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean);
   const problemi = [];
   const atteso = (cosa, ok) => { if (!ok) problemi.push(`offline: ${cosa}`); };
   const scena = (p, n) => p.waitForFunction((n) => { const s = document.querySelectorAll('.scena'); return s.length === 1 && s[0].dataset.scena === n && getComputedStyle(s[0]).opacity === '1'; }, n, { timeout: 8000 });
