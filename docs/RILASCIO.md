@@ -30,6 +30,16 @@ Vale solo per il rilascio: l'APK di debug del job «apk» resta `versionCode 1`,
 
 ## 2. Guida passo passo per il PO
 
+### 2.0 Firma: Play App Signing e tre strade (D-213, decide il PO)
+
+**Come funziona** (https://support.google.com/googleplay/android-developer/answer/9842756 e https://developer.android.com/studio/publish/app-signing, lette il 2026-10-20): con Play App Signing «Google manages and protects your app's signing key»; tu firmi ogni AAB solo con la tua **chiave di caricamento** e Google rifirma l'app per gli utenti. «When you use Play App Signing, if you lose your upload key, or if it is compromised, you can request an upload key reset in the Play Console» (Play Console: sezione «Upload key certificate» → «Request upload key reset»). Quindi perdere la chiave di caricamento **non** fa perdere l'app, ma blocca i caricamenti finché Google non accetta la nuova chiave (tempi: **Non posso confermarlo**, la pagina non li indica).
+
+| Strada | Passi | Costi e rischi |
+|---|---|---|
+| **(a) Segreti GitHub, firma la CI** (pronta: android/app/build.gradle:16-17, 47; catene.yml:136-156) | §2.1 chiave sul tuo computer → §2.2 quattro segreti → ogni push produce `valmora-release-aab` già firmato | Una volta sola ~15 min. La chiave sta anche nei segreti di GitHub (cifrati, mai stampati dal job); chi ha accesso in scrittura alle Actions del repository potrebbe in teoria usarla in un job: controlla chi ha accesso in Settings → Collaborators (Non verificato da S-21). Rimedio se trapela: «Request upload key reset». |
+| **(b) Firmi tu sul computer l'AAB non firmato della CI** | §2.1 chiave → §2.3 scarichi `app-release.aab` (non firmato) → `jarsigner -keystore valmora-upload.jks app-release.aab valmora-upload` (comando da https://developer.android.com/build/building-cmdline: «you can use jarsigner to sign your app bundle»; **«You cannot use apksigner to sign your app bundle»**) → carichi. In alternativa Android Studio, «Build > Generate Signed Bundle/APK», che però ricostruisce dal sorgente sul tuo computer (serve il progetto installato). | La chiave non lascia mai il tuo computer. Costo: ~5 min a ogni rilascio e Java installato (jarsigner è nel JDK). Nessun segreto in GitHub. |
+| **(c) Chiave creata da un job CI e consegnata a te come file** | Un job manuale genera il .jks, lo carica come artifact; tu lo scarichi, cancelli subito l'artifact, poi (a) o (b) | **Non implementata.** Rischio: per il tempo in cui l'artifact esiste, la chiave privata e la sua password stanno sui server di GitHub e nei log/artefatti del run; chiunque possa leggere le Actions del repository può scaricarla. Il compito S-21 vieta alle sessioni di generare una chiave vera: servirebbe un tuo via esplicito. Risparmia solo l'installazione di Java per §2.1. |
+
 ### 2.1 Creare la chiave di caricamento (sul tuo computer, una volta sola)
 
 Serve Java (il comando `keytool` è incluso). Il comando viene da https://developer.android.com/build/building-cmdline (letta il 2026-10-20); qui la validità è portata a 10 000 giorni come nella pagina, oltre i 25 anni richiesti (25 anni ≈ 9 132 giorni):
