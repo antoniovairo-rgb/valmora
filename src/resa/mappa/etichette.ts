@@ -53,6 +53,10 @@ export function disponiEtichette(contenitore: HTMLElement) {
   if (!spento('C102D01')) for (const s of settori) { s.setAttribute('data-unita', UNITA[0]); s.querySelector<HTMLElement>('.settore-nome')?.style.removeProperty('max-width'); }
   for (const s of settori) { const n = s.querySelector<HTMLElement>('.settore-nome'); n?.style.removeProperty('--nome-dx'); n?.style.removeProperty('--nome-dy'); } // C128-02
   const punti = settori.map((s) => s.querySelector('.settore-punto')!.getBoundingClientRect() as Rett);
+  // D-191: con la mappa abbassata (fino a 160 px) i nomi in alto finivano sotto il pulsante «Home» dell'angolo: per i nomi
+  // e le unità è un ostacolo come i punti (in coda, così gli indici dei settori restano gli stessi). Rosso C191H01: no.
+  const casa = contenitore.querySelector(':scope > .tasto-home');
+  if (casa && !spento('C191H01')) punti.push(casa.getBoundingClientRect() as Rett);
   // C33-01: il nome si misura col testo vero (riquadro ∪ righe del testo): stretto al 60% il testo usciva dal riquadro e
   // finiva sotto le pastiglie (10/142 ondate a 360). Rosso C100N01: solo il riquadro, come prima.
   const nomeDi = (s: HTMLElement) => { const n = s.querySelector('.settore-nome'); if (!n) return null; const b = n.getBoundingClientRect();
@@ -71,6 +75,9 @@ export function disponiEtichette(contenitore: HTMLElement) {
   if (!spento('C34N01')) migliorCombinazione(settori, punti, mappa, !contenitore.querySelector('.settore-unita'));
   // con nessuna unità sulla mappa (sala, briefing) la combinazione migliore è già quella finale
   if (!contenitore.querySelector('.settore-unita') && !spento('C34N01')) return;
+  // D-187 (S-12): nella chiamata i segni dell'ultima risposta (▲/▼, +⚑) finivano sotto i nomi (fino a 506 px² a 360):
+  // per i nomi sono ostacoli. Rosso C187S01: no, come prima.
+  const segni = spento('C187S01') ? [] : [...contenitore.querySelectorAll('.settore .segni-effetto')].map((e) => e.getBoundingClientRect() as Rett);
   // 2) nome e unità insieme (6 × 6 combinazioni; solo il nome per i settori senza unità), si tiene quella che costa meno
   //    (due passate, così anche i primi settori vedono dove sono finiti gli ultimi).
   //    Nome contro: punti, nomi e unità degli altri settori. Unità contro: tutti i punti (anche il proprio),
@@ -80,7 +87,7 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const conUnita = !!s.querySelector('.settore-unita');
     const altri = settori.filter((x) => x !== s);
     const presenti = (rs: (Rett | null)[]) => rs.filter((r): r is Rett => !!r);
-    const perNome = [...punti.filter((_, j) => j !== i).map((r) => ostacolo(r)), ...presenti(altri.map(nomeDi)).map((n) => ostacolo(n, STACCO)), ...presenti(altri.map(unitaDi)).map((r) => ostacolo(r))];
+    const perNome = [...punti.filter((_, j) => j !== i).map((r) => ostacolo(r)), ...presenti(altri.map(nomeDi)).map((n) => ostacolo(n, STACCO)), ...presenti(altri.map(unitaDi)).map((r) => ostacolo(r)), ...segni.map((r) => ostacolo(r))];
     const perUnita = [...punti, ...presenti(altri.map(nomeDi)), ...presenti(altri.map(unitaDi))].map((r) => ostacolo(r));
     const costoDi = (r: Rett, os: Ostacolo[]) => os.reduce((a, o) => a + VERA * area(r, o.vero) + area(r, o.largo) - area(r, o.vero), 0);
     // C26-11: una pastiglia col centro sotto il disco di un altro settore non si può toccare (e06 a 360), e due nomi

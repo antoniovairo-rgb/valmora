@@ -38,11 +38,15 @@ export async function controllaHomeA(browser, url, cartella, atteso, rossi, larg
       const v = r(document.querySelector('[data-home-vignetta] [data-vignetta="home"]')), o = r(document.querySelector('[data-obiettivo]'));
       const cose = [v, o, ...tre];
       return { manca: cose.filter((x) => !x || !x.height).length, scorre: Math.round(Math.max(...cose.filter(Boolean).map((x) => x.bottom)) - innerHeight),
-        vignetta: v ? Math.round(v.height) : 0, min: parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--home-vignetta-min')) || 0 };
+        vignetta: v ? Math.round(v.height) : 0, min: parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--home-vignetta-min')) || 0,
+        pagina: document.scrollingElement.scrollHeight - innerHeight }; // C43-07: la pagina intera, non solo i comandi
     });
     misure.push({ h, ...m });
     atteso(`${dove}: ${m.manca} fra vignetta, frase-obiettivo e i tre pulsanti mancano`, m.manca === 0);
     atteso(`${dove}: per vedere vignetta, frase e tre pulsanti si scorre di ${m.scorre} px (soglia ${SOGLIA_SCORRIMENTO})`, m.manca === 0 && m.scorre <= SOGLIA_SCORRIMENTO);
+    // C43-07 (D-196): con un salvataggio la home era alta 764 su 760 (il margine dell'ultima nota usciva da main). Rosso C187C01.
+    // (solo a 760: a 640 con un salvataggio restano 29/10/10 px, vignetta già al minimo; dichiarato, D-187/C43-07)
+    if (h === ALTEZZE[0]) atteso(`${dove}: la pagina della home scorre di ${m.pagina} px (C43-07)`, m.pagina <= 0);
     atteso(`${dove}: vignetta alta ${m.vignetta} px, sotto il minimo ${m.min}`, m.vignetta >= m.min - 1);
     if (cartella) await p.screenshot({ path: join(cartella, `home-${larghezza}x${h}.png`) });
     if (h === ALTEZZE[0]) await controllaAltro(p, atteso, `${dove} menu «Altro»`, cartella && join(cartella, `home-altro-${larghezza}.png`));
@@ -73,10 +77,11 @@ async function controllaAltro(p, atteso, dove, foto) {
 export async function homeRossaVista(build = 'dist') {
   const { servi } = await import('./foto.mjs'); const { chromium } = await import('playwright-core'); const { existsSync } = await import('node:fs');
   const srv = await servi(build), percorso = process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
-  const browser = await chromium.launch({ executablePath: percorso }); const male = [];
-  try { await controllaHomeA(browser, `http://127.0.0.1:${srv.address().port}/`, '', (c, ok) => { if (!ok) male.push(c); }, ['C140H01'], 360); }
+  const browser = await chromium.launch({ executablePath: percorso });
+  const visto = {};
+  try { for (const r of ['C140H01', 'C187C01']) { const male = []; await controllaHomeA(browser, `http://127.0.0.1:${srv.address().port}/`, '', (c, ok) => { if (!ok) male.push(c); }, [r], 360); visto[r] = male.length > 0; } }
   finally { await browser.close(); srv.close(); }
-  return male.length > 0;
+  return Object.values(visto).every(Boolean); // C140H01 (home di prima) e C187C01 (C43-07, 764 su 760)
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

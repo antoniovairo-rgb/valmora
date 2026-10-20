@@ -19,3 +19,6 @@
 .home-altro[hidden] { display: none; }
 .home-altro .secondari { margin: 0 0 var(--spazio-2); }
 .home-altro .tenue { margin: 0; }
+/* D-187: il margine dell'ultimo paragrafo usciva da main (margini che collassano) e useRiempi non lo contava: la home
+   scorreva di 4 px a 360×640 e 375×667 */
+main:not(.rosso-c187c01) .home-premessa ~ .avviso-finzione { margin-bottom: 0; }

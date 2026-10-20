@@ -3,7 +3,7 @@
 // sotto. La resa legge e mostra; i calcoli stanno in src/logica. Si salva dopo ogni passo (D-040):
 // la scena dentro l'ondata si ricava dal salvataggio (partita.ts), quindi una ricarica riprende lì.
 import { AnimatePresence, MotionConfig } from 'motion/react';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { spento } from '../interruttori.ts';
 import { variabiliIniziali } from '../logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFinita, riprendiDallOndata, rispondi, schiera, settoriAmmessi, type EsitoMissione, type InCorso } from '../logica/missione.ts';
@@ -49,7 +49,7 @@ type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
-const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01', 'C10S03', 'C14T01', 'C35C01', 'C38A01', 'C38R01', 'C40C01', 'C40C02', 'C42V01', 'C44I02', 'C58I01', 'C60I01', 'C89C01', 'C90V01', 'C98V01', 'C113V01'];
+const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01', 'C10S03', 'C14T01', 'C35C01', 'C38A01', 'C38R01', 'C40C01', 'C40C02', 'C42V01', 'C44I02', 'C58I01', 'C60I01', 'C89C01', 'C90V01', 'C98V01', 'C113V01', 'C187C01', 'C187V01', 'C191C01', 'C193S01', 'C196V01'];
 const libera = (m: Missione, ic: InCorso, d: Disposizione, preferita: string | null) => {
   const disp = disponibili(m, ic);
   const ok = (r: string) => (disp[r] ?? 0) - usate(d, r) > 0;
@@ -61,6 +61,7 @@ export function App() {
   const [aggiornato] = useState(() => ultimoAvviso()); // dopo carica(): avviso dell'adattamento ai dati nuovi (C-014)
   const [schermata, setSchermata] = useState<Schermata>('titolo');
   const [visti, setVisti] = useState(0);
+  const [mappaNascosta, setMappaNascosta] = useState(false); // D-191: rapporto senza mappa, «Home» nella testata
   const [bozza, setBozza] = useState<Disposizione>({});
   // S-12 (PO-061): ogni mossa dello schieramento si può annullare («Annulla l'ultima»).
   const [storia, setStoria] = useState<Disposizione[]>([]);
@@ -83,8 +84,13 @@ export function App() {
   const [voli, setVoli] = useState<Volo[]>([]); // unità in volo verso il settore (solo decorazione)
   const [segni, setSegni] = useState<Segno[]>([]); // PO-085: segni dell'ultima risposta sulla mappa, per 1,8 s
   const timerSegni = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => { if (!segni.length || spento('C193T01')) return; const id = setTimeout(() => setSegni([]), 1800); timerSegni.current = id; return () => clearTimeout(id); }, [segni]);
   const mostraSegni = (xs: Segno[]) => {
-    if (timerSegni.current) clearTimeout(timerSegni.current); setSegni(xs); timerSegni.current = setTimeout(() => setSegni([]), 1800);
+    if (timerSegni.current) clearTimeout(timerSegni.current); setSegni(xs);
+    // D-193: il conto di 1,8 s parte quando i segni sono sulla pagina (effetto qui sotto), non al tocco: con la mappa che
+    // cambia altezza fra chiamata e risposta (D-187) il disegno arrivava dopo e i segni potevano scadere prima di vedersi
+    // (CI a 375, PO-085). Rosso C193T01: dal tocco, come prima.
+    if (spento('C193T01')) timerSegni.current = setTimeout(() => setSegni([]), 1800);
     // C20-07: se la mappa è scorsa via (opzione toccata in fondo alla pagina), torna in vista. Rosso C44E04: no.
     const mappa = document.querySelector('.mappa');
     if (xs.length && mappa && !spento('C44E04') && mappa.getBoundingClientRect().top < 0) mappa.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
@@ -311,9 +317,9 @@ export function App() {
   return (
     <MotionConfig reducedMotion="user">
       <main data-schermata={nome} data-ondata={ic?.ondata ?? 0} className={ROSSI_CSS.filter((x) => spento(x)).map((x) => `rosso-${x.toLowerCase()}`).join(' ')}>
-        {mappa && m && testata && <Testata numero={due(m.episodio)} etichetta={testata.etichetta} titolo={testata.titolo} info={testata.info} />}
+        {mappa && m && testata && <Testata numero={due(m.episodio)} etichetta={testata.etichetta} titolo={testata.titolo} info={testata.info} home={mappaNascosta ? home : undefined} />}
         {fiducia !== null && <Fiducia valore={fiducia} max={Number(dichiarate.get('credito')?.max ?? 10)} />}
-        {mappa && m && <Mappa m={m} home={home} segni={segni} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
+        {mappa && m && <Mappa m={m} home={home} nascosta={setMappaNascosta} segni={segni} ondata={schermata === 'rapporto' ? ic?.rapporti.at(-1)?.n : Math.min(ic?.ondata ?? 1, m.ondate.length)} {...mappa} />}
         <Voli voli={voli} finito={(id) => setVoli((v) => v.filter((x) => x.id !== id))} />
         {/* PO-097: versione su ogni schermata, in basso a destra, piccola e non toccabile. Rosso C38V01: niente. */}
         {!spento('C38V01') && <small className="versione-angolo" data-versione-angolo aria-hidden="true">v{GAME_VERSION}</small>}

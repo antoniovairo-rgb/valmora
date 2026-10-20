@@ -120,7 +120,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
               const fs = parseFloat(getComputedStyle(el).fontSize);
               if (fs < 12 && el.getClientRects().length) p.push(`«${el.textContent.trim().slice(0, 30)}» a ${fs}px`);
             }
-            const mappa = document.querySelector('.mappa')?.getBoundingClientRect();
+            const mappa = document.querySelector('.mappa:not([data-nascosta])')?.getBoundingClientRect(); // D-191: il rapporto può non mostrarla
             if (mappa) for (const n of document.querySelectorAll('.settore-nome')) {
               const r = n.getBoundingClientRect();
               if (r.left < mappa.left + 5 || r.right > mappa.right - 5 || r.bottom > mappa.bottom - 5 || r.top < mappa.top + 5) p.push(`nome «${n.textContent}» tocca il bordo della mappa`);
@@ -379,7 +379,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso('«Nuova partita» con una partita salvata non chiede conferma (C-005 R02)', chiede);
         if (chiede) { await foto(); await controllaTripla(pagina, atteso, '«Nuova partita»', foto); await premi('[data-azione="annulla-nuova"]'); await scena('titolo'); }
         atteso('«No, tieni la partita» ha cambiato il salvataggio', (await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'))) === prima);
-        if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); await controllaSalvataggiPersi(pagina, { atteso, scena }); await controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }); await controllaIndietro(pagina, { atteso, scena }); await controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi); await (await import('./foto-po121.mjs')).controllaAnnulla(browser, url, dirDati, cartella, atteso, rossi); await (await import('./foto-c33.mjs')).controllaTono(browser, url, dirDati, cartella, atteso, rossi); await controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori, cartella }); } // S-09
+        await controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi, larghezza); if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); await controllaSalvataggiPersi(pagina, { atteso, scena }); await controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }); await controllaIndietro(pagina, { atteso, scena }); await (await import('./foto-po121.mjs')).controllaAnnulla(browser, url, dirDati, cartella, atteso, rossi); await (await import('./foto-c33.mjs')).controllaTono(browser, url, dirDati, cartella, atteso, rossi); await controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori, cartella }); } // S-09
       } catch (e) { atteso(`giro interrotto: ${e.message.split('\n')[0]}`, false); }
       await pagina.close();
       giri.push(g);

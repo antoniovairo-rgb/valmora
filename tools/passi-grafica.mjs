@@ -9,6 +9,7 @@ import { giraC41 } from './foto-c41.mjs';
 import { giraOffline } from './offline.mjs';
 import { controllaCittaSenzaWebgl } from './foto-c128.mjs';
 
+const larghezzeGiro = () => (process.env.VALMORA_LARGHEZZE ?? '360,375,412').split(',').map(Number);
 const fileResa = () => execSync('git ls-files --cached --others --exclude-standard src/resa', { encoding: 'utf8' })
   .split('\n').filter((p) => p && existsSync(p));
 
@@ -22,6 +23,8 @@ export const PASSI_GRAFICA = {
     // D-161, D-164, D-165: epilogo, «Fine stagione» e fischio (tools/foto-epilogo.mjs)
     return [...giri.flatMap(controllaGiro), ...(await controllaCittaSenzaWebgl(stati)), ...(await giraEpilogo('out/foto')).flatMap(controllaGiro), ...(await giraC41('out/foto')).flatMap(controllaGiro)];
   },
+  // D-187 (PO-052, PO-058): scorrimento di ogni schermata di e01 alle altezze dei telefoni della larghezza del giro
+  altezze: async () => { const a = await import('./sonda-altezze.mjs'); return a.controllaAltezze(await a.giraAltezze({ vps: larghezzeGiro().flatMap((w) => a.VP_PER_LARGHEZZA[w] ?? []) })); },
   // S-22 (C14-01): il gioco installato funziona offline (service worker), su http://localhost
   offline: () => giraOffline('dist'),
   'bracci-rossi-grafica': async () => {
@@ -32,7 +35,7 @@ export const PASSI_GRAFICA = {
       try { if (!(await giraOffline('dist')).length) ciechi.push(`offline/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }
     // D-161, D-164, D-165: senza epilogo, senza «Fine stagione» o senza fischio o senza tavole il giro deve diventare rosso (una larghezza basta)
-    for (const r of ['C161E01', 'C164F01', 'C165F01', 'C165T01']) {
+    for (const r of ['C161E01', 'C164F01', 'C165F01', 'C165T01', 'C196V01']) { // C196V01: C43-06, passo «Fine stagione» che scorre
       process.env.VALMORA_ROSSI = r;
       try { if (!(await giraEpilogo('out/foto-rossi', 'dist', [360])).flatMap(controllaGiro).length) ciechi.push(`epilogo/${r} è cieco`); } finally { delete process.env.VALMORA_ROSSI; }
     }
@@ -48,7 +51,13 @@ export const PASSI_GRAFICA = {
     const con412 = !process.env.VALMORA_LARGHEZZE || process.env.VALMORA_LARGHEZZE.split(',').includes('412');
     if (!stati.length) { if (con412) ciechi.push('foto/città senza WebGL: nessuno stato con un nome dal giro foto'); }
     else if (!(await controllaCittaSenzaWebgl(stati, 'dist', ['C128N01'])).some((x) => x.includes('tocca il bordo'))) ciechi.push('foto/città senza WebGL (C128N01) è cieco');
-    if (!(await (await import('./foto-home.mjs')).homeRossaVista('dist'))) ciechi.push('foto/home (C140H01, PO-140) è cieco');
+    if (!(await (await import('./foto-home.mjs')).homeRossaVista('dist'))) ciechi.push('foto/home (C140H01 PO-140 o C187C01 C43-07) è cieco');
+    // D-187: con la mappa che non si abbassa o la versione sopra la scena che esce il guardiano diventa rosso (360×760)
+    if (larghezzeGiro().includes(360)) { const a = await import('./sonda-altezze.mjs');
+      // D-191: rapporto senza mappa (R01), minimo a 160 px (L01), scheda compatta della città (C01), nomi lontani da «Home» (H01);
+      // D-193: risposta in un blocco (R01), spaziature di sala e briefing (S01)
+      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640']])
+        if (!a.controllaAltezze(await a.giraAltezze({ vps: [vp], rossi: [r] })).length) ciechi.push(`altezze/${r} è cieco`); }
     if (!controllaToken({ 'src/resa/x.css': '.a { color: #fff; }' }).length) ciechi.push('token/colore è cieco');
     if (!controllaToken({ 'src/resa/x.css': '.a { margin: 3px; }' }).length) ciechi.push('token/misura è cieco');
     if (!controllaToken({ 'src/resa/X.tsx': '<div style={{ color: "red" }} />' }).length) ciechi.push('token/stile in linea è cieco');

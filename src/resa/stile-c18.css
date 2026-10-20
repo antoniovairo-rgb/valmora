@@ -120,6 +120,11 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .vignetta .v-linea.v-fine { stroke-width: var(--vignetta-tratto-fine); }
 /* C41-03 (D-183): nota sotto le unità dello schieramento: le risposte che costano unità le tolgono dalla prossima ondata */
 .nota-unita { margin: var(--spazio-1) 0 0; font-size: var(--testo-mini); line-height: var(--linea-stretta); }
+/* D-187: mappa abbassata perché la pagina non scorra (src/resa/mappa/adatta.ts) */
+main .mappa[data-adatta] { aspect-ratio: auto; height: var(--mappa-alta); }
+/* D-187 (S-12): uscendo, la scena si sposta di 40 px a sinistra (Scena.tsx) e le lettere delle opzioni passavano sotto la
+   versione (fino a 576 px²): la versione resta sotto la scena che si muove (z-index auto, ordine del documento). Rosso C187V01. */
+main:not(.rosso-c187v01):not(.rosso-c40c01) .versione-angolo { z-index: auto; }
 /* C41-06: nel verbale fallito la vignetta non scende sotto i due terzi della larghezza a 360 px */
 .verbale.fallita .vignetta-cornice .vignetta { --vignetta-min: var(--vignetta-min-fallita); }
 /* D-185 (C41-06, opzione C): nel verbale fallito si recuperano ~44 px di spaziature, così la vignetta a 110 px ci sta a
@@ -129,7 +134,49 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .verbale.compatta ~ .avviso { margin-block: var(--spazio-2) var(--spazio-1); }
 .verbale.compatta ~ .condividi { margin-bottom: var(--spazio-2); }
 .verbale.compatta ~ .ripartenza .pulsante { margin-block: 0; }
+/* D-191: nel rapporto la mappa che non ci sta senza scorrere non si mostra (adatta.ts) */
+main .mappa[data-nascosta] { display: none; }
+/* D-191 (PO-052): scheda dell'episodio nella città più compatta, perché a 360×640 e 375×667 la pagina non scorra.
+   Rosso C191C01: la scheda di prima. */
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] { padding: var(--spazio-2) var(--spazio-3); margin: var(--spazio-2) 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] h2 { margin: var(--spazio-1) 0; font-size: var(--testo-grande); }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] .sfida { margin: var(--spazio-1) 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] .sfida-club { display: flex; align-items: center; justify-content: center; gap: var(--spazio-1); }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] .stemma { width: var(--stemma-compatto); height: var(--stemma-compatto); }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] > p { margin: var(--spazio-1) 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] > .pulsante { margin: var(--spazio-2) 0 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] :is(h2, .sfida, > p) { margin-block: 0; }
+/* D-191: senza mappa il rapporto mostra la sola scheda dei settori: la vignetta di fine ondata (già vista nella scena del
+   tono, D-143) non prende il posto della mappa (a 375×812 sforava di 12 px) */
+main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .vignetta-cornice { display: none; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] { padding-block: var(--spazio-1); }
+/* D-191: senza mappa le righe della scheda dei settori si stringono, perché a 360×640 e 375×667 il rapporto non scorra */
+main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .elenco-settori li { padding-block: var(--spazio-1); }
+/* D-193: nella risposta esito e conseguenza in un solo blocco: la scelta in testa, come striscia ciano */
+.messaggio.risposta-unica .scelta-riga { margin: 0 0 var(--spazio-1); padding: var(--spazio-1) var(--spazio-3); background: var(--ciano); border: var(--bordo-fine) solid var(--nero); border-radius: var(--raggio-1); font-weight: 700; }
+.scena[data-scena="risposta"] .messaggio.risposta-unica { margin: var(--spazio-4) 0 var(--spazio-2); padding: var(--spazio-3); }
+.messaggio.risposta-unica .intanto { margin: 0; }
+.messaggio.risposta-unica .intanto strong { display: inline-flex; align-items: center; gap: var(--spazio-1); margin-right: var(--spazio-1); color: var(--magenta); font-family: var(--font-titoli); text-transform: uppercase; }
+.scena[data-scena="risposta"] .messaggio.risposta-unica { margin-top: var(--spazio-2); }
+/* D-193: a 360×640 sala e briefing scorrevano di 16 px con la mappa ferma a 176 px («Home», S-21): 8 px in meno sopra il
+   passo e 4+4 attorno ai pulsanti dei passi. Rosso C193S01. */
+main:not(.rosso-c193s01):is([data-schermata="sala"], [data-schermata="briefing"]) .passo > .messaggio:first-child { margin-top: var(--spazio-2); }
+main:not(.rosso-c193s01):is([data-schermata="sala"], [data-schermata="briefing"]) .passi-nav .pulsante { margin: var(--spazio-2) 0; }
 
 /* PO-022 (D-190): l'imprevisto interrompe le chiamate. Nessun conto alla rovescia. */
 .avviso-imprevisto { margin: 0 0 var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); box-shadow: var(--ombra-1); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; letter-spacing: var(--spaziatura-maiuscolo); }
 .messaggio.imprevisto { background: var(--rosa-tenue); }
+/* C43-06 (D-196): il passo «Fine stagione» del verbale (e24: stagione, 6 fili aperti, 1 chiuso) scorreva di 250 px a 360×760 e
+   «Prossimo episodio» stava sotto la piega; i pulsanti restano sotto il testo (C17-22). Più compatto: ogni filo «nome — esito»
+   in un paragrafo, spaziature strette. Rosso C196V01: il passo di prima. */
+main:not(.rosso-c196v01) [data-fine-stagione] h2 { margin: var(--spazio-3) 0 var(--spazio-1); font-size: var(--testo-base); }
+main:not(.rosso-c196v01) [data-fine-stagione] .scheda { margin: var(--spazio-1) 0; padding: var(--spazio-2) var(--spazio-3); }
+main:not(.rosso-c196v01) [data-fine-stagione] .scheda .tenue { margin: 0; }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili { gap: var(--spazio-1); }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili li { font-size: var(--testo-piccolo); line-height: var(--linea-stretta); }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili li > strong::after { content: " — "; font-weight: 400; }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili li > .tenue { display: inline; margin: 0; }
+main:not(.rosso-c196v01) [data-fine-stagione] [data-poi] { margin: var(--spazio-1) 0 0; }
+/* D-191: con la mappa della città di nuovo a 260 px di minimo (C17-12) a 360×640 la città scorreva di 13 px: pulsanti delle
+   stagioni più vicini alla mappa */
+main:not(.rosso-c191c01)[data-schermata="citta"] .stagioni .pulsante { margin-bottom: var(--spazio-1); padding-block: var(--spazio-1); }

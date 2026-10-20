@@ -93,6 +93,9 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
             atteso(`${id}: «Fine stagione» con ${stelle} righe di stelle e ${aperti} fili aperti (servono 1 e ≥ 1)`, stelle === 1 && aperti >= 1);
           }
           await misure(`${id} fine stagione`); await foto(`${id}-verbale-fine`);
+          // C43-06 (D-196): il passo non scorre e «Prossimo episodio» è nella finestra (e24 a 360×760: 250 px, top 896). Rosso C196V01.
+          const [ecc, giu] = await pagina.evaluate(() => [document.scrollingElement.scrollHeight - innerHeight, (document.querySelector('[data-azione="prossimo"]')?.getBoundingClientRect().bottom ?? 0) - innerHeight]);
+          atteso(`${id} fine stagione ${pagina.viewportSize().width}×${pagina.viewportSize().height}: la pagina scorre di ${ecc} px, «Prossimo episodio» ${giu > 0 ? `${Math.round(giu)} px sotto la piega` : 'in vista'} (C43-06)`, ecc <= 0 && giu <= 0);
           const prossimo = pagina.locator('[data-azione="prossimo"]');
           atteso(`${id}: manca «Prossimo episodio» dopo «Fine stagione»`, (await prossimo.count()) === 1);
           if (await prossimo.count()) { await prossimo.click(); await scena('sala'); const m = await pagina.getAttribute('.scena', 'data-missione'); atteso(`${id}: «Prossimo episodio» apre ${m} invece di ${dopo}`, m === dopo); }
