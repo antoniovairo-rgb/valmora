@@ -358,4 +358,14 @@
 //   412×760 24 → 0 px, a 360×640 116 → 68 px; città con 36 episodi 3 → 0 px; vitest 398/398.
 //   guardiano: modelloImprevisto (src/dati/imprevisti.ts, rosso C4401), rossi C4403, C4404, C4405, C4407,
 //   tools/sonda-altezze.mjs a 375/412×760 e città36 (rossi C201R01, C201C01).
-export const GAME_VERSION = '0.45.0';
+// 0.46.0 – correzioni del collaudo C-045: etichette degli imprevisti, guida, verbale, e36; rapporti senza scorrimento.
+//   causa: C45-01 (9 etichette di imprevisto che nominavano steward o mediatore senza impegnarli; il guardiano C37-05 non
+//   le vedeva), C45-02 (la guida parlava di transenne, che esistono solo in e03), C45-03 (nel verbale una scelta che alza la
+//   pressione compariva fra gli aiuti senza spiegazione: dicitura «con le altre risposte andava peggio» quando tutti gli
+//   effetti vanno contro, D-205), C45-04 (e36: l'imprevisto della cassa ripeteva «musica spenta»), C45-06 (rapporti senza
+//   mappa che scorrevano fino a 34 px a 360×760).
+//   misura: etichette smentite 9 → 0; dicitura in 4.775 voci su 36.108 verbali, 0 senza; rapporti costruiti a 360×760 che
+//   scorrono 7 → 0 su 740; vitest 407/407.
+//   guardiano: tests/c45.test.ts (rossi C4501, C4502, C4503, C4504), C37-05 esteso agli imprevisti, tools/sonda-altezze.mjs
+//   con i 7 rapporti costruiti (rosso C203R01).
+export const GAME_VERSION = '0.46.0';
