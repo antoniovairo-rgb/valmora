@@ -501,10 +501,6 @@
               "costo": "testi:e02.op.comunicato.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "curva_larkspire",
                   "valore": 2
                 }

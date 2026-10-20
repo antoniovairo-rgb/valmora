@@ -17,12 +17,12 @@
             "costo": "testi:e04.imp.ghiaccio.steward_ghiaccio.c",
             "effetti": [
               {
-                "riserva": "steward",
+                "pressione": "mercato",
                 "valore": -1
               },
               {
-                "pressione": "mercato",
-                "valore": -1
+                "tensione": "strada_cinderwick",
+                "valore": 2
               }
             ],
             "risposta": "testi:e04.imp.ghiaccio.steward_ghiaccio.r"
@@ -47,12 +47,7 @@
             "id": "pattinino",
             "testo": "testi:e04.imp.ghiaccio.pattinino",
             "costo": "testi:e04.imp.ghiaccio.pattinino.c",
-            "effetti": [
-              {
-                "pressione": "mercato",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e04.imp.ghiaccio.pattinino.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e04.imp.bambino.squadra_bambino.c",
             "effetti": [
               {
-                "riserva": "squadre",
+                "pressione": "piazzale",
                 "valore": -1
               },
               {
-                "pressione": "piazzale",
-                "valore": -1
+                "tensione": "parcheggi",
+                "valore": 2
               }
             ],
             "risposta": "testi:e04.imp.bambino.squadra_bambino.r"
@@ -104,12 +99,7 @@
             "id": "varchi",
             "testo": "testi:e04.imp.bambino.varchi",
             "costo": "testi:e04.imp.bambino.varchi.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e04.imp.bambino.varchi.r"
           }
         ]
@@ -136,7 +126,7 @@
               },
               {
                 "tensione": "mercato",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e04.imp.tendone.riprendi_tendone.r"
@@ -161,12 +151,7 @@
             "id": "bandiera",
             "testo": "testi:e04.imp.tendone.bandiera",
             "costo": "testi:e04.imp.tendone.bandiera.c",
-            "effetti": [
-              {
-                "pressione": "strada_cinderwick",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e04.imp.tendone.bandiera.r"
           }
         ]
