@@ -11,10 +11,8 @@ def versioneGioco = {
     if ([minore, correzione].any { it > 999 }) throw new GradleException("GAME_VERSION ${m.group(0)}: minore e correzione devono stare in 0-999")
     [codice: maggiore * 1000000 + minore * 1000 + correzione, nome: "${maggiore}.${minore}.${correzione}".toString()]
 }()
-
-// D-212: firma di rilascio solo dalle variabili d'ambiente (segreti di GitHub del PO). Nessun valore nel repository.
-def firma = ['VALMORA_KEYSTORE', 'VALMORA_KEY_ALIAS', 'VALMORA_KEY_PASSWORD', 'VALMORA_STORE_PASSWORD'].collectEntries { [(it): System.getenv(it)] }
-def firmaCompleta = firma.values().every { it } && file(firma.VALMORA_KEYSTORE).exists()
+// D-214: nessuna firma nel repository. Il PO firma in locale con Build > Generate Signed Bundle di Android Studio;
+// la CI produce l'AAB non firmato solo per controllare che la build riesca.
 
 android {
     namespace = "io.github.antoniovairo.valmora"
@@ -32,19 +30,8 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
-    signingConfigs {
-        if (firmaCompleta) {
-            rilascio {
-                storeFile file(firma.VALMORA_KEYSTORE)
-                storePassword firma.VALMORA_STORE_PASSWORD
-                keyAlias firma.VALMORA_KEY_ALIAS
-                keyPassword firma.VALMORA_KEY_PASSWORD
-            }
-        }
-    }
     buildTypes {
         release {
-            if (firmaCompleta) signingConfig signingConfigs.rilascio
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -64,8 +51,6 @@ androidComponents {
 gradle.taskGraph.whenReady { grafo ->
     if (grafo.allTasks.any { it.name in ['bundleRelease', 'assembleRelease'] }) {
         logger.lifecycle("VALMORA rilascio: versionName ${versioneGioco.nome}, versionCode ${versioneGioco.codice}")
-        if (firmaCompleta) logger.lifecycle('VALMORA rilascio: FIRMATO con la chiave di caricamento delle variabili VALMORA_*')
-        else logger.warn('VALMORA rilascio: NON FIRMATO (variabili VALMORA_KEYSTORE, VALMORA_KEY_ALIAS, VALMORA_KEY_PASSWORD, VALMORA_STORE_PASSWORD assenti o keystore mancante). Il Play Store non accetta questo AAB.')
     }
 }
 
