@@ -181,3 +181,31 @@ Merge (non rebase) dalla principale `5d57e29` (imprevisti di S-14, D-190).
 ## Altro trovato dalla CI
 - Città: col minimo a 244 px (D-187) i dischi degli episodi si sovrapponevano per 587 px² a 360×760 (C17-12): tornato a
   260 px; a 360×640 i pulsanti delle stagioni più vicini alla mappa (0 px).
+
+## C44-08 e C44-09 (D-201) — S-11, 20/10
+
+Base: merge del ramo della principale fino a 16ecffb2 (contiene 335e7059). Misure con Chrome Headless Shell 156 (`tools/chrome-ci.mjs`).
+
+FATTO MISURATO, `tools/sonda-altezze.mjs` (e01, bot attento), scorrimento massimo in px, prima → dopo:
+
+| schermata | 360×760 | 375×760 | 412×760 | 360×640 | 375×667 | 412×830 |
+|---|---|---|---|---|---|---|
+| risposta | 0 → 0 | 11 → **0** | 24 → **0** | 116 → 68 | 104 → 56 | 0 → 0 |
+| città, 36 episodi conclusi | 3 → **0** | 0 → 0 | 0 → 0 | — | — | — |
+
+Imprevisti: `coordination/sonde/c44-giocatore.mjs` su e12 ed e14 (bot attento) a 360, 375 e 412×760: 102 risposte (24 imprevisti),
+tutte a 0 px dopo la correzione. Altri episodi: non misurati.
+
+Cosa è cambiato (`src/resa/stile-c18.css`, solo token):
+- Risposta (rosso `C201R01`): testata e margine sotto la mappa come nella chiamata, «Avanti» a `--spazio-2` dal blocco,
+  margine in fondo alla pagina `--spazio-3` invece di `--spazio-6`. La mappa resta piena (D-197): stessa altezza della chiamata.
+- Città (rosso `C201C01`): «Rileggi l'epilogo» a `--spazio-2` dalla scheda e senza margine sotto.
+
+Guardiano: `tools/sonda-altezze.mjs` gira anche a 375×760 (giro 375) e 412×760 (giro 412), e a ogni altezza 760 apre la città
+con tutti gli episodi conclusi (`citta36`, soglia 0). Soglie della risposta abbassate al nuovo massimo misurato: 360×640 116 → 68,
+375×667 104 → 56; chiamata a 375×760 512 e a 412×760 473 (D-114, il massimo misurato). Bracci rossi nella catena grafica:
+`C201R01` a 412×760 (24 px, rosso visto), `C201C01` a 360×760 (città 3 px, rosso visto).
+
+Foto in `c44/`: `prima-`/`dopo-<w>x760-risposta.png` (360, 375, 412), `prima-360x760-citta36.png`, `dopo-<w>x760-citta36.png`.
+
+Non verificato: telefono vero; risposte e imprevisti degli episodi diversi da e01, e12, e14; città con un salvataggio vero a 36 episodi.
