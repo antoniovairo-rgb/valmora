@@ -62,7 +62,7 @@ export const PASSI_GRAFICA = {
     if (larghezzeGiro().includes(360)) { const a = await import('./sonda-altezze.mjs');
       // D-191: rapporto senza mappa (R01), minimo a 160 px (L01), scheda compatta della città (C01), nomi lontani da «Home» (H01);
       // D-193: risposta in un blocco (R01), spaziature di sala e briefing (S01)
-      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640'], ['C201R01', '412x760'], ['C201C01', '360x760']])
+      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640'], ['C201R01', '412x760'], ['C201C01', '360x760'], ['C203R01', '360x760']])
         compiti.push(async () => { if (!a.controllaAltezze(await a.giraAltezze({ vps: [vp], rossi: [r] })).length) ciechi.push(`altezze/${r} è cieco`); }); }
     // D-202: i bracci sono indipendenti (rossi come parametro, cartelle separate): PARALLELI insieme, ognuno col suo browser
     await insieme(compiti, PARALLELI);

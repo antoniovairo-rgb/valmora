@@ -188,3 +188,10 @@ main:not(.rosso-c201r01) .scena[data-scena="risposta"] > .pulsante[data-azione="
 #app:has(main:not(.rosso-c201r01) .scena[data-scena="risposta"]) { padding-bottom: var(--spazio-3); }
 /* C44-09 (D-201): a 36 episodi conclusi «Rileggi l'epilogo» si aggiunge sotto la scheda: 3 px oltre a 360×760. Più vicino. Rosso C201C01. */
 main:not(.rosso-c201c01)[data-schermata="citta"] [data-azione="epilogo"] { margin: var(--spazio-2) 0 0; }
+/* C45-06 (D-203): senza mappa, col banner, quattro settori scoperti e le righe «A riposo» e «Disponibili» il rapporto
+   scorreva ancora a 360×760 (34 px il peggiore di 742 rapporti costruiti): scheda, righe finali e «Prossima ondata» più
+   vicini e meno margine sotto la pagina. Rosso C203R01. */
+main:not(.rosso-c203r01):has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] > .scheda { margin-block: var(--spazio-2); padding-block: var(--spazio-2); }
+main:not(.rosso-c203r01):has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] > :is(.riposo, .tenue) { margin-block: var(--spazio-1); }
+main:not(.rosso-c203r01):has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] > .pulsante { margin-block: var(--spazio-2); }
+#app:has(main:not(.rosso-c203r01) > .mappa[data-nascosta]):has(.scena[data-scena="rapporto"]) { padding-bottom: var(--spazio-3); }

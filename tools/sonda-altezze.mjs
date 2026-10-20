@@ -12,7 +12,7 @@ import { existsSync } from 'node:fs';
 import { servi } from './foto.mjs';
 import { leggiDati } from './dati-disco.mjs';
 import * as M from '../src/logica/missione.ts';
-import { attenta } from '../src/logica/bot.ts';
+import { attenta, STRATEGIE } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
@@ -38,6 +38,21 @@ export const VP_PER_LARGHEZZA = { 360: ['360x640', '360x760'], 375: ['375x667', 
 const tutti = (dati, dich) => { const v0 = variabiliIniziali(dich.values()), ms = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x);
   return JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: v0, missioni_concluse: ms.map((m) => m.id), genere: 'm', rapporto_aperto: null, in_corso: null,
     episodi: Object.fromEntries(ms.map((m) => [m.id, { migliore: { esito: m.esiti[0].id, fallita: false, stelle: 1 }, tentativi: 1, variabili_prima: v0, variabili_dopo: v0 }])) }); };
+// C45-06 (D-203): rapporti costruiti col motore, aperti da salvataggio (rapporto_aperto). Sono i 7 che a 360×760 scorrevano
+// (34, 32, 21, 11, 10, 7, 2 px) fra 742 rapporti di tutti gli episodi giocati da attenta, equilibrata, peggiore e casuale
+// (semi 1-4), con le variabili lasciate dalla partita attenta. Rosso C203R01.
+export const RAPPORTI_COSTRUITI = [['e35', 'casuale', 4, 3], ['e30', 'casuale', 1, 3], ['e35', 'casuale', 1, 3], ['e22', 'casuale', 3, 2], ['e36', 'peggiore', 1, 3], ['e36', 'casuale', 1, 3], ['e16', 'casuale', 1, 3]];
+export function rapportiCostruiti(dati, dich) {
+  const ms = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio), out = [];
+  let v = variabiliIniziali(dich.values());
+  const gioca = (m, g, dopo) => { let s = M.iniziaMissione(m, v, dich); while (!M.missioneFinita(m, s)) { s = M.schiera(m, s, g.schiera(m, s)); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); s = M.chiudiOndata(m, s, dich); dopo?.(s); } return s; };
+  for (const [i, m] of ms.entries()) {
+    for (const [ep, chi, seme, n] of RAPPORTI_COSTRUITI) if (ep === m.id) gioca(m, STRATEGIE[chi](creaCaso(seme), dich), (s) => { if (s.rapporti.at(-1)?.n === n && !M.missioneFinita(m, s))
+      out.push({ nome: `${ep}-${chi}${seme}-o${n}`, sal: JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: v, missioni_concluse: ms.slice(0, i).map((x) => x.id), episodi: {}, genere: 'm', in_corso: s, rapporto_aperto: n }) }); });
+    v = M.concludiMissione(m, gioca(m, attenta(creaCaso(1), dich)), dich).variabili;
+  }
+  return out;
+}
 const piano = (m, v, dich) => { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich); const ond = [];
   while (!M.missioneFinita(m, s)) { const d = g.schiera(m, s); s = M.schiera(m, s, d); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); ond.push({ d }); s = M.chiudiOndata(m, s, dich); }
   return ond; };
@@ -105,6 +120,14 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), tutti(dati, dich)); await q.reload();
         await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="citta"]'); await lento(q); await q.waitForTimeout(300);
         ris.push({ vp, nome: 'citta36', ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-citta36.png`), fullPage: true });
+        await q.close();
+      }
+      if (vp === '360x760') for (const c of rapportiCostruiti(dati, dich)) { // C45-06 (D-203)
+        const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
+        if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
+        await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), c.sal); await q.reload();
+        await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="rapporto"]', { timeout: 8000 }).catch(() => errori.push(`${vp}: ${c.nome} non si apre sul rapporto`)); await lento(q); await q.waitForTimeout(300);
+        ris.push({ vp, nome: `rapporto ${c.nome}`, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-rapporto-${c.nome}.png`), fullPage: true });
         await q.close();
       }
     }
