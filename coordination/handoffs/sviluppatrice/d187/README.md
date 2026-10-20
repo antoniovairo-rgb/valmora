@@ -245,10 +245,29 @@ Bracci rossi: tutti visti rossi in CI (passo verde = nessun braccio cieco), loca
 
 Base: 0.45.0 (merge c1685a62). FATTO MISURATO con Chrome 156, 360×760: 742 rapporti costruiti col motore (tutti gli episodi,
 strategie attenta, equilibrata, peggiore, casuale semi 1-4, variabili della partita attenta), aperti da salvataggio
-(`rapporto_aperto`). Prima: 7 scorrevano (e35 casuale4 o3 34 px, e30 casuale1 o3 32, e35 casuale1 o3 21, e22 casuale3 o2 11,
+(`rapporto_aperto`). Aperti sul rapporto: 740 (42 oltre i 5 s d'attesa, macchina carica; 1 si è fermato sulla scena del tono, 1 sul titolo:
+non misurati). Prima: 7 scorrevano (e35 casuale4 o3 34 px, e30 casuale1 o3 32, e35 casuale1 o3 21, e22 casuale3 o2 11,
 e36 peggiore o3 10, e36 casuale1 o3 7, e16 casuale1 o3 2). Dopo: 0 px in tutti quelli aperti.
 Correzione (`stile-c18.css`, solo token, rosso `C203R01`): nel rapporto senza mappa la scheda, «A riposo», «Disponibili» e
 «Prossima ondata» più vicini, margine sotto la pagina `--spazio-3`.
 Guardiano: `tools/sonda-altezze.mjs` apre i 7 rapporti a 360×760 (soglia 0); col rosso C203R01 tornano 34/32/21/11/10/7/2 px
 (visto); braccio rosso nella catena grafica. Foto: `c45/prima-360x760-rapporto-e35.png`, `c45/dopo-<w>x760-rapporto-e35.png`.
 Non verificato: il caso esatto del collaudo (e31 o3 con le sue scelte, che il file del collaudo non registra come comandi).
+
+## C45-05 (D-203): opzioni misurate per la chiamata d'imprevisto (NON applicate, sceglie la principale o il PO)
+
+FATTO MISURATO, Chrome 156, 360×760: 594 chiamate di tutti gli episodi aperte da salvataggio sulla partita attenta (142
+imprevisti, 452 normali); varianti applicate dalla sonda con un foglio di stile sulla sola chiamata d'imprevisto. Scorrimento px:
+
+| variante | imprevisti max | mediana | media | cosa cambia |
+|---|---|---|---|---|
+| oggi | 545 | 466 | 464 | — (normali: max 664, mediana 271, media 287) |
+| A vignetta nascosta | 488 | 412 | 414 | niente vignetta piccola nel fumetto dell'imprevisto (PO-089 la vuole in ogni chiamata) |
+| B avviso tolto | 473 | 394 | 392 | niente riga magenta «Imprevisto: interrompe le chiamate» (D-190), resta «Urgente!» nel fumetto |
+| C opzioni strette | 513 | 434 | 432 | padding e spazio fra le opzioni a 4 px (solo stile) |
+| A+B+C | 384 | 308 | 310 | le tre insieme: mediana come le chiamate normali |
+
+Peggiori in tutte le varianti: e06 `imp_corrente`, e13 `imp_sedie` (545 oggi). Foto: `c45/c4505/<variante>-360x760-e06-imp_corrente.png`.
+Nota: oggi 545 px (e06, e13) supera di 1 px la soglia della chiamata a 360×760 (544), che il guardiano misura solo su e01; le
+chiamate normali di altri episodi arrivano a 664. D-114 accetta lo scorrimento della chiamata: segnalo, non tocco la soglia.
+A e B cambiano il prodotto (PO-089, D-190); C è solo spaziatura.
