@@ -326,7 +326,7 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
 // C21-05/06: cerimonia, minaccia, lite e faida sono «gente» (i testi non parlano di colluttazione); scontro solo rissa
 const GRUPPI_EVENTO = { folla: 'gente', raduno: 'gente', assembramento: 'gente', movimento: 'gente', arrivo: 'gente', deflusso: 'gente', fuga: 'gente', cerimonia: 'gente', minaccia: 'gente', lite: 'gente', faida: 'gente', curva: 'tifo', festa: 'tifo', corteo: 'corteo', protesta: 'corteo', picchetto: 'corteo', presidio: 'corteo', furgone: 'veicoli', sosta: 'veicoli', traffico: 'veicoli', retata: 'veicoli', rissa: 'scontro', biglietti: 'biglietti', incendio: 'fumo' };
 export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
-  const visto = await pagina.getAttribute('.chiamata-corpo svg.vignetta', 'data-evento').catch(() => null);
+  const vv = pagina.locator('.chiamata-corpo svg.vignetta'), visto = (await vv.count()) ? await vv.first().getAttribute('data-evento') : null; // D-206: senza attesa se manca
   if (visto === null && !c.imprevisto) return; // D-206: l'imprevisto non ha vignetta, ma spicchio e «Urgente!» (D-129) sì
   // C21-09: un evento con «se» conta solo se è vero con le variabili della partita (dal salvataggio)
   const variabili = (await statoSalvato(pagina))?.variabili ?? {};
