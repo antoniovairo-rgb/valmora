@@ -60,7 +60,7 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 
 ## e02 «Ospiti numerosi» (D-071…D-074)
 - Skyfield Athletic in casa contro il Railhead County, che arriva in treno da fuori città: trecento chilometri (D-125; con D-071 erano gli Square Rovers, oggi club di Valmora). Due treni, uno in ritardo; gira una voce di biglietti falsi.
-- Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Skyfield. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 16 chiamate.
+- Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Skyfield. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 15 chiamate (D-209: tolti il presidente dello Skyfield e i fumogeni ospiti, doppione di e01).
 - Dilemma (D-073): scortare gli ospiti o contenerli in stazione. Novità (D-072): stazione e biglietti falsi ai tornelli.
 - Fili: se in e01 hai pagato l'informatore, ti segnala i venditori di biglietti e un furgone grigio senza targa (variabile nuova `furgone_visto`, prima comparsa del furgone, indice e09).
 - Testi: bozza della sessione principale, da far giudicare al PO.
