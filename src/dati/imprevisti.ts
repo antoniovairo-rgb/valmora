@@ -67,7 +67,30 @@ export function controllaImprevisti(file: Record<string, unknown>): string[] {
         if (o2.effetti.some((e) => ('imposta' in e && e.imposta === 'credito') || ('aggiungi' in e && e.aggiungi === 'credito' && e.valore > 0))) p.push(`${dove}.opzioni[${h}]: un imprevisto non dà fiducia (D-190)`);
         if (o2.se) p.push(`${dove}.opzioni[${h}]: le opzioni di un imprevisto non hanno condizioni (uscita sempre garantita)`);
       });
+      p.push(...modelloImprevisto(x.chiamata, dove));
     });
   }
+  return p;
+}
+
+/** C44-01 (D-194, D-201): lo stesso modello in tutti i 36 episodi. Tre risposte, solo pressione e tensione (nessuna unità
+ *  impegnata; la fiducia segue la regola qui sopra); la pressione si muove solo sul settore dell'imprevisto, da −3 a +1
+ *  (quanto lo tara l'episodio; +1 nelle trappole).
+ *  [0] «intervieni»: +1/+2 di tensione su UN altro settore; [1] «arrangia»: +1 sul settore; [2] «lascia correre»: niente. */
+export function modelloImprevisto(c: Chiamata, dove: string): string[] {
+  const p: string[] = [], s = c.settore, o = c.opzioni;
+  if (o.length !== 3) return [`${dove}: tre risposte (intervieni, arrangia, lascia correre), non ${o.length}`];
+  o.forEach((x, h) => {
+    for (const e of x.effetti) {
+      if ('aggiungi' in e && e.aggiungi === 'credito') continue; // la fiducia la regola D-190 qui sopra (toglierla si può)
+      if (!('pressione' in e) && !('tensione' in e)) p.push(`${dove}.opzioni[${h}]: solo pressione e tensione, niente ${JSON.stringify(e)} (unità impegnate, D-194)`);
+      else if ('pressione' in e && (e.pressione !== s || e.valore < -3 || e.valore > 1)) p.push(`${dove}.opzioni[${h}]: la pressione si muove solo sul settore dell'imprevisto, da −3 a +1 (trappole)`);
+    }
+  });
+  const tensioni = (h: number) => o[h]!.effetti.flatMap((e) => ('tensione' in e ? [e] : []));
+  const [t0, t1] = [tensioni(0), tensioni(1)];
+  if (t0.length !== 1 || t0[0]!.tensione === s || t0[0]!.valore < 1 || t0[0]!.valore > 2) p.push(`${dove}.opzioni[0]: «intervieni» alza di 1-2 la tensione su un altro settore`);
+  if (t1.length !== 1 || t1[0]!.tensione !== s || t1[0]!.valore !== 1) p.push(`${dove}.opzioni[1]: «arrangia» alza di 1 la tensione sul settore`);
+  if (o[2]!.effetti.length) p.push(`${dove}.opzioni[2]: «lascia correre» senza effetti (D-194)`);
   return p;
 }
