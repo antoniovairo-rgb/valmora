@@ -209,3 +209,34 @@ con tutti gli episodi conclusi (`citta36`, soglia 0). Soglie della risposta abba
 Foto in `c44/`: `prima-`/`dopo-<w>x760-risposta.png` (360, 375, 412), `prima-360x760-citta36.png`, `dopo-<w>x760-citta36.png`.
 
 Non verificato: telefono vero; risposte e imprevisti degli episodi diversi da e01, e12, e14; città con un salvataggio vero a 36 episodi.
+
+## D-202: job «grafica (360)» sotto i 20 minuti — S-11, 20/10
+
+Base: ramo della principale fino a 84245887 (64707305 non era su origin al momento del merge).
+
+FATTO MISURATO, CI (log dei job), tempi per passo del job 360:
+
+| passo | c7085118 (33:34) | d36f26cd (41:22) | 730697db | d2f77f37 (3 job) |
+|---|---|---|---|---|
+| foto | 1328 s | 1537 s | 1387 s | 731 s (job «360 foto», 13:21) |
+| schieramenti (dentro foto fino a 730697db) | — | — | — | 637 s (job «360 schieramenti», 12:53) |
+| offline + altezze | 9 + 76 s | 9 + 102 s | 9 + 104 s | 9 + 80 s (job «360 schieramenti») |
+| bracci-rossi-grafica | 559 s | 790 s | 530 s | 398 s (job «360 bracci», 7:28) |
+
+I minuti in più (33:34 → 41:22): foto +209 s, altezze +26 s, bracci rossi +231 s (bracci C201R01 e C201C01 e passi arrivati con 0.44.0).
+Dentro foto a 360 (locale, Chrome 156, carico misto): giro e01-e03 392 s, schieramenti 800, apriTutte 279, ripartiTesto 106,
+ripartenza 100, Annulla 16, tono 16. Ogni braccio delle altezze gioca e01 intera: 71–94 s, 11 bracci.
+
+Cosa è cambiato (stesse verifiche, stesse soglie, nessun controllo tolto):
+- `passi-grafica.mjs`: bracci rossi indipendenti, 5 insieme (`VALMORA_PARALLELI`), rossi passati come parametro a `giraOffline`,
+  `giraEpilogo`, `giraC41` (prima `process.env.VALMORA_ROSSI` globale) e cartelle separate; passo foto: giro, epilogo e C41 insieme;
+  nuovo passo `schieramenti` (prima dentro il giro foto).
+- `foto-bozze.mjs` (apriTutte): episodi su 3 pagine; gli episodi che giocano una partita restano sulla pagina del giro; ogni
+  pagina conta i suoi errori di console (e li aggiunge al giro).
+- `catena.mjs`: `VALMORA_PASSI` sceglie un sottoinsieme dei passi (un passo estraneo ferma la catena); il giro lo registra in
+  `passi_scelti`, così non passa per completo.
+- `.github/workflows/catene.yml`: la 360 su tre job (foto / schieramenti, offline, altezze / bracci rossi); 375 e 412 interi.
+  La CI ha 9 job invece di 7. IPOTESI (non misurata con un profilo): il runner è limitato dalla CPU (mappe WebGL disegnate in
+  software), per questo più pagine nello stesso job rendevano poco (foto 1537 → 1387 s) e più job sì.
+
+Bracci rossi: tutti visti rossi in CI (passo verde = nessun braccio cieco), locale verde due volte (1712 s e 1832 s di catena 360).
