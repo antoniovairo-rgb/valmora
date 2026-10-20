@@ -37,6 +37,7 @@ describe('C45-02 la guida nomina solo risorse che ci sono in tutti gli episodi',
   it('rosso __NO_C4502: la guida di prima nomina le transenne', () => { g.__NO_C4502 = true; expect(fuori()).toEqual(['guida.4: transenne']); });
 });
 
+// esteso alle etichette d'imprevisto e agli stati contrari in tests/d211.test.ts (D211-01, C46-01)
 describe('C45-04 un imprevisto non ripete lo stato che una risposta prima, nella stessa ondata, ha già raccontato', () => {
   // frasi di stato («musica spenta», «cancelli chiusi»…) comuni al testo dell'imprevisto e alla risposta di una chiamata che
   // lo precede: l'imprevisto arriva sempre (imprevisti.ts:60), quindi non può dire come nuovo uno stato che una risposta ha già dato

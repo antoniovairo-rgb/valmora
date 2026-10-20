@@ -110294,6 +110294,151 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-20T21:55:05.246Z",
+      "commit": "083f34b",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-20T21:55:08.057Z",
+      "commit": "083f34b",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            25.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            134.4,
+            112.3,
+            107.9
+          ],
+          "problemi": [
+            "   ❯ fonti e chiamate brevi (PO-084, PO-085) (2)",
+            "     × stagioni 1–3 (e01–e36): ogni fonte ≤ 80 caratteri, ogni chiamata ≤ 100 13ms",
+            " Test Files  1 failed | 76 passed (77)",
+            "      Tests  1 failed | 420 passed (421)",
+            "   Start at  21:59:43",
+            "   Duration  107.11s (tests 92%, import 7%, transform 1%)",
+            "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+            " FAIL  tests/brevita.test.ts > fonti e chiamate brevi (PO-084, PO-085) > stagioni 1–3 (e01–e36): ogni fonte ≤ 80 caratteri, ogni chiamata ≤ 100",
+            "AssertionError: expected [ …(3) ] to deeply equal []",
+            "- Expected",
+            "+ Received",
+            "- []",
+            "+ [",
+            "+   \"e36 imp_rotolo 112: «In rete: in cima alla collina, la coreografia arrotolata non passa sotto l'arco. La curva Skyfield è ferma lì.»\",",
+            "+   \"e36 piazzale_ultimo 108: «Segreteria, rettifica: la festa sul piazzale è autorizzata fino a mezzanotte, da un'ordinanza del vertice.»\",",
+            "+   \"e36 imp_cassa 109: «Piazzale: una cassa cade dal supporto con un botto. Duemila persone si girano, qualcuno pensa a un petardo.»\",",
+            "+ ]",
+            " ❯ tests/brevita.test.ts:25:40",
+            "     23| describe('fonti e chiamate brevi (PO-084, PO-085)', () => {",
+            "     24|   it('stagioni 1–3 (e01–e36): ogni fonte ≤ 80 caratteri, ogni chiamata…",
+            "     25|     expect(troppoLunghi(d, RISCRITTI)).toEqual([]);",
+            "       |                                        ^",
+            "     26|   });",
+            "     27|   it('braccio rosso: un testo lungo viene segnalato', () => {",
+            "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯"
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }
