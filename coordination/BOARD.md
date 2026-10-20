@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-20 23:55 Roma. Integrata S-19 (rifinitura e01–e03, D-209): principale f2f9de5d, governo+logica verdi, vitest 413/413. S-19 archiviata. Attive: S-11 (D-206/207, D-208/210), C-046. Prossimo: rilascio delle 08:00.
+Ultimo giro della routine: 2026-10-21 00:55 Roma. C-046 consegnato e riprodotto (D-211), sessione archiviata. Nuova S-20 per C46-01/02/05 (testi). Attive: S-11, S-20. Prossimo: rilascio delle 08:00.
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
