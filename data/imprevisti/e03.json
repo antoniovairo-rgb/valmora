@@ -17,12 +17,12 @@
             "costo": "testi:e03.imp.carro.sblocca.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "quartiere",
                 "valore": -3
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 2
               }
             ],
             "risposta": "testi:e03.imp.carro.sblocca.r"
@@ -69,12 +69,12 @@
             "costo": "testi:e03.imp.cane.steward_cane.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_ospiti",
                 "valore": -3
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
               }
             ],
             "risposta": "testi:e03.imp.cane.steward_cane.r"
@@ -99,12 +99,7 @@
             "id": "gioca_cane",
             "testo": "testi:e03.imp.cane.gioca_cane",
             "costo": "testi:e03.imp.cane.gioca_cane.c",
-            "effetti": [
-              {
-                "pressione": "curva_ospiti",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e03.imp.cane.gioca_cane.r"
           }
         ]
@@ -126,12 +121,12 @@
             "costo": "testi:e03.imp.balconi.mediatore_balconi.c",
             "effetti": [
               {
-                "riserva": "mediatore",
+                "pressione": "quartiere",
                 "valore": -1
               },
               {
-                "pressione": "quartiere",
-                "valore": -1
+                "tensione": "parcheggi",
+                "valore": 1
               }
             ],
             "risposta": "testi:e03.imp.balconi.mediatore_balconi.r"

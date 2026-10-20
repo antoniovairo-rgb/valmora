@@ -17,12 +17,12 @@
             "costo": "testi:e05.imp.lucchetto.taglia.c",
             "effetti": [
               {
-                "riserva": "squadre",
+                "pressione": "tornelli",
                 "valore": -1
               },
               {
-                "pressione": "tornelli",
-                "valore": -1
+                "tensione": "piazzale",
+                "valore": 2
               }
             ],
             "risposta": "testi:e05.imp.lucchetto.taglia.r"
@@ -69,8 +69,8 @@
             "costo": "testi:e05.imp.tabellone.spiega.c",
             "effetti": [
               {
-                "riserva": "mediatore",
-                "valore": -1
+                "tensione": "curva_larkspire",
+                "valore": 1
               }
             ],
             "risposta": "testi:e05.imp.tabellone.spiega.r"
@@ -117,12 +117,12 @@
             "costo": "testi:e05.imp.pettorine.squadra_curva.c",
             "effetti": [
               {
-                "riserva": "squadre",
+                "pressione": "curva_larkspire",
                 "valore": -1
               },
               {
-                "pressione": "curva_larkspire",
-                "valore": -1
+                "tensione": "strada_larkspire",
+                "valore": 2
               }
             ],
             "risposta": "testi:e05.imp.pettorine.squadra_curva.r"
@@ -174,7 +174,7 @@
               },
               {
                 "tensione": "piazzale",
-                "valore": 1
+                "valore": 2
               }
             ],
             "risposta": "testi:e05.imp.strada_sbagliata.scorta_pullman.r"
@@ -199,12 +199,7 @@
             "id": "passi",
             "testo": "testi:e05.imp.strada_sbagliata.passi",
             "costo": "testi:e05.imp.strada_sbagliata.passi.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e05.imp.strada_sbagliata.passi.r"
           }
         ]

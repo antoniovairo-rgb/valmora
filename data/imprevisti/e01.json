@@ -17,12 +17,12 @@
             "costo": "testi:e01.imp.ambulanza.apri_varco.c",
             "effetti": [
               {
-                "riserva": "squadre",
-                "valore": -1
-              },
-              {
                 "pressione": "strada_larkspire",
                 "valore": -3
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
               }
             ],
             "risposta": "testi:e01.imp.ambulanza.apri_varco.r"
@@ -47,12 +47,7 @@
             "id": "passeranno",
             "testo": "testi:e01.imp.ambulanza.passeranno",
             "costo": "testi:e01.imp.ambulanza.passeranno.c",
-            "effetti": [
-              {
-                "pressione": "strada_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e01.imp.ambulanza.passeranno.r"
           }
         ]
@@ -74,12 +69,12 @@
             "costo": "testi:e01.imp.buio.torce.c",
             "effetti": [
               {
-                "riserva": "steward",
-                "valore": -1
-              },
-              {
                 "pressione": "curva_larkspire",
                 "valore": -3
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 2
               }
             ],
             "risposta": "testi:e01.imp.buio.torce.r"
@@ -104,12 +99,7 @@
             "id": "buio_resta",
             "testo": "testi:e01.imp.buio.buio_resta",
             "costo": "testi:e01.imp.buio.buio_resta.c",
-            "effetti": [
-              {
-                "pressione": "curva_larkspire",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e01.imp.buio.buio_resta.r"
           }
         ]
@@ -161,12 +151,7 @@
             "id": "sostitutivo",
             "testo": "testi:e01.imp.tram.sostitutivo",
             "costo": "testi:e01.imp.tram.sostitutivo.c",
-            "effetti": [
-              {
-                "pressione": "piazzale",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e01.imp.tram.sostitutivo.r"
           }
         ]

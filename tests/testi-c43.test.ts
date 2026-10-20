@@ -5,6 +5,7 @@
 //   fiducia e non più efficace dell'alternativa controllata (stesso sollievo, con un costo). Rosso C4305: gli effetti di prima.
 // - C43-03 verbale di un episodio fallito (0 stelle): il requisito parla della prima stella. Rosso C4303: «seconda».
 // - C43-04 nessuna risposta dice «il comando approva/apprezza/gradisce/ringrazia» senza muovere la fiducia (D-190). Rosso C4304.
+//   C44-05 (D-201): lo stesso vale per il resoconto (.r) e per «è contento»/«al comando apprezzano». Rosso C4405: i 5 di 0.44.0.
 // - C43-08 citazioni interne con le virgolette alte “…”: nessun testo con «…«…»…». Rosso C4308: i 74 testi di prima.
 // - C43-09 e13 sospendi13: il testo non nomina la piazza del concerto, che la risposta non tocca. Rosso C4309.
 // - C43-10 e36 con fascicolo «nessuno»: la chiamata del comando e il verbale confermato leggono «carte». Rosso C4310.
@@ -25,7 +26,7 @@ import { Epilogo } from '../src/resa/schermate/Epilogo.tsx';
 import { sezioniBilancio } from '../src/resa/schermate/Bilancio.tsx';
 
 const g = globalThis as Record<string, unknown>;
-const ROSSI = ['C4301', 'C4301P', 'C4305', 'C4303', 'C4304', 'C4308', 'C4309', 'C4310'];
+const ROSSI = ['C4301', 'C4301P', 'C4305', 'C4303', 'C4304', 'C4405', 'C4308', 'C4309', 'C4310'];
 afterEach(() => { for (const x of ROSSI) delete g[`__NO_${x}`]; });
 const d = leggiDati() as Record<string, unknown>;
 const dich = new Map((d['stato.json'] as { variabili: Dichiarazione[] }).variabili.map((x) => [x.id, x]));
@@ -106,6 +107,18 @@ describe('C43-04 «il comando approva» solo se la fiducia si muove (D-190)', ()
     expect(promesse()).toEqual([]);
     g.__NO_C4304 = true;
     expect(promesse()).toEqual(['e02.respingi', 'e02.rimuovi_str', 'e04.respingi_falsi', 'e08.accesso_no', 'e13.aspettino', 'e15.striscione_no', 'e15.due_cortei', 'e15.fuori15', 'e17.festa17', 'e19.due_squadre', 'e20.cerca_tutti']);
+  });
+  // C44-05: costo e resoconto, formule più larghe; braccio rosso coi testi di 0.44.0 (tests/dati/c44-prima.json)
+  const RE2 = /comando (approva|apprezza|gradisce|ringrazia|è contento)|al comando (approvano|apprezzano|gradiscono|ringraziano|sono contenti)/i;
+  const C44 = (JSON.parse(readFileSync('tests/dati/c44-prima.json', 'utf8')) as { testi: Record<string, string> }).testi;
+  const t44 = (k: string) => { const c = k.replace(/^testi:/, ''); return g.__NO_C4405 && c in C44 ? C44[c]! : testo(c); };
+  const promesse2 = () => Object.entries(d).filter(([k]) => /^missioni\/e\d+\.json$/.test(k)).flatMap(([, m]) => opzioni(m as Missione)
+    .filter(({ x }) => !x.effetti.some((e) => 'aggiungi' in e && e.aggiungi === 'credito') && [x.costo, x.risposta].some((k) => k && RE2.test(t44(k))))
+    .map(({ x }) => `${(m as Missione).id}.${x.id}`));
+  it('C44-05 anche nei resoconti (.r) e con «è contento»: verde nessuna; rosso C4405: le 5 del collaudo', () => {
+    expect(promesse2()).toEqual([]);
+    g.__NO_C4405 = true;
+    expect(promesse2()).toEqual(['e01.ferma', 'e02.respingi', 'e02.rimuovi_str', 'e04.respingi_falsi', 'e27.consegna_comando']);
   });
 });
 

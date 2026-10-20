@@ -8,7 +8,7 @@
   "e32.imp.cisterna.di_lato.c": "Strada più scorrevole; ma la fila stretta irrita il corteo.",
   "e32.imp.cisterna.di_lato.r": "Il corteo passa in fila accanto alla cisterna. Si sale, ma qualcuno se la prende col latte.",
   "e32.imp.cisterna.ripartira": "Aspetta che la cisterna riparta",
-  "e32.imp.cisterna.ripartira.c": "Nessuno impegnato; si sistema da sé, con un po' di attesa.",
+  "e32.imp.cisterna.ripartira.c": "Nessuno impegnato; il corteo segue la cisterna in salita.",
   "e32.imp.cisterna.ripartira.r": "La cisterna riparte dopo un quarto d'ora. Il corteo l'ha accompagnata fino in cima, cantando.",
   "e32.imp.cancelletto": "«Curva Skyfield: il cancelletto delle scale si chiude da solo. Cento persone ferme sulle scale.»",
   "e32.imp.cancelletto.vice": "«Un cancello che si chiude da solo. Almeno lui fa il suo lavoro.»",
@@ -19,7 +19,7 @@
   "e32.imp.cancelletto.scavalca.c": "Scale più libere; ma la strettoia irrita chi aspetta.",
   "e32.imp.cancelletto.scavalca.r": "Il varco laterale fa passare uno alla volta. Il pianerottolo si svuota, fra i brontolii.",
   "e32.imp.cancelletto.manutenzione": "Aspetta la manutenzione",
-  "e32.imp.cancelletto.manutenzione.c": "Nessuno impegnato; si sistema da sé, con un po' di attesa.",
+  "e32.imp.cancelletto.manutenzione.c": "Nessuno impegnato; le scale aspettano la manutenzione.",
   "e32.imp.cancelletto.manutenzione.r": "La manutenzione arriva dopo dieci minuti e apre. Le scale cantano contro il cancelletto.",
   "e32.imp.maxischermo": "«Piazzale: salta la corrente allo schermo dei bar. Quelli senza biglietto finiscono al buio.»",
   "e32.imp.maxischermo.vice": "«Senza schermo, il derby lo raccontano a voce. Peggio.»",
@@ -41,6 +41,6 @@
   "e32.imp.passaggio_livello.sottopasso.c": "Nel sottopasso stretto si brontola.",
   "e32.imp.passaggio_livello.sottopasso.r": "Una parte del deflusso scende nel sottopasso pedonale, stretto e basso. Gli altri aspettano le sbarre, e protestano.",
   "e32.imp.passaggio_livello.ferrovie": "Aspetta i tecnici delle ferrovie",
-  "e32.imp.passaggio_livello.ferrovie.c": "Nessuno impegnato; si sistema da sé, con un po' di attesa.",
+  "e32.imp.passaggio_livello.ferrovie.c": "Nessuno impegnato; il deflusso aspetta che le sbarre salgano.",
   "e32.imp.passaggio_livello.ferrovie.r": "I tecnici arrivano dopo mezz'ora e alzano le sbarre. Il deflusso li accoglie con un coro sui treni."
 }

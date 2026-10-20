@@ -19,7 +19,7 @@
   "e09.imp.malore_coda.corsia_unica.c": "La coda si stringe in un imbuto; gli automobilisti si innervosiscono.",
   "e09.imp.malore_coda.corsia_unica.r": "La coda si stringe in una corsia sola, attorno all'auto ferma. Non va più veloce, ma i clacson sì.",
   "e09.imp.malore_coda.aspetta_soccorso": "Aspetta il soccorso stradale",
-  "e09.imp.malore_coda.aspetta_soccorso.c": "Nessuno impegnato; si sistema da sé, con un po' di attesa.",
+  "e09.imp.malore_coda.aspetta_soccorso.c": "Nessuno impegnato; la corsia aspetta il soccorso stradale.",
   "e09.imp.malore_coda.aspetta_soccorso.r": "Il soccorso stradale arriva dopo mezz'ora e libera la corsia. La signora, intanto, ha conosciuto mezza coda.",
   "e09.imp.pallone": "«Curva Skyfield: un pallone gonfiabile gigante è finito in campo. L'arbitro ferma il gioco.»",
   "e09.imp.pallone.vice": "«Il pallone più grosso della partita. E nessuno lo calcia.»",
@@ -41,6 +41,6 @@
   "e09.imp.cancello.uno_alla_volta.c": "Uscita ordinata; ma la lentezza irrita chi aspetta.",
   "e09.imp.cancello.uno_alla_volta.r": "Un tifoso alla volta, di sbieco, dal mezzo cancello. Il piazzale si svuota piano, e lo commenta a ogni passaggio.",
   "e09.imp.cancello.aspetta_manutentore": "Aspetta il manutentore",
-  "e09.imp.cancello.aspetta_manutentore.c": "Nessuno impegnato; si sistema da sé, con un po' di coda.",
+  "e09.imp.cancello.aspetta_manutentore.c": "Nessuno impegnato; si esce di sbieco finché il cancello cede.",
   "e09.imp.cancello.aspetta_manutentore.r": "Il manutentore arriva con l'olio e un martello. Il cancello si apre al terzo colpo, fra gli applausi."
 }

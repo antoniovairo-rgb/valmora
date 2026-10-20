@@ -17,12 +17,12 @@
             "costo": "testi:e06.imp.allarme.steward_banca.c",
             "effetti": [
               {
-                "riserva": "steward",
+                "pressione": "piazza_concerto",
                 "valore": -1
               },
               {
-                "pressione": "piazza_concerto",
-                "valore": -1
+                "tensione": "viale_concerto",
+                "valore": 2
               }
             ],
             "risposta": "testi:e06.imp.allarme.steward_banca.r"
@@ -69,12 +69,12 @@
             "costo": "testi:e06.imp.palloncini.raccogli.c",
             "effetti": [
               {
-                "riserva": "steward",
+                "pressione": "curva_cinderwick",
                 "valore": -1
               },
               {
-                "pressione": "curva_cinderwick",
-                "valore": -1
+                "tensione": "curva_ospiti",
+                "valore": 2
               }
             ],
             "risposta": "testi:e06.imp.palloncini.raccogli.r"
@@ -121,12 +121,12 @@
             "costo": "testi:e06.imp.corrente.squadra_palco.c",
             "effetti": [
               {
-                "riserva": "squadre",
+                "pressione": "piazza_concerto",
                 "valore": -1
               },
               {
-                "pressione": "piazza_concerto",
-                "valore": -1
+                "tensione": "viale_concerto",
+                "valore": 1
               }
             ],
             "risposta": "testi:e06.imp.corrente.squadra_palco.r"
@@ -151,12 +151,7 @@
             "id": "aspetta_corrente",
             "testo": "testi:e06.imp.corrente.aspetta_corrente",
             "costo": "testi:e06.imp.corrente.aspetta_corrente.c",
-            "effetti": [
-              {
-                "pressione": "piazza_concerto",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e06.imp.corrente.aspetta_corrente.r"
           }
         ]
@@ -208,12 +203,7 @@
             "id": "riapra",
             "testo": "testi:e06.imp.metro.riapra",
             "costo": "testi:e06.imp.metro.riapra.c",
-            "effetti": [
-              {
-                "pressione": "viale_concerto",
-                "valore": 1
-              }
-            ],
+            "effetti": [],
             "risposta": "testi:e06.imp.metro.riapra.r"
           }
         ]
