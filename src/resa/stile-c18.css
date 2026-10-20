@@ -177,3 +177,6 @@ main:not(.rosso-c196v01) [data-fine-stagione] .fili li { font-size: var(--testo-
 main:not(.rosso-c196v01) [data-fine-stagione] .fili li > strong::after { content: " — "; font-weight: 400; }
 main:not(.rosso-c196v01) [data-fine-stagione] .fili li > .tenue { display: inline; margin: 0; }
 main:not(.rosso-c196v01) [data-fine-stagione] [data-poi] { margin: var(--spazio-1) 0 0; }
+/* D-191: con la mappa della città di nuovo a 260 px di minimo (C17-12) a 360×640 la città scorreva di 13 px: pulsanti delle
+   stagioni più vicini alla mappa */
+main:not(.rosso-c191c01)[data-schermata="citta"] .stagioni .pulsante { margin-bottom: var(--spazio-1); padding-block: var(--spazio-1); }

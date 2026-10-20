@@ -125,6 +125,7 @@ export const copertiDallaBarra = (pagina) => pagina.evaluate(() => {
 
 const NOMI_VICINI = { 360: 6, 375: 3, 412: 0 }; // C37-03 con le unità, misurati il 18/10 col peso × 100 (residuo dichiarato, vedi CONSEGNA-PO121-C37.md)
 const VICINE = { 360: 36, 375: 29, 412: 9 }; // C33-05: i valori della 0.31.0 misurati dal collaudo C-033 (0.32.0: 44 / 32 / 14)
+const PARALLELE = 3; // pagine insieme nel giro con le unità (attese, non calcolo)
 const PASTIGLIE_SU_NOMI = 0; // C27-06: 7 il 15/10; D-136 (C28-14): a 0 col nome su più righe e due posti in più (rosso C94N01: 7)
 
 // La larghezza «sola» è quella del giro (CI: un job per larghezza, PO-128): ogni job fa la sua parte. Prima tutto stava nel
@@ -160,11 +161,13 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   const suNomi = [], attente = partenzeAttente(dirDati);
   for (const [w, h] of [[360, 760], [375, 812], [412, 915]].filter(([w]) => tocca(w))) {
     const vicine = [], tocchi = [], rubati = [], nomiVicini = [];
-    const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); if (w === 360) await rallentaCaratteri(q6); await q6.goto(url);
-    for (const st of attente) {
+    // Gli stati sono indipendenti e il tempo è quasi tutto attesa (carattere rallentato a 360, 500 ms di quiete): si fanno su
+    // più pagine insieme (prima una sola: il job a 360 durava 35-38 minuti). Gli elenchi cambiano ordine, conteggi e soglie no.
+    const pagine = await Promise.all(Array.from({ length: PARALLELE }, async () => { const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); if (w === 360) await rallentaCaratteri(q); await q.goto(url); return q; }));
+    const corpo = async (q6, st) => {
       await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
       await q6.reload(); await q6.getByRole('button', { name: 'Riprendi' }).click();
-      if (!(await q6.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) continue;
+      if (!(await q6.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) return;
       await ascoltaEtichette(q6); await etichetteFerme(q6);
       const r = await mappaSchieramento(q6), dove = `${st.m.id} ondata ${st.n} ${w}×${h}`;
       atteso(`${dove} con le unità: nomi sovrapposti ${r.sopra.join('; ')}, pastiglie col centro coperto ${r.coperte.join(', ')} (C26-11)`, !r.sopra.length && !r.coperte.length);
@@ -185,7 +188,9 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
         const rifatta = await etichetteFerme(q6, true), dopo = await posti();
         atteso(`${dove}: la disposizione cambia ripartendo da un altro stato (C33-04): ${!rifatta ? 'non ridisposta in 8 s' : prima === dopo ? '' : dopo.split(' ').filter((x, i) => x !== prima.split(' ')[i]).join(' ')}`, rifatta && prima === dopo);
       }
-    }
+        };
+    await Promise.all(pagine.map((q6, k) => (async () => { for (const st of attente.filter((_, i) => i % PARALLELE === k)) await corpo(q6, st); })()));
+    for (const q6 of pagine) await q6.close();
     // C33-05: non più gruppi vicini al disco di un altro settore che nella 0.31.0 (36 / 29 / 9, collaudo C-033); elenco in cartella
     writeFileSync(join(cartella, `vicine-${w}.txt`), `${vicine.length}\n${vicine.join('\n')}\n`);
     writeFileSync(join(cartella, `tocchi-${w}.txt`), `${new Set(tocchi.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${tocchi.join('\n')}\n`); // misura, senza soglia
@@ -195,7 +200,6 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     atteso(`${w}×${h} con le unità: ${nomiVicini.length} nomi più vicini a un disco altrui (al massimo ${NOMI_VICINI[w]}): ${nomiVicini.join(' | ')} (C37-03)`, nomiVicini.length <= NOMI_VICINI[w]);
     atteso(`${w}×${h}: nomi rubati da un'area di tocco: ${rubati.join(' | ')} (D-145, C33-01)`, !rubati.length);
     atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
-    await q6.close();
   }
   // C27-06 / D-136: nessuna ondata con una pastiglia sopra un nome (7 su 142 prima di C28-14, 19 col rosso C81P01).
   atteso(`schieramenti con le unità: ${suNomi.length} ondate con pastiglie sopra i nomi (al massimo ${PASTIGLIE_SU_NOMI}): ${suNomi.join(' | ')} (C27-06)`, suNomi.length <= PASTIGLIE_SU_NOMI);
