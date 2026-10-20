@@ -1,9 +1,10 @@
 // Mappa della città degli episodi (D-061): scegli un episodio sulla mappa e lo avvii o lo rigiochi.
 import { BookOpen, Play, RotateCcw } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Missione } from '../../logica/tipi.ts';
 import type { Salvataggio } from '../../salvataggi/salvataggio.ts';
-import { missioni, t } from '../dati.ts';
+import { genereAttuale, missioni, t } from '../dati.ts';
+import { VignettaHome } from '../vignette-home.tsx';
 import { prossimoEpisodio, statoEpisodio, type StatoEpisodio } from '../episodi.ts';
 import { Icona } from '../icone.tsx';
 import { bozza, MappaCitta } from '../mappa/MappaCitta.tsx';
@@ -31,9 +32,20 @@ export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (i
   const [stagione, setStagione] = useState(p.scelto?.stagione ?? stagioni[0] ?? 1);
   const voci = spento('C13M01') ? tutte : tutte.filter((x) => x.m.stagione === stagione);
   const v = voci.find((x) => x.m.id === p.scelto?.id);
+  // D-210: sotto --vignetta-finestra-min (700 px) la striscia non ci sta senza scorrere (360×640): resta la testata di prima
+  const bassa = () => innerHeight < (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-finestra-min')) || 0);
+  const [finestraBassa, setFinestraBassa] = useState(bassa);
+  useEffect(() => { const f = () => setFinestraBassa(bassa()); addEventListener('resize', f); return () => removeEventListener('resize', f); }, []);
   return (
     <>
-      <Testata numero={`S${stagione}`} etichetta={`Stagione ${stagione} · mappa della città`} titolo="Valmora" />
+      {/* D-210 (PO-140 fase 2, scelta del PO): in testa la striscia della home al posto della testata; la stagione la dicono
+          i tasti Stagione N (aria-pressed), il titolo resta per il lettore di schermo. Rosso C210C01: la testata di prima */}
+      {spento('C210C01') || finestraBassa ? <Testata numero={`S${stagione}`} etichetta={`Stagione ${stagione} · mappa della città`} titolo="Valmora" /> : <>
+        <h1 className="solo-lettore">{`Valmora · stagione ${stagione} · mappa della città`}</h1>
+        <figure className="home-vignetta citta-striscia" data-citta-striscia>
+          <VignettaHome genere={genereAttuale() === 'f' ? 'f' : 'm'} didascalia={t('citta.striscia')} fissa />
+          <figcaption className="home-didascalia">{t('citta.striscia')}</figcaption>
+        </figure></>}
       {stagioni.length > 1 && (
         <div className="stagioni" data-stagioni>
           {p.home && <TastoHome vai={p.home} />}

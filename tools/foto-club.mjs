@@ -277,7 +277,7 @@ export async function controllaGuida(pagina, { atteso, scena, foto, salta }) {
   await foto();
   if (salta) { await pagina.click('[data-azione="guida-salta"]'); return; }
   let passi = 1;
-  const vignetta = async () => atteso(`guida passo ${passi}: manca la vignetta (S-23, PO-078)`, await pagina.locator(`[data-vignetta="guida-${passi}"]`).isVisible().catch(() => false));
+  const vignetta = async () => atteso(`guida passo ${passi}: manca la vignetta (S-23, PO-078)`, await pagina.locator(passi === 1 ? '[data-guida-testata] [data-vignetta="home"], [data-vignetta="guida-1"]' : `[data-vignetta="guida-${passi}"]`).first().isVisible().catch(() => false)); // D-210: al passo 1 la vignetta della home
   await vignetta();
   while (await pagina.locator('[data-azione="guida-avanti"]').count()) {
     await pagina.click('[data-azione="guida-avanti"]'); passi++; await vignetta(); await foto();

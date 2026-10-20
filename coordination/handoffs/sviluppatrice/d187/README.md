@@ -271,3 +271,56 @@ Peggiori in tutte le varianti: e06 `imp_corrente`, e13 `imp_sedie` (545 oggi). F
 Nota: oggi 545 px (e06, e13) supera di 1 px la soglia della chiamata a 360×760 (544), che il guardiano misura solo su e01; le
 chiamate normali di altri episodi arrivano a 664. D-114 accetta lo scorrimento della chiamata: segnalo, non tocco la soglia.
 A e B cambiano il prodotto (PO-089, D-190); C è solo spaziatura.
+
+## D-206 + D-207 (C45-05): chiamata d'imprevisto più corta — S-11, 20/10
+
+Base: ramo della principale fino a 701045f3 (merge 382bb11c). Scelta del PO A+B+C (D-206) più strette di solo stile (D-207,
+la principale; «Rispondi ↓» resta). Correzione dichiarata: avevo scritto che A+B+C portava la mediana «come le normali»: 308 contro 271, ritirata.
+- `Ondata.tsx`: nell'imprevisto niente vignetta nel fumetto e niente riga «Imprevisto: interrompe le chiamate» (rosso `C206I01`).
+- `stile-c18.css` (solo token, stesso rosso): opzioni con `--spazio-1` di padding e spazio, effetti a `--spazio-px`, testo
+  delle opzioni a `--linea-stretta`, fumetto dell'imprevisto a `--spazio-2`. Prove della sonda con 2 px: 346/291; coi token: 339/285.
+
+FATTO MISURATO, Chrome 156, 360×760, tutte le 594 chiamate (142 imprevisti) aperte da salvataggio sulla partita attenta:
+
+| | imprevisti max | imprevisti mediana | normali max / mediana |
+|---|---|---|---|
+| prima (rosso C206I01) | 545 (e06 imp_corrente, e13 imp_sedie) | 466 | 664 / 271 |
+| A+B+C | 384 | 308 | 664 / 271 |
+| A+B+C + D-207 (applicato) | 339 | 285 | 664 / 271 |
+
+Guardiano (`tools/sonda-altezze.mjs`, a 360×760): imprevisti ≤ 339 e mediana ≤ 285 (valori misurati, D-207), soglia storica
+544 invariata, normali ≤ 664 (massimo misurato, D-114). Verde sulle sei misure; col rosso C206I01: 5+ imprevisti oltre 339
+(e01 imp_tram 489 px). Braccio rosso C206I01 nella catena grafica.
+Foto: `c45/d206/prima` (rosso C206I01) e `c45/d206/dopo`, e01 imp_ambulanza, e17 imp_lampioni, e30 imp_mercatino a 360, 375, 412
+(`tools/foto-imprevisti.mjs`, adeguato: controlla il fumetto dell'imprevisto; PRIMA=1 per le foto di prima).
+
+## D-208 + D-210 (PO-140 fase 2, opzione 1 del PO): striscia della home nella città, vignetta della home nella guida — S-11, 20/10
+
+- `Citta.tsx`: in testa la vignetta della home (96 px, `fissa`) con «La città · stasera si gioca» al posto della testata
+  («S1 · Stagione 1 · mappa della città / Valmora»); il titolo resta per il lettore di schermo (`h1.solo-lettore`
+  «Valmora · stagione N · mappa della città»). Rosso `C210C01`: la testata di prima. Sotto `--vignetta-finestra-min` (700 px,
+  la stessa soglia delle vignette di sala e verbale) resta la testata di prima: a 360×640 la striscia faceva scorrere la città
+  con 0 episodi di 21 px (scelta tecnica, dichiarata).
+- `Guida.tsx`: al primo passo la vignetta della home con «La città e il gioco» al posto della vignetta del passo. Rosso `C210G01`.
+- La mappa della città resta a 260 px. Correzione dichiarata: avevo proposto 252 px; in CI (run 39486684643, «360 foto») a 252
+  i dischi degli episodi si coprivano per 255 px² a 360×760 (C17-12). Lo spazio viene invece da: sotto la striscia
+  `--spazio-1`; con la striscia «Rileggi l'epilogo» e la scheda sopra a `--spazio-1`; margine sotto la pagina `--spazio-3`
+  (era `--spazio-6`, come per la risposta in D-201).
+- Altra correzione dichiarata: avevo stimato 0 px a 360 con 96 px di striscia e mappa a 252; la misura dava 11 px (e 4 con 0
+  episodi, per la vignetta che si allungava: ora `fissa`).
+
+FATTO MISURATO, Chrome 156, scorrimento px (`tools/sonda-altezze.mjs` e sonda della città con 0 episodi):
+
+| | 360×760 | 375×760 | 412×760 | 360×640 |
+|---|---|---|---|---|
+| città, partita e01 | 0 | 0 | 0 | 0 (testata) |
+| città, 36 episodi | 0 | 0 | 0 | — |
+| guida, passo 1 | 0 | 0 | 0 | 0 |
+
+Lettore di schermo (albero di accessibilità di Chromium, città a 360×760): «heading Valmora · stagione 3 · mappa della città
+[level 1]», poi la figura, «Torna alla home», «Stagione 1», «Stagione 2», «Stagione 3 [pressed]»; dopo il tocco su Stagione 2
+il titolo dice «stagione 2» e «Stagione 2 [pressed]». I tasti dicono la stagione anche senza la testata.
+Guardiani: `tools/sonda-altezze.mjs` (a ogni 760: città36 con la striscia ≥ 96 px e senza scorrere; passo 1 della guida con la
+vignetta della home e senza scorrere), bracci rossi C210C01 e C210G01 visti; nel giro foto PO-092 esclude la striscia fissa
+e S-23 accetta al passo 1 la vignetta della home.
+Foto: `home/d210/prima-*` (rossi) e `home/d210/dopo-*`, città con 0 e 36 episodi e guida, a 360, 375 e 412 × 760.

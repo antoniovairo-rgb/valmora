@@ -22,3 +22,10 @@
 /* D-187: il margine dell'ultimo paragrafo usciva da main (margini che collassano) e useRiempi non lo contava: la home
    scorreva di 4 px a 360×640 e 375×667 */
 main:not(.rosso-c187c01) .home-premessa ~ .avviso-finzione { margin-bottom: 0; }
+/* D-210: la striscia della home in testa alla città (96 px) e la vignetta in testa al primo passo della guida */
+.citta-striscia { margin: 0 0 var(--spazio-1); }
+.guida-testata { margin: 0 0 var(--spazio-3); }
+.guida-testata > .vignetta { height: var(--home-vignetta-max); }
+.solo-lettore { position: absolute; width: var(--spazio-px); height: var(--spazio-px); overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* D-210: con la striscia meno margine sotto la pagina (la mappa resta a 260: a 252 i dischi si coprivano per 255 px² a 360×760, C17-12) */
+#app:has(main[data-schermata="citta"] [data-citta-striscia]) { padding-bottom: var(--spazio-3); }
