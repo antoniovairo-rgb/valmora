@@ -66,7 +66,7 @@ export async function controllaRiempi(pagina, atteso, nome) {
   // la finestra può essere appena tornata da 760 a 800 (controllaAltezza): si lascia arrivare l'evento «resize»
   await pagina.evaluate(() => new Promise((ok) => requestAnimationFrame(() => requestAnimationFrame(ok)))); await pagina.waitForTimeout(100);
   const r = await pagina.evaluate(() => {
-    const v = [...document.querySelectorAll('svg.vignetta')].find((x) => !x.closest('.chiamata-corpo, .figura-fonte') && x.getClientRects().length); // fisse per scelta: chiamata (PO-089 A) e fonte del briefing (D-118)
+    const v = [...document.querySelectorAll('svg.vignetta')].find((x) => !x.closest('.chiamata-corpo, .figura-fonte, [data-citta-striscia], [data-guida-testata]') && x.getClientRects().length); // fisse per scelta: chiamata (PO-089 A), fonte del briefing (D-118), striscia della città e testata della guida (D-210)
     if (!v) return null;
     const main = document.querySelector('main'), app = main.parentElement;
     const libero = innerHeight - (main.getBoundingClientRect().bottom + scrollY + parseFloat(getComputedStyle(main).marginBottom) + parseFloat(getComputedStyle(app).paddingBottom));
