@@ -198,11 +198,9 @@
   --stemma-compatto: 32px; /* D-191: stemmi nella scheda compatta della città */
   --mappa-proporzione-passi: 4 / 3; /* sala e briefing a passi (S-10): mappa più bassa, niente scorrimento */
   --citta-proporzione: 4 / 5;
-  --citta-riserva: 508px;   /* D-210: con la striscia della home al posto della testata, a 760 la mappa scende a 252 */
-  --citta-riserva-prima: 500px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine) */
+  --citta-riserva: 500px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine) */
   --citta-larghezza-min: 208px;
-  --citta-altezza-min: 252px; /* D-210: 260 → 252 (sopra i 244 di C17-12) per la striscia della home */
-  --citta-altezza-min-prima: 260px; /* C17-12: altezza minima della mappa della città (quella di oggi a 760 px); D-187 l'aveva portata a 244: dischi sovrapposti per 587 px² a 360×760 (CI), tornata a 260 */
+  --citta-altezza-min: 260px; /* C17-12: altezza minima della mappa della città (quella di oggi a 760 px); D-187 l'aveva portata a 244: dischi sovrapposti per 587 px² a 360×760 (CI), tornata a 260 */
   --citta-altezza-max: 460px; /* C17-12: oltre, la mappa diventerebbe più alta che larga */
   --citta-nome-da: 400px; /* D-123: sotto questa larghezza della finestra il nome dell'episodio scelto non sta sulla mappa */
   --logo-icona: 72px;      /* PO-065 */
