@@ -1,6 +1,6 @@
 // C-045 (D-203): guardiani dei rilievi C45-02, C45-03 e C45-04 (C45-01 è in tests/coerenza-d153.test.ts, guardiano C37-05).
 // C45-02 rosso __NO_C4502: la guida di prima nomina le transenne, che esistono solo in e03.
-// C45-03 rosso __NO_C4503: aiuti con effetti che non aiutano (e pesi che non pesano) senza la dicitura del confronto.
+// C45-03 rosso __NO_C4503: aiuti con tutti gli effetti contro (e pesi con tutti a favore) senza la dicitura del confronto (D-205).
 // C45-04 rosso __NO_C4504: il testo di prima di e36 imp_cassa ripete «musica spenta» dopo chiudi_festa.
 import { readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -55,21 +55,22 @@ describe('C45-04 un imprevisto non ripete lo stato che una risposta prima, nella
   it('rosso __NO_C4504: e36 imp_cassa ripete «musica spenta» dopo chiudi_festa', () => { g.__NO_C4504 = true; expect(ripetuti()).toEqual(['e36 imp_cassa ← piazzale_ultimo/chiudi_festa: «musica spenta»']); });
 });
 
-describe('C45-03 un aiuto con effetti che non aiutano (o un peso che non pesa) dice che viene dal confronto (D-172)', () => {
-  const PESO = { credito: 1, pressione: 1, tensione: 1.5, riserva: 1 } as const;
-  const locale = (v: VoceScelta) => v.impatti.reduce((t, i) => t + PESO[i.tipo] * Math.abs(i.valore) * (i.buono ? 1 : -1), 0);
+describe('C45-03 un aiuto con tutti gli effetti contro (o un peso con tutti a favore) dice che viene dal confronto (D-172, D-205)', () => {
+  const tuttiContro = (v: VoceScelta, aiuto: boolean) => v.impatti.length > 0 && v.impatti.every((i) => i.buono !== aiuto);
   const dalConfronto = (v: VoceScelta) => !!v.confronto && Math.sign(v.confronto.saldo) === Math.sign(v.saldo);
-  /** Voci mostrate con effetti contro la lista, dal confronto, senza la dicitura; e quante hanno la dicitura. */
+  /** Voci con tutti gli effetti contro la lista, dal confronto: senza e con la dicitura; e voci miste con la dicitura (D-205: 0). */
   function conta(semi: number) {
-    let senza = 0, con = 0;
+    let senza = 0, con = 0, miste = 0;
     for (const m of ms) { const conf = daTabella(tabella as TabellaConfronti, m.id)!;
       for (const [n, s] of [...Array.from({ length: semi }, (_, i) => ['casuale', i + 1] as const), ['attenta', 1] as const, ['peggiore', 1] as const]) {
         const b = bilancio(m, giocaMissione(m, v0, dich, STRATEGIE[n]!(creaCaso(`c45t:${m.id}:${n}:${s}`), dich)), 3, conf);
-        for (const v of [...b.aiuti.filter((x) => locale(x) <= 0), ...b.pesi.filter((x) => locale(x) >= 0)]) if (v.impatti.length && dalConfronto(v)) { if (v.controcorrente) con++; else senza++; }
+        for (const v of [...b.aiuti.filter((x) => tuttiContro(x, true)), ...b.pesi.filter((x) => tuttiContro(x, false))]) if (dalConfronto(v)) { if (v.controcorrente) con++; else senza++; }
+        // D-205: le voci miste non hanno mai la dicitura
+        for (const v of [...b.aiuti.filter((x) => !tuttiContro(x, true)), ...b.pesi.filter((x) => !tuttiContro(x, false))]) if (v.controcorrente) miste++;
       } }
-    return { senza, con };
+    return { senza, con, miste };
   }
-  it('i due casi del collaudo portano la dicitura (e36 +2 pressione fra gli aiuti, e05 +1 fiducia fra i pesi); rosso: no', () => {
+  it('e36 +2 pressione fra gli aiuti porta la dicitura (rosso: no); e05 «Declina» +1 fiducia +1 pressione fra i pesi no (D-205)', () => {
     const e36 = ms.find((m) => m.id === 'e36')!, e05 = ms.find((m) => m.id === 'e05')!;
     // e36: casuale, seme della misura (node tools/misura-c45.mjs: 4 casi su 1000, semi 505, 664, 719, 793)
     const r36 = giocaMissione(e36, v0, dich, STRATEGIE.casuale!(creaCaso('c45:e36:casuale:505'), dich));
@@ -79,15 +80,15 @@ describe('C45-03 un aiuto con effetti che non aiutano (o un peso che non pesa) d
       bilancio(e05, r05, 3, daTabella(tabella as TabellaConfronti, 'e05')!).pesi.find((v) => v.opzione === 'volontari_no')];
     const [a, p] = voci();
     expect(a!.impatti.map((i) => [i.tipo, i.valore])).toEqual([['pressione', 2]]); expect(a!.controcorrente).toBe(true);
-    expect(p!.impatti.map((i) => [i.tipo, i.valore])).toEqual([['credito', 1], ['pressione', 1]]); expect(p!.controcorrente).toBe(true);
+    expect(p!.impatti.map((i) => [i.tipo, i.valore])).toEqual([['credito', 1], ['pressione', 1]]); expect(p!.controcorrente).toBeUndefined();
     const t = d['testi/it/comune.json'] as Record<string, string>;
     expect([t['bilancio.controcorrente.aiuto'], t['bilancio.controcorrente.peso']]).toEqual(['con le altre risposte andava peggio', 'con le altre risposte andava meglio']);
     g.__NO_C4503 = true; expect(voci().map((v) => v?.controcorrente)).toEqual([undefined, undefined]);
   }, 60_000);
   it('36 episodi (casuale 30 semi + attenta + peggiore): 0 voci senza dicitura; rosso __NO_C4503: tutte senza', () => {
     const v = conta(30); console.log(`C45-03 verde: ${JSON.stringify(v)}`);
-    expect(v.senza).toBe(0); expect(v.con).toBeGreaterThan(0);
+    expect(v.senza).toBe(0); expect(v.miste).toBe(0); expect(v.con).toBeGreaterThan(0);
     g.__NO_C4503 = true; const r = conta(30); console.log(`C45-03 rosso: ${JSON.stringify(r)}`);
-    expect(r).toEqual({ senza: v.con, con: 0 });
+    expect(r).toEqual({ senza: v.con, con: 0, miste: 0 });
   }, 180_000);
 });

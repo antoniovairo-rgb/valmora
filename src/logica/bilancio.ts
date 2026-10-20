@@ -87,13 +87,13 @@ export function bilancio(m: Missione, r: EsitoMissione, quante = 3, confronto?: 
   const scoperti = r.rapporti.flatMap((x) => Object.entries(x.scoperto).filter(([, n]) => n > 0)
     .map(([settore, n]) => ({ ondata: x.n, settore, scoperto: n, tensione: x.tensione[settore] ?? 0 })));
   const ordinati = scoperti.sort((a, b) => b.scoperto - a.scoperto || a.ondata - b.ondata); const mostrati = ordinati.slice(0, quante);
-  // C45-03 (D-203): un aiuto i cui effetti, sommati, non aiutano (e36 «+2 pressione») o un peso che non pesa (e05 «+1 fiducia,
-  // +1 pressione») sta nella lista per il confronto con le altre risposte (D-172): la resa lo dice. Rosso __NO_C4503.
+  // C45-03 (D-203, D-205): un aiuto con TUTTI gli effetti contro il giocatore (e36 «+2 pressione») o un peso con tutti gli
+  // effetti a favore sta nella lista per il confronto con le altre risposte (D-172): la resa lo dice. Le voci miste (e05
+  // «+1 fiducia, +1 pressione» fra i pesi) restano senza dicitura (D-205). Rosso __NO_C4503.
   if (conConfronto && !spento('C4503')) for (const x of voci) {
-    const locale = x.impatti.reduce((t, i) => t + punti(i), 0);
     // solo se la lista viene davvero dal confronto (non dal peso C42-03 di chi ha caricato un settore degenerato)
     const dalConfronto = !!x.confronto && Math.sign(x.confronto.saldo) === Math.sign(x.saldo);
-    if (dalConfronto && x.impatti.length && ((x.saldo > 0 && locale <= 0) || (x.saldo < 0 && locale >= 0))) x.controcorrente = true;
+    if (dalConfronto && x.impatti.length && x.saldo !== 0 && x.impatti.every((i) => i.buono === x.saldo < 0)) x.controcorrente = true;
   }
   return {
     aiuti: voci.filter((x) => x.saldo > 0).sort((a, b) => b.saldo - a.saldo).slice(0, quante),
