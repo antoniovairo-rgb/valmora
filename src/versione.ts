@@ -385,4 +385,6 @@
 //   richieste di rete esterne in una partita e01–e03: 0 su 3152 (Chromium); home a 0 px di scorrimento a 360/375/412×760.
 //   guardiano: rossi C218R01, C218S01; parte «riepilogo» di tools/sonda-altezze.mjs; C17-12 esteso a stelle e stagione 3;
 //   C145H01, C145T01, C145W01 e segnaposto del contatto (tools/aab.mjs, tests/privacy.test.ts).
+//   Inoltre D-219 (nel riepilogo di e36 il tasto «Home» copriva un nome: 56 → 0 px², rosso C219H01) e D-221 (riepilogo che
+//   scorreva sotto i 760 px: 360×640 115 → 0 px, 375×667 88 → 0, rosso C221R01; scorrimento bloccante a ogni altezza).
 export const GAME_VERSION = '0.48.0';
