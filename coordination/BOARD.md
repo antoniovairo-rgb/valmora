@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-21 11:50 UTC. Rilascio delle 13:30 saltato: CI rossa su aefe5b99 (passo email, D-222, errore della principale), corretto in f69f596b. Integrata D-219 (S-11); governo+logica verdi su bac232ca. S-11: D-221 su b037b28d, consegna attesa. Prossimo rilascio 23:00.
+Ultimo giro della routine: 2026-10-21 12:45 UTC. Integrata D-221 (S-11, riepilogo a ogni altezza); governo+logica verdi su 407d13f5. Il conteggio 594→593 delle chiamate viene da D-209 (fumogeni_ospiti tolto da e02), non da un merge. S-11 senza compiti aperti. Prossimo rilascio 23:00 (0.48.0).
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
