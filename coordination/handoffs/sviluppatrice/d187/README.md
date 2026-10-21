@@ -394,3 +394,37 @@ stagione 3, a 360, 375 e 412 × 760.
 
 Non verificato: telefono reale (tutto in Chromium); il riepilogo a 640/667 di altezza (non richiesto, non misurato); lettore
 di schermo sulle stelle spostate (l'etichetta del disco dice già «N stelle su 3», `MappaCitta.tsx:110`, non cambiata).
+
+## D-219: «Home» sopra il nome di un settore nel riepilogo (S-21) — S-11, 21/10
+
+FATTO MISURATO, Chrome 156. Nel riepilogo di e36 ondata 1, a 360 e a 375×760, il tasto «Home» della mappa copriva il nome
+di curva_cinderwick per 56 px²; sulla mappa si leggeva «URVA KILN». Strumentando il posizionatore (temporaneo, poi tolto),
+il posto migliore costava 5553, quasi tutto per la sovrapposizione con «Home» (circa 54 px²). Le altre scelte costavano di più:
+il nome stretto a due righe 37 762, gli altri posti oltre 80 000. Per uscire da sotto «Home» bastava spostare il nome di 6,5 px a destra.
+Correzione nel posizionatore (`src/resa/mappa/etichette.ts`, `sposta`): come per i bordi (C128-02) e nella città (C20-03),
+un nome sotto «Home» si sposta di quanto basta per uscirne, in orizzontale o in verticale (il minimo), fino a un quarto di
+disco, e il costo si conta già spostato. Rosso `C219H01`. Si è scelto il posizionatore e non lo spostamento del tasto:
+la correzione vale per ogni mappa tattica e lascia «Home» dove sta su tutte le schermate.
+
+| «Home» sopra punti o nomi | 360×760 | 375×760 | 412×760 |
+|---|---|---|---|
+| riepilogo e36, prima (rosso C219H01) | 1 (56 px²) | 1 | 0 |
+| riepilogo e36 e e22, dopo | 0 | 0 | 0 |
+| riepiloghi della partita e01 (3 ondate), dopo | 0 | 0 | 0 |
+
+Ai riepiloghi della partita e01 la stessa misura è stata fatta anche a 360×640, 375×667 e 412×830: 0 in tutti e tre.
+
+Guardiano: S-21 è bloccante (soglia 0) anche nella parte «riepilogo» di `tools/sonda-altezze.mjs`. La partita e01 della sonda
+ora misura anche il riepilogo di ogni ondata (S-21 e scorrimento), a tutte le misure di schermo. Braccio C219H01 nella catena
+grafica: col rosso 1 elemento coperto a 360 e 375, quindi rosso.
+
+**Rilievo nuovo (alla principale).** Misurando i riepiloghi di e01 è emerso che a 360×640 il riepilogo dell'ondata 3 scorre di
+26 px. Prima non si misurava, quindi **Non posso confermarlo** come difetto recente o vecchio. A 375×667 scorre 0 px in locale
+ma 1 px in CI (bc10c57c, «grafica (375)», 3 tentativi su 3). Per questo il primo push era rosso: ritiro la soglia di 26 px che
+avevo messo, perché misurava una cosa non richiesta e con una soglia a 0 a 375×667 sarebbe rossa in CI. Ora lo scorrimento del
+riepilogo blocca da 760 px di altezza in su (soglia 0, come in D-218); sotto si misura e si stampa senza bloccare. S-21 blocca a
+tutte le altezze. A 360×760, 375×760, 412×760 e 412×830 scorre 0. La correzione sotto i 760 px resta da decidere.
+
+Foto: `c47/d219/prima` (rosso C219H01) e `c47/d219/dopo`, riepiloghi di e36 ed e22 a 360, 375 e 412 × 760.
+Non verificato: telefono reale; le 426 ondate degli schieramenti col posizionatore nuovo le misura il passo «schieramenti»
+della catena grafica (in CI), non una mia prova a parte.

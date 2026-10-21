@@ -32,6 +32,9 @@ export const SOGLIE = {
   '412x760': { chiamata: 473 },
 };
 const LIBERE = new Set(['crediti']);
+// D-219: il riepilogo della partita e01 sotto i 760 px di altezza scorre (360×640: 26 px; 375×667: 0 in locale, 1 in CI):
+// misurato e stampato, non bloccante, segnalato alla principale; da 760 in su soglia 0 come in D-218. S-21 blocca sempre.
+const libera = (r) => LIBERE.has(r.nome) || (r.nome === 'riepilogo' && Number(r.vp.split('x')[1]) < 760);
 // Nomi dei settori sopra i segni dell'ultima risposta: misurati e stampati, non bloccano. Con la stessa build il massimo
 // cambia fra due giri (183 e 350 px² a 360×760; 506 col rosso C187S01): una soglia sarebbe instabile.
 export const VP_PER_LARGHEZZA = { 360: ['360x640', '360x760'], 375: ['375x667', '375x760'], 412: ['412x830', '412x760'] };
@@ -131,7 +134,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         if (!visti.has(chiave)) { visti.add(chiave); await rileva(q); }
         if (q === 'verbale') break;
         if (await c('[data-azione="conferma-passo"]') || await c('[data-azione="conferma-nuova"]') || await c('[data-genere="m"]') || await c('[data-azione="guida-salta"]')) continue;
-        if (q === 'schieramento') { pl ??= piano(e01, JSON.parse(await p.evaluate(() => localStorage.getItem('valmora-salvataggio'))).variabili, dich); await schiera(p, pl[io++].d); await rileva('schierato'); await c('[data-azione="conferma"]'); await c('[data-azione="conferma-davvero"]'); continue; }
+        if (q === 'schieramento') { pl ??= piano(e01, JSON.parse(await p.evaluate(() => localStorage.getItem('valmora-salvataggio'))).variabili, dich); await schiera(p, pl[io++].d); await rileva('schierato'); await c('[data-azione="conferma"]'); await rileva('riepilogo'); /* D-219: S-21 e scorrimento anche qui */ await c('[data-azione="conferma-davvero"]'); continue; }
         if (await c('[data-azione="continua"]')) continue;
         const opz = p.locator('[data-opzione]:not(:disabled):not([aria-disabled="true"])');
         if (await opz.count()) {
@@ -178,9 +181,8 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         await schiera(q, c.d); await q.click('[data-azione="conferma"]'); await q.waitForSelector('[data-riepilogo]'); await lento(q); await q.waitForTimeout(200);
         const righe = await q.locator('[data-riepilogo-settore]').count(), avviso = await q.locator('[data-restano]').count();
         if (righe !== 5 || !avviso) errori.push(`${vp} riepilogo ${c.ep}: ${righe} settori e ${avviso ? '' : 'senza '}avviso, attesi 5 con l'avviso (D-218)`);
-        // S-21 nel riepilogo (e36 a 360 e 375: «Home» copre il nome di curva_cinderwick, 56 px², già su ebbf277b): rilievo nuovo
-        // passato alla principale con D-218; finché non decide si misura e si stampa (casaRiepilogo), non blocca
-        const x = await misura(q); ris.push({ vp, nome: `riepilogo ${c.ep}`, ...x, casa: 0, casaRiepilogo: x.casa }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-riepilogo-${c.ep}.png`), fullPage: true });
+        // S-21 anche qui, bloccante (D-219: «Home» copriva il nome di curva_cinderwick in e36 a 360 e 375, 56 px²; rosso C219H01)
+        ris.push({ vp, nome: `riepilogo ${c.ep}`, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-riepilogo-${c.ep}.png`), fullPage: true });
         await q.close();
       }
       if (vp === '360x760' && parti.includes('rapporti')) for (const c of rapportiCostruiti(dati, dich)) { // C45-06 (D-203)
@@ -199,7 +201,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
 /** Problemi: scorrimento oltre la soglia per schermata, errori di pagina, blocchi, versione sopra le lettere. */
 export function controllaAltezze({ ris, errori, sopra, chiamate = [] }) {
   const max = {};
-  for (const r of ris) if (!LIBERE.has(r.nome)) { const k = `${r.vp}|${r.nome}`; if (!max[k] || r.ecc > max[k].ecc) max[k] = r; }
+  for (const r of ris) if (!libera(r)) { const k = `${r.vp}|${r.nome}`; if (!max[k] || r.ecc > max[k].ecc) max[k] = r; }
   const male = Object.values(max).filter((r) => r.ecc > (SOGLIE[r.vp]?.[r.nome] ?? 0))
     .map((r) => `${r.vp} ${r.nome}: la pagina scorre di ${r.ecc} px (soglia ${SOGLIE[r.vp]?.[r.nome] ?? 0}, mappa ${r.mappa} px; D-187)`);
   const d210 = ris.flatMap((r) => r.nome === 'citta36' && r.striscia < 96 ? [`${r.vp} città: manca la striscia della home in testa (${r.striscia} px, D-210)`] : r.nome === 'guida1' && !r.testataGuida ? [`${r.vp} guida: il primo passo non ha la vignetta della home (D-210)`] : []);
@@ -221,7 +223,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const max = {}; for (const r of g.ris) { const k = `${r.vp} ${r.nome}`; max[k] = Math.max(max[k] ?? -1, r.ecc); }
   for (const [k, v] of Object.entries(max)) console.log(`${k}: ${v}`);
   console.log(`nomi sopra i segni, massimo: ${Math.max(0, ...g.ris.map((r) => r.segni))} px²`);
-  for (const r of g.ris.filter((r) => r.casaRiepilogo)) console.log(`${r.vp} ${r.nome}: «Home» copre ${r.casaRiepilogo} fra punti e nomi (S-21, non blocca, D-218)`);
+  for (const r of g.ris.filter((r) => r.nome === 'riepilogo' && libera(r) && r.ecc > 0)) console.log(`${r.vp} riepilogo: scorre di ${r.ecc} px (non bloccante, D-219)`);
   for (const [k, xs] of [['imprevisti', g.chiamate.filter((c) => c.imprevisto)], ['normali', g.chiamate.filter((c) => !c.imprevisto)]]) if (xs.length) console.log(`chiamate ${k}: ${xs.length}, massimo ${Math.max(...xs.map((c) => c.ecc))} px, mediana ${mediana(xs.map((c) => c.ecc))} px`);
   const male = controllaAltezze(g); console.log(male.length ? `ROSSO (${male.length}):\n${male.join('\n')}` : 'VERDE');
   process.exit(male.length ? 1 : 0);
