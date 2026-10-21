@@ -428,3 +428,42 @@ tutte le altezze. A 360×760, 375×760, 412×760 e 412×830 scorre 0. La correzi
 Foto: `c47/d219/prima` (rosso C219H01) e `c47/d219/dopo`, riepiloghi di e36 ed e22 a 360, 375 e 412 × 760.
 Non verificato: telefono reale; le 426 ondate degli schieramenti col posizionatore nuovo le misura il passo «schieramenti»
 della catena grafica (in CI), non una mia prova a parte.
+
+## D-221: il riepilogo dello schieramento non scorre a nessuna altezza — S-11, 21/10
+
+Base: merge di e6ba5de5 (conflitti solo in `STABILITA.json`, giri dei due lati uniti, e `docs/governo/governo.html`, rigenerato).
+FATTO MISURATO, Chrome 156, scorrimento del riepilogo in px (`tools/sonda-altezze.mjs`, parte «riepilogo» ora a ogni altezza):
+
+| | 360×640 | 375×667 | 412×830 | 360/375/412×760 |
+|---|---|---|---|---|
+| e36 ondata 1, 5 settori + avviso, prima (rosso C221R01) | 115 | 88 | 0 | 0 |
+| e22 ondata 1, prima | 107 | 80 | 0 | 0 |
+| e36 e e22, dopo | 0 | 0 | 0 | 0 |
+
+Correzione solo con token, rosso `C221R01`:
+- scheda del riepilogo con margini e spazio interno più stretti (`--spazio-2`/`--spazio-3`), titolo con `--spazio-1`;
+- elenco dei settori senza spazio fra le righe e con `--linea-stretta`;
+- avviso con `--testo-piccolo`, `--linea-stretta` e spazio interno `--spazio-1`;
+- pulsanti con `--testo-piccolo` e spazio interno `--spazio-1`;
+- sotto la pagina il margine piccolo (`--spazio-3`). Quello grande serve alla barra fissa dello schieramento, che nel riepilogo non c'è.
+
+Il posto liberato lo prende la mappa, che a 360×640 sale a 225 px e lascia margine. Ho provato anche a far scendere la mappa
+fino al minimo di lettura (160 px, come in D-191), ma non serviva: in e36 il controllo di «Home» (S-21) la tiene comunque
+a 205 px. Quella modifica l'ho tolta.
+
+Guardiano: lo scorrimento del riepilogo blocca a soglia 0 a ogni altezza (640, 667, 760, 830). Questo vale per i riepiloghi
+costruiti (e36, e22) e per quelli della partita e01. Bracci nella catena grafica:
+- `C221R01` a 360×640 (115 px, rosso);
+- `C218R01,C221R01` a 360×760 (19 e 11 px, rosso). C218R01 da solo ora è cieco (0 px), perché il riepilogo più stretto non
+  scorre neanche coi margini di prima: per questo il braccio è passato alla coppia.
+- `C219H01,C221R01` a 360×760 (D-219: «Home» sopra il nome, 1 coperto, rosso). C219H01 da solo a 760 ora è cieco, perché la
+  mappa del riepilogo è più alta (328 px invece di 213) e il nome non arriva sotto «Home». A 360×640, senza D-219, la mappa si
+  rialza a 241 px per S-21 e la pagina scorre di 16 px: D-219 serve ancora.
+- `PARTE_ROSSO` accetta coppie (`r.split(',')`).
+- La sonda completa delle altezze è verde a 360×640, 360×760, 375×667, 375×760, 412×830 e 412×760, compresi i riepiloghi della
+  partita e01. Le chiamate costruite ora sono 593 (451 normali più 142 imprevisti) invece di 594: il conteggio cambia col merge di
+  e6ba5de5, non con le mie modifiche; **Non verificato** quale commit lo cambi.
+
+Foto: `c47/d221/prima` (rosso C221R01) e `c47/d221/dopo`, riepiloghi di e36 ed e22 a 360×640, 375×667, 412×830 e a 360,
+375 e 412 × 760.
+Non verificato: telefono reale.

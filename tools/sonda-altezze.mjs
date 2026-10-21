@@ -32,9 +32,8 @@ export const SOGLIE = {
   '412x760': { chiamata: 473 },
 };
 const LIBERE = new Set(['crediti']);
-// D-219: il riepilogo della partita e01 sotto i 760 px di altezza scorre (360×640: 26 px; 375×667: 0 in locale, 1 in CI):
-// misurato e stampato, non bloccante, segnalato alla principale; da 760 in su soglia 0 come in D-218. S-21 blocca sempre.
-const libera = (r) => LIBERE.has(r.nome) || (r.nome === 'riepilogo' && Number(r.vp.split('x')[1]) < 760);
+// D-221: il riepilogo non scorre a nessuna altezza (prima, a 360×640: 26 px in e01, 115 px in e36 con 5 settori). Rosso C221R01.
+const libera = (r) => LIBERE.has(r.nome);
 // Nomi dei settori sopra i segni dell'ultima risposta: misurati e stampati, non bloccano. Con la stessa build il massimo
 // cambia fra due giri (183 e 350 px² a 360×760; 506 col rosso C187S01): una soglia sarebbe instabile.
 export const VP_PER_LARGHEZZA = { 360: ['360x640', '360x760'], 375: ['375x667', '375x760'], 412: ['412x830', '412x760'] };
@@ -73,7 +72,8 @@ export function chiamateCostruite(dati, dich) {
   return out;
 }
 // C47-02 (D-218): riepilogo dello schieramento con 5 settori e l'avviso «ti restano», aperto da salvataggio all'ondata 1
-// (partita attenta fino all'episodio prima). Disposizioni della collaudatrice C-047: a 360×760 scorrevano di 19 e 11 px. Rosso C218R01.
+// (partita attenta fino all'episodio prima). Disposizioni della collaudatrice C-047: a 360×760 scorrevano di 19 e 11 px. Rosso
+// C218R01 (con D-221 solo insieme a C221R01: il riepilogo più stretto non scorre neanche coi margini di prima).
 export const RIEPILOGHI = { e36: { squadre: { curva_cinderwick: 1, curva_larkspire: 1, piazzale: 1 }, steward: { cantiere_stadio_nuovo: 1, strada_larkspire: 1 }, mediatore: { cantiere_stadio_nuovo: 1 } },
   e22: { squadre: { curva_cinderwick: 1, curva_larkspire: 1, piazzale: 1 }, steward: { strada_cinderwick: 1, piazza_municipio: 2 }, mediatore: { piazza_municipio: 1 } } };
 export function riepiloghiCostruiti(dati, dich) {
@@ -173,7 +173,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
             chiamate.push({ vp, ep: c.ep, id: c.id, imprevisto: c.imprevisto, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) });
             if (cartella && c.imprevisto) await q.screenshot({ path: join(cartella, `${vp}-chiamata-${c.ep}-${c.id}.png`), fullPage: true }); }
           await q.close(); })); }
-      if (h === 760 && parti.includes('riepilogo')) for (const c of riepiloghiCostruiti(dati, dich)) { // C47-02 (D-218)
+      if (parti.includes('riepilogo')) for (const c of riepiloghiCostruiti(dati, dich)) { // C47-02 (D-218); D-221: a ogni altezza
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
         await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), c.sal); await q.reload();
@@ -223,7 +223,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const max = {}; for (const r of g.ris) { const k = `${r.vp} ${r.nome}`; max[k] = Math.max(max[k] ?? -1, r.ecc); }
   for (const [k, v] of Object.entries(max)) console.log(`${k}: ${v}`);
   console.log(`nomi sopra i segni, massimo: ${Math.max(0, ...g.ris.map((r) => r.segni))} px²`);
-  for (const r of g.ris.filter((r) => r.nome === 'riepilogo' && libera(r) && r.ecc > 0)) console.log(`${r.vp} riepilogo: scorre di ${r.ecc} px (non bloccante, D-219)`);
   for (const [k, xs] of [['imprevisti', g.chiamate.filter((c) => c.imprevisto)], ['normali', g.chiamate.filter((c) => !c.imprevisto)]]) if (xs.length) console.log(`chiamate ${k}: ${xs.length}, massimo ${Math.max(...xs.map((c) => c.ecc))} px, mediana ${mediana(xs.map((c) => c.ecc))} px`);
   const male = controllaAltezze(g); console.log(male.length ? `ROSSO (${male.length}):\n${male.join('\n')}` : 'VERDE');
   process.exit(male.length ? 1 : 0);
