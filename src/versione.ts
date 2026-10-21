@@ -368,4 +368,12 @@
 //   scorrono 7 → 0 su 740; vitest 407/407.
 //   guardiano: tests/c45.test.ts (rossi C4501, C4502, C4503, C4504), C37-05 esteso agli imprevisti, tools/sonda-altezze.mjs
 //   con i 7 rapporti costruiti (rosso C203R01).
-export const GAME_VERSION = '0.46.0';
+// 0.47.0 – home fase 2, imprevisti più bassi, rifinitura e01–e03, correzioni del collaudo C-046, build AAB.
+//   causa: PO-140 fase 2 (D-208/D-210: la striscia coi personaggi prende il posto della testata della città, vignetta al
+//   primo passo della guida); C45-05 (chiamate d'imprevisto alte fino a 545 px a 360×760: via vignetta e riga, D-206/D-207);
+//   PO-035 (rifinitura e01–e03, D-209); C46-01/02/05 (testi di e36 ed e05), e22/e27 (mezzo ripetuto nelle etichette);
+//   mediana degli imprevisti salita a 286 con le etichette neutre (D-215); PO-144 (AAB di rilascio, D-212/D-214).
+//   misura: imprevisti a 360×760 massimo 545 → 331, mediana 466 → 278 (soglie 339/285); città senza scorrimento a
+//   360/375/412×760, con 36 episodi compresi; CI «catene» 10/10 job (con «aab», versionCode 47000).
+//   guardiano: rossi C206I01, C210C01, C210G01, C215L01; tests/d211.test.ts (D211-01/02/05/06); job CI «aab».
+export const GAME_VERSION = '0.47.0';
