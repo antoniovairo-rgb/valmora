@@ -6,13 +6,15 @@
 // - il menu «Altro» è chiuso, si apre col tocco e con Invio, mostra crediti/privacy/esporta/importa/idee (sostieni nel browser),
 //   Esc lo chiude e ridà il fuoco al tasto «Altro».
 // Rosso VALMORA_ROSSI=C140H01: la home di prima (niente vignetta, frase, menu). Foto in cartella: home-<w>x<h>.png,
-// home-altro-<w>.png. Da solo: node tools/foto-home.mjs (server di sviluppo, 360/375/412).
+// home-altro-<w>x<h>[-nuova].png. Da solo: node tools/foto-home.mjs (server di sviluppo, 360/375/412).
 import { join } from 'node:path';
 import { GAME_VERSION } from '../src/versione.ts';
 
 // Misurato il 18/10 (PO-140, vignetta che riempie lo spazio libero, PO-092): il fondo di «La città e il gioco» resta
 // sopra il bordo della finestra di 105/105/105 px a 760 e di 71/90/90 px a 640 (360/375/412). Soglia: 0 px, nessuno scorrimento. Mai alzarla per far passare una modifica.
 export const SOGLIA_SCORRIMENTO = 0;
+// D-224: col menu «Altro» aperto, a ogni altezza e con o senza salvataggio. Fissata dalla regola (D-191: 640 è supportata).
+export const SOGLIA_ALTRO = 0;
 const ALTEZZE = [760, 640];
 const salvataggio = JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: {}, missioni_concluse: [], episodi: {}, genere: 'm', rapporto_aperto: null, in_corso: null });
 
@@ -49,15 +51,22 @@ export async function controllaHomeA(browser, url, cartella, atteso, rossi, larg
     if (h === ALTEZZE[0]) atteso(`${dove}: la pagina della home scorre di ${m.pagina} px (C43-07)`, m.pagina <= 0);
     atteso(`${dove}: vignetta alta ${m.vignetta} px, sotto il minimo ${m.min}`, m.vignetta >= m.min - 1);
     if (cartella) await p.screenshot({ path: join(cartella, `home-${larghezza}x${h}.png`) });
-    if (h === ALTEZZE[0]) await controllaAltro(p, atteso, `${dove} menu «Altro»`, cartella && join(cartella, `home-altro-${larghezza}.png`));
+    // D-224 (C48-02): il menu a ogni altezza, e anche senza salvataggio (prima solo a 760, con salvataggio)
+    await controllaAltro(p, atteso, `${dove} menu «Altro»`, cartella && join(cartella, `home-altro-${larghezza}x${h}.png`));
     await p.close();
+    const q = await browser.newPage({ viewport: { width: larghezza, height: h }, reducedMotion: 'reduce' });
+    if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
+    await q.goto(url); await q.evaluate(() => localStorage.clear()); await q.reload(); await q.waitForSelector('main[data-schermata="titolo"]', { timeout: 15000 });
+    await q.evaluate(() => document.fonts.ready); await q.waitForTimeout(300);
+    await controllaAltro(q, atteso, `${dove} senza salvataggio, menu «Altro»`, cartella && join(cartella, `home-altro-${larghezza}x${h}-nuova.png`), false);
+    await q.close();
   }
   const [alta, bassa] = misure;
   atteso(`home ${larghezza}: vignetta ${bassa.vignetta} px a ${bassa.h} e ${alta.vignetta} px a ${alta.h}: sotto i 700 px non si abbassa (PO-140)`, bassa.vignetta > 0 && bassa.vignetta < alta.vignetta);
   return misure;
 }
 
-async function controllaAltro(p, atteso, dove, foto) {
+async function controllaAltro(p, atteso, dove, foto, conSalvataggio = true) {
   const tasto = p.locator('[data-azione="altro"]'), menu = p.locator('[data-altro]');
   if (!(await tasto.count())) { atteso(`${dove}: manca il tasto`, false); return; }
   // PO-145: anche «privacy» (rosso C145H01: la voce manca)
@@ -65,8 +74,12 @@ async function controllaAltro(p, atteso, dove, foto) {
   atteso(`${dove}: aperto prima del tocco`, (await tasto.getAttribute('aria-expanded')) === 'false' && !(await menu.isVisible()));
   await tasto.click();
   const dentro = await visibili();
-  atteso(`${dove}: col tocco si vedono solo ${dentro.join(', ') || 'nessuna'} di crediti, privacy, esporta, importa, idee`, dentro.length === 5 && (await tasto.getAttribute('aria-expanded')) === 'true');
-  if (foto) { await menu.scrollIntoViewIfNeeded(); await p.screenshot({ path: foto, fullPage: true }); }
+  atteso(`${dove}: col tocco si vedono solo ${dentro.join(', ') || 'nessuna'} di crediti, privacy, esporta, importa, idee`, dentro.length === (conSalvataggio ? 5 : 4) && (await tasto.getAttribute('aria-expanded')) === 'true'); // senza salvataggio niente «Esporta»
+  // D-224 (C48-02): aperto, il menu sta tutto nello schermo, voci comprese: la pagina non scorre (soglia 0). Rosso C224A01
+  await p.waitForTimeout(150);
+  const scorre = await p.evaluate(() => document.scrollingElement.scrollHeight - innerHeight);
+  atteso(`${dove}: aperto, la pagina scorre di ${scorre} px (soglia ${SOGLIA_ALTRO}, D-224)`, scorre <= SOGLIA_ALTRO);
+  if (foto) await p.screenshot({ path: foto, fullPage: true });
   await p.keyboard.press('Tab'); await p.keyboard.press('Escape');
   const chiuso = !(await menu.isVisible()), fuoco = await p.evaluate(() => document.activeElement?.getAttribute('data-azione'));
   atteso(`${dove}: Esc dal menu ${chiuso ? 'lo chiude' : 'non lo chiude'} e il fuoco va su «${fuoco}» invece di «altro»`, chiuso && fuoco === 'altro');
@@ -80,9 +93,9 @@ export async function homeRossaVista(build = 'dist') {
   const srv = await servi(build), percorso = process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
   const browser = await chromium.launch({ executablePath: percorso });
   const visto = {};
-  try { for (const r of ['C140H01', 'C187C01']) { const male = []; await controllaHomeA(browser, `http://127.0.0.1:${srv.address().port}/`, '', (c, ok) => { if (!ok) male.push(c); }, [r], 360); visto[r] = male.length > 0; } }
+  try { for (const r of ['C140H01', 'C187C01', 'C224A01']) { const male = []; await controllaHomeA(browser, `http://127.0.0.1:${srv.address().port}/`, '', (c, ok) => { if (!ok) male.push(c); }, [r], 360); visto[r] = male.length > 0; } }
   finally { await browser.close(); srv.close(); }
-  return Object.values(visto).every(Boolean); // C140H01 (home di prima) e C187C01 (C43-07, 764 su 760)
+  return Object.values(visto).every(Boolean); // C140H01 (home di prima), C187C01 (C43-07, 764 su 760), C224A01 (D-224, menu sotto la piega)
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
