@@ -130,6 +130,7 @@
   --vignetta-min-sala: 56px;
   --vignetta-riserva-esito: 706px; /* C15-07: +26 per la barra della fiducia nel verbale */
   --vignetta-min-esito: 54px;
+  --vignetta-min-fallita: 110px; /* C41-06: 2/3 dei 290 px di larghezza a 360 (disegno 320×180: 193 × 109 px) */
   --vignetta-finestra-min: 700px; /* C26-03 (D-126 d): sotto questa altezza della finestra (375×667) le vignette di sala e verbale non compaiono */
   --vignetta-chiamata: 34%; /* PO-089: larghezza della vignetta nel fumetto della chiamata (circa un terzo) */
 
@@ -192,14 +193,20 @@
   --nome-max: 7.5em;
   --margine-nomi: 34px; /* spazio in basso per i nomi dei settori (C-005 R06) */
   --mappa-proporzione: 1 / 1;
+  --mappa-altezza-min: 200px; /* D-187: sotto, a 360 i nomi in alto non stanno; in più la mappa non scende dove «Home» copre un settore (adatta.ts, S-21) */
+  --mappa-altezza-min-lettura: 160px; /* D-191: risposta, sala e briefing (mappa che non si tocca) */
+  --stemma-compatto: 32px; /* D-191: stemmi nella scheda compatta della città */
   --mappa-proporzione-passi: 4 / 3; /* sala e briefing a passi (S-10): mappa più bassa, niente scorrimento */
   --citta-proporzione: 4 / 5;
   --citta-riserva: 500px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine) */
   --citta-larghezza-min: 208px;
-  --citta-altezza-min: 260px; /* C17-12: altezza minima della mappa della città (quella di oggi a 760 px) */
+  --citta-altezza-min: 260px; /* C17-12: altezza minima della mappa della città (quella di oggi a 760 px); D-187 l'aveva portata a 244: dischi sovrapposti per 587 px² a 360×760 (CI), tornata a 260 */
   --citta-altezza-max: 460px; /* C17-12: oltre, la mappa diventerebbe più alta che larga */
   --citta-nome-da: 400px; /* D-123: sotto questa larghezza della finestra il nome dell'episodio scelto non sta sulla mappa */
   --logo-icona: 72px;      /* PO-065 */
+  --home-logo-icona: 48px; /* PO-140: logo più compatto per far posto alla vignetta */
+  --home-vignetta-max: 210px; /* PO-140: oltre, a 360 il ritaglio taglierebbe Malvasi (vignetta 320×180 in slice) */
+  --home-vignetta-min: 96px;
 
   --font-titoli: "Space Grotesk", system-ui, sans-serif;
   --font: Inter, system-ui, sans-serif;

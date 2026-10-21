@@ -21,5 +21,5 @@ for (const ep of new Set(lista.map((k) => k.split('/')[0]))) {
   for (const [k, v] of Object.entries(testi)) if (k.startsWith(`${ep}.`)) { const vec = `${JSON.stringify(k)}: ${JSON.stringify(tj[k])}`; if (!t.includes(vec)) throw new Error(k); t = t.replace(vec, `${JSON.stringify(k)}: ${JSON.stringify(v)}`); }
   JSON.parse(t); fs.writeFileSync(pt, t);
 }
-reg.nota += '; secondo giro D-169: 10 opzioni';
+reg.nota += process.argv[3] ? `; ${process.argv[3]}` : '';
 fs.writeFileSync(q, JSON.stringify(reg, null, 2) + '\n'); console.log(Object.keys(reg.tolte).length);

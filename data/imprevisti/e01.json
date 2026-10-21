@@ -1,0 +1,161 @@
+{
+  "id": "e01",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 3,
+      "chiamata": {
+        "id": "imp_ambulanza",
+        "fonte": "centrale_radio",
+        "testo": "testi:e01.imp.ambulanza",
+        "commento": "testi:e01.imp.ambulanza.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "apri_varco",
+            "testo": "testi:e01.imp.ambulanza.apri_varco",
+            "costo": "testi:e01.imp.ambulanza.apri_varco.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -3
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e01.imp.ambulanza.apri_varco.r"
+          },
+          {
+            "id": "scendete",
+            "testo": "testi:e01.imp.ambulanza.scendete",
+            "costo": "testi:e01.imp.ambulanza.scendete.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.imp.ambulanza.scendete.r"
+          },
+          {
+            "id": "passeranno",
+            "testo": "testi:e01.imp.ambulanza.passeranno",
+            "costo": "testi:e01.imp.ambulanza.passeranno.c",
+            "effetti": [],
+            "risposta": "testi:e01.imp.ambulanza.passeranno.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_buio",
+        "fonte": "centrale_radio",
+        "testo": "testi:e01.imp.buio",
+        "commento": "testi:e01.imp.buio.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "torce",
+            "testo": "testi:e01.imp.buio.torce",
+            "costo": "testi:e01.imp.buio.torce.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -3
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e01.imp.buio.torce.r"
+          },
+          {
+            "id": "speaker",
+            "testo": "testi:e01.imp.buio.speaker",
+            "costo": "testi:e01.imp.buio.speaker.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.imp.buio.speaker.r"
+          },
+          {
+            "id": "buio_resta",
+            "testo": "testi:e01.imp.buio.buio_resta",
+            "costo": "testi:e01.imp.buio.buio_resta.c",
+            "effetti": [],
+            "risposta": "testi:e01.imp.buio.buio_resta.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tram",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e01.imp.tram",
+        "commento": "testi:e01.imp.tram.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "a_piedi",
+            "testo": "testi:e01.imp.tram.a_piedi",
+            "costo": "testi:e01.imp.tram.a_piedi.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -3
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.imp.tram.a_piedi.r"
+          },
+          {
+            "id": "dividi",
+            "testo": "testi:e01.imp.tram.dividi",
+            "costo": "testi:e01.imp.tram.dividi.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.imp.tram.dividi.r"
+          },
+          {
+            "id": "sostitutivo",
+            "testo": "testi:e01.imp.tram.sostitutivo",
+            "costo": "testi:e01.imp.tram.sostitutivo.c",
+            "effetti": [],
+            "risposta": "testi:e01.imp.tram.sostitutivo.r"
+          }
+        ]
+      }
+    }
+  ]
+}

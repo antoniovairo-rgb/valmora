@@ -53,6 +53,10 @@ export function disponiEtichette(contenitore: HTMLElement) {
   if (!spento('C102D01')) for (const s of settori) { s.setAttribute('data-unita', UNITA[0]); s.querySelector<HTMLElement>('.settore-nome')?.style.removeProperty('max-width'); }
   for (const s of settori) { const n = s.querySelector<HTMLElement>('.settore-nome'); n?.style.removeProperty('--nome-dx'); n?.style.removeProperty('--nome-dy'); } // C128-02
   const punti = settori.map((s) => s.querySelector('.settore-punto')!.getBoundingClientRect() as Rett);
+  // D-191: con la mappa abbassata (fino a 160 px) i nomi in alto finivano sotto il pulsante «Home» dell'angolo: per i nomi
+  // e le unità è un ostacolo come i punti (in coda, così gli indici dei settori restano gli stessi). Rosso C191H01: no.
+  const casa = contenitore.querySelector(':scope > .tasto-home');
+  if (casa && !spento('C191H01')) punti.push(casa.getBoundingClientRect() as Rett);
   // C33-01: il nome si misura col testo vero (riquadro ∪ righe del testo): stretto al 60% il testo usciva dal riquadro e
   // finiva sotto le pastiglie (10/142 ondate a 360). Rosso C100N01: solo il riquadro, come prima.
   const nomeDi = (s: HTMLElement) => { const n = s.querySelector('.settore-nome'); if (!n) return null; const b = n.getBoundingClientRect();
@@ -71,6 +75,9 @@ export function disponiEtichette(contenitore: HTMLElement) {
   if (!spento('C34N01')) migliorCombinazione(settori, punti, mappa, !contenitore.querySelector('.settore-unita'));
   // con nessuna unità sulla mappa (sala, briefing) la combinazione migliore è già quella finale
   if (!contenitore.querySelector('.settore-unita') && !spento('C34N01')) return;
+  // D-187 (S-12): nella chiamata i segni dell'ultima risposta (▲/▼, +⚑) finivano sotto i nomi (fino a 506 px² a 360):
+  // per i nomi sono ostacoli. Rosso C187S01: no, come prima.
+  const segni = spento('C187S01') ? [] : [...contenitore.querySelectorAll('.settore .segni-effetto')].map((e) => e.getBoundingClientRect() as Rett);
   // 2) nome e unità insieme (6 × 6 combinazioni; solo il nome per i settori senza unità), si tiene quella che costa meno
   //    (due passate, così anche i primi settori vedono dove sono finiti gli ultimi).
   //    Nome contro: punti, nomi e unità degli altri settori. Unità contro: tutti i punti (anche il proprio),
@@ -80,7 +87,7 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const conUnita = !!s.querySelector('.settore-unita');
     const altri = settori.filter((x) => x !== s);
     const presenti = (rs: (Rett | null)[]) => rs.filter((r): r is Rett => !!r);
-    const perNome = [...punti.filter((_, j) => j !== i).map((r) => ostacolo(r)), ...presenti(altri.map(nomeDi)).map((n) => ostacolo(n, STACCO)), ...presenti(altri.map(unitaDi)).map((r) => ostacolo(r))];
+    const perNome = [...punti.filter((_, j) => j !== i).map((r) => ostacolo(r)), ...presenti(altri.map(nomeDi)).map((n) => ostacolo(n, STACCO)), ...presenti(altri.map(unitaDi)).map((r) => ostacolo(r)), ...segni.map((r) => ostacolo(r))];
     const perUnita = [...punti, ...presenti(altri.map(nomeDi)), ...presenti(altri.map(unitaDi))].map((r) => ostacolo(r));
     const costoDi = (r: Rett, os: Ostacolo[]) => os.reduce((a, o) => a + VERA * area(r, o.vero) + area(r, o.largo) - area(r, o.vero), 0);
     // C26-11: una pastiglia col centro sotto il disco di un altro settore non si può toccare (e06 a 360), e due nomi
@@ -140,9 +147,17 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const passo = (punti[i]!.right - punti[i]!.left) / 8, c128 = !spento('C128E01');
     const rientra = (a: number, b: number, min: number, max: number) => (a < min ? min - a : b > max ? max - b : 0);
     const spingi = (dx: number, dy: number) => { el?.style.setProperty('--nome-dx', `${dx}px`); el?.style.setProperty('--nome-dy', `${dy}px`); };
+    // D-219 (C-047, riepilogo di e36 a 360 e 375: «Home» copriva «Curva Kiln» per 56 px² e nessun posto era libero): allo
+    // stesso modo un nome sotto «Home» si sposta di quanto basta per uscirne, fino a un quarto di disco. Rosso C219H01: no.
+    const casaR = casa && !spento('C219H01') ? casa.getBoundingClientRect() as Rett : null;
     const sposta = () => { if (!c128 || !el) return [0, 0] as const; spingi(0, 0); const n = nomeDi(s); if (!n) return [0, 0] as const;
-      const b = MARGINE + 0.5, dx = rientra(n.left, n.right, mappa.left + b, mappa.right - b), dy = rientra(n.top, n.bottom, mappa.top + b, mappa.bottom - b);
-      if (Math.abs(dx) > passo || Math.abs(dy) > passo || (!dx && !dy)) return [0, 0] as const;
+      const b = MARGINE + 0.5; let dx = rientra(n.left, n.right, mappa.left + b, mappa.right - b), dy = rientra(n.top, n.bottom, mappa.top + b, mappa.bottom - b);
+      if (Math.abs(dx) > passo || Math.abs(dy) > passo) dx = dy = 0;
+      const m = { left: n.left + dx, top: n.top + dy, right: n.right + dx, bottom: n.bottom + dy };
+      const via = casaR && area(m, casaR) > 0 ? ([[casaR.right - m.left + 0.5, 0], [casaR.left - m.right - 0.5, 0], [0, casaR.bottom - m.top + 0.5], [0, casaR.top - m.bottom - 0.5]] as const)
+        .filter(([x, y]) => Math.abs(x + y) <= 2 * passo).sort((p, q) => Math.abs(p[0] + p[1]) - Math.abs(q[0] + q[1]))[0] : undefined;
+      if (via) { dx += via[0]; dy += via[1]; }
+      if (!dx && !dy) return [0, 0] as const;
       spingi(dx, dy); return [dx, dy] as const; };
     let migliore = { nome: NOMI[0] as string, unita: UNITA[0] as string, costo: Infinity, largo: '', dx: 0, dy: 0 };
     cerca: for (const largo of d136 ? ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.6)'] : ['']) {

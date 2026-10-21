@@ -1,0 +1,213 @@
+{
+  "id": "e14",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_corrente",
+        "fonte": "biglietteria",
+        "testo": "testi:e14.imp.corrente",
+        "commento": "testi:e14.imp.corrente.vice",
+        "settore": "biglietteria",
+        "opzioni": [
+          {
+            "id": "soldi_contati",
+            "testo": "testi:e14.imp.corrente.soldi_contati",
+            "costo": "testi:e14.imp.corrente.soldi_contati.c",
+            "effetti": [
+              {
+                "pressione": "biglietteria",
+                "valore": -3
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.corrente.soldi_contati.r"
+          },
+          {
+            "id": "ricevute_penna",
+            "testo": "testi:e14.imp.corrente.ricevute_penna",
+            "costo": "testi:e14.imp.corrente.ricevute_penna.c",
+            "effetti": [
+              {
+                "pressione": "biglietteria",
+                "valore": -2
+              },
+              {
+                "tensione": "biglietteria",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.corrente.ricevute_penna.r"
+          },
+          {
+            "id": "aspetta_corrente",
+            "testo": "testi:e14.imp.corrente.aspetta_corrente",
+            "costo": "testi:e14.imp.corrente.aspetta_corrente.c",
+            "effetti": [],
+            "risposta": "testi:e14.imp.corrente.aspetta_corrente.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_ombrelli",
+        "fonte": "centrale_radio",
+        "testo": "testi:e14.imp.ombrelli",
+        "commento": "testi:e14.imp.ombrelli.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "annuncio_ombrelli",
+            "testo": "testi:e14.imp.ombrelli.annuncio_ombrelli",
+            "costo": "testi:e14.imp.ombrelli.annuncio_ombrelli.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -3
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.ombrelli.annuncio_ombrelli.r"
+          },
+          {
+            "id": "due_corsie",
+            "testo": "testi:e14.imp.ombrelli.due_corsie",
+            "costo": "testi:e14.imp.ombrelli.due_corsie.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.ombrelli.due_corsie.r"
+          },
+          {
+            "id": "lascia_pioggia",
+            "testo": "testi:e14.imp.ombrelli.lascia_pioggia",
+            "costo": "testi:e14.imp.ombrelli.lascia_pioggia.c",
+            "effetti": [],
+            "risposta": "testi:e14.imp.ombrelli.lascia_pioggia.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_seggiolini",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e14.imp.seggiolini",
+        "commento": "testi:e14.imp.seggiolini.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "corrimano",
+            "testo": "testi:e14.imp.seggiolini.corrimano",
+            "costo": "testi:e14.imp.seggiolini.corrimano.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -3
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.seggiolini.corrimano.r"
+          },
+          {
+            "id": "stringete_file",
+            "testo": "testi:e14.imp.seggiolini.stringete_file",
+            "costo": "testi:e14.imp.seggiolini.stringete_file.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -2
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.seggiolini.stringete_file.r"
+          },
+          {
+            "id": "si_arrangino",
+            "testo": "testi:e14.imp.seggiolini.si_arrangino",
+            "costo": "testi:e14.imp.seggiolini.si_arrangino.c",
+            "effetti": [],
+            "risposta": "testi:e14.imp.seggiolini.si_arrangino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_gomma",
+        "fonte": "centrale_radio",
+        "testo": "testi:e14.imp.gomma",
+        "commento": "testi:e14.imp.gomma.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "spinta_pullman",
+            "testo": "testi:e14.imp.gomma.spinta_pullman",
+            "costo": "testi:e14.imp.gomma.spinta_pullman.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -3
+              },
+              {
+                "tensione": "biglietteria",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.gomma.spinta_pullman.r"
+          },
+          {
+            "id": "attorno_pullman",
+            "testo": "testi:e14.imp.gomma.attorno_pullman",
+            "costo": "testi:e14.imp.gomma.attorno_pullman.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.gomma.attorno_pullman.r"
+          },
+          {
+            "id": "aspetta_gommista",
+            "testo": "testi:e14.imp.gomma.aspetta_gommista",
+            "costo": "testi:e14.imp.gomma.aspetta_gommista.c",
+            "effetti": [],
+            "risposta": "testi:e14.imp.gomma.aspetta_gommista.r"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -84,12 +84,15 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 /* C22-10: con le icone a 20 px i due pulsanti del riepilogo uscivano sotto la versione a 360 (PO-097): spazio interno
    più stretto, come nei tre pulsanti dello schieramento */
 .riepilogo-azioni .pulsante { gap: var(--spazio-1); padding-inline: var(--spazio-2); }
+/* C47-02 (D-218): con 5 settori e l'avviso «ti restano» il riepilogo scorreva a 760 di altezza (e36 ondata 1: 19 px a 360
+   e 375, 11 a 412); i pulsanti perdono i margini sopra e sotto (24 px), lo stacco dall'avviso resta il suo. Rosso C218R01 */
+main:not(.rosso-c218r01) .riepilogo-azioni .pulsante { margin-block: 0; }
 /* D-165 (prova PO-130): tavole grandi del finale, vignetta a tutta larghezza (16:9) con didascalia sotto */
 .tavola { margin: 0 0 var(--spazio-4); }
 .tavola > .vignetta { height: auto; min-height: 0; max-height: none; margin: 0; }
 .didascalia { margin: 0; padding: var(--spazio-2) var(--spazio-3); background: var(--bianco); border: var(--bordo-fine) solid var(--nero); border-top: 0; }
 .numeri-carriera { justify-content: center; gap: var(--spazio-2); margin: var(--spazio-2) 0 0; }
-.vignetta .v-fine { font-size: var(--testo-grande); letter-spacing: var(--spazio-px); }
+.vignetta .v-scritta-fine { font-size: var(--testo-grande); letter-spacing: var(--spazio-px); }
 /* D-165 parte 1: fischio dell'ultimo derby, i settori si spengono uno alla volta e la sala va al buio */
 .settore.spento .settore-punto, .settore.spento .settore-nome { opacity: var(--opaco); filter: grayscale(1); transition: opacity 0.5s, filter 0.5s; }
 .mappa.buio::after { content: ''; position: absolute; inset: 0; background: var(--nero); opacity: var(--opaco); pointer-events: none; transition: opacity 1s; }
@@ -118,3 +121,112 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 .tono-ondata > .vignetta { display: block; width: 100%; height: auto; min-height: 0; max-height: none; margin: 0; }
 /* PO-119 / D-171: tratto sottile dei dettagli del volto della seconda bozza (col tratto normale gli occhi a 3× erano macchie) */
 .vignetta .v-linea.v-fine { stroke-width: var(--vignetta-tratto-fine); }
+/* C41-03 (D-183): nota sotto le unità dello schieramento: le risposte che costano unità le tolgono dalla prossima ondata */
+.nota-unita { margin: var(--spazio-1) 0 0; font-size: var(--testo-mini); line-height: var(--linea-stretta); }
+/* D-187: mappa abbassata perché la pagina non scorra (src/resa/mappa/adatta.ts) */
+main .mappa[data-adatta] { aspect-ratio: auto; height: var(--mappa-alta); }
+/* D-187 (S-12): uscendo, la scena si sposta di 40 px a sinistra (Scena.tsx) e le lettere delle opzioni passavano sotto la
+   versione (fino a 576 px²): la versione resta sotto la scena che si muove (z-index auto, ordine del documento). Rosso C187V01. */
+main:not(.rosso-c187v01):not(.rosso-c40c01) .versione-angolo { z-index: auto; }
+/* C41-06: nel verbale fallito la vignetta non scende sotto i due terzi della larghezza a 360 px */
+.verbale.fallita .vignetta-cornice .vignetta { --vignetta-min: var(--vignetta-min-fallita); }
+/* D-185 (C41-06, opzione C): nel verbale fallito si recuperano ~44 px di spaziature, così la vignetta a 110 px ci sta a
+   360×760 senza far scorrere (e10: 75 px liberi). Rosso C185V01: senza la classe .compatta, spaziature di prima. */
+.verbale.compatta { padding-block: var(--spazio-3); margin-bottom: var(--spazio-2); }
+.verbale.compatta > p:last-child { margin-bottom: 0; }
+.verbale.compatta ~ .avviso { margin-block: var(--spazio-2) var(--spazio-1); }
+.verbale.compatta ~ .condividi { margin-bottom: var(--spazio-2); }
+.verbale.compatta ~ .ripartenza .pulsante { margin-block: 0; }
+/* D-191: nel rapporto la mappa che non ci sta senza scorrere non si mostra (adatta.ts) */
+main .mappa[data-nascosta] { display: none; }
+/* D-191 (PO-052): scheda dell'episodio nella città più compatta, perché a 360×640 e 375×667 la pagina non scorra.
+   Rosso C191C01: la scheda di prima. */
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] { padding: var(--spazio-2) var(--spazio-3); margin: var(--spazio-2) 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] h2 { margin: var(--spazio-1) 0; font-size: var(--testo-grande); }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] .sfida { margin: var(--spazio-1) 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] .sfida-club { display: flex; align-items: center; justify-content: center; gap: var(--spazio-1); }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] .stemma { width: var(--stemma-compatto); height: var(--stemma-compatto); }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] > p { margin: var(--spazio-1) 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] > .pulsante { margin: var(--spazio-2) 0 0; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] :is(h2, .sfida, > p) { margin-block: 0; }
+/* D-191: senza mappa il rapporto mostra la sola scheda dei settori: la vignetta di fine ondata (già vista nella scena del
+   tono, D-143) non prende il posto della mappa (a 375×812 sforava di 12 px) */
+main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .vignetta-cornice { display: none; }
+main:not(.rosso-c191c01)[data-schermata="citta"] .scheda[data-scheda-episodio] { padding-block: var(--spazio-1); }
+/* D-191: senza mappa le righe della scheda dei settori si stringono, perché a 360×640 e 375×667 il rapporto non scorra */
+main:has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] .elenco-settori li { padding-block: var(--spazio-1); }
+/* D-193: nella risposta esito e conseguenza in un solo blocco: la scelta in testa, come striscia ciano */
+.messaggio.risposta-unica .scelta-riga { margin: 0 0 var(--spazio-1); padding: var(--spazio-1) var(--spazio-3); background: var(--ciano); border: var(--bordo-fine) solid var(--nero); border-radius: var(--raggio-1); font-weight: 700; }
+.scena[data-scena="risposta"] .messaggio.risposta-unica { margin: var(--spazio-4) 0 var(--spazio-2); padding: var(--spazio-3); }
+.messaggio.risposta-unica .intanto { margin: 0; }
+.messaggio.risposta-unica .intanto strong { display: inline-flex; align-items: center; gap: var(--spazio-1); margin-right: var(--spazio-1); color: var(--magenta); font-family: var(--font-titoli); text-transform: uppercase; }
+.scena[data-scena="risposta"] .messaggio.risposta-unica { margin-top: var(--spazio-2); }
+/* D-193: a 360×640 sala e briefing scorrevano di 16 px con la mappa ferma a 176 px («Home», S-21): 8 px in meno sopra il
+   passo e 4+4 attorno ai pulsanti dei passi. Rosso C193S01. */
+main:not(.rosso-c193s01):is([data-schermata="sala"], [data-schermata="briefing"]) .passo > .messaggio:first-child { margin-top: var(--spazio-2); }
+main:not(.rosso-c193s01):is([data-schermata="sala"], [data-schermata="briefing"]) .passi-nav .pulsante { margin: var(--spazio-2) 0; }
+
+/* PO-022 (D-190): l'imprevisto interrompe le chiamate. Nessun conto alla rovescia. */
+.avviso-imprevisto { margin: 0 0 var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); border: var(--bordo) solid var(--nero); background: var(--magenta); color: var(--bianco); box-shadow: var(--ombra-1); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; letter-spacing: var(--spaziatura-maiuscolo); }
+.messaggio.imprevisto { background: var(--rosa-tenue); }
+/* C43-06 (D-196): il passo «Fine stagione» del verbale (e24: stagione, 6 fili aperti, 1 chiuso) scorreva di 250 px a 360×760 e
+   «Prossimo episodio» stava sotto la piega; i pulsanti restano sotto il testo (C17-22). Più compatto: ogni filo «nome — esito»
+   in un paragrafo, spaziature strette. Rosso C196V01: il passo di prima. */
+main:not(.rosso-c196v01) [data-fine-stagione] h2 { margin: var(--spazio-3) 0 var(--spazio-1); font-size: var(--testo-base); }
+main:not(.rosso-c196v01) [data-fine-stagione] .scheda { margin: var(--spazio-1) 0; padding: var(--spazio-2) var(--spazio-3); }
+main:not(.rosso-c196v01) [data-fine-stagione] .scheda .tenue { margin: 0; }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili { gap: var(--spazio-1); }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili li { font-size: var(--testo-piccolo); line-height: var(--linea-stretta); }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili li > strong::after { content: " — "; font-weight: 400; }
+main:not(.rosso-c196v01) [data-fine-stagione] .fili li > .tenue { display: inline; margin: 0; }
+main:not(.rosso-c196v01) [data-fine-stagione] [data-poi] { margin: var(--spazio-1) 0 0; }
+/* D-191: con la mappa della città di nuovo a 260 px di minimo (C17-12) a 360×640 la città scorreva di 13 px: pulsanti delle
+   stagioni più vicini alla mappa */
+main:not(.rosso-c191c01)[data-schermata="citta"] .stagioni .pulsante { margin-bottom: var(--spazio-1); padding-block: var(--spazio-1); }
+/* C44-08 (D-201): con la mappa piena (D-197) la risposta scorreva a 760 di altezza (11 px a 375, 24 a 412, imprevisti fino a
+   30): testata e mappa strette come nella chiamata, «Avanti» più vicino al blocco e meno margine sotto la pagina. Rosso C201R01. */
+main:not(.rosso-c201r01):has(.scena[data-scena="risposta"]) .testata { margin: var(--spazio-1) 0 var(--spazio-2); }
+main:not(.rosso-c201r01):has(.scena[data-scena="risposta"]) .mappa { margin-bottom: var(--spazio-2); }
+main:not(.rosso-c201r01) .scena[data-scena="risposta"] > .pulsante[data-azione="continua"] { margin: var(--spazio-2) 0; }
+#app:has(main:not(.rosso-c201r01) .scena[data-scena="risposta"]) { padding-bottom: var(--spazio-3); }
+/* C44-09 (D-201): a 36 episodi conclusi «Rileggi l'epilogo» si aggiunge sotto la scheda: 3 px oltre a 360×760. Più vicino. Rosso C201C01. */
+main:not(.rosso-c201c01)[data-schermata="citta"] [data-azione="epilogo"] { margin: var(--spazio-2) 0 0; }
+/* C45-06 (D-203): senza mappa, col banner, quattro settori scoperti e le righe «A riposo» e «Disponibili» il rapporto
+   scorreva ancora a 360×760 (34 px il peggiore di 742 rapporti costruiti): scheda, righe finali e «Prossima ondata» più
+   vicini e meno margine sotto la pagina. Rosso C203R01. */
+main:not(.rosso-c203r01):has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] > .scheda { margin-block: var(--spazio-2); padding-block: var(--spazio-2); }
+main:not(.rosso-c203r01):has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] > :is(.riposo, .tenue) { margin-block: var(--spazio-1); }
+main:not(.rosso-c203r01):has(> .mappa[data-nascosta]) .scena[data-scena="rapporto"] > .pulsante { margin-block: var(--spazio-2); }
+#app:has(main:not(.rosso-c203r01) > .mappa[data-nascosta]):has(.scena[data-scena="rapporto"]) { padding-bottom: var(--spazio-3); }
+/* D-206 (C45-05, scelta del PO): nella chiamata d'imprevisto opzioni più strette (con vignetta e riga «Imprevisto» tolte in
+   Ondata.tsx: mediana 466 → 308 px a 360×760 su 142 imprevisti). Rosso C206I01. */
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzioni { gap: var(--spazio-1); }
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzione { padding-block: var(--spazio-1); }
+/* D-207 (C45-05): in più, solo spaziature: effetti, testo delle opzioni e fumetto dell'imprevisto più stretti. Rosso C206I01. */
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .effetti-opzione { margin-top: var(--spazio-px); gap: var(--spazio-px); }
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzione { gap: var(--spazio-2); }
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"]:has(.messaggio.imprevisto) .opzione-testo :is(small, .tenue) { line-height: var(--linea-stretta); }
+main:not(.rosso-c206i01) .scena[data-scena="chiamata"] .messaggio.imprevisto { padding-block: var(--spazio-2); margin-block: var(--spazio-2); }
+/* D-210: con la striscia della home a 360×760 e 36 episodi «Rileggi l'epilogo» un po' più vicino (3 px oltre). Rosso C210C01. */
+main:not(.rosso-c210c01)[data-schermata="citta"]:has([data-citta-striscia]) [data-azione="epilogo"] { margin-top: var(--spazio-1); }
+main:not(.rosso-c210c01)[data-schermata="citta"]:has([data-citta-striscia]) .scheda[data-scheda-episodio]:has(+ [data-azione="epilogo"]) { margin-bottom: var(--spazio-1); }
+/* D-215: con le etichette neutre (C-045, D-209) alcuni titoli delle opzioni d'imprevisto vanno su due righe a 360 px e la
+   mediana a 360×760 saliva a 286 (soglia D-207: 285). Fumetto dell'imprevisto con meno spazio dentro (sopra e sotto). Rosso C215L01. */
+main:not(.rosso-c215l01) .scena[data-scena="chiamata"] .messaggio.imprevisto { padding-block: var(--spazio-1); }
+/* C47-03 (D-218): sulla città le stelle stavano sopra il disco, larghe 55 px, e coprivano i dischi vicini (stagione 3: fino
+   a 288 px² a 360×760, 33 sul 29). Ora strette a 41 px e dentro il riquadro del proprio disco, in basso; il numero sale
+   quanto serve e il nome dell'episodio scelto resta sopra le stelle. Rosso C218S01: come prima. */
+main:not(.rosso-c218s01) .episodio .stelle.piccole { gap: 0; padding: var(--spazio-px); }
+main:not(.rosso-c218s01) .episodio .settore-unita { bottom: calc(var(--settore) / -2); }
+main:not(.rosso-c218s01) .episodio:has(.stelle) .settore-punto { padding-bottom: var(--spazio-3); }
+main:not(.rosso-c218s01) .episodio .settore-nome { z-index: 1; }
+/* D-221: il riepilogo dello schieramento non scorre neanche a 640 di altezza (D-191; con 5 settori e l'avviso scorreva fino a
+   115 px a 360×640): scheda, elenco, avviso e pulsanti più stretti; sotto la pagina il margine piccolo (quello grande è per
+   la barra fissa dello schieramento, che qui non c'è). Rosso C221R01 */
+main:not(.rosso-c221r01) .scheda.riepilogo { margin-block: var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); }
+main:not(.rosso-c221r01) .riepilogo h3 { margin-bottom: var(--spazio-1); }
+main:not(.rosso-c221r01) .riepilogo ul { gap: 0; }
+main:not(.rosso-c221r01) .riepilogo li { line-height: var(--linea-stretta); }
+main:not(.rosso-c221r01) .riepilogo ~ .avviso { margin-block: var(--spazio-2); padding-block: var(--spazio-1); font-size: var(--testo-piccolo); line-height: var(--linea-stretta); }
+main:not(.rosso-c221r01) .riepilogo-azioni .pulsante { padding-block: var(--spazio-1); font-size: var(--testo-piccolo); }
+#app:has(main:not(.rosso-c221r01) [data-riepilogo]) { padding-bottom: var(--spazio-3); }

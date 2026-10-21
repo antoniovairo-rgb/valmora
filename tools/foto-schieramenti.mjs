@@ -125,9 +125,13 @@ export const copertiDallaBarra = (pagina) => pagina.evaluate(() => {
 
 const NOMI_VICINI = { 360: 6, 375: 3, 412: 0 }; // C37-03 con le unità, misurati il 18/10 col peso × 100 (residuo dichiarato, vedi CONSEGNA-PO121-C37.md)
 const VICINE = { 360: 36, 375: 29, 412: 9 }; // C33-05: i valori della 0.31.0 misurati dal collaudo C-033 (0.32.0: 44 / 32 / 14)
+const PARALLELE = 3; // pagine insieme nel giro con le unità (attese, non calcolo)
 const PASTIGLIE_SU_NOMI = 0; // C27-06: 7 il 15/10; D-136 (C28-14): a 0 col nome su più righe e due posti in più (rosso C94N01: 7)
 
-export async function controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi = []) {
+// La larghezza «sola» è quella del giro (CI: un job per larghezza, PO-128): ogni job fa la sua parte. Prima tutto stava nel
+// job a 360, che durava 35-38 minuti contro gli 8-10 degli altri (misura del 19/10: 1626 s su 2830 di «foto» a 360).
+export async function controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi = [], sola = null) {
+  const tocca = (w) => sola === null || sola === w;
   // ogni pagina nuova riceve gli stessi interruttori rossi del giro (altrimenti il braccio rosso qui è cieco)
   const nuova = async (o) => { const q = await browser.newPage(o); if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi); return q; };
   const { missioni, v0, stati } = partenze(dirDati);
@@ -146,20 +150,24 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     atteso(`${nome}: la barra in basso copre ${coperti.join(', ')} (S-24, C16-02)`, coperti.length === 0);
     if (fotografa) await pagina.screenshot({ path: join(cartella, `${nome.replace(/[^a-z0-9]+/gi, '-')}.png`) });
   };
-  const p = await nuova({ viewport: { width: 360, height: 760 }, reducedMotion: 'reduce' });
-  await p.goto(url);
-  for (const st of stati) await prova(p, st, `${st.m.id} ondata ${st.n} 360×760`, st.m.id === 'e03' && st.n === 3);
-  await p.close();
+  if (tocca(360)) {
+    const p = await nuova({ viewport: { width: 360, height: 760 }, reducedMotion: 'reduce' });
+    await p.goto(url);
+    for (const st of stati) await prova(p, st, `${st.m.id} ondata ${st.n} 360×760`, st.m.id === 'e03' && st.n === 3);
+    await p.close();
+  }
   // C26-11: ogni ondata di ogni episodio con le unità del bot attento già messe (bozza nel salvataggio); C33-01: a 360,
   // 375 e 412 (prima solo 360)
   const suNomi = [], attente = partenzeAttente(dirDati);
-  for (const [w, h] of [[360, 760], [375, 812], [412, 915]]) {
+  for (const [w, h] of [[360, 760], [375, 812], [412, 915]].filter(([w]) => tocca(w))) {
     const vicine = [], tocchi = [], rubati = [], nomiVicini = [];
-    const q6 = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); if (w === 360) await rallentaCaratteri(q6); await q6.goto(url);
-    for (const st of attente) {
+    // Gli stati sono indipendenti e il tempo è quasi tutto attesa (carattere rallentato a 360, 500 ms di quiete): si fanno su
+    // più pagine insieme (prima una sola: il job a 360 durava 35-38 minuti). Gli elenchi cambiano ordine, conteggi e soglie no.
+    const pagine = await Promise.all(Array.from({ length: PARALLELE }, async () => { const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); if (w === 360) await rallentaCaratteri(q); await q.goto(url); return q; }));
+    const corpo = async (q6, st) => {
       await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
       await q6.reload(); await q6.getByRole('button', { name: 'Riprendi' }).click();
-      if (!(await q6.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) continue;
+      if (!(await q6.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) return;
       await ascoltaEtichette(q6); await etichetteFerme(q6);
       const r = await mappaSchieramento(q6), dove = `${st.m.id} ondata ${st.n} ${w}×${h}`;
       atteso(`${dove} con le unità: nomi sovrapposti ${r.sopra.join('; ')}, pastiglie col centro coperto ${r.coperte.join(', ')} (C26-11)`, !r.sopra.length && !r.coperte.length);
@@ -180,7 +188,9 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
         const rifatta = await etichetteFerme(q6, true), dopo = await posti();
         atteso(`${dove}: la disposizione cambia ripartendo da un altro stato (C33-04): ${!rifatta ? 'non ridisposta in 8 s' : prima === dopo ? '' : dopo.split(' ').filter((x, i) => x !== prima.split(' ')[i]).join(' ')}`, rifatta && prima === dopo);
       }
-    }
+        };
+    await Promise.all(pagine.map((q6, k) => (async () => { for (const st of attente.filter((_, i) => i % PARALLELE === k)) await corpo(q6, st); })()));
+    for (const q6 of pagine) await q6.close();
     // C33-05: non più gruppi vicini al disco di un altro settore che nella 0.31.0 (36 / 29 / 9, collaudo C-033); elenco in cartella
     writeFileSync(join(cartella, `vicine-${w}.txt`), `${vicine.length}\n${vicine.join('\n')}\n`);
     writeFileSync(join(cartella, `tocchi-${w}.txt`), `${new Set(tocchi.map((x) => x.split(' ').slice(0, 2).join(' '))).size} ondate\n${tocchi.join('\n')}\n`); // misura, senza soglia
@@ -190,14 +200,13 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     atteso(`${w}×${h} con le unità: ${nomiVicini.length} nomi più vicini a un disco altrui (al massimo ${NOMI_VICINI[w]}): ${nomiVicini.join(' | ')} (C37-03)`, nomiVicini.length <= NOMI_VICINI[w]);
     atteso(`${w}×${h}: nomi rubati da un'area di tocco: ${rubati.join(' | ')} (D-145, C33-01)`, !rubati.length);
     atteso(`${w}×${h}: ${vicine.length} gruppi di pastiglie più vicini al disco di un altro settore (al massimo ${VICINE[w]}) (C33-05)`, vicine.length <= VICINE[w]);
-    await q6.close();
   }
   // C27-06 / D-136: nessuna ondata con una pastiglia sopra un nome (7 su 142 prima di C28-14, 19 col rosso C81P01).
   atteso(`schieramenti con le unità: ${suNomi.length} ondate con pastiglie sopra i nomi (al massimo ${PASTIGLIE_SU_NOMI}): ${suNomi.join(' | ')} (C27-06)`, suNomi.length <= PASTIGLIE_SU_NOMI);
   // C33-03: le unità messe una alla volta coi tocchi (unità, poi settore), come il giocatore: dopo ogni tocco nessun tocco
   // coperto né nome su nome (caricando tutto dalla bozza il caso di e06 non si vedeva). Prima ondata di ogni episodio, 360.
   const qp = await nuova({ viewport: { width: 360, height: 760 }, reducedMotion: 'reduce' }); await qp.goto(url);
-  for (const st of attente.filter((x) => x.n === 1)) {
+  for (const st of tocca(360) ? attente.filter((x) => x.n === 1) : []) {
     await qp.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s }));
     await qp.reload(); await qp.getByRole('button', { name: 'Riprendi' }).click();
     if (!(await qp.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) continue;
@@ -213,14 +222,14 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   }
   await qp.close();
   const e03 = stati.find((x) => x.m.id === 'e03' && x.n === 3);
-  for (const [w, h] of [[375, 812], [412, 915]]) {
+  for (const [w, h] of [[375, 812], [412, 915]].filter(([w]) => tocca(w))) {
     const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
     await q.goto(url);
     if (e03) await prova(q, e03, `e03 ondata 3 ${w}×${h}`, true);
     await q.close();
   }
   // C17-22: a 375×667 il riepilogo (Conferma senza unità) non ha pulsanti sopra il testo
-  if (e03) {
+  if (e03 && tocca(375)) {
     const q = await nuova({ viewport: { width: 375, height: 667 }, reducedMotion: 'reduce' });
     await q.goto(url);
     await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: e03.s }));
@@ -239,7 +248,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   // C18-07, C20-04: aperto il «?», le unità, il «?» e l'aiuto sono nella finestra e non sotto la barra «Conferma»;
   //         a 375×667 (C18-07) e a 360×760 (C20-04: riquadro già nella finestra ma sotto la barra), e01 ed e06 ondata 1.
   //         Rosso VALMORA_ROSSI=C42A01: aiuto sopra le unità, come prima; VALMORA_ROSSI=C44A01: nessuno scorrimento sopra la barra.
-  for (const id of ['e01', 'e06']) for (const [w, h] of [[375, 667], [360, 760]]) {
+  for (const id of ['e01', 'e06']) for (const [w, h] of [[375, 667], [360, 760]].filter(([w]) => tocca(w))) {
     const primo = stati.find((x) => x.m.id === id && x.n === 1);
     if (!primo) continue;
     const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
@@ -263,7 +272,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   //         riga dei dati sotto il titolo, che non copre la mappa né comandi; si chiude col secondo tocco e toccando altrove.
   //         Foto chiusa e aperta. Rosso VALMORA_ROSSI=C43I01: niente icona.
   const e07 = stati.find((x) => x.m.id === 'e07' && x.n === 2);
-  if (e07) for (const [w, h] of [[360, 760], [375, 667], [412, 915]]) {
+  if (e07) for (const [w, h] of [[360, 760], [375, 667], [412, 915]].filter(([w]) => tocca(w))) {
     const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
     await q.goto(url);
     await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: e07.s }));

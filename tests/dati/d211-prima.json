@@ -1,0 +1,47 @@
+{
+  "D211-01": {
+    "e36": {
+      "e36.imp.rotolo": "«In rete: la coreografia arrotolata si incastra sotto l'arco della collina. Strada chiusa.»",
+      "e36.imp.rotolo.spingi.c": "Strada libera; al piazzale arriva tutto insieme.",
+      "e36.imp.rotolo.srotola.c": "Strada più libera; ma la curva Skyfield teme per la stoffa.",
+      "e36.imp.rotolo.srotola.r": "Il rotolo passa srotolato, mano a mano, sotto l'arco. Si va, ma la curva Skyfield conta ogni piega.",
+      "e36.imp.cassa": "«Piazzale: il palco va in corto con un botto, la cassa è andata. Duemila persone si girano.»",
+      "e36.imp.cassa.vice": "«Diciotto pagine di ordinanza, e nessuna sulla cassa di riserva.»",
+      "e36.imp.cassa.chiudi_festa": "Fai chiudere la festa con decisione",
+      "e36.imp.cassa.chiudi_festa.c": "La chiusura annunciata scalda il piazzale e la strada da Skyfield.",
+      "e36.imp.cassa.chiudi_festa.r": "Lo speaker annuncia la chiusura; il piazzale fischia, poi defluisce piano. Sulla strada da Skyfield chi voleva ballare protesta.",
+      "e36.imp.cassa.a_cappella": "Fai cantare il piazzale senza musica",
+      "e36.imp.cassa.a_cappella.c": "Si canta senza musica; chi voleva ballare brontola.",
+      "e36.imp.cassa.a_cappella.r": "Il piazzale canta a cappella, per un po'. Chi voleva ballare lo dice al palco, a voce alta.",
+      "e36.imp.cassa.riserva": "Aspetta la cassa di riserva",
+      "e36.imp.cassa.riserva.c": "Nessuno impegnato; si sistema da sé, con un po' di silenzio.",
+      "e36.imp.cassa.riserva.r": "La cassa di riserva arriva a mezzanotte meno cinque. Suona un pezzo solo, e il piazzale lo canta tutto."
+    }
+  },
+  "D211-02": {
+    "e36": {
+      "e36.ch.piazzale_ultimo": "«Segreteria: festa sul piazzale fino a mezzanotte, da ordinanza del vertice. Diciotto pagine.»",
+      "e36.ch.piazzale_ultimo.vice": "«L'ordinanza del vertice. Te la ricordi? Io sì. Avevo scommesso che l'avresti dimenticata.»"
+    }
+  },
+  "D211-05": {
+    "e05": {
+      "e05.op.squadra_scale": "Fai liberare le scale dallo speaker",
+      "e05.op.squadra_scale.c": "Le scale si liberano, ma l'annuncio in curva ti costa fiducia.",
+      "e05.op.squadra_torce": "Fai annunciare dallo speaker: torce spente",
+      "e05.imp.tabellone.spiega": "Fai spiegare l'errore dallo speaker",
+      "e05.imp.tabellone.spiega.c": "La curva ospiti festeggia lo stesso; la curva Skyfield canta il gol che non c'è.",
+      "e05.imp.tabellone.spiega.r": "Lo speaker spiega l'errore. La curva ospiti lo ascolta e festeggia lo stesso; la curva Skyfield intona il coro del gol fantasma."
+    }
+  },
+  "D211-06": {
+    "e22": {
+      "e22.imp.pannello.speaker_pannello": "Fai annunciare il guasto dallo speaker",
+      "e22.imp.pannello.speaker_pannello.r": "«Nessun pericolo, è solo un pannello.» La curva si calma un po'; chi ci sta sotto non si fida e lo dice."
+    },
+    "e27": {
+      "e27.imp.grondaia.nastro": "Fai chiudere le scale bagnate con un annuncio",
+      "e27.imp.grondaia.nastro.r": "L'annuncio chiude le scale bagnate e devia tutti su quella asciutta. Il flusso passa davanti ai gemellati, che non gradiscono."
+    }
+  }
+}

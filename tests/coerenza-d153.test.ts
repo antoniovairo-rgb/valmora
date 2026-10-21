@@ -12,7 +12,7 @@ import { creaCaso } from '../src/logica/caso.ts';
 import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
 
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C153D01; });
+afterEach(() => { delete g.__NO_C153D01; delete g.__NO_C4501; });
 const d = leggiDati() as Record<string, unknown>;
 const dich = new Map((d['stato.json'] as { variabili: Dichiarazione[] }).variabili.map((x) => [x.id, x]));
 const v0 = variabiliIniziali(dich.values());
@@ -32,6 +32,10 @@ const REGISTRO: [string, string, 'mai' | 'gia', string[]][] = [
   ['e27', 'abbraccio', 'mai', ['gemellati_escono/uscita_scortata']],
   ['e32', 'incrocio', 'mai', ['festa_larkspire/uscita_collina']],
   ['e33', 'parcheggio_vuoto', 'gia', ['ordini_segnati/ordini_veri']],
+  // D-189: il nome della talpa e la sua fuga solo con una prova (la trappola; con la busta tenuta ci sono le chiamate gemelle)
+  ['e33', 'nome_talpa', 'mai', ['ordini_segnati/ordini_puliti']],
+  ['e33', 'sospetto_talpa', 'gia', ['ordini_segnati/ordini_puliti']],
+  ['e33', 'talpa_scappa', 'mai', ['ordini_segnati/ordini_puliti']],
   ['e34', 'ultimo_coro', 'mai', ['mercato_fine/chiudi_piazzale']],
   ['e36', 'piazzale_maxi', 'mai', ['festa_vietata/smonta_palco']],
 ];
@@ -65,6 +69,17 @@ const TESTI: [string, string][] = [
   ['e05.op.squadra_torce', 'Una squadra'],
   // C37-06: dopo busta/apri_busta la busta non è più chiusa
   ['e24.ch.consegna', 'consegnarla, chiusa'], ['e24.op.consegna_chiusa', 'Consegnala chiusa'],
+  // D-189 regola 3 (S-13): testi neutri dove la scelta non è un filo importante; i verbali di e18/e24 in finale-scelte-d189
+  ['e15.verbale_contenuto', 'la foto di Tano'], // la foto c'è solo con binocolo/fotografa15
+  ['e16.verbale_contenuto', 'targhe, orari, facce'], // senza sorveglianza il magazzino non ha un fascicolo
+  ['e18.verbale_contenuto', 'alle fonderie'], // dopo telefonata/al_comando18 la chiamata via_fonderie non arriva
+  ['e23.intro1', 'telefono dei giovani'], // il numero si scopre solo con informatore_pagato e passa il numero in e21
+  ['e24.info_testimone', 'Leggetelo'], // col testimone esposto, in e24 ritratta
+  // D-189 (S-15): testi neutri in e25–e36
+  ['e27.verbale_contenuto', 'il biglietto del porto in un cassetto'], // con lettera_gemellati/consegna_comando il biglietto parte con uno steward
+  ['e29.verbale_contenuto', 'non è uscita'], // con tamburo_curva/lascia_uscire e corteo_al_porto/lascia_scendere la curva esce
+  ['e26.intro1', 'Non l\'ha mai avuta'], // e24.intro1: «Malvasi ha messo la cravatta»
+  ['e36.op.apri_ora.r', 'Non dura'], // D-189: la busta si rivela nel verbale, non prima
 ];
 
 /** I dati di prima: senza i «dopo» di D-153 (braccio rosso). */
@@ -148,21 +163,41 @@ describe('D-153 le chiamate non smentiscono le scelte già fatte (tutti i 36 epi
 // davvero quell'unità (effetto «riserva») o dice perché no (variante con «dopo», «ancora», «già», «nessun»). Le forme
 // generiche («Steward in curva ospiti», «le squadre») si leggono come le unità già schierate e restano fuori.
 // Rosso: con i testi di prima (tests/dati/c153-testi-prima.json, presi da 7f1dc07) i 6 casi tornano.
-const UNITA: [RegExp, string][] = [[/\b(una|due|tre|quattro) squadr/i, 'squadre'], [/\b(uno|due|tre|quattro) steward/i, 'steward'], [/\bmanda il mediatore/i, 'mediatore']];
-function nominaSenzaImpegno(testiDi: (ep: string) => Record<string, string>) {
+// C45-01 (D-203): «il mediatore …» in ogni forma (non solo «manda il mediatore»); negli imprevisti, che non impegnano mai
+// unità (D-194), anche le forme generiche «Steward …» e «le squadre» («la squadra del comune» non è un'unità tua).
+// Rosso __NO_C4501: i 9 testi di prima (tests/dati/c45-testi-prima.json) tornano; con la regex di prima erano invisibili.
+const UNITA_PRIMA: [RegExp, string][] = [[/\b(una|due|tre|quattro) squadr/i, 'squadre'], [/\b(uno|due|tre|quattro) steward/i, 'steward'], [/\bmanda il mediatore/i, 'mediatore']];
+const UNITA: [RegExp, string][] = [...UNITA_PRIMA.slice(0, 2), [/\bmediatore\b/i, 'mediatore']];
+const UNITA_IMPREVISTO: [RegExp, string][] = [[/\bsteward\b/i, 'steward'], [/\bsquadr[ae]\b(?!\s+del\b)/i, 'squadre']];
+function nominaSenzaImpegno(testiDi: (ep: string) => Record<string, string>, prima = false) {
   const fuori: string[] = [];
   for (const m of missioni) for (const o of m.ondate) for (const c of o.chiamate ?? []) for (const op of c.opzioni) {
     const tx = testiDi(m.id)[op.testo.replace(/^testi:/, '')] ?? '';
-    for (const [re, r] of UNITA) if (re.test(tx) && !op.effetti.some((e) => 'riserva' in e && e.riserva === r) && !op.dopo && !/ancora|già|nessun/i.test(tx)) fuori.push(`${m.id} ${c.id}/${op.id}: «${tx}»`);
+    const forme = prima ? UNITA_PRIMA : c.imprevisto ? [...UNITA, ...UNITA_IMPREVISTO] : UNITA;
+    if (forme.some(([re, r]) => re.test(tx) && !op.effetti.some((e) => 'riserva' in e && e.riserva === r)) && !op.dopo && !/ancora|già|nessun/i.test(tx)) fuori.push(`${m.id} ${c.id}/${op.id}: «${tx}»`);
   }
   return fuori;
 }
+const c45prima = (JSON.parse(readFileSync('tests/dati/c45-testi-prima.json', 'utf8')) as Record<string, Record<string, Record<string, string>>>)['C45-01']!;
+const testiC4501 = (ep: string) => (g.__NO_C4501 ? { ...testi(ep), ...(c45prima[ep] ?? {}) } : testi(ep));
 describe('C37-05 l\'opzione che manda un\'unità la impegna o dice perché no (tutti i 36 episodi)', () => {
   it('verde: nessuna opzione nomina un\'unità che non impegna', () => expect(nominaSenzaImpegno(testi)).toEqual([]));
   it('rosso (testi di prima): i 6 casi C37-05 tornano', () => {
     const prima = JSON.parse(readFileSync('tests/dati/c153-testi-prima.json', 'utf8')) as Record<string, Record<string, string>>;
     const x = nominaSenzaImpegno((ep) => ({ ...testi(ep), ...(prima[ep] ?? {}) })); console.log(`C37-05 rosso: ${x.length}`);
     expect(x.length).toBe(6);
+  });
+  it('C45-01: scorre anche gli imprevisti innestati (142 chiamate, come data/imprevisti)', () => {
+    const file = Object.entries(d).filter(([k]) => k.startsWith('imprevisti/')).flatMap(([, f]) => (f as { imprevisti: unknown[] }).imprevisti);
+    const innestati = missioni.flatMap((m) => m.ondate.flatMap((o) => (o.chiamate ?? []).filter((c) => c.imprevisto)));
+    expect(file.length).toBe(142); expect(innestati.length).toBe(file.length);
+  });
+  it('C45-01 verde: nessuna etichetta d\'imprevisto nomina steward, squadre o mediatore', () => expect(nominaSenzaImpegno(testiC4501).filter((x) => x.includes(' imp_'))).toEqual([]));
+  it('C45-01 rosso __NO_C4501: le 9 etichette di prima tornano; la regex di prima non ne vedeva nessuna', () => {
+    g.__NO_C4501 = true;
+    const x = nominaSenzaImpegno(testiC4501); console.log(`C45-01 rosso: ${x.length}`);
+    expect(x.length).toBe(9);
+    expect(nominaSenzaImpegno(testiC4501, true).filter((y) => y.includes(' imp_'))).toEqual([]);
   });
 });
 

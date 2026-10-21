@@ -43,12 +43,12 @@ describe('epilogo e fine stagione (D-161, D-164)', () => {
     expect(ultimoEpisodio(missioni)?.id).toBe('e36');
   });
 
-  it('partita A-Z vera (0.38.0, fine campagna): le sei scelte, la carriera e le stelle', () => {
+  it('partita A-Z vera (0.38.0, fine campagna): le sette scelte (D-189), la carriera e le stelle', () => {
     const s = reale('v2-0.38.0-fine-campagna.json');
     const e = epilogo(missioni, s.episodi, s.variabili, dichiarate.values());
     expect(e.esito).toBe('prorogato_procura');
     expect(e.carriera).toBe('prorogato');
-    expect(e.scelte.map((f) => [f.id, f.valore])).toEqual([['rapporto_dessi', 'rispetto'], ['testimone', 'protetto'], ['busta', 'consegnata'], ['pista_cattura', 'nessuna'], ['fascicolo', 'procura'], ['sospetti_talpa', 3]]);
+    expect(e.scelte.map((f) => [f.id, f.valore])).toEqual([['rapporto_dessi', 'rispetto'], ['testimone', 'protetto'], ['busta', 'consegnata'], ['pista_cattura', 'nessuna'], ['fascicolo', 'procura'], ['sospetti_talpa', 3], ['carte', 'nessuna']]); // D-189: «carte» completata al valore iniziale
     // stelle lette dal registro: S1 2+2+2+2+3+2+2+2+3+3+3+2, S2 3+2+1+3+3+3+1+3+1+3+3+1, S3 1+3+3+2+2+2+2+2+2+3+3+3
     expect(e.stagioni.map((x) => [x.stelle, x.massimo, x.superati])).toEqual([[28, 36, 12], [27, 36, 12], [28, 36, 12]]);
     expect([e.stelle, e.massimo]).toEqual([83, 108]);
@@ -77,6 +77,13 @@ describe('epilogo e fine stagione (D-161, D-164)', () => {
     // senza il completamento delle variabili (dati vecchi crudi) i fili mancanti si saltano, non si inventano
     const crudo = fineStagione(missioni, {}, { informatore_pagato: true }, [], 1);
     expect(crudo.aperti.map((f) => f.id)).toEqual(['informatore_pagato']);
+  });
+
+  it('C40-05: la busta consegnata non si dice «chiusa» (in e24/e36 si può aprire prima, «Aprila adesso»); braccio rosso', () => {
+    const chiusa = (t: Record<string, string>) => Object.entries(t).filter(([k, v]) => /busta\.consegnata$/.test(k) && /chius/i.test(v)).map(([k]) => k);
+    const f = d['testi/it/finale.json'] as Record<string, string>;
+    expect([...chiusa(testi), ...chiusa(f)]).toEqual([]);
+    expect(chiusa({ 'epilogo.busta.consegnata': 'Consegnata chiusa al comando.' })).toEqual(['epilogo.busta.consegnata']);
   });
 
   it('testi del finale (D-165): una didascalia per ogni valore delle tavole, ≤ 90 caratteri; braccio rosso', () => {

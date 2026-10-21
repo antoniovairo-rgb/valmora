@@ -1,0 +1,213 @@
+{
+  "id": "e26",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_auto_blu",
+        "fonte": "centrale_radio",
+        "testo": "testi:e26.imp.auto_blu",
+        "commento": "testi:e26.imp.auto_blu.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "retromarcia",
+            "testo": "testi:e26.imp.auto_blu.retromarcia",
+            "costo": "testi:e26.imp.auto_blu.retromarcia.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.auto_blu.retromarcia.r"
+          },
+          {
+            "id": "auto_attesa",
+            "testo": "testi:e26.imp.auto_blu.auto_attesa",
+            "costo": "testi:e26.imp.auto_blu.auto_attesa.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.auto_blu.auto_attesa.r"
+          },
+          {
+            "id": "si_arrangino",
+            "testo": "testi:e26.imp.auto_blu.si_arrangino",
+            "costo": "testi:e26.imp.auto_blu.si_arrangino.c",
+            "effetti": [],
+            "risposta": "testi:e26.imp.auto_blu.si_arrangino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_microfono",
+        "fonte": "cerimoniale",
+        "testo": "testi:e26.imp.microfono",
+        "commento": "testi:e26.imp.microfono.vice",
+        "settore": "tribuna_autorita",
+        "opzioni": [
+          {
+            "id": "stacca_audio",
+            "testo": "testi:e26.imp.microfono.stacca_audio",
+            "costo": "testi:e26.imp.microfono.stacca_audio.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.microfono.stacca_audio.r"
+          },
+          {
+            "id": "musica_stadio",
+            "testo": "testi:e26.imp.microfono.musica_stadio",
+            "costo": "testi:e26.imp.microfono.musica_stadio.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "tribuna_autorita",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.microfono.musica_stadio.r"
+          },
+          {
+            "id": "lascia_acceso",
+            "testo": "testi:e26.imp.microfono.lascia_acceso",
+            "costo": "testi:e26.imp.microfono.lascia_acceso.c",
+            "effetti": [],
+            "risposta": "testi:e26.imp.microfono.lascia_acceso.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_bandiera_cavi",
+        "fonte": "centrale_radio",
+        "testo": "testi:e26.imp.bandiera_cavi",
+        "commento": "testi:e26.imp.bandiera_cavi.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "regia_telefono",
+            "testo": "testi:e26.imp.bandiera_cavi.regia_telefono",
+            "costo": "testi:e26.imp.bandiera_cavi.regia_telefono.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.bandiera_cavi.regia_telefono.r"
+          },
+          {
+            "id": "tira_piano",
+            "testo": "testi:e26.imp.bandiera_cavi.tira_piano",
+            "costo": "testi:e26.imp.bandiera_cavi.tira_piano.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.bandiera_cavi.tira_piano.r"
+          },
+          {
+            "id": "lascia_cavi",
+            "testo": "testi:e26.imp.bandiera_cavi.lascia_cavi",
+            "costo": "testi:e26.imp.bandiera_cavi.lascia_cavi.c",
+            "effetti": [],
+            "risposta": "testi:e26.imp.bandiera_cavi.lascia_cavi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_batteria",
+        "fonte": "club_domepark",
+        "testo": "testi:e26.imp.batteria",
+        "commento": "testi:e26.imp.batteria.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "spinta_sirene",
+            "testo": "testi:e26.imp.batteria.spinta_sirene",
+            "costo": "testi:e26.imp.batteria.spinta_sirene.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.batteria.spinta_sirene.r"
+          },
+          {
+            "id": "cavi_pullman",
+            "testo": "testi:e26.imp.batteria.cavi_pullman",
+            "costo": "testi:e26.imp.batteria.cavi_pullman.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.batteria.cavi_pullman.r"
+          },
+          {
+            "id": "soccorso",
+            "testo": "testi:e26.imp.batteria.soccorso",
+            "costo": "testi:e26.imp.batteria.soccorso.c",
+            "effetti": [],
+            "risposta": "testi:e26.imp.batteria.soccorso.r"
+          }
+        ]
+      }
+    }
+  ]
+}

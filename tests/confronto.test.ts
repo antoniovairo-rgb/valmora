@@ -1,0 +1,178 @@
+// C38-03 (D-172): nel verbale «cosa ti ha aiutato / penalizzato» confronta ogni risposta con le altre della stessa
+// chiamata (src/logica/confronto.ts), non il saldo degli effetti della sola risposta. Rosso __NO_C38B01.
+import { afterEach, describe, expect, it } from 'vitest';
+import { leggiDati } from '../tools/dati-disco.mjs';
+import { variabiliIniziali } from '../src/logica/condizioni.ts';
+import { giocaMissione, opzioniValide, settoriDegenerati } from '../src/logica/missione.ts';
+import { STRATEGIE, attenta, casuale, peggiore } from '../src/logica/bot.ts';
+import { creaCaso } from '../src/logica/caso.ts';
+import { bilancio } from '../src/logica/bilancio.ts';
+import { confrontoScelte, daTabella, inRighe, type TabellaConfronti } from '../src/logica/confronto.ts';
+import { tabellaConfronti } from '../tools/confronti.mjs';
+import { readFileSync } from 'node:fs';
+import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
+
+const d = leggiDati() as Record<string, unknown>;
+const dich = new Map((d['stato.json'] as { variabili: Dichiarazione[] }).variabili.map((x) => [x.id, x]));
+const v0 = variabiliIniziali(dich.values());
+const ms = Object.entries(d).filter(([k]) => k.startsWith('missioni/')).map(([, m]) => m as Missione);
+const g = globalThis as Record<string, unknown>;
+afterEach(() => { delete g.__NO_C38B01; delete g.__NO_C40B01; delete g.__NO_C41B01; delete g.__NO_C41B02; for (const k of ['C42B01', 'C42B03', 'C42B04', 'C42B05']) delete g[`__NO_${k}`]; });
+
+/** Partita con schieramento attento che sceglie `voluta` quando è offerta (le altre risposte a caso). */
+const partita = (m: Missione, voluta: string, seme = 1) => {
+  const caso = creaCaso(`c38:${m.id}:${seme}`);
+  return giocaMissione(m, v0, dich, { schiera: attenta(caso, dich).schiera, scegli: (mm, s, c) => {
+    const o = opzioniValide(c, s, mm); return (o.find((x) => x.id === voluta) ?? caso.scegli(o)).id; } });
+};
+/** Risposte messe fra i pesi che il confronto dice migliori delle altre di almeno 5 punti di fallite (e viceversa). */
+function contraddizioni(semi = 20) {
+  const fuori: string[] = [];
+  for (const m of ms) {
+    const c = confrontoScelte(m, dich);
+    for (let s = 1; s <= semi; s++) {
+      const b = bilancio(m, giocaMissione(m, v0, dich, casuale(creaCaso(`c38b:${m.id}:${s}`), dich)), 3, c);
+      for (const v of b.pesi) { const x = c.get(`${v.chiamata}/${v.opzione}`); if (x && x.falliteAltre - x.falliteSe >= 5) fuori.push(`${m.id} peso ${v.chiamata}/${v.opzione}`); }
+      for (const v of b.aiuti) { const x = c.get(`${v.chiamata}/${v.opzione}`); if (x && x.falliteSe - x.falliteAltre >= 5) fuori.push(`${m.id} aiuto ${v.chiamata}/${v.opzione}`); }
+    }
+  }
+  return [...new Set(fuori)];
+}
+
+describe('bilancio contro le altre risposte (C38-03)', () => {
+  const e14 = ms.find((m) => m.id === 'e14')!;
+  it('e14 «restino in piedi» (fallite 0 % contro ~10 %) è fra gli aiuti, non fra i pesi; rosso: fra i pesi', () => {
+    const r = partita(e14, 'in_piedi');
+    expect(r.scelte.some((x) => x.opzione === 'in_piedi')).toBe(true);
+    const b = bilancio(e14, r, 10, confrontoScelte(e14, dich));
+    expect(b.aiuti.map((x) => x.opzione)).toContain('in_piedi');
+    expect(b.pesi.map((x) => x.opzione)).not.toContain('in_piedi');
+    g.__NO_C38B01 = true;
+    expect(bilancio(e14, r, 10, confrontoScelte(e14, dich)).pesi.map((x) => x.opzione)).toContain('in_piedi');
+  });
+  it('36 episodi: nessun peso che il confronto dice migliore (né aiuto peggiore) di ≥ 5 punti; rosso: ce ne sono', () => {
+    expect(contraddizioni()).toEqual([]);
+    g.__NO_C38B01 = true;
+    expect(contraddizioni().length).toBeGreaterThan(0);
+  }, 180_000);
+  it('D-085: una partita con scelte non ha mai il bilancio vuoto (36 episodi, bot deterministici)', () => {
+    const vuoti = ms.flatMap((m) => ['attenta', 'equilibrata', 'peggiore'].map((n) => [n, giocaMissione(m, v0, dich, STRATEGIE[n]!(creaCaso(1), dich))] as const)
+      .filter(([, r]) => r.scelte.length).filter(([, r]) => { const b = bilancio(m, r, 3, confrontoScelte(m, dich)); return !b.aiuti.length && !b.pesi.length; })
+      .map(([n]) => `${m.id} ${n}`));
+    expect(vuoti).toEqual([]);
+  }, 180_000);
+  it('D-174: la tabella precalcolata è uguale al calcolo sui dati di oggi; rosso: dati cambiati', () => {
+    const file = JSON.parse(readFileSync('src/logica/confronti.json', 'utf8')) as TabellaConfronti;
+    expect(file).toEqual(tabellaConfronti(d));
+    expect(daTabella(file, 'e14')!.get('seduti/in_piedi')).toEqual(confrontoScelte(ms.find((m) => m.id === 'e14')!, dich).get('seduti/in_piedi'));
+    const x = structuredClone(ms.find((m) => m.id === 'e14')!);
+    x.ondate.flatMap((o) => o.chiamate ?? []).find((c) => c.id === 'seduti')!.opzioni.find((o) => o.id === 'in_piedi')!.effetti.push({ tensione: 'curva_larkspire', valore: 5 } as never);
+    expect(inRighe(confrontoScelte(x, dich, undefined, false))).not.toEqual(file.episodi.e14);
+  }, 180_000);
+  // C40-01 (D-180): casi del collaudo C-040, con lo schieramento del bot peggiore e le risposte del giocatore.
+  const CASI: Record<string, string[]> = { e35: ['segui_barca', 'stampa_vicina', 'lascia_coda'], e13: ['palco_si', 'lascia_cori', 'senso_unico', 'resistano'], e12: ['scorta12', 'mediatore12', 'rinforzi12'] };
+  /** Voci che contraddicono la partita: aiuti che hanno caricato un settore poi scoperto, pesi che l'hanno scaricato. */
+  const smentite = (m: Missione, r: ReturnType<typeof giocaMissione>) => {
+    const b = bilancio(m, r, 3, confrontoScelte(m, dich)); const fuori: string[] = [];
+    for (const [lista, segno] of [[b.aiuti, 1], [b.pesi, -1]] as const) for (const v of lista) {
+      const colpiti = new Set(r.rapporti.filter((o) => o.n >= v.ondata).flatMap((o) => Object.entries(o.scoperto).filter(([, n]) => n > 0).map(([k]) => k)));
+      if (v.impatti.some((i) => (i.tipo === 'pressione' || i.tipo === 'tensione') && i.dove && colpiti.has(i.dove) && Math.sign(i.valore) === segno)) fuori.push(`${m.id} ${segno > 0 ? 'aiuto' : 'peso'} ${v.opzione}`);
+    }
+    return fuori;
+  };
+  // D-194: i casi del collaudo C-040 si rigiocano sulle missioni di allora, senza imprevisti (rosso __NO_S14I01): con gli
+  // imprevisti il bilancio ha altre scelte fra cui scegliere le tre voci, e il caso del collaudo non sarebbe più lo stesso.
+  g.__NO_S14I01 = true; const senzaImprevisti = Object.entries(leggiDati() as Record<string, unknown>).filter(([k]) => k.startsWith('missioni/')).map(([, m]) => m as Missione); delete g.__NO_S14I01;
+  const casoCollaudo = (id: string) => { const m = senzaImprevisti.find((x) => x.id === id)!; const b = peggiore(creaCaso(1), dich);
+    return [m, giocaMissione(m, v0, dich, { schiera: b.schiera, scegli: (mm, s, c) => { const o = opzioniValide(c, s, mm); return (o.find((x) => CASI[id]!.includes(x.id)) ?? o[0]!).id; } })] as const; };
+  it('C40-01 e12, e13, e35 del collaudo: nessuna voce smentita dalla partita; rosso __NO_C40B01: le voci del collaudo', () => {
+    for (const id of Object.keys(CASI)) { const [m, r] = casoCollaudo(id); expect(smentite(m, r)).toEqual([]); }
+    g.__NO_C40B01 = true;
+    const rosso = Object.keys(CASI).flatMap((id) => { const [m, r] = casoCollaudo(id); return smentite(m, r); });
+    // D-194: con la tabella dei confronti dei dati di oggi (imprevisti compresi) cambiano le altre voci del bilancio; resta,
+    // per ognuno dei tre casi, una voce smentita su una risposta scelta nel collaudo (prima: anche segui_barca, stampa_vicina,
+    // lascia_cori). Misurato con tests/confronto.test.ts su c7aedc4.
+    expect(rosso).toEqual(expect.arrayContaining(['e35 aiuto lascia_coda', 'e13 aiuto palco_si', 'e12 peso rinforzi12']));
+  });
+  it('C40-01 36 episodi × 20 partite del casuale: nessuna voce smentita dalla partita', () => {
+    const fuori = ms.flatMap((m) => Array.from({ length: 20 }, (_, s) => smentite(m, giocaMissione(m, v0, dich, casuale(creaCaso(`c40:${m.id}:${s}`), dich)))).flat());
+    expect(fuori).toEqual([]);
+  }, 180_000);
+  // C41-01, C41-02 (D-182): pesi solo su settori rimasti sotto controllo, voci senza effetti, pesi decisivi lasciati fuori.
+  const c41 = (episodi: Missione[]) => {
+    const fuori: string[] = [];
+    const colpiti = (r: ReturnType<typeof giocaMissione>, n: number) => new Set(r.rapporti.filter((o) => o.n >= n).flatMap((o) => Object.entries(o.scoperto).filter(([, x]) => x > 0).map(([k]) => k)));
+    for (const m of episodi) for (let s = 1; s <= 20; s++) {
+      const r = giocaMissione(m, v0, dich, casuale(creaCaso(`c41:${m.id}:${s}`), dich));
+      const b = bilancio(m, r, 3, confrontoScelte(m, dich)), tutti = bilancio(m, r, 99, confrontoScelte(m, dich));
+      const settori = (v: (typeof b.pesi)[number]) => v.impatti.filter((i) => (i.tipo === 'pressione' || i.tipo === 'tensione') && i.dove);
+      const carica = (v: (typeof b.pesi)[number]) => settori(v).some((i) => i.valore > 0 && colpiti(r, v.ondata).has(i.dove!));
+      for (const v of [...b.aiuti, ...b.pesi]) if (!v.impatti.length) fuori.push(`${m.id} senza effetti ${v.opzione}`);
+      for (const v of b.pesi) if (settori(v).length && settori(v).every((i) => !colpiti(r, v.ondata).has(i.dove!))) fuori.push(`${m.id} peso sotto controllo ${v.opzione}`);
+      if (tutti.pesi.some((v) => !b.pesi.includes(v) && !b.pesi.some((x) => x.chiamata === v.chiamata) && carica(v)) && b.pesi.some((v) => !carica(v))) fuori.push(`${m.id} peso decisivo fuori`);
+    }
+    return [...new Set(fuori)];
+  };
+  it('C41: 36 episodi × 20 partite senza pesi sotto controllo, voci senza effetti, pesi decisivi fuori; rossi C41B01, C41B02', () => {
+    expect(c41(ms)).toEqual([]);
+    g.__NO_C41B01 = true;
+    expect(c41(ms).some((x) => x.includes('sotto controllo'))).toBe(true);
+    delete g.__NO_C41B01; g.__NO_C41B02 = true;
+    expect(c41(ms).some((x) => x.includes('senza effetti'))).toBe(true);
+  }, 180_000);
+  it('C41 resa: nessuna riga «Ondata N ·» vuota; rosso C41B02: la riga vuota torna', async () => {
+    const { createElement } = await import('react'); const { renderToStaticMarkup } = await import('react-dom/server');
+    const { sezioniBilancio } = await import('../src/resa/schermate/Bilancio.tsx');
+    const html = (m: Missione, r: ReturnType<typeof giocaMissione>) => renderToStaticMarkup(createElement('div', null, ...sezioniBilancio({ m, esito: r, stelle: 0 })));
+    const e02 = ms.find((m) => m.id === 'e02')!; let visto = false;
+    for (let s = 1; s <= 40 && !visto; s++) {
+      const r = giocaMissione(e02, v0, dich, casuale(creaCaso(`c41r:${s}`), dich));
+      g.__NO_C41B02 = true; const rosso = html(e02, r); delete g.__NO_C41B02;
+      if (/Ondata \d+(<!-- -->)? · (<!-- -->)?<\/small>/.test(rosso)) { visto = true; expect(html(e02, r)).not.toMatch(/Ondata \d+(<!-- -->)? · (<!-- -->)?<\/small>/); }
+    }
+    expect(visto).toBe(true);
+  });
+  // C42 (D-185): 36 episodi × 20 partite del casuale. Conta le violazioni di ogni regola.
+  const c42 = () => {
+    const n = { aiutoScoperto: 0, taciuti: 0, riservaUltima: 0 };
+    for (const m of ms) for (let s = 1; s <= 20; s++) {
+      const r = giocaMissione(m, v0, dich, casuale(creaCaso(`c42:${m.id}:${s}`), dich)); const b = bilancio(m, r, 3, confrontoScelte(m, dich));
+      for (const v of b.aiuti) { const scop = new Set(Object.entries(r.rapporti.find((o) => o.n === v.ondata)?.scoperto ?? {}).filter(([, x]) => x > 0).map(([k]) => k));
+        if (v.impatti.some((i) => (i.tipo === 'pressione' || i.tipo === 'tensione') && scop.has(i.dove!))) n.aiutoScoperto++; }
+      const tutti = new Set(r.rapporti.flatMap((o) => Object.entries(o.scoperto).filter(([, x]) => x > 0).map(([k]) => k)));
+      const taciuti = [...tutti].filter((k) => !b.scoperti.some((x) => x.settore === k)).length; if (taciuti !== (b.altriScoperti ?? 0)) n.taciuti++;
+      for (const v of [...b.aiuti, ...b.pesi]) if (v.ondata === m.ondate.length && v.impatti.some((i) => i.tipo === 'riserva' && i.valore < 0)) n.riservaUltima++;
+    }
+    return n;
+  };
+  it('C42-01/04/05: nessun aiuto su un settore scoperto in quell\'ondata, settori taciuti contati, niente riserva spesa all\'ultima ondata; rossi', () => {
+    expect(c42()).toEqual({ aiutoScoperto: 0, taciuti: 0, riservaUltima: 0 });
+    g.__NO_C42B05 = true; expect(c42().aiutoScoperto).toBeGreaterThan(0); delete g.__NO_C42B05;
+    g.__NO_C42B04 = true; expect(c42().taciuti).toBeGreaterThan(0); delete g.__NO_C42B04;
+    g.__NO_C42B01 = true; expect(c42().riservaUltima).toBeGreaterThan(0);
+  }, 180_000);
+  it('C42-03 e10 (caso del collaudo): nelle partite fallite le risposte che hanno caricato un settore degenerato entrano fra i pesi; rosso C42B03', () => {
+    const e10 = ms.find((m) => m.id === 'e10')!; const giochi: ReturnType<typeof giocaMissione>[] = [];
+    for (let s = 1; giochi.length < 50 && s < 1000; s++) { const r = giocaMissione(e10, v0, dich, casuale(creaCaso(`e10c42:${s}`), dich)); if (r.esito.fallita) giochi.push(r); }
+    const pochi = () => giochi.filter((r) => bilancio(e10, r, 3, confrontoScelte(e10, dich)).pesi.length <= 1).length;
+    expect(pochi()).toBeLessThanOrEqual(10); // misurato: 5/50
+    g.__NO_C42B03 = true; expect(pochi()).toBeGreaterThan(40); // misurato: 50/50
+    // ogni peso forzato ha davvero caricato un settore che poi degenera
+    delete g.__NO_C42B03;
+    for (const r of giochi) for (const v of bilancio(e10, r, 3, confrontoScelte(e10, dich)).pesi) if (Math.abs(v.saldo) < 1) {
+      const deg = new Set(r.rapporti.filter((o) => o.n >= v.ondata).flatMap((o) => settoriDegenerati(e10, o)));
+      expect(v.impatti.some((i) => i.valore > 0 && deg.has(i.dove!))).toBe(true);
+    }
+  });
+  it('C42-04 resa: la riga «e altri N settori»; rosso C42B04: nessuna riga', async () => {
+    const { createElement } = await import('react'); const { renderToStaticMarkup } = await import('react-dom/server');
+    const { sezioniBilancio } = await import('../src/resa/schermate/Bilancio.tsx');
+    const e25 = ms.find((m) => m.id === 'e25')!;
+    for (let s = 1; s <= 100; s++) { const r = giocaMissione(e25, v0, dich, casuale(creaCaso(`c42r:${s}`), dich));
+      const b = bilancio(e25, r, 3, confrontoScelte(e25, dich)); if (!b.altriScoperti) continue;
+      const html = () => renderToStaticMarkup(createElement('div', null, ...sezioniBilancio({ m: e25, esito: r, stelle: 0 })));
+      expect(html()).toMatch(/e (un altro settore|altri \d+ settori)/);
+      g.__NO_C42B04 = true; expect(html()).not.toMatch(/data-altri-scoperti/); return; }
+    throw new Error('nessuna partita di e25 con settori taciuti');
+  });
+});

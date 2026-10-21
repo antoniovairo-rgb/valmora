@@ -379,6 +379,10 @@
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -3
+                },
+                {
+                  "tensione": "curva_larkspire",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e01.op.sospendi.r"

@@ -1,0 +1,209 @@
+{
+  "id": "e03",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_carro",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e03.imp.carro",
+        "commento": "testi:e03.imp.carro.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "sblocca",
+            "testo": "testi:e03.imp.carro.sblocca",
+            "costo": "testi:e03.imp.carro.sblocca.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -3
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e03.imp.carro.sblocca.r"
+          },
+          {
+            "id": "ai_parcheggi",
+            "testo": "testi:e03.imp.carro.ai_parcheggi",
+            "costo": "testi:e03.imp.carro.ai_parcheggi.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.carro.ai_parcheggi.r"
+          },
+          {
+            "id": "aspetta_carro",
+            "testo": "testi:e03.imp.carro.aspetta_carro",
+            "costo": "testi:e03.imp.carro.aspetta_carro.c",
+            "effetti": [],
+            "risposta": "testi:e03.imp.carro.aspetta_carro.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_cane",
+        "fonte": "vice",
+        "testo": "testi:e03.imp.cane",
+        "commento": "testi:e03.imp.cane.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "steward_cane",
+            "testo": "testi:e03.imp.cane.steward_cane",
+            "costo": "testi:e03.imp.cane.steward_cane.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -3
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.cane.steward_cane.r"
+          },
+          {
+            "id": "custode",
+            "testo": "testi:e03.imp.cane.custode",
+            "costo": "testi:e03.imp.cane.custode.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.cane.custode.r"
+          },
+          {
+            "id": "gioca_cane",
+            "testo": "testi:e03.imp.cane.gioca_cane",
+            "costo": "testi:e03.imp.cane.gioca_cane.c",
+            "effetti": [],
+            "risposta": "testi:e03.imp.cane.gioca_cane.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_balconi",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e03.imp.balconi",
+        "commento": "testi:e03.imp.balconi.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "mediatore_balconi",
+            "testo": "testi:e03.imp.balconi.mediatore_balconi",
+            "costo": "testi:e03.imp.balconi.mediatore_balconi.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.balconi.mediatore_balconi.r"
+          },
+          {
+            "id": "promessa",
+            "testo": "testi:e03.imp.balconi.promessa",
+            "costo": "testi:e03.imp.balconi.promessa.c",
+            "effetti": [
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.balconi.promessa.r"
+          },
+          {
+            "id": "musica",
+            "testo": "testi:e03.imp.balconi.musica",
+            "costo": "testi:e03.imp.balconi.musica.c",
+            "effetti": [],
+            "risposta": "testi:e03.imp.balconi.musica.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_bus_notte",
+        "fonte": "centrale_radio",
+        "testo": "testi:e03.imp.bus_notte",
+        "commento": "testi:e03.imp.bus_notte.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "scorta_notte",
+            "testo": "testi:e03.imp.bus_notte.scorta_notte",
+            "costo": "testi:e03.imp.bus_notte.scorta_notte.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -3
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.bus_notte.scorta_notte.r"
+          },
+          {
+            "id": "secondo_bus",
+            "testo": "testi:e03.imp.bus_notte.secondo_bus",
+            "costo": "testi:e03.imp.bus_notte.secondo_bus.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.bus_notte.secondo_bus.r"
+          },
+          {
+            "id": "a_piedi_notte",
+            "testo": "testi:e03.imp.bus_notte.a_piedi_notte",
+            "costo": "testi:e03.imp.bus_notte.a_piedi_notte.c",
+            "effetti": [],
+            "risposta": "testi:e03.imp.bus_notte.a_piedi_notte.r"
+          }
+        ]
+      }
+    }
+  ]
+}

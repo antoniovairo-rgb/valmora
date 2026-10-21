@@ -4,6 +4,8 @@
 import { ThumbsDown, ThumbsUp, ShieldAlert, Star } from 'lucide-react';
 import { Fragment, type ReactNode } from 'react';
 import { bilancio, type Impatto, type Requisito, type VoceScelta } from '../../logica/bilancio.ts';
+import { confrontoScelte, daTabella, type TabellaConfronti } from '../../logica/confronto.ts';
+import tabella from '../../logica/confronti.json';
 import type { EsitoMissione } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
 import { dichiarate, t } from '../dati.ts';
@@ -60,14 +62,18 @@ function Voce(p: { m: Missione; v: VoceScelta }) {
   return (
     <li data-scelta={`${p.v.chiamata}:${p.v.opzione}`}>
       <span>{opzione ? t(opzione.testo) : p.v.opzione}</span>
-      <small className="tenue">Ondata {p.v.ondata} · {p.v.impatti.map(impattoInParole).join(', ')}</small>
+      {/* C41-02: niente «Ondata N ·» vuoto (rosso C41B02: come prima) */}
+      <small className="tenue">Ondata {p.v.ondata}{p.v.impatti.length || spento('C41B02') ? ` · ${p.v.impatti.map(impattoInParole).join(', ')}` : ''}
+        {/* C45-03: gli effetti dicono il contrario della lista; la lista viene dal confronto con le altre risposte (D-172) */}
+        {p.v.controcorrente ? ` · ${t(p.v.saldo > 0 ? 'bilancio.controcorrente.aiuto' : 'bilancio.controcorrente.peso')}` : ''}</small>
     </li>
   );
 }
 
 /** Le sezioni del bilancio, una per passo del verbale (S-10): aiuti, pesi, scoperti con la stella dopo. */
 export function sezioniBilancio(p: { m: Missione; esito: EsitoMissione; stelle: number }): ReactNode[] {
-  const b = bilancio(p.m, p.esito);
+  // C38-03: contro le altre risposte; D-174: dalla tabella precalcolata (tools/confronti.mjs), calcolo solo se manca
+  const b = bilancio(p.m, p.esito, 3, daTabella(tabella as TabellaConfronti, p.m.id) ?? confrontoScelte(p.m, dichiarate));
   const lista = p.stelle >= 3 ? null : p.stelle === 2 ? b.stelle.tre : b.stelle.due;
   const manca = lista && prossimoRequisito(lista);
   return [
@@ -83,13 +89,17 @@ export function sezioniBilancio(p: { m: Missione; esito: EsitoMissione; stelle: 
       <section className="scheda bilancio bilancio-scoperti" data-sezione="scoperti">
         <h3><Icona di={ShieldAlert} />{t('bilancio.scoperti')}</h3>
         {b.scoperti.length
-          ? <ul>{b.scoperti.map((s, i) => <li key={i} data-scoperto={`${s.ondata}:${s.settore}`}>Ondata {s.ondata} · {t(`settore.${s.settore}`)}</li>)}</ul>
+          ? <ul>{b.scoperti.map((s, i) => <li key={i} data-scoperto={`${s.ondata}:${s.settore}`}>Ondata {s.ondata} · {t(`settore.${s.settore}`)}</li>)}
+            {/* C42-04: la lista tagliata dice quanti settori tace */}
+            {b.altriScoperti ? <li className="tenue" data-altri-scoperti={b.altriScoperti}>{b.altriScoperti === 1 ? 'e un altro settore' : `e altri ${b.altriScoperti} settori`}</li> : null}</ul>
           : <p className="tenue">Nessun settore scoperto.</p>}
       </section>
       <section className="scheda bilancio bilancio-stelle" data-sezione="stelle">
         <h3><Icona di={Star} />{t('bilancio.stelle')}</h3>
-        <p data-requisito={manca ? manca.var : 'nessuno'}>
+        <p data-requisito={p.stelle === 0 && !spento('C4303') ? 'esito' : manca ? manca.var : 'nessuno'}>
           {!lista ? 'Hai tutte e tre le stelle.'
+            // C43-03 (D-196): con 0 stelle (episodio fallito) manca la prima, non la seconda. Rosso C4303: «Per la seconda stella».
+            : p.stelle === 0 && !spento('C4303') ? 'Per la prima stella porta a termine la serata senza perderla.'
             : manca ? (manca.confronto === 'altro' ? 'Serve un altro esito della serata.' : requisitoInParole(manca, p.stelle >= 2 ? 3 : 2))
             : 'I numeri ci sono: la stella in più dipende da come finisce la serata.'}
         </p>

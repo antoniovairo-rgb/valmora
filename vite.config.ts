@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import { execSync } from 'node:child_process';
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { pianoPrivacy } from './tools/privacy-pagina.mjs';
 
 // S-22 (C14-01): a fine build, dist/sw.js riceve l'elenco di TUTTI i file della build (anche i moduli caricati a
 // richiesta) e una versione = impronta dell'elenco; così offline non manca niente e le cache vecchie si tolgono.
@@ -35,7 +36,7 @@ const BUILD = `${commit()} · ${new Date().toISOString().slice(0, 16).replace('T
 
 // Build della resa (index.html → dist/) e test unitari (tests/**/*.test.ts) in un solo file.
 export default defineConfig({
-  plugins: [react(), precache()],
+  plugins: [react(), pianoPrivacy(), precache()], // PO-145: dist/privacy/index.html
   define: { __BUILD__: JSON.stringify(BUILD) },
   base: './', // percorsi relativi: la build gira anche dentro Capacitor e da file
   // Dati di gioco: data/. VALMORA_DATI punta a un'altra cartella SOLO per provare la resa con dati

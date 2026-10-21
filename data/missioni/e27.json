@@ -477,11 +477,7 @@
             },
             {
               "id": "annuncio",
-              "dopo": {
-                "mai": [
-                  "fermata_prima/mediatore_gemellati"
-                ]
-              },
+              "dopo": {"mai": ["fermata_prima/mediatore_gemellati"]},
               "testo": "testi:e27.op.annuncio",
               "costo": "testi:e27.op.annuncio.c",
               "effetti": [
@@ -494,11 +490,7 @@
             },
             {
               "id": "annuncio_senza_mediatore",
-              "dopo": {
-                "gia": [
-                  "fermata_prima/mediatore_gemellati"
-                ]
-              },
+              "dopo": {"gia": ["fermata_prima/mediatore_gemellati"]},
               "testo": "testi:e27.op.annuncio_senza_mediatore",
               "costo": "testi:e27.op.annuncio_senza_mediatore.c",
               "effetti": [

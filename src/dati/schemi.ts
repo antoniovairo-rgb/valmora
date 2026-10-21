@@ -11,6 +11,7 @@ export const REGOLE_PERCORSI: { re: RegExp; schema: string; idDaFile: boolean }[
   { re: /^personaggi\/([a-z0-9_]+)\.json$/, schema: 'personaggio.schema.json', idDaFile: true },
   { re: /^fili\/([a-z0-9_]+)\.json$/, schema: 'filo.schema.json', idDaFile: true },
   { re: /^missioni\/([a-z0-9_]+)\.json$/, schema: 'missione.schema.json', idDaFile: true },
+  { re: /^imprevisti\/([a-z0-9_]+)\.json$/, schema: 'imprevisti.schema.json', idDaFile: true },
   { re: /^testi\/it\/([a-z0-9_]+)\.json$/, schema: 'testi.schema.json', idDaFile: false },
 ];
 

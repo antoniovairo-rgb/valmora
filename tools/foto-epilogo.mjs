@@ -12,6 +12,7 @@ import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { avanzaFino } from './foto-club.mjs';
 import { pianoAttento } from './foto.mjs';
+import { completaVariabili } from '../src/logica/aggiornamento.ts';
 
 export const LARGHEZZE_EPILOGO = [360, 375, 412, 1366];
 const FINALE = 'tests/salvataggi-reali/v2-0.38.0-fine-campagna.json';
@@ -22,7 +23,8 @@ export function salvataggioAlRapporto(id, dirDati = 'data') {
   const fine = JSON.parse(readFileSync(FINALE, 'utf8'));
   const missioni = Object.entries(leggiDati(dirDati)).filter(([k]) => k.startsWith('missioni/')).map(([, m]) => m).sort((a, b) => a.episodio - b.episodio);
   const i = missioni.findIndex((m) => m.id === id), prima = missioni.slice(0, i).map((m) => m.id);
-  const v0 = fine.episodi[id].variabili_prima;
+  // come il gioco al caricamento (C14-03): le variabili dichiarate dopo il salvataggio (es. «carte», D-189) al valore iniziale
+  const v0 = completaVariabili(fine.episodi[id].variabili_prima, leggiDati(dirDati)['stato.json'].variabili);
   const piano = pianoAttento(dirDati, i, v0);
   return {
     piano, salvataggio: {
@@ -34,13 +36,12 @@ export function salvataggioAlRapporto(id, dirDati = 'data') {
 
 // VALMORA_LARGHEZZE (CI divisa per larghezza) limita anche questo giro, come quello di foto.mjs
 const daAmbiente = () => (process.env.VALMORA_LARGHEZZE ? process.env.VALMORA_LARGHEZZE.split(',').map(Number) : LARGHEZZE_EPILOGO);
-export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghezze = daAmbiente()) {
+export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghezze = daAmbiente(), rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean)) {
   mkdirSync(cartella, { recursive: true });
   const srv = await new Promise((ok) => { const s = createServer((q, r) => { const u = decodeURIComponent(q.url.split('?')[0]); const p = join(build, u === '/' ? 'index.html' : u);
     if (!existsSync(p)) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'content-type': TIPI[extname(p)] ?? 'application/octet-stream' }); r.end(readFileSync(p)); }); s.listen(0, '127.0.0.1', () => ok(s)); });
   const browser = await chromium.launch({ executablePath: process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined) });
   const stati = Object.fromEntries(['e12', 'e24', 'e36'].map((id) => [id, salvataggioAlRapporto(id)]));
-  const rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean);
   const giri = [];
   try {
     for (const larghezza of larghezze) {
@@ -91,6 +92,9 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
             atteso(`${id}: «Fine stagione» con ${stelle} righe di stelle e ${aperti} fili aperti (servono 1 e ≥ 1)`, stelle === 1 && aperti >= 1);
           }
           await misure(`${id} fine stagione`); await foto(`${id}-verbale-fine`);
+          // C43-06 (D-196): il passo non scorre e «Prossimo episodio» è nella finestra (e24 a 360×760: 250 px, top 896). Rosso C196V01.
+          const [ecc, giu] = await pagina.evaluate(() => [document.scrollingElement.scrollHeight - innerHeight, (document.querySelector('[data-azione="prossimo"]')?.getBoundingClientRect().bottom ?? 0) - innerHeight]);
+          atteso(`${id} fine stagione ${pagina.viewportSize().width}×${pagina.viewportSize().height}: la pagina scorre di ${ecc} px, «Prossimo episodio» ${giu > 0 ? `${Math.round(giu)} px sotto la piega` : 'in vista'} (C43-06)`, ecc <= 0 && giu <= 0);
           const prossimo = pagina.locator('[data-azione="prossimo"]');
           atteso(`${id}: manca «Prossimo episodio» dopo «Fine stagione»`, (await prossimo.count()) === 1);
           if (await prossimo.count()) { await prossimo.click(); await scena('sala'); const m = await pagina.getAttribute('.scena', 'data-missione'); atteso(`${id}: «Prossimo episodio» apre ${m} invece di ${dopo}`, m === dopo); }
@@ -121,12 +125,16 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
           const v = stati.e36.salvataggio.variabili, genere = stati.e36.salvataggio.genere;
           const r = await pagina.evaluate(() => ({
             tavole: [...document.querySelectorAll('.scena [data-tavola]')].map((x) => `${x.dataset.tavola}=${x.dataset.valore ?? x.dataset.carriera}`),
-            busti: [...document.querySelectorAll('[data-tavola="bar"] [data-busto]')].map((x) => x.dataset.busto).join(','),
-            numeri: document.querySelectorAll('[data-tavola="bar"] [data-numeri] .etichetta').length, fuoco: !!document.activeElement?.closest('.scena') }));
-          const attese = [`fabbro=${v.rapporto_dessi}`, `testimone=${v.testimone}`, `busta=${v.busta}`, `talpa=${v.sospetti_talpa}`, `fascicolo=${v.fascicolo}`];
-          atteso(`e36 epilogo: tavole «${r.tavole.join(', ')}» invece di «${attese.join(', ')}, bar» (D-165, D-171)`, r.tavole.slice(0, 5).join() === attese.join() && /^bar=(confermato|prorogato|sostituito)$/.test(r.tavole[5] ?? ''));
+            busti: [...document.querySelectorAll('[data-tavola="bar"] [data-busto]:not([data-busto="1"])')].map((x) => x.dataset.busto).join(','),
+            numeri: document.querySelectorAll('[data-tavola="bar"] [data-numeri] .etichetta').length, fuoco: !!document.activeElement?.closest('.scena'),
+            riga: document.querySelector('[data-tavola="fabbro"] [data-riga="pista_cattura"]')?.dataset.valore ?? null }));
+          // C43-01 (D-196): anche la tavola «carte» (D-189). Rosso VALMORA_ROSSI=C4301: manca
+          const attese = [`fabbro=${v.rapporto_dessi}`, `testimone=${v.testimone}`, `busta=${v.busta}`, `talpa=${v.sospetti_talpa}`, `fascicolo=${v.fascicolo}`, `carte=${v.carte}`];
+          atteso(`e36 epilogo: tavole «${r.tavole.join(', ')}» invece di «${attese.join(', ')}, bar» (D-165, D-171, D-189)`, r.tavole.slice(0, attese.length).join() === attese.join() && /^bar=(confermato|prorogato|sostituito)$/.test(r.tavole[attese.length] ?? ''));
           atteso(`e36 epilogo: al bar i busti «${r.busti}» (servono protagonista ${genere === 'f' ? 'lunghi' : 'corti'} e Malvasi berretto)`, r.busti === `${genere === 'f' ? 'lunghi' : 'corti'},berretto`);
           atteso(`e36 epilogo: ${r.numeri} numeri della carriera (stelle, episodi, fiducia)`, r.numeri === 3);
+          // D-197: «pista_cattura» come riga sotto la tavola del Fabbro. Rosso VALMORA_ROSSI=C4301P: manca
+          atteso(`e36 epilogo: sotto il Fabbro la riga «pista_cattura» = ${r.riga} invece di ${v.pista_cattura}`, r.riga === String(v.pista_cattura));
           atteso('e36 epilogo: il fuoco non è sulla scena (D-142)', r.fuoco);
           await misure('e36 epilogo'); await foto('e36-epilogo');
           // da tastiera: Tab fino ad «Alla mappa della città», Invio → città

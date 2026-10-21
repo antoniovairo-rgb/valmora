@@ -1,0 +1,38 @@
+/* PO-140, fase 1: SOLO PROPOSTE (non entra nel gioco). Colori, raggi, spaziature solo da token.css. */
+.p-sotto { display: block; width: fit-content; margin-top: var(--spazio-2); background: var(--bianco); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); padding: var(--spazio-1) var(--spazio-3); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; }
+.p-logo { margin: var(--spazio-3) 0 var(--spazio-3); }
+.p-logo .logo-icona { width: calc(var(--logo-icona) * 0.66); height: calc(var(--logo-icona) * 0.66); }
+.p-logo .logo-nome { font-size: var(--testo-numero); }
+.p-vignetta { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; min-height: 0; max-height: none; margin: 0; }
+.p-riquadro { position: relative; border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-2); background: var(--bianco); }
+.p-didascalia { position: absolute; left: calc(var(--spazio-2) * -1); top: calc(var(--spazio-2) * -1); background: var(--giallo); border: var(--bordo-fine) solid var(--nero); padding: var(--spazio-px) var(--spazio-2); font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; }
+.p-obiettivo { margin: var(--spazio-4) 0 var(--spazio-2); background: var(--nero); color: var(--giallo); padding: var(--spazio-2) var(--spazio-3); font: 700 var(--testo-grande) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; transform: skew(var(--inclinazione)); }
+.p-chi { margin: 0 0 var(--spazio-2); font-size: var(--testo-piccolo); }
+.p-pulsanti .pulsante { margin: var(--spazio-3) 0; }
+.p-altro { width: auto; margin-left: auto; padding: var(--spazio-1) var(--spazio-3); }
+.p-riga { display: flex; gap: var(--spazio-2); align-items: center; }
+/* B: mappa come sfondo */
+.p-b { position: relative; }
+.p-b-mappa { position: absolute; inset: 0; z-index: 0; }
+.p-b-mappa svg { width: 100%; height: 100%; display: block; }
+.p-b > :not(.p-b-mappa) { position: relative; z-index: 1; }
+.p-stasera { margin-top: var(--spazio-4); background: var(--bianco); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-2); padding: var(--spazio-3); }
+.p-timbro { display: inline-block; background: var(--magenta); color: var(--bianco); padding: var(--spazio-px) var(--spazio-2); font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; border: var(--bordo-fine) solid var(--nero); }
+.p-stasera h2 { margin: var(--spazio-2) 0 var(--spazio-1); font: 700 var(--testo-grande) / var(--linea-stretta) var(--font-titoli); }
+.p-stasera p { margin: 0; font-size: var(--testo-piccolo); }
+.p-busti { flex: none; width: 40%; border: var(--bordo-fine) solid var(--nero); }
+/* C: copertina */
+.p-copertina { margin-top: var(--spazio-3); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-2); background: var(--bianco); padding: var(--spazio-2); }
+.p-testata { display: flex; justify-content: space-between; align-items: center; background: var(--nero); color: var(--giallo); padding: var(--spazio-1) var(--spazio-2); font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; }
+.p-titolone { margin: var(--spazio-2) 0 0; font: 700 var(--testo-logo) / 1 var(--font-titoli); text-transform: uppercase; color: var(--nero); }
+.p-copertina .p-sotto { margin: var(--spazio-1) 0 var(--spazio-2); background: var(--magenta); color: var(--bianco); }
+.p-premessa { margin: var(--spazio-2) 0 0; font: 600 var(--testo-piccolo) / var(--linea-stretta) var(--font); }
+.p-nuvola { position: relative; margin: var(--spazio-3) 0 var(--spazio-1) var(--spazio-5); background: var(--bianco); border: var(--bordo) solid var(--nero); border-radius: var(--raggio-fumetto); padding: var(--spazio-2) var(--spazio-3); font: 600 var(--testo-piccolo) / var(--linea-stretta) var(--font); }
+.p-nuvola b { display: block; font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; color: var(--magenta); }
+.p-riquadro > .vignetta, .p-b-mappa .vignetta { display: block; width: 100%; height: auto; min-height: 0; max-height: none; margin: 0; border: 0; box-shadow: none; }
+.p-b-alto { position: relative; margin: 0 calc(var(--spazio-4) * -1); padding: var(--spazio-1) var(--spazio-4) var(--spazio-3); border-bottom: var(--bordo) solid var(--nero); }
+.p-b-alto .p-b-mappa .vignetta { height: 100%; }
+.p-spazio-mappa { height: calc(var(--spazio-6) * 4.2); }
+.p-segno { position: absolute; z-index: 2; background: var(--magenta); color: var(--bianco); border: var(--bordo-fine) solid var(--nero); box-shadow: var(--ombra-1); padding: var(--spazio-px) var(--spazio-2); font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; }
+.p-quartiere { position: absolute; z-index: 2; background: var(--bianco); border: var(--bordo-fine) solid var(--nero); padding: var(--spazio-px) var(--spazio-1); font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; }
+.p-b-alto > :not(.p-b-mappa, .p-quartiere, .p-segno) { position: relative; z-index: 1; }

@@ -1,0 +1,209 @@
+{
+  "id": "e20",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tamburo",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e20.imp.tamburo",
+        "commento": "testi:e20.imp.tamburo.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "sgonfia_ruote",
+            "testo": "testi:e20.imp.tamburo.sgonfia_ruote",
+            "costo": "testi:e20.imp.tamburo.sgonfia_ruote.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.tamburo.sgonfia_ruote.r"
+          },
+          {
+            "id": "tamburo_spalla",
+            "testo": "testi:e20.imp.tamburo.tamburo_spalla",
+            "costo": "testi:e20.imp.tamburo.tamburo_spalla.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.tamburo.tamburo_spalla.r"
+          },
+          {
+            "id": "smontino",
+            "testo": "testi:e20.imp.tamburo.smontino",
+            "costo": "testi:e20.imp.tamburo.smontino.c",
+            "effetti": [],
+            "risposta": "testi:e20.imp.tamburo.smontino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_radio_chiosco",
+        "fonte": "centrale_radio",
+        "testo": "testi:e20.imp.radio_chiosco",
+        "commento": "testi:e20.imp.radio_chiosco.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "radio_auto",
+            "testo": "testi:e20.imp.radio_chiosco.radio_auto",
+            "costo": "testi:e20.imp.radio_chiosco.radio_auto.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.radio_chiosco.radio_auto.r"
+          },
+          {
+            "id": "cronaca_telefono",
+            "testo": "testi:e20.imp.radio_chiosco.cronaca_telefono",
+            "costo": "testi:e20.imp.radio_chiosco.cronaca_telefono.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.radio_chiosco.cronaca_telefono.r"
+          },
+          {
+            "id": "senza_cronaca",
+            "testo": "testi:e20.imp.radio_chiosco.senza_cronaca",
+            "costo": "testi:e20.imp.radio_chiosco.senza_cronaca.c",
+            "effetti": [],
+            "risposta": "testi:e20.imp.radio_chiosco.senza_cronaca.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_gatto",
+        "fonte": "centrale_radio",
+        "testo": "testi:e20.imp.gatto",
+        "commento": "testi:e20.imp.gatto.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "speaker_gatto",
+            "testo": "testi:e20.imp.gatto.speaker_gatto",
+            "costo": "testi:e20.imp.gatto.speaker_gatto.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.gatto.speaker_gatto.r"
+          },
+          {
+            "id": "fila_vuota",
+            "testo": "testi:e20.imp.gatto.fila_vuota",
+            "costo": "testi:e20.imp.gatto.fila_vuota.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.gatto.fila_vuota.r"
+          },
+          {
+            "id": "gatto_balaustra",
+            "testo": "testi:e20.imp.gatto.gatto_balaustra",
+            "costo": "testi:e20.imp.gatto.gatto_balaustra.c",
+            "effetti": [],
+            "risposta": "testi:e20.imp.gatto.gatto_balaustra.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_clacson",
+        "fonte": "centrale_radio",
+        "testo": "testi:e20.imp.clacson",
+        "commento": "testi:e20.imp.clacson.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "rimozione",
+            "testo": "testi:e20.imp.clacson.rimozione",
+            "costo": "testi:e20.imp.clacson.rimozione.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.clacson.rimozione.r"
+          },
+          {
+            "id": "allontana_auto",
+            "testo": "testi:e20.imp.clacson.allontana_auto",
+            "costo": "testi:e20.imp.clacson.allontana_auto.c",
+            "effetti": [
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.clacson.allontana_auto.r"
+          },
+          {
+            "id": "batteria",
+            "testo": "testi:e20.imp.clacson.batteria",
+            "costo": "testi:e20.imp.clacson.batteria.c",
+            "effetti": [],
+            "risposta": "testi:e20.imp.clacson.batteria.r"
+          }
+        ]
+      }
+    }
+  ]
+}

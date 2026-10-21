@@ -290,4 +290,101 @@
 //   (C38-06): i testi generici sono D-151, D-162 è la curva crescente fra le stagioni.
 //   guardiano: rossi C161E01, C164F01, C165F01, C165T01 (epilogo e tavole), C107A01 (annullamento), C113V01
 //   (versione), C111E01 e C112R01 (C37-03/08), guardiano fiducia a 165 voci.
-export const GAME_VERSION = '0.39.0';
+//
+// 0.40.0 – correzioni dei collaudi C-038 e C-039, fiducia terzo giro, verbale che confronta le risposte, scena del tono.
+//   causa: C38-01/C39-01 «nessuna unità a coprirlo» col mediatore schierato; C39-02 unità impegnate in un'ondata
+//   precedente non contate; C38-02/C39-04 «non deve passare il giallo: è arrivata al giallo»; C38-03/C39-05 «Cosa ti
+//   ha penalizzato» contro la misura; C38-04/C39-03 fiducia ancora contro il risultato in 6 episodi; C39-06 furgone
+//   «mai annotato»; C39-07 settore degenerato senza nome; C39-08 squadra «sul nastro» mai mandata; C33-06/07/09.
+//   misura: C38-02 72/72 → 0/72 (rosso __NO_C38G01); C38-01 rosso C115M01 2/2 → verde 2/2 («presidiato, ma il
+//   mediatore qui non basta», D-173); C39-02 e25 0 → 2 steward impegnati (rosso __NO_C116R01); C38-03 voci
+//   contraddette 366/4051 → 0/2745, tabelle precalcolate (verbale 498 ms → 0,021 ms in mediana; pacchetto +63 kB);
+//   C38-04 episodi con correlazione fiducia/fallita ≥ 0: 6 → 0, fallite del casuale identiche 36/36; protagonisti
+//   nella seconda bozza PO-119 (la quarta, approvata con D-176, arriva in un rilascio successivo).
+//   guardiano: tests/fiducia-verso.test.ts (per episodio, rosso __NO_C16001), tests/confronto.test.ts (freschezza
+//   delle tabelle), tests/c39-dati.test.ts, rossi __NO_C38B01, __NO_C39R07, C114P01, guardiano foto-po119.
+//
+// 0.41.0 – protagonisti della quarta prova nel gioco, correzioni del collaudo C-040, terza stella ricalibrata.
+//   causa: PO-119/PO-133/PO-135 (protagonista femminile poco riconoscibile, braccia incollate al busto: quarta prova
+//   approvata con D-176); PO-136 braccio mancante nella mano alla nuca (C117B01); PO-137 spigoli delle braccia (D-178);
+//   C40-01 il confronto smentiva la partita giocata; C40-02 fiducia in salita nelle partite fallite; C40-03 «le tue
+//   risposte» ripetuto; C40-04 mediatore con unità impegnate senza spiegazione; C40-05 busta consegnata detta «chiusa».
+//   misura: D-180 episodi con Δ fiducia media > 0 nelle fallite 13 → 0, voci del confronto contraddette 598 → 0;
+//   D-181 terza stella con fiducia ≥ 8 in e02/e10/e18/e26/e33 (episodi con 3★ alla strategia attenta 19 → 17);
+//   quarta prova in ogni vignetta (guardiano persona-ovunque); governo+logica 3/3 verdi sulle consegne (D-177).
+//   guardiano: tests/persona-ovunque.test.ts, tests/braccia.test.ts (rosso C117B01), guardiano degli spigoli (rosso
+//   C118S01), foto-po119, tests/fiducia-verso.test.ts per episodio, rossi C119R01 e C120U01 (C40-03/04).
+//
+// 0.42.0 – correzioni del collaudo C-041 (bilancio del verbale, costo delle unità, testi dello schieramento).
+//   causa: C41-01 «Cosa ti ha penalizzato» con risposte su settori rimasti sotto controllo e la risposta decisiva
+//   esclusa dal limite di 3; C41-02 «Cosa ti ha aiutato» con risposte senza effetti e righe vuote «Ondata N ·»;
+//   C41-03 risposte con costo in unità offerte con tutte le unità schierate (D-183: si dichiara il costo, l'equilibrio
+//   non cambia); C41-04 testi che smentivano lo schieramento.
+//   misura: su 828 partite pesi su settori sotto controllo 222 → 0, righe vuote 199 → 0, pesi decisivi esclusi 37 → 0,
+//   voci contraddette 0/2114; risposte con costo che dicono «dalla prossima ondata» 0/230 → 230/230; testi che
+//   smentiscono lo schieramento nei 5 casi del collaudo 5 → 0.
+//   guardiano: tests/confronto.test.ts (rossi __NO_C41B01, __NO_C41B02), tests/costo-quando.test.ts (rossi C183Q01,
+//   C183P01), tests/testi-schieramento.test.ts (rosso C41T01).
+// 0.43.0 – home rinnovata, correzioni del collaudo C-042 e C41-05…08, rifinitura dei testi di tutti i 36 episodi.
+//   causa: PO-140 fase 1 (home, D-179); C-042 (aiuti su settori scoperti, «dalla prossima ondata» all'ultima ondata,
+//   testi sullo schieramento cercati per chiave e non per formula); C41-05…08 (verbale fallito senza spazio, D-185);
+//   schede di rifinitura e10–e36 (D-186, D-189: costi promessi applicati, patti −1, doppioni tolti, testi che
+//   smentivano le scelte resi neutri; D-190: dove tocca D-160 si correggono i testi, non la fiducia).
+//   misura: scorrimento a 360 px (S-12 su 0.42.0 → ora) home 122 → 0, sala 538 → 0, briefing 817 → 0, verbale
+//   1395 → 0; formule di schieramento su tutti i testi → 0; 28/28 risposte con costo all'ultima ondata dicono
+//   «fino a fine serata»; vitest 375/375.
+//   guardiano: tests/testi-schieramento.test.ts (rossi C41T01, C42T01), tests/costo-quando.test.ts (rosso C42U01),
+//   tests/coerenza-d153.test.ts (testi neutri D-189), guardiani di altezza della catena grafica in CI.
+// 0.44.0 – imprevisti senza timer su tutti i 36 episodi, correzioni del collaudo C-043, schermi bassi, «Annulla» a 3 s.
+//   causa: PO-022 (D-190, D-194, D-195: un imprevisto per ondata da risolvere subito, senza conto alla rovescia);
+//   C-043 (D-196, D-197: tavola «carte» e riga della pista della cattura nell'epilogo, testi neutri sullo schieramento,
+//   prima stella nel verbale fallito, «il comando approva» senza fiducia, «Chiudi un occhio» −2 pressione +1 tensione,
+//   virgolette annidate, e13 e e36 coerenti con i dati); PO-052/058 (D-187, D-191, D-193, D-197: mappa solo se entra
+//   nel rapporto, blocco unico nella risposta con mappa piena, città compatta, «Fine stagione» e home senza scorrimento);
+//   PO-142 (D-198: «Annulla» da 5 a 3 s).
+//   misura: 142 imprevisti, 0 blocchi, 3★ del bot attento 17 → 17, perse del casuale per stagione +2 punti circa, margine
+//   D-162 fra stagione 1 e 2 da 0,38 a 1,52; testi «resta coperto/calmo» 44 → 0, citazioni annidate 74 → 0, «comando
+//   approva» senza fiducia 11 → 0; scorrimento a 360×760: «Fine stagione» 250 → 0 px, home con salvataggio 764 → 760;
+//   risposta a 360×640 116 px (mappa piena, D-197); vitest 393/393.
+//   guardiano: tests/imprevisti.test.ts (rossi S14I01, C190I01), tests/testi-c43.test.ts (rossi C4301P, C4305),
+//   tests/testi-schieramento.test.ts (formule C43-02), tools/sonda-altezze.mjs (rosso C197R01), tools/foto-epilogo.mjs
+//   (rosso C196V01), tools/foto-home.mjs (rosso C187C01), tools/foto-po121.mjs (rosso C198A01).
+// 0.45.0 – correzioni del collaudo C-044: imprevisti di e01–e06 col modello degli altri episodi, testi, schermi a 760.
+//   causa: C44-01 (e01–e06 tenevano unità impegnate e «lascia correre» con effetto, D-201; e02 D-202), C44-03/04/05/07
+//   (scadenze nel testo, settore sbagliato in e31, «il comando apprezza» senza fiducia, costi ripetuti), C44-08/09
+//   (risposta a 375/412×760 e città con 36 episodi che scorrevano).
+//   misura: unità impegnate dagli imprevisti 16 → 0, «lascia correre» con effetto 13 → 0, stelle dei bot invariate in
+//   e01–e06, D-180 su e02 −0,266, D-160 21 → 20 (soglia 30); costi di «lascia correre» ripetuti 43 → 0; risposta a
+//   412×760 24 → 0 px, a 360×640 116 → 68 px; città con 36 episodi 3 → 0 px; vitest 398/398.
+//   guardiano: modelloImprevisto (src/dati/imprevisti.ts, rosso C4401), rossi C4403, C4404, C4405, C4407,
+//   tools/sonda-altezze.mjs a 375/412×760 e città36 (rossi C201R01, C201C01).
+// 0.46.0 – correzioni del collaudo C-045: etichette degli imprevisti, guida, verbale, e36; rapporti senza scorrimento.
+//   causa: C45-01 (9 etichette di imprevisto che nominavano steward o mediatore senza impegnarli; il guardiano C37-05 non
+//   le vedeva), C45-02 (la guida parlava di transenne, che esistono solo in e03), C45-03 (nel verbale una scelta che alza la
+//   pressione compariva fra gli aiuti senza spiegazione: dicitura «con le altre risposte andava peggio» quando tutti gli
+//   effetti vanno contro, D-205), C45-04 (e36: l'imprevisto della cassa ripeteva «musica spenta»), C45-06 (rapporti senza
+//   mappa che scorrevano fino a 34 px a 360×760).
+//   misura: etichette smentite 9 → 0; dicitura in 4.775 voci su 36.108 verbali, 0 senza; rapporti costruiti a 360×760 che
+//   scorrono 7 → 0 su 740; vitest 407/407.
+//   guardiano: tests/c45.test.ts (rossi C4501, C4502, C4503, C4504), C37-05 esteso agli imprevisti, tools/sonda-altezze.mjs
+//   con i 7 rapporti costruiti (rosso C203R01).
+// 0.47.0 – home fase 2, imprevisti più bassi, rifinitura e01–e03, correzioni del collaudo C-046, build AAB.
+//   causa: PO-140 fase 2 (D-208/D-210: la striscia coi personaggi prende il posto della testata della città, vignetta al
+//   primo passo della guida); C45-05 (chiamate d'imprevisto alte fino a 545 px a 360×760: via vignetta e riga, D-206/D-207);
+//   PO-035 (rifinitura e01–e03, D-209); C46-01/02/05 (testi di e36 ed e05), e22/e27 (mezzo ripetuto nelle etichette);
+//   mediana degli imprevisti salita a 286 con le etichette neutre (D-215); PO-144 (AAB di rilascio, D-212/D-214).
+//   misura: imprevisti a 360×760 massimo 545 → 331, mediana 466 → 278 (soglie 339/285); città senza scorrimento a
+//   360/375/412×760, con 36 episodi compresi; CI «catene» 10/10 job (con «aab», versionCode 47000).
+//   guardiano: rossi C206I01, C210C01, C210G01, C215L01; tests/d211.test.ts (D211-01/02/05/06); job CI «aab».
+// 0.48.0 – correzioni del collaudo C-047 e privacy policy per il Play Store.
+//   causa: C47-01 (in e36 il vice parlava di «tre interim, tre buste» mentre e01, e34 e la guida fanno del protagonista il
+//   quarto), C47-02 (il riepilogo dello schieramento scorreva a 360/375/412×760: margini di .azioni .pulsante), C47-03 (le
+//   stelle coprivano i dischi degli altri episodi sulla città con 36 episodi); PO-145 (il Play Store chiede la privacy
+//   policy dentro l'app e su un URL pubblico, D-217; contatto korward.devteam (chiocciola) gmail.com, D-220 e D-222).
+//   misura: riepilogo e36/e22 19/11 → 0 px; stelle sui dischi altrui 1460 → 0 px² a 360 (282/270 → 0 a 375/412);
+//   richieste di rete esterne in una partita e01–e03: 0 su 3152 (Chromium); home a 0 px di scorrimento a 360/375/412×760.
+//   guardiano: rossi C218R01, C218S01; parte «riepilogo» di tools/sonda-altezze.mjs; C17-12 esteso a stelle e stagione 3;
+//   C145H01, C145T01, C145W01 e segnaposto del contatto (tools/aab.mjs, tests/privacy.test.ts).
+//   Inoltre D-219 (nel riepilogo di e36 il tasto «Home» copriva un nome: 56 → 0 px², rosso C219H01) e D-221 (riepilogo che
+//   scorreva sotto i 760 px: 360×640 115 → 0 px, 375×667 88 → 0, rosso C221R01; scorrimento bloccante a ogni altezza).
+export const GAME_VERSION = '0.48.0';

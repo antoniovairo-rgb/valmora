@@ -421,10 +421,6 @@
               "costo": "testi:e04.op.respingi_falsi.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "piazzale",
                   "valore": 2
                 }

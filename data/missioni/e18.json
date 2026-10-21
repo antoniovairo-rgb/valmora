@@ -265,10 +265,6 @@
               "costo": "testi:e18.op.concedi18.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "curva_ospiti",
                   "valore": 2
                 }
@@ -434,10 +430,6 @@
               "testo": "testi:e18.op.lascia_verdi18",
               "costo": "testi:e18.op.lascia_verdi18.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "curva_ospiti",
                   "valore": 2
@@ -769,10 +761,6 @@
                 {
                   "tensione": "curva_larkspire",
                   "valore": 1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e18.op.separa18.r"
@@ -782,10 +770,6 @@
               "testo": "testi:e18.op.insieme18",
               "costo": "testi:e18.op.insieme18.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "strada_larkspire",
                   "valore": 2
@@ -806,10 +790,6 @@
               "testo": "testi:e18.op.conferma18",
               "costo": "testi:e18.op.conferma18.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "retro_tribuna",
                   "valore": 2
@@ -894,6 +874,36 @@
       "stelle_max": 2
     },
     {
+      "id": "degenerato_protetto",
+      "se": {},
+      "dopo": {
+        "gia": [
+          "con_o_senza/auto_scorta"
+        ],
+        "mai": [
+          "qualcuno_ha_parlato/conferma18"
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e18.verbale_degenerato_protetto",
+      "fallita": true
+    },
+    {
+      "id": "degenerato_protetto_comando",
+      "se": {},
+      "dopo": {
+        "gia": [
+          "con_o_senza_comando/auto_scorta"
+        ],
+        "mai": [
+          "qualcuno_ha_parlato/conferma18"
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e18.verbale_degenerato_protetto",
+      "fallita": true
+    },
+    {
       "id": "degenerato",
       "se": {},
       "effetti": [],
@@ -914,7 +924,7 @@
         },
         {
           "var": "credito",
-          "almeno": 7
+          "almeno": 8
         }
       ]
     }

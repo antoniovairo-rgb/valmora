@@ -204,12 +204,12 @@
               "costo": "testi:e24.op.chiudi_occhio24.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
-                {
                   "pressione": "tornelli",
                   "valore": -2
+                },
+                {
+                  "tensione": "tornelli",
+                  "valore": 1
                 }
               ],
               "risposta": "testi:e24.op.chiudi_occhio24.r"
@@ -294,7 +294,7 @@
         },
         {
           "id": "festa_presidente",
-          "fonte": "vice",
+          "fonte": "ufficio_sicurezza_larkspire",
           "testo": "testi:e24.ch.festa_presidente",
           "commento": "testi:e24.ch.festa_presidente.vice",
           "settore": "piazza_municipio",
@@ -886,6 +886,29 @@
   ],
   "esiti": [
     {
+      "id": "contenuto_consegnata",
+      "se": {
+        "tutte": [
+          {
+            "var": "tensione_max",
+            "al_massimo": 3
+          },
+          {
+            "var": "credito",
+            "almeno": 3
+          }
+        ]
+      },
+      "dopo": {
+        "gia": [
+          "consegna/consegna_chiusa"
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e24.verbale_contenuto_consegnata",
+      "stelle_min": 2
+    },
+    {
       "id": "contenuto",
       "se": {
         "tutte": [
@@ -904,6 +927,21 @@
       "stelle_min": 2
     },
     {
+      "id": "contenuto_a_fatica_consegnata",
+      "se": {
+        "var": "tensione_max",
+        "al_massimo": 6
+      },
+      "dopo": {
+        "gia": [
+          "consegna/consegna_chiusa"
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e24.verbale_a_fatica_consegnata",
+      "stelle_max": 2
+    },
+    {
       "id": "contenuto_a_fatica",
       "se": {
         "var": "tensione_max",
@@ -912,6 +950,18 @@
       "effetti": [],
       "verbale": "testi:e24.verbale_a_fatica",
       "stelle_max": 2
+    },
+    {
+      "id": "degenerato_consegnata",
+      "se": {},
+      "dopo": {
+        "gia": [
+          "consegna/consegna_chiusa"
+        ]
+      },
+      "effetti": [],
+      "verbale": "testi:e24.verbale_degenerato_consegnata",
+      "fallita": true
     },
     {
       "id": "degenerato",

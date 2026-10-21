@@ -18,6 +18,7 @@ import type { PuntoMappa } from './StratoPixi.tsx';
 import { webglDisponibile } from './webgl.ts';
 import { follaDellOndata } from './folla.ts';
 import { parolaSegno, simboloSegno, type Segno } from './segni.ts';
+import { useAdatta } from './adatta.ts';
 
 // PixiJS pesa: si carica a parte, dopo il titolo, e solo se WebGL c'è.
 const StratoPixi = lazy(() => import('./StratoPixi.tsx').then((x) => ({ default: x.StratoPixi })));
@@ -47,6 +48,8 @@ export interface MappaProps {
   onTogli?: (risorsa: string, settore: string) => void;
   /** D-165 (fischio dell'ultimo derby): settori già spenti, città vuota (niente folla né cortei), sala al buio */
   spenti?: string[]; vuota?: boolean; buio?: boolean;
+  /** D-191: il rapporto nasconde la mappa che non ci sta; App mette «Home» nella testata */
+  nascosta?: (si: boolean) => void;
 }
 
 /** Posizione del settore in percentuale, passata al CSS come variabili (niente stili in linea). */
@@ -87,6 +90,7 @@ export function Mappa(p: MappaProps) {
   // Nomi e unità al posto che non copre niente (C-008): a ogni disegno, quando la mappa cambia misura e
   // quando arrivano i caratteri.
   useLayoutEffect(() => { if (contenitore.current) disponi(contenitore.current); });
+  useAdatta(contenitore, disponi, p.nascosta); // D-187, D-191
   useLayoutEffect(() => {
     const el = contenitore.current;
     if (!el) return;

@@ -1,0 +1,209 @@
+{
+  "id": "e33",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_bus_panne",
+        "fonte": "centrale_radio",
+        "testo": "testi:e33.imp.bus_panne",
+        "commento": "testi:e33.imp.bus_panne.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "traffico",
+            "testo": "testi:e33.imp.bus_panne.traffico",
+            "costo": "testi:e33.imp.bus_panne.traffico.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.bus_panne.traffico.r"
+          },
+          {
+            "id": "una_corsia",
+            "testo": "testi:e33.imp.bus_panne.una_corsia",
+            "costo": "testi:e33.imp.bus_panne.una_corsia.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.bus_panne.una_corsia.r"
+          },
+          {
+            "id": "carro",
+            "testo": "testi:e33.imp.bus_panne.carro",
+            "costo": "testi:e33.imp.bus_panne.carro.c",
+            "effetti": [],
+            "risposta": "testi:e33.imp.bus_panne.carro.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_tamburo_ospiti",
+        "fonte": "club_mossgarth",
+        "testo": "testi:e33.imp.tamburo_ospiti",
+        "commento": "testi:e33.imp.tamburo_ospiti.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "riporta",
+            "testo": "testi:e33.imp.tamburo_ospiti.riporta",
+            "costo": "testi:e33.imp.tamburo_ospiti.riporta.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.tamburo_ospiti.riporta.r"
+          },
+          {
+            "id": "promessa",
+            "testo": "testi:e33.imp.tamburo_ospiti.promessa",
+            "costo": "testi:e33.imp.tamburo_ospiti.promessa.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.tamburo_ospiti.promessa.r"
+          },
+          {
+            "id": "niente_tamburo",
+            "testo": "testi:e33.imp.tamburo_ospiti.niente_tamburo",
+            "costo": "testi:e33.imp.tamburo_ospiti.niente_tamburo.c",
+            "effetti": [],
+            "risposta": "testi:e33.imp.tamburo_ospiti.niente_tamburo.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pallone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e33.imp.pallone",
+        "commento": "testi:e33.imp.pallone.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "tratta",
+            "testo": "testi:e33.imp.pallone.tratta",
+            "costo": "testi:e33.imp.pallone.tratta.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": 1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.pallone.tratta.r"
+          },
+          {
+            "id": "nuovo",
+            "testo": "testi:e33.imp.pallone.nuovo",
+            "costo": "testi:e33.imp.pallone.nuovo.c",
+            "effetti": [
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.pallone.nuovo.r"
+          },
+          {
+            "id": "se_lo_tengano",
+            "testo": "testi:e33.imp.pallone.se_lo_tengano",
+            "costo": "testi:e33.imp.pallone.se_lo_tengano.c",
+            "effetti": [],
+            "risposta": "testi:e33.imp.pallone.se_lo_tengano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_sottopasso",
+        "fonte": "centrale_radio",
+        "testo": "testi:e33.imp.sottopasso",
+        "commento": "testi:e33.imp.sottopasso.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "servizio",
+            "testo": "testi:e33.imp.sottopasso.servizio",
+            "costo": "testi:e33.imp.sottopasso.servizio.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.sottopasso.servizio.r"
+          },
+          {
+            "id": "scalini",
+            "testo": "testi:e33.imp.sottopasso.scalini",
+            "costo": "testi:e33.imp.sottopasso.scalini.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.sottopasso.scalini.r"
+          },
+          {
+            "id": "acqua_cala",
+            "testo": "testi:e33.imp.sottopasso.acqua_cala",
+            "costo": "testi:e33.imp.sottopasso.acqua_cala.c",
+            "effetti": [],
+            "risposta": "testi:e33.imp.sottopasso.acqua_cala.r"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -430,10 +430,6 @@
               "costo": "testi:e21.op.lascia_ospiti21.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "quartiere",
                   "valore": 2
                 }
@@ -522,10 +518,6 @@
               "costo": "testi:e21.op.chiudi_anello.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "piazza_fonderie",
                   "valore": 2
                 }
@@ -601,7 +593,7 @@
         },
         {
           "id": "curva_debole",
-          "fonte": "qualcuno_in_comune",
+          "fonte": "centro_sociale",
           "testo": "testi:e21.ch.curva_debole",
           "commento": "testi:e21.ch.curva_debole.vice",
           "settore": "ex_fonderia",
@@ -686,10 +678,6 @@
               "testo": "testi:e21.op.insieme21",
               "costo": "testi:e21.op.insieme21.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "ex_fonderia",
                   "valore": 2

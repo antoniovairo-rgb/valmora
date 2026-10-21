@@ -38,6 +38,9 @@ export async function controllaVoloRisposta(pagina, atteso, c, op, dove) {
  *  https://www.w3.org/TR/WCAG21/#non-text-contrast), senza coprire il testo. Rosso VALMORA_ROSSI=C54C01. */
 export async function controllaChiIcona(pagina, atteso, c, dove) {
   if (c.fonte === 'vice') return;
+  // D-206: l'imprevisto non ha vignetta, chi chiama si riconosce dall'avatar del mittente (stessa icona, C22-09)
+  if (c.imprevisto && !(await pagina.locator('.chiamata-corpo svg.vignetta').count())) {
+    atteso(`${dove}: l'imprevisto senza l'icona di chi chiama nell'avatar del mittente (D-206, C22-09)`, (await pagina.locator('[data-messaggio^="chiamata-"] .chi :is(.avatar, .figura-fonte) svg').count()) > 0); return; }
   // C25-04: si misura il glifo DISEGNATO (unione dei tracciati più il tratto), non il riquadro dell'svg; il contrasto del
   // contorno contro il fondo vero del fumetto; la sovrapposizione contro tutti i testi del messaggio.
   const x = await pagina.evaluate(() => {

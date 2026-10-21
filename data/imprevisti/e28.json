@@ -1,0 +1,205 @@
+{
+  "id": "e28",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_doppia_fila",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.doppia_fila",
+        "commento": "testi:e28.imp.doppia_fila.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "sposta_auto",
+            "testo": "testi:e28.imp.doppia_fila.sposta_auto",
+            "costo": "testi:e28.imp.doppia_fila.sposta_auto.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.doppia_fila.sposta_auto.r"
+          },
+          {
+            "id": "spinta",
+            "testo": "testi:e28.imp.doppia_fila.spinta",
+            "costo": "testi:e28.imp.doppia_fila.spinta.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.doppia_fila.spinta.r"
+          },
+          {
+            "id": "clacson",
+            "testo": "testi:e28.imp.doppia_fila.clacson",
+            "costo": "testi:e28.imp.doppia_fila.clacson.c",
+            "effetti": [],
+            "risposta": "testi:e28.imp.doppia_fila.clacson.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_cane",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.cane",
+        "commento": "testi:e28.imp.cane.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "panino",
+            "testo": "testi:e28.imp.cane.panino",
+            "costo": "testi:e28.imp.cane.panino.c",
+            "effetti": [
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.cane.panino.r"
+          },
+          {
+            "id": "cerchio",
+            "testo": "testi:e28.imp.cane.cerchio",
+            "costo": "testi:e28.imp.cane.cerchio.c",
+            "effetti": [
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.cane.cerchio.r"
+          },
+          {
+            "id": "si_stanchera",
+            "testo": "testi:e28.imp.cane.si_stanchera",
+            "costo": "testi:e28.imp.cane.si_stanchera.c",
+            "effetti": [],
+            "risposta": "testi:e28.imp.cane.si_stanchera.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tabellone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.tabellone",
+        "commento": "testi:e28.imp.tabellone.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "cronometro",
+            "testo": "testi:e28.imp.tabellone.cronometro",
+            "costo": "testi:e28.imp.tabellone.cronometro.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.tabellone.cronometro.r"
+          },
+          {
+            "id": "lavagna",
+            "testo": "testi:e28.imp.tabellone.lavagna",
+            "costo": "testi:e28.imp.tabellone.lavagna.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.tabellone.lavagna.r"
+          },
+          {
+            "id": "tecnico",
+            "testo": "testi:e28.imp.tabellone.tecnico",
+            "costo": "testi:e28.imp.tabellone.tecnico.c",
+            "effetti": [],
+            "risposta": "testi:e28.imp.tabellone.tecnico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_lampione",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e28.imp.lampione",
+        "commento": "testi:e28.imp.lampione.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "apri_corsia",
+            "testo": "testi:e28.imp.lampione.apri_corsia",
+            "costo": "testi:e28.imp.lampione.apri_corsia.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.lampione.apri_corsia.r"
+          },
+          {
+            "id": "alternato",
+            "testo": "testi:e28.imp.lampione.alternato",
+            "costo": "testi:e28.imp.lampione.alternato.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.lampione.alternato.r"
+          },
+          {
+            "id": "comune",
+            "testo": "testi:e28.imp.lampione.comune",
+            "costo": "testi:e28.imp.lampione.comune.c",
+            "effetti": [],
+            "risposta": "testi:e28.imp.lampione.comune.r"
+          }
+        ]
+      }
+    }
+  ]
+}

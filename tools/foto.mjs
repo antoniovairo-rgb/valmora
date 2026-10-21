@@ -8,7 +8,7 @@ import { join, extname } from 'node:path';
 import { chromium } from 'playwright-core';
 import { leggiDati } from './dati-disco.mjs';
 import { apriTutte } from './foto-bozze.mjs';
-import { controllaSchieramenti, copertiDallaBarra } from './foto-schieramenti.mjs';
+import { copertiDallaBarra } from './foto-schieramenti.mjs';
 import { controllaBilancio, controllaVerbaleAvanti, controllaVerbaleBasso, provaProssimo } from './foto-verbale.mjs';
 import { avanzaFino, clubDai, confermaSchieramento, controllaArchivio, controllaGuida, controllaHome, controllaIndietro, controllaRende, controllaRidisegno, controllaRipartiTesto, controllaVignetta, controllaRipartenza, controllaTripla, controllaAltezza, controllaCifreTensione, controllaFiducia, controllaCurve, controllaFolla, controllaPicco, controllaSfida } from './foto-club.mjs'; import { controllaLampeggio, controllaDinamica, controllaVoloRisposta, controllaChiIcona } from './foto-chiamata.mjs'; import { controllaSalvataggiPersi, controllaNomiSala } from './foto-c15.mjs'; import { controllaContrasto, controllaRiquadri } from './foto-contrasto.mjs'; import { statoCitta } from './foto-c128.mjs'; import { controllaBozzaRicarica, controllaRiempi, controllaRispondi, controllaRigaAiuto, controllaVersione, controllaFiduciaRapporto, controllaSfidaBusti, controllaSegni, controllaIconeEffetti, controllaColoriCortei, statoSalvato, controllaVignettaEvento, controllaRitiroSingolo } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
@@ -98,7 +98,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
       // Braccio rosso: VALMORA_ROSSI=C05R01,C05R02,… accende gli interruttori rossi della resa (globalThis.__NO_X).
       const rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean);
       if (rossi.length) await pagina.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-      pagina.on('console', (m) => { if (m.type() === 'error') g.errori.push(m.text()); });
+      pagina.on('console', (m) => { if (m.type() === 'error') g.errori.push(m.text()); }); // D-202: gli schieramenti sono un passo a sé della catena (passi-grafica.mjs)
       pagina.on('pageerror', (e) => g.errori.push(e.message));
       try {
         let k = 0;
@@ -120,7 +120,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
               const fs = parseFloat(getComputedStyle(el).fontSize);
               if (fs < 12 && el.getClientRects().length) p.push(`«${el.textContent.trim().slice(0, 30)}» a ${fs}px`);
             }
-            const mappa = document.querySelector('.mappa')?.getBoundingClientRect();
+            const mappa = document.querySelector('.mappa:not([data-nascosta])')?.getBoundingClientRect(); // D-191: il rapporto può non mostrarla
             if (mappa) for (const n of document.querySelectorAll('.settore-nome')) {
               const r = n.getBoundingClientRect();
               if (r.left < mappa.left + 5 || r.right > mappa.right - 5 || r.bottom > mappa.bottom - 5 || r.top < mappa.top + 5) p.push(`nome «${n.textContent}» tocca il bordo della mappa`);
@@ -189,7 +189,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso(`home: versione «${versione}» invece di «${GAME_VERSION}»`, versione === GAME_VERSION);
         atteso(`home: build non valida in «${riga}»`, /build \S+/.test(riga) && !/build sviluppo/.test(riga));
         await foto();
-        await premi('[data-azione="crediti"]'); await scena('crediti'); await foto();
+        const fh = await import('./foto-home.mjs'); await fh.controllaHomeA(browser, url, cartella, atteso, rossi, larghezza); await fh.apriAltro(pagina); await premi('[data-azione="crediti"]'); await scena('crediti'); await foto(); // PO-140
         await pagina.getByRole('button', { name: 'Torna al titolo' }).click(); await scena('titolo');
         // Genere (D-063): a 375 px la protagonista è donna, alle altre larghezze uomo.
         const genere = larghezza === 375 ? 'f' : 'm';
@@ -379,7 +379,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         atteso('«Nuova partita» con una partita salvata non chiede conferma (C-005 R02)', chiede);
         if (chiede) { await foto(); await controllaTripla(pagina, atteso, '«Nuova partita»', foto); await premi('[data-azione="annulla-nuova"]'); await scena('titolo'); }
         atteso('«No, tieni la partita» ha cambiato il salvataggio', (await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'))) === prima);
-        if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); await controllaSalvataggiPersi(pagina, { atteso, scena }); await controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }); await controllaIndietro(pagina, { atteso, scena }); await controllaSchieramenti(browser, url, dirDati, cartella, atteso, rossi); await (await import('./foto-po121.mjs')).controllaAnnulla(browser, url, dirDati, cartella, atteso, rossi); await (await import('./foto-c33.mjs')).controllaTono(browser, url, dirDati, cartella, atteso, rossi); await controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori, cartella }); } // S-09
+        if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); await controllaSalvataggiPersi(pagina, { atteso, scena }); await controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }); await controllaIndietro(pagina, { atteso, scena }); await (await import('./foto-po121.mjs')).controllaAnnulla(browser, url, dirDati, cartella, atteso, rossi); await (await import('./foto-c33.mjs')).controllaTono(browser, url, dirDati, cartella, atteso, rossi); await controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori, cartella }); } // S-09
       } catch (e) { atteso(`giro interrotto: ${e.message.split('\n')[0]}`, false); }
       await pagina.close();
       giri.push(g);

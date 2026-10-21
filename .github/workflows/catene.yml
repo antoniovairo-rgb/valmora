@@ -47,16 +47,26 @@ jobs:
       - run: node tools/catena.mjs logica
   # PO-128: una larghezza per job, in parallelo. Stessa copertura (le larghezze sono giri indipendenti di tools/foto.mjs),
   # tempo del job circa un terzo: misura del 17/10, foto 3 larghezze = ~28 min per tentativo su un solo job.
+  # D-202: la 360 ha in più apriTutte, ripartenze e i bracci rossi (41 min su un job): si divide in tre job con
+  # VALMORA_PASSI (stessi passi, stessi controlli, ognuno su un runner). Il runner è limitato dalla CPU (Chrome disegna
+  # le mappe WebGL in software): più pagine sullo stesso job rendono poco, più job sì.
   grafica:
+    name: grafica (${{ matrix.larghezza }}${{ matrix.parte && format(' {0}', matrix.parte) || '' }})
     needs: cambi
     if: needs.cambi.outputs.gioco != 'false'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        larghezza: [360, 375, 412]
+        include:
+          - { larghezza: 360, parte: foto, passi: 'token,build,email,foto' }
+          - { larghezza: 360, parte: schieramenti, passi: 'build,schieramenti,offline,altezze' }
+          - { larghezza: 360, parte: bracci, passi: 'build,bracci-rossi-grafica' }
+          - { larghezza: 375 }
+          - { larghezza: 412 }
     env:
       VALMORA_LARGHEZZE: ${{ matrix.larghezza }}
+      VALMORA_PASSI: ${{ matrix.passi }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -69,7 +79,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: foto-${{ matrix.larghezza }}
+          name: foto-${{ matrix.larghezza }}${{ matrix.parte && format('-{0}', matrix.parte) || '' }}
           path: out/foto
   apk:
     needs: cambi
@@ -105,3 +115,35 @@ jobs:
           gh release view apk-debug >/dev/null 2>&1 || gh release create apk-debug --prerelease --title "APK di prova (debug)" --notes "APK di debug, ricostruito a ogni pubblicazione su main. Non è la versione per il Play Store."
           gh release upload apk-debug valmora-debug.apk --clobber
           gh release edit apk-debug --notes "APK di debug costruito da main ${GITHUB_SHA::7}. Non è la versione per il Play Store."
+  # D-212/D-214 (PO-144): AAB di rilascio. Job separato: non tocca gli altri 9 e gira sempre. Nessun segreto e nessuna
+  # firma: l'AAB esce NON firmato e serve solo a controllare che la build riesca (il PO firma in locale con Android Studio).
+  aab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - run: npm ci
+      - run: npx vite build
+      - run: npx cap sync android
+      - run: ./gradlew bundleRelease --no-daemon
+        working-directory: android
+      - name: controllo dell'AAB (tools/aab.mjs)
+        # PO-145 (D-217): su main (rilascio) il contatto della privacy policy non può essere il segnaposto
+        env:
+          VALMORA_RILASCIO: ${{ github.ref == 'refs/heads/main' && '1' || '0' }}
+        run: |
+          set -o pipefail
+          curl -sSfL -o "$RUNNER_TEMP/bundletool.jar" https://github.com/google/bundletool/releases/download/1.18.1/bundletool-all-1.18.1.jar
+          node tools/aab.mjs android/app/build/outputs/bundle/release/app-release.aab "$RUNNER_TEMP/bundletool.jar"
+          if unzip -Z1 android/app/build/outputs/bundle/release/app-release.aab | grep -qE '^META-INF/[^/]+\.(RSA|EC|DSA)$'; then echo "AAB FIRMATO"; else echo "::warning::AAB NON FIRMATO (atteso, D-214): serve solo a controllare la build"; fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: valmora-release-aab-non-firmato
+          path: android/app/build/outputs/bundle/release/app-release.aab

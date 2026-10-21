@@ -174,10 +174,6 @@
               "costo": "testi:e15.op.lasciali15.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "viale_stazione",
                   "valore": 2
                 }
@@ -210,10 +206,6 @@
               "testo": "testi:e15.op.striscione_no",
               "costo": "testi:e15.op.striscione_no.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "viale_stazione",
                   "valore": 2
@@ -289,7 +281,12 @@
               "id": "lascia_borsa",
               "testo": "testi:e15.op.lascia_borsa",
               "costo": "testi:e15.op.lascia_borsa.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "settore_gemellati",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e15.op.lascia_borsa.r"
             }
           ]
@@ -349,10 +346,6 @@
               "costo": "testi:e15.op.due_cortei.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "tensione": "viale_stazione",
                   "valore": 2
                 }
@@ -404,10 +397,6 @@
               "testo": "testi:e15.op.fuori15",
               "costo": "testi:e15.op.fuori15.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "settore_gemellati",
                   "valore": 2
@@ -595,7 +584,12 @@
               "id": "guarda_partita",
               "testo": "testi:e15.op.guarda_partita",
               "costo": "testi:e15.op.guarda_partita.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "curva_cinderwick",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e15.op.guarda_partita.r"
             }
           ]
@@ -677,10 +671,6 @@
                 {
                   "tensione": "curva_ospiti",
                   "valore": 2
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
                 }
               ],
               "risposta": "testi:e15.op.trattieni_rovers.r"
@@ -726,7 +716,12 @@
               "id": "lascia15",
               "testo": "testi:e15.op.lascia15",
               "costo": "testi:e15.op.lascia15.c",
-              "effetti": [],
+              "effetti": [
+                {
+                  "pressione": "stazione",
+                  "valore": 1
+                }
+              ],
               "risposta": "testi:e15.op.lascia15.r"
             }
           ]

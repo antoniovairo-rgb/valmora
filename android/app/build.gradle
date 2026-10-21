@@ -1,5 +1,19 @@
 apply plugin: 'com.android.application'
 
+// D-212 (PO-144): versione di rilascio derivata da GAME_VERSION in src/versione.ts.
+// Regola: versionCode = maggiore * 1000000 + minore * 1000 + correzione (ognuno 0-999), versionName = GAME_VERSION.
+// Cresce con la versione: 0.46.0 -> 46000, 0.47.0 -> 47000, 1.0.0 -> 1000000. Stessa regola in tools/aab.mjs.
+def versioneGioco = {
+    def testo = rootProject.file('../src/versione.ts').text
+    def m = testo =~ /export const GAME_VERSION = '(\d+)\.(\d+)\.(\d+)';/
+    if (!m.find()) throw new GradleException('GAME_VERSION non trovata in src/versione.ts')
+    def (maggiore, minore, correzione) = [m.group(1), m.group(2), m.group(3)].collect { it as int }
+    if ([minore, correzione].any { it > 999 }) throw new GradleException("GAME_VERSION ${m.group(0)}: minore e correzione devono stare in 0-999")
+    [codice: maggiore * 1000000 + minore * 1000 + correzione, nome: "${maggiore}.${minore}.${correzione}".toString()]
+}()
+// D-214: nessuna firma nel repository. Il PO firma in locale con Build > Generate Signed Bundle di Android Studio;
+// la CI produce l'AAB non firmato solo per controllare che la build riesca.
+
 android {
     namespace = "io.github.antoniovairo.valmora"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -21,6 +35,22 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+// D-212: la versione derivata vale solo per il rilascio; il debug (job «apk») resta versionCode 1 / "1.0" come prima.
+androidComponents {
+    onVariants(selector().withBuildType('release')) { variante ->
+        variante.outputs.each { uscita ->
+            uscita.versionCode.set(versioneGioco.codice)
+            uscita.versionName.set(versioneGioco.nome)
+        }
+    }
+}
+
+gradle.taskGraph.whenReady { grafo ->
+    if (grafo.allTasks.any { it.name in ['bundleRelease', 'assembleRelease'] }) {
+        logger.lifecycle("VALMORA rilascio: versionName ${versioneGioco.nome}, versionCode ${versioneGioco.codice}")
     }
 }
 

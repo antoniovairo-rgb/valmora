@@ -13,14 +13,14 @@ export async function controllaBozzaRicarica(pagina, atteso) {
   atteso(`schieramento: ${prima} unità messe e non confermate, dopo una ricarica ${dopo} (C17-16)`, dopo === prima);
 }
 
-/** C17-12: nella città i dischi degli episodi non si coprono e il nome dell'episodio scelto è in primo piano. */
+/** C17-12: nella città i dischi degli episodi non si coprono, né le stelle coprono i dischi degli altri (C47-03, D-218, rosso C218S01), e il nome dell'episodio scelto è in primo piano. */
 export async function controllaCitta(pagina, atteso, dove) {
-  const [dischi, sopra, copre] = await pagina.evaluate(() => {
+  const [dischi, sopra, copre, stelle] = await pagina.evaluate(() => {
     const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
     const d = [...document.querySelectorAll('[data-episodio] .settore-punto')].map((e) => e.getBoundingClientRect());
     let dd = 0; for (let i = 0; i < d.length; i++) for (let j = 0; j < i; j++) dd += a(d[i], d[j]);
-    const nm = document.querySelector('.episodio.acceso .settore-nome');
-    if (!nm) return [dd, true, 0];
+    const ep = [...document.querySelectorAll('[data-episodio]')], st = ep.reduce((x, e) => { const s = e.querySelector('.stelle')?.getBoundingClientRect(); return x + (s ? ep.filter((f) => f !== e).reduce((y, f) => y + a(s, f.querySelector('.settore-punto').getBoundingClientRect()), 0) : 0); }, 0);
+    const nm = document.querySelector('.episodio.acceso .settore-nome'); if (!nm) return [dd, true, 0, st];
     const prima = nm.style.pointerEvents; nm.style.pointerEvents = 'auto'; // .settore non riceve tocchi: per misurare sì
     const r = nm.getBoundingClientRect();
     const ok = [[0.2, 0.3], [0.5, 0.5], [0.8, 0.7]].every(([x, y]) => nm.contains(document.elementFromPoint(r.left + r.width * x, r.top + r.height * y)));
@@ -28,9 +28,9 @@ export async function controllaCitta(pagina, atteso, dove) {
     // C17-12 (C-018): il nome dell'episodio scelto non copre gli altri dischi
     const proprio = nm.closest('[data-episodio]').querySelector('.settore-punto');
     const copre = [...document.querySelectorAll('[data-episodio] .settore-punto')].filter((e) => e !== proprio).reduce((s, e) => s + a(r, e.getBoundingClientRect()), 0);
-    return [dd, ok, copre];
+    return [dd, ok, copre, st];
   });
-  atteso(`${dove}: dischi degli episodi sovrapposti per ${Math.round(dischi)} px² (C17-12)`, dischi === 0);
+  atteso(`${dove}: dischi degli episodi sovrapposti per ${Math.round(dischi)} px² (C17-12)`, dischi === 0); atteso(`${dove}: le stelle coprono dischi di altri episodi per ${Math.round(stelle)} px² (C17-12, C47-03)`, stelle === 0);
   atteso(`${dove}: il nome dell'episodio scelto è coperto da altri dischi (C17-12)`, sopra);
   atteso(`${dove}: il nome dell'episodio scelto copre altri dischi per ${Math.round(copre)} px² (C17-12)`, copre === 0);
 }
@@ -66,7 +66,7 @@ export async function controllaRiempi(pagina, atteso, nome) {
   // la finestra può essere appena tornata da 760 a 800 (controllaAltezza): si lascia arrivare l'evento «resize»
   await pagina.evaluate(() => new Promise((ok) => requestAnimationFrame(() => requestAnimationFrame(ok)))); await pagina.waitForTimeout(100);
   const r = await pagina.evaluate(() => {
-    const v = [...document.querySelectorAll('svg.vignetta')].find((x) => !x.closest('.chiamata-corpo, .figura-fonte') && x.getClientRects().length); // fisse per scelta: chiamata (PO-089 A) e fonte del briefing (D-118)
+    const v = [...document.querySelectorAll('svg.vignetta')].find((x) => !x.closest('.chiamata-corpo, .figura-fonte, [data-citta-striscia], [data-guida-testata]') && x.getClientRects().length); // fisse per scelta: chiamata (PO-089 A), fonte del briefing (D-118), striscia della città e testata della guida (D-210)
     if (!v) return null;
     const main = document.querySelector('main'), app = main.parentElement;
     const libero = innerHeight - (main.getBoundingClientRect().bottom + scrollY + parseFloat(getComputedStyle(main).marginBottom) + parseFloat(getComputedStyle(app).paddingBottom));
@@ -194,7 +194,8 @@ export async function controllaSegni(pagina, atteso, c, op, dove, prima) {
 /** PO-085: sotto ogni opzione, le icone d'effetto sono quelle dei dati (settore, fiducia, unità), senza numeri. */
 export async function controllaIconeEffetti(pagina, atteso, c, dove) {
   const c22 = await import('./foto-c22.mjs'); await c22.controllaIconePiccole(pagina, atteso, dove); await c22.controllaAvatarChi(pagina, atteso, dove); await c22.controllaIconePulsanti(pagina, atteso, dove); // C22-05, C22-09, C22-10
-  const viste = await pagina.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-opzione]')].map((b) =>
+  // le opzioni spente perché l'unità è finita (D-153) mostrano il motivo, non gli effetti: le controlla D-153 (data-esaurita)
+  const viste = await pagina.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-opzione]:not([data-esaurita])')].map((b) =>
     [b.dataset.opzione, [...b.querySelectorAll('[data-effetto]')].map((x) => x.dataset.effetto).sort().join(',') + (/\d/.test(b.querySelector('.effetti-opzione')?.textContent ?? '') ? ' CON NUMERI' : '')])));
   for (const [id, v] of Object.entries(viste)) {
     const o = c.opzioni.find((x) => x.id === id), k = new Set();
@@ -325,19 +326,19 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
 // C21-05/06: cerimonia, minaccia, lite e faida sono «gente» (i testi non parlano di colluttazione); scontro solo rissa
 const GRUPPI_EVENTO = { folla: 'gente', raduno: 'gente', assembramento: 'gente', movimento: 'gente', arrivo: 'gente', deflusso: 'gente', fuga: 'gente', cerimonia: 'gente', minaccia: 'gente', lite: 'gente', faida: 'gente', curva: 'tifo', festa: 'tifo', corteo: 'corteo', protesta: 'corteo', picchetto: 'corteo', presidio: 'corteo', furgone: 'veicoli', sosta: 'veicoli', traffico: 'veicoli', retata: 'veicoli', rissa: 'scontro', biglietti: 'biglietti', incendio: 'fumo' };
 export async function controllaVignettaEvento(pagina, ondata, c, atteso, dove) {
-  const visto = await pagina.getAttribute('.chiamata-corpo svg.vignetta', 'data-evento').catch(() => null);
-  if (visto === null) return;
+  const vv = pagina.locator('.chiamata-corpo svg.vignetta'), visto = (await vv.count()) ? await vv.first().getAttribute('data-evento') : null; // D-206: senza attesa se manca
+  if (visto === null && !c.imprevisto) return; // D-206: l'imprevisto non ha vignetta, ma spicchio e «Urgente!» (D-129) sì
   // C21-09: un evento con «se» conta solo se è vero con le variabili della partita (dal salvataggio)
   const variabili = (await statoSalvato(pagina))?.variabili ?? {};
   const gruppi = new Set((ondata.eventi ?? []).filter((e) => c.settore && e.settore === c.settore && (!e.se || valuta(e.se, variabili))).map((e) => GRUPPI_EVENTO[e.tipo]));
   const voluto = ['scontro', 'fumo', 'corteo', 'tifo', 'veicoli', 'biglietti', 'gente'].find((g) => gruppi.has(g)) ?? 'nessuno';
-  atteso(`${dove}: la vignetta mostra «${visto}», i dati dicono «${voluto}» (D-112 punto 5)`, visto === voluto);
+  if (visto !== null) atteso(`${dove}: la vignetta mostra «${visto}», i dati dicono «${voluto}» (D-112 punto 5)`, visto === voluto); else atteso(`${dove}: l'imprevisto «${c.id}» mostra una vignetta (D-206)`, !(await pagina.locator('.chiamata-corpo svg').count()));
   // D-129 (era D-126 c): spicchio e «Urgente!» solo se sul settore un evento in corso nell'ondata ha pressione ≥ 4.
   // Rossi VALMORA_ROSSI=C82U01 (D-126 c: un evento qualsiasi), C64U01 (urgenti tutte) e C51O01 (niente spicchio).
   const [spicchio, timbro] = await pagina.evaluate(() => { const m = document.querySelector('[data-messaggio^="chiamata-"]'); return [!!m?.querySelector('[data-urgenza]'), m?.querySelector('.timbro')?.textContent ?? '']; });
   const urge = (ondata.eventi ?? []).some((e) => c.settore && e.settore === c.settore && (!e.se || valuta(e.se, variabili)) && e.pressione >= 4);
   atteso(`${dove}: ${urge ? 'urgente' : 'non urgente'} per i dati, ma spicchio ${spicchio ? 'sì' : 'no'} e timbro «${timbro}» (D-129)`, spicchio === urge && (timbro === 'Urgente!') === urge); // D-129
-  // PO-103: le persone sono pallini piatti, niente omini con testa e braccia; i gruppi con gente ne mostrano.
+  if (visto === null) return; // D-206: senza vignetta (imprevisto) non ci sono figure da controllare. PO-103: le persone sono pallini piatti, niente omini con testa e braccia; i gruppi con gente ne mostrano.
   // Rosso VALMORA_ROSSI=C48P01: gli omini di prima.
   const [omini, pallini] = await pagina.evaluate(() => ['omino', 'pallino'].map((f) => document.querySelectorAll(`.chiamata-corpo svg.vignetta [data-figura="${f}"]`).length));
   const conGente = ['gente', 'tifo', 'corteo', 'biglietti'].includes(voluto);

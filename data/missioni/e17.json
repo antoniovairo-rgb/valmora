@@ -273,7 +273,7 @@
         },
         {
           "id": "steward_presidente",
-          "fonte": "vice",
+          "fonte": "ufficio_sicurezza_cinderwick",
           "testo": "testi:e17.ch.steward_presidente",
           "commento": "testi:e17.ch.steward_presidente.vice",
           "settore": "tornelli",
@@ -365,10 +365,6 @@
               "testo": "testi:e17.op.apri_recinto",
               "costo": "testi:e17.op.apri_recinto.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
-                },
                 {
                   "pressione": "tornelli",
                   "valore": -3
@@ -526,10 +522,6 @@
               "testo": "testi:e17.op.festa17",
               "costo": "testi:e17.op.festa17.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "piazzale",
                   "valore": 2

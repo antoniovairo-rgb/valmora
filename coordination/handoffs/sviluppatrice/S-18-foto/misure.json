@@ -1,0 +1,335 @@
+{
+ "atteso": {
+  "esito": "contenuto_a_fatica",
+  "aiuti": [
+   "fumogeni_ospiti:steward_fumo",
+   "tornelli_falsi:respingi (dicitura)",
+   "corteo_viale:corteo_scortato"
+  ],
+  "pesi": [
+   "imp_binario:sottopasso",
+   "responsabile:fidati",
+   "vetrine:indaga (dicitura)"
+  ]
+ },
+ "misure": [
+  {
+   "rosso": false,
+   "vp": "360x760",
+   "passo": 0,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": false,
+   "vp": "360x760",
+   "passo": 1,
+   "sezione": "aiuti",
+   "scorre": 0,
+   "voci": [
+    "fumogeni_ospiti:steward_fumo · Ondata 3 · −2 pressione su Curva ospiti, alza la tensione su Curva ospiti",
+    "tornelli_falsi:respingi · Ondata 2 · alza molto la tensione su Tornelli · con le altre risposte andava peggio",
+    "corteo_viale:corteo_scortato · Ondata 2 · −2 pressione su Viale della stazione, −1 Squadre di riserva"
+   ]
+  },
+  {
+   "rosso": false,
+   "vp": "360x760",
+   "passo": 2,
+   "sezione": "pesi",
+   "scorre": 0,
+   "voci": [
+    "imp_binario:sottopasso · Ondata 1 · −2 pressione su Stazione, alza la tensione su Viale della stazione",
+    "responsabile:fidati · Ondata 1 · +3 pressione su Viale della stazione",
+    "vetrine:indaga · Ondata 4 · +1 fiducia · con le altre risposte andava meglio"
+   ]
+  },
+  {
+   "rosso": false,
+   "vp": "360x760",
+   "passo": 3,
+   "sezione": "scoperti",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": false,
+   "vp": "360x760",
+   "passo": 4,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": false,
+   "vp": "360x760",
+   "errori": []
+  },
+  {
+   "rosso": false,
+   "vp": "375x760",
+   "passo": 0,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": false,
+   "vp": "375x760",
+   "passo": 1,
+   "sezione": "aiuti",
+   "scorre": 0,
+   "voci": [
+    "fumogeni_ospiti:steward_fumo · Ondata 3 · −2 pressione su Curva ospiti, alza la tensione su Curva ospiti",
+    "tornelli_falsi:respingi · Ondata 2 · alza molto la tensione su Tornelli · con le altre risposte andava peggio",
+    "corteo_viale:corteo_scortato · Ondata 2 · −2 pressione su Viale della stazione, −1 Squadre di riserva"
+   ]
+  },
+  {
+   "rosso": false,
+   "vp": "375x760",
+   "passo": 2,
+   "sezione": "pesi",
+   "scorre": 0,
+   "voci": [
+    "imp_binario:sottopasso · Ondata 1 · −2 pressione su Stazione, alza la tensione su Viale della stazione",
+    "responsabile:fidati · Ondata 1 · +3 pressione su Viale della stazione",
+    "vetrine:indaga · Ondata 4 · +1 fiducia · con le altre risposte andava meglio"
+   ]
+  },
+  {
+   "rosso": false,
+   "vp": "375x760",
+   "passo": 3,
+   "sezione": "scoperti",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": false,
+   "vp": "375x760",
+   "passo": 4,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": false,
+   "vp": "375x760",
+   "errori": []
+  },
+  {
+   "rosso": false,
+   "vp": "412x760",
+   "passo": 0,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": false,
+   "vp": "412x760",
+   "passo": 1,
+   "sezione": "aiuti",
+   "scorre": 0,
+   "voci": [
+    "fumogeni_ospiti:steward_fumo · Ondata 3 · −2 pressione su Curva ospiti, alza la tensione su Curva ospiti",
+    "tornelli_falsi:respingi · Ondata 2 · alza molto la tensione su Tornelli · con le altre risposte andava peggio",
+    "corteo_viale:corteo_scortato · Ondata 2 · −2 pressione su Viale della stazione, −1 Squadre di riserva"
+   ]
+  },
+  {
+   "rosso": false,
+   "vp": "412x760",
+   "passo": 2,
+   "sezione": "pesi",
+   "scorre": 0,
+   "voci": [
+    "imp_binario:sottopasso · Ondata 1 · −2 pressione su Stazione, alza la tensione su Viale della stazione",
+    "responsabile:fidati · Ondata 1 · +3 pressione su Viale della stazione",
+    "vetrine:indaga · Ondata 4 · +1 fiducia · con le altre risposte andava meglio"
+   ]
+  },
+  {
+   "rosso": false,
+   "vp": "412x760",
+   "passo": 3,
+   "sezione": "scoperti",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": false,
+   "vp": "412x760",
+   "passo": 4,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": false,
+   "vp": "412x760",
+   "errori": []
+  },
+  {
+   "rosso": true,
+   "vp": "360x760",
+   "passo": 0,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": true,
+   "vp": "360x760",
+   "passo": 1,
+   "sezione": "aiuti",
+   "scorre": 0,
+   "voci": [
+    "fumogeni_ospiti:steward_fumo · Ondata 3 · −2 pressione su Curva ospiti, alza la tensione su Curva ospiti",
+    "tornelli_falsi:respingi · Ondata 2 · alza molto la tensione su Tornelli",
+    "corteo_viale:corteo_scortato · Ondata 2 · −2 pressione su Viale della stazione, −1 Squadre di riserva"
+   ]
+  },
+  {
+   "rosso": true,
+   "vp": "360x760",
+   "passo": 2,
+   "sezione": "pesi",
+   "scorre": 0,
+   "voci": [
+    "imp_binario:sottopasso · Ondata 1 · −2 pressione su Stazione, alza la tensione su Viale della stazione",
+    "responsabile:fidati · Ondata 1 · +3 pressione su Viale della stazione",
+    "vetrine:indaga · Ondata 4 · +1 fiducia"
+   ]
+  },
+  {
+   "rosso": true,
+   "vp": "360x760",
+   "passo": 3,
+   "sezione": "scoperti",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": true,
+   "vp": "360x760",
+   "passo": 4,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": true,
+   "vp": "360x760",
+   "errori": []
+  },
+  {
+   "rosso": true,
+   "vp": "375x760",
+   "passo": 0,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": true,
+   "vp": "375x760",
+   "passo": 1,
+   "sezione": "aiuti",
+   "scorre": 0,
+   "voci": [
+    "fumogeni_ospiti:steward_fumo · Ondata 3 · −2 pressione su Curva ospiti, alza la tensione su Curva ospiti",
+    "tornelli_falsi:respingi · Ondata 2 · alza molto la tensione su Tornelli",
+    "corteo_viale:corteo_scortato · Ondata 2 · −2 pressione su Viale della stazione, −1 Squadre di riserva"
+   ]
+  },
+  {
+   "rosso": true,
+   "vp": "375x760",
+   "passo": 2,
+   "sezione": "pesi",
+   "scorre": 0,
+   "voci": [
+    "imp_binario:sottopasso · Ondata 1 · −2 pressione su Stazione, alza la tensione su Viale della stazione",
+    "responsabile:fidati · Ondata 1 · +3 pressione su Viale della stazione",
+    "vetrine:indaga · Ondata 4 · +1 fiducia"
+   ]
+  },
+  {
+   "rosso": true,
+   "vp": "375x760",
+   "passo": 3,
+   "sezione": "scoperti",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": true,
+   "vp": "375x760",
+   "passo": 4,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": true,
+   "vp": "375x760",
+   "errori": []
+  },
+  {
+   "rosso": true,
+   "vp": "412x760",
+   "passo": 0,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": true,
+   "vp": "412x760",
+   "passo": 1,
+   "sezione": "aiuti",
+   "scorre": 0,
+   "voci": [
+    "fumogeni_ospiti:steward_fumo · Ondata 3 · −2 pressione su Curva ospiti, alza la tensione su Curva ospiti",
+    "tornelli_falsi:respingi · Ondata 2 · alza molto la tensione su Tornelli",
+    "corteo_viale:corteo_scortato · Ondata 2 · −2 pressione su Viale della stazione, −1 Squadre di riserva"
+   ]
+  },
+  {
+   "rosso": true,
+   "vp": "412x760",
+   "passo": 2,
+   "sezione": "pesi",
+   "scorre": 0,
+   "voci": [
+    "imp_binario:sottopasso · Ondata 1 · −2 pressione su Stazione, alza la tensione su Viale della stazione",
+    "responsabile:fidati · Ondata 1 · +3 pressione su Viale della stazione",
+    "vetrine:indaga · Ondata 4 · +1 fiducia"
+   ]
+  },
+  {
+   "rosso": true,
+   "vp": "412x760",
+   "passo": 3,
+   "sezione": "scoperti",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": true,
+   "vp": "412x760",
+   "passo": 4,
+   "sezione": "altro",
+   "scorre": 0,
+   "voci": []
+  },
+  {
+   "rosso": true,
+   "vp": "412x760",
+   "errori": []
+  }
+ ]
+}

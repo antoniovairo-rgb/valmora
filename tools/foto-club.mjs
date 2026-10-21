@@ -177,7 +177,7 @@ export async function controllaArchivio(pagina, { atteso, scena, foto }) {
   await pagina.reload(); await scena('titolo');
   const prima = await leggi();
   if (!prima) { atteso('archivio: nessun salvataggio da esportare', false); return; }
-  const [scarico] = await Promise.all([pagina.waitForEvent('download'), pagina.click('[data-azione="esporta"]')]);
+  await (await import('./foto-home.mjs')).apriAltro(pagina); const [scarico] = await Promise.all([pagina.waitForEvent('download'), pagina.click('[data-azione="esporta"]')]); // PO-140: nel menu «Altro»
   atteso(`archivio: il file si chiama «${scarico.suggestedFilename()}», non valmora-AAAA-MM-GG.json`, /^valmora-\d{4}-\d{2}-\d{2}\.json$/.test(scarico.suggestedFilename()));
   const percorso = await scarico.path();
   const { readFileSync } = await import('node:fs');
@@ -277,7 +277,7 @@ export async function controllaGuida(pagina, { atteso, scena, foto, salta }) {
   await foto();
   if (salta) { await pagina.click('[data-azione="guida-salta"]'); return; }
   let passi = 1;
-  const vignetta = async () => atteso(`guida passo ${passi}: manca la vignetta (S-23, PO-078)`, await pagina.locator(`[data-vignetta="guida-${passi}"]`).isVisible().catch(() => false));
+  const vignetta = async () => atteso(`guida passo ${passi}: manca la vignetta (S-23, PO-078)`, await pagina.locator(passi === 1 ? '[data-guida-testata] [data-vignetta="home"], [data-vignetta="guida-1"]' : `[data-vignetta="guida-${passi}"]`).first().isVisible().catch(() => false)); // D-210: al passo 1 la vignetta della home
   await vignetta();
   while (await pagina.locator('[data-azione="guida-avanti"]').count()) {
     await pagina.click('[data-azione="guida-avanti"]'); passi++; await vignetta(); await foto();

@@ -1,0 +1,209 @@
+{
+  "id": "e29",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tornelli_ospiti",
+        "fonte": "club_saltmere",
+        "testo": "testi:e29.imp.tornelli_ospiti",
+        "commento": "testi:e29.imp.tornelli_ospiti.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "a_mano",
+            "testo": "testi:e29.imp.tornelli_ospiti.a_mano",
+            "costo": "testi:e29.imp.tornelli_ospiti.a_mano.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.tornelli_ospiti.a_mano.r"
+          },
+          {
+            "id": "fila_unica",
+            "testo": "testi:e29.imp.tornelli_ospiti.fila_unica",
+            "costo": "testi:e29.imp.tornelli_ospiti.fila_unica.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.tornelli_ospiti.fila_unica.r"
+          },
+          {
+            "id": "si_riprendono",
+            "testo": "testi:e29.imp.tornelli_ospiti.si_riprendono",
+            "costo": "testi:e29.imp.tornelli_ospiti.si_riprendono.c",
+            "effetti": [],
+            "risposta": "testi:e29.imp.tornelli_ospiti.si_riprendono.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_tubo",
+        "fonte": "centrale_radio",
+        "testo": "testi:e29.imp.tubo",
+        "commento": "testi:e29.imp.tubo.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "valvola",
+            "testo": "testi:e29.imp.tubo.valvola",
+            "costo": "testi:e29.imp.tubo.valvola.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.tubo.valvola.r"
+          },
+          {
+            "id": "sedili",
+            "testo": "testi:e29.imp.tubo.sedili",
+            "costo": "testi:e29.imp.tubo.sedili.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.tubo.sedili.r"
+          },
+          {
+            "id": "idraulico",
+            "testo": "testi:e29.imp.tubo.idraulico",
+            "costo": "testi:e29.imp.tubo.idraulico.c",
+            "effetti": [],
+            "risposta": "testi:e29.imp.tubo.idraulico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_ponte_basso",
+        "fonte": "centrale_radio",
+        "testo": "testi:e29.imp.ponte_basso",
+        "commento": "testi:e29.imp.ponte_basso.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "devia",
+            "testo": "testi:e29.imp.ponte_basso.devia",
+            "costo": "testi:e29.imp.ponte_basso.devia.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.ponte_basso.devia.r"
+          },
+          {
+            "id": "senso_unico",
+            "testo": "testi:e29.imp.ponte_basso.senso_unico",
+            "costo": "testi:e29.imp.ponte_basso.senso_unico.c",
+            "effetti": [
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.ponte_basso.senso_unico.r"
+          },
+          {
+            "id": "carro",
+            "testo": "testi:e29.imp.ponte_basso.carro",
+            "costo": "testi:e29.imp.ponte_basso.carro.c",
+            "effetti": [],
+            "risposta": "testi:e29.imp.ponte_basso.carro.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_irrigatori",
+        "fonte": "centrale_radio",
+        "testo": "testi:e29.imp.irrigatori",
+        "commento": "testi:e29.imp.irrigatori.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "sgombera",
+            "testo": "testi:e29.imp.irrigatori.sgombera",
+            "costo": "testi:e29.imp.irrigatori.sgombera.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.irrigatori.sgombera.r"
+          },
+          {
+            "id": "allarga",
+            "testo": "testi:e29.imp.irrigatori.allarga",
+            "costo": "testi:e29.imp.irrigatori.allarga.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.irrigatori.allarga.r"
+          },
+          {
+            "id": "si_spegne",
+            "testo": "testi:e29.imp.irrigatori.si_spegne",
+            "costo": "testi:e29.imp.irrigatori.si_spegne.c",
+            "effetti": [],
+            "risposta": "testi:e29.imp.irrigatori.si_spegne.r"
+          }
+        ]
+      }
+    }
+  ]
+}

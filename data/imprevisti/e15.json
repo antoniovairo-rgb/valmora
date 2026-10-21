@@ -1,0 +1,213 @@
+{
+  "id": "e15",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tabellone",
+        "fonte": "ferrovie",
+        "testo": "testi:e15.imp.tabellone",
+        "commento": "testi:e15.imp.tabellone.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "correggi_annuncio",
+            "testo": "testi:e15.imp.tabellone.correggi_annuncio",
+            "costo": "testi:e15.imp.tabellone.correggi_annuncio.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.tabellone.correggi_annuncio.r"
+          },
+          {
+            "id": "tabellone_spento",
+            "testo": "testi:e15.imp.tabellone.tabellone_spento",
+            "costo": "testi:e15.imp.tabellone.tabellone_spento.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.tabellone.tabellone_spento.r"
+          },
+          {
+            "id": "lascia_tabellone",
+            "testo": "testi:e15.imp.tabellone.lascia_tabellone",
+            "costo": "testi:e15.imp.tabellone.lascia_tabellone.c",
+            "effetti": [],
+            "risposta": "testi:e15.imp.tabellone.lascia_tabellone.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_autobus",
+        "fonte": "centrale_radio",
+        "testo": "testi:e15.imp.autobus",
+        "commento": "testi:e15.imp.autobus.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "guida_tu",
+            "testo": "testi:e15.imp.autobus.guida_tu",
+            "costo": "testi:e15.imp.autobus.guida_tu.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.autobus.guida_tu.r"
+          },
+          {
+            "id": "fila_accanto",
+            "testo": "testi:e15.imp.autobus.fila_accanto",
+            "costo": "testi:e15.imp.autobus.fila_accanto.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.autobus.fila_accanto.r"
+          },
+          {
+            "id": "giro_isola",
+            "testo": "testi:e15.imp.autobus.giro_isola",
+            "costo": "testi:e15.imp.autobus.giro_isola.c",
+            "effetti": [],
+            "risposta": "testi:e15.imp.autobus.giro_isola.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_balaustra",
+        "fonte": "centrale_radio",
+        "testo": "testi:e15.imp.balaustra",
+        "commento": "testi:e15.imp.balaustra.vice",
+        "settore": "settore_gemellati",
+        "opzioni": [
+          {
+            "id": "nastro_fila",
+            "testo": "testi:e15.imp.balaustra.nastro_fila",
+            "costo": "testi:e15.imp.balaustra.nastro_fila.c",
+            "effetti": [
+              {
+                "pressione": "settore_gemellati",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.balaustra.nastro_fila.r"
+          },
+          {
+            "id": "indietro_tutti",
+            "testo": "testi:e15.imp.balaustra.indietro_tutti",
+            "costo": "testi:e15.imp.balaustra.indietro_tutti.c",
+            "effetti": [
+              {
+                "pressione": "settore_gemellati",
+                "valore": -1
+              },
+              {
+                "tensione": "settore_gemellati",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.balaustra.indietro_tutti.r"
+          },
+          {
+            "id": "lascia_gemellati",
+            "testo": "testi:e15.imp.balaustra.lascia_gemellati",
+            "costo": "testi:e15.imp.balaustra.lascia_gemellati.c",
+            "effetti": [],
+            "risposta": "testi:e15.imp.balaustra.lascia_gemellati.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_vagone",
+        "fonte": "ferrovie",
+        "testo": "testi:e15.imp.vagone",
+        "commento": "testi:e15.imp.vagone.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "un_vagone_alla_volta",
+            "testo": "testi:e15.imp.vagone.un_vagone_alla_volta",
+            "costo": "testi:e15.imp.vagone.un_vagone_alla_volta.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.vagone.un_vagone_alla_volta.r"
+          },
+          {
+            "id": "nei_corridoi",
+            "testo": "testi:e15.imp.vagone.nei_corridoi",
+            "costo": "testi:e15.imp.vagone.nei_corridoi.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.vagone.nei_corridoi.r"
+          },
+          {
+            "id": "si_stringano",
+            "testo": "testi:e15.imp.vagone.si_stringano",
+            "costo": "testi:e15.imp.vagone.si_stringano.c",
+            "effetti": [],
+            "risposta": "testi:e15.imp.vagone.si_stringano.r"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -12,7 +12,14 @@ export const conTavole = () => !spento('C165T01');
 type Genere = 'm' | 'f';
 
 /** I fili delle tavole: la variabile che decide la didascalia (data/stato.json) e il nome della tavola nei testi. */
-export const TAVOLE = [['fabbro', 'rapporto_dessi'], ['testimone', 'testimone'], ['busta', 'busta'], ['talpa', 'sospetti_talpa'], ['fascicolo', 'fascicolo']] as const;
+// C43-01 (D-196): «carte» (D-189, i faldoni di e35) ha la sua tavola, dopo il fascicolo. «pista_cattura» resta senza
+// tavola: D-165 nomina cinque tavole (Fabbro, testimone, busta, talpa, fascicolo). Rosso __NO_C4301: senza «carte», come prima.
+export const TAVOLE = [['fabbro', 'rapporto_dessi'], ['testimone', 'testimone'], ['busta', 'busta'], ['talpa', 'sospetti_talpa'], ['fascicolo', 'fascicolo'], ['carte', 'carte']] as const;
+/** Le tavole che l'epilogo disegna (rosso C4301: senza «carte»). */
+export const tavoleFinale = () => (spento('C4301') ? TAVOLE.filter(([x]) => x !== 'carte') : TAVOLE);
+/** D-197: i fili senza tavola, come riga sotto una tavola (filo → tavola). Rosso __NO_C4301P: nessuna riga, come prima. */
+export const RIGHE: Record<string, string> = { pista_cattura: 'fabbro' };
+export const righeFinale = () => (spento('C4301P') ? {} : RIGHE);
 
 /** Stadio di notte sullo sfondo: anello degli spalti, folla, due torri faro con i coni di luce. */
 function Stadio(p: { y: number; folla?: boolean }) {
@@ -103,9 +110,11 @@ function Busta(p: { v: Valore }) {
       <path d="M62 56 L10 200 L210 200 L92 50 Z" fill="url(#t-luce)" />
       {p.v === 'tenuta' && <path d="M60 150 L260 142 L276 200 L52 210 Z" className="v-nero v-tratto" />}
       {p.v !== 'nessuna' && <g transform={p.v === 'tenuta' ? 'translate(0 14)' : ''}>
-        <path d="M92 120 L232 112 L244 172 L86 180 Z" className="v-bianco v-tratto" />
-        <path d="M92 120 L166 150 L232 112" className="v-linea" />
-        <circle cx="166" cy="150" r="11" className="v-magenta v-tratto" />
+        {/* C41-05: la busta consegnata ha la patta aperta e niente sigillo, uguale per chi l'ha aperta in e24 («Aprila
+            adesso») e per chi no; la busta tenuta resta sigillata. Rosso C41B05: sigillata anche consegnata, come prima. */}
+        {p.v === 'consegnata' && !spento('C41B05')
+          ? <><path d="M92 120 L160 96 L232 112 Z" className="v-bianco v-tratto" data-patta="aperta" /><path d="M92 120 L232 112 L244 172 L86 180 Z" className="v-bianco v-tratto" /><path d="M92 120 L166 140 L232 112" className="v-linea" /></>
+          : <><path d="M92 120 L232 112 L244 172 L86 180 Z" className="v-bianco v-tratto" /><path d="M92 120 L166 150 L232 112" className="v-linea" /><circle cx="166" cy="150" r="11" className="v-magenta v-tratto" data-sigillo /></>}
       </g>}
       {p.v === 'consegnata' && <g transform="rotate(-10 164 96)"><rect x="104" y="80" width="122" height="30" className="v-timbro" /><text x="165" y="101" className="v-scritta v-scritta-timbro">ARCHIVIO</text></g>}
     </>
@@ -168,15 +177,42 @@ function Fascicolo(p: { v: Valore }) {
   );
 }
 
-const DISEGNI: Record<string, (p: { v: Valore }) => ReactNode> = { fabbro: Fabbro, testimone: Testimone, busta: Busta, talpa: Talpa, fascicolo: Fascicolo };
+function Carte(p: { v: Valore }) {
+  return (
+    <>
+      {/* C43-01: binario della stazione all'alba, pensilina e orologio sulle cinque; i faldoni fermati o il treno già lontano */}
+      <rect x="0" y="0" width={L} height={A} className="v-tramonto" />
+      <path d="M0 26 L320 18 L320 34 L0 42 Z" className="v-asfalto v-tratto" />
+      {[40, 150, 260].map((x) => <rect key={x} x={x} y="34" width="8" height="120" className="v-asfalto v-tratto" />)}
+      <circle cx="96" cy="70" r="16" className="v-bianco v-tratto" /><path d="M96 70 V58 M96 70 L106 76" className="v-linea" />
+      <path d="M0 154 L320 146 L320 176 L0 184 Z" className="v-cemento v-tratto" />
+      <path d="M0 184 L320 176 L320 240 L0 240 Z" className="v-giacca-scura v-tratto" />
+      <path d="M0 204 L320 192 M0 226 L320 210" className="v-linea-chiara" />
+      {p.v === 'fermate' && <g data-faldoni="fermati">
+        <path d="M150 112 L262 108 L266 150 L146 154 Z" className="v-nero v-tratto" />
+        <path d="M162 92 L196 90 L198 112 L164 114 Z M200 90 L236 88 L238 110 L202 112 Z" className="v-giallo v-tratto" />
+        <g transform="rotate(-8 206 130)"><rect x="160" y="118" width="96" height="24" className="v-timbro" /><text x="208" y="136" className="v-scritta v-scritta-timbro">FERMATI</text></g>
+      </g>}
+      {p.v === 'perse' && <g data-faldoni="persi">
+        <path d="M250 150 L300 146 L300 120 L258 122 Z" className="v-asfalto v-tratto" />
+        <circle cx="290" cy="134" r="4" className="v-magenta v-tratto" />
+        <path d="M40 176 L250 150" className="v-linea" />
+      </g>}
+    </>
+  );
+}
 
-/** Una tavola grande con la didascalia scritta sulla scelta del giocatore. */
-export function TavolaFilo(p: { tavola: string; valore: Valore }) {
+const DISEGNI: Record<string, (p: { v: Valore }) => ReactNode> = { fabbro: Fabbro, testimone: Testimone, busta: Busta, talpa: Talpa, fascicolo: Fascicolo, carte: Carte };
+
+/** Una tavola grande con la didascalia scritta sulla scelta del giocatore; «riga»: un filo senza tavola, sotto la didascalia
+ *  (D-197: «pista_cattura» sotto la tavola del Fabbro). */
+export function TavolaFilo(p: { tavola: string; valore: Valore; riga?: { id: string; valore: Valore } }) {
   const D = DISEGNI[p.tavola]!;
   return (
     <figure className="tavola" data-tavola={p.tavola} data-valore={String(p.valore)}>
       <Tavola nome={`finale-${p.tavola}`} titolo={t(`finale.${p.tavola}`)}><D v={p.valore} /></Tavola>
       <figcaption className="didascalia"><strong>{t(`finale.${p.tavola}`)}</strong> {t(`finale.${p.tavola}.${String(p.valore)}`)}</figcaption>
+      {p.riga && <p className="didascalia" data-riga={p.riga.id} data-valore={String(p.riga.valore)}><strong>{t(`epilogo.${p.riga.id}.nome`)}</strong> {t(`epilogo.${p.riga.id}.${String(p.riga.valore)}`)}</p>}
     </figure>
   );
 }
@@ -202,7 +238,7 @@ export function TavolaBar(p: { genere: Genere; carriera: string | null; numeri: 
         <path d="M140 188 v-12 h16 v12 Z M176 187 v-12 h16 v12 Z" className="v-bianco v-tratto" />
         <path d="M150 6 h150 a8 8 0 0 1 8 8 v20 a8 8 0 0 1 -8 8 h-40 l-14 10 l2 -10 h-96 a8 8 0 0 1 -8 -8 v-20 a8 8 0 0 1 8 -8 Z" className="v-bianco v-tratto" />
         <text x="226" y="22" className="v-scritta">{righe[0]}</text><text x="226" y="37" className="v-scritta">{righe[1]}</text>
-        <text x="160" y="228" className="v-scritta v-fine">{t('finale.fine').toUpperCase()}</text>
+        <text x="160" y="228" className="v-scritta v-scritta-fine">{t('finale.fine').toUpperCase()}</text>
       </Tavola>
       <figcaption className="didascalia"><strong>{t('finale.bar')}</strong> {t(`finale.bar.${p.carriera ?? 'ignota'}`)}</figcaption>
       <p className="riga numeri-carriera" data-numeri>{p.numeri.map((n) => <span key={n} className="etichetta">{n}</span>)}</p>

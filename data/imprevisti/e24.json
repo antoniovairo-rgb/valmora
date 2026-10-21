@@ -1,0 +1,209 @@
+{
+  "id": "e24",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tamburo_largo",
+        "fonte": "club_saltmere",
+        "testo": "testi:e24.imp.tamburo_largo",
+        "commento": "testi:e24.imp.tamburo_largo.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "smonta_transenna",
+            "testo": "testi:e24.imp.tamburo_largo.smonta_transenna",
+            "costo": "testi:e24.imp.tamburo_largo.smonta_transenna.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.tamburo_largo.smonta_transenna.r"
+          },
+          {
+            "id": "tamburo_traverso",
+            "testo": "testi:e24.imp.tamburo_largo.tamburo_traverso",
+            "costo": "testi:e24.imp.tamburo_largo.tamburo_traverso.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.tamburo_largo.tamburo_traverso.r"
+          },
+          {
+            "id": "tamburo_fuori",
+            "testo": "testi:e24.imp.tamburo_largo.tamburo_fuori",
+            "costo": "testi:e24.imp.tamburo_largo.tamburo_fuori.c",
+            "effetti": [],
+            "risposta": "testi:e24.imp.tamburo_largo.tamburo_fuori.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_capogiro",
+        "fonte": "centrale_radio",
+        "testo": "testi:e24.imp.capogiro",
+        "commento": "testi:e24.imp.capogiro.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "punto_medico",
+            "testo": "testi:e24.imp.capogiro.punto_medico",
+            "costo": "testi:e24.imp.capogiro.punto_medico.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.capogiro.punto_medico.r"
+          },
+          {
+            "id": "aria_fila",
+            "testo": "testi:e24.imp.capogiro.aria_fila",
+            "costo": "testi:e24.imp.capogiro.aria_fila.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.capogiro.aria_fila.r"
+          },
+          {
+            "id": "vicini_posto",
+            "testo": "testi:e24.imp.capogiro.vicini_posto",
+            "costo": "testi:e24.imp.capogiro.vicini_posto.c",
+            "effetti": [],
+            "risposta": "testi:e24.imp.capogiro.vicini_posto.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tornello_rovescio",
+        "fonte": "centrale_radio",
+        "testo": "testi:e24.imp.tornello_rovescio",
+        "commento": "testi:e24.imp.tornello_rovescio.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "blocco_centrale",
+            "testo": "testi:e24.imp.tornello_rovescio.blocco_centrale",
+            "costo": "testi:e24.imp.tornello_rovescio.blocco_centrale.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.tornello_rovescio.blocco_centrale.r"
+          },
+          {
+            "id": "cartello",
+            "testo": "testi:e24.imp.tornello_rovescio.cartello",
+            "costo": "testi:e24.imp.tornello_rovescio.cartello.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.tornello_rovescio.cartello.r"
+          },
+          {
+            "id": "lascia_girare",
+            "testo": "testi:e24.imp.tornello_rovescio.lascia_girare",
+            "costo": "testi:e24.imp.tornello_rovescio.lascia_girare.c",
+            "effetti": [],
+            "risposta": "testi:e24.imp.tornello_rovescio.lascia_girare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_bidone",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e24.imp.bidone",
+        "commento": "testi:e24.imp.bidone.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "ferma_bidone",
+            "testo": "testi:e24.imp.bidone.ferma_bidone",
+            "costo": "testi:e24.imp.bidone.ferma_bidone.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              },
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.bidone.ferma_bidone.r"
+          },
+          {
+            "id": "ferma_piede",
+            "testo": "testi:e24.imp.bidone.ferma_piede",
+            "costo": "testi:e24.imp.bidone.ferma_piede.c",
+            "effetti": [
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.bidone.ferma_piede.r"
+          },
+          {
+            "id": "lascia_rotolare",
+            "testo": "testi:e24.imp.bidone.lascia_rotolare",
+            "costo": "testi:e24.imp.bidone.lascia_rotolare.c",
+            "effetti": [],
+            "risposta": "testi:e24.imp.bidone.lascia_rotolare.r"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -12,6 +12,9 @@ import { useFuocoTitolo } from '../fuoco-titolo.ts';
 
 /** C14-11 (D-037): dove rende l'unità, coi settori di questa missione: «Rende di più: …; normale: …; qui non serve: …».
  *  Rosso C22R01: nessuna spiegazione. */
+/** C42-06 (D-185): «Ti resta 1 mediatore», non «Ti restano». Rosso C42R01: sempre «Ti restano». */
+export const tiResta = (n: number) => (n === 1 && !spento('C42R01') ? 'Ti resta' : 'Ti restano');
+
 export function rende(m: Missione, r: string): string {
   const ris = m.mappa.risorse[r];
   if (!ris) return '';
@@ -132,6 +135,8 @@ export function Schieramento(p: {
           );
         })}
       </div>
+      {/* C41-03 (D-183): il pannello dice da quando contano le unità impegnate dalle risposte. Rosso C183P01: niente */}
+      {!spento('C183P01') && <p className="nota-unita" data-nota-unita="">{t('costo.nota_pannello')}</p>}
       <div className="riga-in-mano">
       <p className="in-mano" data-in-mano={p.scelta ?? ''} role="status">
         {p.scelta
@@ -169,7 +174,7 @@ function Riepilogo(p: { m: Missione; d: Disposizione; restano: (readonly [string
       </div>
       {p.restano.length > 0 && (
         <p className="avviso" role="alert" data-restano={p.restano.reduce((a, [, n]) => a + n, 0)}>
-          Ti restano {elenco(p.restano.map(([r, n]) => quante(n, r)))}: confermi lo stesso?
+          {tiResta(p.restano.reduce((a, [, n]) => a + n, 0))} {elenco(p.restano.map(([r, n]) => quante(n, r)))}: confermi lo stesso?
         </p>
       )}
       <div className="riga azioni riepilogo-azioni">

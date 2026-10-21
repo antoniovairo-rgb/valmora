@@ -337,10 +337,6 @@
               "costo": "testi:e35.op.stampa_vicina.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "perimetro_banca",
                   "valore": 2
                 }
@@ -602,10 +598,6 @@
               "costo": "testi:e35.op.ferma_barca.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "banchine",
                   "valore": 2
                 }
@@ -694,16 +686,16 @@
               "costo": "testi:e35.op.ferma_uomo.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 2
-                },
-                {
                   "riserva": "squadre",
                   "valore": -1
                 },
                 {
                   "pressione": "perimetro_banca",
                   "valore": 1
+                },
+                {
+                  "imposta": "carte",
+                  "valore": "fermate"
                 }
               ],
               "risposta": "testi:e35.op.ferma_uomo.r"
@@ -714,12 +706,12 @@
               "costo": "testi:e35.op.lascia_partire.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
+                  "pressione": "stazione",
                   "valore": -1
                 },
                 {
-                  "pressione": "stazione",
-                  "valore": -1
+                  "imposta": "carte",
+                  "valore": "perse"
                 }
               ],
               "risposta": "testi:e35.op.lascia_partire.r"
@@ -754,10 +746,6 @@
               "testo": "testi:e35.op.stampa_uscita",
               "costo": "testi:e35.op.stampa_uscita.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "tensione": "perimetro_banca",
                   "valore": 2

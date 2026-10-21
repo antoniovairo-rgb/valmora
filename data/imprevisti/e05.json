@@ -1,0 +1,209 @@
+{
+  "id": "e05",
+  "imprevisti": [
+    {
+      "ondata": 1,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_lucchetto",
+        "fonte": "centrale_radio",
+        "testo": "testi:e05.imp.lucchetto",
+        "commento": "testi:e05.imp.lucchetto.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "taglia",
+            "testo": "testi:e05.imp.lucchetto.taglia",
+            "costo": "testi:e05.imp.lucchetto.taglia.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.imp.lucchetto.taglia.r"
+          },
+          {
+            "id": "laterale",
+            "testo": "testi:e05.imp.lucchetto.laterale",
+            "costo": "testi:e05.imp.lucchetto.laterale.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.lucchetto.laterale.r"
+          },
+          {
+            "id": "chiave",
+            "testo": "testi:e05.imp.lucchetto.chiave",
+            "costo": "testi:e05.imp.lucchetto.chiave.c",
+            "effetti": [],
+            "risposta": "testi:e05.imp.lucchetto.chiave.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "dopo": 2,
+      "chiamata": {
+        "id": "imp_tabellone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e05.imp.tabellone",
+        "commento": "testi:e05.imp.tabellone.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "spiega",
+            "testo": "testi:e05.imp.tabellone.spiega",
+            "costo": "testi:e05.imp.tabellone.spiega.c",
+            "effetti": [
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.tabellone.spiega.r"
+          },
+          {
+            "id": "correggi",
+            "testo": "testi:e05.imp.tabellone.correggi",
+            "costo": "testi:e05.imp.tabellone.correggi.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.tabellone.correggi.r"
+          },
+          {
+            "id": "festeggino",
+            "testo": "testi:e05.imp.tabellone.festeggino",
+            "costo": "testi:e05.imp.tabellone.festeggino.c",
+            "effetti": [],
+            "risposta": "testi:e05.imp.tabellone.festeggino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_pettorine",
+        "fonte": "vice",
+        "testo": "testi:e05.imp.pettorine",
+        "commento": "testi:e05.imp.pettorine.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "squadra_curva",
+            "testo": "testi:e05.imp.pettorine.squadra_curva",
+            "costo": "testi:e05.imp.pettorine.squadra_curva.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.imp.pettorine.squadra_curva.r"
+          },
+          {
+            "id": "toglile",
+            "testo": "testi:e05.imp.pettorine.toglile",
+            "costo": "testi:e05.imp.pettorine.toglile.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.pettorine.toglile.r"
+          },
+          {
+            "id": "confusione",
+            "testo": "testi:e05.imp.pettorine.confusione",
+            "costo": "testi:e05.imp.pettorine.confusione.c",
+            "effetti": [],
+            "risposta": "testi:e05.imp.pettorine.confusione.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "dopo": 1,
+      "chiamata": {
+        "id": "imp_strada_sbagliata",
+        "fonte": "club_domepark",
+        "testo": "testi:e05.imp.strada_sbagliata",
+        "commento": "testi:e05.imp.strada_sbagliata.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "scorta_pullman",
+            "testo": "testi:e05.imp.strada_sbagliata.scorta_pullman",
+            "costo": "testi:e05.imp.strada_sbagliata.scorta_pullman.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.imp.strada_sbagliata.scorta_pullman.r"
+          },
+          {
+            "id": "torna_piazzale",
+            "testo": "testi:e05.imp.strada_sbagliata.torna_piazzale",
+            "costo": "testi:e05.imp.strada_sbagliata.torna_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.strada_sbagliata.torna_piazzale.r"
+          },
+          {
+            "id": "passi",
+            "testo": "testi:e05.imp.strada_sbagliata.passi",
+            "costo": "testi:e05.imp.strada_sbagliata.passi.c",
+            "effetti": [],
+            "risposta": "testi:e05.imp.strada_sbagliata.passi.r"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -681,10 +681,6 @@
               "costo": "testi:e16.op.segui_furgone.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "strada_cinderwick",
                   "valore": 2
                 }
@@ -696,10 +692,6 @@
               "testo": "testi:e16.op.lascia_andare",
               "costo": "testi:e16.op.lascia_andare.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": -1
-                },
                 {
                   "pressione": "strada_cinderwick",
                   "valore": -1
@@ -736,10 +728,6 @@
               "testo": "testi:e16.op.libera16",
               "costo": "testi:e16.op.libera16.c",
               "effetti": [
-                {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
                 {
                   "pressione": "strada_cinderwick",
                   "valore": 2

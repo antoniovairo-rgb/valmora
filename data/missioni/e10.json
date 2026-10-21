@@ -354,10 +354,6 @@
               "costo": "testi:e10.op.lascia_coreografie.c",
               "effetti": [
                 {
-                  "aggiungi": "credito",
-                  "valore": 1
-                },
-                {
                   "pressione": "curva_cinderwick",
                   "valore": 2
                 }
@@ -643,10 +639,6 @@
                 {
                   "pressione": "curva_cinderwick",
                   "valore": -1
-                },
-                {
-                  "aggiungi": "credito",
-                  "valore": -2
                 }
               ],
               "risposta": "testi:e10.op.ripartenza_calma.r"
@@ -949,7 +941,7 @@
         },
         {
           "var": "credito",
-          "almeno": 7
+          "almeno": 8
         }
       ]
     }

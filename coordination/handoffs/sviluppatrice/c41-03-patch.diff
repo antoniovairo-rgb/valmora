@@ -1,0 +1,16 @@
+diff --git a/src/logica/missione.ts b/src/logica/missione.ts
+index 03c9fa9..051e097 100644
+--- a/src/logica/missione.ts
++++ b/src/logica/missione.ts
+@@ -167,7 +167,10 @@ function haUnita(m: Missione, s: InCorso, o: Opzione): boolean {
+ export function unitaFinita(m: Missione, s: InCorso, o: Opzione): string | undefined {
+   // C35-06 (D-159): contano le unità schierabili (disponibili: senza quelle a riposo e le fisse), non tutta la riserva;
+   // prima «costa uno steward» si offriva con 0 steward schierabili. Rosso __NO_C153B01: tutta la riserva, come prima.
+-  const resta = (r: string) => (spento('C153B01') ? (m.mappa.risorse[r]?.quantita ?? 0) + (s.riserva[r] ?? 0) : disponibili(m, s)[r] ?? 0);
++  // C41-03 (D-182, collaudo C-041): le unità già schierate sulla mappa in quest'ondata non sono libere; prima «ti costa una
++  // squadra» si offriva col pannello a «Squadre 0». Rosso __NO_C41U01: contano anche le schierate, come prima.
++  const schierate = (r: string) => (spento('C41U01') || spento('C153B01') ? 0 : somma(s.disposizione?.[r]));
++  const resta = (r: string) => (spento('C153B01') ? (m.mappa.risorse[r]?.quantita ?? 0) + (s.riserva[r] ?? 0) : (disponibili(m, s)[r] ?? 0) - schierate(r));
+   return o.effetti.find((e): e is Extract<EffettoMissione, { riserva: string }> => 'riserva' in e && e.valore < 0 && resta(e.riserva) <= 0)?.riserva;
+ }
+ 

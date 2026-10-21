@@ -1,9 +1,10 @@
-// PO-121 (D-148): dopo una risposta a una chiamata, «Annulla» col conto alla rovescia per 5 s. Guardiano del giro foto:
+// PO-121 (D-148): dopo una risposta a una chiamata, «Annulla» col conto alla rovescia per 3 s (PO-142, D-198; era 5). Guardiano del giro foto:
 // a 360, 375, 412 e 1366 su e01 ondata 1 (stato del bot attento): «Annulla» c'è, si vede tutto, non è coperto, tocco
 // ≥44 px, il fuoco non ci va sopra; un secondo Invio non annulla né conferma; «Annulla» riporta la chiamata com'era
-// (stesse opzioni, salvataggio identico). A 360 anche: chiusura del gioco durante i 5 s su un salvataggio vero (e02 della
-// 0.4.0, migrato) → alla ripresa la chiamata è ancora aperta e niente è salvato; scaduti i 5 s la risposta vale.
+// (stesse opzioni, salvataggio identico). A 360 anche: chiusura del gioco durante i 3 s su un salvataggio vero (e02 della
+// 0.4.0, migrato) → alla ripresa la chiamata è ancora aperta e niente è salvato; scaduti i 3 s la risposta vale.
 // Foto po121-<larghezza>.png. Rosso VALMORA_ROSSI=C107A01 (nessun «Annulla», la risposta vale subito).
+// Rosso VALMORA_ROSSI=C198A01 (PO-142): il conto torna a 5 s → 4 controlli rossi (conto «5» a 375/412/1366, a 360 la risposta non è ancora salvata a 3,6 s).
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { leggiDati } from './dati-disco.mjs';
@@ -36,7 +37,7 @@ export async function controllaAnnulla(browser, url, dirDati, cartella, atteso, 
       return { vista: r.top >= 0 && r.bottom <= innerHeight, coperto: !(t && (t === b || b.contains(t))), tocco: Math.min(r.width, r.height), fuoco: document.activeElement === b, conto: b.querySelector('[data-conto]')?.textContent }; });
     atteso(`${dove}: dopo la risposta manca «Annulla» (la risposta vale subito)`, !!a);
     if (a) {
-      atteso(`${dove}: «Annulla» ${a.vista ? '' : 'fuori dalla finestra '}${a.coperto ? 'coperto ' : ''}tocco ${Math.round(a.tocco)} px, conto «${a.conto}» (devono essere: visibile, libero, ≥44 px, 5)`, a.vista && !a.coperto && a.tocco >= 44 && a.conto === '5');
+      atteso(`${dove}: «Annulla» ${a.vista ? '' : 'fuori dalla finestra '}${a.coperto ? 'coperto ' : ''}tocco ${Math.round(a.tocco)} px, conto «${a.conto}» (devono essere: visibile, libero, ≥44 px, 3)`, a.vista && !a.coperto && a.tocco >= 44 && a.conto === '3');
       atteso(`${dove}: il fuoco è andato da solo su «Annulla»`, !a.fuoco);
       await p.screenshot({ path: join(cartella, `po121-${w}.png`) });
       // un secondo Invio involontario: niente annullato, niente confermato
@@ -45,17 +46,17 @@ export async function controllaAnnulla(browser, url, dirDati, cartella, atteso, 
       await p.click('[data-annulla]'); await p.waitForTimeout(200);
       atteso(`${dove}: dopo «Annulla» la chiamata non è com'era (opzioni «${await opzioni(p)}» invece di «${prima.opzioni}», o salvataggio cambiato)`, !(await p.$('[data-annulla]')) && (await opzioni(p)) === prima.opzioni && (await chiamata(p)) === prima.chiamata && (await inCorso(p)) === prima.stato);
       if (w === 360) {
-        // scaduti i 5 s la risposta vale e si salva
-        await p.click('[data-opzione]:not([disabled])'); await p.waitForTimeout(5600);
-        atteso(`${dove}: scaduti i 5 s la risposta non è stata salvata`, (await inCorso(p)) !== prima.stato);
-        // chiusura durante i 5 s, su un salvataggio vero della 0.4.0 (migrato al caricamento)
+        // scaduti i 3 s la risposta vale e si salva
+        await p.click('[data-opzione]:not([disabled])'); await p.waitForTimeout(3600);
+        atteso(`${dove}: scaduti i 3 s la risposta non è stata salvata`, (await inCorso(p)) !== prima.stato);
+        // chiusura durante i 3 s, su un salvataggio vero della 0.4.0 (migrato al caricamento)
         const vero = readFileSync(new URL('../tests/salvataggi-reali/v2-0.4.0-e02-in-corso.json', import.meta.url), 'utf8');
         await p.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, vero]); await p.reload();
         await p.getByRole('button', { name: 'Riprendi' }).click(); await pronta(p);
         const vecchio = { stato: await inCorso(p), chiamata: await chiamata(p), opzioni: await opzioni(p) };
         await p.click('[data-opzione]'); await p.waitForTimeout(1000); await p.reload();
         await p.getByRole('button', { name: 'Riprendi' }).click(); await pronta(p);
-        atteso(`${dove}: salvataggio vero, chiuso durante i 5 s: alla ripresa la scelta risulta fatta (chiamata «${await chiamata(p)}» invece di «${vecchio.chiamata}»)`, (await inCorso(p)) === vecchio.stato && (await chiamata(p)) === vecchio.chiamata && (await opzioni(p)) === vecchio.opzioni);
+        atteso(`${dove}: salvataggio vero, chiuso durante i 3 s: alla ripresa la scelta risulta fatta (chiamata «${await chiamata(p)}» invece di «${vecchio.chiamata}»)`, (await inCorso(p)) === vecchio.stato && (await chiamata(p)) === vecchio.chiamata && (await opzioni(p)) === vecchio.opzioni);
       }
     }
     await p.close();

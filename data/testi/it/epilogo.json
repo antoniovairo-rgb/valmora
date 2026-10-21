@@ -33,7 +33,7 @@
   "epilogo.testimone.esposto": "Uscito con la folla: qualcuno l'ha visto.",
   "epilogo.testimone.nessuno": "Nessun testimone da proteggere.",
   "epilogo.busta.nome": "La busta",
-  "epilogo.busta.consegnata": "Consegnata chiusa al comando.",
+  "epilogo.busta.consegnata": "Consegnata al comando.",
   "epilogo.busta.tenuta": "Tenuta da te, nel cassetto.",
   "epilogo.busta.nessuna": "Nessuna busta è passata dalle tue mani.",
   "epilogo.pista_cattura.nome": "La cattura del Fabbro",
@@ -50,5 +50,9 @@
   "epilogo.sospetti_talpa.1": "Un dubbio annotato su Lavezzari.",
   "epilogo.sospetti_talpa.2": "Due dubbi annotati su Lavezzari.",
   "epilogo.sospetti_talpa.3": "Tre dubbi annotati su Lavezzari.",
-  "epilogo.sospetti_talpa.4": "Quattro dubbi annotati su Lavezzari."
+  "epilogo.sospetti_talpa.4": "Quattro dubbi annotati su Lavezzari.",
+  "epilogo.carte.nome": "I faldoni della stazione",
+  "epilogo.carte.fermate": "Fermati all'alba, con l'uomo e la valigia: l'inchiesta regge.",
+  "epilogo.carte.perse": "Partiti col treno delle cinque: l'inchiesta zoppica.",
+  "epilogo.carte.nessuna": "Nessun faldone passato dalla stazione."
 }

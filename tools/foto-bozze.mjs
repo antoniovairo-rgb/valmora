@@ -4,7 +4,7 @@
 //   schieramento: nessun errore di console, nessuna chiave di testo mancante «[[…]]», i dettagli dei dati disegnati;
 // - il primo episodio di ogni stagione oltre la prima si gioca per intero (partita di foto.mjs).
 import { leggiDati } from './dati-disco.mjs';
-import { controllaHome, controllaTripla } from './foto-club.mjs';
+import { avanzaFino, controllaHome, controllaTripla } from './foto-club.mjs';
 import { controllaNomiSala } from './foto-c15.mjs';
 import { controllaVignetta } from './foto-c22.mjs';
 import { controllaCitta, controllaNomiCittaTutti } from './foto-c17.mjs';
@@ -39,6 +39,7 @@ export async function apriDallaCitta(pagina, m, atteso) {
   if (await pagina.locator('.tripla').count()) { await controllaTripla(pagina, atteso, `${m.id} «Rigioca»`); await pagina.click('[data-azione="conferma-rigioca"]'); }
 }
 
+const PAGINE = 3; // D-202
 export async function apriTutte(c) {
   const { pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori, cartella } = c;
   const { missioni, v0 } = missioniDai(dirDati);
@@ -49,6 +50,9 @@ export async function apriTutte(c) {
   // D-125: i 16 stemmi alla misura vera, a 360/375/412 (tools/foto-stemmi.mjs), con le foto nella cartella del giro
   const { paginaStemmi, controllaStemmiTutti } = await import('./foto-stemmi.mjs');
   for (const w of [360, 375, 412]) { const p = await paginaStemmi(pagina.context().browser(), w, process.env.VALMORA_ROSSI ?? ''); await controllaStemmiTutti(p, atteso, `${w}px`); if (cartella) await p.screenshot({ path: `${cartella}/stemmi-${w}.png`, fullPage: true }); await p.close(); }
+  // C47-03 (D-218): C17-12 anche sulla stagione 3 con tutti i 36 episodi conclusi, stelle comprese (rosso C218S01)
+  await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, sal]); await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  await pagina.click('[data-stagione="3"]'); await controllaCitta(pagina, atteso, `città, stagione 3 con 36 episodi, ${pagina.viewportSize().width}×${pagina.viewportSize().height}`);
   // PO-091: con nessun episodio superato, la stagione 2 è chiusa e la scheda dice cosa la apre; «Prossimo» porta all'episodio 01
   await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, JSON.stringify({ ...JSON.parse(sal), episodi: {}, missioni_concluse: [] })]);
   await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
@@ -59,7 +63,26 @@ export async function apriTutte(c) {
   await pagina.click('[data-azione="vai-prossimo"]').catch(() => {});
   atteso('città: «Prossimo» non porta alla scheda dell\'episodio 01 (PO-091)', (await pagina.locator('[data-scheda-episodio="e01"]').count()) === 1);
   const prime = new Set([...new Set(missioni.map((m) => m.stagione))].slice(1).map((s) => missioni.find((m) => m.stagione === s)?.id));
-  for (const [i, m] of missioni.entries()) {
+  // D-202: gli episodi si aprono su PAGINE pagine insieme (attese, non calcolo); quelli che giocano una partita restano sulla
+  // pagina del giro (partita è legata a lei). Ogni pagina conta i suoi errori di console; tutti finiscono anche nel giro.
+  const altre = await Promise.all(Array.from({ length: PAGINE - 1 }, async () => {
+    const q = await pagina.context().browser().newPage({ viewport: { width: finestra.width, height: 760 }, reducedMotion: 'reduce' }), err = [];
+    await q.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); const rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean);
+    if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
+    q.on('console', (x) => { if (x.type() === 'error') { err.push(x.text()); errori.push(x.text()); } }); await q.goto(pagina.url());
+    return { pagina: q, errori: err, premi: (sel) => avanzaFino(q, sel, () => {}).then(() => q.click(sel)), scena: async (nome) => {
+      await q.waitForSelector(`.scena[data-scena="${nome}"]`, { timeout: 5000 });
+      await q.waitForFunction(() => document.querySelectorAll('.scena').length === 1 && getComputedStyle(document.querySelector('.scena')).opacity === '1'
+        && [...document.querySelectorAll('[data-messaggio]')].every((x) => getComputedStyle(x).opacity === '1') && [...document.querySelectorAll('.mappa')].every((x) => x.dataset.pronta === 'si'), null, { timeout: 5000 }); } };
+  }));
+  const proprie = [], ascolta = (x) => { if (x.type() === 'error') proprie.push(x.text()); }; pagina.on('console', ascolta); // la pagina del giro scrive già nel giro
+  const tutte = [{ pagina, errori: proprie, premi, scena }, ...altre], giri = tutte.map(() => []);
+  for (const [i, m] of missioni.entries()) giri[prime.has(m.id) ? 0 : i % tutte.length].push([i, m]);
+  await Promise.all(tutte.map((P, k) => (async () => { for (const [i, m] of giri[k]) await apriUna(P, i, m); })()));
+  await Promise.all(altre.map((P) => P.pagina.close())); pagina.off('console', ascolta);
+  await pagina.setViewportSize(finestra);
+
+  async function apriUna({ pagina, errori, premi, scena }, i, m) {
     const prima = errori.length;
     try {
       await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, sal]);
@@ -101,5 +124,4 @@ export async function apriTutte(c) {
     } catch (e) { atteso(`${m.id}: non si apre (${e.message.split('\n')[0]})`, false); }
     atteso(`${m.id}: ${errori.length - prima} errori di console aprendolo (${errori.slice(prima, prima + 1).join('')})`, errori.length === prima);
   }
-  await pagina.setViewportSize(finestra);
 }

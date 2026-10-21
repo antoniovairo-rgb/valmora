@@ -14,14 +14,14 @@ import { Messaggio } from './Scena.tsx';
 import { iconaChi, VignettaChiamata } from '../vignette-chiamata.tsx';
 import { urgente } from '../vignette-evento.tsx';
 import { altoNellaPagina, scorriPerIntero } from '../vista.ts';
-import { EffettiOpzione } from '../effetti-opzione.tsx';
+import { EffettiOpzione, quandoCosta } from '../effetti-opzione.tsx';
 
 
 /** PO-121 (D-148): per quanti secondi la risposta a una chiamata si può annullare. */
-export const ANNULLA_SECONDI = 5;
+export const ANNULLA_SECONDI = 3; // PO-142 (D-198): 5 → 3 s; rosso C198A01 torna a 5
 /** Durata di un «secondo» del conto alla rovescia. Solo per gli strumenti: il giro foto (che risponde a centinaia di
  *  chiamate) mette globalThis.__VALMORA_SECONDO_MS = 1 per non aspettare il tempo reale; la prova di PO-121
- *  (tools/foto-po121.mjs) non lo mette e misura i 5 s veri. */
+ *  (tools/foto-po121.mjs) non lo mette e misura i secondi veri. */
 export const secondoMs = () => (globalThis as { __VALMORA_SECONDO_MS?: number }).__VALMORA_SECONDO_MS ?? 1000;
 
 export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: number; totale: number; rispondi: (opzione: string) => void;
@@ -45,6 +45,9 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
   const urgenteQui = urgente(p.m, p.c, p.ic.variabili); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
+  const imprevistoQui = !!p.c.imprevisto && !spento('C190I01'); // PO-022 (D-190)
+  // D-206 (C45-05, scelta del PO): nell'imprevisto niente vignetta e niente riga «Imprevisto», opzioni strette. Rosso C206I01
+  const asciutto = imprevistoQui && !spento('C206I01');
   // C28-02: col mouse, alla nuova chiamata l'opzione sotto il puntatore fermo appariva già accesa (106/156): l'evidenza
   // al passaggio vale solo dopo che il puntatore si è mosso. Rosso C87H01: subito, come prima.
   const [fermo, setFermo] = useState(true);
@@ -90,14 +93,16 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
   );
   return (
     <>
-      <Messaggio key={p.c.id} classe="radio ultimo" dati={`chiamata-${p.c.id}`}>
+      {/* PO-022 (D-190): l'imprevisto interrompe la sequenza; nessun conto alla rovescia. Rosso C190I01: chiamata come le altre */}
+      {imprevistoQui && !asciutto && <p className="avviso-imprevisto" data-imprevisto={p.c.id} role="status">Imprevisto: interrompe le chiamate</p>}
+      <Messaggio key={p.c.id} classe={`radio ultimo${imprevistoQui ? ' imprevisto' : ''}`} dati={`chiamata-${p.c.id}`}>
         {/* C22-09: l'avatar segue la stessa regola dell'icona accanto alla vignetta (prima: 222/498 chiamate con l'icona generica). Rosso C59A01 */}
         <Mittente icona={(!spento('C59A01') && iconaChi(p.c.fonte)) || iconaFonte(p.c.fonte)} nome={t(`fonte.${p.c.fonte}`)} etichetta={p.c.settore ? t(`settore.${p.c.settore}`) : undefined} timbro={urgenteQui ? 'Urgente!' : undefined} urgenza={urgenteQui && !spento('C51O01')} />
         {/* C18-05: «Rispondi» dentro il fumetto, sotto il mittente: fisso in basso copriva il testo. Rosso C42R01: fisso. */}
         {serve && !spento('C42R01') && indicatore}
         {/* PO-089 (scelta A del PO): vignetta piccola a sinistra del testo, dentro il fumetto */}
         <div className="chiamata-corpo">
-          <VignettaChiamata m={p.m} c={p.c} variabili={p.ic.variabili} chiFuori />
+          {!asciutto && <VignettaChiamata m={p.m} c={p.c} variabili={p.ic.variabili} chiFuori />}
           <div>
             <p className="testo-radio">{t(p.c.testo)}</p>
             {p.c.commento && <p className="vice-a-margine"><span className="chi-vice">Il vice — </span>{t(p.c.commento)}</p>}
@@ -109,12 +114,13 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
         {opzioniValide(p.c, p.ic, p.m).map((o, i) => (
           <button key={o.id} className={`opzione${scelta === o.id ? ' scelta' : ''}`} data-opzione={o.id} disabled={scelta !== null && !spento('C05R01') && !(resta && scelta === o.id)}
             aria-disabled={resta && scelta === o.id ? true : undefined}
-            onClick={() => { if (scelta !== null && !spento('C05R01')) return; setScelta(o.id); if (p.sospendi?.(o.id)) setResta(ANNULLA_SECONDI); else p.rispondi(o.id); }}>
+            onClick={() => { if (scelta !== null && !spento('C05R01')) return; setScelta(o.id); if (p.sospendi?.(o.id)) setResta(spento('C198A01') ? 5 : ANNULLA_SECONDI); else p.rispondi(o.id); }}>
             <span className="tasto" aria-hidden="true">{LETTERE[i]}</span>
             <span className="opzione-testo">
               {t(o.testo)}
               {/* Accenno di costo in parole (D-078); interruttore rosso C05S05 lo nasconde */}
               {o.costo && !spento('C05S05') && <small className="costo" data-costo={o.id}>{t(o.costo)}</small>}
+              {quandoCosta(o, p.ic.ondata >= p.m.ondate.length) && <small className="costo costo-quando" data-quando={o.id}>{quandoCosta(o, p.ic.ondata >= p.m.ondate.length)}</small>}
               <EffettiOpzione c={p.c} o={o} />
             </span>
           </button>
@@ -143,6 +149,17 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
 }
 
 export function Risposta(p: { m: Missione; ic: InCorso; o: Opzione; avanti: () => void }) {
+  // D-193 (PO-052): esito e conseguenza in un solo blocco, così a 360×640 e 375×667 la pagina non scorre. Rosso C193R01: due
+  // messaggi, come prima.
+  if (!spento('C193R01')) return (
+    <>
+      <Messaggio classe="vice risposta-unica" dati="risposta">
+        <p className="testo-radio scelta-riga" data-scelta>{t(p.o.testo)}</p>
+        {p.o.risposta && <p className="intanto"><strong><Icona di={Coffee} />Intanto…</strong> {t(p.o.risposta)}</p>}
+      </Messaggio>
+      <button className="pulsante" data-azione="continua" onClick={p.avanti}>Avanti<Icona di={ChevronRight} /></button>
+    </>
+  );
   return (
     <>
       <Messaggio classe="scelta" dati="scelta"><p className="testo-radio">{t(p.o.testo)}</p></Messaggio>

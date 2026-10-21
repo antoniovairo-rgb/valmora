@@ -3,7 +3,7 @@
 // (D-055, D-078): dice dove e su cosa pesa la scelta, non quanto. Rosso C39I01: niente icone.
 import { Flame, ThumbsUp } from 'lucide-react';
 import type { Chiamata, Opzione } from '../logica/tipi.ts';
-import { t } from './dati.ts';
+import { quante, t } from './dati.ts';
 import { Icona, iconaRisorsa } from './icone.tsx';
 import { spento } from '../interruttori.ts';
 
@@ -34,4 +34,16 @@ export function EffettiOpzione(p: { c: Chiamata; o: Opzione }) {
       {voci.map((v) => <span key={v.chiave} className="effetto-chip" data-effetto={v.chiave} aria-label={v.aria}><Icona di={v.icona} />{v.testo}</span>)}
     </span>
   );
+}
+
+/** C41-03 (D-183): le unità che una risposta impegna escono dalla prossima ondata (le schierate restano dove sono):
+ *  «Ti costa 1 squadra dalla prossima ondata». Null se la risposta non impegna unità. Rosso C183Q01: niente. */
+export function quandoCosta(o: Opzione, ultima = false): string | null {
+  if (spento('C183Q01')) return null;
+  const u = o.effetti.filter((e): e is Extract<Opzione['effetti'][number], { riserva: string }> => 'riserva' in e && e.valore < 0);
+  if (!u.length) return null;
+  // C42-01 (D-185): all'ultima ondata non c'è una «prossima ondata»; si dice che le unità restano impegnate fino a fine
+  // serata (e02 o4 «Ti costa 1 squadra dalla prossima ondata» annunciava un costo che non arriva). Rosso C42U01: come prima.
+  if (ultima && !spento('C42U01')) return t('costo.fine_serata');
+  return `${t('costo.ti_costa')} ${u.map((e) => quante(-e.valore, e.riserva)).join(', ')} ${t('costo.dalla_prossima')}`;
 }
