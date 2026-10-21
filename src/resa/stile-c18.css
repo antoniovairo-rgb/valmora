@@ -220,3 +220,13 @@ main:not(.rosso-c218s01) .episodio .stelle.piccole { gap: 0; padding: var(--spaz
 main:not(.rosso-c218s01) .episodio .settore-unita { bottom: calc(var(--settore) / -2); }
 main:not(.rosso-c218s01) .episodio:has(.stelle) .settore-punto { padding-bottom: var(--spazio-3); }
 main:not(.rosso-c218s01) .episodio .settore-nome { z-index: 1; }
+/* D-221: il riepilogo dello schieramento non scorre neanche a 640 di altezza (D-191; con 5 settori e l'avviso scorreva fino a
+   115 px a 360×640): scheda, elenco, avviso e pulsanti più stretti; sotto la pagina il margine piccolo (quello grande è per
+   la barra fissa dello schieramento, che qui non c'è). Rosso C221R01 */
+main:not(.rosso-c221r01) .scheda.riepilogo { margin-block: var(--spazio-2); padding: var(--spazio-2) var(--spazio-3); }
+main:not(.rosso-c221r01) .riepilogo h3 { margin-bottom: var(--spazio-1); }
+main:not(.rosso-c221r01) .riepilogo ul { gap: 0; }
+main:not(.rosso-c221r01) .riepilogo li { line-height: var(--linea-stretta); }
+main:not(.rosso-c221r01) .riepilogo ~ .avviso { margin-block: var(--spazio-2); padding-block: var(--spazio-1); font-size: var(--testo-piccolo); line-height: var(--linea-stretta); }
+main:not(.rosso-c221r01) .riepilogo-azioni .pulsante { padding-block: var(--spazio-1); font-size: var(--testo-piccolo); }
+#app:has(main:not(.rosso-c221r01) [data-riepilogo]) { padding-bottom: var(--spazio-3); }
