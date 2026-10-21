@@ -376,4 +376,13 @@
 //   misura: imprevisti a 360×760 massimo 545 → 331, mediana 466 → 278 (soglie 339/285); città senza scorrimento a
 //   360/375/412×760, con 36 episodi compresi; CI «catene» 10/10 job (con «aab», versionCode 47000).
 //   guardiano: rossi C206I01, C210C01, C210G01, C215L01; tests/d211.test.ts (D211-01/02/05/06); job CI «aab».
-export const GAME_VERSION = '0.47.0';
+// 0.48.0 – correzioni del collaudo C-047 e privacy policy per il Play Store.
+//   causa: C47-01 (in e36 il vice parlava di «tre interim, tre buste» mentre e01, e34 e la guida fanno del protagonista il
+//   quarto), C47-02 (il riepilogo dello schieramento scorreva a 360/375/412×760: margini di .azioni .pulsante), C47-03 (le
+//   stelle coprivano i dischi degli altri episodi sulla città con 36 episodi); PO-145 (il Play Store chiede la privacy
+//   policy dentro l'app e su un URL pubblico, D-217; contatto korward.devteam@gmail.com, D-220).
+//   misura: riepilogo e36/e22 19/11 → 0 px; stelle sui dischi altrui 1460 → 0 px² a 360 (282/270 → 0 a 375/412);
+//   richieste di rete esterne in una partita e01–e03: 0 su 3152 (Chromium); home a 0 px di scorrimento a 360/375/412×760.
+//   guardiano: rossi C218R01, C218S01; parte «riepilogo» di tools/sonda-altezze.mjs; C17-12 esteso a stelle e stagione 3;
+//   C145H01, C145T01, C145W01 e segnaposto del contatto (tools/aab.mjs, tests/privacy.test.ts).
+export const GAME_VERSION = '0.48.0';
