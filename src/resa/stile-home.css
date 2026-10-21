@@ -29,3 +29,9 @@ main:not(.rosso-c187c01) .home-premessa ~ .avviso-finzione { margin-bottom: 0; }
 .solo-lettore { position: absolute; width: var(--spazio-px); height: var(--spazio-px); overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 /* D-210: con la striscia meno margine sotto la pagina (la mappa resta a 260: a 252 i dischi si coprivano per 255 px² a 360×760, C17-12) */
 #app:has(main[data-schermata="citta"] [data-citta-striscia]) { padding-bottom: var(--spazio-3); }
+/* D-224 (C48-02): il menu «Altro» aperto stava sotto la piega (360×640: 202 px senza salvataggio, 265 con). Aperto, la vignetta,
+   la frase-obiettivo e la premessa lasciano il posto (tornano alla chiusura), le voci stanno tre per riga e sotto la pagina
+   c'è il margine piccolo (niente barra fissa nella home). Rosso C224A01 */
+main:not(.rosso-c224a01):has(.home-altro:not([hidden])) :is(.home-vignetta, .home-obiettivo, .home-premessa) { display: none; }
+main:not(.rosso-c224a01) .home-altro .secondari .pulsante.piccolo { flex: 1 1 30%; padding-inline: var(--spazio-1); }
+#app:has(main:not(.rosso-c224a01) .home-altro:not([hidden])) { padding-bottom: var(--spazio-3); }

@@ -467,3 +467,36 @@ costruiti (e36, e22) e per quelli della partita e01. Bracci nella catena grafica
 Foto: `c47/d221/prima` (rosso C221R01) e `c47/d221/dopo`, riepiloghi di e36 ed e22 a 360×640, 375×667, 412×830 e a 360,
 375 e 412 × 760.
 Non verificato: telefono reale.
+
+## D-224 (C48-02): il menu «Altro» della home aperto sta tutto nello schermo — S-11, 21/10
+
+Base: merge di 920b6faf. FATTO MISURATO, Chrome 156, scorrimento della pagina col menu aperto (`scrollHeight − innerHeight`),
+senza / con salvataggio:
+
+| | 360×640 | 375×640 | 412×640 | 375×667 | 360×760 | 375×760 | 412×760 |
+|---|---|---|---|---|---|---|---|
+| prima (rosso C224A01) | 202 / 265 | 150 / 213 | 131 / 194 | 123 / 186 | 82 / 145 | 30 / 93 | 11 / 74 |
+| dopo | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 |
+
+Prima, a 360×640 con salvataggio, restavano sotto la piega Sostieni, Esporta, Importa, Idee e la versione. Due misure di prima
+non coincidono con quelle della principale su 99cf0e93: a 375×667 senza salvataggio misuro 123 px (lei 104) e a 412×760 con
+salvataggio 74 px (lei 55). **Non verificato** il perché; le mie sono su 920b6faf, con la sonda temporanea che apre il menu dopo
+`document.fonts.ready`. Le altre misure coincidono.
+
+Correzione solo con token, rosso `C224A01` (`src/resa/stile-home.css`):
+- col menu aperto, vignetta, frase-obiettivo e premessa lasciano il posto e tornano alla chiusura; restano logo, Riprendi,
+  Nuova partita, «La città e il gioco» + «Altro», il menu e l'avviso di finzione;
+- le voci del menu stanno tre per riga (`flex-basis` 30%, spazio laterale `--spazio-1`);
+- sotto la pagina c'è il margine piccolo (`--spazio-3`), perché nella home non c'è la barra fissa.
+
+A 360×640 con salvataggio restano circa 80 px liberi. Prova scartata: con la frase-obiettivo visibile restavano 7 px.
+
+Guardiano: `controllaAltro` (`tools/foto-home.mjs`) ora gira a ogni altezza del giro (760 e 640, prima solo a 760), con e senza
+salvataggio (senza: niente «Esporta», 4 voci). Misura lo scorrimento col menu aperto a soglia 0 (`SOGLIA_ALTRO`, fissata dalla
+regola). Braccio rosso C224A01 in `homeRossaVista` (catena grafica): col rosso 12 rossi su 12 (3 larghezze × 2 altezze ×
+con/senza salvataggio).
+
+Foto: `c48/d224/prima` (rosso C224A01) e `c48/d224/dopo`, menu aperto con e senza salvataggio a 360/375/412×640, 375×667 e
+360/375/412×760.
+Non verificato: telefono reale; lettore di schermo col menu aperto (gli elementi nascosti hanno `display: none` e quindi
+escono anche dall'albero di accessibilità finché il menu è aperto: lo dichiaro, non l'ho misurato).
