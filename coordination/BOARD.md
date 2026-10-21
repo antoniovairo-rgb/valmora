@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-21 02:30 UTC. Principale a a34eb151: integrate S-21 (AAB non firmato in CI, RILASCIO.md, D-214) e S-11 D-215 (fumetto imprevisto, mediana 360×760 286 → 278, soglia 285 invariata); governo+logica verdi su 2887812e; CI catene verde su 2887812e (run 39530964965). Attive: S-20 (claude/valmora-c46, e22/e27 + D211-06 + testi e36, merge da 2887812e richiesto); S-11 in pausa; S-21 consegnata (decisioni privacy/permessi al PO).
+Ultimo giro della routine: 2026-10-21 04:45 UTC. Principale a 3480cd92: integrata S-20 (C46-01/02/05, e22/e27, guardiani D211, ritiro di db080684 che accecava C215L01); governo+logica verdi su 569f86f5; CI di S-20 10/10 su 07ece931. D-216 (INTERNET, allowBackup). S-20 e S-21 archiviate; S-11 in pausa. Al PO: 2 domande privacy (Play).
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
