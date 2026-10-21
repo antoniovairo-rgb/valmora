@@ -84,6 +84,9 @@ main:not(.rosso-c58i01) .effetto-chip { padding-inline: calc(var(--spazio-1) / 2
 /* C22-10: con le icone a 20 px i due pulsanti del riepilogo uscivano sotto la versione a 360 (PO-097): spazio interno
    più stretto, come nei tre pulsanti dello schieramento */
 .riepilogo-azioni .pulsante { gap: var(--spazio-1); padding-inline: var(--spazio-2); }
+/* C47-02 (D-218): con 5 settori e l'avviso «ti restano» il riepilogo scorreva a 760 di altezza (e36 ondata 1: 19 px a 360
+   e 375, 11 a 412); i pulsanti perdono i margini sopra e sotto (24 px), lo stacco dall'avviso resta il suo. Rosso C218R01 */
+main:not(.rosso-c218r01) .riepilogo-azioni .pulsante { margin-block: 0; }
 /* D-165 (prova PO-130): tavole grandi del finale, vignetta a tutta larghezza (16:9) con didascalia sotto */
 .tavola { margin: 0 0 var(--spazio-4); }
 .tavola > .vignetta { height: auto; min-height: 0; max-height: none; margin: 0; }
@@ -210,3 +213,10 @@ main:not(.rosso-c210c01)[data-schermata="citta"]:has([data-citta-striscia]) .sch
 /* D-215: con le etichette neutre (C-045, D-209) alcuni titoli delle opzioni d'imprevisto vanno su due righe a 360 px e la
    mediana a 360×760 saliva a 286 (soglia D-207: 285). Fumetto dell'imprevisto con meno spazio dentro (sopra e sotto). Rosso C215L01. */
 main:not(.rosso-c215l01) .scena[data-scena="chiamata"] .messaggio.imprevisto { padding-block: var(--spazio-1); }
+/* C47-03 (D-218): sulla città le stelle stavano sopra il disco, larghe 55 px, e coprivano i dischi vicini (stagione 3: fino
+   a 288 px² a 360×760, 33 sul 29). Ora strette a 41 px e dentro il riquadro del proprio disco, in basso; il numero sale
+   quanto serve e il nome dell'episodio scelto resta sopra le stelle. Rosso C218S01: come prima. */
+main:not(.rosso-c218s01) .episodio .stelle.piccole { gap: 0; padding: var(--spazio-px); }
+main:not(.rosso-c218s01) .episodio .settore-unita { bottom: calc(var(--settore) / -2); }
+main:not(.rosso-c218s01) .episodio:has(.stelle) .settore-punto { padding-bottom: var(--spazio-3); }
+main:not(.rosso-c218s01) .episodio .settore-nome { z-index: 1; }

@@ -13,14 +13,14 @@ export async function controllaBozzaRicarica(pagina, atteso) {
   atteso(`schieramento: ${prima} unità messe e non confermate, dopo una ricarica ${dopo} (C17-16)`, dopo === prima);
 }
 
-/** C17-12: nella città i dischi degli episodi non si coprono e il nome dell'episodio scelto è in primo piano. */
+/** C17-12: nella città i dischi degli episodi non si coprono, né le stelle coprono i dischi degli altri (C47-03, D-218, rosso C218S01), e il nome dell'episodio scelto è in primo piano. */
 export async function controllaCitta(pagina, atteso, dove) {
-  const [dischi, sopra, copre] = await pagina.evaluate(() => {
+  const [dischi, sopra, copre, stelle] = await pagina.evaluate(() => {
     const a = (A, B) => Math.max(0, Math.min(A.right, B.right) - Math.max(A.left, B.left)) * Math.max(0, Math.min(A.bottom, B.bottom) - Math.max(A.top, B.top));
     const d = [...document.querySelectorAll('[data-episodio] .settore-punto')].map((e) => e.getBoundingClientRect());
     let dd = 0; for (let i = 0; i < d.length; i++) for (let j = 0; j < i; j++) dd += a(d[i], d[j]);
-    const nm = document.querySelector('.episodio.acceso .settore-nome');
-    if (!nm) return [dd, true, 0];
+    const ep = [...document.querySelectorAll('[data-episodio]')], st = ep.reduce((x, e) => { const s = e.querySelector('.stelle')?.getBoundingClientRect(); return x + (s ? ep.filter((f) => f !== e).reduce((y, f) => y + a(s, f.querySelector('.settore-punto').getBoundingClientRect()), 0) : 0); }, 0);
+    const nm = document.querySelector('.episodio.acceso .settore-nome'); if (!nm) return [dd, true, 0, st];
     const prima = nm.style.pointerEvents; nm.style.pointerEvents = 'auto'; // .settore non riceve tocchi: per misurare sì
     const r = nm.getBoundingClientRect();
     const ok = [[0.2, 0.3], [0.5, 0.5], [0.8, 0.7]].every(([x, y]) => nm.contains(document.elementFromPoint(r.left + r.width * x, r.top + r.height * y)));
@@ -28,9 +28,9 @@ export async function controllaCitta(pagina, atteso, dove) {
     // C17-12 (C-018): il nome dell'episodio scelto non copre gli altri dischi
     const proprio = nm.closest('[data-episodio]').querySelector('.settore-punto');
     const copre = [...document.querySelectorAll('[data-episodio] .settore-punto')].filter((e) => e !== proprio).reduce((s, e) => s + a(r, e.getBoundingClientRect()), 0);
-    return [dd, ok, copre];
+    return [dd, ok, copre, st];
   });
-  atteso(`${dove}: dischi degli episodi sovrapposti per ${Math.round(dischi)} px² (C17-12)`, dischi === 0);
+  atteso(`${dove}: dischi degli episodi sovrapposti per ${Math.round(dischi)} px² (C17-12)`, dischi === 0); atteso(`${dove}: le stelle coprono dischi di altri episodi per ${Math.round(stelle)} px² (C17-12, C47-03)`, stelle === 0);
   atteso(`${dove}: il nome dell'episodio scelto è coperto da altri dischi (C17-12)`, sopra);
   atteso(`${dove}: il nome dell'episodio scelto copre altri dischi per ${Math.round(copre)} px² (C17-12)`, copre === 0);
 }
