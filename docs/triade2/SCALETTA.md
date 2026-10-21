@@ -1,7 +1,8 @@
 # Scaletta della triade 2 (e37-e72) – BOZZA, PO-134
 
 Stato: **proposta da far decidere al PO**, come l'indice della triade 1 (docs/INDICE_TRIADE.md, poi approvato con D-068).
-Archi, personaggi e domande: docs/triade2/BIBBIA-T2.md. Nessun episodio giocabile prima del lancio (PO-134).
+Archi, personaggi e domande: docs/triade2/BIBBIA-T2.md; approvazione: docs/triade2/approvazione.html. Nessun episodio
+giocabile prima del lancio (PO-134, D-175). Riallineata il 21/10 (S-24) ai dati del ramo l1 a 3787b10.
 
 Regole tenute:
 - 12 episodi per stagione, come la triade 1 (docs/BIBBIA.md, «Triadi di 3 stagioni × 12 missioni»).
@@ -12,6 +13,8 @@ Regole tenute:
 - Eventi di città dalla riserva docs/RISERVA_EVENTI.md (D-092); corteo degli studenti D-156; quartieri nuovi PO-110 con
   la regola D-124. Club solo quelli di D-125, salvo il club straniero inventato di S5 (domanda D-T2-03 e nota in fondo).
 - Violenza solo nei rapporti radio e nei verbali; nessuna procedura di polizia reale.
+- Regole ereditate dalla rifinitura: risultato della partita fisso (D-137), nessun timer (D-190), ogni patto costa
+  fiducia (D-189), niente doppioni in episodi di fila (D-138, D-186, D-189).
 - IPOTESI non misurata: difficoltà crescente fra S4, S5, S6 come D-162; si tara coi bot quando gli episodi esistono.
 
 Legenda «scelta»: variabile di storia nuova proposta (nome provvisorio) o filo della triade 1 che torna.
@@ -20,7 +23,7 @@ Legenda «scelta»: variabile di storia nuova proposta (nome provvisorio) o filo
 
 | ep | titolo | luogo | partita o evento | filo narrativo | scelta di storia | mappa |
 |---|---|---|---|---|---|---|
-| e37 | Di ruolo | Kiln, sala operativa | Kiln United–Pinegrove Rangers | raccordo coi tre esiti di e36; busta nuova di Malvasi, «doppio o niente» | — (legge l'esito di e36) | S |
+| e37 | Di ruolo | Kiln, sala operativa | Kiln United–Pinegrove Rangers | raccordo coi tre esiti di e36 (il degenerato è fallito e non sblocca e37); quinta busta di Malvasi, «doppio o niente» (finale.json:39) | — (legge l'esito di e36) | S |
 | e38 | Il giovane | Skyfield | Skyfield Athletic–Garden Albion | arriva il vice-responsabile Ferraris; la direttrice Sarcone guarda i numeri | a Ferraris la curva ospiti o il piazzale (`fiducia_ferraris`) | S |
 | e39 | Pioggia | Waterline, sottopassi | allerta maltempo, Waterline City–Lookout FC sospesa | prima giornata «di città»: deflusso sotto la pioggia | — | C |
 | e40 | All'asta | centro, palazzo del comune | asta del cantiere sequestrato; partita solo alla radio | un consorzio senza volto fa un'offerta (1ª comparsa) | — | C |
@@ -58,18 +61,18 @@ Serie massima di episodi di stadio: 3 (e53-e55).
 
 | ep | titolo | luogo | partita o evento | filo narrativo | scelta di storia | mappa |
 |---|---|---|---|---|---|---|
-| e61 | Il processo | Garden | Garden Albion–Kiln United | il processo a Varrone, solo notizie; versione secondo il fascicolo di e31 (finale.json:26-29) | — | S |
-| e62 | Il testimone | centro | la città nel giorno della deposizione (fuori campo) | torna il testimone della triade 1 (finale.json:12-14) | — | C |
+| e61 | Il processo | Garden | Garden Albion–Kiln United | l'inchiesta su Varrone, solo notizie; processo o riapertura secondo fascicolo e faldoni (finale.json:26-33; D-T2-11) | — | S |
+| e62 | Il testimone | centro | la città nel giorno della deposizione (fuori campo) | torna il testimone della triade 1 (finale.json:12-13); con «nessuno» (:14) depone il guardiano del cantiere (e36.json:88) | — | C |
 | e63 | L'offerta | Square | Square Rovers–Skyfield Athletic | offrono a Malvasi un posto fuori città | — | S |
 | e64 | Da solo | Pinegrove | Pinegrove Rangers–Kiln United | Ferraris guida la giornata, il protagonista coordina | lasciarlo sbagliare o intervenire | S |
 | e65 | Watertower | Watertower (nuovo, PO-110) | maratona cittadina che attraversa i quartieri delle due tifoserie | — | — | C |
-| e66 | La busta vecchia | Stoneway | Stoneway Wanderers–Domepark Villa | la busta della triade 1 (finale.json:16-18) collega Varrone a Marzanti | — | S |
+| e66 | La busta vecchia | Stoneway | Stoneway Wanderers–Domepark Villa | la busta di e24 (finale.json:16-17) collega Varrone a Marzanti; con «nessuna» (:18) lo stesso indizio arriva dal ragazzo delle sciarpe | — | S |
 | e67 | Demolire o restaurare | palazzo del comune | il consiglio comunale decide sullo stadio vecchio; curve unite in piazza | — | — | C |
 | e68 | Marzanti | Arches | Arches Town–Studio Town | il consorzio cade o resta, secondo `prove_consorzio` e il fascicolo | — | S |
 | e69 | Due città | Kiln e Marblegate | Kiln United–Belltower Harriers e un concerto a Marblegate, stessa sera | più responsabilità: due eventi da tenere insieme | — | S |
 | e70 | Resta? | sala operativa, bar | nessuna partita: la notte della scelta di Malvasi | — | chiedergli di restare o lasciarlo andare (`malvasi_resta`) | C |
 | e71 | Vigilia | tutta la città | notte prima dell'ultima nello stadio vecchio; tornano i gemellati del Railhead | — | — | C |
-| e72 | L'ultima nello stadio vecchio | Kiln | **grande evento**: derby Kiln United–Skyfield Athletic | si apre la seconda busta; finale agrodolce, epico con ironia (D-099, D-165) | — | S |
+| e72 | L'ultima nello stadio vecchio | Kiln | **grande evento**: derby Kiln United–Skyfield Athletic | si apre la quinta busta; finale agrodolce, epico con ironia (D-099, D-165) | — | S |
 
 Serie massima di episodi di stadio: 2 (e63-e64, e68-e69).
 
@@ -79,5 +82,9 @@ Serie massima di episodi di stadio: 2 (e63-e64, e68-e69).
 - Le trasferte (e50, e57) seguono il precedente di e11 a Wallgate (docs/BIBBIA.md, «Club di fuori città»).
 - Il Railhead County non gioca mai contro il Kiln (docs/BIBBIA.md, «Club di fuori città»): rispettato (e44 contro lo
   Skyfield, e71 solo ospite).
+- Doppione da guardare (D-189 regola 4): biglietti regalati in e49 ed e50 di fila; si può spostare e50 dopo e51.
+- FATTO che non torna più col 18/10: e36 apre sempre la busta (e36.json:124, :131-143), quindi e37 non ha più il caso
+  «busta chiusa»; il testimone e la busta di e24 possono essere «nessuno/nessuna» (finale.json:14, :18), da qui le
+  varianti di e62 ed e66.
 - Indizi con almeno due comparse: consorzio (e40, e45, e48), biglietti regalati (e49, e50, e56, e59), Marzanti (e45,
   e48, e52, e68).
