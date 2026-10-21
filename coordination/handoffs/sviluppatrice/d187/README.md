@@ -339,3 +339,58 @@ Rosso `C215L01`. Prove scartate: interlinea del titolo delle opzioni (era già `
 (collassano coi vicini, 286). Dopo: mediana 278 in 3 giri su 3, massimo 331. Guardiano verde; col rosso C215L01 «mediana
 degli imprevisti 286 px (soglia 285)»; braccio C215L01 nella catena grafica (parte «chiamate»).
 Foto: `c45/d215/prima` (rosso C215L01) e `c45/d215/dopo`, e01, e17, e30 a 360, 375 e 412 (`tools/foto-imprevisti.mjs`, PRIMA=C215L01).
+
+## D-218: rilievi del collaudo C-047 (C47-01, C47-02, C47-03) — S-11, 21/10
+
+Base: ebbf277b (avanzamento rapido, nessun rebase). FATTO MISURATO con Chrome 156 (Headless Shell, `tools/chrome-ci.mjs`).
+
+**C47-01 (solo testo).** `data/testi/it/e36.json:117` ora dice «Quattro interim, quattro buste. Le prime tre non le ho mai
+aperte davanti a nessuno.»: coerente con e01 «Sei il quarto ad interim», e34 «Tre interim prima di te» e la guida «Il vice ha
+visto passare tre come te»; la busta del protagonista è la quarta, l'ultima. Nessuna variante @f per questa chiave; le righe
+vicine del filo (e36.intro1 «una busta col tuo nome», verbali «Hai durato più di tutti») sono già coerenti. Meccanica intatta.
+
+**C47-02 (riepilogo dello schieramento).** Riprodotto con le disposizioni della collaudatrice (6–7 unità su 5 settori, con
+l'avviso «Ti restano…»), aperte da salvataggio all'ondata 1 dopo la partita attenta fino all'episodio prima. Senza avviso
+(piano attento: 4 settori, oppure 5 settori con tutte le unità) non scorreva già: 0 px.
+
+| scorrimento (px) | 360×760 | 375×760 | 412×760 |
+|---|---|---|---|
+| e36 ondata 1, prima | 19 | 19 | 11 |
+| e22 ondata 1, prima | 11 | 11 | 11 |
+| e36 e e22, dopo | 0 | 0 | 0 |
+
+Causa: i due pulsanti del riepilogo avevano i margini delle azioni (`.azioni .pulsante`, `--spazio-3` sopra e sotto, 24 px).
+Correzione con token: `margin-block: 0` sui pulsanti del riepilogo (lo stacco dall'avviso resta il suo margine `--spazio-2`).
+Rosso `C218R01`. Il posto liberato lo riprende la mappa, che è a altezza variabile (foto).
+Guardiano: `tools/sonda-altezze.mjs`, parte «riepilogo» a ogni 760 (`RIEPILOGHI`, `riepiloghiCostruiti`): controlla 5
+settori e l'avviso, soglia 0. Col rosso C218R01: 19 e 11 px, rosso; braccio C218R01 nella catena grafica.
+
+**C47-03 (stelle della città).** Riprodotto sulla città con 36 episodi (1 stella ciascuno): dischi 0 px² ma stelle (55×15 px,
+sopra il disco) sui dischi vicini. Le tre stagioni hanno la stessa disposizione, quindi gli stessi numeri:
+
+| stelle sui dischi di altri episodi (px²) | 360×760 | 375×760 | 412×760 |
+|---|---|---|---|
+| prima, coppia peggiore | 288 (33 sul 29) | 282 | 270 |
+| prima, 31 sul 28 / 32 sul 31 | 75 / 158 | 39 / 122 | 0 / 33 |
+| prima, somma | 1460 | — | — |
+| dopo, tutte le stagioni | 0 | 0 | 0 |
+
+Prova scartata: solo uno spostamento verticale delle stelle (da −10 a +60 px) non arriva mai a 0 (minimo 96 px² a 360).
+Correzione con token: stelle strette a 41 px (`gap: 0`, `padding: var(--spazio-px)`), dentro il riquadro del proprio disco,
+in basso (`bottom: calc(var(--settore) / -2)`); il numero sale di metà `--spazio-3` (`padding-bottom` sui dischi con stelle) e
+resta leggibile; il nome dell'episodio scelto sta sopra le stelle (`z-index: 1`). Rosso `C218S01`.
+Guardiano: C17-12 (`tools/foto-c17.mjs`, `controllaCitta`) misura anche le stelle contro i dischi degli altri, con soglia 0. Gira
+nel giro foto anche sulla stagione 3 con i 36 episodi (`tools/foto-bozze.mjs`) e nella parte «città36» di
+`tools/sonda-altezze.mjs`, che ospita il braccio rosso. Col rosso C218S01: 1460 px², rosso.
+
+**Rilievo nuovo (non corretto, alla principale).** Il guardiano nuovo ha trovato un altro difetto nel riepilogo di e36 a 360 e 375.
+Il tasto «Home» della mappa copre il nome di curva_cinderwick per 56 px², e si legge «URVA KILN» (S-21). Il difetto c'è già su
+ebbf277b: lo vedo anche coi rossi C218R01 e C218S01. Il posizionatore dei nomi (`src/resa/mappa/etichette.ts:57-59`) considera
+già «Home» un ostacolo, ma qui nessun posto è libero. Correggerlo vuol dire toccare l'algoritmo delle etichette, che è fuori
+dall'ambito di D-218. Per ora la parte «riepilogo» misura e stampa questo valore (`casaRiepilogo`) ma non blocca.
+
+Foto: `c47/d218/prima` (build prima della correzione) e `c47/d218/dopo`: riepilogo e36 e e22, città con 36 episodi in
+stagione 3, a 360, 375 e 412 × 760.
+
+Non verificato: telefono reale (tutto in Chromium); il riepilogo a 640/667 di altezza (non richiesto, non misurato); lettore
+di schermo sulle stelle spostate (l'etichetta del disco dice già «N stelle su 3», `MappaCitta.tsx:110`, non cambiata).

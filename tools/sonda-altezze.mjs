@@ -16,6 +16,7 @@ import { attenta, STRATEGIE } from '../src/logica/bot.ts';
 import { creaCaso } from '../src/logica/caso.ts';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
+import { controllaCitta } from './foto-c17.mjs';
 
 // Massimo scorrimento per schermata (px), misurato il 19/10 dopo D-191 e D-193 con questo pilota; le schermate non
 // elencate: 0 (crediti liberi). Restano la chiamata, che D-114 lascia scorrere (soglia: il massimo di prima), e la risposta a
@@ -68,6 +69,19 @@ export function chiamateCostruite(dati, dich) {
     v = M.concludiMissione(m, s, dich).variabili; }
   return out;
 }
+// C47-02 (D-218): riepilogo dello schieramento con 5 settori e l'avviso «ti restano», aperto da salvataggio all'ondata 1
+// (partita attenta fino all'episodio prima). Disposizioni della collaudatrice C-047: a 360×760 scorrevano di 19 e 11 px. Rosso C218R01.
+export const RIEPILOGHI = { e36: { squadre: { curva_cinderwick: 1, curva_larkspire: 1, piazzale: 1 }, steward: { cantiere_stadio_nuovo: 1, strada_larkspire: 1 }, mediatore: { cantiere_stadio_nuovo: 1 } },
+  e22: { squadre: { curva_cinderwick: 1, curva_larkspire: 1, piazzale: 1 }, steward: { strada_cinderwick: 1, piazza_municipio: 2 }, mediatore: { piazza_municipio: 1 } } };
+export function riepiloghiCostruiti(dati, dich) {
+  const ms = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio), out = [];
+  let v = variabiliIniziali(dich.values());
+  for (const [i, m] of ms.entries()) { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich);
+    if (RIEPILOGHI[m.id]) { M.schiera(m, s, RIEPILOGHI[m.id]); out.push({ ep: m.id, d: RIEPILOGHI[m.id], sal: JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: v, missioni_concluse: ms.slice(0, i).map((x) => x.id), episodi: {}, genere: 'm', in_corso: s, rapporto_aperto: null }) }); }
+    while (!M.missioneFinita(m, s)) { s = M.schiera(m, s, g.schiera(m, s)); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); s = M.chiudiOndata(m, s, dich); }
+    v = M.concludiMissione(m, s, dich).variabili; }
+  return out;
+}
 const mediana = (xs) => { const a = [...xs].sort((p, q) => p - q); return a.length ? a[a.length >> 1] : 0; };
 const piano = (m, v, dich) => { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich); const ond = [];
   while (!M.missioneFinita(m, s)) { const d = g.schiera(m, s); s = M.schiera(m, s, d); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); ond.push({ d }); s = M.chiudiOndata(m, s, dich); }
@@ -92,7 +106,7 @@ const versioneSopra = (p) => p.evaluate(() => { const ve = document.querySelecto
   const sopra = !!document.elementFromPoint(x, y)?.closest('[data-versione-angolo]'); ve.style.removeProperty('pointer-events'); return sopra ? 1 : 0; });
 
 // D-207: parti = quali misure; i bracci rossi girano solo la parte che deve vederli rossi (prima 40 min di bracci)
-export const PARTI = ['e01', 'citta36', 'chiamate', 'rapporti'];
+export const PARTI = ['e01', 'citta36', 'chiamate', 'rapporti', 'riepilogo'];
 export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi = [], cartella = '', parti = PARTI }) {
   const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), e01 = dati['missioni/e01.json'];
   const srv = await servi(build), url = `http://127.0.0.1:${srv.address().port}/`;
@@ -141,6 +155,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="citta"]'); await lento(q); await q.waitForTimeout(300);
         const striscia = await q.evaluate(() => Math.round(document.querySelector('[data-citta-striscia]')?.getBoundingClientRect().height ?? 0)); // D-210, rosso C210C01
         ris.push({ vp, nome: 'citta36', striscia, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-citta36.png`), fullPage: true });
+        await q.click('[data-stagione="3"]'); await lento(q); await controllaCitta(q, (cosa, ok) => { if (!ok) errori.push(cosa); }, `${vp} città, stagione 3 con 36 episodi`); // C47-03 (D-218), rosso C218S01
         // D-210: il primo passo della guida («La città e il gioco» dalla home) ha la vignetta della home e non scorre. Rosso C210G01
         await q.click('[data-azione="home"]'); await q.waitForSelector('[data-azione="guida"]'); await q.click('[data-azione="guida"]'); await q.waitForSelector('[data-guida="1"]'); await lento(q);
         ris.push({ vp, nome: 'guida1', testataGuida: await q.locator('[data-guida-testata]').count(), ...(await misura(q)) });
@@ -155,6 +170,19 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
             chiamate.push({ vp, ep: c.ep, id: c.id, imprevisto: c.imprevisto, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) });
             if (cartella && c.imprevisto) await q.screenshot({ path: join(cartella, `${vp}-chiamata-${c.ep}-${c.id}.png`), fullPage: true }); }
           await q.close(); })); }
+      if (h === 760 && parti.includes('riepilogo')) for (const c of riepiloghiCostruiti(dati, dich)) { // C47-02 (D-218)
+        const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
+        if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
+        await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), c.sal); await q.reload();
+        await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="schieramento"]'); await lento(q);
+        await schiera(q, c.d); await q.click('[data-azione="conferma"]'); await q.waitForSelector('[data-riepilogo]'); await lento(q); await q.waitForTimeout(200);
+        const righe = await q.locator('[data-riepilogo-settore]').count(), avviso = await q.locator('[data-restano]').count();
+        if (righe !== 5 || !avviso) errori.push(`${vp} riepilogo ${c.ep}: ${righe} settori e ${avviso ? '' : 'senza '}avviso, attesi 5 con l'avviso (D-218)`);
+        // S-21 nel riepilogo (e36 a 360 e 375: «Home» copre il nome di curva_cinderwick, 56 px², già su ebbf277b): rilievo nuovo
+        // passato alla principale con D-218; finché non decide si misura e si stampa (casaRiepilogo), non blocca
+        const x = await misura(q); ris.push({ vp, nome: `riepilogo ${c.ep}`, ...x, casa: 0, casaRiepilogo: x.casa }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-riepilogo-${c.ep}.png`), fullPage: true });
+        await q.close();
+      }
       if (vp === '360x760' && parti.includes('rapporti')) for (const c of rapportiCostruiti(dati, dich)) { // C45-06 (D-203)
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
@@ -193,6 +221,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const max = {}; for (const r of g.ris) { const k = `${r.vp} ${r.nome}`; max[k] = Math.max(max[k] ?? -1, r.ecc); }
   for (const [k, v] of Object.entries(max)) console.log(`${k}: ${v}`);
   console.log(`nomi sopra i segni, massimo: ${Math.max(0, ...g.ris.map((r) => r.segni))} px²`);
+  for (const r of g.ris.filter((r) => r.casaRiepilogo)) console.log(`${r.vp} ${r.nome}: «Home» copre ${r.casaRiepilogo} fra punti e nomi (S-21, non blocca, D-218)`);
   for (const [k, xs] of [['imprevisti', g.chiamate.filter((c) => c.imprevisto)], ['normali', g.chiamate.filter((c) => !c.imprevisto)]]) if (xs.length) console.log(`chiamate ${k}: ${xs.length}, massimo ${Math.max(...xs.map((c) => c.ecc))} px, mediana ${mediana(xs.map((c) => c.ecc))} px`);
   const male = controllaAltezze(g); console.log(male.length ? `ROSSO (${male.length}):\n${male.join('\n')}` : 'VERDE');
   process.exit(male.length ? 1 : 0);

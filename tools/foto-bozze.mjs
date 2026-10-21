@@ -50,6 +50,9 @@ export async function apriTutte(c) {
   // D-125: i 16 stemmi alla misura vera, a 360/375/412 (tools/foto-stemmi.mjs), con le foto nella cartella del giro
   const { paginaStemmi, controllaStemmiTutti } = await import('./foto-stemmi.mjs');
   for (const w of [360, 375, 412]) { const p = await paginaStemmi(pagina.context().browser(), w, process.env.VALMORA_ROSSI ?? ''); await controllaStemmiTutti(p, atteso, `${w}px`); if (cartella) await p.screenshot({ path: `${cartella}/stemmi-${w}.png`, fullPage: true }); await p.close(); }
+  // C47-03 (D-218): C17-12 anche sulla stagione 3 con tutti i 36 episodi conclusi, stelle comprese (rosso C218S01)
+  await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, sal]); await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
+  await pagina.click('[data-stagione="3"]'); await controllaCitta(pagina, atteso, `città, stagione 3 con 36 episodi, ${pagina.viewportSize().width}×${pagina.viewportSize().height}`);
   // PO-091: con nessun episodio superato, la stagione 2 è chiusa e la scheda dice cosa la apre; «Prossimo» porta all'episodio 01
   await pagina.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, JSON.stringify({ ...JSON.parse(sal), episodi: {}, missioni_concluse: [] })]);
   await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
