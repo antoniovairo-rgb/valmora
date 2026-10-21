@@ -380,7 +380,7 @@
 //   causa: C47-01 (in e36 il vice parlava di «tre interim, tre buste» mentre e01, e34 e la guida fanno del protagonista il
 //   quarto), C47-02 (il riepilogo dello schieramento scorreva a 360/375/412×760: margini di .azioni .pulsante), C47-03 (le
 //   stelle coprivano i dischi degli altri episodi sulla città con 36 episodi); PO-145 (il Play Store chiede la privacy
-//   policy dentro l'app e su un URL pubblico, D-217; contatto korward.devteam@gmail.com, D-220).
+//   policy dentro l'app e su un URL pubblico, D-217; contatto korward.devteam (chiocciola) gmail.com, D-220 e D-222).
 //   misura: riepilogo e36/e22 19/11 → 0 px; stelle sui dischi altrui 1460 → 0 px² a 360 (282/270 → 0 a 375/412);
 //   richieste di rete esterne in una partita e01–e03: 0 su 3152 (Chromium); home a 0 px di scorrimento a 360/375/412×760.
 //   guardiano: rossi C218R01, C218S01; parte «riepilogo» di tools/sonda-altezze.mjs; C17-12 esteso a stelle e stagione 3;
