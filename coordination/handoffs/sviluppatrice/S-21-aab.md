@@ -36,8 +36,10 @@ Gioco, testi e dati non toccati (`git diff --stat 67eb117 -- src data` vuoto).
   - artifact `valmora-release-aab` di 3991645 byte.
 - **Esito dei 9 job attuali su 4de02bd**: 8 verdi. «grafica (360 schieramenti)» è **rosso** al passo «altezze», 3 tentativi uguali: `360x760: mediana degli imprevisti 286 px (soglia 285, D-207)`.
   **Non dipende da S-21.** Stesso rosso, stesso valore, sulla base: run 39510656888 su 950a2fb, job 118930663361. `git diff --stat 67eb117 HEAD -- src data public index.html vite.config.ts package.json` è vuoto. I commit successivi della base (9fd56ca, 67eb117, 6750817) toccano solo documenti, quindi la grafica non è rigirata. La correzione non esiste ancora e non spetta a S-21: soglie e gioco sono fuori dal compito. Da assegnare.
-- **CI sul commit D-214**: ESITO_D214
-- **Giri locali governo+logica**: ESITO_GIRI
+- **CI su f137212 (D-214)**, run 39518390206:
+  - job «aab» verde: `VALMORA rilascio: versionName 0.46.0, versionCode 46000`, `BUILD SUCCESSFUL in 1m 38s`, `✔ controllo AAB verde`, `SEGNALATO … android.permission.INTERNET`, `##[warning]AAB NON FIRMATO (atteso, D-214)`;
+  - degli altri 9 job, 8 sono verdi; «grafica (360 schieramenti)» ha lo stesso rosso della base, con lo stesso valore (286 contro 285).
+- **Giri locali governo+logica**: 3 su 3 VERDI su f137212, scritti in STABILITA.json. Una prima serie su 4de02bd e c4d2243 è stata interrotta e rifatta, perché girava con modifiche non committate.
 
 ## Ricerca sul Play Store
 
