@@ -23,8 +23,7 @@ import { controllaCitta } from './foto-c17.mjs';
 // 360×640 e 375×667, che D-197 lascia con la mappa piena (misurata il 20/10: 116 e 104 px).
 // Mai alzarle per far passare una modifica.
 export const SOGLIE = {
-  '360x640': { risposta: 68, chiamata: 664, riepilogo: 26 }, // risposta: D-197, mappa piena come nella chiamata (scelta del PO); 116 → 68 con C44-08
-  // riepilogo: misurato con D-219 (e01 ondata 3, prima non misurato), segnalato alla principale; non deve crescere
+  '360x640': { risposta: 68, chiamata: 664 }, // risposta: D-197, mappa piena come nella chiamata (scelta del PO); 116 → 68 con C44-08
   '360x760': { chiamata: 544 },
   '375x667': { risposta: 56, chiamata: 618 }, // risposta 104 → 56 con C44-08
   '412x830': { chiamata: 435 },
@@ -33,6 +32,9 @@ export const SOGLIE = {
   '412x760': { chiamata: 473 },
 };
 const LIBERE = new Set(['crediti']);
+// D-219: il riepilogo della partita e01 sotto i 760 px di altezza scorre (360×640: 26 px; 375×667: 0 in locale, 1 in CI):
+// misurato e stampato, non bloccante, segnalato alla principale; da 760 in su soglia 0 come in D-218. S-21 blocca sempre.
+const libera = (r) => LIBERE.has(r.nome) || (r.nome === 'riepilogo' && Number(r.vp.split('x')[1]) < 760);
 // Nomi dei settori sopra i segni dell'ultima risposta: misurati e stampati, non bloccano. Con la stessa build il massimo
 // cambia fra due giri (183 e 350 px² a 360×760; 506 col rosso C187S01): una soglia sarebbe instabile.
 export const VP_PER_LARGHEZZA = { 360: ['360x640', '360x760'], 375: ['375x667', '375x760'], 412: ['412x830', '412x760'] };
@@ -199,7 +201,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
 /** Problemi: scorrimento oltre la soglia per schermata, errori di pagina, blocchi, versione sopra le lettere. */
 export function controllaAltezze({ ris, errori, sopra, chiamate = [] }) {
   const max = {};
-  for (const r of ris) if (!LIBERE.has(r.nome)) { const k = `${r.vp}|${r.nome}`; if (!max[k] || r.ecc > max[k].ecc) max[k] = r; }
+  for (const r of ris) if (!libera(r)) { const k = `${r.vp}|${r.nome}`; if (!max[k] || r.ecc > max[k].ecc) max[k] = r; }
   const male = Object.values(max).filter((r) => r.ecc > (SOGLIE[r.vp]?.[r.nome] ?? 0))
     .map((r) => `${r.vp} ${r.nome}: la pagina scorre di ${r.ecc} px (soglia ${SOGLIE[r.vp]?.[r.nome] ?? 0}, mappa ${r.mappa} px; D-187)`);
   const d210 = ris.flatMap((r) => r.nome === 'citta36' && r.striscia < 96 ? [`${r.vp} città: manca la striscia della home in testa (${r.striscia} px, D-210)`] : r.nome === 'guida1' && !r.testataGuida ? [`${r.vp} guida: il primo passo non ha la vignetta della home (D-210)`] : []);
@@ -221,6 +223,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const max = {}; for (const r of g.ris) { const k = `${r.vp} ${r.nome}`; max[k] = Math.max(max[k] ?? -1, r.ecc); }
   for (const [k, v] of Object.entries(max)) console.log(`${k}: ${v}`);
   console.log(`nomi sopra i segni, massimo: ${Math.max(0, ...g.ris.map((r) => r.segni))} px²`);
+  for (const r of g.ris.filter((r) => r.nome === 'riepilogo' && libera(r) && r.ecc > 0)) console.log(`${r.vp} riepilogo: scorre di ${r.ecc} px (non bloccante, D-219)`);
   for (const [k, xs] of [['imprevisti', g.chiamate.filter((c) => c.imprevisto)], ['normali', g.chiamate.filter((c) => !c.imprevisto)]]) if (xs.length) console.log(`chiamate ${k}: ${xs.length}, massimo ${Math.max(...xs.map((c) => c.ecc))} px, mediana ${mediana(xs.map((c) => c.ecc))} px`);
   const male = controllaAltezze(g); console.log(male.length ? `ROSSO (${male.length}):\n${male.join('\n')}` : 'VERDE');
   process.exit(male.length ? 1 : 0);

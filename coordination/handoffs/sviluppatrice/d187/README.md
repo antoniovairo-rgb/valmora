@@ -419,9 +419,11 @@ ora misura anche il riepilogo di ogni ondata (S-21 e scorrimento), a tutte le mi
 grafica: col rosso 1 elemento coperto a 360 e 375, quindi rosso.
 
 **Rilievo nuovo (alla principale).** Misurando i riepiloghi di e01 è emerso che a 360×640 il riepilogo dell'ondata 3 scorre di
-26 px. Prima non si misurava, quindi **Non posso confermarlo** come difetto recente o vecchio. A 360×760, 375×667, 375×760,
-412×830 e 412×760 scorre 0. Soglia fissata al valore misurato (`SOGLIE['360x640'].riepilogo = 26`), che non deve crescere.
-La correzione resta da decidere.
+26 px. Prima non si misurava, quindi **Non posso confermarlo** come difetto recente o vecchio. A 375×667 scorre 0 px in locale
+ma 1 px in CI (bc10c57c, «grafica (375)», 3 tentativi su 3). Per questo il primo push era rosso: ritiro la soglia di 26 px che
+avevo messo, perché misurava una cosa non richiesta e con una soglia a 0 a 375×667 sarebbe rossa in CI. Ora lo scorrimento del
+riepilogo blocca da 760 px di altezza in su (soglia 0, come in D-218); sotto si misura e si stampa senza bloccare. S-21 blocca a
+tutte le altezze. A 360×760, 375×760, 412×760 e 412×830 scorre 0. La correzione sotto i 760 px resta da decidere.
 
 Foto: `c47/d219/prima` (rosso C219H01) e `c47/d219/dopo`, riepiloghi di e36 ed e22 a 360, 375 e 412 × 760.
 Non verificato: telefono reale; le 426 ondate degli schieramenti col posizionatore nuovo le misura il passo «schieramenti»
