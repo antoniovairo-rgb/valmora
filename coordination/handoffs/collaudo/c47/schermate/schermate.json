@@ -1,0 +1,1659 @@
+{
+ "versione": "0.47.0",
+ "citta": [
+  {
+   "w": 360,
+   "nome": "36ep",
+   "stagione": 1,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 360,
+   "nome": "36ep",
+   "stagione": 2,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 360,
+   "nome": "36ep",
+   "stagione": 3,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 360,
+   "nome": "36ep",
+   "errori": 0
+  },
+  {
+   "w": 360,
+   "nome": "0ep",
+   "stagione": 1,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 360,
+   "nome": "0ep",
+   "stagione": 2,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 360,
+   "nome": "0ep",
+   "stagione": 3,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 360,
+   "nome": "0ep",
+   "errori": 0
+  },
+  {
+   "w": 375,
+   "nome": "36ep",
+   "stagione": 1,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 375,
+   "nome": "36ep",
+   "stagione": 2,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 375,
+   "nome": "36ep",
+   "stagione": 3,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 375,
+   "nome": "36ep",
+   "errori": 0
+  },
+  {
+   "w": 375,
+   "nome": "0ep",
+   "stagione": 1,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 375,
+   "nome": "0ep",
+   "stagione": 2,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 375,
+   "nome": "0ep",
+   "stagione": 3,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 375,
+   "nome": "0ep",
+   "errori": 0
+  },
+  {
+   "w": 412,
+   "nome": "36ep",
+   "stagione": 1,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 412,
+   "nome": "36ep",
+   "stagione": 2,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 412,
+   "nome": "36ep",
+   "stagione": 3,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 412,
+   "nome": "36ep",
+   "errori": 0
+  },
+  {
+   "w": 412,
+   "nome": "0ep",
+   "stagione": 1,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 412,
+   "nome": "0ep",
+   "stagione": 2,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 412,
+   "nome": "0ep",
+   "stagione": 3,
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 412,
+   "nome": "0ep",
+   "errori": 0
+  }
+ ],
+ "guida": [
+  {
+   "w": 360,
+   "passo": "home",
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 360,
+   "passo": 0,
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "LA CITTÀ E IL GIOCO | LA CITTÀ E IL GIOCO · 1/6 | VALMORA | Una metropoli inventata con 13 club di calcio. Ogni club è il simbolo del suo quartiere: Kiln, fonde"
+  },
+  {
+   "w": 360,
+   "errori": 0
+  },
+  {
+   "w": 375,
+   "passo": "home",
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 375,
+   "passo": 0,
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "LA CITTÀ E IL GIOCO | LA CITTÀ E IL GIOCO · 1/6 | VALMORA | Una metropoli inventata con 13 club di calcio. Ogni club è il simbolo del suo quartiere: Kiln, fonde"
+  },
+  {
+   "w": 375,
+   "errori": 0
+  },
+  {
+   "w": 412,
+   "passo": "home",
+   "scroll_y": 0,
+   "orizz": 0
+  },
+  {
+   "w": 412,
+   "passo": 0,
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "LA CITTÀ E IL GIOCO | LA CITTÀ E IL GIOCO · 1/6 | VALMORA | Una metropoli inventata con 13 club di calcio. Ogni club è il simbolo del suo quartiere: Kiln, fonde"
+  },
+  {
+   "w": 412,
+   "errori": 0
+  }
+ ],
+ "imprevisti_foto": [
+  {
+   "w": 360,
+   "ep": "e01",
+   "id": "imp_ambulanza",
+   "vignetta": false,
+   "riga": false,
+   "scroll_y": 294,
+   "orizz": 0,
+   "errori": 0
+  },
+  {
+   "w": 360,
+   "ep": "e17",
+   "id": "imp_lampioni",
+   "vignetta": false,
+   "riga": false,
+   "scroll_y": 294,
+   "orizz": 0,
+   "errori": 0
+  },
+  {
+   "w": 360,
+   "ep": "e30",
+   "id": "imp_mercatino",
+   "vignetta": false,
+   "riga": false,
+   "scroll_y": 277,
+   "orizz": 0,
+   "errori": 0
+  },
+  {
+   "w": 375,
+   "ep": "e01",
+   "id": "imp_ambulanza",
+   "vignetta": false,
+   "riga": false,
+   "scroll_y": 309,
+   "orizz": 0,
+   "errori": 0
+  },
+  {
+   "w": 375,
+   "ep": "e17",
+   "id": "imp_lampioni",
+   "vignetta": false,
+   "riga": false,
+   "scroll_y": 309,
+   "orizz": 0,
+   "errori": 0
+  },
+  {
+   "w": 375,
+   "ep": "e30",
+   "id": "imp_mercatino",
+   "vignetta": false,
+   "riga": false,
+   "scroll_y": 274,
+   "orizz": 0,
+   "errori": 0
+  },
+  {
+   "w": 412,
+   "ep": "e01",
+   "id": "imp_ambulanza",
+   "vignetta": false,
+   "riga": false,
+   "scroll_y": 270,
+   "orizz": 0,
+   "errori": 0
+  },
+  {
+   "w": 412,
+   "ep": "e17",
+   "id": "imp_lampioni",
+   "vignetta": false,
+   "riga": false,
+   "scroll_y": 273,
+   "orizz": 0,
+   "errori": 0
+  },
+  {
+   "w": 412,
+   "ep": "e30",
+   "id": "imp_mercatino",
+   "vignetta": false,
+   "riga": false,
+   "scroll_y": 276,
+   "orizz": 0,
+   "errori": 0
+  }
+ ],
+ "imprevisti_tutti_360": [
+  {
+   "ep": "e01",
+   "n": 1,
+   "id": "imp_ambulanza",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e01",
+   "n": 2,
+   "id": "imp_buio",
+   "scroll_y": 256,
+   "orizz": 0
+  },
+  {
+   "ep": "e01",
+   "n": 3,
+   "id": "imp_tram",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e02",
+   "n": 1,
+   "id": "imp_binario",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e02",
+   "n": 2,
+   "id": "imp_sciarpa",
+   "scroll_y": 169,
+   "orizz": 0
+  },
+  {
+   "ep": "e02",
+   "n": 3,
+   "id": "imp_acquazzone",
+   "scroll_y": 188,
+   "orizz": 0
+  },
+  {
+   "ep": "e02",
+   "n": 4,
+   "id": "imp_soppresso",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e03",
+   "n": 1,
+   "id": "imp_carro",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e03",
+   "n": 2,
+   "id": "imp_cane",
+   "scroll_y": 240,
+   "orizz": 0
+  },
+  {
+   "ep": "e03",
+   "n": 3,
+   "id": "imp_balconi",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e03",
+   "n": 4,
+   "id": "imp_bus_notte",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e04",
+   "n": 1,
+   "id": "imp_ghiaccio",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e04",
+   "n": 2,
+   "id": "imp_bambino",
+   "scroll_y": 256,
+   "orizz": 0
+  },
+  {
+   "ep": "e04",
+   "n": 3,
+   "id": "imp_tendone",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e05",
+   "n": 1,
+   "id": "imp_lucchetto",
+   "scroll_y": 237,
+   "orizz": 0
+  },
+  {
+   "ep": "e05",
+   "n": 2,
+   "id": "imp_tabellone",
+   "scroll_y": 240,
+   "orizz": 0
+  },
+  {
+   "ep": "e05",
+   "n": 3,
+   "id": "imp_pettorine",
+   "scroll_y": 240,
+   "orizz": 0
+  },
+  {
+   "ep": "e05",
+   "n": 4,
+   "id": "imp_strada_sbagliata",
+   "scroll_y": 313,
+   "orizz": 0
+  },
+  {
+   "ep": "e06",
+   "n": 1,
+   "id": "imp_allarme",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e06",
+   "n": 2,
+   "id": "imp_palloncini",
+   "scroll_y": 256,
+   "orizz": 0
+  },
+  {
+   "ep": "e06",
+   "n": 3,
+   "id": "imp_corrente",
+   "scroll_y": 331,
+   "orizz": 0
+  },
+  {
+   "ep": "e06",
+   "n": 4,
+   "id": "imp_metro",
+   "scroll_y": 293,
+   "orizz": 0
+  },
+  {
+   "ep": "e07",
+   "n": 1,
+   "id": "imp_sbarra",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e07",
+   "n": 2,
+   "id": "imp_sole",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e07",
+   "n": 3,
+   "id": "imp_idrante",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e07",
+   "n": 4,
+   "id": "imp_semaforo",
+   "scroll_y": 296,
+   "orizz": 0
+  },
+  {
+   "ep": "e08",
+   "n": 1,
+   "id": "imp_lettore",
+   "scroll_y": 188,
+   "orizz": 0
+  },
+  {
+   "ep": "e08",
+   "n": 2,
+   "id": "imp_bagni",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e08",
+   "n": 3,
+   "id": "imp_grandine",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e08",
+   "n": 4,
+   "id": "imp_navetta",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e09",
+   "n": 1,
+   "id": "imp_gregge",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e09",
+   "n": 2,
+   "id": "imp_malore_coda",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e09",
+   "n": 3,
+   "id": "imp_pallone",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e09",
+   "n": 4,
+   "id": "imp_cancello",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e10",
+   "n": 1,
+   "id": "imp_cantiere",
+   "scroll_y": 263,
+   "orizz": 0
+  },
+  {
+   "ep": "e10",
+   "n": 2,
+   "id": "imp_telone",
+   "scroll_y": 240,
+   "orizz": 0
+  },
+  {
+   "ep": "e10",
+   "n": 3,
+   "id": "imp_cane",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e10",
+   "n": 4,
+   "id": "imp_lampioni",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e11",
+   "n": 1,
+   "id": "imp_scale_mobili",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e11",
+   "n": 2,
+   "id": "imp_doppia_fila",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e11",
+   "n": 3,
+   "id": "imp_acquazzone",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e11",
+   "n": 4,
+   "id": "imp_spazzatrice",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e12",
+   "n": 1,
+   "id": "imp_piccioni",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e12",
+   "n": 2,
+   "id": "imp_tamburo",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e12",
+   "n": 3,
+   "id": "imp_maxischermo",
+   "scroll_y": 256,
+   "orizz": 0
+  },
+  {
+   "ep": "e12",
+   "n": 4,
+   "id": "imp_trasloco",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e13",
+   "n": 1,
+   "id": "imp_sedie",
+   "scroll_y": 312,
+   "orizz": 0
+  },
+  {
+   "ep": "e13",
+   "n": 2,
+   "id": "imp_tubo",
+   "scroll_y": 312,
+   "orizz": 0
+  },
+  {
+   "ep": "e13",
+   "n": 3,
+   "id": "imp_vespe",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e13",
+   "n": 4,
+   "id": "imp_allarmi",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e14",
+   "n": 1,
+   "id": "imp_corrente",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e14",
+   "n": 2,
+   "id": "imp_ombrelli",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e14",
+   "n": 3,
+   "id": "imp_seggiolini",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e14",
+   "n": 4,
+   "id": "imp_gomma",
+   "scroll_y": 277,
+   "orizz": 0
+  },
+  {
+   "ep": "e15",
+   "n": 1,
+   "id": "imp_tabellone",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e15",
+   "n": 2,
+   "id": "imp_autobus",
+   "scroll_y": 312,
+   "orizz": 0
+  },
+  {
+   "ep": "e15",
+   "n": 3,
+   "id": "imp_balaustra",
+   "scroll_y": 274,
+   "orizz": 0
+  },
+  {
+   "ep": "e15",
+   "n": 4,
+   "id": "imp_vagone",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e16",
+   "n": 1,
+   "id": "imp_buca",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e16",
+   "n": 2,
+   "id": "imp_chiavi",
+   "scroll_y": 313,
+   "orizz": 0
+  },
+  {
+   "ep": "e16",
+   "n": 3,
+   "id": "imp_nebbia",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e16",
+   "n": 4,
+   "id": "imp_portiera",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e17",
+   "n": 1,
+   "id": "imp_paninaro",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e17",
+   "n": 2,
+   "id": "imp_cane",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e17",
+   "n": 3,
+   "id": "imp_cancello_elettrico",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e17",
+   "n": 4,
+   "id": "imp_lampioni",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e18",
+   "n": 1,
+   "id": "imp_gregge",
+   "scroll_y": 317,
+   "orizz": 0
+  },
+  {
+   "ep": "e18",
+   "n": 2,
+   "id": "imp_tabellone",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e18",
+   "n": 3,
+   "id": "imp_fontanella",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e18",
+   "n": 4,
+   "id": "imp_pullman_panne",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e19",
+   "n": 1,
+   "id": "imp_lettore",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e19",
+   "n": 2,
+   "id": "imp_bagni",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e19",
+   "n": 3,
+   "id": "imp_camion_rifiuti",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e19",
+   "n": 4,
+   "id": "imp_scala_lavori",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e20",
+   "n": 1,
+   "id": "imp_tamburo",
+   "scroll_y": 317,
+   "orizz": 0
+  },
+  {
+   "ep": "e20",
+   "n": 2,
+   "id": "imp_radio_chiosco",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e20",
+   "n": 3,
+   "id": "imp_gatto",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e20",
+   "n": 4,
+   "id": "imp_clacson",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e21",
+   "n": 1,
+   "id": "imp_irrigazione",
+   "scroll_y": 263,
+   "orizz": 0
+  },
+  {
+   "ep": "e21",
+   "n": 2,
+   "id": "imp_scuola_guida",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e21",
+   "n": 3,
+   "id": "imp_pallone",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e21",
+   "n": 4,
+   "id": "imp_allarme_negozio",
+   "scroll_y": 244,
+   "orizz": 0
+  },
+  {
+   "ep": "e22",
+   "n": 1,
+   "id": "imp_turisti",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e22",
+   "n": 2,
+   "id": "imp_pannello",
+   "scroll_y": 313,
+   "orizz": 0
+  },
+  {
+   "ep": "e22",
+   "n": 3,
+   "id": "imp_pallone_sponsor",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e22",
+   "n": 4,
+   "id": "imp_matrimonio",
+   "scroll_y": 293,
+   "orizz": 0
+  },
+  {
+   "ep": "e23",
+   "n": 1,
+   "id": "imp_foratura",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e23",
+   "n": 2,
+   "id": "imp_gabbiano",
+   "scroll_y": 224,
+   "orizz": 0
+  },
+  {
+   "ep": "e23",
+   "n": 3,
+   "id": "imp_seggiolini",
+   "scroll_y": 224,
+   "orizz": 0
+  },
+  {
+   "ep": "e23",
+   "n": 4,
+   "id": "imp_sbarra",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e24",
+   "n": 1,
+   "id": "imp_tamburo_largo",
+   "scroll_y": 263,
+   "orizz": 0
+  },
+  {
+   "ep": "e24",
+   "n": 2,
+   "id": "imp_capogiro",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e24",
+   "n": 3,
+   "id": "imp_tornello_rovescio",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e24",
+   "n": 4,
+   "id": "imp_bidone",
+   "scroll_y": 317,
+   "orizz": 0
+  },
+  {
+   "ep": "e25",
+   "n": 1,
+   "id": "imp_scala_mobile",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e25",
+   "n": 2,
+   "id": "imp_furgone_transenne",
+   "scroll_y": 242,
+   "orizz": 0
+  },
+  {
+   "ep": "e25",
+   "n": 3,
+   "id": "imp_tettoia",
+   "scroll_y": 243,
+   "orizz": 0
+  },
+  {
+   "ep": "e25",
+   "n": 4,
+   "id": "imp_tabellone_partenze",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e26",
+   "n": 1,
+   "id": "imp_auto_blu",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e26",
+   "n": 2,
+   "id": "imp_microfono",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e26",
+   "n": 3,
+   "id": "imp_bandiera_cavi",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e26",
+   "n": 4,
+   "id": "imp_batteria",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e27",
+   "n": 1,
+   "id": "imp_scala_mobile",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e27",
+   "n": 2,
+   "id": "imp_bandierone",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e27",
+   "n": 3,
+   "id": "imp_grondaia",
+   "scroll_y": 275,
+   "orizz": 0
+  },
+  {
+   "ep": "e27",
+   "n": 4,
+   "id": "imp_camion_rifiuti",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e28",
+   "n": 1,
+   "id": "imp_doppia_fila",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e28",
+   "n": 2,
+   "id": "imp_cane",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e28",
+   "n": 3,
+   "id": "imp_tabellone",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e28",
+   "n": 4,
+   "id": "imp_lampione",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e29",
+   "n": 1,
+   "id": "imp_tornelli_ospiti",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e29",
+   "n": 2,
+   "id": "imp_tubo",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e29",
+   "n": 3,
+   "id": "imp_ponte_basso",
+   "scroll_y": 243,
+   "orizz": 0
+  },
+  {
+   "ep": "e29",
+   "n": 4,
+   "id": "imp_irrigatori",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e30",
+   "n": 1,
+   "id": "imp_semaforo",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e30",
+   "n": 2,
+   "id": "imp_mercatino",
+   "scroll_y": 277,
+   "orizz": 0
+  },
+  {
+   "ep": "e30",
+   "n": 3,
+   "id": "imp_gatto",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e30",
+   "n": 4,
+   "id": "imp_camion_bottiglie",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e31",
+   "n": 1,
+   "id": "imp_tabellone_arrivi",
+   "scroll_y": 191,
+   "orizz": 0
+  },
+  {
+   "ep": "e31",
+   "n": 2,
+   "id": "imp_telone",
+   "scroll_y": 315,
+   "orizz": 0
+  },
+  {
+   "ep": "e31",
+   "n": 3,
+   "id": "imp_spina",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e31",
+   "n": 4,
+   "id": "imp_tubatura",
+   "scroll_y": 277,
+   "orizz": 0
+  },
+  {
+   "ep": "e32",
+   "n": 1,
+   "id": "imp_cisterna",
+   "scroll_y": 313,
+   "orizz": 0
+  },
+  {
+   "ep": "e32",
+   "n": 2,
+   "id": "imp_cancelletto",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e32",
+   "n": 3,
+   "id": "imp_maxischermo",
+   "scroll_y": 294,
+   "orizz": 0
+  },
+  {
+   "ep": "e32",
+   "n": 4,
+   "id": "imp_passaggio_livello",
+   "scroll_y": 279,
+   "orizz": 0
+  },
+  {
+   "ep": "e33",
+   "n": 1,
+   "id": "imp_bus_panne",
+   "scroll_y": 277,
+   "orizz": 0
+  },
+  {
+   "ep": "e33",
+   "n": 2,
+   "id": "imp_tamburo_ospiti",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e33",
+   "n": 3,
+   "id": "imp_pallone",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e33",
+   "n": 4,
+   "id": "imp_sottopasso",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e34",
+   "n": 1,
+   "id": "imp_sbarra",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e34",
+   "n": 2,
+   "id": "imp_bagni",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e34",
+   "n": 3,
+   "id": "imp_pollo",
+   "scroll_y": 296,
+   "orizz": 0
+  },
+  {
+   "ep": "e34",
+   "n": 4,
+   "id": "imp_arance",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e35",
+   "n": 1,
+   "id": "imp_tram_chiuso",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e35",
+   "n": 2,
+   "id": "imp_gelati",
+   "scroll_y": 261,
+   "orizz": 0
+  },
+  {
+   "ep": "e35",
+   "n": 3,
+   "id": "imp_allarme",
+   "scroll_y": 259,
+   "orizz": 0
+  },
+  {
+   "ep": "e35",
+   "n": 4,
+   "id": "imp_cane_cantiere",
+   "scroll_y": 297,
+   "orizz": 0
+  },
+  {
+   "ep": "e36",
+   "n": 1,
+   "id": "imp_rotolo",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e36",
+   "n": 2,
+   "id": "imp_gabbiano",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e36",
+   "n": 3,
+   "id": "imp_recinto_buio",
+   "scroll_y": 278,
+   "orizz": 0
+  },
+  {
+   "ep": "e36",
+   "n": 4,
+   "id": "imp_cassa",
+   "scroll_y": 300,
+   "orizz": 0
+  }
+ ],
+ "verbale": [
+  {
+   "w": 360,
+   "ep": "e03",
+   "passo": 0,
+   "scena": "rapporto",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "Fiducia +1: nessun settore scoperto. | Vie del quartiere | salita, poi calmata | SOTTO CONTROLLO | Parcheggi | SOTTO CONTROLLO | Piazzale de"
+  },
+  {
+   "w": 360,
+   "ep": "e03",
+   "passo": 1,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | contro | Qualche bottiglia, molti clacson, nessun ferito. Il comitato chiede un incontro. Malvasi chiede"
+  },
+  {
+   "w": 360,
+   "ep": "e03",
+   "passo": 2,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | COSA TI HA AIUTATO | Niente commenti stanotte | Ondata 4 · −1 fiducia · con le altre risposte andava peg"
+  },
+  {
+   "w": 360,
+   "ep": "e03",
+   "passo": 3,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | COSA TI HA PENALIZZATO | Nessuna scelta ti è costata. | INDIETRO | AVANTI"
+  },
+  {
+   "w": 360,
+   "ep": "e03",
+   "passo": 4,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | DOVE SEI RIMASTO SCOPERTO | Ondata 1 · Piazzale dello stadio | PER LA STELLA SUCCESSIVA | Fiducia ≥ 7: h"
+  },
+  {
+   "w": 360,
+   "ep": "e03",
+   "passo": 5,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | LE FONTI | Comitato dei residenti | VERA | Comitato residenti: «stanotte: auto sui passi carrabili fino "
+  },
+  {
+   "w": 360,
+   "ep": "e03",
+   "errori": 0
+  },
+  {
+   "w": 360,
+   "ep": "e05",
+   "passo": 0,
+   "scena": "rapporto",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "Fiducia +1: nessun settore scoperto. | Tornelli | SOTTO CONTROLLO | Strada da Skyfield | salita, poi calmata | SOTTO CONTROLLO | Piazzale de"
+  },
+  {
+   "w": 360,
+   "ep": "e05",
+   "passo": 1,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | contro | Mezza squadra di steward, una partita intera senza danni. Il sindacato ti nomina due volte in un comunic"
+  },
+  {
+   "w": 360,
+   "ep": "e05",
+   "passo": 2,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | COSA TI HA AIUTATO | Chiedi una pausa all'arbitro | Ondata 2 · −3 pressione su Curva ospiti, −2 fiducia | Firma u"
+  },
+  {
+   "w": 360,
+   "ep": "e05",
+   "passo": 3,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | COSA TI HA PENALIZZATO | Nessuna scelta ti è costata. | INDIETRO | AVANTI"
+  },
+  {
+   "w": 360,
+   "ep": "e05",
+   "passo": 4,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | DOVE SEI RIMASTO SCOPERTO | Nessun settore scoperto. | PER LA STELLA SUCCESSIVA | Fiducia ≥ 7: hai 6 | INDIETRO |"
+  },
+  {
+   "w": 360,
+   "ep": "e05",
+   "passo": 5,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | LE FONTI | Sindacato degli steward | VERA | Sindacato steward: «presidio pacifico ai tornelli per tutta la partit"
+  },
+  {
+   "w": 360,
+   "ep": "e05",
+   "errori": 0
+  },
+  {
+   "w": 375,
+   "ep": "e03",
+   "passo": 0,
+   "scena": "rapporto",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "Fiducia +1: nessun settore scoperto. | Vie del quartiere | salita, poi calmata | SOTTO CONTROLLO | Parcheggi | SOTTO CONTROLLO | Piazzale de"
+  },
+  {
+   "w": 375,
+   "ep": "e03",
+   "passo": 1,
+   "scena": "rapporto",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | contro | Qualche bottiglia, molti clacson, nessun ferito. Il comitato chiede un incontro. Malvasi chiede"
+  },
+  {
+   "w": 375,
+   "ep": "e03",
+   "passo": 2,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | COSA TI HA AIUTATO | Niente commenti stanotte | Ondata 4 · −1 fiducia · con le altre risposte andava peg"
+  },
+  {
+   "w": 375,
+   "ep": "e03",
+   "passo": 3,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | COSA TI HA PENALIZZATO | Nessuna scelta ti è costata. | INDIETRO | AVANTI"
+  },
+  {
+   "w": 375,
+   "ep": "e03",
+   "passo": 4,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | DOVE SEI RIMASTO SCOPERTO | Ondata 1 · Piazzale dello stadio | PER LA STELLA SUCCESSIVA | Fiducia ≥ 7: h"
+  },
+  {
+   "w": 375,
+   "ep": "e03",
+   "passo": 5,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | LE FONTI | Comitato dei residenti | VERA | Comitato residenti: «stanotte: auto sui passi carrabili fino "
+  },
+  {
+   "w": 375,
+   "ep": "e03",
+   "errori": 0
+  },
+  {
+   "w": 375,
+   "ep": "e05",
+   "passo": 0,
+   "scena": "rapporto",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "Fiducia +1: nessun settore scoperto. | Tornelli | SOTTO CONTROLLO | Strada da Skyfield | salita, poi calmata | SOTTO CONTROLLO | Piazzale de"
+  },
+  {
+   "w": 375,
+   "ep": "e05",
+   "passo": 1,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | contro | Mezza squadra di steward, una partita intera senza danni. Il sindacato ti nomina due volte in un comunic"
+  },
+  {
+   "w": 375,
+   "ep": "e05",
+   "passo": 2,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | COSA TI HA AIUTATO | Chiedi una pausa all'arbitro | Ondata 2 · −3 pressione su Curva ospiti, −2 fiducia | Firma u"
+  },
+  {
+   "w": 375,
+   "ep": "e05",
+   "passo": 3,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | COSA TI HA PENALIZZATO | Nessuna scelta ti è costata. | INDIETRO | AVANTI"
+  },
+  {
+   "w": 375,
+   "ep": "e05",
+   "passo": 4,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | DOVE SEI RIMASTO SCOPERTO | Nessun settore scoperto. | PER LA STELLA SUCCESSIVA | Fiducia ≥ 7: hai 6 | INDIETRO |"
+  },
+  {
+   "w": 375,
+   "ep": "e05",
+   "passo": 5,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | LE FONTI | Sindacato degli steward | VERA | Sindacato steward: «presidio pacifico ai tornelli per tutta la partit"
+  },
+  {
+   "w": 375,
+   "ep": "e05",
+   "errori": 0
+  },
+  {
+   "w": 412,
+   "ep": "e03",
+   "passo": 0,
+   "scena": "rapporto",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "Fiducia +1: nessun settore scoperto. | Vie del quartiere | salita, poi calmata | SOTTO CONTROLLO | Parcheggi | SOTTO CONTROLLO | Piazzale de"
+  },
+  {
+   "w": 412,
+   "ep": "e03",
+   "passo": 1,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | contro | Qualche bottiglia, molti clacson, nessun ferito. Il comitato chiede un incontro. Malvasi chiede"
+  },
+  {
+   "w": 412,
+   "ep": "e03",
+   "passo": 2,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | COSA TI HA AIUTATO | Niente commenti stanotte | Ondata 4 · −1 fiducia · con le altre risposte andava peg"
+  },
+  {
+   "w": 412,
+   "ep": "e03",
+   "passo": 3,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | COSA TI HA PENALIZZATO | Nessuna scelta ti è costata. | INDIETRO | AVANTI"
+  },
+  {
+   "w": 412,
+   "ep": "e03",
+   "passo": 4,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | DOVE SEI RIMASTO SCOPERTO | Ondata 1 · Piazzale dello stadio | PER LA STELLA SUCCESSIVA | Fiducia ≥ 7: h"
+  },
+  {
+   "w": 412,
+   "ep": "e03",
+   "passo": 5,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | LE FONTI | Comitato dei residenti | VERA | Comitato residenti: «stanotte: auto sui passi carrabili fino "
+  },
+  {
+   "w": 412,
+   "ep": "e03",
+   "errori": 0
+  },
+  {
+   "w": 412,
+   "ep": "e05",
+   "passo": 0,
+   "scena": "rapporto",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "Fiducia +1: nessun settore scoperto. | Tornelli | SOTTO CONTROLLO | Strada da Skyfield | salita, poi calmata | SOTTO CONTROLLO | Piazzale de"
+  },
+  {
+   "w": 412,
+   "ep": "e05",
+   "passo": 1,
+   "scena": "rapporto",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | contro | Mezza squadra di steward, una partita intera senza danni. Il sindacato ti nomina due volte in un comunic"
+  },
+  {
+   "w": 412,
+   "ep": "e05",
+   "passo": 2,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | COSA TI HA AIUTATO | Chiedi una pausa all'arbitro | Ondata 2 · −3 pressione su Curva ospiti, −2 fiducia | Firma u"
+  },
+  {
+   "w": 412,
+   "ep": "e05",
+   "passo": 3,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | COSA TI HA PENALIZZATO | Nessuna scelta ti è costata. | INDIETRO | AVANTI"
+  },
+  {
+   "w": 412,
+   "ep": "e05",
+   "passo": 4,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | DOVE SEI RIMASTO SCOPERTO | Nessun settore scoperto. | PER LA STELLA SUCCESSIVA | Fiducia ≥ 7: hai 6 | INDIETRO |"
+  },
+  {
+   "w": 412,
+   "ep": "e05",
+   "passo": 5,
+   "scena": "verbale",
+   "scroll_y": 0,
+   "orizz": 0,
+   "testo": "05 | VERBALE | CONTENUTO | LE FONTI | Sindacato degli steward | VERA | Sindacato steward: «presidio pacifico ai tornelli per tutta la partit"
+  },
+  {
+   "w": 412,
+   "ep": "e05",
+   "errori": 0
+  }
+ ],
+ "errori_sweep": 0
+}
