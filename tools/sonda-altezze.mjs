@@ -23,7 +23,8 @@ import { controllaCitta } from './foto-c17.mjs';
 // 360×640 e 375×667, che D-197 lascia con la mappa piena (misurata il 20/10: 116 e 104 px).
 // Mai alzarle per far passare una modifica.
 export const SOGLIE = {
-  '360x640': { risposta: 68, chiamata: 664 }, // risposta: D-197, mappa piena come nella chiamata (scelta del PO); 116 → 68 con C44-08
+  '360x640': { risposta: 68, chiamata: 664, riepilogo: 26 }, // risposta: D-197, mappa piena come nella chiamata (scelta del PO); 116 → 68 con C44-08
+  // riepilogo: misurato con D-219 (e01 ondata 3, prima non misurato), segnalato alla principale; non deve crescere
   '360x760': { chiamata: 544 },
   '375x667': { risposta: 56, chiamata: 618 }, // risposta 104 → 56 con C44-08
   '412x830': { chiamata: 435 },
@@ -131,7 +132,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         if (!visti.has(chiave)) { visti.add(chiave); await rileva(q); }
         if (q === 'verbale') break;
         if (await c('[data-azione="conferma-passo"]') || await c('[data-azione="conferma-nuova"]') || await c('[data-genere="m"]') || await c('[data-azione="guida-salta"]')) continue;
-        if (q === 'schieramento') { pl ??= piano(e01, JSON.parse(await p.evaluate(() => localStorage.getItem('valmora-salvataggio'))).variabili, dich); await schiera(p, pl[io++].d); await rileva('schierato'); await c('[data-azione="conferma"]'); await c('[data-azione="conferma-davvero"]'); continue; }
+        if (q === 'schieramento') { pl ??= piano(e01, JSON.parse(await p.evaluate(() => localStorage.getItem('valmora-salvataggio'))).variabili, dich); await schiera(p, pl[io++].d); await rileva('schierato'); await c('[data-azione="conferma"]'); await rileva('riepilogo'); /* D-219: S-21 e scorrimento anche qui */ await c('[data-azione="conferma-davvero"]'); continue; }
         if (await c('[data-azione="continua"]')) continue;
         const opz = p.locator('[data-opzione]:not(:disabled):not([aria-disabled="true"])');
         if (await opz.count()) {
@@ -178,9 +179,8 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         await schiera(q, c.d); await q.click('[data-azione="conferma"]'); await q.waitForSelector('[data-riepilogo]'); await lento(q); await q.waitForTimeout(200);
         const righe = await q.locator('[data-riepilogo-settore]').count(), avviso = await q.locator('[data-restano]').count();
         if (righe !== 5 || !avviso) errori.push(`${vp} riepilogo ${c.ep}: ${righe} settori e ${avviso ? '' : 'senza '}avviso, attesi 5 con l'avviso (D-218)`);
-        // S-21 nel riepilogo (e36 a 360 e 375: «Home» copre il nome di curva_cinderwick, 56 px², già su ebbf277b): rilievo nuovo
-        // passato alla principale con D-218; finché non decide si misura e si stampa (casaRiepilogo), non blocca
-        const x = await misura(q); ris.push({ vp, nome: `riepilogo ${c.ep}`, ...x, casa: 0, casaRiepilogo: x.casa }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-riepilogo-${c.ep}.png`), fullPage: true });
+        // S-21 anche qui, bloccante (D-219: «Home» copriva il nome di curva_cinderwick in e36 a 360 e 375, 56 px²; rosso C219H01)
+        ris.push({ vp, nome: `riepilogo ${c.ep}`, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-riepilogo-${c.ep}.png`), fullPage: true });
         await q.close();
       }
       if (vp === '360x760' && parti.includes('rapporti')) for (const c of rapportiCostruiti(dati, dich)) { // C45-06 (D-203)
@@ -221,7 +221,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const max = {}; for (const r of g.ris) { const k = `${r.vp} ${r.nome}`; max[k] = Math.max(max[k] ?? -1, r.ecc); }
   for (const [k, v] of Object.entries(max)) console.log(`${k}: ${v}`);
   console.log(`nomi sopra i segni, massimo: ${Math.max(0, ...g.ris.map((r) => r.segni))} px²`);
-  for (const r of g.ris.filter((r) => r.casaRiepilogo)) console.log(`${r.vp} ${r.nome}: «Home» copre ${r.casaRiepilogo} fra punti e nomi (S-21, non blocca, D-218)`);
   for (const [k, xs] of [['imprevisti', g.chiamate.filter((c) => c.imprevisto)], ['normali', g.chiamate.filter((c) => !c.imprevisto)]]) if (xs.length) console.log(`chiamate ${k}: ${xs.length}, massimo ${Math.max(...xs.map((c) => c.ecc))} px, mediana ${mediana(xs.map((c) => c.ecc))} px`);
   const male = controllaAltezze(g); console.log(male.length ? `ROSSO (${male.length}):\n${male.join('\n')}` : 'VERDE');
   process.exit(male.length ? 1 : 0);

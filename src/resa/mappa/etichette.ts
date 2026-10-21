@@ -147,9 +147,17 @@ export function disponiEtichette(contenitore: HTMLElement) {
     const passo = (punti[i]!.right - punti[i]!.left) / 8, c128 = !spento('C128E01');
     const rientra = (a: number, b: number, min: number, max: number) => (a < min ? min - a : b > max ? max - b : 0);
     const spingi = (dx: number, dy: number) => { el?.style.setProperty('--nome-dx', `${dx}px`); el?.style.setProperty('--nome-dy', `${dy}px`); };
+    // D-219 (C-047, riepilogo di e36 a 360 e 375: «Home» copriva «Curva Kiln» per 56 px² e nessun posto era libero): allo
+    // stesso modo un nome sotto «Home» si sposta di quanto basta per uscirne, fino a un quarto di disco. Rosso C219H01: no.
+    const casaR = casa && !spento('C219H01') ? casa.getBoundingClientRect() as Rett : null;
     const sposta = () => { if (!c128 || !el) return [0, 0] as const; spingi(0, 0); const n = nomeDi(s); if (!n) return [0, 0] as const;
-      const b = MARGINE + 0.5, dx = rientra(n.left, n.right, mappa.left + b, mappa.right - b), dy = rientra(n.top, n.bottom, mappa.top + b, mappa.bottom - b);
-      if (Math.abs(dx) > passo || Math.abs(dy) > passo || (!dx && !dy)) return [0, 0] as const;
+      const b = MARGINE + 0.5; let dx = rientra(n.left, n.right, mappa.left + b, mappa.right - b), dy = rientra(n.top, n.bottom, mappa.top + b, mappa.bottom - b);
+      if (Math.abs(dx) > passo || Math.abs(dy) > passo) dx = dy = 0;
+      const m = { left: n.left + dx, top: n.top + dy, right: n.right + dx, bottom: n.bottom + dy };
+      const via = casaR && area(m, casaR) > 0 ? ([[casaR.right - m.left + 0.5, 0], [casaR.left - m.right - 0.5, 0], [0, casaR.bottom - m.top + 0.5], [0, casaR.top - m.bottom - 0.5]] as const)
+        .filter(([x, y]) => Math.abs(x + y) <= 2 * passo).sort((p, q) => Math.abs(p[0] + p[1]) - Math.abs(q[0] + q[1]))[0] : undefined;
+      if (via) { dx += via[0]; dy += via[1]; }
+      if (!dx && !dy) return [0, 0] as const;
       spingi(dx, dy); return [dx, dy] as const; };
     let migliore = { nome: NOMI[0] as string, unita: UNITA[0] as string, costo: Infinity, largo: '', dx: 0, dy: 0 };
     cerca: for (const largo of d136 ? ['', 'calc(var(--nome-max) * 0.8)', 'calc(var(--nome-max) * 0.6)'] : ['']) {
