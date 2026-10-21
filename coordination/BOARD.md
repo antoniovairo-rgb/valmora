@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-21 06:35 UTC. Pubblicato 0.47.0 (main 5106cc9f): governo+logica 3/3 verdi su 9e55f92f, CI 10/10. Avviato il collaudo C-047 (claude/valmora-collaudo-c47). S-11 in pausa. Al PO: 2 domande privacy (Play).
+Ultimo giro della routine: 2026-10-21 07:00 UTC. Pubblicato 0.47.0 (main 5106cc9f), CI su main 10/10 verde. D-217 (PO-145): privacy in home e su GitHub Pages, scelte del PO. Attive: C-047 (claude/valmora-collaudo-c47, in corso), S-22 (claude/valmora-privacy, session_017KSzPN4ETjcKDB7qd5pS6w). S-11 in pausa.
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
