@@ -3,7 +3,7 @@
 // - vignetta della home, frase-obiettivo e i tre pulsanti principali (Riprendi, Nuova partita, La città e il gioco) si
 //   vedono senza scorrere oltre SOGLIA_SCORRIMENTO;
 // - a 640 la vignetta è più bassa che a 760 e non sotto il minimo;
-// - il menu «Altro» è chiuso, si apre col tocco e con Invio, mostra crediti/esporta/importa/idee (sostieni nel browser),
+// - il menu «Altro» è chiuso, si apre col tocco e con Invio, mostra crediti/privacy/esporta/importa/idee (sostieni nel browser),
 //   Esc lo chiude e ridà il fuoco al tasto «Altro».
 // Rosso VALMORA_ROSSI=C140H01: la home di prima (niente vignetta, frase, menu). Foto in cartella: home-<w>x<h>.png,
 // home-altro-<w>.png. Da solo: node tools/foto-home.mjs (server di sviluppo, 360/375/412).
@@ -60,11 +60,12 @@ export async function controllaHomeA(browser, url, cartella, atteso, rossi, larg
 async function controllaAltro(p, atteso, dove, foto) {
   const tasto = p.locator('[data-azione="altro"]'), menu = p.locator('[data-altro]');
   if (!(await tasto.count())) { atteso(`${dove}: manca il tasto`, false); return; }
-  const visibili = () => p.evaluate(() => ['crediti', 'esporta', 'importa', 'idee'].filter((a) => { const e = document.querySelector(`[data-azione="${a}"]`); return e && e.getBoundingClientRect().height > 0; }));
+  // PO-145: anche «privacy» (rosso C145H01: la voce manca)
+  const visibili = () => p.evaluate(() => ['crediti', 'privacy', 'esporta', 'importa', 'idee'].filter((a) => { const e = document.querySelector(`[data-azione="${a}"]`); return e && e.getBoundingClientRect().height > 0; }));
   atteso(`${dove}: aperto prima del tocco`, (await tasto.getAttribute('aria-expanded')) === 'false' && !(await menu.isVisible()));
   await tasto.click();
   const dentro = await visibili();
-  atteso(`${dove}: col tocco si vedono solo ${dentro.join(', ') || 'nessuna'} di crediti, esporta, importa, idee`, dentro.length === 4 && (await tasto.getAttribute('aria-expanded')) === 'true');
+  atteso(`${dove}: col tocco si vedono solo ${dentro.join(', ') || 'nessuna'} di crediti, privacy, esporta, importa, idee`, dentro.length === 5 && (await tasto.getAttribute('aria-expanded')) === 'true');
   if (foto) { await menu.scrollIntoViewIfNeeded(); await p.screenshot({ path: foto, fullPage: true }); }
   await p.keyboard.press('Tab'); await p.keyboard.press('Escape');
   const chiuso = !(await menu.isVisible()), fuoco = await p.evaluate(() => document.activeElement?.getAttribute('data-azione'));

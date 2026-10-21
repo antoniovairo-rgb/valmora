@@ -18,6 +18,8 @@ export const genereAttuale = (): Genere => genere;
 /** «testi:e01.titolo» o «e01.titolo» → testo (variante «@f» se c'è e la protagonista è donna);
  *  chiave mancante = errore visibile, mai un vuoto. */
 export const t = (chiave: string): string => scegliTesto(testi, chiave, genere) ?? `[[${chiave}]]`;
+/** Tutti i testi (PO-145: la privacy li filtra con src/dati/privacy.ts). */
+export const testiTutti = (): Record<string, string> => testi;
 /** Testo facoltativo: null se la chiave non c'è (PO-101, riga «i» dell'ondata). */
 export const testoSe = (chiave: string): string | null => scegliTesto(testi, chiave, genere) ?? null;
 

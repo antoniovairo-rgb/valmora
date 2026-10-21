@@ -1,8 +1,10 @@
 // D-212 (PO-144): controllo dell'AAB di rilascio. Funzioni pure (testate in tests/aab.test.ts) + uso da riga di comando.
 // Uso: node tools/aab.mjs <file.aab> <bundletool.jar>   (job «aab» di .github/workflows/catene.yml)
 //      node tools/aab.mjs --bracci-rossi                  (ogni controllo deve vedere il suo difetto)
+//      node tools/aab.mjs --privacy                       (solo il contatto della privacy; VALMORA_RILASCIO=1 lo pretende)
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, statSync } from 'node:fs';
+import { controllaSegnaposto, SEGNAPOSTO_CONTATTO } from '../src/dati/privacy.ts';
 
 // Stessa regola di android/app/build.gradle: maggiore * 1000000 + minore * 1000 + correzione, ognuno 0-999.
 export function codiceVersione(v) {
@@ -65,6 +67,10 @@ export function controllaFileAab(percorso) {
   return [];
 }
 
+// PO-145 (D-217): nel rilascio (VALMORA_RILASCIO=1, job «aab» su main) il contatto della privacy policy non può essere
+// il segnaposto; sugli altri rami lo si segnala e basta, finché il PO non dà il contatto.
+export const controllaPrivacy = (testi, rilascio) => (rilascio ? controllaSegnaposto(testi) : []);
+
 const MANIFEST_PROVA = (codice, nome, permessi) => `<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="${codice}" android:versionName="${nome}" package="io.github.antoniovairo.valmora">\n${permessi.map((p) => `  <uses-permission android:name="${p}"/>`).join('\n')}\n</manifest>`;
 
 export function bracciRossi() {
@@ -81,17 +87,22 @@ export function bracciRossi() {
   if (!controllaManifest(MANIFEST_PROVA(46000, '0.46.0', [...perm, 'android.permission.CAMERA']), '0.46.0').length) ciechi.push('manifest/permesso estraneo è cieco');
   if (!controllaFileAab('/percorso/che/non/esiste.aab').length) ciechi.push('file AAB/assente è cieco');
   if (!controllaFileAab('package.json').length) ciechi.push('file AAB/non zip è cieco');
+  if (!controllaPrivacy({ 'privacy.p99_contatto': `Scrivi a ${SEGNAPOSTO_CONTATTO}` }, true).length) ciechi.push('privacy/segnaposto del contatto è cieco');
+  if (controllaPrivacy({ 'privacy.p99_contatto': 'Scrivi a x@y.z' }, true).length) ciechi.push('privacy: contatto vero bocciato');
   return ciechi;
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const [aab, bundletool] = process.argv.slice(2);
   let problemi;
+  const privacy = JSON.parse(readFileSync('data/testi/it/privacy.json', 'utf8'));
+  for (const p of controllaSegnaposto(privacy)) console.log(`SEGNALATO (blocca il rilascio su main): ${p}`);
   if (aab === '--bracci-rossi') problemi = bracciRossi();
+  else if (aab === '--privacy') problemi = controllaPrivacy(privacy, process.env.VALMORA_RILASCIO === '1');
   else {
     const sorgente = readFileSync('src/versione.ts', 'utf8');
     const versione = /export const GAME_VERSION = '(\d+\.\d+\.\d+)'/.exec(sorgente)?.[1];
-    problemi = [...controllaFileAab(aab), ...controllaStoriaVersioni(sorgente), ...bracciRossi()];
+    problemi = [...controllaFileAab(aab), ...controllaStoriaVersioni(sorgente), ...bracciRossi(), ...controllaPrivacy(privacy, process.env.VALMORA_RILASCIO === '1')];
     if (!problemi.length) {
       const xml = execFileSync('java', ['-jar', bundletool, 'dump', 'manifest', `--bundle=${aab}`], { encoding: 'utf8' });
       const m = leggiManifest(xml);

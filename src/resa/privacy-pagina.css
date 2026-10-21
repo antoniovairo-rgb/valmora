@@ -1,0 +1,5 @@
+/* Pagina web …/privacy/ (PO-145, D-217): il build la scrive con token.css davanti; solo token, come il resto della resa. */
+body { margin: 0; background: var(--colore-fondo); color: var(--colore-testo); font-family: var(--font); font-size: var(--testo-base); line-height: var(--linea); }
+main { max-width: var(--larghezza-max); margin: 0 auto; padding: var(--spazio-4) var(--spazio-3); }
+main p { background: var(--colore-superficie); border-radius: var(--raggio-2); padding: var(--spazio-3); margin: var(--spazio-3) 0; }
+main p.sotto { background: none; padding: 0; color: var(--colore-testo-tenue); }
