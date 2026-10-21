@@ -8,6 +8,7 @@ import {
   DOCUMENTI_OBBLIGATORI, controllaDocumenti, controllaBacklog, controllaSegreti, controllaModello, controllaVersione,
 } from './controlli.mjs';
 import { generaGoverno } from './governo-html.mjs';
+import { controllaStore, storeCiechi } from './store/misure.mjs';
 
 const leggi = (p) => (existsSync(p) ? readFileSync(p, 'utf8') : null);
 const git = (cmd) => execSync(`git ${cmd}`, { encoding: 'utf8' }).trim();
@@ -19,6 +20,7 @@ const PASSI = {
   backlog: () => controllaBacklog(leggi('docs/governo/BACKLOG.md') ?? ''),
   segreti: () => controllaSegreti(tracciati()),
   versione: () => controllaVersione(leggi('src/versione.ts')),
+  store: () => controllaStore(), // PO-144 (S-23): immagini e testi della scheda Play Store
   modello: () => {
     const testi = {};
     for (const p of tracciati()) if (/\.(md|mjs|js|ts|tsx|json|html|css|txt)$/.test(p) && existsSync(p)) testi[p] = readFileSync(p, 'utf8');
@@ -34,13 +36,14 @@ const PASSI = {
     if (!controllaVersione("// 0.1.0 – x\nexport const GAME_VERSION = '0.2.0';").length) ciechi.push('versione è cieco');
     const firma = ['Co-Authored-By:', 'Claude'].join(' ');
     if (!controllaModello({ prova: firma }).length) ciechi.push('modello è cieco');
+    ciechi.push(...storeCiechi());
     return ciechi;
   },
   'governo.html': () => { generaGoverno(); return []; },
 };
 
 const CATENE = {
-  governo: ['documenti', 'backlog', 'segreti', 'versione', 'modello', 'bracci-rossi', 'governo.html'],
+  governo: ['documenti', 'backlog', 'segreti', 'versione', 'store', 'modello', 'bracci-rossi', 'governo.html'],
   logica: ['tipi', 'confini', 'schema', 'test', 'bot', 'storia', 'salvataggi-reali', 'bracci-rossi-logica'],
   grafica: ['token', 'build', 'email', 'foto', 'schieramenti', 'offline', 'altezze', 'bracci-rossi-grafica'],
 };
