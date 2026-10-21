@@ -324,3 +324,18 @@ Guardiani: `tools/sonda-altezze.mjs` (a ogni 760: città36 con la striscia ≥ 9
 vignetta della home e senza scorrere), bracci rossi C210C01 e C210G01 visti; nel giro foto PO-092 esclude la striscia fissa
 e S-23 accetta al passo 1 la vignetta della home.
 Foto: `home/d210/prima-*` (rossi) e `home/d210/dopo-*`, città con 0 e 36 episodi e guida, a 360, 375 e 412 × 760.
+
+## D-215: mediana degli imprevisti 286 su 285 (guardiano D-207 rosso) — S-11, 21/10
+
+Base: ramo della principale 6d72de7d. FATTO MISURATO, Chrome 156, 142 imprevisti a 360×760 (`tools/sonda-altezze.mjs`,
+parte «chiamate»): base 286 in 4 giri su 4 (dispersione 0, misura deterministica), massimo 339; su da78df04 (dove D-207 fissò
+la soglia) 285, massimo 339: la soglia non era sbagliata. Confronto chiamata per chiamata, da78df04 → 6d72de7d: crescono
+e02 imp_binario 267 → 286, e02 imp_soppresso 248 → 305, e03 imp_bus_notte 267 → 305, e04 imp_ghiaccio 264 → 283,
+e05 imp_tabellone 229 → 248, e06 imp_allarme 264 → 283, e36 imp_cassa 304 → 323 (+19 o +38: una o due righe in più).
+Causa: titoli delle opzioni più lunghi con le etichette neutre (C-045, S-18) e la rifinitura e01–e03 (D-209), per esempio
+«Steward nel sottopasso» → «Fai indicare la scala giusta nel sottopasso», che a 360 px va su due righe.
+Correzione (resa, non soglia né testi): fumetto dell'imprevisto con padding sopra e sotto `--spazio-1` (era `--spazio-2`).
+Rosso `C215L01`. Prove scartate: interlinea del titolo delle opzioni (era già `--linea-stretta`, 286), margini del fumetto
+(collassano coi vicini, 286). Dopo: mediana 278 in 3 giri su 3, massimo 331. Guardiano verde; col rosso C215L01 «mediana
+degli imprevisti 286 px (soglia 285)»; braccio C215L01 nella catena grafica (parte «chiamate»).
+Foto: `c45/d215/prima` (rosso C215L01) e `c45/d215/dopo`, e01, e17, e30 a 360, 375 e 412 (`tools/foto-imprevisti.mjs`, PRIMA=C215L01).

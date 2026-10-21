@@ -2,7 +2,7 @@
 // rosso C190I01 (l'imprevisto come una chiamata qualsiasi). Stato: bot attento fino all'imprevisto. Controlli: l'avviso
 // «Imprevisto» c'è e si vede, nessun conto alla rovescia, nessuno scorrimento orizzontale. Timbro e spicchio seguono D-129.
 // D-206: la riga «Imprevisto» e la vignetta non ci sono più: si controlla il fumetto dell'imprevisto. PRIMA=1: come prima di D-206
-// (rosso C206I01), per le foto «prima».
+// (rosso C206I01), per le foto «prima»; PRIMA=<rosso>: un altro rosso (es. C215L01, D-215).
 // Uso: npx vite build && node tools/foto-imprevisti.mjs [cartella]
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -38,7 +38,7 @@ try {
   for (const [ep, n, id] of CASI) for (const w of [360, 375, 412]) for (const rosso of [false, true]) {
     if (rosso && w !== 360) continue;
     const p = await browser.newPage({ viewport: { width: w, height: 800 }, reducedMotion: 'reduce' });
-    await p.addInitScript(([r, prima]) => { globalThis.__VALMORA_SECONDO_MS = 1; if (r) globalThis.__NO_C190I01 = true; if (prima) globalThis.__NO_C206I01 = true; }, [rosso, !!process.env.PRIMA]);
+    await p.addInitScript(([r, prima]) => { globalThis.__VALMORA_SECONDO_MS = 1; if (r) globalThis.__NO_C190I01 = true; if (prima) globalThis[`__NO_${prima}`] = true; }, [rosso, process.env.PRIMA === '1' ? 'C206I01' : process.env.PRIMA]);
     await p.goto(url); await p.evaluate(([k, v]) => localStorage.setItem(k, v), [CHIAVE, fino(ep, n, id)]); await p.reload();
     await p.getByRole('button', { name: 'Riprendi' }).click();
     await p.waitForSelector(`[data-messaggio="chiamata-${id}"]`, { timeout: 15000 }); await p.waitForTimeout(600);

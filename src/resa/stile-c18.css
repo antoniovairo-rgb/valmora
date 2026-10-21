@@ -207,3 +207,6 @@ main:not(.rosso-c206i01) .scena[data-scena="chiamata"] .messaggio.imprevisto { p
 /* D-210: con la striscia della home a 360×760 e 36 episodi «Rileggi l'epilogo» un po' più vicino (3 px oltre). Rosso C210C01. */
 main:not(.rosso-c210c01)[data-schermata="citta"]:has([data-citta-striscia]) [data-azione="epilogo"] { margin-top: var(--spazio-1); }
 main:not(.rosso-c210c01)[data-schermata="citta"]:has([data-citta-striscia]) .scheda[data-scheda-episodio]:has(+ [data-azione="epilogo"]) { margin-bottom: var(--spazio-1); }
+/* D-215: con le etichette neutre (C-045, D-209) alcuni titoli delle opzioni d'imprevisto vanno su due righe a 360 px e la
+   mediana a 360×760 saliva a 286 (soglia D-207: 285). Fumetto dell'imprevisto con meno spazio dentro (sopra e sotto). Rosso C215L01. */
+main:not(.rosso-c215l01) .scena[data-scena="chiamata"] .messaggio.imprevisto { padding-block: var(--spazio-1); }
