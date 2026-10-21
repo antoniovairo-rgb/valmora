@@ -7,3 +7,4 @@ export function controllaManifest(xml: string, versione: string): string[];
 export function segnalazioniManifest(xml: string): string[];
 export function controllaFileAab(percorso: string): string[];
 export function bracciRossi(): string[];
+export function controllaPrivacy(testi: Record<string, string>, rilascio: boolean): string[];

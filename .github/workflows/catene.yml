@@ -135,6 +135,9 @@ jobs:
       - run: ./gradlew bundleRelease --no-daemon
         working-directory: android
       - name: controllo dell'AAB (tools/aab.mjs)
+        # PO-145 (D-217): su main (rilascio) il contatto della privacy policy non può essere il segnaposto
+        env:
+          VALMORA_RILASCIO: ${{ github.ref == 'refs/heads/main' && '1' || '0' }}
         run: |
           set -o pipefail
           curl -sSfL -o "$RUNNER_TEMP/bundletool.jar" https://github.com/google/bundletool/releases/download/1.18.1/bundletool-all-1.18.1.jar

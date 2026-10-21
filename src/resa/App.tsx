@@ -23,6 +23,7 @@ import { faseDi, infoOndata, livello } from './partita.ts';
 import { Briefing } from './schermate/Briefing.tsx';
 import { Citta } from './schermate/Citta.tsx';
 import { Crediti } from './schermate/Crediti.tsx';
+import { Privacy } from './schermate/Privacy.tsx';
 import { Chiamata, Chiusura, Risposta } from './schermate/Ondata.tsx';
 import { Rapporto } from './schermate/Rapporto.tsx';
 import { Tono } from './schermate/Tono.tsx';
@@ -45,7 +46,7 @@ import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
 import { useIndietroApp } from './indietro.ts';
 
-type Schermata = 'titolo' | 'crediti' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale' | 'fischio' | 'epilogo';
+type Schermata = 'titolo' | 'crediti' | 'privacy' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale' | 'fischio' | 'epilogo';
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
@@ -168,8 +169,9 @@ export function App() {
     const stato = n > 1 ? riprendiDallOndata(x.ic, n) : null;
     return stato ? { n, vai: () => { nuovaBozza(); setEsito(null); setScelto(x.m.id); conIc(stato, { rapporto_aperto: null }); setSchermata('gioco'); } } : null;
   };
-  const titolo = <Titolo avviso={aggiornato} puoRiprendere={!!sal} nuova={() => setSchermata(sal && !spento('C05R02') ? 'conferma' : 'genere')} riprendi={riprendi} crediti={() => setSchermata('crediti')} sal={sal} importata={aggiorna} />;
+  const titolo = <Titolo avviso={aggiornato} puoRiprendere={!!sal} nuova={() => setSchermata(sal && !spento('C05R02') ? 'conferma' : 'genere')} riprendi={riprendi} crediti={() => setSchermata('crediti')} privacy={() => setSchermata('privacy')} sal={sal} importata={aggiorna} />;
   if (schermata === 'crediti') corpo = <Crediti indietro={() => setSchermata('titolo')} />;
+  else if (schermata === 'privacy') corpo = <Privacy indietro={() => setSchermata('titolo')} />; // PO-145
   else if (schermata === 'conferma') corpo = <ConfermaNuova si={() => setSchermata('genere')} no={() => setSchermata('titolo')} />;
   else if (schermata === 'genere') corpo = <SceltaGenere scegli={nuova} indietro={() => setSchermata('titolo')} />;
   else if (schermata === 'guida' && sal) { nome = 'guida'; corpo = <Guida introduttiva chiudi={() => { segnaGuidaVista(); alla_citta(sal); }} />; }
