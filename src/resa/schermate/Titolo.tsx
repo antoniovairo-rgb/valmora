@@ -1,5 +1,5 @@
 import { Capacitor } from '@capacitor/core';
-import { BookOpen, Ellipsis, Heart, Info, Lightbulb, Play, RotateCcw, Smartphone } from 'lucide-react';
+import { BookOpen, Ellipsis, Heart, Info, Lightbulb, Play, RotateCcw, ShieldCheck, Smartphone } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { GAME_VERSION } from '../../versione.ts';
 import { spento } from '../../interruttori.ts';
@@ -14,7 +14,7 @@ import { t } from '../dati.ts';
 import { Icona } from '../icone.tsx';
 import { VignettaHome } from '../vignette-home.tsx';
 
-export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi: () => void; crediti: () => void; avviso?: string | null; sal: Salvataggio | null; importata: (s: Salvataggio) => void }) {
+export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi: () => void; crediti: () => void; privacy: () => void; avviso?: string | null; sal: Salvataggio | null; importata: (s: Salvataggio) => void }) {
   const [daImportare, setDaImportare] = useState<Salvataggio | null>(null);
   const [errore, setErrore] = useState<string | null>(null);
   const [importata, setImportata] = useState(false);
@@ -28,6 +28,8 @@ export function Titolo(p: { puoRiprendere: boolean; nuova: () => void; riprendi:
   const secondari = (
     <div className="secondari" data-sostieni>
       <button className="pulsante piccolo" data-azione="crediti" onClick={p.crediti}><Icona di={Info} />Crediti</button>
+      {/* PO-145 (D-217): la privacy policy dentro il gioco, anche offline. Rosso C145H01: la voce manca, come prima */}
+      {!spento('C145H01') && <button className="pulsante piccolo" data-azione="privacy" onClick={p.privacy}><Icona di={ShieldCheck} />{t('privacy.titolo')}</button>}
       {/* PO-050: la donazione solo dal browser, non nell'app Android, finché la regola Play non è verificata (REGOLE_PLAY §7) */}
       {!Capacitor.isNativePlatform() && <a className="pulsante piccolo" data-azione="dona" href={URL_DONAZIONE} target="_blank" rel="noopener noreferrer"><Icona di={Heart} />Sostieni</a>}
       <PulsantiArchivio sal={p.sal} chiedi={(s) => { setErrore(null); setImportata(false); setDaImportare(s); }} errore={(x) => { setImportata(false); setErrore(x); }} />

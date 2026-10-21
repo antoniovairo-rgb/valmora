@@ -35,6 +35,9 @@ jobs:
           cache: npm
       - if: steps.attivo.outputs.si == '1'
         run: npm ci && npx vite build
+      # PO-145 (D-217): la privacy policy pubblica (…/valmora/privacy/) è nella build; senza, il sito non si pubblica
+      - if: steps.attivo.outputs.si == '1'
+        run: test -s dist/privacy/index.html
       # PO-049: l'APK di prova anche dentro il sito (stesso indirizzo del gioco), oltre che nella release «apk-debug».
       # È l'ultimo APK costruito da main (può essere quello del rilascio precedente se il job «apk» non ha ancora finito).
       - if: steps.attivo.outputs.si == '1'
