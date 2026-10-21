@@ -3,13 +3,14 @@
 //   chiudi_festa (C4504 esteso alle etichette), e imp_rotolo lascia «srotolato» il rotolo che la chiamata dopo porta «arrotolato».
 // D211-02 rosso __NO_D21102: la Segreteria di e36 chiede di ricordare un'ordinanza mai nominata («Te la ricordi?»).
 // D211-05 rosso __NO_D21105: in e05 più etichette «dallo speaker» nella stessa ondata.
+// D211-06 rosso __NO_D21106: e22 e e27, un'etichetta d'imprevisto ripete il mezzo (speaker, annuncio) di una risposta della stessa ondata.
 import { readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it } from 'vitest';
 import { leggiDati } from '../tools/dati-disco.mjs';
 import type { Missione } from '../src/logica/tipi.ts';
 
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { for (const k of ['D21101', 'D21102', 'D21105']) delete g[`__NO_${k}`]; });
+afterEach(() => { for (const k of ['D21101', 'D21102', 'D21105', 'D21106']) delete g[`__NO_${k}`]; });
 const d = leggiDati() as Record<string, unknown>;
 const ms = Object.entries(d).filter(([k]) => /^missioni\/e\d+\.json$/.test(k)).map(([, m]) => m as Missione);
 const prima = JSON.parse(readFileSync('tests/dati/d211-prima.json', 'utf8')) as Record<string, Record<string, Record<string, string>>>;
@@ -75,4 +76,24 @@ describe('D211-05 nella stessa ondata al massimo un\'etichetta passa «dallo spe
   };
   it('verde: 0 ondate con due etichette «dallo speaker» in 36 episodi', () => expect(gemelle()).toEqual([]));
   it('rosso __NO_D21105: in e05 ondata 2 i testi di prima ne hanno tre', () => { g.__NO_D21105 = true; expect(gemelle()).toEqual(['e05 ondata 2: 3']); });
+});
+
+describe('D211-06 un\'etichetta d\'imprevisto non ripete il mezzo di una risposta precedente della stessa ondata', () => {
+  // mezzi: speaker, annuncio, microfono, megafono, tabellone, maxischermo, altoparlante, radio, rete, comunicato; confronto con
+  // etichetta + risposta di ogni opzione delle chiamate che precedono l'imprevisto
+  const MEZZI: [string, RegExp][] = [['speaker', /speaker/i], ['annuncio', /annunc/i], ['microfono', /microfon/i], ['megafono', /megafon/i], ['tabellone', /tabellon/i], ['maxischermo', /maxischerm/i], ['altoparlante', /altoparlant/i], ['radio', /\bradio\b/i], ['rete', /\bsocial\b|in rete/i], ['comunicato', /comunicat/i]];
+  const mezzi = (s: string) => MEZZI.filter(([, r]) => r.test(s)).map(([n]) => n);
+  const ripetuti = () => { const out: string[] = [];
+    for (const m of ms) { const t = testi(m.id, 'D211-06');
+      for (const o of m.ondate) { const ch = o.chiamate ?? []; ch.forEach((c, i) => { if (!c.imprevisto) return;
+        for (const io of c.opzioni) { const mi = mezzi(tx(t, io.testo)); if (!mi.length) continue;
+          for (const p of ch.slice(0, i)) for (const op of p.opzioni) { const com = mezzi(`${tx(t, op.testo)} ${tx(t, op.risposta)}`).filter((z) => mi.includes(z)); if (com.length) out.push(`${m.id} ${c.id}/${io.id} ← ${p.id}/${op.id}: ${com.join(',')}`); } }
+      }); } }
+    return out;
+  };
+  it('verde: 0 etichette d\'imprevisto che ripetono un mezzo in 36 episodi', () => expect(ripetuti()).toEqual([]));
+  it('rosso __NO_D21106: i testi di prima di e22 e e27', () => {
+    g.__NO_D21106 = true;
+    expect(ripetuti()).toEqual(['e22 imp_pannello/speaker_pannello ← in_rima/speaker22: speaker,annuncio', 'e27 imp_grondaia/nastro ← gol_ospiti/annuncio: annuncio', 'e27 imp_grondaia/nastro ← gol_ospiti/annuncio_senza_mediatore: annuncio']);
+  });
 });
