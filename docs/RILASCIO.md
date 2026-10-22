@@ -16,16 +16,16 @@ Legenda dello stato: **fatto** · **da fare dal PO** · **da fare da noi** (sess
 | 5 | Play App Signing e chiave di caricamento | https://developer.android.com/studio/publish/app-signing · https://support.google.com/googleplay/android-developer/answer/9842756 | «Play App Signing is required to sign your app for distribution through Google Play»; «Your key should be valid for at least 25 years»; «your upload key and app signing key should be different»; chiave persa: «Request upload key reset». | Chiave di caricamento e firma in Android Studio: **da fare dal PO** (§2.2, D-214). Nessuna firma nel repository |
 | 6 | Classificazione dei contenuti (IARC) | https://support.google.com/googleplay/android-developer/answer/9898843 | «All apps must have a content rating from the IARC to be on Google Play.» «Apps without a content rating will be removed». Va rifatto se il contenuto cambia. | **da fare dal PO** (§2.5). Il rating lo decide solo il questionario (CLAUDE.md) |
 | 7 | Sicurezza dei dati | https://support.google.com/googleplay/android-developer/answer/10787469 | «All developers … must complete the Data safety form, including apps on closed, open, or production testing tracks.» «Even developers with apps that do not collect any user data must complete this form and provide a link to their privacy policy.» | **da fare dal PO** (§2.5); risposte suggerite in §3 |
-| 8 | Privacy policy | https://support.google.com/googleplay/android-developer/answer/10144311 | «All apps must post a privacy policy link in the designated field within Play Console, and a privacy policy link or text within the app itself.» «Apps that do not access any personal and sensitive user data must still submit a privacy policy.» URL pubblico, «no PDFs». | Bozza: **fatto da noi** (§4). Pubblicarla su un URL: **decisione PO**. Link o testo **dentro il gioco**: **da fare da noi** dopo la decisione (oggi assente; tocca il gioco, fuori dal compito S-21) |
-| 9 | Scheda dello store | https://support.google.com/googleplay/android-developer/answer/9866151 | Icona «512px by 512px», «32-bit PNG (with alpha)», max 1024 KB; grafica in evidenza «1024px by 500px», «JPEG or 24-bit PNG (no alpha)»; «a minimum of two screenshots», lato tra 320 e 3840 px; per i giochi consigliati «three 9:16 portrait screenshots (minimum 1080x1920px)». | Immagini: **da fare da noi** (icona sorgente in tools/icona; grafica 1024×500 e screenshot da produrre). Testi e caricamento: **da fare dal PO** |
-| 10 | Pubblico destinatario e contenuti | https://support.google.com/googleplay/android-developer/answer/9867159 | «you'll be required to declare your app's target age group. Any apps that include children in their target audience must comply with Google Play's Families Policy Requirements». Prima servono dichiarazione pubblicità e privacy policy. | **decisione PO**: fascia d'età (se include minori si applica la politica Famiglie) |
+| 8 | Privacy policy | https://support.google.com/googleplay/android-developer/answer/10144311 | «All apps must post a privacy policy link in the designated field within Play Console, and a privacy policy link or text within the app itself.» «Apps that do not access any personal and sensitive user data must still submit a privacy policy.» URL pubblico, «no PDFs». | **fatto da noi** (D-217, D-220, D-222; S-22): nel gioco, voce «Privacy» nel menu «Altro» della home (src/resa/schermate/Titolo.tsx:31-32); pagina pubblica https://antoniovairo-rgb.github.io/valmora/privacy (verificata il 2026-10-21 con `curl`: 301 verso `…/privacy/`, poi 200, titolo «Privacy – Valmora»). Testo unico in data/testi/it/privacy.json. Nella Play Console l'URL da incollare: **da fare dal PO** |
+| 9 | Scheda dello store | https://support.google.com/googleplay/android-developer/answer/9866151 | Icona «512px by 512px», «32-bit PNG (with alpha)», max 1024 KB; grafica in evidenza «1024px by 500px», «JPEG or 24-bit PNG (no alpha)»; «a minimum of two screenshots», lato tra 320 e 3840 px; per i giochi consigliati «three 9:16 portrait screenshots (minimum 1080x1920px)». | Immagini e testi: **fatto da noi** (S-23, §5): `store/it-IT/`, generati da `node tools/store/immagini.mjs`, misurati dal passo «store» della catena. Caricamento nella Play Console: **da fare dal PO** |
+| 10 | Pubblico destinatario e contenuti | https://support.google.com/googleplay/android-developer/answer/9867159 | «you'll be required to declare your app's target age group. Any apps that include children in their target audience must comply with Google Play's Families Policy Requirements». Prima servono dichiarazione pubblicità e privacy policy. | **decisione PO**: fascia d'età (se include minori si applica la politica Famiglie); opzioni in coordination/handoffs/sviluppatrice/S-23-store.md |
 | 11 | Pubblicità | https://support.google.com/googleplay/android-developer/answer/9859455 | «You must declare whether or not your app contains ads.» | **da fare dal PO**: risposta «No» (verifica in §3: nessun SDK pubblicitario in package.json:26-38) |
 | 12 | versionCode crescente | https://developer.android.com/studio/publish/versioning | «each successive release of your app uses a greater value»; «The greatest value Google Play allows for versionCode is 2100000000.» | **fatto da noi**: regola in android/app/build.gradle:4-12, guardiano tools/aab.mjs e tests/aab.test.ts |
 
 ### Regola della versione (D-212)
 
 `versionCode = maggiore × 1 000 000 + minore × 1 000 + correzione` (ognuno 0-999), `versionName = GAME_VERSION`.
-0.46.0 → 46000 · 0.47.0 → 47000 · 1.0.0 → 1000000. Cresce sempre se GAME_VERSION cresce; il massimo (999.999.999 → 999999999) resta sotto 2100000000.
+0.46.0 → 46000 · 0.47.0 → 47000 · 1.0.0 → 1000000. **Versione corrente: 0.49.0 → versionCode 49000** (src/versione.ts, letta il 2026-10-22). Cresce sempre se GAME_VERSION cresce; il massimo (999.999.999 → 999999999) resta sotto 2100000000.
 Vale solo per il rilascio: l'APK di debug del job «apk» resta `versionCode 1`, `versionName "1.0"` (android/app/build.gradle:41-48).
 
 ## 2. Guida passo passo per il PO
@@ -123,7 +123,19 @@ Comandi eseguiti il 2026-10-20 sul commit di questo documento:
 - Permessi nel manifest: solo `android.permission.INTERNET` (android/app/src/main/AndroidManifest.xml:40, messo dal modello di Capacitor). Non serve ai file locali del gioco (IPOTESI, non misurata su telefono): toglierlo è una **decisione** (opzioni nel rapporto S-21). Il guardiano tools/aab.mjs lo segnala e boccia qualunque altro permesso nel manifest finale dell'AAB.
 - `android:allowBackup="true"` (AndroidManifest.xml:5): il salvataggio può finire nel backup Google del telefono dell'utente. Se questo conti come «raccolta» ai fini del modulo: **Non posso confermarlo**; leggere la parte sulla raccolta dei dati di answer 10787469 prima di rispondere.
 
-Risposte suggerite per **Data safety** (da confermare dal PO sulla pagina 10787469): «Does your app collect or share any of the required user data types?» → **No**.
+### 3.1 Risposte suggerite per Data safety (S-23, pagina 10787469 riletta il 2026-10-21)
+
+Definizioni della pagina: «"Collect" means transmitting data from your app off a user's device»; non va dichiarato come raccolto ciò che è «only processed locally on the user's device and not sent off device»; non è «sharing» il trasferimento «based on a specific user-initiated action, where the user reasonably expects the data to be shared».
+
+| Domanda del modulo | Risposta suggerita | Su cosa si basa |
+|---|---|---|
+| «Does your app collect or share any of the required user data types?» | **No** | FATTO MISURATO (S-22, `node tools/misura-rete.mjs`): 0 richieste esterne su 3152 in una partita intera e01-e03 in Chromium; nessun SDK di analisi, pubblicità o crash report (package.json); salvataggio solo in `localStorage` |
+| Condividi del verbale, email «Idee» | non sono «sharing» | partono solo dal tocco del giocatore (src/resa/collegamenti.ts:12-17, 26-27): eccezione «user-initiated action» citata sopra |
+| Privacy policy | https://antoniovairo-rgb.github.io/valmora/privacy | D-217, D-220, D-222 |
+
+Restano **Non posso confermarlo** (D-216):
+- **telefono vero**: la misura delle richieste è in Chromium sulla build web, non nell'APK/AAB su un dispositivo Android;
+- **allowBackup="true"** (AndroidManifest.xml:5): se il backup Android del salvataggio conti come «raccolta». La pagina parla di dati trasmessi «from your app off a user's device»; il backup lo fa il sistema, ma la pagina non lo nomina. Prima di rispondere «No», il PO rilegge la pagina; in dubbio si può chiedere all'assistenza Play.
 
 ## 4. Bozza di privacy policy (da pubblicare su un URL pubblico, non PDF)
 
@@ -139,3 +151,16 @@ Risposte suggerite per **Data safety** (da confermare dal PO sulla pagina 107874
 > - **Modifiche**: eventuali modifiche saranno pubblicate in questa pagina con la nuova data.
 
 Da completare dal PO: data, indirizzo di contatto, URL di pubblicazione. Il testo non è stato rivisto da un legale: **Non posso confermare** che basti per ogni legge applicabile.
+
+## 5. Scheda dello store (S-23)
+
+Cartella: `store/it-IT/`. Rigenerare: `npx vite build && node tools/store/immagini.mjs`. Misurare: `node tools/store/misure.mjs` (anche passo «store» della catena «governo», con bracci rossi).
+
+| File | Cosa | Misura (2026-10-21, script) | Requisito (answer 9866151) |
+|---|---|---|---|
+| `icona.png` | icona 512, dalla sorgente tools/icona/icona.svg.mjs | PNG 512×512, 32 bit con alfa, 19 KB | 32-bit PNG con alfa, 512×512, ≤ 1024 KB |
+| `grafica.jpg` | grafica in evidenza, logo e token del gioco | JPEG 1024×500, 24 bit, senza alfa, 57 KB | JPEG o PNG 24 bit senza alfa, 1024×500 |
+| `schermata-1.jpg` … `-4.jpg` | home, città, una chiamata (e01), il verbale (e01) dal gioco vero, 360×640 × 3 | JPEG 1080×1920, 24 bit, senza alfa, 258-355 KB | per i giochi, consigliate tre 9:16 verticali da almeno 1080×1920 |
+| `testi.json` | nome, descrizione breve, descrizione completa | 25 / 78 / 1231 caratteri | 30 / 80 / 4000 (answer 9859152 e 9866151) |
+
+Il PO incolla i testi e carica le immagini nella pagina **Main store listing** della Play Console (nome da answer 9859152, letta il 2026-10-21). Il menu esatto che porta alla pagina: Non posso confermarlo, la pagina non lo elenca.
