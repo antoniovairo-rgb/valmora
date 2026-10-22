@@ -387,4 +387,11 @@
 //   C145H01, C145T01, C145W01 e segnaposto del contatto (tools/aab.mjs, tests/privacy.test.ts).
 //   Inoltre D-219 (nel riepilogo di e36 il tasto «Home» copriva un nome: 56 → 0 px², rosso C219H01) e D-221 (riepilogo che
 //   scorreva sotto i 760 px: 360×640 115 → 0 px, 375×667 88 → 0, rosso C221R01; scorrimento bloccante a ogni altezza).
-export const GAME_VERSION = '0.48.0';
+// 0.49.0 – menu «Altro» senza scorrimento a ogni altezza e due correzioni di testo in e36.
+//   causa: C48-02 (il menu «Altro» aperto faceva scorrere il titolo a 360×640 fino a 265 px, voci sotto la piega, D-224);
+//   rilievi di S-24 (D-227): nel finale «sostituito» il bar diceva «hai perso il posto, non la scommessa» mentre il verbale
+//   fa dire a Malvasi «L'ho vinta io»; «il questore», titolo dell'ordinamento reale, compariva 7 volte in e36.
+//   misura: scorrimento col menu aperto 0 px a 360/375/412×640, 375×667, 360/375/412×760, con e senza salvataggio (prima
+//   fino a 265); «questore» 7 → 0 nei testi; chiamate di e36 entro 100 caratteri (PO-085).
+//   guardiano: controllaAltro a ogni altezza con SOGLIA_ALTRO 0 e rosso C224A01 (tools/foto-home.mjs); tests/brevita.test.ts.
+export const GAME_VERSION = '0.49.0';
