@@ -569,3 +569,8 @@ Commento di `tools/sonda-altezze.mjs:59` corretto: 593 chiamate dopo D-209, che 
 Foto: `c49/d230/prima` (build prima della correzione) e `c49/d230/dopo`: titolo con salvataggio e città con 36 episodi nelle
 tre stagioni, a 360/375/412×640, 375×667 e 360/375/412×760.
 Non verificato: telefono reale; lettore di schermo sulla città a 640 (la testata è nel DOM con l'`h1`, nascosta solo alla vista).
+
+Nota sui giri di questa consegna: i giri su f990d58a li ho fermati dopo la CI rossa. Avevo fermato i processi `node` ma non
+il ciclo che li lanciava, che ha fatto girare ancora governo e logica del giro 3, registrati su f990d58a in STABILITA.json
+(una volta «con modifiche non committate»). Quelle righe non contano per la consegna. I 3 giri validi sono su acdfe1dc, tutti
+verdi; il primo, probabilmente, in parte insieme alla logica vecchia.
