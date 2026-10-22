@@ -500,3 +500,70 @@ Foto: `c48/d224/prima` (rosso C224A01) e `c48/d224/dopo`, menu aperto con e senz
 360/375/412×760.
 Non verificato: telefono reale; lettore di schermo col menu aperto (gli elementi nascosti hanno `display: none` e quindi
 escono anche dall'albero di accessibilità finché il menu è aperto: lo dichiaro, non l'ho misurato).
+
+## Strumento: braccio altezze/C187V01 cieco sotto carico — S-11, 22/10
+
+Rilievo di S-23: il braccio è uscito cieco una volta in 1256 giri, con 3 catene in parallelo su 4 core.
+FATTO MISURATO, Chrome 156, 4 core, braccio C187V01 a 360×760 (parte e01):
+
+| condizione | misura vecchia (campione ogni 20 ms) | misura nuova (nella pagina) |
+|---|---|---|
+| 3 core occupati (`node -e "for(;;){}"` × 3), giri in sequenza | 0 ciechi su 12 | — |
+| 3 core occupati + 5 bracci in contemporanea (come `PARALLELI=5`) | **2 ciechi su 15** (serie 3: 2 su 5) | **0 ciechi su 20** (4 serie da 5), 0 errori |
+| senza carico, verde e rosso | — | verde: nessuna segnalazione, 0 errori; rosso C187V01: visto |
+
+Causa: il vecchio ciclo (`tools/sonda-altezze.mjs`, campione dal processo di prova ogni 20 ms per circa 300 giri) faceva due
+chiamate di andata e ritorno a ogni campione. Sotto carico i campioni si diradavano e potevano saltare i fotogrammi in cui la
+scena che esce passa sotto la versione. La misura, inoltre, prevedeva «due scene insieme», che non c'erano mai. Il cambio di
+scena è una sola scena spostata (`transform`): il ciclo quindi campionava solo per il tempo fisso, senza mai vedere la fine.
+
+Rimedio: `campionaVersione` si installa nella pagina prima del tocco e campiona a ogni fotogramma (`requestAnimationFrame`) e a
+ogni cambio del DOM (MutationObserver). Segna la fine quando, visto il movimento (due scene o una scena con `transform`), tutto è
+fermo. La prova attende questa condizione (`waitForFunction`, limite 15 s), non un tempo, e se il cambio di scena non si vede
+lo dice come errore.
+
+Misura ritirata: un primo «0 su 20» era stato preso su una versione intermedia che contava ancora le «due scene». Quella
+versione non chiudeva mai la misura e campionava fino al limite di 15 s; nella prova contavo solo `sopra` e non gli errori.
+La misura valida è la seconda (0 su 20, con gli errori contati). Una prova intermedia si è fermata per un clic in timeout nella
+partita e01 (`c()`, attesa di navigazione di Playwright). In quel momento il carico era più alto del previsto, perché
+giravano anche le mie sonde di D-230. **Non verificato** se si ripresenti col solo carico della prova: nella prova pulita no.
+
+## D-230 (C49-01, C49-02): titolo con salvataggio e città con 36 episodi senza scorrere a 640 e 667 — S-11, 22/10
+
+Base: merge di 12b3d9df. FATTO MISURATO, Chrome 156, scorrimento in px, prima (rosso C230C01) → dopo:
+
+| | 360×640 | 375×640 | 412×640 | 375×667 | 360/375/412×760 |
+|---|---|---|---|---|---|
+| titolo con salvataggio | 29 → 0 | 29 → 0 | 10 → 0 | 2 → 0 | 0 → 0 |
+| città 36 episodi, stagione 3 | 99 → 0 | 80 → 0 | 76 → 0 | 53 → 0 | 0 → 0 |
+| città 36 episodi, stagioni 1 e 2 | 0 → 0 | 0 → 0 | 0 → 0 | 0 → 0 | 0 → 0 |
+| città, ognuno dei 36 episodi scelto, massimo | — | — | — | — | dopo: 0 a tutti i 7 formati |
+
+Due misure di prima differiscono da quelle della principale: titolo a 375×640 29 px (lei 10) e a 375×667 2 px (lei 0).
+Le mie sono su 12b3d9df, dopo `fonts.ready`. **Non verificato** il perché.
+
+Causa: in stagione 3 l'episodio 36 è già scelto e la sua scheda (sfida, stelle, descrizione, «Rigioca») è più alta del
+messaggio «Tocca un episodio». Sotto i 700 px la città mostra la testata (la striscia di D-210 non ci sta). La mappa resta a
+260 px (C17-12).
+
+Correzione solo con token, rosso `C230C01` (`src/resa/stile-home.css`):
+- città: la testata resta solo per il lettore di schermo, con lo stile solo-lettore (contiene l'`h1`). La stagione la dicono i
+  tasti Stagione N, come già in D-210;
+- città: pulsanti della scheda e «Rileggi l'epilogo» con spazio interno `--spazio-2`, stelle della scheda a `--testo-grande`;
+- titolo: frase-obiettivo con margine sopra `--spazio-2`, pulsanti dopo la premessa con `--spazio-2`;
+- in entrambe le schermate sotto la pagina c'è il margine piccolo, perché non c'è la barra fissa.
+
+Guardiani (`tools/sonda-altezze.mjs`, parte «città36»):
+- gira a ogni altezza (prima solo a 760);
+- misura il titolo con salvataggio e le tre stagioni («citta36», «citta36 stagione 2», «citta36 stagione 3»), a soglia 0;
+- la striscia di D-210 si controlla da 700 px in su; stelle (D-218) e guida (D-210) restano a 760.
+Braccio C230C01 a 360×640 nella catena grafica (`PARTE_ROSSO`: «citta36»): col rosso 3 rossi (titolo 29 px, città 99 px).
+Braccio C201C01 (C44-09, D-201): da solo ora è CIECO a 360×760, perché le regole di D-230 liberano spazio anche a 760. Diventa
+la coppia `C201C01,C230C01` a 360×760: 3 px, rosso. C210C01 e C210G01 restano rossi da soli.
+Sonda completa delle altezze verde a 360×640, 360×760, 375×667, 375×760, 412×830 e 412×760.
+
+Commento di `tools/sonda-altezze.mjs:59` corretto: 593 chiamate dopo D-209, che toglie e02 fumogeni_ospiti.
+
+Foto: `c49/d230/prima` (build prima della correzione) e `c49/d230/dopo`: titolo con salvataggio e città con 36 episodi nelle
+tre stagioni, a 360/375/412×640, 375×667 e 360/375/412×760.
+Non verificato: telefono reale; lettore di schermo sulla città a 640 (la testata è nel DOM con l'`h1`, nascosta solo alla vista).
