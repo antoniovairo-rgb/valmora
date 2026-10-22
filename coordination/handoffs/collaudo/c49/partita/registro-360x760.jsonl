@@ -1,0 +1,457 @@
+{"c":{},"scena":"titolo","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e34"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e34-citta"},"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]"},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"]"},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"]"},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]"},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]"},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]"},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"inizia\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e34-schieramento"},"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\"[data-settore]\")].map(e=>e.dataset.settore+\":\"+e.innerText.replace(/\\s+/g,\" \"))"},"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_cinderwick:2","squadre:tribuna_autorita:1","squadre:parcheggi:1","squadre:piazzale:1","steward:tribuna_autorita:2","steward:curva_ospiti:2","steward:parcheggi:2","mediatore:curva_cinderwick:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":400},"scena":"chiamata","scorr":426,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e34-chiamata1"},"errori":[]}
+{"c":{"c":"clic","s":"[data-opzione=\"sposta_bancarelle\"]","ms":600},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":217,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-opzione=\"manda_scritto\"]","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":261,"scorrX":0,"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\"[data-opzione]\")].map(e=>e.dataset.opzione).join(\" \")"},"errori":[]}
+{"c":{"c":"clic","s":"[data-opzione=\"cartello\"]","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":259,"scorrX":0,"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\"[data-opzione]\")].map(e=>e.dataset.opzione+\"|\"+e.parentElement.className)"},"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":236,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":400},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e34-rapporto1"},"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:piazzale:2","squadre:curva_cinderwick:1","squadre:curva_ospiti:1","steward:tribuna_autorita:2","steward:parcheggi:2","steward:curva_ospiti:2","steward:piazzale:2","mediatore:curva_cinderwick:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":239,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":353,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":400},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":255,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":296,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":271,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":263,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":400},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\"[data-risorsa]\")].map(e=>e.dataset.risorsa+e.innerText.replace(/\\s+/g,\" \"))"},"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_cinderwick:2","squadre:parcheggi:1","mediatore:curva_cinderwick:1","steward:tribuna_autorita:2","steward:parcheggi:2","steward:curva_ospiti:2","steward:piazzale:2"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":255,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":217,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":400},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]","ms":400},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e34-verbale-fallito"},"errori":[]}
+{"c":{"c":"var"},"errori":[]}
+{"c":{},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"indietro\"]"},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"citta-dopo-e34-fallito"},"errori":[]}
+{"c":{},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"]"},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"citta\"]","ms":500},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"citta-dopo-e34-fallito"},"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":500},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_cinderwick:2","squadre:tribuna_autorita:1","squadre:parcheggi:1","squadre:piazzale:1","steward:tribuna_autorita:2","steward:curva_ospiti:2","steward:parcheggi:2","mediatore:curva_cinderwick:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":426,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":217,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":261,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":259,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":236,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:piazzale:1","squadre:curva_cinderwick:1","squadre:curva_ospiti:1","steward:tribuna_autorita:1","steward:parcheggi:1","steward:curva_ospiti:2","steward:piazzale:2","mediatore:curva_cinderwick:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":239,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":353,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:tribuna_autorita:1","squadre:curva_cinderwick:2","steward:tribuna_autorita:2","steward:curva_cinderwick:1","steward:curva_ospiti:1","steward:piazzale:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":255,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":296,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":271,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":261,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"rapporto","scorr":212,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_cinderwick:1","mediatore:curva_cinderwick:1","steward:curva_ospiti:2","steward:parcheggi:2"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":255,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":217,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]","ms":400},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e34-verbale"},"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"riparti\"]","ms":500},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_ospiti:1","mediatore:curva_cinderwick:1","steward:parcheggi:2","steward:piazzale:2"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":255,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":217,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]","ms":400},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"riparti\"]","ms":500},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:piazzale:1","mediatore:piazzale:1","steward:parcheggi:2","steward:curva_cinderwick:2"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":257,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":217,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]","ms":400},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"riparti\"]","ms":500},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:parcheggi:1","mediatore:piazzale:1","steward:parcheggi:2","steward:piazzale:2"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":257,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":217,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]","ms":400},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e36","forza":{"credito":1,"fascicolo":"stampa"}},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"3\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e36-schieramento"},"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\"[data-settore]\")].map(e=>e.dataset.settore).join(\" \")"},"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_cinderwick:1","squadre:curva_larkspire:1","squadre:piazzale:1","squadre:cantiere_stadio_nuovo:2","steward:piazzale:2","steward:cantiere_stadio_nuovo:2","steward:strada_larkspire:1","steward:curva_larkspire:1","mediatore:curva_cinderwick:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":486,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e36-chiamata1"},"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":427,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":238,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:strada_larkspire:2","squadre:piazzale:1","squadre:cantiere_stadio_nuovo:1","squadre:curva_cinderwick:1","steward:piazzale:2","steward:cantiere_stadio_nuovo:1","steward:curva_larkspire:1","steward:curva_cinderwick:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":370,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":297,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":371,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_cinderwick:2","squadre:curva_larkspire:2","steward:piazzale:1","steward:cantiere_stadio_nuovo:1","steward:curva_cinderwick:1","steward:curva_larkspire:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":327,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":274,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":319,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"rapporto","scorr":167,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:piazzale:2","squadre:cantiere_stadio_nuovo:2","steward:cantiere_stadio_nuovo:2","steward:piazzale:2"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":365,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":330,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":302,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":274,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":241,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":350,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e36-verbale"},"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"riparti\"]","ms":500},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:strada_larkspire:2","squadre:piazzale:1","squadre:cantiere_stadio_nuovo:1","steward:cantiere_stadio_nuovo:2","steward:piazzale:2"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":365,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":330,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":302,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":276,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":241,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":350,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e36-verbale-sostituito"},"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":700},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":700},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":700},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":700},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":700},"scena":"fischio","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":700},"scena":"epilogo","scorr":1850,"scorrX":0,"errori":[]}
+{"c":{},"scena":"epilogo","scorr":1850,"scorrX":0,"errori":[]}
+{"c":{},"scena":"epilogo","scorr":1850,"scorrX":0,"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\"figcaption\")].map(e=>e.innerText.replace(/\\s+/g,\" \")).join(\"\\n\")"},"errori":[]}
+{"c":{"c":"foto","n":"e36-epilogo"},"errori":[]}
+{"c":{"c":"foto","n":"e36-finale-bar-sostituito"},"errori":[]}
+{"c":{"c":"carica","ep":"e36"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"3\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_cinderwick:1","squadre:curva_larkspire:1","squadre:piazzale:1","squadre:cantiere_stadio_nuovo:2","steward:piazzale:2","steward:cantiere_stadio_nuovo:2","steward:strada_larkspire:1","steward:curva_larkspire:1","mediatore:curva_cinderwick:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":486,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":427,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(3)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":238,"scorrX":0,"errori":[]}
+{"c":{},"scena":"chiamata","scorr":238,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:strada_larkspire:1","squadre:curva_cinderwick:1","squadre:curva_larkspire:1","squadre:piazzale:1","steward:piazzale:1","steward:cantiere_stadio_nuovo:1","steward:curva_cinderwick:1","steward:curva_larkspire:1","steward:strada_larkspire:1","mediatore:curva_cinderwick:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":370,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":297,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_cinderwick:1","squadre:curva_larkspire:1","steward:piazzale:2","steward:curva_cinderwick:1","steward:curva_larkspire:1","mediatore:piazzale:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":423,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":278,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":293,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":319,"scorrX":0,"errori":[]}
+{"c":{},"scena":"chiamata","scorr":319,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]"},"scena":"rapporto","scorr":74,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"schiera","l":["squadre:cantiere_stadio_nuovo:2","squadre:strada_larkspire:1","squadre:piazzale:1","steward:cantiere_stadio_nuovo:2","steward:strada_larkspire:2","steward:piazzale:2"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":365,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":330,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":300,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(2)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":251,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":239,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":352,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avanti\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e36-verbale-2"},"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":500},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":500},"scena":"fischio","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"epilogo\"], [data-azione=\"avanti\"]","ms":500},"scena":"epilogo","scorr":1850,"scorrX":0,"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\"figcaption\")].map(e=>e.innerText.replace(/\\s+/g,\" \")).slice(-1)[0]"},"errori":[]}
+{"c":{"c":"var"},"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\"figure\")].map(e=>e.className+\"|\"+(e.dataset.tavola||\"\")+\"|\"+e.innerText.slice(0,20))"},"errori":[]}
+{"c":{"c":"fotoel","s":"[data-tavola=\"bar\"]","n":"e36-bar-confermato"},"errori":[]}
+{"c":{"c":"eval","js":"localStorage.clear()"},"errori":[]}
+{"c":{"c":"ricarica"},"scena":"titolo","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"testo","t":"NUOVA PARTITA","ms":500},"scena":"genere","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"testo","t":"IL NUOVO RESPONSABILE","ms":600},"scena":"guida","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e01-dopo-genere"},"errori":[]}
+{"c":{"c":"testo","t":"AVANTI","ms":250},"scena":"guida","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"testo","t":"AVANTI","ms":250},"scena":"guida","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"testo","t":"AVANTI","ms":250},"scena":"guida","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"testo","t":"AVANTI","ms":250},"scena":"guida","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"testo","t":"AVANTI","ms":250},"scena":"guida","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"guida","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"guida-fine\"]","ms":500},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":400},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"briefing","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"passo\"], [data-azione=\"avanti\"], [data-azione=\"prossimo\"], [data-azione=\"inizia\"]","ms":120},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\"[data-settore]\")].map(e=>e.dataset.settore+\"=\"+e.innerText.replace(/\\s+/g,\" \")).join(\" | \")"},"errori":[]}
+{"c":{"c":"foto","n":"e01-schieramento"},"errori":[]}
+{"c":{"c":"schiera","l":["squadre:curva_cinderwick:1","squadre:curva_larkspire:1","squadre:strada_cinderwick:1","squadre:strada_larkspire:1","steward:piazzale:2","steward:curva_cinderwick:2","steward:curva_larkspire:2","mediatore:piazzale:1"]},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma\"]"},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"conferma-davvero\"]","ms":500},"scena":"chiamata","scorr":461,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"chiamata","scorr":461,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":272,"scorrX":0,"errori":[]}
+{"c":{"c":"ricarica"},"scena":"titolo","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"testo","t":"Riprendi","ms":500},"scena":"chiamata","scorr":272,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":167,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":294,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":233,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiamata","scorr":273,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":".opzioni > [data-opzione]:nth-child(1)","ms":500},"scena":"risposta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"continua\"]","ms":500},"scena":"chiusura","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"rapporto\"]","ms":300},"scena":"rapporto","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e22"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"titolo","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"2\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"chiamata","scorr":492,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e22"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"titolo","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"2\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e22"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"2\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"chiamata","scorr":315,"scorrX":0,"errori":[]}
+{"c":{},"scena":"chiamata","scorr":315,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e22"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"2\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"chiamata","scorr":492,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e22"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"2\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"auto","opz":[3,3,3,3,3,3,3,3,3,3,3,3]},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"foto","n":"e22-verbale-sbagliato"},"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"riparti\"]","ms":400},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"ricarica"},"scena":"titolo","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"testo","t":"Riprendi","ms":500},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{},"scena":"schieramento","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"auto","opz":[1]},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e12"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"1\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"auto","opz":[1,2]},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e30"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"3\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"auto","opz":[1,2]},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"carica","ep":"e05"},"errori":[]}
+{"c":{"c":"testo","t":"Riprendi"},"scena":"titolo","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-stagione=\"1\"]"},"scena":"citta","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"avvia-episodio\"]","ms":300},"scena":"sala","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"auto","opz":[1,2]},"scena":"verbale","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"eval","js":"localStorage.clear()"},"errori":[]}
+{"c":{"c":"ricarica"},"scena":"titolo","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"clic","s":"[data-azione=\"altro\"]","ms":300},"scena":"titolo","scorr":0,"scorrX":0,"errori":[]}
+{"c":{"c":"eval","js":"document.querySelector(\".scena\").outerHTML.slice(0,3500)"},"errori":[]}
+{"c":{"c":"eval","js":"[...document.querySelectorAll(\".scena *\")].filter(e=>e.children.length<3&&e.innerText&&!e.closest(\"svg\")).map(e=>e.tagName+\".\"+e.className+\"|\"+e.innerText.slice(0,25)).join(\"\\n\")"},"errori":[]}
