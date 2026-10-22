@@ -93,9 +93,10 @@ export async function homeRossaVista(build = 'dist') {
   const srv = await servi(build), percorso = process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
   const browser = await chromium.launch({ executablePath: percorso });
   const visto = {};
-  try { for (const r of ['C140H01', 'C187C01', 'C224A01']) { const male = []; await controllaHomeA(browser, `http://127.0.0.1:${srv.address().port}/`, '', (c, ok) => { if (!ok) male.push(c); }, [r], 360); visto[r] = male.length > 0; } }
+  // D-230: col titolo più stretto C187C01 da solo non scorre più a 760 (cieco); con C230C01 sì (4 px)
+  try { for (const r of ['C140H01', 'C187C01,C230C01', 'C224A01']) { const male = []; await controllaHomeA(browser, `http://127.0.0.1:${srv.address().port}/`, '', (c, ok) => { if (!ok) male.push(c); }, r.split(','), 360); visto[r] = male.length > 0; } }
   finally { await browser.close(); srv.close(); }
-  return Object.values(visto).every(Boolean); // C140H01 (home di prima), C187C01 (C43-07, 764 su 760), C224A01 (D-224, menu sotto la piega)
+  return Object.values(visto).every(Boolean); // C140H01 (home di prima), C187C01 con C230C01 (C43-07, 764 su 760), C224A01 (D-224, menu sotto la piega)
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

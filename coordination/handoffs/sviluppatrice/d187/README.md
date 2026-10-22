@@ -559,7 +559,9 @@ Guardiani (`tools/sonda-altezze.mjs`, parte «città36»):
 - la striscia di D-210 si controlla da 700 px in su; stelle (D-218) e guida (D-210) restano a 760.
 Braccio C230C01 a 360×640 nella catena grafica (`PARTE_ROSSO`: «citta36»): col rosso 3 rossi (titolo 29 px, città 99 px).
 Braccio C201C01 (C44-09, D-201): da solo ora è CIECO a 360×760, perché le regole di D-230 liberano spazio anche a 760. Diventa
-la coppia `C201C01,C230C01` a 360×760: 3 px, rosso. C210C01 e C210G01 restano rossi da soli.
+la coppia `C201C01,C230C01` a 360×760: 3 px, rosso. C210C01 e C210G01 restano rossi da soli. Anche C187C01 (C43-07, home 764 su 760) da solo è diventato cieco col titolo più
+stretto. La CI su f990d58a è stata rossa per questo: «foto/home … è cieco» nei job 375, 412 e 360 bracci. In `homeRossaVista`
+il braccio diventa la coppia `C187C01,C230C01` (la home scorre di 4 px, rosso); gli altri due bracci della home restano soli.
 Sonda completa delle altezze verde a 360×640, 360×760, 375×667, 375×760, 412×830 e 412×760.
 
 Commento di `tools/sonda-altezze.mjs:59` corretto: 593 chiamate dopo D-209, che toglie e02 fumogeni_ospiti.
