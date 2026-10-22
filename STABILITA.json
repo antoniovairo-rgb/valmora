@@ -115401,6 +115401,15 @@
     },
     {
       "catena": "governo",
+      "data": "2026-10-21T09:27:00.000Z",
+      "commit": "6a0532d9",
+      "modifiche_non_committate": false,
+      "passi": [],
+      "esito": "verde",
+      "ricostruita": "solo l'esito («giro 1 governo esito 0») dalla sessione S-11; log sovrascritto, passi e data esatta non conservati (data approssimata)"
+    },
+    {
+      "catena": "governo",
       "data": "2026-10-21T09:29:51.353Z",
       "commit": "23017f3d",
       "modifiche_non_committate": false,
@@ -116966,6 +116975,35 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-21T12:00:00.000Z",
+      "commit": "c5c13719",
+      "modifiche_non_committate": false,
+      "passi_scelti": "token,build,email",
+      "passi": [
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde",
+      "ricostruita": "dalla sessione S-11: uscita mostrata solo per build ed email (token non mostrato); data approssimata"
     },
     {
       "catena": "governo",
@@ -120493,8 +120531,8 @@
     },
     {
       "catena": "governo",
-      "data": "2026-10-22T10:16:17.034Z",
-      "commit": "acdfe1dc",
+      "data": "2026-10-22T09:25:37.572Z",
+      "commit": "f990d58a",
       "modifiche_non_committate": false,
       "passi": [
         {
@@ -120570,7 +120608,172 @@
           "problemi": []
         }
       ],
-      "esito": "verde"
+      "esito": "verde",
+      "ricostruita": "dal log conservato da S-11 (g230-1-governo.log); data stimata: fine del log meno la durata dei passi"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-22T09:25:38.076Z",
+      "commit": "f990d58a",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            7.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            124
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            150.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1468.6
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde",
+      "ricostruita": "dal log conservato da S-11 (g230-1-logica.log); data stimata: fine del log meno la durata dei passi"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-22T09:54:51.628Z",
+      "commit": "f990d58a",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde",
+      "ricostruita": "dal log conservato da S-11 (g230-2-governo.log); data stimata: fine del log meno la durata dei passi"
     },
     {
       "catena": "logica",
@@ -120647,6 +120850,87 @@
           "tentativi": 1,
           "secondi": [
             1494.4
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-22T10:16:17.034Z",
+      "commit": "acdfe1dc",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
           ],
           "problemi": []
         }

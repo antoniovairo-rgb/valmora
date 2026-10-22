@@ -574,3 +574,22 @@ Nota sui giri di questa consegna: i giri su f990d58a li ho fermati dopo la CI ro
 il ciclo che li lanciava, che ha fatto girare ancora governo e logica del giro 3, registrati su f990d58a in STABILITA.json
 (una volta «con modifiche non committate»). Quelle righe non contano per la consegna. I 3 giri validi sono su acdfe1dc, tutti
 verdi; il primo, probabilmente, in parte insieme alla logica vecchia.
+
+## Correzione di metodo: righe di STABILITA.json scartate e ricostruite — S-11, 22/10
+
+Su richiesta della principale («le righe dei giri non si cancellano, nemmeno per i giri interrotti»): in tre occasioni avevo
+scartato con `git checkout -- STABILITA.json` le righe scritte da giri che poi non usavo.
+- 6a0532d9 (D-219), 21/10: giro 1 governo, verde. Avevo fermato i giri dopo la CI rossa del solo strumento.
+- c5c13719 (D-221), 21/10: catena grafica parziale (VALMORA_PASSI=token,build,email), verde, fatta per controllare il passo email.
+- f990d58a (C187V01 + D-230), 22/10: giro 1 governo, giro 1 logica e giro 2 governo, tutti verdi; anche qui li avevo fermati
+  dopo la CI rossa del solo strumento.
+
+Ricostruzione (5 righe aggiunte, tutte con il campo `ricostruita` che dice da dove vengono; nessuna riga esistente toccata, 1288
+→ 1293):
+- le 3 righe di f990d58a: passi, esiti e secondi presi dai log conservati (g230-1-governo, g230-1-logica, g230-2-governo);
+  data = fine del log meno la durata dei passi;
+- 6a0532d9 governo: solo l'esito (verde), senza passi e con data approssimata, perché il log è stato sovrascritto;
+- c5c13719 grafica: build ed email verdi (il passo token non era nell'uscita mostrata), data approssimata.
+Non ricostruiti: i giri fermati a metà (logica del giro 2 su f990d58a, esito 143; i giri fermati su 6a0532d9 dopo il governo 1).
+Lo strumento scrive la riga solo a fine giro, quindi quei giri non avevano mai scritto una riga.
+D'ora in poi non scarto più STABILITA.json: le righe di ogni giro restano, anche se il giro non serve alla consegna.
