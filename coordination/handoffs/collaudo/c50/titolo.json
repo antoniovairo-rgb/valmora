@@ -1,0 +1,380 @@
+[
+ {
+  "salvataggio": false,
+  "w": 360,
+  "h": 640,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 5,
+  "per_riga": "3+2",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 94,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": false,
+  "w": 375,
+  "h": 640,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 5,
+  "per_riga": "3+2",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 99,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": false,
+  "w": 412,
+  "h": 640,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 5,
+  "per_riga": "3+2",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 111,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": false,
+  "w": 375,
+  "h": 667,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 5,
+  "per_riga": "3+2",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 99,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": false,
+  "w": 360,
+  "h": 760,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 5,
+  "per_riga": "3+2",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 94,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": false,
+  "w": 375,
+  "h": 760,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 5,
+  "per_riga": "3+2",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 99,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": false,
+  "w": 412,
+  "h": 760,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 5,
+  "per_riga": "3+2",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 111,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": true,
+  "w": 360,
+  "h": 640,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 6,
+  "per_riga": "3+3",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 94,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": true,
+  "w": 375,
+  "h": 640,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 6,
+  "per_riga": "3+3",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 99,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": true,
+  "w": 412,
+  "h": 640,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 6,
+  "per_riga": "3+3",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 111,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": true,
+  "w": 375,
+  "h": 667,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 6,
+  "per_riga": "3+3",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 99,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": true,
+  "w": 360,
+  "h": 760,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 6,
+  "per_riga": "3+3",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 94,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": true,
+  "w": 375,
+  "h": 760,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 6,
+  "per_riga": "3+3",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 99,
+  "richiuso_ok": true,
+  "errori": 0
+ },
+ {
+  "salvataggio": true,
+  "w": 412,
+  "h": 760,
+  "chiuso": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": true,
+   "obj": true,
+   "prem": true
+  },
+  "aperto": {
+   "scorr": 0,
+   "scorrX": 0,
+   "vign": false,
+   "obj": false,
+   "prem": false
+  },
+  "voci": 6,
+  "per_riga": "3+3",
+  "tutte_dentro": true,
+  "tutte_colpite": true,
+  "min_alt": 44,
+  "min_larg": 111,
+  "richiuso_ok": true,
+  "errori": 0
+ }
+]

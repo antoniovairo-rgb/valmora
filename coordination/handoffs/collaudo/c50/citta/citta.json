@@ -1,0 +1,695 @@
+[
+ {
+  "w": 360,
+  "h": 640,
+  "stagione": 1,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "true"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 360,
+  "h": 640,
+  "stagione": 2,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "true"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 360,
+  "h": 640,
+  "stagione": 3,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "true"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 375,
+  "h": 640,
+  "stagione": 1,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "true"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 375,
+  "h": 640,
+  "stagione": 2,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "true"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 375,
+  "h": 640,
+  "stagione": 3,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "true"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 412,
+  "h": 640,
+  "stagione": 1,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "true"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 412,
+  "h": 640,
+  "stagione": 2,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "true"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 412,
+  "h": 640,
+  "stagione": 3,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "true"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 375,
+  "h": 667,
+  "stagione": 1,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "true"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 375,
+  "h": 667,
+  "stagione": 2,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "true"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 375,
+  "h": 667,
+  "stagione": 3,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA",
+   "vis": true,
+   "h": 24
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "true"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 360,
+  "h": 760,
+  "stagione": 1,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA · STAGIONE 1 · MAPPA DELLA CITTÀ",
+   "vis": false,
+   "h": 1
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "true"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 360,
+  "h": 760,
+  "stagione": 2,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA · STAGIONE 2 · MAPPA DELLA CITTÀ",
+   "vis": false,
+   "h": 1
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "true"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 360,
+  "h": 760,
+  "stagione": 3,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA · STAGIONE 3 · MAPPA DELLA CITTÀ",
+   "vis": false,
+   "h": 1
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "true"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 375,
+  "h": 760,
+  "stagione": 1,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA · STAGIONE 1 · MAPPA DELLA CITTÀ",
+   "vis": false,
+   "h": 1
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "true"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 375,
+  "h": 760,
+  "stagione": 2,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA · STAGIONE 2 · MAPPA DELLA CITTÀ",
+   "vis": false,
+   "h": 1
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "true"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 375,
+  "h": 760,
+  "stagione": 3,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA · STAGIONE 3 · MAPPA DELLA CITTÀ",
+   "vis": false,
+   "h": 1
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "true"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 412,
+  "h": 760,
+  "stagione": 1,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA · STAGIONE 1 · MAPPA DELLA CITTÀ",
+   "vis": false,
+   "h": 1
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "true"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 412,
+  "h": 760,
+  "stagione": 2,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA · STAGIONE 2 · MAPPA DELLA CITTÀ",
+   "vis": false,
+   "h": 1
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "true"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "false"
+   }
+  ],
+  "errori": 0
+ },
+ {
+  "w": 412,
+  "h": 760,
+  "stagione": 3,
+  "episodi": 12,
+  "scelti": 12,
+  "base_y": 0,
+  "max_y": 0,
+  "max_x": 0,
+  "testata": {
+   "t": "VALMORA · STAGIONE 3 · MAPPA DELLA CITTÀ",
+   "vis": false,
+   "h": 1
+  },
+  "tasti": [
+   {
+    "s": "1",
+    "t": "STAGIONE 1",
+    "att": "false"
+   },
+   {
+    "s": "2",
+    "t": "STAGIONE 2",
+    "att": "false"
+   },
+   {
+    "s": "3",
+    "t": "STAGIONE 3",
+    "att": "true"
+   }
+  ],
+  "errori": 0
+ }
+]
