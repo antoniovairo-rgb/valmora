@@ -593,3 +593,46 @@ Ricostruzione (5 righe aggiunte, tutte con il campo `ricostruita` che dice da do
 Non ricostruiti: i giri fermati a metà (logica del giro 2 su f990d58a, esito 143; i giri fermati su 6a0532d9 dopo il governo 1).
 Lo strumento scrive la riga solo a fine giro, quindi quei giri non avevano mai scritto una riga.
 D'ora in poi non scarto più STABILITA.json: le righe di ogni giro restano, anche se il giro non serve alla consegna.
+
+## D-234 (C-050): il verbale non scorre neanche a 640, vinto o fallito, con o senza «Riparti dall'ondata N» — S-11, 26/10
+
+Base: merge di 62b3819c. FATTO MISURATO, Chrome 156. Sonda temporanea: 167 verbali costruiti col motore, aperti da salvataggio
+all'ultimo rapporto (36 episodi giocati da attenta, più le partite fallite di peggiore e casuale con semi 1-4: 131 falliti, 104
+col pulsante). Scorrimento massimo in px, prima (rosso C234V01) → dopo:
+
+| | 360×640 | 375×640 | 412×640 | 375×667 | 360/375/412×760 |
+|---|---|---|---|---|---|
+| falliti col pulsante | 27 → 0 | 27 → 0 | 0 → 0 | 0 → 0 | 0 → 0 |
+| falliti senza pulsante | 13 → 0 | 13 → 0 | 0 → 0 | 0 → 0 | 0 → 0 |
+| vinti | 0 → 0 | 0 → 0 | 0 → 0 | 0 → 0 | 0 → 0 |
+
+A 360×640, prima: 63 verbali a 3 px (fra cui e01, e12 ed e22, come nelle misure della principale), 5 a 27 px (e18 casuale 1 e 4,
+e21 casuale 1 e 3, e21 peggiore 1), 1 a 13 px senza pulsante (e18 peggiore 1).
+
+Residuo senza pulsante (IPOTESI, ricavata dalle misure): a 640 la vignetta del verbale fallito è già nascosta, quindi niente
+cede altro spazio; con i testi del verbale più lunghi (e18: 139 px) testata, testo, avviso, «Condividi», ripartenza e «Avanti»
+superano l'altezza. Il caso e12 col peggiore e senza pulsante della principale viene da un salvataggio diverso dal mio (variabili
+della partita A-Z, come in `foto-c41.mjs`): con le variabili della partita attenta, e12 peggiore ha il pulsante.
+**Non verificato** sul salvataggio della principale.
+
+Correzione solo con token, rosso `C234V01` (`src/resa/stile-c18.css`), solo nel verbale:
+- avviso «Episodio fallito…» a `--testo-piccolo` con `--linea-stretta`, spazio interno `--spazio-1`;
+- pulsanti di ripartenza con margine `--spazio-1` e spazio laterale `--spazio-1`. «Riparti dall'ondata N» sta su una riga e la
+  riga scende da 64 a 58 px;
+- «Condividi» con margine sotto `--spazio-1`; barra «Avanti» con margini `--spazio-2`, come sala e briefing (D-193).
+
+Guardiano: parte «verbali» di `tools/sonda-altezze.mjs` (`VERBALI_COSTRUITI`), a ogni altezza, soglia 0. Usa 4 verbali falliti,
+i peggiori del campione:
+- e18 casuale 1 ed e21 peggiore 1, col pulsante, 27 px;
+- e12 casuale 2, col pulsante, 3 px;
+- e18 peggiore 1, senza pulsante, 13 px.
+Controlla anche che il pulsante ci sia o manchi come atteso. Verde a 360/375/412×640, 375×667, 360/375/412×760 e 412×830; col
+rosso C234V01 8 rossi. Braccio C234V01 a 360×640 nella catena grafica. Il verbale vinto resta misurato nella partita e01.
+Bracci di C41 (`giraC41`): C41V06, C185V01 e C185V01,C66V01 da soli ora sono CIECHI, perché il verbale fallito più stretto
+lascia spazio alla vignetta anche coi difetti di prima. Passano a `C41V06,C234V01`, `C185V01,C234V01` e
+`C185V01,C66V01,C234V01`, tutti rossi; C41G08 resta solo, rosso. I bracci dell'epilogo (C161E01, C164F01, C165F01, C165T01,
+C196V01) restano rossi da soli.
+
+Foto: `c50/d234/prima` (rosso C234V01) e `c50/d234/dopo`, i 4 verbali del guardiano a 360/375/412×640, 375×667,
+360/375/412×760 e 412×830.
+Non verificato: telefono reale; il salvataggio della principale per e12 peggiore.

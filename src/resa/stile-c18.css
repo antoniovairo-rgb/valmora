@@ -230,3 +230,11 @@ main:not(.rosso-c221r01) .riepilogo li { line-height: var(--linea-stretta); }
 main:not(.rosso-c221r01) .riepilogo ~ .avviso { margin-block: var(--spazio-2); padding-block: var(--spazio-1); font-size: var(--testo-piccolo); line-height: var(--linea-stretta); }
 main:not(.rosso-c221r01) .riepilogo-azioni .pulsante { padding-block: var(--spazio-1); font-size: var(--testo-piccolo); }
 #app:has(main:not(.rosso-c221r01) [data-riepilogo]) { padding-bottom: var(--spazio-3); }
+/* D-234 (C50): il verbale di un episodio fallito non scorre neanche a 640 (D-191). A 360×640 scorreva fino a 27 px col pulsante
+   «Riparti dall'ondata N» (va su due righe, la riga sale da 50 a 64 px) e fino a 13 px senza (testi lunghi, vignetta già
+   nascosta): avviso più piccolo, «Riparti» su una riga, margini di ripartenza, «Condividi» e «Avanti» più stretti (questi
+   ultimi come sala e briefing, D-193). Rosso C234V01 */
+main:not(.rosso-c234v01)[data-schermata="verbale"] [data-fallita] { padding-block: var(--spazio-1); font-size: var(--testo-piccolo); line-height: var(--linea-stretta); }
+main:not(.rosso-c234v01)[data-schermata="verbale"] .ripartenza .pulsante { margin-block: var(--spazio-1); padding-inline: var(--spazio-1); }
+main:not(.rosso-c234v01)[data-schermata="verbale"] .condividi { margin-bottom: var(--spazio-1); }
+main:not(.rosso-c234v01)[data-schermata="verbale"] .passi-nav .pulsante { margin: var(--spazio-2) 0; }

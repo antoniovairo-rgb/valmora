@@ -56,6 +56,21 @@ export function rapportiCostruiti(dati, dich) {
   }
   return out;
 }
+// D-234 (C50): verbali di episodi falliti, aperti da salvataggio all'ultimo rapporto (variabili della partita attenta). Sono i
+// peggiori fra 167 verbali costruiti (attenta, peggiore, casuale 1-4) a 360×640: col pulsante «Riparti dall'ondata N» 27 px
+// (e18, e21) e 3 px (e12, uno dei 63 da 3 px); senza pulsante 13 px (e18 peggiore). [episodio, giocatore, seme, pulsante]. Rosso C234V01.
+export const VERBALI_COSTRUITI = [['e18', 'casuale', 1, true], ['e21', 'peggiore', 1, true], ['e12', 'casuale', 2, true], ['e18', 'peggiore', 1, false]];
+export function verbaliCostruiti(dati, dich) {
+  const ms = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio), out = [];
+  const gioca = (m, v, g) => { let s = M.iniziaMissione(m, v, dich); while (!M.missioneFinita(m, s)) { s = M.schiera(m, s, g.schiera(m, s)); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); s = M.chiudiOndata(m, s, dich); } return s; };
+  let v = variabiliIniziali(dich.values());
+  for (const [i, m] of ms.entries()) {
+    for (const [ep, chi, seme, riparti] of VERBALI_COSTRUITI) if (ep === m.id) { const s = gioca(m, v, STRATEGIE[chi](creaCaso(seme), dich));
+      out.push({ nome: `${ep}-${chi}${seme}`, riparti, sal: JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: v, missioni_concluse: ms.slice(0, i).map((x) => x.id), episodi: {}, genere: 'm', in_corso: s, rapporto_aperto: s.rapporti.at(-1).n }) }); }
+    v = M.concludiMissione(m, gioca(m, v, attenta(creaCaso(1), dich)), dich).variabili;
+  }
+  return out;
+}
 // D-206 (C45-05): tutte le chiamate di tutti gli episodi, aperte da salvataggio sulla partita attenta (594 al 20/10, 593 dopo D-209 che toglie e02 fumogeni_ospiti; 142
 // imprevisti, misura del 20/10). A 360×760 ogni imprevisto sta nella soglia della chiamata (544, D-114, non alzata) e, D-207,
 // sotto il massimo e la mediana misurati con D-207 (339 e 285 px; prima 545 e 466); le normali non oltre il massimo misurato.
@@ -122,7 +137,7 @@ function campionaVersione() {
 }
 
 // D-207: parti = quali misure; i bracci rossi girano solo la parte che deve vederli rossi (prima 40 min di bracci)
-export const PARTI = ['e01', 'citta36', 'chiamate', 'rapporti', 'riepilogo'];
+export const PARTI = ['e01', 'citta36', 'chiamate', 'rapporti', 'riepilogo', 'verbali'];
 export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi = [], cartella = '', parti = PARTI }) {
   const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), e01 = dati['missioni/e01.json'];
   const srv = await servi(build), url = `http://127.0.0.1:${srv.address().port}/`;
@@ -200,6 +215,19 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
             chiamate.push({ vp, ep: c.ep, id: c.id, imprevisto: c.imprevisto, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) });
             if (cartella && c.imprevisto) await q.screenshot({ path: join(cartella, `${vp}-chiamata-${c.ep}-${c.id}.png`), fullPage: true }); }
           await q.close(); })); }
+      if (parti.includes('verbali')) for (const c of verbaliCostruiti(dati, dich)) { // D-234: a ogni altezza
+        const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
+        if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
+        await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), c.sal); await q.reload();
+        await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="rapporto"]', { timeout: 8000 }).catch(() => {});
+        await q.click('[data-azione="avanti"]').catch(() => {});
+        if (!(await q.waitForSelector('.scena[data-scena="verbale"]', { timeout: 8000 }).then(() => true).catch(() => false))) { errori.push(`${vp}: verbale ${c.nome} non si apre (D-234)`); await q.close(); continue; }
+        await lento(q); await q.waitForTimeout(250);
+        const fallita = await q.locator('[data-fallita]').count(), riparti = await q.locator('[data-azione="riparti"]').count();
+        if (!fallita || !!riparti !== c.riparti) errori.push(`${vp}: verbale ${c.nome} ${fallita ? '' : 'non fallito, '}${riparti ? 'con' : 'senza'} «Riparti», atteso ${c.riparti ? 'con' : 'senza'} (D-234)`);
+        ris.push({ vp, nome: `verbale fallito ${c.nome}`, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-verbale-${c.nome}.png`), fullPage: true });
+        await q.close();
+      }
       if (parti.includes('riepilogo')) for (const c of riepiloghiCostruiti(dati, dich)) { // C47-02 (D-218); D-221: a ogni altezza
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);

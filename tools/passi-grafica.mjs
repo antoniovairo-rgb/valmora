@@ -10,7 +10,7 @@ import { giraOffline } from './offline.mjs';
 import { controllaCittaSenzaWebgl } from './foto-c128.mjs';
 
 // D-202: quanti giri di browser insieme (bracci rossi, foto); le attese dominano sul calcolo
-const PARTE_ROSSO = { C201C01: ['citta36'], C203R01: ['rapporti'], C206I01: ['chiamate'], C215L01: ['chiamate'], C210C01: ['citta36'], C210G01: ['citta36'], C218R01: ['riepilogo'], C218S01: ['citta36'], C219H01: ['riepilogo'], C221R01: ['riepilogo'], C230C01: ['citta36'] };
+const PARTE_ROSSO = { C201C01: ['citta36'], C203R01: ['rapporti'], C206I01: ['chiamate'], C215L01: ['chiamate'], C210C01: ['citta36'], C210G01: ['citta36'], C218R01: ['riepilogo'], C218S01: ['citta36'], C219H01: ['riepilogo'], C221R01: ['riepilogo'], C230C01: ['citta36'], C234V01: ['verbali'] };
 export const PARALLELI = Number(process.env.VALMORA_PARALLELI ?? 5);
 export async function insieme(compiti, n) { const coda = [...compiti]; await Promise.all(Array.from({ length: Math.min(n, coda.length) }, async () => { while (coda.length) await coda.shift()(); })); }
 const larghezzeGiro = () => (process.env.VALMORA_LARGHEZZE ?? '360,375,412').split(',').map(Number);
@@ -50,7 +50,7 @@ export const PASSI_GRAFICA = {
       compiti.push(async () => { if (!(await giraEpilogo(`out/foto-rossi/${r}`, 'dist', [360], [r])).flatMap(controllaGiro).length) ciechi.push(`epilogo/${r} è cieco`); });
     // C41-06, C41-08 (collaudo C-041), D-185: senza la vignetta minima del verbale fallito, con le spaziature di prima,
     // con le spaziature di prima e la vignetta forzata al minimo (pagina che scorre) o col fumetto stretto il giro è rosso
-    for (const r of ['C41V06', 'C185V01', 'C185V01,C66V01', 'C41G08'])
+    for (const r of ['C41V06,C234V01', 'C185V01,C234V01', 'C185V01,C66V01,C234V01', 'C41G08']) // D-234: col verbale fallito più stretto i primi tre solo con C234V01
       compiti.push(async () => { if (!(await giraC41(`out/foto-rossi/${r.replace(',', '-')}`, 'dist', [360], r.split(','))).flatMap(controllaGiro).length) ciechi.push(`c41/${r} è cieco`); });
     // C128-01: col rosso C128N01 (nessun ricalcolo a ingresso finito) il nome della città deve uscire dal bordo
     const stati = existsSync('out/foto/citta-stati.json') ? JSON.parse(readFileSync('out/foto/citta-stati.json', 'utf8')) : [];
@@ -63,7 +63,7 @@ export const PASSI_GRAFICA = {
     if (larghezzeGiro().includes(360)) { const a = await import('./sonda-altezze.mjs');
       // D-191: rapporto senza mappa (R01), minimo a 160 px (L01), scheda compatta della città (C01), nomi lontani da «Home» (H01);
       // D-193: risposta in un blocco (R01), spaziature di sala e briefing (S01)
-      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640'], ['C201R01', '412x760'], ['C201C01,C230C01', '360x760'], ['C203R01', '360x760'], ['C206I01', '360x760'], ['C215L01', '360x760'], ['C210C01', '360x760'], ['C210G01', '360x760'], ['C218R01,C221R01', '360x760'], ['C218S01', '360x760'], ['C219H01,C221R01', '360x760'], ['C221R01', '360x640'], ['C230C01', '360x640']])
+      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640'], ['C201R01', '412x760'], ['C201C01,C230C01', '360x760'], ['C203R01', '360x760'], ['C206I01', '360x760'], ['C215L01', '360x760'], ['C210C01', '360x760'], ['C210G01', '360x760'], ['C218R01,C221R01', '360x760'], ['C218S01', '360x760'], ['C219H01,C221R01', '360x760'], ['C221R01', '360x640'], ['C230C01', '360x640'], ['C234V01', '360x640']])
         compiti.push(async () => { if (!a.controllaAltezze(await a.giraAltezze({ vps: [vp], rossi: r.split(','), parti: PARTE_ROSSO[r.split(',')[0]] ?? ['e01'] })).length) ciechi.push(`altezze/${r} è cieco`); }); }
     // D-207: ogni braccio delle altezze gira solo la parte dove il suo rosso si vede
     // D-202: i bracci sono indipendenti (rossi come parametro, cartelle separate): PARALLELI insieme, ognuno col suo browser
