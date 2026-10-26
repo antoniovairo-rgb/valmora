@@ -636,3 +636,8 @@ C196V01) restano rossi da soli.
 Foto: `c50/d234/prima` (rosso C234V01) e `c50/d234/dopo`, i 4 verbali del guardiano a 360/375/412×640, 375×667,
 360/375/412×760 e 412×830.
 Non verificato: telefono reale; il salvataggio della principale per e12 peggiore.
+
+**Stato di D-234 alla pausa del PO (D-235, 26/10):** codice su ea883712, CI 40364905091 verde (success). Giri governo+logica su
+ea883712: giro 1 governo e logica verdi, giro 2 governo verde. Ho interrotto la logica del giro 2 per la pausa: non ha scritto
+righe, perché lo strumento le scrive solo a giro chiuso, e STABILITA non è stato toccato a mano. Manca il giro 3. Alla ripresa
+servono la logica del giro 2 e il giro 3 sullo stesso hash, rifatti da capo.
