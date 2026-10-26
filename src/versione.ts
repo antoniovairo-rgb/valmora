@@ -394,4 +394,12 @@
 //   misura: scorrimento col menu aperto 0 px a 360/375/412×640, 375×667, 360/375/412×760, con e senza salvataggio (prima
 //   fino a 265); «questore» 7 → 0 nei testi; chiamate di e36 entro 100 caratteri (PO-085).
 //   guardiano: controllaAltro a ogni altezza con SOGLIA_ALTRO 0 e rosso C224A01 (tools/foto-home.mjs); tests/brevita.test.ts.
-export const GAME_VERSION = '0.49.0';
+// 0.50.0 – titolo con salvataggio e città con 36 episodi senza scorrimento anche sugli schermi bassi.
+//   causa: C49-01 (titolo con una partita salvata: 29/10/10 px di scorrimento a 360/375/412×640) e C49-02 (città con 36
+//   episodi in stagione 3: 99/80/76 px a 640, 53 a 375×667), anteriori a D-210; i guardiani misuravano la città solo a 760 e
+//   il titolo solo senza salvataggio (D-230).
+//   misura: 0 px a 360/375/412×640, 375×667 e 360/375/412×760 su titolo con salvataggio e città nelle tre stagioni, con
+//   ognuno dei 36 episodi scelto. Strumento: il braccio C187V01 non è più cieco sotto carico (0 su 20, prima 2 su 15).
+//   guardiano: parte città36 di tools/sonda-altezze.mjs a ogni altezza e stagione, titolo anche con salvataggio, soglia 0,
+//   rosso C230C01; bracci a coppia C201C01,C230C01 e C187C01,C230C01; campionaVersione a ogni fotogramma.
+export const GAME_VERSION = '0.50.0';
