@@ -4,7 +4,7 @@ Scritta solo dalla sessione principale. Stati: da fare / in corso / in collaudo 
 Ogni sessione parallela lavora sul suo ramo e consegna il rapporto in `coordination/handoffs/<ruolo>/`.
 Solo la sessione principale integra e promuove su main (ISTRUZIONI_PO §9). Coordinamento dei rami: routine oraria alle :30 (AVVIO.md, D-058).
 
-Ultimo giro della routine: 2026-10-26 15:30 UTC. C-050 consegnato e archiviato (C50-01 riprodotto → D-234 a S-11; C50-02 non riprodotto). Attiva: S-11 (D-234).
+Ultimo giro della routine: 2026-10-26 17:55 UTC. PAUSA A TEMPO INDETERMINATO (D-235): routine oraria e rilasci spenti, nessuna ripartenza automatica. Main 0.50.0 (e336d854). S-11 ferma su D-234 (ramo claude/valmora-home, non integrato).
 Sviluppatrice 14/10: strumento instabile del nome in città chiuso (C47N01/N02, f426019); PO-103 pallini (C48P01); D-119 nomi in città 0/36 a 360 e 375 (C48N01); C21-01 neutro grigio (C49C01) e club sull'evento (C49E01), 12a31b5 integrato in f775f33. Prossimo: C21-05/06, C21-04, C21-09, PO-078 A, spicchio PO-085.
 
 ## L1 – nuova e01 a scene (D-048…D-056)
