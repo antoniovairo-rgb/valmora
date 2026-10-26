@@ -1,7 +1,7 @@
 // Durante l'ondata: le chiamate una alla volta (fonte, testo, commento del vice, opzioni), la risposta
 // alla scelta, poi la chiusura col rapporto. Ogni scelta si salva subito: una ricarica riporta alla
 // chiamata successiva (la risposta già letta non torna).
-import { ChevronDown, ChevronRight, Coffee, FileText, Radio, Undo2 } from 'lucide-react';
+import { Check, ChevronDown, ChevronRight, Coffee, FileText, Radio, Undo2 } from 'lucide-react';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { spento } from '../../interruttori.ts';
 import { opzioniEsaurite, opzioniValide, unitaFinita, type InCorso } from '../../logica/missione.ts';
@@ -17,31 +17,27 @@ import { altoNellaPagina, scorriPerIntero } from '../vista.ts';
 import { EffettiOpzione, quandoCosta } from '../effetti-opzione.tsx';
 
 
-/** PO-121 (D-148): per quanti secondi la risposta a una chiamata si può annullare. */
-export const ANNULLA_SECONDI = 3; // PO-142 (D-198): 5 → 3 s; rosso C198A01 torna a 5
-/** Durata di un «secondo» del conto alla rovescia. Solo per gli strumenti: il giro foto (che risponde a centinaia di
- *  chiamate) mette globalThis.__VALMORA_SECONDO_MS = 1 per non aspettare il tempo reale; la prova di PO-121
- *  (tools/foto-po121.mjs) non lo mette e misura i secondi veri. */
+/** Durata di un «secondo» delle attese della scena (Scena.tsx, Tono.tsx). Solo per gli strumenti: il giro foto mette
+ *  globalThis.__VALMORA_SECONDO_MS = 1 per non aspettare il tempo reale. */
 export const secondoMs = () => (globalThis as { __VALMORA_SECONDO_MS?: number }).__VALMORA_SECONDO_MS ?? 1000;
 
 export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: number; totale: number; rispondi: (opzione: string) => void;
   sospendi?: (opzione: string) => boolean; decidi?: (esito: Decisione) => void }) {
   // Al primo tocco le opzioni si bloccano: un secondo tocco non cambia la scelta (C-005 R01).
   const [scelta, setScelta] = useState<string | null>(null);
-  // PO-121 (D-148): la scelta resta in sospeso ANNULLA_SECONDI secondi con «Annulla» e il conto alla rovescia; scaduti,
-  // diventa definitiva. Il fuoco non va su «Annulla» (un Invio involontario non annulla): resta sull'opzione scelta, che
-  // non si può ripremere. Senza sospendi (rosso C107A01) la risposta vale subito, come prima.
-  const [resta, setResta] = useState(0);
+  // PO-148 (D-236, al posto del conto alla rovescia di PO-121/D-148): la scelta resta evidenziata e sotto le opzioni
+  // compaiono «Annulla» (toglie la scelta) e «Conferma» (applica la risposta); niente vale prima di «Conferma». Il fuoco non
+  // va da solo sui due pulsanti (un Invio involontario non decide): resta sull'opzione scelta, che non si può ripremere.
+  // Senza sospendi (rosso C107A01) la risposta vale subito, come prima. Rosso C236C01: la risposta vale già al tocco,
+  // anche se i pulsanti compaiono; C236A01: «Annulla» conferma; C236T01 (CSS): pulsanti più bassi di 44 px. Il guardiano
+  // tools/foto-po121.mjs deve vederli tutti.
+  const [inAttesa, setInAttesa] = useState(false);
   const { decidi } = p;
-  useEffect(() => {
-    if (!resta) return;
-    const id = setTimeout(() => { if (resta > 1) setResta(resta - 1); else { setResta(0); decidi?.('confermata'); } }, secondoMs());
-    return () => clearTimeout(id);
-  }, [resta, decidi]);
-  const annulla = () => { setResta(0); setScelta(null); decidi?.('annullata'); };
-  // «Annulla» compare sotto le opzioni: la pagina scorre fin lì (senza dargli il fuoco), così si vede subito
-  const barraAnnulla = useRef<HTMLDivElement>(null), aperto = resta > 0;
-  useLayoutEffect(() => { if (aperto) barraAnnulla.current?.scrollIntoView({ block: 'nearest' }); }, [aperto]);
+  const annulla = () => { setInAttesa(false); setScelta(null); decidi?.(spento('C236A01') ? 'confermata' : 'annullata'); }; // rosso C236A01: «Annulla» conferma
+  const conferma = () => { setInAttesa(false); decidi?.('confermata'); };
+  // i due pulsanti compaiono sotto le opzioni: la pagina scorre fin lì (senza dar loro il fuoco), così si vedono subito
+  const barraDecidi = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => { if (inAttesa) barraDecidi.current?.scrollIntoView({ block: 'nearest' }); }, [inAttesa]);
   // C-010 C09-03: se le opzioni sono sotto la piega, un indicatore in basso dice che c'è da scorrere.
   const opzioni = useRef<HTMLDivElement>(null);
   const urgenteQui = urgente(p.m, p.c, p.ic.variabili); // D-126 c: spicchio e «Urgente!» solo con un evento sul settore
@@ -112,9 +108,9 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
       {nascoste && spento('C42R01') && indicatore}
       <div className="opzioni" ref={opzioni} role="group" aria-label="Che cosa rispondi?" data-fermo={fermo ? '' : undefined}>
         {opzioniValide(p.c, p.ic, p.m).map((o, i) => (
-          <button key={o.id} className={`opzione${scelta === o.id ? ' scelta' : ''}`} data-opzione={o.id} disabled={scelta !== null && !spento('C05R01') && !(resta && scelta === o.id)}
-            aria-disabled={resta && scelta === o.id ? true : undefined}
-            onClick={() => { if (scelta !== null && !spento('C05R01')) return; setScelta(o.id); if (p.sospendi?.(o.id)) setResta(spento('C198A01') ? 5 : ANNULLA_SECONDI); else p.rispondi(o.id); }}>
+          <button key={o.id} className={`opzione${scelta === o.id ? ' scelta' : ''}`} data-opzione={o.id} disabled={scelta !== null && !spento('C05R01') && !(inAttesa && scelta === o.id)}
+            aria-disabled={inAttesa && scelta === o.id ? true : undefined}
+            onClick={() => { if (scelta !== null && !spento('C05R01')) return; setScelta(o.id); if (p.sospendi?.(o.id)) { setInAttesa(true); if (spento('C236C01')) decidi?.('confermata'); } else p.rispondi(o.id); }}>
             <span className="tasto" aria-hidden="true">{LETTERE[i]}</span>
             <span className="opzione-testo">
               {t(o.testo)}
@@ -137,11 +133,10 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
           </button>
         ))}
       </div>
-      {resta > 0 && (
-        <div className="riga annulla-risposta" role="status" ref={barraAnnulla}>
-          <button type="button" className="pulsante secondario" data-annulla data-azione="annulla-risposta" onClick={annulla} aria-label={`Annulla la risposta (${resta} secondi)`}>
-            <Icona di={Undo2} />Annulla <span className="conto" data-conto={resta}>{resta}</span>
-          </button>
+      {inAttesa && (
+        <div className="riga azioni decidi-risposta" role="group" aria-label={t('risposta.decidi')} ref={barraDecidi}>
+          <button type="button" className="pulsante secondario" data-annulla data-azione="annulla-risposta" onClick={annulla}><Icona di={Undo2} />{t('risposta.annulla')}</button>
+          <button type="button" className="pulsante" data-conferma data-azione="conferma-risposta" onClick={conferma}><Icona di={Check} />{t('risposta.conferma')}</button>
         </div>
       )}
     </>

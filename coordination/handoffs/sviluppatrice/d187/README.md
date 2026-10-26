@@ -641,3 +641,54 @@ Non verificato: telefono reale; il salvataggio della principale per e12 peggiore
 ea883712: giro 1 governo e logica verdi, giro 2 governo verde. Ho interrotto la logica del giro 2 per la pausa: non ha scritto
 righe, perché lo strumento le scrive solo a giro chiuso, e STABILITA non è stato toccato a mano. Manca il giro 3. Alla ripresa
 servono la logica del giro 2 e il giro 3 sullo stesso hash, rifatti da capo.
+
+## PO-148 (D-236): «Annulla» e «Conferma» al posto del conto alla rovescia — S-11, 26/10
+
+Richiesta del PO: «Al posto dell'annulla azione con timer di 3 secondi, prevedi i pulsanti annulla e conferma». Base: merge di
+19bebda3 (D-236), sopra D-234 chiusa (4eb7a77a).
+
+Cosa cambia (`src/resa/schermate/Ondata.tsx`):
+- dopo il tocco su una risposta la scelta resta evidenziata e sotto le opzioni compaiono «Annulla» (toglie la scelta,
+  `decidi('annullata')`) e «Conferma» (applica la risposta, `decidi('confermata')`);
+- niente conto alla rovescia, niente effetto prima di «Conferma». La logica (`src/logica/sospesa.ts`) non cambia: la risposta in
+  sospeso non entra nello stato né nel salvataggio;
+- il fuoco resta sull'opzione scelta, così un Invio involontario non decide; la pagina scorre fino ai due pulsanti;
+- si ritirano `ANNULLA_SECONDI`, il timer e il rosso C198A01. Resta `secondoMs`, che serve a Scena e Tono;
+- testi `risposta.decidi`, `risposta.annulla` e `risposta.conferma` in `data/testi/it/comune.json`; stile solo con token
+  (`.decidi-risposta`, riga nel flusso della pagina, non fissa: fissa copriva l'opzione C a 360×640).
+
+FATTO MISURATO, Chrome 156, chiamata di e01 ondata 1 (stato del bot attento), prima (build 7f8b430a) → dopo:
+
+| | prima del tocco | dopo il tocco | riga dei pulsanti | pulsanti nella finestra |
+|---|---|---|---|---|
+| 360×640 | 563 → 563 | 646 → 638 | 83 → 75 | sì |
+| 375×667 | 535 → 535 | 618 → 610 | 83 → 75 | sì |
+| 412×640 | 542 → 542 | 625 → 617 | 83 → 75 | sì |
+| 360/375/412×760 | 443/442/422, invariato | 526/525/505 → 518/517/497 | 83 → 75 | sì |
+
+Lo scorrimento delle chiamate prima del tocco, cioè quello misurato dalle soglie D-114/D-207, non cambia. Dopo il tocco è 8 px
+in meno di prima.
+
+Guardiano (`tools/foto-po121.mjs`, `controllaAnnulla`, nel giro foto): a 360/375/412 × 640/667/760 e a 1366×768 controlla:
+- i due pulsanti ci sono, stanno nella finestra, non sono coperti, tocco ≥ 44 px, il fuoco non ci va da solo;
+- nessun effetto prima di «Conferma»; a 360×640 nemmeno dopo 3,6 s, quindi niente conto alla rovescia;
+- un secondo Invio non cambia niente; «Annulla» ripristina la chiamata com'era; «Conferma» salva la risposta;
+- a 360×640, chiudendo il gioco prima della conferma su un salvataggio vero (0.4.0), alla ripresa niente è salvato.
+Verde. Rossi, uno per proprietà:
+- C236C01, la risposta vale al tocco: 10 rossi;
+- C236A01, «Annulla» conferma: 10 rossi, «dopo Annulla non è com'era»;
+- C236T01 (CSS), pulsanti a 32 px: 20 rossi, «tocco 32 px»;
+- C107A01, senza pulsanti, già esistente: 10 rossi.
+
+Strumenti che aspettavano lo scadere del timer, ora toccano «Conferma»: `tools/foto.mjs` (partita del giro foto, anche il
+doppio tocco di C-005 R01) e `tools/sonda-altezze.mjs` (partita e01; il braccio C187V01 vede ancora il cambio di scena,
+rosso). Il bot del motore non passa dall'interfaccia. Sonda delle altezze e01 a 360×640 e 360×760: verde.
+Le sonde delle collaudatrici in `coordination/sonde` (c44-annulla, c4x-giocatore, c49/c50-pilota e altre) aspettano ancora il
+conto alla rovescia: non le ho toccate, perché sono strumenti dei collaudi passati e non entrano nella CI. **Non verificato** il
+loro funzionamento con PO-148.
+
+Passo foto del giro grafico a 360 (con token, build ed email) in locale: verde, compresi il guardiano e la partita con «Conferma»
+(riga in STABILITA.json su 7f8b430a «con modifiche non committate»).
+Foto: `po148/prima` (build 7f8b430a, «Annulla 3») e `po148/dopo`, la chiamata dopo il tocco a 360/375/412 × 640 e 760 e a
+375×667, più le foto del guardiano (`po121-<w>x<h>.png`).
+Non verificato: telefono reale; lettore di schermo sui due pulsanti (gruppo con etichetta «Confermi la risposta?»).

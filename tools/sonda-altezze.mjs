@@ -172,11 +172,11 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
             // processo di prova, sotto carico, poteva cadere fuori dal cambio di scena. Ora campiona la pagina stessa, a ogni
             // cambio del DOM e a ogni fotogramma, e la prova attende la condizione «cambio finito», non un tempo.
             await p.evaluate(campionaVersione);
-            await opz.first().click(); // fino alla fine del cambio di scena (dopo la finestra «Annulla»)
+            await opz.first().click(); await c('[data-conferma]'); // PO-148: la risposta vale con «Conferma»; poi il cambio di scena
             await p.waitForFunction(() => globalThis.__v187?.fine, null, { timeout: 15000 }).catch(() => errori.push(`${vp}: il cambio di scena dopo la prima risposta non si è visto (D-187)`));
             if (await p.evaluate(() => globalThis.__v187?.max ?? 0)) sopra.push(`${vp}: nel cambio di scena la versione sta sopra la scena che esce e ne copre le lettere (D-187)`);
             await lento(p);
-          } else await c('[data-opzione]:not(:disabled):not([aria-disabled="true"])');
+          } else { await c('[data-opzione]:not(:disabled):not([aria-disabled="true"])'); await c('[data-conferma]'); } // PO-148
           await p.locator('[data-azione="continua"]').first().waitFor({ timeout: 4000 }).catch(() => {}); continue;
         }
         let fatto = false; for (const a of ['passo', 'prossimo', 'avanti', 'inizia', 'rapporto', 'avvia-episodio']) if (await c(`[data-azione="${a}"]`)) { fatto = true; break; }
