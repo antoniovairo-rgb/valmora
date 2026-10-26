@@ -35,3 +35,13 @@ main:not(.rosso-c187c01) .home-premessa ~ .avviso-finzione { margin-bottom: 0; }
 main:not(.rosso-c224a01):has(.home-altro:not([hidden])) :is(.home-vignetta, .home-obiettivo, .home-premessa) { display: none; }
 main:not(.rosso-c224a01) .home-altro .secondari .pulsante.piccolo { flex: 1 1 30%; padding-inline: var(--spazio-1); }
 #app:has(main:not(.rosso-c224a01) .home-altro:not([hidden])) { padding-bottom: var(--spazio-3); }
+/* D-230 (C49-01, C49-02): 640 e 667 sono altezze supportate (D-191). Città sotto i 700 px con un episodio scelto (stagione 3
+   con 36 episodi: 99/80/76 px a 360/375/412×640, 53 a 375×667): la testata resta per il lettore di schermo, come il titolo
+   della striscia (D-210: la stagione la dicono i tasti), pulsanti e stelle della scheda più bassi. Titolo con salvataggio
+   (29/29/10 px a 640): margini più stretti. In entrambe sotto la pagina il margine piccolo (niente barra fissa). Rosso C230C01 */
+main:not(.rosso-c230c01):not(.rosso-c210c01)[data-schermata="citta"] .scena > .testata { position: absolute; width: var(--spazio-px); height: var(--spazio-px); margin: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+main:not(.rosso-c230c01)[data-schermata="citta"] :is(.scena > .pulsante, [data-scheda-episodio] .pulsante) { padding-block: var(--spazio-2); }
+main:not(.rosso-c230c01)[data-schermata="citta"] [data-scheda-episodio] .stella { width: var(--testo-grande); height: var(--testo-grande); }
+main:not(.rosso-c230c01)[data-schermata="titolo"] .home-obiettivo { margin-top: var(--spazio-2); }
+main:not(.rosso-c230c01)[data-schermata="titolo"] .home-premessa ~ .pulsante { margin-block: var(--spazio-2); }
+#app:has(main:not(.rosso-c230c01):is([data-schermata="citta"], [data-schermata="titolo"])) { padding-bottom: var(--spazio-3); }

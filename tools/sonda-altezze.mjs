@@ -56,7 +56,7 @@ export function rapportiCostruiti(dati, dich) {
   }
   return out;
 }
-// D-206 (C45-05): tutte le chiamate di tutti gli episodi, aperte da salvataggio sulla partita attenta (594, di cui 142
+// D-206 (C45-05): tutte le chiamate di tutti gli episodi, aperte da salvataggio sulla partita attenta (594 al 20/10, 593 dopo D-209 che toglie e02 fumogeni_ospiti; 142
 // imprevisti, misura del 20/10). A 360×760 ogni imprevisto sta nella soglia della chiamata (544, D-114, non alzata) e, D-207,
 // sotto il massimo e la mediana misurati con D-207 (339 e 285 px; prima 545 e 466); le normali non oltre il massimo misurato.
 // Rosso C206I01. Mai alzarle per far passare una modifica.
@@ -101,12 +101,25 @@ const misura = (p) => p.evaluate(() => { const s = document.scrollingElement, sc
       return [...document.querySelectorAll('.mappa .settore .segno-effetto')].map((g) => { const b = g.getBoundingClientRect(); return Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)); }); }))) }; });
 // durante il cambio di scena (D-187, rosso C187V01): la scena che esce, spostata a sinistra, passa sopra la versione e non
 // sotto: al centro della versione, se una scena lo copre, in cima dev'esserci la scena (le sue lettere restano leggibili)
-const versioneSopra = (p) => p.evaluate(() => { const ve = document.querySelector('[data-versione-angolo]'), v = ve?.getBoundingClientRect(); if (!v) return 0;
-  const x = (v.left + v.right) / 2, y = (v.top + v.bottom) / 2;
-  const coperta = [...document.querySelectorAll('.scena')].some((s) => { const r = s.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; });
-  if (!coperta || document.querySelectorAll('.scena').length < 2 && getComputedStyle(document.querySelector('.scena')).transform === 'none') return 0;
-  ve.style.pointerEvents = 'auto'; // la versione non riceve tocchi: per elementFromPoint serve per un attimo
-  const sopra = !!document.elementFromPoint(x, y)?.closest('[data-versione-angolo]'); ve.style.removeProperty('pointer-events'); return sopra ? 1 : 0; });
+// Si installa nella pagina prima del tocco: campiona a ogni cambio del DOM e a ogni fotogramma finché le scene sono due, e
+// segna fine quando il cambio di scena, visto, è finito (globalThis.__v187 = { max, fine }).
+function campionaVersione() {
+  const misura = () => { const ve = document.querySelector('[data-versione-angolo]'), v = ve?.getBoundingClientRect(); if (!v) return 0;
+    const x = (v.left + v.right) / 2, y = (v.top + v.bottom) / 2;
+    const coperta = [...document.querySelectorAll('.scena')].some((s) => { const r = s.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; });
+    if (!coperta || document.querySelectorAll('.scena').length < 2 && getComputedStyle(document.querySelector('.scena')).transform === 'none') return 0;
+    ve.style.pointerEvents = 'auto'; // la versione non riceve tocchi: per elementFromPoint serve per un attimo
+    const sopra = !!document.elementFromPoint(x, y)?.closest('[data-versione-angolo]'); ve.style.removeProperty('pointer-events'); return sopra ? 1 : 0; };
+  // cambio di scena = due scene insieme, o la scena spostata (transform); finito quando, visto il movimento, tutto è fermo
+  const st = globalThis.__v187 = { max: 0, fine: false, viste: false };
+  const muove = () => { const sc = document.querySelectorAll('.scena'); return sc.length > 1 || [...sc].some((x) => getComputedStyle(x).transform !== 'none'); };
+  const guarda = () => { if (st.fine) return; st.max = Math.max(st.max, misura());
+    if (muove()) st.viste = true; else if (st.viste) { st.fine = true; mo.disconnect(); } };
+  const passo = () => { guarda(); if (!st.fine) requestAnimationFrame(passo); };
+  const mo = new MutationObserver(guarda);
+  mo.observe(document.body, { childList: true, subtree: true });
+  requestAnimationFrame(passo);
+}
 
 // D-207: parti = quali misure; i bracci rossi girano solo la parte che deve vederli rossi (prima 40 min di bracci)
 export const PARTI = ['e01', 'citta36', 'chiamate', 'rapporti', 'riepilogo'];
@@ -140,8 +153,13 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         if (await opz.count()) {
           if (!provata) { // la prima risposta: opzioni in basso, dove sta la versione, e cambio di scena osservato
             provata = true; await p.evaluate(() => { const o = document.querySelector('.opzione'); if (o) scrollTo(0, o.getBoundingClientRect().top + scrollY - innerHeight + 70); }); await p.waitForTimeout(150);
-            await opz.first().click(); let n = 0, vista = false; // fino alla fine del cambio di scena (dopo la finestra «Annulla»)
-            for (let i = 0; i < 300; i++) { n = Math.max(n, await versioneSopra(p)); const k = await p.evaluate(() => document.querySelectorAll('.scena').length); if (k > 1) vista = true; else if (vista) break; await p.waitForTimeout(20); } if (n) sopra.push(`${vp}: nel cambio di scena la versione sta sopra la scena che esce e ne copre le lettere (D-187)`);
+            // Strumento instabile (S-23, 22/10: cieco 1 volta in 1256 giri con 3 catene in parallelo): il campione ogni 20 ms dal
+            // processo di prova, sotto carico, poteva cadere fuori dal cambio di scena. Ora campiona la pagina stessa, a ogni
+            // cambio del DOM e a ogni fotogramma, e la prova attende la condizione «cambio finito», non un tempo.
+            await p.evaluate(campionaVersione);
+            await opz.first().click(); // fino alla fine del cambio di scena (dopo la finestra «Annulla»)
+            await p.waitForFunction(() => globalThis.__v187?.fine, null, { timeout: 15000 }).catch(() => errori.push(`${vp}: il cambio di scena dopo la prima risposta non si è visto (D-187)`));
+            if (await p.evaluate(() => globalThis.__v187?.max ?? 0)) sopra.push(`${vp}: nel cambio di scena la versione sta sopra la scena che esce e ne copre le lettere (D-187)`);
             await lento(p);
           } else await c('[data-opzione]:not(:disabled):not([aria-disabled="true"])');
           await p.locator('[data-azione="continua"]').first().waitFor({ timeout: 4000 }).catch(() => {}); continue;
@@ -151,17 +169,26 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
       }
       await p.close();
       }
-      if (h === 760 && parti.includes('citta36')) { // C44-09 (D-201): città con tutti i 36 episodi conclusi («Rileggi l'epilogo» in più). Rosso C201C01.
+      // C44-09 (D-201): città con tutti i 36 episodi conclusi («Rileggi l'epilogo» in più). Rosso C201C01. D-230 (C49-01, C49-02): a
+      // ogni altezza e su ogni stagione (in stagione 3 l'episodio 36 è già scelto: la sua scheda), e prima il titolo con questo
+      // salvataggio (prima misurato solo senza). Rosso C230C01.
+      if (parti.includes('citta36')) {
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
         await q.goto(url); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), tutti(dati, dich)); await q.reload();
+        await q.waitForSelector('main[data-schermata="titolo"]'); await q.evaluate(() => document.fonts.ready); await lento(q); await q.waitForTimeout(300);
+        ris.push({ vp, nome: 'titolo con salvataggio', ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-titolo-salvato.png`), fullPage: true });
         await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="citta"]'); await lento(q); await q.waitForTimeout(300);
         const striscia = await q.evaluate(() => Math.round(document.querySelector('[data-citta-striscia]')?.getBoundingClientRect().height ?? 0)); // D-210, rosso C210C01
         ris.push({ vp, nome: 'citta36', striscia, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-citta36.png`), fullPage: true });
-        await q.click('[data-stagione="3"]'); await lento(q); await controllaCitta(q, (cosa, ok) => { if (!ok) errori.push(cosa); }, `${vp} città, stagione 3 con 36 episodi`); // C47-03 (D-218), rosso C218S01
-        // D-210: il primo passo della guida («La città e il gioco» dalla home) ha la vignetta della home e non scorre. Rosso C210G01
-        await q.click('[data-azione="home"]'); await q.waitForSelector('[data-azione="guida"]'); await q.click('[data-azione="guida"]'); await q.waitForSelector('[data-guida="1"]'); await lento(q);
-        ris.push({ vp, nome: 'guida1', testataGuida: await q.locator('[data-guida-testata]').count(), ...(await misura(q)) });
+        for (const st of [2, 3]) { await q.click(`[data-stagione="${st}"]`); await lento(q); await q.waitForTimeout(150);
+          ris.push({ vp, nome: `citta36 stagione ${st}`, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-citta36-s${st}.png`), fullPage: true }); }
+        if (h === 760) { // le stelle (D-218) e la guida si guardano a 760, come prima
+          await controllaCitta(q, (cosa, ok) => { if (!ok) errori.push(cosa); }, `${vp} città, stagione 3 con 36 episodi`); // C47-03 (D-218), rosso C218S01
+          // D-210: il primo passo della guida («La città e il gioco» dalla home) ha la vignetta della home e non scorre. Rosso C210G01
+          await q.click('[data-azione="home"]'); await q.waitForSelector('[data-azione="guida"]'); await q.click('[data-azione="guida"]'); await q.waitForSelector('[data-guida="1"]'); await lento(q);
+          ris.push({ vp, nome: 'guida1', testataGuida: await q.locator('[data-guida-testata]').count(), ...(await misura(q)) });
+        }
         await q.close();
       }
       if (vp === '360x760' && parti.includes('chiamate')) { const coda = chiamateCostruite(dati, dich); // D-206: 4 pagine insieme
@@ -204,7 +231,8 @@ export function controllaAltezze({ ris, errori, sopra, chiamate = [] }) {
   for (const r of ris) if (!libera(r)) { const k = `${r.vp}|${r.nome}`; if (!max[k] || r.ecc > max[k].ecc) max[k] = r; }
   const male = Object.values(max).filter((r) => r.ecc > (SOGLIE[r.vp]?.[r.nome] ?? 0))
     .map((r) => `${r.vp} ${r.nome}: la pagina scorre di ${r.ecc} px (soglia ${SOGLIE[r.vp]?.[r.nome] ?? 0}, mappa ${r.mappa} px; D-187)`);
-  const d210 = ris.flatMap((r) => r.nome === 'citta36' && r.striscia < 96 ? [`${r.vp} città: manca la striscia della home in testa (${r.striscia} px, D-210)`] : r.nome === 'guida1' && !r.testataGuida ? [`${r.vp} guida: il primo passo non ha la vignetta della home (D-210)`] : []);
+  // la striscia c'è da --vignetta-finestra-min (700 px) in su: sotto, la testata (D-210), per il lettore di schermo (D-230)
+  const d210 = ris.flatMap((r) => r.nome === 'citta36' && Number(r.vp.split('x')[1]) >= 700 && r.striscia < 96 ? [`${r.vp} città: manca la striscia della home in testa (${r.striscia} px, D-210)`] : r.nome === 'guida1' && !r.testataGuida ? [`${r.vp} guida: il primo passo non ha la vignetta della home (D-210)`] : []);
   const casa = ris.filter((r) => r.casa).map((r) => `${r.vp} ${r.nome}: il pulsante «Home» copre ${r.casa} fra punti e nomi dei settori (S-21, mappa ${r.mappa} px)`);
   // D-197 (opzione A): nella risposta la mappa è alta come nella chiamata prima (niente ridisegno fra le due). Rosso C197R01.
   const salti = [];
