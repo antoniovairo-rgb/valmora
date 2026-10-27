@@ -741,3 +741,10 @@ Foto: `po149/prima` (build del merge prima delle modifiche) e `po149/dopo`, citt
 Non verificato: telefono reale. Il telefono del PO ha una finestra utile minore di 915 per le barre del browser e di sistema:
 ho misurato a 915 e a 760, non alla sua altezza esatta, che non conosco.
 **IPOTESI:** la Tripla aperta scorre già oggi; non l'ho cambiata.
+
+Catene: grafica completa verde su 662f7aab (codice); governo e logica, 3 giri verdi, su 5e65afaa. Fra i due c'è solo la
+correzione del tipo di PO-149 in BACKLOG, nessun cambio di codice. In STABILITA c'è anche una riga governo su 662f7aab:
+l'ho lanciata a mano mentre girava la grafica, con modifiche non committate, e resta. Il giro 3 di logica è stato fermato
+dal limite di tempo del terminale prima della fine; non aveva scritto la riga, l'ho rifatto da capo ed è verde.
+Nessuna riga toccata o tolta.
+CI: 40473109781 su 662f7aab verde su ogni job tranne governo (BACKLOG); 40476723358 su 5e65afaa verde (solo documenti).
