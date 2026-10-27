@@ -1,5 +1,5 @@
 // Vignette a fumetto (S-23, PO-078, stile C D-066/D-096): disegnate dal codice in SVG, senza asset esterni.
-// Colori solo da token: le forme usano classi «v-*» definite in stile.css. Riquadro nero spesso, retino giallo
+// Colori solo da token: le forme usano classi «v-*» definite in stile-schermate.css. Riquadro nero spesso, retino giallo
 // di fondo. La vignetta si rimpicciolisce (altezza dal CSS) prima di far scorrere la pagina.
 // Rosso C26V01: nessuna vignetta.
 import { useLayoutEffect, useRef, type ReactNode, type RefObject } from 'react';

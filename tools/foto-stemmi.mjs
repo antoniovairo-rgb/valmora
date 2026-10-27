@@ -31,7 +31,7 @@ export function clubDaProvare() {
   });
 }
 
-/** Pagina coi 16 stemmi alla misura vera; il CSS è quello del gioco (token, stile, stile-c18). */
+/** Pagina coi 16 stemmi alla misura vera; il CSS è quello del gioco (token, stile, stile-schermate, stile-c18). */
 export async function paginaStemmi(browser, larghezza, rossi = '') {
   const v = await createServer({ server: { middlewareMode: true }, appType: 'custom', logLevel: 'silent' });
   try {
@@ -40,7 +40,7 @@ export async function paginaStemmi(browser, larghezza, rossi = '') {
     const { renderToStaticMarkup } = await import('react-dom/server');
     const { createElement } = await import('react');
     const celle = clubDaProvare().map((c) => `<figure data-club="${c.id}" data-simbolo-atteso="${c.stemma.simbolo}">${renderToStaticMarkup(createElement(Stemma, { c }))}<figcaption>${c.id.split('_')[0]}</figcaption></figure>`).join('');
-    const css = ['token.css', 'stile.css', 'stile-c18.css'].map((f) => readFileSync(`src/resa/${f}`, 'utf8')).join('\n');
+    const css = ['token.css', 'stile.css', 'stile-schermate.css', 'stile-c18.css'].map((f) => readFileSync(`src/resa/${f}`, 'utf8')).join('\n');
     const p = await browser.newPage({ viewport: { width: larghezza, height: 640 }, deviceScaleFactor: 2 });
     await p.setContent(`<html><head><style>${css}
       body { margin: 0; padding: var(--spazio-3); } .griglia { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spazio-3); }

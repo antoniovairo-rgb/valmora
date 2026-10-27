@@ -6,6 +6,7 @@ import '@fontsource/inter/latin-700.css';
 import { createRoot } from 'react-dom/client';
 import './token.css';
 import './stile.css';
+import './stile-schermate.css';
 import './stile-c18.css';
 import './stile-home.css';
 import { App } from './App.tsx';
