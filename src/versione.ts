@@ -334,4 +334,11 @@
 //   ognuno dei 36 episodi scelto. Strumento: il braccio C187V01 non è più cieco sotto carico (0 su 20, prima 2 su 15).
 //   guardiano: parte città36 di tools/sonda-altezze.mjs a ogni altezza e stagione, titolo anche con salvataggio, soglia 0,
 //   rosso C230C01; bracci a coppia C201C01,C230C01 e C187C01,C230C01; campionaVersione a ogni fotogramma.
-export const GAME_VERSION = '0.50.0';
+// 0.51.0 – «Annulla» e «Conferma» al posto del conto alla rovescia di 3 s sulle risposte (PO-148, D-236); verbale sugli schermi
+//   bassi (D-234).
+//   causa: richiesta del PO: la risposta partiva da sola dopo 3 s se non si annullava (PO-121/PO-142); D-234 verbale fallito a 360×640.
+//   misura: dopo il tocco nessun effetto prima di «Conferma» (anche dopo 3,6 s a 360×640); pulsanti nella finestra e tocco ≥44 px
+//   a 360/375/412×640/667/760 e 1366×768; scorrimento della chiamata e01 prima del tocco invariato, dopo il tocco −8 px.
+//   guardiano: controllaAnnulla in tools/foto-po121.mjs, rossi C236C01, C236A01, C236T01, C107A01; ritirati ANNULLA_SECONDI e
+//   C198A01.
+export const GAME_VERSION = '0.51.0';
