@@ -24,7 +24,7 @@ import { Briefing } from './schermate/Briefing.tsx';
 import { Citta } from './schermate/Citta.tsx';
 import { Crediti } from './schermate/Crediti.tsx';
 import { Privacy } from './schermate/Privacy.tsx';
-import { Risposta } from './schermate/Ondata.tsx';
+import { RapportoCosto, Risposta } from './schermate/Ondata.tsx';
 import { Rapporto } from './schermate/Rapporto.tsx';
 import { Tono } from './schermate/Tono.tsx';
 import { tonoOndata } from './espressioni.ts';
@@ -233,7 +233,7 @@ export function App() {
   else if (eco) {
     nome = 'risposta';
     testata = { etichetta: `Ondata ${ic.ondata}/${m.ondate.length} · la tua scelta`, titolo: t(m.titolo), info: infoOndata(m, ic.ondata, testoSe) };
-    mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse };
+    mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, radio: <RapportoCosto m={m} ic={ic} o={eco} /> }; // PO-152 A
     corpo = <Risposta m={m} ic={ic} o={eco} avanti={() => setEco(null)} />;
   } else {
     ({ nome, testata, mappa, corpo } = scenaOndata({ m, ic, titolo, bozza, scelta, avviso, riepilogoAperto, annulla: storia.length ? annulla : null,

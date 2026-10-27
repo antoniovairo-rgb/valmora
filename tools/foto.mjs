@@ -282,10 +282,9 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
             for (const [j, [c, op]] of o.risposte.entries()) {
               await scena('chiamata');
               atteso(`ondata ${n}: aperta una chiamata diversa da «${c}»`, (await pagina.locator(`[data-messaggio="chiamata-${c}"]`).count()) === 1); const sett = p.m.ondate[i].chiamate.find((x) => x.id === c).settore; await controllaLampeggio(pagina, atteso, sett ? [sett] : [], `chiamata «${c}»`); await controllaDinamica(pagina, atteso, p.m, p.m.ondate[i].chiamate.find((x) => x.id === c), `chiamata «${c}»`, p.m.ondate[i], club); await controllaRispondi(pagina, atteso, `chiamata «${c}» ${larghezza}`); await controllaChiIcona(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), `chiamata «${c}» ${larghezza}`); await controllaIconeEffetti(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), `chiamata «${c}»`);
-            // D-078 (S-05): sotto ogni opzione visibile c'è l'accenno di costo, in parole, mai numeri
-            const accenni = await pagina.evaluate(() => [...document.querySelectorAll('.opzione')].map((o) => o.querySelector('[data-costo]')?.textContent?.trim() ?? ''));
-            atteso(`chiamata «${c}»: ${accenni.filter(Boolean).length} accenni di costo su ${accenni.length} opzioni (D-078)`, accenni.length > 0 && accenni.every(Boolean));
-            atteso(`chiamata «${c}»: un accenno di costo contiene numeri («${accenni.find((x) => /\d/.test(x))}»)`, !accenni.some((x) => /\d/.test(x)));
+            // D-078 rivisto da D-241 (PO-152 A): prima di «Conferma» sotto le opzioni nessun costo; arriva dopo, per radio, in parole
+            const accenni = await pagina.evaluate(() => [...document.querySelectorAll('.opzione:not(.esaurita) [data-costo], .opzione [data-quando], .opzione [data-effetti]')].filter((e) => e.getClientRects().length).length);
+            atteso(`chiamata «${c}»: ${accenni} indicazioni di costo sotto le opzioni prima di «Conferma» (D-241)`, accenni === 0);
               await fotoSe();
               const altra = p.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id !== op)?.id;
               if (completa && n === 1 && j === 0 && altra) { // C-005 R01: doppio tocco a 40 ms su due opzioni
@@ -297,7 +296,8 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
                 atteso(`doppio tocco: salvata «${salvata}» invece di «${op}» (C-005 R01)`, salvata === op);
               } else { await controllaVignettaEvento(pagina, p.m.ondate[i], p.m.ondate[i].chiamate.find((x) => x.id === c), atteso, `chiamata «${c}»`); const prima = await statoSalvato(pagina); await premi(`[data-opzione="${op}"]`); await pagina.click('[data-conferma]').catch(() => {}); await pagina.waitForFunction(() => !document.querySelector('[data-annulla]'), null, { timeout: 5000 }).catch(() => {}); /* PO-148: la risposta vale con «Conferma» */ await controllaVoloRisposta(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `chiamata «${c}»`); await controllaSegni(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `risposta «${op}»`, prima); }
               if (p.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) {
-                await scena('risposta');
+                await scena('risposta'); const radio = await pagina.evaluate(() => document.querySelector('[data-rapporto-costo] [data-costo]')?.textContent?.trim() ?? '');
+                atteso(`risposta a «${c}»: costo per radio «${radio}» assente o con numeri (D-078, D-241)`, !!radio && !/\d/.test(radio));
                 if (j === 0) await fotoSe();
                 await premi('[data-azione="continua"]');
               }

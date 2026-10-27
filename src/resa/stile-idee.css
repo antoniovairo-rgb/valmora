@@ -1,0 +1,18 @@
+/* Idee di PO-152 (D-241). Si importa per ultimo (avvio.tsx). */
+
+/* Idea A: scheda di stato del settore, sopra la mappa in basso: non aggiunge altezza alla pagina. Toccarla la chiude. */
+.scheda-settore { position: absolute; left: var(--spazio-2); right: var(--spazio-2); bottom: var(--spazio-2); z-index: 6; max-height: calc(100% - 2 * var(--spazio-2)); overflow: auto; padding: var(--spazio-2) var(--tocco-min) var(--spazio-2) var(--spazio-2); background: var(--bianco); color: var(--nero); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); font-size: var(--testo-piccolo); line-height: var(--linea-stretta); cursor: pointer; }
+.scheda-settore-nome { margin: 0 0 var(--spazio-1); font-family: var(--font-titoli); text-transform: uppercase; letter-spacing: var(--spaziatura-maiuscolo); }
+.scheda-settore-righe { margin: 0; padding: 0; list-style: none; }
+.scheda-settore-chiudi { position: absolute; top: 0; right: 0; display: grid; place-items: center; width: var(--tocco-min); height: var(--tocco-min); padding: 0; border: 0; background: transparent; color: var(--nero); cursor: pointer; }
+.scheda-settore-chiudi:focus-visible { outline: var(--bordo) solid var(--magenta); outline-offset: calc(-1 * var(--bordo)); }
+
+/* Idea A: dopo «Conferma» il costo della risposta arriva per radio, sopra la mappa (radio-mappa.tsx): non allunga la pagina */
+.rapporto-costo { margin: var(--spazio-1) 0 0; }
+.rapporto-costo strong { display: inline-flex; align-items: center; gap: var(--spazio-1); margin-right: var(--spazio-1); font-family: var(--font-titoli); text-transform: uppercase; }
+.radio-mappa { position: absolute; left: var(--spazio-2); right: var(--spazio-2); z-index: 3; max-height: calc(50% - var(--spazio-2)); overflow: hidden; padding: var(--spazio-1) var(--spazio-2); background: var(--bianco); color: var(--nero); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); font-size: var(--testo-piccolo); line-height: var(--linea-stretta); pointer-events: none; }
+.radio-mappa.basso { bottom: var(--spazio-2); }
+.radio-mappa.alto { top: var(--spazio-2); }
+.radio-mappa.libero-sx { left: calc(var(--tocco-min) + 2 * var(--spazio-2)); }
+.radio-mappa.libero-dx { right: calc(var(--tocco-min) + 2 * var(--spazio-2)); }
+.radio-mappa .rapporto-costo { margin: 0; }
