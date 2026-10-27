@@ -123055,6 +123055,685 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-27T02:17:13.822Z",
+      "commit": "965ce422",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-27T02:17:14.334Z",
+      "commit": "965ce422",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            7.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            141.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            111.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1147.9
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-27T02:40:46.214Z",
+      "commit": "965ce422",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-27T01:08:11.277Z",
+      "commit": "ddee2ed1",
+      "modifiche_non_committate": false,
+      "larghezze": "360",
+      "passi_scelti": "build,foto",
+      "passi": [
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            1926.2,
+            1852,
+            2916.8
+          ],
+          "problemi": [
+            "360px: risposta «scendete»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «strada_larkspire» (PO-085, C20-07)",
+            "360px: risposta «rimuovi»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_larkspire» (PO-085, C20-07)",
+            "360px: risposta «lascia_fumo»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick» (PO-085, C20-07)",
+            "360px: risposta «torce»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick,curva_larkspire» (PO-085, C20-07)",
+            "360px: risposta «manda_vice»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale» (PO-085, C20-07)",
+            "360px: risposta «conta»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «strada_larkspire» (PO-085, C20-07)",
+            "360px: risposta «presidia»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale» (PO-085, C20-07)",
+            "360px: risposta «presidia»: squadre «», servono «+⚑» (C20-07)",
+            "360px: risposta «speaker»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_larkspire» (PO-085, C20-07)",
+            "360px: risposta «manda_vice»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale» (PO-085, C20-07)",
+            "360px: risposta «mediatore»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick» (PO-085, C20-07)",
+            "360px: risposta «mediatore»: squadre «», servono «+⚑» (C20-07)",
+            "360px: risposta «normale»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «stazione» (PO-085, C20-07)",
+            "360px: risposta «scorta_tornelli»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «stazione» (PO-085, C20-07)",
+            "360px: risposta «mediatore_casa»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_larkspire» (PO-085, C20-07)",
+            "360px: risposta «mediatore_casa»: squadre «», servono «+⚑» (C20-07)",
+            "360px: risposta «annota»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «tornelli» (PO-085, C20-07)",
+            "360px: risposta «pattuglia_vie»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale,quartiere» (PO-085, C20-07)",
+            "360px: risposta «rinforzi_notte»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «quartiere» (PO-085, C20-07)",
+            "360px: risposta «rinforzi_notte»: squadre «», servono «−⚑» (C20-07)",
+            "360px: risposta «promessa»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «quartiere» (PO-085, C20-07)",
+            "360px: risposta «presidio_balcone»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «quartiere» (PO-085, C20-07)",
+            "360px: risposta «asseconda»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale» (PO-085, C20-07)",
+            "360px: risposta «rimuovi»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_larkspire» (PO-085, C20-07)",
+            "360px: risposta «lascia_fumo»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick» (PO-085, C20-07)",
+            "360px: risposta «finta»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_larkspire» (PO-085, C20-07)",
+            "360px: risposta «torce»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick,curva_larkspire» (PO-085, C20-07)",
+            "360px: PO-148 360×640: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: PO-148 375×667: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: PO-148 412×760: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: PO-148 360×760: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: PO-148 375×760: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: PO-148 412×640: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: PO-148 375×640: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: PO-148 360×667: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: PO-148 412×667: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: PO-148 1366×768: dopo la scelta mancano «Annulla» e «Conferma» (la risposta vale subito)",
+            "360px: risposta «annuncio»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_larkspire» (PO-085, C20-07)",
+            "360px: risposta: fiducia da 7 a 8 senza «1» accanto alla barra (PO-067)",
+            "360px: risposta «lascia_megafono»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «tornelli» (PO-085, C20-07)",
+            "360px: risposta «spiega»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_larkspire» (PO-085, C20-07)",
+            "360px: risposta «ammonisci»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_ospiti» (PO-085, C20-07)",
+            "360px: risposta «scorta_strada»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «viale_concerto» (PO-085, C20-07)",
+            "360px: risposta «scorta_strada»: squadre «», servono «+⚑» (C20-07)",
+            "360px: risposta «parcheggi_pubblici»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «parcheggi» (PO-085, C20-07)",
+            "360px: risposta «mucchi»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «viale_concerto» (PO-085, C20-07)",
+            "360px: risposta «palco_si»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale» (PO-085, C20-07)",
+            "360px: risposta «sospendi_prove»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick,piazzale» (PO-085, C20-07)",
+            "360px: risposta «chiama_acquedotto»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazza_concerto,piazzale» (PO-085, C20-07)",
+            "360px: risposta «steward_banchi»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazza_concerto» (PO-085, C20-07)",
+            "360px: risposta «steward_banchi»: squadre «», servono «+⚑» (C20-07)",
+            "360px: risposta «acqua»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick» (PO-085, C20-07)",
+            "360px: risposta «acqua»: squadre «», servono «+⚑» (C20-07)",
+            "360px: risposta «separa»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale» (PO-085, C20-07)",
+            "360px: risposta «separa»: squadre «», servono «+⚑» (C20-07)",
+            "360px: risposta «comunicato13»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick» (PO-085, C20-07)",
+            "360px: risposta «spray_custode»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick,piazzale» (PO-085, C20-07)",
+            "360px: risposta «accetta_dessi»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick» (PO-085, C20-07)",
+            "360px: risposta «vigili_urbani»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «parcheggi» (PO-085, C20-07)",
+            "360px: risposta «leggi_targhe»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «parcheggi» (PO-085, C20-07)",
+            "360px: risposta «corteo_gruppi»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale,viale_concerto» (PO-085, C20-07)",
+            "360px: risposta «agli_atti»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazza_concerto» (PO-085, C20-07)",
+            "360px: risposta «scorta_senza_modulo»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazza_municipio» (PO-085, C20-07)",
+            "360px: risposta «scala_fissa»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «stazione» (PO-085, C20-07)",
+            "360px: risposta «squadra_stazione»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «stazione» (PO-085, C20-07)",
+            "360px: risposta «squadra_stazione»: squadre «», servono «+⚑» (C20-07)",
+            "360px: risposta «lascia_al_club»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick» (PO-085, C20-07)",
+            "360px: risposta «fotografa»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick» (PO-085, C20-07)",
+            "360px: risposta «rimozione»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick,piazzale» (PO-085, C20-07)",
+            "360px: risposta «scrivi_richiesta»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale» (PO-085, C20-07)",
+            "360px: risposta «controlla_varchi»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «zona_rossa» (PO-085, C20-07)",
+            "360px: risposta «controlla_varchi»: squadre «», servono «+⚑» (C20-07)",
+            "360px: risposta «steward_sedie»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazzale» (PO-085, C20-07)",
+            "360px: risposta «teli»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick,piazzale» (PO-085, C20-07)",
+            "360px: risposta «mostra_regole»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick» (PO-085, C20-07)",
+            "360px: risposta «chiudi_uscite»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «curva_cinderwick,piazza_municipio» (PO-085, C20-07)",
+            "360px: risposta «trattieni_treno»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «stazione» (PO-085, C20-07)",
+            "360px: risposta «cartello_binari»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «stazione» (PO-085, C20-07)",
+            "360px: risposta «scorta_ritorno»: segni sulla mappa su «», gli effetti che cambiano lo stato toccano «piazza_municipio,stazione» (PO-085, C20-07)",
+            "360px: risposta «scorta_ritorno»: squadre «», servono «+⚑» (C20-07)"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-27T02:40:46.696Z",
+      "commit": "965ce422",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            7.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            138.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            111.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1112.2
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-27T03:03:39.838Z",
+      "commit": "965ce422",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-27T03:16:05.263Z",
+      "commit": "965ce422",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            21.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-27T03:16:27.649Z",
+      "commit": "965ce422",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            70.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            96
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            107.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1099.4
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
     }
   ]
 }
