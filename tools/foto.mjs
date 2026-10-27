@@ -32,12 +32,8 @@ export function servi(dir) {
   });
   return new Promise((ok) => srv.listen(0, '127.0.0.1', () => ok(srv)));
 }
-
-/** D-241: seme di partita delle foto; la resa lo usa da globalThis.__VALMORA_SEME_PARTITA, il motore qui sotto. Col seme 1 e01
- *  gioca varianti e una carta nuova del mazzo (la partita classica è il seme 0). */
-export const SEME_FOTO = 1;
-
-/** Una partita sulla prima missione, calcolata dal motore: schieramenti, risposte, esito. */
+export const SEME_FOTO = 1; // D-241: seme di partita delle foto (resa: __VALMORA_SEME_PARTITA); e01 ha varianti e una carta nuova
+// Una partita sulla prima missione, calcolata dal motore col seme delle foto: schieramenti, risposte, esito.
 function gioca(m, dich, g, iniziali = variabiliIniziali(dich.values())) {
   let s = iniziaMissione(m, iniziali, dich, SEME_FOTO);
   const ondate = [];
