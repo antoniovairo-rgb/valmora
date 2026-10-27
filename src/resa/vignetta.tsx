@@ -53,23 +53,25 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
   }, [el, attivo, nascondibile]);
 }
 
-export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean; evento?: string; ritaglio?: string }) {
+/** «vista»: il riquadro del disegno se non è quello solito 0 0 320 180 (PO-149: la striscia della città con più cielo sopra). */
+export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean; evento?: string; ritaglio?: string; vista?: [number, number, number, number] }) {
   const el = useRef<SVGSVGElement>(null);
   // C41-06: il verbale fallito ha il suo minimo (--vignetta-min-fallita, classe .fallita in Verbale.tsx); rosso C41V06
   const nasconde = /^(apertura|esito|ondata)-/.test(p.nome);
   useRiempi(el, !p.fissa, nasconde); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
   if (spento('C26V01')) return null;
+  const [vx, vy, vw, vh] = p.vista ?? [0, 0, 320, 180];
   return (
-    <svg ref={el} className="vignetta" viewBox="0 0 320 180" preserveAspectRatio={p.ritaglio ?? 'xMidYMid meet'} role="img" aria-label={p.titolo} data-vignetta={p.nome} data-evento={p.evento}>
+    <svg ref={el} className="vignetta" viewBox={(p.vista ?? [0, 0, 320, 180]).join(' ')} preserveAspectRatio={p.ritaglio ?? 'xMidYMid meet'} role="img" aria-label={p.titolo} data-vignetta={p.nome} data-evento={p.evento}>
       <defs>
         <pattern id="v-retino" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.2" className="v-retino" /></pattern>
         {/* PO-092: ombra a retino (stile C): fondo grigio scuro a punti neri */}
         <pattern id="v-ombra" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" className="v-retino-ombra-fondo" /><circle cx="2.5" cy="2.5" r="1.4" className="v-nero" /></pattern>
       </defs>
-      <rect x="0" y="0" width="320" height="180" className="v-giallo" />
-      <rect x="0" y="0" width="320" height="180" fill="url(#v-retino)" />
+      <rect x={vx} y={vy} width={vw} height={vh} className="v-giallo" />
+      <rect x={vx} y={vy} width={vw} height={vh} fill="url(#v-retino)" />
       {p.children}
-      <rect x="1.5" y="1.5" width="317" height="177" className="v-cornice" />
+      <rect x={vx + 1.5} y={vy + 1.5} width={vw - 3} height={vh - 3} className="v-cornice" />
     </svg>
   );
 }

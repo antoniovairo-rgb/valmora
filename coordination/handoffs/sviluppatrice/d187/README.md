@@ -695,3 +695,49 @@ Non verificato: telefono reale; lettore di schermo sui due pulsanti (gruppo con 
 Giri di PO-148 su 9e993c7d: giro 1 governo e logica e giro 2 governo verdi. La logica del giro 2 si è fermata per un riavvio del
 container: senza riga, perché lo strumento scrive solo a giro chiuso. L'ho rifatta da capo, poi il giro 3: tutto verde.
 CI 40421641316 su 9e993c7d: verde.
+
+## PO-149 (D-237): striscia più alta verso l'alto, mappa più alta, pulsanti dentro la scheda — S-11, 27/10
+
+Foto del PO: `coordination/handoffs/po/po149-citta-telefono.jpg` (0.51.0, città in stagione 2 con e19, circa 412×915).
+Base: merge di 186a4bf1. FATTO MISURATO, Chrome 156, città con e01-e18 superati ed e19 scelto (lo stato della foto):
+
+| | striscia | spazio sopra i personaggi | mappa | spazio libero in fondo | «Avvia», margine dal riquadro interno con l'ombra |
+|---|---|---|---|---|---|
+| 360×915, prima → dopo | 96 → 193 | 14 → 110 | 415 → 431 | 126 → 4 | −5 → 4 per lato |
+| 412×915, prima → dopo | 96 → 197 | 16 → 101 | 415 → 431 | 130 → 4 | −5 → 4 per lato |
+| 360/375/412×760, prima → dopo | 96 → 193/193/197 | 14/14/16 → 110/106/101 | 260 → 276 | 126/126/130 → 4 | −5 → 4 per lato |
+| 360/375/412×640 e 667 | testata (D-210), invariata | — | 260, invariata | 0 di scorrimento prima e dopo | −5 → 4 per lato |
+
+Scorrimento 0 a 360/375/412 × 640/667/760/915 in tutti gli stati misurati: e19 da giocare, e18 superato, nessun episodio scelto,
+36 episodi in stagione 3. Nel caso più pieno (36 episodi, 360×760) la striscia resta a 100 px e ci sono ancora 4 px liberi; a
+360×640 con 36 episodi lo spazio libero scende da 15 a 6 px per il margine dei pulsanti.
+
+Correzione (rossi `C237S01` per striscia e mappa, `C237P01` per i pulsanti):
+- striscia (`Citta.tsx`, `vignette-home.tsx`, `vignetta.tsx`): la striscia prende lo spazio libero come la vignetta della home
+  (PO-092), fra `--home-vignetta-min` (96) e `--home-vignetta-max` (210). Il disegno ha 122 unità di cielo notturno in più, con
+  stelle, ed è inquadrato dal basso (y 96: si vedono i menti), così l'altezza in più va sopra le teste. Prima (y 88) i volti
+  erano tagliati sotto, quindi ho spostato l'ancora;
+- mappa: con la striscia (finestra ≥ 700 px) l'altezza è `clamp(--citta-altezza-min, 100dvh − --citta-riserva-striscia,
+  --citta-altezza-max)`, con riserva 484 px invece di 500: +16 px. Prima ho provato 476 (+24 px), ma a 360×760 con 36 episodi
+  restavano 0 px liberi, troppo vicino alla soglia;
+- sotto i 700 px (640, 667) non cambia niente: c'è la testata, la mappa resta a 260;
+- il margine sotto dell'ultimo elemento della scena usciva da `main` per il collasso dei margini. La striscia, che misura `main`,
+  cresceva così 4-8 px di troppo e la pagina scorreva: nella città con striscia l'ultimo elemento non ha margine sotto;
+- pulsanti delle schede della città, compresi Tripla e «Prossimo»: margine `--spazio-1` a sinistra, `--spazio-1` più
+  `--ombra-1-scarto` a destra e in basso. `--ombra-1-scarto` è il token nuovo (5 px), su cui ora si basa `--ombra-1`.
+
+Guardiano: `tools/foto-po149.mjs`, dalla sonda delle altezze (parte «po149», una volta per larghezza, a 640/667/760/915).
+- Stati: e19, Tripla «Rigioca» su e18, stagione 2 chiusa con «Prossimo».
+- Con la striscia: spazio sopra i personaggi ≥ `--spazio-5` e mappa ≥ `min(--citta-altezza-max, altezza − --citta-riserva-striscia)`.
+- Ogni pulsante di scheda, ombra compresa, dentro il riquadro interno con margine ≥ `--spazio-1`.
+- Scorrimento 0, tranne la Tripla aperta, che scorreva già prima (360×760: 154 px) e resta fuori da questo lavoro.
+Verde a 360, 375 e 412. Rossi:
+- C237S01: 4 rossi a 360, «sopra i personaggi 14 px, serve ≥ 24» e «mappa 260, serve ≥ 276»;
+- C237P01: 16 rossi a 360, ombra a −5 px dal riquadro interno per «Avvia», i pulsanti della Tripla e «Prossimo».
+Bracci C237S01 e C237P01 a 360×760 nella catena grafica. Gli altri bracci della città restano rossi: C201C01+C230C01,
+C210C01, C210G01, C230C01 e C218S01.
+
+Foto: `po149/prima` (build del merge prima delle modifiche) e `po149/dopo`, città con e19 a 360/375/412 × 640 e 915.
+Non verificato: telefono reale. Il telefono del PO ha una finestra utile minore di 915 per le barre del browser e di sistema:
+ho misurato a 915 e a 760, non alla sua altezza esatta, che non conosco.
+**IPOTESI:** la Tripla aperta scorre già oggi; non l'ho cambiata.

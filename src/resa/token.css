@@ -152,7 +152,8 @@
 
   --bordo: 3px;
   --bordo-fine: 2px;
-  --ombra-1: 5px 5px 0 var(--nero);
+  --ombra-1-scarto: 5px; /* PO-149: lo spostamento dell'ombra --ombra-1 (per i margini che la contengono) */
+  --ombra-1: var(--ombra-1-scarto) var(--ombra-1-scarto) 0 var(--nero);
   --ombra-2: 7px 7px 0 var(--nero);
   --ombra-premuto: 2px 2px 0 var(--nero);
   --spinta: 3px;
@@ -198,6 +199,7 @@
   --stemma-compatto: 32px; /* D-191: stemmi nella scheda compatta della città */
   --mappa-proporzione-passi: 4 / 3; /* sala e briefing a passi (S-10): mappa più bassa, niente scorrimento */
   --citta-proporzione: 4 / 5;
+  --citta-riserva-striscia: 484px; /* PO-149: con la striscia (finestra ≥ 700 px) la mappa prende 16 px in più; il caso più pieno (36 episodi, stagione 3, 360×760) resta con 8 px liberi */
   --citta-riserva: 500px;   /* PO-052: spazio per testata, pulsanti e scheda sotto la mappa della città (misurato: 486 px + margine) */
   --citta-larghezza-min: 208px;
   --citta-altezza-min: 260px; /* C17-12: altezza minima della mappa della città (quella di oggi a 760 px); D-187 l'aveva portata a 244: dischi sovrapposti per 587 px² a 360×760 (CI), tornata a 260 */
