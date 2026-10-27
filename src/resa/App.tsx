@@ -6,7 +6,7 @@ import { AnimatePresence, MotionConfig } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { spento } from '../interruttori.ts';
 import { variabiliIniziali } from '../logica/condizioni.ts';
-import { chiamateAperte, chiudiOndata, concludiMissione, disponibili, missioneFinita, riprendiDallOndata, rispondi, schiera, settoriAmmessi, type EsitoMissione, type InCorso } from '../logica/missione.ts';
+import { concludiMissione, disponibili, missioneFinita, riprendiDallOndata, type EsitoMissione, type InCorso } from '../logica/missione.ts';
 import type { Disposizione, Missione, Opzione } from '../logica/tipi.ts';
 import { SAVE_VERSION, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { GAME_VERSION } from '../versione.ts';
@@ -19,18 +19,17 @@ import { chiudiEpisodio, iniziaEpisodio, prossimoEpisodio } from './episodi.ts';
 import type { Risultato } from '../logica/episodi.ts';
 import { Mappa, type MappaProps } from './mappa/Mappa.tsx';
 import { centro, Voli, type Volo } from './mappa/Volo.tsx';
-import { faseDi, infoOndata, livello } from './partita.ts';
+import { infoOndata, livello } from './partita.ts';
 import { Briefing } from './schermate/Briefing.tsx';
 import { Citta } from './schermate/Citta.tsx';
 import { Crediti } from './schermate/Crediti.tsx';
 import { Privacy } from './schermate/Privacy.tsx';
-import { Chiamata, Chiusura, Risposta } from './schermate/Ondata.tsx';
+import { Risposta } from './schermate/Ondata.tsx';
 import { Rapporto } from './schermate/Rapporto.tsx';
 import { Tono } from './schermate/Tono.tsx';
 import { tonoOndata } from './espressioni.ts';
 import { Sala } from './schermate/Sala.tsx';
 import { Scena } from './schermate/Scena.tsx';
-import { Schieramento, usate } from './schermate/Schieramento.tsx';
 import { Titolo } from './schermate/Titolo.tsx';
 import { Verbale } from './schermate/Verbale.tsx';
 import { Epilogo } from './schermate/Epilogo.tsx';
@@ -38,24 +37,20 @@ import { Fischio } from './schermate/Fischio.tsx';
 import { chiudeStagione, epilogo, fineStagione, ultimoEpisodio } from '../logica/epilogo.ts';
 import { superato } from '../logica/episodi.ts';
 import { ondataVincibile } from '../logica/ripartenza.ts';
-import { sospendi, valida, type InSospeso } from '../logica/sospesa.ts';
+import type { InSospeso } from '../logica/sospesa.ts';
 import { valutaEpisodio } from '../logica/episodi.ts';
-import { segniDi, type Segno } from './mappa/segni.ts';
+import type { Segno } from './mappa/segni.ts';
 import { due, Testata } from './schermate/Fumetto.tsx';
 import { t } from './dati.ts';
 import { Fiducia } from './fiducia.tsx';
 import { useIndietroApp } from './indietro.ts';
+import { scenaOndata, type TestataApp } from './app-ondata.tsx';
 
 type Schermata = 'titolo' | 'crediti' | 'privacy' | 'conferma' | 'genere' | 'guida' | 'citta' | 'sala' | 'briefing' | 'gioco' | 'rapporto' | 'verbale' | 'fischio' | 'epilogo';
 
 // Interruttori rossi che agiscono sul CSS (token.css): C05R06 testi a 10 px e nomi sul bordo, C05R07 etichetta
 // lunga, C05N01 stato del rapporto che va a capo sotto il nome.
 const ROSSI_CSS = ['C05R06', 'C05R07', 'C05N01', 'C10S03', 'C14T01', 'C35C01', 'C38A01', 'C38R01', 'C40C01', 'C40C02', 'C42V01', 'C44I02', 'C58I01', 'C60I01', 'C89C01', 'C90V01', 'C98V01', 'C113V01', 'C187C01', 'C187V01', 'C191C01', 'C193S01', 'C196V01', 'C201R01', 'C201C01', 'C203R01', 'C206I01', 'C210C01', 'C215L01', 'C218R01', 'C218S01', 'C221R01', 'C224A01', 'C230C01', 'C234V01', 'C236T01', 'C237S01', 'C237P01'];
-const libera = (m: Missione, ic: InCorso, d: Disposizione, preferita: string | null) => {
-  const disp = disponibili(m, ic);
-  const ok = (r: string) => (disp[r] ?? 0) - usate(d, r) > 0;
-  return preferita && ok(preferita) ? preferita : Object.keys(disp).find(ok) ?? null;
-};
 
 export function App() {
   const [sal, setSal] = useState<Salvataggio | null>(() => carica());
@@ -155,7 +150,7 @@ export function App() {
   let nome: string = schermata;
   let corpo;
   let mappa: Omit<MappaProps, 'm'> | null = null;
-  let testata: { etichetta: string; titolo: string; info?: string | null } | null = null; // sopra la mappa, come nella bozza C2
+  let testata: TestataApp | null = null; // sopra la mappa, come nella bozza C2
 
   // Con una partita salvata, «Nuova partita» chiede conferma prima di cancellarla (C-005 R02).
   // S-21 (D-104, C14-05): «Home» dalla città e dall'episodio; il tasto indietro del telefono non esce a metà.
@@ -241,72 +236,8 @@ export function App() {
     mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse };
     corpo = <Risposta m={m} ic={ic} o={eco} avanti={() => setEco(null)} />;
   } else {
-    const f = faseDi(m, ic);
-    nome = f.tipo;
-    const ondata = m.ondate[ic.ondata - 1];
-    const cosa = f.tipo === 'chiamata' ? `chiamata ${f.numero}/${f.totale}` : f.tipo === 'chiusura' ? 'in corso' : 'schieramento';
-    testata = { etichetta: `Ondata ${ic.ondata}/${m.ondate.length} · ${cosa}`, titolo: f.tipo === 'schieramento' && ondata?.titolo ? t(ondata.titolo) : t(m.titolo), info: infoOndata(m, ic.ondata, testoSe) };
-    if (f.tipo === 'schieramento') {
-      // C-010 C09-04: l'unità scelta resta scelta anche quando è finita (prima si passava in silenzio alla
-      // successiva e un tocco metteva uno steward al posto di una squadra); se è finita, avviso.
-      // Interruttore rosso C10S04: torna il cambio automatico.
-      const sel = spento('C10S04') || !scelta ? libera(m, ic, bozza, scelta) : scelta;
-      const metti = (r: string, settore: string) => {
-        if ((disponibili(m, ic)[r] ?? 0) - usate(bozza, r) <= 0) {
-          setAvviso(`${t(`risorsa.${r}`)}: finite. Tocca un'altra unità nel vassoio.`);
-          return;
-        }
-        // Interruttore rosso C09S01: si accetta la risorsa ovunque (difetto: transenne sugli spalti).
-        if (!spento('C09S01') && !settoriAmmessi(m, r).includes(settore)) {
-          setAvviso(`${t(`risorsa.${r}`)}: in «${t(`settore.${settore}`)}» non hanno effetto, qui non si montano.`);
-          return;
-        }
-        setAvviso(null);
-        const d = structuredClone(bozza);
-        d[r] = { ...(d[r] ?? {}), [settore]: (d[r]?.[settore] ?? 0) + 1 };
-        cambiaBozza(d); setScelta(spento('C10S04') ? libera(m, ic, d, r) : r); vola(r, settore);
-      };
-      mappa = {
-        tensione: ic.tensione, presenze: bozza, fisse: spento('C09S02') ? null : ic.fisse,
-        vietati: sel && m.mappa.risorse[sel]?.fissa ? m.mappa.settori.map((x) => x.id).filter((x) => !settoriAmmessi(m, sel).includes(x)) : [],
-        // C15-06: col riepilogo aperto la mappa è solo da guardare. Rosso C34R01: resta toccabile, come prima.
-        ...(riepilogoAperto && !spento('C34R01') ? {} : {
-          onSettore: (s: string) => sel && metti(sel, s),
-          // PO-054: il tocco su una pastiglia ritira UNA unità di quella risorsa da quel settore. Rosso C46R01: le ritira tutte.
-          onTogli: (r: string, s: string) => cambiaBozza({ ...bozza, [r]: { ...bozza[r], [s]: spento('C46R01') ? 0 : Math.max(0, (bozza[r]?.[s] ?? 0) - 1) } }),
-        }),
-      };
-      corpo = <Schieramento riepilogoAperto={setRiepilogoAperto} m={m} ic={ic} d={bozza} scelta={sel} avviso={avviso} scegli={(r) => { setScelta(r); setAvviso(null); }} metti={metti} azzera={() => cambiaBozza({})} annulla={storia.length ? annulla : null}
-        conferma={() => { setAvviso(null); const ora = icOra(); if (ora && !ora.disposizione && ora.ondata === ic.ondata) conIc(schiera(m, ora, bozza)); }} />;
-    } else if (f.tipo === 'chiamata') {
-      mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, accesi: f.chiamata.settore ? [f.chiamata.settore] : [], citato: f.chiamata.settore };
-      const conferma = (o: string) => {
-          const ora = icOra();
-          if (!spento('C05R01') && (!ora || !chiamateAperte(m, ora).some((c) => c.id === f.chiamata.id))) return; // già risposta
-          if (!ora) return;
-          const dopo = rispondi(m, ora, f.chiamata.id, o, dichiarate);
-          conIc(dopo);
-          const scelta = f.chiamata.opzioni.find((x) => x.id === o)!;
-          // PO-089: le squadre che la risposta impegna raggiungono il punto della chiamata. Rosso C32D01: no.
-          if (f.chiamata.settore && !spento('C32D01')) for (const e of scelta.effetti) if ('riserva' in e && e.valore < 0) vola(e.riserva, f.chiamata.settore);
-          mostraSegni(segniDi(f.chiamata, scelta, ora, dopo)); // PO-085: la conseguenza sulla mappa, subito (C20-07: solo se cambia)
-          if (scelta.risposta) setEco(scelta);
-      };
-      // PO-148 (D-236): la risposta resta in sospeso (sospesa.ts) finché il giocatore non tocca «Conferma»; annullata non
-      // lascia traccia. Rosso C107A01: vale subito, come prima.
-      const chiamata = f.chiamata;
-      corpo = <Chiamata key={chiamata.id} m={m} ic={ic} c={chiamata} numero={f.numero} totale={f.totale} rispondi={conferma}
-        sospendi={spento('C107A01') ? undefined : (o) => { const ora = icOra(); if (!ora || !chiamateAperte(m, ora).some((c) => c.id === chiamata.id)) return false; sospesa.current = sospendi(m, ora, chiamata.id, o); return true; }}
-        decidi={(esito) => { const q = sospesa.current, ora = icOra(); sospesa.current = null; if (esito === 'confermata' && q && ora && valida(ora, q)) conferma(q.opzione); }} />;
-    } else if (f.tipo === 'chiusura') {
-      mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse };
-      corpo = <Chiusura m={m} ic={ic} chiudi={() => {
-        const ora = icOra();
-        if (!ora || faseDi(m, ora).tipo !== 'chiusura') return; // già chiusa (doppio tocco)
-        const dopo = chiudiOndata(m, ora, dichiarate);
-        conIc(dopo, { rapporto_aperto: dopo.rapporti.at(-1)!.n }); setSchermata('rapporto');
-      }} />;
-    } else { nome = 'titolo'; corpo = titolo; }
+    ({ nome, testata, mappa, corpo } = scenaOndata({ m, ic, titolo, bozza, scelta, avviso, riepilogoAperto, annulla: storia.length ? annulla : null,
+      setScelta, setAvviso, setRiepilogoAperto, cambiaBozza, vola, mostraSegni, setEco, sospesa, icOra, conIc, alRapporto: () => setSchermata('rapporto') }));
   }
 
   // Barra della fiducia (D-097): durante l'episodio, e (C15-07) anche in sala e briefing col valore da cui parte
