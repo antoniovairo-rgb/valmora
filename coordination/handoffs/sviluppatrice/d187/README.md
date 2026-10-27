@@ -748,3 +748,22 @@ l'ho lanciata a mano mentre girava la grafica, con modifiche non committate, e r
 dal limite di tempo del terminale prima della fine; non aveva scritto la riga, l'ho rifatto da capo ed è verde.
 Nessuna riga toccata o tolta.
 CI: 40473109781 su 662f7aab verde su ogni job tranne governo (BACKLOG); 40476723358 su 5e65afaa verde (solo documenti).
+
+## D-241 debito (0.53.0): App.tsx e stile.css spezzati, solo struttura — S-11, 27/10
+
+Base: avanzamento rapido a 8d26012d. Commit d945af01. FATTO MISURATO:
+- `src/resa/App.tsx` 334 → 265 righe: il ramo delle fasi dell'ondata (schieramento, chiamata, chiusura) passa a
+  `src/resa/app-ondata.tsx` (104 righe) a codice invariato; lo stato resta in App e arriva come contesto (`scenaOndata`).
+- `src/resa/stile.css` 400 → 201 righe: il seguito (stemmi, passi, verbale, fiducia, schieramento, vignette, versione) in
+  `src/resa/stile-schermate.css` (201 righe), importato subito dopo in `avvio.tsx`: l'ordine delle regole non cambia.
+  `tools/foto-stemmi.mjs` legge anche il file nuovo.
+- CSS costruito (`dist/assets/index-Dh5jAxbg.css`) identico byte per byte prima e dopo (`cmp`).
+- Foto: `node tools/foto.mjs` sulla build prima e dopo, 380 file ciascuna. 375 e 412: identiche byte per byte. 360: 30 diverse,
+  confrontate pixel per pixel (fra 323 e 1058 px ciascuna): etichetta della versione (fissa nella vista: dipende dallo
+  scorrimento al momento della foto), «−3» della fiducia che svanisce, segno ▲ sulla mappa che scade dopo 1,8 s. Controprova:
+  la base rifatta a 360 contro se stessa dà 50 foto diverse su 201, dello stesso tipo. Ritagli in `debito/`.
+- Controlli prima del push verdi (tipi, confini, schema, storia, test, bot).
+  Ritagli prima (sinistra) e dopo (destra): `r26.png` e `r123.png` (versione), `r129.png` (fiducia), `r106.png` (segno).
+Catene su d945af01: grafica completa verde; governo+logica 3 giri verdi. Il riavvio del container ha interrotto il giro 2 di
+logica prima della riga (nessuna riga scritta): rifatto da capo, verde. Nessuna riga toccata o tolta.
+CI 40582805152 su d945af01: verde su tutti i 10 job.
