@@ -204,6 +204,222 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_cancello_inceppato",
+        "fonte": "centrale_radio",
+        "testo": "testi:e27.imp.cancello_inceppato",
+        "commento": "testi:e27.imp.cancello_inceppato.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "ingresso_tribuna",
+            "testo": "testi:e27.imp.cancello_inceppato.ingresso_tribuna",
+            "costo": "testi:e27.imp.cancello_inceppato.ingresso_tribuna.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.cancello_inceppato.ingresso_tribuna.r"
+          },
+          {
+            "id": "di_sbieco",
+            "testo": "testi:e27.imp.cancello_inceppato.di_sbieco",
+            "costo": "testi:e27.imp.cancello_inceppato.di_sbieco.c",
+            "effetti": [
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.cancello_inceppato.di_sbieco.r"
+          },
+          {
+            "id": "custode_olio",
+            "testo": "testi:e27.imp.cancello_inceppato.custode_olio",
+            "costo": "testi:e27.imp.cancello_inceppato.custode_olio.c",
+            "effetti": [],
+            "risposta": "testi:e27.imp.cancello_inceppato.custode_olio.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_pallone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e27.imp.pallone",
+        "commento": "testi:e27.imp.pallone.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "raccattapalle",
+            "testo": "testi:e27.imp.pallone.raccattapalle",
+            "costo": "testi:e27.imp.pallone.raccattapalle.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_gemellati",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.pallone.raccattapalle.r"
+          },
+          {
+            "id": "pallone_vecchio",
+            "testo": "testi:e27.imp.pallone.pallone_vecchio",
+            "costo": "testi:e27.imp.pallone.pallone_vecchio.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.pallone.pallone_vecchio.r"
+          },
+          {
+            "id": "se_lo_tengano",
+            "testo": "testi:e27.imp.pallone.se_lo_tengano",
+            "costo": "testi:e27.imp.pallone.se_lo_tengano.c",
+            "effetti": [],
+            "risposta": "testi:e27.imp.pallone.se_lo_tengano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_vespe",
+        "fonte": "gemellati",
+        "testo": "testi:e27.imp.vespe",
+        "commento": "testi:e27.imp.vespe.vice",
+        "settore": "curva_gemellati",
+        "opzioni": [
+          {
+            "id": "disinfestazione",
+            "testo": "testi:e27.imp.vespe.disinfestazione",
+            "costo": "testi:e27.imp.vespe.disinfestazione.c",
+            "effetti": [
+              {
+                "pressione": "curva_gemellati",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.vespe.disinfestazione.r"
+          },
+          {
+            "id": "secchio",
+            "testo": "testi:e27.imp.vespe.secchio",
+            "costo": "testi:e27.imp.vespe.secchio.c",
+            "effetti": [
+              {
+                "pressione": "curva_gemellati",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_gemellati",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.vespe.secchio.r"
+          },
+          {
+            "id": "vespe_vadano",
+            "testo": "testi:e27.imp.vespe.vespe_vadano",
+            "costo": "testi:e27.imp.vespe.vespe_vadano.c",
+            "effetti": [],
+            "risposta": "testi:e27.imp.vespe.vespe_vadano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_distributore",
+        "fonte": "centrale_radio",
+        "testo": "testi:e27.imp.distributore",
+        "commento": "testi:e27.imp.distributore.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "capostazione",
+            "testo": "testi:e27.imp.distributore.capostazione",
+            "costo": "testi:e27.imp.distributore.capostazione.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.distributore.capostazione.r"
+          },
+          {
+            "id": "distributore_lento",
+            "testo": "testi:e27.imp.distributore.distributore_lento",
+            "costo": "testi:e27.imp.distributore.distributore_lento.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e27.imp.distributore.distributore_lento.r"
+          },
+          {
+            "id": "tecnico_macchinette",
+            "testo": "testi:e27.imp.distributore.tecnico_macchinette",
+            "costo": "testi:e27.imp.distributore.tecnico_macchinette.c",
+            "effetti": [],
+            "risposta": "testi:e27.imp.distributore.tecnico_macchinette.r"
+          }
+        ]
+      }
     }
   ]
 }

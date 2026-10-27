@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_leggio",
+        "fonte": "segreteria_comune",
+        "testo": "testi:e31.imp.leggio",
+        "commento": "testi:e31.imp.leggio.vice",
+        "settore": "tribuna_autorita",
+        "opzioni": [
+          {
+            "id": "leggio_stampa",
+            "testo": "testi:e31.imp.leggio.leggio_stampa",
+            "costo": "testi:e31.imp.leggio.leggio_stampa.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e31.imp.leggio.leggio_stampa.r"
+          },
+          {
+            "id": "due_sedie",
+            "testo": "testi:e31.imp.leggio.due_sedie",
+            "costo": "testi:e31.imp.leggio.due_sedie.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "tribuna_autorita",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e31.imp.leggio.due_sedie.r"
+          },
+          {
+            "id": "a_braccio",
+            "testo": "testi:e31.imp.leggio.a_braccio",
+            "costo": "testi:e31.imp.leggio.a_braccio.c",
+            "effetti": [],
+            "risposta": "testi:e31.imp.leggio.a_braccio.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_vernice",
+        "fonte": "centrale_radio",
+        "testo": "testi:e31.imp.vernice",
+        "commento": "testi:e31.imp.vernice.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "settore_accanto",
+            "testo": "testi:e31.imp.vernice.settore_accanto",
+            "costo": "testi:e31.imp.vernice.settore_accanto.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e31.imp.vernice.settore_accanto.r"
+          },
+          {
+            "id": "giornali",
+            "testo": "testi:e31.imp.vernice.giornali",
+            "costo": "testi:e31.imp.vernice.giornali.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e31.imp.vernice.giornali.r"
+          },
+          {
+            "id": "asciughi",
+            "testo": "testi:e31.imp.vernice.asciughi",
+            "costo": "testi:e31.imp.vernice.asciughi.c",
+            "effetti": [],
+            "risposta": "testi:e31.imp.vernice.asciughi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_scala_mobile",
+        "fonte": "centrale_radio",
+        "testo": "testi:e31.imp.scala_mobile",
+        "commento": "testi:e31.imp.scala_mobile.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "tecnico",
+            "testo": "testi:e31.imp.scala_mobile.tecnico",
+            "costo": "testi:e31.imp.scala_mobile.tecnico.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e31.imp.scala_mobile.tecnico.r"
+          },
+          {
+            "id": "servizio",
+            "testo": "testi:e31.imp.scala_mobile.servizio",
+            "costo": "testi:e31.imp.scala_mobile.servizio.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e31.imp.scala_mobile.servizio.r"
+          },
+          {
+            "id": "a_piedi",
+            "testo": "testi:e31.imp.scala_mobile.a_piedi",
+            "costo": "testi:e31.imp.scala_mobile.a_piedi.c",
+            "effetti": [],
+            "risposta": "testi:e31.imp.scala_mobile.a_piedi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_riscaldamento",
+        "fonte": "segreteria_comune",
+        "testo": "testi:e31.imp.riscaldamento",
+        "commento": "testi:e31.imp.riscaldamento.vice",
+        "settore": "tribuna_autorita",
+        "opzioni": [
+          {
+            "id": "coperte",
+            "testo": "testi:e31.imp.riscaldamento.coperte",
+            "costo": "testi:e31.imp.riscaldamento.coperte.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e31.imp.riscaldamento.coperte.r"
+          },
+          {
+            "id": "te_caldo",
+            "testo": "testi:e31.imp.riscaldamento.te_caldo",
+            "costo": "testi:e31.imp.riscaldamento.te_caldo.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "tribuna_autorita",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e31.imp.riscaldamento.te_caldo.r"
+          },
+          {
+            "id": "cappotti",
+            "testo": "testi:e31.imp.riscaldamento.cappotti",
+            "costo": "testi:e31.imp.riscaldamento.cappotti.c",
+            "effetti": [],
+            "risposta": "testi:e31.imp.riscaldamento.cappotti.r"
+          }
+        ]
+      }
     }
   ]
 }

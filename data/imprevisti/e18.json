@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_asta",
+        "fonte": "club_lookout",
+        "testo": "testi:e18.imp.asta",
+        "commento": "testi:e18.imp.asta.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "smonta_asta",
+            "testo": "testi:e18.imp.asta.smonta_asta",
+            "costo": "testi:e18.imp.asta.smonta_asta.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e18.imp.asta.smonta_asta.r"
+          },
+          {
+            "id": "orizzontale",
+            "testo": "testi:e18.imp.asta.orizzontale",
+            "costo": "testi:e18.imp.asta.orizzontale.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.asta.orizzontale.r"
+          },
+          {
+            "id": "idea_loro",
+            "testo": "testi:e18.imp.asta.idea_loro",
+            "costo": "testi:e18.imp.asta.idea_loro.c",
+            "effetti": [],
+            "risposta": "testi:e18.imp.asta.idea_loro.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_mascotte",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e18.imp.mascotte",
+        "commento": "testi:e18.imp.mascotte.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "bordo_campo",
+            "testo": "testi:e18.imp.mascotte.bordo_campo",
+            "costo": "testi:e18.imp.mascotte.bordo_campo.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e18.imp.mascotte.bordo_campo.r"
+          },
+          {
+            "id": "foto_a_gruppi",
+            "testo": "testi:e18.imp.mascotte.foto_a_gruppi",
+            "costo": "testi:e18.imp.mascotte.foto_a_gruppi.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.mascotte.foto_a_gruppi.r"
+          },
+          {
+            "id": "si_fotografi",
+            "testo": "testi:e18.imp.mascotte.si_fotografi",
+            "costo": "testi:e18.imp.mascotte.si_fotografi.c",
+            "effetti": [],
+            "risposta": "testi:e18.imp.mascotte.si_fotografi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_cappellini",
+        "fonte": "centrale_radio",
+        "testo": "testi:e18.imp.cappellini",
+        "commento": "testi:e18.imp.cappellini.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "raccogli_cappellini",
+            "testo": "testi:e18.imp.cappellini.raccogli_cappellini",
+            "costo": "testi:e18.imp.cappellini.raccogli_cappellini.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e18.imp.cappellini.raccogli_cappellini.r"
+          },
+          {
+            "id": "scopa",
+            "testo": "testi:e18.imp.cappellini.scopa",
+            "costo": "testi:e18.imp.cappellini.scopa.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.cappellini.scopa.r"
+          },
+          {
+            "id": "funghi",
+            "testo": "testi:e18.imp.cappellini.funghi",
+            "costo": "testi:e18.imp.cappellini.funghi.c",
+            "effetti": [],
+            "risposta": "testi:e18.imp.cappellini.funghi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_schiuma",
+        "fonte": "centrale_radio",
+        "testo": "testi:e18.imp.schiuma",
+        "commento": "testi:e18.imp.schiuma.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "scope_strada",
+            "testo": "testi:e18.imp.schiuma.scope_strada",
+            "costo": "testi:e18.imp.schiuma.scope_strada.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e18.imp.schiuma.scope_strada.r"
+          },
+          {
+            "id": "bordo_asciutto",
+            "testo": "testi:e18.imp.schiuma.bordo_asciutto",
+            "costo": "testi:e18.imp.schiuma.bordo_asciutto.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e18.imp.schiuma.bordo_asciutto.r"
+          },
+          {
+            "id": "sgonfi",
+            "testo": "testi:e18.imp.schiuma.sgonfi",
+            "costo": "testi:e18.imp.schiuma.sgonfi.c",
+            "effetti": [],
+            "risposta": "testi:e18.imp.schiuma.sgonfi.r"
+          }
+        ]
+      }
     }
   ]
 }

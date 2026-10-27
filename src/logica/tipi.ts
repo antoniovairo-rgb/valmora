@@ -32,7 +32,7 @@ export interface Informazione { testo: string; fonte: string; affidabilita: 'bas
 export interface Dopo { mai?: string[]; gia?: string[] }
 export interface Opzione { id: string; testo: string; costo?: string; risposta?: string; se?: Condizione; dopo?: Dopo; effetti: EffettoMissione[] }
 /** senza (PO-095): la chiamata si apre solo se nel settore non c'è nessuna unità schierata (fra le risorse indicate, o tutte). */
-export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; /** PO-022 (D-190) */ imprevisto?: true; se?: Condizione; dopo?: Dopo; senza?: { settore: string; risorse?: string[] }; opzioni: Opzione[] }
+export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; /** PO-022 (D-190) */ imprevisto?: true; /** D-241: posti possibili dell'imprevisto [da, a]; carta del mazzo (0 o assente = la classica); variante della chiamata «variante_di» (innestati da src/dati/imprevisti.ts) */ finestra?: [number, number]; carta?: number; variante_di?: string; se?: Condizione; dopo?: Dopo; senza?: { settore: string; risorse?: string[] }; opzioni: Opzione[] }
 
 export interface Missione {
   id: string; stagione: number; episodio: number; titolo: string; bozza?: boolean; disponibile_se: Condizione; introduzione?: string[];

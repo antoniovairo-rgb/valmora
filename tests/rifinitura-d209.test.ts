@@ -34,7 +34,7 @@ describe('D20901 gli imprevisti di e01–e03 reggono ogni scelta vicina', () => 
   const problemi = () => {
     const p: string[] = [];
     const amb = imprevisto('e01', 'imp_ambulanza'), o1 = missione('e01').ondate.find((o) => o.n === amb.ondata)!;
-    const dopo = rosso('D20901') ? PRIMA.dopo['e01/imp_ambulanza']! : amb.dopo;
+    const dopo = rosso('D20901') ? PRIMA.dopo['e01/imp_ambulanza']! : amb.dopo!;
     if (dopo <= (o1.chiamate ?? []).filter((c) => !c.imprevisto).findIndex((c) => c.id === 'pullman')) p.push('e01 ambulanza prima della chiamata dei pullman');
     if (/soppress|domattina|ultimo treno/i.test(testiChiamata(imprevisto('e02', 'imp_soppresso').chiamata, 'D20901'))) p.push('e02 treno soppresso');
     if (!/treni sono partiti tutti/.test(testo('e02.verbale_a_fatica', 'D20901'))) p.push('e02 verbale a fatica cambiato: ricontrollare');

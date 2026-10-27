@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_banda_inno",
+        "fonte": "centrale_radio",
+        "testo": "testi:e25.imp.banda_inno",
+        "commento": "testi:e25.imp.banda_inno.vice",
+        "settore": "zona_rossa",
+        "opzioni": [
+          {
+            "id": "banda_cortile",
+            "testo": "testi:e25.imp.banda_inno.banda_cortile",
+            "costo": "testi:e25.imp.banda_inno.banda_cortile.c",
+            "effetti": [
+              {
+                "pressione": "zona_rossa",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.banda_inno.banda_cortile.r"
+          },
+          {
+            "id": "banda_sordina",
+            "testo": "testi:e25.imp.banda_inno.banda_sordina",
+            "costo": "testi:e25.imp.banda_inno.banda_sordina.c",
+            "effetti": [
+              {
+                "pressione": "zona_rossa",
+                "valore": -1
+              },
+              {
+                "tensione": "zona_rossa",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.banda_inno.banda_sordina.r"
+          },
+          {
+            "id": "finiscano_prove",
+            "testo": "testi:e25.imp.banda_inno.finiscano_prove",
+            "costo": "testi:e25.imp.banda_inno.finiscano_prove.c",
+            "effetti": [],
+            "risposta": "testi:e25.imp.banda_inno.finiscano_prove.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_bagni_curva",
+        "fonte": "centrale_radio",
+        "testo": "testi:e25.imp.bagni_curva",
+        "commento": "testi:e25.imp.bagni_curva.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "bagni_chimici",
+            "testo": "testi:e25.imp.bagni_curva.bagni_chimici",
+            "costo": "testi:e25.imp.bagni_curva.bagni_chimici.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "zona_rossa",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.bagni_curva.bagni_chimici.r"
+          },
+          {
+            "id": "turni_fila",
+            "testo": "testi:e25.imp.bagni_curva.turni_fila",
+            "costo": "testi:e25.imp.bagni_curva.turni_fila.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.bagni_curva.turni_fila.r"
+          },
+          {
+            "id": "coda_bagni",
+            "testo": "testi:e25.imp.bagni_curva.coda_bagni",
+            "costo": "testi:e25.imp.bagni_curva.coda_bagni.c",
+            "effetti": [],
+            "risposta": "testi:e25.imp.bagni_curva.coda_bagni.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_piccioni",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e25.imp.piccioni",
+        "commento": "testi:e25.imp.piccioni.vice",
+        "settore": "piazza_municipio",
+        "opzioni": [
+          {
+            "id": "falconiere",
+            "testo": "testi:e25.imp.piccioni.falconiere",
+            "costo": "testi:e25.imp.piccioni.falconiere.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -1
+              },
+              {
+                "tensione": "zona_rossa",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.piccioni.falconiere.r"
+          },
+          {
+            "id": "spazza_becchime",
+            "testo": "testi:e25.imp.piccioni.spazza_becchime",
+            "costo": "testi:e25.imp.piccioni.spazza_becchime.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.piccioni.spazza_becchime.r"
+          },
+          {
+            "id": "piccioni_sazi",
+            "testo": "testi:e25.imp.piccioni.piccioni_sazi",
+            "costo": "testi:e25.imp.piccioni.piccioni_sazi.c",
+            "effetti": [],
+            "risposta": "testi:e25.imp.piccioni.piccioni_sazi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_allarme_cappelli",
+        "fonte": "centrale_radio",
+        "testo": "testi:e25.imp.allarme_cappelli",
+        "commento": "testi:e25.imp.allarme_cappelli.vice",
+        "settore": "zona_rossa",
+        "opzioni": [
+          {
+            "id": "cerca_titolare",
+            "testo": "testi:e25.imp.allarme_cappelli.cerca_titolare",
+            "costo": "testi:e25.imp.allarme_cappelli.cerca_titolare.c",
+            "effetti": [
+              {
+                "pressione": "zona_rossa",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.allarme_cappelli.cerca_titolare.r"
+          },
+          {
+            "id": "cartone_sirena",
+            "testo": "testi:e25.imp.allarme_cappelli.cartone_sirena",
+            "costo": "testi:e25.imp.allarme_cappelli.cartone_sirena.c",
+            "effetti": [
+              {
+                "pressione": "zona_rossa",
+                "valore": -1
+              },
+              {
+                "tensione": "zona_rossa",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e25.imp.allarme_cappelli.cartone_sirena.r"
+          },
+          {
+            "id": "batteria_scarica",
+            "testo": "testi:e25.imp.allarme_cappelli.batteria_scarica",
+            "costo": "testi:e25.imp.allarme_cappelli.batteria_scarica.c",
+            "effetti": [],
+            "risposta": "testi:e25.imp.allarme_cappelli.batteria_scarica.r"
+          }
+        ]
+      }
     }
   ]
 }

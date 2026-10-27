@@ -200,6 +200,218 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_divano",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e30.imp.divano",
+        "commento": "testi:e30.imp.divano.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "divano_balcone",
+            "testo": "testi:e30.imp.divano.divano_balcone",
+            "costo": "testi:e30.imp.divano.divano_balcone.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.divano.divano_balcone.r"
+          },
+          {
+            "id": "altro_marciapiede",
+            "testo": "testi:e30.imp.divano.altro_marciapiede",
+            "costo": "testi:e30.imp.divano.altro_marciapiede.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.divano.altro_marciapiede.r"
+          },
+          {
+            "id": "divano_arrenda",
+            "testo": "testi:e30.imp.divano.divano_arrenda",
+            "costo": "testi:e30.imp.divano.divano_arrenda.c",
+            "effetti": [],
+            "risposta": "testi:e30.imp.divano.divano_arrenda.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_farina",
+        "fonte": "centrale_radio",
+        "testo": "testi:e30.imp.farina",
+        "commento": "testi:e30.imp.farina.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "spazzatrice",
+            "testo": "testi:e30.imp.farina.spazzatrice",
+            "costo": "testi:e30.imp.farina.spazzatrice.c",
+            "effetti": [
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.farina.spazzatrice.r"
+          },
+          {
+            "id": "segatura",
+            "testo": "testi:e30.imp.farina.segatura",
+            "costo": "testi:e30.imp.farina.segatura.c",
+            "effetti": [
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.farina.segatura.r"
+          },
+          {
+            "id": "vento_farina",
+            "testo": "testi:e30.imp.farina.vento_farina",
+            "costo": "testi:e30.imp.farina.vento_farina.c",
+            "effetti": [],
+            "risposta": "testi:e30.imp.farina.vento_farina.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_orologio_torre",
+        "fonte": "centrale_radio",
+        "testo": "testi:e30.imp.orologio_torre",
+        "commento": "testi:e30.imp.orologio_torre.vice",
+        "settore": "piazza_municipio",
+        "opzioni": [
+          {
+            "id": "corrente_torre",
+            "testo": "testi:e30.imp.orologio_torre.corrente_torre",
+            "costo": "testi:e30.imp.orologio_torre.corrente_torre.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -2
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.orologio_torre.corrente_torre.r"
+          },
+          {
+            "id": "batacchio",
+            "testo": "testi:e30.imp.orologio_torre.batacchio",
+            "costo": "testi:e30.imp.orologio_torre.batacchio.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.orologio_torre.batacchio.r"
+          },
+          {
+            "id": "rintocchi",
+            "testo": "testi:e30.imp.orologio_torre.rintocchi",
+            "costo": "testi:e30.imp.orologio_torre.rintocchi.c",
+            "effetti": [],
+            "risposta": "testi:e30.imp.orologio_torre.rintocchi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_karaoke",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e30.imp.karaoke",
+        "commento": "testi:e30.imp.karaoke.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "microfono_karaoke",
+            "testo": "testi:e30.imp.karaoke.microfono_karaoke",
+            "costo": "testi:e30.imp.karaoke.microfono_karaoke.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.karaoke.microfono_karaoke.r"
+          },
+          {
+            "id": "canzoni_lente",
+            "testo": "testi:e30.imp.karaoke.canzoni_lente",
+            "costo": "testi:e30.imp.karaoke.canzoni_lente.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e30.imp.karaoke.canzoni_lente.r"
+          },
+          {
+            "id": "festeggiato",
+            "testo": "testi:e30.imp.karaoke.festeggiato",
+            "costo": "testi:e30.imp.karaoke.festeggiato.c",
+            "effetti": [],
+            "risposta": "testi:e30.imp.karaoke.festeggiato.r"
+          }
+        ]
+      }
     }
   ]
 }

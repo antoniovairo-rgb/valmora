@@ -10,7 +10,8 @@ import type { InCorso } from '../logica/missione.ts';
 //     nuovo campo «episodi» = registro della mappa degli episodi (episodi.ts, D-059…D-062);
 //     nuovo campo «genere» del protagonista, scelto a inizio partita (D-063);
 //     nuovo campo «rapporto_aperto» (C-005 R04).
-export const SAVE_VERSION = 2;
+// 3 – D-241: in_corso.seme, il seme di partita (src/logica/partita.ts), anche in «sconfitta» e nelle «partenze».
+export const SAVE_VERSION = 3;
 
 export type ValoreVariabile = boolean | number | string;
 
@@ -59,7 +60,17 @@ export const MIGRAZIONI: Record<number, (s: Grezzo) => Grezzo> = {
       migliore: { esito: ESITO_V1, fallita: false, stelle: 1 }, tentativi: 1, variabili_prima: s.variabili, variabili_dopo: s.variabili,
     }])),
   }),
+  // v2 → v3 (D-241): l'episodio in corso (e la sconfitta, e le loro partenze) riceve il seme 0, la partita classica:
+  // l'unico seme che ridà la partita di prima (imprevisti al loro posto, nessuna variante), così chi riprende a metà
+  // ondata ritrova le stesse chiamate e le risposte già date valgono ancora.
+  2: (s) => ({ ...s, in_corso: conSeme(s.in_corso), ...('sconfitta' in s ? { sconfitta: conSeme(s.sconfitta) } : {}) }),
 };
+
+function conSeme(ic: unknown): unknown {
+  if (!oggetto(ic)) return ic;
+  const partenze = oggetto(ic.partenze) ? { partenze: Object.fromEntries(Object.entries(ic.partenze).map(([n, p]) => [n, conSeme(p)])) } : {};
+  return { ...ic, seme: ic.seme ?? 0, ...partenze };
+}
 
 const oggetto = (x: unknown): x is Grezzo => typeof x === 'object' && x !== null && !Array.isArray(x);
 
@@ -70,6 +81,7 @@ function controllaInCorso(ic: Grezzo): string[] {
   for (const k of ['tensione', 'riserva', 'riposo', 'modifiche', 'risposte', 'variabili']) if (!oggetto(ic[k])) p.push(`in_corso.${k} non è un oggetto`);
   if (ic.disposizione !== null && !oggetto(ic.disposizione)) p.push('in_corso.disposizione non è un oggetto né null');
   for (const k of ['scelte', 'rapporti']) if (!Array.isArray(ic[k])) p.push(`in_corso.${k} non è un elenco`);
+  if (!isUint32(ic.seme)) p.push('in_corso.seme non uint32 (D-241)');
   return p;
 }
 

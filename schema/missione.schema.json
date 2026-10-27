@@ -296,6 +296,18 @@
                   "const": true,
                   "description": "PO-022 (D-190): chiamata che arriva fuori ordine e interrompe; si scrive in data/imprevisti/, non qui"
                 },
+                "finestra": {
+                  "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "integer", "minimum": 1 },
+                  "description": "D-241: posti possibili dell'imprevisto; si scrive in data/imprevisti/, non qui"
+                },
+                "carta": {
+                  "type": "integer", "minimum": 1,
+                  "description": "D-241: carta del mazzo oltre la classica; la mette l'innesto, non si scrive qui"
+                },
+                "variante_di": {
+                  "$ref": "comune.schema.json#/$defs/id",
+                  "description": "D-241: variante della chiamata indicata; si scrive in data/imprevisti/, non qui"
+                },
                 "se": {
                   "$ref": "comune.schema.json#/$defs/condizione"
                 },

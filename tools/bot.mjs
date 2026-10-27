@@ -5,6 +5,7 @@ import { creaCaso } from '../src/logica/caso.ts';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, giocaMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { DETERMINISTICHE, STRATEGIE, attenta, casuale } from '../src/logica/bot.ts';
+import { semeDa } from '../src/logica/partita.ts';
 import { spento } from '../src/interruttori.ts';
 import { valutaEpisodio } from '../src/logica/episodi.ts';
 
@@ -40,11 +41,13 @@ export function giraBot(dati, semi = 1000) {
   for (const m of missioni) for (const { etichetta, variabili: partenza } of partenze(m, dich, iniziali)) for (const [nome, strategia] of Object.entries(STRATEGIE)) {
     const esiti = {}; const blocchi = []; const tensioni = []; const stelle = { 0: 0, 1: 0, 2: 0, 3: 0 };
     // D-089: una strategia deterministica gioca la stessa partita con ogni seme → una sola, contata «semi» volte (rosso __NO_C11D01)
+    // D-241: la sua partita è la classica (seme 0); il giocatore casuale gioca ogni seme con un seme di partita suo, come
+    // chi gioca davvero (tools/misura-d241.mjs misura le altre strategie sulle partite col seme)
     const una = DETERMINISTICHE.has(nome) && !spento('C11D01');
     for (let seme = 1; seme <= (una ? 1 : semi); seme++) {
       const volte = una ? semi : 1;
       try {
-        const r = giocaMissione(m, partenza, dich, strategia(creaCaso(`${m.id}:${nome}:${seme}`), dich));
+        const r = giocaMissione(m, partenza, dich, strategia(creaCaso(`${m.id}:${nome}:${seme}`), dich), DETERMINISTICHE.has(nome) ? 0 : semeDa(`${m.id}:${nome}:${seme}`));
         esiti[r.esito.id] = (esiti[r.esito.id] ?? 0) + volte;
         stelle[valutaEpisodio(m, r).stelle] += volte;
         for (let i = 0; i < volte; i++) tensioni.push(r.variabili.tensione_max);
@@ -115,7 +118,8 @@ export function controllaFiduciaMinima(dati) {
     .map((m) => `${m.id}: entrando con fiducia 0 le 3 stelle non sono raggiungibili (D-105)`);
 }
 
-/** Campagna: episodi in fila, variabili portate da uno all'altro (giocatore casuale). Quali chiamate compaiono? */
+/** Campagna: episodi in fila, variabili portate da uno all'altro (giocatore casuale). Quali chiamate compaiono?
+ *  D-241: ogni episodio col suo seme di partita, così compaiono anche le carte del mazzo e le varianti. */
 export function chiamateViste(dati, semi = 300) {
   const { dich, iniziali, missioni } = contesto(dati);
   const ordinate = [...missioni].sort((a, b) => a.episodio - b.episodio);
@@ -124,7 +128,7 @@ export function chiamateViste(dati, semi = 300) {
     let v = iniziali;
     for (const m of ordinate) {
       const g = casuale(creaCaso(`campagna:${m.id}:${seme}`), dich);
-      const r = giocaMissione(m, v, dich, { schiera: g.schiera, scegli: (mm, s, c) => { viste.add(`${m.id}:${c.id}`); return g.scegli(mm, s, c); } });
+      const r = giocaMissione(m, v, dich, { schiera: g.schiera, scegli: (mm, s, c) => { viste.add(`${m.id}:${c.id}`); return g.scegli(mm, s, c); } }, semeDa(`campagna:${m.id}:${seme}`));
       v = r.variabili;
     }
   }

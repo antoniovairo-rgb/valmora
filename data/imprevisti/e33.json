@@ -204,6 +204,222 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_distributore",
+        "fonte": "centrale_radio",
+        "testo": "testi:e33.imp.distributore",
+        "commento": "testi:e33.imp.distributore.vice",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "sportello",
+            "testo": "testi:e33.imp.distributore.sportello",
+            "costo": "testi:e33.imp.distributore.sportello.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.distributore.sportello.r"
+          },
+          {
+            "id": "a_bordo",
+            "testo": "testi:e33.imp.distributore.a_bordo",
+            "costo": "testi:e33.imp.distributore.a_bordo.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.distributore.a_bordo.r"
+          },
+          {
+            "id": "spiccioli",
+            "testo": "testi:e33.imp.distributore.spiccioli",
+            "costo": "testi:e33.imp.distributore.spiccioli.c",
+            "effetti": [],
+            "risposta": "testi:e33.imp.distributore.spiccioli.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_gocciolio",
+        "fonte": "centrale_radio",
+        "testo": "testi:e33.imp.gocciolio",
+        "commento": "testi:e33.imp.gocciolio.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "fila_asciutta",
+            "testo": "testi:e33.imp.gocciolio.fila_asciutta",
+            "costo": "testi:e33.imp.gocciolio.fila_asciutta.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.gocciolio.fila_asciutta.r"
+          },
+          {
+            "id": "mantelline",
+            "testo": "testi:e33.imp.gocciolio.mantelline",
+            "costo": "testi:e33.imp.gocciolio.mantelline.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.gocciolio.mantelline.r"
+          },
+          {
+            "id": "gocciola",
+            "testo": "testi:e33.imp.gocciolio.gocciola",
+            "costo": "testi:e33.imp.gocciolio.gocciola.c",
+            "effetti": [],
+            "risposta": "testi:e33.imp.gocciolio.gocciola.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        4
+      ],
+      "chiamata": {
+        "id": "imp_spazzatrice",
+        "fonte": "centrale_radio",
+        "testo": "testi:e33.imp.spazzatrice",
+        "commento": "testi:e33.imp.spazzatrice.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "agente",
+            "testo": "testi:e33.imp.spazzatrice.agente",
+            "costo": "testi:e33.imp.spazzatrice.agente.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.spazzatrice.agente.r"
+          },
+          {
+            "id": "lato_asciutto",
+            "testo": "testi:e33.imp.spazzatrice.lato_asciutto",
+            "costo": "testi:e33.imp.spazzatrice.lato_asciutto.c",
+            "effetti": [
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.spazzatrice.lato_asciutto.r"
+          },
+          {
+            "id": "finisca_giro",
+            "testo": "testi:e33.imp.spazzatrice.finisca_giro",
+            "costo": "testi:e33.imp.spazzatrice.finisca_giro.c",
+            "effetti": [],
+            "risposta": "testi:e33.imp.spazzatrice.finisca_giro.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_tornello_contrario",
+        "fonte": "centrale_radio",
+        "testo": "testi:e33.imp.tornello_contrario",
+        "commento": "testi:e33.imp.tornello_contrario.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "elettricista",
+            "testo": "testi:e33.imp.tornello_contrario.elettricista",
+            "costo": "testi:e33.imp.tornello_contrario.elettricista.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.tornello_contrario.elettricista.r"
+          },
+          {
+            "id": "nastro",
+            "testo": "testi:e33.imp.tornello_contrario.nastro",
+            "costo": "testi:e33.imp.tornello_contrario.nastro.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e33.imp.tornello_contrario.nastro.r"
+          },
+          {
+            "id": "trucco",
+            "testo": "testi:e33.imp.tornello_contrario.trucco",
+            "costo": "testi:e33.imp.tornello_contrario.trucco.c",
+            "effetti": [],
+            "risposta": "testi:e33.imp.tornello_contrario.trucco.r"
+          }
+        ]
+      }
     }
   ]
 }

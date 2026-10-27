@@ -67,6 +67,6 @@ export function riparaInCorso<S extends Partita>(s: S, missioni: Missione[], dic
   const m = missioni.find((x) => x.id === ic.missione);
   const motivi = incompatibilita(ic, m);
   if (!motivi.length) return { salvataggio: s, motivi };
-  const da_capo = m ? iniziaMissione(m, variabiliDiPartenza(s.episodi, m.id, s.variabili), dichiarate) : null;
+  const da_capo = m ? iniziaMissione(m, variabiliDiPartenza(s.episodi, m.id, s.variabili), dichiarate, ic.seme ?? 0) : null; // D-241: stesso seme
   return { salvataggio: { ...s, in_corso: da_capo, rapporto_aperto: null }, motivi };
 }
