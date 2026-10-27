@@ -208,6 +208,396 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_transenne_sbagliate",
+        "fonte": "centrale_radio",
+        "testo": "testi:e06.imp.transenne_sbagliate",
+        "commento": "testi:e06.imp.transenne_sbagliate.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "facchini",
+            "testo": "testi:e06.imp.transenne_sbagliate.facchini",
+            "costo": "testi:e06.imp.transenne_sbagliate.facchini.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_concerto",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e06.imp.transenne_sbagliate.facchini.r"
+          },
+          {
+            "id": "impila",
+            "testo": "testi:e06.imp.transenne_sbagliate.impila",
+            "costo": "testi:e06.imp.transenne_sbagliate.impila.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.transenne_sbagliate.impila.r"
+          },
+          {
+            "id": "camion_torni",
+            "testo": "testi:e06.imp.transenne_sbagliate.camion_torni",
+            "costo": "testi:e06.imp.transenne_sbagliate.camion_torni.c",
+            "effetti": [],
+            "risposta": "testi:e06.imp.transenne_sbagliate.camion_torni.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_bagni_chimici",
+        "fonte": "organizzatori_concerto",
+        "testo": "testi:e06.imp.bagni_chimici",
+        "commento": "testi:e06.imp.bagni_chimici.vice",
+        "settore": "piazza_concerto",
+        "opzioni": [
+          {
+            "id": "carro_bagni",
+            "testo": "testi:e06.imp.bagni_chimici.carro_bagni",
+            "costo": "testi:e06.imp.bagni_chimici.carro_bagni.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_concerto",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e06.imp.bagni_chimici.carro_bagni.r"
+          },
+          {
+            "id": "fila_cabine",
+            "testo": "testi:e06.imp.bagni_chimici.fila_cabine",
+            "costo": "testi:e06.imp.bagni_chimici.fila_cabine.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.bagni_chimici.fila_cabine.r"
+          },
+          {
+            "id": "godano",
+            "testo": "testi:e06.imp.bagni_chimici.godano",
+            "costo": "testi:e06.imp.bagni_chimici.godano.c",
+            "effetti": [],
+            "risposta": "testi:e06.imp.bagni_chimici.godano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_monopattini",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e06.imp.monopattini",
+        "commento": "testi:e06.imp.monopattini.vice",
+        "settore": "viale_concerto",
+        "opzioni": [
+          {
+            "id": "camioncino",
+            "testo": "testi:e06.imp.monopattini.camioncino",
+            "costo": "testi:e06.imp.monopattini.camioncino.c",
+            "effetti": [
+              {
+                "pressione": "viale_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.monopattini.camioncino.r"
+          },
+          {
+            "id": "allinea",
+            "testo": "testi:e06.imp.monopattini.allinea",
+            "costo": "testi:e06.imp.monopattini.allinea.c",
+            "effetti": [
+              {
+                "pressione": "viale_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.monopattini.allinea.r"
+          },
+          {
+            "id": "slalom",
+            "testo": "testi:e06.imp.monopattini.slalom",
+            "costo": "testi:e06.imp.monopattini.slalom.c",
+            "effetti": [],
+            "risposta": "testi:e06.imp.monopattini.slalom.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        5
+      ],
+      "chiamata": {
+        "id": "imp_lavaggio",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e06.imp.lavaggio",
+        "commento": "testi:e06.imp.lavaggio.vice",
+        "settore": "piazza_concerto",
+        "opzioni": [
+          {
+            "id": "lance_viale",
+            "testo": "testi:e06.imp.lavaggio.lance_viale",
+            "costo": "testi:e06.imp.lavaggio.lance_viale.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.lavaggio.lance_viale.r"
+          },
+          {
+            "id": "corsia_asciutta",
+            "testo": "testi:e06.imp.lavaggio.corsia_asciutta",
+            "costo": "testi:e06.imp.lavaggio.corsia_asciutta.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.imp.lavaggio.corsia_asciutta.r"
+          },
+          {
+            "id": "schizzi",
+            "testo": "testi:e06.imp.lavaggio.schizzi",
+            "costo": "testi:e06.imp.lavaggio.schizzi.c",
+            "effetti": [],
+            "risposta": "testi:e06.imp.lavaggio.schizzi.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "ospiti_concerto",
+      "chiamata": {
+        "id": "ospiti_concerto_v",
+        "fonte": "club_quillhaven",
+        "testo": "testi:e06.var.ospiti_concerto",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "dritti_stadio",
+            "testo": "testi:e06.var.ospiti_concerto.dritti_stadio",
+            "costo": "testi:e06.var.ospiti_concerto.dritti_stadio.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.var.ospiti_concerto.dritti_stadio.r"
+          },
+          {
+            "id": "salto_concerto",
+            "testo": "testi:e06.var.ospiti_concerto.salto_concerto",
+            "costo": "testi:e06.var.ospiti_concerto.salto_concerto.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e06.var.ospiti_concerto.salto_concerto.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "fumo_viola",
+      "chiamata": {
+        "id": "fumo_viola_v",
+        "fonte": "organizzatori_concerto",
+        "testo": "testi:e06.var.fumo_viola",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "steward_viola",
+            "testo": "testi:e06.var.fumo_viola.steward_viola",
+            "costo": "testi:e06.var.fumo_viola.steward_viola.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e06.var.fumo_viola.steward_viola.r"
+          },
+          {
+            "id": "lascia_viola",
+            "testo": "testi:e06.var.fumo_viola.lascia_viola",
+            "costo": "testi:e06.var.fumo_viola.lascia_viola.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e06.var.fumo_viola.lascia_viola.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "rigore6",
+      "chiamata": {
+        "id": "rigore6_v",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e06.var.rigore6",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "squadra_sotto",
+            "testo": "testi:e06.var.rigore6.squadra_sotto",
+            "costo": "testi:e06.var.rigore6.squadra_sotto.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e06.var.rigore6.squadra_sotto.r"
+          },
+          {
+            "id": "lascia_sfogare",
+            "testo": "testi:e06.var.rigore6.lascia_sfogare",
+            "costo": "testi:e06.var.rigore6.lascia_sfogare.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e06.var.rigore6.lascia_sfogare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "di": "poche_navette",
+      "chiamata": {
+        "id": "poche_navette_v",
+        "fonte": "vice",
+        "testo": "testi:e06.var.poche_navette",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "navette_extra",
+            "testo": "testi:e06.var.poche_navette.navette_extra",
+            "costo": "testi:e06.var.poche_navette.navette_extra.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e06.var.poche_navette.navette_extra.r"
+          },
+          {
+            "id": "a_piedi",
+            "testo": "testi:e06.var.poche_navette.a_piedi",
+            "costo": "testi:e06.var.poche_navette.a_piedi.c",
+            "effetti": [
+              {
+                "pressione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e06.var.poche_navette.a_piedi.r"
+          }
+        ]
+      }
     }
   ]
 }

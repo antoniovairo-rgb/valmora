@@ -85,8 +85,9 @@ describe('seme di partita (D-241)', () => {
 });
 
 describe('guardiano C241D01: partite diverse su 100 coppie di semi per episodio', () => {
-  // SOGLIA fissata dopo la prima misura (docs/governo/DECISIONI.md, D-241): vedi il valore e la misura lì
-  const SOGLIA = 0.5;
+  // SOGLIA fissata DOPO la prima misura (2026-10-27, tools/misura-d241.mjs, 36 episodi × 100 coppie, bot attento):
+  // min 94, mediana 99, media 98,4, dev. std 1,8 coppie diverse su 100 (min e13 ed e36). Margine di 4 punti sotto il minimo.
+  const SOGLIA = 0.9;
   it(`verde: ogni episodio ≥ ${SOGLIA * 100}% di coppie con sequenza di chiamate diversa; rosso __NO_C241D01: 0 in ogni episodio`, () => {
     const verde = diversita(d, 100);
     if (process.env.MOSTRA) console.log(verde.map((x) => `${x.missione} ${x.diverse}`).join(', '));

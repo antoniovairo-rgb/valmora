@@ -204,6 +204,222 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_trattore",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e24.imp.trattore",
+        "commento": "testi:e24.imp.trattore.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "accosta_trattore",
+            "testo": "testi:e24.imp.trattore.accosta_trattore",
+            "costo": "testi:e24.imp.trattore.accosta_trattore.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.trattore.accosta_trattore.r"
+          },
+          {
+            "id": "sorpasso_gruppi",
+            "testo": "testi:e24.imp.trattore.sorpasso_gruppi",
+            "costo": "testi:e24.imp.trattore.sorpasso_gruppi.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.trattore.sorpasso_gruppi.r"
+          },
+          {
+            "id": "lascia_trattore",
+            "testo": "testi:e24.imp.trattore.lascia_trattore",
+            "costo": "testi:e24.imp.trattore.lascia_trattore.c",
+            "effetti": [],
+            "risposta": "testi:e24.imp.trattore.lascia_trattore.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_dentiera",
+        "fonte": "club_saltmere",
+        "testo": "testi:e24.imp.dentiera",
+        "commento": "testi:e24.imp.dentiera.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "torce_addetti",
+            "testo": "testi:e24.imp.dentiera.torce_addetti",
+            "costo": "testi:e24.imp.dentiera.torce_addetti.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.dentiera.torce_addetti.r"
+          },
+          {
+            "id": "seduti_tutti",
+            "testo": "testi:e24.imp.dentiera.seduti_tutti",
+            "costo": "testi:e24.imp.dentiera.seduti_tutti.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.dentiera.seduti_tutti.r"
+          },
+          {
+            "id": "lascia_cercare",
+            "testo": "testi:e24.imp.dentiera.lascia_cercare",
+            "costo": "testi:e24.imp.dentiera.lascia_cercare.c",
+            "effetti": [],
+            "risposta": "testi:e24.imp.dentiera.lascia_cercare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        4
+      ],
+      "chiamata": {
+        "id": "imp_scaletta",
+        "fonte": "centrale_radio",
+        "testo": "testi:e24.imp.scaletta",
+        "commento": "testi:e24.imp.scaletta.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "fotografo_campo",
+            "testo": "testi:e24.imp.scaletta.fotografo_campo",
+            "costo": "testi:e24.imp.scaletta.fotografo_campo.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.scaletta.fotografo_campo.r"
+          },
+          {
+            "id": "scaletta_lato",
+            "testo": "testi:e24.imp.scaletta.scaletta_lato",
+            "costo": "testi:e24.imp.scaletta.scaletta_lato.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.scaletta.scaletta_lato.r"
+          },
+          {
+            "id": "lascia_scattare",
+            "testo": "testi:e24.imp.scaletta.lascia_scattare",
+            "costo": "testi:e24.imp.scaletta.lascia_scattare.c",
+            "effetti": [],
+            "risposta": "testi:e24.imp.scaletta.lascia_scattare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_palloncini",
+        "fonte": "club_saltmere",
+        "testo": "testi:e24.imp.palloncini",
+        "commento": "testi:e24.imp.palloncini.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "caccia_palloncini",
+            "testo": "testi:e24.imp.palloncini.caccia_palloncini",
+            "costo": "testi:e24.imp.palloncini.caccia_palloncini.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.palloncini.caccia_palloncini.r"
+          },
+          {
+            "id": "palloncini_balaustra",
+            "testo": "testi:e24.imp.palloncini.palloncini_balaustra",
+            "costo": "testi:e24.imp.palloncini.palloncini_balaustra.c",
+            "effetti": [
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e24.imp.palloncini.palloncini_balaustra.r"
+          },
+          {
+            "id": "lascia_volare",
+            "testo": "testi:e24.imp.palloncini.lascia_volare",
+            "costo": "testi:e24.imp.palloncini.lascia_volare.c",
+            "effetti": [],
+            "risposta": "testi:e24.imp.palloncini.lascia_volare.r"
+          }
+        ]
+      }
     }
   ]
 }
