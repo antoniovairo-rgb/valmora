@@ -341,4 +341,10 @@
 //   a 360/375/412×640/667/760 e 1366×768; scorrimento della chiamata e01 prima del tocco invariato, dopo il tocco −8 px.
 //   guardiano: controllaAnnulla in tools/foto-po121.mjs, rossi C236C01, C236A01, C236T01, C107A01; ritirati ANNULLA_SECONDI e
 //   C198A01.
-export const GAME_VERSION = '0.51.0';
+// 0.52.0 – città: scena in testa più alta, mappa più alta e pulsanti dentro la scheda (PO-149, D-237).
+//   causa: foto del PO a 412×915: personaggi a 14-16 px dal bordo, ~130 px di giallo vuoto in fondo, «Avvia l'episodio» con
+//   l'ombra a −5 px dal riquadro interno della scheda.
+//   misura: striscia 96 → 193-197 px, sopra i personaggi 14-16 → 101-110 px, mappa 415 → 431 a 915 e 260 → 276 a 760,
+//   pulsanti (Avvia, Tripla, Prossimo) a +4 px per lato; 640/667 invariati, scorrimento 0 in ogni stato a 360/375/412.
+//   guardiano: tools/foto-po149.mjs dalla sonda delle altezze a 640/667/760/915; rossi C237S01 e C237P01.
+export const GAME_VERSION = '0.52.0';
