@@ -21,9 +21,11 @@ export function statoEpisodio(s: Salvataggio, m: Missione): StatoEpisodio {
 /** Il primo episodio ancora da superare, se c'è. */
 export const prossimoEpisodio = (s: Salvataggio) => missioni.find((m) => statoEpisodio(s, m) !== 'superato' && statoEpisodio(s, m) !== 'futuro') ?? null;
 
-/** Ogni tentativo parte dalle variabili di prima del primo tentativo (D-062), con un seme di partita suo (D-241). */
+/** Ogni tentativo parte dalle variabili di prima del primo tentativo (D-062), con un seme di partita suo (D-241).
+ *  globalThis.__VALMORA_SEME_PARTITA fissa il seme per le foto (tools/foto.mjs), che giocano col motore la stessa partita. */
+const semeFisso = () => (globalThis as { __VALMORA_SEME_PARTITA?: number }).__VALMORA_SEME_PARTITA;
 export const iniziaEpisodio = (s: Salvataggio, m: Missione): InCorso =>
-  iniziaMissione(m, variabiliDiPartenza(s.episodi, m.id, s.variabili), dichiarate, semeEpisodio(s.seme, m.id, s.episodi[m.id]?.tentativi ?? 0));
+  iniziaMissione(m, variabiliDiPartenza(s.episodi, m.id, s.variabili), dichiarate, semeFisso() ?? semeEpisodio(s.seme, m.id, s.episodi[m.id]?.tentativi ?? 0));
 
 /**
  * Chiude un tentativo nel salvataggio. Le variabili della storia cambiano solo se il tentativo è il
