@@ -1,4 +1,4 @@
-// PO-121 (D-148): la risposta a una chiamata resta «in sospeso» per qualche secondo e il giocatore la può annullare.
+// PO-121 (D-148), PO-148 (D-236): la risposta a una chiamata resta «in sospeso» finché il giocatore non la conferma o la annulla.
 // La logica non conosce il tempo: sa solo se la risposta è confermata o annullata. Quella in sospeso non entra nello
 // stato della missione (InCorso) né quindi nel salvataggio: se il gioco si chiude prima della conferma, alla ripresa
 // la chiamata è ancora aperta, con le stesse opzioni, e nessun effetto è stato applicato.

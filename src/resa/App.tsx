@@ -292,7 +292,7 @@ export function App() {
           mostraSegni(segniDi(f.chiamata, scelta, ora, dopo)); // PO-085: la conseguenza sulla mappa, subito (C20-07: solo se cambia)
           if (scelta.risposta) setEco(scelta);
       };
-      // PO-121 (D-148): la risposta resta in sospeso (sospesa.ts) finché il conto alla rovescia non scade; annullata non
+      // PO-148 (D-236): la risposta resta in sospeso (sospesa.ts) finché il giocatore non tocca «Conferma»; annullata non
       // lascia traccia. Rosso C107A01: vale subito, come prima.
       const chiamata = f.chiamata;
       corpo = <Chiamata key={chiamata.id} m={m} ic={ic} c={chiamata} numero={f.numero} totale={f.totale} rispondi={conferma}
