@@ -692,3 +692,6 @@ Passo foto del giro grafico a 360 (con token, build ed email) in locale: verde, 
 Foto: `po148/prima` (build 7f8b430a, «Annulla 3») e `po148/dopo`, la chiamata dopo il tocco a 360/375/412 × 640 e 760 e a
 375×667, più le foto del guardiano (`po121-<w>x<h>.png`).
 Non verificato: telefono reale; lettore di schermo sui due pulsanti (gruppo con etichetta «Confermi la risposta?»).
+Giri di PO-148 su 9e993c7d: giro 1 governo e logica e giro 2 governo verdi. La logica del giro 2 si è fermata per un riavvio del
+container: senza riga, perché lo strumento scrive solo a giro chiuso. L'ho rifatta da capo, poi il giro 3: tutto verde.
+CI 40421641316 su 9e993c7d: verde.
