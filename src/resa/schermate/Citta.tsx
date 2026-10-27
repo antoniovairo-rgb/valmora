@@ -24,6 +24,9 @@ const DESCRIZIONE: Record<StatoEpisodio, string> = {
   futuro: 'Non ancora disponibile.',
 };
 
+/** PO-149: unità di cielo sopra la finestra nella striscia; bastano per --home-vignetta-max (210 px) a 360 px di larghezza. */
+const CIELO_STRISCIA = 122;
+
 export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (id: string) => void; avvia: (m: Missione) => void; home?: () => void; epilogo?: () => void }) {
   const [rigioca, setRigioca] = useState<string | null>(null);
   const tutte = missioni.map((m) => ({ m, stato: statoEpisodio(p.sal, m), stelle: p.sal.episodi[m.id]?.migliore?.stelle ?? null }));
@@ -43,7 +46,10 @@ export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (i
       {spento('C210C01') || finestraBassa ? <Testata numero={`S${stagione}`} etichetta={`Stagione ${stagione} · mappa della città`} titolo="Valmora" /> : <>
         <h1 className="solo-lettore">{`Valmora · stagione ${stagione} · mappa della città`}</h1>
         <figure className="home-vignetta citta-striscia" data-citta-striscia>
-          <VignettaHome genere={genereAttuale() === 'f' ? 'f' : 'm'} didascalia={t('citta.striscia')} fissa />
+          {/* PO-149 (D-237): sugli schermi alti la striscia prende lo spazio libero (come la vignetta della home, PO-092) e cresce
+              verso l'alto, con più cielo sopra le teste. Rosso C237S01: fissa a 96 px, inquadrata dall'alto, come prima */}
+          {spento('C237S01') ? <VignettaHome genere={genereAttuale() === 'f' ? 'f' : 'm'} didascalia={t('citta.striscia')} fissa />
+            : <VignettaHome genere={genereAttuale() === 'f' ? 'f' : 'm'} didascalia={t('citta.striscia')} cielo={CIELO_STRISCIA} />}
           <figcaption className="home-didascalia">{t('citta.striscia')}</figcaption>
         </figure></>}
       {stagioni.length > 1 && (

@@ -36,17 +36,22 @@ const Fumo = (p: { x: number; y: number; k: number }) => (
   <path transform={`translate(${p.x} ${p.y}) scale(${p.k})`} d="M0 0 Q-6 -14 8 -16 Q12 -30 28 -24 Q40 -34 50 -20 Q64 -20 60 -6 Q66 4 52 6 L4 6 Q-8 6 0 0 Z" className="v-fumo v-tratto" />
 );
 
-export function VignettaHome(p: { genere: 'm' | 'f'; didascalia: string; fissa?: boolean }) {
+/** «cielo»: unità di cielo notturno sopra la finestra (PO-149, striscia della città). Il disegno si inquadra dal basso (y 96,
+ *  spalle dei due), così quando la striscia cresce lo spazio in più va sopra le teste. */
+export function VignettaHome(p: { genere: 'm' | 'f'; didascalia: string; fissa?: boolean; cielo?: number }) {
   const sx = club.get('cinderwick_united')?.colori?.primario, dx = club.get('larkspire_athletic')?.colori?.primario;
+  const cielo = p.cielo ?? 0;
   return (
-    <Vignetta nome="home" titolo={`${p.didascalia}: tu e il vice Malvasi, dalla finestra lo stadio di notte`} ritaglio="xMidYMin slice" fissa={p.fissa}>
-      <rect x="0" y="0" width="320" height="120" className="v-notte" />
-      {[[22, 14], [70, 26], [150, 10], [262, 18], [300, 30]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="1.6" className="v-giallo" />)}
+    <Vignetta nome="home" titolo={`${p.didascalia}: tu e il vice Malvasi, dalla finestra lo stadio di notte`} ritaglio={cielo ? 'xMidYMax slice' : 'xMidYMin slice'} fissa={p.fissa}
+      vista={cielo ? [0, -cielo, 320, 96 + cielo] : undefined}>
+      <rect x="0" y={-cielo} width="320" height={120 + cielo} className="v-notte" />
+      {[[22, 14], [70, 26], [150, 10], [262, 18], [300, 30], ...(cielo ? [[40, -20], [118, -46], [196, -14], [236, -72], [288, -38], [12, -96], [168, -108], [304, -112]] : [])]
+        .filter(([, y]) => (y ?? 0) > -cielo).map(([x, y], i) => <circle key={i} cx={x} cy={y} r="1.6" className="v-giallo" />)}
       <path d="M0 96 L30 80 L52 88 L80 70 L96 84 L130 74 V120 H0 Z" className="v-giacca-scura v-tratto" />
       {[[8, 84], [40, 82], [60, 74], [86, 80]].map(([x, y], i) => <rect key={i} x={x} y={y} width="5" height="5" className="v-luce" />)}
       <StadioLontano x={214} y={78} k={0.95} sx={sx} dx={dx} />
       <Fumo x={128} y={96} k={0.9} /><Fumo x={262} y={100} k={0.7} />
-      <path d="M0 0 H320 V120 H0 Z" className="v-cornice" />
+      <path d={`M0 ${-cielo} H320 V120 H0 Z`} className="v-cornice" />
       <rect x="0" y="118" width="320" height="62" className="v-ombra" />
       <rect x="0" y="116" width="320" height="6" className="v-nero" />
       <rect x="8" y="126" width="54" height="34" className="v-nero v-tratto" /><rect x="12" y="130" width="46" height="26" className="v-ciano" />

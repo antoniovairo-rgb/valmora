@@ -45,3 +45,12 @@ main:not(.rosso-c230c01)[data-schermata="citta"] [data-scheda-episodio] .stella 
 main:not(.rosso-c230c01)[data-schermata="titolo"] .home-obiettivo { margin-top: var(--spazio-2); }
 main:not(.rosso-c230c01)[data-schermata="titolo"] .home-premessa ~ .pulsante { margin-block: var(--spazio-2); }
 #app:has(main:not(.rosso-c230c01):is([data-schermata="citta"], [data-schermata="titolo"])) { padding-bottom: var(--spazio-3); }
+/* PO-149 (D-237, foto del PO a 412×915): con la striscia (finestra ≥ 700 px) la mappa della città prende più altezza;
+   la striscia prende lo spazio che resta (Citta.tsx). Rosso C237S01: come prima */
+main:not(.rosso-c237s01):not(.rosso-c35c01)[data-schermata="citta"]:has([data-citta-striscia]) .mappa.citta { height: clamp(var(--citta-altezza-min), calc(100dvh - var(--citta-riserva-striscia)), var(--citta-altezza-max)); }
+/* PO-149: i pulsanti della scheda (anche Tripla e «Prossimo») stanno dentro il suo riquadro interno, ombra compresa, con
+   --spazio-1 di margine su ogni lato (prima toccavano i bordi e l'ombra li superava). Rosso C237P01: come prima */
+main:not(.rosso-c237p01)[data-schermata="citta"] .scena .scheda .pulsante { width: calc(100% - 2 * var(--spazio-1) - var(--ombra-1-scarto)); margin-inline: var(--spazio-1) calc(var(--spazio-1) + var(--ombra-1-scarto)); margin-bottom: calc(var(--spazio-1) + var(--ombra-1-scarto)); }
+/* PO-149: il margine sotto dell'ultimo elemento usciva da main e la striscia, che misura main (vignetta.tsx), cresceva di 4-8 px
+   troppo (la pagina scorreva). Il distacco dal fondo resta il padding di #app. Rosso C237S01: come prima */
+main:not(.rosso-c237s01)[data-schermata="citta"]:has([data-citta-striscia]) .scena > :last-child { margin-bottom: 0; }
