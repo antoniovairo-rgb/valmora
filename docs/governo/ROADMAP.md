@@ -38,8 +38,8 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
   | # | Attività | Chi | Versione | Stato |
   |---|---|---|---|---|
   | 0 | Fermare la catena per il Play su e3cac34b (S-25) | principale | – | fatto (giro interrotto, non conta) |
-  | 1 | C52-01/02: la mappa della città non salta al tocco di un episodio (fino a 110 px) e resta lo spazio sopra le teste; rosso C242M01 | S-11 | 0.52.1 | in corsa |
-  | 2 | Debito: spezzare src/resa/App.tsx (334 righe) e src/resa/stile.css (400/400), foto identiche | S-11 | 0.53.0 | da scrivere |
+  | 1 | C52-01/02: la mappa della città non salta al tocco di un episodio (fino a 110 px) e resta lo spazio sopra le teste; rosso C242M01 | S-11 | 0.54.0 (con A) | in corsa |
+  | 2 | Debito: spezzare src/resa/App.tsx (334 righe) e src/resa/stile.css (400/400), foto identiche | S-11 | 0.53.0 | in corsa (rilascio) |
   | 3 | **A · La mappa è la fonte.** Niente costo né chip prima della scelta; settori toccabili in chiamata con scheda di stato; il costo arriva dopo «Conferma» come rapporto radio; dentro anche C52-03; rosso C241A01 | S-11 | 0.54.0 | da scrivere |
   | 4 | **D · Ogni partita diversa.** Seme di partita salvato; mazzo di imprevisti e punto di comparsa; varianti di chiamata; rosso C241D01; soglia di varietà fissata dopo la prima misura | S-26 | dopo A | in corsa |
   | 5 | **C · Il «nessun costo» morde dopo.** Campo `effetti_dopo` validato da schema, applicato alla chiusura dell'ondata dichiarata; scrittura sui 36 episodi | S-27 (da aprire dopo D) | – | da scrivere |
@@ -68,6 +68,7 @@ La più recente in alto. Hash = commit di main dopo la promozione (catena comple
 
 | Versione | Data (UTC) | Hash main | Contenuto | Misura principale | Stato |
 |---|---|---|---|---|---|
+| 0.53.0 | 2026-10-28 | – | Debito prima delle idee del tester (L2b, D-241): App.tsx e stile.css spezzati | App.tsx 334→265, stile.css 400→201+201; CSS costruito identico (md5); foto 375/412 identiche | sul ramo, rituali in corsa |
 | 0.52.0 | 2026-10-27 | 01f68a32 | Città: scena in testa più alta, mappa più alta, «Avvia l'episodio» e gli altri pulsanti dentro la scheda (PO-149, D-237) | Striscia 96→193-197 px, sopra i personaggi 14-16→101-110, mappa 415→431 a 915 e 260→276 a 760, giallo vuoto 130→4, pulsanti −5→+4 px; 640/667 invariati, scorrimento 0; rossi C237S01/C237P01 riprodotti dalla principale (24 misure, 0 difetti in verde); governo+logica 3/3 su 01f68a32, CI 10/10 | pubblicato |
 | 0.51.0 | 2026-10-27 | 965ce422 | «Annulla» e «Conferma» al posto del conto alla rovescia di 3 s sulle risposte (PO-148, D-236); verbale a 360×640 (D-234) | Nessun effetto prima di «Conferma» (anche dopo 3,6 s); pulsanti nella finestra e ≥44 px a 360/375/412×640/667/760 e 1366×768; scorrimento chiamata prima del tocco invariato, dopo −8 px; rossi C236C01/C236A01 riprodotti dalla principale (92 verifiche, 0 fallite in verde); governo+logica 3/3 su 965ce422 (giro 3 rifatto dopo un riavvio del container), CI 10/10 | pubblicato |
 | 0.50.0 | 2026-10-26 | e336d854 | Titolo con una partita salvata e città con 36 episodi senza scorrimento anche a 640/667 di altezza (C49-01, C49-02, D-230); strumento C187V01 indipendente dal carico; commenti di versione 0.1.0–0.10.0 spostati in RELEASE_HISTORY (D-233) | Città 36 episodi stagione 3: 99/80/76→0 px a 640, 53→0 a 375×667; titolo con salvataggio 29/10/10→0; C187V01 ciechi sotto carico 2/15→0/20; governo+logica 3/3 su f33436a0, CI 10/10 | pubblicato |
