@@ -3,7 +3,6 @@
 // (docs/partita-az/curva.mjs: bot attento, 40% risposte a caso, un'unità spostata nel 50% delle ondate). Ogni episodio
 // si gioca da solo con le variabili iniziali, come D-108/D-154: misura deterministica (semi fissi), non la campagna.
 import { creaCaso } from '../src/logica/caso.ts';
-import { semeDa } from '../src/logica/partita.ts';
 import { attenta } from '../src/logica/bot.ts';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { giocaMissione, opzioniValide, settoriAmmessi } from '../src/logica/missione.ts';
@@ -30,7 +29,7 @@ export function quoteDistratto(dati, semi = 400) {
   const dich = new Map(dati['stato.json'].variabili.map((x) => [x.id, x])); const v0 = variabiliIniziali(dich.values());
   return Object.fromEntries(missioni(dati).map((m) => {
     let zero = 0;
-    for (let s = 1; s <= semi; s++) if (valutaEpisodio(m, giocaMissione(m, v0, dich, distratto(creaCaso(`${m.id}:distratto:${s}`), dich), semeDa(`${m.id}:distratto:${s}`))).stelle === 0) zero++; // D-241: col seme di partita
+    for (let s = 1; s <= semi; s++) if (valutaEpisodio(m, giocaMissione(m, v0, dich, distratto(creaCaso(`${m.id}:distratto:${s}`), dich))).stelle === 0) zero++;
     return [m.id, [m.stagione, (100 * zero) / semi]];
   }));
 }
