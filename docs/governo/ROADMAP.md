@@ -25,6 +25,36 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
 - Voci: –
 - Criterio d'uscita: 12 missioni valide allo schema; bot con 1000 semi × strategie «casuale» e «peggiore» arriva sempre alla fine della stagione; 0 soft-lock e 0 fili orfani; un rapporto di collaudo per missione in COLLAUDI.md senza difetti critici aperti.
 
+## L2b – Risposta al primo tester: mappa, scelte, varietà (PO-152, D-241)
+- Stato: IN CORSO (dal 2026-10-27; il test chiuso di L3 aspetta la chiusura di questo lotto: «Prima le idee, poi il Play»)
+- Obiettivo: rispondere al primo tester esterno, che sulla 0.52.0 ha detto: «dopo un po' si stufa»; «il gioco sta solo nella parte sotto»; «la riga di costo ti dice subito l'opzione senza rischio».
+- Cause misurate sul codice:
+  - in chiamata la mappa è disabilitata (src/resa/App.tsx:282, src/resa/mappa/Mappa.tsx:124);
+  - la riga di costo è obbligatoria e si legge prima dell'opzione (src/resa/schermate/Ondata.tsx:118, D-078);
+  - src/logica/missione.ts non usa il seme e l'imprevisto ha un posto fisso.
+- Voci: PO-152 (idee), PO-151 (ripartenza), rilievi C52-01…C52-05 (D-242).
+- Attività, in ordine:
+
+  | # | Attività | Chi | Versione | Stato |
+  |---|---|---|---|---|
+  | 0 | Fermare la catena per il Play su e3cac34b (S-25) | principale | – | fatto (giro interrotto, non conta) |
+  | 1 | C52-01/02: la mappa della città non salta al tocco di un episodio (fino a 110 px) e resta lo spazio sopra le teste; rosso C242M01 | S-11 | 0.52.1 | in corsa |
+  | 2 | Debito: spezzare src/resa/App.tsx (334 righe) e src/resa/stile.css (400/400), foto identiche | S-11 | 0.53.0 | da scrivere |
+  | 3 | **A · La mappa è la fonte.** Niente costo né chip prima della scelta; settori toccabili in chiamata con scheda di stato; il costo arriva dopo «Conferma» come rapporto radio; dentro anche C52-03; rosso C241A01 | S-11 | 0.54.0 | da scrivere |
+  | 4 | **D · Ogni partita diversa.** Seme di partita salvato; mazzo di imprevisti e punto di comparsa; varianti di chiamata; rosso C241D01; soglia di varietà fissata dopo la prima misura | S-26 | dopo A | in corsa |
+  | 5 | **C · Il «nessun costo» morde dopo.** Campo `effetti_dopo` validato da schema, applicato alla chiusura dell'ondata dichiarata; scrittura sui 36 episodi | S-27 (da aprire dopo D) | – | da scrivere |
+  | 6 | **B · Una mossa per chiamata.** Azione pura `sposta` in missione.ts, trascinamento sulla mappa, una per chiamata, il bot la usa; SAVE_VERSION con migrazione se serve; rosso C241B01 | S-11 | – | da scrivere |
+  | 7 | Bilanciamento: vittorie per episodio col bot (300 semi, 0 blocchi) dopo A+C; si ritoccano i dati, non le soglie | S-11 / S-26 | – | da scrivere |
+  | 8 | Accessibilità: testo al 130% a 360/375 (C52-04/05) | S-11 | – | da scrivere |
+  | 9 | Prova del tester: link al PO per il collega; collaudo con «Partita da giocatore» e la domanda «leggi le opzioni? la mappa la usi?» | principale + collaudatrice | – | da scrivere |
+
+- Criterio d'uscita:
+  - le quattro idee pubblicate, ognuna col suo guardiano e un braccio rosso che fallisce davvero;
+  - bot su 300 semi con 0 blocchi e vittorie per episodio dentro le soglie;
+  - salvataggi vecchi reali migrati e giocabili;
+  - un secondo giudizio del tester raccolto dal PO.
+- Poi L3: catena completa 3/3 sulla versione finale (D-228) e test chiuso.
+
 ## L3 – Prima pubblicazione
 - Stato: PROPOSTO
 - Obiettivo: triade intera (36 missioni, D-009), test chiuso su Play, richiesta di produzione.
