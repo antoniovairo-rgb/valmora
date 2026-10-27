@@ -125273,6 +125273,83 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-27T21:29:45.999Z",
+      "commit": "eeb4947",
+      "modifiche_non_committate": false,
+      "larghezze": "360",
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1041
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            685.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            11.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            464.6,
+            453.1,
+            342.2
+          ],
+          "problemi": [
+            "eccezione: page.evaluate: Target page, context or browser has been closed"
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }
