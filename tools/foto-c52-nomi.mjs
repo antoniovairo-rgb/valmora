@@ -28,7 +28,7 @@ export async function controllaNomiCitta(browser, url, larghezza, rossi = [], ca
   for (const h of ALTEZZE_C52) {
     const vp = `${larghezza}x${h}`, p = await browser.newPage({ viewport: { width: larghezza, height: h }, reducedMotion: 'reduce' });
     if (rossi.length) await p.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-    await p.goto(url); await p.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), tutto); await p.reload();
+    await p.goto(url); await p.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), tutto); await p.reload();
     await p.getByRole('button', { name: 'Riprendi' }).click(); await p.waitForSelector('.scena[data-scena="citta"]'); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(300);
     for (const m of missioni) {
       await p.click(`[data-stagione="${m.stagione}"]`).catch(() => {}); await p.click(`[data-episodio="${m.id}"] .settore-punto`, { timeout: 5000 }).catch(() => male.push(`${vp}: non trovo ${m.id} (C52-03)`));

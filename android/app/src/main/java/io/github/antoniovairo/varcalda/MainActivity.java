@@ -1,4 +1,4 @@
-package io.github.antoniovairo.valmora;
+package io.github.antoniovairo.varcalda;
 
 import com.getcapacitor.BridgeActivity;
 

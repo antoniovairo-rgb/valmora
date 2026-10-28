@@ -19,7 +19,7 @@ for (const w of lar.split(',').map(Number)) {
   const pg = await b.newPage({ viewport: { width: w, height: 800 }, reducedMotion: 'reduce' });
   pg.on('pageerror', (e) => problemi.push(`${w}: ${e.message}`)); pg.on('console', (m) => { if (m.type() === 'error') problemi.push(`${w}: ${m.text()}`); });
   await pg.goto(`http://127.0.0.1:${srv.address().port}/`);
-  await pg.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify(sal));
+  await pg.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify(sal));
   await pg.reload(); await pg.getByRole('button', { name: 'Riprendi' }).click(); await pg.waitForSelector('[data-scena="citta"]');
   await pg.click('[data-azione="epilogo"]'); await pg.waitForSelector('[data-scena="epilogo"] .tavola'); await pg.waitForTimeout(500);
   const [c, f] = await pg.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);

@@ -71,7 +71,7 @@ export function controllaFileAab(percorso) {
 // il segnaposto; sugli altri rami lo si segnala e basta, finché il PO non dà il contatto.
 export const controllaPrivacy = (testi, rilascio) => (rilascio ? controllaSegnaposto(testi) : []);
 
-const MANIFEST_PROVA = (codice, nome, permessi) => `<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="${codice}" android:versionName="${nome}" package="io.github.antoniovairo.valmora">\n${permessi.map((p) => `  <uses-permission android:name="${p}"/>`).join('\n')}\n</manifest>`;
+const MANIFEST_PROVA = (codice, nome, permessi) => `<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="${codice}" android:versionName="${nome}" package="io.github.antoniovairo.varcalda">\n${permessi.map((p) => `  <uses-permission android:name="${p}"/>`).join('\n')}\n</manifest>`;
 
 export function bracciRossi() {
   const ciechi = [];
@@ -80,7 +80,7 @@ export function bracciRossi() {
   if (!controllaStoriaVersioni("// 0.46.0 – a\n// 0.45.0 – b\nexport const GAME_VERSION = '0.45.0';").length) ciechi.push('storia versioni/decrescente è cieco');
   if (!controllaStoriaVersioni("// 0.46.0 – a\n// 0.46.0 – b\nexport const GAME_VERSION = '0.46.0';").length) ciechi.push('storia versioni/uguale è cieco');
   if (!controllaStoriaVersioni("// 0.46.0 – a\nexport const GAME_VERSION = '0.47.0';").length) ciechi.push('storia versioni/attuale non commentata è cieco');
-  const perm = ['android.permission.INTERNET', 'io.github.antoniovairo.valmora.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'];
+  const perm = ['android.permission.INTERNET', 'io.github.antoniovairo.varcalda.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'];
   if (controllaManifest(MANIFEST_PROVA(46000, '0.46.0', perm), '0.46.0').length) ciechi.push('manifest: campione buono bocciato');
   if (!controllaManifest(MANIFEST_PROVA(1, '1.0', perm), '0.46.0').length) ciechi.push('manifest/versione è cieco');
   if (!controllaManifest(MANIFEST_PROVA(46000, '0.46.0', [...perm, 'android.permission.ACCESS_NETWORK_STATE']), '0.46.0').length) ciechi.push('manifest/permesso di rete è cieco');

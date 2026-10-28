@@ -1,4 +1,4 @@
-# Avvio delle sessioni Valmora (cloud)
+# Avvio delle sessioni Varcalda (cloud)
 
 Il progetto lavora in cloud (D-011) sul repository github.com/antoniovairo-rgb/valmora.
 

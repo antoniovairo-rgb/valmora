@@ -23,7 +23,7 @@ for (let i = 1; i <= prove; i++) {
   const xs = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean); if (xs.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, xs);
   if (process.env.LENTO) await q.route('**/*.woff2', async (r) => { await new Promise((ok) => setTimeout(ok, 1500)); await r.continue(); });
   await q.goto(url);
-  await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
+  await q.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
   await q.reload(); await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('[data-barra]');
   await ascoltaEtichette(q); const ferme = await etichetteFerme(q);
   const r = await mappaSchieramento(q);

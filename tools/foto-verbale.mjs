@@ -1,5 +1,6 @@
 // Controlli delle foto sul verbale (bilancio D-085, PO-072, PO-074), a parte da foto.mjs che è al limite delle 400 righe.
 import { avanzaFino } from './foto-club.mjs';
+import { URL_GIOCO } from '../src/resa/collegamenti.ts'; // D-244: l'indirizzo sta in un solo punto
 
 /** Bilancio del verbale (D-085): 4 sezioni, ≤ 3 scelte per aiuti e pesi, nessuna fuori (C-005 R03), non vuoto (__NO_C10B01). */
 export async function controllaBilancio(pagina, p, atteso) {
@@ -13,8 +14,6 @@ export async function controllaBilancio(pagina, p, atteso) {
   const stella = await pagina.locator('[data-sezione="stelle"] p').first().textContent({ timeout: 2000 }).catch(() => '');
   atteso(`verbale: «per la stella successiva» senza indicazione («${stella}»)`, !!stella?.trim() && !stella.includes('[['));
 }
-
-const URL_GIOCO = 'https://antoniovairo-rgb.github.io/valmora/';
 
 /** «Condividi» (testo con episodio e stelle + link; rosso VALMORA_ROSSI=C20C01) e, a episodio superato,
  *  «Prossimo episodio» con la riga che spiega la mappa nell'ultimo passo (rosso VALMORA_ROSSI=C18V01). */
