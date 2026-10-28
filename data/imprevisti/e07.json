@@ -200,6 +200,380 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_valigie",
+        "fonte": "centrale_radio",
+        "testo": "testi:e07.imp.valigie",
+        "commento": "testi:e07.imp.valigie.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "deposito",
+            "testo": "testi:e07.imp.valigie.deposito",
+            "costo": "testi:e07.imp.valigie.deposito.c",
+            "effetti": [
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.valigie.deposito.r"
+          },
+          {
+            "id": "pila_valigie",
+            "testo": "testi:e07.imp.valigie.pila_valigie",
+            "costo": "testi:e07.imp.valigie.pila_valigie.c",
+            "effetti": [
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.valigie.pila_valigie.r"
+          },
+          {
+            "id": "montagna_valigie",
+            "testo": "testi:e07.imp.valigie.montagna_valigie",
+            "costo": "testi:e07.imp.valigie.montagna_valigie.c",
+            "effetti": [],
+            "risposta": "testi:e07.imp.valigie.montagna_valigie.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_vetro",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e07.imp.vetro",
+        "commento": "testi:e07.imp.vetro.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "camion_piazzale",
+            "testo": "testi:e07.imp.vetro.camion_piazzale",
+            "costo": "testi:e07.imp.vetro.camion_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.vetro.camion_piazzale.r"
+          },
+          {
+            "id": "una_campana",
+            "testo": "testi:e07.imp.vetro.una_campana",
+            "costo": "testi:e07.imp.vetro.una_campana.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.vetro.una_campana.r"
+          },
+          {
+            "id": "fracasso",
+            "testo": "testi:e07.imp.vetro.fracasso",
+            "costo": "testi:e07.imp.vetro.fracasso.c",
+            "effetti": [],
+            "risposta": "testi:e07.imp.vetro.fracasso.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_chiavi_pulmino",
+        "fonte": "club_southwind",
+        "testo": "testi:e07.imp.chiavi_pulmino",
+        "commento": "testi:e07.imp.chiavi_pulmino.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "cerca_tuoi",
+            "testo": "testi:e07.imp.chiavi_pulmino.cerca_tuoi",
+            "costo": "testi:e07.imp.chiavi_pulmino.cerca_tuoi.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.chiavi_pulmino.cerca_tuoi.r"
+          },
+          {
+            "id": "cerca_turno",
+            "testo": "testi:e07.imp.chiavi_pulmino.cerca_turno",
+            "costo": "testi:e07.imp.chiavi_pulmino.cerca_turno.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.chiavi_pulmino.cerca_turno.r"
+          },
+          {
+            "id": "trovino_soli",
+            "testo": "testi:e07.imp.chiavi_pulmino.trovino_soli",
+            "costo": "testi:e07.imp.chiavi_pulmino.trovino_soli.c",
+            "effetti": [],
+            "risposta": "testi:e07.imp.chiavi_pulmino.trovino_soli.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_scroscio",
+        "fonte": "centrale_radio",
+        "testo": "testi:e07.imp.scroscio",
+        "commento": "testi:e07.imp.scroscio.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "tettoie",
+            "testo": "testi:e07.imp.scroscio.tettoie",
+            "costo": "testi:e07.imp.scroscio.tettoie.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.scroscio.tettoie.r"
+          },
+          {
+            "id": "pensilina",
+            "testo": "testi:e07.imp.scroscio.pensilina",
+            "costo": "testi:e07.imp.scroscio.pensilina.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.imp.scroscio.pensilina.r"
+          },
+          {
+            "id": "smetta",
+            "testo": "testi:e07.imp.scroscio.smetta",
+            "costo": "testi:e07.imp.scroscio.smetta.c",
+            "effetti": [],
+            "risposta": "testi:e07.imp.scroscio.smetta.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "foto_ricordo",
+      "chiamata": {
+        "id": "foto_ricordo_v",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e07.var.foto_ricordo",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "lascia_foto7",
+            "testo": "testi:e07.var.foto_ricordo.lascia_foto7",
+            "costo": "testi:e07.var.foto_ricordo.lascia_foto7.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.var.foto_ricordo.lascia_foto7.r"
+          },
+          {
+            "id": "separa_gruppi",
+            "testo": "testi:e07.var.foto_ricordo.separa_gruppi",
+            "costo": "testi:e07.var.foto_ricordo.separa_gruppi.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -2
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.var.foto_ricordo.separa_gruppi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "coro_imparato",
+      "chiamata": {
+        "id": "coro_imparato_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e07.var.coro_imparato",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "spiega_coro",
+            "testo": "testi:e07.var.coro_imparato.spiega_coro",
+            "costo": "testi:e07.var.coro_imparato.spiega_coro.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e07.var.coro_imparato.spiega_coro.r"
+          },
+          {
+            "id": "lascia_coro7",
+            "testo": "testi:e07.var.coro_imparato.lascia_coro7",
+            "costo": "testi:e07.var.coro_imparato.lascia_coro7.c",
+            "effetti": [
+              {
+                "tensione": "strada_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e07.var.coro_imparato.lascia_coro7.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "pareggio_casa",
+      "chiamata": {
+        "id": "pareggio_casa_v",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e07.var.pareggio_casa",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "squadra_larkspire7",
+            "testo": "testi:e07.var.pareggio_casa.squadra_larkspire7",
+            "costo": "testi:e07.var.pareggio_casa.squadra_larkspire7.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e07.var.pareggio_casa.squadra_larkspire7.r"
+          },
+          {
+            "id": "lascia_sollievo",
+            "testo": "testi:e07.var.pareggio_casa.lascia_sollievo",
+            "costo": "testi:e07.var.pareggio_casa.lascia_sollievo.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e07.var.pareggio_casa.lascia_sollievo.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "di": "batteria",
+      "chiamata": {
+        "id": "batteria_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e07.var.batteria",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "spingi_pulmino",
+            "testo": "testi:e07.var.batteria.spingi_pulmino",
+            "costo": "testi:e07.var.batteria.spingi_pulmino.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e07.var.batteria.spingi_pulmino.r"
+          },
+          {
+            "id": "carro_attrezzi",
+            "testo": "testi:e07.var.batteria.carro_attrezzi",
+            "costo": "testi:e07.var.batteria.carro_attrezzi.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e07.var.batteria.carro_attrezzi.r"
+          }
+        ]
+      }
     }
   ]
 }

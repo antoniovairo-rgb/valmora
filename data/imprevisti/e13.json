@@ -204,6 +204,222 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_parchimetro",
+        "fonte": "centrale_radio",
+        "testo": "testi:e13.imp.parchimetro",
+        "commento": "testi:e13.imp.parchimetro.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "bar_viale",
+            "testo": "testi:e13.imp.parchimetro.bar_viale",
+            "costo": "testi:e13.imp.parchimetro.bar_viale.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.parchimetro.bar_viale.r"
+          },
+          {
+            "id": "colletta",
+            "testo": "testi:e13.imp.parchimetro.colletta",
+            "costo": "testi:e13.imp.parchimetro.colletta.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.parchimetro.colletta.r"
+          },
+          {
+            "id": "aspetta_addetto",
+            "testo": "testi:e13.imp.parchimetro.aspetta_addetto",
+            "costo": "testi:e13.imp.parchimetro.aspetta_addetto.c",
+            "effetti": [],
+            "risposta": "testi:e13.imp.parchimetro.aspetta_addetto.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_gelati",
+        "fonte": "centrale_radio",
+        "testo": "testi:e13.imp.gelati",
+        "commento": "testi:e13.imp.gelati.vice",
+        "settore": "piazza_concerto",
+        "opzioni": [
+          {
+            "id": "carretto_piazzale",
+            "testo": "testi:e13.imp.gelati.carretto_piazzale",
+            "costo": "testi:e13.imp.gelati.carretto_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.gelati.carretto_piazzale.r"
+          },
+          {
+            "id": "due_gusti",
+            "testo": "testi:e13.imp.gelati.due_gusti",
+            "costo": "testi:e13.imp.gelati.due_gusti.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.gelati.due_gusti.r"
+          },
+          {
+            "id": "finisca_scorte",
+            "testo": "testi:e13.imp.gelati.finisca_scorte",
+            "costo": "testi:e13.imp.gelati.finisca_scorte.c",
+            "effetti": [],
+            "risposta": "testi:e13.imp.gelati.finisca_scorte.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_pallone",
+        "fonte": "organizzatori_concerto",
+        "testo": "testi:e13.imp.pallone",
+        "commento": "testi:e13.imp.pallone.vice",
+        "settore": "piazza_concerto",
+        "opzioni": [
+          {
+            "id": "lega_pallone",
+            "testo": "testi:e13.imp.pallone.lega_pallone",
+            "costo": "testi:e13.imp.pallone.lega_pallone.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.pallone.lega_pallone.r"
+          },
+          {
+            "id": "verso_bordo",
+            "testo": "testi:e13.imp.pallone.verso_bordo",
+            "costo": "testi:e13.imp.pallone.verso_bordo.c",
+            "effetti": [
+              {
+                "pressione": "piazza_concerto",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.pallone.verso_bordo.r"
+          },
+          {
+            "id": "rotoli",
+            "testo": "testi:e13.imp.pallone.rotoli",
+            "costo": "testi:e13.imp.pallone.rotoli.c",
+            "effetti": [],
+            "risposta": "testi:e13.imp.pallone.rotoli.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_banda",
+        "fonte": "organizzatori_concerto",
+        "testo": "testi:e13.imp.banda",
+        "commento": "testi:e13.imp.banda.vice",
+        "settore": "viale_concerto",
+        "opzioni": [
+          {
+            "id": "sosta_banda",
+            "testo": "testi:e13.imp.banda.sosta_banda",
+            "costo": "testi:e13.imp.banda.sosta_banda.c",
+            "effetti": [
+              {
+                "pressione": "viale_concerto",
+                "valore": 1
+              },
+              {
+                "tensione": "piazza_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.banda.sosta_banda.r"
+          },
+          {
+            "id": "passo_svelto",
+            "testo": "testi:e13.imp.banda.passo_svelto",
+            "costo": "testi:e13.imp.banda.passo_svelto.c",
+            "effetti": [
+              {
+                "tensione": "viale_concerto",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e13.imp.banda.passo_svelto.r"
+          },
+          {
+            "id": "sfili",
+            "testo": "testi:e13.imp.banda.sfili",
+            "costo": "testi:e13.imp.banda.sfili.c",
+            "effetti": [],
+            "risposta": "testi:e13.imp.banda.sfili.r"
+          }
+        ]
+      }
     }
   ]
 }

@@ -200,6 +200,218 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_divano",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e17.imp.divano",
+        "commento": "testi:e17.imp.divano.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "traslocatori",
+            "testo": "testi:e17.imp.divano.traslocatori",
+            "costo": "testi:e17.imp.divano.traslocatori.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.divano.traslocatori.r"
+          },
+          {
+            "id": "di_traverso",
+            "testo": "testi:e17.imp.divano.di_traverso",
+            "costo": "testi:e17.imp.divano.di_traverso.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.divano.di_traverso.r"
+          },
+          {
+            "id": "dove_sta",
+            "testo": "testi:e17.imp.divano.dove_sta",
+            "costo": "testi:e17.imp.divano.dove_sta.c",
+            "effetti": [],
+            "risposta": "testi:e17.imp.divano.dove_sta.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_bibite",
+        "fonte": "centrale_radio",
+        "testo": "testi:e17.imp.bibite",
+        "commento": "testi:e17.imp.bibite.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "casse_piazzale",
+            "testo": "testi:e17.imp.bibite.casse_piazzale",
+            "costo": "testi:e17.imp.bibite.casse_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.bibite.casse_piazzale.r"
+          },
+          {
+            "id": "torre_casse",
+            "testo": "testi:e17.imp.bibite.torre_casse",
+            "costo": "testi:e17.imp.bibite.torre_casse.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.bibite.torre_casse.r"
+          },
+          {
+            "id": "autista_capisca",
+            "testo": "testi:e17.imp.bibite.autista_capisca",
+            "costo": "testi:e17.imp.bibite.autista_capisca.c",
+            "effetti": [],
+            "risposta": "testi:e17.imp.bibite.autista_capisca.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_piccioni",
+        "fonte": "servizio_ordine_corteo",
+        "testo": "testi:e17.imp.piccioni",
+        "commento": "testi:e17.imp.piccioni.vice",
+        "settore": "piazza_municipio",
+        "opzioni": [
+          {
+            "id": "sacchi_avanzi",
+            "testo": "testi:e17.imp.piccioni.sacchi_avanzi",
+            "costo": "testi:e17.imp.piccioni.sacchi_avanzi.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -2
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.piccioni.sacchi_avanzi.r"
+          },
+          {
+            "id": "sventola",
+            "testo": "testi:e17.imp.piccioni.sventola",
+            "costo": "testi:e17.imp.piccioni.sventola.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.piccioni.sventola.r"
+          },
+          {
+            "id": "mangino",
+            "testo": "testi:e17.imp.piccioni.mangino",
+            "costo": "testi:e17.imp.piccioni.mangino.c",
+            "effetti": [],
+            "risposta": "testi:e17.imp.piccioni.mangino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_irrigatori",
+        "fonte": "servizio_ordine_corteo",
+        "testo": "testi:e17.imp.irrigatori",
+        "commento": "testi:e17.imp.irrigatori.vice",
+        "settore": "piazza_municipio",
+        "opzioni": [
+          {
+            "id": "custode_valvola",
+            "testo": "testi:e17.imp.irrigatori.custode_valvola",
+            "costo": "testi:e17.imp.irrigatori.custode_valvola.c",
+            "effetti": [
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.irrigatori.custode_valvola.r"
+          },
+          {
+            "id": "lontano_getti",
+            "testo": "testi:e17.imp.irrigatori.lontano_getti",
+            "costo": "testi:e17.imp.irrigatori.lontano_getti.c",
+            "effetti": [
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e17.imp.irrigatori.lontano_getti.r"
+          },
+          {
+            "id": "innaffi",
+            "testo": "testi:e17.imp.irrigatori.innaffi",
+            "costo": "testi:e17.imp.irrigatori.innaffi.c",
+            "effetti": [],
+            "risposta": "testi:e17.imp.irrigatori.innaffi.r"
+          }
+        ]
+      }
     }
   ]
 }

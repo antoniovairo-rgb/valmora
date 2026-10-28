@@ -23,9 +23,11 @@ const imprevisti = (rosso?: string): FileImprevisti[] => Object.entries(d).filte
 
 describe('C44-01 lo stesso modello di imprevisto in tutti i 36 episodi', () => {
   const problemi = () => controllaImprevisti({ ...d, ...Object.fromEntries(imprevisti('C4401').map((f) => [`imprevisti/${f.id}.json`, f])) });
-  it('verde: nessun problema su 36 episodi e 142 imprevisti; rosso C4401: le 16 unità e i 13 «lascia correre» di e01–e06', () => {
+  it('verde: nessun problema su 36 episodi e 142 + 142 imprevisti (D-241); rosso C4401: le 16 unità e i 13 «lascia correre» di e01–e06', () => {
     expect(imprevisti().length).toBe(36);
-    expect(imprevisti().reduce((s, f) => s + f.imprevisti.length, 0)).toBe(142);
+    // D-241: 142 carte classiche (una per ondata) + 142 carte nuove del mazzo
+    expect(imprevisti().reduce((s, f) => s + f.imprevisti.filter((x) => x.dopo !== undefined).length, 0)).toBe(142);
+    expect(imprevisti().reduce((s, f) => s + f.imprevisti.length, 0)).toBe(284);
     expect(problemi()).toEqual([]);
     g.__NO_C4401 = true;
     const rosso = problemi();

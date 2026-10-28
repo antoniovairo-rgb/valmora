@@ -204,6 +204,222 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_pedaggio",
+        "fonte": "centrale_radio",
+        "testo": "testi:e23.imp.pedaggio",
+        "commento": "testi:e23.imp.pedaggio.vice",
+        "settore": "casello",
+        "opzioni": [
+          {
+            "id": "corsie_servizio",
+            "testo": "testi:e23.imp.pedaggio.corsie_servizio",
+            "costo": "testi:e23.imp.pedaggio.corsie_servizio.c",
+            "effetti": [
+              {
+                "pressione": "casello",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e23.imp.pedaggio.corsie_servizio.r"
+          },
+          {
+            "id": "pedaggio_mano",
+            "testo": "testi:e23.imp.pedaggio.pedaggio_mano",
+            "costo": "testi:e23.imp.pedaggio.pedaggio_mano.c",
+            "effetti": [
+              {
+                "pressione": "casello",
+                "valore": -1
+              },
+              {
+                "tensione": "casello",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.pedaggio.pedaggio_mano.r"
+          },
+          {
+            "id": "aspetta_macchinetta",
+            "testo": "testi:e23.imp.pedaggio.aspetta_macchinetta",
+            "costo": "testi:e23.imp.pedaggio.aspetta_macchinetta.c",
+            "effetti": [],
+            "risposta": "testi:e23.imp.pedaggio.aspetta_macchinetta.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_radiolina",
+        "fonte": "centrale_radio",
+        "testo": "testi:e23.imp.radiolina",
+        "commento": "testi:e23.imp.radiolina.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "prendi_radiolina",
+            "testo": "testi:e23.imp.radiolina.prendi_radiolina",
+            "costo": "testi:e23.imp.radiolina.prendi_radiolina.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e23.imp.radiolina.prendi_radiolina.r"
+          },
+          {
+            "id": "auricolare",
+            "testo": "testi:e23.imp.radiolina.auricolare",
+            "costo": "testi:e23.imp.radiolina.auricolare.c",
+            "effetti": [
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.radiolina.auricolare.r"
+          },
+          {
+            "id": "lascia_radiolina",
+            "testo": "testi:e23.imp.radiolina.lascia_radiolina",
+            "costo": "testi:e23.imp.radiolina.lascia_radiolina.c",
+            "effetti": [],
+            "risposta": "testi:e23.imp.radiolina.lascia_radiolina.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_acqua",
+        "fonte": "club_southwind",
+        "testo": "testi:e23.imp.acqua",
+        "commento": "testi:e23.imp.acqua.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "casse_acqua",
+            "testo": "testi:e23.imp.acqua.casse_acqua",
+            "costo": "testi:e23.imp.acqua.casse_acqua.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e23.imp.acqua.casse_acqua.r"
+          },
+          {
+            "id": "fontanella",
+            "testo": "testi:e23.imp.acqua.fontanella",
+            "costo": "testi:e23.imp.acqua.fontanella.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.acqua.fontanella.r"
+          },
+          {
+            "id": "bibite_calde",
+            "testo": "testi:e23.imp.acqua.bibite_calde",
+            "costo": "testi:e23.imp.acqua.bibite_calde.c",
+            "effetti": [],
+            "risposta": "testi:e23.imp.acqua.bibite_calde.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_cavi",
+        "fonte": "centrale_radio",
+        "testo": "testi:e23.imp.cavi",
+        "commento": "testi:e23.imp.cavi.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "raccogli_cavi",
+            "testo": "testi:e23.imp.cavi.raccogli_cavi",
+            "costo": "testi:e23.imp.cavi.raccogli_cavi.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e23.imp.cavi.raccogli_cavi.r"
+          },
+          {
+            "id": "cartoni_cavi",
+            "testo": "testi:e23.imp.cavi.cartoni_cavi",
+            "costo": "testi:e23.imp.cavi.cartoni_cavi.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e23.imp.cavi.cartoni_cavi.r"
+          },
+          {
+            "id": "lascia_cavi",
+            "testo": "testi:e23.imp.cavi.lascia_cavi",
+            "costo": "testi:e23.imp.cavi.lascia_cavi.c",
+            "effetti": [],
+            "risposta": "testi:e23.imp.cavi.lascia_cavi.r"
+          }
+        ]
+      }
     }
   ]
 }

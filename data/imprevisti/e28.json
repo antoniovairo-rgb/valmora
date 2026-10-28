@@ -200,6 +200,218 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_nebbia_porto",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.nebbia_porto",
+        "commento": "testi:e28.imp.nebbia_porto.vice",
+        "settore": "banchine",
+        "opzioni": [
+          {
+            "id": "torri_faro",
+            "testo": "testi:e28.imp.nebbia_porto.torri_faro",
+            "costo": "testi:e28.imp.nebbia_porto.torri_faro.c",
+            "effetti": [
+              {
+                "pressione": "banchine",
+                "valore": -2
+              },
+              {
+                "tensione": "magazzino_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.nebbia_porto.torri_faro.r"
+          },
+          {
+            "id": "colonna_fari",
+            "testo": "testi:e28.imp.nebbia_porto.colonna_fari",
+            "costo": "testi:e28.imp.nebbia_porto.colonna_fari.c",
+            "effetti": [
+              {
+                "pressione": "banchine",
+                "valore": -1
+              },
+              {
+                "tensione": "banchine",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.nebbia_porto.colonna_fari.r"
+          },
+          {
+            "id": "nebbia_alzi",
+            "testo": "testi:e28.imp.nebbia_porto.nebbia_alzi",
+            "costo": "testi:e28.imp.nebbia_porto.nebbia_alzi.c",
+            "effetti": [],
+            "risposta": "testi:e28.imp.nebbia_porto.nebbia_alzi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_cilindro",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.cilindro",
+        "commento": "testi:e28.imp.cilindro.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "togli_cilindro",
+            "testo": "testi:e28.imp.cilindro.togli_cilindro",
+            "costo": "testi:e28.imp.cilindro.togli_cilindro.c",
+            "effetti": [
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.cilindro.togli_cilindro.r"
+          },
+          {
+            "id": "scala_fila",
+            "testo": "testi:e28.imp.cilindro.scala_fila",
+            "costo": "testi:e28.imp.cilindro.scala_fila.c",
+            "effetti": [
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.cilindro.scala_fila.r"
+          },
+          {
+            "id": "cilindro_resta",
+            "testo": "testi:e28.imp.cilindro.cilindro_resta",
+            "costo": "testi:e28.imp.cilindro.cilindro_resta.c",
+            "effetti": [],
+            "risposta": "testi:e28.imp.cilindro.cilindro_resta.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_pecore",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.pecore",
+        "commento": "testi:e28.imp.pecore.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "gregge_strada",
+            "testo": "testi:e28.imp.pecore.gregge_strada",
+            "costo": "testi:e28.imp.pecore.gregge_strada.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.pecore.gregge_strada.r"
+          },
+          {
+            "id": "recinto",
+            "testo": "testi:e28.imp.pecore.recinto",
+            "costo": "testi:e28.imp.pecore.recinto.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.pecore.recinto.r"
+          },
+          {
+            "id": "autista_pecore",
+            "testo": "testi:e28.imp.pecore.autista_pecore",
+            "costo": "testi:e28.imp.pecore.autista_pecore.c",
+            "effetti": [],
+            "risposta": "testi:e28.imp.pecore.autista_pecore.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_traghetto",
+        "fonte": "centrale_radio",
+        "testo": "testi:e28.imp.traghetto",
+        "commento": "testi:e28.imp.traghetto.vice",
+        "settore": "banchine",
+        "opzioni": [
+          {
+            "id": "varco_merci",
+            "testo": "testi:e28.imp.traghetto.varco_merci",
+            "costo": "testi:e28.imp.traghetto.varco_merci.c",
+            "effetti": [
+              {
+                "pressione": "banchine",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.traghetto.varco_merci.r"
+          },
+          {
+            "id": "valigie_molo",
+            "testo": "testi:e28.imp.traghetto.valigie_molo",
+            "costo": "testi:e28.imp.traghetto.valigie_molo.c",
+            "effetti": [
+              {
+                "pressione": "banchine",
+                "valore": -1
+              },
+              {
+                "tensione": "banchine",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e28.imp.traghetto.valigie_molo.r"
+          },
+          {
+            "id": "taxi",
+            "testo": "testi:e28.imp.traghetto.taxi",
+            "costo": "testi:e28.imp.traghetto.taxi.c",
+            "effetti": [],
+            "risposta": "testi:e28.imp.traghetto.taxi.r"
+          }
+        ]
+      }
     }
   ]
 }

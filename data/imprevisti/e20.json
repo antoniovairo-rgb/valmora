@@ -204,6 +204,222 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_gelati",
+        "fonte": "centrale_radio",
+        "testo": "testi:e20.imp.gelati",
+        "commento": "testi:e20.imp.gelati.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "furgone_fonderie",
+            "testo": "testi:e20.imp.gelati.furgone_fonderie",
+            "costo": "testi:e20.imp.gelati.furgone_fonderie.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.gelati.furgone_fonderie.r"
+          },
+          {
+            "id": "furgone_fondo",
+            "testo": "testi:e20.imp.gelati.furgone_fondo",
+            "costo": "testi:e20.imp.gelati.furgone_fondo.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.gelati.furgone_fondo.r"
+          },
+          {
+            "id": "lascia_musichetta",
+            "testo": "testi:e20.imp.gelati.lascia_musichetta",
+            "costo": "testi:e20.imp.gelati.lascia_musichetta.c",
+            "effetti": [],
+            "risposta": "testi:e20.imp.gelati.lascia_musichetta.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_tabellone",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e20.imp.tabellone",
+        "commento": "testi:e20.imp.tabellone.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "riavvia_tabellone",
+            "testo": "testi:e20.imp.tabellone.riavvia_tabellone",
+            "costo": "testi:e20.imp.tabellone.riavvia_tabellone.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.tabellone.riavvia_tabellone.r"
+          },
+          {
+            "id": "schermo_grigio",
+            "testo": "testi:e20.imp.tabellone.schermo_grigio",
+            "costo": "testi:e20.imp.tabellone.schermo_grigio.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.tabellone.schermo_grigio.r"
+          },
+          {
+            "id": "lascia_primo_piano",
+            "testo": "testi:e20.imp.tabellone.lascia_primo_piano",
+            "costo": "testi:e20.imp.tabellone.lascia_primo_piano.c",
+            "effetti": [],
+            "risposta": "testi:e20.imp.tabellone.lascia_primo_piano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_ciclisti",
+        "fonte": "centrale_radio",
+        "testo": "testi:e20.imp.ciclisti",
+        "commento": "testi:e20.imp.ciclisti.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "devia_ciclisti",
+            "testo": "testi:e20.imp.ciclisti.devia_ciclisti",
+            "costo": "testi:e20.imp.ciclisti.devia_ciclisti.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.ciclisti.devia_ciclisti.r"
+          },
+          {
+            "id": "corsia_bici",
+            "testo": "testi:e20.imp.ciclisti.corsia_bici",
+            "costo": "testi:e20.imp.ciclisti.corsia_bici.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.ciclisti.corsia_bici.r"
+          },
+          {
+            "id": "passino_bici",
+            "testo": "testi:e20.imp.ciclisti.passino_bici",
+            "costo": "testi:e20.imp.ciclisti.passino_bici.c",
+            "effetti": [],
+            "risposta": "testi:e20.imp.ciclisti.passino_bici.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_mercato",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e20.imp.mercato",
+        "commento": "testi:e20.imp.mercato.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "smonta_banchi",
+            "testo": "testi:e20.imp.mercato.smonta_banchi",
+            "costo": "testi:e20.imp.mercato.smonta_banchi.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.mercato.smonta_banchi.r"
+          },
+          {
+            "id": "corridoio_banchi",
+            "testo": "testi:e20.imp.mercato.corridoio_banchi",
+            "costo": "testi:e20.imp.mercato.corridoio_banchi.c",
+            "effetti": [
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e20.imp.mercato.corridoio_banchi.r"
+          },
+          {
+            "id": "lascia_mercato",
+            "testo": "testi:e20.imp.mercato.lascia_mercato",
+            "costo": "testi:e20.imp.mercato.lascia_mercato.c",
+            "effetti": [],
+            "risposta": "testi:e20.imp.mercato.lascia_mercato.r"
+          }
+        ]
+      }
     }
   ]
 }

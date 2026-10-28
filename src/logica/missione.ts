@@ -12,6 +12,7 @@
 //   non tornano disponibili e non vanno a riposo. Rosso: __NO_C09F01 (si comportano come unità normali).
 import { applica, valuta } from './condizioni.ts';
 import { spento } from '../interruttori.ts';
+import { chiamateDellaPartita, semeRipartenza } from './partita.ts';
 import type { Chiamata, Condizione, Dichiarazione, Disposizione, Dopo, EffettoMissione, Esito, Missione, Opzione, Variabili } from './tipi.ts';
 
 export const VAR_TENSIONE = 'tensione_max';
@@ -45,6 +46,7 @@ export interface InCorso {
   variabili: Variabili;
   fisse?: Disposizione;                 // unità fisse già piazzate, per risorsa e settore (D-082); assente nei salvataggi vecchi
   partenze?: Record<number, InCorso>;   // stato all'inizio di ogni ondata, per ripartire da lì (PO-060); assente nei salvataggi vecchi
+  seme?: number;                        // D-241: seme di partita (partita.ts); 0 o assente = la partita classica
 }
 
 const ondataDi = (m: Missione, s: InCorso) => {
@@ -66,13 +68,13 @@ export function fiduciaMinima(v: Variabili, d: Dich): Variabili {
   return { ...v, [VAR_FIDUCIA]: FIDUCIA_MIN };
 }
 
-export function iniziaMissione(m: Missione, iniziali: Variabili, d: Dich): InCorso {
+export function iniziaMissione(m: Missione, iniziali: Variabili, d: Dich, seme = 0): InCorso {
   if (!d.has(VAR_TENSIONE)) throw new Error(`stato.json deve dichiarare «${VAR_TENSIONE}»`);
   const zero = (ids: string[]) => Object.fromEntries(ids.map((id) => [id, 0]));
   const risorse = Object.keys(m.mappa.risorse);
   const s: InCorso = {
     missione: m.id, ondata: 1, tensione: zero(m.mappa.settori.map((x) => x.id)), riserva: zero(risorse), riposo: zero(risorse),
-    disposizione: null, modifiche: {}, risposte: {}, scelte: [], rapporti: [], variabili: fiduciaMinima({ ...iniziali, [VAR_TENSIONE]: 0 }, d),
+    disposizione: null, modifiche: {}, risposte: {}, scelte: [], rapporti: [], variabili: fiduciaMinima({ ...iniziali, [VAR_TENSIONE]: 0 }, d), seme,
   };
   return { ...s, partenze: { 1: s } };
 }
@@ -133,7 +135,7 @@ export function schiera(m: Missione, s: InCorso, d: Disposizione): InCorso {
 /** Chiamate dell'ondata in corso ancora senza risposta, nell'ordine dei dati. */
 export function chiamateAperte(m: Missione, s: InCorso): Chiamata[] {
   if (missioneFinita(m, s)) return [];
-  return (ondataDi(m, s).chiamate ?? []).filter((c) => !(c.id in s.risposte) && (!c.se || valuta(c.se, s.variabili)) && (!c.senza || spento('PO095') || nessuno(s, c.senza)) && coerente(s, c.dopo));
+  return chiamateDellaPartita(m, ondataDi(m, s), s.seme).filter((c) => !(c.id in s.risposte) && (!c.se || valuta(c.se, s.variabili)) && (!c.senza || spento('PO095') || nessuno(s, c.senza)) && coerente(s, c.dopo));
 }
 
 /** PO-095: «senza steward», «non c'è nessuno»: vero solo se nel settore non hai schierato nessuna di quelle unità. */
@@ -272,11 +274,12 @@ export function ondataDaRiprendere(r: { rapporti: RapportoOndata[]; variabili: V
   return k ? k.n : 1;
 }
 
-/** Stato per rigiocare dall'ondata n (PO-060); null se il salvataggio non ha la copia (salvataggi vecchi: si riparte dall'inizio). */
+/** Stato per rigiocare dall'ondata n (PO-060); null se il salvataggio non ha la copia (salvataggi vecchi: si riparte dall'inizio).
+ *  D-241: con un seme di partita nuovo (le ondate già giocate non cambiano). */
 export function riprendiDallOndata(s: InCorso, n: number): InCorso | null {
   const p = s.partenze?.[n];
   if (!p) return null;
-  return { ...p, partenze: Object.fromEntries(Object.entries(s.partenze ?? {}).filter(([k]) => Number(k) <= n)) };
+  return { ...p, seme: semeRipartenza(s.seme ?? 0, n), partenze: Object.fromEntries(Object.entries(s.partenze ?? {}).filter(([k]) => Number(k) <= n)) };
 }
 
 export interface EsitoMissione { esito: Esito; variabili: Variabili; rapporti: RapportoOndata[]; scelte: InCorso['scelte'] }
@@ -296,8 +299,8 @@ export interface Giocatore {
   scegli(m: Missione, s: InCorso, c: Chiamata): string;
 }
 
-export function giocaMissione(m: Missione, iniziali: Variabili, d: Dich, g: Giocatore): EsitoMissione {
-  let s = iniziaMissione(m, iniziali, d);
+export function giocaMissione(m: Missione, iniziali: Variabili, d: Dich, g: Giocatore, seme = 0): EsitoMissione {
+  let s = iniziaMissione(m, iniziali, d, seme);
   while (!missioneFinita(m, s)) {
     s = schiera(m, s, g.schiera(m, s));
     for (let c = chiamateAperte(m, s)[0]; c; c = chiamateAperte(m, s)[0]) s = rispondi(m, s, c.id, g.scegli(m, s, c), d);

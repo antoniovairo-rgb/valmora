@@ -200,6 +200,384 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_sposi",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.imp.sposi",
+        "commento": "testi:e10.imp.sposi.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "cortile_foto",
+            "testo": "testi:e10.imp.sposi.cortile_foto",
+            "costo": "testi:e10.imp.sposi.cortile_foto.c",
+            "effetti": [
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.sposi.cortile_foto.r"
+          },
+          {
+            "id": "dietro_sposi",
+            "testo": "testi:e10.imp.sposi.dietro_sposi",
+            "costo": "testi:e10.imp.sposi.dietro_sposi.c",
+            "effetti": [
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.sposi.dietro_sposi.r"
+          },
+          {
+            "id": "ultima_foto",
+            "testo": "testi:e10.imp.sposi.ultima_foto",
+            "costo": "testi:e10.imp.sposi.ultima_foto.c",
+            "effetti": [],
+            "risposta": "testi:e10.imp.sposi.ultima_foto.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        5
+      ],
+      "chiamata": {
+        "id": "imp_bar_secco",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.imp.bar_secco",
+        "commento": "testi:e10.imp.bar_secco.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "casse_collina",
+            "testo": "testi:e10.imp.bar_secco.casse_collina",
+            "costo": "testi:e10.imp.bar_secco.casse_collina.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -2
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.bar_secco.casse_collina.r"
+          },
+          {
+            "id": "acqua_rubinetto",
+            "testo": "testi:e10.imp.bar_secco.acqua_rubinetto",
+            "costo": "testi:e10.imp.bar_secco.acqua_rubinetto.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.bar_secco.acqua_rubinetto.r"
+          },
+          {
+            "id": "lascia_a_secco",
+            "testo": "testi:e10.imp.bar_secco.lascia_a_secco",
+            "costo": "testi:e10.imp.bar_secco.lascia_a_secco.c",
+            "effetti": [],
+            "risposta": "testi:e10.imp.bar_secco.lascia_a_secco.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_antincendio",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.imp.antincendio",
+        "commento": "testi:e10.imp.antincendio.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "tecnici_valvola",
+            "testo": "testi:e10.imp.antincendio.tecnici_valvola",
+            "costo": "testi:e10.imp.antincendio.tecnici_valvola.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.antincendio.tecnici_valvola.r"
+          },
+          {
+            "id": "gradoni_asciutti",
+            "testo": "testi:e10.imp.antincendio.gradoni_asciutti",
+            "costo": "testi:e10.imp.antincendio.gradoni_asciutti.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.antincendio.gradoni_asciutti.r"
+          },
+          {
+            "id": "aspetta_cisterna",
+            "testo": "testi:e10.imp.antincendio.aspetta_cisterna",
+            "costo": "testi:e10.imp.antincendio.aspetta_cisterna.c",
+            "effetti": [],
+            "risposta": "testi:e10.imp.antincendio.aspetta_cisterna.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_pensionati",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.imp.pensionati",
+        "commento": "testi:e10.imp.pensionati.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "addetto_comitiva",
+            "testo": "testi:e10.imp.pensionati.addetto_comitiva",
+            "costo": "testi:e10.imp.pensionati.addetto_comitiva.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.pensionati.addetto_comitiva.r"
+          },
+          {
+            "id": "panchine_comitiva",
+            "testo": "testi:e10.imp.pensionati.panchine_comitiva",
+            "costo": "testi:e10.imp.pensionati.panchine_comitiva.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.imp.pensionati.panchine_comitiva.r"
+          },
+          {
+            "id": "aspetta_autista",
+            "testo": "testi:e10.imp.pensionati.aspetta_autista",
+            "costo": "testi:e10.imp.pensionati.aspetta_autista.c",
+            "effetti": [],
+            "risposta": "testi:e10.imp.pensionati.aspetta_autista.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "foto_cerchiate",
+      "chiamata": {
+        "id": "foto_cerchiate_v",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e10.var.foto_cerchiate",
+        "commento": "testi:e10.var.foto_cerchiate.vice",
+        "opzioni": [
+          {
+            "id": "comunicato10",
+            "testo": "testi:e10.var.foto_cerchiate.comunicato10",
+            "costo": "testi:e10.var.foto_cerchiate.comunicato10.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.var.foto_cerchiate.comunicato10.r"
+          },
+          {
+            "id": "silenzio10",
+            "testo": "testi:e10.var.foto_cerchiate.silenzio10",
+            "costo": "testi:e10.var.foto_cerchiate.silenzio10.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e10.var.foto_cerchiate.silenzio10.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "due_coreografie",
+      "chiamata": {
+        "id": "due_coreografie_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.var.due_coreografie",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "steward_confine",
+            "testo": "testi:e10.var.due_coreografie.steward_confine",
+            "costo": "testi:e10.var.due_coreografie.steward_confine.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -2
+              },
+              {
+                "riserva": "steward",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e10.var.due_coreografie.steward_confine.r"
+          },
+          {
+            "id": "lascia_coreografie",
+            "testo": "testi:e10.var.due_coreografie.lascia_coreografie",
+            "costo": "testi:e10.var.due_coreografie.lascia_coreografie.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e10.var.due_coreografie.lascia_coreografie.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "scavalca",
+      "chiamata": {
+        "id": "scavalca_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e10.var.scavalca",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "cordone10",
+            "testo": "testi:e10.var.scavalca.cordone10",
+            "costo": "testi:e10.var.scavalca.cordone10.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e10.var.scavalca.cordone10.r"
+          },
+          {
+            "id": "steward_scavalca",
+            "testo": "testi:e10.var.scavalca.steward_scavalca",
+            "costo": "testi:e10.var.scavalca.steward_scavalca.c",
+            "effetti": [
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.var.scavalca.steward_scavalca.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "di": "ponte_ritorno",
+      "chiamata": {
+        "id": "ponte_ritorno_v",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e10.var.ponte_ritorno",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "chiudi_ponte",
+            "testo": "testi:e10.var.ponte_ritorno.chiudi_ponte",
+            "costo": "testi:e10.var.ponte_ritorno.chiudi_ponte.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e10.var.ponte_ritorno.chiudi_ponte.r"
+          },
+          {
+            "id": "parla_ponte",
+            "testo": "testi:e10.var.ponte_ritorno.parla_ponte",
+            "costo": "testi:e10.var.ponte_ritorno.parla_ponte.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e10.var.ponte_ritorno.parla_ponte.r"
+          }
+        ]
+      }
     }
   ]
 }

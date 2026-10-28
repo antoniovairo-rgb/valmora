@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_bancarella_sciarpe",
+        "fonte": "centrale_radio",
+        "testo": "testi:e26.imp.bancarella_sciarpe",
+        "commento": "testi:e26.imp.bancarella_sciarpe.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "rimonta_bancarella",
+            "testo": "testi:e26.imp.bancarella_sciarpe.rimonta_bancarella",
+            "costo": "testi:e26.imp.bancarella_sciarpe.rimonta_bancarella.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.bancarella_sciarpe.rimonta_bancarella.r"
+          },
+          {
+            "id": "svendita",
+            "testo": "testi:e26.imp.bancarella_sciarpe.svendita",
+            "costo": "testi:e26.imp.bancarella_sciarpe.svendita.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.bancarella_sciarpe.svendita.r"
+          },
+          {
+            "id": "raccolgano",
+            "testo": "testi:e26.imp.bancarella_sciarpe.raccolgano",
+            "costo": "testi:e26.imp.bancarella_sciarpe.raccolgano.c",
+            "effetti": [],
+            "risposta": "testi:e26.imp.bancarella_sciarpe.raccolgano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_cartoncini",
+        "fonte": "centrale_radio",
+        "testo": "testi:e26.imp.cartoncini",
+        "commento": "testi:e26.imp.cartoncini.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "addetto_file",
+            "testo": "testi:e26.imp.cartoncini.addetto_file",
+            "costo": "testi:e26.imp.cartoncini.addetto_file.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.cartoncini.addetto_file.r"
+          },
+          {
+            "id": "solo_colori",
+            "testo": "testi:e26.imp.cartoncini.solo_colori",
+            "costo": "testi:e26.imp.cartoncini.solo_colori.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.cartoncini.solo_colori.r"
+          },
+          {
+            "id": "capovolti",
+            "testo": "testi:e26.imp.cartoncini.capovolti",
+            "costo": "testi:e26.imp.cartoncini.capovolti.c",
+            "effetti": [],
+            "risposta": "testi:e26.imp.cartoncini.capovolti.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_furgone_gelati",
+        "fonte": "centrale_radio",
+        "testo": "testi:e26.imp.furgone_gelati",
+        "commento": "testi:e26.imp.furgone_gelati.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "sposta_gelati",
+            "testo": "testi:e26.imp.furgone_gelati.sposta_gelati",
+            "costo": "testi:e26.imp.furgone_gelati.sposta_gelati.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.furgone_gelati.sposta_gelati.r"
+          },
+          {
+            "id": "volume_gelati",
+            "testo": "testi:e26.imp.furgone_gelati.volume_gelati",
+            "costo": "testi:e26.imp.furgone_gelati.volume_gelati.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.furgone_gelati.volume_gelati.r"
+          },
+          {
+            "id": "musichetta",
+            "testo": "testi:e26.imp.furgone_gelati.musichetta",
+            "costo": "testi:e26.imp.furgone_gelati.musichetta.c",
+            "effetti": [],
+            "risposta": "testi:e26.imp.furgone_gelati.musichetta.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_luci_tribuna",
+        "fonte": "cerimoniale",
+        "testo": "testi:e26.imp.luci_tribuna",
+        "commento": "testi:e26.imp.luci_tribuna.vice",
+        "settore": "tribuna_autorita",
+        "opzioni": [
+          {
+            "id": "corrente_tribuna",
+            "testo": "testi:e26.imp.luci_tribuna.corrente_tribuna",
+            "costo": "testi:e26.imp.luci_tribuna.corrente_tribuna.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.luci_tribuna.corrente_tribuna.r"
+          },
+          {
+            "id": "torce_telefoni",
+            "testo": "testi:e26.imp.luci_tribuna.torce_telefoni",
+            "costo": "testi:e26.imp.luci_tribuna.torce_telefoni.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "tribuna_autorita",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e26.imp.luci_tribuna.torce_telefoni.r"
+          },
+          {
+            "id": "impianto_stabile",
+            "testo": "testi:e26.imp.luci_tribuna.impianto_stabile",
+            "costo": "testi:e26.imp.luci_tribuna.impianto_stabile.c",
+            "effetti": [],
+            "risposta": "testi:e26.imp.luci_tribuna.impianto_stabile.r"
+          }
+        ]
+      }
     }
   ]
 }

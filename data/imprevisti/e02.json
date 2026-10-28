@@ -208,6 +208,398 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_banda",
+        "fonte": "centrale_radio",
+        "testo": "testi:e02.imp.banda",
+        "commento": "testi:e02.imp.banda.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "banda_stazione",
+            "testo": "testi:e02.imp.banda.banda_stazione",
+            "costo": "testi:e02.imp.banda.banda_stazione.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -2
+              },
+              {
+                "tensione": "stazione",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e02.imp.banda.banda_stazione.r"
+          },
+          {
+            "id": "banda_di_lato",
+            "testo": "testi:e02.imp.banda.banda_di_lato",
+            "costo": "testi:e02.imp.banda.banda_di_lato.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.banda.banda_di_lato.r"
+          },
+          {
+            "id": "finire_prove",
+            "testo": "testi:e02.imp.banda.finire_prove",
+            "costo": "testi:e02.imp.banda.finire_prove.c",
+            "effetti": [],
+            "risposta": "testi:e02.imp.banda.finire_prove.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_piccione",
+        "fonte": "centrale_radio",
+        "testo": "testi:e02.imp.piccione",
+        "commento": "testi:e02.imp.piccione.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "libera_gabbiotto",
+            "testo": "testi:e02.imp.piccione.libera_gabbiotto",
+            "costo": "testi:e02.imp.piccione.libera_gabbiotto.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e02.imp.piccione.libera_gabbiotto.r"
+          },
+          {
+            "id": "timbro_a_mano",
+            "testo": "testi:e02.imp.piccione.timbro_a_mano",
+            "costo": "testi:e02.imp.piccione.timbro_a_mano.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.piccione.timbro_a_mano.r"
+          },
+          {
+            "id": "esca_da_solo",
+            "testo": "testi:e02.imp.piccione.esca_da_solo",
+            "costo": "testi:e02.imp.piccione.esca_da_solo.c",
+            "effetti": [],
+            "risposta": "testi:e02.imp.piccione.esca_da_solo.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_tornello",
+        "fonte": "centrale_radio",
+        "testo": "testi:e02.imp.tornello",
+        "commento": "testi:e02.imp.tornello.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "cancello_accanto",
+            "testo": "testi:e02.imp.tornello.cancello_accanto",
+            "costo": "testi:e02.imp.tornello.cancello_accanto.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.tornello.cancello_accanto.r"
+          },
+          {
+            "id": "conta_a_voce",
+            "testo": "testi:e02.imp.tornello.conta_a_voce",
+            "costo": "testi:e02.imp.tornello.conta_a_voce.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.tornello.conta_a_voce.r"
+          },
+          {
+            "id": "gira_come_vuole",
+            "testo": "testi:e02.imp.tornello.gira_come_vuole",
+            "costo": "testi:e02.imp.tornello.gira_come_vuole.c",
+            "effetti": [],
+            "risposta": "testi:e02.imp.tornello.gira_come_vuole.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_divano",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e02.imp.divano",
+        "commento": "testi:e02.imp.divano.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "carica_divano",
+            "testo": "testi:e02.imp.divano.carica_divano",
+            "costo": "testi:e02.imp.divano.carica_divano.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.divano.carica_divano.r"
+          },
+          {
+            "id": "gira_intorno",
+            "testo": "testi:e02.imp.divano.gira_intorno",
+            "costo": "testi:e02.imp.divano.gira_intorno.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.imp.divano.gira_intorno.r"
+          },
+          {
+            "id": "divano_resta",
+            "testo": "testi:e02.imp.divano.divano_resta",
+            "costo": "testi:e02.imp.divano.divano_resta.c",
+            "effetti": [],
+            "risposta": "testi:e02.imp.divano.divano_resta.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "responsabile",
+      "chiamata": {
+        "id": "responsabile_v",
+        "fonte": "club_railhead",
+        "testo": "testi:e02.var.responsabile",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "fidati",
+            "testo": "testi:e02.var.responsabile.fidati",
+            "costo": "testi:e02.var.responsabile.fidati.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": 3
+              }
+            ],
+            "risposta": "testi:e02.var.responsabile.fidati.r"
+          },
+          {
+            "id": "non_fidarti",
+            "testo": "testi:e02.var.responsabile.non_fidarti",
+            "costo": "testi:e02.var.responsabile.non_fidarti.c",
+            "effetti": [],
+            "risposta": "testi:e02.var.responsabile.non_fidarti.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "secondo_treno",
+      "chiamata": {
+        "id": "secondo_treno_v",
+        "fonte": "ferrovie",
+        "testo": "testi:e02.var.secondo_treno",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "accoglienza",
+            "testo": "testi:e02.var.secondo_treno.accoglienza",
+            "costo": "testi:e02.var.secondo_treno.accoglienza.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -2
+              },
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.var.secondo_treno.accoglienza.r"
+          },
+          {
+            "id": "binario_lontano",
+            "testo": "testi:e02.var.secondo_treno.binario_lontano",
+            "costo": "testi:e02.var.secondo_treno.binario_lontano.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -1
+              },
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.var.secondo_treno.binario_lontano.r"
+          },
+          {
+            "id": "normale",
+            "testo": "testi:e02.var.secondo_treno.normale",
+            "costo": "testi:e02.var.secondo_treno.normale.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.var.secondo_treno.normale.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "striscione_ospiti",
+      "chiamata": {
+        "id": "striscione_ospiti_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e02.var.striscione_ospiti",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "chiedi",
+            "testo": "testi:e02.var.striscione_ospiti.chiedi",
+            "costo": "testi:e02.var.striscione_ospiti.chiedi.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e02.var.striscione_ospiti.chiedi.r"
+          },
+          {
+            "id": "rimuovi_str",
+            "testo": "testi:e02.var.striscione_ospiti.rimuovi_str",
+            "costo": "testi:e02.var.striscione_ospiti.rimuovi_str.c",
+            "effetti": [
+              {
+                "tensione": "curva_ospiti",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e02.var.striscione_ospiti.rimuovi_str.r"
+          },
+          {
+            "id": "ignora_str",
+            "testo": "testi:e02.var.striscione_ospiti.ignora_str",
+            "costo": "testi:e02.var.striscione_ospiti.ignora_str.c",
+            "effetti": [],
+            "risposta": "testi:e02.var.striscione_ospiti.ignora_str.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "di": "ultimo_treno",
+      "chiamata": {
+        "id": "ultimo_treno_v",
+        "fonte": "ferrovie",
+        "testo": "testi:e02.var.ultimo_treno",
+        "settore": "stazione",
+        "opzioni": [
+          {
+            "id": "trattieni_treno",
+            "testo": "testi:e02.var.ultimo_treno.trattieni_treno",
+            "costo": "testi:e02.var.ultimo_treno.trattieni_treno.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": -2
+              },
+              {
+                "pressione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e02.var.ultimo_treno.trattieni_treno.r"
+          },
+          {
+            "id": "parte",
+            "testo": "testi:e02.var.ultimo_treno.parte",
+            "costo": "testi:e02.var.ultimo_treno.parte.c",
+            "effetti": [
+              {
+                "pressione": "stazione",
+                "valore": 3
+              }
+            ],
+            "risposta": "testi:e02.var.ultimo_treno.parte.r"
+          }
+        ]
+      }
     }
   ]
 }

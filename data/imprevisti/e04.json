@@ -156,6 +156,313 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        4
+      ],
+      "chiamata": {
+        "id": "imp_materassi",
+        "fonte": "club_ospite",
+        "testo": "testi:e04.imp.materassi",
+        "commento": "testi:e04.imp.materassi.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "riporta_materassi",
+            "testo": "testi:e04.imp.materassi.riporta_materassi",
+            "costo": "testi:e04.imp.materassi.riporta_materassi.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "mercato",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e04.imp.materassi.riporta_materassi.r"
+          },
+          {
+            "id": "impila_materassi",
+            "testo": "testi:e04.imp.materassi.impila_materassi",
+            "costo": "testi:e04.imp.materassi.impila_materassi.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.imp.materassi.impila_materassi.r"
+          },
+          {
+            "id": "li_provino",
+            "testo": "testi:e04.imp.materassi.li_provino",
+            "costo": "testi:e04.imp.materassi.li_provino.c",
+            "effetti": [],
+            "risposta": "testi:e04.imp.materassi.li_provino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_televisore",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e04.imp.televisore",
+        "commento": "testi:e04.imp.televisore.vice",
+        "settore": "piazza_fonderie",
+        "opzioni": [
+          {
+            "id": "tecnico_antenna",
+            "testo": "testi:e04.imp.televisore.tecnico_antenna",
+            "costo": "testi:e04.imp.televisore.tecnico_antenna.c",
+            "effetti": [
+              {
+                "pressione": "piazza_fonderie",
+                "valore": -1
+              },
+              {
+                "tensione": "mercato",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e04.imp.televisore.tecnico_antenna.r"
+          },
+          {
+            "id": "lavagna",
+            "testo": "testi:e04.imp.televisore.lavagna",
+            "costo": "testi:e04.imp.televisore.lavagna.c",
+            "effetti": [
+              {
+                "pressione": "piazza_fonderie",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.imp.televisore.lavagna.r"
+          },
+          {
+            "id": "barista_canale",
+            "testo": "testi:e04.imp.televisore.barista_canale",
+            "costo": "testi:e04.imp.televisore.barista_canale.c",
+            "effetti": [],
+            "risposta": "testi:e04.imp.televisore.barista_canale.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        5
+      ],
+      "chiamata": {
+        "id": "imp_oche",
+        "fonte": "centrale_radio",
+        "testo": "testi:e04.imp.oche",
+        "commento": "testi:e04.imp.oche.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "allevatore",
+            "testo": "testi:e04.imp.oche.allevatore",
+            "costo": "testi:e04.imp.oche.allevatore.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e04.imp.oche.allevatore.r"
+          },
+          {
+            "id": "raduna_oche",
+            "testo": "testi:e04.imp.oche.raduna_oche",
+            "costo": "testi:e04.imp.oche.raduna_oche.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.imp.oche.raduna_oche.r"
+          },
+          {
+            "id": "trovino_strada",
+            "testo": "testi:e04.imp.oche.trovino_strada",
+            "costo": "testi:e04.imp.oche.trovino_strada.c",
+            "effetti": [],
+            "risposta": "testi:e04.imp.oche.trovino_strada.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "corteo_fonderie",
+      "chiamata": {
+        "id": "corteo_fonderie_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e04.var.corteo_fonderie",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "devia_corteo",
+            "testo": "testi:e04.var.corteo_fonderie.devia_corteo",
+            "costo": "testi:e04.var.corteo_fonderie.devia_corteo.c",
+            "effetti": [
+              {
+                "pressione": "mercato",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.var.corteo_fonderie.devia_corteo.r"
+          },
+          {
+            "id": "mediatore_fonderie",
+            "testo": "testi:e04.var.corteo_fonderie.mediatore_fonderie",
+            "costo": "testi:e04.var.corteo_fonderie.mediatore_fonderie.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              },
+              {
+                "riserva": "mediatore",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e04.var.corteo_fonderie.mediatore_fonderie.r"
+          },
+          {
+            "id": "corteo_banchi",
+            "testo": "testi:e04.var.corteo_fonderie.corteo_banchi",
+            "costo": "testi:e04.var.corteo_fonderie.corteo_banchi.c",
+            "effetti": [
+              {
+                "pressione": "mercato",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e04.var.corteo_fonderie.corteo_banchi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "fumo_arancio",
+      "chiamata": {
+        "id": "fumo_arancio_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e04.var.fumo_arancio",
+        "settore": "piazza_fonderie",
+        "opzioni": [
+          {
+            "id": "steward_fumo4",
+            "testo": "testi:e04.var.fumo_arancio.steward_fumo4",
+            "costo": "testi:e04.var.fumo_arancio.steward_fumo4.c",
+            "effetti": [
+              {
+                "pressione": "piazza_fonderie",
+                "valore": -2
+              },
+              {
+                "tensione": "piazza_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.var.fumo_arancio.steward_fumo4.r"
+          },
+          {
+            "id": "lascia_fumo4",
+            "testo": "testi:e04.var.fumo_arancio.lascia_fumo4",
+            "costo": "testi:e04.var.fumo_arancio.lascia_fumo4.c",
+            "effetti": [
+              {
+                "pressione": "mercato",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e04.var.fumo_arancio.lascia_fumo4.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "angolo",
+      "chiamata": {
+        "id": "angolo_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e04.var.angolo",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "chiudi_angolo",
+            "testo": "testi:e04.var.angolo.chiudi_angolo",
+            "costo": "testi:e04.var.angolo.chiudi_angolo.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.var.angolo.chiudi_angolo.r"
+          },
+          {
+            "id": "parla_angolo",
+            "testo": "testi:e04.var.angolo.parla_angolo",
+            "costo": "testi:e04.var.angolo.parla_angolo.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e04.var.angolo.parla_angolo.r"
+          }
+        ]
+      }
     }
   ]
 }

@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        4
+      ],
+      "chiamata": {
+        "id": "imp_caldarroste",
+        "fonte": "centrale_radio",
+        "testo": "testi:e19.imp.caldarroste",
+        "commento": "testi:e19.imp.caldarroste.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "sposta_carretto",
+            "testo": "testi:e19.imp.caldarroste.sposta_carretto",
+            "costo": "testi:e19.imp.caldarroste.sposta_carretto.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -3
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.caldarroste.sposta_carretto.r"
+          },
+          {
+            "id": "giro_carretto",
+            "testo": "testi:e19.imp.caldarroste.giro_carretto",
+            "costo": "testi:e19.imp.caldarroste.giro_carretto.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.caldarroste.giro_carretto.r"
+          },
+          {
+            "id": "lascia_castagne",
+            "testo": "testi:e19.imp.caldarroste.lascia_castagne",
+            "costo": "testi:e19.imp.caldarroste.lascia_castagne.c",
+            "effetti": [],
+            "risposta": "testi:e19.imp.caldarroste.lascia_castagne.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_gocciolio",
+        "fonte": "centrale_radio",
+        "testo": "testi:e19.imp.gocciolio",
+        "commento": "testi:e19.imp.gocciolio.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "telo_tettoia",
+            "testo": "testi:e19.imp.gocciolio.telo_tettoia",
+            "costo": "testi:e19.imp.gocciolio.telo_tettoia.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -3
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.gocciolio.telo_tettoia.r"
+          },
+          {
+            "id": "sposta_tamburo",
+            "testo": "testi:e19.imp.gocciolio.sposta_tamburo",
+            "costo": "testi:e19.imp.gocciolio.sposta_tamburo.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.gocciolio.sposta_tamburo.r"
+          },
+          {
+            "id": "lascia_gocciolare",
+            "testo": "testi:e19.imp.gocciolio.lascia_gocciolare",
+            "costo": "testi:e19.imp.gocciolio.lascia_gocciolare.c",
+            "effetti": [],
+            "risposta": "testi:e19.imp.gocciolio.lascia_gocciolare.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_cane",
+        "fonte": "centrale_radio",
+        "testo": "testi:e19.imp.cane",
+        "commento": "testi:e19.imp.cane.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "furgone_canile",
+            "testo": "testi:e19.imp.cane.furgone_canile",
+            "costo": "testi:e19.imp.cane.furgone_canile.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -3
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.cane.furgone_canile.r"
+          },
+          {
+            "id": "varco_fianco",
+            "testo": "testi:e19.imp.cane.varco_fianco",
+            "costo": "testi:e19.imp.cane.varco_fianco.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.cane.varco_fianco.r"
+          },
+          {
+            "id": "cane_dorme",
+            "testo": "testi:e19.imp.cane.cane_dorme",
+            "costo": "testi:e19.imp.cane.cane_dorme.c",
+            "effetti": [],
+            "risposta": "testi:e19.imp.cane.cane_dorme.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_lattine",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e19.imp.lattine",
+        "commento": "testi:e19.imp.lattine.vice",
+        "settore": "magazzino",
+        "opzioni": [
+          {
+            "id": "ditta_bibite",
+            "testo": "testi:e19.imp.lattine.ditta_bibite",
+            "costo": "testi:e19.imp.lattine.ditta_bibite.c",
+            "effetti": [
+              {
+                "pressione": "magazzino",
+                "valore": -3
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.lattine.ditta_bibite.r"
+          },
+          {
+            "id": "lattine_muro",
+            "testo": "testi:e19.imp.lattine.lattine_muro",
+            "costo": "testi:e19.imp.lattine.lattine_muro.c",
+            "effetti": [
+              {
+                "pressione": "magazzino",
+                "valore": -1
+              },
+              {
+                "tensione": "magazzino",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e19.imp.lattine.lattine_muro.r"
+          },
+          {
+            "id": "lattine_terra",
+            "testo": "testi:e19.imp.lattine.lattine_terra",
+            "costo": "testi:e19.imp.lattine.lattine_terra.c",
+            "effetti": [],
+            "risposta": "testi:e19.imp.lattine.lattine_terra.r"
+          }
+        ]
+      }
     }
   ]
 }

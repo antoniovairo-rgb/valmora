@@ -32,10 +32,10 @@ export function servi(dir) {
   });
   return new Promise((ok) => srv.listen(0, '127.0.0.1', () => ok(srv)));
 }
-
-/** Una partita sulla prima missione, calcolata dal motore: schieramenti, risposte, esito. */
+export const SEME_FOTO = 1; // D-241: seme di partita delle foto (resa: __VALMORA_SEME_PARTITA); e01 ha varianti e una carta nuova
+// Una partita sulla prima missione, calcolata dal motore col seme delle foto: schieramenti, risposte, esito.
 function gioca(m, dich, g, iniziali = variabiliIniziali(dich.values())) {
-  let s = iniziaMissione(m, iniziali, dich);
+  let s = iniziaMissione(m, iniziali, dich, SEME_FOTO);
   const ondate = [];
   while (!missioneFinita(m, s)) {
     const disposizione = g.schiera(m, s);
@@ -94,7 +94,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
       const g = { larghezza, errori: [], scorrimento: [], attesi: [], citta: [] };
       const atteso = (cosa, ok) => g.attesi.push({ cosa, ok });
       // reducedMotion: transizioni ridotte a dissolvenze e mappa ferma → foto stabili fra un giro e l'altro.
-      const pagina = await browser.newPage({ viewport: { width: larghezza, height: 800 }, reducedMotion: 'reduce' }); await pagina.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); // PO-121: niente attese reali (la prova vera è foto-po121)
+      const pagina = await browser.newPage({ viewport: { width: larghezza, height: 800 }, reducedMotion: 'reduce' }); await pagina.addInitScript((seme) => { globalThis.__VALMORA_SECONDO_MS = 1; globalThis.__VALMORA_SEME_PARTITA = seme; }, SEME_FOTO); // PO-121: niente attese reali (la prova vera è foto-po121)
       // Braccio rosso: VALMORA_ROSSI=C05R01,C05R02,… accende gli interruttori rossi della resa (globalThis.__NO_X).
       const rossi = (process.env.VALMORA_ROSSI ?? '').split(',').filter(Boolean);
       if (rossi.length) await pagina.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);

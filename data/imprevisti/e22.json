@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_piccioni",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e22.imp.piccioni",
+        "commento": "testi:e22.imp.piccioni.vice",
+        "settore": "piazza_municipio",
+        "opzioni": [
+          {
+            "id": "spazza_briciole",
+            "testo": "testi:e22.imp.piccioni.spazza_briciole",
+            "costo": "testi:e22.imp.piccioni.spazza_briciole.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e22.imp.piccioni.spazza_briciole.r"
+          },
+          {
+            "id": "panini_borse",
+            "testo": "testi:e22.imp.piccioni.panini_borse",
+            "costo": "testi:e22.imp.piccioni.panini_borse.c",
+            "effetti": [
+              {
+                "pressione": "piazza_municipio",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_municipio",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.piccioni.panini_borse.r"
+          },
+          {
+            "id": "lascia_piccioni",
+            "testo": "testi:e22.imp.piccioni.lascia_piccioni",
+            "costo": "testi:e22.imp.piccioni.lascia_piccioni.c",
+            "effetti": [],
+            "risposta": "testi:e22.imp.piccioni.lascia_piccioni.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_ombrellone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e22.imp.ombrellone",
+        "commento": "testi:e22.imp.ombrellone.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "richiudi_ombrellone",
+            "testo": "testi:e22.imp.ombrellone.richiudi_ombrellone",
+            "costo": "testi:e22.imp.ombrellone.richiudi_ombrellone.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e22.imp.ombrellone.richiudi_ombrellone.r"
+          },
+          {
+            "id": "inclina_ombrellone",
+            "testo": "testi:e22.imp.ombrellone.inclina_ombrellone",
+            "costo": "testi:e22.imp.ombrellone.inclina_ombrellone.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.ombrellone.inclina_ombrellone.r"
+          },
+          {
+            "id": "lascia_ombrellone",
+            "testo": "testi:e22.imp.ombrellone.lascia_ombrellone",
+            "costo": "testi:e22.imp.ombrellone.lascia_ombrellone.c",
+            "effetti": [],
+            "risposta": "testi:e22.imp.ombrellone.lascia_ombrellone.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_mascotte",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e22.imp.mascotte",
+        "commento": "testi:e22.imp.mascotte.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "accompagna_mascotte",
+            "testo": "testi:e22.imp.mascotte.accompagna_mascotte",
+            "costo": "testi:e22.imp.mascotte.accompagna_mascotte.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e22.imp.mascotte.accompagna_mascotte.r"
+          },
+          {
+            "id": "testa_costume",
+            "testo": "testi:e22.imp.mascotte.testa_costume",
+            "costo": "testi:e22.imp.mascotte.testa_costume.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.mascotte.testa_costume.r"
+          },
+          {
+            "id": "lascia_mascotte",
+            "testo": "testi:e22.imp.mascotte.lascia_mascotte",
+            "costo": "testi:e22.imp.mascotte.lascia_mascotte.c",
+            "effetti": [],
+            "risposta": "testi:e22.imp.mascotte.lascia_mascotte.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_pane",
+        "fonte": "centrale_radio",
+        "testo": "testi:e22.imp.pane",
+        "commento": "testi:e22.imp.pane.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "forno_kiln",
+            "testo": "testi:e22.imp.pane.forno_kiln",
+            "costo": "testi:e22.imp.pane.forno_kiln.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e22.imp.pane.forno_kiln.r"
+          },
+          {
+            "id": "mezzo_panino",
+            "testo": "testi:e22.imp.pane.mezzo_panino",
+            "costo": "testi:e22.imp.pane.mezzo_panino.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e22.imp.pane.mezzo_panino.r"
+          },
+          {
+            "id": "lascia_coda",
+            "testo": "testi:e22.imp.pane.lascia_coda",
+            "costo": "testi:e22.imp.pane.lascia_coda.c",
+            "effetti": [],
+            "risposta": "testi:e22.imp.pane.lascia_coda.r"
+          }
+        ]
+      }
     }
   ]
 }

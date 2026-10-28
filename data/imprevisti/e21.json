@@ -200,6 +200,218 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_banda",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e21.imp.banda",
+        "commento": "testi:e21.imp.banda.vice",
+        "settore": "piazza_fonderie",
+        "opzioni": [
+          {
+            "id": "banda_cortile",
+            "testo": "testi:e21.imp.banda.banda_cortile",
+            "costo": "testi:e21.imp.banda.banda_cortile.c",
+            "effetti": [
+              {
+                "pressione": "piazza_fonderie",
+                "valore": -2
+              },
+              {
+                "tensione": "ex_fonderia",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.banda.banda_cortile.r"
+          },
+          {
+            "id": "banda_sordina",
+            "testo": "testi:e21.imp.banda.banda_sordina",
+            "costo": "testi:e21.imp.banda.banda_sordina.c",
+            "effetti": [
+              {
+                "pressione": "piazza_fonderie",
+                "valore": -1
+              },
+              {
+                "tensione": "piazza_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.banda.banda_sordina.r"
+          },
+          {
+            "id": "lascia_banda",
+            "testo": "testi:e21.imp.banda.lascia_banda",
+            "costo": "testi:e21.imp.banda.lascia_banda.c",
+            "effetti": [],
+            "risposta": "testi:e21.imp.banda.lascia_banda.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_luci",
+        "fonte": "centrale_radio",
+        "testo": "testi:e21.imp.luci",
+        "commento": "testi:e21.imp.luci.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "elettricista",
+            "testo": "testi:e21.imp.luci.elettricista",
+            "costo": "testi:e21.imp.luci.elettricista.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -2
+              },
+              {
+                "tensione": "piazza_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.luci.elettricista.r"
+          },
+          {
+            "id": "luci_emergenza",
+            "testo": "testi:e21.imp.luci.luci_emergenza",
+            "costo": "testi:e21.imp.luci.luci_emergenza.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.luci.luci_emergenza.r"
+          },
+          {
+            "id": "lascia_lampeggi",
+            "testo": "testi:e21.imp.luci.lascia_lampeggi",
+            "costo": "testi:e21.imp.luci.lascia_lampeggi.c",
+            "effetti": [],
+            "risposta": "testi:e21.imp.luci.lascia_lampeggi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_generatore",
+        "fonte": "centro_sociale",
+        "testo": "testi:e21.imp.generatore",
+        "commento": "testi:e21.imp.generatore.vice",
+        "settore": "ex_fonderia",
+        "opzioni": [
+          {
+            "id": "tecnico_comune",
+            "testo": "testi:e21.imp.generatore.tecnico_comune",
+            "costo": "testi:e21.imp.generatore.tecnico_comune.c",
+            "effetti": [
+              {
+                "tensione": "piazza_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.generatore.tecnico_comune.r"
+          },
+          {
+            "id": "torce",
+            "testo": "testi:e21.imp.generatore.torce",
+            "costo": "testi:e21.imp.generatore.torce.c",
+            "effetti": [
+              {
+                "tensione": "ex_fonderia",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.generatore.torce.r"
+          },
+          {
+            "id": "aspetta_cena",
+            "testo": "testi:e21.imp.generatore.aspetta_cena",
+            "costo": "testi:e21.imp.generatore.aspetta_cena.c",
+            "effetti": [],
+            "risposta": "testi:e21.imp.generatore.aspetta_cena.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_galline",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e21.imp.galline",
+        "commento": "testi:e21.imp.galline.vice",
+        "settore": "ex_fonderia",
+        "opzioni": [
+          {
+            "id": "caccia_galline",
+            "testo": "testi:e21.imp.galline.caccia_galline",
+            "costo": "testi:e21.imp.galline.caccia_galline.c",
+            "effetti": [
+              {
+                "pressione": "ex_fonderia",
+                "valore": -2
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.galline.caccia_galline.r"
+          },
+          {
+            "id": "recinto_sedie",
+            "testo": "testi:e21.imp.galline.recinto_sedie",
+            "costo": "testi:e21.imp.galline.recinto_sedie.c",
+            "effetti": [
+              {
+                "pressione": "ex_fonderia",
+                "valore": -1
+              },
+              {
+                "tensione": "ex_fonderia",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e21.imp.galline.recinto_sedie.r"
+          },
+          {
+            "id": "lascia_galline",
+            "testo": "testi:e21.imp.galline.lascia_galline",
+            "costo": "testi:e21.imp.galline.lascia_galline.c",
+            "effetti": [],
+            "risposta": "testi:e21.imp.galline.lascia_galline.r"
+          }
+        ]
+      }
     }
   ]
 }

@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_lettore",
+        "fonte": "centrale_radio",
+        "testo": "testi:e14.imp.lettore",
+        "commento": "testi:e14.imp.lettore.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "addetti_sportello",
+            "testo": "testi:e14.imp.lettore.addetti_sportello",
+            "costo": "testi:e14.imp.lettore.addetti_sportello.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -3
+              },
+              {
+                "tensione": "biglietteria",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.lettore.addetti_sportello.r"
+          },
+          {
+            "id": "freccia",
+            "testo": "testi:e14.imp.lettore.freccia",
+            "costo": "testi:e14.imp.lettore.freccia.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.lettore.freccia.r"
+          },
+          {
+            "id": "impari",
+            "testo": "testi:e14.imp.lettore.impari",
+            "costo": "testi:e14.imp.lettore.impari.c",
+            "effetti": [],
+            "risposta": "testi:e14.imp.lettore.impari.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_gatto",
+        "fonte": "centrale_radio",
+        "testo": "testi:e14.imp.gatto",
+        "commento": "testi:e14.imp.gatto.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "custode_gatto",
+            "testo": "testi:e14.imp.gatto.custode_gatto",
+            "costo": "testi:e14.imp.gatto.custode_gatto.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -3
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.gatto.custode_gatto.r"
+          },
+          {
+            "id": "ciotola",
+            "testo": "testi:e14.imp.gatto.ciotola",
+            "costo": "testi:e14.imp.gatto.ciotola.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.gatto.ciotola.r"
+          },
+          {
+            "id": "passeggi",
+            "testo": "testi:e14.imp.gatto.passeggi",
+            "costo": "testi:e14.imp.gatto.passeggi.c",
+            "effetti": [],
+            "risposta": "testi:e14.imp.gatto.passeggi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_stampante",
+        "fonte": "biglietteria",
+        "testo": "testi:e14.imp.stampante",
+        "commento": "testi:e14.imp.stampante.vice",
+        "settore": "biglietteria",
+        "opzioni": [
+          {
+            "id": "stampante_tornelli",
+            "testo": "testi:e14.imp.stampante.stampante_tornelli",
+            "costo": "testi:e14.imp.stampante.stampante_tornelli.c",
+            "effetti": [
+              {
+                "pressione": "biglietteria",
+                "valore": -3
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.stampante.stampante_tornelli.r"
+          },
+          {
+            "id": "colpo_secco",
+            "testo": "testi:e14.imp.stampante.colpo_secco",
+            "costo": "testi:e14.imp.stampante.colpo_secco.c",
+            "effetti": [
+              {
+                "pressione": "biglietteria",
+                "valore": -2
+              },
+              {
+                "tensione": "biglietteria",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.stampante.colpo_secco.r"
+          },
+          {
+            "id": "tecnico",
+            "testo": "testi:e14.imp.stampante.tecnico",
+            "costo": "testi:e14.imp.stampante.tecnico.c",
+            "effetti": [],
+            "risposta": "testi:e14.imp.stampante.tecnico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_storni",
+        "fonte": "centrale_radio",
+        "testo": "testi:e14.imp.storni",
+        "commento": "testi:e14.imp.storni.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "varco_servizio",
+            "testo": "testi:e14.imp.storni.varco_servizio",
+            "costo": "testi:e14.imp.storni.varco_servizio.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -3
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.storni.varco_servizio.r"
+          },
+          {
+            "id": "battimani",
+            "testo": "testi:e14.imp.storni.battimani",
+            "costo": "testi:e14.imp.storni.battimani.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e14.imp.storni.battimani.r"
+          },
+          {
+            "id": "si_posino",
+            "testo": "testi:e14.imp.storni.si_posino",
+            "costo": "testi:e14.imp.storni.si_posino.c",
+            "effetti": [],
+            "risposta": "testi:e14.imp.storni.si_posino.r"
+          }
+        ]
+      }
     }
   ]
 }

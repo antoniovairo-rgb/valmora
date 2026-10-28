@@ -56,7 +56,7 @@ describe('migrazione v1 → v2 sui salvataggi veri della 0.1.0', () => {
   for (const [nome, v1] of reali) {
     it(`${nome}: in_corso vecchio → null, il resto resta`, () => {
       const v2 = migra(v1);
-      expect(v2.save_version).toBe(2);
+      expect(v2.save_version).toBe(SAVE_VERSION);
       expect(v2.in_corso).toBeNull();
       expect(v2.variabili).toEqual(v1.variabili);
       expect(v2.missioni_concluse).toEqual(v1.missioni_concluse);
