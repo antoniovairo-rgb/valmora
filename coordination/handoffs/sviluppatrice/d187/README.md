@@ -767,3 +767,87 @@ Base: avanzamento rapido a 8d26012d. Commit d945af01. FATTO MISURATO:
 Catene su d945af01: grafica completa verde; governo+logica 3 giri verdi. Il riavvio del container ha interrotto il giro 2 di
 logica prima della riga (nessuna riga scritta): rifatto da capo, verde. Nessuna riga toccata o tolta.
 CI 40582805152 su d945af01: verde su tutti i 10 job.
+
+## PO-152 idea A (D-241) e C52-01/02/03 (D-242): 0.54.0 — S-11, 28/10
+
+Base: merge della 0.53.0 (84fd51f5). Codice: 769542ad; 3641482b alza solo il limite di tempo di un test (sotto).
+
+### Idea A, «la mappa è la fonte»
+- Prima della scelta, sotto le opzioni c'è solo il testo: niente accenno di costo, «Ti costa…», icone degli effetti
+  (`Ondata.tsx`, rosso C241A01: tornano come prima). L'opzione esaurita mantiene il motivo («Squadre finite»): dice perché non si
+  può scegliere, non il costo.
+- In chiamata i settori della mappa si toccano (`app-ondata.tsx` → `schede: true`; rosso C241M01: mappa spenta come prima): il tocco
+  apre la scheda di stato (`mappa/scheda-settore.tsx`), sopra la mappa in basso: situazione (la parola del colore), unità sul posto
+  (anche montate), folla solo dove la mappa la disegna (spalti delle curve, corteo delle strade), se la chiamata viene da lì. Non
+  cambia il salvataggio. Si chiude con un tocco sulla scheda, col pulsante (44 px, `--tocco-min`) o con Esc; il fuoco va su «Chiudi»
+  e, da tastiera, torna al settore. `role="dialog"` con nome dal titolo; i settori hanno `aria-haspopup`/`aria-expanded`.
+- Dopo «Conferma» il costo arriva per radio (`RapportoCosto`), **sopra la mappa** della risposta (`mappa/radio-mappa.tsx`), nella
+  fascia lontana dai segni ▲/▼ (che restano sopra), lasciando libero il lato di «Home». Scelta tecnica: sotto «Intanto…» la risposta
+  si sarebbe allungata, e a 360×640 restavano 6 px prima della soglia di sonda-altezze (62 su 68); a 375×640 e 412×640 scorreva già
+  77-90 px. Misurato: con il rapporto la risposta scorre quanto senza (62/77/71-90 a 640, 0 a 760).
+- Testi nuovi in `comune.json` (16 chiavi `scheda.*`, `radio.costo`). Stili solo da token (`stile-idee.css`).
+- D-078 rivisto: il costo resta obbligatorio nei dati (schema invariato); `foto.mjs` ora controlla che prima di «Conferma» non ci
+  sia nessun costo e che dopo, nella risposta, il costo per radio ci sia e sia senza numeri. `foto-c17.mjs`: il controllo PO-085
+  (icone sotto le opzioni uguali ai dati) diventa «nessuna icona prima di Conferma».
+- Guardiano `tools/foto-po152-a.mjs` (sonda-altezze, parte «po152a», 360/375/412 × 640/760, due chiamate di e01): nessun costo
+  prima, scheda che si apre/chiude (tocco, Esc, fuoco), bersagli ≥ 44, non esce dalla mappa, non fa scorrere, salvataggio invariato,
+  rapporto radio dopo (senza numeri, con «Ti costa…» se impegna unità, dentro la mappa, non tagliato, non sotto i segni, risposta
+  non più lunga). Rossi a 360: C241A01 8 problemi, C241M01 8 problemi.
+- Bot: `giraBot(dati, 300)` su base e idea A: 196 righe, 0 blocchi, impronta degli esiti identica (ede5bf050f3bc2b5).
+- Foto: `po152a/prima` e `po152a/dopo` (chiamata, scheda, risposta a 360/375/412 × 640/760).
+
+### C52-01/02: la mappa della città non salta più
+FATTO MISURATO (`foto-po149.mjs`, posizione verticale della mappa, identica a 760 e 915; px):
+
+| larghezza | e19 | superato (e18) | nessuno | tutti36 | dopo, ogni stato |
+|---|---|---|---|---|---|
+| 360 | 275,2 | 230,1 | 292 | 182,1 | 191,1 |
+| 375 | 275,2 | 249 | 292 | 201 | 202,4 |
+| 412 | 275,2 | 249 | 288 | 201 | 210 |
+
+Sopra le teste: prima fino a 17 px (360, tutti36); dopo 26/33/35 px in ogni stato. 640 e 667: identici a prima, scorrimento 0.
+- La striscia sottrae allo spazio libero la differenza fra il blocco più alto possibile sotto la mappa e quello di adesso
+  (`schermate/citta-riserva.ts`): varianti di tutti i 36 episodi in ogni stato, inviti di ogni stagione, «Rileggi l'epilogo» solo
+  con schede superate o l'invito (combinazione possibile). Misurate in un contenitore creato e tolto nella stessa chiamata, coi
+  caratteri caricati, col margine sopra fuso come nella pagina. Più alto: 270 px a 360 (e01 superato con l'epilogo), 264 a 375,
+  255 a 412.
+- `--citta-riserva-striscia` 484 → 500: con 498 a 360 restavano 24 px esatti sopra le teste. Effetto: la mappa sugli schermi alti
+  torna come prima di PO-149 (760: 276 → 260; 915: 431 → 415).
+- `react-dom/server` per misurare le varianti: JS +204 KB (2 486 292 → 2 690 328 byte).
+- Rosso C242M01 (conta la scheda di adesso): a 360 la mappa si sposta di 94 px fra gli stati (2 problemi).
+- Foto: `c52/prima` (f173fd2a) e `c52/dopo`.
+
+### C52-03: il nome dell'episodio a 412
+Il riquadro del nome non è mai più stretto della parola più lunga (`min-width: min-content`, rosso CSS C241N01). Guardiano
+`tools/foto-c52-nomi.mjs` (testo misurato con Range, 36 episodi, 412 × 760/800/915): verde 0 su 108; rosso 6 (e12 37,5 px fuori,
+e24 17,5 px fuori, e13 e e18 sul proprio disco).
+
+### Bracci diventati ciechi e riparati (precedente: C218R01 con C221R01)
+- C215L01: con le opzioni senza costo la mediana degli imprevisti a 360×760 scende da 277 a 93 px; gira con C241A01. La sonda
+  non misura più una chiamata che non si apre (prima misurava la pagina sbagliata e la mediana si spostava).
+- C201C01+C230C01: con la riserva 500 i 12 px del rosso finiscono nella striscia; gira con C237S01 (0 col solo C237S01, 12 px di
+  scorrimento con tutti e tre).
+- C128N01 (città senza WebGL, 412): con la mappa ferma il nome resta a 13 px dal bordo anche col rosso; gira con C242M01
+  (C128N01+C242M01: −0,5 px, 3 stati sul bordo; C242M01 da solo: 21,2 px, 0).
+
+### Strumenti e codice resi stabili
+- C52-01: la riserva si misura senza la trasformazione d'ingresso della scena (tolta e rimessa nella stessa chiamata) e si tiene
+  solo coi caratteri delle varianti pronti (`document.fonts.check`, altrimenti si caricano e la striscia si ricalcola a
+  «loadingdone»). Prima, in alcuni giri, la mappa saltava di 3-18 px (375×915 «nessuno» 220 contro 202,4). Dopo: 4 giri di
+  `foto-po149` a 360/375/412, 0 problemi.
+- `foto-schieramenti.mjs`: attesa della barra 5 → 15 s (sotto carico «lo schieramento non si apre», verde al secondo tentativo).
+- `tests/fiducia-verso.test.ts`: limite di tempo 180 → 400 s (204 s sotto carico, verde al secondo tentativo); soglia invariata.
+
+### STABILITA (nessuna riga tolta)
+- grafica rossa su 3962c539 (PO-085, corretto in e9a40bf5); grafica su e9a40bf5 interrotta a mano (riga rossa); 3 giri
+  governo+logica verdi su e9a40bf5; governo verde su f9d00865 (poi giri fermati); 3 giri verdi su ec666e64; grafica su ec666e64
+  interrotta dal limite di tempo del terminale (riga rossa); su c068b887 grafica rossa (C128N01 cieco; schieramenti e altezze
+  instabili) e governo, logica, governo verdi (poi fermati); su 769542ad grafica completa verde e 3 giri governo+logica (il primo
+  «instabile» per il test qui sopra); su 3641482b 3 giri governo+logica (sotto).
+- Su 3641482b: 3 giri governo+logica verdi. Grafica completa verde su 769542ad (3641482b cambia solo il limite di tempo di un
+  test, che la grafica non usa). CI: 40658834711 su 769542ad e 40673481555 su 3641482b, verdi su tutti i 10 job.
+- Il primo push di 769542ad è stato rifiutato dal pre-push (passo non registrato: avevo tenuto solo l'ultima riga); il secondo
+  aveva tutti i passi verdi.
+
+Non verificato: telefono reale (tocco sulla mappa in chiamata, TalkBack sulla scheda del settore); tastiera fisica oltre Esc;
+la Tripla aperta scorreva già prima (O-1 di C-052); C52-04/05 (testo al 130 %) restano al lotto accessibilità.
