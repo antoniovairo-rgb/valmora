@@ -204,6 +204,222 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_sirena_turno",
+        "fonte": "guardiano_cantiere",
+        "testo": "testi:e36.imp.sirena_turno",
+        "commento": "testi:e36.imp.sirena_turno.vice",
+        "settore": "cantiere_stadio_nuovo",
+        "opzioni": [
+          {
+            "id": "interruttore",
+            "testo": "testi:e36.imp.sirena_turno.interruttore",
+            "costo": "testi:e36.imp.sirena_turno.interruttore.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.sirena_turno.interruttore.r"
+          },
+          {
+            "id": "cartoni",
+            "testo": "testi:e36.imp.sirena_turno.cartoni",
+            "costo": "testi:e36.imp.sirena_turno.cartoni.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": -1
+              },
+              {
+                "tensione": "cantiere_stadio_nuovo",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.sirena_turno.cartoni.r"
+          },
+          {
+            "id": "metronomo",
+            "testo": "testi:e36.imp.sirena_turno.metronomo",
+            "costo": "testi:e36.imp.sirena_turno.metronomo.c",
+            "effetti": [],
+            "risposta": "testi:e36.imp.sirena_turno.metronomo.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_coriandoli",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e36.imp.coriandoli",
+        "commento": "testi:e36.imp.coriandoli.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "inservienti",
+            "testo": "testi:e36.imp.coriandoli.inservienti",
+            "costo": "testi:e36.imp.coriandoli.inservienti.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.coriandoli.inservienti.r"
+          },
+          {
+            "id": "sciarpe",
+            "testo": "testi:e36.imp.coriandoli.sciarpe",
+            "costo": "testi:e36.imp.coriandoli.sciarpe.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.coriandoli.sciarpe.r"
+          },
+          {
+            "id": "si_posino",
+            "testo": "testi:e36.imp.coriandoli.si_posino",
+            "costo": "testi:e36.imp.coriandoli.si_posino.c",
+            "effetti": [],
+            "risposta": "testi:e36.imp.coriandoli.si_posino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        6
+      ],
+      "chiamata": {
+        "id": "imp_tamburo_sfondato",
+        "fonte": "centrale_radio",
+        "testo": "testi:e36.imp.tamburo_sfondato",
+        "commento": "testi:e36.imp.tamburo_sfondato.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "banda",
+            "testo": "testi:e36.imp.tamburo_sfondato.banda",
+            "costo": "testi:e36.imp.tamburo_sfondato.banda.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.tamburo_sfondato.banda.r"
+          },
+          {
+            "id": "balaustre",
+            "testo": "testi:e36.imp.tamburo_sfondato.balaustre",
+            "costo": "testi:e36.imp.tamburo_sfondato.balaustre.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.tamburo_sfondato.balaustre.r"
+          },
+          {
+            "id": "a_orecchio",
+            "testo": "testi:e36.imp.tamburo_sfondato.a_orecchio",
+            "costo": "testi:e36.imp.tamburo_sfondato.a_orecchio.c",
+            "effetti": [],
+            "risposta": "testi:e36.imp.tamburo_sfondato.a_orecchio.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        6
+      ],
+      "chiamata": {
+        "id": "imp_pannello",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e36.imp.pannello",
+        "commento": "testi:e36.imp.pannello.vice",
+        "settore": "cantiere_stadio_nuovo",
+        "opzioni": [
+          {
+            "id": "ritira_pannello",
+            "testo": "testi:e36.imp.pannello.ritira_pannello",
+            "costo": "testi:e36.imp.pannello.ritira_pannello.c",
+            "effetti": [
+              {
+                "pressione": "cantiere_stadio_nuovo",
+                "valore": 1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.pannello.ritira_pannello.r"
+          },
+          {
+            "id": "a_pezzi",
+            "testo": "testi:e36.imp.pannello.a_pezzi",
+            "costo": "testi:e36.imp.pannello.a_pezzi.c",
+            "effetti": [
+              {
+                "tensione": "cantiere_stadio_nuovo",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e36.imp.pannello.a_pezzi.r"
+          },
+          {
+            "id": "nel_fango",
+            "testo": "testi:e36.imp.pannello.nel_fango",
+            "costo": "testi:e36.imp.pannello.nel_fango.c",
+            "effetti": [],
+            "risposta": "testi:e36.imp.pannello.nel_fango.r"
+          }
+        ]
+      }
     }
   ]
 }

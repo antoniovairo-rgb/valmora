@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_segnaposto",
+        "fonte": "centrale_radio",
+        "testo": "testi:e34.imp.segnaposto",
+        "commento": "testi:e34.imp.segnaposto.vice",
+        "settore": "tribuna_autorita",
+        "opzioni": [
+          {
+            "id": "hostess",
+            "testo": "testi:e34.imp.segnaposto.hostess",
+            "costo": "testi:e34.imp.segnaposto.hostess.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e34.imp.segnaposto.hostess.r"
+          },
+          {
+            "id": "dove_capita",
+            "testo": "testi:e34.imp.segnaposto.dove_capita",
+            "costo": "testi:e34.imp.segnaposto.dove_capita.c",
+            "effetti": [
+              {
+                "pressione": "tribuna_autorita",
+                "valore": -1
+              },
+              {
+                "tensione": "tribuna_autorita",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e34.imp.segnaposto.dove_capita.r"
+          },
+          {
+            "id": "scambio",
+            "testo": "testi:e34.imp.segnaposto.scambio",
+            "costo": "testi:e34.imp.segnaposto.scambio.c",
+            "effetti": [],
+            "risposta": "testi:e34.imp.segnaposto.scambio.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_altoparlante",
+        "fonte": "centrale_radio",
+        "testo": "testi:e34.imp.altoparlante",
+        "commento": "testi:e34.imp.altoparlante.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "tecnico_audio",
+            "testo": "testi:e34.imp.altoparlante.tecnico_audio",
+            "costo": "testi:e34.imp.altoparlante.tecnico_audio.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "tribuna_autorita",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e34.imp.altoparlante.tecnico_audio.r"
+          },
+          {
+            "id": "volume",
+            "testo": "testi:e34.imp.altoparlante.volume",
+            "costo": "testi:e34.imp.altoparlante.volume.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e34.imp.altoparlante.volume.r"
+          },
+          {
+            "id": "si_stanchi",
+            "testo": "testi:e34.imp.altoparlante.si_stanchi",
+            "costo": "testi:e34.imp.altoparlante.si_stanchi.c",
+            "effetti": [],
+            "risposta": "testi:e34.imp.altoparlante.si_stanchi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        5
+      ],
+      "chiamata": {
+        "id": "imp_gatto",
+        "fonte": "club_lookout",
+        "testo": "testi:e34.imp.gatto",
+        "commento": "testi:e34.imp.gatto.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "custode",
+            "testo": "testi:e34.imp.gatto.custode",
+            "costo": "testi:e34.imp.gatto.custode.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e34.imp.gatto.custode.r"
+          },
+          {
+            "id": "coperta",
+            "testo": "testi:e34.imp.gatto.coperta",
+            "costo": "testi:e34.imp.gatto.coperta.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e34.imp.gatto.coperta.r"
+          },
+          {
+            "id": "gatto_resta",
+            "testo": "testi:e34.imp.gatto.gatto_resta",
+            "costo": "testi:e34.imp.gatto.gatto_resta.c",
+            "effetti": [],
+            "risposta": "testi:e34.imp.gatto.gatto_resta.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_lampione",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e34.imp.lampione",
+        "commento": "testi:e34.imp.lampione.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "stacca_lampione",
+            "testo": "testi:e34.imp.lampione.stacca_lampione",
+            "costo": "testi:e34.imp.lampione.stacca_lampione.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "tribuna_autorita",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e34.imp.lampione.stacca_lampione.r"
+          },
+          {
+            "id": "ballo_centro",
+            "testo": "testi:e34.imp.lampione.ballo_centro",
+            "costo": "testi:e34.imp.lampione.ballo_centro.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e34.imp.lampione.ballo_centro.r"
+          },
+          {
+            "id": "balla_chi_vuole",
+            "testo": "testi:e34.imp.lampione.balla_chi_vuole",
+            "costo": "testi:e34.imp.lampione.balla_chi_vuole.c",
+            "effetti": [],
+            "risposta": "testi:e34.imp.lampione.balla_chi_vuole.r"
+          }
+        ]
+      }
     }
   ]
 }

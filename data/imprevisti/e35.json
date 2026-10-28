@@ -192,6 +192,210 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_gru",
+        "fonte": "centrale_radio",
+        "testo": "testi:e35.imp.gru",
+        "commento": "testi:e35.imp.gru.vice",
+        "settore": "banchine",
+        "opzioni": [
+          {
+            "id": "gruista",
+            "testo": "testi:e35.imp.gru.gruista",
+            "costo": "testi:e35.imp.gru.gruista.c",
+            "effetti": [
+              {
+                "pressione": "banchine",
+                "valore": -2
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.gru.gruista.r"
+          },
+          {
+            "id": "molo_vecchio",
+            "testo": "testi:e35.imp.gru.molo_vecchio",
+            "costo": "testi:e35.imp.gru.molo_vecchio.c",
+            "effetti": [
+              {
+                "pressione": "banchine",
+                "valore": -1
+              },
+              {
+                "tensione": "banchine",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.gru.molo_vecchio.r"
+          },
+          {
+            "id": "cigolio",
+            "testo": "testi:e35.imp.gru.cigolio",
+            "costo": "testi:e35.imp.gru.cigolio.c",
+            "effetti": [],
+            "risposta": "testi:e35.imp.gru.cigolio.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_caldarroste",
+        "fonte": "centrale_radio",
+        "testo": "testi:e35.imp.caldarroste",
+        "commento": "testi:e35.imp.caldarroste.vice",
+        "settore": "corso_centro",
+        "opzioni": [
+          {
+            "id": "agenti_stazione",
+            "testo": "testi:e35.imp.caldarroste.agenti_stazione",
+            "costo": "testi:e35.imp.caldarroste.agenti_stazione.c",
+            "effetti": [
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.caldarroste.agenti_stazione.r"
+          },
+          {
+            "id": "traversa",
+            "testo": "testi:e35.imp.caldarroste.traversa",
+            "costo": "testi:e35.imp.caldarroste.traversa.c",
+            "effetti": [
+              {
+                "tensione": "corso_centro",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.caldarroste.traversa.r"
+          },
+          {
+            "id": "se_la_sbrighi",
+            "testo": "testi:e35.imp.caldarroste.se_la_sbrighi",
+            "costo": "testi:e35.imp.caldarroste.se_la_sbrighi.c",
+            "effetti": [],
+            "risposta": "testi:e35.imp.caldarroste.se_la_sbrighi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_nebbia",
+        "fonte": "testimone",
+        "testo": "testi:e35.imp.nebbia",
+        "commento": "testi:e35.imp.nebbia.vice",
+        "settore": "banchine",
+        "opzioni": [
+          {
+            "id": "vigilanti",
+            "testo": "testi:e35.imp.nebbia.vigilanti",
+            "costo": "testi:e35.imp.nebbia.vigilanti.c",
+            "effetti": [
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.nebbia.vigilanti.r"
+          },
+          {
+            "id": "trombe",
+            "testo": "testi:e35.imp.nebbia.trombe",
+            "costo": "testi:e35.imp.nebbia.trombe.c",
+            "effetti": [
+              {
+                "tensione": "banchine",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.nebbia.trombe.r"
+          },
+          {
+            "id": "si_alzi",
+            "testo": "testi:e35.imp.nebbia.si_alzi",
+            "costo": "testi:e35.imp.nebbia.si_alzi.c",
+            "effetti": [],
+            "risposta": "testi:e35.imp.nebbia.si_alzi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_forno",
+        "fonte": "centrale_radio",
+        "testo": "testi:e35.imp.forno",
+        "commento": "testi:e35.imp.forno.vice",
+        "settore": "perimetro_banca",
+        "opzioni": [
+          {
+            "id": "dal_retro",
+            "testo": "testi:e35.imp.forno.dal_retro",
+            "costo": "testi:e35.imp.forno.dal_retro.c",
+            "effetti": [
+              {
+                "pressione": "perimetro_banca",
+                "valore": -2
+              },
+              {
+                "tensione": "corso_centro",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.forno.dal_retro.r"
+          },
+          {
+            "id": "a_numero",
+            "testo": "testi:e35.imp.forno.a_numero",
+            "costo": "testi:e35.imp.forno.a_numero.c",
+            "effetti": [
+              {
+                "pressione": "perimetro_banca",
+                "valore": -1
+              },
+              {
+                "tensione": "perimetro_banca",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e35.imp.forno.a_numero.r"
+          },
+          {
+            "id": "scorte",
+            "testo": "testi:e35.imp.forno.scorte",
+            "costo": "testi:e35.imp.forno.scorte.c",
+            "effetti": [],
+            "risposta": "testi:e35.imp.forno.scorte.r"
+          }
+        ]
+      }
     }
   ]
 }

@@ -204,6 +204,408 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_irrigatori",
+        "fonte": "centrale_radio",
+        "testo": "testi:e03.imp.irrigatori",
+        "commento": "testi:e03.imp.irrigatori.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "acqua_custode",
+            "testo": "testi:e03.imp.irrigatori.acqua_custode",
+            "costo": "testi:e03.imp.irrigatori.acqua_custode.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -3
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e03.imp.irrigatori.acqua_custode.r"
+          },
+          {
+            "id": "lato_asciutto",
+            "testo": "testi:e03.imp.irrigatori.lato_asciutto",
+            "costo": "testi:e03.imp.irrigatori.lato_asciutto.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.irrigatori.lato_asciutto.r"
+          },
+          {
+            "id": "finiscano_giro",
+            "testo": "testi:e03.imp.irrigatori.finiscano_giro",
+            "costo": "testi:e03.imp.irrigatori.finiscano_giro.c",
+            "effetti": [],
+            "risposta": "testi:e03.imp.irrigatori.finiscano_giro.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_allarme",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e03.imp.allarme",
+        "commento": "testi:e03.imp.allarme.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "rintraccia",
+            "testo": "testi:e03.imp.allarme.rintraccia",
+            "costo": "testi:e03.imp.allarme.rintraccia.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -3
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.allarme.rintraccia.r"
+          },
+          {
+            "id": "coperta_cofano",
+            "testo": "testi:e03.imp.allarme.coperta_cofano",
+            "costo": "testi:e03.imp.allarme.coperta_cofano.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.allarme.coperta_cofano.r"
+          },
+          {
+            "id": "si_scarica",
+            "testo": "testi:e03.imp.allarme.si_scarica",
+            "costo": "testi:e03.imp.allarme.si_scarica.c",
+            "effetti": [],
+            "risposta": "testi:e03.imp.allarme.si_scarica.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_nebbia",
+        "fonte": "centrale_radio",
+        "testo": "testi:e03.imp.nebbia",
+        "commento": "testi:e03.imp.nebbia.vice",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "lampeggianti",
+            "testo": "testi:e03.imp.nebbia.lampeggianti",
+            "costo": "testi:e03.imp.nebbia.lampeggianti.c",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.nebbia.lampeggianti.r"
+          },
+          {
+            "id": "clacson_a_turno",
+            "testo": "testi:e03.imp.nebbia.clacson_a_turno",
+            "costo": "testi:e03.imp.nebbia.clacson_a_turno.c",
+            "effetti": [
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.nebbia.clacson_a_turno.r"
+          },
+          {
+            "id": "nebbia_si_alzi",
+            "testo": "testi:e03.imp.nebbia.nebbia_si_alzi",
+            "costo": "testi:e03.imp.nebbia.nebbia_si_alzi.c",
+            "effetti": [],
+            "risposta": "testi:e03.imp.nebbia.nebbia_si_alzi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_lampioni",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e03.imp.lampioni",
+        "commento": "testi:e03.imp.lampioni.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "tecnico_lampioni",
+            "testo": "testi:e03.imp.lampioni.tecnico_lampioni",
+            "costo": "testi:e03.imp.lampioni.tecnico_lampioni.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -3
+              },
+              {
+                "tensione": "parcheggi",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.lampioni.tecnico_lampioni.r"
+          },
+          {
+            "id": "fari_uscita",
+            "testo": "testi:e03.imp.lampioni.fari_uscita",
+            "costo": "testi:e03.imp.lampioni.fari_uscita.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e03.imp.lampioni.fari_uscita.r"
+          },
+          {
+            "id": "arrangino_telefoni",
+            "testo": "testi:e03.imp.lampioni.arrangino_telefoni",
+            "costo": "testi:e03.imp.lampioni.arrangino_telefoni.c",
+            "effetti": [],
+            "risposta": "testi:e03.imp.lampioni.arrangino_telefoni.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "ospiti_arrivano",
+      "chiamata": {
+        "id": "ospiti_arrivano_v",
+        "fonte": "club_quillhaven",
+        "testo": "testi:e03.var.ospiti_arrivano",
+        "settore": "parcheggi",
+        "opzioni": [
+          {
+            "id": "parcheggio_lontano",
+            "testo": "testi:e03.var.ospiti_arrivano.parcheggio_lontano",
+            "costo": "testi:e03.var.ospiti_arrivano.parcheggio_lontano.c",
+            "risposta": "testi:e03.var.ospiti_arrivano.parcheggio_lontano.r",
+            "effetti": [
+              {
+                "pressione": "parcheggi",
+                "valore": -2
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 2
+              }
+            ]
+          },
+          {
+            "id": "dove_capita",
+            "testo": "testi:e03.var.ospiti_arrivano.dove_capita",
+            "costo": "testi:e03.var.ospiti_arrivano.dove_capita.c",
+            "risposta": "testi:e03.var.ospiti_arrivano.dove_capita.r",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "pressione": "parcheggi",
+                "valore": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "laser",
+      "chiamata": {
+        "id": "laser_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e03.var.laser",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "steward_laser",
+            "testo": "testi:e03.var.laser.steward_laser",
+            "costo": "testi:e03.var.laser.steward_laser.c",
+            "risposta": "testi:e03.var.laser.steward_laser.r",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ]
+          },
+          {
+            "id": "annuncio",
+            "testo": "testi:e03.var.laser.annuncio",
+            "costo": "testi:e03.var.laser.annuncio.c",
+            "risposta": "testi:e03.var.laser.annuncio.r",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ]
+          },
+          {
+            "id": "lascia_laser",
+            "testo": "testi:e03.var.laser.lascia_laser",
+            "costo": "testi:e03.var.laser.lascia_laser.c",
+            "risposta": "testi:e03.var.laser.lascia_laser.r",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "bottiglie",
+      "chiamata": {
+        "id": "bottiglie_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e03.var.bottiglie",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "presidio_balcone",
+            "testo": "testi:e03.var.bottiglie.presidio_balcone",
+            "costo": "testi:e03.var.bottiglie.presidio_balcone.c",
+            "risposta": "testi:e03.var.bottiglie.presidio_balcone.r",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ]
+          },
+          {
+            "id": "devia_tifosi",
+            "testo": "testi:e03.var.bottiglie.devia_tifosi",
+            "costo": "testi:e03.var.bottiglie.devia_tifosi.c",
+            "risposta": "testi:e03.var.bottiglie.devia_tifosi.r",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "pressione": "parcheggi",
+                "valore": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "di": "troupe_notte",
+      "chiamata": {
+        "id": "troupe_notte_v",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e03.var.troupe_notte",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "commento_tv",
+            "testo": "testi:e03.var.troupe_notte.commento_tv",
+            "costo": "testi:e03.var.troupe_notte.commento_tv.c",
+            "risposta": "testi:e03.var.troupe_notte.commento_tv.r",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 2
+              }
+            ]
+          },
+          {
+            "id": "niente_commento",
+            "testo": "testi:e03.var.troupe_notte.niente_commento",
+            "costo": "testi:e03.var.troupe_notte.niente_commento.c",
+            "risposta": "testi:e03.var.troupe_notte.niente_commento.r",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }

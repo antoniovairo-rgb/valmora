@@ -204,6 +204,392 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_spazzatrice",
+        "fonte": "centrale_radio",
+        "testo": "testi:e05.imp.spazzatrice",
+        "commento": "testi:e05.imp.spazzatrice.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "devia_spazzatrice",
+            "testo": "testi:e05.imp.spazzatrice.devia_spazzatrice",
+            "costo": "testi:e05.imp.spazzatrice.devia_spazzatrice.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.imp.spazzatrice.devia_spazzatrice.r"
+          },
+          {
+            "id": "passo_carraio",
+            "testo": "testi:e05.imp.spazzatrice.passo_carraio",
+            "costo": "testi:e05.imp.spazzatrice.passo_carraio.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.spazzatrice.passo_carraio.r"
+          },
+          {
+            "id": "finisca_giro",
+            "testo": "testi:e05.imp.spazzatrice.finisca_giro",
+            "costo": "testi:e05.imp.spazzatrice.finisca_giro.c",
+            "effetti": [],
+            "risposta": "testi:e05.imp.spazzatrice.finisca_giro.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_vernice",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e05.imp.vernice",
+        "commento": "testi:e05.imp.vernice.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "nastro_vernice",
+            "testo": "testi:e05.imp.vernice.nastro_vernice",
+            "costo": "testi:e05.imp.vernice.nastro_vernice.c",
+            "effetti": [
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.vernice.nastro_vernice.r"
+          },
+          {
+            "id": "giornali_seggiolini",
+            "testo": "testi:e05.imp.vernice.giornali_seggiolini",
+            "costo": "testi:e05.imp.vernice.giornali_seggiolini.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.vernice.giornali_seggiolini.r"
+          },
+          {
+            "id": "vernice_asciughi",
+            "testo": "testi:e05.imp.vernice.vernice_asciughi",
+            "costo": "testi:e05.imp.vernice.vernice_asciughi.c",
+            "effetti": [],
+            "risposta": "testi:e05.imp.vernice.vernice_asciughi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_cavo",
+        "fonte": "vice",
+        "testo": "testi:e05.imp.cavo",
+        "commento": "testi:e05.imp.cavo.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "tecnici_cavo",
+            "testo": "testi:e05.imp.cavo.tecnici_cavo",
+            "costo": "testi:e05.imp.cavo.tecnici_cavo.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.imp.cavo.tecnici_cavo.r"
+          },
+          {
+            "id": "cartoni_cavo",
+            "testo": "testi:e05.imp.cavo.cartoni_cavo",
+            "costo": "testi:e05.imp.cavo.cartoni_cavo.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.cavo.cartoni_cavo.r"
+          },
+          {
+            "id": "passo_lungo",
+            "testo": "testi:e05.imp.cavo.passo_lungo",
+            "costo": "testi:e05.imp.cavo.passo_lungo.c",
+            "effetti": [],
+            "risposta": "testi:e05.imp.cavo.passo_lungo.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_sciarpe_saldo",
+        "fonte": "centrale_radio",
+        "testo": "testi:e05.imp.sciarpe_saldo",
+        "commento": "testi:e05.imp.sciarpe_saldo.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "porta_banco",
+            "testo": "testi:e05.imp.sciarpe_saldo.porta_banco",
+            "costo": "testi:e05.imp.sciarpe_saldo.porta_banco.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.imp.sciarpe_saldo.porta_banco.r"
+          },
+          {
+            "id": "banco_muro",
+            "testo": "testi:e05.imp.sciarpe_saldo.banco_muro",
+            "costo": "testi:e05.imp.sciarpe_saldo.banco_muro.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.imp.sciarpe_saldo.banco_muro.r"
+          },
+          {
+            "id": "saldi",
+            "testo": "testi:e05.imp.sciarpe_saldo.saldi",
+            "costo": "testi:e05.imp.sciarpe_saldo.saldi.c",
+            "effetti": [],
+            "risposta": "testi:e05.imp.sciarpe_saldo.saldi.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "volontari",
+      "chiamata": {
+        "id": "volontari_v",
+        "fonte": "ufficio_sicurezza_larkspire",
+        "testo": "testi:e05.var.volontari",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "volontari_si",
+            "testo": "testi:e05.var.volontari.volontari_si",
+            "costo": "testi:e05.var.volontari.volontari_si.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.var.volontari.volontari_si.r"
+          },
+          {
+            "id": "volontari_no",
+            "testo": "testi:e05.var.volontari.volontari_no",
+            "costo": "testi:e05.var.volontari.volontari_no.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.var.volontari.volontari_no.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "megafono",
+      "chiamata": {
+        "id": "megafono_v",
+        "fonte": "sindacato_steward",
+        "testo": "testi:e05.var.megafono",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "lascia_megafono",
+            "testo": "testi:e05.var.megafono.lascia_megafono",
+            "costo": "testi:e05.var.megafono.lascia_megafono.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "pressione": "tornelli",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.var.megafono.lascia_megafono.r"
+          },
+          {
+            "id": "togli_megafono",
+            "testo": "testi:e05.var.megafono.togli_megafono",
+            "costo": "testi:e05.var.megafono.togli_megafono.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -2
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.var.megafono.togli_megafono.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "coro_steward",
+      "chiamata": {
+        "id": "coro_steward_v",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e05.var.coro_steward",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "risposta_rete",
+            "testo": "testi:e05.var.coro_steward.risposta_rete",
+            "costo": "testi:e05.var.coro_steward.risposta_rete.c",
+            "effetti": [
+              {
+                "tensione": "curva_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.var.coro_steward.risposta_rete.r"
+          },
+          {
+            "id": "silenzio_rete",
+            "testo": "testi:e05.var.coro_steward.silenzio_rete",
+            "costo": "testi:e05.var.coro_steward.silenzio_rete.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e05.var.coro_steward.silenzio_rete.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "di": "fondo_strada",
+      "chiamata": {
+        "id": "fondo_strada_v",
+        "fonte": "club_domepark",
+        "testo": "testi:e05.var.fondo_strada",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "chiudi_fondo",
+            "testo": "testi:e05.var.fondo_strada.chiudi_fondo",
+            "costo": "testi:e05.var.fondo_strada.chiudi_fondo.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e05.var.fondo_strada.chiudi_fondo.r"
+          },
+          {
+            "id": "altra_uscita",
+            "testo": "testi:e05.var.fondo_strada.altra_uscita",
+            "costo": "testi:e05.var.fondo_strada.altra_uscita.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": -2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e05.var.fondo_strada.altra_uscita.r"
+          }
+        ]
+      }
     }
   ]
 }

@@ -208,6 +208,416 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_gonfiabile",
+        "fonte": "centrale_radio",
+        "testo": "testi:e08.imp.gonfiabile",
+        "commento": "testi:e08.imp.gonfiabile.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "porta_via",
+            "testo": "testi:e08.imp.gonfiabile.porta_via",
+            "costo": "testi:e08.imp.gonfiabile.porta_via.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.imp.gonfiabile.porta_via.r"
+          },
+          {
+            "id": "aste",
+            "testo": "testi:e08.imp.gonfiabile.aste",
+            "costo": "testi:e08.imp.gonfiabile.aste.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.imp.gonfiabile.aste.r"
+          },
+          {
+            "id": "ventola",
+            "testo": "testi:e08.imp.gonfiabile.ventola",
+            "costo": "testi:e08.imp.gonfiabile.ventola.c",
+            "effetti": [],
+            "risposta": "testi:e08.imp.gonfiabile.ventola.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_tamburo",
+        "fonte": "vice",
+        "testo": "testi:e08.imp.tamburo",
+        "commento": "testi:e08.imp.tamburo.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "libera_tamburo",
+            "testo": "testi:e08.imp.tamburo.libera_tamburo",
+            "costo": "testi:e08.imp.tamburo.libera_tamburo.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.imp.tamburo.libera_tamburo.r"
+          },
+          {
+            "id": "scala_accanto",
+            "testo": "testi:e08.imp.tamburo.scala_accanto",
+            "costo": "testi:e08.imp.tamburo.scala_accanto.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.imp.tamburo.scala_accanto.r"
+          },
+          {
+            "id": "sbrighino",
+            "testo": "testi:e08.imp.tamburo.sbrighino",
+            "costo": "testi:e08.imp.tamburo.sbrighino.c",
+            "effetti": [],
+            "risposta": "testi:e08.imp.tamburo.sbrighino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_casse_bibite",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e08.imp.casse_bibite",
+        "commento": "testi:e08.imp.casse_bibite.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "carrelli",
+            "testo": "testi:e08.imp.casse_bibite.carrelli",
+            "costo": "testi:e08.imp.casse_bibite.carrelli.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.imp.casse_bibite.carrelli.r"
+          },
+          {
+            "id": "corridoio",
+            "testo": "testi:e08.imp.casse_bibite.corridoio",
+            "costo": "testi:e08.imp.casse_bibite.corridoio.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.imp.casse_bibite.corridoio.r"
+          },
+          {
+            "id": "bolla",
+            "testo": "testi:e08.imp.casse_bibite.bolla",
+            "costo": "testi:e08.imp.casse_bibite.bolla.c",
+            "effetti": [],
+            "risposta": "testi:e08.imp.casse_bibite.bolla.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_pulcini",
+        "fonte": "centrale_radio",
+        "testo": "testi:e08.imp.pulcini",
+        "commento": "testi:e08.imp.pulcini.vice",
+        "settore": "tornelli",
+        "opzioni": [
+          {
+            "id": "varco_pulcini",
+            "testo": "testi:e08.imp.pulcini.varco_pulcini",
+            "costo": "testi:e08.imp.pulcini.varco_pulcini.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.imp.pulcini.varco_pulcini.r"
+          },
+          {
+            "id": "adulti_lato",
+            "testo": "testi:e08.imp.pulcini.adulti_lato",
+            "costo": "testi:e08.imp.pulcini.adulti_lato.c",
+            "effetti": [
+              {
+                "pressione": "tornelli",
+                "valore": -1
+              },
+              {
+                "tensione": "tornelli",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.imp.pulcini.adulti_lato.r"
+          },
+          {
+            "id": "passo_pulcini",
+            "testo": "testi:e08.imp.pulcini.passo_pulcini",
+            "costo": "testi:e08.imp.pulcini.passo_pulcini.c",
+            "effetti": [],
+            "risposta": "testi:e08.imp.pulcini.passo_pulcini.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "quello_la",
+      "chiamata": {
+        "id": "quello_la_v",
+        "fonte": "vice",
+        "testo": "testi:e08.var.quello_la",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "gruppo_si",
+            "testo": "testi:e08.var.quello_la.gruppo_si",
+            "costo": "testi:e08.var.quello_la.gruppo_si.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -2
+              },
+              {
+                "pressione": "curva_ospiti",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.var.quello_la.gruppo_si.r"
+          },
+          {
+            "id": "gruppo_no",
+            "testo": "testi:e08.var.quello_la.gruppo_no",
+            "costo": "testi:e08.var.quello_la.gruppo_no.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              },
+              {
+                "pressione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.var.quello_la.gruppo_no.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "coro_dessi",
+      "chiamata": {
+        "id": "coro_dessi_v",
+        "fonte": "vice",
+        "testo": "testi:e08.var.coro_dessi",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "steward_ospiti8",
+            "testo": "testi:e08.var.coro_dessi.steward_ospiti8",
+            "costo": "testi:e08.var.coro_dessi.steward_ospiti8.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e08.var.coro_dessi.steward_ospiti8.r"
+          },
+          {
+            "id": "lascia_rovers8",
+            "testo": "testi:e08.var.coro_dessi.lascia_rovers8",
+            "costo": "testi:e08.var.coro_dessi.lascia_rovers8.c",
+            "effetti": [
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.var.coro_dessi.lascia_rovers8.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "fumo_verde",
+      "chiamata": {
+        "id": "fumo_verde_v",
+        "fonte": "ufficio_sicurezza_cinderwick",
+        "testo": "testi:e08.var.fumo_verde",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "steward_verde",
+            "testo": "testi:e08.var.fumo_verde.steward_verde",
+            "costo": "testi:e08.var.fumo_verde.steward_verde.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -2
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.var.fumo_verde.steward_verde.r"
+          },
+          {
+            "id": "lascia_verde",
+            "testo": "testi:e08.var.fumo_verde.lascia_verde",
+            "costo": "testi:e08.var.fumo_verde.lascia_verde.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.var.fumo_verde.lascia_verde.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "di": "risultato",
+      "chiamata": {
+        "id": "risultato_v",
+        "fonte": "vice",
+        "testo": "testi:e08.var.risultato",
+        "commento": "testi:e08.var.risultato.vice",
+        "opzioni": [
+          {
+            "id": "ritorno_sempre",
+            "testo": "testi:e08.var.risultato.ritorno_sempre",
+            "costo": "testi:e08.var.risultato.ritorno_sempre.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              },
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e08.var.risultato.ritorno_sempre.r"
+          },
+          {
+            "id": "ritorno_deviato",
+            "testo": "testi:e08.var.risultato.ritorno_deviato",
+            "costo": "testi:e08.var.risultato.ritorno_deviato.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e08.var.risultato.ritorno_deviato.r"
+          },
+          {
+            "id": "ritorno_no",
+            "testo": "testi:e08.var.risultato.ritorno_no",
+            "costo": "testi:e08.var.risultato.ritorno_no.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e08.var.risultato.ritorno_no.r"
+          }
+        ]
+      }
     }
   ]
 }

@@ -204,6 +204,222 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_oche",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e32.imp.oche",
+        "commento": "testi:e32.imp.oche.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "guardiano_parco",
+            "testo": "testi:e32.imp.oche.guardiano_parco",
+            "costo": "testi:e32.imp.oche.guardiano_parco.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.oche.guardiano_parco.r"
+          },
+          {
+            "id": "giro_largo",
+            "testo": "testi:e32.imp.oche.giro_largo",
+            "costo": "testi:e32.imp.oche.giro_largo.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.oche.giro_largo.r"
+          },
+          {
+            "id": "passo_oca",
+            "testo": "testi:e32.imp.oche.passo_oca",
+            "costo": "testi:e32.imp.oche.passo_oca.c",
+            "effetti": [],
+            "risposta": "testi:e32.imp.oche.passo_oca.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_irrigatori",
+        "fonte": "centrale_radio",
+        "testo": "testi:e32.imp.irrigatori",
+        "commento": "testi:e32.imp.irrigatori.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "pompa",
+            "testo": "testi:e32.imp.irrigatori.pompa",
+            "costo": "testi:e32.imp.irrigatori.pompa.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.irrigatori.pompa.r"
+          },
+          {
+            "id": "teli",
+            "testo": "testi:e32.imp.irrigatori.teli",
+            "costo": "testi:e32.imp.irrigatori.teli.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.irrigatori.teli.r"
+          },
+          {
+            "id": "doccia",
+            "testo": "testi:e32.imp.irrigatori.doccia",
+            "costo": "testi:e32.imp.irrigatori.doccia.c",
+            "effetti": [],
+            "risposta": "testi:e32.imp.irrigatori.doccia.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_stendardo",
+        "fonte": "centrale_radio",
+        "testo": "testi:e32.imp.stendardo",
+        "commento": "testi:e32.imp.stendardo.vice",
+        "settore": "curva_larkspire",
+        "opzioni": [
+          {
+            "id": "magazziniere",
+            "testo": "testi:e32.imp.stendardo.magazziniere",
+            "costo": "testi:e32.imp.stendardo.magazziniere.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.stendardo.magazziniere.r"
+          },
+          {
+            "id": "lega_stendardo",
+            "testo": "testi:e32.imp.stendardo.lega_stendardo",
+            "costo": "testi:e32.imp.stendardo.lega_stendardo.c",
+            "effetti": [
+              {
+                "pressione": "curva_larkspire",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.stendardo.lega_stendardo.r"
+          },
+          {
+            "id": "tira_molla",
+            "testo": "testi:e32.imp.stendardo.tira_molla",
+            "costo": "testi:e32.imp.stendardo.tira_molla.c",
+            "effetti": [],
+            "risposta": "testi:e32.imp.stendardo.tira_molla.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_semaforo_giallo",
+        "fonte": "centrale_radio",
+        "testo": "testi:e32.imp.semaforo_giallo",
+        "commento": "testi:e32.imp.semaforo_giallo.vice",
+        "settore": "strada_larkspire",
+        "opzioni": [
+          {
+            "id": "vigile",
+            "testo": "testi:e32.imp.semaforo_giallo.vigile",
+            "costo": "testi:e32.imp.semaforo_giallo.vigile.c",
+            "effetti": [
+              {
+                "pressione": "strada_larkspire",
+                "valore": 1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.semaforo_giallo.vigile.r"
+          },
+          {
+            "id": "precedenza",
+            "testo": "testi:e32.imp.semaforo_giallo.precedenza",
+            "costo": "testi:e32.imp.semaforo_giallo.precedenza.c",
+            "effetti": [
+              {
+                "tensione": "strada_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e32.imp.semaforo_giallo.precedenza.r"
+          },
+          {
+            "id": "a_cenni",
+            "testo": "testi:e32.imp.semaforo_giallo.a_cenni",
+            "costo": "testi:e32.imp.semaforo_giallo.a_cenni.c",
+            "effetti": [],
+            "risposta": "testi:e32.imp.semaforo_giallo.a_cenni.r"
+          }
+        ]
+      }
     }
   ]
 }

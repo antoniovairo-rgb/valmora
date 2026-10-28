@@ -187,10 +187,10 @@ describe('C37-05 l\'opzione che manda un\'unità la impegna o dice perché no (t
     const x = nominaSenzaImpegno((ep) => ({ ...testi(ep), ...(prima[ep] ?? {}) })); console.log(`C37-05 rosso: ${x.length}`);
     expect(x.length).toBe(6);
   });
-  it('C45-01: scorre anche gli imprevisti innestati (142 chiamate, come data/imprevisti)', () => {
+  it('C45-01: scorre anche gli imprevisti innestati (284 chiamate, come data/imprevisti: 142 classiche + 142 del mazzo D-241)', () => {
     const file = Object.entries(d).filter(([k]) => k.startsWith('imprevisti/')).flatMap(([, f]) => (f as { imprevisti: unknown[] }).imprevisti);
     const innestati = missioni.flatMap((m) => m.ondate.flatMap((o) => (o.chiamate ?? []).filter((c) => c.imprevisto)));
-    expect(file.length).toBe(142); expect(innestati.length).toBe(file.length);
+    expect(file.length).toBe(284); expect(innestati.length).toBe(file.length);
   });
   it('C45-01 verde: nessuna etichetta d\'imprevisto nomina steward, squadre o mediatore', () => expect(nominaSenzaImpegno(testiC4501).filter((x) => x.includes(' imp_'))).toEqual([]));
   it('C45-01 rosso __NO_C4501: le 9 etichette di prima tornano; la regex di prima non ne vedeva nessuna', () => {

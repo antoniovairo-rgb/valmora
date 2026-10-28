@@ -352,4 +352,9 @@
 //   misura: App.tsx 334 → 265 (fasi dell'ondata in app-ondata.tsx), stile.css 400 → 201 + stile-schermate.css 201; CSS costruito
 //   identico al byte (md5 uguale, verificato dalla principale); foto 375/412 identiche, 360 entro il rumore di tempo.
 //   guardiano: confini (≤400 righe) nel pre-push; nessun rosso nuovo, solo struttura.
-export const GAME_VERSION = '0.53.0';
+// 0.54.0 – ogni partita diversa (idea D, PO-152, D-241): seme di partita, mazzo di imprevisti, varianti di chiamata.
+//   causa: il tester «dopo un po' si stufa»; missione.ts non usava il seme e l'imprevisto aveva posto fisso.
+//   misura: partite diverse fra due semi per episodio 0% → min 94%, mediana 99% (100 coppie); bot 0 blocchi su 43.200 partite;
+//   vittorie del casuale entro ±6 punti per episodio; SAVE_VERSION 3 (seme 0 = partita classica), salvataggi reali migrati.
+//   guardiano: tools/misura-d241.mjs (soglia 90%), rosso C241D01 (0% riprodotto dalla principale).
+export const GAME_VERSION = '0.54.0';

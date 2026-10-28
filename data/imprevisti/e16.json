@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_arrotino",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e16.imp.arrotino",
+        "commento": "testi:e16.imp.arrotino.vice",
+        "settore": "magazzino",
+        "opzioni": [
+          {
+            "id": "sposta_arrotino",
+            "testo": "testi:e16.imp.arrotino.sposta_arrotino",
+            "costo": "testi:e16.imp.arrotino.sposta_arrotino.c",
+            "effetti": [
+              {
+                "pressione": "magazzino",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e16.imp.arrotino.sposta_arrotino.r"
+          },
+          {
+            "id": "volume_arrotino",
+            "testo": "testi:e16.imp.arrotino.volume_arrotino",
+            "costo": "testi:e16.imp.arrotino.volume_arrotino.c",
+            "effetti": [
+              {
+                "pressione": "magazzino",
+                "valore": -1
+              },
+              {
+                "tensione": "magazzino",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e16.imp.arrotino.volume_arrotino.r"
+          },
+          {
+            "id": "giro_arrotino",
+            "testo": "testi:e16.imp.arrotino.giro_arrotino",
+            "costo": "testi:e16.imp.arrotino.giro_arrotino.c",
+            "effetti": [],
+            "risposta": "testi:e16.imp.arrotino.giro_arrotino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_sbarre",
+        "fonte": "centrale_radio",
+        "testo": "testi:e16.imp.sbarre",
+        "commento": "testi:e16.imp.sbarre.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "casellante",
+            "testo": "testi:e16.imp.sbarre.casellante",
+            "costo": "testi:e16.imp.sbarre.casellante.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e16.imp.sbarre.casellante.r"
+          },
+          {
+            "id": "sottopasso",
+            "testo": "testi:e16.imp.sbarre.sottopasso",
+            "costo": "testi:e16.imp.sbarre.sottopasso.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e16.imp.sbarre.sottopasso.r"
+          },
+          {
+            "id": "segnale",
+            "testo": "testi:e16.imp.sbarre.segnale",
+            "costo": "testi:e16.imp.sbarre.segnale.c",
+            "effetti": [],
+            "risposta": "testi:e16.imp.sbarre.segnale.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_ombrellone",
+        "fonte": "club_pinegrove",
+        "testo": "testi:e16.imp.ombrellone",
+        "commento": "testi:e16.imp.ombrellone.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "ritira_ombrellone",
+            "testo": "testi:e16.imp.ombrellone.ritira_ombrellone",
+            "costo": "testi:e16.imp.ombrellone.ritira_ombrellone.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e16.imp.ombrellone.ritira_ombrellone.r"
+          },
+          {
+            "id": "ultima_fila",
+            "testo": "testi:e16.imp.ombrellone.ultima_fila",
+            "costo": "testi:e16.imp.ombrellone.ultima_fila.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e16.imp.ombrellone.ultima_fila.r"
+          },
+          {
+            "id": "vento",
+            "testo": "testi:e16.imp.ombrellone.vento",
+            "costo": "testi:e16.imp.ombrellone.vento.c",
+            "effetti": [],
+            "risposta": "testi:e16.imp.ombrellone.vento.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_rullo",
+        "fonte": "centrale_radio",
+        "testo": "testi:e16.imp.rullo",
+        "commento": "testi:e16.imp.rullo.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "rullo_piazzale",
+            "testo": "testi:e16.imp.rullo.rullo_piazzale",
+            "costo": "testi:e16.imp.rullo.rullo_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e16.imp.rullo.rullo_piazzale.r"
+          },
+          {
+            "id": "marciapiede",
+            "testo": "testi:e16.imp.rullo.marciapiede",
+            "costo": "testi:e16.imp.rullo.marciapiede.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e16.imp.rullo.marciapiede.r"
+          },
+          {
+            "id": "lavorino",
+            "testo": "testi:e16.imp.rullo.lavorino",
+            "costo": "testi:e16.imp.rullo.lavorino.c",
+            "effetti": [],
+            "risposta": "testi:e16.imp.rullo.lavorino.r"
+          }
+        ]
+      }
     }
   ]
 }

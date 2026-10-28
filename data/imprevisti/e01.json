@@ -156,6 +156,293 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        4
+      ],
+      "chiamata": {
+        "id": "imp_gelati",
+        "fonte": "centrale_radio",
+        "testo": "testi:e01.imp.gelati",
+        "commento": "testi:e01.imp.gelati.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "allontana_gelataio",
+            "testo": "testi:e01.imp.gelati.allontana_gelataio",
+            "costo": "testi:e01.imp.gelati.allontana_gelataio.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -3
+              },
+              {
+                "tensione": "strada_larkspire",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e01.imp.gelati.allontana_gelataio.r"
+          },
+          {
+            "id": "coni_col_biglietto",
+            "testo": "testi:e01.imp.gelati.coni_col_biglietto",
+            "costo": "testi:e01.imp.gelati.coni_col_biglietto.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.imp.gelati.coni_col_biglietto.r"
+          },
+          {
+            "id": "finiscano_coni",
+            "testo": "testi:e01.imp.gelati.finiscano_coni",
+            "costo": "testi:e01.imp.gelati.finiscano_coni.c",
+            "effetti": [],
+            "risposta": "testi:e01.imp.gelati.finiscano_coni.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_api",
+        "fonte": "centrale_radio",
+        "testo": "testi:e01.imp.api",
+        "commento": "testi:e01.imp.api.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "apicoltore",
+            "testo": "testi:e01.imp.api.apicoltore",
+            "costo": "testi:e01.imp.api.apicoltore.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -3
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e01.imp.api.apicoltore.r"
+          },
+          {
+            "id": "ammaina",
+            "testo": "testi:e01.imp.api.ammaina",
+            "costo": "testi:e01.imp.api.ammaina.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.imp.api.ammaina.r"
+          },
+          {
+            "id": "decidano_api",
+            "testo": "testi:e01.imp.api.decidano_api",
+            "costo": "testi:e01.imp.api.decidano_api.c",
+            "effetti": [],
+            "risposta": "testi:e01.imp.api.decidano_api.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        4
+      ],
+      "chiamata": {
+        "id": "imp_rifiuti",
+        "fonte": "voci_in_rete",
+        "testo": "testi:e01.imp.rifiuti",
+        "commento": "testi:e01.imp.rifiuti.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "camion_piazzale",
+            "testo": "testi:e01.imp.rifiuti.camion_piazzale",
+            "costo": "testi:e01.imp.rifiuti.camion_piazzale.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -3
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.imp.rifiuti.camion_piazzale.r"
+          },
+          {
+            "id": "accosta",
+            "testo": "testi:e01.imp.rifiuti.accosta",
+            "costo": "testi:e01.imp.rifiuti.accosta.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.imp.rifiuti.accosta.r"
+          },
+          {
+            "id": "giro_cassonetti",
+            "testo": "testi:e01.imp.rifiuti.giro_cassonetti",
+            "costo": "testi:e01.imp.rifiuti.giro_cassonetti.c",
+            "effetti": [],
+            "risposta": "testi:e01.imp.rifiuti.giro_cassonetti.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "ufficio_insiste",
+      "chiamata": {
+        "id": "ufficio_insiste_v",
+        "fonte": "ufficio_sicurezza_cinderwick",
+        "testo": "testi:e01.var.ufficio_insiste",
+        "commento": "testi:e01.var.ufficio_insiste.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "asseconda",
+            "testo": "testi:e01.var.ufficio_insiste.asseconda",
+            "costo": "testi:e01.var.ufficio_insiste.asseconda.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e01.var.ufficio_insiste.asseconda.r"
+          },
+          {
+            "id": "ignora",
+            "testo": "testi:e01.var.ufficio_insiste.ignora",
+            "costo": "testi:e01.var.ufficio_insiste.ignora.c",
+            "effetti": [],
+            "risposta": "testi:e01.var.ufficio_insiste.ignora.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "fumogeni",
+      "chiamata": {
+        "id": "fumogeni_v",
+        "fonte": "centrale_radio",
+        "testo": "testi:e01.var.fumogeni",
+        "commento": "testi:e01.var.fumogeni.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "spegni",
+            "testo": "testi:e01.var.fumogeni.spegni",
+            "costo": "testi:e01.var.fumogeni.spegni.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.var.fumogeni.spegni.r"
+          },
+          {
+            "id": "sospendi",
+            "testo": "testi:e01.var.fumogeni.sospendi",
+            "costo": "testi:e01.var.fumogeni.sospendi.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -3
+              },
+              {
+                "tensione": "curva_larkspire",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e01.var.fumogeni.sospendi.r"
+          },
+          {
+            "id": "lascia_fumo",
+            "testo": "testi:e01.var.fumogeni.lascia_fumo",
+            "costo": "testi:e01.var.fumogeni.lascia_fumo.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 3
+              }
+            ],
+            "risposta": "testi:e01.var.fumogeni.lascia_fumo.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "troupe",
+      "chiamata": {
+        "id": "troupe_v",
+        "fonte": "vice",
+        "testo": "testi:e01.var.troupe",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "intervista",
+            "testo": "testi:e01.var.troupe.intervista",
+            "costo": "testi:e01.var.troupe.intervista.c",
+            "effetti": [
+              {
+                "tensione": "piazzale",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e01.var.troupe.intervista.r"
+          },
+          {
+            "id": "niente",
+            "testo": "testi:e01.var.troupe.niente",
+            "costo": "testi:e01.var.troupe.niente.c",
+            "effetti": [],
+            "risposta": "testi:e01.var.troupe.niente.r"
+          }
+        ]
+      }
     }
   ]
 }

@@ -208,6 +208,226 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_mercatino",
+        "fonte": "centrale_radio",
+        "testo": "testi:e15.imp.mercatino",
+        "commento": "testi:e15.imp.mercatino.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "bancarelle_stazione",
+            "testo": "testi:e15.imp.mercatino.bancarelle_stazione",
+            "costo": "testi:e15.imp.mercatino.bancarelle_stazione.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.mercatino.bancarelle_stazione.r"
+          },
+          {
+            "id": "lato_libero",
+            "testo": "testi:e15.imp.mercatino.lato_libero",
+            "costo": "testi:e15.imp.mercatino.lato_libero.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.mercatino.lato_libero.r"
+          },
+          {
+            "id": "mercato",
+            "testo": "testi:e15.imp.mercatino.mercato",
+            "costo": "testi:e15.imp.mercatino.mercato.c",
+            "effetti": [],
+            "risposta": "testi:e15.imp.mercatino.mercato.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_bicchieri",
+        "fonte": "centrale_radio",
+        "testo": "testi:e15.imp.bicchieri",
+        "commento": "testi:e15.imp.bicchieri.vice",
+        "settore": "settore_gemellati",
+        "opzioni": [
+          {
+            "id": "bicchieri_kiln",
+            "testo": "testi:e15.imp.bicchieri.bicchieri_kiln",
+            "costo": "testi:e15.imp.bicchieri.bicchieri_kiln.c",
+            "effetti": [
+              {
+                "pressione": "settore_gemellati",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.bicchieri.bicchieri_kiln.r"
+          },
+          {
+            "id": "bottiglia",
+            "testo": "testi:e15.imp.bicchieri.bottiglia",
+            "costo": "testi:e15.imp.bicchieri.bottiglia.c",
+            "effetti": [
+              {
+                "pressione": "settore_gemellati",
+                "valore": -1
+              },
+              {
+                "tensione": "settore_gemellati",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.bicchieri.bottiglia.r"
+          },
+          {
+            "id": "furgone_bicchieri",
+            "testo": "testi:e15.imp.bicchieri.furgone_bicchieri",
+            "costo": "testi:e15.imp.bicchieri.furgone_bicchieri.c",
+            "effetti": [],
+            "risposta": "testi:e15.imp.bicchieri.furgone_bicchieri.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_pallone",
+        "fonte": "centrale_radio",
+        "testo": "testi:e15.imp.pallone",
+        "commento": "testi:e15.imp.pallone.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "raccattapalle",
+            "testo": "testi:e15.imp.pallone.raccattapalle",
+            "costo": "testi:e15.imp.pallone.raccattapalle.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "settore_gemellati",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.pallone.raccattapalle.r"
+          },
+          {
+            "id": "pallone_nuovo",
+            "testo": "testi:e15.imp.pallone.pallone_nuovo",
+            "costo": "testi:e15.imp.pallone.pallone_nuovo.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.pallone.pallone_nuovo.r"
+          },
+          {
+            "id": "se_lo_passino",
+            "testo": "testi:e15.imp.pallone.se_lo_passino",
+            "costo": "testi:e15.imp.pallone.se_lo_passino.c",
+            "effetti": [],
+            "risposta": "testi:e15.imp.pallone.se_lo_passino.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_chiavi",
+        "fonte": "club_wallgate",
+        "testo": "testi:e15.imp.chiavi",
+        "commento": "testi:e15.imp.chiavi.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "torce_addetti",
+            "testo": "testi:e15.imp.chiavi.torce_addetti",
+            "costo": "testi:e15.imp.chiavi.torce_addetti.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.chiavi.torce_addetti.r"
+          },
+          {
+            "id": "attesa_pullman",
+            "testo": "testi:e15.imp.chiavi.attesa_pullman",
+            "costo": "testi:e15.imp.chiavi.attesa_pullman.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e15.imp.chiavi.attesa_pullman.r"
+          },
+          {
+            "id": "cerchino",
+            "testo": "testi:e15.imp.chiavi.cerchino",
+            "costo": "testi:e15.imp.chiavi.cerchino.c",
+            "effetti": [],
+            "risposta": "testi:e15.imp.chiavi.cerchino.r"
+          }
+        ]
+      }
     }
   ]
 }

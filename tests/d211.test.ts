@@ -7,7 +7,7 @@
 import { readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it } from 'vitest';
 import { leggiDati } from '../tools/dati-disco.mjs';
-import type { Missione } from '../src/logica/tipi.ts';
+import type { Chiamata, Missione } from '../src/logica/tipi.ts';
 
 const g = globalThis as Record<string, unknown>;
 afterEach(() => { for (const k of ['D21101', 'D21102', 'D21105', 'D21106']) delete g[`__NO_${k}`]; });
@@ -16,6 +16,13 @@ const ms = Object.entries(d).filter(([k]) => /^missioni\/e\d+\.json$/.test(k)).m
 const prima = JSON.parse(readFileSync('tests/dati/d211-prima.json', 'utf8')) as Record<string, Record<string, Record<string, string>>>;
 const testi = (f: string, rosso: string) => ({ ...(d[`testi/it/${f}.json`] as Record<string, string>), ...(g[`__NO_${rosso.replace('-', '')}`] ? prima[rosso]![f] ?? {} : {}) });
 const tx = (t: Record<string, string>, k?: string) => t[(k ?? '').replace(/^testi:/, '')] ?? '';
+/** D-241: le chiamate (non imprevisti, varianti comprese) che in qualche partita vengono prima / dopo l'imprevisto c: le
+ *  altre carte del mazzo no (ne arriva una sola per ondata); il posto è quello della finestra dichiarata. */
+const intorno = (ch: Chiamata[], c: Chiamata) => {
+  const base = ch.filter((x) => !x.imprevisto && !x.variante_di).map((x) => x.id), posto = (x: Chiamata) => base.indexOf(x.variante_di ?? x.id);
+  const [da, a] = c.finestra ?? [ch.indexOf(c), ch.indexOf(c)], altre = ch.filter((x) => !x.imprevisto);
+  return { prima: altre.filter((x) => posto(x) < a), dopo: altre.filter((x) => posto(x) >= da) };
+};
 
 describe('D211-01 un imprevisto non ripete l\'azione di una risposta data prima nella stessa ondata (C4504 esteso, C46-01)', () => {
   // radici (5 lettere) delle parole di almeno 4 lettere, tolte le parole di servizio e gli strumenti («speaker»): un'etichetta
@@ -26,9 +33,9 @@ describe('D211-01 un imprevisto non ripete l\'azione di una risposta data prima 
   const ripetute = () => {
     const out: string[] = [];
     for (const m of ms) { const t = testi(m.id, 'D211-01');
-      for (const o of m.ondate) { const ch = o.chiamate ?? []; ch.forEach((c, i) => { if (!c.imprevisto) return;
+      for (const o of m.ondate) { const ch = o.chiamate ?? []; ch.forEach((c) => { if (!c.imprevisto) return;
         for (const io of c.opzioni) { const ri = [...radici(tx(t, io.testo))];
-          for (const p of ch.slice(0, i)) for (const op of p.opzioni) {
+          for (const p of intorno(ch, c).prima) for (const op of p.opzioni) {
             const et = radici(tx(t, op.testo)), tutto = radici(`${tx(t, op.testo)} ${tx(t, op.risposta)}`);
             const a = ri.filter((r) => et.has(r)), b = ri.filter((r) => tutto.has(r));
             if (a.length >= 2 || b.length >= 3) out.push(`${m.id} ${c.id}/${io.id} ← ${p.id}/${op.id}: ${(a.length >= 2 ? a : b).join(',')}`);
@@ -49,9 +56,9 @@ describe('D211-01 un imprevisto non ripete l\'azione di una risposta data prima 
   const contrari = () => {
     const out: string[] = [];
     for (const m of ms) { const t = testi(m.id, 'D211-01');
-      for (const o of m.ondate) { const ch = o.chiamate ?? []; ch.forEach((c, i) => { if (!c.imprevisto) return;
+      for (const o of m.ondate) { const ch = o.chiamate ?? []; ch.forEach((c) => { if (!c.imprevisto) return;
         for (const io of c.opzioni) { const fin = stati(tx(t, io.risposta)).pop(); if (!fin) continue; const opp = fin.slice(0, -1) + (fin.endsWith('a') ? 'b' : 'a');
-          for (const p of ch.slice(i + 1)) { const sp = stati(tx(t, p.testo)); if (!p.imprevisto && sp.includes(opp) && !sp.includes(fin)) out.push(`${m.id} ${c.id}/${io.id} → ${p.id}`); } }
+          for (const p of intorno(ch, c).dopo) { const sp = stati(tx(t, p.testo)); if (sp.includes(opp) && !sp.includes(fin)) out.push(`${m.id} ${c.id}/${io.id} → ${p.id}`); } }
       }); } }
     return out;
   };
@@ -85,9 +92,9 @@ describe('D211-06 un\'etichetta d\'imprevisto non ripete il mezzo di una rispost
   const mezzi = (s: string) => MEZZI.filter(([, r]) => r.test(s)).map(([n]) => n);
   const ripetuti = () => { const out: string[] = [];
     for (const m of ms) { const t = testi(m.id, 'D211-06');
-      for (const o of m.ondate) { const ch = o.chiamate ?? []; ch.forEach((c, i) => { if (!c.imprevisto) return;
+      for (const o of m.ondate) { const ch = o.chiamate ?? []; ch.forEach((c) => { if (!c.imprevisto) return;
         for (const io of c.opzioni) { const mi = mezzi(tx(t, io.testo)); if (!mi.length) continue;
-          for (const p of ch.slice(0, i)) for (const op of p.opzioni) { const com = mezzi(`${tx(t, op.testo)} ${tx(t, op.risposta)}`).filter((z) => mi.includes(z)); if (com.length) out.push(`${m.id} ${c.id}/${io.id} ← ${p.id}/${op.id}: ${com.join(',')}`); } }
+          for (const p of intorno(ch, c).prima) for (const op of p.opzioni) { const com = mezzi(`${tx(t, op.testo)} ${tx(t, op.risposta)}`).filter((z) => mi.includes(z)); if (com.length) out.push(`${m.id} ${c.id}/${io.id} ← ${p.id}/${op.id}: ${com.join(',')}`); } }
       }); } }
     return out;
   };

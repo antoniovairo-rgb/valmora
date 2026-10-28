@@ -204,6 +204,222 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_sposi",
+        "fonte": "centrale_radio",
+        "testo": "testi:e29.imp.sposi",
+        "commento": "testi:e29.imp.sposi.vice",
+        "settore": "piazzale",
+        "opzioni": [
+          {
+            "id": "scorta_sposi",
+            "testo": "testi:e29.imp.sposi.scorta_sposi",
+            "costo": "testi:e29.imp.sposi.scorta_sposi.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.sposi.scorta_sposi.r"
+          },
+          {
+            "id": "tovagliolo",
+            "testo": "testi:e29.imp.sposi.tovagliolo",
+            "costo": "testi:e29.imp.sposi.tovagliolo.c",
+            "effetti": [
+              {
+                "pressione": "piazzale",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.sposi.tovagliolo.r"
+          },
+          {
+            "id": "trovino_chiesa",
+            "testo": "testi:e29.imp.sposi.trovino_chiesa",
+            "costo": "testi:e29.imp.sposi.trovino_chiesa.c",
+            "effetti": [],
+            "risposta": "testi:e29.imp.sposi.trovino_chiesa.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_vernice",
+        "fonte": "club_saltmere",
+        "testo": "testi:e29.imp.vernice",
+        "commento": "testi:e29.imp.vernice.vice",
+        "settore": "curva_ospiti",
+        "opzioni": [
+          {
+            "id": "cartoni",
+            "testo": "testi:e29.imp.vernice.cartoni",
+            "costo": "testi:e29.imp.vernice.cartoni.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "piazzale",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.vernice.cartoni.r"
+          },
+          {
+            "id": "in_piedi",
+            "testo": "testi:e29.imp.vernice.in_piedi",
+            "costo": "testi:e29.imp.vernice.in_piedi.c",
+            "effetti": [
+              {
+                "pressione": "curva_ospiti",
+                "valore": -1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.vernice.in_piedi.r"
+          },
+          {
+            "id": "siedano",
+            "testo": "testi:e29.imp.vernice.siedano",
+            "costo": "testi:e29.imp.vernice.siedano.c",
+            "effetti": [],
+            "risposta": "testi:e29.imp.vernice.siedano.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        4
+      ],
+      "chiamata": {
+        "id": "imp_corrimano",
+        "fonte": "centrale_radio",
+        "testo": "testi:e29.imp.corrimano",
+        "commento": "testi:e29.imp.corrimano.vice",
+        "settore": "curva_cinderwick",
+        "opzioni": [
+          {
+            "id": "scala_tribuna",
+            "testo": "testi:e29.imp.corrimano.scala_tribuna",
+            "costo": "testi:e29.imp.corrimano.scala_tribuna.c",
+            "effetti": [
+              {
+                "pressione": "curva_cinderwick",
+                "valore": 1
+              },
+              {
+                "tensione": "curva_ospiti",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.corrimano.scala_tribuna.r"
+          },
+          {
+            "id": "turni_alterni",
+            "testo": "testi:e29.imp.corrimano.turni_alterni",
+            "costo": "testi:e29.imp.corrimano.turni_alterni.c",
+            "effetti": [
+              {
+                "tensione": "curva_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.corrimano.turni_alterni.r"
+          },
+          {
+            "id": "manutentore",
+            "testo": "testi:e29.imp.corrimano.manutentore",
+            "costo": "testi:e29.imp.corrimano.manutentore.c",
+            "effetti": [],
+            "risposta": "testi:e29.imp.corrimano.manutentore.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_gabbiani",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e29.imp.gabbiani",
+        "commento": "testi:e29.imp.gabbiani.vice",
+        "settore": "banchine",
+        "opzioni": [
+          {
+            "id": "sacchi_via",
+            "testo": "testi:e29.imp.gabbiani.sacchi_via",
+            "costo": "testi:e29.imp.gabbiani.sacchi_via.c",
+            "effetti": [
+              {
+                "pressione": "banchine",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.gabbiani.sacchi_via.r"
+          },
+          {
+            "id": "battimani",
+            "testo": "testi:e29.imp.gabbiani.battimani",
+            "costo": "testi:e29.imp.gabbiani.battimani.c",
+            "effetti": [
+              {
+                "pressione": "banchine",
+                "valore": -1
+              },
+              {
+                "tensione": "banchine",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e29.imp.gabbiani.battimani.r"
+          },
+          {
+            "id": "molo_gabbiani",
+            "testo": "testi:e29.imp.gabbiani.molo_gabbiani",
+            "costo": "testi:e29.imp.gabbiani.molo_gabbiani.c",
+            "effetti": [],
+            "risposta": "testi:e29.imp.gabbiani.molo_gabbiani.r"
+          }
+        ]
+      }
     }
   ]
 }

@@ -9,7 +9,10 @@
 import { join } from 'node:path';
 import { chromium } from 'playwright-core';
 import { existsSync } from 'node:fs';
-import { servi } from './foto.mjs';
+import { servi, SEME_FOTO } from './foto.mjs';
+import { chiamateDellaPartita, semeDa } from '../src/logica/partita.ts';
+// D-241: la partita e01 col seme delle foto (VALMORA_SEME_PARTITA per provarne un altro); lo schieramento si calcola sulla stessa partita
+const SEME = Number(process.env.VALMORA_SEME_PARTITA ?? SEME_FOTO);
 import { leggiDati } from './dati-disco.mjs';
 import * as M from '../src/logica/missione.ts';
 import { attenta, STRATEGIE } from '../src/logica/bot.ts';
@@ -76,14 +79,22 @@ export function verbaliCostruiti(dati, dich) {
 // sotto il massimo e la mediana misurati con D-207 (339 e 285 px; prima 545 e 466); le normali non oltre il massimo misurato.
 // Rosso C206I01. Mai alzarle per far passare una modifica.
 export const CHIAMATE_NORMALI_MAX = 664, IMPREVISTI_MAX = 339, IMPREVISTI_MEDIANA = 285;
+const semeCon = (m, o, id) => { for (let i = 1; ; i++) { const s = semeDa(`altezze:${m.id}:${i}`); if (chiamateDellaPartita(m, o, s).some((x) => x.id === id)) return s; } };
 export function chiamateCostruite(dati, dich) {
   const ms = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x).sort((a, b) => a.episodio - b.episodio), out = [];
   let v = variabiliIniziali(dich.values());
-  for (const [i, m] of ms.entries()) { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich);
-    while (!M.missioneFinita(m, s)) { s = M.schiera(m, s, g.schiera(m, s)); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) {
-      out.push({ ep: m.id, id: c.id, imprevisto: !!c.imprevisto, sal: JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: v, missioni_concluse: ms.slice(0, i).map((x) => x.id), episodi: {}, genere: 'm', in_corso: s, rapporto_aperto: null }) });
-      s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); } s = M.chiudiOndata(m, s, dich); }
-    v = M.concludiMissione(m, s, dich).variabili; }
+  for (const [i, m] of ms.entries()) {
+    // D-241: la partita classica (seme 0, porta avanti le variabili) e una partita per ogni carta del mazzo e variante non ancora vista
+    const viste = new Set(), mancano = (x) => !viste.has(x.id) && (x.carta || x.variante_di);
+    const semi = [0, ...m.ondate.flatMap((o) => (o.chiamate ?? []).filter((x) => x.carta || x.variante_di).map((x) => semeCon(m, o, x.id)))];
+    let fine = v;
+    for (const seme of semi) { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich, seme);
+      if (seme && !m.ondate.some((o) => chiamateDellaPartita(m, o, seme).some(mancano))) continue;
+      while (!M.missioneFinita(m, s)) { s = M.schiera(m, s, g.schiera(m, s)); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) {
+        if (!viste.has(c.id)) { viste.add(c.id); out.push({ ep: m.id, id: c.id, imprevisto: !!c.imprevisto, sal: JSON.stringify({ save_version: 2, game_version: GAME_VERSION, seme: 1, caso: 1, variabili: v, missioni_concluse: ms.slice(0, i).map((x) => x.id), episodi: {}, genere: 'm', in_corso: s, rapporto_aperto: null }) }); }
+        s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); } s = M.chiudiOndata(m, s, dich); }
+      if (!seme) fine = M.concludiMissione(m, s, dich).variabili; }
+    v = fine; }
   return out;
 }
 // C47-02 (D-218): riepilogo dello schieramento con 5 settori e l'avviso «ti restano», aperto da salvataggio all'ondata 1
@@ -101,7 +112,7 @@ export function riepiloghiCostruiti(dati, dich) {
   return out;
 }
 const mediana = (xs) => { const a = [...xs].sort((p, q) => p - q); return a.length ? a[a.length >> 1] : 0; };
-const piano = (m, v, dich) => { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich); const ond = [];
+const piano = (m, v, dich) => { const g = attenta(creaCaso(1), dich); let s = M.iniziaMissione(m, v, dich, SEME); const ond = [];
   while (!M.missioneFinita(m, s)) { const d = g.schiera(m, s); s = M.schiera(m, s, d); for (let c = M.chiamateAperte(m, s)[0]; c; c = M.chiamateAperte(m, s)[0]) s = M.rispondi(m, s, c.id, g.scegli(m, s, c), dich); ond.push({ d }); s = M.chiudiOndata(m, s, dich); }
   return ond; };
 async function schiera(p, d) { for (const [r, ps] of Object.entries(d)) for (const [s, q] of Object.entries(ps)) for (let x = 0; x < q; x++) { if ((await p.getAttribute(`[data-risorsa="${r}"]`, 'aria-pressed')) !== 'true') await p.click(`[data-risorsa="${r}"]`); await p.click(`[data-settore="${s}"] .settore-punto`); } }
@@ -149,7 +160,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
       if (parti.includes('e01')) { // la partita e01 intera
       const p = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
       if (rossi.length) await p.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-      await p.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); // come foto.mjs (PO-121): niente attese reali; senza, in CI «bloccato su chiamata» a 412
+      await p.addInitScript((x) => { globalThis.__VALMORA_SECONDO_MS = 1; globalThis.__VALMORA_SEME_PARTITA = x; }, SEME); // come foto.mjs (PO-121, D-241): niente attese reali, seme di partita fisso
       p.on('pageerror', (e) => errori.push(`${vp}: ${e.message}`));
       const c = async (sel) => { if (await p.locator(sel).count()) { await p.locator(sel).first().click(); await p.waitForTimeout(120); await lento(p); return true; } return false; };
       const rileva = async (nome) => { const x = await misura(p); ris.push({ vp, nome, ...x }); if (cartella) await p.screenshot({ path: join(cartella, `${vp}-${nome}-${ris.filter((r) => r.vp === vp && r.nome === nome).length}.png`), fullPage: true }); };

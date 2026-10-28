@@ -12,7 +12,7 @@ import { creaCaso } from '../src/logica/caso.ts';
 import { bilancio, type VoceScelta } from '../src/logica/bilancio.ts';
 import { daTabella, type TabellaConfronti } from '../src/logica/confronto.ts';
 import tabella from '../src/logica/confronti.json';
-import type { Dichiarazione, Missione } from '../src/logica/tipi.ts';
+import type { Chiamata, Dichiarazione, Missione } from '../src/logica/tipi.ts';
 
 const g = globalThis as Record<string, unknown>;
 afterEach(() => { for (const k of ['C4502', 'C4503', 'C4504']) delete g[`__NO_${k}`]; });
@@ -38,6 +38,14 @@ describe('C45-02 la guida nomina solo risorse che ci sono in tutti gli episodi',
 });
 
 // esteso alle etichette d'imprevisto e agli stati contrari in tests/d211.test.ts (D211-01, C46-01)
+/** D-241: le chiamate (non imprevisti, varianti comprese) che in qualche partita vengono prima / dopo l'imprevisto c: le
+ *  altre carte del mazzo no (ne arriva una sola per ondata); il posto è quello della finestra dichiarata. */
+const intorno = (ch: Chiamata[], c: Chiamata) => {
+  const base = ch.filter((x) => !x.imprevisto && !x.variante_di).map((x) => x.id), posto = (x: Chiamata) => base.indexOf(x.variante_di ?? x.id);
+  const [da, a] = c.finestra ?? [ch.indexOf(c), ch.indexOf(c)], altre = ch.filter((x) => !x.imprevisto);
+  return { prima: altre.filter((x) => posto(x) < a), dopo: altre.filter((x) => posto(x) >= da) };
+};
+
 describe('C45-04 un imprevisto non ripete lo stato che una risposta prima, nella stessa ondata, ha già raccontato', () => {
   // frasi di stato («musica spenta», «cancelli chiusi»…) comuni al testo dell'imprevisto e alla risposta di una chiamata che
   // lo precede: l'imprevisto arriva sempre (imprevisti.ts:60), quindi non può dire come nuovo uno stato che una risposta ha già dato
@@ -46,9 +54,9 @@ describe('C45-04 un imprevisto non ripete lo stato che una risposta prima, nella
   const ripetuti = () => {
     const out: string[] = [];
     for (const m of ms) { const t = testi(m.id, 'C45-04'), x = (k?: string) => t[(k ?? '').replace(/^testi:/, '')] ?? '';
-      for (const o of m.ondate) { const ch = o.chiamate ?? []; ch.forEach((c, i) => {
+      for (const o of m.ondate) { const ch = o.chiamate ?? []; ch.forEach((c) => {
         if (!c.imprevisto) return; const tc = coppie(x(c.testo));
-        for (const p of ch.slice(0, i)) for (const op of p.opzioni) for (const k of coppie(x(op.risposta))) if (tc.has(k)) out.push(`${m.id} ${c.id} ← ${p.id}/${op.id}: «${k}»`);
+        for (const p of intorno(ch, c).prima) for (const op of p.opzioni) for (const k of coppie(x(op.risposta))) if (tc.has(k)) out.push(`${m.id} ${c.id} ← ${p.id}/${op.id}: «${k}»`);
       }); } }
     return out;
   };

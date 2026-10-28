@@ -208,6 +208,381 @@
           }
         ]
       }
+    },
+    {
+      "ondata": 1,
+      "finestra": [
+        1,
+        3
+      ],
+      "chiamata": {
+        "id": "imp_laurea",
+        "fonte": "centrale_radio",
+        "testo": "testi:e11.imp.laurea",
+        "commento": "testi:e11.imp.laurea.vice",
+        "settore": "viale_stazione",
+        "opzioni": [
+          {
+            "id": "zio_laureato",
+            "testo": "testi:e11.imp.laurea.zio_laureato",
+            "costo": "testi:e11.imp.laurea.zio_laureato.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -3
+              },
+              {
+                "tensione": "piazza_fonderie",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.laurea.zio_laureato.r"
+          },
+          {
+            "id": "altro_marciapiede",
+            "testo": "testi:e11.imp.laurea.altro_marciapiede",
+            "costo": "testi:e11.imp.laurea.altro_marciapiede.c",
+            "effetti": [
+              {
+                "pressione": "viale_stazione",
+                "valore": -1
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.laurea.altro_marciapiede.r"
+          },
+          {
+            "id": "aspetta_torta",
+            "testo": "testi:e11.imp.laurea.aspetta_torta",
+            "costo": "testi:e11.imp.laurea.aspetta_torta.c",
+            "effetti": [],
+            "risposta": "testi:e11.imp.laurea.aspetta_torta.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_latte",
+        "fonte": "centrale_radio",
+        "testo": "testi:e11.imp.latte",
+        "commento": "testi:e11.imp.latte.vice",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "scarico_vicolo",
+            "testo": "testi:e11.imp.latte.scarico_vicolo",
+            "costo": "testi:e11.imp.latte.scarico_vicolo.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -3
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.latte.scarico_vicolo.r"
+          },
+          {
+            "id": "corridoio_casse",
+            "testo": "testi:e11.imp.latte.corridoio_casse",
+            "costo": "testi:e11.imp.latte.corridoio_casse.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -1
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.latte.corridoio_casse.r"
+          },
+          {
+            "id": "aspetta_scarico",
+            "testo": "testi:e11.imp.latte.aspetta_scarico",
+            "costo": "testi:e11.imp.latte.aspetta_scarico.c",
+            "effetti": [],
+            "risposta": "testi:e11.imp.latte.aspetta_scarico.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "finestra": [
+        1,
+        1
+      ],
+      "chiamata": {
+        "id": "imp_gallo",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e11.imp.gallo",
+        "commento": "testi:e11.imp.gallo.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "tovaglia_gabbia",
+            "testo": "testi:e11.imp.gallo.tovaglia_gabbia",
+            "costo": "testi:e11.imp.gallo.tovaglia_gabbia.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -3
+              },
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.gallo.tovaglia_gabbia.r"
+          },
+          {
+            "id": "giu_tapparelle",
+            "testo": "testi:e11.imp.gallo.giu_tapparelle",
+            "costo": "testi:e11.imp.gallo.giu_tapparelle.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.gallo.giu_tapparelle.r"
+          },
+          {
+            "id": "aspetta_gallo",
+            "testo": "testi:e11.imp.gallo.aspetta_gallo",
+            "costo": "testi:e11.imp.gallo.aspetta_gallo.c",
+            "effetti": [],
+            "risposta": "testi:e11.imp.gallo.aspetta_gallo.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "finestra": [
+        1,
+        2
+      ],
+      "chiamata": {
+        "id": "imp_edicola",
+        "fonte": "centrale_radio",
+        "testo": "testi:e11.imp.edicola",
+        "commento": "testi:e11.imp.edicola.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "copie_stazione",
+            "testo": "testi:e11.imp.edicola.copie_stazione",
+            "costo": "testi:e11.imp.edicola.copie_stazione.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -3
+              },
+              {
+                "tensione": "viale_stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.edicola.copie_stazione.r"
+          },
+          {
+            "id": "copia_in_due",
+            "testo": "testi:e11.imp.edicola.copia_in_due",
+            "costo": "testi:e11.imp.edicola.copia_in_due.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -1
+              },
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.imp.edicola.copia_in_due.r"
+          },
+          {
+            "id": "lascia_edicolante",
+            "testo": "testi:e11.imp.edicola.lascia_edicolante",
+            "costo": "testi:e11.imp.edicola.lascia_edicolante.c",
+            "effetti": [],
+            "risposta": "testi:e11.imp.edicola.lascia_edicolante.r"
+          }
+        ]
+      }
+    }
+  ],
+  "varianti": [
+    {
+      "ondata": 1,
+      "di": "pattuglia",
+      "chiamata": {
+        "id": "pattuglia_v",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e11.var.pattuglia",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "pattuglia_fissa",
+            "testo": "testi:e11.var.pattuglia.pattuglia_fissa",
+            "costo": "testi:e11.var.pattuglia.pattuglia_fissa.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": 1
+              },
+              {
+                "pressione": "stazione",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.var.pattuglia.pattuglia_fissa.r"
+          },
+          {
+            "id": "niente_pattuglia",
+            "testo": "testi:e11.var.pattuglia.niente_pattuglia",
+            "costo": "testi:e11.var.pattuglia.niente_pattuglia.c",
+            "effetti": [
+              {
+                "aggiungi": "credito",
+                "valore": -1
+              }
+            ],
+            "risposta": "testi:e11.var.pattuglia.niente_pattuglia.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 2,
+      "di": "dirette",
+      "chiamata": {
+        "id": "dirette_v",
+        "fonte": "informatore_di_strada",
+        "testo": "testi:e11.var.dirette",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "comunicato11",
+            "testo": "testi:e11.var.dirette.comunicato11",
+            "costo": "testi:e11.var.dirette.comunicato11.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": 2
+              }
+            ],
+            "risposta": "testi:e11.var.dirette.comunicato11.r"
+          },
+          {
+            "id": "allontana_curiosi",
+            "testo": "testi:e11.var.dirette.allontana_curiosi",
+            "costo": "testi:e11.var.dirette.allontana_curiosi.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e11.var.dirette.allontana_curiosi.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 3,
+      "di": "autoscala",
+      "chiamata": {
+        "id": "autoscala_v",
+        "fonte": "vice",
+        "testo": "testi:e11.var.autoscala",
+        "settore": "strada_cinderwick",
+        "opzioni": [
+          {
+            "id": "libera_strada",
+            "testo": "testi:e11.var.autoscala.libera_strada",
+            "costo": "testi:e11.var.autoscala.libera_strada.c",
+            "effetti": [
+              {
+                "pressione": "strada_cinderwick",
+                "valore": -2
+              },
+              {
+                "pressione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.var.autoscala.libera_strada.r"
+          },
+          {
+            "id": "strada_dopo",
+            "testo": "testi:e11.var.autoscala.strada_dopo",
+            "costo": "testi:e11.var.autoscala.strada_dopo.c",
+            "effetti": [
+              {
+                "tensione": "strada_cinderwick",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.var.autoscala.strada_dopo.r"
+          }
+        ]
+      }
+    },
+    {
+      "ondata": 4,
+      "di": "chi_paga",
+      "chiamata": {
+        "id": "chi_paga_v",
+        "fonte": "comitato_residenti",
+        "testo": "testi:e11.var.chi_paga",
+        "commento": "testi:e11.var.chi_paga.vice",
+        "settore": "quartiere",
+        "opzioni": [
+          {
+            "id": "paga_comune",
+            "testo": "testi:e11.var.chi_paga.paga_comune",
+            "costo": "testi:e11.var.chi_paga.paga_comune.c",
+            "effetti": [
+              {
+                "pressione": "quartiere",
+                "valore": -2
+              }
+            ],
+            "risposta": "testi:e11.var.chi_paga.paga_comune.r"
+          },
+          {
+            "id": "assicurazioni",
+            "testo": "testi:e11.var.chi_paga.assicurazioni",
+            "costo": "testi:e11.var.chi_paga.assicurazioni.c",
+            "effetti": [
+              {
+                "tensione": "quartiere",
+                "valore": 1
+              }
+            ],
+            "risposta": "testi:e11.var.chi_paga.assicurazioni.r"
+          }
+        ]
+      }
     }
   ]
 }
