@@ -326,7 +326,7 @@ function stazione(f: CanvasRenderingContext2D, W: number, st: Pt) {
   f.fillStyle = alfa(token('--bianco'), 0.15); f.fillRect(st.x - 34, st.y + 16, 64, 2);
 }
 
-/** Città di Valmora dall'alto per la mappa degli episodi (D-061): isolati, fiume, parco, velo serale. */
+/** Città di Varcalda dall'alto per la mappa degli episodi (D-061): isolati, fiume, parco, velo serale. */
 export function disegnaCitta(f: CanvasRenderingContext2D, W: number, H: number) {
   const caso = creaCaso(11); const r = () => caso.numero();
   const fiume = (x: number) => H * 0.22 + Math.sin((x / W) * Math.PI * 1.6) * H * 0.08 + (x / W) * H * 0.1;

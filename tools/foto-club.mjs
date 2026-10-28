@@ -129,7 +129,7 @@ export async function controllaFiducia(pagina, nome, atteso) {
   if (!prima && !fine && !['schieramento', 'chiamata', 'risposta', 'chiusura', 'rapporto'].includes(nome)) { fiduciaPrima = null; return; }
   const [barra, valore, delta, salvata] = await pagina.evaluate(() => {
     const b = document.querySelectorAll('[data-fiducia]');
-    const s = JSON.parse(localStorage.getItem('valmora-salvataggio') ?? 'null');
+    const s = JSON.parse(localStorage.getItem('varcalda-salvataggio') ?? 'null');
     return [b.length, Number(b[0]?.dataset.fiducia), Number(document.querySelector('[data-delta]')?.dataset.delta ?? 0), s?.in_corso?.variabili?.credito];
   });
   atteso(`${nome}: ${barra} barre della fiducia, ne serve una (PO-067)`, barra === 1);
@@ -172,13 +172,13 @@ export async function confermaSchieramento(pagina, { premi, atteso, fotoSe, prov
 /** S-20 (PO-073): esporta → ricarica pulita → importa = stesso salvataggio; file rovinato = avviso e nulla
  *  cambia; con una partita, due conferme; salvataggio principale rovinato = ripresa dalla copia di riserva. */
 export async function controllaArchivio(pagina, { atteso, scena, foto }) {
-  const CH = 'valmora-salvataggio';
+  const CH = 'varcalda-salvataggio';
   const leggi = () => pagina.evaluate((k) => localStorage.getItem(k), CH);
   await pagina.reload(); await scena('titolo');
   const prima = await leggi();
   if (!prima) { atteso('archivio: nessun salvataggio da esportare', false); return; }
   await (await import('./foto-home.mjs')).apriAltro(pagina); const [scarico] = await Promise.all([pagina.waitForEvent('download'), pagina.click('[data-azione="esporta"]')]); // PO-140: nel menu «Altro»
-  atteso(`archivio: il file si chiama «${scarico.suggestedFilename()}», non valmora-AAAA-MM-GG.json`, /^valmora-\d{4}-\d{2}-\d{2}\.json$/.test(scarico.suggestedFilename()));
+  atteso(`archivio: il file si chiama «${scarico.suggestedFilename()}», non varcalda-AAAA-MM-GG.json (D-244)`, /^varcalda-\d{4}-\d{2}-\d{2}\.json$/.test(scarico.suggestedFilename()));
   const percorso = await scarico.path();
   const { readFileSync } = await import('node:fs');
   const esportato = JSON.parse(readFileSync(percorso, 'utf8'));
@@ -243,7 +243,7 @@ export async function controllaRipartenza(pagina, { atteso, scena, partita, pian
   if (!f.fallita) return;
   const dich = new Map(leggiDati(dirDati)['stato.json'].variabili.map((x) => [x.id, x]));
   const n = ondataVincibile(piano.m, { rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili }, f.ic, dich);
-  await pagina.evaluate((v) => { const s = JSON.parse(localStorage.getItem('valmora-salvataggio')); s.episodi = {}; s.missioni_concluse = []; s.in_corso = null; s.variabili = v; localStorage.setItem('valmora-salvataggio', JSON.stringify(s)); }, v0);
+  await pagina.evaluate((v) => { const s = JSON.parse(localStorage.getItem('varcalda-salvataggio')); s.episodi = {}; s.missioni_concluse = []; s.in_corso = null; s.variabili = v; localStorage.setItem('varcalda-salvataggio', JSON.stringify(s)); }, v0);
   await pagina.reload(); await scena('titolo');
   await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
   await pagina.locator(`[data-episodio="${piano.m.id}"] .settore-punto`).click();
@@ -263,7 +263,7 @@ export async function controllaRipartenza(pagina, { atteso, scena, partita, pian
     return;
   }
   await pagina.click('[data-azione="riparti"]'); await scena('schieramento');
-  const [ondata, salvata] = await pagina.evaluate(() => [document.querySelector('main')?.dataset.ondata, JSON.parse(localStorage.getItem('valmora-salvataggio'))?.in_corso?.ondata]);
+  const [ondata, salvata] = await pagina.evaluate(() => [document.querySelector('main')?.dataset.ondata, JSON.parse(localStorage.getItem('varcalda-salvataggio'))?.in_corso?.ondata]);
   atteso(`ripartenza: dopo «Riparti» si è all'ondata ${ondata} (salvata ${salvata}), non alla ${n} (PO-060)`, ondata === String(n) && salvata === n);
 }
 
@@ -282,7 +282,7 @@ export async function controllaGuida(pagina, { atteso, scena, foto, salta }) {
   while (await pagina.locator('[data-azione="guida-avanti"]').count()) {
     await pagina.click('[data-azione="guida-avanti"]'); passi++; await vignetta(); await foto();
     // C16-04: a metà guida non è ancora «vista» (se l'app si chiude qui, la prossima volta torna)
-    if (passi === 3) atteso('guida introduttiva: segnata «vista» prima di finirla (C16-04)', (await pagina.evaluate(() => localStorage.getItem('valmora-guida-vista'))) !== 'si');
+    if (passi === 3) atteso('guida introduttiva: segnata «vista» prima di finirla (C16-04)', (await pagina.evaluate(() => localStorage.getItem('varcalda-guida-vista'))) !== 'si');
   }
   atteso(`guida introduttiva: ${passi} passi, ne servono 6`, passi === 6);
   await pagina.click('[data-azione="guida-fine"]');
@@ -291,7 +291,7 @@ export async function controllaGuida(pagina, { atteso, scena, foto, salta }) {
 /** S-21 (D-104, C14-05): il tasto indietro non esce dal gioco e non annulla niente. Dall'episodio in corso porta
  *  alla home (salvataggio identico, «Riprendi» torna lì); il pulsante «Home» fa lo stesso; dalla città, alla home. */
 export async function controllaIndietro(pagina, { atteso, scena }) {
-  const salvato = () => pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'));
+  const salvato = () => pagina.evaluate(() => localStorage.getItem('varcalda-salvataggio'));
   const dove = () => pagina.evaluate(() => document.querySelector('.scena')?.dataset.scena ?? `fuori dal gioco (${location.href})`);
   const qui = await dove(); const prima = await salvato();
   if (!['schieramento', 'chiamata', 'chiusura', 'rapporto'].includes(qui)) { atteso(`indietro: si doveva partire da un episodio in corso, non da «${qui}»`, false); return; }
@@ -304,7 +304,7 @@ export async function controllaIndietro(pagina, { atteso, scena }) {
   await pagina.click('[data-azione="home"]'); await scena('titolo').catch(() => {});
   atteso(`«Home» dall'episodio porta a «${await dove()}» (C14-05)`, (await dove()) === 'titolo' && (await salvato()) === prima);
   // dalla città: la partita in corso si lascia con «Riprendi» → episodio; la città si vede con una partita senza episodio in corso
-  await pagina.evaluate(() => { const s = JSON.parse(localStorage.getItem('valmora-salvataggio')); s.in_corso = null; localStorage.setItem('valmora-salvataggio', JSON.stringify(s)); });
+  await pagina.evaluate(() => { const s = JSON.parse(localStorage.getItem('varcalda-salvataggio')); s.in_corso = null; localStorage.setItem('varcalda-salvataggio', JSON.stringify(s)); });
   await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
   await pagina.goBack().catch(() => {}); await scena('titolo').catch(() => {});
   atteso(`indietro dalla città: si arriva a «${await dove()}», non alla home (C14-05)`, (await dove()) === 'titolo');
@@ -351,7 +351,7 @@ export async function controllaRipartiTesto(pagina, { atteso, scena, partita, pi
     if (f?.fallita && f.ic && ondataVincibile(p.m, { rapporti: f.ondate.map((o) => o.rapporto), variabili: f.variabili }, f.ic, dich) > 1) scelto = p;
   }
   if (!scelto) { atteso('C16-06: nessun episodio con ripartenza oltre la prima ondata, il controllo non si può fare', false); return; }
-  await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify(salvataggioTutti(missioni, v0)));
+  await pagina.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify(salvataggioTutti(missioni, v0)));
   await pagina.reload(); await scena('titolo');
   await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
   await apriDallaCitta(pagina, scelto.m, atteso);

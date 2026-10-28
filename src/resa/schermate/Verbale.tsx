@@ -26,7 +26,7 @@ export function Verbale(p: { m: Missione; esito: EsitoMissione; risultato: Risul
   const [condivisione, setCondivisione] = useState<string | null>(null);
   // PO-074: testo + link al gioco, dal pannello del telefono o copiato negli appunti
   const stelle = p.risultato.stelle;
-  const testoCondiviso = `Valmora · Ep. ${due(p.m.episodio)} «${t(p.m.titolo)}»: ${t(`esito.${p.esito.esito.id}`)} ${'★'.repeat(stelle)}${'☆'.repeat(3 - stelle)}. Ce la fai meglio di me?`;
+  const testoCondiviso = `Varcalda · Ep. ${due(p.m.episodio)} «${t(p.m.titolo)}»: ${t(`esito.${p.esito.esito.id}`)} ${'★'.repeat(stelle)}${'☆'.repeat(3 - stelle)}. Ce la fai meglio di me?`;
   const condividiVerbale = () => condividi(testoCondiviso).then((r) => setCondivisione(r === 'copiato' ? 'Copiato: incollalo dove vuoi.' : r === 'errore' ? 'Condivisione non riuscita.' : null));
   const esito = (
     <>

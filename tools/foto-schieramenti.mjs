@@ -137,7 +137,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   const { missioni, v0, stati } = partenze(dirDati);
   const base = salvataggioTutti(missioni, v0);
   const prova = async (pagina, st, nome, fotografa) => {
-    await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s }));
+    await pagina.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s }));
     await pagina.reload();
     await pagina.getByRole('button', { name: 'Riprendi' }).click();
     const ok = await pagina.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false);
@@ -165,7 +165,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     // più pagine insieme (prima una sola: il job a 360 durava 35-38 minuti). Gli elenchi cambiano ordine, conteggi e soglie no.
     const pagine = await Promise.all(Array.from({ length: PARALLELE }, async () => { const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); if (w === 360) await rallentaCaratteri(q); await q.goto(url); return q; }));
     const corpo = async (q6, st) => {
-      await q6.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
+      await q6.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s, bozza: { missione: st.s.missione, ondata: st.s.ondata, d: st.d } }));
       await q6.reload(); await q6.getByRole('button', { name: 'Riprendi' }).click();
       if (!(await q6.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) return;
       await ascoltaEtichette(q6); await etichetteFerme(q6);
@@ -207,7 +207,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   // coperto né nome su nome (caricando tutto dalla bozza il caso di e06 non si vedeva). Prima ondata di ogni episodio, 360.
   const qp = await nuova({ viewport: { width: 360, height: 760 }, reducedMotion: 'reduce' }); await qp.goto(url);
   for (const st of tocca(360) ? attente.filter((x) => x.n === 1) : []) {
-    await qp.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s }));
+    await qp.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s }));
     await qp.reload(); await qp.getByRole('button', { name: 'Riprendi' }).click();
     if (!(await qp.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false))) continue;
     const male = new Set();
@@ -232,7 +232,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   if (e03 && tocca(375)) {
     const q = await nuova({ viewport: { width: 375, height: 667 }, reducedMotion: 'reduce' });
     await q.goto(url);
-    await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: e03.s }));
+    await q.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify({ ...base, in_corso: e03.s }));
     await q.reload(); await q.getByRole('button', { name: 'Riprendi' }).click();
     await q.waitForSelector('[data-barra]', { timeout: 5000 }).catch(() => {}); await q.click('[data-azione="conferma"]');
     await q.waitForSelector('[data-riepilogo]', { timeout: 3000 }).catch(() => {});
@@ -253,7 +253,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     if (!primo) continue;
     const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
     await q.goto(url);
-    await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: primo.s }));
+    await q.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify({ ...base, in_corso: primo.s }));
     await q.reload(); await q.getByRole('button', { name: 'Riprendi' }).click();
     await q.waitForSelector('[data-azione="aiuto"]', { timeout: 5000 }).catch(() => {});
     await q.click('[data-azione="aiuto"]'); await q.waitForTimeout(300);
@@ -275,7 +275,7 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
   if (e07) for (const [w, h] of [[360, 760], [375, 667], [412, 915]].filter(([w]) => tocca(w))) {
     const q = await nuova({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
     await q.goto(url);
-    await q.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: e07.s }));
+    await q.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify({ ...base, in_corso: e07.s }));
     await q.reload(); await q.getByRole('button', { name: 'Riprendi' }).click();
     await q.waitForSelector('[data-barra]', { timeout: 5000 }).catch(() => {}); await q.waitForTimeout(120);
     const dove = `e07 ondata 2 ${w}×${h}`;

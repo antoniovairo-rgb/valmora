@@ -195,7 +195,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
         const genere = larghezza === 375 ? 'f' : 'm';
         await pagina.getByRole('button', { name: 'Nuova partita' }).click(); await scena('genere'); await foto();
         await premi(`[data-genere="${genere}"]`); await controllaGuida(pagina, { atteso, scena, foto, salta: larghezza === 375 }); await scena('citta'); await foto();
-        const salvato = await pagina.evaluate(() => JSON.parse(localStorage.getItem('valmora-salvataggio') ?? '{}').genere);
+        const salvato = await pagina.evaluate(() => JSON.parse(localStorage.getItem('varcalda-salvataggio') ?? '{}').genere);
         atteso(`genere: salvato «${salvato}» invece di «${genere}»`, salvato === genere);
 
         // Una partita intera dall'interfaccia, dalla sala al verbale. «completa»: foto di ogni scena,
@@ -293,7 +293,7 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
                   document.querySelector(`[data-opzione="${a}"]`).click();
                   setTimeout(() => { document.querySelector(`[data-opzione="${b}"]`)?.click(); setTimeout(ok, 60); }, 40);
                 }), [op, altra]);
-                await pagina.click('[data-conferma]').catch(() => {}); await pagina.waitForFunction(() => !document.querySelector('[data-annulla]'), null, { timeout: 5000 }).catch(() => {}); const salvata = await pagina.evaluate((k) => JSON.parse(localStorage.getItem('valmora-salvataggio')).in_corso.risposte[k], c); // PO-148: si salva con «Conferma»
+                await pagina.click('[data-conferma]').catch(() => {}); await pagina.waitForFunction(() => !document.querySelector('[data-annulla]'), null, { timeout: 5000 }).catch(() => {}); const salvata = await pagina.evaluate((k) => JSON.parse(localStorage.getItem('varcalda-salvataggio')).in_corso.risposte[k], c); // PO-148: si salva con «Conferma»
                 atteso(`doppio tocco: salvata «${salvata}» invece di «${op}» (C-005 R01)`, salvata === op);
               } else { await controllaVignettaEvento(pagina, p.m.ondate[i], p.m.ondate[i].chiamate.find((x) => x.id === c), atteso, `chiamata «${c}»`); const prima = await statoSalvato(pagina); await premi(`[data-opzione="${op}"]`); await pagina.click('[data-conferma]').catch(() => {}); await pagina.waitForFunction(() => !document.querySelector('[data-annulla]'), null, { timeout: 5000 }).catch(() => {}); /* PO-148: la risposta vale con «Conferma» */ await controllaVoloRisposta(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `chiamata «${c}»`); await controllaSegni(pagina, atteso, p.m.ondate[i].chiamate.find((x) => x.id === c), op, `risposta «${op}»`, prima); }
               if (p.m.ondate[i].chiamate.find((x) => x.id === c).opzioni.find((x) => x.id === op).risposta) {
@@ -372,13 +372,13 @@ export async function giraFoto(cartella = 'out/foto', build = 'dist', dirDati = 
           atteso(`città: ${piano3.m.id} non è superato`, (await ep3.getAttribute('data-stato')) === 'superato');
         }
         // C-005 R02: con una partita salvata, «Nuova partita» chiede conferma e «No» non cancella nulla
-        const prima = await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'));
+        const prima = await pagina.evaluate(() => localStorage.getItem('varcalda-salvataggio'));
         await pagina.reload(); await scena('titolo');
         await pagina.getByRole('button', { name: 'Nuova partita' }).click();
         const chiede = await scena('conferma').then(() => true, () => false);
         atteso('«Nuova partita» con una partita salvata non chiede conferma (C-005 R02)', chiede);
         if (chiede) { await foto(); await controllaTripla(pagina, atteso, '«Nuova partita»', foto); await premi('[data-azione="annulla-nuova"]'); await scena('titolo'); }
-        atteso('«No, tieni la partita» ha cambiato il salvataggio', (await pagina.evaluate(() => localStorage.getItem('valmora-salvataggio'))) === prima);
+        atteso('«No, tieni la partita» ha cambiato il salvataggio', (await pagina.evaluate(() => localStorage.getItem('varcalda-salvataggio'))) === prima);
         if (larghezza === 360) { await controllaArchivio(pagina, { atteso, scena, foto }); await controllaSalvataggiPersi(pagina, { atteso, scena }); await controllaRipartenza(pagina, { atteso, scena, partita, piano, dirDati }); await controllaIndietro(pagina, { atteso, scena }); await (await import('./foto-po121.mjs')).controllaAnnulla(browser, url, dirDati, cartella, atteso, rossi); await (await import('./foto-c33.mjs')).controllaTono(browser, url, dirDati, cartella, atteso, rossi); await controllaRipartiTesto(pagina, { atteso, scena, partita, pianoAttento, dirDati }); modoFoto = 'nessuna'; completa = false; await apriTutte({ pagina, dirDati, atteso, scena, premi, partita, pianoAttento, errori: g.errori, cartella }); } // S-09
       } catch (e) { atteso(`giro interrotto: ${e.message.split('\n')[0]}`, false); }
       await pagina.close();
