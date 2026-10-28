@@ -46,7 +46,8 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
   | 6 | **B · Una mossa per chiamata.** Azione pura `sposta` in missione.ts, trascinamento sulla mappa, una per chiamata, il bot la usa; SAVE_VERSION con migrazione se serve; rosso C241B01 | S-11 | – | da scrivere |
   | 7 | Bilanciamento: vittorie per episodio col bot (300 semi, 0 blocchi) dopo A+C; si ritoccano i dati, non le soglie; dentro: D-108 col seme (7 coppie rosse, esito «contenuto» di e24 irraggiungibile) e 129 risposte di imprevisti classici che scorrono oltre 68 px a 360×640 | S-11 / S-26 | – | da scrivere |
   | 8 | Accessibilità: testo al 130% a 360/375 (C52-04/05) | S-11 | – | da scrivere |
-  | 9 | Prova del tester: link al PO per il collega; collaudo con «Partita da giocatore» e la domanda «leggi le opzioni? la mappa la usi?» | principale + collaudatrice | – | da scrivere |
+  | 8b | **Nuovo nome «Varcalda – Cortina di fumo» (PO-153, D-244).** Testi, store, privacy, identificativo dell'app, chiavi del salvataggio con migrazione, repository e Pages; guardiano «nessun Valmora visibile» e rosso | S-26 + PO (rinomina del repository) | – | in corsa |
+| 9 | Prova del tester: link al PO per il collega; collaudo con «Partita da giocatore» e la domanda «leggi le opzioni? la mappa la usi?» | principale + collaudatrice | – | da scrivere |
 
 - Criterio d'uscita:
   - le quattro idee pubblicate, ognuna col suo guardiano e un braccio rosso che fallisce davvero;
