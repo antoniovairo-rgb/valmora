@@ -128328,6 +128328,104 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-28T05:37:36.002Z",
+      "commit": "c068b887",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            3.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2161.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "instabile",
+          "tentativi": 2,
+          "secondi": [
+            1090,
+            872.2
+          ],
+          "problemi": [],
+          "precedenti": [
+            [
+              "360px: e15 ondata 1 360×760: lo schieramento non si apre",
+              "412px: e03 ondata 3 412×915: lo schieramento non si apre"
+            ]
+          ]
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            11
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "instabile",
+          "tentativi": 2,
+          "secondi": [
+            1103.9,
+            1108.8
+          ],
+          "problemi": [],
+          "precedenti": [
+            [
+              "375x915 città: la mappa si sposta di 18 px fra gli stati (e19 202.4, prossimo 202.4, nessuno 220, superato 202.4, tutti36 202.4, tutti36scelto 202.4; C52-01)"
+            ]
+          ]
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            1260.9,
+            1284.4,
+            1136.3
+          ],
+          "problemi": [
+            "foto/città senza WebGL (C128N01) è cieco"
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }
