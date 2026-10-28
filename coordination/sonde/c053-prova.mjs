@@ -1,0 +1,10 @@
+import * as L from './c053-lib.mjs';
+const A = await L.avvia();
+const m = L.missioni[0];
+const p = await L.nuovaPagina(A.browser, A.url, 375, 667, L.salvataggioPrima('e01'));
+await L.apriEpisodio(p, m);
+console.log('scena', await L.scenaDi(p));
+const r = await L.giocaEpisodio(p, m);
+console.log(r.length, r.map((x) => `${x.ondata}:${x.id}${x.imprevisto ? '*' : ''}${x.variante ? '~' : ''}${x.errore ? '!' + x.errore : ''}`).join(' '));
+const s = await L.stato(p); console.log(await L.scenaDi(p), s.in_corso?.seme, JSON.stringify(s.episodi.e01), p.errori);
+await A.chiudi();
