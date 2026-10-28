@@ -137,7 +137,7 @@ function campionaVersione() {
 }
 
 // D-207: parti = quali misure; i bracci rossi girano solo la parte che deve vederli rossi (prima 40 min di bracci)
-export const PARTI = ['e01', 'citta36', 'chiamate', 'rapporti', 'riepilogo', 'verbali', 'po149', 'po152a'];
+export const PARTI = ['e01', 'citta36', 'chiamate', 'rapporti', 'riepilogo', 'verbali', 'po149', 'po152a', 'c52nomi'];
 export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi = [], cartella = '', parti = PARTI }) {
   const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), e01 = dati['missioni/e01.json'];
   const srv = await servi(build), url = `http://127.0.0.1:${srv.address().port}/`;
@@ -220,6 +220,8 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         const g = await controllaPo149(b, url, w, rossi, cartella); errori.push(...g.male); }
       if (h === 760 && parti.includes('po152a')) { const { controllaPo152a } = await import('./foto-po152-a.mjs'); // PO-152 A (D-241): 640 e 760
         const g = await controllaPo152a(b, url, w, rossi, cartella, dati, dich); errori.push(...g.male); }
+      if (h === 760 && w >= 412 && parti.includes('c52nomi')) { const { controllaNomiCitta } = await import('./foto-c52-nomi.mjs'); // C52-03: dove il nome si vede (D-123)
+        const g = await controllaNomiCitta(b, url, w, rossi, cartella); errori.push(...g.male); }
       if (parti.includes('verbali')) for (const c of verbaliCostruiti(dati, dich)) { // D-234: a ogni altezza
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);

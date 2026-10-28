@@ -16,3 +16,8 @@
 .radio-mappa.libero-sx { left: calc(var(--tocco-min) + 2 * var(--spazio-2)); }
 .radio-mappa.libero-dx { right: calc(var(--tocco-min) + 2 * var(--spazio-2)); }
 .radio-mappa .rapporto-costo { margin: 0; }
+
+/* C52-03 (dentro l'idea A): a 412 il nome dell'episodio scelto usciva dalla mappa o copriva il suo disco: etichette.ts
+   stringe il riquadro per trovare posto e la parola più lunga ne usciva senza essere misurata. Il riquadro non è mai più
+   stretto della parola più lunga. Rosso C241N01: come prima. */
+main:not(.rosso-c241n01) .mappa.citta .settore-nome { min-width: min-content; }
