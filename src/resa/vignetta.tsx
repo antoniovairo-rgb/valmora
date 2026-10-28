@@ -50,7 +50,9 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
     const ro = typeof ResizeObserver === 'undefined' || !main ? null : new ResizeObserver(() => { const ora = `${innerHeight}:${Math.round(main.getBoundingClientRect().height)}`; if (ora !== ultimo) { ultimo = ora; fai(); } });
     if (main) ro?.observe(main);
     addEventListener('resize', fai); void document.fonts?.ready.then(fai);
-    return () => { removeEventListener('resize', fai); ro?.disconnect(); };
+    // C52-01: anche a ogni carattere arrivato dopo (la riserva della città può chiederne uno nuovo misurando le varianti)
+    document.fonts?.addEventListener?.('loadingdone', fai);
+    return () => { removeEventListener('resize', fai); ro?.disconnect(); document.fonts?.removeEventListener?.('loadingdone', fai); };
   }, [el, attivo, nascondibile]);
 }
 

@@ -140,7 +140,9 @@ export async function controllaSchieramenti(browser, url, dirDati, cartella, att
     await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify({ ...base, in_corso: st.s }));
     await pagina.reload();
     await pagina.getByRole('button', { name: 'Riprendi' }).click();
-    const ok = await pagina.waitForSelector('[data-barra]', { timeout: 5000 }).then(() => true, () => false);
+    // strumento instabile (28/10, 4-5 Chrome insieme nel contenitore: e15 a 360 ed e03 a 412 «non si apre», verdi al secondo
+    // tentativo): 5 s non bastavano sotto carico. Si attende la barra fino a 15 s: uno schieramento che non si apre resta rosso.
+    const ok = await pagina.waitForSelector('[data-barra]', { timeout: 15000 }).then(() => true, () => false);
     if (!ok) { atteso(`${nome}: lo schieramento non si apre`, false); return; }
     await ascoltaEtichette(pagina); await etichetteFerme(pagina); // C37-03: a mappa vuota ogni nome più vicino al suo disco che agli altri
     const vuota = await mappaSchieramento(pagina); atteso(`${nome} (mappa vuota): ${vuota.nomiVicini.join('; ')} (C37-03)`, !vuota.nomiVicini.length);

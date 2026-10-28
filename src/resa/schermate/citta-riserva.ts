@@ -12,7 +12,15 @@ const px = (e: Element, k: 'marginTop' | 'marginBottom' | 'paddingLeft' | 'paddi
 /** Quanto in più del blocco di adesso occupa il blocco più alto (px, ≥ 0). */
 export function riservaCitta(varianti: () => ReactElement[]): number {
   const mappa = document.querySelector('.scena .mappa.citta'), scena = mappa?.parentElement;
-  if (!mappa || !scena) return 0;
+  if (!mappa || !(scena instanceof HTMLElement)) return 0;
+  // la scena entra scalata e ruotata (Scena.tsx): misurata così, la riserva usciva sbagliata e restava (28/10: in tutti36 la mappa
+  // 12 px più su che negli altri stati). Si misura senza trasformazione, tolta e rimessa uguale nella stessa chiamata (nessun disegno)
+  const trasformata = scena.style.transform;
+  scena.style.transform = 'none';
+  try { return misura(varianti, mappa, scena); } finally { scena.style.transform = trasformata; }
+}
+
+function misura(varianti: () => ReactElement[], mappa: Element, scena: HTMLElement): number {
   const dopo: Element[] = [];
   for (let e = mappa.nextElementSibling; e; e = e.nextElementSibling) dopo.push(e);
   const primo = dopo[0], ultimo = dopo.at(-1);
@@ -32,8 +40,14 @@ export function riservaCitta(varianti: () => ReactElement[]): number {
     // l'altezza del contenitore flow-root conta tutto il margine sopra del primo; nella pagina vale il più grande fra quello e
     // il margine sotto della mappa (si fondono: l'invito e la scheda non hanno lo stesso margine)
     max = Math.max(...[...box.children].map((w) => { const m = w.firstElementChild ? px(w.firstElementChild, 'marginTop') : 0; return w.getBoundingClientRect().height - m + Math.max(m, sottoMappa); }));
+    // le varianti possono usare un carattere che la pagina non ha ancora chiesto (titoli h2 con l'invito: 28/10, 375×915, mappa 18 px
+    // più giù): la misura vale solo se tutti i loro caratteri sono pronti; altrimenti si chiedono e, arrivati, useRiempi rifà il conto
+    // («loadingdone»)
+    const pronto = (f: string) => { try { return document.fonts?.check?.(f) ?? true; } catch { return true; } }; // «font» può essere vuoto: si salta
+    const caratteri = [...new Set([...box.querySelectorAll('*')].map((e) => getComputedStyle(e).font))].filter((f) => f && !pronto(f));
     box.remove();
-    if (document.fonts?.status !== 'loading') massimi.set(largo, max); // coi caratteri ancora in arrivo la misura non vale: si rifà
+    if (!caratteri.length) massimi.set(largo, max);
+    else for (const f of caratteri) void document.fonts?.load?.(f);
   }
   return Math.max(0, max - ora);
 }

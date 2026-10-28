@@ -52,12 +52,15 @@ export const PASSI_GRAFICA = {
     // con le spaziature di prima e la vignetta forzata al minimo (pagina che scorre) o col fumetto stretto il giro è rosso
     for (const r of ['C41V06,C234V01', 'C185V01,C234V01', 'C185V01,C66V01,C234V01', 'C41G08']) // D-234: col verbale fallito più stretto i primi tre solo con C234V01
       compiti.push(async () => { if (!(await giraC41(`out/foto-rossi/${r.replace(',', '-')}`, 'dist', [360], r.split(','))).flatMap(controllaGiro).length) ciechi.push(`c41/${r} è cieco`); });
-    // C128-01: col rosso C128N01 (nessun ricalcolo a ingresso finito) il nome della città deve uscire dal bordo
+    // C128-01: col rosso C128N01 (nessun ricalcolo a ingresso finito) il nome della città deve uscire dal bordo. C52-01 (D-242):
+    // con la striscia che tiene da parte il blocco più alto la mappa non si sposta più dopo l'ingresso e il nome resta a 13 px dal
+    // bordo anche col rosso: gira con C242M01 (la striscia di prima). Misura del 28/10, 412×800: C128N01+C242M01 −0,5 px (3 stati
+    // sul bordo), C242M01 da solo 21,2 px (0)
     const stati = existsSync('out/foto/citta-stati.json') ? JSON.parse(readFileSync('out/foto/citta-stati.json', 'utf8')) : [];
     // i nomi sulla mappa della città ci sono solo a 412 (D-123): un giro a 360 o 375 da solo (CI per larghezza) non ne ha
     const con412 = !process.env.VALMORA_LARGHEZZE || process.env.VALMORA_LARGHEZZE.split(',').includes('412');
     if (!stati.length) { if (con412) ciechi.push('foto/città senza WebGL: nessuno stato con un nome dal giro foto'); }
-    else compiti.push(async () => { if (!(await controllaCittaSenzaWebgl(stati, 'dist', ['C128N01'])).some((x) => x.includes('tocca il bordo'))) ciechi.push('foto/città senza WebGL (C128N01) è cieco'); });
+    else compiti.push(async () => { if (!(await controllaCittaSenzaWebgl(stati, 'dist', ['C128N01', 'C242M01'])).some((x) => x.includes('tocca il bordo'))) ciechi.push('foto/città senza WebGL (C128N01+C242M01) è cieco'); });
     compiti.push(async () => { if (!(await (await import('./foto-home.mjs')).homeRossaVista('dist'))) ciechi.push('foto/home (C140H01 PO-140, C187C01+C230C01 C43-07 o C224A01 D-224) è cieco'); });
     // D-187: con la mappa che non si abbassa o la versione sopra la scena che esce il guardiano diventa rosso (360×760)
     if (larghezzeGiro().includes(360)) { const a = await import('./sonda-altezze.mjs');
