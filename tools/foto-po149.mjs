@@ -2,7 +2,8 @@
 // due personaggi) e la mappa prende più altezza; i pulsanti delle schede della città («Avvia l'episodio», la Tripla di
 // «Rigioca», «Prossimo») stanno dentro il riquadro interno della scheda, ombra compresa, con margine ≥ --spazio-1 per lato.
 // A 640/667/760/915 di altezza, alla larghezza data, nessuna pagina scorre. Soglie dalla regola (token), non dal misurato.
-// Rossi: VALMORA_ROSSI=C237S01 (striscia fissa e mappa di prima), VALMORA_ROSSI=C237P01 (pulsanti a filo della scheda).
+// Rossi: VALMORA_ROSSI=C237S01 (striscia fissa e mappa di prima), VALMORA_ROSSI=C237P01 (pulsanti a filo della scheda),
+// VALMORA_ROSSI=C242M01 (la striscia conta la scheda di adesso: la mappa salta fra gli stati, C52-01).
 import { join } from 'node:path';
 import { missioniDai, salvataggioTutti } from './foto-bozze.mjs';
 
@@ -11,8 +12,11 @@ const { missioni, v0 } = missioniDai('data'), tutto = salvataggioTutti(missioni,
 const fino = (id) => { const prima = missioni.slice(0, missioni.findIndex((m) => m.id === id)).map((m) => m.id);
   return JSON.stringify({ ...tutto, missioni_concluse: prima, episodi: Object.fromEntries(prima.map((x) => [x, tutto.episodi[x]])) }); };
 // stato → salvataggio e tocchi: e19 da giocare (la foto del PO), Tripla «Rigioca» aperta su e18, stagione 2 chiusa con «Prossimo»
+// C52-01/02 (D-242): anche nessun episodio scelto (stagione 1 con e19 da giocare), un episodio superato (e18), tutti e 36
+// conclusi all'avvio e con un episodio scelto (e35): la mappa resta allo stesso posto in tutti gli stati (≤ 1 px, Tripla esclusa)
 const STATI = { e19: [fino('e19'), ['[data-stagione="2"]', '[data-episodio="e19"] .settore-punto']], tripla: [fino('e19'), ['[data-stagione="2"]', '[data-episodio="e18"] .settore-punto', '[data-azione="avvia-episodio"]']],
-  prossimo: [fino('e01'), ['[data-stagione="2"]']] };
+  prossimo: [fino('e01'), ['[data-stagione="2"]']], nessuno: [fino('e19'), ['[data-stagione="1"]']], superato: [fino('e19'), ['[data-stagione="2"]', '[data-episodio="e18"] .settore-punto']],
+  tutti36: [JSON.stringify(tutto), []], tutti36scelto: [JSON.stringify(tutto), ['[data-stagione="3"]', '[data-episodio="e35"] .settore-punto']] };
 
 const misura = (p) => p.evaluate(() => {
   const r = (e) => e.getBoundingClientRect(), px = (v) => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(v)) || 0;
@@ -27,7 +31,7 @@ const misura = (p) => p.evaluate(() => {
     const tutto = { l: Math.min(rb.left, rb.left + dx), t: Math.min(rb.top, rb.top + dy), d: Math.max(rb.right, rb.right + dx), b: Math.max(rb.bottom, rb.bottom + dy) };
     return { azione: b.dataset.azione, margine: Math.round(Math.min(tutto.l - dentro.l, tutto.t - dentro.t, dentro.d - tutto.d, dentro.b - tutto.b) * 10) / 10 };
   });
-  return { ecc: document.scrollingElement.scrollHeight - innerHeight, striscia: sv ? Math.round(r(sv).height) : 0, sopra, mappa: Math.round(mappa ? r(mappa).height : 0), pulsanti,
+  return { ecc: document.scrollingElement.scrollHeight - innerHeight, striscia: sv ? Math.round(r(sv).height) : 0, sopra, mappa: Math.round(mappa ? r(mappa).height : 0), pulsanti, alto: mappa ? Math.round((r(mappa).top + scrollY) * 10) / 10 : null,
     minSopra: px('--spazio-5'), minMargine: px('--spazio-1'), mappaAttesa: Math.min(px('--citta-altezza-max'), Math.max(px('--citta-altezza-min'), innerHeight - px('--citta-riserva-striscia'))) };
 });
 
@@ -44,11 +48,14 @@ export async function controllaPo149(browser, url, larghezza, rossi = [], cartel
     if (cartella && stato === 'e19') await p.screenshot({ path: join(cartella, `${vp}-citta-po149.png`) });
     if (m.ecc > 0 && stato !== 'tripla') male.push(`${vp} città ${stato}: la pagina scorre di ${m.ecc} px (PO-149, D-230)`); // la Tripla scorreva già prima: non è di PO-149
     for (const b of m.pulsanti) if (b.margine < m.minMargine) male.push(`${vp} città ${stato}: «${b.azione}» con l'ombra è a ${b.margine} px dal riquadro interno della scheda (serve ≥ ${m.minMargine}, PO-149)`);
-    if (stato === 'e19' && m.striscia) { // la striscia c'è da 700 px in su (D-210)
-      if (m.sopra === null || m.sopra < m.minSopra) male.push(`${vp} città: sopra i personaggi ${m.sopra} px (serve ≥ ${m.minSopra}, PO-149)`);
-      if (m.mappa < m.mappaAttesa - 1) male.push(`${vp} città: mappa alta ${m.mappa} px (serve ≥ ${m.mappaAttesa}, PO-149)`);
+    if (stato !== 'tripla' && m.striscia) { // la striscia c'è da 700 px in su (D-210); C52-02: lo spazio sopra le teste in ogni stato
+      if (m.sopra === null || m.sopra < m.minSopra) male.push(`${vp} città ${stato}: sopra i personaggi ${m.sopra} px (serve ≥ ${m.minSopra}, PO-149, C52-02)`);
+      if (m.mappa < m.mappaAttesa - 1) male.push(`${vp} città ${stato}: mappa alta ${m.mappa} px (serve ≥ ${m.mappaAttesa}, PO-149)`);
     }
     await p.close();
   }
+  // C52-01 (D-242): a ogni altezza la mappa sta allo stesso posto in tutti gli stati (la Tripla aperta scorre: esclusa)
+  for (const h of ALTEZZE_PO149) { const xs = ris.filter((x) => x.vp === `${larghezza}x${h}` && x.stato !== 'tripla' && x.alto !== null), a = xs.map((x) => x.alto);
+    if (xs.length && Math.max(...a) - Math.min(...a) > 1) male.push(`${larghezza}x${h} città: la mappa si sposta di ${Math.round(Math.max(...a) - Math.min(...a))} px fra gli stati (${xs.map((x) => `${x.stato} ${x.alto}`).join(', ')}; C52-01)`); }
   return { ris, male };
 }

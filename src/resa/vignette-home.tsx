@@ -38,11 +38,11 @@ const Fumo = (p: { x: number; y: number; k: number }) => (
 
 /** «cielo»: unità di cielo notturno sopra la finestra (PO-149, striscia della città). Il disegno si inquadra dal basso (y 96,
  *  spalle dei due), così quando la striscia cresce lo spazio in più va sopra le teste. */
-export function VignettaHome(p: { genere: 'm' | 'f'; didascalia: string; fissa?: boolean; cielo?: number }) {
+export function VignettaHome(p: { genere: 'm' | 'f'; didascalia: string; fissa?: boolean; cielo?: number; riserva?: () => number }) {
   const sx = club.get('cinderwick_united')?.colori?.primario, dx = club.get('larkspire_athletic')?.colori?.primario;
   const cielo = p.cielo ?? 0;
   return (
-    <Vignetta nome="home" titolo={`${p.didascalia}: tu e il vice Malvasi, dalla finestra lo stadio di notte`} ritaglio={cielo ? 'xMidYMax slice' : 'xMidYMin slice'} fissa={p.fissa}
+    <Vignetta nome="home" titolo={`${p.didascalia}: tu e il vice Malvasi, dalla finestra lo stadio di notte`} ritaglio={cielo ? 'xMidYMax slice' : 'xMidYMin slice'} fissa={p.fissa} riserva={p.riserva}
       vista={cielo ? [0, -cielo, 320, 96 + cielo] : undefined}>
       <rect x="0" y={-cielo} width="320" height={120 + cielo} className="v-notte" />
       {[[22, 14], [70, 26], [150, 10], [262, 18], [300, 30], ...(cielo ? [[40, -20], [118, -46], [196, -14], [236, -72], [288, -38], [12, -96], [168, -108], [304, -112]] : [])]
