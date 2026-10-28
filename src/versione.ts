@@ -347,4 +347,9 @@
 //   misura: striscia 96 → 193-197 px, sopra i personaggi 14-16 → 101-110 px, mappa 415 → 431 a 915 e 260 → 276 a 760,
 //   pulsanti (Avvia, Tripla, Prossimo) a +4 px per lato; 640/667 invariati, scorrimento 0 in ogni stato a 360/375/412.
 //   guardiano: tools/foto-po149.mjs dalla sonda delle altezze a 640/667/760/915; rossi C237S01 e C237P01.
-export const GAME_VERSION = '0.52.0';
+// 0.53.0 – debito: App.tsx e stile.css spezzati prima delle idee del tester (D-241).
+//   causa: App.tsx 334 righe e stile.css 400/400, al limite dei moduli, prima di aggiungere le idee A e B.
+//   misura: App.tsx 334 → 265 (fasi dell'ondata in app-ondata.tsx), stile.css 400 → 201 + stile-schermate.css 201; CSS costruito
+//   identico al byte (md5 uguale, verificato dalla principale); foto 375/412 identiche, 360 entro il rumore di tempo.
+//   guardiano: confini (≤400 righe) nel pre-push; nessun rosso nuovo, solo struttura.
+export const GAME_VERSION = '0.53.0';
