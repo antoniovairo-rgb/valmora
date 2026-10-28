@@ -11,7 +11,7 @@ import { controllaCitta, controllaNomiCittaTutti } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
-const CHIAVE = 'varcalda-salvataggio';
+const CHIAVE = 'vandelfalls-salvataggio';
 
 export function missioniDai(dirDati) {
   const dati = leggiDati(dirDati);

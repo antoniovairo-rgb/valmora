@@ -173,7 +173,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         if (!visti.has(chiave)) { visti.add(chiave); await rileva(q); }
         if (q === 'verbale') break;
         if (await c('[data-azione="conferma-passo"]') || await c('[data-azione="conferma-nuova"]') || await c('[data-genere="m"]') || await c('[data-azione="guida-salta"]')) continue;
-        if (q === 'schieramento') { pl ??= piano(e01, JSON.parse(await p.evaluate(() => localStorage.getItem('varcalda-salvataggio'))).variabili, dich); await schiera(p, pl[io++].d); await rileva('schierato'); await c('[data-azione="conferma"]'); await rileva('riepilogo'); /* D-219: S-21 e scorrimento anche qui */ await c('[data-azione="conferma-davvero"]'); continue; }
+        if (q === 'schieramento') { pl ??= piano(e01, JSON.parse(await p.evaluate(() => localStorage.getItem('vandelfalls-salvataggio'))).variabili, dich); await schiera(p, pl[io++].d); await rileva('schierato'); await c('[data-azione="conferma"]'); await rileva('riepilogo'); /* D-219: S-21 e scorrimento anche qui */ await c('[data-azione="conferma-davvero"]'); continue; }
         if (await c('[data-azione="continua"]')) continue;
         const opz = p.locator('[data-opzione]:not(:disabled):not([aria-disabled="true"])');
         if (await opz.count()) {
@@ -201,7 +201,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
       if (parti.includes('citta36')) {
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-        await q.goto(url); await q.evaluate((x) => localStorage.setItem('varcalda-salvataggio', x), tutti(dati, dich)); await q.reload();
+        await q.goto(url); await q.evaluate((x) => localStorage.setItem('vandelfalls-salvataggio', x), tutti(dati, dich)); await q.reload();
         await q.waitForSelector('main[data-schermata="titolo"]'); await q.evaluate(() => document.fonts.ready); await lento(q); await q.waitForTimeout(300);
         ris.push({ vp, nome: 'titolo con salvataggio', ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-titolo-salvato.png`), fullPage: true });
         await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="citta"]'); await lento(q); await q.waitForTimeout(300);
@@ -221,7 +221,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         await Promise.all(Array.from({ length: 4 }, async () => { const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
           if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
           await q.goto(url);
-          while (coda.length) { const c = coda.shift(); await q.evaluate((x) => localStorage.setItem('varcalda-salvataggio', x), c.sal); await q.reload();
+          while (coda.length) { const c = coda.shift(); await q.evaluate((x) => localStorage.setItem('vandelfalls-salvataggio', x), c.sal); await q.reload();
             await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector(`[data-messaggio="chiamata-${c.id}"]`, { timeout: 8000 }).catch(() => errori.push(`${vp}: chiamata ${c.ep} ${c.id} non si apre`)); await lento(q);
             chiamate.push({ vp, ep: c.ep, id: c.id, imprevisto: c.imprevisto, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) });
             if (cartella && c.imprevisto) await q.screenshot({ path: join(cartella, `${vp}-chiamata-${c.ep}-${c.id}.png`), fullPage: true }); }
@@ -231,7 +231,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
       if (parti.includes('verbali')) for (const c of verbaliCostruiti(dati, dich)) { // D-234: a ogni altezza
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-        await q.goto(url); await q.evaluate((x) => localStorage.setItem('varcalda-salvataggio', x), c.sal); await q.reload();
+        await q.goto(url); await q.evaluate((x) => localStorage.setItem('vandelfalls-salvataggio', x), c.sal); await q.reload();
         await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="rapporto"]', { timeout: 8000 }).catch(() => {});
         await q.click('[data-azione="avanti"]').catch(() => {});
         if (!(await q.waitForSelector('.scena[data-scena="verbale"]', { timeout: 8000 }).then(() => true).catch(() => false))) { errori.push(`${vp}: verbale ${c.nome} non si apre (D-234)`); await q.close(); continue; }
@@ -244,7 +244,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
       if (parti.includes('riepilogo')) for (const c of riepiloghiCostruiti(dati, dich)) { // C47-02 (D-218); D-221: a ogni altezza
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-        await q.goto(url); await q.evaluate((x) => localStorage.setItem('varcalda-salvataggio', x), c.sal); await q.reload();
+        await q.goto(url); await q.evaluate((x) => localStorage.setItem('vandelfalls-salvataggio', x), c.sal); await q.reload();
         await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="schieramento"]'); await lento(q);
         await schiera(q, c.d); await q.click('[data-azione="conferma"]'); await q.waitForSelector('[data-riepilogo]'); await lento(q); await q.waitForTimeout(200);
         const righe = await q.locator('[data-riepilogo-settore]').count(), avviso = await q.locator('[data-restano]').count();
@@ -256,7 +256,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
       if (vp === '360x760' && parti.includes('rapporti')) for (const c of rapportiCostruiti(dati, dich)) { // C45-06 (D-203)
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-        await q.goto(url); await q.evaluate((x) => localStorage.setItem('varcalda-salvataggio', x), c.sal); await q.reload();
+        await q.goto(url); await q.evaluate((x) => localStorage.setItem('vandelfalls-salvataggio', x), c.sal); await q.reload();
         await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector('.scena[data-scena="rapporto"]', { timeout: 8000 }).catch(() => errori.push(`${vp}: ${c.nome} non si apre sul rapporto`)); await lento(q); await q.waitForTimeout(300);
         ris.push({ vp, nome: `rapporto ${c.nome}`, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-rapporto-${c.nome}.png`), fullPage: true });
         await q.close();

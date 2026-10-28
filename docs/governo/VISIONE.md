@@ -2,8 +2,8 @@
 
 Basata solo sul pacchetto di prompt: la bibbia non è ancora nel repository. Ogni riga va confermata dal PO.
 
-1. Varcalda – Cortina di fumo è un gioco di strategia narrativa a missioni per Android, offline e gratuito.
-2. Il giocatore è il responsabile dell'ordine pubblico di Varcalda, metropoli inventata con 13 club di calcio. Le partite sono il centro, ma non l'unico: grandi eventi ed emergenze di città, legati alla trama, spezzano la routine dello stadio (D-091, D-092: mai più di 3 episodi di stadio di fila).
+1. Vandel Falls – Cortina di fumo è un gioco di strategia narrativa a missioni per Android, offline e gratuito.
+2. Il giocatore è il responsabile dell'ordine pubblico di Vandel Falls, metropoli inventata con 13 club di calcio. Le partite sono il centro, ma non l'unico: grandi eventi ed emergenze di città, legati alla trama, spezzano la routine dello stadio (D-091, D-092: mai più di 3 episodi di stadio di fila).
 3. Ogni missione dura circa 7 minuti: briefing con fonti più o meno affidabili, dispositivo sulla mappa con risorse limitate, ondate, verbale.
 4. Le scelte spostano fili narrativi che attraversano le stagioni. Una missione fallita va rigiocata (D-059); nessuna scelta blocca la storia per sempre.
 5. Il tono è da thriller amministrativo: la violenza resta fuori campo, raccontata da rapporti, radio e verbali.

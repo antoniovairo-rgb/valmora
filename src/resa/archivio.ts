@@ -6,22 +6,31 @@ import { completaPartita, riparaInCorso } from '../logica/aggiornamento.ts';
 import { migra, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { dichiarate, missioni } from './dati.ts';
 
-const CHIAVE = 'varcalda-salvataggio';
-const RISERVA = 'varcalda-salvataggio-riserva';
-const GUIDA = 'varcalda-guida-vista';
-// D-244 (PO-153): fino alla 0.54 il gioco si chiamava Valmora e salvava sotto queste chiavi. Alla prima lettura ognuna si
-// sposta sulla nuova: se la nuova manca e la vecchia c'è, si copia e poi si toglie la vecchia (stessa origine github.io, quindi
-// lo stesso localStorage). Rosso __NO_C244S01: niente spostamento (la partita di prima non si vede più).
-const VECCHIE: [string, string][] = [[CHIAVE, 'valmora-salvataggio'], [RISERVA, 'valmora-salvataggio-riserva'], [GUIDA, 'valmora-guida-vista']];
+const CHIAVE = 'vandelfalls-salvataggio';
+const RISERVA = 'vandelfalls-salvataggio-riserva';
+const GUIDA = 'vandelfalls-guida-vista';
+// D-244 (PO-153), D-249 (PO-155): il gioco si è chiamato Valmora (fino alla 0.54) e Varcalda (0.55-0.56), con chiavi sue.
+// Alla prima lettura ogni chiave si sposta sulla nuova: se la nuova manca, si copia la prima vecchia che c'è (prima varcalda-,
+// poi valmora-) e poi si toglie quella copiata (stessa origine github.io, quindi lo stesso localStorage). Se la nuova c'è già
+// non si tocca niente. Rossi: __NO_C249S01 nessuno spostamento da varcalda-, __NO_C244S01 nessuno spostamento da valmora-.
+const VECCHIE: [string, string[]][] = [
+  [CHIAVE, ['varcalda-salvataggio', 'valmora-salvataggio']],
+  [RISERVA, ['varcalda-salvataggio-riserva', 'valmora-salvataggio-riserva']],
+  [GUIDA, ['varcalda-guida-vista', 'valmora-guida-vista']],
+];
 export function spostaChiaviVecchie(): void {
-  if (spento('C244S01')) return;
-  for (const [nuova, vecchia] of VECCHIE) {
+  for (const [nuova, vecchie] of VECCHIE) {
     try {
-      const v = localStorage.getItem(vecchia);
-      if (v === null || localStorage.getItem(nuova) !== null) continue;
-      localStorage.setItem(nuova, v);
-      if (localStorage.getItem(nuova) === v) localStorage.removeItem(vecchia); // la vecchia sparisce solo se la copia c'è
-    } catch (e) { console.warn(`chiave ${vecchia} non spostata: ${(e as Error).message}`); }
+      if (localStorage.getItem(nuova) !== null) continue;
+      for (const [i, vecchia] of vecchie.entries()) {
+        if (spento(['C249S01', 'C244S01'][i]!)) continue; // vecchie[0]: 0.55-0.56, vecchie[1]: fino alla 0.54
+        const v = localStorage.getItem(vecchia);
+        if (v === null) continue;
+        localStorage.setItem(nuova, v);
+        if (localStorage.getItem(nuova) === v) localStorage.removeItem(vecchia); // la vecchia sparisce solo se la copia c'è
+        break;
+      }
+    } catch (e) { console.warn(`chiave ${nuova} non spostata: ${(e as Error).message}`); }
   }
 }
 
@@ -96,7 +105,7 @@ export function salva(s: Salvataggio): void {
 }
 
 const oggi = () => new Date().toISOString().slice(0, 10);
-export const nomeFile = () => `varcalda-${oggi()}.json`;
+export const nomeFile = () => `vandelfalls-${oggi()}.json`;
 
 /** Scarica il salvataggio come file .json (nessuna dipendenza: un link «download» su un Blob). */
 export function esporta(s: Salvataggio): void {

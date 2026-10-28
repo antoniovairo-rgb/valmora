@@ -13,7 +13,7 @@ let allaHome: Gestore = () => false;
 
 const arma = () => {
   if (armato || spento('C25I01') || typeof history === 'undefined') return;
-  history.pushState({ varcalda: 'indietro' }, '');
+  history.pushState({ vandelfalls: 'indietro' }, '');
   armato = true;
 };
 

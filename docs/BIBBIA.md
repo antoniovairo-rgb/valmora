@@ -1,10 +1,10 @@
-# Bibbia di Varcalda – IN SCRITTURA (D-012)
+# Bibbia di Vandel Falls – IN SCRITTURA (D-012)
 
 Si scrive insieme al PO, una decisione alla volta. Qui sta SOLO ciò che il PO ha deciso: ogni riga cita la sua decisione.
 Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 
 ## Fatti dal pacchetto di prompt (da confermare)
-- Protagonista: responsabile dell'ordine pubblico di Varcalda; soprannomi «Killjoy ad interim», «l'Eroe ad interim».
+- Protagonista: responsabile dell'ordine pubblico di Vandel Falls; soprannomi «Killjoy ad interim», «l'Eroe ad interim».
 - 13 club di calcio inventati.
 - Triadi di 3 stagioni × 12 missioni (36 per triade), missioni di circa 7 minuti.
 - Ferrigno: fuga all'episodio 20, cattura all'episodio 29.
@@ -35,7 +35,7 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Affidabilità (D-030): radio alta, rete media.
 - Verità (D-031): il corteo c'è davvero; lo annuncia l'informatore di strada, la fonte meno affidabile. Il verbale lo rivela.
 - Quartieri (D-032): Kiln, fonderie e ciminiere, contro Skyfield, la collina elegante.
-- Club (D-033): Kiln United contro Skyfield Athletic. Gli altri undici club di Varcalda e i tre di fuori città: sezione «Quartieri e club» (D-125).
+- Club (D-033): Kiln United contro Skyfield Athletic. Gli altri undici club di Vandel Falls e i tre di fuori città: sezione «Quartieri e club» (D-125).
 - Settori (D-034): curva Kiln, curva Skyfield, piazzale dello stadio, strada da Kiln, strada da Skyfield.
 - Esito (D-035): decide la tensione massima raggiunta (bassa → contenuto, media → contenuto a fatica, altrimenti degenerato).
 - Regole della plancia (D-037, D-038): squadre 2 in strada e 1 in curva, steward 2 in curva e 1 in strada, entrambi 1 in piazzale; il mediatore dimezza un corteo; prima di ogni ondata si ridistribuisce tutto.
@@ -59,7 +59,7 @@ Ciò che non è qui non esiste ancora: nessuno lo inventa per riempire il vuoto.
 - Giudizio del PO su e01 (2026-10-11, PO-037): «Primo episodio carino».
 
 ## e02 «Ospiti numerosi» (D-071…D-074)
-- Skyfield Athletic in casa contro il Railhead County, che arriva in treno da fuori città: trecento chilometri (D-125; con D-071 erano gli Square Rovers, oggi club di Varcalda). Due treni, uno in ritardo; gira una voce di biglietti falsi.
+- Skyfield Athletic in casa contro il Railhead County, che arriva in treno da fuori città: trecento chilometri (D-125; con D-071 erano gli Square Rovers, oggi club di Vandel Falls). Due treni, uno in ritardo; gira una voce di biglietti falsi.
 - Settori: stazione, viale della stazione, tornelli, curva ospiti, curva Skyfield. Quattro ondate brevi (D-074): primo treno, treno in ritardo, partita, ritorno in stazione. 15 chiamate (D-209: tolti il presidente dello Skyfield e i fumogeni ospiti, doppione di e01).
 - Dilemma (D-073): scortare gli ospiti o contenerli in stazione. Novità (D-072): stazione e biglietti falsi ai tornelli.
 - Fili: se in e01 hai pagato l'informatore, ti segnala i venditori di biglietti e un furgone grigio senza targa (variabile nuova `furgone_visto`, prima comparsa del furgone, indice e09).
@@ -72,7 +72,7 @@ e02 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000
 e02 · scelte a caso con schieramento attento: {"contenuto":82,"contenuto_a_fatica":181,"degenerato":37}
 
 ## e03 «Notte di coppa» (D-081…D-083)
-- Coppa, sera infrasettimanale: Skyfield Athletic in casa contro il Garden Albion (club inventato, D-083; di Varcalda, il quartiere sul fiume, D-125), seicento ospiti in pullman. Lo stadio è a cinquanta metri dalle case: il comitato dei residenti protesta.
+- Coppa, sera infrasettimanale: Skyfield Athletic in casa contro il Garden Albion (club inventato, D-083; di Vandel Falls, il quartiere sul fiume, D-125), seicento ospiti in pullman. Lo stadio è a cinquanta metri dalle case: il comitato dei residenti protesta.
 - Settori: vie del quartiere, parcheggi, piazzale, curva ospiti, curva Skyfield. Quattro ondate: il tramonto, primo tempo, supplementari, l'uscita di notte. 14 chiamate.
 - Dilemma (D-081): quartiere o stadio. Novità (D-082): transenne fisse (2), che una volta montate restano fino a fine serata e si montano solo dove servono (quartiere, strade, piazzale). Trappola voluta: i parcheggi si riempiono subito, le proteste del quartiere crescono verso mezzanotte.
 - Fili: cartelloni dello stadio nuovo (prima comparsa, D-069), nel briefing (centrale radio: nessun permesso in comune) e nella chiamata del comitato, senza scelta (D-084). Premi di campagna: il presidente spegne le luci esterne se lo hai incontrato in e01; il furgone grigio torna nei parcheggi se hai pagato l'informatore e lo hai annotato in e02.
@@ -96,10 +96,10 @@ e03 · peggiore: blocchi 0/1000 · esiti {"degenerato":1000} · stelle {"0":1000
 - Capo della curva Kiln (D-102): Tano Ferrigno, detto «il Fabbro» (prima «Dessì»).
 
 ## Quartieri e club (D-125)
-Tredici club di Varcalda, uno per quartiere, e tre club di fuori città. Nomi D-124 e D-125; piano completo, colori e stemmi:
+Tredici club di Vandel Falls, uno per quartiere, e tre club di fuori città. Nomi D-124 e D-125; piano completo, colori e stemmi:
 docs/proposte/13-club.md. I quartieri veri da cui nasce l'immagine non si nominano mai nel gioco.
 
-Mappa di Varcalda:
+Mappa di Vandel Falls:
 - Est, lungo le due grandi strade che escono dalla città: Kiln (fonderie e ciminiere), Pinegrove (case basse fra i binari,
   osterie, muri dipinti), Domepark (palazzine attorno al parco delle rovine), Waterline (i lotti lungo la linea
   dell'acqua), Lookout (case basse attorno alla vecchia torre di vedetta); in fondo Tramway (il capolinea del trenino) e le
@@ -111,7 +111,7 @@ Mappa di Varcalda:
 - Margine verde: Stoneway, lungo la strada antica.
 - Le banchine del porto fluviale (e28, e29, e35) non sono di nessun club.
 
-Club di Varcalda e dove giocano (la prima volta è la presentazione):
+Club di Vandel Falls e dove giocano (la prima volta è la presentazione):
 | club | quartiere | episodi |
 |------|-----------|---------|
 | Kiln United | Kiln | quasi tutti; derby con lo Skyfield in e01, e10, e20, e22, e32, e36 |
@@ -133,7 +133,7 @@ Club di fuori città:
   vent'anni con la curva Kiln, viene a cantare con lei in e15 ed e27. Non gioca mai contro il Kiln.
 - Southwind Town: città di provincia sulla costa, oltre il casello. Neopromossa alla prima trasferta in città (e07), si
   salva all'ultima giornata a Kiln (e12); il suo porto è nella traccia del telefono (e21) e nella pista di Ferrigno (e23).
-- Wallgate Rovers: città vicina, due ore di treno. Batte il Kiln quattro a zero in casa sua (e11); in e15 viene a Varcalda
+- Wallgate Rovers: città vicina, due ore di treno. Batte il Kiln quattro a zero in casa sua (e11); in e15 viene a Vandel Falls
   per la rivincita e non sopporta i gemellati della curva Kiln.
 
 Rivalità e amicizie: Kiln–Skyfield (il derby); Kiln–Pinegrove (vicini di mercato); Skyfield–Domepark (il parco contro la

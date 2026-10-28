@@ -7,7 +7,7 @@ Legenda dello stato: **fatto** · **da fare dal PO** · **da fare da noi** (sess
 
 ## 1. Requisiti
 
-| # | Requisito | Fonte ufficiale (letta il 2026-10-20) | Cosa dice | Stato per Varcalda |
+| # | Requisito | Fonte ufficiale (letta il 2026-10-20) | Cosa dice | Stato per Vandel Falls |
 |---|---|---|---|---|
 | 1 | Account sviluppatore | https://support.google.com/googleplay/android-developer/answer/6112435 · https://support.google.com/googleplay/android-developer/answer/13628312 | «There is a US$25 one-time registration fee»; «You must be at least 18 years of age»; account «Personal» o «Organization»; l'account personale chiede nome e indirizzo legali, documento e verifica di un dispositivo Android con l'app Play Console. | **da fare dal PO** (Non posso confermare se esiste già un account) |
 | 2 | Test chiuso prima della produzione (account personali) | https://support.google.com/googleplay/android-developer/answer/14151465 | «Developers with personal accounts created after November 13, 2023, must run a closed test for their app with a minimum of 12 testers who have been opted in continuously for at least 14 days.» «Open testing becomes available after you gain production access.» | **da fare dal PO**: 12 tester per 14 giorni consecutivi, poi richiesta di accesso alla produzione dalla Dashboard |
@@ -131,7 +131,7 @@ Definizioni della pagina: «"Collect" means transmitting data from your app off 
 |---|---|---|
 | «Does your app collect or share any of the required user data types?» | **No** | FATTO MISURATO (S-22, `node tools/misura-rete.mjs`): 0 richieste esterne su 3152 in una partita intera e01-e03 in Chromium; nessun SDK di analisi, pubblicità o crash report (package.json); salvataggio solo in `localStorage` |
 | Condividi del verbale, email «Idee» | non sono «sharing» | partono solo dal tocco del giocatore (src/resa/collegamenti.ts:12-17, 26-27): eccezione «user-initiated action» citata sopra |
-| Privacy policy | https://antoniovairo-rgb.github.io/varcalda/privacy (D-244: repository rinominato dal PO il 2026-10-28) | D-217, D-220, D-222, D-244 |
+| Privacy policy | https://antoniovairo-rgb.github.io/varcalda/privacy (D-244: repository rinominato dal PO il 2026-10-28; D-249: diventa …/vandel-falls/privacy quando il PO rinomina il repository in «vandel-falls», nel gioco l'indirizzo sta solo in src/resa/collegamenti.ts, URL_GIOCO) | D-217, D-220, D-222, D-244, D-249 |
 
 Restano **Non posso confermarlo** (D-216):
 - **telefono vero**: la misura delle richieste è in Chromium sulla build web, non nell'APK/AAB su un dispositivo Android;
@@ -139,10 +139,10 @@ Restano **Non posso confermarlo** (D-216):
 
 ## 4. Bozza di privacy policy (da pubblicare su un URL pubblico, non PDF)
 
-> **Varcalda – Cortina di fumo · Informativa sulla privacy**
+> **Vandel Falls – Cortina di fumo · Informativa sulla privacy**
 > Ultimo aggiornamento: [data di pubblicazione]
 >
-> Varcalda è un gioco che funziona offline. Il gioco non raccoglie, non trasmette e non condivide dati personali.
+> Vandel Falls è un gioco che funziona offline. Il gioco non raccoglie, non trasmette e non condivide dati personali.
 > - **Dati salvati**: i progressi della partita restano solo sul tuo dispositivo, nella memoria dell'app. Non vengono inviati a noi né a terzi. Disinstallando il gioco o cancellandone i dati vengono eliminati.
 > - **Nessuna analisi, pubblicità o tracciamento**: il gioco non contiene strumenti di statistica, pubblicità o profilazione.
 > - **Azioni che fai tu**: se scegli di condividere il verbale di una partita o di scriverci un'email, il testo passa all'app che scegli (per esempio la posta); i dati che invii così sono trattati da quell'app e, per le email, da noi solo per risponderti.
