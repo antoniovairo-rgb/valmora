@@ -1,0 +1,27 @@
+{
+ "visto": {
+  "scena": "schieramento",
+  "chiamata": null,
+  "presenze": 3,
+  "testo": "Squadre\n1\nSteward\n4\nMediatore\n1\n\nLe risposte che costano unità le tolgono dalla prossima ondata.\n\nSquadre (1)\n\nCONFERMA",
+  "azioni": [
+   "annulla",
+   "aiuto",
+   "azzera",
+   "conferma"
+  ]
+ },
+ "primi": [
+  "1:sindacato>impegno_firmato",
+  "1*:imp_lucchetto>laterale",
+  "1:volontari>volontari_si",
+  "2:megafono>lascia_megafono",
+  "2*:imp_tabellone>spiega",
+  "2:laser_q>pausa5"
+ ],
+ "resto": [],
+ "fine": null,
+ "versione": "0.53.0",
+ "sv": 2,
+ "errori": []
+}

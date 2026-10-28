@@ -1,0 +1,118 @@
+{
+ "visto": {
+  "scena": "chiamata",
+  "chiamata": "chiamata-corteo_al_porto",
+  "presenze": 3,
+  "testo": "VOCI IN RETE\nSTRADA DA KILN\nURGENTE!\nRISPONDI\n\n«In rete: la curva Kiln scende verso il porto. “Andiamo a riprendercelo”.»\n\nIL VICE — «Non lo riprendono. Lo sanno anche loro. Vogliono solo che si sappia che ci hanno provato.»\n\nA\nLASCIALI SCENDERE\nNessun costo subito; strada e banchine salgono.\nStrada da Kiln\nBanchine del porto\nB\nCHIEDI AL FABBRO UNA PAROLA PER LA CURVA\nLa strada si calma; ma è un patto col Fabbro, e il comando lo annota: costa fiducia.\nStrada da Kiln\nfiducia\nC\nFERMALI IN STRADA\nNessuna squadra libera\nD\nIL MEDIATORE CAMMINA CON LORO\nNessun mediatore libero",
+  "azioni": []
+ },
+ "primi": [
+  "1:foto_vecchie>squadra_piazzale",
+  "1:ordine_porto>auto_lontana",
+  "1*:imp_tornelli_ospiti>a_mano",
+  "1:ospiti_tranquilli>rassicura",
+  "1:dove_dorme>passa_soffiata",
+  "2:furgone_porto>segnala_furgone",
+  "2*:imp_tubo>sedili",
+  "2:tamburo_curva>mediatore_curva",
+  "2:speaker_partita>annuncio_generico",
+  "3:radio_operazione>manda_squadre",
+  "3*:imp_ponte_basso>senso_unico",
+  "3:notizia_in_curva>sospendi_partita",
+  "3:ospiti_spaventati>ospiti_restano"
+ ],
+ "resto": [
+  "4:corteo_al_porto>parola_fabbro",
+  "4:conferenza>in_fondo",
+  "4*:imp_irrigatori>sgombera",
+  "4:piazzale_ultimi>luci_piazzale"
+ ],
+ "fine": {
+  "scena": "verbale",
+  "episodio": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 3
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 3,
+    "credito": 10,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "esposto",
+    "busta": "consegnata",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 3,
+    "carte": "nessuna"
+   },
+   "variabili_dopo": {
+    "tensione_max": 2,
+    "credito": 9,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "esposto",
+    "busta": "consegnata",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 3,
+    "carte": "nessuna"
+   }
+  },
+  "variabili": {
+   "tensione_max": 2,
+   "credito": 9,
+   "informatore_pagato": true,
+   "presidente_incontrato": false,
+   "furgone_visto": true,
+   "rapporto_dessi": "rispetto",
+   "testimone": "esposto",
+   "busta": "consegnata",
+   "pista_cattura": "nessuna",
+   "fascicolo": "nessuno",
+   "sospetti_talpa": 3,
+   "carte": "nessuna"
+  },
+  "concluse": [
+   "e01",
+   "e02",
+   "e03",
+   "e04",
+   "e05",
+   "e06",
+   "e07",
+   "e08",
+   "e09",
+   "e10",
+   "e11",
+   "e12",
+   "e13",
+   "e14",
+   "e15",
+   "e16",
+   "e17",
+   "e18",
+   "e19",
+   "e20",
+   "e21",
+   "e22",
+   "e23",
+   "e24",
+   "e25",
+   "e26",
+   "e27",
+   "e28",
+   "e29"
+  ],
+  "in_corso": null
+ },
+ "versione": "0.53.0",
+ "sv": 2,
+ "errori": []
+}

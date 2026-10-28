@@ -1,0 +1,44 @@
+{
+ "episodio": "e17",
+ "semeSalvataggio": 11,
+ "seme_episodio": 1576007046,
+ "chiamate": 16,
+ "ricaricheB": 17,
+ "A_vs_B": "uguali",
+ "A_vs_C": "uguali",
+ "errori": [],
+ "esiti": [
+  "contenuto_a_fatica",
+  "contenuto_a_fatica",
+  "contenuto_a_fatica"
+ ],
+ "tent": [
+  1,
+  1,
+  1
+ ],
+ "sconfitta": {
+  "scena": "verbale",
+  "sconfitta_seme": 1576007046,
+  "in_corso": false,
+  "riparti": 1
+ },
+ "riparti": {
+  "semi": [
+   4239700261,
+   4239700261,
+   4239700261
+  ],
+  "uguali_1_2": "uguali",
+  "uguali_1_3": "uguali"
+ },
+ "rigioca": {
+  "semi": [
+   1592784665,
+   1592784665,
+   1592784665
+  ],
+  "uguali_1_2": "uguali",
+  "uguali_1_3": "uguali"
+ }
+}

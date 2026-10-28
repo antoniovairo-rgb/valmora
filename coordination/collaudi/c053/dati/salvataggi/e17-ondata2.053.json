@@ -1,0 +1,105 @@
+{
+ "visto": {
+  "scena": "chiamata",
+  "chiamata": "chiamata-radio_bar",
+  "presenze": 5,
+  "testo": "STAMPA LOCALE\nPIAZZALE DELLO STADIO\nURGENTE!\nRISPONDI\n\n«Stampa locale: dal bar del piazzale radiocronaca a tutto volume, e notizie del corteo.»\n\nA\nLASCIA LA RADIO A VOLUME ALTO\nIl piazzale si calma un po', ma il comando non gradisce: ti costa fiducia.\nfiducia\nPiazzale dello stadio\nB\nFAI ABBASSARE IL VOLUME\nIl comando ti dà fiducia; il piazzale si scalda.\nfiducia\nPiazzale dello stadio",
+  "azioni": []
+ },
+ "primi": [
+  "1:sanzione>presidio17",
+  "1:schermo_comizi>niente_schermo",
+  "1*:imp_paninaro>megafono_panini",
+  "1:sotto_casa>squadra_quartiere17",
+  "2:cancelli>steward_cancelli",
+  "2*:imp_cane>chiama_canile"
+ ],
+ "resto": [
+  "2:radio_bar>volume_si",
+  "2:ci_vediamo_dopo>pattuglia_dessi",
+  "3:gol_fuori>steward_fumo17",
+  "3*:imp_cancello_elettrico>stacca_quadro",
+  "3:dalla_collina>ferma_collina",
+  "3:bandiera>prendili",
+  "4:me_lo_dovete>corteo_dessi",
+  "4*:imp_lampioni>fari_accesi",
+  "4:undici>circolare",
+  "4:fine_corteo>sciogli_piazza"
+ ],
+ "fine": {
+  "scena": "verbale",
+  "episodio": {
+   "migliore": {
+    "esito": "contenuto_a_fatica",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 3,
+    "credito": 8,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 1,
+    "carte": "nessuna"
+   },
+   "variabili_dopo": {
+    "tensione_max": 4,
+    "credito": 10,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 1,
+    "carte": "nessuna"
+   }
+  },
+  "variabili": {
+   "tensione_max": 4,
+   "credito": 10,
+   "informatore_pagato": true,
+   "presidente_incontrato": false,
+   "furgone_visto": true,
+   "rapporto_dessi": "rispetto",
+   "testimone": "nessuno",
+   "busta": "nessuna",
+   "pista_cattura": "nessuna",
+   "fascicolo": "nessuno",
+   "sospetti_talpa": 1,
+   "carte": "nessuna"
+  },
+  "concluse": [
+   "e01",
+   "e02",
+   "e03",
+   "e04",
+   "e05",
+   "e06",
+   "e07",
+   "e08",
+   "e09",
+   "e10",
+   "e11",
+   "e12",
+   "e13",
+   "e14",
+   "e15",
+   "e16",
+   "e17"
+  ],
+  "in_corso": null
+ },
+ "versione": "0.53.0",
+ "sv": 2,
+ "errori": []
+}

@@ -11,12 +11,14 @@ import { creaCaso } from '../../src/logica/caso.ts';
 
 const [vp, quali = 'campione', conFoto = '0'] = process.argv.slice(2), [W, H] = vp.split('x').map(Number);
 const R = JSON.parse((await import('node:fs')).readFileSync('coordination/collaudi/c053/dati/testi-nuovi.json', 'utf8'));
-const nuove = R.filter((r) => r.tipo !== 'classica');
+const nuove = R.filter((r) => (quali === 'classiche' ? r.tipo === 'classica' : r.tipo !== 'classica'));
 const lung = (r) => r.testo.length + (r.commento ?? '').length + r.opzioni.reduce((a, o) => a + o.testo.length + (o.costo ?? '').length, 0);
 const piuLunghe = [...nuove].sort((a, b) => lung(b) - lung(a)).slice(0, 20).map((r) => `${r.ep}/${r.id}`);
 const sceltiRegolari = nuove.filter((_, i) => i % 12 === 0).map((r) => `${r.ep}/${r.id}`);
 const campione = new Set([...piuLunghe, ...sceltiRegolari]);
-const daFare = quali === 'tutte' ? nuove : nuove.filter((r) => campione.has(`${r.ep}/${r.id}`));
+const SOLO = process.env.C053_SOLO?.split(',');
+const fotoSet = new Set(SOLO ?? piuLunghe.slice(0, 5));
+const daFare = SOLO ? nuove.filter((r) => SOLO.includes(`${r.ep}/${r.id}`)) : quali === 'tutte' ? nuove : nuove.filter((r) => campione.has(`${r.ep}/${r.id}`));
 
 /** Stato di gioco della missione fermo sulla carta: primo seme in cui compare, ondate precedenti e chiamate prima di lei risolte dal bot. */
 function statoSuCarta(m, r, vars) {
@@ -57,19 +59,19 @@ for (const r of daFare) {
   const rec = { ep: r.ep, id: r.id, tipo: r.tipo, ondata: r.ondata, seme: ris.seme, righe: lung(r), vp, risposte: [] };
   try {
     await carica(); rec.chiamata = await misura(p);
-    if (conFoto === '1' && (rec.chiamata.ecc > 0 && campione.has(`${r.ep}/${r.id}`))) await p.screenshot({ path: `${cartellaFoto}/${vp}-${r.ep}-${r.id}-chiamata.png`, fullPage: true });
+    if (conFoto === '1' && (fotoSet.has(`${r.ep}/${r.id}`))) await p.screenshot({ path: `${cartellaFoto}/${vp}-${r.ep}-${r.id}-chiamata.png`, fullPage: true });
     for (const o of r.opzioni) {
       await carica();
       await p.click(`[data-opzione="${o.id}"]`); await p.waitForTimeout(100); await p.click('[data-conferma]'); await p.waitForSelector('.scena[data-scena="risposta"]', { timeout: 8000 }); await L.lento(p); await p.waitForTimeout(350);
       const mis = { opzione: o.id, ...(await misura(p)), lungRisposta: o.risposta.length };
       rec.risposte.push(mis);
-      if (conFoto === '1' && mis.ecc > 0 && campione.has(`${r.ep}/${r.id}`) && r.opzioni.indexOf(o) === 0) await p.screenshot({ path: `${cartellaFoto}/${vp}-${r.ep}-${r.id}-risposta-${o.id}.png`, fullPage: true });
+      if (conFoto === '1' && fotoSet.has(`${r.ep}/${r.id}`)) await p.screenshot({ path: `${cartellaFoto}/${vp}-${r.ep}-${r.id}-risposta-${o.id}.png`, fullPage: true });
     }
   } catch (e) { rec.errore = String(e.message).split('\n')[0]; }
   out.push(rec);
   process.stdout.write(`${r.ep}/${r.id}: chiamata ${rec.chiamata?.ecc} | risposte ${rec.risposte.map((x) => x.ecc).join(',')}${rec.errore ? ' ERR ' + rec.errore : ''}\n`);
 }
 const pg = out.pagina; delete out.pagina;
-writeFileSync(`coordination/collaudi/c053/dati/scorrimento-${vp}-${quali}.json`, JSON.stringify({ vp, quali, senzaSeme: senza, carte: out, errori: pg?.errori ?? [] }));
+writeFileSync(`coordination/collaudi/c053/dati/scorrimento-${vp}-${SOLO ? 'solo' : quali}.json`, JSON.stringify({ vp, quali, senzaSeme: senza, carte: out, errori: pg?.errori ?? [] }));
 console.log('senza seme:', senza, 'errori pagina:', pg?.errori);
 await A.chiudi();

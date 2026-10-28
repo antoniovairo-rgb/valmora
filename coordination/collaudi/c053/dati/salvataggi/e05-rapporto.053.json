@@ -1,0 +1,92 @@
+{
+ "visto": {
+  "scena": "rapporto",
+  "chiamata": null,
+  "presenze": 0,
+  "testo": "Fiducia +1: nessun settore scoperto.\n\nTornelli\nsalita, poi calmata\nSOTTO CONTROLLO\nStrada da Skyfield\nSOTTO CONTROLLO\nPiazzale dello stadio\nSOTTO CONTROLLO\nCurva Skyfield\nsalita, poi calmata\nSOTTO CONTROLLO\nCurva ospiti\nSOTTO CONTROLLO\n\nDisponibili nella prossima ondata: 4 squadre, 4 steward, 1 mediatore\n\nPROSSIMA ONDATA",
+  "azioni": [
+   "avanti"
+  ]
+ },
+ "primi": [
+  "1:sindacato>impegno_firmato",
+  "1*:imp_lucchetto>laterale",
+  "1:volontari>volontari_si",
+  "2:megafono>lascia_megafono",
+  "2*:imp_tabellone>spiega",
+  "2:laser_q>pausa5"
+ ],
+ "resto": [
+  "3:coro_steward>risposta_rete",
+  "3*:imp_pettorine>toglile",
+  "3:parola_gentile>di_parola",
+  "4:risultato>uscita_tornelli",
+  "4*:imp_strada_sbagliata>torna_piazzale",
+  "4:domattina>incontro_si",
+  "4:fondo_strada>chiudi_fondo"
+ ],
+ "fine": {
+  "scena": "verbale",
+  "episodio": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 3
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 2,
+    "credito": 8,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "variabili_dopo": {
+    "tensione_max": 3,
+    "credito": 9,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   }
+  },
+  "variabili": {
+   "tensione_max": 3,
+   "credito": 9,
+   "informatore_pagato": true,
+   "presidente_incontrato": false,
+   "furgone_visto": true,
+   "rapporto_dessi": "neutro",
+   "testimone": "nessuno",
+   "busta": "nessuna",
+   "pista_cattura": "nessuna",
+   "fascicolo": "nessuno",
+   "sospetti_talpa": 0,
+   "carte": "nessuna"
+  },
+  "concluse": [
+   "e01",
+   "e02",
+   "e03",
+   "e04",
+   "e05"
+  ],
+  "in_corso": null
+ },
+ "versione": "0.53.0",
+ "sv": 2,
+ "errori": []
+}

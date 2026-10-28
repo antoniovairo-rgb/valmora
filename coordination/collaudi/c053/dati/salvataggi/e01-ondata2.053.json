@@ -1,0 +1,90 @@
+{
+ "visto": {
+  "scena": "chiamata",
+  "chiamata": "chiamata-porta_servizio",
+  "presenze": 6,
+  "testo": "CENTRALE RADIO\nPIAZZALE DELLO STADIO\nRISPONDI\n\n«Porta di servizio forzata sul piazzale: sta entrando gente senza biglietto.»\n\nA\nCHIUDILA E LASCIACI DUE STEWARD FINO A FINE GIORNATA\nPorta chiusa, ma due steward restano lì.\nTi costa 2 steward dalla prossima ondata\nPiazzale dello stadio\nSteward · Piazzale dello stadio\nB\nFAI FINTA DI NIENTE\nChi entra senza biglietto finisce in curva Skyfield.\nCurva Skyfield",
+  "azioni": []
+ },
+ "primi": [
+  "1:corteo_partito>scorta",
+  "1:ufficio_insiste>ignora",
+  "1:pullman>conta",
+  "1*:imp_ambulanza>scendete",
+  "1:rinforzi>chiedi",
+  "1:striscione>lascia",
+  "2:fumogeni>spegni"
+ ],
+ "resto": [
+  "2:porta_servizio>presidia",
+  "2*:imp_buio>speaker",
+  "2:presidente>manda_vice",
+  "2:capo_curva>mediatore",
+  "3:pareggio>trattieni",
+  "3:incrocio>chiudi",
+  "3*:imp_tram>a_piedi",
+  "3:lavezzari>accetta",
+  "3:troupe>niente",
+  "3:sciarpe>paga"
+ ],
+ "fine": {
+  "scena": "verbale",
+  "episodio": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 2
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "variabili_dopo": {
+    "tensione_max": 1,
+    "credito": 6,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   }
+  },
+  "variabili": {
+   "tensione_max": 1,
+   "credito": 6,
+   "informatore_pagato": true,
+   "presidente_incontrato": false,
+   "furgone_visto": false,
+   "rapporto_dessi": "neutro",
+   "testimone": "nessuno",
+   "busta": "nessuna",
+   "pista_cattura": "nessuna",
+   "fascicolo": "nessuno",
+   "sospetti_talpa": 0,
+   "carte": "nessuna"
+  },
+  "concluse": [
+   "e01"
+  ],
+  "in_corso": null
+ },
+ "versione": "0.53.0",
+ "sv": 2,
+ "errori": []
+}

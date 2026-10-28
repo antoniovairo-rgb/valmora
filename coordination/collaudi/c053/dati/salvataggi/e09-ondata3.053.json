@@ -1,0 +1,98 @@
+{
+ "visto": {
+  "scena": "chiamata",
+  "chiamata": "chiamata-due_furgoni",
+  "presenze": 5,
+  "testo": "VOCI IN RETE\nPIAZZALE DELLO STADIO\nRISPONDI\n\n«In rete: foto del furgone grigio ammaccato sul fianco. Altra parte della città, dieci minuti fa.»\n\nIL VICE — «Il carro attrezzi dice che il furgone è nella piazzola. La rete dice di no. Qualcuno sbaglia, o i furgoni sono due.»\n\nA\nFAI VERIFICARE LA FOTO\nTogli un uomo e il piazzale si carica.\nPiazzale dello stadio\nB\nSARÀ UN ALTRO FURGONE\nNessun costo, nessun aiuto.",
+  "azioni": []
+ },
+ "primi": [
+  "1:furgone_coinvolto>controlla_furgone",
+  "1:a_piedi>mediatore9",
+  "1*:imp_gregge>ferma_tutti",
+  "1:pullman_fermi>acqua_pullman",
+  "1:passaggio>paga_ancora",
+  "2:lite_coda>cerca_conducente",
+  "2:contro_tutti>steward9",
+  "2*:imp_malore_coda>spingi_auto",
+  "2:torce9>squadra_torce9"
+ ],
+ "resto": [
+  "3:due_furgoni>ignora_foto",
+  "3*:imp_pallone>sgonfia_pallone",
+  "3:rigore9>steward_rigore9",
+  "3:corsia_unica>presidia_rampa",
+  "4:risultato>ospiti_prima9",
+  "4*:imp_cancello>apri_forza",
+  "4:furgone_sparito>annota_direzione",
+  "4:non_erano_nostri>conferma"
+ ],
+ "fine": {
+  "scena": "verbale",
+  "episodio": {
+   "migliore": {
+    "esito": "contenuto",
+    "fallita": false,
+    "stelle": 3
+   },
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 1,
+    "credito": 2,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "variabili_dopo": {
+    "tensione_max": 2,
+    "credito": 7,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   }
+  },
+  "variabili": {
+   "tensione_max": 2,
+   "credito": 7,
+   "informatore_pagato": true,
+   "presidente_incontrato": false,
+   "furgone_visto": true,
+   "rapporto_dessi": "rispetto",
+   "testimone": "nessuno",
+   "busta": "nessuna",
+   "pista_cattura": "nessuna",
+   "fascicolo": "nessuno",
+   "sospetti_talpa": 0,
+   "carte": "nessuna"
+  },
+  "concluse": [
+   "e01",
+   "e02",
+   "e03",
+   "e04",
+   "e05",
+   "e06",
+   "e07",
+   "e08",
+   "e09"
+  ],
+  "in_corso": null
+ },
+ "versione": "0.53.0",
+ "sv": 2,
+ "errori": []
+}

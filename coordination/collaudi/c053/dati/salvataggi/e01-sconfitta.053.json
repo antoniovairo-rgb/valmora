@@ -1,0 +1,75 @@
+{
+ "visto": {
+  "scena": "verbale",
+  "chiamata": null,
+  "presenze": 0,
+  "testo": "01\nVERBALE\nDEGENERATO FUORI CAMPO\ncontro\n\nLa situazione è sfuggita di mano fuori dallo stadio. I rapporti arriveranno domattina, i giornali stasera. Il vice incassa la scommessa senza sorridere.\n\nEpisodio fallito: va rigiocato. Si riparte da come stavano le cose prima.\n\nCONDIVIDI\nRICOMINCIA L'EPISODIO\nAVANTI",
+  "azioni": [
+   "home",
+   "condividi",
+   "rigioca",
+   "passo"
+  ]
+ },
+ "primi": [
+  "1:corteo_partito>ferma",
+  "1:ufficio_insiste>asseconda",
+  "1:pullman>aspetta",
+  "1*:imp_ambulanza>scendete",
+  "1:rinforzi>chiedi",
+  "1:striscione>rimuovi",
+  "2:fumogeni>lascia_fumo",
+  "2:porta_servizio>finta",
+  "2*:imp_buio>torce",
+  "2:presidente>manda_vice",
+  "2:capo_curva>nessuna",
+  "3:pareggio>insieme",
+  "3:incrocio>scorrere",
+  "3*:imp_tram>a_piedi",
+  "3:lavezzari>annota",
+  "3:troupe>intervista",
+  "3:sciarpe>non_paga"
+ ],
+ "resto": [],
+ "fine": {
+  "scena": "verbale",
+  "episodio": {
+   "migliore": null,
+   "tentativi": 1,
+   "variabili_prima": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "variabili_dopo": null
+  },
+  "variabili": {
+   "tensione_max": 0,
+   "credito": 5,
+   "informatore_pagato": false,
+   "presidente_incontrato": false,
+   "furgone_visto": false,
+   "rapporto_dessi": "neutro",
+   "testimone": "nessuno",
+   "busta": "nessuna",
+   "pista_cattura": "nessuna",
+   "fascicolo": "nessuno",
+   "sospetti_talpa": 0,
+   "carte": "nessuna"
+  },
+  "concluse": [],
+  "in_corso": null
+ },
+ "versione": "0.53.0",
+ "sv": 2,
+ "errori": []
+}

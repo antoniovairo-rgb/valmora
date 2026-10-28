@@ -1,0 +1,1060 @@
+[
+ {
+  "nome": "e01-ondata2",
+  "ok": {
+   "riprendi": true,
+   "scena": true,
+   "chiamata": true,
+   "testoUguale": true,
+   "presenze": true,
+   "azioni": true,
+   "salvataggio_dopo": {
+    "save_version": 2,
+    "differenze": [],
+    "seme_in_corso": null,
+    "seme_sconfitta": null
+   },
+   "resto": true,
+   "fine": true
+  },
+  "visto": {
+   "scena": "chiamata",
+   "chiamata": "chiamata-porta_servizio"
+  },
+  "rif": {
+   "scena": "chiamata",
+   "chiamata": "chiamata-porta_servizio"
+  },
+  "resto054": [
+   "2:porta_servizio>presidia",
+   "2*:imp_buio>speaker",
+   "2:presidente>manda_vice",
+   "2:capo_curva>mediatore",
+   "3:pareggio>trattieni",
+   "3:incrocio>chiudi",
+   "3*:imp_tram>a_piedi",
+   "3:lavezzari>accetta",
+   "3:troupe>niente",
+   "3:sciarpe>paga"
+  ],
+  "resto053": [
+   "2:porta_servizio>presidia",
+   "2*:imp_buio>speaker",
+   "2:presidente>manda_vice",
+   "2:capo_curva>mediatore",
+   "3:pareggio>trattieni",
+   "3:incrocio>chiudi",
+   "3*:imp_tram>a_piedi",
+   "3:lavezzari>accetta",
+   "3:troupe>niente",
+   "3:sciarpe>paga"
+  ],
+  "fine054": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto",
+     "fallita": false,
+     "stelle": 2
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 0,
+     "credito": 5,
+     "informatore_pagato": false,
+     "presidente_incontrato": false,
+     "furgone_visto": false,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 1,
+     "credito": 6,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": false,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 1,
+    "credito": 6,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01"
+   ],
+   "in_corso": null
+  },
+  "fine053": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto",
+     "fallita": false,
+     "stelle": 2
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 0,
+     "credito": 5,
+     "informatore_pagato": false,
+     "presidente_incontrato": false,
+     "furgone_visto": false,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 1,
+     "credito": 6,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": false,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 1,
+    "credito": 6,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01"
+   ],
+   "in_corso": null
+  },
+  "errori": []
+ },
+ {
+  "nome": "e09-ondata3",
+  "ok": {
+   "riprendi": true,
+   "scena": true,
+   "chiamata": true,
+   "testoUguale": true,
+   "presenze": true,
+   "azioni": true,
+   "salvataggio_dopo": {
+    "save_version": 2,
+    "differenze": [],
+    "seme_in_corso": null,
+    "seme_sconfitta": null
+   },
+   "resto": true,
+   "fine": true
+  },
+  "visto": {
+   "scena": "chiamata",
+   "chiamata": "chiamata-due_furgoni"
+  },
+  "rif": {
+   "scena": "chiamata",
+   "chiamata": "chiamata-due_furgoni"
+  },
+  "resto054": [
+   "3:due_furgoni>ignora_foto",
+   "3*:imp_pallone>sgonfia_pallone",
+   "3:rigore9>steward_rigore9",
+   "3:corsia_unica>presidia_rampa",
+   "4:risultato>ospiti_prima9",
+   "4*:imp_cancello>apri_forza",
+   "4:furgone_sparito>annota_direzione",
+   "4:non_erano_nostri>conferma"
+  ],
+  "resto053": [
+   "3:due_furgoni>ignora_foto",
+   "3*:imp_pallone>sgonfia_pallone",
+   "3:rigore9>steward_rigore9",
+   "3:corsia_unica>presidia_rampa",
+   "4:risultato>ospiti_prima9",
+   "4*:imp_cancello>apri_forza",
+   "4:furgone_sparito>annota_direzione",
+   "4:non_erano_nostri>conferma"
+  ],
+  "fine054": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto",
+     "fallita": false,
+     "stelle": 3
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 1,
+     "credito": 2,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 2,
+     "credito": 7,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 2,
+    "credito": 7,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01",
+    "e02",
+    "e03",
+    "e04",
+    "e05",
+    "e06",
+    "e07",
+    "e08",
+    "e09"
+   ],
+   "in_corso": null
+  },
+  "fine053": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto",
+     "fallita": false,
+     "stelle": 3
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 1,
+     "credito": 2,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 2,
+     "credito": 7,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 2,
+    "credito": 7,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01",
+    "e02",
+    "e03",
+    "e04",
+    "e05",
+    "e06",
+    "e07",
+    "e08",
+    "e09"
+   ],
+   "in_corso": null
+  },
+  "errori": []
+ },
+ {
+  "nome": "e17-ondata2",
+  "ok": {
+   "riprendi": true,
+   "scena": true,
+   "chiamata": true,
+   "testoUguale": true,
+   "presenze": true,
+   "azioni": true,
+   "salvataggio_dopo": {
+    "save_version": 2,
+    "differenze": [],
+    "seme_in_corso": null,
+    "seme_sconfitta": null
+   },
+   "resto": true,
+   "fine": true
+  },
+  "visto": {
+   "scena": "chiamata",
+   "chiamata": "chiamata-radio_bar"
+  },
+  "rif": {
+   "scena": "chiamata",
+   "chiamata": "chiamata-radio_bar"
+  },
+  "resto054": [
+   "2:radio_bar>volume_si",
+   "2:ci_vediamo_dopo>pattuglia_dessi",
+   "3:gol_fuori>steward_fumo17",
+   "3*:imp_cancello_elettrico>stacca_quadro",
+   "3:dalla_collina>ferma_collina",
+   "3:bandiera>prendili",
+   "4:me_lo_dovete>corteo_dessi",
+   "4*:imp_lampioni>fari_accesi",
+   "4:undici>circolare",
+   "4:fine_corteo>sciogli_piazza"
+  ],
+  "resto053": [
+   "2:radio_bar>volume_si",
+   "2:ci_vediamo_dopo>pattuglia_dessi",
+   "3:gol_fuori>steward_fumo17",
+   "3*:imp_cancello_elettrico>stacca_quadro",
+   "3:dalla_collina>ferma_collina",
+   "3:bandiera>prendili",
+   "4:me_lo_dovete>corteo_dessi",
+   "4*:imp_lampioni>fari_accesi",
+   "4:undici>circolare",
+   "4:fine_corteo>sciogli_piazza"
+  ],
+  "fine054": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto_a_fatica",
+     "fallita": false,
+     "stelle": 1
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 3,
+     "credito": 8,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 1,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 4,
+     "credito": 10,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 1,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 4,
+    "credito": 10,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 1,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01",
+    "e02",
+    "e03",
+    "e04",
+    "e05",
+    "e06",
+    "e07",
+    "e08",
+    "e09",
+    "e10",
+    "e11",
+    "e12",
+    "e13",
+    "e14",
+    "e15",
+    "e16",
+    "e17"
+   ],
+   "in_corso": null
+  },
+  "fine053": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto_a_fatica",
+     "fallita": false,
+     "stelle": 1
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 3,
+     "credito": 8,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 1,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 4,
+     "credito": 10,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 1,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 4,
+    "credito": 10,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 1,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01",
+    "e02",
+    "e03",
+    "e04",
+    "e05",
+    "e06",
+    "e07",
+    "e08",
+    "e09",
+    "e10",
+    "e11",
+    "e12",
+    "e13",
+    "e14",
+    "e15",
+    "e16",
+    "e17"
+   ],
+   "in_corso": null
+  },
+  "errori": []
+ },
+ {
+  "nome": "e29-ondata4",
+  "ok": {
+   "riprendi": true,
+   "scena": true,
+   "chiamata": true,
+   "testoUguale": true,
+   "presenze": true,
+   "azioni": true,
+   "salvataggio_dopo": {
+    "save_version": 2,
+    "differenze": [],
+    "seme_in_corso": null,
+    "seme_sconfitta": null
+   },
+   "resto": true,
+   "fine": true
+  },
+  "visto": {
+   "scena": "chiamata",
+   "chiamata": "chiamata-corteo_al_porto"
+  },
+  "rif": {
+   "scena": "chiamata",
+   "chiamata": "chiamata-corteo_al_porto"
+  },
+  "resto054": [
+   "4:corteo_al_porto>parola_fabbro",
+   "4:conferenza>in_fondo",
+   "4*:imp_irrigatori>sgombera",
+   "4:piazzale_ultimi>luci_piazzale"
+  ],
+  "resto053": [
+   "4:corteo_al_porto>parola_fabbro",
+   "4:conferenza>in_fondo",
+   "4*:imp_irrigatori>sgombera",
+   "4:piazzale_ultimi>luci_piazzale"
+  ],
+  "fine054": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto",
+     "fallita": false,
+     "stelle": 3
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 3,
+     "credito": 10,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "esposto",
+     "busta": "consegnata",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 3,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 2,
+     "credito": 9,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "esposto",
+     "busta": "consegnata",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 3,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 2,
+    "credito": 9,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "esposto",
+    "busta": "consegnata",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 3,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01",
+    "e02",
+    "e03",
+    "e04",
+    "e05",
+    "e06",
+    "e07",
+    "e08",
+    "e09",
+    "e10",
+    "e11",
+    "e12",
+    "e13",
+    "e14",
+    "e15",
+    "e16",
+    "e17",
+    "e18",
+    "e19",
+    "e20",
+    "e21",
+    "e22",
+    "e23",
+    "e24",
+    "e25",
+    "e26",
+    "e27",
+    "e28",
+    "e29"
+   ],
+   "in_corso": null
+  },
+  "fine053": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto",
+     "fallita": false,
+     "stelle": 3
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 3,
+     "credito": 10,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "esposto",
+     "busta": "consegnata",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 3,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 2,
+     "credito": 9,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "rispetto",
+     "testimone": "esposto",
+     "busta": "consegnata",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 3,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 2,
+    "credito": 9,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "rispetto",
+    "testimone": "esposto",
+    "busta": "consegnata",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 3,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01",
+    "e02",
+    "e03",
+    "e04",
+    "e05",
+    "e06",
+    "e07",
+    "e08",
+    "e09",
+    "e10",
+    "e11",
+    "e12",
+    "e13",
+    "e14",
+    "e15",
+    "e16",
+    "e17",
+    "e18",
+    "e19",
+    "e20",
+    "e21",
+    "e22",
+    "e23",
+    "e24",
+    "e25",
+    "e26",
+    "e27",
+    "e28",
+    "e29"
+   ],
+   "in_corso": null
+  },
+  "errori": []
+ },
+ {
+  "nome": "e05-rapporto",
+  "ok": {
+   "riprendi": true,
+   "scena": true,
+   "chiamata": true,
+   "testoUguale": true,
+   "presenze": true,
+   "azioni": true,
+   "salvataggio_dopo": {
+    "save_version": 2,
+    "differenze": [],
+    "seme_in_corso": null,
+    "seme_sconfitta": null
+   },
+   "resto": true,
+   "fine": true
+  },
+  "visto": {
+   "scena": "rapporto",
+   "chiamata": null
+  },
+  "rif": {
+   "scena": "rapporto",
+   "chiamata": null
+  },
+  "resto054": [
+   "3:coro_steward>risposta_rete",
+   "3*:imp_pettorine>toglile",
+   "3:parola_gentile>di_parola",
+   "4:risultato>uscita_tornelli",
+   "4*:imp_strada_sbagliata>torna_piazzale",
+   "4:domattina>incontro_si",
+   "4:fondo_strada>chiudi_fondo"
+  ],
+  "resto053": [
+   "3:coro_steward>risposta_rete",
+   "3*:imp_pettorine>toglile",
+   "3:parola_gentile>di_parola",
+   "4:risultato>uscita_tornelli",
+   "4*:imp_strada_sbagliata>torna_piazzale",
+   "4:domattina>incontro_si",
+   "4:fondo_strada>chiudi_fondo"
+  ],
+  "fine054": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto",
+     "fallita": false,
+     "stelle": 3
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 2,
+     "credito": 8,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 3,
+     "credito": 9,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 3,
+    "credito": 9,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01",
+    "e02",
+    "e03",
+    "e04",
+    "e05"
+   ],
+   "in_corso": null
+  },
+  "fine053": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": {
+     "esito": "contenuto",
+     "fallita": false,
+     "stelle": 3
+    },
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 2,
+     "credito": 8,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": {
+     "tensione_max": 3,
+     "credito": 9,
+     "informatore_pagato": true,
+     "presidente_incontrato": false,
+     "furgone_visto": true,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    }
+   },
+   "variabili": {
+    "tensione_max": 3,
+    "credito": 9,
+    "informatore_pagato": true,
+    "presidente_incontrato": false,
+    "furgone_visto": true,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "concluse": [
+    "e01",
+    "e02",
+    "e03",
+    "e04",
+    "e05"
+   ],
+   "in_corso": null
+  },
+  "errori": []
+ },
+ {
+  "nome": "e05-schieramento",
+  "ok": {
+   "riprendi": true,
+   "scena": true,
+   "chiamata": true,
+   "testoUguale": true,
+   "presenze": true,
+   "azioni": true,
+   "salvataggio_dopo": {
+    "save_version": 2,
+    "differenze": [],
+    "seme_in_corso": null,
+    "seme_sconfitta": null
+   },
+   "resto": true,
+   "fine": true
+  },
+  "visto": {
+   "scena": "schieramento",
+   "chiamata": null
+  },
+  "rif": {
+   "scena": "schieramento",
+   "chiamata": null
+  },
+  "resto054": [],
+  "resto053": [],
+  "fine054": null,
+  "fine053": null,
+  "errori": []
+ },
+ {
+  "nome": "e01-sconfitta",
+  "ok": {
+   "riprendi": true,
+   "scena": true,
+   "chiamata": true,
+   "testoUguale": true,
+   "presenze": true,
+   "azioni": true,
+   "salvataggio_dopo": {
+    "save_version": 2,
+    "differenze": [],
+    "seme_in_corso": null,
+    "seme_sconfitta": null
+   },
+   "resto": true,
+   "fine": true
+  },
+  "visto": {
+   "scena": "verbale",
+   "chiamata": null
+  },
+  "rif": {
+   "scena": "verbale",
+   "chiamata": null
+  },
+  "resto054": [],
+  "resto053": [],
+  "fine054": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": null,
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 0,
+     "credito": 5,
+     "informatore_pagato": false,
+     "presidente_incontrato": false,
+     "furgone_visto": false,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": null
+   },
+   "variabili": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "concluse": [],
+   "in_corso": null
+  },
+  "fine053": {
+   "scena": "verbale",
+   "episodio": {
+    "migliore": null,
+    "tentativi": 1,
+    "variabili_prima": {
+     "tensione_max": 0,
+     "credito": 5,
+     "informatore_pagato": false,
+     "presidente_incontrato": false,
+     "furgone_visto": false,
+     "rapporto_dessi": "neutro",
+     "testimone": "nessuno",
+     "busta": "nessuna",
+     "pista_cattura": "nessuna",
+     "fascicolo": "nessuno",
+     "sospetti_talpa": 0,
+     "carte": "nessuna"
+    },
+    "variabili_dopo": null
+   },
+   "variabili": {
+    "tensione_max": 0,
+    "credito": 5,
+    "informatore_pagato": false,
+    "presidente_incontrato": false,
+    "furgone_visto": false,
+    "rapporto_dessi": "neutro",
+    "testimone": "nessuno",
+    "busta": "nessuna",
+    "pista_cattura": "nessuna",
+    "fascicolo": "nessuno",
+    "sospetti_talpa": 0,
+    "carte": "nessuna"
+   },
+   "concluse": [],
+   "in_corso": null
+  },
+  "errori": []
+ }
+]

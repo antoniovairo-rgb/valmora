@@ -1,0 +1,44 @@
+{
+ "episodio": "e29",
+ "semeSalvataggio": 11,
+ "seme_episodio": 1742536111,
+ "chiamate": 17,
+ "ricaricheB": 18,
+ "A_vs_B": "uguali",
+ "A_vs_C": "uguali",
+ "errori": [],
+ "esiti": [
+  "contenuto",
+  "contenuto",
+  "contenuto"
+ ],
+ "tent": [
+  1,
+  1,
+  1
+ ],
+ "sconfitta": {
+  "scena": "verbale",
+  "sconfitta_seme": 1742536111,
+  "in_corso": false,
+  "riparti": 1
+ },
+ "riparti": {
+  "semi": [
+   2909374018,
+   2909374018,
+   2909374018
+  ],
+  "uguali_1_2": "uguali",
+  "uguali_1_3": "uguali"
+ },
+ "rigioca": {
+  "semi": [
+   1725758492,
+   1725758492,
+   "rigioca"
+  ],
+  "uguali_1_2": "uguali",
+  "uguali_1_3": "n/d"
+ }
+}
