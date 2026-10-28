@@ -44,9 +44,10 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
   | 4 | **D · Ogni partita diversa.** Seme di partita salvato; mazzo di imprevisti e punto di comparsa; varianti di chiamata; rosso C241D01; soglia di varietà fissata dopo la prima misura | S-26 | 0.54.0 | fatto |
   | 5 | **C · Il «nessun costo» morde dopo.** Campo `effetti_dopo` validato da schema, applicato alla chiusura dell'ondata dichiarata; scrittura sui 36 episodi | S-27 | – | in corsa |
   | 6 | **B · Una mossa per chiamata.** Azione pura `sposta` in missione.ts, trascinamento sulla mappa, una per chiamata, il bot la usa; SAVE_VERSION con migrazione se serve; rosso C241B01 | S-11 | – | da scrivere |
-  | 7 | Bilanciamento: vittorie per episodio col bot (300 semi, 0 blocchi) dopo A+C; si ritoccano i dati, non le soglie; dentro: D-108 col seme (7 coppie rosse, esito «contenuto» di e24 irraggiungibile) e 129 risposte di imprevisti classici che scorrono oltre 68 px a 360×640 | S-11 / S-26 | – | da scrivere |
+  | 7 | Bilanciamento: vittorie per episodio col bot (300 semi, 0 blocchi) dopo A+C; si ritoccano i dati, non le soglie; dentro: D-108 col seme (7 coppie rosse, esito «contenuto» di e24 irraggiungibile) e 129 risposte di imprevisti classici che scorrono oltre 68 px a 360×640; C53-02 (sonda su tutte le risposte delle carte, testi accorciati) e C53-03…07 (testi ripetuti, «Lì» senza antecedente, game_version, fonte delle varianti) | S-11 / S-26 | – | da scrivere |
   | 8 | Accessibilità: testo al 130% a 360/375 (C52-04/05) | S-11 | – | da scrivere |
-  | 8b | **Nuovo nome «Varcalda – Cortina di fumo» (PO-153, D-244).** Testi, store, privacy, identificativo dell'app, chiavi del salvataggio con migrazione, repository e Pages; guardiano «nessun Valmora visibile» e rosso | S-26 + PO (rinomina del repository) | – | in corsa |
+  | 8c | C53-01: l'imprevisto della carta nuova non arriva più per ultimo nell'ondata (10,5% → 0); finestre validate sulle chiamate senza condizioni; rosso | S-26 | dopo 8b | da scrivere |
+| 8b | **Nuovo nome «Varcalda – Cortina di fumo» (PO-153, D-244).** Testi, store, privacy, identificativo dell'app, chiavi del salvataggio con migrazione, repository e Pages; guardiano «nessun Valmora visibile» e rosso | S-26 + PO (rinomina del repository) | – | in corsa |
 | 9 | Prova del tester: link al PO per il collega; collaudo con «Partita da giocatore» e la domanda «leggi le opzioni? la mappa la usi?» | principale + collaudatrice | – | da scrivere |
 
 - Criterio d'uscita:
