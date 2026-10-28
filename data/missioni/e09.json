@@ -182,7 +182,7 @@
             },
             {
               "id": "uno_dei_dodici",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "tangenziale", "valore": 2}], "rapporto": "testi:e09.dopo.furgone_coinvolto.uno_dei_dodici"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e09.dopo.furgone_coinvolto.uno_dei_dodici"},
               "testo": "testi:e09.op.uno_dei_dodici",
               "costo": "testi:e09.op.uno_dei_dodici.c",
               "effetti": [],

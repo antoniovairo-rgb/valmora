@@ -456,7 +456,7 @@
             },
             {
               "id": "niente_annuncio",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_cinderwick", "valore": 2}], "rapporto": "testi:e29.dopo.speaker_partita.niente_annuncio"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e29.dopo.speaker_partita.niente_annuncio"},
               "testo": "testi:e29.op.niente_annuncio",
               "costo": "testi:e29.op.niente_annuncio.c",
               "effetti": [],

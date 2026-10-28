@@ -692,7 +692,7 @@
           "opzioni": [
             {
               "id": "rifiuta_segreteria",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "stazione", "valore": 2}], "rapporto": "testi:e31.dopo.segreteria_chiede.rifiuta_segreteria"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e31.dopo.segreteria_chiede.rifiuta_segreteria"},
               "testo": "testi:e31.op.rifiuta_segreteria",
               "costo": "testi:e31.op.rifiuta_segreteria.c",
               "effetti": [],

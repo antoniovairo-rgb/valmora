@@ -824,6 +824,7 @@
           "opzioni": [
             {
               "id": "devia24",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e24.dopo.delusi.devia24"},
               "testo": "testi:e24.op.devia24",
               "costo": "testi:e24.op.devia24.c",
               "effetti": [
@@ -865,7 +866,6 @@
           "opzioni": [
             {
               "id": "caffe",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_ospiti", "valore": 2}], "rapporto": "testi:e24.dopo.posta_alzata.caffe"},
               "testo": "testi:e24.op.caffe",
               "costo": "testi:e24.op.caffe.c",
               "effetti": [],

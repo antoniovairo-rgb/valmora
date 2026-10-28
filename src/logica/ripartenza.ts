@@ -4,6 +4,7 @@
 import { spento } from '../interruttori.ts';
 import { attenta } from './bot.ts';
 import { creaCaso } from './caso.ts';
+import { morsiDellOndata, morsiInAttesa } from './dopo.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, missioneFinita, ondataDaRiprendere, opzioniValide, riprendiDallOndata, rispondi, schiera, sogliaTensione, type EsitoMissione, type InCorso } from './missione.ts';
 import type { Condizione, Dichiarazione, Missione } from './tipi.ts';
 
@@ -18,16 +19,19 @@ export function possibilita(m: Missione, s: InCorso, d: Dich): number {
   // lo si calcola una volta per combinazione invece che a ogni stato (era il grosso del costo). Rosso __NO_C17R06.
   const lette = new Set<string>(); const giu = (c?: Condizione): void => { if (!c) return; if ('var' in c) lette.add(c.var); for (const x of ('tutte' in c ? c.tutte : 'almeno_una' in c ? c.almeno_una : [])) giu(x); if ('non' in c) giu(c.non); };
   for (const o of m.ondate) for (const e of o.eventi) giu(e.se);
+  // D-241 idea C: due stati con morsi in attesa diversi hanno futuri diversi (src/logica/dopo.ts)
+  const attesa = (x: InCorso, solo?: number) => (solo ? morsiDellOndata(m, x.scelte, solo) : morsiInAttesa(m, x.scelte, x.ondata)).map((y) => `${y.chiamata}/${y.opzione}`);
   const schieramenti = new Map<string, ReturnType<typeof att.schiera>>();
   const schieraAtt = (x: InCorso) => {
     if (spento('C17R06')) return att.schiera(m, x);
-    const k = JSON.stringify([x.ondata, x.tensione, x.riserva, x.riposo, x.modifiche, x.fisse, [...lette].map((v) => x.variabili[v])]);
+    // D-241 idea C: lo schieramento attento stima la chiusura dell'ondata, quindi dipende anche dai morsi che arrivano lì
+    const k = JSON.stringify([x.ondata, x.tensione, x.riserva, x.riposo, x.modifiche, x.fisse, [...lette].map((v) => x.variabili[v]), attesa(x, x.ondata)]);
     let r = schieramenti.get(k); if (!r) { r = att.schiera(m, x); schieramenti.set(k, r); } return r;
   };
   const p = (x: InCorso): number => {
     if (missioneFinita(m, x)) return concludiMissione(m, x, d).esito.fallita ? 0 : 1;
     if (Number(x.variabili.tensione_max) > soglia) return 0;
-    const k = JSON.stringify([x.ondata, x.tensione, x.riserva, x.riposo, x.disposizione, x.modifiche, x.risposte, x.variabili, x.fisse]);
+    const k = JSON.stringify([x.ondata, x.tensione, x.riserva, x.riposo, x.disposizione, x.modifiche, x.risposte, x.variabili, x.fisse, attesa(x)]); // D-241 C: e i morsi in attesa
     const noto = memo.get(k); if (noto !== undefined) return noto;
     let v: number;
     if (!x.disposizione) v = p(schiera(m, x, schieraAtt(x)));
