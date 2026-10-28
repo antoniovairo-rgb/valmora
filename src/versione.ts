@@ -357,4 +357,10 @@
 //   misura: partite diverse fra due semi per episodio 0% → min 94%, mediana 99% (100 coppie); bot 0 blocchi su 43.200 partite;
 //   vittorie del casuale entro ±6 punti per episodio; SAVE_VERSION 3 (seme 0 = partita classica), salvataggi reali migrati.
 //   guardiano: tools/misura-d241.mjs (soglia 90%), rosso C241D01 (0% riprodotto dalla principale).
-export const GAME_VERSION = '0.54.0';
+// 0.55.0 – nuovo nome: «Varcalda – Cortina di fumo» (PO-153, D-244/D-245).
+//   causa: «Valmora» è già usato (acqua minerale, un'app sul Play Store); V e A restano per tenere il logo.
+//   misura: 37 «Valmora» → «Varcalda» nei testi; titolo, store, privacy e app io.github.antoniovairo.varcalda; chiavi del
+//   salvataggio spostate senza perdite sui salvataggi reali 0.4.0/0.38.0/0.52.0; nel bundle «Valmora» resta solo in nomi tecnici,
+//   chiavi vecchie da migrare e indirizzo del sito (cambia dopo la rinomina del repository).
+//   guardiano: tests/nome-d244.test.ts + tools/nome-d244.mjs (passo email), rossi C244N01 e C244S01.
+export const GAME_VERSION = '0.55.0';

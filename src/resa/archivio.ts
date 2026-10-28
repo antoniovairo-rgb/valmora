@@ -6,8 +6,24 @@ import { completaPartita, riparaInCorso } from '../logica/aggiornamento.ts';
 import { migra, type Salvataggio } from '../salvataggi/salvataggio.ts';
 import { dichiarate, missioni } from './dati.ts';
 
-const CHIAVE = 'valmora-salvataggio';
-const RISERVA = 'valmora-salvataggio-riserva';
+const CHIAVE = 'varcalda-salvataggio';
+const RISERVA = 'varcalda-salvataggio-riserva';
+const GUIDA = 'varcalda-guida-vista';
+// D-244 (PO-153): fino alla 0.54 il gioco si chiamava Valmora e salvava sotto queste chiavi. Alla prima lettura ognuna si
+// sposta sulla nuova: se la nuova manca e la vecchia c'è, si copia e poi si toglie la vecchia (stessa origine github.io, quindi
+// lo stesso localStorage). Rosso __NO_C244S01: niente spostamento (la partita di prima non si vede più).
+const VECCHIE: [string, string][] = [[CHIAVE, 'valmora-salvataggio'], [RISERVA, 'valmora-salvataggio-riserva'], [GUIDA, 'valmora-guida-vista']];
+export function spostaChiaviVecchie(): void {
+  if (spento('C244S01')) return;
+  for (const [nuova, vecchia] of VECCHIE) {
+    try {
+      const v = localStorage.getItem(vecchia);
+      if (v === null || localStorage.getItem(nuova) !== null) continue;
+      localStorage.setItem(nuova, v);
+      if (localStorage.getItem(nuova) === v) localStorage.removeItem(vecchia); // la vecchia sparisce solo se la copia c'è
+    } catch (e) { console.warn(`chiave ${vecchia} non spostata: ${(e as Error).message}`); }
+  }
+}
 
 /** Vero se l'ultimo carica() ha dovuto usare la copia di riserva (avviso in home). */
 export let dallaRiserva = false;
@@ -48,6 +64,7 @@ function leggi(grezzo: string): Salvataggio {
 
 export function carica(): Salvataggio | null {
   dallaRiserva = false; persa = false;
+  spostaChiaviVecchie();
   try {
     const grezzo = localStorage.getItem(CHIAVE);
     return grezzo ? leggi(grezzo) : null;
@@ -79,7 +96,7 @@ export function salva(s: Salvataggio): void {
 }
 
 const oggi = () => new Date().toISOString().slice(0, 10);
-export const nomeFile = () => `valmora-${oggi()}.json`;
+export const nomeFile = () => `varcalda-${oggi()}.json`;
 
 /** Scarica il salvataggio come file .json (nessuna dipendenza: un link «download» su un Blob). */
 export function esporta(s: Salvataggio): void {
@@ -100,8 +117,7 @@ export async function importa(file: File): Promise<Salvataggio> {
 
 // S-18: la guida introduttiva si vede alla prima partita su questo telefono (non nel salvataggio: una nuova
 // partita non la ripropone).
-const GUIDA = 'valmora-guida-vista';
-export const guidaVista = () => { try { return localStorage.getItem(GUIDA) === 'si'; } catch { return true; } };
+export const guidaVista = () => { try { spostaChiaviVecchie(); return localStorage.getItem(GUIDA) === 'si'; } catch { return true; } };
 export const segnaGuidaVista = () => { try { localStorage.setItem(GUIDA, 'si'); } catch { /* niente */ } };
 
 export function nuovoSeme(): number {

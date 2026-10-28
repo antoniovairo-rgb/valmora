@@ -7,7 +7,7 @@ Legenda dello stato: **fatto** · **da fare dal PO** · **da fare da noi** (sess
 
 ## 1. Requisiti
 
-| # | Requisito | Fonte ufficiale (letta il 2026-10-20) | Cosa dice | Stato per Valmora |
+| # | Requisito | Fonte ufficiale (letta il 2026-10-20) | Cosa dice | Stato per Varcalda |
 |---|---|---|---|---|
 | 1 | Account sviluppatore | https://support.google.com/googleplay/android-developer/answer/6112435 · https://support.google.com/googleplay/android-developer/answer/13628312 | «There is a US$25 one-time registration fee»; «You must be at least 18 years of age»; account «Personal» o «Organization»; l'account personale chiede nome e indirizzo legali, documento e verifica di un dispositivo Android con l'app Play Console. | **da fare dal PO** (Non posso confermare se esiste già un account) |
 | 2 | Test chiuso prima della produzione (account personali) | https://support.google.com/googleplay/android-developer/answer/14151465 | «Developers with personal accounts created after November 13, 2023, must run a closed test for their app with a minimum of 12 testers who have been opted in continuously for at least 14 days.» «Open testing becomes available after you gain production access.» | **da fare dal PO**: 12 tester per 14 giorni consecutivi, poi richiesta di accesso alla produzione dalla Dashboard |
@@ -16,7 +16,7 @@ Legenda dello stato: **fatto** · **da fare dal PO** · **da fare da noi** (sess
 | 5 | Play App Signing e chiave di caricamento | https://developer.android.com/studio/publish/app-signing · https://support.google.com/googleplay/android-developer/answer/9842756 | «Play App Signing is required to sign your app for distribution through Google Play»; «Your key should be valid for at least 25 years»; «your upload key and app signing key should be different»; chiave persa: «Request upload key reset». | Chiave di caricamento e firma in Android Studio: **da fare dal PO** (§2.2, D-214). Nessuna firma nel repository |
 | 6 | Classificazione dei contenuti (IARC) | https://support.google.com/googleplay/android-developer/answer/9898843 | «All apps must have a content rating from the IARC to be on Google Play.» «Apps without a content rating will be removed». Va rifatto se il contenuto cambia. | **da fare dal PO** (§2.5). Il rating lo decide solo il questionario (CLAUDE.md) |
 | 7 | Sicurezza dei dati | https://support.google.com/googleplay/android-developer/answer/10787469 | «All developers … must complete the Data safety form, including apps on closed, open, or production testing tracks.» «Even developers with apps that do not collect any user data must complete this form and provide a link to their privacy policy.» | **da fare dal PO** (§2.5); risposte suggerite in §3 |
-| 8 | Privacy policy | https://support.google.com/googleplay/android-developer/answer/10144311 | «All apps must post a privacy policy link in the designated field within Play Console, and a privacy policy link or text within the app itself.» «Apps that do not access any personal and sensitive user data must still submit a privacy policy.» URL pubblico, «no PDFs». | **fatto da noi** (D-217, D-220, D-222; S-22): nel gioco, voce «Privacy» nel menu «Altro» della home (src/resa/schermate/Titolo.tsx:31-32); pagina pubblica https://antoniovairo-rgb.github.io/valmora/privacy (verificata il 2026-10-21 con `curl`: 301 verso `…/privacy/`, poi 200, titolo «Privacy – Valmora»). Testo unico in data/testi/it/privacy.json. Nella Play Console l'URL da incollare: **da fare dal PO** |
+| 8 | Privacy policy | https://support.google.com/googleplay/android-developer/answer/10144311 | «All apps must post a privacy policy link in the designated field within Play Console, and a privacy policy link or text within the app itself.» «Apps that do not access any personal and sensitive user data must still submit a privacy policy.» URL pubblico, «no PDFs». | **fatto da noi** (D-217, D-220, D-222; S-22): nel gioco, voce «Privacy» nel menu «Altro» della home (src/resa/schermate/Titolo.tsx:31-32); pagina pubblica https://antoniovairo-rgb.github.io/valmora/privacy (verificata il 2026-10-21 con `curl`: 301 verso `…/privacy/`, poi 200, titolo «Privacy – Varcalda»). Testo unico in data/testi/it/privacy.json. Nella Play Console l'URL da incollare: **da fare dal PO** |
 | 9 | Scheda dello store | https://support.google.com/googleplay/android-developer/answer/9866151 | Icona «512px by 512px», «32-bit PNG (with alpha)», max 1024 KB; grafica in evidenza «1024px by 500px», «JPEG or 24-bit PNG (no alpha)»; «a minimum of two screenshots», lato tra 320 e 3840 px; per i giochi consigliati «three 9:16 portrait screenshots (minimum 1080x1920px)». | Immagini e testi: **fatto da noi** (S-23, §5): `store/it-IT/`, generati da `node tools/store/immagini.mjs`, misurati dal passo «store» della catena. Caricamento nella Play Console: **da fare dal PO** |
 | 10 | Pubblico destinatario e contenuti | https://support.google.com/googleplay/android-developer/answer/9867159 | «you'll be required to declare your app's target age group. Any apps that include children in their target audience must comply with Google Play's Families Policy Requirements». Prima servono dichiarazione pubblicità e privacy policy. | **decisione PO**: fascia d'età (se include minori si applica la politica Famiglie); opzioni in coordination/handoffs/sviluppatrice/S-23-store.md |
 | 11 | Pubblicità | https://support.google.com/googleplay/android-developer/answer/9859455 | «You must declare whether or not your app contains ads.» | **da fare dal PO**: risposta «No» (verifica in §3: nessun SDK pubblicitario in package.json:26-38) |
@@ -25,7 +25,7 @@ Legenda dello stato: **fatto** · **da fare dal PO** · **da fare da noi** (sess
 ### Regola della versione (D-212)
 
 `versionCode = maggiore × 1 000 000 + minore × 1 000 + correzione` (ognuno 0-999), `versionName = GAME_VERSION`.
-0.46.0 → 46000 · 0.47.0 → 47000 · 1.0.0 → 1000000. **Versione corrente: 0.54.0 → versionCode 54000** (src/versione.ts, letta il 2026-10-27). Cresce sempre se GAME_VERSION cresce; il massimo (999.999.999 → 999999999) resta sotto 2100000000.
+0.46.0 → 46000 · 0.47.0 → 47000 · 1.0.0 → 1000000. **Versione corrente: 0.55.0 → versionCode 55000** (src/versione.ts, letta il 2026-10-27). Cresce sempre se GAME_VERSION cresce; il massimo (999.999.999 → 999999999) resta sotto 2100000000.
 Vale solo per il rilascio: l'APK di debug del job «apk» resta `versionCode 1`, `versionName "1.0"` (android/app/build.gradle:41-48).
 
 ## 2. Guida passo passo per il PO
@@ -131,7 +131,7 @@ Definizioni della pagina: «"Collect" means transmitting data from your app off 
 |---|---|---|
 | «Does your app collect or share any of the required user data types?» | **No** | FATTO MISURATO (S-22, `node tools/misura-rete.mjs`): 0 richieste esterne su 3152 in una partita intera e01-e03 in Chromium; nessun SDK di analisi, pubblicità o crash report (package.json); salvataggio solo in `localStorage` |
 | Condividi del verbale, email «Idee» | non sono «sharing» | partono solo dal tocco del giocatore (src/resa/collegamenti.ts:12-17, 26-27): eccezione «user-initiated action» citata sopra |
-| Privacy policy | https://antoniovairo-rgb.github.io/valmora/privacy | D-217, D-220, D-222 |
+| Privacy policy | https://antoniovairo-rgb.github.io/valmora/privacy (D-244: diventa …/varcalda/privacy quando il PO rinomina il repository; nel gioco l'indirizzo sta solo in src/resa/collegamenti.ts, URL_GIOCO) | D-217, D-220, D-222, D-244 |
 
 Restano **Non posso confermarlo** (D-216):
 - **telefono vero**: la misura delle richieste è in Chromium sulla build web, non nell'APK/AAB su un dispositivo Android;
@@ -139,10 +139,10 @@ Restano **Non posso confermarlo** (D-216):
 
 ## 4. Bozza di privacy policy (da pubblicare su un URL pubblico, non PDF)
 
-> **Valmora – Cortina di fumo · Informativa sulla privacy**
+> **Varcalda – Cortina di fumo · Informativa sulla privacy**
 > Ultimo aggiornamento: [data di pubblicazione]
 >
-> Valmora è un gioco che funziona offline. Il gioco non raccoglie, non trasmette e non condivide dati personali.
+> Varcalda è un gioco che funziona offline. Il gioco non raccoglie, non trasmette e non condivide dati personali.
 > - **Dati salvati**: i progressi della partita restano solo sul tuo dispositivo, nella memoria dell'app. Non vengono inviati a noi né a terzi. Disinstallando il gioco o cancellandone i dati vengono eliminati.
 > - **Nessuna analisi, pubblicità o tracciamento**: il gioco non contiene strumenti di statistica, pubblicità o profilazione.
 > - **Azioni che fai tu**: se scegli di condividere il verbale di una partita o di scriverci un'email, il testo passa all'app che scegli (per esempio la posta); i dati che invii così sono trattati da quell'app e, per le email, da noi solo per risponderti.

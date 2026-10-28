@@ -30,7 +30,7 @@ export async function controllaHomeA(browser, url, cartella, atteso, rossi, larg
     const dove = `home ${larghezza}×${h} (PO-140)`;
     const p = await browser.newPage({ viewport: { width: larghezza, height: h }, reducedMotion: 'reduce' });
     if (rossi.length) await p.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-    await p.goto(url); await p.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), salvataggio); await p.reload();
+    await p.goto(url); await p.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), salvataggio); await p.reload();
     await p.waitForSelector('main[data-schermata="titolo"]', { timeout: 15000 });
     await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(300);
     const m = await p.evaluate(() => {

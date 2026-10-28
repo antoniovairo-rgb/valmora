@@ -23,7 +23,7 @@ export async function controllaTono(browser, url, dirDati, cartella, atteso, ros
     const dove = `C33-06 ${w}×${h}${conInvio ? ' (Invio)' : ''}`;
     const p = await browser.newPage({ viewport: { width: w, height: h }, reducedMotion: 'reduce' });
     if (rossi.length) await p.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-    await p.goto(url); await p.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), salvataggio); await p.reload();
+    await p.goto(url); await p.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), salvataggio); await p.reload();
     await p.getByRole('button', { name: 'Riprendi' }).click(); await p.waitForSelector('[data-azione="rapporto"]', { timeout: 15000 });
     await p.click('[data-azione="rapporto"]');
     const tono = await p.waitForFunction(() => document.querySelector('.scena[data-scena="tono"]'), null, { timeout: 3000 }).then(() => true, () => false);

@@ -45,7 +45,7 @@ export async function giraC41(cartella = 'out/foto', build = 'dist', larghezze =
         for (const [id, stato] of stati) {
         const dove = `${id} ${larghezza}×760 verbale fallito`;
         atteso(`${id} giocato dal peggiore non è fallito, il controllo non si può fare`, stato.fallita);
-        await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify(stato.salvataggio));
+        await pagina.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify(stato.salvataggio));
         await pagina.reload(); await scena('titolo');
         await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('rapporto');
         await pagina.click('[data-azione="avanti"]'); await scena('verbale');

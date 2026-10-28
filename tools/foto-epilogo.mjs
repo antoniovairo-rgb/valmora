@@ -74,7 +74,7 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
       };
       const alVerbale = async (id) => {
         await pagina.goto(`http://127.0.0.1:${srv.address().port}/`); await scena('titolo');
-        await pagina.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), JSON.stringify(stati[id].salvataggio));
+        await pagina.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify(stati[id].salvataggio));
         await pagina.reload(); await scena('titolo');
         await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('rapporto');
         await pagina.click('[data-azione="avanti"]'); await scena('verbale');
