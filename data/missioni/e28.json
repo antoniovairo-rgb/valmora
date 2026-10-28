@@ -321,7 +321,7 @@
             },
             {
               "id": "chiedi_club",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_cinderwick", "valore": 2}], "rapporto": "testi:e28.dopo.curva_non_tranquilla.chiedi_club"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e28.dopo.curva_non_tranquilla.chiedi_club"},
               "testo": "testi:e28.op.chiedi_club",
               "costo": "testi:e28.op.chiedi_club.c",
               "effetti": [

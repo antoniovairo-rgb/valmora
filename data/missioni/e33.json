@@ -605,7 +605,7 @@
             },
             {
               "id": "niente_casa",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "tornelli", "valore": 2}], "rapporto": "testi:e33.dopo.gol_ospiti.niente_casa"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e33.dopo.gol_ospiti.niente_casa"},
               "testo": "testi:e33.op.niente_casa",
               "costo": "testi:e33.op.niente_casa.c",
               "effetti": [

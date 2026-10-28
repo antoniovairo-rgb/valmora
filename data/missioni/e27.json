@@ -181,7 +181,7 @@
             },
             {
               "id": "lascia_camminare",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_cinderwick", "valore": 2}], "rapporto": "testi:e27.dopo.fermata_prima.lascia_camminare"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e27.dopo.fermata_prima.lascia_camminare"},
               "testo": "testi:e27.op.lascia_camminare",
               "costo": "testi:e27.op.lascia_camminare.c",
               "effetti": [
@@ -574,7 +574,7 @@
             },
             {
               "id": "lascia_festa",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_cinderwick", "valore": 2}], "rapporto": "testi:e27.dopo.rovers_festa.lascia_festa"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e27.dopo.rovers_festa.lascia_festa"},
               "testo": "testi:e27.op.lascia_festa",
               "costo": "testi:e27.op.lascia_festa.c",
               "effetti": [

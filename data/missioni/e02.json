@@ -353,7 +353,7 @@
             },
             {
               "id": "normale",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_ospiti", "valore": 2}], "rapporto": "testi:e02.dopo.secondo_treno.normale"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e02.dopo.secondo_treno.normale"},
               "testo": "testi:e02.op.normale",
               "costo": "testi:e02.op.normale.c",
               "effetti": [

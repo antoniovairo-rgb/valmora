@@ -505,7 +505,7 @@
             },
             {
               "id": "lascia_torce9",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_ospiti", "valore": 2}], "rapporto": "testi:e09.dopo.torce9.lascia_torce9"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e09.dopo.torce9.lascia_torce9"},
               "testo": "testi:e09.op.lascia_torce9",
               "costo": "testi:e09.op.lascia_torce9.c",
               "effetti": [
@@ -700,7 +700,7 @@
             },
             {
               "id": "trattieni9",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "tangenziale", "valore": 2}], "rapporto": "testi:e09.dopo.risultato.trattieni9"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e09.dopo.risultato.trattieni9"},
               "testo": "testi:e09.op.trattieni9",
               "costo": "testi:e09.op.trattieni9.c",
               "effetti": [

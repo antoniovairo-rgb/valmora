@@ -156,7 +156,7 @@
             },
             {
               "id": "lascia_vendere14",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_larkspire", "valore": 2}], "rapporto": "testi:e14.dopo.doppioni.lascia_vendere14"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e14.dopo.doppioni.lascia_vendere14"},
               "testo": "testi:e14.op.lascia_vendere14",
               "costo": "testi:e14.op.lascia_vendere14.c",
               "effetti": [
@@ -350,7 +350,7 @@
           "opzioni": [
             {
               "id": "in_piedi",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "biglietteria", "valore": 2}], "rapporto": "testi:e14.dopo.seduti.in_piedi"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e14.dopo.seduti.in_piedi"},
               "testo": "testi:e14.op.in_piedi",
               "costo": "testi:e14.op.in_piedi.c",
               "effetti": [
@@ -549,7 +549,7 @@
           "opzioni": [
             {
               "id": "rimborsa_ora",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "biglietteria", "valore": 2}], "rapporto": "testi:e14.dopo.fila_rimborsi.rimborsa_ora"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e14.dopo.fila_rimborsi.rimborsa_ora"},
               "testo": "testi:e14.op.rimborsa_ora",
               "costo": "testi:e14.op.rimborsa_ora.c",
               "effetti": [
@@ -738,7 +738,7 @@
             },
             {
               "id": "fuori_subito",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"tensione": "piazzale", "valore": 1}], "rapporto": "testi:e14.dopo.uscita_ospiti14.fuori_subito"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e14.dopo.uscita_ospiti14.fuori_subito"},
               "testo": "testi:e14.op.fuori_subito",
               "costo": "testi:e14.op.fuori_subito.c",
               "effetti": [

@@ -182,7 +182,7 @@
             },
             {
               "id": "lascia_mercato",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "parcheggi", "valore": 2}], "rapporto": "testi:e34.dopo.mercato_spostato.lascia_mercato"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e34.dopo.mercato_spostato.lascia_mercato"},
               "testo": "testi:e34.op.lascia_mercato",
               "costo": "testi:e34.op.lascia_mercato.c",
               "effetti": [
@@ -521,7 +521,7 @@
             },
             {
               "id": "lascia_cinderwick",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"tensione": "tribuna_autorita", "valore": 1}], "rapporto": "testi:e34.dopo.gol_quillhaven.lascia_cinderwick"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e34.dopo.gol_quillhaven.lascia_cinderwick"},
               "testo": "testi:e34.op.lascia_cinderwick",
               "costo": "testi:e34.op.lascia_cinderwick.c",
               "effetti": [

@@ -405,7 +405,7 @@
             },
             {
               "id": "lascia_sirena",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_cinderwick", "valore": 2}], "rapporto": "testi:e23.dopo.sirena.lascia_sirena"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e23.dopo.sirena.lascia_sirena"},
               "testo": "testi:e23.op.lascia_sirena",
               "costo": "testi:e23.op.lascia_sirena.c",
               "effetti": [
@@ -623,7 +623,7 @@
           "opzioni": [
             {
               "id": "obbedisci",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "casello", "valore": 2}], "rapporto": "testi:e23.dopo.non_affar_suo.obbedisci"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e23.dopo.non_affar_suo.obbedisci"},
               "testo": "testi:e23.op.obbedisci",
               "costo": "testi:e23.op.obbedisci.c",
               "effetti": [

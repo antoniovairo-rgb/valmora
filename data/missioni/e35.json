@@ -259,7 +259,7 @@
             },
             {
               "id": "radio_centro",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "perimetro_banca", "valore": 2}], "rapporto": "testi:e35.dopo.corso_chiuso.radio_centro"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e35.dopo.corso_chiuso.radio_centro"},
               "testo": "testi:e35.op.radio_centro",
               "costo": "testi:e35.op.radio_centro.c",
               "effetti": [
@@ -507,7 +507,7 @@
             },
             {
               "id": "ignora_treno",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "stazione", "valore": 2}], "rapporto": "testi:e35.dopo.treno_notte.ignora_treno"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e35.dopo.treno_notte.ignora_treno"},
               "testo": "testi:e35.op.ignora_treno",
               "costo": "testi:e35.op.ignora_treno.c",
               "effetti": [
@@ -783,7 +783,7 @@
             },
             {
               "id": "un_imprenditore",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"tensione": "perimetro_banca", "valore": 1}], "rapporto": "testi:e35.dopo.rapporto_notte.un_imprenditore"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e35.dopo.rapporto_notte.un_imprenditore"},
               "testo": "testi:e35.op.un_imprenditore",
               "costo": "testi:e35.op.un_imprenditore.c",
               "effetti": [

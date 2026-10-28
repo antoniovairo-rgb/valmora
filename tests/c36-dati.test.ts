@@ -57,7 +57,10 @@ describe('C36-03 verbali di fallimento: un luogo nominato degenera in almeno met
     for (let s = 1; s <= N; s++) {
       const b = casuale(creaCaso(`c36f:${id}:${s}`), dich);
       const g = collaudo ? { ...b, scegli: (mm: Missione, st: Parameters<typeof b.scegli>[1], c: Chiamata) => (c.imprevisto ? c.opzioni.find((o) => !o.effetti.length)!.id : b.scegli(mm, st, c)) } : b;
-      const e = giocaMissione(m, v0, dich, g);
+      // D-241 idea C: nel collaudo C-036 gli effetti ritardati non c'erano; si spengono anche loro (rosso C241C01), come gli imprevisti
+      if (collaudo) (globalThis as Record<string, unknown>).__NO_C241C01 = true;
+      let e: ReturnType<typeof giocaMissione>;
+      try { e = giocaMissione(m, v0, dich, g); } finally { delete (globalThis as Record<string, unknown>).__NO_C241C01; }
       if (!e.esito.fallita) continue; fallite++;
       for (const q of new Set(e.rapporti.flatMap((x) => Object.keys(x.tensione).filter((k) => x.tensione[k]! >= DEGENERA && x.scoperto[k]! > 0)))) conta[q] = (conta[q] ?? 0) + 1;
     }

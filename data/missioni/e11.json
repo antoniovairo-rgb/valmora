@@ -443,7 +443,7 @@
             },
             {
               "id": "allontana_curiosi",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "piazza_fonderie", "valore": 2}], "rapporto": "testi:e11.dopo.dirette.allontana_curiosi"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e11.dopo.dirette.allontana_curiosi"},
               "testo": "testi:e11.op.allontana_curiosi",
               "costo": "testi:e11.op.allontana_curiosi.c",
               "effetti": [
@@ -491,7 +491,7 @@
           "opzioni": [
             {
               "id": "posti_blocco",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_cinderwick", "valore": 2}], "rapporto": "testi:e11.dopo.non_di_qui.posti_blocco"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e11.dopo.non_di_qui.posti_blocco"},
               "testo": "testi:e11.op.posti_blocco",
               "costo": "testi:e11.op.posti_blocco.c",
               "effetti": [

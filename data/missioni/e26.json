@@ -310,7 +310,7 @@
           "opzioni": [
             {
               "id": "steward_fumogeni",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_ospiti", "valore": 2}], "rapporto": "testi:e26.dopo.fumogeni_finale.steward_fumogeni"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e26.dopo.fumogeni_finale.steward_fumogeni"},
               "testo": "testi:e26.op.steward_fumogeni",
               "costo": "testi:e26.op.steward_fumogeni.c",
               "effetti": [
@@ -535,7 +535,7 @@
           "opzioni": [
             {
               "id": "spegni_schermo",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "parcheggi", "valore": 2}], "rapporto": "testi:e26.dopo.piazzale_maxischermo.spegni_schermo"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e26.dopo.piazzale_maxischermo.spegni_schermo"},
               "testo": "testi:e26.op.spegni_schermo",
               "costo": "testi:e26.op.spegni_schermo.c",
               "effetti": [

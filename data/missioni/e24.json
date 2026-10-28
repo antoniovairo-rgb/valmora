@@ -404,7 +404,7 @@
             },
             {
               "id": "lascia_bal",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_ospiti", "valore": 2}], "rapporto": "testi:e24.dopo.balaustre.lascia_bal"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e24.dopo.balaustre.lascia_bal"},
               "testo": "testi:e24.op.lascia_bal",
               "costo": "testi:e24.op.lascia_bal.c",
               "effetti": [

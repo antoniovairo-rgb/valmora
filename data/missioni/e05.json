@@ -367,7 +367,7 @@
           "opzioni": [
             {
               "id": "lascia_megafono",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_larkspire", "valore": 2}], "rapporto": "testi:e05.dopo.megafono.lascia_megafono"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e05.dopo.megafono.lascia_megafono"},
               "testo": "testi:e05.op.lascia_megafono",
               "costo": "testi:e05.op.lascia_megafono.c",
               "effetti": [
@@ -536,7 +536,7 @@
             },
             {
               "id": "silenzio_rete",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_larkspire", "valore": 2}], "rapporto": "testi:e05.dopo.coro_steward.silenzio_rete"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e05.dopo.coro_steward.silenzio_rete"},
               "testo": "testi:e05.op.silenzio_rete",
               "costo": "testi:e05.op.silenzio_rete.c",
               "effetti": [

@@ -235,7 +235,7 @@
             },
             {
               "id": "lascia22",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "piazza_municipio", "valore": 2}], "rapporto": "testi:e22.dopo.ridateci.lascia22"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e22.dopo.ridateci.lascia22"},
               "testo": "testi:e22.op.lascia22",
               "costo": "testi:e22.op.lascia22.c",
               "effetti": [
@@ -669,7 +669,7 @@
           "opzioni": [
             {
               "id": "devia22",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_cinderwick", "valore": 2}], "rapporto": "testi:e22.dopo.salutare_presidio.devia22"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e22.dopo.salutare_presidio.devia22"},
               "testo": "testi:e22.op.devia22",
               "costo": "testi:e22.op.devia22.c",
               "effetti": [
