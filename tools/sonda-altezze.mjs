@@ -211,7 +211,8 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
           if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
           await q.goto(url);
           while (coda.length) { const c = coda.shift(); await q.evaluate((x) => localStorage.setItem('valmora-salvataggio', x), c.sal); await q.reload();
-            await q.getByRole('button', { name: 'Riprendi' }).click(); await q.waitForSelector(`[data-messaggio="chiamata-${c.id}"]`, { timeout: 8000 }).catch(() => errori.push(`${vp}: chiamata ${c.ep} ${c.id} non si apre`)); await lento(q);
+            // D-241: una chiamata che non si apre non entra nella misura (prima si misurava la pagina sbagliata e la mediana si spostava)
+            await q.getByRole('button', { name: 'Riprendi' }).click(); if (!(await q.waitForSelector(`[data-messaggio="chiamata-${c.id}"]`, { timeout: 8000 }).then(() => true).catch(() => false))) { errori.push(`${vp}: chiamata ${c.ep} ${c.id} non si apre`); continue; } await lento(q);
             chiamate.push({ vp, ep: c.ep, id: c.id, imprevisto: c.imprevisto, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) });
             if (cartella && c.imprevisto) await q.screenshot({ path: join(cartella, `${vp}-chiamata-${c.ep}-${c.id}.png`), fullPage: true }); }
           await q.close(); })); }
