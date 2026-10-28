@@ -47,7 +47,7 @@ function morsoAllOndata(m: Missione): string[] {
       if (JSON.stringify(con.rapporti.at(-1)!.radio) !== JSON.stringify([dopo.rapporto])) errori.push(`${dove}: rapporto radio ${JSON.stringify(con.rapporti.at(-1)!.radio)}`);
       for (const e of dopo.effetti) {
         const k = 'pressione' in e ? e.pressione : 'tensione' in e ? e.tensione : null;
-        if (k) { const a = senza.tensione[k]!, b = con.tensione[k]!; if (b - a !== lim(a + e.valore) - a) errori.push(`${dove}: tensione di ${k} ${a} → ${b}, attesa ${lim(a + e.valore)}`); }
+        if (k) { const a = senza.tensione[k]!, b = con.tensione[k]!, v = e.valore as number; if (b - a !== lim(a + v) - a) errori.push(`${dove}: tensione di ${k} ${a} → ${b}, attesa ${lim(a + v)}`); }
         else if ('aggiungi' in e) { const a = senza.variabili[e.aggiungi] as number, b = con.variabili[e.aggiungi] as number; if (b - a !== e.valore) errori.push(`${dove}: ${e.aggiungi} ${a} → ${b}`); }
         else if ('riserva' in e) { if ((con.riserva[e.riserva] ?? 0) === (senza.riserva[e.riserva] ?? 0)) errori.push(`${dove}: riserva ${e.riserva} invariata`); }
       }
