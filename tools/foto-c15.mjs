@@ -1,12 +1,12 @@
 // Guardiani dei difetti C15 della home (collaudo C-015), chiamati da tools/foto.mjs a 360 px.
 /** C15-09: salvataggio e copia di riserva rovinati → la home dice che la partita è persa e come recuperarla. */
 export async function controllaSalvataggiPersi(pagina, { atteso, scena }) {
-  const [p, r] = await pagina.evaluate(() => [localStorage.getItem('valmora-salvataggio'), localStorage.getItem('valmora-salvataggio-riserva')]);
-  await pagina.evaluate(() => { localStorage.setItem('valmora-salvataggio', '{rotto'); localStorage.setItem('valmora-salvataggio-riserva', '{rotta'); });
+  const [p, r] = await pagina.evaluate(() => [localStorage.getItem('varcalda-salvataggio'), localStorage.getItem('varcalda-salvataggio-riserva')]);
+  await pagina.evaluate(() => { localStorage.setItem('varcalda-salvataggio', '{rotto'); localStorage.setItem('varcalda-salvataggio-riserva', '{rotta'); });
   await pagina.reload(); await scena('titolo');
   const avviso = (await pagina.locator('[data-persa]').textContent().catch(() => '')) ?? '';
   atteso(`home: salvataggio e riserva rovinati, avviso «${avviso}» (C15-09)`, /rovinat/.test(avviso) && /Importa/.test(avviso));
-  await pagina.evaluate(([a, b]) => { if (a) localStorage.setItem('valmora-salvataggio', a); else localStorage.removeItem('valmora-salvataggio'); if (b) localStorage.setItem('valmora-salvataggio-riserva', b); else localStorage.removeItem('valmora-salvataggio-riserva'); }, [p, r]);
+  await pagina.evaluate(([a, b]) => { if (a) localStorage.setItem('varcalda-salvataggio', a); else localStorage.removeItem('varcalda-salvataggio'); if (b) localStorage.setItem('varcalda-salvataggio-riserva', b); else localStorage.removeItem('varcalda-salvataggio-riserva'); }, [p, r]);
   await pagina.reload(); await scena('titolo');
 }
 

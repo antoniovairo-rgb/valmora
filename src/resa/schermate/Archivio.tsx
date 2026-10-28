@@ -11,9 +11,9 @@ import { spento } from '../../interruttori.ts';
 
 /** C15-08: il motivo in parole da giocatore, senza nomi tecnici; la partita non cambia. Rosso C34I01: il messaggio tecnico. */
 const perche = (tecnico: string) => (tecnico.startsWith('salvataggio di una versione futura')
-  ? 'Questo salvataggio viene da una versione più nuova di Valmora: aggiorna il gioco e riprova. La partita non è cambiata.'
+  ? 'Questo salvataggio viene da una versione più nuova di Varcalda: aggiorna il gioco e riprova. La partita non è cambiata.'
   : /JSON|non è un oggetto|save_version/.test(tecnico)
-    ? 'Questo file non è un salvataggio di Valmora. La partita non è cambiata.'
+    ? 'Questo file non è un salvataggio di Varcalda. La partita non è cambiata.'
     : 'Questo salvataggio è rovinato e non si può caricare. La partita non è cambiata.');
 
 export function PulsantiArchivio(p: { sal: Salvataggio | null; chiedi: (s: Salvataggio) => void; errore: (x: string) => void }) {

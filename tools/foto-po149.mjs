@@ -37,7 +37,7 @@ export async function controllaPo149(browser, url, larghezza, rossi = [], cartel
   for (const h of ALTEZZE_PO149) for (const [stato, [sal, tocchi]] of Object.entries(STATI)) {
     const vp = `${larghezza}x${h}`, p = await browser.newPage({ viewport: { width: larghezza, height: h }, reducedMotion: 'reduce' });
     if (rossi.length) await p.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-    await p.goto(url); await p.evaluate((v) => localStorage.setItem('valmora-salvataggio', v), sal); await p.reload();
+    await p.goto(url); await p.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), sal); await p.reload();
     await p.getByRole('button', { name: 'Riprendi' }).click(); await p.waitForSelector('.scena[data-scena="citta"]'); await p.waitForTimeout(300);
     for (const t of tocchi) { await p.click(t, { timeout: 5000 }).catch(() => male.push(`${vp} ${stato}: non trovo ${t} (PO-149)`)); await p.waitForTimeout(250); }
     await p.waitForTimeout(300); const m = await misura(p); ris.push({ vp, stato, ...m });

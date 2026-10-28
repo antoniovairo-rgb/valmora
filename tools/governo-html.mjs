@@ -46,7 +46,7 @@ export function generaGoverno() {
   const riga = (v) => { const a = avanzamento(v); return `<tr data-stato="${esc(gruppo(v[4]))}" data-tipo="${esc(v[3])}" data-lotto="${esc(v[5])}" data-passo="${a.passo}"><td>${esc(v[0])}</td><td class="tenue">${esc(v[1])}</td><td>${esc(v[2])}</td><td class="av">${barra(a)}<div>${esc(a.testo)}</div><div class="tenue">${esc(chi(v[4]))}</div></td><td>${esc(v[3])}</td><td class="tenue dett">${esc(v[4])}</td><td>${esc(v[5])}</td></tr>`; };
   const html = `<!doctype html>
 <html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Governo Valmora</title>
+<title>Governo Varcalda</title>
 <style>
 :root{--sfondo:#f6f5f2;--carta:#fff;--testo:#1d1d1f;--tenue:#6b6b70;--bordo:#e2e0da;--verde:#1f7a4d;--rosso:#b3261e;--giallo:#9a6a00}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sfondo:#141416;--carta:#1d1d20;--testo:#ececef;--tenue:#9a9aa2;--bordo:#2e2e33;--verde:#5cc28f;--rosso:#ff8a80;--giallo:#e0b44c;color-scheme:dark}}
@@ -73,7 +73,7 @@ td,th{padding:7px 10px;border-bottom:1px solid var(--bordo);text-align:left;vert
 .pallino{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:3px}
 .verde{background:var(--verde)}.rosso{background:var(--rosso)}.instabile{background:var(--giallo)}
 </style></head><body><main>
-<h1>Governo Valmora</h1>
+<h1>Governo Varcalda</h1>
 <div class="tenue">Generata il ${esc(new Date().toISOString().slice(0, 16).replace('T', ' '))} UTC da tools/governo-html.mjs</div>
 
 <h2>Lotti</h2>

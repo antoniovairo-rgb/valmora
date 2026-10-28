@@ -11,7 +11,7 @@ import { controllaCitta, controllaNomiCittaTutti } from './foto-c17.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { GAME_VERSION } from '../src/versione.ts';
 
-const CHIAVE = 'valmora-salvataggio';
+const CHIAVE = 'varcalda-salvataggio';
 
 export function missioniDai(dirDati) {
   const dati = leggiDati(dirDati);

@@ -1,4 +1,4 @@
-// Strato WebGL della mappa della città di Valmora (D-061, stile D-066/D-067): la città dall'alto si
+// Strato WebGL della mappa della città di Varcalda (D-061, stile D-066/D-067): la città dall'alto si
 // disegna UNA volta in una texture (sfondo.ts:disegnaCitta); si animano solo gli aloni degli episodi
 // da giocare. Città inventata. Punti e testi stanno nello strato HTML (MappaCitta).
 import { Application, extend, useApplication } from '@pixi/react';

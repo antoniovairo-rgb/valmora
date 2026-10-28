@@ -2,6 +2,7 @@
 import { execSync } from 'node:child_process';
 import { readFileSync, existsSync, writeFileSync } from 'node:fs';
 import { controllaToken, controllaGiro, controllaEmail } from './controlli-grafica.mjs';
+import { controllaNome } from './nome-d244.mjs';
 import { readdirSync } from 'node:fs';
 import { giraFoto } from './foto.mjs';
 import { giraEpilogo } from './foto-epilogo.mjs';
@@ -19,7 +20,12 @@ const fileResa = () => execSync('git ls-files --cached --others --exclude-standa
 
 export const PASSI_GRAFICA = {
   token: () => controllaToken(Object.fromEntries(fileResa().map((p) => [p, readFileSync(p, 'utf8')]))),
-  email: () => controllaEmail(Object.fromEntries(['dist/index.html', ...readdirSync('dist/assets').filter((f) => /\.(js|css|html)$/.test(f)).map((f) => `dist/assets/${f}`)].map((p) => [p, readFileSync(p, 'utf8')]))),
+  email: () => {
+    const f = Object.fromEntries(['dist/index.html', ...readdirSync('dist/assets').filter((x) => /\.(js|css|html)$/.test(x)).map((x) => `dist/assets/${x}`)].map((p) => [p, readFileSync(p, 'utf8')]));
+    // D-244: nel bundle costruito il nome vecchio non compare (anche manifest, service worker e pagina della privacy)
+    const altri = Object.fromEntries(['dist/manifest.webmanifest', 'dist/sw.js', 'dist/privacy/index.html'].filter((p) => existsSync(p)).map((p) => [p, readFileSync(p, 'utf8')]));
+    return [...controllaEmail(f), ...controllaNome({ ...f, ...altri })];
+  },
   // C128-01: le città con un nome si rigiocano senza WebGL; gli stati restano in out/foto per il braccio rosso
   foto: async () => {
     // D-161, D-164, D-165: epilogo, «Fine stagione» e fischio (tools/foto-epilogo.mjs); C41: verbale fallito. D-202: insieme al giro
@@ -72,6 +78,7 @@ export const PASSI_GRAFICA = {
     if (!controllaToken({ 'src/resa/x.css': '.a { margin: 3px; }' }).length) ciechi.push('token/misura è cieco');
     if (!controllaToken({ 'src/resa/X.tsx': '<div style={{ color: "red" }} />' }).length) ciechi.push('token/stile in linea è cieco');
     if (!controllaEmail({ 'dist/x.js': 'const a="prova@esempio.it"' }).length) ciechi.push('email è cieco');
+    if (!controllaNome({ 'dist/index.html': '<title>Valmora – Cortina di fumo</title>' }).length) ciechi.push('nome/D-244 è cieco'); // rosso C244N01
     if (!controllaGiro({ larghezza: 360, errori: ['x'], scorrimento: [], attesi: [] }).length) ciechi.push('foto/errori è cieco');
     if (!controllaGiro({ larghezza: 360, errori: [], scorrimento: [{ schermata: 'schieramento', contenuto: 400, finestra: 360 }], attesi: [] }).length) ciechi.push('foto/scorrimento è cieco');
     if (!controllaGiro({ larghezza: 360, errori: [], scorrimento: [], attesi: [{ cosa: 'x', ok: false }] }).length) ciechi.push('foto/attesi è cieco');
