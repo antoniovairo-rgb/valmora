@@ -131,7 +131,7 @@ Definizioni della pagina: «"Collect" means transmitting data from your app off 
 |---|---|---|
 | «Does your app collect or share any of the required user data types?» | **No** | FATTO MISURATO (S-22, `node tools/misura-rete.mjs`): 0 richieste esterne su 3152 in una partita intera e01-e03 in Chromium; nessun SDK di analisi, pubblicità o crash report (package.json); salvataggio solo in `localStorage` |
 | Condividi del verbale, email «Idee» | non sono «sharing» | partono solo dal tocco del giocatore (src/resa/collegamenti.ts:12-17, 26-27): eccezione «user-initiated action» citata sopra |
-| Privacy policy | https://antoniovairo-rgb.github.io/valmora/privacy (D-244: diventa …/varcalda/privacy quando il PO rinomina il repository; nel gioco l'indirizzo sta solo in src/resa/collegamenti.ts, URL_GIOCO) | D-217, D-220, D-222, D-244 |
+| Privacy policy | https://antoniovairo-rgb.github.io/varcalda/privacy (D-244: repository rinominato dal PO il 2026-10-28) | D-217, D-220, D-222, D-244 |
 
 Restano **Non posso confermarlo** (D-216):
 - **telefono vero**: la misura delle richieste è in Chromium sulla build web, non nell'APK/AAB su un dispositivo Android;

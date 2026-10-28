@@ -3,7 +3,7 @@
 /** Indirizzo pubblico del gioco (GitHub Pages), usato dalla condivisione del verbale (PO-074). UNICO punto dell'indirizzo
  *  (D-244): diventa https://antoniovairo-rgb.github.io/varcalda/ solo dopo che il PO rinomina il repository (le Pages non
  *  reindirizzano il vecchio percorso: cambiarlo prima romperebbe i collegamenti condivisi). */
-export const URL_GIOCO = 'https://antoniovairo-rgb.github.io/valmora/';
+export const URL_GIOCO = 'https://antoniovairo-rgb.github.io/varcalda/';
 
 /** Condivisione (PO-074): pannello del telefono se c'è (Web Share API), altrimenti copia negli appunti.
  *  «annullato» se il giocatore chiude il pannello: non è un errore e non si mostra nulla. */

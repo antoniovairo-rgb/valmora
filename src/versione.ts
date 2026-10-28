@@ -369,4 +369,7 @@
 //   e la centrale lo dice nella chiusura; 138 morsi tolgono fiducia −1, 4 restano sul campo; bot 0 blocchi su 86.400 partite;
 //   equilibrata 3★ 89,2% → 68,1%; SAVE_VERSION invariata (lo stato in attesa sta nelle scelte), salvataggi reali ripresi.
 //   guardiano: tests/morde-dopo.test.ts e tools/misura-d241c.mjs, rosso C241C01 (167 → 0 morsi).
+//   Nella stessa versione: C53-01 (D-246), la carta di imprevisto non arriva più per ultima (attenta 5,1% → 0, casuale 5,6% → 0
+//   su 300 semi × 36 episodi; guardiano tests/imprevisto-d246.test.ts, rosso C246I01); indirizzo del sito …/varcalda/ dopo la
+//   rinomina del repository (src/resa/collegamenti.ts).
 export const GAME_VERSION = '0.56.0';
