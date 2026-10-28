@@ -2,7 +2,8 @@
 // Regola: una scelta fatta nell'ondata k con «ondate: n» morde alla chiusura dell'ondata k + n; se la missione ha meno
 // ondate, alla chiusura dell'ultima (la fine della missione, prima dell'esito). Gli effetti si applicano all'inizio della
 // chiusura, prima di risolvere l'ondata: una pressione pesa sull'ondata in cui morde, una tensione parte da lì, una
-// riserva conta dall'ondata dopo, la fiducia cambia subito. Il rapporto dell'ondata li racconta («radio»).
+// riserva conta dall'ondata dopo, la fiducia cambia subito. La scena di chiusura dell'ondata li racconta come messaggio radio
+// (src/resa/schermate/Ondata.tsx, Chiusura) e il rapporto dell'ondata li registra («radio»).
 // Lo stato in attesa è «scelte» (ondata, chiamata, opzione), già nel salvataggio: il formato non cambia e ogni ondata si
 // chiude una volta sola, quindi ogni morso arriva una volta sola (anche ripartendo da un'ondata: le scelte dopo si tolgono).
 // Rosso __NO_C241C01: gli effetti ritardati non si applicano.
