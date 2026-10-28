@@ -1,9 +1,8 @@
 // D-244 (PO-153), D-249 (PO-155): il gioco si chiama Vandel Falls. Nei file pubblicati (bundle costruito, dati, store) i nomi
 // di prima non compaiono: «Valmora» e «Varcalda» mai; in minuscolo solo nelle chiavi vecchie della migrazione dei salvataggi,
-// nel filtro delle cache di prima che il service worker cancella e nell'indirizzo github.io, che cambia quando il PO rinomina
-// il repository. «VALMORA» maiuscolo (variabili d'ambiente degli strumenti, __VALMORA_*) resta: tecnico, mai mostrato.
+// e nel filtro delle cache di prima che il service worker cancella. «VALMORA» maiuscolo (variabili d'ambiente degli strumenti, __VALMORA_*) resta: tecnico, mai mostrato.
 export const AMMESSI = ['valmora-salvataggio-riserva', 'valmora-salvataggio', 'valmora-guida-vista', 'varcalda-salvataggio-riserva', 'varcalda-salvataggio',
-  'varcalda-guida-vista', '(valmora|varcalda|vandelfalls)', 'github.io/varcalda/'];
+  'varcalda-guida-vista', '(valmora|varcalda|vandelfalls)'];
 
 /** file: percorso → testo. Restituisce i punti dove un nome di prima compare. */
 export function controllaNome(file) {
