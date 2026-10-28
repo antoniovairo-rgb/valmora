@@ -189,6 +189,7 @@
             },
             {
               "id": "libero20",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e20.dopo.viso_scoperto.libero20"},
               "testo": "testi:e20.op.libero20",
               "costo": "testi:e20.op.libero20.c",
               "effetti": [
@@ -277,7 +278,6 @@
             },
             {
               "id": "telecamere20",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e20.dopo.ogni_minuto.telecamere20"},
               "testo": "testi:e20.op.telecamere20",
               "costo": "testi:e20.op.telecamere20.c",
               "effetti": [],

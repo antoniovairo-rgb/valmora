@@ -170,6 +170,7 @@
             },
             {
               "id": "lascia_parcheggiare",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e26.dopo.pullman_sparsi.lascia_parcheggiare"},
               "testo": "testi:e26.op.lascia_parcheggiare",
               "costo": "testi:e26.op.lascia_parcheggiare.c",
               "effetti": [
@@ -202,7 +203,6 @@
             },
             {
               "id": "ingresso_laterale",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e26.dopo.auto_autorita.ingresso_laterale"},
               "testo": "testi:e26.op.ingresso_laterale",
               "costo": "testi:e26.op.ingresso_laterale.c",
               "effetti": [

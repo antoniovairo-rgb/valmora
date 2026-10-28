@@ -678,6 +678,7 @@
             },
             {
               "id": "insieme21",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e21.dopo.chi_arriva_primo.insieme21"},
               "testo": "testi:e21.op.insieme21",
               "costo": "testi:e21.op.insieme21.c",
               "effetti": [
@@ -698,7 +699,6 @@
           "opzioni": [
             {
               "id": "subito21",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e21.dopo.pullman21.subito21"},
               "testo": "testi:e21.op.subito21",
               "costo": "testi:e21.op.subito21.c",
               "effetti": [

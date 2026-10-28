@@ -358,7 +358,6 @@
             },
             {
               "id": "gara_volume",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e06.dopo.volume.gara_volume"},
               "testo": "testi:e06.op.gara_volume",
               "costo": "testi:e06.op.gara_volume.c",
               "effetti": [
@@ -439,6 +438,7 @@
             },
             {
               "id": "lascia_cantante",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e06.dopo.saluto_cantante.lascia_cantante"},
               "testo": "testi:e06.op.lascia_cantante",
               "costo": "testi:e06.op.lascia_cantante.c",
               "effetti": [
@@ -562,7 +562,6 @@
             },
             {
               "id": "bis_lungo",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e06.dopo.bis.bis_lungo"},
               "testo": "testi:e06.op.bis_lungo",
               "costo": "testi:e06.op.bis_lungo.c",
               "effetti": [
@@ -603,6 +602,7 @@
             },
             {
               "id": "lascia_sfogare",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e06.dopo.rigore6.lascia_sfogare"},
               "testo": "testi:e06.op.lascia_sfogare",
               "costo": "testi:e06.op.lascia_sfogare.c",
               "effetti": [

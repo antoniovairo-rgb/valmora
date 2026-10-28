@@ -24,3 +24,11 @@ export function morsiDellOndata(m: Missione, scelte: { ondata: number; chiamata:
   }
   return out;
 }
+
+/** Le scelte con effetto ritardato che mordono dall'ondata n in poi (in attesa): due stati uguali in tutto il resto ma con
+ *  morsi in attesa diversi hanno futuri diversi (chiave degli stati delle ricerche, tools/bot.mjs). */
+export function morsiInAttesa(m: Missione, scelte: { ondata: number; chiamata: string; opzione: string }[], n: number): Morso[] {
+  const out: Morso[] = [];
+  for (let w = n; w <= m.ondate.length; w++) out.push(...morsiDellOndata(m, scelte, w));
+  return out;
+}
