@@ -125880,6 +125880,101 @@
         }
       ],
       "esito": "rosso"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-28T00:24:51.897Z",
+      "commit": "e9a40bf5",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2410.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            982.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            13
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "instabile",
+          "tentativi": 3,
+          "secondi": [
+            863.9,
+            2,
+            1780.7
+          ],
+          "problemi": [],
+          "precedenti": [
+            [
+              "eccezione: page.getAttribute: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('[data-risorsa=\"squadre\"]')\u001b[22m\n"
+            ],
+            [
+              "eccezione: page.waitForTimeout: Target page, context or browser has been closed"
+            ]
+          ]
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            1386.5,
+            202.4,
+            772.8
+          ],
+          "problemi": [
+            "eccezione: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:34097/\", waiting until \"load\"\u001b[22m\n"
+          ]
+        }
+      ],
+      "esito": "rosso"
     }
   ]
 }
