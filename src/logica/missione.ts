@@ -12,7 +12,7 @@
 //   non tornano disponibili e non vanno a riposo. Rosso: __NO_C09F01 (si comportano come unità normali).
 import { applica, valuta } from './condizioni.ts';
 import { spento } from '../interruttori.ts';
-import { chiamateDellaPartita, semeRipartenza } from './partita.ts';
+import { chiamateDellaPartita, conCarta, semeRipartenza } from './partita.ts';
 import type { Chiamata, Condizione, Dichiarazione, Disposizione, Dopo, EffettoMissione, Esito, Missione, Opzione, Variabili } from './tipi.ts';
 
 export const VAR_TENSIONE = 'tensione_max';
@@ -135,7 +135,9 @@ export function schiera(m: Missione, s: InCorso, d: Disposizione): InCorso {
 /** Chiamate dell'ondata in corso ancora senza risposta, nell'ordine dei dati. */
 export function chiamateAperte(m: Missione, s: InCorso): Chiamata[] {
   if (missioneFinita(m, s)) return [];
-  return chiamateDellaPartita(m, ondataDi(m, s), s.seme).filter((c) => !(c.id in s.risposte) && (!c.se || valuta(c.se, s.variabili)) && (!c.senza || spento('PO095') || nessuno(s, c.senza)) && coerente(s, c.dopo));
+  const o = ondataDi(m, s), dinamica = !!s.seme && !spento('C241D01') && !spento('C246I01'); // D-246: la carta la mette conCarta
+  const aperte = chiamateDellaPartita(m, o, s.seme).filter((c) => !(dinamica && c.imprevisto) && !(c.id in s.risposte) && (!c.se || valuta(c.se, s.variabili)) && (!c.senza || spento('PO095') || nessuno(s, c.senza)) && coerente(s, c.dopo));
+  return dinamica ? conCarta(m, o, s.seme, s.risposte, aperte) : aperte;
 }
 
 /** PO-095: «senza steward», «non c'è nessuno»: vero solo se nel settore non hai schierato nessuna di quelle unità. */

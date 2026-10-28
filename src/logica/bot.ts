@@ -11,9 +11,9 @@ const metti = (d: Disposizione, r: string, s: string) => { d[r]![s] = (d[r]![s] 
 
 /** Tensione dopo la chiusura dell'ondata, se le chiamate ancora aperte non cambiassero nulla. */
 function stima(m: Missione, s: InCorso, d: Dich): number {
-  const risposte = { ...s.risposte };
-  for (const c of chiamateAperte(m, s)) risposte[c.id] = '—';
-  const t = Object.values(chiudiOndata(m, { ...s, risposte }, d).tensione);
+  let x = s; // D-246: l'imprevisto può aprirsi solo dopo altre risposte, quindi si chiude finché resta qualcosa di aperto
+  for (let a = chiamateAperte(m, x); a.length; a = chiamateAperte(m, x)) x = { ...x, risposte: { ...x.risposte, ...Object.fromEntries(a.map((c) => [c.id, '—'])) } };
+  const t = Object.values(chiudiOndata(m, x, d).tensione);
   return Math.max(...t) * 100 + t.reduce((a, b) => a + b, 0);
 }
 
