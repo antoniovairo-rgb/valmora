@@ -1,0 +1,201 @@
+/* Seguito di stile.css (D-241, debito): stemmi, schermate a passi, verbale, fiducia, schieramento, vignette, versione.
+   Si importa subito dopo stile.css (avvio.tsx), così l'ordine delle regole resta lo stesso. */
+
+/* Stemmi dei club (D-088) e sfida della serata */
+.sfida { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--spazio-2); margin: var(--spazio-2) 0; font: 700 var(--testo-mini) / var(--linea-stretta) var(--font-titoli); text-transform: uppercase; text-align: center; }
+.sfida-club { display: grid; justify-items: center; gap: var(--spazio-1); }
+.sfida-contro { color: var(--colore-testo-tenue); text-transform: none; font-weight: 500; }
+.stemma { width: var(--avatar); height: var(--avatar); flex: none; }
+.stemma-forma { stroke: var(--nero); stroke-width: var(--bordo-fine); }
+.stemma-iniziali { font: 700 var(--testo-piccolo) var(--font-titoli); stroke: none; }
+.nome-picco { display: grid; gap: var(--spazio-1); }
+.picco { display: inline-flex; align-items: center; gap: var(--spazio-1); font-size: var(--testo-mini); color: var(--colore-testo-tenue); }
+.causa { display: block; font-size: var(--testo-mini); color: var(--colore-testo-tenue); line-height: 1.3; }
+
+/* Schermate a passi (S-10, PO-045): indicatore, una carta alla volta, Indietro e Avanti in basso */
+.passi { display: flex; justify-content: center; gap: var(--spazio-2); margin: var(--spazio-2) 0 0; padding: 0; list-style: none; }
+.passi li { width: var(--spazio-3); height: var(--spazio-3); border: var(--bordo-fine) solid var(--nero); border-radius: var(--raggio-tondo); background: var(--bianco); }
+.passi li.fatto { background: var(--nero); }
+.passi li.attuale { background: var(--magenta); }
+.passi-nav { display: flex; gap: var(--spazio-3); position: sticky; bottom: var(--spazio-3); z-index: 4; }
+.passi-nav .pulsante { margin: var(--spazio-3) 0; }
+.passo > .messaggio:first-child { margin-top: var(--spazio-4); }
+.passi-nav .pulsante.secondario { flex: 0 1 40%; }
+/* PO-074: condividi nel verbale, piccolo e non a tutta riga */
+.pulsante.piccolo.condividi { flex: none; margin: 0 0 var(--spazio-3); }
+/* PO-072: fine del verbale — prossimo episodio in evidenza, mappa piccola sotto */
+.verbale-fine { flex: 1; min-width: 0; }
+.verbale-riga { display: flex; gap: var(--spazio-2); }
+.passi-nav .pulsante.icona { flex: none; width: var(--tocco-min); padding: 0; }
+.verbale-fine .tenue { margin: calc(-1 * var(--spazio-2)) 0 var(--spazio-2); text-align: center; }
+.fonti-verbale { margin: 0; padding: var(--spazio-3); list-style: none; display: grid; gap: var(--spazio-3); }
+.fonti-verbale .tenue { margin: var(--spazio-1) 0 0; }
+.fonti-verbale .riga { flex-wrap: nowrap; align-items: flex-start; }
+/* D-161, D-164: fili di storia nell'epilogo e nel passo «Fine stagione», come le fonti del verbale */
+.fili { margin: 0; padding: var(--spazio-3); list-style: none; display: grid; gap: var(--spazio-3); }
+.fili .tenue { margin: var(--spazio-1) 0 0; }
+
+/* Episodi abbozzati (D-087, S-09): segno discreto */
+.episodio.bozza .settore-punto { border-style: dashed; }
+/* Interruttore rosso della regola sulle stelline della città (sopra, «non devono rubare il tocco») */
+main.rosso-c14t01 .episodio .settore-unita { pointer-events: auto; }
+.etichetta.bozza { background: var(--grigio-testo); color: var(--bianco); }
+
+/* Barra della fiducia (PO-067, D-097): sempre in vista durante l'episodio */
+.fiducia { display: flex; align-items: center; gap: var(--spazio-2); margin: var(--spazio-2) 0 0; font: 700 var(--testo-mini) var(--font-titoli); text-transform: uppercase; }
+.fiducia-tacche { display: flex; flex: 1; gap: var(--spazio-px); padding: var(--spazio-px); border: var(--bordo-fine) solid var(--nero); background: var(--bianco); }
+.fiducia-tacche span { flex: 1; height: var(--spazio-3); background: var(--rosa-tenue); }
+.fiducia-tacche span.piena { background: var(--ciano); }
+.fiducia-delta { padding: 0 var(--spazio-1); border: var(--bordo-fine) solid var(--nero); }
+.fiducia-delta.su { background: var(--colore-bene); color: var(--bianco); }
+.fiducia-delta.giu { background: var(--colore-male); color: var(--bianco); }
+
+/* Schieramento (S-12, PO-061): cosa hai in mano, riepilogo prima di confermare */
+.in-mano { display: flex; align-items: center; gap: var(--spazio-2); margin: var(--spazio-2) 0; padding: var(--spazio-2) var(--spazio-3); font-size: var(--testo-piccolo); }
+.riepilogo h3 { margin: 0 0 var(--spazio-2); font: 700 var(--testo-base) var(--font-titoli); text-transform: uppercase; }
+.riepilogo ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--spazio-1); }
+
+/* Esporta e importa (S-20, PO-073): la riga dei pulsanti piccoli va a capo; la seconda conferma è magenta */
+.secondari { flex-wrap: wrap; }
+.secondari .pulsante.piccolo { flex: 1 1 28%; }
+.conferma-importa.grave { background: var(--magenta); color: var(--bianco); }
+
+/* Triplice conferma (S-16, PO-066): l'ultimo passo in magenta */
+.tripla.grave { background: var(--magenta); color: var(--bianco); }
+.tripla.grave .tenue { color: var(--bianco); }
+
+/* Episodio perso (S-17, PO-060): «Riparti dall'ondata N» e «Ricomincia» affiancati */
+.ripartenza { flex-wrap: nowrap; align-items: stretch; }
+.ripartenza .pulsante { flex: 1 1 0; min-width: 0; margin: var(--spazio-2) 0; padding-inline: var(--spazio-2); font-size: var(--testo-piccolo); }
+.ripartenza [data-azione="riparti"] { flex-grow: 1.4; }
+
+/* «Home» nella testata (S-21, C14-05): torna alla home, la partita resta salvata */
+.tasto-home { display: flex; align-items: center; justify-content: center; flex: none; width: var(--tocco-min); min-height: var(--tocco-min); border: var(--bordo) solid var(--nero); background: var(--bianco); box-shadow: var(--ombra-1); color: var(--nero); cursor: pointer; }
+.mappa > .tasto-home { position: absolute; left: var(--spazio-1); top: var(--spazio-1); z-index: 5; }
+.mappa > .tasto-home.alto-dx { left: auto; right: var(--spazio-1); }
+.mappa > .tasto-home.basso-sx { top: auto; bottom: var(--spazio-1); }
+.mappa > .tasto-home.basso-dx { top: auto; bottom: var(--spazio-1); left: auto; right: var(--spazio-1); }
+.in-mano .rende { display: block; margin-top: var(--spazio-1); font-size: var(--testo-mini); color: var(--colore-testo-tenue); }
+
+/* Vignette a fumetto (S-23, PO-078): l'altezza si stringe prima che la pagina scorra */
+.vignetta { display: block; width: 100%; height: clamp(var(--vignetta-min), calc(100dvh - var(--vignetta-riserva)), var(--vignetta-max)); min-height: var(--vignetta-min); max-height: var(--vignetta-max); margin: var(--spazio-2) 0; }
+.vignetta .v-giallo { fill: var(--giallo); }
+.vignetta .v-retino { fill: var(--retino-punto); }
+.vignetta .v-cornice { fill: none; stroke: var(--nero); stroke-width: var(--bordo); }
+.vignetta .v-tratto { stroke: var(--nero); stroke-width: var(--bordo-fine); stroke-linejoin: round; }
+.vignetta .v-linea { fill: none; stroke: var(--nero); stroke-width: var(--bordo-fine); stroke-linecap: round; }
+.vignetta .v-strada { fill: none; stroke: var(--mappa-viale); stroke-width: var(--spazio-3); }
+.vignetta .v-nero { fill: var(--nero); }
+.vignetta .v-bianco { fill: var(--bianco); }
+.vignetta .v-magenta { fill: var(--magenta); }
+.vignetta .v-ciano { fill: var(--ciano); }
+.vignetta .v-rosa { fill: var(--rosa-tenue); }
+.vignetta .v-grigio { fill: var(--mappa-tetto-4); }
+.vignetta .v-mattone { fill: var(--mappa-tetto-1); }
+.vignetta .v-verde { fill: var(--mappa-albero-2); }
+.vignetta .v-prato { fill: var(--mappa-prato-2); }
+.vignetta .v-asfalto { fill: var(--mappa-asfalto); }
+.vignetta .v-acqua { fill: var(--citta-fiume); }
+.vignetta .v-pelle { fill: var(--vignetta-pelle); }
+.vignetta .v-capelli { fill: var(--vignetta-capelli); }
+.vignetta .v-fumo { fill: var(--vignetta-fumo); }
+.vignetta .v-timbro { fill: none; stroke: var(--magenta); stroke-width: var(--bordo); }
+.vignetta .v-scritta { fill: var(--nero); font: 700 var(--testo-piccolo) var(--font-titoli); text-anchor: middle; }
+.vignetta .v-scritta.grande { font-size: var(--testo-titolo); }
+.vignetta .v-scritta.timbro { fill: var(--magenta); font-size: var(--testo-mini); }
+
+/* Schieramento compatto (S-24, PO «Compatto», C16-02): una fila di unità, una riga, la barra in basso */
+.compatto .vassoio { flex-wrap: nowrap; gap: var(--spazio-2); margin: var(--spazio-2) 0 var(--spazio-1); }
+.compatto .unita { position: relative; flex: 1 1 0; min-width: 0; justify-content: center; gap: var(--spazio-1); padding: 0 var(--spazio-1); font-size: var(--testo-mini); }
+.compatto .unita-nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.compatto .unita.aiuto { flex: 0 0 var(--tocco-min); }
+.unita-fissa { position: absolute; top: calc(var(--spazio-2) * -1); left: calc(var(--spazio-2) * -1); display: grid; place-items: center; width: var(--pastiglia); height: var(--pastiglia); border: var(--bordo-fine) solid var(--nero); background: var(--giallo); }
+.unita-extra { display: inline-flex; align-items: center; font-weight: 500; opacity: var(--opaco-tenue); }
+.compatto .in-mano { display: block; margin: 0 0 var(--spazio-2); padding: 0; font-size: var(--testo-mini); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.compatto .in-mano .rende { color: var(--colore-testo-tenue); }
+.aiuto-schieramento { font-size: var(--testo-piccolo); }
+.aiuto-schieramento p { margin: 0 0 var(--spazio-1); }
+.barra-schieramento { position: sticky; bottom: 0; z-index: 4; display: flex; gap: var(--spazio-2); padding: var(--spazio-2) 0; background: var(--giallo); }
+.barra-schieramento .pulsante { margin: 0; }
+.barra-schieramento .pulsante.secondario { flex: 0 0 var(--tocco-min); width: var(--tocco-min); padding: 0; }
+.barra-schieramento [data-azione="conferma"] { flex: 1 1 auto; }
+.compatto .unita { flex-wrap: wrap; align-content: center; row-gap: 0; padding-block: var(--spazio-1); }
+.compatto .unita-nome { flex-basis: 100%; text-align: center; }
+.compatto .unita strong { min-width: var(--icona); height: var(--icona); }
+.compatto .in-mano .rende { display: inline; margin: 0; font-size: inherit; }
+.compatto .unita-nome { text-transform: none; letter-spacing: 0; }
+.riga-in-mano { display: flex; align-items: center; gap: var(--spazio-2); }
+.riga-in-mano .in-mano { flex: 1; min-width: 0; margin: 0; }
+.riga-in-mano .aiuto { display: grid; place-items: center; flex: none; width: var(--tocco-min); height: var(--tocco-min); border: 0; background: none; color: var(--nero); cursor: pointer; }
+.vignetta .v-notte { fill: var(--mappa-notte); }
+.vignetta .v-faro { fill: var(--mappa-faro); }
+.vignetta .v-gru { fill: var(--mappa-gru); }
+.vignetta .v-nuvola { fill: var(--mappa-tetto-6); }
+/* Vignette nelle schermate di gioco: riserva = tutto il resto della schermata a 360×760 (misurata), così la vignetta
+   si stringe invece di far scorrere */
+.stasera .vignetta { --vignetta-riserva: var(--vignetta-riserva-sala); --vignetta-min: var(--vignetta-min-sala); }
+.vignetta-cornice { position: relative; }
+.vignetta-cornice .vignetta { --vignetta-riserva: var(--vignetta-riserva-esito); --vignetta-min: var(--vignetta-min-esito); margin-bottom: 0; }
+.vignetta-cornice > .sfida { position: absolute; inset-inline: var(--spazio-2); bottom: var(--spazio-1); margin: 0; }
+.vignetta-cornice > .sfida .sfida-club > span:last-child, .vignetta-cornice > .sfida .sfida-contro { padding: 0 var(--spazio-1); background: var(--bianco); }
+.vignetta-cornice .stemma { width: var(--icona); height: var(--icona); }
+/* PO-089 (scelta A): vignetta della chiamata piccola, a sinistra del testo, dentro il fumetto */
+.chiamata-corpo { display: flex; gap: var(--spazio-3); align-items: flex-start; margin-top: var(--spazio-3); }
+.chiamata-corpo > .vignetta { flex: none; width: var(--vignetta-chiamata); height: auto; min-height: 0; margin: 0; border: var(--bordo-fine) solid var(--nero); }
+.chiamata-corpo .testo-radio { margin-top: 0; }
+/* PO-089: chiamata compatta (solo la chiamata): mappa intera e quadrata (più bassa i nomi si sovrappongono, C-008), fumetto e opzioni più stretti */
+main:has(.scena[data-scena="chiamata"]) .mappa { margin-bottom: var(--spazio-2); }
+main:has(.scena[data-scena="chiamata"]) .testata { margin: var(--spazio-1) 0 var(--spazio-2); }
+.scena[data-scena="chiamata"] .messaggio { margin: var(--spazio-4) 0 var(--spazio-2); padding: var(--spazio-3); }
+.scena[data-scena="chiamata"] .vice-a-margine { margin-top: var(--spazio-2); padding: var(--spazio-1) var(--spazio-2); }
+.scena[data-scena="chiamata"] .opzioni { gap: var(--spazio-2); margin: var(--spazio-2) 0; }
+.scena[data-scena="chiamata"] .opzione { padding: var(--spazio-2) var(--spazio-3); }
+/* C15-07: in sala, briefing e verbale la barra della fiducia sta attaccata alla testata (zero scorrimento a 360×760) */
+main[data-schermata="sala"] .fiducia, main[data-schermata="briefing"] .fiducia, main[data-schermata="verbale"] .fiducia { margin-top: 0; }
+main[data-schermata="sala"] .testata, main[data-schermata="briefing"] .testata, main[data-schermata="verbale"] .testata { margin: var(--spazio-1) 0; }
+/* C17-12: l'episodio scelto (disco e nome) sta sopra gli altri dischi della città. Rosso C35C01: come prima. */
+main:not(.rosso-c35c01) .mappa.citta .settore.acceso { z-index: 3; }
+/* PO-092 (D-114): stile C «pop retinato» per le vignette: ombre fatte di retino a punti, contorno nero spesso */
+.vignetta .v-tratto { stroke-width: var(--vignetta-tratto); }
+.vignetta .v-cemento { fill: var(--vignetta-cemento); }
+.vignetta .v-ombra { fill: url(#v-ombra); }
+.vignetta .v-ombra-pelle { fill: var(--vignetta-pelle-ombra); }
+.vignetta .v-giacca-scura { fill: var(--vignetta-giacca-scura); }
+.vignetta .v-luce { fill: var(--vignetta-luce); }
+.vignetta .v-prato-chiaro { fill: var(--vignetta-prato-chiaro); }
+.vignetta .v-retino-ombra-fondo { fill: var(--vignetta-cemento-ombra); }
+.vignetta .v-cono { fill: var(--vignetta-luce); opacity: var(--opaco); }
+.vignetta .v-bianco-linea { stroke: var(--bianco); }
+/* PO-096: nello schieramento la riga «in mano» si legge per intero (va a capo, carattere piccolo e non minimo) e il «?»
+   è un bottone tondo ben visibile. Rosso C38A01: riga troncata e «?» piccolo, come prima. */
+main:not(.rosso-c38a01) .compatto .in-mano { white-space: normal; overflow: visible; text-overflow: clip; font-size: var(--testo-piccolo); line-height: var(--linea-stretta); }
+main:not(.rosso-c38a01) .riga-in-mano .aiuto { border: var(--bordo) solid var(--nero); border-radius: var(--raggio-tondo); background: var(--giallo); box-shadow: var(--ombra-1); }
+main:not(.rosso-c38a01) :is(.riga-in-mano, .barra-schieramento) .aiuto svg { width: var(--icona-aiuto); height: var(--icona-aiuto); } /* D-139: anche nella barra */
+/* PO-097: numero di versione in basso a destra, dentro il margine inferiore di #app (sempre vuoto): non aggiunge altezza
+   e non copre comandi; #app è alto almeno quanto la finestra, così la versione sta in fondo anche nelle pagine corte */
+#app { position: relative; min-height: 100dvh; }
+.versione-angolo { position: absolute; right: var(--spazio-4); bottom: var(--spazio-1); pointer-events: none; font: 500 var(--testo-mini) / 1 var(--font); color: var(--colore-testo-tenue); }
+/* PO-098: giallo su giallo non si leggeva: nero su fondino bianco (contrasto ≥ 4,5:1). Rosso C40C01: come prima. */
+main:not(.rosso-c40c01) .versione-angolo { padding: var(--spazio-px) var(--spazio-1); border: var(--bordo-fine) solid var(--nero); background: var(--bianco); color: var(--nero); } /* bordo: il fondino bianco sul giallo è solo 1,43:1 (WCAG 1.4.11) */
+/* C18-10 (scelta A): sempre nella vista, in basso a destra, in verticale nel margine destro della pagina (dove non ci sono
+   testi né comandi), sotto i pulsanti fissi */
+main:not(.rosso-c40c01) .versione-angolo { position: fixed; right: 0; bottom: var(--spazio-2); z-index: 3; writing-mode: vertical-rl; transform: rotate(180deg); padding: var(--spazio-1) 0; line-height: 1; } /* larga al più quanto il margine destro (16 px) */
+/* C28-11: su tablet e PC la versione stava sul bordo della finestra (fino a 704 px dalla colonna): ora nel margine destro
+   della colonna, come sul telefono. Rosso C90V01: sul bordo della finestra */
+main:not(.rosso-c40c01):not(.rosso-c90v01) .versione-angolo { right: max(0%, calc((100% - var(--larghezza-max)) / 2)); }
+/* C32-06: dentro i 16 px del margine della colonna toccava i pulsanti su tablet e PC (8 scene su 21): dove c'è spazio sta
+   subito fuori dalla colonna; sui telefoni non c'è e resta com'era. Rosso C98V01: dentro il margine */
+main:not(.rosso-c40c01):not(.rosso-c90v01):not(.rosso-c98v01) .versione-angolo { right: max(0%, calc((100% - var(--larghezza-max)) / 2 - var(--spazio-4))); } /* fixed: le percentuali sono della finestra */
+/* D-168 (S-03 a 360: copriva l'ombra delle opzioni, che sporge a destra di 5-7 px): nel margine SINISTRO, dove le ombre non
+   arrivano; su tablet e PC subito fuori dalla colonna a sinistra. Rosso C113V01: a destra, come prima */
+main:not(.rosso-c40c01):not(.rosso-c90v01):not(.rosso-c98v01):not(.rosso-c113v01) .versione-angolo { right: auto; left: max(0%, calc((100% - var(--larghezza-max)) / 2 - var(--spazio-4))); }
+/* C17-22: nel riepilogo dello schieramento i pulsanti stanno sotto l'elenco, non fissi: su schermi bassi coprivano il testo. Rosso C38R01: fissi. */
+main:not(.rosso-c38r01) .scena .azioni.riepilogo-azioni { position: static; }
+/* PO-098: la riga «Fiducia ±N» del rapporto era verde o magenta sul giallo (2,46:1 e 3,32:1): ora nero su fondino bianco,
+   col colore come striscia a sinistra. Rosso C40C01: come prima. */
+main:not(.rosso-c40c01) [data-premio-fiducia] { padding: var(--spazio-1) var(--spazio-2); border: var(--bordo-fine) solid var(--nero); border-left: var(--spazio-2) solid var(--colore-bene); background: var(--bianco); color: var(--nero); }
+main:not(.rosso-c40c01) [data-premio-fiducia].male { border-left-color: var(--colore-male); }
+/* PO-148 (D-236): «Annulla» e «Conferma» affiancati sotto le opzioni, al posto del conto alla rovescia di PO-121 */
+.scena .azioni.decidi-risposta { position: static; } /* non fissa in basso: coprirebbe le opzioni; la pagina scorre fin qui */
+.decidi-risposta .pulsante { flex: 1 1 0; min-width: 0; }
+.rosso-c236t01 .decidi-risposta .pulsante { min-height: var(--spazio-6); height: var(--spazio-6); padding-block: 0; } /* rosso C236T01: tocco < 44 px */

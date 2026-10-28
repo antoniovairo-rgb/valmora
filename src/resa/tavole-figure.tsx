@@ -1,7 +1,7 @@
 // Tavole grandi del finale (D-165, D-167): cornice 4:3 e figure a mezzo busto più curate delle vignette piccole.
 // Volti: busto della seconda bozza PO-119 di S-01 (busto.tsx, D-171), ombre del volto a campitura piena, mai il retino
 // (D-167: la mezza faccia a puntini sembrava un difetto); il retino resta sui vestiti e sugli sfondi (stile C, D-066).
-// Colori solo dalle classi «v-*» (stile.css, stile-c18.css).
+// Colori solo dalle classi «v-*» (stile-schermate.css, stile-c18.css).
 import type { ReactNode } from 'react';
 import { Busto } from './busto.tsx';
 
