@@ -78,12 +78,13 @@ export async function giraOffline(build = 'dist', rossi = (process.env.VALMORA_R
     }
     { // O4: rilascio nuovo → via la cache vecchia
       const { ctx, p } = await contesto();
+      await p.evaluate(() => caches.open('valmora-0.54.0')); // D-244: la cache col nome di prima sparisce anche lei
       const prima = await p.evaluate(() => caches.keys());
       versioneFinta = 'rilascio-nuovo';
       await p.evaluate(() => navigator.serviceWorker.getRegistration().then((r) => r?.update()));
-      for (let k = 0; k < 60; k++) { const n = await p.evaluate(() => caches.keys()); if (n.length === 1 && n[0] === 'valmora-rilascio-nuovo') break; await p.waitForTimeout(250); } // fino a 15 s
+      for (let k = 0; k < 60; k++) { const n = await p.evaluate(() => caches.keys()); if (n.length === 1 && n[0] === 'varcalda-rilascio-nuovo') break; await p.waitForTimeout(250); } // fino a 15 s
       const dopo = await p.evaluate(() => caches.keys());
-      atteso(`O4 dopo il rilascio nuovo le cache sono «${dopo.join(', ')}» (prima «${prima.join(', ')}»): la vecchia doveva sparire`, dopo.length === 1 && dopo[0] === 'valmora-rilascio-nuovo');
+      atteso(`O4 dopo il rilascio nuovo le cache sono «${dopo.join(', ')}» (prima «${prima.join(', ')}»): la vecchia doveva sparire`, dopo.length === 1 && dopo[0] === 'varcalda-rilascio-nuovo');
       await ctx.close();
     }
   } catch (e) { problemi.push(`offline: giro interrotto: ${e.message.split('\n')[0]}`); }
