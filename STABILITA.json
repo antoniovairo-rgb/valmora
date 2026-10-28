@@ -130876,6 +130876,87 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-28T12:56:21.399Z",
+      "commit": "cf03dddc",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            3.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2027
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1022.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            11.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1219.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1337.9
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
     }
   ]
 }
