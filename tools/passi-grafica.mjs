@@ -52,24 +52,21 @@ export const PASSI_GRAFICA = {
     // con le spaziature di prima e la vignetta forzata al minimo (pagina che scorre) o col fumetto stretto il giro è rosso
     for (const r of ['C41V06,C234V01', 'C185V01,C234V01', 'C185V01,C66V01,C234V01', 'C41G08']) // D-234: col verbale fallito più stretto i primi tre solo con C234V01
       compiti.push(async () => { if (!(await giraC41(`out/foto-rossi/${r.replace(',', '-')}`, 'dist', [360], r.split(','))).flatMap(controllaGiro).length) ciechi.push(`c41/${r} è cieco`); });
-    // C128-01: col rosso C128N01 (nessun ricalcolo a ingresso finito) il nome della città deve uscire dal bordo. C52-01 (D-242):
-    // con la striscia che tiene da parte il blocco più alto la mappa non si sposta più dopo l'ingresso e il nome resta a 13 px dal
-    // bordo anche col rosso: gira con C242M01 (la striscia di prima). Misura del 28/10, 412×800: C128N01+C242M01 −0,5 px (3 stati
-    // sul bordo), C242M01 da solo 21,2 px (0)
+    // C128-01: col rosso C128N01 (nessun ricalcolo a ingresso finito) il nome della città deve uscire dal bordo
     const stati = existsSync('out/foto/citta-stati.json') ? JSON.parse(readFileSync('out/foto/citta-stati.json', 'utf8')) : [];
     // i nomi sulla mappa della città ci sono solo a 412 (D-123): un giro a 360 o 375 da solo (CI per larghezza) non ne ha
     const con412 = !process.env.VALMORA_LARGHEZZE || process.env.VALMORA_LARGHEZZE.split(',').includes('412');
     if (!stati.length) { if (con412) ciechi.push('foto/città senza WebGL: nessuno stato con un nome dal giro foto'); }
-    else compiti.push(async () => { if (!(await controllaCittaSenzaWebgl(stati, 'dist', ['C128N01', 'C242M01'])).some((x) => x.includes('tocca il bordo'))) ciechi.push('foto/città senza WebGL (C128N01+C242M01) è cieco'); });
+    else compiti.push(async () => { if (!(await controllaCittaSenzaWebgl(stati, 'dist', ['C128N01'])).some((x) => x.includes('tocca il bordo'))) ciechi.push('foto/città senza WebGL (C128N01) è cieco'); });
     compiti.push(async () => { if (!(await (await import('./foto-home.mjs')).homeRossaVista('dist'))) ciechi.push('foto/home (C140H01 PO-140, C187C01+C230C01 C43-07 o C224A01 D-224) è cieco'); });
     // D-187: con la mappa che non si abbassa o la versione sopra la scena che esce il guardiano diventa rosso (360×760)
     if (larghezzeGiro().includes(360)) { const a = await import('./sonda-altezze.mjs');
       // D-191: rapporto senza mappa (R01), minimo a 160 px (L01), scheda compatta della città (C01), nomi lontani da «Home» (H01);
       // D-193: risposta in un blocco (R01), spaziature di sala e briefing (S01); D-241: costo prima della scelta (A01), mappa spenta (M01).
       // D-241: senza il costo sotto le opzioni gli imprevisti si accorciano (mediana 277 → 93 px a 360×760, misura del 28/10) e C215L01 da solo è cieco:
-      // gira con C241A01, che rimette le opzioni di prima (come C218R01 con C221R01). D-242: la mappa della città che salta (M01); con la striscia che
-      // tiene da parte il blocco più alto (riserva 500) i 12 px in più di C201C01+C230C01 finiscono nella striscia: gira con C237S01 (striscia fissa); C52-03: il nome dell'episodio fuori dalla mappa a 412 (C241N01).
-      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640'], ['C201R01', '412x760'], ['C201C01,C230C01,C237S01', '360x760'], ['C203R01', '360x760'], ['C206I01', '360x760'], ['C215L01,C241A01', '360x760'], ['C210C01', '360x760'], ['C210G01', '360x760'], ['C218R01,C221R01', '360x760'], ['C218S01', '360x760'], ['C219H01,C221R01', '360x760'], ['C221R01', '360x640'], ['C230C01', '360x640'], ['C234V01', '360x640'], ['C237S01', '360x760'], ['C237P01', '360x760'], ['C241A01', '360x760'], ['C241M01', '360x760'], ['C242M01', '360x760'], ['C241N01', '412x760']])
+      // gira con C241A01, che rimette le opzioni di prima (come C218R01 con C221R01). D-242: la mappa della città che salta (M01); D-243: con la scheda
+      // compatta i 12 px in più di C201C01+C230C01 ci stanno: gira con C242M01 (la scheda di prima; da solo 0, insieme 12 px); C52-03: il nome dell'episodio fuori dalla mappa a 412 (C241N01).
+      for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640'], ['C201R01', '412x760'], ['C201C01,C230C01,C242M01', '360x760'], ['C203R01', '360x760'], ['C206I01', '360x760'], ['C215L01,C241A01', '360x760'], ['C210C01', '360x760'], ['C210G01', '360x760'], ['C218R01,C221R01', '360x760'], ['C218S01', '360x760'], ['C219H01,C221R01', '360x760'], ['C221R01', '360x640'], ['C230C01', '360x640'], ['C234V01', '360x640'], ['C237S01', '360x760'], ['C237P01', '360x760'], ['C241A01', '360x760'], ['C241M01', '360x760'], ['C242M01', '360x760'], ['C241N01', '412x760']])
         compiti.push(async () => { if (!a.controllaAltezze(await a.giraAltezze({ vps: [vp], rossi: r.split(','), parti: PARTE_ROSSO[r.split(',')[0]] ?? ['e01'] })).length) ciechi.push(`altezze/${r} è cieco`); }); }
     // D-207: ogni braccio delle altezze gira solo la parte dove il suo rosso si vede
     // D-202: i bracci sono indipendenti (rossi come parametro, cartelle separate): PARALLELI insieme, ognuno col suo browser

@@ -3,7 +3,7 @@
 // «Rigioca», «Prossimo») stanno dentro il riquadro interno della scheda, ombra compresa, con margine ≥ --spazio-1 per lato.
 // A 640/667/760/915 di altezza, alla larghezza data, nessuna pagina scorre. Soglie dalla regola (token), non dal misurato.
 // Rossi: VALMORA_ROSSI=C237S01 (striscia fissa e mappa di prima), VALMORA_ROSSI=C237P01 (pulsanti a filo della scheda),
-// VALMORA_ROSSI=C242M01 (la striscia conta la scheda di adesso: la mappa salta fra gli stati, C52-01).
+// VALMORA_ROSSI=C242M01 (scheda che cresce col contenuto: la mappa salta fra gli stati, C52-01, D-243).
 import { join } from 'node:path';
 import { missioniDai, salvataggioTutti } from './foto-bozze.mjs';
 
@@ -31,7 +31,11 @@ const misura = (p) => p.evaluate(() => {
     const tutto = { l: Math.min(rb.left, rb.left + dx), t: Math.min(rb.top, rb.top + dy), d: Math.max(rb.right, rb.right + dx), b: Math.max(rb.bottom, rb.bottom + dy) };
     return { azione: b.dataset.azione, margine: Math.round(Math.min(tutto.l - dentro.l, tutto.t - dentro.t, dentro.d - tutto.d, dentro.b - tutto.b) * 10) / 10 };
   });
-  return { ecc: document.scrollingElement.scrollHeight - innerHeight, striscia: sv ? Math.round(r(sv).height) : 0, sopra, mappa: Math.round(mappa ? r(mappa).height : 0), pulsanti, alto: mappa ? Math.round((r(mappa).top + scrollY) * 10) / 10 : null,
+  // D-243: nessun testo della scheda tagliato senza l'ellissi, e niente tagliato in basso dall'altezza fissa
+  const sch = document.querySelector('.scena > .scheda'), tagli = [];
+  if (sch) { if (sch.scrollHeight > sch.clientHeight + 1) tagli.push(`scheda ${sch.scrollHeight - sch.clientHeight} px sotto`);
+    for (const e of sch.querySelectorAll('*')) if (e.scrollWidth > e.clientWidth + 1 && getComputedStyle(e).overflowX !== 'visible' && getComputedStyle(e).textOverflow !== 'ellipsis') tagli.push(`«${e.textContent.trim().slice(0, 30)}» tagliato senza ellissi`); }
+  return { tagli, ecc: document.scrollingElement.scrollHeight - innerHeight, striscia: sv ? Math.round(r(sv).height) : 0, sopra, mappa: Math.round(mappa ? r(mappa).height : 0), pulsanti, alto: mappa ? Math.round((r(mappa).top + scrollY) * 10) / 10 : null,
     minSopra: px('--spazio-5'), minMargine: px('--spazio-1'), mappaAttesa: Math.min(px('--citta-altezza-max'), Math.max(px('--citta-altezza-min'), innerHeight - px('--citta-riserva-striscia'))) };
 });
 
@@ -48,9 +52,12 @@ export async function controllaPo149(browser, url, larghezza, rossi = [], cartel
     if (cartella && stato === 'e19') await p.screenshot({ path: join(cartella, `${vp}-citta-po149.png`) });
     if (m.ecc > 0 && stato !== 'tripla') male.push(`${vp} città ${stato}: la pagina scorre di ${m.ecc} px (PO-149, D-230)`); // la Tripla scorreva già prima: non è di PO-149
     for (const b of m.pulsanti) if (b.margine < m.minMargine) male.push(`${vp} città ${stato}: «${b.azione}» con l'ombra è a ${b.margine} px dal riquadro interno della scheda (serve ≥ ${m.minMargine}, PO-149)`);
+    for (const x of m.tagli) male.push(`${vp} città ${stato}: ${x} (D-243)`);
     if (stato !== 'tripla' && m.striscia) { // la striscia c'è da 700 px in su (D-210); C52-02: lo spazio sopra le teste in ogni stato
-      if (m.sopra === null || m.sopra < m.minSopra) male.push(`${vp} città ${stato}: sopra i personaggi ${m.sopra} px (serve ≥ ${m.minSopra}, PO-149, C52-02)`);
-      if (m.mappa < m.mappaAttesa - 1) male.push(`${vp} città ${stato}: mappa alta ${m.mappa} px (serve ≥ ${m.mappaAttesa}, PO-149)`);
+      // D-243: i valori della 0.52.0 (sopra le teste ≥ 100 a 915; mappa ≥ 431 a 915 e ≥ 276 a 760), oltre alla regola da token
+      const sopraMin = h >= 915 ? Math.max(m.minSopra, 100) : m.minSopra, mappaMin = Math.max(m.mappaAttesa, h >= 915 ? 431 : h >= 760 ? 276 : 0);
+      if (m.sopra === null || m.sopra < sopraMin) male.push(`${vp} città ${stato}: sopra i personaggi ${m.sopra} px (serve ≥ ${sopraMin}, PO-149, D-243)`);
+      if (m.mappa < mappaMin - 1) male.push(`${vp} città ${stato}: mappa alta ${m.mappa} px (serve ≥ ${mappaMin}, PO-149, D-243)`);
     }
     await p.close();
   }

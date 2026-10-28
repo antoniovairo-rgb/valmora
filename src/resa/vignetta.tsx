@@ -8,7 +8,7 @@ import { persona, type PersonaDati } from './persona2.ts';
 
 /** PO-092: la vignetta prende lo spazio che resta libero nella pagina (fra il minimo e il massimo dei token), senza
  *  farla scorrere: la riserva fissa era tarata sul testo più lungo e lasciava vignette minuscole. Rosso C36V01: no. */
-function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascondibile = false, riserva?: RefObject<(() => number) | undefined>) {
+function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascondibile = false) {
   useLayoutEffect(() => {
     const svg = el.current;
     if (!svg || !attivo || spento('C36V01')) return;
@@ -20,8 +20,7 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
       const main = svg.closest('main') ?? document.body, app = main.parentElement ?? document.body;
       const px = (e: Element, k: 'marginBottom' | 'paddingBottom') => parseFloat(getComputedStyle(e)[k]) || 0;
       const fondo = main.getBoundingClientRect().bottom + window.scrollY + px(main, 'marginBottom') + px(app, 'paddingBottom') + (app === document.body ? 0 : px(document.body, 'paddingBottom'));
-      // C52-01: chi la contiene può tenere da parte altro spazio (la città: il blocco più alto possibile sotto la mappa)
-      const libero = innerHeight - fondo - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-margine')) || 0) - (riserva?.current?.() ?? 0);
+      const libero = innerHeight - fondo - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vignetta-margine')) || 0);
       // D-126 d (C22-04): vignette di sala e verbale; se lo spazio libero non arriva al minimo si nascondono invece di
       // restare minuscole (54-67 px a 375×667). Da nascosta lo spazio libero comprende i suoi margini: si toglono per
       // non farla riapparire e sparire a ogni misura. Rosso C66V01: restano al minimo, come prima.
@@ -50,20 +49,16 @@ function useRiempi(el: RefObject<SVGSVGElement | null>, attivo: boolean, nascond
     const ro = typeof ResizeObserver === 'undefined' || !main ? null : new ResizeObserver(() => { const ora = `${innerHeight}:${Math.round(main.getBoundingClientRect().height)}`; if (ora !== ultimo) { ultimo = ora; fai(); } });
     if (main) ro?.observe(main);
     addEventListener('resize', fai); void document.fonts?.ready.then(fai);
-    // C52-01: anche a ogni carattere arrivato dopo (la riserva della città può chiederne uno nuovo misurando le varianti)
-    document.fonts?.addEventListener?.('loadingdone', fai);
-    return () => { removeEventListener('resize', fai); ro?.disconnect(); document.fonts?.removeEventListener?.('loadingdone', fai); };
+    return () => { removeEventListener('resize', fai); ro?.disconnect(); };
   }, [el, attivo, nascondibile]);
 }
 
 /** «vista»: il riquadro del disegno se non è quello solito 0 0 320 180 (PO-149: la striscia della città con più cielo sopra). */
-export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean; evento?: string; ritaglio?: string; vista?: [number, number, number, number]; riserva?: () => number }) {
+export function Vignetta(p: { nome: string; titolo: string; children: ReactNode; fissa?: boolean; evento?: string; ritaglio?: string; vista?: [number, number, number, number] }) {
   const el = useRef<SVGSVGElement>(null);
   // C41-06: il verbale fallito ha il suo minimo (--vignetta-min-fallita, classe .fallita in Verbale.tsx); rosso C41V06
   const nasconde = /^(apertura|esito|ondata)-/.test(p.nome);
-  const riserva = useRef(p.riserva);
-  riserva.current = p.riserva;
-  useRiempi(el, !p.fissa, nasconde, riserva); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
+  useRiempi(el, !p.fissa, nasconde); // «fissa»: la misura la decide chi la contiene (vignetta nel fumetto della chiamata)
   if (spento('C26V01')) return null;
   const [vx, vy, vw, vh] = p.vista ?? [0, 0, 320, 180];
   return (
