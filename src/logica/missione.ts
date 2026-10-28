@@ -13,6 +13,7 @@
 import { applica, valuta } from './condizioni.ts';
 import { spento } from '../interruttori.ts';
 import { chiamateDellaPartita, semeRipartenza } from './partita.ts';
+import { morsiDellOndata } from './dopo.ts';
 import type { Chiamata, Condizione, Dichiarazione, Disposizione, Dopo, EffettoMissione, Esito, Missione, Opzione, Variabili } from './tipi.ts';
 
 export const VAR_TENSIONE = 'tensione_max';
@@ -30,7 +31,9 @@ type Dich = Map<string, Dichiarazione>;
 // per le stelle, quindi il rapporto la mostra (C09-01). Assente nei rapporti salvati prima; rosso __NO_C10P01.
 export interface RapportoOndata { n: number; scoperto: Record<string, number>; tensione: Record<string, number>; aRiposo: Record<string, number>; picco?: Record<string, number>; fiducia?: number;
   /** PO-087: per ogni settore scoperto, perché: pressione (eventi dell'ondata + effetto delle risposte) contro copertura */
-  causa?: Record<string, { pressione: number; copertura: number; eventi: string[]; risposte: number; presenti?: string[] }> }
+  causa?: Record<string, { pressione: number; copertura: number; eventi: string[]; risposte: number; presenti?: string[] }>;
+  /** D-241 idea C: testi dei rapporti radio degli effetti ritardati che mordono in quest'ondata (dopo.ts); assente se nessuno */
+  radio?: string[] }
 
 export interface InCorso {
   missione: string;
@@ -199,11 +202,15 @@ export function rispondi(m: Missione, s: InCorso, chiamata: string, opzione: str
 }
 
 /** Risolve l'ondata in corso (schierata, chiamate tutte risposte) e passa alla successiva. */
-export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
-  const o = ondataDi(m, s);
-  if (!s.disposizione) throw new Error(`${m.id}: ondata ${s.ondata} non schierata`);
-  if (chiamateAperte(m, s).length) throw new Error(`${m.id}: ondata ${s.ondata} con chiamate senza risposta`);
-  const disp = inCampo(s, s.disposizione);
+export function chiudiOndata(m: Missione, prima: InCorso, d: Dich): InCorso {
+  const o = ondataDi(m, prima);
+  if (!prima.disposizione) throw new Error(`${m.id}: ondata ${prima.ondata} non schierata`);
+  if (chiamateAperte(m, prima).length) throw new Error(`${m.id}: ondata ${prima.ondata} con chiamate senza risposta`);
+  // D-241 idea C: gli effetti ritardati che mordono qui si applicano prima di risolvere l'ondata (dopo.ts)
+  const morsi = morsiDellOndata(m, prima.scelte, prima.ondata);
+  let s = prima;
+  for (const x of morsi) for (const e of x.dopo.effetti) s = applicaEffetto(m, s, e, d);
+  const disp = inCampo(s, prima.disposizione);
   const scoperto: Record<string, number> = {};
   const tensione: Record<string, number> = {};
   const aRiposo: Record<string, number> = {};
@@ -238,7 +245,8 @@ export function chiudiOndata(m: Missione, s: InCorso, d: Dich): InCorso {
   const premio = spento('PO094') || !d.has(VAR_FIDUCIA) ? 0 : degenerati ? -degenerati : Object.values(scoperto).every((x) => x === 0) ? 1 : 0;
   const base: RapportoOndata = spento('C10P01') ? { n: s.ondata, scoperto, tensione, aRiposo } : { n: s.ondata, scoperto, tensione, aRiposo, picco };
   const conCausa: RapportoOndata = Object.keys(causa).length ? { ...base, causa } : base;
-  const rapporto: RapportoOndata = premio ? { ...conCausa, fiducia: premio } : conCausa;
+  const conPremio: RapportoOndata = premio ? { ...conCausa, fiducia: premio } : conCausa;
+  const rapporto: RapportoOndata = morsi.length ? { ...conPremio, radio: morsi.map((x) => x.dopo.rapporto) } : conPremio;
   const conTensione = applica({ imposta: VAR_TENSIONE, valore: massimo }, s.variabili, d);
   const dopo: InCorso = {
     ...s, ondata: s.ondata + 1, tensione, riposo: aRiposo, disposizione: null,

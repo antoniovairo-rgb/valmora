@@ -184,6 +184,7 @@
             },
             {
               "id": "niente_cantiere",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_cinderwick", "valore": 2}], "rapporto": "testi:e36.dopo.cantiere_festa.niente_cantiere"},
               "testo": "testi:e36.op.niente_cantiere",
               "costo": "testi:e36.op.niente_cantiere.c",
               "effetti": [
@@ -368,6 +369,7 @@
           "opzioni": [
             {
               "id": "portavoce_smentisce",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"tensione": "curva_cinderwick", "valore": 1}], "rapporto": "testi:e36.dopo.messaggio_carcere.portavoce_smentisce"},
               "testo": "testi:e36.op.portavoce_smentisce",
               "costo": "testi:e36.op.portavoce_smentisce.c",
               "effetti": [
@@ -762,6 +764,7 @@
             },
             {
               "id": "muri_liberi",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "piazzale", "valore": 2}], "rapporto": "testi:e36.dopo.cantiere_notte.muri_liberi"},
               "testo": "testi:e36.op.muri_liberi",
               "costo": "testi:e36.op.muri_liberi.c",
               "effetti": [
@@ -861,6 +864,7 @@
           "opzioni": [
             {
               "id": "chiudi_festa",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_larkspire", "valore": 2}], "rapporto": "testi:e36.dopo.piazzale_ultimo.chiudi_festa"},
               "testo": "testi:e36.op.chiudi_festa",
               "costo": "testi:e36.op.chiudi_festa.c",
               "effetti": [

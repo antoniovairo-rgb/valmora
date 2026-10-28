@@ -184,6 +184,7 @@
             },
             {
               "id": "silenzio",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_cinderwick", "valore": 2}], "rapporto": "testi:e29.dopo.foto_vecchie.silenzio"},
               "testo": "testi:e29.op.silenzio",
               "costo": "testi:e29.op.silenzio.c",
               "effetti": [
@@ -455,6 +456,7 @@
             },
             {
               "id": "niente_annuncio",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_cinderwick", "valore": 2}], "rapporto": "testi:e29.dopo.speaker_partita.niente_annuncio"},
               "testo": "testi:e29.op.niente_annuncio",
               "costo": "testi:e29.op.niente_annuncio.c",
               "effetti": [],
@@ -678,6 +680,7 @@
           "opzioni": [
             {
               "id": "sospendi_partita",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "piazzale", "valore": 2}], "rapporto": "testi:e29.dopo.notizia_in_curva.sospendi_partita"},
               "testo": "testi:e29.op.sospendi_partita",
               "costo": "testi:e29.op.sospendi_partita.c",
               "effetti": [
@@ -899,6 +902,7 @@
             },
             {
               "id": "in_fondo",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e29.dopo.conferenza.in_fondo"},
               "testo": "testi:e29.op.in_fondo",
               "costo": "testi:e29.op.in_fondo.c",
               "effetti": [],

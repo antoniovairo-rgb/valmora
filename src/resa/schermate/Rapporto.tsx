@@ -3,7 +3,7 @@
 // nella prossima ondata (rinforzi e perdite contano da lì, C01-A04). Nessun numero di tensione.
 // Se durante l'ondata la tensione è salita più in alto di dove è finita, si vede anche il picco (C09-01):
 // è quello che conta per le stelle. Rosso C10S01: niente picco.
-import { ChevronRight, FileText, Moon } from 'lucide-react';
+import { ChevronRight, FileText, Moon, Radio } from 'lucide-react';
 import { settoriDegenerati, type RapportoOndata } from '../../logica/missione.ts';
 import type { Missione } from '../../logica/tipi.ts';
 import { genereAttuale, t, quante } from '../dati.ts';
@@ -51,6 +51,10 @@ export function Rapporto(p: { m: Missione; r: RapportoOndata; ultima: boolean; p
       {!spento('C96P01') && <div className="vignetta-cornice" data-tono={tono}><VignettaOndata tono={tono} genere={genereAttuale() === 'f' ? 'f' : 'm'} /></div>}
       {/* C18-09: la riga della fiducia prima dei settori: in fondo finiva sotto il pulsante fisso. Rosso C42F01: in fondo. */}
       {!spento('C42F01') && fiducia}
+      {/* D-241 idea C: le scelte «comode» che mordono in quest'ondata, come messaggi radio (src/logica/dopo.ts) */}
+      {p.r.radio?.map((k, i) => (
+        <div key={i} className="messaggio" data-radio-dopo={i}><span className="chi"><Icona di={Radio} />Radio</span><p className="testo-radio">{t(k)}</p></div>
+      ))}
       <div className="scheda">
       <ul className="elenco-settori">
         {p.m.mappa.settori.map((s) => {

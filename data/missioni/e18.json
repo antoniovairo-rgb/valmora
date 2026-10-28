@@ -221,6 +221,7 @@
             },
             {
               "id": "fidati18",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_ospiti", "valore": 2}], "rapporto": "testi:e18.dopo.biglietti_rete18.fidati18"},
               "testo": "testi:e18.op.fidati18",
               "costo": "testi:e18.op.fidati18.c",
               "effetti": [
@@ -427,6 +428,7 @@
             },
             {
               "id": "lascia_verdi18",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"tensione": "retro_tribuna", "valore": 1}], "rapporto": "testi:e18.dopo.fumo18.lascia_verdi18"},
               "testo": "testi:e18.op.lascia_verdi18",
               "costo": "testi:e18.op.lascia_verdi18.c",
               "effetti": [
@@ -579,6 +581,7 @@
             },
             {
               "id": "lascia_sciarpe",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_larkspire", "valore": 2}], "rapporto": "testi:e18.dopo.etichetta.lascia_sciarpe"},
               "testo": "testi:e18.op.lascia_sciarpe",
               "costo": "testi:e18.op.lascia_sciarpe.c",
               "effetti": [
@@ -751,6 +754,7 @@
           "opzioni": [
             {
               "id": "separa18",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "piazzale", "valore": 2}], "rapporto": "testi:e18.dopo.deflusso18.separa18"},
               "testo": "testi:e18.op.separa18",
               "costo": "testi:e18.op.separa18.c",
               "effetti": [

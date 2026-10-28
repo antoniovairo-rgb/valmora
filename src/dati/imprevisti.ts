@@ -25,7 +25,10 @@ export function innestaMissione(m: Missione, f?: FileImprevisti): Missione {
     const [x, ...altre] = carte;
     const finestra = (i: Imprevisto): [number, number] => i.finestra ?? [i.dopo ?? 1, i.dopo ?? 1];
     if (x) chiamate.splice(x.dopo ?? 1, 0, { ...x.chiamata, imprevisto: true, finestra: finestra(x) });
-    for (const v of varianti) chiamate.push({ ...v.chiamata, variante_di: v.di });
+    // D-241 idea C: le opzioni della variante ereditano gli effetti ritardati dell'originale (stessa chiamata, altro racconto)
+    const eredita = (v: Variante) => { const orig = (o.chiamate ?? []).find((c) => c.id === v.di);
+      return v.chiamata.opzioni.map((x) => { const e = orig?.opzioni.find((y) => y.id === x.id)?.effetti_dopo; return e && !x.effetti_dopo ? { ...x, effetti_dopo: e } : x; }); };
+    for (const v of varianti) chiamate.push({ ...v.chiamata, opzioni: eredita(v), variante_di: v.di });
     altre.forEach((i, k) => chiamate.push({ ...i.chiamata, imprevisto: true, finestra: finestra(i), carta: k + 1 }));
     return { ...o, chiamate };
   });
@@ -122,6 +125,7 @@ function controllaVarianti(k: string, f: FileImprevisti, m: Missione, idNuovi: S
     else c.opzioni.forEach((x, h) => {
       const y = orig.opzioni[h]!;
       if (x.id !== y.id || !uguali(x.effetti, y.effetti) || !uguali(x.se, y.se) || !uguali(x.dopo, y.dopo)) p.push(`${dove}.opzioni[${h}]: id, effetti e condizioni come «${v.di}/${y.id}»`);
+      if (x.effetti_dopo) p.push(`${dove}.opzioni[${h}]: «effetti_dopo» non si scrive nella variante, lo eredita da «${v.di}/${y.id}»`);
     });
   });
   return p;

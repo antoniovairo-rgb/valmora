@@ -246,6 +246,7 @@
           "opzioni": [
             {
               "id": "gruppo_si",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "tornelli", "valore": 2}], "rapporto": "testi:e08.dopo.quello_la.gruppo_si"},
               "testo": "testi:e08.op.gruppo_si",
               "costo": "testi:e08.op.gruppo_si.c",
               "effetti": [
@@ -422,6 +423,7 @@
             },
             {
               "id": "lascia_nome",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e08.dopo.striscione_nome.lascia_nome"},
               "testo": "testi:e08.op.lascia_nome",
               "costo": "testi:e08.op.lascia_nome.c",
               "effetti": [
@@ -562,6 +564,7 @@
             },
             {
               "id": "fai_finta",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_cinderwick", "valore": 2}], "rapporto": "testi:e08.dopo.mano.fai_finta"},
               "testo": "testi:e08.op.fai_finta",
               "costo": "testi:e08.op.fai_finta.c",
               "effetti": [
@@ -704,6 +707,7 @@
             },
             {
               "id": "ritorno_deviato",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "tornelli", "valore": 2}], "rapporto": "testi:e08.dopo.risultato.ritorno_deviato"},
               "testo": "testi:e08.op.ritorno_deviato",
               "costo": "testi:e08.op.ritorno_deviato.c",
               "effetti": [

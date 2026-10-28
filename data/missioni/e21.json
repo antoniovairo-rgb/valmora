@@ -211,6 +211,7 @@
           "opzioni": [
             {
               "id": "ignora21",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_cinderwick", "valore": 2}], "rapporto": "testi:e21.dopo.nuovo_capo.ignora21"},
               "testo": "testi:e21.op.ignora21",
               "costo": "testi:e21.op.ignora21.c",
               "effetti": [
@@ -426,6 +427,7 @@
             },
             {
               "id": "lascia_ospiti21",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "ex_fonderia", "valore": 2}], "rapporto": "testi:e21.dopo.dov_e_il_capo.lascia_ospiti21"},
               "testo": "testi:e21.op.lascia_ospiti21",
               "costo": "testi:e21.op.lascia_ospiti21.c",
               "effetti": [
@@ -567,6 +569,7 @@
           "opzioni": [
             {
               "id": "rassicura21",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e21.dopo.residenti_divisi.rassicura21"},
               "testo": "testi:e21.op.rassicura21",
               "costo": "testi:e21.op.rassicura21.c",
               "effetti": [
@@ -695,6 +698,7 @@
           "opzioni": [
             {
               "id": "subito21",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "quartiere", "valore": 2}], "rapporto": "testi:e21.dopo.pullman21.subito21"},
               "testo": "testi:e21.op.subito21",
               "costo": "testi:e21.op.subito21.c",
               "effetti": [

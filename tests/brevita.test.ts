@@ -16,6 +16,8 @@ export function troppoLunghi(dati: Record<string, unknown>, episodi: string[]) {
     const testo = (k: string) => [k, `${k}@f`].map((x) => t[x.replace(/^testi:/, '')]).filter(Boolean) as string[];
     for (const b of m.briefing) for (const x of testo(b.testo)) if (x.length > FONTE_MAX) fuori.push(`${ep} fonte ${x.length}: ${x}`);
     for (const c of chiamate(m)) for (const x of testo(c.testo)) if (x.length > CHIAMATA_MAX) fuori.push(`${ep} ${c.id} ${x.length}: ${x}`);
+    // D-241 idea C: i rapporti radio degli effetti ritardati sono messaggi radio come le chiamate
+    for (const c of chiamate(m)) for (const o of c.opzioni) for (const x of o.effetti_dopo ? testo(o.effetti_dopo.rapporto) : []) if (x.length > CHIAMATA_MAX) fuori.push(`${ep} ${c.id}/${o.id} radio ${x.length}: ${x}`);
   }
   return fuori;
 }
@@ -29,5 +31,9 @@ describe('fonti e chiamate brevi (PO-084, PO-085)', () => {
     const m = d['missioni/e01.json'] as Missione;
     lungo[(m.briefing[0]?.testo ?? '').replace(/^testi:/, '')] = 'x'.repeat(FONTE_MAX + 1);
     expect(troppoLunghi({ ...d, 'testi/it/e01.json': lungo }, ['e01']).length).toBeGreaterThan(0);
+  });
+  it('braccio rosso: un rapporto radio di effetto ritardato lungo viene segnalato (D-241 idea C)', () => {
+    const lungo = { ...(d['testi/it/e01.json'] as Record<string, string>), 'e01.dopo.corteo_partito.osserva': 'x'.repeat(CHIAMATA_MAX + 1) };
+    expect(troppoLunghi({ ...d, 'testi/it/e01.json': lungo }, ['e01'])).toEqual([`e01 corteo_partito/osserva radio ${CHIAMATA_MAX + 1}: ${'x'.repeat(CHIAMATA_MAX + 1)}`]);
   });
 });

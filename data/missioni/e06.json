@@ -195,6 +195,7 @@
           "opzioni": [
             {
               "id": "chiama_impresa",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e06.dopo.sponsor.chiama_impresa"},
               "testo": "testi:e06.op.chiama_impresa",
               "costo": "testi:e06.op.chiama_impresa.c",
               "effetti": [
@@ -357,6 +358,7 @@
             },
             {
               "id": "gara_volume",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_cinderwick", "valore": 2}], "rapporto": "testi:e06.dopo.volume.gara_volume"},
               "testo": "testi:e06.op.gara_volume",
               "costo": "testi:e06.op.gara_volume.c",
               "effetti": [
@@ -560,6 +562,7 @@
             },
             {
               "id": "bis_lungo",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "viale_concerto", "valore": 2}], "rapporto": "testi:e06.dopo.bis.bis_lungo"},
               "testo": "testi:e06.op.bis_lungo",
               "costo": "testi:e06.op.bis_lungo.c",
               "effetti": [
@@ -910,6 +913,7 @@
             },
             {
               "id": "a_piedi",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "piazza_concerto", "valore": 2}], "rapporto": "testi:e06.dopo.poche_navette.a_piedi"},
               "testo": "testi:e06.op.a_piedi",
               "costo": "testi:e06.op.a_piedi.c",
               "effetti": [

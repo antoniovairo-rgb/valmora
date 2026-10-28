@@ -202,6 +202,7 @@
             },
             {
               "id": "ingresso_laterale",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e26.dopo.auto_autorita.ingresso_laterale"},
               "testo": "testi:e26.op.ingresso_laterale",
               "costo": "testi:e26.op.ingresso_laterale.c",
               "effetti": [
@@ -309,6 +310,7 @@
           "opzioni": [
             {
               "id": "steward_fumogeni",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "curva_ospiti", "valore": 2}], "rapporto": "testi:e26.dopo.fumogeni_finale.steward_fumogeni"},
               "testo": "testi:e26.op.steward_fumogeni",
               "costo": "testi:e26.op.steward_fumogeni.c",
               "effetti": [
@@ -533,6 +535,7 @@
           "opzioni": [
             {
               "id": "spegni_schermo",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "parcheggi", "valore": 2}], "rapporto": "testi:e26.dopo.piazzale_maxischermo.spegni_schermo"},
               "testo": "testi:e26.op.spegni_schermo",
               "costo": "testi:e26.op.spegni_schermo.c",
               "effetti": [
@@ -718,6 +721,7 @@
             },
             {
               "id": "niente_foto",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e26.dopo.foto_coppa.niente_foto"},
               "testo": "testi:e26.op.niente_foto",
               "costo": "testi:e26.op.niente_foto.c",
               "effetti": [],
