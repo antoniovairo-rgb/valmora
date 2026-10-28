@@ -192,21 +192,14 @@ export async function controllaSegni(pagina, atteso, c, op, dove, prima) {
 }
 
 /** PO-085: sotto ogni opzione, le icone d'effetto sono quelle dei dati (settore, fiducia, unità), senza numeri. */
-export async function controllaIconeEffetti(pagina, atteso, c, dove) {
+export async function controllaIconeEffetti(pagina, atteso, _c, dove) {
   const c22 = await import('./foto-c22.mjs'); await c22.controllaIconePiccole(pagina, atteso, dove); await c22.controllaAvatarChi(pagina, atteso, dove); await c22.controllaIconePulsanti(pagina, atteso, dove); // C22-05, C22-09, C22-10
   // le opzioni spente perché l'unità è finita (D-153) mostrano il motivo, non gli effetti: le controlla D-153 (data-esaurita)
   const viste = await pagina.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-opzione]:not([data-esaurita])')].map((b) =>
     [b.dataset.opzione, [...b.querySelectorAll('[data-effetto]')].map((x) => x.dataset.effetto).sort().join(',') + (/\d/.test(b.querySelector('.effetti-opzione')?.textContent ?? '') ? ' CON NUMERI' : '')])));
-  for (const [id, v] of Object.entries(viste)) {
-    const o = c.opzioni.find((x) => x.id === id), k = new Set();
-    for (const e of o?.effetti ?? []) {
-      if (('tensione' in e || 'pressione' in e) && e.valore) k.add(`settore:${e.tensione ?? e.pressione}`);
-      else if ('aggiungi' in e && e.aggiungi === 'credito' && e.valore) k.add('fiducia');
-      else if ('riserva' in e && e.valore) k.add(`unita:${e.riserva}`);
-    }
-    const voluti = [...k].sort().join(',');
-    atteso(`${dove} opzione «${id}»: icone «${v}», i dati dicono «${voluti}» (PO-085)`, v === voluti);
-  }
+  // D-241 (PO-152 A): prima di «Conferma» nessuna icona degli effetti sotto le opzioni (PO-085 le voleva uguali ai dati; il
+  // PO le ha tolte: la mappa è la fonte). Il costo arriva dopo, per radio: lo controllano foto.mjs e foto-po152-a.mjs.
+  for (const [id, v] of Object.entries(viste)) atteso(`${dove} opzione «${id}»: icone «${v}» prima di «Conferma», non ce ne devono essere (D-241)`, v === '');
 }
 
 /** PO-102: ogni corteo in strada ha i colori dei tifosi che i dati mettono lì: il club della strada, altrimenti quello
