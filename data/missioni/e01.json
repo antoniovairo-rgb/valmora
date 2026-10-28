@@ -171,6 +171,7 @@
             },
             {
               "id": "osserva",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e01.dopo.corteo_partito.osserva"},
               "testo": "testi:e01.op.osserva",
               "costo": "testi:e01.op.osserva.c",
               "effetti": [
@@ -481,6 +482,7 @@
             },
             {
               "id": "aspetti",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e01.dopo.presidente.aspetti"},
               "testo": "testi:e01.op.aspetti",
               "costo": "testi:e01.op.aspetti.c",
               "effetti": [],
@@ -699,6 +701,7 @@
             },
             {
               "id": "niente",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e01.dopo.troupe.niente"},
               "testo": "testi:e01.op.niente",
               "costo": "testi:e01.op.niente.c",
               "effetti": [],

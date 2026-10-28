@@ -2,6 +2,7 @@
 // Servono a provare che una missione finisce sempre, che ogni esito è raggiungibile e che le scelte
 // contano, e a tarare i numeri (D-036).
 import type { Caso } from './caso.ts';
+import { spento } from '../interruttori.ts';
 import { chiamateAperte, chiudiOndata, disponibili, opzioniValide, rispondi, settoriAmmessi, type Giocatore, type InCorso } from './missione.ts';
 import type { Chiamata, Dichiarazione, Disposizione, Missione } from './tipi.ts';
 
@@ -24,7 +25,9 @@ const opzioneMigliore = (m: Missione, s: InCorso, c: Chiamata, d: Dich, segno: 1
   let scelta = opzioniValide(c, s, m)[0]!.id, voto = Infinity;
   for (const o of opzioniValide(c, s, m)) {
     const t = rispondi(m, s, c.id, o.id, d);
-    const v = segno * stima(m, t, d) - credito * (Number(t.variabili.credito ?? 0));
+    // D-241 idea C: chi pesa la fiducia conta anche quella che l'opzione toglierà dopo (effetti_dopo); rosso __NO_C241C01: no
+    const dopo = spento('C241C01') ? 0 : (o.effetti_dopo?.effetti ?? []).reduce((a, e) => a + ('aggiungi' in e && e.aggiungi === 'credito' ? e.valore : 0), 0);
+    const v = segno * stima(m, t, d) - credito * (Number(t.variabili.credito ?? 0) + dopo);
     if (v < voto) { voto = v; scelta = o.id; }
   }
   return scelta;

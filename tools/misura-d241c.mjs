@@ -1,0 +1,50 @@
+// D-241 idea C (PO-152): misure del «nessun costo morde dopo». Uso: node tools/misura-d241c.mjs [semi=300]
+// Modello: tools/misura-d241.mjs. 4 strategie × «semi» semi di partita (gli stessi di misura-d241: d241:<episodio>:<bot>:<s>);
+// ogni partita si gioca due volte con lo stesso seme: prima = rosso __NO_C241C01 (nessun effetto ritardato, il gioco 0.54),
+// dopo = effetti ritardati. Conta blocchi (eccezioni o nessun esito), vittorie (esito non fallito) e morsi arrivati.
+import { leggiDati } from './dati-disco.mjs';
+import { creaCaso } from '../src/logica/caso.ts';
+import { variabiliIniziali } from '../src/logica/condizioni.ts';
+import { giocaMissione } from '../src/logica/missione.ts';
+import { semeDa } from '../src/logica/partita.ts';
+import { STRATEGIE } from '../src/logica/bot.ts';
+
+export function partite(dati, semi = 300) {
+  const dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d]));
+  const iniziali = variabiliIniziali(dich.values());
+  const missioni = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, m]) => m).sort((a, b) => a.episodio - b.episodio);
+  return missioni.map((m) => {
+    const r = { missione: m.id, blocchi: [], prima: {}, dopo: {}, morsi: 0 };
+    for (const [nome, strategia] of Object.entries(STRATEGIE)) {
+      let vp = 0, vd = 0;
+      for (let s = 1; s <= semi; s++) {
+        const seme = semeDa(`d241:${m.id}:${nome}:${s}`), g = () => strategia(creaCaso(`${m.id}:${nome}:${s}`), dich);
+        try {
+          globalThis.__NO_C241C01 = true;
+          vp += +!giocaMissione(m, iniziali, dich, g(), seme).esito.fallita;
+        } catch (e) { r.blocchi.push(`${nome} seme ${s} (rosso): ${e.message}`); } finally { delete globalThis.__NO_C241C01; }
+        try {
+          const x = giocaMissione(m, iniziali, dich, g(), seme);
+          vd += +!x.esito.fallita; r.morsi += x.rapporti.reduce((t, y) => t + (y.radio?.length ?? 0), 0);
+        } catch (e) { r.blocchi.push(`${nome} seme ${s}: ${e.message}`); }
+      }
+      r.prima[nome] = vp / semi; r.dopo[nome] = vd / semi;
+    }
+    return r;
+  });
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const semi = Number(process.argv[2] ?? 300), par = partite(leggiDati(), semi);
+  const pc = (x) => `${(100 * x).toFixed(1)}%`;
+  console.log(`| episodio | blocchi su ${semi}×4×2 | morsi | casuale prima → dopo | attenta | equilibrata | peggiore |`);
+  console.log('|---|---|---|---|---|---|---|');
+  for (const r of par) console.log(`| ${r.missione} | ${r.blocchi.length} | ${r.morsi} | ${pc(r.prima.casuale)} → ${pc(r.dopo.casuale)} | ${pc(r.prima.attenta)} → ${pc(r.dopo.attenta)} | ${pc(r.prima.equilibrata)} → ${pc(r.dopo.equilibrata)} | ${pc(r.prima.peggiore)} → ${pc(r.dopo.peggiore)} |`);
+  for (const nome of Object.keys(STRATEGIE)) {
+    const dd = par.map((r) => 100 * (r.dopo[nome] - r.prima[nome])).sort((a, b) => a - b), med = dd.reduce((s, x) => s + x, 0) / dd.length;
+    const sd = Math.sqrt(dd.reduce((s, x) => s + (x - med) ** 2, 0) / dd.length);
+    console.log(`${nome}: scarto dopo − prima in punti, min ${dd[0].toFixed(1)}, mediana ${dd[Math.floor(dd.length / 2)].toFixed(1)}, media ${med.toFixed(1)}, max ${dd.at(-1).toFixed(1)}, dev. std ${sd.toFixed(1)}, ${dd.length} episodi × ${semi} semi`);
+  }
+  console.log(`blocchi totali: ${par.reduce((s, r) => s + r.blocchi.length, 0)} su ${par.length * semi * 4 * 2} partite; morsi arrivati: ${par.reduce((s, r) => s + r.morsi, 0)}`);
+  for (const r of par) for (const b of r.blocchi.slice(0, 3)) console.log(`  ${r.missione} ${b}`);
+}

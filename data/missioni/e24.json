@@ -169,6 +169,7 @@
             },
             {
               "id": "dopo_busta",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "piazza_municipio", "valore": 2}], "rapporto": "testi:e24.dopo.busta.dopo_busta"},
               "testo": "testi:e24.op.dopo_busta",
               "costo": "testi:e24.op.dopo_busta.c",
               "effetti": [],
@@ -403,6 +404,7 @@
             },
             {
               "id": "lascia_bal",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e24.dopo.balaustre.lascia_bal"},
               "testo": "testi:e24.op.lascia_bal",
               "costo": "testi:e24.op.lascia_bal.c",
               "effetti": [
@@ -563,6 +565,7 @@
             },
             {
               "id": "riattacca",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "piazza_municipio", "valore": 2}], "rapporto": "testi:e24.dopo.foglio.riattacca"},
               "testo": "testi:e24.op.riattacca",
               "costo": "testi:e24.op.riattacca.c",
               "effetti": [],
@@ -821,6 +824,7 @@
           "opzioni": [
             {
               "id": "devia24",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e24.dopo.delusi.devia24"},
               "testo": "testi:e24.op.devia24",
               "costo": "testi:e24.op.devia24.c",
               "effetti": [

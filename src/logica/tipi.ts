@@ -30,7 +30,10 @@ export interface Esito { id: string; se: Condizione; dopo?: Dopo; effetti: Effet
 export interface Informazione { testo: string; fonte: string; affidabilita: 'bassa' | 'media' | 'alta'; vera: boolean; settore?: string }
 /** dopo (PO-086): «chiamata/opzione» già scelte (gia) o mai scelte (mai) in questa partita perché la chiamata o l'opzione compaia. */
 export interface Dopo { mai?: string[]; gia?: string[] }
-export interface Opzione { id: string; testo: string; costo?: string; risposta?: string; se?: Condizione; dopo?: Dopo; effetti: EffettoMissione[] }
+/** D-241 idea C (PO-152): effetto ritardato di un'opzione: «effetti» alla chiusura dell'ondata della scelta + «ondate» (o
+ *  dell'ultima, se le ondate non bastano), raccontato dal testo «rapporto» nel rapporto dell'ondata (src/logica/dopo.ts). */
+export interface EffettoDopo { ondate: number; effetti: EffettoMissione[]; rapporto: string }
+export interface Opzione { id: string; testo: string; costo?: string; risposta?: string; se?: Condizione; dopo?: Dopo; effetti: EffettoMissione[]; effetti_dopo?: EffettoDopo }
 /** senza (PO-095): la chiamata si apre solo se nel settore non c'è nessuna unità schierata (fra le risorse indicate, o tutte). */
 export interface Chiamata { id: string; fonte: string; testo: string; commento?: string; settore?: string; /** PO-022 (D-190) */ imprevisto?: true; /** D-241: posti possibili dell'imprevisto [da, a]; carta del mazzo (0 o assente = la classica); variante della chiamata «variante_di» (innestati da src/dati/imprevisti.ts) */ finestra?: [number, number]; carta?: number; variante_di?: string; se?: Condizione; dopo?: Dopo; senza?: { settore: string; risorse?: string[] }; opzioni: Opzione[] }
 

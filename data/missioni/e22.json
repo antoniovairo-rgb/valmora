@@ -235,6 +235,7 @@
             },
             {
               "id": "lascia22",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e22.dopo.ridateci.lascia22"},
               "testo": "testi:e22.op.lascia22",
               "costo": "testi:e22.op.lascia22.c",
               "effetti": [
@@ -410,6 +411,7 @@
           "opzioni": [
             {
               "id": "club_l22",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e22.dopo.coniglio.club_l22"},
               "testo": "testi:e22.op.club_l22",
               "costo": "testi:e22.op.club_l22.c",
               "effetti": [
@@ -581,6 +583,7 @@
             },
             {
               "id": "dubbio",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e22.dopo.stadio_sicuro.dubbio"},
               "testo": "testi:e22.op.dubbio",
               "costo": "testi:e22.op.dubbio.c",
               "effetti": [
@@ -666,6 +669,7 @@
           "opzioni": [
             {
               "id": "devia22",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e22.dopo.salutare_presidio.devia22"},
               "testo": "testi:e22.op.devia22",
               "costo": "testi:e22.op.devia22.c",
               "effetti": [

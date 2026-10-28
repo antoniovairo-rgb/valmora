@@ -284,6 +284,7 @@
           "opzioni": [
             {
               "id": "lascia_al_club",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e25.dopo.club_garantisce.lascia_al_club"},
               "testo": "testi:e25.op.lascia_al_club",
               "costo": "testi:e25.op.lascia_al_club.c",
               "effetti": [
@@ -456,6 +457,7 @@
             },
             {
               "id": "ignora_voce",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e25.dopo.voce_dessi.ignora_voce"},
               "testo": "testi:e25.op.ignora_voce",
               "costo": "testi:e25.op.ignora_voce.c",
               "effetti": [
@@ -502,6 +504,7 @@
           "opzioni": [
             {
               "id": "steward_sedie",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e25.dopo.rigore_ospiti.steward_sedie"},
               "testo": "testi:e25.op.steward_sedie",
               "costo": "testi:e25.op.steward_sedie.c",
               "effetti": [
@@ -629,6 +632,7 @@
           "opzioni": [
             {
               "id": "trattieni_treno",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e25.dopo.treno_orario.trattieni_treno"},
               "testo": "testi:e25.op.trattieni_treno",
               "costo": "testi:e25.op.trattieni_treno.c",
               "effetti": [

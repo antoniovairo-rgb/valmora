@@ -162,6 +162,7 @@
             },
             {
               "id": "silenzio10",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e10.dopo.foto_cerchiate.silenzio10"},
               "testo": "testi:e10.op.silenzio10",
               "costo": "testi:e10.op.silenzio10.c",
               "effetti": [
@@ -350,6 +351,7 @@
             },
             {
               "id": "lascia_coreografie",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e10.dopo.due_coreografie.lascia_coreografie"},
               "testo": "testi:e10.op.lascia_coreografie",
               "costo": "testi:e10.op.lascia_coreografie.c",
               "effetti": [
@@ -685,6 +687,7 @@
             },
             {
               "id": "steward_scavalca",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e10.dopo.scavalca.steward_scavalca"},
               "testo": "testi:e10.op.steward_scavalca",
               "costo": "testi:e10.op.steward_scavalca.c",
               "effetti": [
@@ -872,6 +875,7 @@
             },
             {
               "id": "parla_ponte",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e10.dopo.ponte_ritorno.parla_ponte"},
               "testo": "testi:e10.op.parla_ponte",
               "costo": "testi:e10.op.parla_ponte.c",
               "effetti": [
