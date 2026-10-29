@@ -1,0 +1,19 @@
+{
+ "rosso": true,
+ "partite": 720,
+ "scelteComode": 2840,
+ "morsiAttesi": 2840,
+ "arrivati": 0,
+ "mancanti": 2840,
+ "doppi": 0,
+ "fuoriOndataGiusta": 0,
+ "sceltaNellUltimaOndata": 0,
+ "maxMorsiInUnaChiusura": 0,
+ "perOndata": {
+  "scelta_o1→morso_o2": 720,
+  "scelta_o2→morso_o3": 720,
+  "scelta_o3→morso_o3": 40,
+  "scelta_o3→morso_o4": 680,
+  "scelta_o4→morso_o4": 680
+ }
+}

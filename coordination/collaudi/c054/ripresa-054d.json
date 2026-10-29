@@ -1,0 +1,52 @@
+{
+ "tag": "s054d",
+ "titolo": "titolo",
+ "bottoniTitolo": [
+  "testo=RIPRENDI",
+  "testo=NUOVA PARTITA",
+  "azione=guida",
+  "azione=altro"
+ ],
+ "testoTitolo": "VANDEL FALLS\nCORTINA DI FUMO\nSALA OPERATIVA · STASERA SI GIOCA\nTIENI LA CITTÀ CALMA NEI GIORNI DI PARTITA.\nSei il responsabile ad interim dell'ordine pubblico di Vandel Falls. Malvasi, il tuo vice, scommette su quanto duri.\nRIPRENDI\nNUOVA PARTITA\nLA CITTÀ E IL GIOCO\nALTRO\nOpera di fantasia. Club, quartieri, persone e fatti sono inventati; nessun legame con club, forze dell'ordine, persone o luoghi",
+ "chiaviDopo": [
+  "vandelfalls-guida-vista",
+  "vandelfalls-salvataggio",
+  "vandelfalls-salvataggio-riserva"
+ ],
+ "differenzeJson": [],
+ "dopoRiprendi": {
+  "scena": "chiamata",
+  "chiamata": "chiamata-secondo_treno_v",
+  "bottoni": [
+   "opzione=accoglienza",
+   "opzione=binario_lontano",
+   "opzione=normale"
+  ],
+  "testo": "FERROVIE REGIONALI\nSTAZIONE\nRISPONDI\n«Ferrovie: entra il secondo treno speciale. A bordo sono finiti i panini, e anche la pazienza.»\nA\nMANDACI AGENTI IN BANCHINA AD ACCOGLIERLI\nStazione in ordine; sul viale si forma la c"
+ },
+ "chiamataAlSalvataggio": "secondo_treno_v",
+ "stessaChiamata": true,
+ "ondataAlSalvataggio": 2,
+ "chiamateFinoAllaChiusura": [
+  "chiamata-secondo_treno_v",
+  "chiamata-tornelli_falsi",
+  "chiamata-corteo_viale",
+  "chiamata-imp_sciarpa",
+  "chiamata-comitato_quartiere"
+ ],
+ "chiusura": {
+  "scena": "chiusura",
+  "testo": "CENTRALE\nIN CORSO\nIl responsabile del Railhead, offeso, parla ai giornalisti di «viale militarizzato».\nLEGGI IL RAPPORTO",
+  "scorr": {
+   "y": 0,
+   "x": 0,
+   "scena": 0
+  }
+ },
+ "ondataDopo": {
+  "ondata": 2,
+  "game_version": "0.54.0",
+  "save_version": 3
+ },
+ "errori": []
+}

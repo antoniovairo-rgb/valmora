@@ -1,0 +1,84 @@
+{
+ "log": "gioca-comoda-360x640.json",
+ "viewport": "360x640",
+ "politica": "comoda",
+ "episodiConclusi": 8,
+ "tentativiTotali": 9,
+ "chiusure": 34,
+ "chiusureConMorso": 23,
+ "morsiAttesi": 31,
+ "morsiMostrati": 31,
+ "chiusureConTestiDiversiDaiDati": 0,
+ "rapportoDiversoDaiMostrati": 0,
+ "chiusureCheScorrono": [
+  "e01 o3/3 2 morsi: y=54px",
+  "e02 o4/4 2 morsi: y=40px",
+  "e03 o4/4 2 morsi: y=38px",
+  "e04 o3/3 2 morsi: y=56px",
+  "e05 o4/4 2 morsi: y=54px",
+  "e06 o4/4 2 morsi: y=56px",
+  "e07 o4/4 2 morsi: y=38px",
+  "e08 o4/4 2 morsi: y=40px"
+ ],
+ "ondateConCarta_UI": 34,
+ "cartaPerUltima_UI": []
+}
+{
+ "log": "gioca-comoda-375x667.json",
+ "viewport": "375x667",
+ "politica": "comoda",
+ "episodiConclusi": 8,
+ "tentativiTotali": 9,
+ "chiusure": 34,
+ "chiusureConMorso": 23,
+ "morsiAttesi": 31,
+ "morsiMostrati": 31,
+ "chiusureConTestiDiversiDaiDati": 0,
+ "rapportoDiversoDaiMostrati": 0,
+ "chiusureCheScorrono": [
+  "e01 o3/3 2 morsi: y=27px",
+  "e02 o4/4 2 morsi: y=13px",
+  "e04 o3/3 2 morsi: y=29px",
+  "e05 o4/4 2 morsi: y=27px",
+  "e06 o4/4 2 morsi: y=29px",
+  "e07 o4/4 2 morsi: y=11px",
+  "e08 o4/4 2 morsi: y=13px"
+ ],
+ "ondateConCarta_UI": 34,
+ "cartaPerUltima_UI": []
+}
+{
+ "log": "gioca-comoda-412x760.json",
+ "viewport": "412x760",
+ "politica": "comoda",
+ "episodiConclusi": 8,
+ "tentativiTotali": 9,
+ "chiusure": 34,
+ "chiusureConMorso": 23,
+ "morsiAttesi": 31,
+ "morsiMostrati": 31,
+ "chiusureConTestiDiversiDaiDati": 0,
+ "rapportoDiversoDaiMostrati": 0,
+ "chiusureCheScorrono": [],
+ "ondateConCarta_UI": 34,
+ "cartaPerUltima_UI": []
+}
+{
+ "log": "gioca-mista-375x667.json",
+ "viewport": "375x667",
+ "politica": "mista",
+ "episodiConclusi": 6,
+ "tentativiTotali": 8,
+ "chiusure": 30,
+ "chiusureConMorso": 10,
+ "morsiAttesi": 12,
+ "morsiMostrati": 12,
+ "chiusureConTestiDiversiDaiDati": 0,
+ "rapportoDiversoDaiMostrati": 0,
+ "chiusureCheScorrono": [
+  "e02 o4/4 2 morsi: y=11px",
+  "e04 o3/3 2 morsi: y=29px"
+ ],
+ "ondateConCarta_UI": 30,
+ "cartaPerUltima_UI": []
+}

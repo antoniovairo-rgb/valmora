@@ -1,0 +1,52 @@
+{
+ "tag": "s055b",
+ "titolo": "titolo",
+ "bottoniTitolo": [
+  "testo=RIPRENDI",
+  "testo=NUOVA PARTITA",
+  "azione=guida",
+  "azione=altro"
+ ],
+ "testoTitolo": "VANDEL FALLS\nCORTINA DI FUMO\nSALA OPERATIVA · STASERA SI GIOCA\nTIENI LA CITTÀ CALMA NEI GIORNI DI PARTITA.\nSei il responsabile ad interim dell'ordine pubblico di Vandel Falls. Malvasi, il tuo vice, scommette su quanto duri.\nRIPRENDI\nNUOVA PARTITA\nLA CITTÀ E IL GIOCO\nALTRO\nOpera di fantasia. Club, quartieri, persone e fatti sono inventati; nessun legame con club, forze dell'ordine, persone o luoghi",
+ "chiaviDopo": [
+  "vandelfalls-guida-vista",
+  "vandelfalls-salvataggio",
+  "vandelfalls-salvataggio-riserva"
+ ],
+ "differenzeJson": [],
+ "dopoRiprendi": {
+  "scena": "chiamata",
+  "chiamata": "chiamata-pareggio",
+  "bottoni": [
+   "opzione=trattieni",
+   "opzione=insieme"
+  ],
+  "testo": "ETTORE MALVASI, IL VICE\nRISPONDI\n«Pareggio al novantesimo, nessuno contento: stanno per uscire tutti. Le fonderie tornano in corteo.»\nIL VICE — «Il pareggio è il risultato peggiore. Lo dico da anni, nessuno mi ascolta.»\n"
+ },
+ "chiamataAlSalvataggio": "pareggio",
+ "stessaChiamata": true,
+ "ondataAlSalvataggio": 3,
+ "chiamateFinoAllaChiusura": [
+  "chiamata-pareggio",
+  "chiamata-incrocio",
+  "chiamata-imp_tram",
+  "chiamata-lavezzari",
+  "chiamata-troupe_v",
+  "chiamata-sciarpe"
+ ],
+ "chiusura": {
+  "scena": "chiusura",
+  "testo": "CENTRALE\nIN CORSO\nLa radio tace. Le unità sono ai loro posti: l'ondata fa il suo corso.\nLEGGI IL RAPPORTO",
+  "scorr": {
+   "y": 0,
+   "x": 0,
+   "scena": 0
+  }
+ },
+ "ondataDopo": {
+  "ondata": 4,
+  "game_version": "0.55.0",
+  "save_version": 3
+ },
+ "errori": []
+}

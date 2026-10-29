@@ -1,0 +1,34 @@
+{
+ "titoloPagina": "Vandel Falls – Cortina di fumo",
+ "titoloPrivacy": "Privacy – Vandel Falls",
+ "scenePercorse": {
+  "titolo": 1,
+  "altro": 1,
+  "genere": 1,
+  "guida": 1,
+  "citta": 1,
+  "sala": 3,
+  "briefing": 4,
+  "schieramento": 3,
+  "chiamata": 17,
+  "risposta": 17,
+  "chiusura": 3,
+  "rapporto": 3,
+  "verbale": 6,
+  "privacy": 1
+ },
+ "occorrenzeVisibili": [],
+ "bottoniAltro": [
+  "testo=NUOVA PARTITA",
+  "azione=guida",
+  "azione=altro",
+  "azione=crediti",
+  "azione=privacy",
+  "azione=importa",
+  "azione=idee"
+ ],
+ "manifestoContieneVecchi": false,
+ "errori": [
+  "Failed to load resource: the server responded with a status of 404 (Not Found)"
+ ]
+}

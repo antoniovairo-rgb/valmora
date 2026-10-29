@@ -1,0 +1,49 @@
+{
+ "tag": "s054c",
+ "titolo": "titolo",
+ "bottoniTitolo": [
+  "testo=RIPRENDI",
+  "testo=NUOVA PARTITA",
+  "azione=guida",
+  "azione=altro"
+ ],
+ "testoTitolo": "VANDEL FALLS\nCORTINA DI FUMO\nSALA OPERATIVA · STASERA SI GIOCA\nTIENI LA CITTÀ CALMA NEI GIORNI DI PARTITA.\nSei il responsabile ad interim dell'ordine pubblico di Vandel Falls. Malvasi, il tuo vice, scommette su quanto duri.\nRIPRENDI\nNUOVA PARTITA\nLA CITTÀ E IL GIOCO\nALTRO\nOpera di fantasia. Club, quartieri, persone e fatti sono inventati; nessun legame con club, forze dell'ordine, persone o luoghi",
+ "chiaviDopo": [
+  "vandelfalls-guida-vista",
+  "vandelfalls-salvataggio",
+  "vandelfalls-salvataggio-riserva"
+ ],
+ "differenzeJson": [],
+ "dopoRiprendi": {
+  "scena": "chiamata",
+  "chiamata": "chiamata-presidente",
+  "bottoni": [
+   "opzione=vai",
+   "opzione=manda_vice",
+   "opzione=aspetti"
+  ],
+  "testo": "ETTORE MALVASI, IL VICE\nRISPONDI\n«Il presidente dello Skyfield Athletic ti vuole in tribuna. Adesso. È urgente, come sempre.»\nIL VICE — «Se vai, la sala resta a me. Prometto di non fare danni. Quasi.»\nA\nVAI IN TRIBUNA\nIl"
+ },
+ "chiamataAlSalvataggio": "presidente",
+ "stessaChiamata": true,
+ "ondataAlSalvataggio": 2,
+ "chiamateFinoAllaChiusura": [
+  "chiamata-presidente",
+  "chiamata-capo_curva"
+ ],
+ "chiusura": {
+  "scena": "risposta",
+  "testo": "CENTRALE\nIN CORSO\nIl corteo lasciato passare è arrivato al piazzale senza scorta: il comando chiede chi l'ha deciso.\nLEGGI IL RAPPORTO",
+  "scorr": {
+   "y": 0,
+   "x": 0,
+   "scena": 0
+  }
+ },
+ "ondataDopo": {
+  "ondata": 2,
+  "game_version": "0.54.0",
+  "save_version": 3
+ },
+ "errori": []
+}

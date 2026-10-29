@@ -1,0 +1,38 @@
+{
+ "verde · comoda": {
+  "episodi": 2160,
+  "stelleMedia": 1.393,
+  "creditoFinaleMedia": 3.293,
+  "falliti": "2.7%"
+ },
+ "verde · non_comoda": {
+  "episodi": 2160,
+  "stelleMedia": 1.221,
+  "creditoFinaleMedia": 5.997,
+  "falliti": "14.8%"
+ },
+ "verde · a_caso": {
+  "episodi": 2160,
+  "stelleMedia": 1.307,
+  "creditoFinaleMedia": 4.928,
+  "falliti": "9.4%"
+ },
+ "ROSSO(senza morsi) · comoda": {
+  "episodi": 2160,
+  "stelleMedia": 1.654,
+  "creditoFinaleMedia": 7.035,
+  "falliti": "2.6%"
+ },
+ "ROSSO(senza morsi) · non_comoda": {
+  "episodi": 2160,
+  "stelleMedia": 1.221,
+  "creditoFinaleMedia": 6.011,
+  "falliti": "14.8%"
+ },
+ "ROSSO(senza morsi) · a_caso": {
+  "episodi": 2160,
+  "stelleMedia": 1.409,
+  "creditoFinaleMedia": 6.575,
+  "falliti": "9.3%"
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "dump": {
+  "varcalda-salvataggio": "{\"save_version\":3,\"game_version\":\"0.55.0\",\"seme\":1647360563,\"caso\":1647360563,\"variabili\":{\"tensione_max\":0,\"credito\":5,\"informatore_pagato\":false,\"presidente_incontrato\":false,\"furgone_visto\":false,\"rapporto_dessi\":\"neutro\",\"testimone\":\"nessuno\",\"busta\":\"nessuna\",\"pista_cattura\":\"nessuna\",\"fascicolo\":\"nessuno\",\"sospetti_talpa\":0,\"carte\":\"nessuna\"},\"missioni_concluse\":[],\"episodi\":{},\"genere\":\"m\",\"in_corso\":{\"missione\":\"e01\",\"ondata\":1,\"tensione\":{\"curva_cinderwick\":0,\"curva_larkspire\":0,\"piazzale\":2,\"strada_cinderwick\":0,\"strada_larkspire\":0},\"riserva\":{\"squadre\":-1,\"steward\":0,\"mediatore\":0},\"riposo\":{\"squadre\":0,\"steward\":0,\"mediatore\":0},\"disposizione\":{\"squadre\":{\"curva_cinderwick\":1,\"curva_larkspire\":1,\"piazzale\":1,\"strada_cinderwick\":1},\"steward\":{\"strada_larkspire\":2,\"curva_cinderwick\":1,\"curva_larkspire\":1,\"piazzale\":1,\"strada_cinderwick\":1},\"mediatore\":{\"curva_cinderwick\":1}},\"modifiche\":{\"strada_cinderwick\":-2,\"piazzale\":2,\"strada_larkspire\":-4},\"risposte\":{\"corteo_partito\":\"scorta\",\"ufficio_insiste\":\"asseconda\",\"pullman\":\"conta\",\"imp_ambulanza\":\"apri_varco\"},\"scelte\":[{\"ondata\":1,\"chiamata\":\"corteo_partito\",\"opzione\":\"scorta\"},{\"ondata\":1,\"chiamata\":\"ufficio_insiste\",\"opzione\":\"asseconda\"},{\"ondata\":1,\"chiamata\":\"pullman\",\"opzione\":\"conta\"},{\"ondata\":1,\"chiamata\":\"imp_ambulanza\",\"opzione\":\"apri_varco\"}],\"rapporti\":[],\"variabili\":{\"tensione_max\":0,\"credito\":5,\"informatore_pagato\":false,\"presidente_incontrato\":false,\"furgone_visto\":false,\"rapporto_dessi\":\"neutro\",\"testimone\":\"nessuno\",\"busta\":\"nessuna\",\"pista_cattura\":\"nessuna\",\"fascicolo\":\"nessuno\",\"sospetti_talpa\":0,\"carte\":\"nessuna\"},\"seme\":492604028,\"partenze\":{\"1\":{\"missione\":\"e01\",\"ondata\":1,\"tensione\":{\"curva_cinderwick\":0,\"curva_larkspire\":0,\"piazzale\":0,\"strada_cinderwick\":0,\"strada_larkspire\":0},\"riserva\":{\"squadre\":0,\"steward\":0,\"mediatore\":0},\"riposo\":{\"squadre\":0,\"steward\":0,\"mediatore\":0},\"disposizione\":null,\"modifiche\":{},\"risposte\":{},\"scelte\":[],\"rapporti\":[],\"variabili\":{\"tensione_max\":0,\"credito\":5,\"informatore_pagato\":false,\"presidente_incontrato\":false,\"furgone_visto\":false,\"rapporto_dessi\":\"neutro\",\"testimone\":\"nessuno\",\"busta\":\"nessuna\",\"pista_cattura\":\"nessuna\",\"fascicolo\":\"nessuno\",\"sospetti_talpa\":0,\"carte\":\"nessuna\"},\"seme\":492604028}}},\"rapporto_aperto\":null,\"bozza\":null,\"sconfitta\":null}",
+  "varcalda-guida-vista": "si",
+  "varcalda-salvataggio-riserva": "{\"save_version\":3,\"game_version\":\"0.55.0\",\"seme\":1647360563,\"caso\":1647360563,\"variabili\":{\"tensione_max\":0,\"credito\":5,\"informatore_pagato\":false,\"presidente_incontrato\":false,\"furgone_visto\":false,\"rapporto_dessi\":\"neutro\",\"testimone\":\"nessuno\",\"busta\":\"nessuna\",\"pista_cattura\":\"nessuna\",\"fascicolo\":\"nessuno\",\"sospetti_talpa\":0,\"carte\":\"nessuna\"},\"missioni_concluse\":[],\"episodi\":{},\"genere\":\"m\",\"in_corso\":{\"missione\":\"e01\",\"ondata\":1,\"tensione\":{\"curva_cinderwick\":0,\"curva_larkspire\":0,\"piazzale\":2,\"strada_cinderwick\":0,\"strada_larkspire\":0},\"riserva\":{\"squadre\":-1,\"steward\":0,\"mediatore\":0},\"riposo\":{\"squadre\":0,\"steward\":0,\"mediatore\":0},\"disposizione\":{\"squadre\":{\"curva_cinderwick\":1,\"curva_larkspire\":1,\"piazzale\":1,\"strada_cinderwick\":1},\"steward\":{\"strada_larkspire\":2,\"curva_cinderwick\":1,\"curva_larkspire\":1,\"piazzale\":1,\"strada_cinderwick\":1},\"mediatore\":{\"curva_cinderwick\":1}},\"modifiche\":{\"strada_cinderwick\":-2,\"piazzale\":2,\"strada_larkspire\":-4},\"risposte\":{\"corteo_partito\":\"scorta\",\"ufficio_insiste\":\"asseconda\",\"pullman\":\"conta\",\"imp_ambulanza\":\"apri_varco\"},\"scelte\":[{\"ondata\":1,\"chiamata\":\"corteo_partito\",\"opzione\":\"scorta\"},{\"ondata\":1,\"chiamata\":\"ufficio_insiste\",\"opzione\":\"asseconda\"},{\"ondata\":1,\"chiamata\":\"pullman\",\"opzione\":\"conta\"},{\"ondata\":1,\"chiamata\":\"imp_ambulanza\",\"opzione\":\"apri_varco\"}],\"rapporti\":[],\"variabili\":{\"tensione_max\":0,\"credito\":5,\"informatore_pagato\":false,\"presidente_incontrato\":false,\"furgone_visto\":false,\"rapporto_dessi\":\"neutro\",\"testimone\":\"nessuno\",\"busta\":\"nessuna\",\"pista_cattura\":\"nessuna\",\"fascicolo\":\"nessuno\",\"sospetti_talpa\":0,\"carte\":\"nessuna\"},\"seme\":492604028,\"partenze\":{\"1\":{\"missione\":\"e01\",\"ondata\":1,\"tensione\":{\"curva_cinderwick\":0,\"curva_larkspire\":0,\"piazzale\":0,\"strada_cinderwick\":0,\"strada_larkspire\":0},\"riserva\":{\"squadre\":0,\"steward\":0,\"mediatore\":0},\"riposo\":{\"squadre\":0,\"steward\":0,\"mediatore\":0},\"disposizione\":null,\"modifiche\":{},\"risposte\":{},\"scelte\":[],\"rapporti\":[],\"variabili\":{\"tensione_max\":0,\"credito\":5,\"informatore_pagato\":false,\"presidente_incontrato\":false,\"furgone_visto\":false,\"rapporto_dessi\":\"neutro\",\"testimone\":\"nessuno\",\"busta\":\"nessuna\",\"pista_cattura\":\"nessuna\",\"fascicolo\":\"nessuno\",\"sospetti_talpa\":0,\"carte\":\"nessuna\"},\"seme\":492604028}}},\"rapporto_aperto\":null,\"bozza\":null,\"sconfitta\":null}"
+ },
+ "stato": {
+  "scena": "chiamata",
+  "testo": "ETTORE MALVASI, IL VICE\nRISPONDI\n«Due squadre dal comando per la prossima fase: le chiedo?»\nIL VICE — «È una prova, sai. Tutti chiedono rinforzi il primo giorno.»\nA\nCHIEDI I RINFORZI\nDue squadre in più per il resto della serata.\nSquadre\nB\nCE LA FACCIAMO CON QUELLO CHE ABBIAMO\nNessun costo, nessun aiuto.",
+  "bottoni": [
+   "azione=info-ondata",
+   "azione=home",
+   "testo=(off)",
+   "testo=1(off)",
+   "testo=1(off)",
+   "testo=1(off)",
+   "testo=(off)",
+   "testo=1(off)",
+   "testo=1(off)",
+   "testo=(off)",
+   "testo=1(off)",
+   "testo=1(off)",
+   "testo=(off)",
+   "testo=1(off)",
+   "testo=1(off)",
+   "testo=(off)",
+   "testo=2(off)",
+   "testo=RISPONDI",
+   "opzione=chiedi",
+   "opzione=rifiuta"
+  ],
+  "scelteFatte": 4,
+  "chiamataAperta": "rinforzi",
+  "traccia": [
+   "genere",
+   "guida",
+   "citta",
+   "sala",
+   "briefing",
+   "schieramento",
+   "chiamata",
+   "risposta",
+   "chiamata",
+   "risposta",
+   "chiamata",
+   "risposta",
+   "chiamata",
+   "risposta",
+   "chiamata"
+  ]
+ },
+ "errori": []
+}

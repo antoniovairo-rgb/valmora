@@ -1,0 +1,2770 @@
+{
+ "politica": "comoda",
+ "viewport": "375x667",
+ "scelte": [
+  {
+   "ep": "e01",
+   "ondata": 1,
+   "chiamata": "corteo_partito",
+   "opzione": "osserva",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e01",
+   "ondata": 1,
+   "chiamata": "ufficio_insiste_v",
+   "opzione": "asseconda",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e01",
+   "ondata": 1,
+   "chiamata": "pullman",
+   "opzione": "conta",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e01",
+   "ondata": 1,
+   "chiamata": "imp_ambulanza",
+   "opzione": "apri_varco",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e01",
+   "ondata": 1,
+   "chiamata": "rinforzi",
+   "opzione": "chiedi",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e01",
+   "ondata": 1,
+   "chiamata": "striscione",
+   "opzione": "rimuovi",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e01",
+   "ondata": 2,
+   "chiamata": "fumogeni",
+   "opzione": "spegni",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e01",
+   "ondata": 2,
+   "chiamata": "porta_servizio",
+   "opzione": "presidia",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e01",
+   "ondata": 2,
+   "chiamata": "imp_buio",
+   "opzione": "torce",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e01",
+   "ondata": 2,
+   "chiamata": "presidente",
+   "opzione": "aspetti",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e01",
+   "ondata": 2,
+   "chiamata": "capo_curva",
+   "opzione": "mediatore",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e01",
+   "ondata": 3,
+   "chiamata": "pareggio",
+   "opzione": "trattieni",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e01",
+   "ondata": 3,
+   "chiamata": "incrocio",
+   "opzione": "chiudi",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e01",
+   "ondata": 3,
+   "chiamata": "lavezzari",
+   "opzione": "accetta",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e01",
+   "ondata": 3,
+   "chiamata": "imp_rifiuti",
+   "opzione": "camion_piazzale",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e01",
+   "ondata": 3,
+   "chiamata": "troupe",
+   "opzione": "niente",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e01",
+   "ondata": 3,
+   "chiamata": "sciarpe",
+   "opzione": "paga",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 1,
+   "chiamata": "ritardo",
+   "opzione": "scorta_subito",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e02",
+   "ondata": 1,
+   "chiamata": "responsabile",
+   "opzione": "non_fidarti",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 1,
+   "chiamata": "imp_banda",
+   "opzione": "banda_stazione",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e02",
+   "ondata": 1,
+   "chiamata": "selfie",
+   "opzione": "devia",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 1,
+   "chiamata": "biglietti_voce",
+   "opzione": "sequestra",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 2,
+   "chiamata": "secondo_treno_v",
+   "opzione": "normale",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e02",
+   "ondata": 2,
+   "chiamata": "tornelli_falsi",
+   "opzione": "respingi",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e02",
+   "ondata": 2,
+   "chiamata": "imp_piccione",
+   "opzione": "libera_gabbiotto",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e02",
+   "ondata": 2,
+   "chiamata": "corteo_viale",
+   "opzione": "corteo_scortato",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 2,
+   "chiamata": "comitato_quartiere",
+   "opzione": "presidio_quartiere",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 3,
+   "chiamata": "striscione_ospiti_v",
+   "opzione": "ignora_str",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e02",
+   "ondata": 3,
+   "chiamata": "imp_acquazzone",
+   "opzione": "teli",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e02",
+   "ondata": 3,
+   "chiamata": "caldo_casa",
+   "opzione": "mediatore_casa",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 3,
+   "chiamata": "biglietti_rete",
+   "opzione": "annota",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 4,
+   "chiamata": "risultato",
+   "opzione": "trattieni_ospiti",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 4,
+   "chiamata": "imp_divano",
+   "opzione": "carica_divano",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e02",
+   "ondata": 4,
+   "chiamata": "ultimo_treno_v",
+   "opzione": "trattieni_treno",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 4,
+   "chiamata": "responsabile_saluta",
+   "opzione": "rifiuta_saluto",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e02",
+   "ondata": 4,
+   "chiamata": "vetrine",
+   "opzione": "indaga",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 1,
+   "chiamata": "auto_in_sosta",
+   "opzione": "multe",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e03",
+   "ondata": 1,
+   "chiamata": "cartelloni",
+   "opzione": "ascolta_comitato",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 1,
+   "chiamata": "imp_carro",
+   "opzione": "sblocca",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e03",
+   "ondata": 1,
+   "chiamata": "ospiti_arrivano_v",
+   "opzione": "parcheggio_lontano",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 2,
+   "chiamata": "laser_v",
+   "opzione": "lascia_laser",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e03",
+   "ondata": 2,
+   "chiamata": "imp_allarme",
+   "opzione": "rintraccia",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e03",
+   "ondata": 2,
+   "chiamata": "finestre",
+   "opzione": "pattuglia_vie",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 2,
+   "chiamata": "torcia_casa",
+   "opzione": "steward_torcia",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 2,
+   "chiamata": "furgone_parcheggi",
+   "opzione": "controllo_furgone",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 3,
+   "chiamata": "supplementari",
+   "opzione": "tieni_duro",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 3,
+   "chiamata": "bottiglie",
+   "opzione": "presidio_balcone",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 3,
+   "chiamata": "imp_nebbia",
+   "opzione": "lampeggianti",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e03",
+   "ondata": 3,
+   "chiamata": "rigori_curve",
+   "opzione": "cordone_curve",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 4,
+   "chiamata": "risultato",
+   "opzione": "trattieni_ospiti3",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e03",
+   "ondata": 4,
+   "chiamata": "imp_lampioni",
+   "opzione": "tecnico_lampioni",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e03",
+   "ondata": 4,
+   "chiamata": "silenzio_np",
+   "opzione": "vie_chiuse",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e03",
+   "ondata": 4,
+   "chiamata": "troupe_notte",
+   "opzione": "niente_commento",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e04",
+   "ondata": 1,
+   "chiamata": "arance",
+   "opzione": "chiudi_mercato",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e04",
+   "ondata": 1,
+   "chiamata": "corteo_fonderie",
+   "opzione": "devia_corteo",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e04",
+   "ondata": 1,
+   "chiamata": "imp_ghiaccio",
+   "opzione": "steward_ghiaccio",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e04",
+   "ondata": 1,
+   "chiamata": "kebab_chiuso",
+   "opzione": "lascia_panino",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e04",
+   "ondata": 2,
+   "chiamata": "varchi_falsi",
+   "opzione": "occhio_chiuso",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e04",
+   "ondata": 2,
+   "chiamata": "imp_televisore",
+   "opzione": "tecnico_antenna",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e04",
+   "ondata": 2,
+   "chiamata": "fumo_arancio_v",
+   "opzione": "steward_fumo4",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e04",
+   "ondata": 2,
+   "chiamata": "coro_fonderie",
+   "opzione": "permetti_coro",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e04",
+   "ondata": 3,
+   "chiamata": "risultato_chiuso",
+   "opzione": "festa_piazzale",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e04",
+   "ondata": 3,
+   "chiamata": "furgone_mercato",
+   "opzione": "annota_furgone",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e04",
+   "ondata": 3,
+   "chiamata": "imp_oche",
+   "opzione": "allevatore",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e04",
+   "ondata": 3,
+   "chiamata": "angolo",
+   "opzione": "parla_angolo",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 1,
+   "chiamata": "sindacato",
+   "opzione": "impegno_firmato",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 1,
+   "chiamata": "imp_spazzatrice",
+   "opzione": "devia_spazzatrice",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 1,
+   "chiamata": "volontari_v",
+   "opzione": "volontari_si",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "chiamata": "balaustra",
+   "opzione": "squadra_scale",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "chiamata": "megafono_v",
+   "opzione": "lascia_megafono",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "chiamata": "imp_vernice",
+   "opzione": "nastro_vernice",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "chiamata": "laser_q",
+   "opzione": "ammonisci",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 3,
+   "chiamata": "coro_steward_v",
+   "opzione": "silenzio_rete",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 3,
+   "chiamata": "imp_pettorine",
+   "opzione": "squadra_curva",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 3,
+   "chiamata": "parola_gentile",
+   "opzione": "di_parola",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "chiamata": "risultato",
+   "opzione": "uscita_tornelli",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "chiamata": "imp_strada_sbagliata",
+   "opzione": "scorta_pullman",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "chiamata": "domattina",
+   "opzione": "incontro_no",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "chiamata": "fondo_strada",
+   "opzione": "chiudi_fondo",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 1,
+   "chiamata": "sindacato",
+   "opzione": "impegno_firmato",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 1,
+   "chiamata": "imp_lucchetto",
+   "opzione": "laterale",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 1,
+   "chiamata": "volontari_v",
+   "opzione": "volontari_si",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "chiamata": "balaustra",
+   "opzione": "squadra_scale",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "chiamata": "megafono",
+   "opzione": "togli_megafono",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "chiamata": "imp_vernice",
+   "opzione": "giornali_seggiolini",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "chiamata": "laser_q",
+   "opzione": "pausa5",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 3,
+   "chiamata": "coro_steward",
+   "opzione": "risposta_rete",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 3,
+   "chiamata": "imp_cavo",
+   "opzione": "cartoni_cavo",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 3,
+   "chiamata": "parola_gentile",
+   "opzione": "di_parola",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 3,
+   "chiamata": "torce5",
+   "opzione": "squadra_torce",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "chiamata": "risultato",
+   "opzione": "uscita_tornelli",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "chiamata": "imp_strada_sbagliata",
+   "opzione": "torna_piazzale",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "chiamata": "domattina",
+   "opzione": "incontro_si",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "chiamata": "fondo_strada",
+   "opzione": "chiudi_fondo",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 1,
+   "chiamata": "palco",
+   "opzione": "squadre_palco",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 1,
+   "chiamata": "sponsor",
+   "opzione": "chiama_impresa",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 1,
+   "chiamata": "imp_allarme",
+   "opzione": "steward_banca",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e06",
+   "ondata": 1,
+   "chiamata": "corteo_cinderwick",
+   "opzione": "mediatore6",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e06",
+   "ondata": 1,
+   "chiamata": "ospiti_concerto",
+   "opzione": "dritti_stadio",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 2,
+   "chiamata": "volume",
+   "opzione": "abbassa",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 2,
+   "chiamata": "fumo_viola_v",
+   "opzione": "steward_viola",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 2,
+   "chiamata": "imp_palloncini",
+   "opzione": "raccogli",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e06",
+   "ondata": 2,
+   "chiamata": "saluto_cantante",
+   "opzione": "lascia_cantante",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 2,
+   "chiamata": "pass_falsi",
+   "opzione": "ferma_falsi6",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 3,
+   "chiamata": "bis",
+   "opzione": "niente_bis",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e06",
+   "ondata": 3,
+   "chiamata": "imp_monopattini",
+   "opzione": "camioncino",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e06",
+   "ondata": 3,
+   "chiamata": "rigore6_v",
+   "opzione": "lascia_sfogare",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 4,
+   "chiamata": "risultato_senzabis",
+   "opzione": "stadio_prima",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e06",
+   "ondata": 4,
+   "chiamata": "poche_navette_v",
+   "opzione": "a_piedi",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e06",
+   "ondata": 4,
+   "chiamata": "imp_metro",
+   "opzione": "squadra_viale",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e06",
+   "ondata": 4,
+   "chiamata": "furgone_palco",
+   "opzione": "annota_palco",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e07",
+   "ondata": 1,
+   "chiamata": "quaranta_pulmini",
+   "opzione": "guida_parcheggi",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e07",
+   "ondata": 1,
+   "chiamata": "foto_ricordo",
+   "opzione": "lascia_foto7",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e07",
+   "ondata": 1,
+   "chiamata": "banda",
+   "opzione": "banda_suona",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e07",
+   "ondata": 1,
+   "chiamata": "imp_valigie",
+   "opzione": "deposito",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e07",
+   "ondata": 1,
+   "chiamata": "sconti_benvenuto",
+   "opzione": "avvisa_club",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e07",
+   "ondata": 2,
+   "chiamata": "pupazzo",
+   "opzione": "togli_pupazzo",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e07",
+   "ondata": 2,
+   "chiamata": "imp_vetro",
+   "opzione": "camion_piazzale",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e07",
+   "ondata": 2,
+   "chiamata": "coro_imparato",
+   "opzione": "spiega_coro",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e07",
+   "ondata": 2,
+   "chiamata": "bambino",
+   "opzione": "steward_bambini",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e07",
+   "ondata": 3,
+   "chiamata": "primo_gol",
+   "opzione": "cordone_campo",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e07",
+   "ondata": 3,
+   "chiamata": "imp_chiavi_pulmino",
+   "opzione": "cerca_tuoi",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e07",
+   "ondata": 3,
+   "chiamata": "pareggio_casa",
+   "opzione": "squadra_larkspire7",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e07",
+   "ondata": 4,
+   "chiamata": "risultato",
+   "opzione": "carovana_libera",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e07",
+   "ondata": 4,
+   "chiamata": "imp_scroscio",
+   "opzione": "tettoie",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e07",
+   "ondata": 4,
+   "chiamata": "capodanno",
+   "opzione": "chiudi_viale7",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e07",
+   "ondata": 4,
+   "chiamata": "batteria_v",
+   "opzione": "spingi_pulmino",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e08",
+   "ondata": 1,
+   "chiamata": "dessi_chiama",
+   "opzione": "rispetto_si",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e08",
+   "ondata": 1,
+   "chiamata": "facce_nuove",
+   "opzione": "scorta8",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e08",
+   "ondata": 1,
+   "chiamata": "imp_gonfiabile",
+   "opzione": "porta_via",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e08",
+   "ondata": 1,
+   "chiamata": "quello_la_v",
+   "opzione": "gruppo_si",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e08",
+   "ondata": 1,
+   "chiamata": "permesso",
+   "opzione": "cosa_sai",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e08",
+   "ondata": 2,
+   "chiamata": "coreografia",
+   "opzione": "accesso_libero",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e08",
+   "ondata": 2,
+   "chiamata": "striscione_nome",
+   "opzione": "lascia_nome",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e08",
+   "ondata": 2,
+   "chiamata": "imp_tamburo",
+   "opzione": "libera_tamburo",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e08",
+   "ondata": 2,
+   "chiamata": "coro_dessi",
+   "opzione": "steward_ospiti8",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e08",
+   "ondata": 3,
+   "chiamata": "mano",
+   "opzione": "fai_finta",
+   "comoda": true,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e08",
+   "ondata": 3,
+   "chiamata": "imp_grandine",
+   "opzione": "fermi_in_curva",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e08",
+   "ondata": 3,
+   "chiamata": "li_manda",
+   "opzione": "respingi8",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e08",
+   "ondata": 3,
+   "chiamata": "fumo_verde",
+   "opzione": "steward_verde",
+   "comoda": false,
+   "delleOpzioni": 2
+  },
+  {
+   "ep": "e08",
+   "ondata": 4,
+   "chiamata": "risultato_v",
+   "opzione": "ritorno_deviato",
+   "comoda": true,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e08",
+   "ondata": 4,
+   "chiamata": "stretta_mano",
+   "opzione": "stringi",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e08",
+   "ondata": 4,
+   "chiamata": "imp_pulcini",
+   "opzione": "varco_pulcini",
+   "comoda": false,
+   "delleOpzioni": 3
+  },
+  {
+   "ep": "e08",
+   "ondata": 4,
+   "chiamata": "sedile",
+   "opzione": "annota8",
+   "comoda": false,
+   "delleOpzioni": 2
+  }
+ ],
+ "chiusure": [
+  {
+   "ep": "e01",
+   "ondata": 1,
+   "ondate": 3,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:corteo_partito/osserva",
+    "1:ufficio_insiste_v/asseconda",
+    "1:pullman/conta",
+    "1:imp_ambulanza/apri_varco",
+    "1:rinforzi/chiedi",
+    "1:striscione/rimuovi"
+   ],
+   "ondataSalvata": 1,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 1,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e01",
+   "ondata": 2,
+   "ondate": 3,
+   "mostratiTesti": [
+    "Il corteo lasciato passare è arrivato al piazzale senza scorta: il comando chiede chi l'ha deciso."
+   ],
+   "scelteAlMomento": [
+    "1:corteo_partito/osserva",
+    "1:ufficio_insiste_v/asseconda",
+    "1:pullman/conta",
+    "1:imp_ambulanza/apri_varco",
+    "1:rinforzi/chiedi",
+    "1:striscione/rimuovi",
+    "2:fumogeni/spegni",
+    "2:porta_servizio/presidia",
+    "2:imp_buio/torce",
+    "2:presidente/aspetti",
+    "2:capo_curva/mediatore"
+   ],
+   "ondataSalvata": 2,
+   "attesi": 1,
+   "attesiTesti": [
+    "Il corteo lasciato passare è arrivato al piazzale senza scorta: il comando chiede chi l'ha deciso."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 1,
+     "chiamata": "«È partito! Duecento dalle fonderie, cori e bandiere. Nessuno ha avvisato nessuno.»",
+     "opzione": "Lascialo passare e osserva",
+     "messaggio": "Il corteo lasciato passare è arrivato al piazzale senza scorta: il comando chiede chi l'ha deciso."
+    }
+   ],
+   "rapportoN": 2,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e01",
+   "ondata": 3,
+   "ondate": 3,
+   "mostratiTesti": [
+    "Il presidente dello Skyfield ha aspettato. Ora chiama il comando: «Mi avete lasciato in tribuna».",
+    "La troupe ha filmato lo stesso: in onda l'uscita, senza una parola del responsabile."
+   ],
+   "scelteAlMomento": [
+    "1:corteo_partito/osserva",
+    "1:ufficio_insiste_v/asseconda",
+    "1:pullman/conta",
+    "1:imp_ambulanza/apri_varco",
+    "1:rinforzi/chiedi",
+    "1:striscione/rimuovi",
+    "2:fumogeni/spegni",
+    "2:porta_servizio/presidia",
+    "2:imp_buio/torce",
+    "2:presidente/aspetti",
+    "2:capo_curva/mediatore",
+    "3:pareggio/trattieni",
+    "3:incrocio/chiudi",
+    "3:lavezzari/accetta",
+    "3:imp_rifiuti/camion_piazzale",
+    "3:troupe/niente",
+    "3:sciarpe/paga"
+   ],
+   "ondataSalvata": 3,
+   "attesi": 2,
+   "attesiTesti": [
+    "Il presidente dello Skyfield ha aspettato. Ora chiama il comando: «Mi avete lasciato in tribuna».",
+    "La troupe ha filmato lo stesso: in onda l'uscita, senza una parola del responsabile."
+   ],
+   "mostrati": 2,
+   "testiUguali": true,
+   "scorr": {
+    "y": 27,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 2,
+     "chiamata": "«Il presidente dello Skyfield Athletic ti vuole in tribuna. Adesso. È urgente, come sempre",
+     "opzione": "Digli di aspettare la fine",
+     "messaggio": "Il presidente dello Skyfield ha aspettato. Ora chiama il comando: «Mi avete lasciato in tribuna»."
+    },
+    {
+     "dopoSceltaIn": 3,
+     "chiamata": "«Una troupe vuole un'intervista a caldo al nuovo responsabile. In diretta, adesso.»",
+     "opzione": "Niente interviste",
+     "messaggio": "La troupe ha filmato lo stesso: in onda l'uscita, senza una parola del responsabile."
+    }
+   ],
+   "rapportoN": 3,
+   "radioNelRapporto": 2,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e02",
+   "ondata": 1,
+   "ondate": 4,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:ritardo/scorta_subito",
+    "1:responsabile/non_fidarti",
+    "1:imp_banda/banda_stazione",
+    "1:selfie/devia",
+    "1:biglietti_voce/sequestra"
+   ],
+   "ondataSalvata": 1,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 1,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e02",
+   "ondata": 2,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Il responsabile del Railhead, offeso, parla ai giornalisti di «viale militarizzato»."
+   ],
+   "scelteAlMomento": [
+    "1:ritardo/scorta_subito",
+    "1:responsabile/non_fidarti",
+    "1:imp_banda/banda_stazione",
+    "1:selfie/devia",
+    "1:biglietti_voce/sequestra",
+    "2:secondo_treno_v/normale",
+    "2:tornelli_falsi/respingi",
+    "2:imp_piccione/libera_gabbiotto",
+    "2:corteo_viale/corteo_scortato",
+    "2:comitato_quartiere/presidio_quartiere"
+   ],
+   "ondataSalvata": 2,
+   "attesi": 1,
+   "attesiTesti": [
+    "Il responsabile del Railhead, offeso, parla ai giornalisti di «viale militarizzato»."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 1,
+     "chiamata": "«Qui Railhead: i miei ragazzi sono tranquilli, garantisco io. Ci lasci il viale libero.»",
+     "opzione": "Grazie, ma il viale lo presidiamo noi",
+     "messaggio": "Il responsabile del Railhead, offeso, parla ai giornalisti di «viale militarizzato»."
+    }
+   ],
+   "rapportoN": 2,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e02",
+   "ondata": 3,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Il capotreno mette a verbale il vagone rotto «senza accoglienza». Il verbale arriva al comando."
+   ],
+   "scelteAlMomento": [
+    "1:ritardo/scorta_subito",
+    "1:responsabile/non_fidarti",
+    "1:imp_banda/banda_stazione",
+    "1:selfie/devia",
+    "1:biglietti_voce/sequestra",
+    "2:secondo_treno_v/normale",
+    "2:tornelli_falsi/respingi",
+    "2:imp_piccione/libera_gabbiotto",
+    "2:corteo_viale/corteo_scortato",
+    "2:comitato_quartiere/presidio_quartiere",
+    "3:striscione_ospiti_v/ignora_str",
+    "3:imp_acquazzone/teli",
+    "3:caldo_casa/mediatore_casa",
+    "3:biglietti_rete/annota"
+   ],
+   "ondataSalvata": 3,
+   "attesi": 1,
+   "attesiTesti": [
+    "Il capotreno mette a verbale il vagone rotto «senza accoglienza». Il verbale arriva al comando."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 2,
+     "chiamata": "«Ferrovie: entra il secondo treno speciale. A bordo sono finiti i panini, e anche la pazie",
+     "opzione": "Lascialo arrivare come previsto",
+     "messaggio": "Il capotreno mette a verbale il vagone rotto «senza accoglienza». Il verbale arriva al comando."
+    }
+   ],
+   "rapportoN": 3,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e02",
+   "ondata": 4,
+   "ondate": 4,
+   "mostratiTesti": [
+    "«Railhead non dimentica»: in rete si scopre cosa, contro i ferrovieri. Le ferrovie protestano.",
+    "Senza saluto, in tv il responsabile del Railhead parla di «accoglienza fredda». Il comando chiama."
+   ],
+   "scelteAlMomento": [
+    "1:ritardo/scorta_subito",
+    "1:responsabile/non_fidarti",
+    "1:imp_banda/banda_stazione",
+    "1:selfie/devia",
+    "1:biglietti_voce/sequestra",
+    "2:secondo_treno_v/normale",
+    "2:tornelli_falsi/respingi",
+    "2:imp_piccione/libera_gabbiotto",
+    "2:corteo_viale/corteo_scortato",
+    "2:comitato_quartiere/presidio_quartiere",
+    "3:striscione_ospiti_v/ignora_str",
+    "3:imp_acquazzone/teli",
+    "3:caldo_casa/mediatore_casa",
+    "3:biglietti_rete/annota",
+    "4:risultato/trattieni_ospiti",
+    "4:imp_divano/carica_divano",
+    "4:ultimo_treno_v/trattieni_treno",
+    "4:responsabile_saluta/rifiuta_saluto",
+    "4:vetrine/indaga"
+   ],
+   "ondataSalvata": 4,
+   "attesi": 2,
+   "attesiTesti": [
+    "«Railhead non dimentica»: in rete si scopre cosa, contro i ferrovieri. Le ferrovie protestano.",
+    "Senza saluto, in tv il responsabile del Railhead parla di «accoglienza fredda». Il comando chiama."
+   ],
+   "mostrati": 2,
+   "testiUguali": true,
+   "scorr": {
+    "y": 13,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 3,
+     "chiamata": "«Curva ospiti: un lenzuolo con scritto “TRECENTO CHILOMETRI NON BASTANO”. Che vorrà dire?»",
+     "opzione": "Lascialo dov'è",
+     "messaggio": "«Railhead non dimentica»: in rete si scopre cosa, contro i ferrovieri. Le ferrovie protestano."
+    },
+    {
+     "dopoSceltaIn": 4,
+     "chiamata": "«Il responsabile del Railhead vuole salutarla e ringraziarla davanti alle telecamere.»",
+     "opzione": "Declina con gentilezza",
+     "messaggio": "Senza saluto, in tv il responsabile del Railhead parla di «accoglienza fredda». Il comando chiama."
+    }
+   ],
+   "rapportoN": 4,
+   "radioNelRapporto": 2,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e03",
+   "ondata": 1,
+   "ondate": 4,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:auto_in_sosta/multe",
+    "1:cartelloni/ascolta_comitato",
+    "1:imp_carro/sblocca",
+    "1:ospiti_arrivano_v/parcheggio_lontano"
+   ],
+   "ondataSalvata": 1,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 1,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e03",
+   "ondata": 2,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Le auto multate sono ancora sui passi carrabili: un residente chiuso in garage chiama la tv."
+   ],
+   "scelteAlMomento": [
+    "1:auto_in_sosta/multe",
+    "1:cartelloni/ascolta_comitato",
+    "1:imp_carro/sblocca",
+    "1:ospiti_arrivano_v/parcheggio_lontano",
+    "2:laser_v/lascia_laser",
+    "2:imp_allarme/rintraccia",
+    "2:finestre/pattuglia_vie",
+    "2:torcia_casa/steward_torcia",
+    "2:furgone_parcheggi/controllo_furgone"
+   ],
+   "ondataSalvata": 2,
+   "attesi": 1,
+   "attesiTesti": [
+    "Le auto multate sono ancora sui passi carrabili: un residente chiuso in garage chiama la tv."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 1,
+     "chiamata": "«Quartiere: auto di tifosi sui passi carrabili. Un residente ha chiamato il carro attrezzi",
+     "opzione": "Solo multe, niente rimozioni",
+     "messaggio": "Le auto multate sono ancora sui passi carrabili: un residente chiuso in garage chiama la tv."
+    }
+   ],
+   "rapportoN": 2,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e03",
+   "ondata": 3,
+   "ondate": 4,
+   "mostratiTesti": [
+    "L'arbitro ha scritto i laser nel referto: il comando chiede perché nessuno è intervenuto."
+   ],
+   "scelteAlMomento": [
+    "1:auto_in_sosta/multe",
+    "1:cartelloni/ascolta_comitato",
+    "1:imp_carro/sblocca",
+    "1:ospiti_arrivano_v/parcheggio_lontano",
+    "2:laser_v/lascia_laser",
+    "2:imp_allarme/rintraccia",
+    "2:finestre/pattuglia_vie",
+    "2:torcia_casa/steward_torcia",
+    "2:furgone_parcheggi/controllo_furgone",
+    "3:supplementari/tieni_duro",
+    "3:bottiglie/presidio_balcone",
+    "3:imp_nebbia/lampeggianti",
+    "3:rigori_curve/cordone_curve"
+   ],
+   "ondataSalvata": 3,
+   "attesi": 1,
+   "attesiTesti": [
+    "L'arbitro ha scritto i laser nel referto: il comando chiede perché nessuno è intervenuto."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 2,
+     "chiamata": "«Curva ospiti: lucine verdi in faccia al portiere di casa a ogni rinvio. L'arbitro sbuffa.",
+     "opzione": "Lascia che si stanchino",
+     "messaggio": "L'arbitro ha scritto i laser nel referto: il comando chiede perché nessuno è intervenuto."
+    }
+   ],
+   "rapportoN": 3,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e03",
+   "ondata": 4,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Niente rinforzi per la notte: all'una il comitato conta le pattuglie dai balconi e chiama il comune.",
+    "Nessun commento: in tv parlano solo i residenti in pigiama. Il comune chiama."
+   ],
+   "scelteAlMomento": [
+    "1:auto_in_sosta/multe",
+    "1:cartelloni/ascolta_comitato",
+    "1:imp_carro/sblocca",
+    "1:ospiti_arrivano_v/parcheggio_lontano",
+    "2:laser_v/lascia_laser",
+    "2:imp_allarme/rintraccia",
+    "2:finestre/pattuglia_vie",
+    "2:torcia_casa/steward_torcia",
+    "2:furgone_parcheggi/controllo_furgone",
+    "3:supplementari/tieni_duro",
+    "3:bottiglie/presidio_balcone",
+    "3:imp_nebbia/lampeggianti",
+    "3:rigori_curve/cordone_curve",
+    "4:risultato/trattieni_ospiti3",
+    "4:imp_lampioni/tecnico_lampioni",
+    "4:silenzio_np/vie_chiuse",
+    "4:troupe_notte/niente_commento"
+   ],
+   "ondataSalvata": 4,
+   "attesi": 2,
+   "attesiTesti": [
+    "Niente rinforzi per la notte: all'una il comitato conta le pattuglie dai balconi e chiama il comune.",
+    "Nessun commento: in tv parlano solo i residenti in pigiama. Il comune chiama."
+   ],
+   "mostrati": 2,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 3,
+     "chiamata": "«Uno a uno: supplementari, forse rigori. Il comitato ha appena scoperto cosa sono i rigori",
+     "opzione": "Ce la facciamo con quello che abbiamo",
+     "messaggio": "Niente rinforzi per la notte: all'una il comitato conta le pattuglie dai balconi e chiama il comune."
+    },
+    {
+     "dopoSceltaIn": 4,
+     "chiamata": "«In rete: residenti in pigiama fischiano i tifosi, ventimila visite. Una troupe chiede un ",
+     "opzione": "Niente commenti stanotte",
+     "messaggio": "Nessun commento: in tv parlano solo i residenti in pigiama. Il comune chiama."
+    }
+   ],
+   "rapportoN": 4,
+   "radioNelRapporto": 2,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e04",
+   "ondata": 1,
+   "ondate": 3,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:arance/chiudi_mercato",
+    "1:corteo_fonderie/devia_corteo",
+    "1:imp_ghiaccio/steward_ghiaccio",
+    "1:kebab_chiuso/lascia_panino"
+   ],
+   "ondataSalvata": 1,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 1,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e04",
+   "ondata": 2,
+   "ondate": 3,
+   "mostratiTesti": [
+    "I commercianti del mercato chiuso in anticipo scrivono al comune. Il comune gira la lettera a te."
+   ],
+   "scelteAlMomento": [
+    "1:arance/chiudi_mercato",
+    "1:corteo_fonderie/devia_corteo",
+    "1:imp_ghiaccio/steward_ghiaccio",
+    "1:kebab_chiuso/lascia_panino",
+    "2:varchi_falsi/occhio_chiuso",
+    "2:imp_televisore/tecnico_antenna",
+    "2:fumo_arancio_v/steward_fumo4",
+    "2:coro_fonderie/permetti_coro"
+   ],
+   "ondataSalvata": 2,
+   "attesi": 1,
+   "attesiTesti": [
+    "I commercianti del mercato chiuso in anticipo scrivono al comune. Il comune gira la lettera a te."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 1,
+     "chiamata": "«Commercianti: i tifosi passano fra i banchi, cassetta di arance rovesciata. Chiudiamo?»",
+     "opzione": "Chiedi di chiudere il mercato subito",
+     "messaggio": "I commercianti del mercato chiuso in anticipo scrivono al comune. Il comune gira la lettera a te."
+    }
+   ],
+   "rapportoN": 2,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e04",
+   "ondata": 3,
+   "ondate": 3,
+   "mostratiTesti": [
+    "I biglietti falsi lasciati passare finiscono nel rapporto del club: «varchi aperti dalla sicurezza».",
+    "Il gruppo all'angolo ha ascoltato, poi ha aspettato i pullman lo stesso. Il comando lo sa."
+   ],
+   "scelteAlMomento": [
+    "1:arance/chiudi_mercato",
+    "1:corteo_fonderie/devia_corteo",
+    "1:imp_ghiaccio/steward_ghiaccio",
+    "1:kebab_chiuso/lascia_panino",
+    "2:varchi_falsi/occhio_chiuso",
+    "2:imp_televisore/tecnico_antenna",
+    "2:fumo_arancio_v/steward_fumo4",
+    "2:coro_fonderie/permetti_coro",
+    "3:risultato_chiuso/festa_piazzale",
+    "3:furgone_mercato/annota_furgone",
+    "3:imp_oche/allevatore",
+    "3:angolo/parla_angolo"
+   ],
+   "ondataSalvata": 3,
+   "attesi": 2,
+   "attesiTesti": [
+    "I biglietti falsi lasciati passare finiscono nel rapporto del club: «varchi aperti dalla sicurezza».",
+    "Il gruppo all'angolo ha ascoltato, poi ha aspettato i pullman lo stesso. Il comando lo sa."
+   ],
+   "mostrati": 2,
+   "testiUguali": true,
+   "scorr": {
+    "y": 29,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 2,
+     "chiamata": "«Piazzale: biglietti falsi ai varchi, duecento persone ferme. Fischio d'inizio fra dieci m",
+     "opzione": "Chiudi un occhio",
+     "messaggio": "I biglietti falsi lasciati passare finiscono nel rapporto del club: «varchi aperti dalla sicurezza»."
+    },
+    {
+     "dopoSceltaIn": 3,
+     "chiamata": "«Strada da Kiln: gruppo di casa all'angolo delle fonderie, aspetta i pullman ospiti.»",
+     "opzione": "Mandaci qualcuno a parlare",
+     "messaggio": "Il gruppo all'angolo ha ascoltato, poi ha aspettato i pullman lo stesso. Il comando lo sa."
+    }
+   ],
+   "rapportoN": 3,
+   "radioNelRapporto": 2,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e05",
+   "ondata": 1,
+   "ondate": 4,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:sindacato/impegno_firmato",
+    "1:imp_spazzatrice/devia_spazzatrice",
+    "1:volontari_v/volontari_si"
+   ],
+   "ondataSalvata": 1,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 1,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Il comando non riconosce l'impegno firmato a suo nome e chiede spiegazioni per iscritto."
+   ],
+   "scelteAlMomento": [
+    "1:sindacato/impegno_firmato",
+    "1:imp_spazzatrice/devia_spazzatrice",
+    "1:volontari_v/volontari_si",
+    "2:balaustra/squadra_scale",
+    "2:megafono_v/lascia_megafono",
+    "2:imp_vernice/nastro_vernice",
+    "2:laser_q/ammonisci"
+   ],
+   "ondataSalvata": 2,
+   "attesi": 1,
+   "attesiTesti": [
+    "Il comando non riconosce l'impegno firmato a suo nome e chiede spiegazioni per iscritto."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 1,
+     "chiamata": "«Sindacato: metà steward fuori, vogliamo il contratto. Un impegno firmato e qualcuno rient",
+     "opzione": "Firma un impegno a nome del comando",
+     "messaggio": "Il comando non riconosce l'impegno firmato a suo nome e chiede spiegazioni per iscritto."
+    }
+   ],
+   "rapportoN": 2,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e05",
+   "ondata": 3,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Il discorso del picchetto al megafono è in rete. Il comando chiede chi l'ha permesso."
+   ],
+   "scelteAlMomento": [
+    "1:sindacato/impegno_firmato",
+    "1:imp_spazzatrice/devia_spazzatrice",
+    "1:volontari_v/volontari_si",
+    "2:balaustra/squadra_scale",
+    "2:megafono_v/lascia_megafono",
+    "2:imp_vernice/nastro_vernice",
+    "2:laser_q/ammonisci",
+    "3:coro_steward_v/silenzio_rete",
+    "3:imp_pettorine/squadra_curva",
+    "3:parola_gentile/di_parola"
+   ],
+   "ondataSalvata": 3,
+   "attesi": 1,
+   "attesiTesti": [
+    "Il discorso del picchetto al megafono è in rete. Il comando chiede chi l'ha permesso."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 2,
+     "chiamata": "«Sindacato: ai tornelli leggiamo le buste paga ad alta voce. La coda ascolta, e non avanza",
+     "opzione": "Lasciali leggere",
+     "messaggio": "Il discorso del picchetto al megafono è in rete. Il comando chiede chi l'ha permesso."
+    }
+   ],
+   "rapportoN": 3,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Il coro del Domepark ha fatto il giro della rete, senza una risposta. Il club Skyfield protesta.",
+    "Rimandato a fine stagione: il sindacato annuncia lo sciopero anche alla prossima partita."
+   ],
+   "scelteAlMomento": [
+    "1:sindacato/impegno_firmato",
+    "1:imp_spazzatrice/devia_spazzatrice",
+    "1:volontari_v/volontari_si",
+    "2:balaustra/squadra_scale",
+    "2:megafono_v/lascia_megafono",
+    "2:imp_vernice/nastro_vernice",
+    "2:laser_q/ammonisci",
+    "3:coro_steward_v/silenzio_rete",
+    "3:imp_pettorine/squadra_curva",
+    "3:parola_gentile/di_parola",
+    "4:risultato/uscita_tornelli",
+    "4:imp_strada_sbagliata/scorta_pullman",
+    "4:domattina/incontro_no",
+    "4:fondo_strada/chiudi_fondo"
+   ],
+   "ondataSalvata": 4,
+   "attesi": 2,
+   "attesiTesti": [
+    "Il coro del Domepark ha fatto il giro della rete, senza una risposta. Il club Skyfield protesta.",
+    "Rimandato a fine stagione: il sindacato annuncia lo sciopero anche alla prossima partita."
+   ],
+   "mostrati": 2,
+   "testiUguali": true,
+   "scorr": {
+    "y": 27,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 3,
+     "chiamata": "«In rete: la curva Domepark sventola pettorine finte e canta “steward in vacanza”. Gira ov",
+     "opzione": "Non rispondere",
+     "messaggio": "Il coro del Domepark ha fatto il giro della rete, senza una risposta. Il club Skyfield protesta."
+    },
+    {
+     "dopoSceltaIn": 4,
+     "chiamata": "«Fine partita. Il sindacato vuole incontrarti domattina, davanti ai giornalisti.»",
+     "opzione": "Rimanda a fine stagione",
+     "messaggio": "Rimandato a fine stagione: il sindacato annuncia lo sciopero anche alla prossima partita."
+    }
+   ],
+   "rapportoN": 4,
+   "radioNelRapporto": 2,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e05",
+   "ondata": 1,
+   "ondate": 4,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:sindacato/impegno_firmato",
+    "1:imp_lucchetto/laterale",
+    "1:volontari_v/volontari_si"
+   ],
+   "ondataSalvata": 1,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 1,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e05",
+   "ondata": 2,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Il comando non riconosce l'impegno firmato a suo nome e chiede spiegazioni per iscritto."
+   ],
+   "scelteAlMomento": [
+    "1:sindacato/impegno_firmato",
+    "1:imp_lucchetto/laterale",
+    "1:volontari_v/volontari_si",
+    "2:balaustra/squadra_scale",
+    "2:megafono/togli_megafono",
+    "2:imp_vernice/giornali_seggiolini",
+    "2:laser_q/pausa5"
+   ],
+   "ondataSalvata": 2,
+   "attesi": 1,
+   "attesiTesti": [
+    "Il comando non riconosce l'impegno firmato a suo nome e chiede spiegazioni per iscritto."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 1,
+     "chiamata": "«Sindacato: metà steward fuori, vogliamo il contratto. Un impegno firmato e qualcuno rient",
+     "opzione": "Firma un impegno a nome del comando",
+     "messaggio": "Il comando non riconosce l'impegno firmato a suo nome e chiede spiegazioni per iscritto."
+    }
+   ],
+   "rapportoN": 2,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e05",
+   "ondata": 3,
+   "ondate": 4,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:sindacato/impegno_firmato",
+    "1:imp_lucchetto/laterale",
+    "1:volontari_v/volontari_si",
+    "2:balaustra/squadra_scale",
+    "2:megafono/togli_megafono",
+    "2:imp_vernice/giornali_seggiolini",
+    "2:laser_q/pausa5",
+    "3:coro_steward/risposta_rete",
+    "3:imp_cavo/cartoni_cavo",
+    "3:parola_gentile/di_parola",
+    "3:torce5/squadra_torce"
+   ],
+   "ondataSalvata": 3,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 3,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e05",
+   "ondata": 4,
+   "ondate": 4,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:sindacato/impegno_firmato",
+    "1:imp_lucchetto/laterale",
+    "1:volontari_v/volontari_si",
+    "2:balaustra/squadra_scale",
+    "2:megafono/togli_megafono",
+    "2:imp_vernice/giornali_seggiolini",
+    "2:laser_q/pausa5",
+    "3:coro_steward/risposta_rete",
+    "3:imp_cavo/cartoni_cavo",
+    "3:parola_gentile/di_parola",
+    "3:torce5/squadra_torce",
+    "4:risultato/uscita_tornelli",
+    "4:imp_strada_sbagliata/torna_piazzale",
+    "4:domattina/incontro_si",
+    "4:fondo_strada/chiudi_fondo"
+   ],
+   "ondataSalvata": 4,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 4,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e06",
+   "ondata": 1,
+   "ondate": 4,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:palco/squadre_palco",
+    "1:sponsor/chiama_impresa",
+    "1:imp_allarme/steward_banca",
+    "1:corteo_cinderwick/mediatore6",
+    "1:ospiti_concerto/dritti_stadio"
+   ],
+   "ondataSalvata": 1,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 1,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e06",
+   "ondata": 2,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Varrone & Figli ha chiamato in comune: «interferenze col concerto». Il comune chiama te."
+   ],
+   "scelteAlMomento": [
+    "1:palco/squadre_palco",
+    "1:sponsor/chiama_impresa",
+    "1:imp_allarme/steward_banca",
+    "1:corteo_cinderwick/mediatore6",
+    "1:ospiti_concerto/dritti_stadio",
+    "2:volume/abbassa",
+    "2:fumo_viola_v/steward_viola",
+    "2:imp_palloncini/raccogli",
+    "2:saluto_cantante/lascia_cantante",
+    "2:pass_falsi/ferma_falsi6"
+   ],
+   "ondataSalvata": 2,
+   "attesi": 1,
+   "attesiTesti": [
+    "Varrone & Figli ha chiamato in comune: «interferenze col concerto». Il comune chiama te."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 1,
+     "chiamata": "«Striscione sul palco: sponsor Varrone & Figli, quelli dei cartelloni della notte di coppa",
+     "opzione": "Chiama l'impresa: chiedi di anticipare",
+     "messaggio": "Varrone & Figli ha chiamato in comune: «interferenze col concerto». Il comune chiama te."
+    }
+   ],
+   "rapportoN": 2,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e06",
+   "ondata": 3,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Il saluto del cantante «ai ragazzi del Kiln» è in tutti i video. Il Garden protesta col comune."
+   ],
+   "scelteAlMomento": [
+    "1:palco/squadre_palco",
+    "1:sponsor/chiama_impresa",
+    "1:imp_allarme/steward_banca",
+    "1:corteo_cinderwick/mediatore6",
+    "1:ospiti_concerto/dritti_stadio",
+    "2:volume/abbassa",
+    "2:fumo_viola_v/steward_viola",
+    "2:imp_palloncini/raccogli",
+    "2:saluto_cantante/lascia_cantante",
+    "2:pass_falsi/ferma_falsi6",
+    "3:bis/niente_bis",
+    "3:imp_monopattini/camioncino",
+    "3:rigore6_v/lascia_sfogare"
+   ],
+   "ondataSalvata": 3,
+   "attesi": 1,
+   "attesiTesti": [
+    "Il saluto del cantante «ai ragazzi del Kiln» è in tutti i video. Il Garden protesta col comune."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 2,
+     "chiamata": "«In rete: il cantante saluta “i ragazzi del Kiln”. La curva canta, il Garden no.»",
+     "opzione": "Lascialo cantare",
+     "messaggio": "Il saluto del cantante «ai ragazzi del Kiln» è in tutti i video. Il Garden protesta col comune."
+    }
+   ],
+   "rapportoN": 3,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e06",
+   "ondata": 4,
+   "ondate": 4,
+   "mostratiTesti": [
+    "La contestazione all'arbitro è nel referto. Il Kiln rischia la multa, e la gira a te.",
+    "Chi è tornato a piedi scrive al giornale: «lasciati soli fino in periferia». Il comune legge."
+   ],
+   "scelteAlMomento": [
+    "1:palco/squadre_palco",
+    "1:sponsor/chiama_impresa",
+    "1:imp_allarme/steward_banca",
+    "1:corteo_cinderwick/mediatore6",
+    "1:ospiti_concerto/dritti_stadio",
+    "2:volume/abbassa",
+    "2:fumo_viola_v/steward_viola",
+    "2:imp_palloncini/raccogli",
+    "2:saluto_cantante/lascia_cantante",
+    "2:pass_falsi/ferma_falsi6",
+    "3:bis/niente_bis",
+    "3:imp_monopattini/camioncino",
+    "3:rigore6_v/lascia_sfogare",
+    "4:risultato_senzabis/stadio_prima",
+    "4:poche_navette_v/a_piedi",
+    "4:imp_metro/squadra_viale",
+    "4:furgone_palco/annota_palco"
+   ],
+   "ondataSalvata": 4,
+   "attesi": 2,
+   "attesiTesti": [
+    "La contestazione all'arbitro è nel referto. Il Kiln rischia la multa, e la gira a te.",
+    "Chi è tornato a piedi scrive al giornale: «lasciati soli fino in periferia». Il comune legge."
+   ],
+   "mostrati": 2,
+   "testiUguali": true,
+   "scorr": {
+    "y": 29,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 3,
+     "chiamata": "«In rete: rigore per il Garden, la curva Kiln giura che era fuori area. Lo grida forte.»",
+     "opzione": "Lascia che si sfoghino",
+     "messaggio": "La contestazione all'arbitro è nel referto. Il Kiln rischia la multa, e la gira a te."
+    },
+    {
+     "dopoSceltaIn": 4,
+     "chiamata": "«Capo, al piazzale passa una navetta ogni venti minuti. E mille persone la aspettano.»",
+     "opzione": "Indica la strada a piedi",
+     "messaggio": "Chi è tornato a piedi scrive al giornale: «lasciati soli fino in periferia». Il comune legge."
+    }
+   ],
+   "rapportoN": 4,
+   "radioNelRapporto": 2,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e07",
+   "ondata": 1,
+   "ondate": 4,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:quaranta_pulmini/guida_parcheggi",
+    "1:foto_ricordo/lascia_foto7",
+    "1:banda/banda_suona",
+    "1:imp_valigie/deposito",
+    "1:sconti_benvenuto/avvisa_club"
+   ],
+   "ondataSalvata": 1,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 1,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e07",
+   "ondata": 2,
+   "ondate": 4,
+   "mostratiTesti": [
+    "La banda del Southwind ha suonato sotto mezzo quartiere. Le lamentele arrivano al comando."
+   ],
+   "scelteAlMomento": [
+    "1:quaranta_pulmini/guida_parcheggi",
+    "1:foto_ricordo/lascia_foto7",
+    "1:banda/banda_suona",
+    "1:imp_valigie/deposito",
+    "1:sconti_benvenuto/avvisa_club",
+    "2:pupazzo/togli_pupazzo",
+    "2:imp_vetro/camion_piazzale",
+    "2:coro_imparato/spiega_coro",
+    "2:bambino/steward_bambini"
+   ],
+   "ondataSalvata": 2,
+   "attesi": 1,
+   "attesiTesti": [
+    "La banda del Southwind ha suonato sotto mezzo quartiere. Le lamentele arrivano al comando."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 1,
+     "chiamata": "«Piazzale: il Southwind attacca con la banda. Ottoni, grancassa, un trombone stonato. Dove",
+     "opzione": "Lasciala suonare sul piazzale",
+     "messaggio": "La banda del Southwind ha suonato sotto mezzo quartiere. Le lamentele arrivano al comando."
+    }
+   ],
+   "rapportoN": 2,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e07",
+   "ondata": 3,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Il responsabile ospiti ha spiegato il coro… cantandolo al megafono. In rete gira il video."
+   ],
+   "scelteAlMomento": [
+    "1:quaranta_pulmini/guida_parcheggi",
+    "1:foto_ricordo/lascia_foto7",
+    "1:banda/banda_suona",
+    "1:imp_valigie/deposito",
+    "1:sconti_benvenuto/avvisa_club",
+    "2:pupazzo/togli_pupazzo",
+    "2:imp_vetro/camion_piazzale",
+    "2:coro_imparato/spiega_coro",
+    "2:bambino/steward_bambini",
+    "3:primo_gol/cordone_campo",
+    "3:imp_chiavi_pulmino/cerca_tuoi",
+    "3:pareggio_casa/squadra_larkspire7"
+   ],
+   "ondataSalvata": 3,
+   "attesi": 1,
+   "attesiTesti": [
+    "Il responsabile ospiti ha spiegato il coro… cantandolo al megafono. In rete gira il video."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 2,
+     "chiamata": "«In rete: coro anti-Skyfield del Southwind, preso da un video. In strada da Skyfield lo ca",
+     "opzione": "Chiedi al responsabile ospiti di spiegarglielo",
+     "messaggio": "Il responsabile ospiti ha spiegato il coro… cantandolo al megafono. In rete gira il video."
+    }
+   ],
+   "rapportoN": 3,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e07",
+   "ondata": 4,
+   "ondate": 4,
+   "mostratiTesti": [
+    "La festa fermata sotto la curva è in tv: «la sicurezza rovina la giornata storica».",
+    "La carovana dei pulmini ha bloccato il viale: due linee di autobus deviate, il comune protesta."
+   ],
+   "scelteAlMomento": [
+    "1:quaranta_pulmini/guida_parcheggi",
+    "1:foto_ricordo/lascia_foto7",
+    "1:banda/banda_suona",
+    "1:imp_valigie/deposito",
+    "1:sconti_benvenuto/avvisa_club",
+    "2:pupazzo/togli_pupazzo",
+    "2:imp_vetro/camion_piazzale",
+    "2:coro_imparato/spiega_coro",
+    "2:bambino/steward_bambini",
+    "3:primo_gol/cordone_campo",
+    "3:imp_chiavi_pulmino/cerca_tuoi",
+    "3:pareggio_casa/squadra_larkspire7",
+    "4:risultato/carovana_libera",
+    "4:imp_scroscio/tettoie",
+    "4:capodanno/chiudi_viale7",
+    "4:batteria_v/spingi_pulmino"
+   ],
+   "ondataSalvata": 4,
+   "attesi": 2,
+   "attesiTesti": [
+    "La festa fermata sotto la curva è in tv: «la sicurezza rovina la giornata storica».",
+    "La carovana dei pulmini ha bloccato il viale: due linee di autobus deviate, il comune protesta."
+   ],
+   "mostrati": 2,
+   "testiUguali": true,
+   "scorr": {
+    "y": 11,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 3,
+     "chiamata": "«Gol del Southwind, il primo nella storia in serie maggiore! La curva ospiti è quasi in ca",
+     "opzione": "Cordone di steward sotto la curva ospiti",
+     "messaggio": "La festa fermata sotto la curva è in tv: «la sicurezza rovina la giornata storica»."
+    },
+    {
+     "dopoSceltaIn": 4,
+     "chiamata": "«Uno a uno. Festa Southwind: vogliono il giro della città in pulmino. Tutti e quaranta.»",
+     "opzione": "Che facciano il giro che vogliono",
+     "messaggio": "La carovana dei pulmini ha bloccato il viale: due linee di autobus deviate, il comune protesta."
+    }
+   ],
+   "rapportoN": 4,
+   "radioNelRapporto": 2,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e08",
+   "ondata": 1,
+   "ondate": 4,
+   "mostratiTesti": [],
+   "scelteAlMomento": [
+    "1:dessi_chiama/rispetto_si",
+    "1:facce_nuove/scorta8",
+    "1:imp_gonfiabile/porta_via",
+    "1:quello_la_v/gruppo_si",
+    "1:permesso/cosa_sai"
+   ],
+   "ondataSalvata": 1,
+   "attesi": 0,
+   "attesiTesti": [],
+   "mostrati": 0,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": true,
+   "dettagli": [],
+   "rapportoN": 1,
+   "radioNelRapporto": 0,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e08",
+   "ondata": 2,
+   "ondate": 4,
+   "mostratiTesti": [
+    "I Rovers arrivati in gruppo hanno saltato la fila ai tornelli. Il club di casa protesta."
+   ],
+   "scelteAlMomento": [
+    "1:dessi_chiama/rispetto_si",
+    "1:facce_nuove/scorta8",
+    "1:imp_gonfiabile/porta_via",
+    "1:quello_la_v/gruppo_si",
+    "1:permesso/cosa_sai",
+    "2:coreografia/accesso_libero",
+    "2:striscione_nome/lascia_nome",
+    "2:imp_tamburo/libera_tamburo",
+    "2:coro_dessi/steward_ospiti8"
+   ],
+   "ondataSalvata": 2,
+   "attesi": 1,
+   "attesiTesti": [
+    "I Rovers arrivati in gruppo hanno saltato la fila ai tornelli. Il club di casa protesta."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 1,
+     "chiamata": "«Capo, i Rovers sanno chi comanda la curva Kiln. Vogliono arrivare compatti, tutti in una ",
+     "opzione": "Che arrivino compatti",
+     "messaggio": "I Rovers arrivati in gruppo hanno saltato la fila ai tornelli. Il club di casa protesta."
+    }
+   ],
+   "rapportoN": 2,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e08",
+   "ondata": 3,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Lo striscione col tuo nome è finito in tv. Il comando chiede perché è ancora appeso."
+   ],
+   "scelteAlMomento": [
+    "1:dessi_chiama/rispetto_si",
+    "1:facce_nuove/scorta8",
+    "1:imp_gonfiabile/porta_via",
+    "1:quello_la_v/gruppo_si",
+    "1:permesso/cosa_sai",
+    "2:coreografia/accesso_libero",
+    "2:striscione_nome/lascia_nome",
+    "2:imp_tamburo/libera_tamburo",
+    "2:coro_dessi/steward_ospiti8",
+    "3:mano/fai_finta",
+    "3:imp_grandine/fermi_in_curva",
+    "3:li_manda/respingi8",
+    "3:fumo_verde/steward_verde"
+   ],
+   "ondataSalvata": 3,
+   "attesi": 1,
+   "attesiTesti": [
+    "Lo striscione col tuo nome è finito in tv. Il comando chiede perché è ancora appeso."
+   ],
+   "mostrati": 1,
+   "testiUguali": true,
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 2,
+     "chiamata": "«Curva Kiln: è comparso uno striscione con il tuo nome. Non c'è scritto niente di gentile.",
+     "opzione": "Lascialo",
+     "messaggio": "Lo striscione col tuo nome è finito in tv. Il comando chiede perché è ancora appeso."
+    }
+   ],
+   "rapportoN": 3,
+   "radioNelRapporto": 1,
+   "radioNelRapportoUgualeAiMostrati": true
+  },
+  {
+   "ep": "e08",
+   "ondata": 4,
+   "ondate": 4,
+   "mostratiTesti": [
+    "Il Fabbro racconta lo sgarbo in curva: «il responsabile non ha capito». Lo sanno anche al comando.",
+    "Il corteo deviato è passato sotto le finestre sbagliate. Il comitato del quartiere scrive al comune."
+   ],
+   "scelteAlMomento": [
+    "1:dessi_chiama/rispetto_si",
+    "1:facce_nuove/scorta8",
+    "1:imp_gonfiabile/porta_via",
+    "1:quello_la_v/gruppo_si",
+    "1:permesso/cosa_sai",
+    "2:coreografia/accesso_libero",
+    "2:striscione_nome/lascia_nome",
+    "2:imp_tamburo/libera_tamburo",
+    "2:coro_dessi/steward_ospiti8",
+    "3:mano/fai_finta",
+    "3:imp_grandine/fermi_in_curva",
+    "3:li_manda/respingi8",
+    "3:fumo_verde/steward_verde",
+    "4:risultato_v/ritorno_deviato",
+    "4:stretta_mano/stringi",
+    "4:imp_pulcini/varco_pulcini",
+    "4:sedile/annota8"
+   ],
+   "ondataSalvata": 4,
+   "attesi": 2,
+   "attesiTesti": [
+    "Il Fabbro racconta lo sgarbo in curva: «il responsabile non ha capito». Lo sanno anche al comando.",
+    "Il corteo deviato è passato sotto le finestre sbagliate. Il comitato del quartiere scrive al comune."
+   ],
+   "mostrati": 2,
+   "testiUguali": true,
+   "scorr": {
+    "y": 13,
+    "x": 0,
+    "scena": 0
+   },
+   "aCapo": null,
+   "dettagli": [
+    {
+     "dopoSceltaIn": 3,
+     "chiamata": "«Minuto settanta. La curva Kiln si gira verso il Fabbro. Lui alza una mano e la curva tace",
+     "opzione": "Fai finta di niente",
+     "messaggio": "Il Fabbro racconta lo sgarbo in curva: «il responsabile non ha capito». Lo sanno anche al comando."
+    },
+    {
+     "dopoSceltaIn": 4,
+     "chiamata": "«Il Kiln passa ai rigori. Il Fabbro fa sapere: il corteo di ritorno farà “il solito giro”.",
+     "opzione": "Manda il corteo per un'altra via, lontano dal piazzale",
+     "messaggio": "Il corteo deviato è passato sotto le finestre sbagliate. Il comitato del quartiere scrive al comune."
+    }
+   ],
+   "rapportoN": 4,
+   "radioNelRapporto": 2,
+   "radioNelRapportoUgualeAiMostrati": true
+  }
+ ],
+ "episodi": [
+  {
+   "ep": "e01",
+   "scena": "verbale",
+   "migliore": {
+    "esito": "contenuto_a_fatica",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "testo": "01 | VERBALE | CONTENUTO A FATICA | contro | Qualche momento teso fra piazzale e strade, nessuna conseguenza grave. Domattina in città si pronuncerà il tuo nome, non sempre con affetto. | Nuovo miglior risultat",
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   }
+  },
+  {
+   "ep": "e02",
+   "scena": "verbale",
+   "migliore": {
+    "esito": "contenuto_a_fatica",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "testo": "02 | VERBALE | CONTENUTO A FATICA | contro | Qualche momento teso tra stazione e tornelli, ma i treni sono partiti tutti. Le ferrovie chiedono una riunione. Malvasi chiede ferie. | Nuovo miglior risultato per q",
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   }
+  },
+  {
+   "ep": "e03",
+   "scena": "verbale",
+   "migliore": {
+    "esito": "contenuto_a_fatica",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "testo": "03 | VERBALE | CONTENUTO A FATICA | contro | Qualche bottiglia, molti clacson, nessun ferito. Il comitato chiede un incontro. Malvasi chiede che l'incontro sia di giorno. | Nuovo miglior risultato per questo ep",
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   }
+  },
+  {
+   "ep": "e04",
+   "scena": "verbale",
+   "migliore": {
+    "esito": "contenuto_a_fatica",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "testo": "04 | VERBALE | CONTENUTO A FATICA | Qualche banco rovesciato e molti nervi fra verdura e sciarpe, nessun ferito. I commercianti chiedono un incontro. Malvasi propone di spostare il mercato al martedì. | Nuovo",
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   }
+  },
+  {
+   "ep": "e05",
+   "scena": "verbale",
+   "migliore": null,
+   "tentativi": 1,
+   "testo": "05 | VERBALE | DEGENERATO FUORI CAMPO | contro | Senza steward lo stadio è diventato terra di nessuno: una notte di discussioni. Il sindacato dice che servono più steward. Ha ragione, e non consola. | Episodio ",
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   }
+  },
+  {
+   "ep": "e05",
+   "scena": "verbale",
+   "migliore": {
+    "esito": "contenuto_a_fatica",
+    "fallita": false,
+    "stelle": 2
+   },
+   "tentativi": 2,
+   "testo": "05 | VERBALE | CONTENUTO A FATICA | contro | Code lunghe, curve senza controllo, qualche spintone all'uscita, nessun ferito. Sindacato e comando si accusano a vicenda. Tu sei nel mezzo, come al solito. | Nuovo ",
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   }
+  },
+  {
+   "ep": "e06",
+   "scena": "verbale",
+   "migliore": {
+    "esito": "contenuto_a_fatica",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "testo": "06 | VERBALE | CONTENUTO A FATICA | contro | Il viale ha retto, a spinte. Qualche ferito lieve, molte proteste. Varrone & Figli scrive al comune: serata riuscita «nonostante l'ordine pubblico». | Nuovo miglior ",
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   }
+  },
+  {
+   "ep": "e07",
+   "scena": "verbale",
+   "migliore": {
+    "esito": "contenuto_a_fatica",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "testo": "07 | VERBALE | CONTENUTO A FATICA | contro | Pulmini ovunque, clacson fino a sera, qualche spintone in strada, nessun ferito. I residenti scrivono al comune, il Southwind che tornerà. Malvasi spera nella retr",
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   }
+  },
+  {
+   "ep": "e08",
+   "scena": "verbale",
+   "migliore": {
+    "esito": "contenuto_a_fatica",
+    "fallita": false,
+    "stelle": 1
+   },
+   "tentativi": 1,
+   "testo": "08 | VERBALE | CONTENUTO A FATICA | contro | Cori, fumo e qualche spintone all'uscita, nessun ferito. Tano Ferrigno ha avuto un po' di quello che chiedeva. Malvasi lo scrive senza commenti, il suo commento pe",
+   "scorr": {
+    "y": 0,
+    "x": 0,
+    "scena": 0
+   }
+  }
+ ],
+ "finale": {
+  "scena": "citta",
+  "ep": 9,
+  "errori": [],
+  "salvataggio": {
+   "game_version": "0.57.0",
+   "save_version": 3,
+   "missioni_concluse": [
+    "e01",
+    "e02",
+    "e03",
+    "e04",
+    "e05",
+    "e06",
+    "e07",
+    "e08"
+   ]
+  }
+ }
+}
