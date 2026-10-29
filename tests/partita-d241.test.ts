@@ -94,7 +94,7 @@ describe('guardiano C241D01: partite diverse su 100 coppie di semi per episodio'
     expect(verde.filter((x) => x.quota < SOGLIA).map((x) => `${x.missione} ${x.diverse}/100`)).toEqual([]);
     g.__NO_C241D01 = true;
     expect(diversita(d, 100).filter((x) => x.diverse > 0)).toEqual([]);
-  }, 120_000);
+  }, 400_000); // D-251: 120 s non bastavano sotto carico (139,6 s misurati nel pre-push con una catena in corso; da solo 99,6 s); la soglia non cambia
 });
 
 describe('il seme nasce all\'episodio e a ogni ripartenza, e si salva', () => {
