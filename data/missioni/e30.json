@@ -261,7 +261,7 @@
             },
             {
               "id": "viale_aperto",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e30.dopo.autobus_sera.viale_aperto"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "viale_stazione", "valore": 1}], "rapporto": "testi:e30.dopo.autobus_sera.viale_aperto"},
               "testo": "testi:e30.op.viale_aperto",
               "costo": "testi:e30.op.viale_aperto.c",
               "effetti": [
@@ -495,7 +495,7 @@
             },
             {
               "id": "niente_sanzioni",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e30.dopo.sotto_il_municipio.niente_sanzioni"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"tensione": "piazza_municipio", "valore": 1}], "rapporto": "testi:e30.dopo.sotto_il_municipio.niente_sanzioni"},
               "testo": "testi:e30.op.niente_sanzioni",
               "costo": "testi:e30.op.niente_sanzioni.c",
               "effetti": [

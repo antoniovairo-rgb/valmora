@@ -201,7 +201,7 @@
           "opzioni": [
             {
               "id": "pattuglia_fissa",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e11.dopo.pattuglia.pattuglia_fissa"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"tensione": "quartiere", "valore": 1}], "rapporto": "testi:e11.dopo.pattuglia.pattuglia_fissa"},
               "testo": "testi:e11.op.pattuglia_fissa",
               "costo": "testi:e11.op.pattuglia_fissa.c",
               "effetti": [
@@ -443,7 +443,7 @@
             },
             {
               "id": "allontana_curiosi",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e11.dopo.dirette.allontana_curiosi"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"pressione": "strada_cinderwick", "valore": 1}], "rapporto": "testi:e11.dopo.dirette.allontana_curiosi"},
               "testo": "testi:e11.op.allontana_curiosi",
               "costo": "testi:e11.op.allontana_curiosi.c",
               "effetti": [

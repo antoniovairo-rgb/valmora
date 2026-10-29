@@ -79,6 +79,24 @@ function unaVoltaSola(m: Missione, s: InCorso, gioc: Giocatore = golosa, dd = di
   return { errori, morsi: [...attesi.values()].flat().length, fine: ic };
 }
 
+/** D-247: tipi di morso di ogni episodio (tensione, pressione su un settore, riserva di unità, fiducia); episodi sotto MIN_TIPI. */
+export const MIN_TIPI = 3;
+const tipoMorso = (e: Record<string, unknown>) => ('tensione' in e ? 'tensione' : 'pressione' in e ? 'pressione' : 'riserva' in e ? 'riserva' : 'fiducia');
+export const pocoVari = (missioni: Missione[]) => missioni.flatMap((m) => {
+  const tipi = new Set(conDopo(m).filter((x) => !x.c.variante_di).flatMap((x) => x.dopo.effetti.map((e) => tipoMorso(e as Record<string, unknown>))));
+  return tipi.size >= MIN_TIPI ? [] : [`${m.id}: ${tipi.size} tipi di morso (${[...tipi].join(', ')})`];
+});
+
+describe('morsi vari (D-247)', () => {
+  it(`in ogni episodio i morsi usano almeno ${MIN_TIPI} tipi di effetto diversi`, () => {
+    expect(pocoVari(ms)).toEqual([]);
+  });
+  it('braccio rosso: tutti i morsi di fiducia, come in 0.56.0, e il guardiano segnala tutti i 36 episodi', () => {
+    const tuttiFiducia = ms.map((m) => ({ ...m, ondate: m.ondate.map((o) => ({ ...o, chiamate: (o.chiamate ?? []).map((c) => ({ ...c, opzioni: c.opzioni.map((x) => (x.effetti_dopo ? { ...x, effetti_dopo: { ...x.effetti_dopo, effetti: [{ aggiungi: 'credito', valore: -1 }] } } : x)) })) })) }));
+    expect(pocoVari(tuttiFiducia as Missione[])).toHaveLength(36);
+  });
+});
+
 describe('il nessun costo morde dopo (D-241 idea C)', () => {
   it('ogni effetto ritardato dei 36 episodi si applica esattamente all\'ondata dichiarata (e in nessun\'altra)', () => {
     expect(ms.reduce((t, m) => t + conDopo(m).length, 0)).toBeGreaterThanOrEqual(142);

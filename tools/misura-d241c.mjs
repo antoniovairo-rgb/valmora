@@ -34,7 +34,18 @@ export function partite(dati, semi = 300) {
   });
 }
 
+/** D-247: quanti morsi per tipo (tensione, pressione, riserva, fiducia) e quanti tipi per episodio (varianti escluse). */
+export function tipiMorsi(dati) {
+  const tipo = (e) => ('tensione' in e ? 'tensione' : 'pressione' in e ? 'pressione' : 'riserva' in e ? 'riserva' : 'fiducia');
+  const tot = {}, per = {};
+  for (const [k, m] of Object.entries(dati)) if (/^missioni\/e\d+\.json$/.test(k)) for (const o of m.ondate) for (const c of o.chiamate ?? []) if (!c.variante_di)
+    for (const x of c.opzioni) for (const e of x.effetti_dopo?.effetti ?? []) { tot[tipo(e)] = (tot[tipo(e)] ?? 0) + 1; (per[m.id] ??= new Set()).add(tipo(e)); }
+  return { tot, per: Object.fromEntries(Object.entries(per).sort().map(([id, s]) => [id, s.size])) };
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
+  const t = tipiMorsi(leggiDati()), n = Object.values(t.per);
+  console.log(`tipi di morso: ${JSON.stringify(t.tot)}; tipi per episodio: min ${Math.min(...n)}, max ${Math.max(...n)}, episodi con 4 tipi ${n.filter((x) => x === 4).length}`);
   const semi = Number(process.argv[2] ?? 300), par = partite(leggiDati(), semi);
   const pc = (x) => `${(100 * x).toFixed(1)}%`;
   console.log(`| episodio | blocchi su ${semi}×4×2 | morsi | casuale prima → dopo | attenta | equilibrata | peggiore |`);
