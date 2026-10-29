@@ -372,4 +372,11 @@
 //   Nella stessa versione: C53-01 (D-246), la carta di imprevisto non arriva più per ultima (attenta 5,1% → 0, casuale 5,6% → 0
 //   su 300 semi × 36 episodi; guardiano tests/imprevisto-d246.test.ts, rosso C246I01); indirizzo del sito …/varcalda/ dopo la
 //   rinomina del repository (src/resa/collegamenti.ts).
-export const GAME_VERSION = '0.56.0';
+// 0.57.0 – nome definitivo: «Vandel Falls – Cortina di fumo» (PO-155, D-249/D-250), al posto di Varcalda.
+//   causa: scelta del PO dopo la verifica dei nomi (PO-154): nessuna app o gioco «Vandel Falls» sul Play Store né sul web.
+//   misura: 37 «Varcalda» → «Vandel Falls» nei testi (due chiamate accorciate entro 100 caratteri); titolo, store, privacy e app
+//   io.github.antoniovairo.vandelfalls; salvataggi spostati da varcalda-… e da valmora-… senza perdite sui salvataggi reali;
+//   indirizzo del sito …/vandelfalls/ (repository rinominato dal PO); nel bundle i nomi vecchi restano solo come chiavi da migrare
+//   e nomi tecnici.
+//   guardiano: tests/nome-d244.test.ts + tools/nome-d244.mjs estesi a «Varcalda», rossi C249N01, C249S01, C244N01, C244S01.
+export const GAME_VERSION = '0.57.0';

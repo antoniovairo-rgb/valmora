@@ -18,7 +18,7 @@ import { chiamateAperte, rispondi, schiera } from '../src/logica/missione.ts';
 
 const cartella = process.argv[2] ?? 'coordination/handoffs/sviluppatrice/s14/imprevisti';
 mkdirSync(cartella, { recursive: true });
-const CHIAVE = 'varcalda-salvataggio';
+const CHIAVE = 'vandelfalls-salvataggio';
 const dati = leggiDati('data'), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), v0 = variabiliIniziali(dich.values());
 const missioni = Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => x);
 const partenze = partenzeAttente('data');

@@ -15,7 +15,7 @@ const scegli = (dati, dich) => {
   const a = tutte.find((c) => c.ep === 'e01' && opz(c).settore), b = tutte.find((c) => c !== a && opz(c).settore && opz(c).opzioni.some(impegna));
   return [a, b].filter(Boolean).map((c) => ({ ...c, settore: opz(c).settore, opzione: (opz(c).opzioni.find(impegna) ?? opz(c).opzioni[0]).id }));
 };
-const stato = (p) => p.evaluate(() => localStorage.getItem('varcalda-salvataggio'));
+const stato = (p) => p.evaluate(() => localStorage.getItem('vandelfalls-salvataggio'));
 const ecc = (p) => p.evaluate(() => document.scrollingElement.scrollHeight - innerHeight);
 const costiVisibili = (p) => p.evaluate(() => [...document.querySelectorAll('.opzioni [data-costo], .opzioni [data-quando], .opzioni [data-effetti]')]
   .filter((e) => e.getClientRects().length && !e.closest('.esaurita')).map((e) => e.textContent.trim()).concat(/Ti costa/.test(document.querySelector('.opzioni')?.textContent ?? '') ? ['«Ti costa…»'] : []));
@@ -35,7 +35,7 @@ export async function controllaPo152a(browser, url, larghezza, rossi = [], carte
     const vp = `${larghezza}x${h}`, dove = `${vp} ${c.ep} ${c.id}`, p = await browser.newPage({ viewport: { width: larghezza, height: h }, hasTouch: true, reducedMotion: 'reduce' });
     await p.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; });
     if (rossi.length) await p.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
-    await p.goto(url); await p.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), c.sal); await p.reload();
+    await p.goto(url); await p.evaluate((v) => localStorage.setItem('vandelfalls-salvataggio', v), c.sal); await p.reload();
     await p.getByRole('button', { name: 'Riprendi' }).click();
     if (!(await p.waitForSelector(`[data-messaggio="chiamata-${c.id}"]`, { timeout: 8000 }).then(() => true).catch(() => false))) { male.push(`${dove}: la chiamata non si apre (PO-152)`); await p.close(); continue; }
     await p.waitForTimeout(400);

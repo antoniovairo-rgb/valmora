@@ -15,7 +15,7 @@ import { partenzeAttente } from './foto-schieramenti.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { schiera } from '../src/logica/missione.ts';
 
-const CHIAVE = 'varcalda-salvataggio';
+const CHIAVE = 'vandelfalls-salvataggio';
 const inCorso = (p) => p.evaluate((k) => JSON.stringify(JSON.parse(localStorage.getItem(k) ?? '{}').in_corso ?? null), CHIAVE);
 const chiamata = (p) => p.evaluate(() => document.querySelector('[data-messaggio^="chiamata-"]')?.dataset.messaggio ?? null);
 const opzioni = (p) => p.evaluate(() => [...document.querySelectorAll('[data-opzione]')].map((o) => `${o.dataset.opzione}${o.disabled ? ':spenta' : ''}${o.classList.contains('scelta') ? ':scelta' : ''}`).join(' '));

@@ -25,7 +25,7 @@ export function paginaPrivacy(t: TestoPrivacy, stile: string): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(t.titolo)} – Varcalda</title>
+<title>${esc(t.titolo)} – Vandel Falls</title>
 <style>${stile}</style>
 </head>
 <body>

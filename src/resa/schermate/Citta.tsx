@@ -48,8 +48,8 @@ export function Citta(p: { sal: Salvataggio; scelto: Missione | null; scegli: (i
     <>
       {/* D-210 (PO-140 fase 2, scelta del PO): in testa la striscia della home al posto della testata; la stagione la dicono
           i tasti Stagione N (aria-pressed), il titolo resta per il lettore di schermo. Rosso C210C01: la testata di prima */}
-      {spento('C210C01') || finestraBassa ? <Testata numero={`S${stagione}`} etichetta={`Stagione ${stagione} · mappa della città`} titolo="Varcalda" /> : <>
-        <h1 className="solo-lettore">{`Varcalda · stagione ${stagione} · mappa della città`}</h1>
+      {spento('C210C01') || finestraBassa ? <Testata numero={`S${stagione}`} etichetta={`Stagione ${stagione} · mappa della città`} titolo="Vandel Falls" /> : <>
+        <h1 className="solo-lettore">{`Vandel Falls · stagione ${stagione} · mappa della città`}</h1>
         <figure className="home-vignetta citta-striscia" data-citta-striscia>
           {/* PO-149 (D-237): sugli schermi alti la striscia prende lo spazio libero (come la vignetta della home, PO-092) e cresce
               verso l'alto, con più cielo sopra le teste. Rosso C237S01: fissa a 96 px, inquadrata dall'alto, come prima */}

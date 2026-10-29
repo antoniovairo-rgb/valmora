@@ -15,10 +15,10 @@ def versioneGioco = {
 // la CI produce l'AAB non firmato solo per controllare che la build riesca.
 
 android {
-    namespace = "io.github.antoniovairo.varcalda"
+    namespace = "io.github.antoniovairo.vandelfalls"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "io.github.antoniovairo.varcalda"
+        applicationId "io.github.antoniovairo.vandelfalls"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
