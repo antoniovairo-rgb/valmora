@@ -247,7 +247,8 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
             if (ok) { await q.click(`[data-opzione="${c.op}"]`); await q.click('[data-conferma]'); }
             const visto = ok && await q.waitForSelector('.scena[data-scena="risposta"]', { timeout: 8000 }).then(() => true, () => false); await lento(q);
             if (!visto) { errori.push(`${vp}: risposta ${c.ep} ${c.id}/${c.op} non si apre`); continue; }
-            risposte.push({ vp, ep: c.ep, id: c.id, op: c.op, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) }); }
+            risposte.push({ vp, ep: c.ep, id: c.id, op: c.op, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) });
+            if (process.env.AVANZAMENTO && risposte.length % 50 === 0) console.log(`${vp} risposte: ${risposte.length}, ne restano ${coda.length}`); }
           await q.close(); })); }
       if (h === 760 && parti.includes('po149')) { const { controllaPo149 } = await import('./foto-po149.mjs'); // PO-149 (D-237): 640/667/760/915 a questa larghezza
         const g = await controllaPo149(b, url, w, rossi, cartella); errori.push(...g.male); }
