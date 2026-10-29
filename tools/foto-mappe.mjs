@@ -17,7 +17,7 @@ const { missioni, v0 } = missioniDai(process.env.VALMORA_DATI ?? 'data');
 await pg.goto(`http://127.0.0.1:${srv.address().port}/`);
 for (const id of (process.env.VALMORA_EPISODI ?? 'e11,e17,e30,e35').split(',')) {
   const m = missioni.find((x) => x.id === id);
-  await pg.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify(salvataggioTutti(missioni, v0)));
+  await pg.evaluate((v) => localStorage.setItem('vandelfalls-salvataggio', v), JSON.stringify(salvataggioTutti(missioni, v0)));
   await pg.reload(); await pg.getByRole('button', { name: 'Riprendi' }).click(); await pg.waitForSelector('[data-scena="citta"]');
   await apriDallaCitta(pg, m, () => {});
   await pg.waitForSelector('[data-scena="sala"]'); await pg.waitForSelector('.mappa[data-pronta="si"]'); await pg.waitForTimeout(400);

@@ -1,4 +1,4 @@
-// Service worker di Varcalda (PO-049): il gioco installato funziona anche offline.
+// Service worker di Vandel Falls (PO-049): il gioco installato funziona anche offline.
 // Rete prima (così una versione nuova arriva subito), copia in cache come riserva quando la rete manca.
 // S-22 (C14-01, pagina bianca offline):
 //  (a) all'installazione entra in cache TUTTA la build, compresi i moduli caricati a richiesta (StratoCitta,
@@ -11,7 +11,7 @@
 const VERSIONE = /*VERSIONE*/'sviluppo'/*VERSIONE*/;
 const FILE = /*FILE*/[]/*FILE*/;
 const ROSSI = (new URL(self.location.href).searchParams.get('rossi') ?? '').split(',');
-const CACHE = `varcalda-${VERSIONE}`;
+const CACHE = `vandelfalls-${VERSIONE}`;
 
 self.addEventListener('install', (e) => e.waitUntil((async () => {
   const c = await caches.open(CACHE);
@@ -25,7 +25,7 @@ self.addEventListener('install', (e) => e.waitUntil((async () => {
 })()));
 
 self.addEventListener('activate', (e) => e.waitUntil((async () => {
-  if (!ROSSI.includes('C14O02')) for (const n of await caches.keys()) if (/^(valmora|varcalda)-/.test(n) && n !== CACHE) await caches.delete(n);
+  if (!ROSSI.includes('C14O02')) for (const n of await caches.keys()) if (/^(valmora|varcalda|vandelfalls)-/.test(n) && n !== CACHE) await caches.delete(n);
   await self.clients.claim();
 })()));
 

@@ -1,4 +1,4 @@
-# Avvio delle sessioni Varcalda (cloud)
+# Avvio delle sessioni Vandel Falls (cloud)
 
 Il progetto lavora in cloud (D-011) sul repository github.com/antoniovairo-rgb/valmora.
 

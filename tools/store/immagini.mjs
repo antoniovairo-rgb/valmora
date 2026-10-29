@@ -58,7 +58,7 @@ try {
   await p.evaluate(() => {
     document.body.innerHTML = `<div style="width:1024px;height:500px;display:flex;align-items:center;gap:var(--spazio-6);padding:0 var(--spazio-6);box-sizing:border-box;background:var(--colore-fondo)">
       <img src="./icone/icona.svg" alt="" style="width:300px;height:300px;flex:none;border:var(--bordo) solid var(--nero);box-shadow:var(--ombra-1)">
-      <div class="logo"><h1 class="logo-nome" style="font-size:96px">Varcalda</h1>
+      <div class="logo"><h1 class="logo-nome" style="font-size:80px;white-space:nowrap">Vandel Falls</h1>
       <div class="logo-sotto" style="font-size:40px;margin-top:var(--spazio-4)">Cortina di fumo</div></div></div>`;
   });
   await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(200);
@@ -73,7 +73,7 @@ try {
     const q = await browser.newPage({ viewport: { width: 360, height: 640 }, deviceScaleFactor: dsf, reducedMotion: 'reduce' });
     const errori = []; q.on('pageerror', (e) => errori.push(e.message));
     await q.goto(url);
-    await q.evaluate((v) => { localStorage.clear(); localStorage.setItem('varcalda-guida-vista', 'si'); if (v) localStorage.setItem('varcalda-salvataggio', v); }, salvataggio && JSON.stringify(salvataggio));
+    await q.evaluate((v) => { localStorage.clear(); localStorage.setItem('vandelfalls-guida-vista', 'si'); if (v) localStorage.setItem('vandelfalls-salvataggio', v); }, salvataggio && JSON.stringify(salvataggio));
     await q.reload(); await q.waitForSelector('main[data-schermata="titolo"]');
     const scena = await arriva(q);
     await q.evaluate(() => document.fonts.ready); await q.mouse.move(0, 0);

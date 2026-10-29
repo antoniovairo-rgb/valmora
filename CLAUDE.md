@@ -1,4 +1,4 @@
-# Varcalda – Cortina di fumo · regole di lavoro
+# Vandel Falls – Cortina di fumo · regole di lavoro
 
 Gioco Android a missioni, offline. Storia: docs/BIBBIA.md. Policy: docs/REGOLE_PLAY.md. Governo completo: docs/governo/ISTRUZIONI_PO.md.
 

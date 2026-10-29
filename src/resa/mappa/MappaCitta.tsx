@@ -100,7 +100,7 @@ export function MappaCitta(p: { voci: VoceCitta[]; scelto: string | null; scegli
     return () => ro.disconnect();
   });
   return (
-    <div className="mappa citta" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa di Varcalda">
+    <div className="mappa citta" ref={contenitore} data-mappa={conWebgl ? 'webgl' : 'html'} data-pronta={pronta ? 'si' : 'no'} aria-label="Mappa di Vandel Falls">
       {p.home && <TastoHome vai={p.home} />}
       {conWebgl && <Suspense fallback={null}><StratoCitta contenitore={contenitore} punti={punti} margine={margine} pronto={() => setPronta(true)} /></Suspense>}
       {voci.map((v) => (

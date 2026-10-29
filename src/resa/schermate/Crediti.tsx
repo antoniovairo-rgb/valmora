@@ -7,7 +7,7 @@ import { Testata } from './Fumetto.tsx';
 export function Crediti(p: { indietro: () => void }) {
   return (
     <>
-      <Testata numero="©" etichetta="Crediti" titolo="Chi ha reso possibile Varcalda" />
+      <Testata numero="©" etichetta="Crediti" titolo="Chi ha reso possibile Vandel Falls" />
       <p className="tenue">Software libero usato dal gioco. Nessun asset con licenza CC BY è ancora presente; quando entrerà, qui comparirà l'autore di ognuno.</p>
       {CREDITI.map((c) => (
         <div className="scheda" key={c.nome} data-credito={c.nome}>

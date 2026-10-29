@@ -163,7 +163,7 @@ export async function controllaSfidaBusti(pagina, atteso, dove) {
 }
 
 /** Stato della partita in corso, letto dal salvataggio (per confrontare prima e dopo una risposta). */
-export const statoSalvato = (pagina) => pagina.evaluate(() => { try { return JSON.parse(localStorage.getItem('varcalda-salvataggio'))?.in_corso ?? null; } catch { return null; } });
+export const statoSalvato = (pagina) => pagina.evaluate(() => { try { return JSON.parse(localStorage.getItem('vandelfalls-salvataggio'))?.in_corso ?? null; } catch { return null; } });
 
 /** PO-085, C20-07: dopo la risposta, i segni sulla mappa sono quelli degli effetti che CAMBIANO lo stato (stato prima
  *  e dopo dal salvataggio); una chiamata senza settore ha il suo segno al centro (settore «»); le squadre dicono il
@@ -233,7 +233,7 @@ export async function controllaNomiCittaTutti(pagina, atteso, salvataggio, scena
   // D-123: a 360 e 375 il nome non c'è; le prove di stabilità del posto si fanno a 412×915, dove il nome c'è (se no
   // sarebbero cieche), poi i giri a 412, 375 e 360, e si torna alla misura di prima.
   const misuraIniziale = pagina.viewportSize(); await pagina.setViewportSize({ width: 412, height: 915 });
-  await pagina.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), salvataggio);
+  await pagina.evaluate((v) => localStorage.setItem('vandelfalls-salvataggio', v), salvataggio);
   await pagina.reload(); await scena('titolo'); await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('citta');
   // Strumento instabile in CI (412, «Il mercato del sabato» sul bordo): il posto del nome non deve dipendere da una
   // scala in corso (animazione d'entrata della scena). Si sceglie ogni episodio della stagione 1 con la pagina in
