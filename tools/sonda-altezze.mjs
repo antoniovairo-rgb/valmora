@@ -237,7 +237,31 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
             chiamate.push({ vp, ep: c.ep, id: c.id, imprevisto: c.imprevisto, ecc: await q.evaluate(() => document.scrollingElement.scrollHeight - innerHeight) });
             if (cartella && c.imprevisto) await q.screenshot({ path: join(cartella, `${vp}-chiamata-${c.ep}-${c.id}.png`), fullPage: true }); }
           await q.close(); })); }
-      if (RISPOSTE_VP.includes(vp) && parti.includes('risposte')) { const coda = risposteCostruite(dati, dich).slice(0, limiteRisposte); // C53-02
+      if (RISPOSTE_VP.includes(vp) && parti.includes('risposte') && !process.env.RISPOSTE_VERE) { // C53-02, veloce: una risposta vera per
+        // episodio, poi nella stessa scena (stessi CSS, caratteri e mappa) i testi di ogni opzione al posto dei suoi, e si misura.
+        // Confrontato con la misura una per una (RISPOSTE_VERE=1) il 29/10: stesse altezze, vedi D-253-S.
+        const tutte = risposteCostruite(dati, dich).slice(0, limiteRisposte), T = Object.assign({}, ...Object.entries(dati).filter(([k]) => k.startsWith('testi/it/')).map(([, v]) => v));
+        const tx = (k) => (k ? T[k.replace(/^testi:/, '')] ?? null : null);
+        const ms = new Map(Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => [x.id, x]));
+        const opz = (c) => ms.get(c.ep).ondate.flatMap((o) => o.chiamate ?? []).find((x) => x.id === c.id).opzioni.find((o) => o.id === c.op);
+        const coda = [...new Set(tutte.map((c) => c.ep))].map((ep) => tutte.filter((c) => c.ep === ep));
+        await Promise.all(Array.from({ length: 4 }, async () => { const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
+          if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
+          await q.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); await q.goto(url);
+          while (coda.length) { const gruppo = coda.shift(), c = gruppo.find((x) => opz(x).risposta) ?? gruppo[0];
+            await q.evaluate((x) => localStorage.setItem('vandelfalls-salvataggio', x), c.sal); await q.reload(); await q.getByRole('button', { name: 'Riprendi' }).click();
+            const ok = await q.waitForSelector(`[data-opzione="${c.op}"]`, { timeout: 8000 }).then(() => true, () => false); await lento(q);
+            if (ok) { await q.click(`[data-opzione="${c.op}"]`); await q.click('[data-conferma]'); }
+            const visto = ok && await q.waitForSelector('.scena[data-scena="risposta"]', { timeout: 8000 }).then(() => true, () => false); await lento(q);
+            if (!visto) { errori.push(`${vp}: risposta ${c.ep} ${c.id}/${c.op} non si apre`); continue; }
+            for (const x of gruppo) { const o = opz(x);
+              const ecc = await q.evaluate(([etichetta, intanto]) => { const sc = document.querySelector('.scena [data-scelta]'), it = document.querySelector('.scena .intanto');
+                if (sc) sc.textContent = etichetta; if (it) { it.lastChild.textContent = intanto ?? ''; it.hidden = !intanto; }
+                return document.scrollingElement.scrollHeight - innerHeight; }, [tx(o.testo), tx(o.risposta)]);
+              risposte.push({ vp, ep: x.ep, id: x.id, op: x.op, ecc }); }
+            if (process.env.AVANZAMENTO) console.log(`${vp} risposte: ${risposte.length}`); }
+          await q.close(); })); }
+      if (RISPOSTE_VP.includes(vp) && parti.includes('risposte') && process.env.RISPOSTE_VERE) { const coda = risposteCostruite(dati, dich).slice(0, limiteRisposte); // C53-02, una per una (lenta)
         await Promise.all(Array.from({ length: 4 }, async () => { const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
           if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
           await q.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); await q.goto(url);
