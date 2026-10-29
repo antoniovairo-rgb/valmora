@@ -38,7 +38,9 @@ export async function giraC41(cartella = 'out/foto', build = 'dist', larghezze =
       const pagina = await browser.newPage({ viewport: { width: larghezza, height: 760 }, reducedMotion: 'reduce' });
       if (rossi.length) await pagina.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
       pagina.on('pageerror', (e) => g.errori.push(e.message));
-      const scena = async (nome) => { await pagina.waitForSelector(`.scena[data-scena="${nome}"]`, { timeout: 5000 }); await pagina.waitForFunction(() => document.querySelectorAll('.scena').length === 1 && getComputedStyle(document.querySelector('.scena')).opacity === '1', null, { timeout: 5000 }); };
+      // strumento instabile (28/10, bracci in parallelo con carico ~20 su 4 core: il clic su «avanti» fermo 30 s mentre la pagina
+      // calcola il verbale): si attende la scena e il clic fino a 60 s. È un'attesa, non una soglia: se la scena non arriva, rosso
+      const scena = async (nome) => { await pagina.waitForSelector(`.scena[data-scena="${nome}"]`, { timeout: 60_000 }); await pagina.waitForFunction(() => document.querySelectorAll('.scena').length === 1 && getComputedStyle(document.querySelector('.scena')).opacity === '1', null, { timeout: 60_000 }); };
       try {
         await pagina.goto(`http://127.0.0.1:${srv.address().port}/`); await scena('titolo');
         // C41-06: verbale di e10 ed e33 perso, primo passo, finestra 760 px
@@ -48,7 +50,7 @@ export async function giraC41(cartella = 'out/foto', build = 'dist', larghezze =
         await pagina.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify(stato.salvataggio));
         await pagina.reload(); await scena('titolo');
         await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('rapporto');
-        await pagina.click('[data-azione="avanti"]'); await scena('verbale');
+        await pagina.click('[data-azione="avanti"]', { timeout: 60_000 }); await scena('verbale');
         await pagina.evaluate(() => new Promise((ok) => { scrollTo(0, 0); requestAnimationFrame(() => requestAnimationFrame(ok)); })); await pagina.waitForTimeout(300);
         const v = await pagina.evaluate(() => {
           const svg = document.querySelector('.passo:not([hidden]) svg.vignetta'), r = svg?.getBoundingClientRect(), vb = svg?.viewBox.baseVal;

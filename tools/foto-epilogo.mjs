@@ -51,9 +51,11 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
       if (rossi.length) await pagina.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
       pagina.on('console', (m) => { if (m.type() === 'error') g.errori.push(m.text()); });
       pagina.on('pageerror', (e) => g.errori.push(e.message));
+      // strumento instabile (28/10, bracci in parallelo con carico ~20 su 4 core: il clic su «avanti» fermo 30 s mentre la pagina
+      // calcola il verbale): si attende la scena e il clic fino a 60 s. È un'attesa, non una soglia: se la scena non arriva, rosso
       const scena = async (nome) => {
-        await pagina.waitForSelector(`.scena[data-scena="${nome}"]`, { timeout: 5000 });
-        await pagina.waitForFunction(() => document.querySelectorAll('.scena').length === 1 && getComputedStyle(document.querySelector('.scena')).opacity === '1', null, { timeout: 5000 });
+        await pagina.waitForSelector(`.scena[data-scena="${nome}"]`, { timeout: 60_000 });
+        await pagina.waitForFunction(() => document.querySelectorAll('.scena').length === 1 && getComputedStyle(document.querySelector('.scena')).opacity === '1', null, { timeout: 60_000 });
       };
       const foto = async (nome) => {
         const [contenuto, finestra] = await pagina.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
@@ -77,7 +79,7 @@ export async function giraEpilogo(cartella = 'out/foto', build = 'dist', larghez
         await pagina.evaluate((v) => localStorage.setItem('varcalda-salvataggio', v), JSON.stringify(stati[id].salvataggio));
         await pagina.reload(); await scena('titolo');
         await pagina.getByRole('button', { name: 'Riprendi' }).click(); await scena('rapporto');
-        await pagina.click('[data-azione="avanti"]'); await scena('verbale');
+        await pagina.click('[data-azione="avanti"]', { timeout: 60_000 }); await scena('verbale');
         atteso(`${id}: verbale fallito (${stati[id].piano.esito}), il controllo non si può fare`, !stati[id].piano.fallita);
         await avanzaFino(pagina, '.passi-nav[data-ultimo]', async () => {});
       };
