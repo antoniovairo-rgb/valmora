@@ -71,6 +71,8 @@ export const PASSI_GRAFICA = {
       // D-193: risposta in un blocco (R01), spaziature di sala e briefing (S01)
       for (const [r, vp] of [['C187M01', '360x760'], ['C187V01', '360x760'], ['C191R01', '360x760'], ['C191L01', '360x640'], ['C191C01', '360x640'], ['C191H01', '360x640'], ['C193R01', '360x640'], ['C193S01', '360x640'], ['C197R01', '360x640'], ['C201R01', '412x760'], ['C201C01,C230C01', '360x760'], ['C203R01', '360x760'], ['C206I01', '360x760'], ['C215L01', '360x760'], ['C210C01', '360x760'], ['C210G01', '360x760'], ['C218R01,C221R01', '360x760'], ['C218S01', '360x760'], ['C219H01,C221R01', '360x760'], ['C221R01', '360x640'], ['C230C01', '360x640'], ['C234V01', '360x640'], ['C237S01', '360x760'], ['C237P01', '360x760']])
         compiti.push(async () => { if (!a.controllaAltezze(await a.giraAltezze({ vps: [vp], rossi: r.split(','), parti: PARTE_ROSSO[r.split(',')[0]] ?? ['e01'] })).length) ciechi.push(`altezze/${r} è cieco`); }); }
+      // C53-02: con la risposta in due messaggi (C193R01) la parte «risposte» (carte d'imprevisto e varianti) vede lo scorrimento
+      compiti.push(async () => { if (!a.controllaAltezze(await a.giraAltezze({ vps: ['360x640'], rossi: ['C193R01'], parti: ['risposte'], limiteRisposte: 24 })).some((x) => x.includes('C53-02'))) ciechi.push('altezze/risposte C193R01 è cieco'); });
     // D-207: ogni braccio delle altezze gira solo la parte dove il suo rosso si vede
     // D-202: i bracci sono indipendenti (rossi come parametro, cartelle separate): PARALLELI insieme, ognuno col suo browser
     await insieme(compiti, PARALLELI);
