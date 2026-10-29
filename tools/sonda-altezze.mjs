@@ -238,13 +238,17 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
             if (cartella && c.imprevisto) await q.screenshot({ path: join(cartella, `${vp}-chiamata-${c.ep}-${c.id}.png`), fullPage: true }); }
           await q.close(); })); }
       if (RISPOSTE_VP.includes(vp) && parti.includes('risposte') && !process.env.RISPOSTE_VERE) { // C53-02, veloce: una risposta vera per
-        // episodio, poi nella stessa scena (stessi CSS, caratteri e mappa) i testi di ogni opzione al posto dei suoi, e si misura.
-        // Confrontato con la misura una per una (RISPOSTE_VERE=1) il 29/10: stesse altezze, vedi D-253-S.
+        // episodio e tipo (carta o variante), poi nella stessa scena (stessi CSS, caratteri e mappa) i testi di ogni opzione al
+        // posto dei suoi, e si misura. Confrontata con la misura una per una (RISPOSTE_VERE=1) su 150 risposte: stesse altezze.
         const tutte = risposteCostruite(dati, dich).slice(0, limiteRisposte), T = Object.assign({}, ...Object.entries(dati).filter(([k]) => k.startsWith('testi/it/')).map(([, v]) => v));
         const tx = (k) => (k ? T[k.replace(/^testi:/, '')] ?? null : null);
         const ms = new Map(Object.entries(dati).filter(([k]) => k.startsWith('missioni/')).map(([, x]) => [x.id, x]));
         const opz = (c) => ms.get(c.ep).ondate.flatMap((o) => o.chiamate ?? []).find((x) => x.id === c.id).opzioni.find((o) => o.id === c.op);
-        const coda = [...new Set(tutte.map((c) => c.ep))].map((ep) => tutte.filter((c) => c.ep === ep));
+        // un'opzione che cambia una variabile (fiducia…) ha nella sua scena un segno che sparisce dopo ~2 s e alza la pagina di
+        // 2 px (misurato su e03 laser_v/annuncio: 28 → 26): quella si misura da sola, nella sua scena vera; le altre in gruppo
+        const variabili = (c) => opz(c).effetti.some((e) => 'aggiungi' in e || 'imposta' in e);
+        const tipo = (c) => (variabili(c) ? `${c.ep}|${c.id}|${c.op}` : c.ep);
+        const coda = [...new Set(tutte.map(tipo))].map((k) => tutte.filter((c) => tipo(c) === k));
         await Promise.all(Array.from({ length: 4 }, async () => { const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
           if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
           await q.addInitScript(() => { globalThis.__VALMORA_SECONDO_MS = 1; }); await q.goto(url);
