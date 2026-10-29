@@ -5,6 +5,7 @@ import { Check, ChevronDown, ChevronRight, Coffee, FileText, Radio, Undo2 } from
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { spento } from '../../interruttori.ts';
 import { opzioniEsaurite, opzioniValide, unitaFinita, type InCorso } from '../../logica/missione.ts';
+import { morsiDellOndata } from '../../logica/dopo.ts';
 import type { Chiamata as TChiamata, Missione, Opzione } from '../../logica/tipi.ts';
 import type { Decisione } from '../../logica/sospesa.ts';
 import { t } from '../dati.ts';
@@ -183,12 +184,19 @@ export function RapportoCosto(p: { m: Missione; ic: InCorso; o: Opzione }) {
 }
 
 export function Chiusura(p: { m: Missione; ic: InCorso; chiudi: () => void }) {
+  // D-241 idea C: le scelte «comode» che mordono alla chiusura di quest'ondata parlano qui, al posto di «La radio tace»
+  // (src/logica/dopo.ts; rosso __NO_C241C01: nessun morso, la radio tace)
+  const morsi = morsiDellOndata(p.m, p.ic.scelte, p.ic.ondata);
   return (
     <>
-      <Messaggio classe="radio ultimo">
+      {morsi.length ? <Messaggio classe="radio ultimo" dati="radio-dopo">
+        <Mittente icona={Radio} nome="Centrale" timbro="In corso" />
+        {/* più morsi nello stesso fumetto: due fumetti a 360×760 facevano scorrere la pagina di 22 px (e02 ondata 4) */}
+        {morsi.map((x) => <p key={`${x.chiamata}/${x.opzione}`} className="testo-radio" data-radio-dopo>{t(x.dopo.rapporto)}</p>)}
+      </Messaggio> : <Messaggio classe="radio ultimo">
         <Mittente icona={Radio} nome="Centrale" timbro="In corso" />
         <p className="testo-radio">La radio tace. Le unità sono ai loro posti: l'ondata fa il suo corso.</p>
-      </Messaggio>
+      </Messaggio>}
       <button className="pulsante" data-azione="rapporto" onClick={p.chiudi}><Icona di={FileText} />Leggi il rapporto</button>
     </>
   );

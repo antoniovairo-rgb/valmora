@@ -25,7 +25,7 @@ Legenda dello stato: **fatto** · **da fare dal PO** · **da fare da noi** (sess
 ### Regola della versione (D-212)
 
 `versionCode = maggiore × 1 000 000 + minore × 1 000 + correzione` (ognuno 0-999), `versionName = GAME_VERSION`.
-0.46.0 → 46000 · 0.47.0 → 47000 · 1.0.0 → 1000000. **Versione corrente: 0.55.0 → versionCode 55000** (src/versione.ts, letta il 2026-10-27). Cresce sempre se GAME_VERSION cresce; il massimo (999.999.999 → 999999999) resta sotto 2100000000.
+0.46.0 → 46000 · 0.47.0 → 47000 · 1.0.0 → 1000000. **Versione corrente: 0.56.0 → versionCode 56000** (src/versione.ts, letta il 2026-10-27). Cresce sempre se GAME_VERSION cresce; il massimo (999.999.999 → 999999999) resta sotto 2100000000.
 Vale solo per il rilascio: l'APK di debug del job «apk» resta `versionCode 1`, `versionName "1.0"` (android/app/build.gradle:41-48).
 
 ## 2. Guida passo passo per il PO
@@ -131,7 +131,7 @@ Definizioni della pagina: «"Collect" means transmitting data from your app off 
 |---|---|---|
 | «Does your app collect or share any of the required user data types?» | **No** | FATTO MISURATO (S-22, `node tools/misura-rete.mjs`): 0 richieste esterne su 3152 in una partita intera e01-e03 in Chromium; nessun SDK di analisi, pubblicità o crash report (package.json); salvataggio solo in `localStorage` |
 | Condividi del verbale, email «Idee» | non sono «sharing» | partono solo dal tocco del giocatore (src/resa/collegamenti.ts:12-17, 26-27): eccezione «user-initiated action» citata sopra |
-| Privacy policy | https://antoniovairo-rgb.github.io/valmora/privacy (D-244: diventa …/varcalda/privacy quando il PO rinomina il repository; nel gioco l'indirizzo sta solo in src/resa/collegamenti.ts, URL_GIOCO) | D-217, D-220, D-222, D-244 |
+| Privacy policy | https://antoniovairo-rgb.github.io/varcalda/privacy (D-244: repository rinominato dal PO il 2026-10-28) | D-217, D-220, D-222, D-244 |
 
 Restano **Non posso confermarlo** (D-216):
 - **telefono vero**: la misura delle richieste è in Chromium sulla build web, non nell'APK/AAB su un dispositivo Android;

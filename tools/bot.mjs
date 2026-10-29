@@ -6,6 +6,7 @@ import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { chiamateAperte, chiudiOndata, concludiMissione, giocaMissione, iniziaMissione, missioneFinita, opzioniValide, rispondi, schiera } from '../src/logica/missione.ts';
 import { DETERMINISTICHE, STRATEGIE, attenta, casuale } from '../src/logica/bot.ts';
 import { semeDa } from '../src/logica/partita.ts';
+import { morsiInAttesa } from '../src/logica/dopo.ts';
 import { spento } from '../src/interruttori.ts';
 import { valutaEpisodio } from '../src/logica/episodi.ts';
 
@@ -100,7 +101,8 @@ export function esisteStelle(dati, id, n, limite = 400000) {
 export function treStellePossibili(dati, id, iniziali) {
   const { dich } = contesto(dati);
   const m = dati[`missioni/${id}.json`]; const att = attenta(creaCaso(1), dich); const visti = new Set();
-  const chiave = (s) => JSON.stringify([s.ondata, s.tensione, s.riserva, s.riposo, s.disposizione, s.modifiche, s.risposte, s.variabili, s.fisse]);
+  // D-241 idea C: nella chiave anche i morsi in attesa (senza, uno stato con un morso in arrivo e uno senza si confondevano)
+  const chiave = (s) => JSON.stringify([s.ondata, s.tensione, s.riserva, s.riposo, s.disposizione, s.modifiche, s.risposte, s.variabili, s.fisse, morsiInAttesa(m, s.scelte, s.ondata).map((x) => `${x.chiamata}/${x.opzione}`)]);
   const cerca = (s) => {
     if (missioneFinita(m, s)) return valutaEpisodio(m, concludiMissione(m, s, dich)).stelle >= 3;
     if (s.variabili.tensione_max > 3) return false;

@@ -195,6 +195,7 @@
           "opzioni": [
             {
               "id": "chiama_impresa",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e06.dopo.sponsor.chiama_impresa"},
               "testo": "testi:e06.op.chiama_impresa",
               "costo": "testi:e06.op.chiama_impresa.c",
               "effetti": [
@@ -437,6 +438,7 @@
             },
             {
               "id": "lascia_cantante",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e06.dopo.saluto_cantante.lascia_cantante"},
               "testo": "testi:e06.op.lascia_cantante",
               "costo": "testi:e06.op.lascia_cantante.c",
               "effetti": [
@@ -600,6 +602,7 @@
             },
             {
               "id": "lascia_sfogare",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e06.dopo.rigore6.lascia_sfogare"},
               "testo": "testi:e06.op.lascia_sfogare",
               "costo": "testi:e06.op.lascia_sfogare.c",
               "effetti": [
@@ -910,6 +913,7 @@
             },
             {
               "id": "a_piedi",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e06.dopo.poche_navette.a_piedi"},
               "testo": "testi:e06.op.a_piedi",
               "costo": "testi:e06.op.a_piedi.c",
               "effetti": [

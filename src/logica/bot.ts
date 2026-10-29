@@ -2,6 +2,7 @@
 // Servono a provare che una missione finisce sempre, che ogni esito è raggiungibile e che le scelte
 // contano, e a tarare i numeri (D-036).
 import type { Caso } from './caso.ts';
+import { spento } from '../interruttori.ts';
 import { chiamateAperte, chiudiOndata, disponibili, opzioniValide, rispondi, settoriAmmessi, type Giocatore, type InCorso } from './missione.ts';
 import type { Chiamata, Dichiarazione, Disposizione, Missione } from './tipi.ts';
 
@@ -11,9 +12,9 @@ const metti = (d: Disposizione, r: string, s: string) => { d[r]![s] = (d[r]![s] 
 
 /** Tensione dopo la chiusura dell'ondata, se le chiamate ancora aperte non cambiassero nulla. */
 function stima(m: Missione, s: InCorso, d: Dich): number {
-  const risposte = { ...s.risposte };
-  for (const c of chiamateAperte(m, s)) risposte[c.id] = '—';
-  const t = Object.values(chiudiOndata(m, { ...s, risposte }, d).tensione);
+  let x = s; // D-246: l'imprevisto può aprirsi solo dopo altre risposte, quindi si chiude finché resta qualcosa di aperto
+  for (let a = chiamateAperte(m, x); a.length; a = chiamateAperte(m, x)) x = { ...x, risposte: { ...x.risposte, ...Object.fromEntries(a.map((c) => [c.id, '—'])) } };
+  const t = Object.values(chiudiOndata(m, x, d).tensione);
   return Math.max(...t) * 100 + t.reduce((a, b) => a + b, 0);
 }
 
@@ -24,7 +25,9 @@ const opzioneMigliore = (m: Missione, s: InCorso, c: Chiamata, d: Dich, segno: 1
   let scelta = opzioniValide(c, s, m)[0]!.id, voto = Infinity;
   for (const o of opzioniValide(c, s, m)) {
     const t = rispondi(m, s, c.id, o.id, d);
-    const v = segno * stima(m, t, d) - credito * (Number(t.variabili.credito ?? 0));
+    // D-241 idea C: chi pesa la fiducia conta anche quella che l'opzione toglierà dopo (effetti_dopo); rosso __NO_C241C01: no
+    const dopo = spento('C241C01') ? 0 : (o.effetti_dopo?.effetti ?? []).reduce((a, e) => a + ('aggiungi' in e && e.aggiungi === 'credito' ? e.valore : 0), 0);
+    const v = segno * stima(m, t, d) - credito * (Number(t.variabili.credito ?? 0) + dopo);
     if (v < voto) { voto = v; scelta = o.id; }
   }
   return scelta;

@@ -345,6 +345,17 @@
                         "$ref": "comune.schema.json#/$defs/testo",
                         "description": "cosa succede subito dopo la scelta"
                       },
+                      "effetti_dopo": {
+                        "type": "object",
+                        "required": ["ondate", "effetti", "rapporto"],
+                        "additionalProperties": false,
+                        "description": "D-241 idea C (PO-152): effetti ritardati alla chiusura dell'ondata della scelta + «ondate» (o dell'ultima, se non bastano), raccontati da «rapporto» (src/logica/dopo.ts). Nelle varianti non si scrive: la variante lo eredita",
+                        "properties": {
+                          "ondate": { "type": "integer", "minimum": 1, "maximum": 3 },
+                          "effetti": { "type": "array", "minItems": 1, "items": { "$ref": "comune.schema.json#/$defs/effetto_missione" } },
+                          "rapporto": { "$ref": "comune.schema.json#/$defs/testo", "description": "rapporto radio quando l'effetto morde" }
+                        }
+                      },
                       "dopo": {
                         "type": "object",
                         "additionalProperties": false,

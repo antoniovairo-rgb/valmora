@@ -168,6 +168,7 @@
             },
             {
               "id": "chiudi_portone",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e12.dopo.portone.chiudi_portone"},
               "testo": "testi:e12.op.chiudi_portone",
               "costo": "testi:e12.op.chiudi_portone.c",
               "effetti": [
@@ -382,6 +383,7 @@
           "opzioni": [
             {
               "id": "cordone12",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e12.dopo.salvezza.cordone12"},
               "testo": "testi:e12.op.cordone12",
               "costo": "testi:e12.op.cordone12.c",
               "effetti": [
@@ -632,6 +634,7 @@
             },
             {
               "id": "lascia_manifesto",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e12.dopo.manifesto.lascia_manifesto"},
               "testo": "testi:e12.op.lascia_manifesto",
               "costo": "testi:e12.op.lascia_manifesto.c",
               "effetti": [
@@ -848,6 +851,7 @@
             },
             {
               "id": "chiudi_cancelli",
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e12.dopo.rinforzi.chiudi_cancelli"},
               "testo": "testi:e12.op.chiudi_cancelli",
               "costo": "testi:e12.op.chiudi_cancelli.c",
               "effetti": [

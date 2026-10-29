@@ -363,4 +363,13 @@
 //   salvataggio spostate senza perdite sui salvataggi reali 0.4.0/0.38.0/0.52.0; nel bundle «Valmora» resta solo in nomi tecnici,
 //   chiavi vecchie da migrare e indirizzo del sito (cambia dopo la rinomina del repository).
 //   guardiano: tests/nome-d244.test.ts + tools/nome-d244.mjs (passo email), rossi C244N01 e C244S01.
-export const GAME_VERSION = '0.55.0';
+// 0.56.0 – il «nessun costo» morde dopo (idea C, PO-152, D-241): effetti ritardati sulle opzioni comode.
+//   causa: il tester sceglieva sempre l'opzione «senza costo»; le scelte comode non avevano conseguenze.
+//   misura: un morso per ondata in tutte le 142 ondate (167 opzioni con le varianti), arriva alla chiusura dell'ondata dichiarata
+//   e la centrale lo dice nella chiusura; 138 morsi tolgono fiducia −1, 4 restano sul campo; bot 0 blocchi su 86.400 partite;
+//   equilibrata 3★ 89,2% → 68,1%; SAVE_VERSION invariata (lo stato in attesa sta nelle scelte), salvataggi reali ripresi.
+//   guardiano: tests/morde-dopo.test.ts e tools/misura-d241c.mjs, rosso C241C01 (167 → 0 morsi).
+//   Nella stessa versione: C53-01 (D-246), la carta di imprevisto non arriva più per ultima (attenta 5,1% → 0, casuale 5,6% → 0
+//   su 300 semi × 36 episodi; guardiano tests/imprevisto-d246.test.ts, rosso C246I01); indirizzo del sito …/varcalda/ dopo la
+//   rinomina del repository (src/resa/collegamenti.ts).
+export const GAME_VERSION = '0.56.0';

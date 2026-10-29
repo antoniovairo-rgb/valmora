@@ -116,8 +116,10 @@ export function validaSemantica(file: Record<string, unknown>): string[] {
         if (x.costo) testo(`${dove}.opzioni[${h}]`, x.costo);
         else if (!spento('C06D78')) p.push(`${dove}.opzioni[${h}]: manca l'accenno di costo (D-078)`);
         if (x.se) condizione(`${dove}.opzioni[${h}].se`, x.se);
-        x.effetti.forEach((e: Obj, q: number) => {
-          const w = `${dove}.opzioni[${h}].effetti[${q}]`;
+        // D-241 idea C: gli effetti ritardati come gli effetti, più il testo del rapporto radio
+        if (x.effetti_dopo) testo(`${dove}.opzioni[${h}].effetti_dopo`, x.effetti_dopo.rapporto);
+        [...x.effetti.map((e: Obj, q: number) => [e, `effetti[${q}]`]), ...(x.effetti_dopo?.effetti ?? []).map((e: Obj, q: number) => [e, `effetti_dopo.effetti[${q}]`])].forEach(([e, dov]: [Obj, string]) => {
+          const w = `${dove}.opzioni[${h}].${dov}`;
           if ('tensione' in e && !settori.includes(e.tensione)) p.push(`${w}: settore «${e.tensione}» non è nella mappa`);
           else if ('pressione' in e && !settori.includes(e.pressione)) p.push(`${w}: settore «${e.pressione}» non è nella mappa`);
           else if ('riserva' in e && !risorse.includes(e.riserva)) p.push(`${w}: risorsa «${e.riserva}» non disponibile`);
