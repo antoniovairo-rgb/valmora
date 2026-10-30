@@ -379,4 +379,10 @@
 //   indirizzo del sito …/vandelfalls/ (repository rinominato dal PO); nel bundle i nomi vecchi restano solo come chiavi da migrare
 //   e nomi tecnici.
 //   guardiano: tests/nome-d244.test.ts + tools/nome-d244.mjs estesi a «Varcalda», rossi C249N01, C249S01, C244N01, C244S01.
-export const GAME_VERSION = '0.57.0';
+// 0.58.0 – la mappa è la fonte (idea A, PO-152, D-241) e mappa della città ferma con scheda compatta (C52-01/02/03, D-243).
+//   causa: il tester leggeva la riga di costo e sceglieva l'opzione «senza costo»; in chiamata la mappa non si toccava; la mappa
+//   della città saltava fino a 110 px al tocco di un episodio.
+//   misura: prima di «Conferma» 0 costi sotto le opzioni, dopo il costo per radio; settori toccabili in chiamata (bersagli 44 px);
+//   mappa ferma a 279 px in 6 stati, sopra le teste ≥ 104 px e mappa 431 a 915; bundle +4,9 KB; bot 0 blocchi.
+//   guardiano: tools/foto-po152-a.mjs (rossi C241A01, C241M01), foto-po149 (rosso C242M01), C241N01 per i nomi a 412.
+export const GAME_VERSION = '0.58.0';

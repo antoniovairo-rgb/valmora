@@ -125842,6 +125842,613 @@
       "esito": "verde"
     },
     {
+      "catena": "grafica",
+      "data": "2026-10-27T22:39:21.462Z",
+      "commit": "3962c539",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            16.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            2226.3,
+            2140.9,
+            1905.9
+          ],
+          "problemi": [
+            "360px: chiamata «corteo_partito» opzione «scorta»: icone «», i dati dicono «settore:strada_cinderwick,unita:squadre» (PO-085)",
+            "360px: chiamata «corteo_partito» opzione «ferma»: icone «», i dati dicono «settore:curva_cinderwick,settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «corteo_partito» opzione «osserva»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «ufficio_insiste» opzione «asseconda»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «pullman» opzione «conta»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «pullman» opzione «aspetta»: icone «», i dati dicono «fiducia,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_ambulanza» opzione «apri_varco»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_ambulanza» opzione «scendete»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «rinforzi» opzione «chiedi»: icone «», i dati dicono «unita:squadre» (PO-085)",
+            "360px: chiamata «striscione» opzione «rimuovi»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «striscione» opzione «lascia»: icone «», i dati dicono «fiducia» (PO-085)",
+            "360px: chiamata «striscione» opzione «ridi»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «fumogeni» opzione «spegni»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «fumogeni» opzione «sospendi»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «fumogeni» opzione «lascia_fumo»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «porta_servizio» opzione «presidia»: icone «», i dati dicono «settore:piazzale,unita:steward» (PO-085)",
+            "360px: chiamata «porta_servizio» opzione «finta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «imp_buio» opzione «torce»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «imp_buio» opzione «speaker»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «presidente» opzione «vai»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «presidente» opzione «manda_vice»: icone «», i dati dicono «fiducia,settore:piazzale» (PO-085)",
+            "360px: chiamata «capo_curva» opzione «mediatore»: icone «», i dati dicono «settore:curva_cinderwick,unita:mediatore» (PO-085)",
+            "360px: chiamata «capo_curva» opzione «nessuna»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «capo_curva» opzione «ascolta»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «pareggio» opzione «trattieni»: icone «», i dati dicono «settore:curva_larkspire,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «pareggio» opzione «insieme»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «incrocio» opzione «chiudi»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «incrocio» opzione «scorrere»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_tram» opzione «a_piedi»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_tram» opzione «dividi»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «lavezzari» opzione «accetta»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "360px: chiamata «lavezzari» opzione «annota»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «troupe» opzione «intervista»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «sciarpe» opzione «paga»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «corteo_partito» opzione «scorta»: icone «», i dati dicono «settore:strada_cinderwick,unita:squadre» (PO-085)",
+            "360px: chiamata «corteo_partito» opzione «ferma»: icone «», i dati dicono «settore:curva_cinderwick,settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «corteo_partito» opzione «osserva»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «ufficio_insiste» opzione «asseconda»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «pullman» opzione «conta»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «pullman» opzione «aspetta»: icone «», i dati dicono «fiducia,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_ambulanza» opzione «apri_varco»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_ambulanza» opzione «scendete»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «rinforzi» opzione «chiedi»: icone «», i dati dicono «unita:squadre» (PO-085)",
+            "360px: chiamata «striscione» opzione «rimuovi»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «striscione» opzione «lascia»: icone «», i dati dicono «fiducia» (PO-085)",
+            "360px: chiamata «striscione» opzione «ridi»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «fumogeni» opzione «spegni»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «fumogeni» opzione «sospendi»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «fumogeni» opzione «lascia_fumo»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «porta_servizio» opzione «presidia»: icone «», i dati dicono «settore:piazzale,unita:steward» (PO-085)",
+            "360px: chiamata «porta_servizio» opzione «finta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «imp_buio» opzione «torce»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «imp_buio» opzione «speaker»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «presidente» opzione «vai»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «presidente» opzione «manda_vice»: icone «», i dati dicono «fiducia,settore:piazzale» (PO-085)",
+            "360px: chiamata «capo_curva» opzione «mediatore»: icone «», i dati dicono «settore:curva_cinderwick,unita:mediatore» (PO-085)",
+            "360px: chiamata «capo_curva» opzione «nessuna»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «capo_curva» opzione «ascolta»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «pareggio» opzione «trattieni»: icone «», i dati dicono «settore:curva_larkspire,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «pareggio» opzione «insieme»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «incrocio» opzione «chiudi»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «incrocio» opzione «scorrere»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_tram» opzione «a_piedi»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_tram» opzione «dividi»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «lavezzari» opzione «accetta»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "360px: chiamata «lavezzari» opzione «annota»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «troupe» opzione «intervista»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «sciarpe» opzione «paga»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «ritardo» opzione «scorta_subito»: icone «», i dati dicono «settore:viale_stazione,unita:squadre» (PO-085)",
+            "360px: chiamata «ritardo» opzione «trattieni»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «ritardo» opzione «lasciali»: icone «», i dati dicono «settore:viale_stazione» (PO-085)",
+            "360px: chiamata «responsabile» opzione «fidati»: icone «», i dati dicono «settore:viale_stazione» (PO-085)",
+            "360px: chiamata «imp_binario» opzione «sottopasso»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "360px: chiamata «imp_binario» opzione «uscita_merci»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «selfie» opzione «devia»: icone «», i dati dicono «settore:curva_larkspire,settore:viale_stazione» (PO-085)",
+            "360px: chiamata «selfie» opzione «ignora_rete»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «biglietti_voce» opzione «sequestra»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "360px: chiamata «secondo_treno» opzione «accoglienza»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "360px: chiamata «secondo_treno» opzione «binario_lontano»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "360px: chiamata «secondo_treno» opzione «normale»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «tornelli_falsi» opzione «respingi»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "360px: chiamata «tornelli_falsi» opzione «settore_separato»: icone «», i dati dicono «fiducia,settore:curva_ospiti,settore:tornelli» (PO-085)",
+            "360px: chiamata «tornelli_falsi» opzione «chiudi_occhio»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "360px: chiamata «corteo_viale» opzione «corteo_scortato»: icone «», i dati dicono «settore:viale_stazione,unita:squadre» (PO-085)",
+            "360px: chiamata «corteo_viale» opzione «corteo_no»: icone «», i dati dicono «settore:viale_stazione» (PO-085)",
+            "360px: chiamata «corteo_viale» opzione «mediatore_corteo»: icone «», i dati dicono «fiducia,settore:viale_stazione,unita:mediatore» (PO-085)",
+            "360px: chiamata «imp_sciarpa» opzione «recupera»: icone «», i dati dicono «settore:stazione,settore:tornelli» (PO-085)",
+            "360px: chiamata «imp_sciarpa» opzione «scorta_tornelli»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «comitato_quartiere» opzione «presidio_quartiere»: icone «», i dati dicono «settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «comitato_quartiere» opzione «comunicato»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «striscione_ospiti» opzione «chiedi»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «striscione_ospiti» opzione «rimuovi_str»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «imp_acquazzone» opzione «teli»: icone «», i dati dicono «settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «imp_acquazzone» opzione «settore_coperto»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «caldo_casa» opzione «mediatore_casa»: icone «», i dati dicono «settore:curva_larkspire,unita:mediatore» (PO-085)",
+            "360px: chiamata «biglietti_rete» opzione «annota»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "360px: chiamata «risultato» opzione «trattieni_ospiti»: icone «», i dati dicono «settore:curva_ospiti,settore:viale_stazione» (PO-085)",
+            "360px: chiamata «risultato» opzione «prima_ospiti»: icone «», i dati dicono «settore:curva_larkspire,settore:viale_stazione,unita:squadre» (PO-085)",
+            "360px: chiamata «ultimo_treno» opzione «trattieni_treno»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "360px: chiamata «ultimo_treno» opzione «parte»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «imp_soppresso» opzione «pullman»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "360px: chiamata «imp_soppresso» opzione «sala_attesa»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «responsabile_saluta» opzione «saluta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «vetrine» opzione «indaga»: icone «», i dati dicono «fiducia,unita:steward» (PO-085)",
+            "360px: chiamata «vetrine» opzione «chiudi_viale»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "360px: chiamata «auto_in_sosta» opzione «rimozione»: icone «», i dati dicono «settore:quartiere,unita:squadre» (PO-085)",
+            "360px: chiamata «auto_in_sosta» opzione «multe»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "360px: chiamata «auto_in_sosta» opzione «chiudi_occhio_auto»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "360px: chiamata «cartelloni» opzione «ascolta_comitato»: icone «», i dati dicono «settore:quartiere,unita:mediatore» (PO-085)",
+            "360px: chiamata «cartelloni» opzione «promessa»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "360px: chiamata «imp_carro» opzione «sblocca»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "360px: chiamata «imp_carro» opzione «ai_parcheggi»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "360px: chiamata «ospiti_arrivano» opzione «parcheggio_lontano»: icone «», i dati dicono «settore:parcheggi,settore:piazzale» (PO-085)",
+            "360px: chiamata «ospiti_arrivano» opzione «dove_capita»: icone «», i dati dicono «fiducia,settore:parcheggi» (PO-085)",
+            "360px: chiamata «laser» opzione «steward_laser»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «laser» opzione «annuncio»: icone «», i dati dicono «fiducia,settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «laser» opzione «lascia_laser»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «finestre» opzione «pattuglia_vie»: icone «», i dati dicono «settore:piazzale,settore:quartiere» (PO-085)",
+            "360px: chiamata «finestre» opzione «comunicato_residenti»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "360px: chiamata «imp_cane» opzione «steward_cane»: icone «», i dati dicono «settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «imp_cane» opzione «custode»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «torcia_casa» opzione «steward_torcia»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «torcia_casa» opzione «lascia_torcia»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «furgone_parcheggi» opzione «controllo_furgone»: icone «», i dati dicono «settore:parcheggi,unita:steward» (PO-085)",
+            "360px: chiamata «supplementari» opzione «rinforzi_notte»: icone «», i dati dicono «fiducia,unita:squadre» (PO-085)",
+            "360px: chiamata «imp_balconi» opzione «mediatore_balconi»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "360px: chiamata «imp_balconi» opzione «promessa»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "360px: chiamata «bottiglie» opzione «presidio_balcone»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "360px: chiamata «bottiglie» opzione «devia_tifosi»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "360px: chiamata «rigori_curve» opzione «cordone_curve»: icone «», i dati dicono «fiducia,settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «rigori_curve» opzione «confida_curve»: icone «», i dati dicono «fiducia,settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «risultato» opzione «trattieni_ospiti3»: icone «», i dati dicono «settore:curva_ospiti,settore:parcheggi» (PO-085)",
+            "360px: chiamata «risultato» opzione «scorta_pullman»: icone «», i dati dicono «settore:parcheggi,settore:quartiere,unita:squadre» (PO-085)",
+            "360px: chiamata «imp_bus_notte» opzione «scorta_notte»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "360px: chiamata «imp_bus_notte» opzione «secondo_bus»: icone «», i dati dicono «settore:parcheggi» (PO-085)",
+            "360px: chiamata «silenzio_np» opzione «vie_chiuse»: icone «», i dati dicono «settore:piazzale,settore:quartiere» (PO-085)",
+            "360px: chiamata «silenzio_np» opzione «scuse»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "360px: chiamata «silenzio_np» opzione «nessuna_risposta»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "360px: chiamata «troupe_notte» opzione «commento_tv»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "360px: chiamata «troupe_notte» opzione «niente_commento»: icone «», i dati dicono «fiducia» (PO-085)",
+            "360px: chiamata «corteo_partito» opzione «scorta»: icone «», i dati dicono «settore:strada_cinderwick,unita:squadre» (PO-085)",
+            "360px: chiamata «corteo_partito» opzione «ferma»: icone «», i dati dicono «settore:curva_cinderwick,settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «corteo_partito» opzione «osserva»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «ufficio_insiste» opzione «asseconda»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «pullman» opzione «conta»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «pullman» opzione «aspetta»: icone «», i dati dicono «fiducia,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_ambulanza» opzione «apri_varco»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_ambulanza» opzione «scendete»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «rinforzi» opzione «chiedi»: icone «», i dati dicono «unita:squadre» (PO-085)",
+            "360px: chiamata «striscione» opzione «rimuovi»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «striscione» opzione «lascia»: icone «», i dati dicono «fiducia» (PO-085)",
+            "360px: chiamata «striscione» opzione «ridi»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «fumogeni» opzione «spegni»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «fumogeni» opzione «sospendi»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «fumogeni» opzione «lascia_fumo»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «porta_servizio» opzione «presidia»: icone «», i dati dicono «settore:piazzale,unita:steward» (PO-085)",
+            "360px: chiamata «porta_servizio» opzione «finta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «imp_buio» opzione «torce»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «imp_buio» opzione «speaker»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «presidente» opzione «vai»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «presidente» opzione «manda_vice»: icone «», i dati dicono «fiducia,settore:piazzale» (PO-085)",
+            "360px: chiamata «capo_curva» opzione «mediatore»: icone «», i dati dicono «settore:curva_cinderwick,unita:mediatore» (PO-085)",
+            "360px: chiamata «capo_curva» opzione «nessuna»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «capo_curva» opzione «ascolta»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «pareggio» opzione «trattieni»: icone «», i dati dicono «settore:curva_larkspire,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «pareggio» opzione «insieme»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «incrocio» opzione «chiudi»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «incrocio» opzione «scorrere»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_tram» opzione «a_piedi»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_tram» opzione «dividi»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «lavezzari» opzione «accetta»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "360px: chiamata «lavezzari» opzione «annota»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «troupe» opzione «intervista»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «sciarpe» opzione «paga»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "360px: chiamata «sindacato» opzione «impegno_firmato»: icone «», i dati dicono «unita:steward» (PO-085)",
+            "360px: chiamata «sindacato» opzione «mediatore_tavolo»: icone «», i dati dicono «settore:tornelli,unita:mediatore» (PO-085)",
+            "360px: chiamata «sindacato» opzione «nessuna_trattativa»: icone «», i dati dicono «fiducia,settore:tornelli» (PO-085)",
+            "360px: chiamata «imp_lucchetto» opzione «taglia»: icone «», i dati dicono «settore:piazzale,settore:tornelli» (PO-085)",
+            "360px: chiamata «imp_lucchetto» opzione «laterale»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "360px: chiamata «volontari» opzione «volontari_si»: icone «», i dati dicono «settore:piazzale,settore:tornelli» (PO-085)",
+            "360px: chiamata «volontari» opzione «volontari_no»: icone «», i dati dicono «fiducia,settore:piazzale» (PO-085)",
+            "360px: chiamata «pullman_varco» opzione «aspettino»: icone «», i dati dicono «settore:curva_ospiti,settore:piazzale» (PO-085)",
+            "360px: chiamata «pullman_varco» opzione «entrino_soli»: icone «», i dati dicono «fiducia,settore:piazzale» (PO-085)",
+            "360px: chiamata «pullman_varco» opzione «squadra_varco»: icone «», i dati dicono «settore:piazzale,unita:squadre» (PO-085)",
+            "360px: chiamata «balaustra» opzione «squadra_scale»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «balaustra» opzione «annuncio»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «megafono» opzione «lascia_megafono»: icone «», i dati dicono «fiducia,settore:tornelli» (PO-085)",
+            "360px: chiamata «megafono» opzione «togli_megafono»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "360px: chiamata «imp_tabellone» opzione «spiega»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «imp_tabellone» opzione «correggi»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «laser_q» opzione «ammonisci»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «laser_q» opzione «pausa5»: icone «», i dati dicono «fiducia,settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «laser_q» opzione «ignora_laser»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «coro_steward» opzione «risposta_rete»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «coro_steward» opzione «silenzio_rete»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "360px: chiamata «imp_pettorine» opzione «squadra_curva»: icone «», i dati dicono «settore:curva_larkspire,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_pettorine» opzione «toglile»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «parola_gentile» opzione «di_parola»: icone «», i dati dicono «fiducia,unita:steward» (PO-085)",
+            "360px: chiamata «parola_gentile» opzione «niente_parole»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "360px: chiamata «torce5» opzione «squadra_torce»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «torce5» opzione «lascia_torce»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "360px: chiamata «risultato» opzione «uscita_tornelli»: icone «», i dati dicono «settore:piazzale,settore:tornelli» (PO-085)",
+            "360px: chiamata «risultato» opzione «uscita_strada»: icone «», i dati dicono «settore:strada_larkspire,settore:tornelli» (PO-085)",
+            "360px: chiamata «imp_strada_sbagliata» opzione «scorta_pullman»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «imp_strada_sbagliata» opzione «torna_piazzale»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «domattina» opzione «incontro_si»: icone «», i dati dicono «fiducia,settore:tornelli» (PO-085)",
+            "360px: chiamata «domattina» opzione «incontro_no»: icone «», i dati dicono «fiducia,settore:tornelli» (PO-085)",
+            "360px: chiamata «fondo_strada» opzione «chiudi_fondo»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «fondo_strada» opzione «altra_uscita»: icone «», i dati dicono «fiducia,settore:strada_larkspire» (PO-085)",
+            "360px: chiamata «viale_pieno» opzione «scorta_strada»: icone «», i dati dicono «settore:viale_concerto,unita:squadre» (PO-085)",
+            "360px: chiamata «viale_pieno» opzione «chiudi_strada»: icone «», i dati dicono «settore:parcheggi,settore:viale_concerto» (PO-085)",
+            "360px: chiamata «viale_pieno» opzione «aspettino»: icone «», i dati dicono «settore:viale_concerto» (PO-085)",
+            "360px: chiamata «parcheggi_riservati» opzione «parcheggi_pubblici»: icone «», i dati dicono «fiducia,settore:parcheggi» (PO-085)",
+            "360px: chiamata «parcheggi_riservati» opzione «steward_prato»: icone «», i dati dicono «settore:parcheggi,unita:steward» (PO-085)",
+            "360px: chiamata «parcheggi_riservati» opzione «lascia_addetti»: icone «», i dati dicono «fiducia,settore:parcheggi» (PO-085)",
+            "360px: chiamata «imp_sedie» opzione «prendi_sedia»: icone «», i dati dicono «settore:parcheggi,settore:viale_concerto» (PO-085)",
+            "360px: chiamata «imp_sedie» opzione «mucchi»: icone «», i dati dicono «settore:viale_concerto» (PO-085)",
+            "360px: chiamata «palco» opzione «palco_si»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «palco» opzione «palco_no»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «microfono» opzione «sospendi_prove»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "360px: chiamata «microfono» opzione «lascia_cori»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «imp_tubo» opzione «chiama_acquedotto»: icone «», i dati dicono «settore:piazza_concerto,settore:piazzale» (PO-085)",
+            "360px: chiamata «imp_tubo» opzione «transenna_getto»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «abbonamenti_finti» opzione «sequestra_abb»: icone «», i dati dicono «fiducia,settore:piazza_concerto» (PO-085)",
+            "360px: chiamata «abbonamenti_finti» opzione «steward_banchi»: icone «», i dati dicono «settore:piazza_concerto,unita:steward» (PO-085)",
+            "360px: chiamata «abbonamenti_finti» opzione «foto_venditori»: icone «», i dati dicono «settore:piazza_concerto» (PO-085)",
+            "360px: chiamata «caldo» opzione «acqua»: icone «», i dati dicono «settore:curva_cinderwick,unita:steward» (PO-085)",
+            "360px: chiamata «caldo» opzione «resistano»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «spintoni» opzione «separa»: icone «», i dati dicono «settore:piazzale,unita:squadre» (PO-085)",
+            "360px: chiamata «spintoni» opzione «sospendi13»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "360px: chiamata «spintoni» opzione «si_stanchino»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "360px: chiamata «video» opzione «comunicato13»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «imp_vespe» opzione «spray_custode»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "360px: chiamata «imp_vespe» opzione «svuota_fila»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «patto_dessi» opzione «accetta_dessi»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «patto_dessi» opzione «rifiuta_dessi»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «coda_auto» opzione «senso_unico»: icone «», i dati dicono «settore:parcheggi,settore:viale_concerto» (PO-085)",
+            "360px: chiamata «coda_auto» opzione «vigili_urbani»: icone «», i dati dicono «settore:parcheggi» (PO-085)",
+            "360px: chiamata «imp_allarmi» opzione «ferma_basso»: icone «», i dati dicono «settore:parcheggi,settore:viale_concerto» (PO-085)",
+            "360px: chiamata «imp_allarmi» opzione «leggi_targhe»: icone «», i dati dicono «settore:parcheggi» (PO-085)",
+            "360px: chiamata «corteo_rovers» opzione «corteo_si»: icone «», i dati dicono «settore:viale_concerto» (PO-085)",
+            "360px: chiamata «corteo_rovers» opzione «corteo_gruppi»: icone «», i dati dicono «settore:piazzale,settore:viale_concerto» (PO-085)",
+            "360px: chiamata «abbonamento_vice» opzione «agli_atti»: icone «», i dati dicono «settore:piazza_concerto» (PO-085)",
+            "360px: chiamata «abbonamento_vice» opzione «al_club»: icone «», i dati dicono «settore:piazza_concerto» (PO-085)",
+            "360px: chiamata «nulla_osta» opzione «aspetta_modulo»: icone «», i dati dicono «fiducia,settore:piazza_municipio» (PO-085)",
+            "360px: chiamata «nulla_osta» opzione «scorta_senza_modulo»: icone «», i dati dicono «fiducia,settore:piazza_municipio» (PO-085)",
+            "360px: chiamata «nulla_osta» opzione «mediatore_corteo»: icone «», i dati dicono «settore:piazza_municipio,unita:mediatore» (PO-085)",
+            "360px: chiamata «imp_scala_mobile» opzione «annuncio_laterale»: icone «», i dati dicono «settore:piazzale,settore:stazione» (PO-085)",
+            "360px: chiamata «imp_scala_mobile» opzione «scala_fissa»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «treno_pieno» opzione «squadra_stazione»: icone «», i dati dicono «settore:stazione,unita:squadre» (PO-085)",
+            "360px: chiamata «treno_pieno» opzione «falli_aspettare»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «club_garantisce» opzione «lascia_al_club»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «club_garantisce» opzione «tieni_steward»: icone «», i dati dicono «fiducia» (PO-085)",
+            "360px: chiamata «striscione_zona» opzione «togli_striscione»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «striscione_zona» opzione «fotografa»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «imp_furgone_transenne» opzione «rimozione»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "360px: chiamata «imp_furgone_transenne» opzione «aggira_furgone»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «permesso_mediatore» opzione «scrivi_richiesta»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «permesso_mediatore» opzione «mediatore_subito»: icone «», i dati dicono «settore:piazzale,unita:mediatore» (PO-085)",
+            "360px: chiamata «permesso_mediatore» opzione «steward_ospiti»: icone «», i dati dicono «settore:piazzale,unita:steward» (PO-085)",
+            "360px: chiamata «voce_dessi» opzione «controlla_varchi»: icone «», i dati dicono «settore:zona_rossa,unita:squadre» (PO-085)",
+            "360px: chiamata «voce_dessi» opzione «ignora_voce»: icone «», i dati dicono «settore:zona_rossa» (PO-085)",
+            "360px: chiamata «rigore_ospiti» opzione «steward_sedie»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «rigore_ospiti» opzione «lascia_festeggiare»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "360px: chiamata «imp_tettoia» opzione «teli»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "360px: chiamata «imp_tettoia» opzione «stringi_asciutto»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «ispettore» opzione «mostra_regole»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «ispettore» opzione «spiega_ispettore»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "360px: chiamata «uscite_anticipate» opzione «chiudi_uscite»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazza_municipio» (PO-085)",
+            "360px: chiamata «uscite_anticipate» opzione «lascia_uscire»: icone «», i dati dicono «settore:piazza_municipio» (PO-085)",
+            "360px: chiamata «treno_orario» opzione «trattieni_treno»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «treno_orario» opzione «treno_parte»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «imp_tabellone_partenze» opzione «binari_voce»: icone «», i dati dicono «settore:stazione,settore:zona_rossa» (PO-085)",
+            "360px: chiamata «imp_tabellone_partenze» opzione «cartello_binari»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "360px: chiamata «verbale_ordinanza» opzione «raccogli_firme»: icone «», i dati dicono «fiducia,settore:zona_rossa» (PO-085)",
+            "360px: chiamata «verbale_ordinanza» opzione «firme_domani»: icone «», i dati dicono «fiducia» (PO-085)",
+            "360px: chiamata «corteo_ritorno» opzione «scorta_ritorno»: icone «», i dati dicono «settore:piazza_municipio,settore:stazione,unita:squadre» (PO-085)",
+            "360px: chiamata «corteo_ritorno» opzione «percorso_corto»: icone «», i dati dicono «settore:piazza_municipio» (PO-085)",
+            "360px: chiamata «corteo_ritorno» opzione «niente_scorta»: icone «», i dati dicono «settore:piazza_municipio» (PO-085)",
+            "375px: chiamata «corteo_partito» opzione «scorta»: icone «», i dati dicono «settore:strada_cinderwick,unita:squadre» (PO-085)",
+            "375px: chiamata «corteo_partito» opzione «ferma»: icone «», i dati dicono «settore:curva_cinderwick,settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «corteo_partito» opzione «osserva»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «ufficio_insiste» opzione «asseconda»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "375px: chiamata «pullman» opzione «conta»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «pullman» opzione «aspetta»: icone «», i dati dicono «fiducia,settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «imp_ambulanza» opzione «apri_varco»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «imp_ambulanza» opzione «scendete»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «rinforzi» opzione «chiedi»: icone «», i dati dicono «unita:squadre» (PO-085)",
+            "375px: chiamata «striscione» opzione «rimuovi»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «striscione» opzione «lascia»: icone «», i dati dicono «fiducia» (PO-085)",
+            "375px: chiamata «striscione» opzione «ridi»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «fumogeni» opzione «spegni»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «fumogeni» opzione «sospendi»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «fumogeni» opzione «lascia_fumo»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «porta_servizio» opzione «presidia»: icone «», i dati dicono «settore:piazzale,unita:steward» (PO-085)",
+            "375px: chiamata «porta_servizio» opzione «finta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «imp_buio» opzione «torce»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «imp_buio» opzione «speaker»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «presidente» opzione «vai»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «presidente» opzione «manda_vice»: icone «», i dati dicono «fiducia,settore:piazzale» (PO-085)",
+            "375px: chiamata «capo_curva» opzione «mediatore»: icone «», i dati dicono «settore:curva_cinderwick,unita:mediatore» (PO-085)",
+            "375px: chiamata «capo_curva» opzione «nessuna»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «capo_curva» opzione «ascolta»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «pareggio» opzione «trattieni»: icone «», i dati dicono «settore:curva_larkspire,settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «pareggio» opzione «insieme»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "375px: chiamata «incrocio» opzione «chiudi»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «incrocio» opzione «scorrere»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «imp_tram» opzione «a_piedi»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «imp_tram» opzione «dividi»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "375px: chiamata «lavezzari» opzione «accetta»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "375px: chiamata «lavezzari» opzione «annota»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «troupe» opzione «intervista»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "375px: chiamata «sciarpe» opzione «paga»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «corteo_partito» opzione «scorta»: icone «», i dati dicono «settore:strada_cinderwick,unita:squadre» (PO-085)",
+            "375px: chiamata «corteo_partito» opzione «ferma»: icone «», i dati dicono «settore:curva_cinderwick,settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «corteo_partito» opzione «osserva»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «ufficio_insiste» opzione «asseconda»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "375px: chiamata «pullman» opzione «conta»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «pullman» opzione «aspetta»: icone «», i dati dicono «fiducia,settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «imp_ambulanza» opzione «apri_varco»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «imp_ambulanza» opzione «scendete»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «rinforzi» opzione «chiedi»: icone «», i dati dicono «unita:squadre» (PO-085)",
+            "375px: chiamata «striscione» opzione «rimuovi»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «striscione» opzione «lascia»: icone «», i dati dicono «fiducia» (PO-085)",
+            "375px: chiamata «striscione» opzione «ridi»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «fumogeni» opzione «spegni»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «fumogeni» opzione «sospendi»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «fumogeni» opzione «lascia_fumo»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «porta_servizio» opzione «presidia»: icone «», i dati dicono «settore:piazzale,unita:steward» (PO-085)",
+            "375px: chiamata «porta_servizio» opzione «finta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «imp_buio» opzione «torce»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «imp_buio» opzione «speaker»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «presidente» opzione «vai»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «presidente» opzione «manda_vice»: icone «», i dati dicono «fiducia,settore:piazzale» (PO-085)",
+            "375px: chiamata «capo_curva» opzione «mediatore»: icone «», i dati dicono «settore:curva_cinderwick,unita:mediatore» (PO-085)",
+            "375px: chiamata «capo_curva» opzione «nessuna»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «capo_curva» opzione «ascolta»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "375px: chiamata «pareggio» opzione «trattieni»: icone «», i dati dicono «settore:curva_larkspire,settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «pareggio» opzione «insieme»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "375px: chiamata «incrocio» opzione «chiudi»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «incrocio» opzione «scorrere»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «imp_tram» opzione «a_piedi»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "375px: chiamata «imp_tram» opzione «dividi»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "375px: chiamata «lavezzari» opzione «accetta»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "375px: chiamata «lavezzari» opzione «annota»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «troupe» opzione «intervista»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "375px: chiamata «sciarpe» opzione «paga»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "375px: chiamata «ritardo» opzione «scorta_subito»: icone «», i dati dicono «settore:viale_stazione,unita:squadre» (PO-085)",
+            "375px: chiamata «ritardo» opzione «trattieni»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "375px: chiamata «ritardo» opzione «lasciali»: icone «», i dati dicono «settore:viale_stazione» (PO-085)",
+            "375px: chiamata «responsabile» opzione «fidati»: icone «», i dati dicono «settore:viale_stazione» (PO-085)",
+            "375px: chiamata «imp_binario» opzione «sottopasso»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "375px: chiamata «imp_binario» opzione «uscita_merci»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "375px: chiamata «selfie» opzione «devia»: icone «», i dati dicono «settore:curva_larkspire,settore:viale_stazione» (PO-085)",
+            "375px: chiamata «selfie» opzione «ignora_rete»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «biglietti_voce» opzione «sequestra»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "375px: chiamata «secondo_treno» opzione «accoglienza»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "375px: chiamata «secondo_treno» opzione «binario_lontano»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "375px: chiamata «secondo_treno» opzione «normale»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "375px: chiamata «tornelli_falsi» opzione «respingi»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "375px: chiamata «tornelli_falsi» opzione «settore_separato»: icone «», i dati dicono «fiducia,settore:curva_ospiti,settore:tornelli» (PO-085)",
+            "375px: chiamata «tornelli_falsi» opzione «chiudi_occhio»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "375px: chiamata «corteo_viale» opzione «corteo_scortato»: icone «», i dati dicono «settore:viale_stazione,unita:squadre» (PO-085)",
+            "375px: chiamata «corteo_viale» opzione «corteo_no»: icone «», i dati dicono «settore:viale_stazione» (PO-085)",
+            "375px: chiamata «corteo_viale» opzione «mediatore_corteo»: icone «», i dati dicono «fiducia,settore:viale_stazione,unita:mediatore» (PO-085)",
+            "375px: chiamata «imp_sciarpa» opzione «recupera»: icone «», i dati dicono «settore:stazione,settore:tornelli» (PO-085)",
+            "375px: chiamata «imp_sciarpa» opzione «scorta_tornelli»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "375px: chiamata «comitato_quartiere» opzione «presidio_quartiere»: icone «», i dati dicono «settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «comitato_quartiere» opzione «comunicato»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «striscione_ospiti» opzione «chiedi»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «striscione_ospiti» opzione «rimuovi_str»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «imp_acquazzone» opzione «teli»: icone «», i dati dicono «settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «imp_acquazzone» opzione «settore_coperto»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «caldo_casa» opzione «mediatore_casa»: icone «», i dati dicono «settore:curva_larkspire,unita:mediatore» (PO-085)",
+            "375px: chiamata «biglietti_rete» opzione «annota»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "375px: chiamata «risultato» opzione «trattieni_ospiti»: icone «», i dati dicono «settore:curva_ospiti,settore:viale_stazione» (PO-085)",
+            "375px: chiamata «risultato» opzione «prima_ospiti»: icone «», i dati dicono «settore:curva_larkspire,settore:viale_stazione,unita:squadre» (PO-085)",
+            "375px: chiamata «ultimo_treno» opzione «trattieni_treno»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "375px: chiamata «ultimo_treno» opzione «parte»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "375px: chiamata «imp_soppresso» opzione «pullman»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "375px: chiamata «imp_soppresso» opzione «sala_attesa»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "375px: chiamata «responsabile_saluta» opzione «saluta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «vetrine» opzione «indaga»: icone «», i dati dicono «fiducia,unita:steward» (PO-085)",
+            "375px: chiamata «vetrine» opzione «chiudi_viale»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "375px: chiamata «auto_in_sosta» opzione «rimozione»: icone «», i dati dicono «settore:quartiere,unita:squadre» (PO-085)",
+            "375px: chiamata «auto_in_sosta» opzione «multe»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "375px: chiamata «auto_in_sosta» opzione «chiudi_occhio_auto»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "375px: chiamata «cartelloni» opzione «ascolta_comitato»: icone «», i dati dicono «settore:quartiere,unita:mediatore» (PO-085)",
+            "375px: chiamata «cartelloni» opzione «promessa»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "375px: chiamata «imp_carro» opzione «sblocca»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "375px: chiamata «imp_carro» opzione «ai_parcheggi»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "375px: chiamata «ospiti_arrivano» opzione «parcheggio_lontano»: icone «», i dati dicono «settore:parcheggi,settore:piazzale» (PO-085)",
+            "375px: chiamata «ospiti_arrivano» opzione «dove_capita»: icone «», i dati dicono «fiducia,settore:parcheggi» (PO-085)",
+            "375px: chiamata «laser» opzione «steward_laser»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «laser» opzione «annuncio»: icone «», i dati dicono «fiducia,settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «laser» opzione «lascia_laser»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «finestre» opzione «pattuglia_vie»: icone «», i dati dicono «settore:piazzale,settore:quartiere» (PO-085)",
+            "375px: chiamata «finestre» opzione «comunicato_residenti»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "375px: chiamata «imp_cane» opzione «steward_cane»: icone «», i dati dicono «settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «imp_cane» opzione «custode»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «torcia_casa» opzione «steward_torcia»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «torcia_casa» opzione «lascia_torcia»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "375px: chiamata «furgone_parcheggi» opzione «controllo_furgone»: icone «», i dati dicono «settore:parcheggi,unita:steward» (PO-085)",
+            "375px: chiamata «supplementari» opzione «rinforzi_notte»: icone «», i dati dicono «fiducia,unita:squadre» (PO-085)",
+            "375px: chiamata «imp_balconi» opzione «mediatore_balconi»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "375px: chiamata «imp_balconi» opzione «promessa»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "375px: chiamata «bottiglie» opzione «presidio_balcone»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "375px: chiamata «bottiglie» opzione «devia_tifosi»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "375px: chiamata «rigori_curve» opzione «cordone_curve»: icone «», i dati dicono «fiducia,settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «rigori_curve» opzione «confida_curve»: icone «», i dati dicono «fiducia,settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "375px: chiamata «risultato» opzione «trattieni_ospiti3»: icone «», i dati dicono «settore:curva_ospiti,settore:parcheggi» (PO-085)",
+            "375px: chiamata «risultato» opzione «scorta_pullman»: icone «», i dati dicono «settore:parcheggi,settore:quartiere,unita:squadre» (PO-085)",
+            "375px: chiamata «imp_bus_notte» opzione «scorta_notte»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "375px: chiamata «imp_bus_notte» opzione «secondo_bus»: icone «», i dati dicono «settore:parcheggi» (PO-085)",
+            "375px: chiamata «silenzio_np» opzione «vie_chiuse»: icone «», i dati dicono «settore:piazzale,settore:quartiere» (PO-085)",
+            "375px: chiamata «silenzio_np» opzione «scuse»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "375px: chiamata «silenzio_np» opzione «nessuna_risposta»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "375px: chiamata «troupe_notte» opzione «commento_tv»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "375px: chiamata «troupe_notte» opzione «niente_commento»: icone «», i dati dicono «fiducia» (PO-085)",
+            "412px: chiamata «corteo_partito» opzione «scorta»: icone «», i dati dicono «settore:strada_cinderwick,unita:squadre» (PO-085)",
+            "412px: chiamata «corteo_partito» opzione «ferma»: icone «», i dati dicono «settore:curva_cinderwick,settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «corteo_partito» opzione «osserva»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «ufficio_insiste» opzione «asseconda»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "412px: chiamata «pullman» opzione «conta»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «pullman» opzione «aspetta»: icone «», i dati dicono «fiducia,settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «imp_ambulanza» opzione «apri_varco»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «imp_ambulanza» opzione «scendete»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «rinforzi» opzione «chiedi»: icone «», i dati dicono «unita:squadre» (PO-085)",
+            "412px: chiamata «striscione» opzione «rimuovi»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «striscione» opzione «lascia»: icone «», i dati dicono «fiducia» (PO-085)",
+            "412px: chiamata «striscione» opzione «ridi»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «fumogeni» opzione «spegni»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «fumogeni» opzione «sospendi»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «fumogeni» opzione «lascia_fumo»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «porta_servizio» opzione «presidia»: icone «», i dati dicono «settore:piazzale,unita:steward» (PO-085)",
+            "412px: chiamata «porta_servizio» opzione «finta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «imp_buio» opzione «torce»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «imp_buio» opzione «speaker»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «presidente» opzione «vai»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «presidente» opzione «manda_vice»: icone «», i dati dicono «fiducia,settore:piazzale» (PO-085)",
+            "412px: chiamata «capo_curva» opzione «mediatore»: icone «», i dati dicono «settore:curva_cinderwick,unita:mediatore» (PO-085)",
+            "412px: chiamata «capo_curva» opzione «nessuna»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «capo_curva» opzione «ascolta»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «pareggio» opzione «trattieni»: icone «», i dati dicono «settore:curva_larkspire,settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «pareggio» opzione «insieme»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "412px: chiamata «incrocio» opzione «chiudi»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «incrocio» opzione «scorrere»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «imp_tram» opzione «a_piedi»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «imp_tram» opzione «dividi»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "412px: chiamata «lavezzari» opzione «accetta»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "412px: chiamata «lavezzari» opzione «annota»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «troupe» opzione «intervista»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "412px: chiamata «sciarpe» opzione «paga»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «corteo_partito» opzione «scorta»: icone «», i dati dicono «settore:strada_cinderwick,unita:squadre» (PO-085)",
+            "412px: chiamata «corteo_partito» opzione «ferma»: icone «», i dati dicono «settore:curva_cinderwick,settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «corteo_partito» opzione «osserva»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «ufficio_insiste» opzione «asseconda»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "412px: chiamata «pullman» opzione «conta»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «pullman» opzione «aspetta»: icone «», i dati dicono «fiducia,settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «imp_ambulanza» opzione «apri_varco»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «imp_ambulanza» opzione «scendete»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «rinforzi» opzione «chiedi»: icone «», i dati dicono «unita:squadre» (PO-085)",
+            "412px: chiamata «striscione» opzione «rimuovi»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «striscione» opzione «lascia»: icone «», i dati dicono «fiducia» (PO-085)",
+            "412px: chiamata «striscione» opzione «ridi»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «fumogeni» opzione «spegni»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «fumogeni» opzione «sospendi»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «fumogeni» opzione «lascia_fumo»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «porta_servizio» opzione «presidia»: icone «», i dati dicono «settore:piazzale,unita:steward» (PO-085)",
+            "412px: chiamata «porta_servizio» opzione «finta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «imp_buio» opzione «torce»: icone «», i dati dicono «settore:curva_cinderwick,settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «imp_buio» opzione «speaker»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «presidente» opzione «vai»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «presidente» opzione «manda_vice»: icone «», i dati dicono «fiducia,settore:piazzale» (PO-085)",
+            "412px: chiamata «capo_curva» opzione «mediatore»: icone «», i dati dicono «settore:curva_cinderwick,unita:mediatore» (PO-085)",
+            "412px: chiamata «capo_curva» opzione «nessuna»: icone «», i dati dicono «settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «capo_curva» opzione «ascolta»: icone «», i dati dicono «fiducia,settore:curva_cinderwick» (PO-085)",
+            "412px: chiamata «pareggio» opzione «trattieni»: icone «», i dati dicono «settore:curva_larkspire,settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «pareggio» opzione «insieme»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "412px: chiamata «incrocio» opzione «chiudi»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «incrocio» opzione «scorrere»: icone «», i dati dicono «settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «imp_tram» opzione «a_piedi»: icone «», i dati dicono «settore:piazzale,settore:strada_larkspire» (PO-085)",
+            "412px: chiamata «imp_tram» opzione «dividi»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "412px: chiamata «lavezzari» opzione «accetta»: icone «», i dati dicono «settore:curva_cinderwick,settore:piazzale» (PO-085)",
+            "412px: chiamata «lavezzari» opzione «annota»: icone «», i dati dicono «settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «troupe» opzione «intervista»: icone «», i dati dicono «settore:piazzale» (PO-085)",
+            "412px: chiamata «sciarpe» opzione «paga»: icone «», i dati dicono «fiducia,settore:strada_cinderwick» (PO-085)",
+            "412px: chiamata «ritardo» opzione «scorta_subito»: icone «», i dati dicono «settore:viale_stazione,unita:squadre» (PO-085)",
+            "412px: chiamata «ritardo» opzione «trattieni»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "412px: chiamata «ritardo» opzione «lasciali»: icone «», i dati dicono «settore:viale_stazione» (PO-085)",
+            "412px: chiamata «responsabile» opzione «fidati»: icone «», i dati dicono «settore:viale_stazione» (PO-085)",
+            "412px: chiamata «imp_binario» opzione «sottopasso»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "412px: chiamata «imp_binario» opzione «uscita_merci»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "412px: chiamata «selfie» opzione «devia»: icone «», i dati dicono «settore:curva_larkspire,settore:viale_stazione» (PO-085)",
+            "412px: chiamata «selfie» opzione «ignora_rete»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «biglietti_voce» opzione «sequestra»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "412px: chiamata «secondo_treno» opzione «accoglienza»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "412px: chiamata «secondo_treno» opzione «binario_lontano»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "412px: chiamata «secondo_treno» opzione «normale»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "412px: chiamata «tornelli_falsi» opzione «respingi»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "412px: chiamata «tornelli_falsi» opzione «settore_separato»: icone «», i dati dicono «fiducia,settore:curva_ospiti,settore:tornelli» (PO-085)",
+            "412px: chiamata «tornelli_falsi» opzione «chiudi_occhio»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "412px: chiamata «corteo_viale» opzione «corteo_scortato»: icone «», i dati dicono «settore:viale_stazione,unita:squadre» (PO-085)",
+            "412px: chiamata «corteo_viale» opzione «corteo_no»: icone «», i dati dicono «settore:viale_stazione» (PO-085)",
+            "412px: chiamata «corteo_viale» opzione «mediatore_corteo»: icone «», i dati dicono «fiducia,settore:viale_stazione,unita:mediatore» (PO-085)",
+            "412px: chiamata «imp_sciarpa» opzione «recupera»: icone «», i dati dicono «settore:stazione,settore:tornelli» (PO-085)",
+            "412px: chiamata «imp_sciarpa» opzione «scorta_tornelli»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "412px: chiamata «comitato_quartiere» opzione «presidio_quartiere»: icone «», i dati dicono «settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «comitato_quartiere» opzione «comunicato»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «striscione_ospiti» opzione «chiedi»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «striscione_ospiti» opzione «rimuovi_str»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «imp_acquazzone» opzione «teli»: icone «», i dati dicono «settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «imp_acquazzone» opzione «settore_coperto»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «caldo_casa» opzione «mediatore_casa»: icone «», i dati dicono «settore:curva_larkspire,unita:mediatore» (PO-085)",
+            "412px: chiamata «biglietti_rete» opzione «annota»: icone «», i dati dicono «settore:tornelli» (PO-085)",
+            "412px: chiamata «risultato» opzione «trattieni_ospiti»: icone «», i dati dicono «settore:curva_ospiti,settore:viale_stazione» (PO-085)",
+            "412px: chiamata «risultato» opzione «prima_ospiti»: icone «», i dati dicono «settore:curva_larkspire,settore:viale_stazione,unita:squadre» (PO-085)",
+            "412px: chiamata «ultimo_treno» opzione «trattieni_treno»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "412px: chiamata «ultimo_treno» opzione «parte»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "412px: chiamata «imp_soppresso» opzione «pullman»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "412px: chiamata «imp_soppresso» opzione «sala_attesa»: icone «», i dati dicono «settore:stazione» (PO-085)",
+            "412px: chiamata «responsabile_saluta» opzione «saluta»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «vetrine» opzione «indaga»: icone «», i dati dicono «fiducia,unita:steward» (PO-085)",
+            "412px: chiamata «vetrine» opzione «chiudi_viale»: icone «», i dati dicono «settore:stazione,settore:viale_stazione» (PO-085)",
+            "412px: chiamata «auto_in_sosta» opzione «rimozione»: icone «», i dati dicono «settore:quartiere,unita:squadre» (PO-085)",
+            "412px: chiamata «auto_in_sosta» opzione «multe»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "412px: chiamata «auto_in_sosta» opzione «chiudi_occhio_auto»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "412px: chiamata «cartelloni» opzione «ascolta_comitato»: icone «», i dati dicono «settore:quartiere,unita:mediatore» (PO-085)",
+            "412px: chiamata «cartelloni» opzione «promessa»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "412px: chiamata «imp_carro» opzione «sblocca»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "412px: chiamata «imp_carro» opzione «ai_parcheggi»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "412px: chiamata «ospiti_arrivano» opzione «parcheggio_lontano»: icone «», i dati dicono «settore:parcheggi,settore:piazzale» (PO-085)",
+            "412px: chiamata «ospiti_arrivano» opzione «dove_capita»: icone «», i dati dicono «fiducia,settore:parcheggi» (PO-085)",
+            "412px: chiamata «laser» opzione «steward_laser»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «laser» opzione «annuncio»: icone «», i dati dicono «fiducia,settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «laser» opzione «lascia_laser»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «finestre» opzione «pattuglia_vie»: icone «», i dati dicono «settore:piazzale,settore:quartiere» (PO-085)",
+            "412px: chiamata «finestre» opzione «comunicato_residenti»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "412px: chiamata «imp_cane» opzione «steward_cane»: icone «», i dati dicono «settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «imp_cane» opzione «custode»: icone «», i dati dicono «settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «torcia_casa» opzione «steward_torcia»: icone «», i dati dicono «fiducia,settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «torcia_casa» opzione «lascia_torcia»: icone «», i dati dicono «settore:curva_larkspire» (PO-085)",
+            "412px: chiamata «furgone_parcheggi» opzione «controllo_furgone»: icone «», i dati dicono «settore:parcheggi,unita:steward» (PO-085)",
+            "412px: chiamata «supplementari» opzione «rinforzi_notte»: icone «», i dati dicono «fiducia,unita:squadre» (PO-085)",
+            "412px: chiamata «imp_balconi» opzione «mediatore_balconi»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "412px: chiamata «imp_balconi» opzione «promessa»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "412px: chiamata «bottiglie» opzione «presidio_balcone»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "412px: chiamata «bottiglie» opzione «devia_tifosi»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "412px: chiamata «rigori_curve» opzione «cordone_curve»: icone «», i dati dicono «fiducia,settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «rigori_curve» opzione «confida_curve»: icone «», i dati dicono «fiducia,settore:curva_larkspire,settore:curva_ospiti» (PO-085)",
+            "412px: chiamata «risultato» opzione «trattieni_ospiti3»: icone «», i dati dicono «settore:curva_ospiti,settore:parcheggi» (PO-085)",
+            "412px: chiamata «risultato» opzione «scorta_pullman»: icone «», i dati dicono «settore:parcheggi,settore:quartiere,unita:squadre» (PO-085)",
+            "412px: chiamata «imp_bus_notte» opzione «scorta_notte»: icone «», i dati dicono «settore:parcheggi,settore:quartiere» (PO-085)",
+            "412px: chiamata «imp_bus_notte» opzione «secondo_bus»: icone «», i dati dicono «settore:parcheggi» (PO-085)",
+            "412px: chiamata «silenzio_np» opzione «vie_chiuse»: icone «», i dati dicono «settore:piazzale,settore:quartiere» (PO-085)",
+            "412px: chiamata «silenzio_np» opzione «scuse»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "412px: chiamata «silenzio_np» opzione «nessuna_risposta»: icone «», i dati dicono «settore:quartiere» (PO-085)",
+            "412px: chiamata «troupe_notte» opzione «commento_tv»: icone «», i dati dicono «fiducia,settore:quartiere» (PO-085)",
+            "412px: chiamata «troupe_notte» opzione «niente_commento»: icone «», i dati dicono «fiducia» (PO-085)"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
       "catena": "governo",
       "data": "2026-10-27T23:12:27.866Z",
       "commit": "d945af01",
@@ -126328,6 +126935,263 @@
       "esito": "verde"
     },
     {
+      "catena": "grafica",
+      "data": "2026-10-28T00:24:51.897Z",
+      "commit": "e9a40bf5",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2410.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            982.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            13
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "instabile",
+          "tentativi": 3,
+          "secondi": [
+            863.9,
+            2,
+            1780.7
+          ],
+          "problemi": [],
+          "precedenti": [
+            [
+              "eccezione: page.getAttribute: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('[data-risorsa=\"squadre\"]')\u001b[22m\n"
+            ],
+            [
+              "eccezione: page.waitForTimeout: Target page, context or browser has been closed"
+            ]
+          ]
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            1386.5,
+            202.4,
+            772.8
+          ],
+          "problemi": [
+            "eccezione: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:34097/\", waiting until \"load\"\u001b[22m\n"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T00:25:50.668Z",
+      "commit": "e9a40bf5",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T00:25:51.401Z",
+      "commit": "e9a40bf5",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            10.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            315.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            185
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1652.2
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
       "catena": "governo",
       "data": "2026-10-28T00:30:46.420Z",
       "commit": "9103a5a9",
@@ -126483,6 +127347,168 @@
           "tentativi": 1,
           "secondi": [
             985.9
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T01:01:57.841Z",
+      "commit": "e9a40bf5",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T01:01:58.454Z",
+      "commit": "e9a40bf5",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            188.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            179.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1629.6
           ],
           "problemi": []
         }
@@ -127007,6 +128033,1161 @@
           "tentativi": 1,
           "secondi": [
             706.7
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T01:35:30.044Z",
+      "commit": "e9a40bf5",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T01:35:30.703Z",
+      "commit": "e9a40bf5",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            310.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            184.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2215.4
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T02:50:46.089Z",
+      "commit": "f9d00865",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T03:32:36.408Z",
+      "commit": "ec666e64",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T03:32:37.000Z",
+      "commit": "ec666e64",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            305.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            148.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1451.3
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-28T03:32:37.045Z",
+      "commit": "ec666e64",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            3.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2151.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            906.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            10.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1177.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            1107.3,
+            1081.6,
+            760.3
+          ],
+          "problemi": [
+            "eccezione: locator.click: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Riprendi' })\u001b[22m\n"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T04:04:34.824Z",
+      "commit": "ec666e64",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T04:04:35.576Z",
+      "commit": "ec666e64",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            163.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            146
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1389.6
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T04:33:06.853Z",
+      "commit": "ec666e64",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T04:33:07.421Z",
+      "commit": "ec666e64",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            146.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            141.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2247.5
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T05:37:35.311Z",
+      "commit": "c068b887",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-28T05:37:36.002Z",
+      "commit": "c068b887",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            3.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2161.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "instabile",
+          "tentativi": 2,
+          "secondi": [
+            1090,
+            872.2
+          ],
+          "problemi": [],
+          "precedenti": [
+            [
+              "360px: e15 ondata 1 360×760: lo schieramento non si apre",
+              "412px: e03 ondata 3 412×915: lo schieramento non si apre"
+            ]
+          ]
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            11
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "instabile",
+          "tentativi": 2,
+          "secondi": [
+            1103.9,
+            1108.8
+          ],
+          "problemi": [],
+          "precedenti": [
+            [
+              "375x915 città: la mappa si sposta di 18 px fra gli stati (e19 202.4, prossimo 202.4, nessuno 220, superato 202.4, tutti36 202.4, tutti36scelto 202.4; C52-01)"
+            ]
+          ]
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            1260.9,
+            1284.4,
+            1136.3
+          ],
+          "problemi": [
+            "foto/città senza WebGL (C128N01) è cieco"
+          ]
+        }
+      ],
+      "esito": "rosso"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T05:37:36.018Z",
+      "commit": "c068b887",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            12
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            313.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            136.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1458
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T06:09:39.609Z",
+      "commit": "c068b887",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
           ],
           "problemi": []
         }
@@ -127619,6 +129800,274 @@
       "esito": "verde"
     },
     {
+      "catena": "governo",
+      "data": "2026-10-28T08:25:20.068Z",
+      "commit": "769542ad",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T08:25:20.698Z",
+      "commit": "769542ad",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            10.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "instabile",
+          "tentativi": 2,
+          "secondi": [
+            379.2,
+            305.3
+          ],
+          "problemi": [],
+          "precedenti": [
+            [
+              " RUN  v5.0.3 /home/user/valmora-a",
+              " ❯ tests/fiducia-verso.test.ts (5 tests | 1 failed) 371933ms",
+              "   ❯ fiducia nel verso del risultato (D-160) (5)",
+              "     × opzioni nel verso sbagliato ≤ 30 (200 partite per episodio), rosso sopra 204328ms",
+              " Test Files  1 failed | 78 passed (79)",
+              "      Tests  1 failed | 430 passed (431)",
+              "   Start at  08:25:36",
+              "   Duration  377.51s (tests 94%, import 5%, transform 1%)",
+              "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+              " FAIL  tests/fiducia-verso.test.ts > fiducia nel verso del risultato (D-160) > opzioni nel verso sbagliato ≤ 30 (200 partite per episodio), rosso sopra",
+              "Error: Test timed out in 180000ms.",
+              "If this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".",
+              " ❯ tests/fiducia-verso.test.ts:38:3",
+              "     36|     expect(tornate(datiD160(leggiDati(), tolte))).toHaveLength(221);",
+              "     37|   });",
+              "     38|   it(`opzioni nel verso sbagliato ≤ ${SOGLIA} (${SEMI} partite per epi…",
+              "       |   ^",
+              "     39|     const verde = perverseRapide(datiD160(leggiDati(), tolte), SEMI).l…",
+              "     40|     g.__NO_C16001 = true;",
+              "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯"
+            ]
+          ]
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            171.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1739.7
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "instabile"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-28T08:25:20.900Z",
+      "commit": "769542ad",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            3.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2572.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1050.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            11.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1389.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1370
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
       "catena": "grafica",
       "data": "2026-10-28T08:30:59.791Z",
       "commit": "6891ac7",
@@ -127916,6 +130365,168 @@
           "tentativi": 1,
           "secondi": [
             1513.2
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T09:08:51.113Z",
+      "commit": "769542ad",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T09:08:51.902Z",
+      "commit": "769542ad",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            3.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            268.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            175.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1735.4
           ],
           "problemi": []
         }
@@ -128286,6 +130897,168 @@
     },
     {
       "catena": "governo",
+      "data": "2026-10-28T09:45:25.163Z",
+      "commit": "769542ad",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T09:45:25.891Z",
+      "commit": "769542ad",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            171.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            259.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2148.6
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
       "data": "2026-10-28T10:08:18.134Z",
       "commit": "c01cb5e",
       "modifiche_non_committate": false,
@@ -128640,6 +131413,168 @@
           "tentativi": 1,
           "secondi": [
             1553.7
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T10:29:19.910Z",
+      "commit": "3641482b",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T10:29:21.276Z",
+      "commit": "3641482b",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            3.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            16.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            236.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            175.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1837.1
           ],
           "problemi": []
         }
@@ -129252,6 +132187,168 @@
       "esito": "verde"
     },
     {
+      "catena": "governo",
+      "data": "2026-10-28T11:07:11.367Z",
+      "commit": "3641482b",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T11:07:12.025Z",
+      "commit": "3641482b",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            138.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            173.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1877.9
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
       "catena": "logica",
       "data": "2026-10-28T11:17:44.024Z",
       "commit": "c8c25d3",
@@ -129850,6 +132947,168 @@
           "tentativi": 1,
           "secondi": [
             0.5
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T11:43:54.133Z",
+      "commit": "3641482b",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T11:43:54.802Z",
+      "commit": "3641482b",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            10.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            151.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            183
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1799.2
           ],
           "problemi": []
         }
@@ -130506,6 +133765,87 @@
     },
     {
       "catena": "grafica",
+      "data": "2026-10-28T12:56:21.399Z",
+      "commit": "cf03dddc",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            3.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2027
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1022.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            11.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1219.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1337.9
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "grafica",
       "data": "2026-10-28T13:28:47.723Z",
       "commit": "cb38f872",
       "modifiche_non_committate": false,
@@ -130622,6 +133962,91 @@
         }
       ],
       "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-28T14:33:52.733Z",
+      "commit": "ce86e16c",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2004.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            920.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            10.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1277.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "rosso",
+          "tentativi": 3,
+          "secondi": [
+            374.1,
+            199.7,
+            377.9
+          ],
+          "problemi": [
+            "eccezione: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-azione=\"avanti\"]').first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"pulsante\" data-azione=\"avanti\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n"
+          ]
+        }
+      ],
+      "esito": "rosso"
     },
     {
       "catena": "grafica",
@@ -130825,6 +134250,168 @@
     },
     {
       "catena": "governo",
+      "data": "2026-10-28T16:00:02.546Z",
+      "commit": "ce86e16c",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T16:00:03.131Z",
+      "commit": "ce86e16c",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.9
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            196.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            190.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1792.4
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
       "data": "2026-10-28T16:00:50.228Z",
       "commit": "8ee0d870",
       "modifiche_non_committate": false,
@@ -130987,6 +134574,168 @@
     },
     {
       "catena": "governo",
+      "data": "2026-10-28T16:36:34.927Z",
+      "commit": "ce86e16c",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T16:36:35.510Z",
+      "commit": "ce86e16c",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            182.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            186.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1716.1
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
       "data": "2026-10-28T16:47:18.630Z",
       "commit": "8ee0d870",
       "modifiche_non_committate": false,
@@ -131141,6 +134890,168 @@
           "tentativi": 1,
           "secondi": [
             2082.6
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-28T17:11:32.847Z",
+      "commit": "ce86e16c",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-28T17:11:33.391Z",
+      "commit": "ce86e16c",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            10.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            170.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            186.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1746
           ],
           "problemi": []
         }
@@ -132158,6 +136069,87 @@
       "esito": "verde"
     },
     {
+      "catena": "grafica",
+      "data": "2026-10-29T07:30:15.037Z",
+      "commit": "170c14c9",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            10.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "foto",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2119.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schieramenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            952.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "offline",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            11.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "altezze",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1309.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-grafica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1368.6
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
       "catena": "governo",
       "data": "2026-10-29T07:39:26.638Z",
       "commit": "7c2943d6",
@@ -132806,13 +136798,13 @@
       "esito": "verde"
     },
     {
-      "catena": "governo",
-      "data": "2026-10-30T00:50:46.531Z",
-      "commit": "4191c83",
+      "catena": "grafica",
+      "data": "2026-10-29T21:17:38.574Z",
+      "commit": "979d1530",
       "modifiche_non_committate": false,
       "passi": [
         {
-          "passo": "documenti",
+          "passo": "token",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
@@ -132821,65 +136813,65 @@
           "problemi": []
         },
         {
-          "passo": "backlog",
+          "passo": "build",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0
+            6.3
           ],
           "problemi": []
         },
         {
-          "passo": "segreti",
+          "passo": "email",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0
+            0.6
           ],
           "problemi": []
         },
         {
-          "passo": "versione",
+          "passo": "foto",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0
+            2030.5
           ],
           "problemi": []
         },
         {
-          "passo": "store",
+          "passo": "schieramenti",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0
+            865.1
           ],
           "problemi": []
         },
         {
-          "passo": "modello",
+          "passo": "offline",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0.1
+            10.3
           ],
           "problemi": []
         },
         {
-          "passo": "bracci-rossi",
+          "passo": "altezze",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0
+            1160.4
           ],
           "problemi": []
         },
         {
-          "passo": "governo.html",
+          "passo": "bracci-rossi-grafica",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0
+            1178.6
           ],
           "problemi": []
         }
@@ -132888,8 +136880,8 @@
     },
     {
       "catena": "governo",
-      "data": "2026-10-30T00:50:46.896Z",
-      "commit": "4191c83",
+      "data": "2026-10-29T22:45:10.678Z",
+      "commit": "979d1530",
       "modifiche_non_committate": false,
       "passi": [
         {
@@ -132942,7 +136934,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0.1
+            0.3
           ],
           "problemi": []
         },
@@ -132960,88 +136952,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0
-          ],
-          "problemi": []
-        }
-      ],
-      "esito": "verde"
-    },
-    {
-      "catena": "governo",
-      "data": "2026-10-30T00:50:47.214Z",
-      "commit": "4191c83",
-      "modifiche_non_committate": false,
-      "passi": [
-        {
-          "passo": "documenti",
-          "esito": "verde",
-          "tentativi": 1,
-          "secondi": [
-            0
-          ],
-          "problemi": []
-        },
-        {
-          "passo": "backlog",
-          "esito": "verde",
-          "tentativi": 1,
-          "secondi": [
-            0
-          ],
-          "problemi": []
-        },
-        {
-          "passo": "segreti",
-          "esito": "verde",
-          "tentativi": 1,
-          "secondi": [
-            0
-          ],
-          "problemi": []
-        },
-        {
-          "passo": "versione",
-          "esito": "verde",
-          "tentativi": 1,
-          "secondi": [
-            0
-          ],
-          "problemi": []
-        },
-        {
-          "passo": "store",
-          "esito": "verde",
-          "tentativi": 1,
-          "secondi": [
-            0
-          ],
-          "problemi": []
-        },
-        {
-          "passo": "modello",
-          "esito": "verde",
-          "tentativi": 1,
-          "secondi": [
             0.1
-          ],
-          "problemi": []
-        },
-        {
-          "passo": "bracci-rossi",
-          "esito": "verde",
-          "tentativi": 1,
-          "secondi": [
-            0
-          ],
-          "problemi": []
-        },
-        {
-          "passo": "governo.html",
-          "esito": "verde",
-          "tentativi": 1,
-          "secondi": [
-            0
           ],
           "problemi": []
         }
@@ -133050,8 +136961,8 @@
     },
     {
       "catena": "logica",
-      "data": "2026-10-30T00:50:47.650Z",
-      "commit": "4191c83",
+      "data": "2026-10-29T22:45:11.326Z",
+      "commit": "979d1530",
       "modifiche_non_committate": false,
       "passi": [
         {
@@ -133059,7 +136970,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            1.2
+            1.7
           ],
           "problemi": []
         },
@@ -133068,7 +136979,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            6.8
+            9.5
           ],
           "problemi": []
         },
@@ -133077,7 +136988,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            0.2
+            0.4
           ],
           "problemi": []
         },
@@ -133086,7 +136997,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            156.6
+            224
           ],
           "problemi": []
         },
@@ -133095,7 +137006,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            186.4
+            244
           ],
           "problemi": []
         },
@@ -133122,7 +137033,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            1361.5
+            1817.7
           ],
           "problemi": []
         }
@@ -133130,31 +137041,58 @@
       "esito": "verde"
     },
     {
-      "catena": "logica",
-      "data": "2026-10-30T01:19:20.759Z",
-      "commit": "4191c83",
+      "catena": "governo",
+      "data": "2026-10-29T23:23:29.008Z",
+      "commit": "979d1530",
       "modifiche_non_committate": false,
       "passi": [
         {
-          "passo": "tipi",
+          "passo": "documenti",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            1.2
+            0
           ],
           "problemi": []
         },
         {
-          "passo": "confini",
+          "passo": "backlog",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            6.8
+            0
           ],
           "problemi": []
         },
         {
-          "passo": "schema",
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
@@ -133163,11 +137101,65 @@
           "problemi": []
         },
         {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-29T23:23:29.577Z",
+      "commit": "979d1530",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            7.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
           "passo": "test",
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            159.1
+            216.1
           ],
           "problemi": []
         },
@@ -133176,7 +137168,250 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            187.5
+            248.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1866.1
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-29T23:31:46.268Z",
+      "commit": "c80bac30",
+      "modifiche_non_committate": true,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            9.8
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-30T00:02:30.145Z",
+      "commit": "979d1530",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-30T00:02:30.686Z",
+      "commit": "979d1530",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            7.6
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            231.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            244.5
           ],
           "problemi": []
         },
@@ -133203,7 +137438,126 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            1400.3
+            1832.1
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "grafica",
+      "data": "2026-10-30T00:46:56.797Z",
+      "commit": "72fafced",
+      "modifiche_non_committate": false,
+      "larghezze": "375",
+      "passi_scelti": "token,build,email",
+      "passi": [
+        {
+          "passo": "token",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "build",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            2.4
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "email",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.7
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-30T00:51:22.780Z",
+      "commit": "8e1fd248",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
           ],
           "problemi": []
         }
@@ -133212,8 +137566,170 @@
     },
     {
       "catena": "logica",
-      "data": "2026-10-30T01:48:36.286Z",
-      "commit": "4191c83",
+      "data": "2026-10-30T00:51:23.306Z",
+      "commit": "8e1fd248",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            8.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            203
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            211.7
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1579.7
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-30T01:24:48.250Z",
+      "commit": "8e1fd248",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-30T01:24:48.736Z",
+      "commit": "8e1fd248",
       "modifiche_non_committate": false,
       "passi": [
         {
@@ -133230,7 +137746,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            6.8
+            8.5
           ],
           "problemi": []
         },
@@ -133248,7 +137764,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            157.7
+            194.6
           ],
           "problemi": []
         },
@@ -133257,7 +137773,7 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            192.6
+            206.5
           ],
           "problemi": []
         },
@@ -133284,7 +137800,169 @@
           "esito": "verde",
           "tentativi": 1,
           "secondi": [
-            1398.9
+            1510.6
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "governo",
+      "data": "2026-10-30T01:56:50.688Z",
+      "commit": "8e1fd248",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "documenti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "backlog",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "segreti",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "versione",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "store",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "modello",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "governo.html",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        }
+      ],
+      "esito": "verde"
+    },
+    {
+      "catena": "logica",
+      "data": "2026-10-30T01:56:51.161Z",
+      "commit": "8e1fd248",
+      "modifiche_non_committate": false,
+      "passi": [
+        {
+          "passo": "tipi",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1.3
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "confini",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            8.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "schema",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0.2
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "test",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            189.5
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bot",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            204.1
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "storia",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "salvataggi-reali",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            0
+          ],
+          "problemi": []
+        },
+        {
+          "passo": "bracci-rossi-logica",
+          "esito": "verde",
+          "tentativi": 1,
+          "secondi": [
+            1575.9
           ],
           "problemi": []
         }

@@ -41,7 +41,9 @@ describe('fiducia nel verso del risultato (D-160)', () => {
     const rosso = perverseRapide(datiD160(leggiDati(), tolte), SEMI).length;
     expect(verde).toBeLessThanOrEqual(SOGLIA);
     expect(rosso).toBeGreaterThan(SOGLIA);
-  }, 180_000);
+    // strumento instabile (28/10, catena logica con la grafica nello stesso contenitore: 204 s, oltre i 180 del limite, verde al
+    // secondo tentativo): il limite è il tempo concesso, non la soglia; questa resta SOGLIA
+  }, 400_000);
   // D-172 (C38-04): in ogni episodio chi finisce con più fiducia perde meno spesso (bot casuale, 1000 partite).
   // Misurato dopo il terzo giro: tutte < −0,02; rosso: e08, e10, e17, e19, e22, e23 ≥ 0 (e altri).
   it('correlazione fiducia/fallita < 0 in tutti i 36 episodi, rosso ≥ 0 in qualcuno', () => {

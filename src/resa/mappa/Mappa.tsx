@@ -2,7 +2,7 @@
 // - sotto, PixiJS (StratoPixi) disegna griglia, campo, aloni e impulsi; se WebGL manca non c'è e basta;
 // - sopra, HTML: un punto per settore (pulsante vero, tocco e lettori di schermo), nome e unità schierate.
 // La tensione si vede SOLO come colore (D-055): classe liv-0…liv-5, mai il numero.
-import { lazy, Suspense, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, type ReactNode, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { disponiEtichette } from './etichette.ts';
 
 // Interruttore rosso C05S08: nomi e unità restano al posto fisso (difetto C-008).
@@ -19,6 +19,8 @@ import { webglDisponibile } from './webgl.ts';
 import { follaDellOndata } from './folla.ts';
 import { parolaSegno, simboloSegno, type Segno } from './segni.ts';
 import { useAdatta } from './adatta.ts';
+import { rigaFolla, SchedaSettore } from './scheda-settore.tsx';
+import { RadioMappa } from './radio-mappa.tsx';
 
 // PixiJS pesa: si carica a parte, dopo il titolo, e solo se WebGL c'è.
 const StratoPixi = lazy(() => import('./StratoPixi.tsx').then((x) => ({ default: x.StratoPixi })));
@@ -46,6 +48,10 @@ export interface MappaProps {
   /** schieramento: tocco su un settore, e tocco su un'unità già schierata per ritirarla */
   onSettore?: (settore: string) => void;
   onTogli?: (risorsa: string, settore: string) => void;
+  /** PO-152 (D-241): senza onSettore il tocco su un settore apre la sua scheda di stato (scheda-settore.tsx) */
+  schede?: boolean;
+  /** PO-152 (D-241): rapporto radio del costo dopo «Conferma», sopra la mappa (RadioMappa) */
+  radio?: ReactNode;
   /** D-165 (fischio dell'ultimo derby): settori già spenti, città vuota (niente folla né cortei), sala al buio */
   spenti?: string[]; vuota?: boolean; buio?: boolean;
   /** D-191: il rapporto nasconde la mappa che non ci sta; App mette «Home» nella testata */
@@ -91,6 +97,21 @@ export function Mappa(p: MappaProps) {
   // quando arrivano i caratteri.
   useLayoutEffect(() => { if (contenitore.current) disponi(contenitore.current); });
   useAdatta(contenitore, disponi, p.nascosta); // D-187, D-191
+  // PO-152: una scheda alla volta; si chiude da sola quando cambia la chiamata. Chiusa dalla tastiera, il fuoco torna al settore.
+  const schede = !!p.schede && !p.onSettore;
+  const [aperto, setAperto] = useState<string | null>(null);
+  useEffect(() => setAperto(null), [p.citato, schede]);
+  const chiudiScheda = () => {
+    const el = contenitore.current, id = aperto, dentro = !!el?.querySelector('.scheda-settore')?.contains(document.activeElement);
+    setAperto(null);
+    if (id && dentro) requestAnimationFrame(() => el?.querySelector<HTMLButtonElement>(`[data-settore="${id}"] .settore-punto`)?.focus({ preventScroll: true }));
+  };
+  const statoDi = (s: (typeof settori)[number]) => {
+    const liv = p.tensione ? livello(p.tensione[s.id] ?? 0) : null;
+    const conta = (d: Disposizione | null | undefined) => Object.entries(d ?? {}).map(([r, ps]) => [r, ps[s.id] ?? 0] as const).filter(([, n]) => n > 0);
+    const unita = [...conta(p.presenze).map(([r, n]) => quante(n, r)), ...conta(p.fisse).map(([r, n]) => `${quante(n, r)} ${t('scheda.fisse')}`)];
+    return { id: s.id, tipo: s.tipo, situazione: liv !== null ? PAROLE[liv] ?? null : null, unita, citato: p.citato === s.id };
+  };
   useLayoutEffect(() => {
     const el = contenitore.current;
     if (!el) return;
@@ -121,7 +142,8 @@ export function Mappa(p: MappaProps) {
         return (
           <div key={s.id} ref={posiziona(s.pos.x, s.pos.y)} data-settore={s.id}
             className={`settore lato-${lato}${accesi.has(s.id) ? ' acceso' : ''}${liv !== null ? ` liv-${liv}` : ''}${p.vietati?.includes(s.id) ? ' vietato' : ''}${p.spenti?.includes(s.id) ? ' spento' : ''}`} data-vietato={p.vietati?.includes(s.id) ? 'si' : undefined}>
-            <button type="button" className="settore-punto" disabled={!p.onSettore} onClick={() => p.onSettore?.(s.id)}
+            <button type="button" className="settore-punto" disabled={!p.onSettore && !schede} onClick={() => (p.onSettore ? p.onSettore(s.id) : setAperto((x) => (x === s.id ? null : s.id)))}
+              aria-haspopup={schede ? 'dialog' : undefined} aria-expanded={schede ? aperto === s.id : undefined}
               aria-label={`${nome}${liv !== null ? `, situazione ${PAROLE[liv]}` : ''}${qui.length ? `, ${qui.map(([r, n]) => quante(n, r)).join(', ')}` : ''}`} />
             <span className="settore-nome" aria-hidden="true">{nome}</span>
             {(p.segni ?? []).some((x) => x.settore === s.id) && (
@@ -151,6 +173,8 @@ export function Mappa(p: MappaProps) {
           </div>
         );
       })}
+      {p.radio && <RadioMappa settori={settori} segni={p.segni ?? []} home={p.home ? angolo : null}>{p.radio}</RadioMappa>}
+      {schede && aperto && settori.some((s) => s.id === aperto) && (() => { const s = settori.find((x) => x.id === aperto)!; return <SchedaSettore s={statoDi(s)} folla={p.vuota ? null : rigaFolla(s, folla)} chiudi={chiudiScheda} />; })()}
     </div>
   );
 }
