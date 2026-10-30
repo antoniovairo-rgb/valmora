@@ -21,3 +21,8 @@
    stringe il riquadro per trovare posto e la parola più lunga ne usciva senza essere misurata. Il riquadro non è mai più
    stretto della parola più lunga. Rosso C241N01: come prima. */
 main:not(.rosso-c241n01) .mappa.citta .settore-nome { min-width: min-content; }
+
+/* Idea B: nella risposta l'unità toccata resta evidenziata finché non tocchi il settore; l'indicazione sta nel riquadro radio */
+.tocco-pastiglia.in-mano .pastiglia { outline: var(--bordo) solid var(--magenta); outline-offset: var(--spazio-px); }
+.radio-mappa .mossa-indicazione { margin: 0; font-weight: 700; }
+.radio-mappa .rapporto-costo + .mossa-indicazione { margin-top: var(--spazio-1); }
