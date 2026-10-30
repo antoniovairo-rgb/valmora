@@ -2,7 +2,8 @@
 // «Ti costa…», icone degli effetti); dopo «Conferma» il costo arriva come rapporto radio nella risposta; in chiamata i settori
 // si toccano e aprono una scheda di stato che non cambia la partita, non fa scorrere la pagina, si chiude con un tocco o con
 // Esc (il fuoco torna al settore) e ha bersagli ≥ --tocco-min. Chiamate costruite col motore (sonda-altezze), aperte da
-// salvataggio. Rossi: VALMORA_ROSSI=C241A01 (costo sotto le opzioni, niente rapporto radio), C241M01 (mappa disattivata).
+// salvataggio. Rossi: VALMORA_ROSSI=C241A01 (costo sotto le opzioni, niente rapporto radio), C241M01 (mappa disattivata),
+// C255S01 (C55-01: la scheda sempre in basso copre i settori bassi).
 import { join } from 'node:path';
 import { chiamateCostruite, SOGLIE } from './sonda-altezze.mjs';
 
@@ -66,6 +67,16 @@ export async function controllaPo152a(browser, url, larghezza, rossi = [], carte
       await p.waitForTimeout(150);
       if (await p.locator('[data-scheda-settore]').count()) male.push(`${dove}: la scheda di ${s} non si chiude ${s === c.settore ? 'col tocco' : 'con Esc'} (PO-152 A)`);
       if (s !== c.settore && !(await punto.evaluate((e) => document.activeElement === e))) male.push(`${dove}: chiusa con Esc, il fuoco non torna al settore ${s} (PO-152 A)`);
+    }
+    // C55-01 (D-255): per ogni settore, aperta la sua scheda, il centro del settore toccato resta in vista (rosso C255S01)
+    for (const k of await p.evaluate(() => [...document.querySelectorAll('.mappa [data-settore]')].map((e) => e.dataset.settore))) {
+      const punto = p.locator(`[data-settore="${k}"] .settore-punto`);
+      if (await punto.isDisabled()) continue;
+      await punto.click(); await p.waitForTimeout(120);
+      const coperto = await p.evaluate((id) => { const sc = document.querySelector('[data-scheda-settore]'), b = document.querySelector(`[data-settore="${id}"] .settore-punto`); if (!sc || !b) return null;
+        const r = sc.getBoundingClientRect(), q = b.getBoundingClientRect(), x = q.left + q.width / 2, y = q.top + q.height / 2; return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; }, k);
+      if (coperto) male.push(`${dove}: la scheda copre il settore toccato «${k}» (C55-01)`);
+      await p.keyboard.press('Escape'); await p.waitForTimeout(80);
     }
     if ((await stato(p)) !== prima) male.push(`${dove}: aprire e chiudere le schede ha cambiato il salvataggio (PO-152 A)`);
     // 3) dopo «Conferma» il costo arriva come rapporto radio, in parole (D-078: niente numeri nell'accenno)

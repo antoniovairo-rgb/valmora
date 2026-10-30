@@ -2,6 +2,9 @@
 
 /* Idea A: scheda di stato del settore, sopra la mappa in basso: non aggiunge altezza alla pagina. Toccarla la chiude. */
 .scheda-settore { position: absolute; left: var(--spazio-2); right: var(--spazio-2); bottom: var(--spazio-2); z-index: 6; max-height: calc(100% - 2 * var(--spazio-2)); overflow: auto; padding: var(--spazio-2) var(--tocco-min) var(--spazio-2) var(--spazio-2); background: var(--bianco); color: var(--nero); border: var(--bordo) solid var(--nero); box-shadow: var(--ombra-1); font-size: var(--testo-piccolo); line-height: var(--linea-stretta); cursor: pointer; }
+.scheda-settore.alto { top: var(--spazio-2); bottom: auto; } /* C55-01 (D-255): dalla parte opposta al settore toccato */
+.scheda-settore.libero-sx { left: calc(var(--tocco-min) + 2 * var(--spazio-2)); }
+.scheda-settore.libero-dx { right: calc(var(--tocco-min) + 2 * var(--spazio-2)); }
 .scheda-settore-nome { margin: 0 0 var(--spazio-1); font-family: var(--font-titoli); text-transform: uppercase; letter-spacing: var(--spaziatura-maiuscolo); }
 .scheda-settore-righe { margin: 0; padding: 0; list-style: none; }
 .scheda-settore-chiudi { position: absolute; top: 0; right: 0; display: grid; place-items: center; width: var(--tocco-min); height: var(--tocco-min); padding: 0; border: 0; background: transparent; color: var(--nero); cursor: pointer; }

@@ -177,7 +177,13 @@ export function Mappa(p: MappaProps) {
         );
       })}
       {p.radio && <RadioMappa settori={settori} segni={p.segni ?? []} home={p.home ? angolo : null}>{p.radio}</RadioMappa>}
-      {schede && aperto && settori.some((s) => s.id === aperto) && (() => { const s = settori.find((x) => x.id === aperto)!; return <SchedaSettore s={statoDi(s)} folla={p.vuota ? null : rigaFolla(s, folla)} chiudi={chiudiScheda} />; })()}
+      {schede && aperto && settori.some((s) => s.id === aperto) && (() => {
+        // C55-01 (D-255): la scheda ancorata in basso copriva i settori bassi (strade, parcheggi, piazzale): si apre dalla parte
+        // opposta al settore toccato e, in alto, lascia libero il lato di «Home». Rosso C255S01: sempre in basso, come prima.
+        const s = settori.find((x) => x.id === aperto)!, banda = s.pos.y > 50 && !spento('C255S01') ? 'alto' : 'basso';
+        const libero = banda === 'alto' && p.home && angolo.startsWith('alto') ? (angolo.endsWith('sx') ? 'sx' : 'dx') : undefined;
+        return <SchedaSettore s={statoDi(s)} folla={p.vuota ? null : rigaFolla(s, folla)} chiudi={chiudiScheda} banda={banda} libero={libero} />;
+      })()}
     </div>
   );
 }
