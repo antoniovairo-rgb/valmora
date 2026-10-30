@@ -7,6 +7,9 @@
 // - rosso __NO_C241C01: gli effetti ritardati non si applicano (i guardiani lo vedono).
 import { readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it } from 'vitest';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { Chiusura, costoMorso } from '../src/resa/schermate/Ondata.tsx';
 import { leggiDati } from '../tools/dati-disco.mjs';
 import { variabiliIniziali } from '../src/logica/condizioni.ts';
 import { ondataDelMorso } from '../src/logica/dopo.ts';
@@ -19,7 +22,7 @@ import { migra } from '../src/salvataggi/salvataggio.ts';
 import type { Chiamata, Dichiarazione, EffettoDopo, Missione, Opzione } from '../src/logica/tipi.ts';
 
 const g = globalThis as Record<string, unknown>;
-afterEach(() => { delete g.__NO_C241C01; });
+afterEach(() => { delete g.__NO_C241C01; delete g.__NO_C253C02; });
 const d = leggiDati() as Record<string, unknown>;
 const ms = Object.entries(d).filter(([k]) => /^missioni\/e\d+\.json$/.test(k)).map(([, m]) => m as Missione).sort((a, b) => a.episodio - b.episodio);
 const dich = new Map((d['stato.json'] as { variabili: Dichiarazione[] }).variabili.map((x) => [x.id, x]));
@@ -85,6 +88,21 @@ const tipoMorso = (e: Record<string, unknown>) => ('tensione' in e ? 'tensione' 
 export const pocoVari = (missioni: Missione[]) => missioni.flatMap((m) => {
   const tipi = new Set(conDopo(m).filter((x) => !x.c.variante_di).flatMap((x) => x.dopo.effetti.map((e) => tipoMorso(e as Record<string, unknown>))));
   return tipi.size >= MIN_TIPI ? [] : [`${m.id}: ${tipi.size} tipi di morso (${[...tipi].join(', ')})`];
+});
+
+describe('il morso dice cosa è costato (C54-04, D-253)', () => {
+  it('ogni effetto ritardato dei 36 episodi ha la sua etichetta: tipo, segno e, per tensione e pressione, il settore', () => {
+    const male = ms.flatMap((m) => conDopo(m).flatMap((x) => x.dopo.effetti.map((e) => [m.id, x.o.id, costoMorso(e as never)] as const)))
+      .filter(([, , l]) => !/^(Fiducia [−+]\d+|(Tensione|Pressione) [−+]\d+, [^[]+|[A-Z][a-z]+ [−+]\d+)$/.test(l));
+    expect(male).toEqual([]);
+  });
+  it('la chiusura mostra il costo in testa al messaggio; rosso __NO_C253C02: solo il racconto', () => {
+    const m = ms.find((x) => x.id === 'e01')!, base = iniziaMissione(m, v0, dich);
+    const ic: InCorso = { ...base, ondata: 2, scelte: [{ ondata: 1, chiamata: 'corteo_partito', opzione: 'osserva' }] };
+    const html = () => renderToStaticMarkup(createElement(Chiusura, { m, ic, chiudi: () => {} }));
+    expect(html()).toMatch(/data-costo-morso[^>]*>Squadre −1\. </);
+    g.__NO_C253C02 = true; expect(html()).not.toMatch(/data-costo-morso/);
+  });
 });
 
 describe('morsi vari (D-247)', () => {
