@@ -166,7 +166,7 @@ export function chiusureCostruite(dati, dich) {
 }
 
 export const PARTI = ['e01', 'citta36', 'chiamate', 'rapporti', 'riepilogo', 'verbali', 'po149', 'po152a', 'c52nomi', 'chiusure'];
-export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi = [], cartella = '', parti = PARTI }) {
+export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi = [], cartella = '', parti = PARTI, chiusureMax = Infinity }) {
   const dati = leggiDati(dirDati), dich = new Map(dati['stato.json'].variabili.map((d) => [d.id, d])), e01 = dati['missioni/e01.json'];
   const srv = await servi(build), url = `http://127.0.0.1:${srv.address().port}/`;
   const percorso = process.env.VALMORA_CHROME ?? (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
@@ -179,7 +179,9 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
       if (rossi.length) await p.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
       await p.addInitScript((x) => { globalThis.__VALMORA_SECONDO_MS = 1; globalThis.__VALMORA_SEME_PARTITA = x; }, SEME); // come foto.mjs (PO-121, D-241): niente attese reali, seme di partita fisso
       p.on('pageerror', (e) => errori.push(`${vp}: ${e.message}`));
-      const c = async (sel) => { if (await p.locator(sel).count()) { await p.locator(sel).first().click(); await p.waitForTimeout(120); await lento(p); return true; } return false; };
+      // strumento instabile (30/10, CI «360 bracci»: clic fermo 30 s con i bracci in parallelo, come 464820e per epilogo e c41):
+      // il clic attende fino a 60 s. È un'attesa, non una soglia
+      const c = async (sel) => { if (await p.locator(sel).count()) { await p.locator(sel).first().click({ timeout: 60_000 }); await p.waitForTimeout(120); await lento(p); return true; } return false; };
       const rileva = async (nome) => { const x = await misura(p); ris.push({ vp, nome, ...x }); if (cartella) await p.screenshot({ path: join(cartella, `${vp}-${nome}-${ris.filter((r) => r.vp === vp && r.nome === nome).length}.png`), fullPage: true }); };
       await p.goto(url); await p.evaluate(() => localStorage.clear()); await p.reload(); await lento(p); await p.waitForTimeout(400);
       await rileva('titolo');
@@ -275,7 +277,7 @@ export async function giraAltezze({ build = 'dist', dirDati = 'data', vps, rossi
         ris.push({ vp, nome: `riepilogo ${c.ep}`, ...(await misura(q)) }); if (cartella) await q.screenshot({ path: join(cartella, `${vp}-riepilogo-${c.ep}.png`), fullPage: true });
         await q.close();
       }
-      if (parti.includes('chiusure')) for (const c of chiusureCostruite(dati, dich)) { // C54-01 (D-253): a ogni altezza
+      if (parti.includes('chiusure')) for (const c of chiusureCostruite(dati, dich).slice(0, chiusureMax)) { // C54-01 (D-253): a ogni altezza
         const q = await b.newPage({ viewport: { width: w, height: h }, hasTouch: true, reducedMotion: 'reduce' });
         if (rossi.length) await q.addInitScript((xs) => { for (const x of xs) globalThis[`__NO_${x}`] = true; }, rossi);
         await q.goto(url); await q.evaluate((x) => localStorage.setItem('vandelfalls-salvataggio', x), c.sal); await q.reload();
