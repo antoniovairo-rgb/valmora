@@ -38,9 +38,9 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
   | # | Attività | Chi | Versione | Stato |
   |---|---|---|---|---|
   | 0 | Fermare la catena per il Play su e3cac34b (S-25) | principale | – | fatto (giro interrotto, non conta) |
-  | 1 | C52-01/02: la mappa della città non salta al tocco di un episodio (fino a 110 px) e resta lo spazio sopra le teste, con scheda compatta (D-243); rosso C242M01 | S-11 | 0.58.0 (con A) | in corsa |
+  | 1 | C52-01/02: la mappa della città non salta al tocco di un episodio (fino a 110 px) e resta lo spazio sopra le teste, con scheda compatta (D-243); rosso C242M01 | S-11 | 0.58.0 | fatto |
   | 2 | Debito: spezzare src/resa/App.tsx (334 righe) e src/resa/stile.css (400/400), foto identiche | S-11 | 0.53.0 | fatto |
-  | 3 | **A · La mappa è la fonte.** Niente costo né chip prima della scelta; settori toccabili in chiamata con scheda di stato; il costo arriva dopo «Conferma» come rapporto radio; dentro anche C52-03; rosso C241A01 | S-11 | 0.58.0 | in corsa |
+  | 3 | **A · La mappa è la fonte.** Niente costo né chip prima della scelta; settori toccabili in chiamata con scheda di stato; il costo arriva dopo «Conferma» come rapporto radio; dentro anche C52-03; rosso C241A01 | S-11 | 0.58.0 | fatto |
   | 4 | **D · Ogni partita diversa.** Seme di partita salvato; mazzo di imprevisti e punto di comparsa; varianti di chiamata; rosso C241D01; soglia di varietà fissata dopo la prima misura | S-26 | 0.54.0 | fatto |
   | 5 | **C · Il «nessun costo» morde dopo.** Campo `effetti_dopo` validato da schema, applicato alla chiusura dell'ondata dichiarata; scrittura sui 36 episodi | S-27 | 0.56.0 | fatto (morsi da variare al passo 7, D-247) |
   | 6 | **B · Una mossa per chiamata.** Azione pura `sposta` in missione.ts, trascinamento sulla mappa, una per chiamata, il bot la usa; SAVE_VERSION con migrazione se serve; rosso C241B01 | S-11 | – | da scrivere |
@@ -70,7 +70,7 @@ La più recente in alto. Hash = commit di main dopo la promozione (catena comple
 
 | Versione | Data (UTC) | Hash main | Contenuto | Misura principale | Stato |
 |---|---|---|---|---|---|
-| 0.58.0 | 2026-10-30 | – | La mappa è la fonte (idea A, L2b): costo solo dopo «Conferma», settori toccabili in chiamata; mappa della città ferma con scheda compatta (C52-01/02/03, D-243) | 0 costi prima di Conferma; mappa ferma a 279 px; sopra le teste ≥104 a 915; rossi C241A01 (8) e C242M01 (7) riprodotti dalla principale | sul ramo, rituali in corsa |
+| 0.58.0 | 2026-10-30 | 8e1fd248 | La mappa è la fonte (idea A, L2b): costo solo dopo «Conferma», settori toccabili in chiamata; mappa della città ferma con scheda compatta (C52-01/02/03, D-243) | 0 costi prima di Conferma; mappa ferma a 279 px; sopra le teste ≥104 a 915; rossi C241A01 (8) e C242M01 (7) riprodotti dalla principale; passo email verde; governo+logica 3/3 su 8e1fd248, CI 10/10 | pubblicato |
 | 0.57.0 | 2026-10-29 | 7c2943d6 | Nome definitivo «Vandel Falls – Cortina di fumo» (PO-155, D-249): testi, titolo, store, privacy, app, salvataggi migrati, indirizzo …/vandelfalls/ | 37 testi; salvataggi reali ripresi da entrambi i prefissi; rossi C249N01/C249S01; passo email verde; tempo del guardiano C241D01 portato a 400 s (D-251); governo+logica 3/3 su 7c2943d6 (primo tentativo perso per un riavvio del container), CI 10/10 | pubblicato |
 | 0.56.0 | 2026-10-28 | 8ee0d870 | Il «nessun costo» morde dopo (idea C, L2b): un effetto ritardato per ondata, annunciato dalla centrale alla chiusura; C53-01 (imprevisto mai per ultimo, D-246); indirizzo …/varcalda/ | 167 opzioni con morso; 0 blocchi su 86.400 partite; equilibrata 3★ 89,2% → 68,1%; rosso C241C01 167 → 0; C53-01 5,1% → 0 (rosso C246I01); passo email verde; governo+logica 3/3 su 8ee0d870 (primo tentativo interrotto da un riavvio del container), CI 10/10 | pubblicato |
 | 0.55.0 | 2026-10-28 | aa0b4e9f | Nuovo nome «Varcalda – Cortina di fumo» (PO-153, D-244): testi, titolo, store, privacy, identificativo dell'app, chiavi del salvataggio migrate | 37 testi cambiati; salvataggi reali ripresi senza perdite; guardiano nome-d244 con rossi C244N01/C244S01; passo email verde; governo+logica 3/3 su aa0b4e9f, CI 10/10 | pubblicato |
