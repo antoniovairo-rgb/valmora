@@ -21,3 +21,6 @@
    stringe il riquadro per trovare posto e la parola più lunga ne usciva senza essere misurata. Il riquadro non è mai più
    stretto della parola più lunga. Rosso C241N01: come prima. */
 main:not(.rosso-c241n01) .mappa.citta .settore-nome { min-width: min-content; }
+/* C54-01 (D-253): il fumetto dei morsi nella chiusura, più compatto (in CI, senza Inter, due morsi a 360×640 scorrevano
+   fino a 32 px in e35, dove la mappa resta alta per «Home»). Col rosso C253C01 il fumetto ha di nuovo mittente e testo grande. */
+.messaggio[data-messaggio="radio-dopo"] { margin-top: var(--spazio-3); padding-block: var(--spazio-2); }
