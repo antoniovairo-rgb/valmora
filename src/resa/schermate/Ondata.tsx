@@ -115,10 +115,14 @@ export function Chiamata(p: { m: Missione; ic: InCorso; c: TChiamata; numero: nu
             <span className="tasto" aria-hidden="true">{LETTERE[i]}</span>
             <span className="opzione-testo">
               {t(o.testo)}
-              {/* Accenno di costo in parole (D-078); interruttore rosso C05S05 lo nasconde */}
-              {o.costo && !spento('C05S05') && <small className="costo" data-costo={o.id}>{t(o.costo)}</small>}
-              {quandoCosta(o, p.ic.ondata >= p.m.ondate.length) && <small className="costo costo-quando" data-quando={o.id}>{quandoCosta(o, p.ic.ondata >= p.m.ondate.length)}</small>}
-              <EffettiOpzione c={p.c} o={o} />
+              {/* PO-152 (D-241, idea A): prima della scelta solo il testo dell'opzione; il costo arriva dopo «Conferma», come
+                  rapporto radio (RapportoCosto). Rosso C241A01: accenno di costo (D-078), «Ti costa…» e icone, come prima. */}
+              {spento('C241A01') && <>
+                {/* Accenno di costo in parole (D-078); interruttore rosso C05S05 lo nasconde */}
+                {o.costo && !spento('C05S05') && <small className="costo" data-costo={o.id}>{t(o.costo)}</small>}
+                {quandoCosta(o, p.ic.ondata >= p.m.ondate.length) && <small className="costo costo-quando" data-quando={o.id}>{quandoCosta(o, p.ic.ondata >= p.m.ondate.length)}</small>}
+                <EffettiOpzione c={p.c} o={o} />
+              </>}
             </span>
           </button>
         ))}
@@ -171,6 +175,20 @@ export const costoMorso = (e: EffettoMissione): string => ('tensione' in e ? `Te
   : 'pressione' in e ? `Pressione ${conSegno(e.valore)}, ${t(`settore.${e.pressione}`)}`
   : 'riserva' in e ? `${t(`risorsa.${e.riserva}`)} ${conSegno(e.valore)}`
   : 'aggiungi' in e && e.aggiungi === 'credito' ? `Fiducia ${conSegno(e.valore)}` : '');
+
+/** PO-152 (D-241): dopo «Conferma» il costo della risposta arriva per radio (D-078 rivisto: sempre nei dati, mostrato dopo),
+ *  sulla mappa insieme ai segni ▲/▼ (Mappa, prop radio: sopra la mappa, la risposta non si allunga; a 360×640 restavano
+ *  6 px prima della soglia di sonda-altezze). Rosso C241A01: niente, il costo era già sotto l'opzione. */
+export function RapportoCosto(p: { m: Missione; ic: InCorso; o: Opzione }) {
+  if (spento('C241A01') || !p.o.costo) return null;
+  const quando = quandoCosta(p.o, p.ic.ondata >= p.m.ondate.length);
+  return (
+    <p className="rapporto-costo" data-rapporto-costo={p.o.id}>
+      <strong><Icona di={Radio} />{t('radio.costo')}</strong> <span data-costo={p.o.id}>{t(p.o.costo)}</span>
+      {quando && <> <span data-quando={p.o.id}>{quando}</span></>}
+    </p>
+  );
+}
 
 export function Chiusura(p: { m: Missione; ic: InCorso; chiudi: () => void }) {
   // D-241 idea C: le scelte «comode» che mordono alla chiusura di quest'ondata parlano qui, al posto di «La radio tace»

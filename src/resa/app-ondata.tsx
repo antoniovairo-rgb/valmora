@@ -72,7 +72,10 @@ export function scenaOndata(cx: ContestoOndata): ScenaApp {
     corpo = <Schieramento riepilogoAperto={cx.setRiepilogoAperto} m={m} ic={ic} d={bozza} scelta={sel} avviso={avviso} scegli={(r) => { cx.setScelta(r); cx.setAvviso(null); }} metti={metti} azzera={() => cx.cambiaBozza({})} annulla={cx.annulla}
       conferma={() => { cx.setAvviso(null); const ora = icOra(); if (ora && !ora.disposizione && ora.ondata === ic.ondata) conIc(schiera(m, ora, bozza)); }} />;
   } else if (f.tipo === 'chiamata') {
-    mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, accesi: f.chiamata.settore ? [f.chiamata.settore] : [], citato: f.chiamata.settore };
+    mappa = { tensione: ic.tensione, presenze: ic.disposizione, fisse: spento('C09S02') ? null : ic.fisse, accesi: f.chiamata.settore ? [f.chiamata.settore] : [], citato: f.chiamata.settore,
+      // PO-152 (D-241, idea A): in chiamata la mappa è la fonte: un settore toccato apre la sua scheda di stato. Rosso C241M01:
+      // mappa disattivata, come prima.
+      ...(spento('C241M01') ? {} : { schede: true }) };
     const conferma = (o: string) => {
         const ora = icOra();
         if (!spento('C05R01') && (!ora || !chiamateAperte(m, ora).some((c) => c.id === f.chiamata.id))) return; // già risposta

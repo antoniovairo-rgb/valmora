@@ -54,3 +54,16 @@ main:not(.rosso-c237p01)[data-schermata="citta"] .scena .scheda .pulsante { widt
 /* PO-149: il margine sotto dell'ultimo elemento usciva da main e la striscia, che misura main (vignetta.tsx), cresceva di 4-8 px
    troppo (la pagina scorreva). Il distacco dal fondo resta il padding di #app. Rosso C237S01: come prima */
 main:not(.rosso-c237s01)[data-schermata="citta"]:has([data-citta-striscia]) .scena > :last-child { margin-bottom: 0; }
+/* D-243 (C52-01/02): con la striscia la scheda sotto la mappa (o l'invito) ha la stessa altezza in ogni stato, quella di «Da
+   giocare»: la striscia prende lo spazio libero e la mappa resta ferma. Testi su una riga con l'ellissi (il testo intero resta
+   nella pagina, per il lettore di schermo), stelle nella riga in alto, pulsanti in fila; la Tripla aperta torna all'altezza del
+   contenuto. Rosso C242M01: la scheda cresce col contenuto, come prima. */
+main:not(.rosso-c242m01)[data-schermata="citta"] .scena .scheda.compatta:not(:has(.tripla)) { height: var(--citta-scheda-altezza); overflow: hidden; margin: var(--spazio-2) 0 0; padding: var(--spazio-1) var(--spazio-3); }
+main:not(.rosso-c242m01)[data-schermata="citta"] .scena .scheda.compatta > :is(h2, p) { margin-block: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+main:not(.rosso-c242m01)[data-schermata="citta"] .scheda.compatta .riga { flex-wrap: nowrap; }
+main:not(.rosso-c242m01)[data-schermata="citta"] .scheda.compatta .riga .stelle { margin-left: auto; }
+main:not(.rosso-c242m01)[data-schermata="citta"] .scheda.compatta .sfida-club { min-width: 0; }
+main:not(.rosso-c242m01)[data-schermata="citta"] .scheda.compatta :is(.sfida-club > span:last-child, .testo-pulsante) { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+main:not(.rosso-c242m01)[data-schermata="citta"] .scena .scheda.compatta .scheda-azioni { display: flex; gap: calc(var(--spazio-1) + var(--ombra-1-scarto)); margin: var(--spazio-1) calc(var(--spazio-1) + var(--ombra-1-scarto)) calc(var(--spazio-1) + var(--ombra-1-scarto)) var(--spazio-1); }
+main:not(.rosso-c242m01)[data-schermata="citta"] .scena .scheda.compatta .scheda-azioni .pulsante { flex: 1 1 0; min-width: 0; width: auto; margin: 0; }
+main:not(.rosso-c242m01)[data-schermata="citta"] .scena .scheda.compatta .scheda-azioni:has(> :nth-child(2)) .pulsante { padding-inline: var(--spazio-2); gap: var(--spazio-1); }
