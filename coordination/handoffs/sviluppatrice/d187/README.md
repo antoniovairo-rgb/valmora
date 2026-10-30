@@ -851,3 +851,48 @@ e24 17,5 px fuori, e13 e e18 sul proprio disco).
 
 Non verificato: telefono reale (tocco sulla mappa in chiamata, TalkBack sulla scheda del settore); tastiera fisica oltre Esc;
 la Tripla aperta scorreva già prima (O-1 di C-052); C52-04/05 (testo al 130 %) restano al lotto accessibilità.
+
+## D-243 (C52-01/02 rifatta): scheda della città ad altezza fissa — 0.58.0 — S-11, 28-30/10
+
+La sezione C52-01/02 qui sopra (riserva del blocco più alto, `--citta-riserva-striscia` 500, react-dom/server) è **superata**
+da D-243 (PO, «Mappa ferma e scheda compatta»). Base: merge di main fino alla 0.57.0 (c80bac30, Vandel Falls).
+
+- Con la striscia (finestra ≥ 700 px) la scheda dell'episodio e l'invito hanno la stessa altezza in ogni stato:
+  `--citta-scheda-altezza` 177 px (quella di «Da giocare», 181, meno 4 px tolti sopra i pulsanti). Titolo, descrizione, nomi
+  della sfida e testo dei pulsanti su una riga con l'ellissi; il testo intero resta nella pagina (lo legge il lettore di schermo).
+  Stelle nella riga in alto accanto ai tentativi; «Rileggi l'epilogo» accanto al pulsante principale, dentro la scheda; «Prossimo»
+  dell'invito su una riga. Con la Tripla aperta la scheda torna all'altezza del contenuto (scorreva già prima, O-1 di C-052).
+- La striscia prende lo spazio libero come in PO-149: con il blocco sotto la mappa sempre uguale, la mappa non si sposta.
+- Tolti `schermate/citta-riserva.ts` e `react-dom/server`; `vignetta.tsx` torna com'era; `--citta-riserva-striscia` di nuovo 484.
+- Bundle JS: 2 842 454 byte contro 2 837 544 di main abd5f489 (+4 910: idea A e C52); senza `react-dom/server` (0 riferimenti).
+- Rosso C242M01 (CSS e JS): la scheda cresce col contenuto e l'epilogo sta sotto, come prima.
+
+FATTO MISURATO (`foto-po149.mjs`, a ogni larghezza la posizione della mappa è identica nei 6 stati e19, superato e18, nessuno,
+prossimo, tutti36, tutti36 con e35 scelto):
+
+| larghezza | mappa (y) 760 e 915 | striscia | sopra le teste | mappa alta |
+|---|---|---|---|---|
+| 360 | 279 | 197 | 114 | 276 a 760, 431 a 915 |
+| 375 | 279 | 197 | 110 | 276 a 760, 431 a 915 |
+| 412 | 279 | 201 | 104 | 276 a 760, 431 a 915 |
+
+Prima (0.52.0, main abd5f489), a 360: mappa 275 / 230 / 292 / 210 / 182 / 214 negli stessi stati; sopra le teste da 17 a 127.
+640 e 667: identici a prima, scorrimento 0 (confronto riga per riga col giro della base).
+
+Guardiano `foto-po149.mjs` (D-243): mappa ferma fra gli stati (≤ 1 px); sopra le teste ≥ 100 a 915 (e ≥ `--spazio-5`
+ovunque); mappa ≥ 431 a 915 e ≥ 276 a 760; nessun testo della scheda tagliato senza ellissi e niente tagliato in basso.
+Rossi a 360: C242M01 7 problemi; C237S01 24; C237P01 18.
+
+Bracci: C201C01+C230C01 ora gira con C242M01 (con la scheda compatta i 12 px del rosso ci stanno; da solo 0, insieme 12 px);
+C128N01 torna com'era (da solo rosso: «Il mercato del sabato» a 3,2 px dal bordo, 2 stati).
+
+Foto: `d243/prima` (main abd5f489) e `d243/dopo`, 360/375/412 × 640/760/915, stati e19, superato, nessuno, prossimo, tutti36.
+
+Strumenti: `foto-po152-a.mjs` e `foto-c52-nomi.mjs` usano la chiave nuova `varcalda-salvataggio` (con la vecchia il controllo
+«salvataggio invariato» di foto-po152-a sarebbe stato cieco: leggeva una chiave vuota prima e dopo).
+
+### Consegna 0.58.0 (979d1530)
+- Strumento instabile riparato: bracci epilogo e c41, clic su «avanti» e attesa della scena fino a 60 s (fermi 30 s sotto
+  carico ~20 su 4 core); nessuna soglia cambiata. Limite di tempo di partita-d241: la riga di D-251 (400 s).
+- Chiave di salvataggio nei guardiani nuovi: `vandelfalls-salvataggio`. Nomi: tests/nome-d244.test.ts 12/12.
+- Su 979d1530: grafica completa verde; 3 giri governo+logica verdi; CI 40955861303 verde su tutti i 10 job.
