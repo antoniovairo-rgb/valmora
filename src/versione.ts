@@ -390,4 +390,7 @@
 //   misura: una mossa per pausa (seconda rifiutata), salvata (SAVE_VERSION 4, migrazione 3→4 provata su un salvataggio vero 0.57);
 //   bot su 300 semi: 0 blocchi, esiti identici, l'attento muove 69 volte su 4.179 occasioni; scorrimento della risposta invariato.
 //   guardiano: tests/mossa-d241.test.ts e tools/foto-po152-b.mjs, rossi C241B01 (6) e C241M02.
+//   Nella stessa versione il bilanciamento della varietà (D-252): 951 risposte di carte e varianti misurate, oltre soglia 348 → 0 a
+//   360×640 (max 108 → 66), 241 → 0 a 375×667, 61 → 0 a 412×760; D-108 col seme 7 coppie rosse → 0; e24 «contenuto» raggiungibile
+//   (1 su 1000, casuale). Guardiani: parte «risposte» di sonda-altezze (rosso C193R01) e passo bot col seme (rosso C252B01).
 export const GAME_VERSION = '0.59.0';
