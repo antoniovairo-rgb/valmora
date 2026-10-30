@@ -128,7 +128,7 @@
           "id": "corteo_larkspire",
           "tipo": "corteo",
           "settore": "strada_larkspire",
-          "pressione": 4
+          "pressione": 3
         },
         {
           "id": "appuntamento",
@@ -374,7 +374,7 @@
             },
             {
               "id": "sospendi",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"riserva": "squadre", "valore": -1}], "rapporto": "testi:e32.dopo.fumogeni_cinderwick.sospendi"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"riserva": "squadre", "valore": -2}], "rapporto": "testi:e32.dopo.fumogeni_cinderwick.sospendi"},
               "testo": "testi:e32.op.sospendi",
               "costo": "testi:e32.op.sospendi.c",
               "effetti": [

@@ -886,7 +886,7 @@
             },
             {
               "id": "niente_commento",
-              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -1}], "rapporto": "testi:e03.dopo.troupe_notte.niente_commento"},
+              "effetti_dopo": {"ondate": 1, "effetti": [{"aggiungi": "credito", "valore": -2}], "rapporto": "testi:e03.dopo.troupe_notte.niente_commento"},
               "testo": "testi:e03.op.niente_commento",
               "costo": "testi:e03.op.niente_commento.c",
               "risposta": "testi:e03.op.niente_commento.r",
