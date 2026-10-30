@@ -48,6 +48,7 @@ Stati dei lotti: PROPOSTO / IN CORSO / CHIUSO.
   | 8 | Accessibilità: testo al 130% a 360/375 (C52-04/05) | S-11 | – | da scrivere |
   | 8c | C53-01: l'imprevisto della carta nuova non arriva più per ultimo nell'ondata (10,5% → 0); finestre validate sulle chiamate senza condizioni; rosso | S-26 | 0.56.0 | fatto |
 | 8b | **Nuovo nome «Varcalda – Cortina di fumo» (PO-153, D-244).** Testi, store, privacy, identificativo dell'app, chiavi del salvataggio con migrazione, repository e Pages; guardiano «nessun Valmora visibile» e rosso | S-26 + PO (rinomina del repository) | 0.55.0 + 0.56.0 | fatto (repository rinominato dal PO il 28/10, sito su …/varcalda/) |
+| 8d | Carattere Inter incluso nel gioco (D-254): oggi le misure usano Inter installato nel container, i telefoni probabilmente no | da assegnare | – | da scrivere |
 | 9 | Prova del tester: link al PO per il collega; collaudo con «Partita da giocatore» e la domanda «leggi le opzioni? la mappa la usi?» | principale + collaudatrice | – | da scrivere |
 
 - Criterio d'uscita:
